@@ -51,6 +51,7 @@ def build_validation_of_method_parameters_request(
         'resourceGroupName': _SERIALIZER.url("resource_group_name", resource_group_name, 'str', max_length=10, min_length=3, pattern=r'[a-zA-Z0-9\']+'),
         'id': _SERIALIZER.url("id", id, 'int', maximum=1000, minimum=100, multiple=10),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
@@ -88,6 +89,7 @@ def build_validation_of_body_request(
         'resourceGroupName': _SERIALIZER.url("resource_group_name", resource_group_name, 'str', max_length=10, min_length=3, pattern=r'[a-zA-Z0-9]+'),
         'id': _SERIALIZER.url("id", id, 'int', maximum=1000, minimum=100, multiple=10),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
@@ -119,6 +121,7 @@ def build_get_with_constant_in_path_request(
     path_format_arguments = {
         'constantParam': _SERIALIZER.url("constant_param", constant_param, 'str'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     return HttpRequest(
@@ -141,6 +144,7 @@ def build_post_with_constant_in_body_request(
     path_format_arguments = {
         'constantParam': _SERIALIZER.url("constant_param", constant_param, 'str'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
@@ -231,6 +235,7 @@ class AutoRestValidationTestOperationsMixin(object):
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body is not None:
@@ -317,6 +322,7 @@ class AutoRestValidationTestOperationsMixin(object):
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body is not None:

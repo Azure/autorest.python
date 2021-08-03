@@ -53,6 +53,7 @@ def build_get_by_pet_id_request(
     path_format_arguments = {
         'petId': _SERIALIZER.url("pet_id", pet_id, 'str'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers

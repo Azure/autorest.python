@@ -87,7 +87,7 @@ class PagingOperation(Operation):
             response = self._get_response()
             raise ValueError(
                 f"While scanning x-ms-pageable, itemName was not defined and object"
-                + f" {response.schema.name} has no array called 'value'"
+                + f" {cast(ObjectSchema, response.schema).name} has no array called 'value'"
             )
 
     def next_link_name(self, code_model) -> Optional[str]:
@@ -153,6 +153,7 @@ class PagingOperation(Operation):
             file_import.add_from_import(
                 "azure.core.tracing.decorator", "distributed_trace", ImportType.AZURECORE,
             )
-        file_import.add_from_import("json", "loads", ImportType.STDLIB, alias="_loads")
+        if not code_model.options["show_models"]:
+            file_import.add_from_import("json", "loads", ImportType.STDLIB, alias="_loads")
 
         return file_import

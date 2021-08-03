@@ -564,6 +564,7 @@ def build_put_simple_product_with_grouping_request(
     path_format_arguments = {
         "name": _SERIALIZER.url("name", name, "str"),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers

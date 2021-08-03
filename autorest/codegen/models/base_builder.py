@@ -78,7 +78,7 @@ class BaseBuilder(BaseModel):
     def default_content_type_declaration(self) -> str:
         return f'"{self.parameters.default_content_type}"'
 
-    def get_response_from_status(self, status_code: int) -> SchemaResponse:
+    def get_response_from_status(self, status_code: Optional[Union[str, int]]) -> SchemaResponse:
         for response in self.responses:
             if status_code in response.status_codes:
                 return response

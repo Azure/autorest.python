@@ -1135,11 +1135,13 @@ class PagingOperations:
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
-            deserialized = self._deserialize("ProductResult", pipeline_response)
-            if cls:
-                return cls(pipeline_response, deserialized, {})
-            return deserialized
+            async def internal_get_next(next_link=None):
+                if next_link is None:
+                    return pipeline_response
+                else:
+                    return await get_next(next_link)
+
+            return AsyncItemPaged(internal_get_next, extract_data)
 
         if polling is True:
             polling_method = AsyncLROBasePolling(lro_delay, **kwargs)

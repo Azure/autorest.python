@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 from itertools import chain
 import logging
-from typing import Callable, cast, Dict, List, Any, Optional, Union, Set
+from typing import cast, Dict, List, Any, Optional, Union, Set
 
 from .base_builder import BaseBuilder, create_parameters
 from .imports import FileImport, ImportType, TypingSection

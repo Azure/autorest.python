@@ -31,6 +31,12 @@ def build_get_not_expandable_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == "str (optional)"
     """
 
     accept = "application/json"
@@ -109,6 +115,12 @@ def build_get_referenced_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == "str (optional)"
     """
 
     accept = "application/json"

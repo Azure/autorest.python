@@ -46,6 +46,7 @@ def build_get_required_path_request(
     path_format_arguments = {
         'pathParameter': _SERIALIZER.url("path_parameter", path_parameter, 'str'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
@@ -171,6 +172,7 @@ def build_get_required_global_path_request(
     path_format_arguments = {
         'required-global-path': _SERIALIZER.url("required_global_path", required_global_path, 'str'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
@@ -398,6 +400,7 @@ class ImplicitOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body_parameter is not None:
@@ -444,6 +447,7 @@ class ImplicitOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/octet-stream")  # type: Optional[str]
 
         content = body_parameter

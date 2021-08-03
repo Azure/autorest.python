@@ -313,6 +313,7 @@ class HttpRetryOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
@@ -359,6 +360,7 @@ class HttpRetryOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
@@ -477,6 +479,7 @@ class HttpRetryOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
@@ -523,6 +526,7 @@ class HttpRetryOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
@@ -569,6 +573,7 @@ class HttpRetryOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
@@ -615,6 +620,7 @@ class HttpRetryOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:

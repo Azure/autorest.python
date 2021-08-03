@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, List, TypeVar, Optional, Callable
+from typing import Any, Dict, List, TypeVar, Optional
 
 from .base_builder import BaseBuilder, create_parameters
 from .request_builder_parameter import RequestBuilderParameter

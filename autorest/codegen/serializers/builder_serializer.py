@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines
 # -------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for
@@ -736,7 +737,10 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         response: SchemaResponse,
     ) -> List[str]:
         retval: List[str] = [
-            f"response_headers['{response_header.name}']=self._deserialize('{response_header.serialization_type}', response.headers.get('{response_header.name}'))"
+            (
+                f"response_headers['{response_header.name}']=self._deserialize('{response_header.serialization_type}', "
+                f"response.headers.get('{response_header.name}'))"
+            )
             for response_header in response.headers
         ]
         if response.headers:
@@ -744,7 +748,8 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         if response.is_stream_response:
             retval.append(
                 "deserialized = {}".format(
-                    "response" if self.code_model.options["version_tolerant"] else "response.stream_download(self._client._pipeline)"
+                    "response" if self.code_model.options["version_tolerant"]
+                    else "response.stream_download(self._client._pipeline)"
                 )
             )
         elif response.has_body:
@@ -832,27 +837,44 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
                 retval.append("    409: ResourceExistsError,")
             for excep in builder.status_code_exceptions:
                 error_model_str = ""
-                if isinstance(excep.schema, ObjectSchema) and excep.is_exception and self.code_model.options["show_models"]:
+                if (
+                    isinstance(excep.schema, ObjectSchema)
+                    and excep.is_exception
+                    and self.code_model.options["show_models"]
+                ):
                     error_model_str = f", model=self._deserialize(_models.{excep.serialization_type}, response)"
                 error_format_str = ", error_format=ARMErrorFormat" if self.code_model.options['azure_arm'] else ""
                 for status_code in excep.status_codes:
                     if status_code == 401:
-                        retval.append(f"    401: lambda response: ClientAuthenticationError(response=response{error_model_str}{error_format_str}),")
+                        retval.append(
+                            "    401: lambda response: ClientAuthenticationError(response=response"
+                            f"{error_model_str}{error_format_str}),"
+                        )
                     elif status_code == 404:
-                        retval.append(f"    404: lambda response: ResourceNotFoundError(response=response{error_model_str}{error_format_str}),")
+                        retval.append(
+                            "    404: lambda response: ResourceNotFoundError(response=response"
+                            f"{error_model_str}{error_format_str}),"
+                        )
                     elif status_code == 409:
-                        retval.append(f"    409: lambda response: ResourceExistsError(response=response{error_model_str}{error_format_str}),")
+                        retval.append(
+                            "    409: lambda response: ResourceExistsError(response=response"
+                            f"{error_model_str}{error_format_str}),"
+                        )
                     elif not error_model_str and not error_format_str:
                         retval.append(f"    {status_code}: HttpResponseError,")
                     else:
-                        retval.append(f"    {status_code}: lambda response: HttpResponseError(response=response{error_model_str}{error_format_str}),")
+                        retval.append(
+                            f"    {status_code}: lambda response: HttpResponseError(response=response"
+                            f"{error_model_str}{error_format_str}),"
+                        )
         else:
             retval.append("    401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError")
         retval.append("}")
         retval.append("error_map.update(kwargs.pop('error_map', {}))")
         return retval
 
-    def get_metadata_url(self, builder: BuilderType) -> str:
+    @staticmethod
+    def get_metadata_url(builder: BuilderType) -> str:
         return f"{builder.python_name}.metadata = {{'url': '{ builder.request_builder.url }'}}  # type: ignore"
 
 class _SyncOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=abstract-method
@@ -863,6 +885,10 @@ class _SyncOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable
     @property
     def _def(self) -> str:
         return "def"
+
+    @property
+    def _call_method(self) -> str:
+        return ""
 
 class SyncOperationGenericSerializer(_SyncOperationBaseSerializer):
     @property
@@ -877,10 +903,6 @@ class SyncOperationGenericSerializer(_SyncOperationBaseSerializer):
 
     def _get_kwargs_to_pop(self, builder: BuilderType):
         return builder.parameters.kwargs_to_pop(is_python_3_file=False)
-
-    @property
-    def _call_method(self) -> str:
-        return ""
 
 
 class SyncOperationPython3Serializer(_SyncOperationBaseSerializer):
@@ -970,6 +992,11 @@ class _PagingOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disab
     def _list_type_returned_to_users(self) -> str:
         ...
 
+    @staticmethod
+    @abstractmethod
+    def _pager(builder: BuilderType) -> str:
+        ...
+
     def _extract_data_callback(self, builder: BuilderType) -> List[str]:
         retval = [f"{self._def} extract_data(pipeline_response):"]
         response = builder.responses[0]
@@ -999,7 +1026,10 @@ class _PagingOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disab
         retval = [f"{self._def} get_next(next_link=None):"]
         retval.append("    request = prepare_request(next_link)")
         retval.append("")
-        retval.append(f"    pipeline_response = {self._call_method}self._client._pipeline.run(request, stream={builder.is_stream_response}, **kwargs)")
+        retval.append(
+            f"    pipeline_response = {self._call_method}self._client._pipeline.run(request, "
+            f"stream={builder.is_stream_response}, **kwargs)"
+        )
         retval.append("    response = pipeline_response.http_response")
         retval.append("")
         retval.extend([
@@ -1028,10 +1058,11 @@ class _SyncPagingOperationBaseSerializer(_PagingOperationBaseSerializer, _SyncOp
         return ["Iterable"]
 
     @property
-    def _list_type_returned_to_users(self) -> str:
+    def _list_type_returned_to_users(self) -> str:  # pylint: disable=no-self-use
         return "iter"
 
-    def _pager(self, builder: BuilderType) -> str:
+    @staticmethod
+    def _pager(builder: BuilderType) -> str:
         return builder.get_pager(async_mode=False)
 
 class SyncPagingOperationGenericSerializer(_SyncPagingOperationBaseSerializer, SyncOperationGenericSerializer):
@@ -1052,10 +1083,11 @@ class AsyncPagingOperationSerializer(_PagingOperationBaseSerializer, AsyncOperat
         return ["AsyncIterable"]
 
     @property
-    def _list_type_returned_to_users(self) -> str:
+    def _list_type_returned_to_users(self) -> str:  # pylint: disable=no-self-use
         return "AsyncList"
 
-    def _pager(self, builder: BuilderType) -> str:
+    @staticmethod
+    def _pager(builder: BuilderType) -> str:
         return builder.get_pager(async_mode=True)
 
 
@@ -1148,7 +1180,10 @@ class _LROOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=
         retval.append("        deserialization_callback=get_long_running_output")
         retval.append("    )")
         retval.append("else:")
-        retval.append(f"    return {self._poller(builder)}(self._client, raw_result, get_long_running_output, polling_method)")
+        retval.append(
+            f"    return {self._poller(builder)}"
+            "(self._client, raw_result, get_long_running_output, polling_method)"
+        )
         return retval
 
     def get_long_running_output(self, builder: BuilderType) -> List[str]:
@@ -1233,7 +1268,7 @@ class AsyncLROOperationSerializer(_LROOperationBaseSerializer, AsyncOperationSer
 
 ############################## LRO PAGING OPERATIONS ##############################
 
-class _LROPagingOperationBaseSerializer(_LROOperationBaseSerializer, _PagingOperationBaseSerializer):
+class _LROPagingOperationBaseSerializer(_LROOperationBaseSerializer, _PagingOperationBaseSerializer):  # pylint: disable=abstract-method
 
     def get_long_running_output(self, builder: BuilderType) -> List[str]:
         retval = ["def get_long_running_output(pipeline_response):"]
@@ -1278,7 +1313,9 @@ class SyncLROPagingOperationGenericSerializer(_SyncLROPagingOperationBaseSeriali
 class SyncLROPagingOperationPython3Serializer(_SyncLROPagingOperationBaseSerializer, SyncOperationPython3Serializer):
     pass
 
-class AsyncLROPagingOperationSerializer(_LROPagingOperationBaseSerializer, AsyncLROOperationSerializer, AsyncPagingOperationSerializer):
+class AsyncLROPagingOperationSerializer(
+    _LROPagingOperationBaseSerializer, AsyncLROOperationSerializer, AsyncPagingOperationSerializer
+):
     @property
     def _function_definition(self) -> str:
         return "async def"

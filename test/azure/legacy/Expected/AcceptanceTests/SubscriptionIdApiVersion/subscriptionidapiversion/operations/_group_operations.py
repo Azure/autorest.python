@@ -50,6 +50,7 @@ def build_get_sample_resource_group_request(
         'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
         'resourceGroupName': _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters

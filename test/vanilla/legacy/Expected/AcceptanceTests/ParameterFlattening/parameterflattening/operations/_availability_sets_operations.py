@@ -49,6 +49,7 @@ def build_update_request(
         'resourceGroupName': _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
         'availabilitySetName': _SERIALIZER.url("avset", avset, 'str', max_length=80, min_length=0),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
@@ -111,6 +112,7 @@ class AvailabilitySetsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         _tags = _models.AvailabilitySetUpdateParameters(tags=tags)

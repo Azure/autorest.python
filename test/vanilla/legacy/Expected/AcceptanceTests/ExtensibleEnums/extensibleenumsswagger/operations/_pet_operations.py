@@ -46,6 +46,7 @@ def build_get_by_pet_id_request(
     path_format_arguments = {
         'petId': _SERIALIZER.url("pet_id", pet_id, 'str'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
@@ -167,6 +168,7 @@ class PetOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Pet"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if pet_param is not None:

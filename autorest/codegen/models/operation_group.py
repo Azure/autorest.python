@@ -19,14 +19,13 @@ _LOGGER = logging.getLogger(__name__)
 def _get_operation(code_model, yaml_data: Dict[str, Any]) -> Operation:
     lro_operation = yaml_data.get("extensions", {}).get("x-ms-long-running-operation")
     paging_operation = yaml_data.get("extensions", {}).get("x-ms-pageable")
+    operation_schema = Operation
     if lro_operation and paging_operation:
         operation_schema = LROPagingOperation
     elif lro_operation:
         operation_schema = LROOperation
     elif paging_operation:
         operation_schema = PagingOperation
-    else:
-        operation_schema = Operation
     operation = operation_schema.from_yaml(yaml_data, code_model=code_model)
     return operation
 

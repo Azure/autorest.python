@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import Callable, Dict, List, Any, Optional, Set, cast
+from typing import Dict, List, Any, Optional, Set, cast
 from .imports import FileImport
 from .operation import Operation
 from .parameter_list import ParameterList
@@ -168,6 +168,6 @@ class LROOperation(Operation):
 
         if async_mode:
             file_import.add_from_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
-        if self.lro_response and self.lro_response.has_body:
+        if self.lro_response and self.lro_response.has_body and not code_model.options["show_models"]:
             file_import.add_from_import("json", "loads", import_type=ImportType.STDLIB, alias="_loads")
         return file_import

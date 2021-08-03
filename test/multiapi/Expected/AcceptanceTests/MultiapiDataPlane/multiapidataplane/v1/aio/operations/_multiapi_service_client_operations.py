@@ -47,6 +47,7 @@ class MultiapiServiceClientOperationsMixin:
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
+
         
         request = build_test_one_request(
             id=id,
@@ -62,7 +63,6 @@ class MultiapiServiceClientOperationsMixin:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
-
 
         if cls:
             return cls(pipeline_response, None, {})
@@ -80,6 +80,7 @@ class MultiapiServiceClientOperationsMixin:
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
+
         content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
         if product is not None:
@@ -104,7 +105,6 @@ class MultiapiServiceClientOperationsMixin:
         deserialized = None
         if response.status_code == 200:
             deserialized = self._deserialize('Product', pipeline_response)
-
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -137,7 +137,7 @@ class MultiapiServiceClientOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
-        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop('polling', True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.Product"]
         lro_delay = kwargs.pop(
             'polling_interval',
@@ -151,18 +151,17 @@ class MultiapiServiceClientOperationsMixin:
                 cls=lambda x,y,z: x,
                 **kwargs
             )
-
         kwargs.pop('error_map', None)
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
             deserialized = self._deserialize('Product', pipeline_response)
-
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
 
-        if polling is True: polling_method = AsyncLROBasePolling(lro_delay,  **kwargs)
+
+        if polling is True: polling_method = AsyncLROBasePolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         if cont_token:
@@ -174,8 +173,8 @@ class MultiapiServiceClientOperationsMixin:
             )
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    begin_test_lro.metadata = {'url': '/multiapi/lro'}  # type: ignore
 
+    begin_test_lro.metadata = {'url': '/multiapi/lro'}  # type: ignore
 
     async def _test_lro_and_paging_initial(
         self,
@@ -188,6 +187,7 @@ class MultiapiServiceClientOperationsMixin:
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
+
         _maxresults = None
         _timeout = None
         if test_lro_and_paging_options is not None:
@@ -258,7 +258,7 @@ class MultiapiServiceClientOperationsMixin:
                 if test_lro_and_paging_options is not None:
                     _maxresults = test_lro_and_paging_options.maxresults
                     _timeout = test_lro_and_paging_options.timeout
-
+                
                 request = build_test_lro_and_paging_request_initial(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
@@ -273,7 +273,7 @@ class MultiapiServiceClientOperationsMixin:
                 if test_lro_and_paging_options is not None:
                     _maxresults = test_lro_and_paging_options.maxresults
                     _timeout = test_lro_and_paging_options.timeout
-
+                
                 request = build_test_lro_and_paging_request_initial(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
@@ -281,12 +281,11 @@ class MultiapiServiceClientOperationsMixin:
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize('PagingResult', pipeline_response)
+            deserialized = self._deserialize("PagingResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -299,13 +298,13 @@ class MultiapiServiceClientOperationsMixin:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                    map_error(status_code=response.status_code, response=response, error_map=error_map)
-                    raise HttpResponseError(response=response)
-
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response)
 
             return pipeline_response
 
-        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+
+        polling = kwargs.pop('polling', True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.PagingResult"]
         lro_delay = kwargs.pop(
             'polling_interval',
@@ -319,7 +318,6 @@ class MultiapiServiceClientOperationsMixin:
                 cls=lambda x,y,z: x,
                 **kwargs
             )
-
         kwargs.pop('error_map', None)
 
         def get_long_running_output(pipeline_response):
@@ -332,7 +330,8 @@ class MultiapiServiceClientOperationsMixin:
             return AsyncItemPaged(
                 internal_get_next, extract_data
             )
-        if polling is True: polling_method = AsyncLROBasePolling(lro_delay,  **kwargs)
+
+        if polling is True: polling_method = AsyncLROBasePolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         if cont_token:
@@ -344,6 +343,7 @@ class MultiapiServiceClientOperationsMixin:
             )
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
+
     begin_test_lro_and_paging.metadata = {'url': '/multiapi/lroAndPaging'}  # type: ignore
 
 
@@ -366,6 +366,7 @@ class MultiapiServiceClientOperationsMixin:
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
+
         
         request = build_test_different_calls_request(
             greeting_in_english=greeting_in_english,
@@ -380,7 +381,6 @@ class MultiapiServiceClientOperationsMixin:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
-
 
         if cls:
             return cls(pipeline_response, None, {})

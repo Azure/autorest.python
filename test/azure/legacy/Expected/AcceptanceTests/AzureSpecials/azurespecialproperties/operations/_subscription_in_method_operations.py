@@ -47,6 +47,7 @@ def build_post_method_local_valid_request(
     path_format_arguments = {
         'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
@@ -72,6 +73,7 @@ def build_post_method_local_null_request(
     path_format_arguments = {
         'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
@@ -97,6 +99,7 @@ def build_post_path_local_valid_request(
     path_format_arguments = {
         'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
@@ -122,6 +125,7 @@ def build_post_swagger_local_valid_request(
     path_format_arguments = {
         'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers

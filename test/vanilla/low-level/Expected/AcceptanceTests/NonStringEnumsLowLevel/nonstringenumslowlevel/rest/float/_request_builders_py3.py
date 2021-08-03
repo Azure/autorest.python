@@ -62,6 +62,12 @@ def build_get_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == "float (optional)"
     """
 
     accept = "application/json"

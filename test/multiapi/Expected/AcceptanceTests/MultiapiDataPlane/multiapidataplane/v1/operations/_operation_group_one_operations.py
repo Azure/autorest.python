@@ -92,6 +92,7 @@ class OperationGroupOneOperations(object):
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
+
         
         request = build_test_two_request(
             template_url=self.test_two.metadata['url'],
@@ -105,7 +106,6 @@ class OperationGroupOneOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, response)
             raise HttpResponseError(response=response, model=error)
-
 
         if cls:
             return cls(pipeline_response, None, {})

@@ -63,6 +63,7 @@ def build_post_required_request(
     path_format_arguments = {
         'path': _SERIALIZER.url("path", path, 'str'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
