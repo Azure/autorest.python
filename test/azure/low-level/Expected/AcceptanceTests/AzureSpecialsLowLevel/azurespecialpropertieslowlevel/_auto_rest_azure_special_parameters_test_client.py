@@ -28,7 +28,7 @@ class AutoRestAzureSpecialParametersTestClient(object):
     :param credential: Credential needed for the client to connect to Azure.
     :type credential: ~azure.core.credentials.TokenCredential
     :param subscription_id: The subscription id, which appears in the path, always modeled in
-         credentials. The value is always '1234-5678-9012-3456'.
+     credentials. The value is always '1234-5678-9012-3456'.
     :type subscription_id: str
     :param base_url: Service URL
     :type base_url: str
