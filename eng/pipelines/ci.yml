@@ -60,6 +60,7 @@ jobs:
           versionSpec: $(PythonVersion)
 
       - script: |
+          pip install pip==20.2
           pip install tox coverage==4.5.4
         displayName: "Install Env Specific Reqs in Target PyVersion $(PythonVersion)"
 
