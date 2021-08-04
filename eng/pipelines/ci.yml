@@ -21,20 +21,21 @@ jobs:
       matrix:
         Linux_Python27:
           OSName: "Linux"
-          OSVmImage: "ubuntu-20.04"
+          OSVmImage: "MMSUbuntu20.04"
           PythonVersion: "2.7"
         Linux_Python36:
           OSName: "Linux"
-          OSVmImage: "ubuntu-20.04"
+          OSVmImage: "MMSUbuntu20.04"
           PythonVersion: "3.6"
           CoverageArg: ""
         Linux_Python38:
           OSName: "Linux"
-          OSVmImage: "ubuntu-20.04"
+          OSVmImage: "MMSUbuntu20.04"
           PythonVersion: "3.8"
 
     pool:
-      vmImage: "$(OSVmImage)"
+      name: azsdk-pool-mms-ubuntu-2004-general
+      vmImage: $(OSVmImage)
 
     steps:
       - task: NodeTool@0
