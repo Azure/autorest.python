@@ -8,12 +8,15 @@
 
 try:
     from ._request_builders_py3 import build_analyze_body_request
+    from ._request_builders_py3 import build_analyze_body_no_accept_header_request
     from ._request_builders_py3 import build_content_type_with_encoding_request
 except (SyntaxError, ImportError):
     from ._request_builders import build_analyze_body_request  # type: ignore
+    from ._request_builders import build_analyze_body_no_accept_header_request  # type: ignore
     from ._request_builders import build_content_type_with_encoding_request  # type: ignore
 
 __all__ = [
     "build_analyze_body_request",
+    "build_analyze_body_no_accept_header_request",
     "build_content_type_with_encoding_request",
 ]
