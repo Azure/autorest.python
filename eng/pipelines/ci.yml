@@ -69,6 +69,7 @@ jobs:
           pip --version
           tox -e ci -v
         continueOnError: true
+        timeoutInMinutes: 3
         displayName: 'Execute legacy "azure" Tests - Python $(PythonVersion)'
       - script: cat $(Build.SourcesDirectory)/test/azure/legacy/.tox/ci/log/ci-1.log
       - task: PublishTestResults@2
