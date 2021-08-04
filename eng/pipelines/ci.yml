@@ -86,7 +86,7 @@ jobs:
 
       - script: |
           cd $(TestFolder)/azure/legacy
-          tox -e ci
+          tox -e ci -v
         displayName: 'Execute legacy "azure" Tests - Python $(PythonVersion)'
       - task: PublishTestResults@2
         condition: always()
