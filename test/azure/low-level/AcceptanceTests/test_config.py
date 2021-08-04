@@ -51,6 +51,6 @@ def test_credential_scopes_override(credential):
     with AutoRestHeadTestService(credential, credential_scopes=["http://i-should-be-the-only-credential"]) as client:
         assert client._config.credential_scopes == ["http://i-should-be-the-only-credential"]
 
-def test_credential_policy(self, credential):
+def test_authentication_policy_default(credential):
     with AutoRestHeadTestService(credential, base_url="http://localhost:3000") as client:
         assert isinstance(client._config.authentication_policy, ARMChallengeAuthenticationPolicy)
