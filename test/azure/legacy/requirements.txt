@@ -1,4 +1,3 @@
-pip==20.2
 requests>=2.14.0
 pytest
 pytest-cov
@@ -8,18 +7,3 @@ azure-core>=1.8.2
 azure-mgmt-core>=1.2.1
 msrest>=0.6.21
 aiohttp;python_full_version>="3.5.2"
--e ./Expected/AcceptanceTests/AzureBodyDuration
--e ./Expected/AcceptanceTests/AzureParameterGrouping
--e ./Expected/AcceptanceTests/AzureReport
--e ./Expected/AcceptanceTests/AzureSpecials
--e ./Expected/AcceptanceTests/CustomBaseUri
--e ./Expected/AcceptanceTests/CustomUrlPaging
--e ./Expected/AcceptanceTests/Head
--e ./Expected/AcceptanceTests/HeadExceptions
--e ./Expected/AcceptanceTests/Lro
--e ./Expected/AcceptanceTests/LroWithParameterizedEndpoints
--e ./Expected/AcceptanceTests/Paging
--e ./Expected/AcceptanceTests/StorageManagementClient
--e ./Expected/AcceptanceTests/SubscriptionIdApiVersion
--e ./Expected/AcceptanceTests/CustomPollerPager
--e ./Expected/AcceptanceTests/CustomPollerPagerDefinitions

@@ -76,7 +76,6 @@ jobs:
         condition: always()
         displayName: 'Publish legacy "azure" Test Results'
         inputs:
-          testResultsFiles: "test-junit-azure-ci.xml"
           testRunTitle: "$(OSName) Python $(PythonVersion) - legacy azure"
           searchFolder: "$(TestFolder)/azure/legacy"
 
@@ -88,7 +87,6 @@ jobs:
         condition: always()
         displayName: 'Publish low-level "azure" Test Results'
         inputs:
-          testResultsFiles: "test-junit-azure-ci.xml"
           testRunTitle: "$(OSName) Python $(PythonVersion) - low-level azure"
           searchFolder: "$(TestFolder)/azure/low-level"
 
@@ -100,7 +98,6 @@ jobs:
         displayName: 'Publish legacy "vanilla" Test Results'
         condition: always()
         inputs:
-          testResultsFiles: "test-junit-vanilla-ci.xml"
           testRunTitle: "$(OSName) Python $(PythonVersion) - legacy vanilla"
           searchFolder: "$(TestFolder)/vanilla/legacy"
 
@@ -114,7 +111,6 @@ jobs:
         displayName: 'Publish low level "vanilla" Test Results'
         condition: always()
         inputs:
-          testResultsFiles: "test-junit-vanilla-ci.xml"
           testRunTitle: "$(OSName) Python $(PythonVersion) - low level vanilla"
           searchFolder: "$(TestFolder)/vanilla/low-level"
 
@@ -126,7 +122,6 @@ jobs:
         displayName: 'Publish "multiapi" Test Results'
         condition: always()
         inputs:
-          testResultsFiles: "test-junit-multiapi-ci.xml"
           testRunTitle: "$(OSName) Python $(PythonVersion) - multiapi"
           searchFolder: "$(TestFolder)/multiapi"
 
