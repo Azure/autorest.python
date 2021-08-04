@@ -29,7 +29,7 @@ import inspect
 import json
 from azure.profiles import KnownProfiles
 from azure.mgmt.core import AsyncARMPipelineClient
-from azure.mgmt.core.policies import ARMHttpLoggingPolicy
+from azure.mgmt.core.policies import ARMHttpLoggingPolicy, AsyncARMChallengeAuthenticationPolicy
 from .multiapi_base import NotTested
 
 
@@ -77,6 +77,9 @@ def test_pipeline_client(default_client):
 def test_arm_http_logging_policy_default(default_client):
     assert isinstance(default_client._config.http_logging_policy, ARMHttpLoggingPolicy)
     assert default_client._config.http_logging_policy.allowed_header_names == ARMHttpLoggingPolicy.DEFAULT_HEADERS_WHITELIST
+
+def test_arm_http_authentication_policy_default_default(default_client):
+    assert isinstance(default_client._config.authentication_policy, AsyncARMChallengeAuthenticationPolicy)
 
 @pytest.mark.asyncio
 async def test_arm_http_logging_policy_custom(credential):

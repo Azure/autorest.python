@@ -27,7 +27,7 @@ import pytest
 import inspect
 import json
 from azure.mgmt.core import ARMPipelineClient
-from azure.mgmt.core.policies import ARMHttpLoggingPolicy
+from azure.mgmt.core.policies import ARMHttpLoggingPolicy, ARMChallengeAuthenticationPolicy
 from azure.profiles import KnownProfiles
 from .multiapi_base import NotTested
 
@@ -78,6 +78,9 @@ def test_pipeline_client(default_client):
 def test_arm_http_logging_policy_default(default_client):
     assert isinstance(default_client._config.http_logging_policy, ARMHttpLoggingPolicy)
     assert default_client._config.http_logging_policy.allowed_header_names == ARMHttpLoggingPolicy.DEFAULT_HEADERS_WHITELIST
+
+def test_arm__authentication_policy_default(default_client):
+    assert isinstance(default_client._config.authentication_policy, ARMChallengeAuthenticationPolicy)
 
 def test_arm_http_logging_policy_custom(credential):
     from multiapi import MultiapiServiceClient
