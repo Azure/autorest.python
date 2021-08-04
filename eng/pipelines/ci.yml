@@ -65,7 +65,7 @@ jobs:
 
       - script: |
           cd $(TestFolder)/azure/legacy
-          pip freeze
+          pip --version
           tox -e ci -v
         continueOnError: true
         displayName: 'Execute legacy "azure" Tests - Python $(PythonVersion)'
