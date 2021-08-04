@@ -55,27 +55,6 @@ jobs:
           npm install
         displayName: 'Prepare Environment for Generation'
 
-      - script: |
-          pylint autorest
-        displayName: 'Pylint'
-
-      - script: |
-          mypy autorest
-        displayName: 'Mypy'
-
-      - script: |
-          pytest test/unittests
-        displayName: 'Unit tests'
-
-      - script: |
-          inv regenerate
-        displayName: 'Regenerate Code'
-
-      - script: |
-          git add -A  # 'add' first so 'diff' includes untracked files
-          git diff --staged -w
-        displayName: 'Diff regeneration'
-
       - task: UsePythonVersion@0
         displayName: 'Use Python $(PythonVersion)'
         inputs:
@@ -85,52 +64,6 @@ jobs:
           pip install pip==20.2
           pip install tox coverage==4.5.4
         displayName: "Install Env Specific Reqs in Target PyVersion $(PythonVersion)"
-
-      - script: |
-          cd $(TestFolder)/azure/legacy
-          tox -e ci
-        displayName: 'Execute legacy "azure" Tests - Python $(PythonVersion)'
-      - task: PublishTestResults@2
-        condition: always()
-        displayName: 'Publish legacy "azure" Test Results'
-        inputs:
-          testRunTitle: "$(OSName) Python $(PythonVersion) - legacy azure"
-          searchFolder: "$(TestFolder)/azure/legacy"
-
-      - script: |
-          cd $(TestFolder)/azure/low-level
-          tox -e ci
-        displayName: 'Execute low-level "azure" Tests - Python $(PythonVersion)'
-      - task: PublishTestResults@2
-        condition: always()
-        displayName: 'Publish low-level "azure" Test Results'
-        inputs:
-          testRunTitle: "$(OSName) Python $(PythonVersion) - low-level azure"
-          searchFolder: "$(TestFolder)/azure/low-level"
-
-      - script: |
-          cd $(TestFolder)/vanilla/legacy
-          tox -e ci
-        displayName: 'Execute legacy "vanilla" Tests - Python $(PythonVersion)'
-      - task: PublishTestResults@2
-        displayName: 'Publish legacy "vanilla" Test Results'
-        condition: always()
-        inputs:
-          testRunTitle: "$(OSName) Python $(PythonVersion) - legacy vanilla"
-          searchFolder: "$(TestFolder)/vanilla/legacy"
-
-      - script: |
-          cd $(TestFolder)/vanilla/low-level
-          tox -e ci
-          tox -e initial-ci
-          tox -e update-ci
-        displayName: 'Execute low level "vanilla" Tests - Python $(PythonVersion)'
-      - task: PublishTestResults@2
-        displayName: 'Publish low level "vanilla" Test Results'
-        condition: always()
-        inputs:
-          testRunTitle: "$(OSName) Python $(PythonVersion) - low level vanilla"
-          searchFolder: "$(TestFolder)/vanilla/low-level"
 
       - script: |
           cd $(TestFolder)/multiapi
