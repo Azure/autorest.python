@@ -54,27 +54,6 @@ jobs:
           npm install
         displayName: "Prepare Environment for Generation"
 
-      - script: |
-          pylint autorest
-        displayName: "Pylint"
-
-      - script: |
-          mypy autorest
-        displayName: "Mypy"
-
-      - script: |
-          pytest test/unittests
-        displayName: "Unit tests"
-
-      - script: |
-          inv regenerate
-        displayName: "Regenerate Code"
-
-      - script: |
-          git add -A  # 'add' first so 'diff' includes untracked files
-          git diff --staged -w
-        displayName: "Diff regeneration"
-
       - task: UsePythonVersion@0
         displayName: "Use Python $(PythonVersion)"
         inputs:
@@ -86,8 +65,11 @@ jobs:
 
       - script: |
           cd $(TestFolder)/azure/legacy
+          pip freeze
           tox -e ci -v
+        continueOnError: true
         displayName: 'Execute legacy "azure" Tests - Python $(PythonVersion)'
+      - script: cat $(Build.SourcesDirectory)/test/azure/legacy/.tox/ci/log/ci-1.log
       - task: PublishTestResults@2
         condition: always()
         displayName: 'Publish legacy "azure" Test Results'
