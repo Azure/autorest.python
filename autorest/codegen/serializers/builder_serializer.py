@@ -50,6 +50,18 @@ def _serialize_files_dict(multipart_parameters: List[Parameter]) -> str:
     }
     return _json_dumps_template(template)
 
+def _get_files_example_template(builder: BuilderType) -> List[str]:
+    multipart_params = builder.parameters.multipart
+    if multipart_params:
+        retval = [
+            "# multipart input template you can fill out and use as your `files` input.",
+        ]
+        retval.extend(f"files = {_serialize_files_dict(multipart_params)}".splitlines())
+        return retval
+    raise ValueError(
+        "You're trying to get a template for your multipart params, but you don't have multipart params"
+    )
+
 
 def _serialize_parameters_dict(parameters: List[Parameter], dict_name: str, value_callable: Callable) -> List[str]:
     retval = [f"{dict_name} = {{"]
@@ -296,7 +308,7 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
             template += self._get_json_example_template(builder)
         if self._has_files_example_template(builder):
             template.append("")
-            template += self._get_files_example_template(builder)
+            template += _get_files_example_template(builder)
         if self._get_json_response_template_to_status_codes(builder):
             template.append("")
             template += self._get_json_response_template(builder)
@@ -342,18 +354,6 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
         )
         template.extend(f"{self._json_example_param_name(builder)} = {json_template}".splitlines())
         return template
-
-    def _get_files_example_template(self, builder: BuilderType) -> List[str]:
-        multipart_params = builder.parameters.multipart
-        if multipart_params:
-            retval = [
-                "# multipart input template you can fill out and use as your `files` input.",
-            ]
-            retval.extend(f"files = {_serialize_files_dict(multipart_params)}".splitlines())
-            return retval
-        raise ValueError(
-            "You're trying to get a template for your multipart params, but you don't have multipart params"
-        )
 
     def _get_json_response_template(self, builder: BuilderType) -> List[str]:
         template = []
