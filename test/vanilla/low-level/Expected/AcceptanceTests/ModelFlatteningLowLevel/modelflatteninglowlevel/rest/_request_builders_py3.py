@@ -80,12 +80,19 @@ def build_get_array_request(**kwargs: Any) -> HttpRequest:
             # response body for status code(s): 200
             response.json() == [
                 {
+                    "id": "str (optional)",
+                    "location": "str (optional)",
+                    "name": "str (optional)",
                     "properties": {
                         "p.name": "str (optional)",
                         "provisioningState": "str (optional)",
                         "provisioningStateValues": "str (optional)",
                         "type": "str (optional)"
-                    }
+                    },
+                    "tags": {
+                        "str": "str (optional)"
+                    },
+                    "type": "str (optional)"
                 }
             ]
     """
@@ -204,12 +211,19 @@ def build_put_dictionary_request(*, json: Any = None, content: Any = None, **kwa
             # JSON input template you can fill out and use as your `json` input.
             json = {
                 "str": {
+                    "id": "str (optional)",
+                    "location": "str (optional)",
+                    "name": "str (optional)",
                     "properties": {
                         "p.name": "str (optional)",
                         "provisioningState": "str (optional)",
                         "provisioningStateValues": "str (optional)",
                         "type": "str (optional)"
-                    }
+                    },
+                    "tags": {
+                        "str": "str (optional)"
+                    },
+                    "type": "str (optional)"
                 }
             }
     """
@@ -246,12 +260,19 @@ def build_get_dictionary_request(**kwargs: Any) -> HttpRequest:
             # response body for status code(s): 200
             response.json() == {
                 "str": {
+                    "id": "str (optional)",
+                    "location": "str (optional)",
+                    "name": "str (optional)",
                     "properties": {
                         "p.name": "str (optional)",
                         "provisioningState": "str (optional)",
                         "provisioningStateValues": "str (optional)",
                         "type": "str (optional)"
-                    }
+                    },
+                    "tags": {
+                        "str": "str (optional)"
+                    },
+                    "type": "str (optional)"
                 }
             }
     """
@@ -291,31 +312,52 @@ def build_put_resource_collection_request(*, json: Any = None, content: Any = No
             json = {
                 "arrayofresources": [
                     {
+                        "id": "str (optional)",
+                        "location": "str (optional)",
+                        "name": "str (optional)",
                         "properties": {
                             "p.name": "str (optional)",
                             "provisioningState": "str (optional)",
                             "provisioningStateValues": "str (optional)",
                             "type": "str (optional)"
-                        }
+                        },
+                        "tags": {
+                            "str": "str (optional)"
+                        },
+                        "type": "str (optional)"
                     }
                 ],
                 "dictionaryofresources": {
                     "str": {
+                        "id": "str (optional)",
+                        "location": "str (optional)",
+                        "name": "str (optional)",
                         "properties": {
                             "p.name": "str (optional)",
                             "provisioningState": "str (optional)",
                             "provisioningStateValues": "str (optional)",
                             "type": "str (optional)"
-                        }
+                        },
+                        "tags": {
+                            "str": "str (optional)"
+                        },
+                        "type": "str (optional)"
                     }
                 },
                 "productresource": {
+                    "id": "str (optional)",
+                    "location": "str (optional)",
+                    "name": "str (optional)",
                     "properties": {
                         "p.name": "str (optional)",
                         "provisioningState": "str (optional)",
                         "provisioningStateValues": "str (optional)",
                         "type": "str (optional)"
-                    }
+                    },
+                    "tags": {
+                        "str": "str (optional)"
+                    },
+                    "type": "str (optional)"
                 }
             }
     """
@@ -353,31 +395,52 @@ def build_get_resource_collection_request(**kwargs: Any) -> HttpRequest:
             response.json() == {
                 "arrayofresources": [
                     {
+                        "id": "str (optional)",
+                        "location": "str (optional)",
+                        "name": "str (optional)",
                         "properties": {
                             "p.name": "str (optional)",
                             "provisioningState": "str (optional)",
                             "provisioningStateValues": "str (optional)",
                             "type": "str (optional)"
-                        }
+                        },
+                        "tags": {
+                            "str": "str (optional)"
+                        },
+                        "type": "str (optional)"
                     }
                 ],
                 "dictionaryofresources": {
                     "str": {
+                        "id": "str (optional)",
+                        "location": "str (optional)",
+                        "name": "str (optional)",
                         "properties": {
                             "p.name": "str (optional)",
                             "provisioningState": "str (optional)",
                             "provisioningStateValues": "str (optional)",
                             "type": "str (optional)"
-                        }
+                        },
+                        "tags": {
+                            "str": "str (optional)"
+                        },
+                        "type": "str (optional)"
                     }
                 },
                 "productresource": {
+                    "id": "str (optional)",
+                    "location": "str (optional)",
+                    "name": "str (optional)",
                     "properties": {
                         "p.name": "str (optional)",
                         "provisioningState": "str (optional)",
                         "provisioningStateValues": "str (optional)",
                         "type": "str (optional)"
-                    }
+                    },
+                    "tags": {
+                        "str": "str (optional)"
+                    },
+                    "type": "str (optional)"
                 }
             }
     """
@@ -415,22 +478,28 @@ def build_put_simple_product_request(*, json: Any = None, content: Any = None, *
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
+                "base_product_description": "str (optional)",
+                "base_product_id": "str",
                 "details": {
                     "max_product_capacity": "str",
                     "max_product_display_name": "str",
                     "max_product_image": {
-                        "@odata.value": "str (optional)"
+                        "@odata.value": "str (optional)",
+                        "generic_value": "str (optional)"
                     }
                 }
             }
 
             # response body for status code(s): 200
             response.json() == {
+                "base_product_description": "str (optional)",
+                "base_product_id": "str",
                 "details": {
                     "max_product_capacity": "str",
                     "max_product_display_name": "str",
                     "max_product_image": {
-                        "@odata.value": "str (optional)"
+                        "@odata.value": "str (optional)",
+                        "generic_value": "str (optional)"
                     }
                 }
             }
@@ -473,22 +542,28 @@ def build_post_flattened_simple_product_request(*, json: Any = None, content: An
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
+                "base_product_description": "str (optional)",
+                "base_product_id": "str",
                 "details": {
                     "max_product_capacity": "str",
                     "max_product_display_name": "str",
                     "max_product_image": {
-                        "@odata.value": "str (optional)"
+                        "@odata.value": "str (optional)",
+                        "generic_value": "str (optional)"
                     }
                 }
             }
 
             # response body for status code(s): 200
             response.json() == {
+                "base_product_description": "str (optional)",
+                "base_product_id": "str",
                 "details": {
                     "max_product_capacity": "str",
                     "max_product_display_name": "str",
                     "max_product_image": {
-                        "@odata.value": "str (optional)"
+                        "@odata.value": "str (optional)",
+                        "generic_value": "str (optional)"
                     }
                 }
             }
@@ -535,22 +610,28 @@ def build_put_simple_product_with_grouping_request(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
+                "base_product_description": "str (optional)",
+                "base_product_id": "str",
                 "details": {
                     "max_product_capacity": "str",
                     "max_product_display_name": "str",
                     "max_product_image": {
-                        "@odata.value": "str (optional)"
+                        "@odata.value": "str (optional)",
+                        "generic_value": "str (optional)"
                     }
                 }
             }
 
             # response body for status code(s): 200
             response.json() == {
+                "base_product_description": "str (optional)",
+                "base_product_id": "str",
                 "details": {
                     "max_product_capacity": "str",
                     "max_product_display_name": "str",
                     "max_product_image": {
-                        "@odata.value": "str (optional)"
+                        "@odata.value": "str (optional)",
+                        "generic_value": "str (optional)"
                     }
                 }
             }

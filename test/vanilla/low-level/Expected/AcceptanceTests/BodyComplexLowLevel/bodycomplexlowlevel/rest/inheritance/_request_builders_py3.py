@@ -29,7 +29,17 @@ def build_get_valid_request(**kwargs: Any) -> HttpRequest:
 
             # response body for status code(s): 200
             response.json() == {
-                "breed": "str (optional)"
+                "breed": "str (optional)",
+                "color": "str (optional)",
+                "hates": [
+                    {
+                        "food": "str (optional)",
+                        "id": "int (optional)",
+                        "name": "str (optional)"
+                    }
+                ],
+                "id": "int (optional)",
+                "name": "str (optional)"
             }
     """
 
@@ -70,7 +80,17 @@ def build_put_valid_request(*, json: Any = None, content: Any = None, **kwargs: 
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
-                "breed": "str (optional)"
+                "breed": "str (optional)",
+                "color": "str (optional)",
+                "hates": [
+                    {
+                        "food": "str (optional)",
+                        "id": "int (optional)",
+                        "name": "str (optional)"
+                    }
+                ],
+                "id": "int (optional)",
+                "name": "str (optional)"
             }
     """
 

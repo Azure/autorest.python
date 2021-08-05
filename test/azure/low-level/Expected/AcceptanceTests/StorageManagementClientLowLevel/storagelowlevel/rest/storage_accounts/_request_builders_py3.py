@@ -127,13 +127,23 @@ def build_create_request(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
+                "id": "str (optional)",
+                "location": "str",
+                "name": "str (optional)",
                 "properties": {
                     "accountType": "str (optional)"
-                }
+                },
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
             }
 
             # response body for status code(s): 200
             response.json() == {
+                "id": "str (optional)",
+                "location": "str",
+                "name": "str (optional)",
                 "properties": {
                     "accountType": "str (optional)",
                     "creationTime": "datetime (optional)",
@@ -169,7 +179,11 @@ def build_create_request(
                     "secondaryLocation": "str (optional)",
                     "statusOfPrimary": "str (optional)",
                     "statusOfSecondary": "str (optional)"
-                }
+                },
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
             }
     """
 
@@ -276,6 +290,9 @@ def build_get_properties_request(
 
             # response body for status code(s): 200
             response.json() == {
+                "id": "str (optional)",
+                "location": "str",
+                "name": "str (optional)",
                 "properties": {
                     "accountType": "str (optional)",
                     "creationTime": "datetime (optional)",
@@ -311,7 +328,11 @@ def build_get_properties_request(
                     "secondaryLocation": "str (optional)",
                     "statusOfPrimary": "str (optional)",
                     "statusOfSecondary": "str (optional)"
-                }
+                },
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
             }
     """
 
@@ -387,17 +408,27 @@ def build_update_request(
 
             # JSON input template you can fill out and use as your `json` input.
             json = {
+                "id": "str (optional)",
+                "location": "str",
+                "name": "str (optional)",
                 "properties": {
                     "accountType": "str (optional)",
                     "customDomain": {
                         "name": "str (optional)",
                         "useSubDomain": "bool (optional)"
                     }
-                }
+                },
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
             }
 
             # response body for status code(s): 200
             response.json() == {
+                "id": "str (optional)",
+                "location": "str",
+                "name": "str (optional)",
                 "properties": {
                     "accountType": "str (optional)",
                     "creationTime": "datetime (optional)",
@@ -433,7 +464,11 @@ def build_update_request(
                     "secondaryLocation": "str (optional)",
                     "statusOfPrimary": "str (optional)",
                     "statusOfSecondary": "str (optional)"
-                }
+                },
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
             }
     """
 
@@ -552,6 +587,9 @@ def build_list_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
                 "nextLink": "str (optional)",
                 "value": [
                     {
+                        "id": "str (optional)",
+                        "location": "str",
+                        "name": "str (optional)",
                         "properties": {
                             "accountType": "str (optional)",
                             "creationTime": "datetime (optional)",
@@ -587,7 +625,11 @@ def build_list_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
                             "secondaryLocation": "str (optional)",
                             "statusOfPrimary": "str (optional)",
                             "statusOfSecondary": "str (optional)"
-                        }
+                        },
+                        "tags": {
+                            "str": "str (optional)"
+                        },
+                        "type": "str (optional)"
                     }
                 ]
             }
@@ -638,6 +680,9 @@ def build_list_by_resource_group_request(resource_group_name: str, subscription_
                 "nextLink": "str (optional)",
                 "value": [
                     {
+                        "id": "str (optional)",
+                        "location": "str",
+                        "name": "str (optional)",
                         "properties": {
                             "accountType": "str (optional)",
                             "creationTime": "datetime (optional)",
@@ -673,7 +718,11 @@ def build_list_by_resource_group_request(resource_group_name: str, subscription_
                             "secondaryLocation": "str (optional)",
                             "statusOfPrimary": "str (optional)",
                             "statusOfSecondary": "str (optional)"
-                        }
+                        },
+                        "tags": {
+                            "str": "str (optional)"
+                        },
+                        "type": "str (optional)"
                     }
                 ]
             }

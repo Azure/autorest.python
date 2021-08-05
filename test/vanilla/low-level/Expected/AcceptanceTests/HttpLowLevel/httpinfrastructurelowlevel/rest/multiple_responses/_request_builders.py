@@ -236,6 +236,7 @@ def build_get200_model201_model_default_error200_valid_request(
             }
             # response body for status code(s): 201
             response.json() == {
+                "statusCode": "str (optional)",
                 "textStatusCode": "str (optional)"
             }
     """
@@ -279,6 +280,7 @@ def build_get200_model201_model_default_error201_valid_request(
             }
             # response body for status code(s): 201
             response.json() == {
+                "statusCode": "str (optional)",
                 "textStatusCode": "str (optional)"
             }
     """
@@ -322,6 +324,7 @@ def build_get200_model201_model_default_error400_valid_request(
             }
             # response body for status code(s): 201
             response.json() == {
+                "statusCode": "str (optional)",
                 "textStatusCode": "str (optional)"
             }
     """
