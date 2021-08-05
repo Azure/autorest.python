@@ -24,7 +24,7 @@
 #
 # --------------------------------------------------------------------------
 import pytest
-from azure.mgmt.core.policies import ARMHttpLoggingPolicy
+from azure.mgmt.core.policies import ARMHttpLoggingPolicy, AsyncARMChallengeAuthenticationPolicy
 # Head is azure-arm
 from head.aio import AutoRestHeadTestService
 
@@ -55,3 +55,8 @@ class TestConfig(object):
     async def test_credential_scopes_override(self, credential):
         async with AutoRestHeadTestService(credential, credential_scopes=["http://i-should-be-the-only-credential"]) as client:
             assert client._config.credential_scopes == ["http://i-should-be-the-only-credential"]
+
+    @pytest.mark.asyncio
+    async def test_arm_authentication_policy_default(self, credential):
+        async with AutoRestHeadTestService(credential, base_url="http://localhost:3000") as client:
+            assert isinstance(client._config.authentication_policy, AsyncARMChallengeAuthenticationPolicy)

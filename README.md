@@ -152,7 +152,7 @@ help-content:
         description: Specify if you don't want pkgutil-style namespace folders. Defaults to `false`.
         type: bool
       - key: credential-default-policy-type
-        description: Specify the default credential policy (authentication policy) for your client. Use in conjunction with `--add-credential`. Currently only supports `BearerTokenCredentialPolicy` and `AzureKeyCredentialPolicy`. Default value is `BearerTokenCredentialPolicy`. `--credential-scopes` is tied with `BearerTokenCredentialPolicy`, do not pass them in if you want `AzureKeyCredentialPolicy`.
+        description: Specify the default credential policy (authentication policy) for your client. Use in conjunction with `--add-credential`. Currently only supports `BearerTokenCredentialPolicy`, `ARMChallengeAuthenticationPolicy` and `AzureKeyCredentialPolicy`. Default value is `BearerTokenCredentialPolicy`(data-plan)/`ARMChallengeAuthenticationPolicy`(mgmt-plan). `--credential-scopes` is tied with `BearerTokenCredentialPolicy` and `ARMChallengeAuthenticationPolicy`, do not pass them in if you want `AzureKeyCredentialPolicy`.
         type: string
       - key: credential-key-header-name
         description: The name of the header which will pass the credential. Use if you have `--credential-default-policy-type` set to `AzureKeyCredentialPolicy`. For example, if generating cognitive services code, you might use `--credential-key-header-name=Ocp-Apim-Subscription-Key`

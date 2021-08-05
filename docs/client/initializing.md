@@ -57,10 +57,10 @@ client = PetsClient(credential=AzureKeyCredential(credential))
 
 Each of these credential types also correspond to their own authentication policies that handle the credential. AutoRest automatically generates with the following default authentication policies based on the credential types:
 
-| Credential Type                              | Authentication Policy                                           |
-| -------------------------------------------- | --------------------------------------------------------------- |
-| [`TokenCredential`][aad_authentication]      | [`BearerTokenCredentialPolicy`][bearer_token_credential_policy] |
-| [`AzureKeyCredential`][azure_key_credential] | [`AzureKeyCredentialPolicy`][azure_key_credential_policy]       |
+| Credential Type                              | Authentication Policy                                                  |
+| -------------------------------------------- | ---------------------------------------------------------------------- |
+| [`TokenCredential`][aad_authentication]      | [`BearerTokenCredentialPolicy`][bearer_token_credential_policy] / [`ARMChallengeAuthenticationPolicy`][ARMChallengeAuthenticationPolicy]        |
+| [`AzureKeyCredential`][azure_key_credential] | [`AzureKeyCredentialPolicy`][azure_key_credential_policy]              |
 
 Currently, we only support generating credentials of type [`TokenCredential`][aad_authentication] and / or [`AzureKeyCredential`][azure_key_credential]. If you'd like to use your own custom credential,
 you can pass the custom type into the client. However, you may have to use a custom authentication policy to handle the credential. That can also be passed in to the
@@ -97,4 +97,5 @@ client = PetsClient(credential=DefaultAzureCredential(), api_version="v1")
 [default_azure_credential]: https://docs.microsoft.com/python/api/azure-identity/azure.identity.defaultazurecredential?view=azure-python
 [azure_key_credential]: https://docs.microsoft.com/python/api/azure-core/azure.core.credentials.azurekeycredential?view=azure-python
 [bearer_token_credential_policy]: https://docs.microsoft.com/python/api/azure-core/azure.core.pipeline.policies.bearertokencredentialpolicy?view=azure-python
+[ARMChallengeAuthenticationPolicy]: https://docs.microsoft.com/en-us/python/api/azure-mgmt-core/azure.mgmt.core.policies.armchallengeauthenticationpolicy?view=azure-python
 [azure_key_credential_policy]: https://docs.microsoft.com/python/api/azure-core/azure.core.pipeline.policies.azurekeycredentialpolicy?view=azure-python
