@@ -27,7 +27,7 @@ def _build_convenience_layer(yaml_data: Dict[str, Any], code_model: CodeModel) -
         ]
     if yaml_data.get("schemas"):
         code_model.add_inheritance_to_models()
-        if code_model.options["show_models"]:
+        if code_model.options["models_mode"]:
             code_model.sort_schemas()
             code_model.link_operation_to_request_builder()
             code_model.add_schema_link_to_operation()
@@ -267,7 +267,7 @@ class CodeGenerator(Plugin):
             "tracing": self._autorestapi.get_boolean_value("trace", False),
             "multiapi": self._autorestapi.get_boolean_value("multiapi", False),
             "polymorphic_examples": self._autorestapi.get_value("polymorphic-examples") or 5,
-            "show_models": self._autorestapi.get_value("show-models"),
+            "models_mode": self._autorestapi.get_value("models-mode"),
             "builders_visibility": self._autorestapi.get_value("builders-visibility"),
             "show_operations": self._autorestapi.get_boolean_value("show-operations", not low_level_client),
             "show_send_request": self._autorestapi.get_boolean_value("show-send-request", low_level_client),
@@ -278,15 +278,15 @@ class CodeGenerator(Plugin):
                 "add-python3-operation-files", False
             ),
         }
-        if options["show_models"] is None:
+        if options["models_mode"] is None:
             if low_level_client:
-                options["show_models"] = False
+                options["models_mode"] = False
             else:
-                options["show_models"] = "msrest"
+                options["models_mode"] = "msrest"
         else:
-            options["show_models"] = options["show_models"].lower()
-            if options["show_models"] == "false":
-                options["show_models"] = False
+            options["models_mode"] = options["models_mode"].lower()
+            if options["models_mode"] == "false":
+                options["models_mode"] = False
 
         if options["builders_visibility"] is None:
             options["builders_visibility"] = "public" if low_level_client else "embedded"

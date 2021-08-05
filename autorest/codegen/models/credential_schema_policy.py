@@ -40,6 +40,13 @@ class BearerTokenCredentialPolicy(CredentialSchemaPolicy):
         return f"policies.{policy_name}(self.credential, *self.credential_scopes, **kwargs)"
 
 
+class ARMChallengeAuthenticationPolicy(BearerTokenCredentialPolicy):
+
+    def call(self, async_mode: bool) -> str:
+        policy_name = f"Async{self.name()}" if async_mode else self.name()
+        return f"{policy_name}(self.credential, *self.credential_scopes, **kwargs)"
+
+
 class AzureKeyCredentialPolicy(CredentialSchemaPolicy):
 
     def __init__(
@@ -58,7 +65,7 @@ class AzureKeyCredentialPolicy(CredentialSchemaPolicy):
         return f'policies.AzureKeyCredentialPolicy(self.credential, "{self.credential_key_header_name}", **kwargs)'
 
 def get_credential_schema_policy_type(name):
-    policies = [BearerTokenCredentialPolicy, AzureKeyCredentialPolicy]
+    policies = [ARMChallengeAuthenticationPolicy, BearerTokenCredentialPolicy, AzureKeyCredentialPolicy]
     try:
         return next(p for p in policies if p.name().lower() == name.lower())
     except StopIteration:

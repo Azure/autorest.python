@@ -241,6 +241,6 @@ class HiddenModelObjectSchema(ObjectSchema):
         return file_import
 
 def get_object_schema(code_model) -> Type[ObjectSchema]:
-    if code_model.options["show_models"]:
+    if code_model.options["models_mode"]:
         return ObjectSchema
     return HiddenModelObjectSchema

@@ -24,7 +24,7 @@
 #
 # --------------------------------------------------------------------------
 
-from azure.mgmt.core.policies import ARMHttpLoggingPolicy
+from azure.mgmt.core.policies import ARMHttpLoggingPolicy, ARMChallengeAuthenticationPolicy
 # Head is azure-arm
 from head import AutoRestHeadTestService
 
@@ -51,3 +51,7 @@ class TestConfig(object):
     def test_credential_scopes_override(self, credential):
         with AutoRestHeadTestService(credential, credential_scopes=["http://i-should-be-the-only-credential"]) as client:
             assert client._config.credential_scopes == ["http://i-should-be-the-only-credential"]
+
+    def test_credential_authentication_policy_default(self, credential):
+        with AutoRestHeadTestService(credential, base_url="http://localhost:3000") as client:
+            assert isinstance(client._config.authentication_policy, ARMChallengeAuthenticationPolicy)
