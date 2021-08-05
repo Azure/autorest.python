@@ -9,7 +9,7 @@ from typing import cast, List, Dict, Optional, Any, Set, Type
 
 from .base_schema import BaseSchema
 from .credential_schema_policy import (
-    BearerTokenCredentialPolicy, CredentialSchemaPolicy
+    ARMChallengeAuthenticationPolicy, BearerTokenCredentialPolicy, CredentialSchemaPolicy
 )
 from .enum_schema import EnumSchema
 from .object_schema import ObjectSchema
@@ -208,7 +208,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
 
     @property
     def default_authentication_policy(self) -> Type[CredentialSchemaPolicy]:
-        return BearerTokenCredentialPolicy
+        return ARMChallengeAuthenticationPolicy if self.options['azure_arm'] else BearerTokenCredentialPolicy
 
     @property
     def credential_schema_policy(self) -> CredentialSchemaPolicy:

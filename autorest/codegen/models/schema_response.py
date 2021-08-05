@@ -98,7 +98,7 @@ class SchemaResponse(BaseModel):
 
     def imports(self, code_model) -> FileImport:
         file_import = FileImport()
-        if not code_model.options["show_models"] and self.is_xml:
+        if not code_model.options["models_mode"] and self.is_xml:
             file_import.add_from_import("xml.etree", "ElementTree", ImportType.STDLIB, alias="ET")
         return file_import
 

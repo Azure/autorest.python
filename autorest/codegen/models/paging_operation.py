@@ -80,7 +80,7 @@ class PagingOperation(Operation):
         item_name = self._item_name or "value"
         try:
             return (
-                self._find_python_name(item_name, "itemName") if code_model.options["show_models"]
+                self._find_python_name(item_name, "itemName") if code_model.options["models_mode"]
                 else item_name
             )
         except ValueError:
@@ -94,7 +94,7 @@ class PagingOperation(Operation):
         if not self._next_link_name:
             # That's an ok scenario, it just means no next page possible
             return None
-        if code_model.options["show_models"]:
+        if code_model.options["models_mode"]:
             return self._find_python_name(self._next_link_name, "nextLinkName")
         return self._next_link_name
 
@@ -153,7 +153,7 @@ class PagingOperation(Operation):
             file_import.add_from_import(
                 "azure.core.tracing.decorator", "distributed_trace", ImportType.AZURECORE,
             )
-        if not code_model.options["show_models"]:
+        if not code_model.options["models_mode"]:
             file_import.add_from_import("json", "loads", ImportType.STDLIB, alias="_loads")
 
         return file_import

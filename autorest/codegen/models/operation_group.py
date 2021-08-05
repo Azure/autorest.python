@@ -73,7 +73,7 @@ class OperationGroup(BaseModel):
                     "azure.core.tracing.decorator", "distributed_trace", ImportType.AZURECORE,
                 )
         local_path = "..." if async_mode else ".."
-        if has_schemas and self.code_model.options["show_models"]:
+        if has_schemas and self.code_model.options["models_mode"]:
             file_import.add_from_import(local_path, "models", ImportType.LOCAL, alias="_models")
         if self.code_model.options["builders_visibility"] == "embedded" and async_mode:
             operation_group_name = "" if self.is_empty_operation_group else self.name

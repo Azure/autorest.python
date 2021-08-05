@@ -592,7 +592,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         return [response_str, rtype_str, ":raises: ~azure.core.exceptions.HttpResponseError"]
 
     def want_example_template(self, builder: BuilderType) -> bool:
-        if self.code_model.options['show_models']:
+        if self.code_model.options['models_mode']:
             return False
         if builder.parameters.has_body:
             body_params = builder.parameters.body
@@ -614,7 +614,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         body_param = builder.parameters.body[0]
         body_is_xml = ", is_xml=True" if send_xml else ""
         pass_ser_ctxt = f", {ser_ctxt_name}={ser_ctxt_name}" if ser_ctxt else ""
-        if self.code_model.options["show_models"]:
+        if self.code_model.options["models_mode"]:
             return (
                 f"{builder.serialized_body_kwarg} = self._serialize.body({body_param.serialized_name}, "
                 f"'{ body_param.serialization_type }'{body_is_xml}{ pass_ser_ctxt })"
@@ -754,7 +754,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
                 )
             )
         elif response.has_body:
-            if self.code_model.options["show_models"]:
+            if self.code_model.options["models_mode"]:
                 retval.append(f"deserialized = self._deserialize('{response.serialization_type}', pipeline_response)")
             else:
                 is_xml = any(["xml" in ct for ct in response.media_types])
@@ -781,7 +781,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         retval = [f"if response.status_code not in {str(builder.success_status_code)}:"]
         retval.append("    map_error(status_code=response.status_code, response=response, error_map=error_map)")
         error_model = ""
-        if builder.default_exception and self.code_model.options["show_models"]:
+        if builder.default_exception and self.code_model.options["models_mode"]:
             retval.append(f"    error = self._deserialize.failsafe_deserialize({builder.default_exception}, response)")
             error_model = ", model=error"
         retval.append("    raise HttpResponseError(response=response{}{})".format(
@@ -841,7 +841,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
                 if (
                     isinstance(excep.schema, ObjectSchema)
                     and excep.is_exception
-                    and self.code_model.options["show_models"]
+                    and self.code_model.options["models_mode"]
                 ):
                     error_model_str = f", model=self._deserialize(_models.{excep.serialization_type}, response)"
                 error_format_str = ", error_format=ARMErrorFormat" if self.code_model.options['azure_arm'] else ""
@@ -1003,12 +1003,12 @@ class _PagingOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disab
         response = builder.responses[0]
         deserialized = (
             f'self._deserialize("{response.serialization_type}", pipeline_response)'
-            if self.code_model.options["show_models"] else
+            if self.code_model.options["models_mode"] else
             "_loads(pipeline_response.http_response.body())"
         )
         retval.append(f"    deserialized = {deserialized}")
         item_name = builder.item_name(self.code_model)
-        list_of_elem = f".{item_name}" if self.code_model.options["show_models"] else f'["{item_name}"]'
+        list_of_elem = f".{item_name}" if self.code_model.options["models_mode"] else f'["{item_name}"]'
         retval.append(f"    list_of_elem = deserialized{list_of_elem}")
         retval.append("    if cls:")
         retval.append("        list_of_elem = cls(list_of_elem)")
@@ -1016,7 +1016,7 @@ class _PagingOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disab
         next_link_name = builder.next_link_name(self.code_model)
         if not next_link_name:
             next_link_property = "None"
-        elif self.code_model.options["show_models"]:
+        elif self.code_model.options["models_mode"]:
             next_link_property = f"deserialized.{next_link_name} or None"
         else:
             next_link_property = f'deserialized.get("{next_link_name}", None)'

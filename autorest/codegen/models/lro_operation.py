@@ -168,6 +168,6 @@ class LROOperation(Operation):
 
         if async_mode:
             file_import.add_from_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
-        if self.lro_response and self.lro_response.has_body and not code_model.options["show_models"]:
+        if self.lro_response and self.lro_response.has_body and not code_model.options["models_mode"]:
             file_import.add_from_import("json", "loads", import_type=ImportType.STDLIB, alias="_loads")
         return file_import
