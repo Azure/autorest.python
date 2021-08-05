@@ -60,3 +60,20 @@ class TestHead(object):
             client.head_exception.head204()
             with pytest.raises(HttpResponseError):
                 client.head_exception.head404()
+
+    def test_operation_groups(self):
+        from head.operations import HttpSuccessOperations
+
+        with pytest.raises(ImportError):
+            from head.operations import _http_success_operations_py3
+
+        from head.operations._http_success_operations import HttpSuccessOperations as HttpSuccessOperationsPy2
+        assert HttpSuccessOperations == HttpSuccessOperationsPy2
+
+        from headexceptions.operations import HeadExceptionOperations
+
+        with pytest.raises(ImportError):
+            from headexceptions.operations import _head_exception_operations_py3
+
+        from headexceptions.operations._head_exception_operations import HeadExceptionOperations as HeadExceptionOperationsPy2
+        assert HeadExceptionOperations == HeadExceptionOperationsPy2

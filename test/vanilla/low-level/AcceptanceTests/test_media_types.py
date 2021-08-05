@@ -24,7 +24,7 @@
 #
 # --------------------------------------------------------------------------
 from mediatypeslowlevel import MediaTypesClient
-from mediatypeslowlevel.rest import build_analyze_body_request, build_content_type_with_encoding_request
+from mediatypeslowlevel.rest import build_analyze_body_request, build_content_type_with_encoding_request, build_analyze_body_no_accept_header_request
 
 import pytest
 
@@ -56,3 +56,11 @@ def test_json(send_request_json_response):
 def test_content_type_with_encoding(send_request_json_response):
     request = build_content_type_with_encoding_request(content="hello", content_type='text/plain; encoding=UTF-8')
     assert send_request_json_response(request) == "Nice job sending content type with encoding"
+
+def test_pdf_no_accept_header(send_request):
+    request = build_analyze_body_no_accept_header_request(content=b"PDF", content_type="application/pdf")
+    send_request(request)
+
+def test_json_no_accept_header(send_request):
+    request = build_analyze_body_no_accept_header_request(json={"source":"foo"})
+    send_request(request)

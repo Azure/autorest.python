@@ -24,7 +24,7 @@
 #
 # --------------------------------------------------------------------------
 from mediatypes import MediaTypesClient
-from azure.core.exceptions import HttpResponseError
+import json
 
 import pytest
 import json
@@ -55,6 +55,13 @@ class TestMediaTypes(object):
         result = client.content_type_with_encoding(input="hello", content_type='text/plain; encoding=UTF-8')
         assert result == "Nice job sending content type with encoding"
 
+    def test_pdf_no_accept_header(self, client):
+        client.analyze_body_no_accept_header(input=b"PDF", content_type="application/pdf")
+
+    def test_json_no_accept_header(self, client):
+        json_input = json.loads('{"source":"foo"}')
+        client.analyze_body_no_accept_header(input=json_input)
+
     def test_models(self):
         from mediatypes.models import SourcePath
 
@@ -64,3 +71,12 @@ class TestMediaTypes(object):
         else:
             from mediatypes.models._models import SourcePath as SourcePathPy2
             assert SourcePath == SourcePathPy2
+
+    def test_operation_groups(self):
+        from mediatypes.operations import MediaTypesClientOperationsMixin
+
+        with pytest.raises(ImportError):
+            from mediatypes.operations import _media_types_client_operations_py3
+
+        from mediatypes.operations._media_types_client_operations import MediaTypesClientOperationsMixin as MediaTypesClientOperationsMixinPy2
+        assert MediaTypesClientOperationsMixin == MediaTypesClientOperationsMixinPy2

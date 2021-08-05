@@ -291,8 +291,8 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
     def has_default_value(self):
         return self.default_value is not None or not self.required
 
-    def method_signature(self, async_mode: bool) -> str:
-        if async_mode:
+    def method_signature(self, is_python_3_file: bool) -> str:
+        if is_python_3_file:
             if self.has_default_value:
                 return f"{self.serialized_name}: {self.type_annotation} = {self.default_value_declaration},"
             return f"{self.serialized_name}: {self.type_annotation},"

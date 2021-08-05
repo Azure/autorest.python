@@ -61,3 +61,12 @@ class TestAzureUrl(object):
         else:
             from subscriptionidapiversion.models._models import Error as ErrorPy2
             assert Error == ErrorPy2
+
+    def test_operation_groups(self):
+        from subscriptionidapiversion.operations import GroupOperations
+
+        with pytest.raises(ImportError):
+            from subscriptionidapiversion.operations import _group_operations_py3
+
+        from subscriptionidapiversion.operations._group_operations import GroupOperations as GroupOperationsPy2
+        assert GroupOperations == GroupOperationsPy2
