@@ -58,7 +58,17 @@ class InheritanceOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "breed": "str (optional)"
+                    "breed": "str (optional)",
+                    "color": "str (optional)",
+                    "hates": [
+                        {
+                            "food": "str (optional)",
+                            "id": "int (optional)",
+                            "name": "str (optional)"
+                        }
+                    ],
+                    "id": "int (optional)",
+                    "name": "str (optional)"
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -108,7 +118,17 @@ class InheritanceOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "breed": "str (optional)"
+                    "breed": "str (optional)",
+                    "color": "str (optional)",
+                    "hates": [
+                        {
+                            "food": "str (optional)",
+                            "id": "int (optional)",
+                            "name": "str (optional)"
+                        }
+                    ],
+                    "id": "int (optional)",
+                    "name": "str (optional)"
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]

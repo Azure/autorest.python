@@ -64,6 +64,7 @@ class PetOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
+                    "aniType": "str (optional)",
                     "name": "str (optional)"
                 }
         """

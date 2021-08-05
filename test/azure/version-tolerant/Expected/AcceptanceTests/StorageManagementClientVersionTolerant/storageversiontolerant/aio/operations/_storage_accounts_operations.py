@@ -203,13 +203,23 @@ class StorageAccountsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 parameters = {
+                    "id": "str (optional)",
+                    "location": "str",
+                    "name": "str (optional)",
                     "properties": {
                         "accountType": "str (optional)"
-                    }
+                    },
+                    "tags": {
+                        "str": "str (optional)"
+                    },
+                    "type": "str (optional)"
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
+                    "id": "str (optional)",
+                    "location": "str",
+                    "name": "str (optional)",
                     "properties": {
                         "accountType": "str (optional)",
                         "creationTime": "datetime (optional)",
@@ -245,7 +255,11 @@ class StorageAccountsOperations:
                         "secondaryLocation": "str (optional)",
                         "statusOfPrimary": "str (optional)",
                         "statusOfSecondary": "str (optional)"
-                    }
+                    },
+                    "tags": {
+                        "str": "str (optional)"
+                    },
+                    "type": "str (optional)"
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -353,6 +367,9 @@ class StorageAccountsOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
+                    "id": "str (optional)",
+                    "location": "str",
+                    "name": "str (optional)",
                     "properties": {
                         "accountType": "str (optional)",
                         "creationTime": "datetime (optional)",
@@ -388,7 +405,11 @@ class StorageAccountsOperations:
                         "secondaryLocation": "str (optional)",
                         "statusOfPrimary": "str (optional)",
                         "statusOfSecondary": "str (optional)"
-                    }
+                    },
+                    "tags": {
+                        "str": "str (optional)"
+                    },
+                    "type": "str (optional)"
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -452,17 +473,27 @@ class StorageAccountsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 parameters = {
+                    "id": "str (optional)",
+                    "location": "str",
+                    "name": "str (optional)",
                     "properties": {
                         "accountType": "str (optional)",
                         "customDomain": {
                             "name": "str (optional)",
                             "useSubDomain": "bool (optional)"
                         }
-                    }
+                    },
+                    "tags": {
+                        "str": "str (optional)"
+                    },
+                    "type": "str (optional)"
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
+                    "id": "str (optional)",
+                    "location": "str",
+                    "name": "str (optional)",
                     "properties": {
                         "accountType": "str (optional)",
                         "creationTime": "datetime (optional)",
@@ -498,7 +529,11 @@ class StorageAccountsOperations:
                         "secondaryLocation": "str (optional)",
                         "statusOfPrimary": "str (optional)",
                         "statusOfSecondary": "str (optional)"
-                    }
+                    },
+                    "tags": {
+                        "str": "str (optional)"
+                    },
+                    "type": "str (optional)"
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -611,6 +646,9 @@ class StorageAccountsOperations:
                     "nextLink": "str (optional)",
                     "value": [
                         {
+                            "id": "str (optional)",
+                            "location": "str",
+                            "name": "str (optional)",
                             "properties": {
                                 "accountType": "str (optional)",
                                 "creationTime": "datetime (optional)",
@@ -646,7 +684,11 @@ class StorageAccountsOperations:
                                 "secondaryLocation": "str (optional)",
                                 "statusOfPrimary": "str (optional)",
                                 "statusOfSecondary": "str (optional)"
-                            }
+                            },
+                            "tags": {
+                                "str": "str (optional)"
+                            },
+                            "type": "str (optional)"
                         }
                     ]
                 }
@@ -716,6 +758,9 @@ class StorageAccountsOperations:
                     "nextLink": "str (optional)",
                     "value": [
                         {
+                            "id": "str (optional)",
+                            "location": "str",
+                            "name": "str (optional)",
                             "properties": {
                                 "accountType": "str (optional)",
                                 "creationTime": "datetime (optional)",
@@ -751,7 +796,11 @@ class StorageAccountsOperations:
                                 "secondaryLocation": "str (optional)",
                                 "statusOfPrimary": "str (optional)",
                                 "statusOfSecondary": "str (optional)"
-                            }
+                            },
+                            "tags": {
+                                "str": "str (optional)"
+                            },
+                            "type": "str (optional)"
                         }
                     ]
                 }

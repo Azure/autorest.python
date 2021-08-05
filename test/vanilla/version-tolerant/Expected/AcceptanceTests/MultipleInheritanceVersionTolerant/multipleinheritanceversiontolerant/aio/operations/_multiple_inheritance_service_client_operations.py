@@ -52,7 +52,8 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "isAShowHorse": "bool (optional)"
+                    "isAShowHorse": "bool (optional)",
+                    "name": "str"
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -100,7 +101,8 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
                 # JSON input template you can fill out and use as your body input.
                 horse = {
-                    "isAShowHorse": "bool (optional)"
+                    "isAShowHorse": "bool (optional)",
+                    "name": "str"
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
@@ -354,7 +356,10 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "likesMilk": "bool (optional)"
+                    "hisses": "bool (optional)",
+                    "likesMilk": "bool (optional)",
+                    "meows": "bool (optional)",
+                    "name": "str"
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -402,7 +407,10 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
                 # JSON input template you can fill out and use as your body input.
                 cat = {
-                    "likesMilk": "bool (optional)"
+                    "hisses": "bool (optional)",
+                    "likesMilk": "bool (optional)",
+                    "meows": "bool (optional)",
+                    "name": "str"
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
@@ -455,7 +463,11 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "eatsMiceYet": "bool (optional)"
+                    "eatsMiceYet": "bool (optional)",
+                    "hisses": "bool (optional)",
+                    "likesMilk": "bool (optional)",
+                    "meows": "bool (optional)",
+                    "name": "str"
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -505,7 +517,11 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
                 # JSON input template you can fill out and use as your body input.
                 kitten = {
-                    "eatsMiceYet": "bool (optional)"
+                    "eatsMiceYet": "bool (optional)",
+                    "hisses": "bool (optional)",
+                    "likesMilk": "bool (optional)",
+                    "meows": "bool (optional)",
+                    "name": "str"
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[str]

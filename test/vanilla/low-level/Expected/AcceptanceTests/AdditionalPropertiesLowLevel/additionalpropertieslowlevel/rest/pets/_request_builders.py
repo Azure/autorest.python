@@ -107,12 +107,24 @@ def build_create_cat_ap_true_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "friendly": "bool (optional)"
+                "": {
+                    "str": "any (optional)"
+                },
+                "friendly": "bool (optional)",
+                "id": "int",
+                "name": "str (optional)",
+                "status": "bool (optional)"
             }
 
             # response body for status code(s): 200
             response.json() == {
-                "friendly": "bool (optional)"
+                "": {
+                    "str": "any (optional)"
+                },
+                "friendly": "bool (optional)",
+                "id": "int",
+                "name": "str (optional)",
+                "status": "bool (optional)"
             }
     """
 

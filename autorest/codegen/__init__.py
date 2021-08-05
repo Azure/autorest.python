@@ -25,11 +25,10 @@ def _build_convenience_layer(yaml_data: Dict[str, Any], code_model: CodeModel) -
         code_model.operation_groups = [
             OperationGroup.from_yaml(code_model, op_group) for op_group in yaml_data["operationGroups"]
         ]
-    if code_model.options["models_mode"] and yaml_data.get("schemas"):
-        # sets the enums property in our code_model variable, which will later be passed to EnumSerializer
-
+    if yaml_data.get("schemas"):
         code_model.add_inheritance_to_models()
-        code_model.sort_schemas()
+        if code_model.options["models_mode"]:
+            code_model.sort_schemas()
 
     if code_model.options["show_operations"]:
         code_model.link_operation_to_request_builder()

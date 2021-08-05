@@ -128,18 +128,32 @@ class LRORetrysOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
+                    "id": "str (optional)",
+                    "location": "str (optional)",
+                    "name": "str (optional)",
                     "properties": {
                         "provisioningState": "str (optional)",
                         "provisioningStateValues": "str (optional)"
-                    }
+                    },
+                    "tags": {
+                        "str": "str (optional)"
+                    },
+                    "type": "str (optional)"
                 }
 
                 # response body for status code(s): 200, 201
                 response.json() == {
+                    "id": "str (optional)",
+                    "location": "str (optional)",
+                    "name": "str (optional)",
                     "properties": {
                         "provisioningState": "str (optional)",
                         "provisioningStateValues": "str (optional)"
-                    }
+                    },
+                    "tags": {
+                        "str": "str (optional)"
+                    },
+                    "type": "str (optional)"
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -252,18 +266,32 @@ class LRORetrysOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
+                    "id": "str (optional)",
+                    "location": "str (optional)",
+                    "name": "str (optional)",
                     "properties": {
                         "provisioningState": "str (optional)",
                         "provisioningStateValues": "str (optional)"
-                    }
+                    },
+                    "tags": {
+                        "str": "str (optional)"
+                    },
+                    "type": "str (optional)"
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
+                    "id": "str (optional)",
+                    "location": "str (optional)",
+                    "name": "str (optional)",
                     "properties": {
                         "provisioningState": "str (optional)",
                         "provisioningStateValues": "str (optional)"
-                    }
+                    },
+                    "tags": {
+                        "str": "str (optional)"
+                    },
+                    "type": "str (optional)"
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -376,10 +404,17 @@ class LRORetrysOperations:
 
                 # response body for status code(s): 200, 202
                 response.json() == {
+                    "id": "str (optional)",
+                    "location": "str (optional)",
+                    "name": "str (optional)",
                     "properties": {
                         "provisioningState": "str (optional)",
                         "provisioningStateValues": "str (optional)"
-                    }
+                    },
+                    "tags": {
+                        "str": "str (optional)"
+                    },
+                    "type": "str (optional)"
                 }
         """
         polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
@@ -631,10 +666,17 @@ class LRORetrysOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
+                    "id": "str (optional)",
+                    "location": "str (optional)",
+                    "name": "str (optional)",
                     "properties": {
                         "provisioningState": "str (optional)",
                         "provisioningStateValues": "str (optional)"
-                    }
+                    },
+                    "tags": {
+                        "str": "str (optional)"
+                    },
+                    "type": "str (optional)"
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -736,10 +778,17 @@ class LRORetrysOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
+                    "id": "str (optional)",
+                    "location": "str (optional)",
+                    "name": "str (optional)",
                     "properties": {
                         "provisioningState": "str (optional)",
                         "provisioningStateValues": "str (optional)"
-                    }
+                    },
+                    "tags": {
+                        "str": "str (optional)"
+                    },
+                    "type": "str (optional)"
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
