@@ -582,7 +582,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         return [response_str, rtype_str, ":raises: ~azure.core.exceptions.HttpResponseError"]
 
     def want_example_template(self, builder: BuilderType) -> bool:
-        if self.code_model.options['show_models']:
+        if self.code_model.options['models_mode']:
             return False
         if builder.parameters.has_body:
             body_params = builder.parameters.body
