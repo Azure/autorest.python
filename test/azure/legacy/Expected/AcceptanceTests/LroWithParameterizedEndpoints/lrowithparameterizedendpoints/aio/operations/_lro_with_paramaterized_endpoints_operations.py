@@ -90,7 +90,7 @@ class LROWithParamaterizedEndpointsOperationsMixin:
         :rtype: ~azure.core.polling.AsyncLROPoller[str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -98,13 +98,11 @@ class LROWithParamaterizedEndpointsOperationsMixin:
             raw_result = await self._poll_with_parameterized_endpoints_initial(
                 account_name=account_name, cls=lambda x, y, z: x, **kwargs
             )
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
             deserialized = self._deserialize("str", pipeline_response)
-
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -197,7 +195,7 @@ class LROWithParamaterizedEndpointsOperationsMixin:
         :rtype: ~azure.core.polling.AsyncLROPoller[str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -205,13 +203,11 @@ class LROWithParamaterizedEndpointsOperationsMixin:
             raw_result = await self._poll_with_constant_parameterized_endpoints_initial(
                 account_name=account_name, cls=lambda x, y, z: x, **kwargs
             )
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
             deserialized = self._deserialize("str", pipeline_response)
-
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized

@@ -44,6 +44,7 @@ def build_get_by_pet_id_request(pet_id: str, **kwargs: Any) -> HttpRequest:
     path_format_arguments = {
         "petId": _SERIALIZER.url("pet_id", pet_id, "str"),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
@@ -73,7 +74,7 @@ def build_add_pet_request(*, json: Any = None, content: Any = None, **kwargs: An
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "DaysOfWeek": "str (optional). Default value is \"Friday\"",
                 "IntEnum": "str",

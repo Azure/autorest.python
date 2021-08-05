@@ -29,11 +29,11 @@ def _build_convenience_layer(yaml_data: Dict[str, Any], code_model: CodeModel) -
         code_model.add_inheritance_to_models()
         if code_model.options["models_mode"]:
             code_model.sort_schemas()
-            code_model.link_operation_to_request_builder()
-            code_model.add_schema_link_to_operation()
-            code_model.generate_single_parameter_from_multiple_media_types_operation()
 
     if code_model.options["show_operations"]:
+        code_model.link_operation_to_request_builder()
+        code_model.add_schema_link_to_operation()
+        code_model.generate_single_parameter_from_multiple_media_types_operation()
         # LRO operation
         code_model.format_lro_operations()
         code_model.remove_next_operation()
@@ -251,6 +251,7 @@ class CodeGenerator(Plugin):
             license_header += "\n# --------------------------------------------------------------------------"
 
         low_level_client = self._autorestapi.get_boolean_value("low-level-client", False)
+        version_tolerant = self._autorestapi.get_boolean_value("version-tolerant", False)
 
         options: Dict[str, Any] = {
             "azure_arm": azure_arm,
@@ -270,16 +271,19 @@ class CodeGenerator(Plugin):
             "models_mode": self._autorestapi.get_value("models-mode"),
             "builders_visibility": self._autorestapi.get_value("builders-visibility"),
             "show_operations": self._autorestapi.get_boolean_value("show-operations", not low_level_client),
-            "show_send_request": self._autorestapi.get_boolean_value("show-send-request", low_level_client),
+            "show_send_request": self._autorestapi.get_boolean_value(
+                "show-send-request", low_level_client or version_tolerant
+            ),
             "only_path_and_body_params_positional": self._autorestapi.get_boolean_value(
-                "only-path-and-body-params-positional", low_level_client
+                "only-path-and-body-params-positional", low_level_client or version_tolerant
             ),
             "add_python_3_operation_files": self._autorestapi.get_boolean_value(
                 "add-python3-operation-files", False
             ),
+            "version_tolerant": version_tolerant
         }
         if options["models_mode"] is None:
-            if low_level_client:
+            if low_level_client or version_tolerant:
                 options["models_mode"] = False
             else:
                 options["models_mode"] = "msrest"

@@ -35,7 +35,7 @@ def build_put201_creating_succeeded200_request(*, json: Any = None, content: Any
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "id": "str (optional)",
                 "location": "str (optional)",
@@ -105,7 +105,7 @@ def build_put_async_relative_retry_succeeded_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "id": "str (optional)",
                 "location": "str (optional)",
@@ -263,7 +263,7 @@ def build_post202_retry200_request(*, json: Any = None, content: Any = None, **k
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "id": "str (optional)",
                 "location": "str (optional)",
@@ -318,7 +318,7 @@ def build_post_async_relative_retry_succeeded_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "id": "str (optional)",
                 "location": "str (optional)",

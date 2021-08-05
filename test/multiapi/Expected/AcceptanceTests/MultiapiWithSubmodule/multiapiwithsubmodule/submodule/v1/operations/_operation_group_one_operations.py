@@ -93,6 +93,7 @@ class OperationGroupOneOperations(object):
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
+
         
         request = build_test_two_request(
             template_url=self.test_two.metadata['url'],

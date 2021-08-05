@@ -224,6 +224,7 @@ class LRORetrysOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
@@ -284,7 +285,7 @@ class LRORetrysOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.PollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -292,13 +293,11 @@ class LRORetrysOperations(object):
             raw_result = self._put201_creating_succeeded200_initial(
                 product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
             )
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
             deserialized = self._deserialize("Product", pipeline_response)
-
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -330,6 +329,7 @@ class LRORetrysOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
@@ -393,7 +393,7 @@ class LRORetrysOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.PollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -401,7 +401,6 @@ class LRORetrysOperations(object):
             raw_result = self._put_async_relative_retry_succeeded_initial(
                 product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
             )
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -414,7 +413,6 @@ class LRORetrysOperations(object):
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
             deserialized = self._deserialize("Product", pipeline_response)
-
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -495,19 +493,17 @@ class LRORetrysOperations(object):
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.PollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = self._delete_provisioning202_accepted200_succeeded_initial(cls=lambda x, y, z: x, **kwargs)
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
             deserialized = self._deserialize("Product", pipeline_response)
-
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -579,13 +575,12 @@ class LRORetrysOperations(object):
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.PollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = self._delete202_retry200_initial(cls=lambda x, y, z: x, **kwargs)
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -662,13 +657,12 @@ class LRORetrysOperations(object):
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.PollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = self._delete_async_relative_retry_succeeded_initial(cls=lambda x, y, z: x, **kwargs)
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -702,6 +696,7 @@ class LRORetrysOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
@@ -757,7 +752,7 @@ class LRORetrysOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.PollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -765,7 +760,6 @@ class LRORetrysOperations(object):
             raw_result = self._post202_retry200_initial(
                 product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
             )
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -799,6 +793,7 @@ class LRORetrysOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
@@ -858,7 +853,7 @@ class LRORetrysOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.PollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -866,7 +861,6 @@ class LRORetrysOperations(object):
             raw_result = self._post_async_relative_retry_succeeded_initial(
                 product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
             )
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):

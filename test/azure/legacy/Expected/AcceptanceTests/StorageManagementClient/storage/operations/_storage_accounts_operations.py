@@ -53,6 +53,7 @@ def build_check_name_availability_request(
     path_format_arguments = {
         'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
@@ -92,6 +93,7 @@ def build_create_request_initial(
         'accountName': _SERIALIZER.url("account_name", account_name, 'str'),
         'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
@@ -128,6 +130,7 @@ def build_delete_request(
         'accountName': _SERIALIZER.url("account_name", account_name, 'str'),
         'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
@@ -158,6 +161,7 @@ def build_get_properties_request(
         'accountName': _SERIALIZER.url("account_name", account_name, 'str'),
         'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
@@ -195,6 +199,7 @@ def build_update_request(
         'accountName': _SERIALIZER.url("account_name", account_name, 'str'),
         'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
@@ -232,6 +237,7 @@ def build_list_keys_request(
         'accountName': _SERIALIZER.url("account_name", account_name, 'str'),
         'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
@@ -263,6 +269,7 @@ def build_list_request(
     path_format_arguments = {
         'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
@@ -296,6 +303,7 @@ def build_list_by_resource_group_request(
         'resourceGroupName': _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
         'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
@@ -333,6 +341,7 @@ def build_regenerate_key_request(
         'accountName': _SERIALIZER.url("account_name", account_name, 'str'),
         'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
@@ -397,6 +406,7 @@ class StorageAccountsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.CheckNameAvailabilityResult"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(account_name, "StorageAccountCheckNameAvailabilityParameters")
@@ -436,6 +446,7 @@ class StorageAccountsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional["_models.StorageAccount"]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(parameters, "StorageAccountCreateParameters")
@@ -504,7 +515,7 @@ class StorageAccountsOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.PollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccount"]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -517,13 +528,11 @@ class StorageAccountsOperations(object):
                 cls=lambda x, y, z: x,
                 **kwargs
             )
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
             deserialized = self._deserialize("StorageAccount", pipeline_response)
-
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -676,6 +685,7 @@ class StorageAccountsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccount"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(parameters, "StorageAccountUpdateParameters")
@@ -787,7 +797,6 @@ class StorageAccountsOperations(object):
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
@@ -854,7 +863,6 @@ class StorageAccountsOperations(object):
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
@@ -908,6 +916,7 @@ class StorageAccountsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccountKeys"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         _regenerate_key = _models.StorageAccountRegenerateKeyParameters(key_name=key_name)

@@ -228,7 +228,7 @@ def build_put_max32_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "int (optional)"
     """
 
@@ -275,7 +275,7 @@ def build_put_max64_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "long (optional)"
     """
 
@@ -322,7 +322,7 @@ def build_put_min32_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "int (optional)"
     """
 
@@ -369,7 +369,7 @@ def build_put_min64_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "long (optional)"
     """
 
@@ -447,7 +447,7 @@ def build_put_unix_time_date_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "datetime (optional)"
     """
 

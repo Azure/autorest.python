@@ -5,13 +5,13 @@
 # --------------------------------------------------------------------------
 from itertools import chain
 import logging
-from typing import Callable, cast, Dict, List, Any, Optional, Union, Set
+from typing import cast, Dict, List, Any, Optional, Union, Set
 
-from .base_builder import BaseBuilder, get_converted_parameters
+from .base_builder import BaseBuilder, create_parameters
 from .imports import FileImport, ImportType, TypingSection
 from .schema_response import SchemaResponse
-from .parameter import Parameter
-from .parameter_list import ParameterList
+from .parameter import get_parameter
+from .parameter_list import ParameterList, get_parameter_list
 from .base_schema import BaseSchema
 from .object_schema import ObjectSchema
 from .request_builder import RequestBuilder
@@ -52,6 +52,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         self.want_tracing = want_tracing
         self._request_builder: Optional[RequestBuilder] = None
         self.deprecated = False
+        self.use_pipeline_transport = False
 
     @property
     def python_name(self) -> str:
@@ -157,7 +158,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             excp.status_codes for excp in self.status_code_exceptions
         ]))
 
-    def _imports_shared(self, async_mode: bool) -> FileImport: # pylint: disable=unused-argument
+    def _imports_shared(self, code_model, async_mode: bool) -> FileImport: # pylint: disable=unused-argument
         file_import = FileImport()
         file_import.add_from_import("typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL)
         for param in self.parameters.method:
@@ -166,8 +167,10 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         for param in self.multiple_media_type_parameters:
             file_import.merge(param.imports())
 
-        for response in [r for r in self.responses if r.has_body]:
-            file_import.merge(cast(BaseSchema, response.schema).imports())
+        for response in self.responses:
+            file_import.merge(response.imports(code_model))
+            if response.has_body:
+                file_import.merge(cast(BaseSchema, response.schema).imports())
 
         if len([r for r in self.responses if r.has_body]) > 1:
             file_import.add_from_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
@@ -178,10 +181,10 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
 
 
     def imports_for_multiapi(self, code_model, async_mode: bool) -> FileImport:  # pylint: disable=unused-argument
-        return self._imports_shared(async_mode)
+        return self._imports_shared(code_model, async_mode)
 
     def imports(self, code_model, async_mode: bool) -> FileImport:
-        file_import = self._imports_shared(async_mode)
+        file_import = self._imports_shared(code_model, async_mode)
 
         # Exceptions
         file_import.add_from_import("azure.core.exceptions", "map_error", ImportType.AZURECORE)
@@ -253,24 +256,22 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         chosen_parameter.multiple_media_types_docstring_type = docstring_type
         self.parameters.append(chosen_parameter)
 
-    @staticmethod
-    def get_parameter_converter() -> Callable:
-        return Parameter.from_yaml
-
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any]) -> "Operation":
+    def from_yaml(cls, yaml_data: Dict[str, Any], *, code_model) -> "Operation":
         name = yaml_data["language"]["python"]["name"]
         _LOGGER.debug("Parsing %s operation", name)
 
-        parameters, multiple_media_type_parameters = get_converted_parameters(yaml_data, cls.get_parameter_converter())
+        parameter_creator = get_parameter(code_model).from_yaml
+        parameter_list_creator = get_parameter_list(code_model)
+        parameters, multiple_media_type_parameters = create_parameters(yaml_data, parameter_creator)
 
         return cls(
             yaml_data=yaml_data,
             name=name,
             description=yaml_data["language"]["python"]["description"],
             api_versions=set(value_dict["version"] for value_dict in yaml_data["apiVersions"]),
-            parameters=ParameterList(parameters),
-            multiple_media_type_parameters=ParameterList(multiple_media_type_parameters),
+            parameters=parameter_list_creator(parameters),
+            multiple_media_type_parameters=parameter_list_creator(multiple_media_type_parameters),
             summary=yaml_data["language"]["python"].get("summary"),
             responses=[SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("responses", [])],
             # Exception with no schema means default exception, we don't store them

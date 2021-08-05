@@ -134,7 +134,7 @@ def build_put301_request(*, json: Any = None, content: Any = None, **kwargs: Any
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "bool (optional)"
     """
 
@@ -220,7 +220,7 @@ def build_patch302_request(*, json: Any = None, content: Any = None, **kwargs: A
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "bool (optional)"
     """
 
@@ -260,7 +260,7 @@ def build_post303_request(*, json: Any = None, content: Any = None, **kwargs: An
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "bool (optional)"
     """
 
@@ -368,7 +368,7 @@ def build_put307_request(*, json: Any = None, content: Any = None, **kwargs: Any
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "bool (optional)"
     """
 
@@ -407,7 +407,7 @@ def build_patch307_request(*, json: Any = None, content: Any = None, **kwargs: A
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "bool (optional)"
     """
 
@@ -446,7 +446,7 @@ def build_post307_request(*, json: Any = None, content: Any = None, **kwargs: An
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "bool (optional)"
     """
 
@@ -485,7 +485,7 @@ def build_delete307_request(*, json: Any = None, content: Any = None, **kwargs: 
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "bool (optional)"
     """
 

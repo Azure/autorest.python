@@ -4,6 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 from collections.abc import MutableSequence
+from copy import copy
 import logging
 from typing import cast, List, Callable, Optional, TypeVar, Dict
 
@@ -12,6 +13,8 @@ from .object_schema import ObjectSchema
 from .constant_schema import ConstantSchema
 from .base_schema import BaseSchema
 from .enum_schema import EnumSchema
+from .dictionary_schema import DictionarySchema
+from .primitive_schemas import AnySchema
 
 T = TypeVar('T')
 OrderedSet = Dict[T, None]
@@ -143,8 +146,8 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
         return [c for c in constants if c.location == ParameterLocation.Body]
 
     @property
-    def has_multipart(self) -> bool:
-        return any(self.get_from_predicate(lambda parameter: parameter.is_multipart))
+    def multipart(self) -> List[Parameter]:
+        return self.get_from_predicate(lambda parameter: parameter.is_multipart)
 
     @property
     def has_partial_body(self) -> bool:
@@ -276,6 +279,36 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
         )
         object_schema = cast(ObjectSchema, self.body[0].schema)
         return f"{self.body[0].serialized_name} = _models.{object_schema.name}({parameter_string})"
+
+class ParameterOnlyPathAndBodyPositionalList(ParameterList):
+    # use this to change the files parameter in the method
+
+    @property
+    def method(self) -> List[Parameter]:
+        method_params = super().method
+        files_params = [p for p in method_params if p.is_multipart]
+        if not files_params:
+            return method_params
+        files_param = copy(files_params[0])
+        files_param.serialized_name = "files"
+        files_param.schema = DictionarySchema(
+            namespace="",
+            yaml_data={},
+            element_type=AnySchema(namespace="", yaml_data={}),
+        )
+        files_param.description = (
+            "Multipart input for files. See the template in our example to find the input shape."
+        )
+        method_params = [p for p in method_params if not p.is_multipart]
+        positional = [p for p in method_params if p.is_positional]
+        keyword_only = [p for p in method_params if p.is_keyword_only]
+        kwargs = [p for p in method_params if p.is_kwarg]
+        return positional + [files_param] + keyword_only + kwargs
+
+def get_parameter_list(code_model):
+    if code_model.options["only_path_and_body_params_positional"]:
+        return ParameterOnlyPathAndBodyPositionalList
+    return ParameterList
 
 class GlobalParameterList(ParameterList):
 

@@ -119,7 +119,7 @@ def build_post_required_integer_parameter_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "int (optional)"
     """
 
@@ -166,7 +166,7 @@ def build_post_optional_integer_parameter_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "int (optional)"
     """
 
@@ -214,7 +214,7 @@ def build_post_required_integer_property_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "value": "int"
             }
@@ -263,7 +263,7 @@ def build_post_optional_integer_property_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "value": "int (optional)"
             }
@@ -387,7 +387,7 @@ def build_post_required_string_parameter_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "str (optional)"
     """
 
@@ -434,7 +434,7 @@ def build_post_optional_string_parameter_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "str (optional)"
     """
 
@@ -482,7 +482,7 @@ def build_post_required_string_property_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "value": "str"
             }
@@ -531,7 +531,7 @@ def build_post_optional_string_property_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "value": "str (optional)"
             }
@@ -655,7 +655,7 @@ def build_post_required_class_parameter_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "id": "int",
                 "name": "str (optional)"
@@ -705,7 +705,7 @@ def build_post_optional_class_parameter_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "id": "int",
                 "name": "str (optional)"
@@ -756,7 +756,7 @@ def build_post_required_class_property_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "value": {
                     "id": "int",
@@ -808,7 +808,7 @@ def build_post_optional_class_property_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "value": {
                     "id": "int",
@@ -861,7 +861,7 @@ def build_post_required_array_parameter_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = [
                 "str (optional)"
             ]
@@ -910,7 +910,7 @@ def build_post_optional_array_parameter_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = [
                 "str (optional)"
             ]
@@ -960,7 +960,7 @@ def build_post_required_array_property_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "value": [
                     "str"
@@ -1011,7 +1011,7 @@ def build_post_optional_array_property_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "value": [
                     "str (optional)"

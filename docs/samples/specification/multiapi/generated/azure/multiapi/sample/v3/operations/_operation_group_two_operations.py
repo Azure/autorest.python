@@ -129,6 +129,7 @@ class OperationGroupTwoOperations(object):
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
+
         content_type = kwargs.pop('content_type', "application/json")  # type: Optional[Union[str, "_models.ContentType"]]
 
         json = None
@@ -183,6 +184,7 @@ class OperationGroupTwoOperations(object):
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
+
         
         request = build_test_five_request(
             template_url=self.test_five.metadata['url'],

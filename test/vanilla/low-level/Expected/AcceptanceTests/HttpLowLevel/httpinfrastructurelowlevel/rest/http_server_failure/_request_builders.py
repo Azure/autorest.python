@@ -103,7 +103,7 @@ def build_post505_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "bool (optional)"
     """
 
@@ -150,7 +150,7 @@ def build_delete505_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "bool (optional)"
     """
 

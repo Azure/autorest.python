@@ -1,6 +1,4 @@
 {% import 'operation_tools.jinja2' as op_tools with context %}
-{% import 'paging_operation_helper.jinja2' as helper with context %}
-{% macro param_documentation_string(parameter) %}:param {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
 {# actual template starts here #}
 {% if code_model.options['tracing'] and operation.want_tracing %}
 @distributed_trace
@@ -14,7 +12,7 @@
     {% if operation.parameters.kwargs_to_pop(async_mode) %}
     {{ op_tools.serialize(operation_serializer.pop_kwargs_from_signature(operation)) | indent }}
     {% endif %}
-    {{ helper.paging_operation() | indent }}
+    {{ op_tools.serialize(operation_serializer.set_up_params_for_pager(operation)) | indent }}
 
     return {{ operation.get_pager(async_mode) }}(
         get_next, extract_data

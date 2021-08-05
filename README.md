@@ -23,7 +23,7 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 
 #### Python code gen
 
-```yaml !$(low-level-client)
+```yaml !$(low-level-client) && !$(version-tolerant)
 modelerfour:
   group-parameters: true
   flatten-models: true

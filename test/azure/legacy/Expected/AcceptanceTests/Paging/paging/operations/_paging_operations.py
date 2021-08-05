@@ -248,6 +248,7 @@ def build_get_multiple_pages_with_offset_request(
     path_format_arguments = {
         'offset': _SERIALIZER.url("offset", offset, 'int'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
@@ -381,6 +382,7 @@ def build_get_multiple_pages_fragment_next_link_request(
     path_format_arguments = {
         'tenant': _SERIALIZER.url("tenant", tenant, 'str'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
@@ -413,6 +415,7 @@ def build_get_multiple_pages_fragment_with_grouping_next_link_request(
     path_format_arguments = {
         'tenant': _SERIALIZER.url("tenant", tenant, 'str'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
@@ -477,6 +480,7 @@ def build_next_fragment_request(
         'tenant': _SERIALIZER.url("tenant", tenant, 'str'),
         'nextLink': _SERIALIZER.url("next_link", next_link, 'str', skip_quote=True),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
@@ -511,6 +515,7 @@ def build_next_fragment_with_grouping_request(
         'tenant': _SERIALIZER.url("tenant", tenant, 'str'),
         'nextLink': _SERIALIZER.url("next_link", next_link, 'str', skip_quote=True),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
@@ -602,7 +607,6 @@ class PagingOperations(object):
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
@@ -659,7 +663,6 @@ class PagingOperations(object):
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
@@ -716,7 +719,6 @@ class PagingOperations(object):
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
@@ -774,7 +776,6 @@ class PagingOperations(object):
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
@@ -854,7 +855,6 @@ class PagingOperations(object):
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
@@ -998,7 +998,6 @@ class PagingOperations(object):
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
@@ -1085,7 +1084,6 @@ class PagingOperations(object):
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
@@ -1143,7 +1141,6 @@ class PagingOperations(object):
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
@@ -1201,7 +1198,6 @@ class PagingOperations(object):
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
@@ -1258,7 +1254,6 @@ class PagingOperations(object):
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
@@ -1315,7 +1310,6 @@ class PagingOperations(object):
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
@@ -1372,7 +1366,6 @@ class PagingOperations(object):
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
@@ -1552,6 +1545,7 @@ class PagingOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResult"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         _maxresults = None
         _timeout = None
         if paging_get_multiple_pages_lro_options is not None:
@@ -1645,7 +1639,6 @@ class PagingOperations(object):
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
@@ -1668,7 +1661,7 @@ class PagingOperations(object):
 
             return pipeline_response
 
-        polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.PollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResult"]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -1679,7 +1672,6 @@ class PagingOperations(object):
                 cls=lambda x, y, z: x,
                 **kwargs
             )
-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -1741,7 +1733,6 @@ class PagingOperations(object):
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 

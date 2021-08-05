@@ -79,6 +79,7 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin(object):
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
+
         
         request = build_test_request(
             id=id,

@@ -41,7 +41,7 @@ def build_create_ap_true_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "": {
                     "str": "any (optional)"
@@ -105,7 +105,7 @@ def build_create_cat_ap_true_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "": {
                     "str": "any (optional)"
@@ -171,7 +171,7 @@ def build_create_ap_object_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "": {
                     "str": "any (optional)"
@@ -235,7 +235,7 @@ def build_create_ap_string_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "": {
                     "str": "str (optional)"
@@ -299,7 +299,7 @@ def build_create_ap_in_properties_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "additionalProperties": {
                     "str": "float (optional)"
@@ -363,7 +363,7 @@ def build_create_ap_in_properties_with_ap_string_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "": {
                     "str": "str (optional)"

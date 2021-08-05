@@ -54,6 +54,7 @@ def build_list_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters

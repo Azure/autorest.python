@@ -70,6 +70,7 @@ class FormdataOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[IO]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
         files = None
@@ -121,6 +122,7 @@ class FormdataOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[IO]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/octet-stream")  # type: Optional[str]
 
         content = file_content
@@ -165,6 +167,7 @@ class FormdataOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[IO]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
         files = None

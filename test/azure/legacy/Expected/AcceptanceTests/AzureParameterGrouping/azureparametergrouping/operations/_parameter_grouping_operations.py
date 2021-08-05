@@ -50,6 +50,7 @@ def build_post_required_request(
     path_format_arguments = {
         'path': _SERIALIZER.url("path", path, 'str'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
@@ -246,6 +247,7 @@ class ParameterGroupingOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         _custom_header = None
@@ -302,6 +304,7 @@ class ParameterGroupingOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         _custom_header = None
         _query = None
         if parameter_grouping_post_optional_parameters is not None:
@@ -348,6 +351,7 @@ class ParameterGroupingOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         _from_parameter = None
         _accept_parameter = None
         if parameter_grouping_post_reserved_words_parameters is not None:
@@ -397,6 +401,7 @@ class ParameterGroupingOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         _header_one = None
         _query_one = None
         _header_two = None
@@ -449,6 +454,7 @@ class ParameterGroupingOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         _header_one = None
         _query_one = None
         if first_parameter_group is not None:

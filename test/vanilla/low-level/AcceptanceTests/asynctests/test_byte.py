@@ -26,7 +26,7 @@
 from bodybytelowlevel.aio import AutoRestSwaggerBATByteService
 from bodybytelowlevel.rest import byte
 from async_generator import yield_, async_generator
-from base64 import b64encode
+from base64 import b64encode, b64decode
 
 import pytest
 
@@ -44,12 +44,17 @@ def send_request(client, base_send_request):
 
 @pytest.mark.asyncio
 async def test_non_ascii(send_request):
+    def deserialize_base64(attr):
+        padding = '=' * (3 - (len(attr) + 3) % 4)
+        attr = attr + padding
+        encoded = attr.replace('-', '+').replace('_', '/')
+        return b64decode(encoded)
     tests = bytearray([0x0FF, 0x0FE, 0x0FD, 0x0FC, 0x0FB, 0x0FA, 0x0F9, 0x0F8, 0x0F7, 0x0F6])
     request = byte.build_put_non_ascii_request(json=b64encode(tests).decode())
     await send_request(request)
 
     request = byte.build_get_non_ascii_request()
-    response = await send_request(request)
+    assert tests == deserialize_base64((await send_request(request)).text)
 
 @pytest.mark.asyncio
 async def test_get_null(send_request):

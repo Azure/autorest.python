@@ -56,7 +56,7 @@ def build_put500_request(*, json: Any = None, content: Any = None, **kwargs: Any
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "bool (optional)"
     """
 
@@ -95,7 +95,7 @@ def build_patch500_request(*, json: Any = None, content: Any = None, **kwargs: A
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "bool (optional)"
     """
 
@@ -180,7 +180,7 @@ def build_post503_request(*, json: Any = None, content: Any = None, **kwargs: An
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "bool (optional)"
     """
 
@@ -219,7 +219,7 @@ def build_delete503_request(*, json: Any = None, content: Any = None, **kwargs: 
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "bool (optional)"
     """
 
@@ -258,7 +258,7 @@ def build_put504_request(*, json: Any = None, content: Any = None, **kwargs: Any
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "bool (optional)"
     """
 
@@ -297,7 +297,7 @@ def build_patch504_request(*, json: Any = None, content: Any = None, **kwargs: A
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "bool (optional)"
     """
 
