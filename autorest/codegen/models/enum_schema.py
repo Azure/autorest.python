@@ -232,6 +232,6 @@ class HiddenModelEnumSchema(EnumSchema):
         return self.enum_type.type_annotation
 
 def get_enum_schema(code_model) -> Type[EnumSchema]:
-    if code_model.options["show_models"]:
+    if code_model.options["models_mode"]:
         return EnumSchema
     return HiddenModelEnumSchema
