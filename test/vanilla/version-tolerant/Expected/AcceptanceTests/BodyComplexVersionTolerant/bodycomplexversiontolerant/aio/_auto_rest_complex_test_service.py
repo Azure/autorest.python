@@ -48,7 +48,7 @@ class AutoRestComplexTestService:
     :vartype polymorphism: bodycomplexversiontolerant.aio.operations.PolymorphismOperations
     :ivar polymorphicrecursive: PolymorphicrecursiveOperations operations
     :vartype polymorphicrecursive:
-         bodycomplexversiontolerant.aio.operations.PolymorphicrecursiveOperations
+     bodycomplexversiontolerant.aio.operations.PolymorphicrecursiveOperations
     :ivar readonlyproperty: ReadonlypropertyOperations operations
     :vartype readonlyproperty: bodycomplexversiontolerant.aio.operations.ReadonlypropertyOperations
     :ivar flattencomplex: FlattencomplexOperations operations

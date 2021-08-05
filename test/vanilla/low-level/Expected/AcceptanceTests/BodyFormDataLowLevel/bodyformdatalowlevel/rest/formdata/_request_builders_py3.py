@@ -37,6 +37,19 @@ def build_upload_file_request(
 
     Example:
         .. code-block:: python
+
+            # multipart input template you can fill out and use as your `files` input.
+            files = {
+                "content": "any (optional). Pass in binary content you want in the body of the request (typically bytes, a byte iterator, or stream input). File to upload.",
+                "data": {
+                    "str": "any (optional). Pass in dictionary that contains form data to include in the body of the request. File to upload."
+                },
+                "file_content": "IO. File to upload.",
+                "file_name": "str. File name to upload. Name has to be spelled exactly as written here.",
+                "files": {
+                    "str": "any (optional). Multipart input for files. See the template in our example to find the input shape. File to upload."
+                }
+            }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -110,6 +123,20 @@ def build_upload_files_request(
 
     Example:
         .. code-block:: python
+
+            # multipart input template you can fill out and use as your `files` input.
+            files = {
+                "content": "any (optional). Pass in binary content you want in the body of the request (typically bytes, a byte iterator, or stream input). Files to upload.",
+                "data": {
+                    "str": "any (optional). Pass in dictionary that contains form data to include in the body of the request. Files to upload."
+                },
+                "file_content": [
+                    "IO. Files to upload."
+                ],
+                "files": {
+                    "str": "any (optional). Multipart input for files. See the template in our example to find the input shape. Files to upload."
+                }
+            }
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]

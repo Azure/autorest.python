@@ -26,7 +26,7 @@ class AutoRestParameterGroupingTestService:
 
     :ivar parameter_grouping: ParameterGroupingOperations operations
     :vartype parameter_grouping:
-         azureparametergroupingversiontolerant.aio.operations.ParameterGroupingOperations
+     azureparametergroupingversiontolerant.aio.operations.ParameterGroupingOperations
     :param base_url: Service URL
     :type base_url: str
     """

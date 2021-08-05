@@ -37,22 +37,22 @@ class AutoRestAzureSpecialParametersTestClient:
 
     :ivar xms_client_request_id: XMsClientRequestIdOperations operations
     :vartype xms_client_request_id:
-         azurespecialpropertiesversiontolerant.aio.operations.XMsClientRequestIdOperations
+     azurespecialpropertiesversiontolerant.aio.operations.XMsClientRequestIdOperations
     :ivar subscription_in_credentials: SubscriptionInCredentialsOperations operations
     :vartype subscription_in_credentials:
-         azurespecialpropertiesversiontolerant.aio.operations.SubscriptionInCredentialsOperations
+     azurespecialpropertiesversiontolerant.aio.operations.SubscriptionInCredentialsOperations
     :ivar subscription_in_method: SubscriptionInMethodOperations operations
     :vartype subscription_in_method:
-         azurespecialpropertiesversiontolerant.aio.operations.SubscriptionInMethodOperations
+     azurespecialpropertiesversiontolerant.aio.operations.SubscriptionInMethodOperations
     :ivar api_version_default: ApiVersionDefaultOperations operations
     :vartype api_version_default:
-         azurespecialpropertiesversiontolerant.aio.operations.ApiVersionDefaultOperations
+     azurespecialpropertiesversiontolerant.aio.operations.ApiVersionDefaultOperations
     :ivar api_version_local: ApiVersionLocalOperations operations
     :vartype api_version_local:
-         azurespecialpropertiesversiontolerant.aio.operations.ApiVersionLocalOperations
+     azurespecialpropertiesversiontolerant.aio.operations.ApiVersionLocalOperations
     :ivar skip_url_encoding: SkipUrlEncodingOperations operations
     :vartype skip_url_encoding:
-         azurespecialpropertiesversiontolerant.aio.operations.SkipUrlEncodingOperations
+     azurespecialpropertiesversiontolerant.aio.operations.SkipUrlEncodingOperations
     :ivar odata: OdataOperations operations
     :vartype odata: azurespecialpropertiesversiontolerant.aio.operations.OdataOperations
     :ivar header: HeaderOperations operations
@@ -60,7 +60,7 @@ class AutoRestAzureSpecialParametersTestClient:
     :param credential: Credential needed for the client to connect to Azure.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param subscription_id: The subscription id, which appears in the path, always modeled in
-         credentials. The value is always '1234-5678-9012-3456'.
+     credentials. The value is always '1234-5678-9012-3456'.
     :type subscription_id: str
     :param base_url: Service URL
     :type base_url: str

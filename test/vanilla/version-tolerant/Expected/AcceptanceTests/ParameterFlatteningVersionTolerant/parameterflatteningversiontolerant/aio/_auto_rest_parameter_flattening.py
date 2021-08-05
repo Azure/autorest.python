@@ -26,7 +26,7 @@ class AutoRestParameterFlattening:
 
     :ivar availability_sets: AvailabilitySetsOperations operations
     :vartype availability_sets:
-         parameterflatteningversiontolerant.aio.operations.AvailabilitySetsOperations
+     parameterflatteningversiontolerant.aio.operations.AvailabilitySetsOperations
     :param base_url: Service URL
     :type base_url: str
     """

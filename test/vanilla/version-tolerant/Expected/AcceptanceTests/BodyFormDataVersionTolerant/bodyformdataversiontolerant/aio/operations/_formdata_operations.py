@@ -157,10 +157,12 @@ class FormdataOperations:
         Example:
             .. code-block:: python
 
-                # JSON input template you can fill out and use as your body input.
-                file_content = [
-                    "IO (optional)"
-                ]
+                # multipart input template you can fill out and use as your `files` input.
+                files = {
+                    "file_content": [
+                        "IO. Files to upload."
+                    ]
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[IO]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}

@@ -34,9 +34,9 @@ T = TypeVar("T")
 OrderedSet = Dict[T, None]
 
 
-def _serialize_json_dict(template_representation: str, indent: int = 4) -> Any:
+def _json_dumps_template(template_representation: Any) -> Any:
     # only for template use, since it wraps everything in strings
-    return json.dumps(template_representation, sort_keys=True, indent=indent)
+    return json.dumps(template_representation, sort_keys=True, indent=4)
 
 
 def _serialize_files_dict(multipart_parameters: List[Parameter]) -> str:
@@ -48,7 +48,7 @@ def _serialize_files_dict(multipart_parameters: List[Parameter]) -> str:
         )
         for param in multipart_parameters
     }
-    return json.dumps(template, sort_keys=True, indent=4)
+    return _json_dumps_template(template)
 
 
 def _serialize_parameters_dict(parameters: List[Parameter], dict_name: str, value_callable: Callable) -> List[str]:
@@ -285,7 +285,7 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
         retval = defaultdict(list)
         for response in responses:
             status_codes = [str(status_code) for status_code in response.status_codes]
-            response_json = _serialize_json_dict(cast(BaseSchema, response.schema).get_json_template_representation())
+            response_json = _json_dumps_template(cast(BaseSchema, response.schema).get_json_template_representation())
             retval[response_json].extend(status_codes)
         return retval
 
@@ -294,9 +294,9 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
         if self._has_json_example_template(builder):
             template.append("")
             template += self._get_json_example_template(builder)
-        # if self._has_files_example_template(builder):
-        #     template.append("")
-        #     template += self._get_files_example_template(builder)
+        if self._has_files_example_template(builder):
+            template.append("")
+            template += self._get_files_example_template(builder)
         if self._get_json_response_template_to_status_codes(builder):
             template.append("")
             template += self._get_json_response_template(builder)
@@ -329,7 +329,7 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
             num_schemas = min(self.code_model.options["polymorphic_examples"], len(polymorphic_schemas))
             for i in range(num_schemas):
                 schema = polymorphic_schemas[i]
-                polymorphic_property = _serialize_json_dict(
+                polymorphic_property = _json_dumps_template(
                     schema.get_json_template_representation(),
                 )
                 template.extend(f"{property_with_discriminator.name} = {polymorphic_property}".splitlines())
@@ -337,22 +337,23 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
                     template.append("# OR")
             template.append("")
         template.append("# JSON input template you can fill out and use as your body input.")
-        json_template = _serialize_json_dict(
+        json_template = _json_dumps_template(
             builder.parameters.json_body.get_json_template_representation(),
         )
         template.extend(f"{self._json_example_param_name(builder)} = {json_template}".splitlines())
         return template
 
-    # def _get_files_example_template(self, builder: BuilderType) -> List[str]:
-    #     multipart_params = builder.parameters._multipart_parameters
-    #     if multipart_params:
-    #         return [
-    #             "# multipart input template you can fill out and use as your `files` input.",
-    #             f"files = {_serialize_files_dict(list(multipart_params))}",
-    #         ]
-    #     raise ValueError(
-    #         "You're trying to get a template for your multipart params, but you don't have multipart params"
-    #     )
+    def _get_files_example_template(self, builder: BuilderType) -> List[str]:
+        multipart_params = builder.parameters.multipart
+        if multipart_params:
+            retval = [
+                "# multipart input template you can fill out and use as your `files` input.",
+            ]
+            retval.extend(f"files = {_serialize_files_dict(multipart_params)}".splitlines())
+            return retval
+        raise ValueError(
+            "You're trying to get a template for your multipart params, but you don't have multipart params"
+        )
 
     def _get_json_response_template(self, builder: BuilderType) -> List[str]:
         template = []
@@ -602,10 +603,10 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         return builder.parameters.body[0].serialized_name
 
     def _has_json_example_template(self, builder: BuilderType) -> bool:
-        return builder.parameters.has_body
+        return builder.parameters.has_body and not builder.parameters.body[0].is_multipart
 
     def _has_files_example_template(self, builder: BuilderType) -> bool:
-        return False
+        return bool(builder.parameters.multipart)
 
     def _serialize_body_call(
         self, builder: BuilderType, send_xml: bool, ser_ctxt: Optional[str], ser_ctxt_name: str

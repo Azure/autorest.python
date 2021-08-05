@@ -41,15 +41,15 @@ class AutoRestHttpInfrastructureTestService(object):
     :vartype http_redirects: httpinfrastructureversiontolerant.operations.HttpRedirectsOperations
     :ivar http_client_failure: HttpClientFailureOperations operations
     :vartype http_client_failure:
-         httpinfrastructureversiontolerant.operations.HttpClientFailureOperations
+     httpinfrastructureversiontolerant.operations.HttpClientFailureOperations
     :ivar http_server_failure: HttpServerFailureOperations operations
     :vartype http_server_failure:
-         httpinfrastructureversiontolerant.operations.HttpServerFailureOperations
+     httpinfrastructureversiontolerant.operations.HttpServerFailureOperations
     :ivar http_retry: HttpRetryOperations operations
     :vartype http_retry: httpinfrastructureversiontolerant.operations.HttpRetryOperations
     :ivar multiple_responses: MultipleResponsesOperations operations
     :vartype multiple_responses:
-         httpinfrastructureversiontolerant.operations.MultipleResponsesOperations
+     httpinfrastructureversiontolerant.operations.MultipleResponsesOperations
     :param base_url: Service URL
     :type base_url: str
     """

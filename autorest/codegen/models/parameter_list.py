@@ -146,8 +146,8 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
         return [c for c in constants if c.location == ParameterLocation.Body]
 
     @property
-    def has_multipart(self) -> bool:
-        return any(self.get_from_predicate(lambda parameter: parameter.is_multipart))
+    def multipart(self) -> List[Parameter]:
+        return self.get_from_predicate(lambda parameter: parameter.is_multipart)
 
     @property
     def has_partial_body(self) -> bool:
