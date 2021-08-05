@@ -11,7 +11,7 @@ from .base_builder import BaseBuilder, create_parameters
 from .imports import FileImport, ImportType, TypingSection
 from .schema_response import SchemaResponse
 from .parameter import get_parameter
-from .parameter_list import ParameterList
+from .parameter_list import ParameterList, get_parameter_list
 from .base_schema import BaseSchema
 from .object_schema import ObjectSchema
 from .request_builder import RequestBuilder
@@ -262,6 +262,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         _LOGGER.debug("Parsing %s operation", name)
 
         parameter_creator = get_parameter(code_model).from_yaml
+        parameter_list_creator = get_parameter_list(code_model)
         parameters, multiple_media_type_parameters = create_parameters(yaml_data, parameter_creator)
 
         return cls(
@@ -269,8 +270,8 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             name=name,
             description=yaml_data["language"]["python"]["description"],
             api_versions=set(value_dict["version"] for value_dict in yaml_data["apiVersions"]),
-            parameters=ParameterList(parameters),
-            multiple_media_type_parameters=ParameterList(multiple_media_type_parameters),
+            parameters=parameter_list_creator(parameters),
+            multiple_media_type_parameters=parameter_list_creator(multiple_media_type_parameters),
             summary=yaml_data["language"]["python"].get("summary"),
             responses=[SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("responses", [])],
             # Exception with no schema means default exception, we don't store them

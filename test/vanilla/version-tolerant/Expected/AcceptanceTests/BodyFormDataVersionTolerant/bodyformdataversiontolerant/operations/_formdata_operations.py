@@ -125,17 +125,15 @@ class FormdataOperations(object):
     @distributed_trace
     def upload_file(
         self,
-        file_content,  # type: IO
-        file_name,  # type: str
+        files,  # type: Dict[str, Any]
         **kwargs  # type: Any
     ):
         # type: (...) -> IO
         """Upload file.
 
-        :param file_content: File to upload.
-        :type file_content: IO
-        :param file_name: File name to upload. Name has to be spelled exactly as written here.
-        :type file_name: str
+        :param files: Multipart input for files. See the template in our example to find the input
+         shape.
+        :type files: dict[str, any]
         :return: IO
         :rtype: IO
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -227,14 +225,15 @@ class FormdataOperations(object):
     @distributed_trace
     def upload_files(
         self,
-        file_content,  # type: List[IO]
+        files,  # type: Dict[str, Any]
         **kwargs  # type: Any
     ):
         # type: (...) -> IO
         """Upload multiple files.
 
-        :param file_content: Files to upload.
-        :type file_content: list[IO]
+        :param files: Multipart input for files. See the template in our example to find the input
+         shape.
+        :type files: dict[str, any]
         :return: IO
         :rtype: IO
         :raises: ~azure.core.exceptions.HttpResponseError

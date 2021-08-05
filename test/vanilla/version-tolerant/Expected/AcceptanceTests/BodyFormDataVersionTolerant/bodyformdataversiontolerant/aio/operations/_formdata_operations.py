@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import functools
-from typing import Any, Callable, Dict, Generic, IO, List, Optional, TypeVar
+from typing import Any, Callable, Dict, Generic, IO, Optional, TypeVar
 import warnings
 
 from azure.core.exceptions import (
@@ -50,13 +50,12 @@ class FormdataOperations:
         self._config = config
 
     @distributed_trace_async
-    async def upload_file(self, file_content: IO, file_name: str, **kwargs: Any) -> IO:
+    async def upload_file(self, files: Dict[str, Any], **kwargs: Any) -> IO:
         """Upload file.
 
-        :param file_content: File to upload.
-        :type file_content: IO
-        :param file_name: File name to upload. Name has to be spelled exactly as written here.
-        :type file_name: str
+        :param files: Multipart input for files. See the template in our example to find the input
+         shape.
+        :type files: dict[str, any]
         :return: IO
         :rtype: IO
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -145,11 +144,12 @@ class FormdataOperations:
     upload_file_via_body.metadata = {"url": "/formdata/stream/uploadfile"}  # type: ignore
 
     @distributed_trace_async
-    async def upload_files(self, file_content: List[IO], **kwargs: Any) -> IO:
+    async def upload_files(self, files: Dict[str, Any], **kwargs: Any) -> IO:
         """Upload multiple files.
 
-        :param file_content: Files to upload.
-        :type file_content: list[IO]
+        :param files: Multipart input for files. See the template in our example to find the input
+         shape.
+        :type files: dict[str, any]
         :return: IO
         :rtype: IO
         :raises: ~azure.core.exceptions.HttpResponseError
