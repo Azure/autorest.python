@@ -1,49 +1,50 @@
 trigger:
   branches:
     include:
-    - autorestv3
+      - autorestv3
 
 pr:
   branches:
     include:
-    - autorestv3
+      - autorestv3
 
 variables:
-  NodeVersion: '12.x'
-  PythonVersion: '3.6'
-  TestFolder: '$(Build.SourcesDirectory)/test/'
+  NodeVersion: "12.x"
+  PythonVersion: "3.6"
+  TestFolder: "$(Build.SourcesDirectory)/test/"
 
 jobs:
-  - job: 'AutoRest_Python_CI'
-    displayName: 'Run AutoRest CI Checks'
+  - job: "AutoRest_Python_CI"
+    displayName: "Run AutoRest CI Checks"
 
     strategy:
       matrix:
         Linux_Python27:
-          OSName: 'Linux'
-          OSVmImage: 'ubuntu-16.04'
-          PythonVersion: '2.7'
+          OSName: "Linux"
+          OSVmImage: "MMSUbuntu20.04"
+          PythonVersion: "2.7"
         Linux_Python36:
-          OSName: 'Linux'
-          OSVmImage: 'ubuntu-16.04'
-          PythonVersion: '3.6'
-          CoverageArg: ''
+          OSName: "Linux"
+          OSVmImage: "MMSUbuntu20.04"
+          PythonVersion: "3.6"
+          CoverageArg: ""
         Linux_Python38:
-          OSName: 'Linux'
-          OSVmImage: 'ubuntu-16.04'
-          PythonVersion: '3.8'
+          OSName: "Linux"
+          OSVmImage: "MMSUbuntu20.04"
+          PythonVersion: "3.8"
 
     pool:
-      vmImage: '$(OSVmImage)'
+      name: azsdk-pool-mms-ubuntu-2004-general
+      vmImage: $(OSVmImage)
 
     steps:
       - task: NodeTool@0
-        displayName: 'Install Node.js $(NodeVersion)'
+        displayName: "Install Node.js $(NodeVersion)"
         inputs:
-          versionSpec: '$(NodeVersion)'
+          versionSpec: "$(NodeVersion)"
 
       - task: UsePythonVersion@0
-        displayName: 'Use Python 3.6'
+        displayName: "Use Python 3.6"
         inputs:
           versionSpec: 3.6
 
@@ -81,8 +82,9 @@ jobs:
           versionSpec: $(PythonVersion)
 
       - script: |
+          pip install pip==20.2
           pip install tox coverage==4.5.4
-        displayName: 'Install Env Specific Reqs in Target PyVersion $(PythonVersion)'
+        displayName: "Install Env Specific Reqs in Target PyVersion $(PythonVersion)"
 
       - script: |
           cd $(TestFolder)/azure/legacy
@@ -92,9 +94,8 @@ jobs:
         condition: always()
         displayName: 'Publish legacy "azure" Test Results'
         inputs:
-          testResultsFiles: 'test-junit-azure-ci.xml'
-          testRunTitle: '$(OSName) Python $(PythonVersion) - legacy azure'
-          searchFolder: '$(TestFolder)/azure/legacy'
+          testRunTitle: "$(OSName) Python $(PythonVersion) - legacy azure"
+          searchFolder: "$(TestFolder)/azure/legacy"
 
       - script: |
           cd $(TestFolder)/azure/low-level
@@ -104,9 +105,8 @@ jobs:
         condition: always()
         displayName: 'Publish low-level "azure" Test Results'
         inputs:
-          testResultsFiles: 'test-junit-azure-ci.xml'
-          testRunTitle: '$(OSName) Python $(PythonVersion) - low-level azure'
-          searchFolder: '$(TestFolder)/azure/low-level'
+          testRunTitle: "$(OSName) Python $(PythonVersion) - low-level azure"
+          searchFolder: "$(TestFolder)/azure/low-level"
 
       - script: |
           cd $(TestFolder)/vanilla/legacy
@@ -116,9 +116,8 @@ jobs:
         displayName: 'Publish legacy "vanilla" Test Results'
         condition: always()
         inputs:
-          testResultsFiles: 'test-junit-vanilla-ci.xml'
-          testRunTitle: '$(OSName) Python $(PythonVersion) - legacy vanilla'
-          searchFolder: '$(TestFolder)/vanilla/legacy'
+          testRunTitle: "$(OSName) Python $(PythonVersion) - legacy vanilla"
+          searchFolder: "$(TestFolder)/vanilla/legacy"
 
       - script: |
           cd $(TestFolder)/vanilla/low-level
@@ -130,9 +129,8 @@ jobs:
         displayName: 'Publish low level "vanilla" Test Results'
         condition: always()
         inputs:
-          testResultsFiles: 'test-junit-vanilla-ci.xml'
-          testRunTitle: '$(OSName) Python $(PythonVersion) - low level vanilla'
-          searchFolder: '$(TestFolder)/vanilla/low-level'
+          testRunTitle: "$(OSName) Python $(PythonVersion) - low level vanilla"
+          searchFolder: "$(TestFolder)/vanilla/low-level"
 
       - script: |
           cd $(TestFolder)/multiapi
@@ -142,11 +140,10 @@ jobs:
         displayName: 'Publish "multiapi" Test Results'
         condition: always()
         inputs:
-          testResultsFiles: 'test-junit-multiapi-ci.xml'
-          testRunTitle: '$(OSName) Python $(PythonVersion) - multiapi'
-          searchFolder: '$(TestFolder)/multiapi'
+          testRunTitle: "$(OSName) Python $(PythonVersion) - multiapi"
+          searchFolder: "$(TestFolder)/multiapi"
 
       - script: |
           npm run coverage-push -- $(Build.Repository.Name) $(Build.SourceBranch) $(github-token) $(storage-coverage-user) $(storage-coverage-pass)
         workingDirectory: node_modules/@microsoft.azure/autorest.testserver
-        displayName: 'Publish coverage report to stroage account'
+        displayName: "Publish coverage report to stroage account"
