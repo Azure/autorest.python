@@ -272,6 +272,7 @@ def build_put_simple_product_with_grouping_request(
     path_format_arguments = {
         'name': _SERIALIZER.url("name", name, 'str'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
@@ -308,6 +309,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if resource_array is not None:
@@ -393,6 +395,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if resource_array is not None:
@@ -478,6 +481,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if resource_dictionary is not None:
@@ -562,6 +566,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if resource_complex_object is not None:
@@ -646,6 +651,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.SimpleProduct"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if simple_body_product is not None:
@@ -713,6 +719,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.SimpleProduct"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         _simple_body_product = _models.SimpleProduct(
@@ -771,6 +778,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.SimpleProduct"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         _name = None

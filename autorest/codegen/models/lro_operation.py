@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import Callable, Dict, List, Any, Optional, Set, cast
+from typing import Dict, List, Any, Optional, Set, cast
 from .imports import FileImport
 from .operation import Operation
 from .parameter_list import ParameterList
@@ -45,6 +45,7 @@ class LROOperation(Operation):
         )
         self.lro_options = yaml_data.get("extensions", {}).get("x-ms-long-running-operation-options", {})
         self.name = "begin_" + self.name
+        self.use_pipeline_transport = True
 
     @property
     def lro_response(self) -> Optional[SchemaResponse]:
@@ -76,12 +77,8 @@ class LROOperation(Operation):
         return response
 
     @property
-    def schema_of_initial_operation(self) -> Callable:
-        return Operation
-
-    @property
     def initial_operation(self) -> Operation:
-        operation = self.schema_of_initial_operation(
+        operation = Operation(
             yaml_data={},
             name=self.name[5:] + "_initial",
             description="",
@@ -94,6 +91,7 @@ class LROOperation(Operation):
             want_tracing=False,
         )
         operation.request_builder = self.request_builder
+        operation.use_pipeline_transport = True
         return operation
 
     @property
@@ -170,4 +168,6 @@ class LROOperation(Operation):
 
         if async_mode:
             file_import.add_from_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
+        if self.lro_response and self.lro_response.has_body and not code_model.options["models_mode"]:
+            file_import.add_from_import("json", "loads", import_type=ImportType.STDLIB, alias="_loads")
         return file_import

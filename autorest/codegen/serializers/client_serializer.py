@@ -63,9 +63,11 @@ class ClientSerializer:
             client_models_value = "{k: v for k, v in models.__dict__.items() if isinstance(v, type)}"
         else:
             client_models_value = "{}  # type: Dict[str, Any]"
-        retval.append(f"client_models = {client_models_value}")
-        retval.append(f"self._serialize = Serializer(client_models)")
-        retval.append(f"self._deserialize = Deserializer(client_models)")
+        if self.code_model.options["models_mode"]:
+            retval.append(f"client_models = {client_models_value}")
+        client_models_str = "client_models" if self.code_model.options["models_mode"] else ""
+        retval.append(f"self._serialize = Serializer({client_models_str})")
+        retval.append(f"self._deserialize = Deserializer({client_models_str})")
         if not self.code_model.options["client_side_validation"]:
             retval.append("self._serialize.client_side_validation = False")
         operation_groups = [og for og in self.code_model.operation_groups if not og.is_empty_operation_group]

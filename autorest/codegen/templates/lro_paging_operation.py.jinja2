@@ -1,7 +1,5 @@
 {% import 'operation_tools.jinja2' as op_tools with context %}
 {% import 'keywords.jinja2' as keywords with context %}
-{% import 'lro_operation_helper.jinja2' as lro_helper with context %}
-{% import 'paging_operation_helper.jinja2' as paging_helper with context %}
 {% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
 {# actual template starts here #}
 {% if code_model.options['tracing'] %}
@@ -9,17 +7,12 @@
 {% endif %}
 {{ operation_serializer.method_signature_and_response_type_annotation(operation) }}
     {{ op_tools.description(operation, operation_serializer) | indent }}
-    {{ paging_helper.paging_operation() | indent }}
+    {% if operation.parameters.kwargs_to_pop(async_mode) %}
+    {{ op_tools.serialize(operation_serializer.pop_kwargs_from_signature(operation)) | indent }}
+    {% endif %}
+    {{ op_tools.serialize(operation_serializer.set_up_params_for_pager(operation)) | indent }}
 
-    {{ lro_helper.lro_operation() | indent }}
-    def get_long_running_output(pipeline_response):
-        {{ keywords.def }} internal_get_next(next_link=None):
-            if next_link is None:
-                return pipeline_response
-            else:
-                return {{ keywords.await }}get_next(next_link)
-
-        return {{ operation.get_pager(async_mode) }}(
-            internal_get_next, extract_data
-        )
-{{ lro_helper.lro_operation_return() }}
+    {{ op_tools.serialize(operation_serializer.initial_call(operation)) | indent }}
+    {{ op_tools.serialize(operation_serializer.get_long_running_output(operation)) | indent }}
+    {{ op_tools.serialize(operation_serializer.return_lro_poller(operation)) | indent }}
+{{ operation_serializer.get_metadata_url(operation) }}

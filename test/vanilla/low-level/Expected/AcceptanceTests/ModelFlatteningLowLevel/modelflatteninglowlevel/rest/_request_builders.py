@@ -42,7 +42,7 @@ def build_put_array_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = [
                 {
                     "id": "str (optional)",
@@ -146,7 +146,7 @@ def build_put_wrapped_array_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = [
                 {
                     "value": "str (optional)"
@@ -241,7 +241,7 @@ def build_put_dictionary_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "str": {
                     "properties": {
@@ -343,7 +343,7 @@ def build_put_resource_collection_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "arrayofresources": [
                     {
@@ -485,7 +485,7 @@ def build_put_simple_product_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "details": {
                     "max_product_capacity": "str",
@@ -551,7 +551,7 @@ def build_post_flattened_simple_product_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "details": {
                     "max_product_capacity": "str",
@@ -620,7 +620,7 @@ def build_put_simple_product_with_grouping_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "details": {
                     "max_product_capacity": "str",
@@ -651,6 +651,7 @@ def build_put_simple_product_with_grouping_request(
     path_format_arguments = {
         'name': _SERIALIZER.url("name", name, 'str'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers

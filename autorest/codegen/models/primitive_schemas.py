@@ -102,9 +102,6 @@ class IOSchema(PrimitiveSchema):
         file_import.add_from_import("typing", "IO", ImportType.STDLIB, TypingSection.CONDITIONAL)
         return file_import
 
-    def get_json_template_representation(self, **kwargs: Any) -> Any:
-        raise TypeError("No JSON representation of IOSchema")
-
 class AnySchema(PrimitiveSchema):
     @property
     def serialization_type(self) -> str:

@@ -1,0 +1,54 @@
+﻿# --------------------------------------------------------------------------
+#
+# Copyright (c) Microsoft Corporation. All rights reserved.
+#
+# The MIT License (MIT)
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the ""Software""), to
+# deal in the Software without restriction, including without limitation the
+# rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+# sell copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED *AS IS*, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+# IN THE SOFTWARE.
+#
+# --------------------------------------------------------------------------
+import sys
+from azure.core.exceptions import DecodeError
+from bodybooleanversiontolerant import AutoRestBoolTestService
+
+import pytest
+
+@pytest.fixture
+def client():
+    with AutoRestBoolTestService(base_url="http://localhost:3000") as client:
+        yield client
+
+def test_model_get_true(client):
+    assert client.bool.get_true()
+
+def test_model_get_false(client):
+    assert not client.bool.get_false()
+
+def test_model_get_null(client):
+    client.bool.get_null()
+
+def test_model_put_false(client):
+    client.bool.put_false()
+
+def test_model_put_true(client):
+    client.bool.put_true()
+
+def test_model_get_invalid(client):
+    with pytest.raises(DecodeError):
+        client.bool.get_invalid()

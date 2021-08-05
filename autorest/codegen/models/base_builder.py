@@ -4,7 +4,6 @@
 # license information.
 # --------------------------------------------------------------------------
 from typing import Any, Callable, Dict, List, Optional, Union, TYPE_CHECKING
-from abc import abstractmethod
 from .base_model import BaseModel
 from .schema_response import SchemaResponse
 
@@ -14,15 +13,15 @@ if TYPE_CHECKING:
 
 _M4_HEADER_PARAMETERS = ["content_type", "accept"]
 
-def get_converted_parameters(yaml_data: Dict[str, Any], parameter_converter: Callable):
+def create_parameters(yaml_data: Dict[str, Any], parameter_creator: Callable):
     multiple_requests = len(yaml_data["requests"]) > 1
 
     multiple_media_type_parameters = []
-    parameters = [parameter_converter(yaml) for yaml in yaml_data.get("parameters", [])]
+    parameters = [parameter_creator(yaml) for yaml in yaml_data.get("parameters", [])]
 
     for request in yaml_data["requests"]:
         for yaml in request.get("parameters", []):
-            parameter = parameter_converter(yaml)
+            parameter = parameter_creator(yaml)
             name = yaml["language"]["python"]["name"]
             if name in _M4_HEADER_PARAMETERS:
                 parameters.append(parameter)
@@ -79,7 +78,7 @@ class BaseBuilder(BaseModel):
     def default_content_type_declaration(self) -> str:
         return f'"{self.parameters.default_content_type}"'
 
-    def get_response_from_status(self, status_code: int) -> SchemaResponse:
+    def get_response_from_status(self, status_code: Optional[Union[str, int]]) -> SchemaResponse:
         for response in self.responses:
             if status_code in response.status_codes:
                 return response
@@ -89,8 +88,3 @@ class BaseBuilder(BaseModel):
     def success_status_code(self) -> List[Union[str, int]]:
         """The list of all successfull status code."""
         return [code for response in self.responses for code in response.status_codes if code != "default"]
-
-    @staticmethod
-    @abstractmethod
-    def get_parameter_converter() -> Callable:
-        ...

@@ -25,7 +25,6 @@
 # --------------------------------------------------------------------------
 import isodate
 
-from msrest.exceptions import DeserializationError
 
 from bodydatetimerfc1123lowlevel import AutoRestRFC1123DateTimeTestService
 from bodydatetimerfc1123lowlevel.rest import datetimerfc1123

@@ -45,6 +45,7 @@ class MultiapiServiceClientOperationsMixin:
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
+
         
         request = build_test_one_request(
             id=id,
@@ -93,6 +94,7 @@ class MultiapiServiceClientOperationsMixin:
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
+
         
         request = build_test_different_calls_request(
             greeting_in_english=greeting_in_english,

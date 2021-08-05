@@ -79,12 +79,11 @@ class PagingOperations:
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize('ProductResultValue', pipeline_response)
+            deserialized = self._deserialize("ProductResultValue", pipeline_response)
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -97,10 +96,11 @@ class PagingOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                    map_error(status_code=response.status_code, response=response, error_map=error_map)
-                    raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
             return pipeline_response
+
 
         return AsyncItemPaged(
             get_next, extract_data
@@ -137,12 +137,11 @@ class PagingOperations:
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize('ProductResult', pipeline_response)
+            deserialized = self._deserialize("ProductResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -155,10 +154,11 @@ class PagingOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                    map_error(status_code=response.status_code, response=response, error_map=error_map)
-                    raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
             return pipeline_response
+
 
         return AsyncItemPaged(
             get_next, extract_data
@@ -196,12 +196,11 @@ class PagingOperations:
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize('ProductResult', pipeline_response)
+            deserialized = self._deserialize("ProductResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -214,10 +213,11 @@ class PagingOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                    map_error(status_code=response.status_code, response=response, error_map=error_map)
-                    raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
             return pipeline_response
+
 
         return AsyncCustomPager(
             get_next, extract_data
@@ -255,12 +255,11 @@ class PagingOperations:
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize('ProductResultValue', pipeline_response)
+            deserialized = self._deserialize("ProductResultValue", pipeline_response)
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -273,10 +272,11 @@ class PagingOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                    map_error(status_code=response.status_code, response=response, error_map=error_map)
-                    raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
             return pipeline_response
+
 
         return AsyncItemPaged(
             get_next, extract_data
@@ -313,7 +313,7 @@ class PagingOperations:
                 if paging_get_multiple_pages_options is not None:
                     _maxresults = paging_get_multiple_pages_options.maxresults
                     _timeout = paging_get_multiple_pages_options.timeout
-
+                
                 request = build_get_multiple_pages_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
@@ -328,7 +328,7 @@ class PagingOperations:
                 if paging_get_multiple_pages_options is not None:
                     _maxresults = paging_get_multiple_pages_options.maxresults
                     _timeout = paging_get_multiple_pages_options.timeout
-
+                
                 request = build_get_multiple_pages_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
@@ -336,12 +336,11 @@ class PagingOperations:
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize('ProductResult', pipeline_response)
+            deserialized = self._deserialize("ProductResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -354,10 +353,11 @@ class PagingOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                    map_error(status_code=response.status_code, response=response, error_map=error_map)
-                    raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
             return pipeline_response
+
 
         return AsyncItemPaged(
             get_next, extract_data
@@ -404,7 +404,7 @@ class PagingOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize('ProductResult', pipeline_response)
+            deserialized = self._deserialize("ProductResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -417,10 +417,11 @@ class PagingOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                    map_error(status_code=response.status_code, response=response, error_map=error_map)
-                    raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
             return pipeline_response
+
 
         return AsyncItemPaged(
             get_next, extract_data
@@ -457,7 +458,7 @@ class PagingOperations:
                 if paging_get_odata_multiple_pages_options is not None:
                     _maxresults = paging_get_odata_multiple_pages_options.maxresults
                     _timeout = paging_get_odata_multiple_pages_options.timeout
-
+                
                 request = build_get_odata_multiple_pages_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
@@ -472,7 +473,7 @@ class PagingOperations:
                 if paging_get_odata_multiple_pages_options is not None:
                     _maxresults = paging_get_odata_multiple_pages_options.maxresults
                     _timeout = paging_get_odata_multiple_pages_options.timeout
-
+                
                 request = build_get_odata_multiple_pages_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
@@ -480,12 +481,11 @@ class PagingOperations:
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize('OdataProductResult', pipeline_response)
+            deserialized = self._deserialize("OdataProductResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -498,10 +498,11 @@ class PagingOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                    map_error(status_code=response.status_code, response=response, error_map=error_map)
-                    raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
             return pipeline_response
+
 
         return AsyncItemPaged(
             get_next, extract_data
@@ -540,7 +541,7 @@ class PagingOperations:
                     _maxresults = paging_get_multiple_pages_with_offset_options.maxresults
                     _offset = paging_get_multiple_pages_with_offset_options.offset
                     _timeout = paging_get_multiple_pages_with_offset_options.timeout
-
+                
                 request = build_get_multiple_pages_with_offset_request(
                     offset=_offset,
                     client_request_id=client_request_id,
@@ -558,7 +559,7 @@ class PagingOperations:
                     _maxresults = paging_get_multiple_pages_with_offset_options.maxresults
                     _offset = paging_get_multiple_pages_with_offset_options.offset
                     _timeout = paging_get_multiple_pages_with_offset_options.timeout
-
+                
                 request = build_get_multiple_pages_with_offset_request(
                     offset=_offset,
                     client_request_id=client_request_id,
@@ -567,12 +568,11 @@ class PagingOperations:
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize('ProductResult', pipeline_response)
+            deserialized = self._deserialize("ProductResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -585,10 +585,11 @@ class PagingOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                    map_error(status_code=response.status_code, response=response, error_map=error_map)
-                    raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
             return pipeline_response
+
 
         return AsyncItemPaged(
             get_next, extract_data
@@ -626,12 +627,11 @@ class PagingOperations:
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize('ProductResult', pipeline_response)
+            deserialized = self._deserialize("ProductResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -644,10 +644,11 @@ class PagingOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                    map_error(status_code=response.status_code, response=response, error_map=error_map)
-                    raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
             return pipeline_response
+
 
         return AsyncItemPaged(
             get_next, extract_data
@@ -685,12 +686,11 @@ class PagingOperations:
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize('ProductResult', pipeline_response)
+            deserialized = self._deserialize("ProductResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -703,10 +703,11 @@ class PagingOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                    map_error(status_code=response.status_code, response=response, error_map=error_map)
-                    raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
             return pipeline_response
+
 
         return AsyncItemPaged(
             get_next, extract_data
@@ -743,12 +744,11 @@ class PagingOperations:
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize('ProductResult', pipeline_response)
+            deserialized = self._deserialize("ProductResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -761,10 +761,11 @@ class PagingOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                    map_error(status_code=response.status_code, response=response, error_map=error_map)
-                    raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
             return pipeline_response
+
 
         return AsyncItemPaged(
             get_next, extract_data
@@ -801,12 +802,11 @@ class PagingOperations:
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize('ProductResult', pipeline_response)
+            deserialized = self._deserialize("ProductResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -819,10 +819,11 @@ class PagingOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                    map_error(status_code=response.status_code, response=response, error_map=error_map)
-                    raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
             return pipeline_response
+
 
         return AsyncItemPaged(
             get_next, extract_data
@@ -859,12 +860,11 @@ class PagingOperations:
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize('ProductResult', pipeline_response)
+            deserialized = self._deserialize("ProductResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -877,10 +877,11 @@ class PagingOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                    map_error(status_code=response.status_code, response=response, error_map=error_map)
-                    raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
             return pipeline_response
+
 
         return AsyncItemPaged(
             get_next, extract_data
@@ -932,7 +933,7 @@ class PagingOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize('OdataProductResult', pipeline_response)
+            deserialized = self._deserialize("OdataProductResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -945,10 +946,11 @@ class PagingOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                    map_error(status_code=response.status_code, response=response, error_map=error_map)
-                    raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
             return pipeline_response
+
 
         return AsyncItemPaged(
             get_next, extract_data
@@ -981,7 +983,7 @@ class PagingOperations:
                 if custom_parameter_group is not None:
                     _api_version = custom_parameter_group.api_version
                     _tenant = custom_parameter_group.tenant
-
+                
                 request = build_get_multiple_pages_fragment_with_grouping_next_link_request(
                     tenant=_tenant,
                     api_version=_api_version,
@@ -995,7 +997,7 @@ class PagingOperations:
                 if custom_parameter_group is not None:
                     _api_version = custom_parameter_group.api_version
                     _tenant = custom_parameter_group.tenant
-
+                
                 request = build_next_fragment_with_grouping_request(
                     tenant=_tenant,
                     next_link=next_link,
@@ -1007,7 +1009,7 @@ class PagingOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize('OdataProductResult', pipeline_response)
+            deserialized = self._deserialize("OdataProductResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -1020,10 +1022,11 @@ class PagingOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                    map_error(status_code=response.status_code, response=response, error_map=error_map)
-                    raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
             return pipeline_response
+
 
         return AsyncItemPaged(
             get_next, extract_data
@@ -1041,6 +1044,7 @@ class PagingOperations:
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
+
         _maxresults = None
         _timeout = None
         if paging_get_multiple_pages_lro_options is not None:
@@ -1112,7 +1116,7 @@ class PagingOperations:
                 if paging_get_multiple_pages_lro_options is not None:
                     _maxresults = paging_get_multiple_pages_lro_options.maxresults
                     _timeout = paging_get_multiple_pages_lro_options.timeout
-
+                
                 request = build_get_multiple_pages_lro_request_initial(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
@@ -1127,7 +1131,7 @@ class PagingOperations:
                 if paging_get_multiple_pages_lro_options is not None:
                     _maxresults = paging_get_multiple_pages_lro_options.maxresults
                     _timeout = paging_get_multiple_pages_lro_options.timeout
-
+                
                 request = build_get_multiple_pages_lro_request_initial(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
@@ -1135,12 +1139,11 @@ class PagingOperations:
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize('ProductResult', pipeline_response)
+            deserialized = self._deserialize("ProductResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -1153,12 +1156,13 @@ class PagingOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                    map_error(status_code=response.status_code, response=response, error_map=error_map)
-                    raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
             return pipeline_response
 
-        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+
+        polling = kwargs.pop('polling', True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
         lro_delay = kwargs.pop(
             'polling_interval',
@@ -1172,7 +1176,6 @@ class PagingOperations:
                 cls=lambda x,y,z: x,
                 **kwargs
             )
-
         kwargs.pop('error_map', None)
 
         def get_long_running_output(pipeline_response):
@@ -1185,7 +1188,8 @@ class PagingOperations:
             return AsyncItemPaged(
                 internal_get_next, extract_data
             )
-        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
+
+        if polling is True: polling_method = AsyncARMPolling(lro_delay, **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         if cont_token:
@@ -1197,6 +1201,7 @@ class PagingOperations:
             )
         else:
             return AsyncCustomPoller(self._client, raw_result, get_long_running_output, polling_method)
+
     begin_get_multiple_pages_lro.metadata = {'url': '/paging/multiple/lro'}  # type: ignore
 
 
@@ -1233,12 +1238,11 @@ class PagingOperations:
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 request.url = self._client.format_url(request.url)
-
                 request.method = "GET"
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize('ProductResultValueWithXMSClientName', pipeline_response)
+            deserialized = self._deserialize("ProductResultValueWithXMSClientName", pipeline_response)
             list_of_elem = deserialized.indexes
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -1251,10 +1255,11 @@ class PagingOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                    map_error(status_code=response.status_code, response=response, error_map=error_map)
-                    raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
             return pipeline_response
+
 
         return AsyncItemPaged(
             get_next, extract_data

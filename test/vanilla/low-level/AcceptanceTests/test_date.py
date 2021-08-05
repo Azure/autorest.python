@@ -26,7 +26,6 @@
 
 import isodate
 import datetime
-from msrest.exceptions import DeserializationError
 
 from bodydatelowlevel import AutoRestDateTestService
 from bodydatelowlevel.rest import date

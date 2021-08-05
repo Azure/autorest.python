@@ -174,7 +174,7 @@ def build_put301_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "bool (optional)"
     """
 
@@ -284,7 +284,7 @@ def build_patch302_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "bool (optional)"
     """
 
@@ -332,7 +332,7 @@ def build_post303_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "bool (optional)"
     """
 
@@ -472,7 +472,7 @@ def build_put307_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "bool (optional)"
     """
 
@@ -519,7 +519,7 @@ def build_patch307_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "bool (optional)"
     """
 
@@ -566,7 +566,7 @@ def build_post307_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "bool (optional)"
     """
 
@@ -613,7 +613,7 @@ def build_delete307_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "bool (optional)"
     """
 

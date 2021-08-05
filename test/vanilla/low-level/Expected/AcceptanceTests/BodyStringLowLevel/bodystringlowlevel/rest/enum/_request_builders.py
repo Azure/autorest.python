@@ -31,6 +31,12 @@ def build_get_not_expandable_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == "str (optional)"
     """
 
     accept = "application/json"
@@ -72,7 +78,7 @@ def build_put_not_expandable_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "str (optional)"
     """
 
@@ -109,6 +115,12 @@ def build_get_referenced_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == "str (optional)"
     """
 
     accept = "application/json"
@@ -150,7 +162,7 @@ def build_put_referenced_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "str (optional)"
     """
 
@@ -237,7 +249,7 @@ def build_put_referenced_constant_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "ColorConstant": "str",
                 "field1": "str (optional)"

@@ -191,7 +191,7 @@ def build_put_valid_request(
 
             fishtype = 'Salmon' or 'Shark'
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "fishtype": "fishtype",
                 "length": "float",

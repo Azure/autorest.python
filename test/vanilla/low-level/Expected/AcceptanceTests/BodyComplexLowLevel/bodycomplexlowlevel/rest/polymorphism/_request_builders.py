@@ -151,7 +151,7 @@ def build_put_valid_request(
 
             fishtype = 'Salmon' or 'Shark'
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "fishtype": "fishtype",
                 "length": "float",
@@ -409,7 +409,7 @@ def build_put_complicated_request(
 
             fishtype = 'SmartSalmon'
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "iswild": "bool (optional)",
                 "location": "str (optional)"
@@ -461,7 +461,7 @@ def build_put_missing_discriminator_request(
 
             fishtype = 'SmartSalmon'
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "iswild": "bool (optional)",
                 "location": "str (optional)"
@@ -572,7 +572,7 @@ def build_put_valid_missing_required_request(
 
             fishtype = 'Salmon' or 'Shark'
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "fishtype": "fishtype",
                 "length": "float",

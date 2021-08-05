@@ -1043,7 +1043,7 @@ def build_json_input_request(*, json: Any = None, content: Any = None, **kwargs:
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "id": "int (optional)"
             }

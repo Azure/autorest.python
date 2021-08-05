@@ -23,7 +23,6 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-from os.path import dirname, pardir, join, realpath
 
 from extensibleenumsswaggerlowlevel import PetStoreInc
 from extensibleenumsswaggerlowlevel.rest import pet

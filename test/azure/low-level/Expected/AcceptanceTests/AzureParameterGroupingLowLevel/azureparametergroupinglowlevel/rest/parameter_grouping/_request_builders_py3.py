@@ -48,7 +48,7 @@ def build_post_required_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "int (optional)"
     """
 
@@ -60,6 +60,7 @@ def build_post_required_request(
     path_format_arguments = {
         "path": _SERIALIZER.url("path", path, "str"),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters

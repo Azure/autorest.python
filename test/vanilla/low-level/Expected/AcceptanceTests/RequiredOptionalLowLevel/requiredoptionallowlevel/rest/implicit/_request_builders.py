@@ -43,6 +43,7 @@ def build_get_required_path_request(
     path_format_arguments = {
         'pathParameter': _SERIALIZER.url("path_parameter", path_parameter, 'str'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
@@ -158,7 +159,7 @@ def build_put_optional_body_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = "str (optional)"
     """
 
@@ -244,6 +245,7 @@ def build_get_required_global_path_request(
     path_format_arguments = {
         'required-global-path': _SERIALIZER.url("required_global_path", required_global_path, 'str'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers

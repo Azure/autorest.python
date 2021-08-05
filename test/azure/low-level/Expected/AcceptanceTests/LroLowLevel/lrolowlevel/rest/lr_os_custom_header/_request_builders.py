@@ -44,7 +44,7 @@ def build_put_async_retry_succeeded_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "properties": {
                     "provisioningState": "str (optional)",
@@ -107,7 +107,7 @@ def build_put201_creating_succeeded200_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "properties": {
                     "provisioningState": "str (optional)",
@@ -169,7 +169,7 @@ def build_post202_retry200_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "properties": {
                     "provisioningState": "str (optional)",
@@ -224,7 +224,7 @@ def build_post_async_retry_succeeded_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "properties": {
                     "provisioningState": "str (optional)",

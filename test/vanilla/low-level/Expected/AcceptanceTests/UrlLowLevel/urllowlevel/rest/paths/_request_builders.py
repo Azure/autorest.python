@@ -42,6 +42,7 @@ def build_get_boolean_true_request(
     path_format_arguments = {
         'boolPath': _SERIALIZER.url("bool_path", bool_path, 'bool'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
@@ -78,6 +79,7 @@ def build_get_boolean_false_request(
     path_format_arguments = {
         'boolPath': _SERIALIZER.url("bool_path", bool_path, 'bool'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
@@ -114,6 +116,7 @@ def build_get_int_one_million_request(
     path_format_arguments = {
         'intPath': _SERIALIZER.url("int_path", int_path, 'int'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
@@ -150,6 +153,7 @@ def build_get_int_negative_one_million_request(
     path_format_arguments = {
         'intPath': _SERIALIZER.url("int_path", int_path, 'int'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
@@ -186,6 +190,7 @@ def build_get_ten_billion_request(
     path_format_arguments = {
         'longPath': _SERIALIZER.url("long_path", long_path, 'long'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
@@ -222,6 +227,7 @@ def build_get_negative_ten_billion_request(
     path_format_arguments = {
         'longPath': _SERIALIZER.url("long_path", long_path, 'long'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
@@ -258,6 +264,7 @@ def build_float_scientific_positive_request(
     path_format_arguments = {
         'floatPath': _SERIALIZER.url("float_path", float_path, 'float'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
@@ -294,6 +301,7 @@ def build_float_scientific_negative_request(
     path_format_arguments = {
         'floatPath': _SERIALIZER.url("float_path", float_path, 'float'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
@@ -330,6 +338,7 @@ def build_double_decimal_positive_request(
     path_format_arguments = {
         'doublePath': _SERIALIZER.url("double_path", double_path, 'float'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
@@ -366,6 +375,7 @@ def build_double_decimal_negative_request(
     path_format_arguments = {
         'doublePath': _SERIALIZER.url("double_path", double_path, 'float'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
@@ -402,6 +412,7 @@ def build_string_unicode_request(
     path_format_arguments = {
         'stringPath': _SERIALIZER.url("string_path", string_path, 'str'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
@@ -438,6 +449,7 @@ def build_string_url_encoded_request(
     path_format_arguments = {
         'stringPath': _SERIALIZER.url("string_path", string_path, 'str'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
@@ -476,6 +488,7 @@ def build_string_url_non_encoded_request(
     path_format_arguments = {
         'stringPath': _SERIALIZER.url("string_path", string_path, 'str', skip_quote=True),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
@@ -512,6 +525,7 @@ def build_string_empty_request(
     path_format_arguments = {
         'stringPath': _SERIALIZER.url("string_path", string_path, 'str'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
@@ -550,6 +564,7 @@ def build_string_null_request(
     path_format_arguments = {
         'stringPath': _SERIALIZER.url("string_path", string_path, 'str'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
@@ -589,6 +604,7 @@ def build_enum_valid_request(
     path_format_arguments = {
         'enumPath': _SERIALIZER.url("enum_path", enum_path, 'str'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
@@ -628,6 +644,7 @@ def build_enum_null_request(
     path_format_arguments = {
         'enumPath': _SERIALIZER.url("enum_path", enum_path, 'str'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
@@ -666,6 +683,7 @@ def build_byte_multi_byte_request(
     path_format_arguments = {
         'bytePath': _SERIALIZER.url("byte_path", byte_path, 'bytearray'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
@@ -702,6 +720,7 @@ def build_byte_empty_request(
     path_format_arguments = {
         'bytePath': _SERIALIZER.url("byte_path", byte_path, 'bytearray'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
@@ -740,6 +759,7 @@ def build_byte_null_request(
     path_format_arguments = {
         'bytePath': _SERIALIZER.url("byte_path", byte_path, 'bytearray'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
@@ -776,6 +796,7 @@ def build_date_valid_request(
     path_format_arguments = {
         'datePath': _SERIALIZER.url("date_path", date_path, 'date'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
@@ -815,6 +836,7 @@ def build_date_null_request(
     path_format_arguments = {
         'datePath': _SERIALIZER.url("date_path", date_path, 'date'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
@@ -851,6 +873,7 @@ def build_date_time_valid_request(
     path_format_arguments = {
         'dateTimePath': _SERIALIZER.url("date_time_path", date_time_path, 'iso-8601'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
@@ -889,6 +912,7 @@ def build_date_time_null_request(
     path_format_arguments = {
         'dateTimePath': _SERIALIZER.url("date_time_path", date_time_path, 'iso-8601'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
@@ -927,6 +951,7 @@ def build_base64_url_request(
     path_format_arguments = {
         'base64UrlPath': _SERIALIZER.url("base64_url_path", base64_url_path, 'base64'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
@@ -967,6 +992,7 @@ def build_array_csv_in_path_request(
     path_format_arguments = {
         'arrayPath': _SERIALIZER.url("array_path", array_path, '[str]', div=','),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
@@ -1005,6 +1031,7 @@ def build_unix_time_url_request(
     path_format_arguments = {
         'unixTimeUrlPath': _SERIALIZER.url("unix_time_url_path", unix_time_url_path, 'unix-time'),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers

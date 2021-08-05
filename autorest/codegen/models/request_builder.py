@@ -3,9 +3,9 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, List, TypeVar, Optional, Callable
+from typing import Any, Dict, List, TypeVar, Optional
 
-from .base_builder import BaseBuilder, get_converted_parameters
+from .base_builder import BaseBuilder, create_parameters
 from .request_builder_parameter import RequestBuilderParameter
 from .request_builder_parameter_list import RequestBuilderParameterList
 from .schema_request import SchemaRequest
@@ -72,10 +72,6 @@ class RequestBuilder(BaseBuilder):
         file_import.add_from_import("msrest", "Serializer", ImportType.AZURECORE)
         return file_import
 
-    @staticmethod
-    def get_parameter_converter() -> Callable:
-        return RequestBuilderParameter.from_yaml
-
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], *, code_model) -> "RequestBuilder":
 
@@ -89,7 +85,7 @@ class RequestBuilder(BaseBuilder):
         first_request = yaml_data["requests"][0]
 
         parameters, multiple_media_type_parameters = (
-            get_converted_parameters(yaml_data, cls.get_parameter_converter())
+            create_parameters(yaml_data, RequestBuilderParameter.from_yaml)
         )
         parameter_list = RequestBuilderParameterList(parameters + multiple_media_type_parameters)
         parameter_list.add_body_kwargs()

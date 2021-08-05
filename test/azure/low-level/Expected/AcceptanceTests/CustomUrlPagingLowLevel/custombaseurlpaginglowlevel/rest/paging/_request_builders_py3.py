@@ -129,6 +129,7 @@ def build_get_pages_partial_url_operation_next_request(next_link: str, **kwargs:
     path_format_arguments = {
         "nextLink": _SERIALIZER.url("next_link", next_link, "str", skip_quote=True),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers

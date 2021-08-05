@@ -34,6 +34,7 @@ def build_get_method_path_valid_request(unencoded_path_param: str, **kwargs: Any
     path_format_arguments = {
         "unencodedPathParam": _SERIALIZER.url("unencoded_path_param", unencoded_path_param, "str", skip_quote=True),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
@@ -63,6 +64,7 @@ def build_get_path_valid_request(unencoded_path_param: str, **kwargs: Any) -> Ht
     path_format_arguments = {
         "unencodedPathParam": _SERIALIZER.url("unencoded_path_param", unencoded_path_param, "str", skip_quote=True),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
@@ -91,6 +93,7 @@ def build_get_swagger_path_valid_request(**kwargs: Any) -> HttpRequest:
     path_format_arguments = {
         "unencodedPathParam": _SERIALIZER.url("unencoded_path_param", unencoded_path_param, "str", skip_quote=True),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers

@@ -43,7 +43,7 @@ def build_check_name_availability_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "name": "str",
                 "type": "str (optional). Default value is \"Microsoft.Storage/storageAccounts\""
@@ -68,6 +68,7 @@ def build_check_name_availability_request(
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
@@ -125,7 +126,7 @@ def build_create_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "properties": {
                     "accountType": "str (optional)"
@@ -187,6 +188,7 @@ def build_create_request(
         "accountName": _SERIALIZER.url("account_name", account_name, "str"),
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
@@ -238,6 +240,7 @@ def build_delete_request(
         "accountName": _SERIALIZER.url("account_name", account_name, "str"),
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
@@ -327,6 +330,7 @@ def build_get_properties_request(
         "accountName": _SERIALIZER.url("account_name", account_name, "str"),
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
@@ -385,7 +389,7 @@ def build_update_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "properties": {
                     "accountType": "str (optional)",
@@ -451,6 +455,7 @@ def build_update_request(
         "accountName": _SERIALIZER.url("account_name", account_name, "str"),
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
@@ -516,6 +521,7 @@ def build_list_keys_request(
         "accountName": _SERIALIZER.url("account_name", account_name, "str"),
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
@@ -600,6 +606,7 @@ def build_list_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
@@ -690,6 +697,7 @@ def build_list_by_resource_group_request(resource_group_name: str, subscription_
         "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
@@ -740,7 +748,7 @@ def build_regenerate_key_request(
     Example:
         .. code-block:: python
 
-            # JSON input template you can fill out and use as your `json` input.
+            # JSON input template you can fill out and use as your body input.
             json = {
                 "keyName": "str (optional)"
             }
@@ -766,6 +774,7 @@ def build_regenerate_key_request(
         "accountName": _SERIALIZER.url("account_name", account_name, "str"),
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
     }
+
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
