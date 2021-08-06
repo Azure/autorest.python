@@ -45,7 +45,7 @@ def build_get_boolean_true_request(
     # Construct URL
     url = kwargs.pop("template_url", '/paths/bool/true/{boolPath}')
     path_format_arguments = {
-        'boolPath': _SERIALIZER.url("bool_path", bool_path, 'bool'),
+        "boolPath": _SERIALIZER.url("bool_path", bool_path, 'bool'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -71,7 +71,7 @@ def build_get_boolean_false_request(
     # Construct URL
     url = kwargs.pop("template_url", '/paths/bool/false/{boolPath}')
     path_format_arguments = {
-        'boolPath': _SERIALIZER.url("bool_path", bool_path, 'bool'),
+        "boolPath": _SERIALIZER.url("bool_path", bool_path, 'bool'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -97,7 +97,7 @@ def build_get_int_one_million_request(
     # Construct URL
     url = kwargs.pop("template_url", '/paths/int/1000000/{intPath}')
     path_format_arguments = {
-        'intPath': _SERIALIZER.url("int_path", int_path, 'int'),
+        "intPath": _SERIALIZER.url("int_path", int_path, 'int'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -123,7 +123,7 @@ def build_get_int_negative_one_million_request(
     # Construct URL
     url = kwargs.pop("template_url", '/paths/int/-1000000/{intPath}')
     path_format_arguments = {
-        'intPath': _SERIALIZER.url("int_path", int_path, 'int'),
+        "intPath": _SERIALIZER.url("int_path", int_path, 'int'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -149,7 +149,7 @@ def build_get_ten_billion_request(
     # Construct URL
     url = kwargs.pop("template_url", '/paths/long/10000000000/{longPath}')
     path_format_arguments = {
-        'longPath': _SERIALIZER.url("long_path", long_path, 'long'),
+        "longPath": _SERIALIZER.url("long_path", long_path, 'long'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -175,7 +175,7 @@ def build_get_negative_ten_billion_request(
     # Construct URL
     url = kwargs.pop("template_url", '/paths/long/-10000000000/{longPath}')
     path_format_arguments = {
-        'longPath': _SERIALIZER.url("long_path", long_path, 'long'),
+        "longPath": _SERIALIZER.url("long_path", long_path, 'long'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -201,7 +201,7 @@ def build_float_scientific_positive_request(
     # Construct URL
     url = kwargs.pop("template_url", '/paths/float/1.034E+20/{floatPath}')
     path_format_arguments = {
-        'floatPath': _SERIALIZER.url("float_path", float_path, 'float'),
+        "floatPath": _SERIALIZER.url("float_path", float_path, 'float'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -227,7 +227,7 @@ def build_float_scientific_negative_request(
     # Construct URL
     url = kwargs.pop("template_url", '/paths/float/-1.034E-20/{floatPath}')
     path_format_arguments = {
-        'floatPath': _SERIALIZER.url("float_path", float_path, 'float'),
+        "floatPath": _SERIALIZER.url("float_path", float_path, 'float'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -253,7 +253,7 @@ def build_double_decimal_positive_request(
     # Construct URL
     url = kwargs.pop("template_url", '/paths/double/9999999.999/{doublePath}')
     path_format_arguments = {
-        'doublePath': _SERIALIZER.url("double_path", double_path, 'float'),
+        "doublePath": _SERIALIZER.url("double_path", double_path, 'float'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -279,7 +279,7 @@ def build_double_decimal_negative_request(
     # Construct URL
     url = kwargs.pop("template_url", '/paths/double/-9999999.999/{doublePath}')
     path_format_arguments = {
-        'doublePath': _SERIALIZER.url("double_path", double_path, 'float'),
+        "doublePath": _SERIALIZER.url("double_path", double_path, 'float'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -305,7 +305,7 @@ def build_string_unicode_request(
     # Construct URL
     url = kwargs.pop("template_url", '/paths/string/unicode/{stringPath}')
     path_format_arguments = {
-        'stringPath': _SERIALIZER.url("string_path", string_path, 'str'),
+        "stringPath": _SERIALIZER.url("string_path", string_path, 'str'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -331,7 +331,7 @@ def build_string_url_encoded_request(
     # Construct URL
     url = kwargs.pop("template_url", '/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}')
     path_format_arguments = {
-        'stringPath': _SERIALIZER.url("string_path", string_path, 'str'),
+        "stringPath": _SERIALIZER.url("string_path", string_path, 'str'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -357,7 +357,7 @@ def build_string_url_non_encoded_request(
     # Construct URL
     url = kwargs.pop("template_url", '/paths/string/begin!*\'();:@&=+$,end/{stringPath}')
     path_format_arguments = {
-        'stringPath': _SERIALIZER.url("string_path", string_path, 'str', skip_quote=True),
+        "stringPath": _SERIALIZER.url("string_path", string_path, 'str', skip_quote=True),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -383,7 +383,7 @@ def build_string_empty_request(
     # Construct URL
     url = kwargs.pop("template_url", '/paths/string/empty/{stringPath}')
     path_format_arguments = {
-        'stringPath': _SERIALIZER.url("string_path", string_path, 'str'),
+        "stringPath": _SERIALIZER.url("string_path", string_path, 'str'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -409,7 +409,7 @@ def build_string_null_request(
     # Construct URL
     url = kwargs.pop("template_url", '/paths/string/null/{stringPath}')
     path_format_arguments = {
-        'stringPath': _SERIALIZER.url("string_path", string_path, 'str'),
+        "stringPath": _SERIALIZER.url("string_path", string_path, 'str'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -435,7 +435,7 @@ def build_enum_valid_request(
     # Construct URL
     url = kwargs.pop("template_url", '/paths/enum/green%20color/{enumPath}')
     path_format_arguments = {
-        'enumPath': _SERIALIZER.url("enum_path", enum_path, 'str'),
+        "enumPath": _SERIALIZER.url("enum_path", enum_path, 'str'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -461,7 +461,7 @@ def build_enum_null_request(
     # Construct URL
     url = kwargs.pop("template_url", '/paths/string/null/{enumPath}')
     path_format_arguments = {
-        'enumPath': _SERIALIZER.url("enum_path", enum_path, 'str'),
+        "enumPath": _SERIALIZER.url("enum_path", enum_path, 'str'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -487,7 +487,7 @@ def build_byte_multi_byte_request(
     # Construct URL
     url = kwargs.pop("template_url", '/paths/byte/multibyte/{bytePath}')
     path_format_arguments = {
-        'bytePath': _SERIALIZER.url("byte_path", byte_path, 'bytearray'),
+        "bytePath": _SERIALIZER.url("byte_path", byte_path, 'bytearray'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -513,7 +513,7 @@ def build_byte_empty_request(
     # Construct URL
     url = kwargs.pop("template_url", '/paths/byte/empty/{bytePath}')
     path_format_arguments = {
-        'bytePath': _SERIALIZER.url("byte_path", byte_path, 'bytearray'),
+        "bytePath": _SERIALIZER.url("byte_path", byte_path, 'bytearray'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -539,7 +539,7 @@ def build_byte_null_request(
     # Construct URL
     url = kwargs.pop("template_url", '/paths/byte/null/{bytePath}')
     path_format_arguments = {
-        'bytePath': _SERIALIZER.url("byte_path", byte_path, 'bytearray'),
+        "bytePath": _SERIALIZER.url("byte_path", byte_path, 'bytearray'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -565,7 +565,7 @@ def build_date_valid_request(
     # Construct URL
     url = kwargs.pop("template_url", '/paths/date/2012-01-01/{datePath}')
     path_format_arguments = {
-        'datePath': _SERIALIZER.url("date_path", date_path, 'date'),
+        "datePath": _SERIALIZER.url("date_path", date_path, 'date'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -591,7 +591,7 @@ def build_date_null_request(
     # Construct URL
     url = kwargs.pop("template_url", '/paths/date/null/{datePath}')
     path_format_arguments = {
-        'datePath': _SERIALIZER.url("date_path", date_path, 'date'),
+        "datePath": _SERIALIZER.url("date_path", date_path, 'date'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -617,7 +617,7 @@ def build_date_time_valid_request(
     # Construct URL
     url = kwargs.pop("template_url", '/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}')
     path_format_arguments = {
-        'dateTimePath': _SERIALIZER.url("date_time_path", date_time_path, 'iso-8601'),
+        "dateTimePath": _SERIALIZER.url("date_time_path", date_time_path, 'iso-8601'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -643,7 +643,7 @@ def build_date_time_null_request(
     # Construct URL
     url = kwargs.pop("template_url", '/paths/datetime/null/{dateTimePath}')
     path_format_arguments = {
-        'dateTimePath': _SERIALIZER.url("date_time_path", date_time_path, 'iso-8601'),
+        "dateTimePath": _SERIALIZER.url("date_time_path", date_time_path, 'iso-8601'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -669,7 +669,7 @@ def build_base64_url_request(
     # Construct URL
     url = kwargs.pop("template_url", '/paths/string/bG9yZW0/{base64UrlPath}')
     path_format_arguments = {
-        'base64UrlPath': _SERIALIZER.url("base64_url_path", base64_url_path, 'base64'),
+        "base64UrlPath": _SERIALIZER.url("base64_url_path", base64_url_path, 'base64'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -695,7 +695,7 @@ def build_array_csv_in_path_request(
     # Construct URL
     url = kwargs.pop("template_url", '/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}')
     path_format_arguments = {
-        'arrayPath': _SERIALIZER.url("array_path", array_path, '[str]', div=','),
+        "arrayPath": _SERIALIZER.url("array_path", array_path, '[str]', div=','),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -721,7 +721,7 @@ def build_unix_time_url_request(
     # Construct URL
     url = kwargs.pop("template_url", '/paths/int/1460505600/{unixTimeUrlPath}')
     path_format_arguments = {
-        'unixTimeUrlPath': _SERIALIZER.url("unix_time_url_path", unix_time_url_path, 'unix-time'),
+        "unixTimeUrlPath": _SERIALIZER.url("unix_time_url_path", unix_time_url_path, 'unix-time'),
     }
 
     url = _format_url_section(url, **path_format_arguments)

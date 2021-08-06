@@ -50,7 +50,7 @@ def build_get_pet_by_id_request(
     # Construct URL
     url = kwargs.pop("template_url", '/errorStatusCodes/Pets/{petId}/GetPet')
     path_format_arguments = {
-        'petId': _SERIALIZER.url("pet_id", pet_id, 'str'),
+        "petId": _SERIALIZER.url("pet_id", pet_id, 'str'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -97,7 +97,7 @@ def build_do_something_request(
     # Construct URL
     url = kwargs.pop("template_url", '/errorStatusCodes/Pets/doSomething/{whatAction}')
     path_format_arguments = {
-        'whatAction': _SERIALIZER.url("what_action", what_action, 'str'),
+        "whatAction": _SERIALIZER.url("what_action", what_action, 'str'),
     }
 
     url = _format_url_section(url, **path_format_arguments)

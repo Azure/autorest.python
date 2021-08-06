@@ -4,12 +4,11 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from functools import partial
 from itertools import groupby
 import json
 from collections import defaultdict
 from abc import abstractmethod, ABC
-from typing import Any, Callable, List, TypeVar, Dict, Union, Optional, cast
+from typing import Any, List, TypeVar, Dict, Union, Optional, cast
 from ..models import (
     Operation,
     CodeModel,
@@ -38,7 +37,6 @@ def _json_dumps_template(template_representation: Any) -> Any:
     # only for template use, since it wraps everything in strings
     return json.dumps(template_representation, sort_keys=True, indent=4)
 
-
 def _serialize_files_dict(multipart_parameters: List[Parameter]) -> str:
     # only for template use
     template = {
@@ -62,14 +60,6 @@ def _get_files_example_template(builder: BuilderType) -> List[str]:
         "You're trying to get a template for your multipart params, but you don't have multipart params"
     )
 
-
-def _serialize_parameters_dict(parameters: List[Parameter], dict_name: str, value_callable: Callable) -> List[str]:
-    retval = [f"{dict_name} = {{"]
-    for parameter in parameters:
-        retval.append(f'    "{parameter.rest_api_name}": {value_callable(parameter)},')
-    retval.append("}")
-    return retval
-
 def _content_type_error_check(builder: BuilderType) -> List[str]:
     retval = ["else:"]
     retval.append("    raise ValueError(")
@@ -85,7 +75,28 @@ def _serialize_files_parameter(builder: BuilderType) -> List[str]:
     retval.append("}")
     return retval
 
+def _serialize_parameter(
+    parameter: Parameter, function_name: str,
+) -> List[str]:
+    set_parameter = "{}_parameters['{}'] = {}".format(
+        function_name,
+        parameter.rest_api_name,
+        utils.build_serialize_data_call(parameter, function_name)
+    )
+    if parameter.required:
+        retval = [set_parameter]
+    else:
+        retval = [
+            f"if {parameter.full_serialized_name} is not None:",
+            f"    {set_parameter}"
+        ]
+    return retval
 
+def _pop_parameters_kwarg(
+    function_name: str,
+    kwarg_name: str,
+) -> str:
+    return f'{function_name}_parameters = kwargs.pop("{kwarg_name}", {{}})  # type: Dict[str, Any]'
 
 def _serialize_grouped_parameters(builder: BuilderType) -> List[str]:
     retval = []
@@ -206,21 +217,12 @@ class _BuilderSerializerProtocol(ABC):
         ...
 
     @abstractmethod
-    def _serialize_path_format_parameters(self, builder: BuilderType) -> List[str]:
-        ...
-
-    @abstractmethod
     def _get_kwargs_to_pop(self, builder: BuilderType) -> List[Parameter]:
         ...
 
     @abstractmethod
     def pop_kwargs_from_signature(self, builder: BuilderType) -> List[str]:
         ...
-
-    @abstractmethod
-    def path_format_arguments(self, builder: BuilderType) -> List[str]:
-        ...
-
 
 class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abstract-method
     def __init__(self, code_model: CodeModel) -> None:
@@ -362,15 +364,6 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
             template.extend(f"response.json() == {response_body}".splitlines())
         return template
 
-    def _serialize_path_format_parameters(self, builder: BuilderType) -> List[str]:
-        return _serialize_parameters_dict(
-            builder.parameters.path,
-            dict_name="path_format_arguments",
-            value_callable=partial(
-                Parameter.build_serialize_data_call,
-                function_name="url",
-            ),
-        )
 
     def pop_kwargs_from_signature(self, builder: BuilderType) -> List[str]:
         retval = []
@@ -386,17 +379,9 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
                 )
         return retval
 
-    def path_format_arguments(self, builder: BuilderType) -> List[str]:
-        retval = ["path_format_arguments = {"]
-        retval.extend([
-            "    '{}': {},".format(
-                path_parameter.rest_api_name,
-                path_parameter.build_serialize_data_call("url")
-            )
-            for path_parameter in builder.parameters.path
-        ])
-        retval.append("}")
-        return retval
+    @staticmethod
+    def serialize_path(builder: BuilderType) -> List[str]:
+        return utils.serialize_path(builder.parameters.path)
 
     @property
     def _function_definition(self) -> str:
@@ -474,6 +459,27 @@ class _RequestBuilderBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=
         retval.append(")")
         return retval
 
+    @staticmethod
+    def serialize_headers(builder: BuilderType) -> List[str]:
+        retval = ["# Construct headers"]
+        retval.append(_pop_parameters_kwarg("header", "headers"))
+        for parameter in builder.parameters.headers:
+            retval.extend(_serialize_parameter(
+                parameter,
+                function_name="header"
+            ))
+        return retval
+
+    @staticmethod
+    def serialize_query(builder: BuilderType) -> List[str]:
+        retval = ["# Construct parameters"]
+        retval.append(_pop_parameters_kwarg("query", "params"))
+        for parameter in builder.parameters.query:
+            retval.extend(_serialize_parameter(
+                parameter,
+                function_name="query"
+            ))
+        return retval
 
 class RequestBuilderGenericSerializer(_RequestBuilderBaseSerializer):
     @property
@@ -721,7 +727,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
             convert_to_legacy = "._to_pipeline_transport_request()"
         retval.append(f"){convert_to_legacy}")
         if builder.parameters.path:
-            retval.extend(self._serialize_path_format_parameters(builder))
+            retval.extend(self.serialize_path(builder))
         retval.append(
             "request.url = self._client.format_url(request.url{})".format(
                 ", **path_format_arguments" if builder.parameters.path else ""
@@ -979,7 +985,7 @@ class _PagingOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disab
             retval.append("")
             retval.extend([
                 f"        {line}"
-                for line in self.path_format_arguments(builder)
+                for line in self.serialize_path(builder)
             ])
         if not builder.next_request_builder:
             retval.append('        request.method = "GET"')
@@ -1163,7 +1169,7 @@ class _LROOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=
         path_format_arguments_str = ""
         if builder.parameters.path:
             path_format_arguments_str = ", path_format_arguments=path_format_arguments"
-            retval.extend(self.path_format_arguments(builder))
+            retval.extend(self.serialize_path(builder))
             retval.append("")
         retval.append(
             f"if polling is True: polling_method = {self._default_polling_method(builder)}" +

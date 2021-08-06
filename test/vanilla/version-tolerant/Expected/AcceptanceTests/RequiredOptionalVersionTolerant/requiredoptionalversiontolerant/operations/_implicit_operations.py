@@ -42,7 +42,7 @@ def build_get_required_path_request(
     # Construct URL
     url = kwargs.pop("template_url", '/reqopt/implicit/required/path/{pathParameter}')
     path_format_arguments = {
-        'pathParameter': _SERIALIZER.url("path_parameter", path_parameter, 'str'),
+        "pathParameter": _SERIALIZER.url("path_parameter", path_parameter, 'str'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -168,7 +168,7 @@ def build_get_required_global_path_request(
     # Construct URL
     url = kwargs.pop("template_url", '/reqopt/global/required/path/{required-global-path}')
     path_format_arguments = {
-        'required-global-path': _SERIALIZER.url("required_global_path", required_global_path, 'str'),
+        "required-global-path": _SERIALIZER.url("required_global_path", required_global_path, 'str'),
     }
 
     url = _format_url_section(url, **path_format_arguments)

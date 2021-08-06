@@ -27,8 +27,8 @@
         {{ op_tools.serialize(serializer.send_request_description(async_mode)) | indent(8) }}
         request_copy = deepcopy(request)
         {% if code_model.global_parameters.path %}
-        {{ op_tools.path_format_arguments(code_model.global_parameters.path)|indent(8) }}
-        {{ op_tools.format_path_format_arguments(url_name="request_copy.url")|indent(8) }}
+        {{ op_tools.serialize(serializer.serialize_path()) | indent(8) }}
+        request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)
         {% else %}
         request_copy.url = self._client.format_url(request_copy.url)
         {% endif %}

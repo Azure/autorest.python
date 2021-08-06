@@ -85,7 +85,7 @@ def build_get_pages_partial_url_operation_next_request(
     # Construct URL
     url = kwargs.pop("template_url", '/paging/customurl/{nextLink}')
     path_format_arguments = {
-        'nextLink': _SERIALIZER.url("next_link", next_link, 'str', skip_quote=True),
+        "nextLink": _SERIALIZER.url("next_link", next_link, 'str', skip_quote=True),
     }
 
     url = _format_url_section(url, **path_format_arguments)

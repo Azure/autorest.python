@@ -270,7 +270,7 @@ def build_put_simple_product_with_grouping_request(
     # Construct URL
     url = kwargs.pop("template_url", '/model-flatten/customFlattening/parametergrouping/{name}/')
     path_format_arguments = {
-        'name': _SERIALIZER.url("name", name, 'str'),
+        "name": _SERIALIZER.url("name", name, 'str'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
