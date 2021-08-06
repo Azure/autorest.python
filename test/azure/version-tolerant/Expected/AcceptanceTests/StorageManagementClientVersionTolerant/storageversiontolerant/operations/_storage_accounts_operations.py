@@ -50,7 +50,7 @@ def build_check_name_availability_request(
     # Construct URL
     url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability')
     path_format_arguments = {
-        'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -88,9 +88,9 @@ def build_create_request_initial(
     # Construct URL
     url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}')
     path_format_arguments = {
-        'resourceGroupName': _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
-        'accountName': _SERIALIZER.url("account_name", account_name, 'str'),
-        'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
+        "accountName": _SERIALIZER.url("account_name", account_name, 'str'),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -125,9 +125,9 @@ def build_delete_request(
     # Construct URL
     url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}')
     path_format_arguments = {
-        'resourceGroupName': _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
-        'accountName': _SERIALIZER.url("account_name", account_name, 'str'),
-        'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
+        "accountName": _SERIALIZER.url("account_name", account_name, 'str'),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -156,9 +156,9 @@ def build_get_properties_request(
     # Construct URL
     url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}')
     path_format_arguments = {
-        'resourceGroupName': _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
-        'accountName': _SERIALIZER.url("account_name", account_name, 'str'),
-        'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
+        "accountName": _SERIALIZER.url("account_name", account_name, 'str'),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -194,9 +194,9 @@ def build_update_request(
     # Construct URL
     url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}')
     path_format_arguments = {
-        'resourceGroupName': _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
-        'accountName': _SERIALIZER.url("account_name", account_name, 'str'),
-        'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
+        "accountName": _SERIALIZER.url("account_name", account_name, 'str'),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -232,9 +232,9 @@ def build_list_keys_request(
     # Construct URL
     url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys')
     path_format_arguments = {
-        'resourceGroupName': _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
-        'accountName': _SERIALIZER.url("account_name", account_name, 'str'),
-        'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
+        "accountName": _SERIALIZER.url("account_name", account_name, 'str'),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -266,7 +266,7 @@ def build_list_request(
     # Construct URL
     url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts')
     path_format_arguments = {
-        'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -299,8 +299,8 @@ def build_list_by_resource_group_request(
     # Construct URL
     url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts')
     path_format_arguments = {
-        'resourceGroupName': _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
-        'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -336,9 +336,9 @@ def build_regenerate_key_request(
     # Construct URL
     url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/regenerateKey')
     path_format_arguments = {
-        'resourceGroupName': _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
-        'accountName': _SERIALIZER.url("account_name", account_name, 'str'),
-        'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
+        "accountName": _SERIALIZER.url("account_name", account_name, 'str'),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
 
     url = _format_url_section(url, **path_format_arguments)

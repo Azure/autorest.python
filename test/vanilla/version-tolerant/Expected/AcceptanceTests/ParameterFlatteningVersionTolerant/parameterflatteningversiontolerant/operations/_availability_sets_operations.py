@@ -44,8 +44,8 @@ def build_update_request(
     # Construct URL
     url = kwargs.pop("template_url", '/parameterFlattening/{resourceGroupName}/{availabilitySetName}')
     path_format_arguments = {
-        'resourceGroupName': _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
-        'availabilitySetName': _SERIALIZER.url("avset", avset, 'str', max_length=80, min_length=0),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
+        "availabilitySetName": _SERIALIZER.url("avset", avset, 'str', max_length=80, min_length=0),
     }
 
     url = _format_url_section(url, **path_format_arguments)

@@ -17,7 +17,7 @@ from .constant_schema import ConstantSchema
 from .imports import FileImport, ImportType, TypingSection
 from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
-from .parameter import Parameter
+from .parameter import Parameter, ParameterStyle
 from .operation import Operation
 from .property import Property
 from .operation_group import OperationGroup
@@ -61,6 +61,7 @@ __all__ = [
     "SchemaRequest",
     "RequestBuilderParameter",
     "HiddenModelObjectSchema",
+    "ParameterStyle",
 ]
 
 def _generate_as_object_schema(yaml_data: Dict[str, Any]) -> bool:
