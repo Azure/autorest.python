@@ -212,14 +212,14 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             file_import.add_import("warnings", ImportType.STDLIB)
 
         if code_model.options["builders_visibility"] != "embedded":
-            operation_group_name = self.request_builder.operation_group_name
+            builder_group_name = self.request_builder.builder_group_name
             rest_import_path = "..." if async_mode else ".."
-            if operation_group_name:
+            if builder_group_name:
                 file_import.add_from_import(
                     f"{rest_import_path}{code_model.rest_layer_name}",
-                    name_import=operation_group_name,
+                    name_import=builder_group_name,
                     import_type=ImportType.LOCAL,
-                    alias=f"rest_{operation_group_name}"
+                    alias=f"rest_{builder_group_name}"
                 )
             else:
                 file_import.add_from_import(

@@ -699,9 +699,9 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         if self.code_model.options["builders_visibility"] == "embedded":
             request_path_name = request_builder.name
         else:
-            operation_group_name = request_builder.operation_group_name
+            builder_group_name = request_builder.builder_group_name
             request_path_name = "rest{}.{}".format(
-                ("_" + operation_group_name) if operation_group_name else "", request_builder.name
+                ("_" + builder_group_name) if builder_group_name else "", request_builder.name
             )
         retval.append("")
         retval.append(f"request = {request_path_name}(")
