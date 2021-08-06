@@ -245,7 +245,7 @@ def build_get_multiple_pages_with_offset_request(
     # Construct URL
     url = kwargs.pop("template_url", '/paging/multiple/withpath/{offset}')
     path_format_arguments = {
-        'offset': _SERIALIZER.url("offset", offset, 'int'),
+        "offset": _SERIALIZER.url("offset", offset, 'int'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -379,7 +379,7 @@ def build_get_multiple_pages_fragment_next_link_request(
     # Construct URL
     url = kwargs.pop("template_url", '/paging/multiple/fragment/{tenant}')
     path_format_arguments = {
-        'tenant': _SERIALIZER.url("tenant", tenant, 'str'),
+        "tenant": _SERIALIZER.url("tenant", tenant, 'str'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -412,7 +412,7 @@ def build_get_multiple_pages_fragment_with_grouping_next_link_request(
     # Construct URL
     url = kwargs.pop("template_url", '/paging/multiple/fragmentwithgrouping/{tenant}')
     path_format_arguments = {
-        'tenant': _SERIALIZER.url("tenant", tenant, 'str'),
+        "tenant": _SERIALIZER.url("tenant", tenant, 'str'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -476,8 +476,8 @@ def build_next_fragment_request(
     # Construct URL
     url = kwargs.pop("template_url", '/paging/multiple/fragment/{tenant}/{nextLink}')
     path_format_arguments = {
-        'tenant': _SERIALIZER.url("tenant", tenant, 'str'),
-        'nextLink': _SERIALIZER.url("next_link", next_link, 'str', skip_quote=True),
+        "tenant": _SERIALIZER.url("tenant", tenant, 'str'),
+        "nextLink": _SERIALIZER.url("next_link", next_link, 'str', skip_quote=True),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -511,8 +511,8 @@ def build_next_fragment_with_grouping_request(
     # Construct URL
     url = kwargs.pop("template_url", '/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}')
     path_format_arguments = {
-        'tenant': _SERIALIZER.url("tenant", tenant, 'str'),
-        'nextLink': _SERIALIZER.url("next_link", next_link, 'str', skip_quote=True),
+        "tenant": _SERIALIZER.url("tenant", tenant, 'str'),
+        "nextLink": _SERIALIZER.url("next_link", next_link, 'str', skip_quote=True),
     }
 
     url = _format_url_section(url, **path_format_arguments)

@@ -76,6 +76,7 @@ class LROWithParamaterizedEndpoints(LROWithParamaterizedEndpointsOperationsMixin
         path_format_arguments = {
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
         }
+
         request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)
         return self._client.send_request(request_copy, **kwargs)
 

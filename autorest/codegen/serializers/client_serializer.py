@@ -140,3 +140,6 @@ class ClientSerializer:
         retval.append(f":rtype: ~azure.core.rest.{http_response}")
         retval.append('"""')
         return retval
+
+    def serialize_path(self) -> List[str]:
+        return utils.serialize_path(self.code_model.global_parameters.path)

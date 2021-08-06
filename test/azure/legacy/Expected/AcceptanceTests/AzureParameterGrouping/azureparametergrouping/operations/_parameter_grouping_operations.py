@@ -48,7 +48,7 @@ def build_post_required_request(
     # Construct URL
     url = kwargs.pop("template_url", '/parameterGrouping/postRequired/{path}')
     path_format_arguments = {
-        'path': _SERIALIZER.url("path", path, 'str'),
+        "path": _SERIALIZER.url("path", path, 'str'),
     }
 
     url = _format_url_section(url, **path_format_arguments)

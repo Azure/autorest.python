@@ -61,9 +61,9 @@ def build_get_all_with_values_request(
     # Construct URL
     url = kwargs.pop("template_url", '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery')
     path_format_arguments = {
-        'pathItemStringPath': _SERIALIZER.url("path_item_string_path", path_item_string_path, 'str'),
-        'globalStringPath': _SERIALIZER.url("global_string_path", global_string_path, 'str'),
-        'localStringPath': _SERIALIZER.url("local_string_path", local_string_path, 'str'),
+        "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, 'str'),
+        "globalStringPath": _SERIALIZER.url("global_string_path", global_string_path, 'str'),
+        "localStringPath": _SERIALIZER.url("local_string_path", local_string_path, 'str'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -131,9 +131,9 @@ def build_get_global_query_null_request(
     # Construct URL
     url = kwargs.pop("template_url", '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery')
     path_format_arguments = {
-        'pathItemStringPath': _SERIALIZER.url("path_item_string_path", path_item_string_path, 'str'),
-        'globalStringPath': _SERIALIZER.url("global_string_path", global_string_path, 'str'),
-        'localStringPath': _SERIALIZER.url("local_string_path", local_string_path, 'str'),
+        "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, 'str'),
+        "globalStringPath": _SERIALIZER.url("global_string_path", global_string_path, 'str'),
+        "localStringPath": _SERIALIZER.url("local_string_path", local_string_path, 'str'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -201,9 +201,9 @@ def build_get_global_and_local_query_null_request(
     # Construct URL
     url = kwargs.pop("template_url", '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null')
     path_format_arguments = {
-        'pathItemStringPath': _SERIALIZER.url("path_item_string_path", path_item_string_path, 'str'),
-        'globalStringPath': _SERIALIZER.url("global_string_path", global_string_path, 'str'),
-        'localStringPath': _SERIALIZER.url("local_string_path", local_string_path, 'str'),
+        "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, 'str'),
+        "globalStringPath": _SERIALIZER.url("global_string_path", global_string_path, 'str'),
+        "localStringPath": _SERIALIZER.url("local_string_path", local_string_path, 'str'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -270,9 +270,9 @@ def build_get_local_path_item_query_null_request(
     # Construct URL
     url = kwargs.pop("template_url", '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null')
     path_format_arguments = {
-        'pathItemStringPath': _SERIALIZER.url("path_item_string_path", path_item_string_path, 'str'),
-        'globalStringPath': _SERIALIZER.url("global_string_path", global_string_path, 'str'),
-        'localStringPath': _SERIALIZER.url("local_string_path", local_string_path, 'str'),
+        "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, 'str'),
+        "globalStringPath": _SERIALIZER.url("global_string_path", global_string_path, 'str'),
+        "localStringPath": _SERIALIZER.url("local_string_path", local_string_path, 'str'),
     }
 
     url = _format_url_section(url, **path_format_arguments)

@@ -4,6 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 from typing import List
+from ..models import ParameterStyle, ListSchema, Parameter
 
 
 def serialize_method(
@@ -23,6 +24,67 @@ def serialize_method(
     ])
     lines.append(")")
     return "\n".join(lines)
+
+def build_serialize_data_call(parameter: Parameter, function_name: str) -> str:
+
+    optional_parameters = []
+
+    if parameter.skip_url_encoding:
+        optional_parameters.append("skip_quote=True")
+
+    if parameter.style and not parameter.explode:
+        if parameter.style in [ParameterStyle.simple, ParameterStyle.form]:
+            div_char = ","
+        elif parameter.style in [ParameterStyle.spaceDelimited]:
+            div_char = " "
+        elif parameter.style in [ParameterStyle.pipeDelimited]:
+            div_char = "|"
+        elif parameter.style in [ParameterStyle.tabDelimited]:
+            div_char = "\t"
+        else:
+            raise ValueError(f"Do not support {parameter.style} yet")
+        optional_parameters.append(f"div='{div_char}'")
+
+    if parameter.explode:
+        if not isinstance(parameter.schema, ListSchema):
+            raise ValueError("Got a explode boolean on a non-array schema")
+        serialization_schema = parameter.schema.element_type
+    else:
+        serialization_schema = parameter.schema
+
+    serialization_constraints = serialization_schema.serialization_constraints
+    if serialization_constraints:
+        optional_parameters += serialization_constraints
+
+    origin_name = parameter.full_serialized_name
+
+    parameters = [
+        f'"{origin_name.lstrip("_")}"',
+        "q" if parameter.explode else origin_name,
+        f"'{serialization_schema.serialization_type}'",
+        *optional_parameters
+    ]
+    parameters_line = ', '.join(parameters)
+
+    serialize_line = parameter.serialize_line(function_name, parameters_line)
+
+    if parameter.explode:
+        return f"[{serialize_line} if q is not None else '' for q in {origin_name}]"
+    return serialize_line
+
+def serialize_path(
+    parameters: List[Parameter]
+) -> List[str]:
+    retval = ["path_format_arguments = {"]
+    retval.extend([
+        "    \"{}\": {},".format(
+            path_parameter.rest_api_name,
+            build_serialize_data_call(path_parameter, "url")
+        )
+        for path_parameter in parameters
+    ])
+    retval.append("}")
+    return retval
 
 def method_signature_and_response_type_annotation_template(
     *,

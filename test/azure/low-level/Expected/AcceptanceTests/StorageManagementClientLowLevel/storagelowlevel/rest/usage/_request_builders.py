@@ -61,7 +61,7 @@ def build_list_request(
     # Construct URL
     url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages')
     path_format_arguments = {
-        'subscriptionId': _SERIALIZER.url("subscription_id", subscription_id, 'str'),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
 
     url = _format_url_section(url, **path_format_arguments)

@@ -65,7 +65,7 @@ def build_poll_with_constant_parameterized_endpoints_request_initial(
     # Construct URL
     url = kwargs.pop("template_url", '/lroConstantParameterizedEndpoints/{constantParameter}')
     path_format_arguments = {
-        'constantParameter': _SERIALIZER.url("constant_parameter", constant_parameter, 'str', skip_quote=True),
+        "constantParameter": _SERIALIZER.url("constant_parameter", constant_parameter, 'str', skip_quote=True),
     }
 
     url = _format_url_section(url, **path_format_arguments)

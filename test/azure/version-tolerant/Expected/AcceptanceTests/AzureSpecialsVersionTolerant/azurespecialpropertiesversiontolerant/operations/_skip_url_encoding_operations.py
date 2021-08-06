@@ -43,7 +43,7 @@ def build_get_method_path_valid_request(
     # Construct URL
     url = kwargs.pop("template_url", '/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}')
     path_format_arguments = {
-        'unencodedPathParam': _SERIALIZER.url("unencoded_path_param", unencoded_path_param, 'str', skip_quote=True),
+        "unencodedPathParam": _SERIALIZER.url("unencoded_path_param", unencoded_path_param, 'str', skip_quote=True),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -69,7 +69,7 @@ def build_get_path_valid_request(
     # Construct URL
     url = kwargs.pop("template_url", '/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}')
     path_format_arguments = {
-        'unencodedPathParam': _SERIALIZER.url("unencoded_path_param", unencoded_path_param, 'str', skip_quote=True),
+        "unencodedPathParam": _SERIALIZER.url("unencoded_path_param", unencoded_path_param, 'str', skip_quote=True),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -95,7 +95,7 @@ def build_get_swagger_path_valid_request(
     # Construct URL
     url = kwargs.pop("template_url", '/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}')
     path_format_arguments = {
-        'unencodedPathParam': _SERIALIZER.url("unencoded_path_param", unencoded_path_param, 'str', skip_quote=True),
+        "unencodedPathParam": _SERIALIZER.url("unencoded_path_param", unencoded_path_param, 'str', skip_quote=True),
     }
 
     url = _format_url_section(url, **path_format_arguments)

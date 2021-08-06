@@ -81,6 +81,7 @@ class AutoRestParameterizedCustomHostTestClient(object):
                 "self._config.dns_suffix", self._config.dns_suffix, "str", skip_quote=True
             ),
         }
+
         request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)
         return self._client.send_request(request_copy, **kwargs)
 
