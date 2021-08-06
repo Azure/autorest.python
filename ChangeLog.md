@@ -16,6 +16,10 @@
 - With this new release, we are also dropping support for Python 3.5 + async.  #875
 - For mgmt plan SDK, default policy changes from `BearerTokenCredentialPolicy` to `ARMChallengeAuthenticationPolicy`.
 
+**Bug Fixes**
+
+- Correctly pad operation groups with reserved names with `Operations`  #1005
+
 ### 2021-07-13 - 5.8.4
 
 min Autorest core version: 3.4.5
