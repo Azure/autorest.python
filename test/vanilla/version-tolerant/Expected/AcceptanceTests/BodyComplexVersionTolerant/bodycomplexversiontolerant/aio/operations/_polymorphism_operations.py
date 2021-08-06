@@ -262,8 +262,10 @@ class PolymorphismOperations:
                     ],
                     "salmons": [
                         {
+                            "fish.type": "DotSalmon",
                             "iswild": "bool (optional)",
-                            "location": "str (optional)"
+                            "location": "str (optional)",
+                            "species": "str (optional)"
                         }
                     ],
                     "sampleFish": {
@@ -271,8 +273,10 @@ class PolymorphismOperations:
                         "species": "str (optional)"
                     },
                     "sampleSalmon": {
+                        "fish.type": "DotSalmon",
                         "iswild": "bool (optional)",
-                        "location": "str (optional)"
+                        "location": "str (optional)",
+                        "species": "str (optional)"
                     }
                 }
         """
@@ -329,8 +333,10 @@ class PolymorphismOperations:
                     ],
                     "salmons": [
                         {
+                            "fish.type": "DotSalmon",
                             "iswild": "bool (optional)",
-                            "location": "str (optional)"
+                            "location": "str (optional)",
+                            "species": "str (optional)"
                         }
                     ],
                     "sampleFish": {
@@ -338,8 +344,10 @@ class PolymorphismOperations:
                         "species": "str (optional)"
                     },
                     "sampleSalmon": {
+                        "fish.type": "DotSalmon",
                         "iswild": "bool (optional)",
-                        "location": "str (optional)"
+                        "location": "str (optional)",
+                        "species": "str (optional)"
                     }
                 }
         """
@@ -387,8 +395,21 @@ class PolymorphismOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
+                    "fishtype": "salmon",
                     "iswild": "bool (optional)",
-                    "location": "str (optional)"
+                    "length": "float",
+                    "location": "str (optional)",
+                    "siblings": [
+                        {
+                            "fishtype": "fishtype",
+                            "length": "float",
+                            "siblings": [
+                                "..."
+                            ],
+                            "species": "str (optional)"
+                        }
+                    ],
+                    "species": "str (optional)"
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -439,8 +460,21 @@ class PolymorphismOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
+                    "fishtype": "salmon",
                     "iswild": "bool (optional)",
-                    "location": "str (optional)"
+                    "length": "float",
+                    "location": "str (optional)",
+                    "siblings": [
+                        {
+                            "fishtype": "fishtype",
+                            "length": "float",
+                            "siblings": [
+                                "..."
+                            ],
+                            "species": "str (optional)"
+                        }
+                    ],
+                    "species": "str (optional)"
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -489,14 +523,40 @@ class PolymorphismOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
+                    "fishtype": "salmon",
                     "iswild": "bool (optional)",
-                    "location": "str (optional)"
+                    "length": "float",
+                    "location": "str (optional)",
+                    "siblings": [
+                        {
+                            "fishtype": "fishtype",
+                            "length": "float",
+                            "siblings": [
+                                "..."
+                            ],
+                            "species": "str (optional)"
+                        }
+                    ],
+                    "species": "str (optional)"
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
+                    "fishtype": "salmon",
                     "iswild": "bool (optional)",
-                    "location": "str (optional)"
+                    "length": "float",
+                    "location": "str (optional)",
+                    "siblings": [
+                        {
+                            "fishtype": "fishtype",
+                            "length": "float",
+                            "siblings": [
+                                "..."
+                            ],
+                            "species": "str (optional)"
+                        }
+                    ],
+                    "species": "str (optional)"
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]

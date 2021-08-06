@@ -46,18 +46,32 @@ def build_put_async_retry_succeeded_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
                 "properties": {
                     "provisioningState": "str (optional)",
                     "provisioningStateValues": "str (optional)"
-                }
+                },
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
             }
 
             # response body for status code(s): 200
             response.json() == {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
                 "properties": {
                     "provisioningState": "str (optional)",
                     "provisioningStateValues": "str (optional)"
-                }
+                },
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
             }
     """
 
@@ -109,18 +123,32 @@ def build_put201_creating_succeeded200_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
                 "properties": {
                     "provisioningState": "str (optional)",
                     "provisioningStateValues": "str (optional)"
-                }
+                },
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
             }
 
             # response body for status code(s): 200, 201
             response.json() == {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
                 "properties": {
                     "provisioningState": "str (optional)",
                     "provisioningStateValues": "str (optional)"
-                }
+                },
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
             }
     """
 
@@ -171,10 +199,17 @@ def build_post202_retry200_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
                 "properties": {
                     "provisioningState": "str (optional)",
                     "provisioningStateValues": "str (optional)"
-                }
+                },
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
             }
     """
 
@@ -226,10 +261,17 @@ def build_post_async_retry_succeeded_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
                 "properties": {
                     "provisioningState": "str (optional)",
                     "provisioningStateValues": "str (optional)"
-                }
+                },
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
             }
     """
 

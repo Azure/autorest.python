@@ -41,6 +41,7 @@ def build_get_pet_by_id_request(
 
             # response body for status code(s): 200
             response.json() == {
+                "aniType": "str (optional)",
                 "name": "str (optional)"
             }
     """

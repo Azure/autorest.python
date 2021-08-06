@@ -112,12 +112,19 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
                 # response body for status code(s): 200
                 response.json() == [
                     {
+                        "id": "str (optional)",
+                        "location": "str (optional)",
+                        "name": "str (optional)",
                         "properties": {
                             "p.name": "str (optional)",
                             "provisioningState": "str (optional)",
                             "provisioningStateValues": "str (optional)",
                             "type": "str (optional)"
-                        }
+                        },
+                        "tags": {
+                            "str": "str (optional)"
+                        },
+                        "type": "str (optional)"
                     }
                 ]
         """
@@ -271,12 +278,19 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
                 # JSON input template you can fill out and use as your body input.
                 resource_dictionary = {
                     "str": {
+                        "id": "str (optional)",
+                        "location": "str (optional)",
+                        "name": "str (optional)",
                         "properties": {
                             "p.name": "str (optional)",
                             "provisioningState": "str (optional)",
                             "provisioningStateValues": "str (optional)",
                             "type": "str (optional)"
-                        }
+                        },
+                        "tags": {
+                            "str": "str (optional)"
+                        },
+                        "type": "str (optional)"
                     }
                 }
         """
@@ -326,12 +340,19 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
                 # response body for status code(s): 200
                 response.json() == {
                     "str": {
+                        "id": "str (optional)",
+                        "location": "str (optional)",
+                        "name": "str (optional)",
                         "properties": {
                             "p.name": "str (optional)",
                             "provisioningState": "str (optional)",
                             "provisioningStateValues": "str (optional)",
                             "type": "str (optional)"
-                        }
+                        },
+                        "tags": {
+                            "str": "str (optional)"
+                        },
+                        "type": "str (optional)"
                     }
                 }
         """
@@ -382,31 +403,52 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
                 resource_complex_object = {
                     "arrayofresources": [
                         {
+                            "id": "str (optional)",
+                            "location": "str (optional)",
+                            "name": "str (optional)",
                             "properties": {
                                 "p.name": "str (optional)",
                                 "provisioningState": "str (optional)",
                                 "provisioningStateValues": "str (optional)",
                                 "type": "str (optional)"
-                            }
+                            },
+                            "tags": {
+                                "str": "str (optional)"
+                            },
+                            "type": "str (optional)"
                         }
                     ],
                     "dictionaryofresources": {
                         "str": {
+                            "id": "str (optional)",
+                            "location": "str (optional)",
+                            "name": "str (optional)",
                             "properties": {
                                 "p.name": "str (optional)",
                                 "provisioningState": "str (optional)",
                                 "provisioningStateValues": "str (optional)",
                                 "type": "str (optional)"
-                            }
+                            },
+                            "tags": {
+                                "str": "str (optional)"
+                            },
+                            "type": "str (optional)"
                         }
                     },
                     "productresource": {
+                        "id": "str (optional)",
+                        "location": "str (optional)",
+                        "name": "str (optional)",
                         "properties": {
                             "p.name": "str (optional)",
                             "provisioningState": "str (optional)",
                             "provisioningStateValues": "str (optional)",
                             "type": "str (optional)"
-                        }
+                        },
+                        "tags": {
+                            "str": "str (optional)"
+                        },
+                        "type": "str (optional)"
                     }
                 }
         """
@@ -457,31 +499,52 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
                 response.json() == {
                     "arrayofresources": [
                         {
+                            "id": "str (optional)",
+                            "location": "str (optional)",
+                            "name": "str (optional)",
                             "properties": {
                                 "p.name": "str (optional)",
                                 "provisioningState": "str (optional)",
                                 "provisioningStateValues": "str (optional)",
                                 "type": "str (optional)"
-                            }
+                            },
+                            "tags": {
+                                "str": "str (optional)"
+                            },
+                            "type": "str (optional)"
                         }
                     ],
                     "dictionaryofresources": {
                         "str": {
+                            "id": "str (optional)",
+                            "location": "str (optional)",
+                            "name": "str (optional)",
                             "properties": {
                                 "p.name": "str (optional)",
                                 "provisioningState": "str (optional)",
                                 "provisioningStateValues": "str (optional)",
                                 "type": "str (optional)"
-                            }
+                            },
+                            "tags": {
+                                "str": "str (optional)"
+                            },
+                            "type": "str (optional)"
                         }
                     },
                     "productresource": {
+                        "id": "str (optional)",
+                        "location": "str (optional)",
+                        "name": "str (optional)",
                         "properties": {
                             "p.name": "str (optional)",
                             "provisioningState": "str (optional)",
                             "provisioningStateValues": "str (optional)",
                             "type": "str (optional)"
-                        }
+                        },
+                        "tags": {
+                            "str": "str (optional)"
+                        },
+                        "type": "str (optional)"
                     }
                 }
         """
@@ -530,22 +593,28 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
                 # JSON input template you can fill out and use as your body input.
                 simple_body_product = {
+                    "base_product_description": "str (optional)",
+                    "base_product_id": "str",
                     "details": {
                         "max_product_capacity": "str",
                         "max_product_display_name": "str",
                         "max_product_image": {
-                            "@odata.value": "str (optional)"
+                            "@odata.value": "str (optional)",
+                            "generic_value": "str (optional)"
                         }
                     }
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
+                    "base_product_description": "str (optional)",
+                    "base_product_id": "str",
                     "details": {
                         "max_product_capacity": "str",
                         "max_product_display_name": "str",
                         "max_product_image": {
-                            "@odata.value": "str (optional)"
+                            "@odata.value": "str (optional)",
+                            "generic_value": "str (optional)"
                         }
                     }
                 }
@@ -604,22 +673,28 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
                 # JSON input template you can fill out and use as your body input.
                 simple_body_product = {
+                    "base_product_description": "str (optional)",
+                    "base_product_id": "str",
                     "details": {
                         "max_product_capacity": "str",
                         "max_product_display_name": "str",
                         "max_product_image": {
-                            "@odata.value": "str (optional)"
+                            "@odata.value": "str (optional)",
+                            "generic_value": "str (optional)"
                         }
                     }
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
+                    "base_product_description": "str (optional)",
+                    "base_product_id": "str",
                     "details": {
                         "max_product_capacity": "str",
                         "max_product_display_name": "str",
                         "max_product_image": {
-                            "@odata.value": "str (optional)"
+                            "@odata.value": "str (optional)",
+                            "generic_value": "str (optional)"
                         }
                     }
                 }
@@ -680,22 +755,28 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
                 # JSON input template you can fill out and use as your body input.
                 simple_body_product = {
+                    "base_product_description": "str (optional)",
+                    "base_product_id": "str",
                     "details": {
                         "max_product_capacity": "str",
                         "max_product_display_name": "str",
                         "max_product_image": {
-                            "@odata.value": "str (optional)"
+                            "@odata.value": "str (optional)",
+                            "generic_value": "str (optional)"
                         }
                     }
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
+                    "base_product_description": "str (optional)",
+                    "base_product_id": "str",
                     "details": {
                         "max_product_capacity": "str",
                         "max_product_display_name": "str",
                         "max_product_image": {
-                            "@odata.value": "str (optional)"
+                            "@odata.value": "str (optional)",
+                            "generic_value": "str (optional)"
                         }
                     }
                 }

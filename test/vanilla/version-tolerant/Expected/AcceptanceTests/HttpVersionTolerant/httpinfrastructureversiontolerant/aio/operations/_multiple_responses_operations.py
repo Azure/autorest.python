@@ -337,6 +337,7 @@ class MultipleResponsesOperations:
                 }
                 # response body for status code(s): 201
                 response.json() == {
+                    "statusCode": "str (optional)",
                     "textStatusCode": "str (optional)"
                 }
         """
@@ -394,6 +395,7 @@ class MultipleResponsesOperations:
                 }
                 # response body for status code(s): 201
                 response.json() == {
+                    "statusCode": "str (optional)",
                     "textStatusCode": "str (optional)"
                 }
         """
@@ -451,6 +453,7 @@ class MultipleResponsesOperations:
                 }
                 # response body for status code(s): 201
                 response.json() == {
+                    "statusCode": "str (optional)",
                     "textStatusCode": "str (optional)"
                 }
         """
