@@ -14,6 +14,8 @@ from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, 
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
+from azure.core.tracing.decorator import distributed_trace
+from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models
@@ -24,6 +26,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class MultiapiServiceClientOperationsMixin:
 
+    @distributed_trace
     def test_paging(
         self,
         **kwargs: Any
@@ -82,6 +85,7 @@ class MultiapiServiceClientOperationsMixin:
         )
     test_paging.metadata = {'url': '/multiapi/paging'}  # type: ignore
 
+    @distributed_trace_async
     async def test_different_calls(
         self,
         greeting_in_english: str,

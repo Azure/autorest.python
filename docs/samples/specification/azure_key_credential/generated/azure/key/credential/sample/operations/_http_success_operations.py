@@ -13,6 +13,7 @@ from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, 
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
+from azure.core.tracing.decorator import distributed_trace
 from msrest import Serializer
 
 if TYPE_CHECKING:
@@ -85,6 +86,7 @@ class HttpSuccessOperations(object):
         self._deserialize = deserializer
         self._config = config
 
+    @distributed_trace
     def head200(
         self,
         **kwargs  # type: Any
@@ -122,6 +124,7 @@ class HttpSuccessOperations(object):
     head200.metadata = {'url': '/http/success/200'}  # type: ignore
 
 
+    @distributed_trace
     def head204(
         self,
         **kwargs  # type: Any
@@ -159,6 +162,7 @@ class HttpSuccessOperations(object):
     head204.metadata = {'url': '/http/success/204'}  # type: ignore
 
 
+    @distributed_trace
     def head404(
         self,
         **kwargs  # type: Any

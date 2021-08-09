@@ -15,6 +15,8 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.polling import AsyncNoPolling, AsyncPollingMethod
 from azure.core.rest import HttpRequest
+from azure.core.tracing.decorator import distributed_trace
+from azure.core.tracing.decorator_async import distributed_trace_async
 from my.library.aio import AsyncCustomDefaultPollingMethod, AsyncCustomPager, AsyncCustomPoller
 
 from ... import models as _models
@@ -69,6 +71,7 @@ class PollingPagingExampleOperationsMixin:
     _basic_polling_initial.metadata = {'url': '/basic/polling'}  # type: ignore
 
 
+    @distributed_trace_async
     async def begin_basic_polling(
         self,
         product: Optional["_models.Product"] = None,
@@ -131,6 +134,7 @@ class PollingPagingExampleOperationsMixin:
 
     begin_basic_polling.metadata = {'url': '/basic/polling'}  # type: ignore
 
+    @distributed_trace
     def basic_paging(
         self,
         **kwargs: Any

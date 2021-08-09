@@ -13,6 +13,7 @@ from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, 
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
+from azure.core.tracing.decorator import distributed_trace
 from msrest import Serializer
 
 from .. import models as _models
@@ -58,6 +59,7 @@ def build_test_request(
 # fmt: on
 class MultiapiCustomBaseUrlServiceClientOperationsMixin(object):
 
+    @distributed_trace
     def test(
         self,
         id,  # type: int

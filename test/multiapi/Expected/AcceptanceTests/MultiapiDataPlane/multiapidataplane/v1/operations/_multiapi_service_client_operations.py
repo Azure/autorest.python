@@ -16,6 +16,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.polling import LROPoller, NoPolling, PollingMethod
 from azure.core.polling.base_polling import LROBasePolling
 from azure.core.rest import HttpRequest
+from azure.core.tracing.decorator import distributed_trace
 from msrest import Serializer
 
 from .. import models as _models
@@ -147,6 +148,7 @@ def build_test_different_calls_request(
 # fmt: on
 class MultiapiServiceClientOperationsMixin(object):
 
+    @distributed_trace
     def test_one(
         self,
         id,  # type: int
@@ -238,6 +240,7 @@ class MultiapiServiceClientOperationsMixin(object):
     _test_lro_initial.metadata = {'url': '/multiapi/lro'}  # type: ignore
 
 
+    @distributed_trace
     def begin_test_lro(
         self,
         product=None,  # type: Optional["_models.Product"]
@@ -344,6 +347,7 @@ class MultiapiServiceClientOperationsMixin(object):
     _test_lro_and_paging_initial.metadata = {'url': '/multiapi/lroAndPaging'}  # type: ignore
 
 
+    @distributed_trace
     def begin_test_lro_and_paging(
         self,
         client_request_id=None,  # type: Optional[str]
@@ -473,6 +477,7 @@ class MultiapiServiceClientOperationsMixin(object):
     begin_test_lro_and_paging.metadata = {'url': '/multiapi/lroAndPaging'}  # type: ignore
 
 
+    @distributed_trace
     def test_different_calls(
         self,
         greeting_in_english,  # type: str

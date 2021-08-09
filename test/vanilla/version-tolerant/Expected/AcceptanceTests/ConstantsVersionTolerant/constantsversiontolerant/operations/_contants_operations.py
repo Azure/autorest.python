@@ -18,6 +18,7 @@ from azure.core.exceptions import (
 )
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
+from azure.core.pipeline.transport._base import _format_url_section
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from msrest import Serializer
@@ -370,6 +371,35 @@ def build_put_model_as_string_required_one_value_default_request(
         method="PUT",
         url=url,
         params=query_parameters,
+        **kwargs
+    )
+
+
+def build_put_client_constants_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    # Construct URL
+    url = kwargs.pop("template_url", '/constants/clientConstants/{path-constant}')
+    path_format_arguments = {
+        "path-constant": _SERIALIZER.url("path_constant", path_constant, 'str'),
+    }
+
+    url = _format_url_section(url, **path_format_arguments)
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['query-constant'] = _SERIALIZER.query("query_constant", query_constant, 'int')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['header-constant'] = _SERIALIZER.header("header_constant", header_constant, 'bool')
+
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
         **kwargs
     )
 
@@ -1005,3 +1035,36 @@ class ContantsOperations(object):
             return cls(pipeline_response, None, {})
 
     put_model_as_string_required_one_value_default.metadata = {"url": "/constants/putModelAsStringRequiredOneValueDefault"}  # type: ignore
+
+    @distributed_trace
+    def put_client_constants(
+        self, **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Pass constants from the client to this function. Will pass in constant path, query, and header
+        parameters.
+
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = build_put_client_constants_request(
+            template_url=self.put_client_constants.metadata["url"],
+        )
+        request.url = self._client.format_url(request.url)
+
+        pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+    put_client_constants.metadata = {"url": "/constants/clientConstants/{path-constant}"}  # type: ignore
