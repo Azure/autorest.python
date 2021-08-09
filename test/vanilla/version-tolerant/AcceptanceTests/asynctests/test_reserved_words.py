@@ -34,7 +34,3 @@ async def client():
 @pytest.mark.asyncio
 async def test_operation_group_import(client):
     await client.import_operations.operation_one(parameter1="foo")
-
-@pytest.mark.asyncio
-async def test_operation_group_empty(client):
-    await client.operation_one(parameter1="bar")

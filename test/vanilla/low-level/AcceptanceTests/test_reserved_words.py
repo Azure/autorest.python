@@ -41,8 +41,3 @@ def test_operation_group_import(send_request):
     from reservedwordslowlevel.rest import import_builders
     request = import_builders.build_operation_one_request(parameter1="foo")
     send_request(request)
-
-def test_operation_group_empty(send_request):
-    from reservedwordslowlevel.rest import build_operation_one_request
-    request = build_operation_one_request(parameter1="bar")
-    send_request(request)

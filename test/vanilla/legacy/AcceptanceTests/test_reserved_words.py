@@ -34,5 +34,3 @@ def client():
 def test_operation_group_import(client):
     client.import_operations.operation_one(parameter1="foo")
 
-def test_operation_group_empty(client):
-    client.operation_one(parameter1="bar")

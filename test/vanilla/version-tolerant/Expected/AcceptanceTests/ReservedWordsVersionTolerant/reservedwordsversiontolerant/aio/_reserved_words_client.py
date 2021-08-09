@@ -14,14 +14,14 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from msrest import Deserializer, Serializer
 
 from ._configuration import ReservedWordsClientConfiguration
-from .operations import ImportOperations, ReservedWordsClientOperationsMixin
+from .operations import ImportOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Dict
 
 
-class ReservedWordsClient(ReservedWordsClientOperationsMixin):
+class ReservedWordsClient:
     """Swagger that has operation groups etc. with reserved words.
 
     :ivar import_operations: ImportOperations operations
