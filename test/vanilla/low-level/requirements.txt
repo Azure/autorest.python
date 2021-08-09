@@ -38,6 +38,7 @@ azure-core==1.16.0
 -e ./Expected/AcceptanceTests/ParameterFlatteningLowLevel
 -e ./Expected/AcceptanceTests/ReportLowLevel
 -e ./Expected/AcceptanceTests/RequiredOptionalLowLevel
+-e ./Expected/AcceptanceTests/ReservedWordsLowLevel
 -e ./Expected/AcceptanceTests/UrlLowLevel
 -e ./Expected/AcceptanceTests/UrlMultiCollectionFormatLowLevel
 -e ./Expected/AcceptanceTests/ValidationLowLevel

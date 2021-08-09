@@ -99,12 +99,11 @@ class JinjaSerializer:
         }
 
         for operation_group_name in operation_group_names:
-            output_path = rest_path / Path(operation_group_name) if operation_group_name else rest_path
             request_builders = [
                 r for r in code_model.rest.request_builders if r.operation_group_name == operation_group_name
             ]
             self._serialize_and_write_single_rest_layer(
-                code_model, env, output_path, request_builders
+                code_model, env, rest_path, request_builders
             )
         if not "" in operation_group_names:
             self._autorestapi.write_file(
@@ -113,9 +112,10 @@ class JinjaSerializer:
 
 
     def _serialize_and_write_single_rest_layer(
-        self, code_model: CodeModel, env: Environment, output_path: Path, request_builders: List[RequestBuilder]
+        self, code_model: CodeModel, env: Environment, rest_path: Path, request_builders: List[RequestBuilder]
     ) -> None:
-
+        builder_group_name = request_builders[0].builder_group_name
+        output_path = rest_path / Path(builder_group_name) if builder_group_name else rest_path
         # write generic request builders file
         self._autorestapi.write_file(
             output_path / Path("_request_builders.py"),

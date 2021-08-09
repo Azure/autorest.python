@@ -101,9 +101,9 @@ class ClientSerializer:
         http_response = "AsyncHttpResponse" if async_mode else "HttpResponse"
         request_builder = self.code_model.rest.request_builders[0]
         request_builder_signature = ", ".join(request_builder.parameters.call)
-        if request_builder.operation_group_name:
-            rest_imported = request_builder.operation_group_name
-            request_builder_name = f"{request_builder.operation_group_name}.{request_builder.name}"
+        if request_builder.builder_group_name:
+            rest_imported = request_builder.builder_group_name
+            request_builder_name = f"{request_builder.builder_group_name}.{request_builder.name}"
         else:
             rest_imported = request_builder.name
             request_builder_name = request_builder.name

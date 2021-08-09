@@ -38,6 +38,7 @@ aiohttp;python_full_version>="3.5.2"
 -e ./Expected/AcceptanceTests/ParameterFlatteningVersionTolerant
 -e ./Expected/AcceptanceTests/ReportVersionTolerant
 -e ./Expected/AcceptanceTests/RequiredOptionalVersionTolerant
+-e ./Expected/AcceptanceTests/ReservedWordsVersionTolerant
 -e ./Expected/AcceptanceTests/UrlVersionTolerant
 -e ./Expected/AcceptanceTests/UrlMultiCollectionFormatVersionTolerant
 -e ./Expected/AcceptanceTests/ValidationVersionTolerant
