@@ -16,6 +16,8 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.polling import AsyncLROPoller, AsyncNoPolling, AsyncPollingMethod
 from azure.core.polling.async_base_polling import AsyncLROBasePolling
 from azure.core.rest import HttpRequest
+from azure.core.tracing.decorator import distributed_trace
+from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
 from ...operations._multiapi_service_client_operations import build_test_different_calls_request, build_test_lro_and_paging_request_initial, build_test_lro_request_initial, build_test_one_request
@@ -25,6 +27,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class MultiapiServiceClientOperationsMixin:
 
+    @distributed_trace_async
     async def test_one(
         self,
         id: int,
@@ -114,6 +117,7 @@ class MultiapiServiceClientOperationsMixin:
     _test_lro_initial.metadata = {'url': '/multiapi/lro'}  # type: ignore
 
 
+    @distributed_trace_async
     async def begin_test_lro(
         self,
         product: Optional["_models.Product"] = None,
@@ -219,6 +223,7 @@ class MultiapiServiceClientOperationsMixin:
     _test_lro_and_paging_initial.metadata = {'url': '/multiapi/lroAndPaging'}  # type: ignore
 
 
+    @distributed_trace_async
     async def begin_test_lro_and_paging(
         self,
         client_request_id: Optional[str] = None,
@@ -347,6 +352,7 @@ class MultiapiServiceClientOperationsMixin:
     begin_test_lro_and_paging.metadata = {'url': '/multiapi/lroAndPaging'}  # type: ignore
 
 
+    @distributed_trace_async
     async def test_different_calls(
         self,
         greeting_in_english: str,

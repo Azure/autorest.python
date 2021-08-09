@@ -259,7 +259,7 @@ class CodeGenerator(Plugin):
 
         low_level_client = self._autorestapi.get_boolean_value("low-level-client", False)
         version_tolerant = self._autorestapi.get_boolean_value("version-tolerant", False)
-
+        show_operations = self._autorestapi.get_boolean_value("show-operations", not low_level_client)
         models_mode_default = "none" if low_level_client or version_tolerant else "msrest"
 
         options: Dict[str, Any] = {
@@ -274,12 +274,12 @@ class CodeGenerator(Plugin):
             "package_name": self._autorestapi.get_value("package-name"),
             "package_version": self._autorestapi.get_value("package-version"),
             "client_side_validation": self._autorestapi.get_boolean_value("client-side-validation", False),
-            "tracing": self._autorestapi.get_boolean_value("trace", False),
+            "tracing": self._autorestapi.get_boolean_value("trace", show_operations),
             "multiapi": self._autorestapi.get_boolean_value("multiapi", False),
             "polymorphic_examples": self._autorestapi.get_value("polymorphic-examples") or 5,
             "models_mode": (self._autorestapi.get_value("models-mode") or models_mode_default).lower(),
             "builders_visibility": self._autorestapi.get_value("builders-visibility"),
-            "show_operations": self._autorestapi.get_boolean_value("show-operations", not low_level_client),
+            "show_operations": show_operations,
             "show_send_request": self._autorestapi.get_boolean_value(
                 "show-send-request", low_level_client or version_tolerant
             ),

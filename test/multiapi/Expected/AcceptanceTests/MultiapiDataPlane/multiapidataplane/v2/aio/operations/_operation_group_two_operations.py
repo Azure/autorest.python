@@ -13,6 +13,7 @@ from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, 
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
+from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
 from ...operations._operation_group_two_operations import build_test_four_request
@@ -42,6 +43,7 @@ class OperationGroupTwoOperations:
         self._deserialize = deserializer
         self._config = config
 
+    @distributed_trace_async
     async def test_four(
         self,
         parameter_one: bool,

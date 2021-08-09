@@ -169,7 +169,6 @@ def _build_flags(
         "enable-xml": True,
         "basic-setup-py": True,
         "package-version": "0.1.0",
-        "trace": True,
         "output-artifact": "code-model-v4-no-tags",
         "input-file": f"{testserver_dir}/{swagger_name}",
         "add-credential": False,

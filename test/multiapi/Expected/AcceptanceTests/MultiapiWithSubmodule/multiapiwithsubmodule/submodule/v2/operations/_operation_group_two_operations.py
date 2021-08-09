@@ -13,6 +13,7 @@ from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, 
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
+from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from msrest import Serializer
 
@@ -79,6 +80,7 @@ class OperationGroupTwoOperations(object):
         self._deserialize = deserializer
         self._config = config
 
+    @distributed_trace
     def test_four(
         self,
         parameter_one,  # type: bool

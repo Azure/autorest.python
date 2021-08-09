@@ -13,6 +13,7 @@ from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, 
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
+from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from msrest import Serializer
 
@@ -106,6 +107,7 @@ class OperationGroupOneOperations(object):
         self._deserialize = deserializer
         self._config = config
 
+    @distributed_trace
     def test_two(
         self,
         parameter_one=None,  # type: Optional["_models.ModelTwo"]
@@ -159,6 +161,7 @@ class OperationGroupOneOperations(object):
     test_two.metadata = {'url': '/multiapi/one/testTwoEndpoint'}  # type: ignore
 
 
+    @distributed_trace
     def test_three(
         self,
         **kwargs  # type: Any
