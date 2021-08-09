@@ -23,6 +23,7 @@ aiohttp;python_full_version>="3.5.2"
 -e ./Expected/AcceptanceTests/BodyNumberVersionTolerant
 -e ./Expected/AcceptanceTests/BodyStringVersionTolerant
 -e ./Expected/AcceptanceTests/BodyTimeVersionTolerant
+-e ./Expected/AcceptanceTests/ConstantsVersionTolerant/
 -e ./Expected/AcceptanceTests/CustomBaseUriVersionTolerant
 -e ./Expected/AcceptanceTests/CustomBaseUriMoreOptionsVersionTolerant
 -e ./Expected/AcceptanceTests/ExtensibleEnumsVersionTolerant
