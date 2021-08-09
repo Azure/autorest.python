@@ -4,6 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import re
+import copy
 from typing import cast, Any, Dict, List, Match, Optional
 from .python_mappings import basic_latin_chars, reserved_words, PadType
 
@@ -34,8 +35,9 @@ class NameConverter:
     @staticmethod
     def _convert_operation_groups(operation_groups: List[Dict[str, Any]], code_model_title: str) -> None:
         for operation_group in operation_groups:
+            builder_group = copy.deepcopy(operation_group)
             NameConverter._convert_language_default_python_case(
-                operation_group, pad_string=PadType.Model, convert_name=True
+                operation_group, pad_string=PadType.OperationGroup, convert_name=True
             )
             operation_group_name = operation_group['language']['default']['name']
             if not operation_group_name:
@@ -50,8 +52,15 @@ class NameConverter:
                     operation['language']['python']['operationGroupName'] = (
                         operation_group['language']['python']['name'].lower()
                     )
+                    NameConverter._convert_language_default_python_case(
+                        builder_group, pad_string=PadType.BuilderGroup, convert_name=True
+                    )
+                    operation['language']['python']['builderGroupName'] = (
+                        builder_group['language']['python']['name'].lower()
+                    )
                 else:
                     operation['language']['python']['operationGroupName'] = ""
+                    operation['language']['python']['builderGroupName'] = ""
                 for exception in operation.get('exceptions', []):
                     NameConverter._convert_language_default_python_case(exception)
                 for parameter in operation.get("parameters", []):

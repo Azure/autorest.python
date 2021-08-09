@@ -52,6 +52,10 @@ class RequestBuilder(BaseBuilder):
     def operation_group_name(self) -> str:
         return self.yaml_data["language"]["python"]["operationGroupName"]
 
+    @property
+    def builder_group_name(self) -> str:
+        return self.yaml_data["language"]["python"]["builderGroupName"]
+
     def imports(self) -> FileImport:
         file_import = FileImport()
         for parameter in self.parameters:

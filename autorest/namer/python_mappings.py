@@ -56,6 +56,8 @@ class PadType(Enum):
     Parameter = "Parameter"
     Enum = "Enum"
     Property = "Property"
+    OperationGroup = "Operations"
+    BuilderGroup = "Builders"
 
 _always_reserved = [
     "and",
@@ -170,6 +172,12 @@ reserved_words = {
     ],
     PadType.Enum: [
         "mro",
+        *_always_reserved
+    ],
+    PadType.OperationGroup: [
+        *_always_reserved
+    ],
+    PadType.BuilderGroup: [
         *_always_reserved
     ]
 }
