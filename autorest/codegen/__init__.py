@@ -46,6 +46,13 @@ def _validate_code_model_options(options: Dict[str, Any]) -> None:
             "or 'embedded'"
         )
 
+    if options["models_mode"] not in ["msrest", "none"]:
+        raise ValueError(
+            "--models-mode can only be 'msrest' or 'none'. "
+            "Pass in 'msrest' if you want msrest models, or "
+            "'none' if you don't want any."
+        )
+
     if not options["show_operations"] and options["builders_visibility"] == "embedded":
         raise ValueError(
             "Can not embed builders without operations. "
@@ -253,6 +260,8 @@ class CodeGenerator(Plugin):
         low_level_client = self._autorestapi.get_boolean_value("low-level-client", False)
         version_tolerant = self._autorestapi.get_boolean_value("version-tolerant", False)
 
+        models_mode_default = "none" if low_level_client or version_tolerant else "msrest"
+
         options: Dict[str, Any] = {
             "azure_arm": azure_arm,
             "credential": credential,
@@ -268,7 +277,7 @@ class CodeGenerator(Plugin):
             "tracing": self._autorestapi.get_boolean_value("trace", False),
             "multiapi": self._autorestapi.get_boolean_value("multiapi", False),
             "polymorphic_examples": self._autorestapi.get_value("polymorphic-examples") or 5,
-            "models_mode": self._autorestapi.get_value("models-mode"),
+            "models_mode": (self._autorestapi.get_value("models-mode") or models_mode_default).lower(),
             "builders_visibility": self._autorestapi.get_value("builders-visibility"),
             "show_operations": self._autorestapi.get_boolean_value("show-operations", not low_level_client),
             "show_send_request": self._autorestapi.get_boolean_value(
@@ -282,15 +291,6 @@ class CodeGenerator(Plugin):
             ),
             "version_tolerant": version_tolerant
         }
-        if options["models_mode"] is None:
-            if low_level_client or version_tolerant:
-                options["models_mode"] = False
-            else:
-                options["models_mode"] = "msrest"
-        else:
-            options["models_mode"] = options["models_mode"].lower()
-            if options["models_mode"] == "false":
-                options["models_mode"] = False
 
         if options["builders_visibility"] is None:
             options["builders_visibility"] = "public" if low_level_client else "embedded"
@@ -298,6 +298,10 @@ class CodeGenerator(Plugin):
             options["builders_visibility"] = options["builders_visibility"].lower()
 
         _validate_code_model_options(options)
+
+        if options["models_mode"] == "none":
+            # switch to falsy value for easier code writing
+            options["models_mode"] = False
 
         # Force some options in ARM MODE:
         if azure_arm:
