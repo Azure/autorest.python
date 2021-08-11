@@ -24,7 +24,7 @@
 #
 # --------------------------------------------------------------------------
 import pytest
-from constantsversiontolerant.aio import AutoRestSwaggerConstantService
+from constants.aio import AutoRestSwaggerConstantService
 
 @pytest.fixture
 async def client():

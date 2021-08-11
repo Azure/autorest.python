@@ -109,12 +109,8 @@ class BoolOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        bool_body = True
-        json = self._serialize.body(bool_body, "bool")
-
         request = build_put_true_request(
             content_type=content_type,
-            json=json,
             template_url=self.put_true.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -186,12 +182,8 @@ class BoolOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        bool_body = False
-        json = self._serialize.body(bool_body, "bool")
-
         request = build_put_false_request(
             content_type=content_type,
-            json=json,
             template_url=self.put_false.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)

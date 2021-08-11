@@ -267,7 +267,7 @@ class EnumOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        _enum_string_body = _models.RefColorConstant(field1=field1)
+        _enum_string_body = _models.RefColorConstant(color_constant=color_constant, field1=field1)
         json = self._serialize.body(_enum_string_body, "RefColorConstant")
 
         request = build_put_referenced_constant_request(
