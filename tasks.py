@@ -299,6 +299,10 @@ def regenerate_azure_arm_version_tolerant(c, swagger_name=None, debug=False, **k
     return _prepare_mapping_and_regenerate(c, _AZURE_ARM_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE_ARM, swagger_name, debug, version_tolerant=True, **kwargs)
 
 @task
+def regenerate_azure_arm_combine_operation(c, swagger_name=None, debug=False, **kwargs):
+    return _prepare_mapping_and_regenerate(c, _AZURE_ARM_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE_ARM, swagger_name, debug, single_operation_file=True, **kwargs)
+
+@task
 def regenerate_namespace_folders_test(c, debug=False):
     # regenerate a swagger (randomly chose BodyArray) to have a namespace length > 1
     # to test pkgutil logic
