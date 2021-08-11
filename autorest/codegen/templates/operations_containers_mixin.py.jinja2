@@ -19,4 +19,7 @@ _SERIALIZER = Serializer()
 # fmt: on
 {% endif %}
 {% endif %}
+{% for operation_group in operation_groups %}
+
 {% include "operations_class_mixin.py.jinja2" %}
+{% endfor %}
