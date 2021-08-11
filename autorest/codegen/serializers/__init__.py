@@ -157,7 +157,7 @@ class JinjaSerializer:
                 operations_async_init_serializer.serialize(),
             )
 
-        if not code_model.options["single_operation_file"]:
+        if not code_model.options["combine_operation_files"]:
             for operation_group in code_model.operation_groups:
                 # write sync operation group and operation files
                 operation_group_serializer = OperationGroupSerializer(

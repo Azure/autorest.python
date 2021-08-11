@@ -70,7 +70,7 @@ def _validate_code_model_options(options: Dict[str, Any]) -> None:
     if options["basic_setup_py"] and not options["package_version"]:
         raise ValueError("--basic-setup-py must be used with --package-version")
 
-    if not options["show_operations"] and options["single_operation_file"]:
+    if not options["show_operations"] and options["combine_operation_files"]:
         raise ValueError(
             "Can not combile operation files if you are not showing operations. "
             "If you want typed synced operation files, you have to add flag "
@@ -297,7 +297,7 @@ class CodeGenerator(Plugin):
                 "add-python3-operation-files", False
             ),
             "version_tolerant": version_tolerant,
-            "single_operation_file": self._autorestapi.get_boolean_value("combine-operation-files", False),
+            "combine_operation_files": self._autorestapi.get_boolean_value("combine-operation-files", False),
         }
 
         if options["builders_visibility"] is None:

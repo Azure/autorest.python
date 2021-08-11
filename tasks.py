@@ -144,6 +144,7 @@ def _build_flags(
     namespace = _OVERWRITE_DEFAULT_NAMESPACE.get(package_name, package_name.lower())
     low_level_client = kwargs.pop("low_level_client", False)
     version_tolerant = kwargs.pop("version_tolerant", False)
+    combine_operation_files = kwargs.pop("combine_operation_files", False)
     if low_level_client:
         package_name += "LowLevel"
         generation_section += "/low-level"
@@ -156,6 +157,12 @@ def _build_flags(
         override_flags = override_flags or {}
         override_flags["version-tolerant"] = True
         namespace += "versiontolerant"
+    elif combine_operation_files:
+        package_name += "CombineOperationFiles"
+        generation_section += "/combine-operation-files"
+        override_flags = override_flags or {}
+        override_flags["combine-operation-files"] = True
+        namespace += "combineoperationfiles"
     else:
         generation_section += "/legacy"
         override_flags = override_flags or {}
@@ -300,7 +307,7 @@ def regenerate_azure_arm_version_tolerant(c, swagger_name=None, debug=False, **k
 
 @task
 def regenerate_azure_arm_combine_operation(c, swagger_name=None, debug=False, **kwargs):
-    return _prepare_mapping_and_regenerate(c, _AZURE_ARM_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE_ARM, swagger_name, debug, single_operation_file=True, **kwargs)
+    return _prepare_mapping_and_regenerate(c, _AZURE_ARM_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE_ARM, swagger_name, debug, combine_operation_files=True, **kwargs)
 
 @task
 def regenerate_namespace_folders_test(c, debug=False):

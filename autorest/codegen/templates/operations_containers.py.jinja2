@@ -13,9 +13,11 @@ _SERIALIZER = Serializer()
 {% if not is_python_3_file %}
 # fmt: off
 {% endif %}
-    {% for request_builder in code_model.rest.request_builders | selectattr("operation_group_name", "equalto", operation_group.name) %}
+    {% for operation_group in operation_groups %}
+        {% for request_builder in code_model.rest.request_builders | selectattr("operation_group_name", "equalto", operation_group.name) %}
 
-    {% include "request_builder.py.jinja2" %}
+        {% include "request_builder.py.jinja2" %}
+        {% endfor %}
     {% endfor %}
 {% if not is_python_3_file %}
 # fmt: on
