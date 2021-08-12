@@ -1,0 +1,22 @@
+aiohttp;python_full_version>="3.5.2"
+requests==2.18.4
+pytest
+pytest-cov
+pytest-asyncio==0.14.0;python_full_version>="3.5.2"
+async_generator;python_full_version>="3.5.2"
+azure-core==1.16.0
+azure-mgmt-core==1.3.0
+msrest==0.6.21
+-e ./Expected/AcceptanceTests/AzureBodyDurationCombineOperationFiles
+-e ./Expected/AcceptanceTests/AzureParameterGroupingCombineOperationFiles
+-e ./Expected/AcceptanceTests/AzureReportCombineOperationFiles
+-e ./Expected/AcceptanceTests/AzureSpecialsCombineOperationFiles
+-e ./Expected/AcceptanceTests/CustomBaseUriCombineOperationFiles
+-e ./Expected/AcceptanceTests/CustomUrlPagingCombineOperationFiles
+-e ./Expected/AcceptanceTests/HeadCombineOperationFiles
+-e ./Expected/AcceptanceTests/HeadExceptionsCombineOperationFiles
+-e ./Expected/AcceptanceTests/LroCombineOperationFiles
+-e ./Expected/AcceptanceTests/LroWithParameterizedEndpointsCombineOperationFiles
+-e ./Expected/AcceptanceTests/PagingCombineOperationFiles
+-e ./Expected/AcceptanceTests/StorageManagementClientCombineOperationFiles
+-e ./Expected/AcceptanceTests/SubscriptionIdApiVersionCombineOperationFiles

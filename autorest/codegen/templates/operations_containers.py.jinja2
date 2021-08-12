@@ -13,11 +13,9 @@ _SERIALIZER = Serializer()
 {% if not is_python_3_file %}
 # fmt: off
 {% endif %}
-    {% for operation_group in operation_groups %}
-        {% for request_builder in code_model.rest.request_builders | selectattr("operation_group_name", "equalto", operation_group.name) %}
+    {% for request_builder in code_model.rest.request_builders %}
 
-        {% include "request_builder.py.jinja2" %}
-        {% endfor %}
+    {% include "request_builder.py.jinja2" %}
     {% endfor %}
 {% if not is_python_3_file %}
 # fmt: on
@@ -26,8 +24,8 @@ _SERIALIZER = Serializer()
 {% for operation_group in operation_groups %}
 
     {% if operation_group.is_empty_operation_group %}
-    {% include "operations_class_mixin.jinja2" %}
+    {% include "operations_class_mixin.py.jinja2" %}
     {% else %}
-    {% include "operations_class.jinja2" %}
+    {% include "operations_class.py.jinja2" %}
     {% endif %}
 {% endfor %}
