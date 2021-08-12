@@ -354,12 +354,18 @@ def regenerate_legacy(c, swagger_name=None, debug=False):
         regenerate_samples(c, debug)
         regenerate_with_python3_operation_files(c, debug)
 
+@task
+def regenerate_combine_operation(c, swagger_name=None, debug=False):
+    # regenerate expected code for tests
+    regenerate_azure_arm_combine_operation(c, swagger_name, debug)
+    regenerate_azure_combine_operation(c, swagger_name, debug)
 
 @task
 def regenerate(c, swagger_name=None, debug=False):
     regenerate_legacy(c, swagger_name, debug)
     regenerate_llc(c, swagger_name, debug)
     regenerate_version_tolerant(c, swagger_name, debug)
+    regenerate_combine_operation(c, swagger_name, debug)
 
 @task
 def regenerate_llc(c, swagger_name=None, debug=False):
