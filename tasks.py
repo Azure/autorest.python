@@ -254,6 +254,12 @@ def regenerate_vanilla_legacy(c, swagger_name=None, debug=False, **kwargs):
     return _prepare_mapping_and_regenerate(c, _VANILLA_SWAGGER_MAPPINGS, _SwaggerGroup.VANILLA, swagger_name, debug, **kwargs)
 
 @task
+def regenerate_vanilla_combine_operation(c, swagger_name=None, debug=False, **kwargs):
+    mapping = _VANILLA_SWAGGER_MAPPINGS.copy()
+    mapping.pop("ReservedWords")
+    return _prepare_mapping_and_regenerate(c, mapping, _SwaggerGroup.VANILLA, swagger_name, debug, combine_operation_files=True, **kwargs)
+
+@task
 def regenerate_vanilla_llc(c, swagger_name=None, debug=False, **kwargs):
     mapping = _VANILLA_SWAGGER_MAPPINGS
     mapping.update(_UPDATE_SWAGGER_MAPPINGS)
@@ -359,6 +365,7 @@ def regenerate_combine_operation(c, swagger_name=None, debug=False):
     # regenerate expected code for tests
     regenerate_azure_arm_combine_operation(c, swagger_name, debug)
     regenerate_azure_combine_operation(c, swagger_name, debug)
+    regenerate_vanilla_combine_operation(c, swagger_name, debug)
 
 @task
 def regenerate(c, swagger_name=None, debug=False):

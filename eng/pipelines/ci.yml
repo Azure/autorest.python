@@ -155,6 +155,17 @@ jobs:
           searchFolder: "$(TestFolder)/azure/combine-operation-files"
 
       - script: |
+          cd $(TestFolder)/vanilla/combine-operation-files
+          tox -e ci
+        displayName: 'Execute combine-operation-files "vanilla" Tests - Python $(PythonVersion)'
+      - task: PublishTestResults@2
+        condition: always()
+        displayName: 'Publish combine-operation-files "vanilla" Test Results'
+        inputs:
+          testRunTitle: "$(OSName) Python $(PythonVersion) - combine-operation-files azure"
+          searchFolder: "$(TestFolder)/vanilla/combine-operation-files"
+
+      - script: |
           npm run coverage-push -- $(Build.Repository.Name) $(Build.SourceBranch) $(github-token) $(storage-coverage-user) $(storage-coverage-pass)
         workingDirectory: node_modules/@microsoft.azure/autorest.testserver
         displayName: "Publish coverage report to stroage account"

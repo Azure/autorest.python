@@ -1,0 +1,45 @@
+aiohttp;python_full_version>="3.5.2"
+requests==2.18.4
+pytest
+pytest-cov
+pytest-asyncio==0.14.0;python_full_version>="3.5.2"
+async_generator;python_full_version>="3.5.2"
+msrest==0.6.21
+azure-core==1.16.0
+-e ./Expected/AcceptanceTests/AdditionalPropertiesCombineOperationFiles
+-e ./Expected/AcceptanceTests/AnythingCombineOperationFiles
+-e ./Expected/AcceptanceTests/BodyArrayCombineOperationFiles
+-e ./Expected/AcceptanceTests/BodyBooleanCombineOperationFiles
+-e ./Expected/AcceptanceTests/BodyByteCombineOperationFiles
+-e ./Expected/AcceptanceTests/BodyComplexCombineOperationFiles
+-e ./Expected/AcceptanceTests/BodyDateCombineOperationFiles
+-e ./Expected/AcceptanceTests/BodyDateTimeCombineOperationFiles
+-e ./Expected/AcceptanceTests/BodyDateTimeRfc1123CombineOperationFiles
+-e ./Expected/AcceptanceTests/BodyDictionaryCombineOperationFiles
+-e ./Expected/AcceptanceTests/BodyDurationCombineOperationFiles
+-e ./Expected/AcceptanceTests/BodyFileCombineOperationFiles
+-e ./Expected/AcceptanceTests/BodyFormDataCombineOperationFiles
+-e ./Expected/AcceptanceTests/BodyIntegerCombineOperationFiles
+-e ./Expected/AcceptanceTests/BodyNumberCombineOperationFiles
+-e ./Expected/AcceptanceTests/BodyStringCombineOperationFiles
+-e ./Expected/AcceptanceTests/BodyTimeCombineOperationFiles
+-e ./Expected/AcceptanceTests/CustomBaseUriCombineOperationFiles
+-e ./Expected/AcceptanceTests/CustomBaseUriMoreOptionsCombineOperationFiles
+-e ./Expected/AcceptanceTests/ExtensibleEnumsCombineOperationFiles
+-e ./Expected/AcceptanceTests/HeaderCombineOperationFiles
+-e ./Expected/AcceptanceTests/HttpCombineOperationFiles
+-e ./Expected/AcceptanceTests/IncorrectErrorResponseCombineOperationFiles
+-e ./Expected/AcceptanceTests/MediaTypesCombineOperationFiles
+-e ./Expected/AcceptanceTests/ModelFlatteningCombineOperationFiles
+-e ./Expected/AcceptanceTests/MultipleInheritanceCombineOperationFiles
+-e ./Expected/AcceptanceTests/NoOperationsCombineOperationFiles
+-e ./Expected/AcceptanceTests/NonStringEnumsCombineOperationFiles
+-e ./Expected/AcceptanceTests/ObjectTypeCombineOperationFiles
+-e ./Expected/AcceptanceTests/ParameterFlatteningCombineOperationFiles
+-e ./Expected/AcceptanceTests/ReportCombineOperationFiles
+-e ./Expected/AcceptanceTests/RequiredOptionalCombineOperationFiles
+-e ./Expected/AcceptanceTests/UrlCombineOperationFiles
+-e ./Expected/AcceptanceTests/UrlMultiCollectionFormatCombineOperationFiles
+-e ./Expected/AcceptanceTests/ValidationCombineOperationFiles
+-e ./Expected/AcceptanceTests/XmlCombineOperationFiles
+-e ./Expected/AcceptanceTests/XmsErrorResponseCombineOperationFiles
