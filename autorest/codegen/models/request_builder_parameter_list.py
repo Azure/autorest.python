@@ -28,16 +28,6 @@ class RequestBuilderParameterList(ParameterList):
         self.body_kwarg_names: OrderedSet[str] = {}
         self.parameters: List[RequestBuilderParameter] = parameters or []  # type: ignore
 
-
-    @property
-    def constant(self) -> List[Parameter]:
-        """We don't do constant bodies in the request builder
-        """
-        return [
-            c for c in super(RequestBuilderParameterList, self).constant
-            if c.location != ParameterLocation.Body
-        ]
-
     def _change_body_param_name(self, parameter: Parameter, name: str) -> None:
         self.body_kwarg_names[name] = None
         parameter.serialized_name = name
@@ -48,6 +38,13 @@ class RequestBuilderParameterList(ParameterList):
             body_method_param = next(
                 p for p in self.parameters if p.location == ParameterLocation.Body
             )
+        except StopIteration:
+            pass
+        else:
+            if body_method_param.constant:
+                # we don't add body kwargs for constant bodies
+                body_method_param.serialized_name = "json"
+                return
             if body_method_param.is_multipart:
                 file_kwarg = copy(body_method_param)
                 self._change_body_param_name(file_kwarg, "files")
@@ -99,8 +96,6 @@ class RequestBuilderParameterList(ParameterList):
                 for kwarg in body_kwargs_added:
                     kwarg.required = False
             self.parameters = body_kwargs_added + self.parameters
-        except StopIteration:
-            pass
 
     @property
     def json_body(self) -> BaseSchema:

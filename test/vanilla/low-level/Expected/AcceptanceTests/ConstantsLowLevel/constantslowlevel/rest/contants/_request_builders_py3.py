@@ -458,30 +458,22 @@ def build_put_model_as_string_required_one_value_default_request(
     return HttpRequest(method="PUT", url=url, params=query_parameters, **kwargs)
 
 
-def build_put_client_constants_request(
-    path_constant: str = "path", *, header_constant: bool = True, query_constant: int = 100, **kwargs: Any
-) -> HttpRequest:
+def build_put_client_constants_request(**kwargs: Any) -> HttpRequest:
     """Pass constants from the client to this function. Will pass in constant path, query, and header
     parameters.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param path_constant: Constant path property on the client that is a required parameter for
-     operation 'constants_putClientConstants'.
-    :type path_constant: str
-    :keyword header_constant: Constant header property on the client that is a required parameter
-     for operation 'constants_putClientConstants'.
-    :paramtype header_constant: bool
-    :keyword query_constant: Constant query property on the client that is a required parameter for
-     operation 'constants_putClientConstants'.
-    :paramtype query_constant: int
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
+    header_constant = True
+    query_constant = 100
+    path_constant = "path"
     # Construct URL
     url = kwargs.pop("template_url", "/constants/clientConstants/{path-constant}")
     path_format_arguments = {

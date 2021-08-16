@@ -58,11 +58,11 @@ def test_model_get_null(send_request):
     assert send_request(request).text == ''
 
 def test_model_put_false(send_request):
-    request = bool.build_put_false_request(json=False)  # have to pass in bc we don't do constant bodies in request builders
+    request = bool.build_put_false_request()
     send_request(request)
 
 def test_model_put_true(send_request):
-    request = bool.build_put_true_request(json=True)  # have to pass in bc we don't do constant bodies in request builders
+    request = bool.build_put_true_request()
     send_request(request)
 
 def test_model_get_invalid(send_request):

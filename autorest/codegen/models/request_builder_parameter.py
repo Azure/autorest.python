@@ -20,8 +20,7 @@ class RequestBuilderParameter(ParameterOnlyPathAndBodyPositional):
     @property
     def in_method_signature(self) -> bool:
         return not(
-            # constant bodies still go in method signature bc we don't support that in our request builder
-            (self.constant and not (self.location == ParameterLocation.Body or self.implementation == "Client"))
+            self.constant
             # If i'm not in the method code, no point in being in signature
             or not self.in_method_code
             # If I'm a flattened property of a body, don't want me, want the body param
@@ -46,14 +45,6 @@ class RequestBuilderParameter(ParameterOnlyPathAndBodyPositional):
 
     @property
     def in_method_code(self) -> bool:
-        if self.constant:
-            if (
-                self.location == ParameterLocation.Body
-                or self.implementation == "Client"
-            ):
-                # constant bodies aren't really a thing in requests
-                # users need to explicitly pass the constant body through the method signature
-                return True
         if self.location == ParameterLocation.Uri:
             # don't want any base url path formatting arguments
             return False

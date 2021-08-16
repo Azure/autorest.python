@@ -67,7 +67,7 @@ def build_get_empty_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_empty_request(*, json: List[str], json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_empty_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
@@ -95,9 +95,7 @@ def build_get_boolean_tfft_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_boolean_tfft_request(
-    *, json: List[bool], json: Any = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_put_boolean_tfft_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
@@ -149,9 +147,7 @@ def build_get_integer_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_integer_valid_request(
-    *, json: List[int], json: Any = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_put_integer_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
@@ -203,9 +199,7 @@ def build_get_long_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_long_valid_request(
-    *, json: List[int], json: Any = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_put_long_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
@@ -257,9 +251,7 @@ def build_get_float_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_float_valid_request(
-    *, json: List[float], json: Any = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_put_float_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
@@ -311,9 +303,7 @@ def build_get_double_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_double_valid_request(
-    *, json: List[float], json: Any = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_put_double_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
@@ -365,9 +355,7 @@ def build_get_string_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_string_valid_request(
-    *, json: List[str], json: Any = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_put_string_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
@@ -395,9 +383,7 @@ def build_get_enum_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_enum_valid_request(
-    *, json: List[Union[str, "_models.FooEnum"]], json: Any = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_put_enum_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
@@ -425,9 +411,7 @@ def build_get_string_enum_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_string_enum_valid_request(
-    *, json: List[Union[str, "_models.Enum1"]], json: Any = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_put_string_enum_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
@@ -479,9 +463,7 @@ def build_get_uuid_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_uuid_valid_request(
-    *, json: List[str], json: Any = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_put_uuid_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
@@ -521,9 +503,7 @@ def build_get_date_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_date_valid_request(
-    *, json: List[datetime.date], json: Any = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_put_date_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
@@ -575,9 +555,7 @@ def build_get_date_time_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_date_time_valid_request(
-    *, json: List[datetime.datetime], json: Any = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_put_date_time_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
@@ -629,9 +607,7 @@ def build_get_date_time_rfc1123_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_date_time_rfc1123_valid_request(
-    *, json: List[datetime.datetime], json: Any = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_put_date_time_rfc1123_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
@@ -659,9 +635,7 @@ def build_get_duration_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_duration_valid_request(
-    *, json: List[datetime.timedelta], json: Any = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_put_duration_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
@@ -689,9 +663,7 @@ def build_get_byte_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_byte_valid_request(
-    *, json: List[bytearray], json: Any = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_put_byte_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
@@ -791,9 +763,7 @@ def build_get_complex_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_complex_valid_request(
-    *, json: List["_models.Product"], json: Any = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_put_complex_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
@@ -869,9 +839,7 @@ def build_get_array_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_array_valid_request(
-    *, json: List[List[str]], json: Any = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_put_array_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
@@ -947,9 +915,7 @@ def build_get_dictionary_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_dictionary_valid_request(
-    *, json: List[Dict[str, str]], json: Any = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_put_dictionary_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"

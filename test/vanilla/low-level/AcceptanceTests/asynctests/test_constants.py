@@ -40,9 +40,5 @@ def send_request(client, base_send_request):
 
 @pytest.mark.asyncio
 async def test_put_client_constants(client, send_request):
-    request = contants.build_put_client_constants_request(
-        client._config.path_constant,
-        query_constant=client._config.query_constant,
-        header_constant=client._config.header_constant
-    )
+    request = contants.build_put_client_constants_request()
     await send_request(request)
