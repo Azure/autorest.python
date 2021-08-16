@@ -517,3 +517,9 @@ class TestLro:
         product = products[0]
         assert product.id == "100"
         assert product.name == "foo"
+
+    @pytest.mark.asyncio
+    async def test_lro_patch_200(self, client, product):
+        poller = await client.lros.begin_patch200_succeeded_ignore_headers(product)
+        product = await poller.result()
+        assert "Succeeded" == product.provisioning_state

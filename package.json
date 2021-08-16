@@ -29,7 +29,7 @@
     },
     "devDependencies": {
         "@autorest/autorest": "^3.0.0",
-        "@microsoft.azure/autorest.testserver": "^3.0.31"
+        "@microsoft.azure/autorest.testserver": "^3.0.32"
     },
     "files": [
         "autorest/**/*.py",

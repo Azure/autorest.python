@@ -452,3 +452,8 @@ def test_lro_list(client, product):
     product = products[0]
     assert product['id'] == "100"
     assert product["name"] == "foo"
+
+def test_lro_patch_200(client, product):
+    poller = client.lros.begin_patch200_succeeded_ignore_headers(product)
+    product = poller.result()
+    assert "Succeeded" == product["properties"]['provisioningState']

@@ -469,6 +469,11 @@ class TestLro:
         assert product.id == "100"
         assert product.name == "foo"
 
+    def test_lro_patch_200(self, client, product):
+        poller = client.lros.begin_patch200_succeeded_ignore_headers(product)
+        product = poller.result()
+        assert "Succeeded" == product.provisioning_state
+
     def test_models(self):
         from lro.models import OperationResult
 
