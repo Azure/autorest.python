@@ -56,14 +56,14 @@ def custom_url_client():
 
 class TestPaging(object):
     def test_get_no_item_name_pages(self, client):
-        pages = client.pagingcombineoperationfiles.get_no_item_name_pages()
+        pages = client.paging.get_no_item_name_pages()
         items = [i for i in pages]
         assert len(items) == 1
         assert items[0].properties.id == 1
         assert items[0].properties.name == "Product"
 
     def test_get_null_next_link_name_pages(self, client):
-        pages = client.pagingcombineoperationfiles.get_null_next_link_name_pages()
+        pages = client.paging.get_null_next_link_name_pages()
         items = [i for i in pages]
         assert len(items) == 1
         assert items[0].properties.id == 1
@@ -74,74 +74,74 @@ class TestPaging(object):
             for obj in list_of_obj:
                 obj.marked = True
             return list_of_obj
-        pages = client.pagingcombineoperationfiles.get_single_pages(cls=cb)
+        pages = client.paging.get_single_pages(cls=cb)
         assert all(obj.marked for obj in pages)
 
     def test_get_single_pages(self, client):
-        pages = client.pagingcombineoperationfiles.get_single_pages()
+        pages = client.paging.get_single_pages()
         items = [i for i in pages]
         assert len(items) == 1
         assert items[0].properties.id == 1
         assert items[0].properties.name == "Product"
 
     def test_get_multiple_pages(self, client):
-        pages = client.pagingcombineoperationfiles.get_multiple_pages()
+        pages = client.paging.get_multiple_pages()
         items = [i for i in pages]
         assert len(items) == 10
 
     def test_query_params(self, client):
-        pages = client.pagingcombineoperationfiles.get_with_query_params(required_query_parameter='100')
+        pages = client.paging.get_with_query_params(required_query_parameter='100')
         items = [i for i in pages]
         assert len(items) == 2
 
     def test_get_odata_multiple_pages(self, client):
-        pages = client.pagingcombineoperationfiles.get_odata_multiple_pages()
+        pages = client.paging.get_odata_multiple_pages()
         items = [i for i in pages]
         assert len(items) == 10
 
     def test_get_multiple_pages_retry_first(self, client):
-        pages = client.pagingcombineoperationfiles.get_multiple_pages_retry_first()
+        pages = client.paging.get_multiple_pages_retry_first()
         items = [i for i in pages]
         assert len(items) == 10
 
     def test_get_multiple_pages_retry_second(self, client):
-        pages = client.pagingcombineoperationfiles.get_multiple_pages_retry_second()
+        pages = client.paging.get_multiple_pages_retry_second()
         items = [i for i in pages]
         assert len(items) == 10
 
     def test_get_multiple_pages_with_offset(self, client):
         from pagingcombineoperationfiles.models import PagingGetMultiplePagesWithOffsetOptions
         options = PagingGetMultiplePagesWithOffsetOptions(offset=100)
-        pages = client.pagingcombineoperationfiles.get_multiple_pages_with_offset(paging_get_multiple_pages_with_offset_options=options)
+        pages = client.paging.get_multiple_pages_with_offset(paging_get_multiple_pages_with_offset_options=options)
         items = [i for i in pages]
         assert len(items) == 10
         assert items[-1].properties.id == 110
 
 
     def test_get_single_pages_failure(self, client):
-        pages = client.pagingcombineoperationfiles.get_single_pages_failure()
+        pages = client.paging.get_single_pages_failure()
         with pytest.raises(HttpResponseError):
             list(pages)
 
     def test_get_multiple_pages_failure(self, client):
-        pages = client.pagingcombineoperationfiles.get_multiple_pages_failure()
+        pages = client.paging.get_multiple_pages_failure()
         with pytest.raises(HttpResponseError):
             list(pages)
 
     def test_get_multiple_pages_failure_uri(self, client):
-        pages = client.pagingcombineoperationfiles.get_multiple_pages_failure_uri()
+        pages = client.paging.get_multiple_pages_failure_uri()
         with pytest.raises(HttpResponseError):
             list(pages)
 
     def test_paging_fragment_path(self, client):
 
-        pages = client.pagingcombineoperationfiles.get_multiple_pages_fragment_next_link("1.6", "test_user")
+        pages = client.paging.get_multiple_pages_fragment_next_link("1.6", "test_user")
         items = [i for i in pages]
         assert len(items) == 10
 
         with pytest.raises(AttributeError):
             # Be sure this method is not generated (Transform work)
-            client.pagingcombineoperationfiles.get_multiple_pages_fragment_next_link_next()  # pylint: disable=E1101
+            client.paging.get_multiple_pages_fragment_next_link_next()  # pylint: disable=E1101
 
     def test_custom_url_get_pages_partial_url(self, custom_url_client):
         paged = list(custom_url_client.pagingcombineoperationfiles.get_pages_partial_url("local"))
@@ -161,7 +161,7 @@ class TestPaging(object):
         """LRO + Paging at the same time.
         """
         from azure.mgmt.core.polling.arm_polling import ARMPolling
-        poller = client.pagingcombineoperationfiles.begin_get_multiple_pages_lro(polling=ARMPolling(timeout=0))
+        poller = client.paging.begin_get_multiple_pages_lro(polling=ARMPolling(timeout=0))
         pager = poller.result()
 
         items = list(pager)
@@ -171,12 +171,12 @@ class TestPaging(object):
         assert items[1].properties.id == 2
 
     def test_item_name_with_xms_client_name(self, client):
-        pages = client.pagingcombineoperationfiles.get_paging_model_with_item_name_with_xms_client_name()
+        pages = client.paging.get_paging_model_with_item_name_with_xms_client_name()
         items = [i for i in pages]
         assert len(items) == 1
 
     def test_initial_response_no_items(self, client):
-        pages = client.pagingcombineoperationfiles.first_response_empty()
+        pages = client.paging.first_response_empty()
         items = [i for i in pages]
         assert len(items) == 1
 

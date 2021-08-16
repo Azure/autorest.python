@@ -158,10 +158,10 @@ def _build_flags(
         override_flags["version-tolerant"] = True
         namespace += "versiontolerant"
     elif combine_operation_files:
-        package_name += "CombineOperationFiles"
         generation_section += "/combine-operation-files"
         override_flags = override_flags or {}
         override_flags["combine-operation-files"] = True
+        override_flags["payload-flattening-threshold"] = 1
         namespace += "combineoperationfiles"
     else:
         generation_section += "/legacy"
@@ -255,9 +255,7 @@ def regenerate_vanilla_legacy(c, swagger_name=None, debug=False, **kwargs):
 
 @task
 def regenerate_vanilla_combine_operation(c, swagger_name=None, debug=False, **kwargs):
-    mapping = _VANILLA_SWAGGER_MAPPINGS.copy()
-    mapping.pop("ReservedWords")
-    return _prepare_mapping_and_regenerate(c, mapping, _SwaggerGroup.VANILLA, swagger_name, debug, combine_operation_files=True, **kwargs)
+    return _prepare_mapping_and_regenerate(c, _VANILLA_SWAGGER_MAPPINGS, _SwaggerGroup.VANILLA, swagger_name, debug, combine_operation_files=True, **kwargs)
 
 @task
 def regenerate_vanilla_llc(c, swagger_name=None, debug=False, **kwargs):

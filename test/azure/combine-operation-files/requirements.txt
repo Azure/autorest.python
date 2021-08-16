@@ -7,16 +7,16 @@ async_generator;python_full_version>="3.5.2"
 azure-core==1.16.0
 azure-mgmt-core==1.3.0
 msrest==0.6.21
--e ./Expected/AcceptanceTests/AzureBodyDurationCombineOperationFiles
--e ./Expected/AcceptanceTests/AzureParameterGroupingCombineOperationFiles
--e ./Expected/AcceptanceTests/AzureReportCombineOperationFiles
--e ./Expected/AcceptanceTests/AzureSpecialsCombineOperationFiles
--e ./Expected/AcceptanceTests/CustomBaseUriCombineOperationFiles
--e ./Expected/AcceptanceTests/CustomUrlPagingCombineOperationFiles
--e ./Expected/AcceptanceTests/HeadCombineOperationFiles
--e ./Expected/AcceptanceTests/HeadExceptionsCombineOperationFiles
--e ./Expected/AcceptanceTests/LroCombineOperationFiles
--e ./Expected/AcceptanceTests/LroWithParameterizedEndpointsCombineOperationFiles
--e ./Expected/AcceptanceTests/PagingCombineOperationFiles
--e ./Expected/AcceptanceTests/StorageManagementClientCombineOperationFiles
--e ./Expected/AcceptanceTests/SubscriptionIdApiVersionCombineOperationFiles
+-e ./Expected/AcceptanceTests/AzureBodyDuration
+-e ./Expected/AcceptanceTests/AzureParameterGrouping
+-e ./Expected/AcceptanceTests/AzureReport
+-e ./Expected/AcceptanceTests/AzureSpecials
+-e ./Expected/AcceptanceTests/CustomBaseUri
+-e ./Expected/AcceptanceTests/CustomUrlPaging
+-e ./Expected/AcceptanceTests/Head
+-e ./Expected/AcceptanceTests/HeadExceptions
+-e ./Expected/AcceptanceTests/Lro
+-e ./Expected/AcceptanceTests/LroWithParameterizedEndpoints
+-e ./Expected/AcceptanceTests/Paging
+-e ./Expected/AcceptanceTests/StorageManagementClient
+-e ./Expected/AcceptanceTests/SubscriptionIdApiVersion
