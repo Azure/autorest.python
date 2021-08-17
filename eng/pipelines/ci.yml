@@ -48,34 +48,6 @@ jobs:
         inputs:
           versionSpec: 3.6
 
-      - script: |
-          cd $(Build.SourcesDirectory)
-          pip install -r dev_requirements.txt
-          npm install -g autorest
-          npm install
-        displayName: 'Prepare Environment for Generation'
-
-      - script: |
-          pylint autorest
-        displayName: 'Pylint'
-
-      - script: |
-          mypy autorest
-        displayName: 'Mypy'
-
-      - script: |
-          pytest test/unittests
-        displayName: 'Unit tests'
-
-      - script: |
-          inv regenerate
-        displayName: 'Regenerate Code'
-
-      - script: |
-          git add -A  # 'add' first so 'diff' includes untracked files
-          git diff --staged -w
-        displayName: 'Diff regeneration'
-
       - task: UsePythonVersion@0
         displayName: 'Use Python $(PythonVersion)'
         inputs:
