@@ -59,6 +59,7 @@ class TestAcceptance(object):
             "LROErrorPost202RetryInvalidHeader": 1,  # The reason this fails is bc the convenience layer fails in deserializing the retry-after header /bar as an int. LLC doesn't do that, so skipping
             "LROErrorPostAsyncInvalidHeader": 1,  # The reason this fails is bc the convenience layer fails in deserializing the retry-after header /bar as an int. LLC doesn't do that, so skipping
             "LROErrorPostAsyncInvalidJsonPolling": 1,   # The reason this fails is bc the convenience layer fails in deserializing. LLC doesn't do that, so skipping
+            "LROPatchInlineCompleteIgnoreHeaders": 1,
         }
 
         # Please add missing features or failing tests here

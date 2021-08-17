@@ -58,21 +58,6 @@ except ImportError:  # Python 2.7
         def __getinitargs__(self):
             return (self.__offset,)
 
-try:
-    from datetime import timezone
-    TZ_UTC = timezone.utc  # type: ignore
-except ImportError:
-    TZ_UTC = UTC()  # type: ignore
-
-DAYS = {0: "Mon", 1: "Tue", 2: "Wed", 3: "Thu",
-            4: "Fri", 5: "Sat", 6: "Sun"}
-MONTHS = {1: "Jan", 2: "Feb", 3: "Mar", 4: "Apr", 5: "May", 6: "Jun",
-              7: "Jul", 8: "Aug", 9: "Sep", 10: "Oct", 11: "Nov", 12: "Dec"}
-
-VALID_DATE = re.compile(
-        r'\d{4}[-]\d{2}[-]\d{2}T\d{2}:\d{2}:\d{2}'
-        r'\.?\d*Z?[-+]?[\d{2}]?:?[\d{2}]?')
-
 class UTC(datetime.tzinfo):
     """Time Zone info for handling UTC"""
 
@@ -87,6 +72,21 @@ class UTC(datetime.tzinfo):
     def dst(self, dt):
         """No daylight saving for UTC."""
         return datetime.timedelta(hours=1)
+
+try:
+    from datetime import timezone
+    TZ_UTC = timezone.utc  # type: ignore
+except ImportError:
+    TZ_UTC = UTC()  # type: ignore
+
+DAYS = {0: "Mon", 1: "Tue", 2: "Wed", 3: "Thu",
+            4: "Fri", 5: "Sat", 6: "Sun"}
+MONTHS = {1: "Jan", 2: "Feb", 3: "Mar", 4: "Apr", 5: "May", 6: "Jun",
+              7: "Jul", 8: "Aug", 9: "Sep", 10: "Oct", 11: "Nov", 12: "Dec"}
+
+VALID_DATE = re.compile(
+        r'\d{4}[-]\d{2}[-]\d{2}T\d{2}:\d{2}:\d{2}'
+        r'\.?\d*Z?[-+]?[\d{2}]?:?[\d{2}]?')
 
 def serialize_base64(attr):
     encoded = b64encode(attr).decode('ascii')
