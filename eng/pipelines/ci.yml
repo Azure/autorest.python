@@ -109,6 +109,17 @@ jobs:
           searchFolder: "$(TestFolder)/azure/low-level"
 
       - script: |
+          cd $(TestFolder)/azure/version-tolerant
+          tox -e ci
+        displayName: 'Execute version-tolerant "azure" Tests - Python $(PythonVersion)'
+      - task: PublishTestResults@2
+        condition: always()
+        displayName: 'Publish version-tolerant "azure" Test Results'
+        inputs:
+          testRunTitle: "$(OSName) Python $(PythonVersion) - version-tolerant azure"
+          searchFolder: "$(TestFolder)/azure/version-tolerant"
+
+      - script: |
           cd $(TestFolder)/vanilla/legacy
           tox -e ci
         displayName: 'Execute legacy "vanilla" Tests - Python $(PythonVersion)'
@@ -131,6 +142,19 @@ jobs:
         inputs:
           testRunTitle: "$(OSName) Python $(PythonVersion) - low level vanilla"
           searchFolder: "$(TestFolder)/vanilla/low-level"
+
+      - script: |
+          cd $(TestFolder)/vanilla/version-tolerant
+          tox -e ci
+          tox -e initial-ci
+          tox -e update-ci
+        displayName: 'Execute version-tolerant "vanilla" Tests - Python $(PythonVersion)'
+      - task: PublishTestResults@2
+        displayName: 'Publish version-tolerant "vanilla" Test Results'
+        condition: always()
+        inputs:
+          testRunTitle: "$(OSName) Python $(PythonVersion) - version-tolerant vanilla"
+          searchFolder: "$(TestFolder)/vanilla/version-tolerant"
 
       - script: |
           cd $(TestFolder)/multiapi
