@@ -48,6 +48,13 @@ jobs:
         inputs:
           versionSpec: 3.6
 
+      - script: |
+          cd $(Build.SourcesDirectory)
+          pip install -r dev_requirements.txt
+          npm install -g autorest
+          npm install
+        displayName: 'Prepare Environment for Generation'
+
       - task: UsePythonVersion@0
         displayName: 'Use Python $(PythonVersion)'
         inputs:
