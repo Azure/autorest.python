@@ -4,6 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import functools
+from copy import copy
 from typing import List
 from jinja2 import Environment
 
@@ -39,7 +40,7 @@ class OperationGroupsSerializer:
 
         # extract all operations from operation_groups
         operaions_all = [operation for groups in self.operation_groups for operation in groups.operations]
-        operation_group_temp = self.operation_groups[0]
+        operation_group_temp = copy(self.operation_groups[0])
         operation_group_temp.operations = operaions_all
 
         return operation_group_template.render(
