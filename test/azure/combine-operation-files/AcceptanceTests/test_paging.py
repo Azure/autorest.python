@@ -144,14 +144,14 @@ class TestPaging(object):
             client.paging.get_multiple_pages_fragment_next_link_next()  # pylint: disable=E1101
 
     def test_custom_url_get_pages_partial_url(self, custom_url_client):
-        paged = list(custom_url_client.pagingcombineoperationfiles.get_pages_partial_url("local"))
+        paged = list(custom_url_client.paging.get_pages_partial_url("local"))
 
         assert len(paged) == 2
         assert paged[0].properties.id == 1
         assert paged[1].properties.id == 2
 
     def test_custom_url_get_pages_partial_url_operation(self, custom_url_client):
-        paged = list(custom_url_client.pagingcombineoperationfiles.get_pages_partial_url_operation("local"))
+        paged = list(custom_url_client.paging.get_pages_partial_url_operation("local"))
 
         assert len(paged) == 2
         assert paged[0].properties.id == 1

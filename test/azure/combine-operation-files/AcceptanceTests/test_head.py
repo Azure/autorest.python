@@ -67,7 +67,7 @@ class TestHead(object):
         with pytest.raises(ImportError):
             from headcombineoperationfiles.operations import _http_success_operations_py3
 
-        from headcombineoperationfiles.operations._http_success_operations import HttpSuccessOperations as HttpSuccessOperationsPy2
+        from headcombineoperationfiles.operations._combine_operations import HttpSuccessOperations as HttpSuccessOperationsPy2
         assert HttpSuccessOperations == HttpSuccessOperationsPy2
 
         from headexceptionscombineoperationfiles.operations import HeadExceptionOperations
@@ -75,5 +75,5 @@ class TestHead(object):
         with pytest.raises(ImportError):
             from headexceptionscombineoperationfiles.operations import _head_exception_operations_py3
 
-        from headexceptionscombineoperationfiles.operations._head_exception_operations import HeadExceptionOperations as HeadExceptionOperationsPy2
+        from headexceptionscombineoperationfiles.operations._combine_operations import HeadExceptionOperations as HeadExceptionOperationsPy2
         assert HeadExceptionOperations == HeadExceptionOperationsPy2
