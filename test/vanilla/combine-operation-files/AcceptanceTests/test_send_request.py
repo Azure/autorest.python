@@ -147,7 +147,7 @@ class TestSendRequest(object):
         assert response.status_code == 200
 
     def test_send_request_get_stream(self):
-        from bodyfile import AutoRestSwaggerBATFileService
+        from bodyfilecombineoperationfiles import AutoRestSwaggerBATFileService
 
         client = AutoRestSwaggerBATFileService(base_url="http://localhost:3000", connection_data_block_size=1000)
         file_length = 0
@@ -184,7 +184,7 @@ class TestSendRequest(object):
             assert sample_data == hash(file_handle.getvalue())
 
     def test_send_request_put_stream(self):
-        from bodyformdata import AutoRestSwaggerBATFormDataService
+        from bodyformdatacombineoperationfiles import AutoRestSwaggerBATFormDataService
 
         client = AutoRestSwaggerBATFormDataService(
             base_url="http://localhost:3000",
