@@ -57,25 +57,25 @@ class AutoRestAzureSpecialParametersTestClient(object):
     :vartype odata: azurespecialpropertiesversiontolerant.operations.OdataOperations
     :ivar header: HeaderOperations operations
     :vartype header: azurespecialpropertiesversiontolerant.operations.HeaderOperations
-    :param credential: Credential needed for the client to connect to Azure.
-    :type credential: ~azure.core.credentials.TokenCredential
     :param subscription_id: The subscription id, which appears in the path, always modeled in
      credentials. The value is always '1234-5678-9012-3456'.
     :type subscription_id: str
+    :param credential: Credential needed for the client to connect to Azure.
+    :type credential: ~azure.core.credentials.TokenCredential
     :keyword endpoint: Service URL
     :paramtype endpoint: str
     """
 
     def __init__(
         self,
-        credential,  # type: "TokenCredential"
         subscription_id,  # type: str
+        credential,  # type: "TokenCredential"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         endpoint = kwargs.pop("endpoint", "http://localhost:3000")  # type: str
 
-        self._config = AutoRestAzureSpecialParametersTestClientConfiguration(credential, subscription_id, **kwargs)
+        self._config = AutoRestAzureSpecialParametersTestClientConfiguration(subscription_id, credential, **kwargs)
         self._client = ARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()

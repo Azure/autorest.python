@@ -30,11 +30,11 @@ class StorageManagementClient:
     :vartype storage_accounts: storageversiontolerant.aio.operations.StorageAccountsOperations
     :ivar usage: UsageOperations operations
     :vartype usage: storageversiontolerant.aio.operations.UsageOperations
-    :param credential: Credential needed for the client to connect to Azure.
-    :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
      subscription. The subscription ID forms part of the URI for every service call.
     :type subscription_id: str
+    :param credential: Credential needed for the client to connect to Azure.
+    :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :keyword endpoint: Service URL
     :paramtype endpoint: str
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
@@ -43,13 +43,13 @@ class StorageManagementClient:
 
     def __init__(
         self,
-        credential: "AsyncTokenCredential",
         subscription_id: str,
+        credential: "AsyncTokenCredential",
         *,
         endpoint: str = "https://management.azure.com",
         **kwargs: Any
     ) -> None:
-        self._config = StorageManagementClientConfiguration(credential, subscription_id, **kwargs)
+        self._config = StorageManagementClientConfiguration(subscription_id, credential, **kwargs)
         self._client = AsyncARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()

@@ -17,7 +17,7 @@ from .operation_group import OperationGroup
 from .operation import Operation
 from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
-from .parameter import Parameter, ParameterLocation
+from .parameter import Parameter
 from .client import Client
 from .parameter_list import GlobalParameterList
 from .schema_response import SchemaResponse
@@ -143,26 +143,6 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         for schema in sorted(self.schemas.values(), key=lambda x: x.name.lower()):
             sorted_schemas.extend(CodeModel._sort_schemas_helper(schema, seen_schema_names, seen_schema_yaml_ids))
         self.sorted_schemas = sorted_schemas
-
-    def add_credential_global_parameter(self) -> None:
-        """Adds a `credential` global parameter.
-
-        :return: None
-        :rtype: None
-        """
-        credential_parameter = Parameter(
-            yaml_data={},
-            schema=self.credential_schema_policy.credential,
-            serialized_name="credential",
-            rest_api_name="credential",
-            implementation="Client",
-            description="Credential needed for the client to connect to Azure.",
-            required=True,
-            location=ParameterLocation.Other,
-            skip_url_encoding=True,
-            constraints=[],
-        )
-        self.global_parameters.insert(0, credential_parameter)
 
     def setup_client_input_parameters(self, yaml_data: Dict[str, Any]):
         dollar_host = [

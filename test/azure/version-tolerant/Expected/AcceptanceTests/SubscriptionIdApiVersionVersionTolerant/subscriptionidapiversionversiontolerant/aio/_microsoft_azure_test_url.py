@@ -28,23 +28,23 @@ class MicrosoftAzureTestUrl:
 
     :ivar group: GroupOperations operations
     :vartype group: subscriptionidapiversionversiontolerant.aio.operations.GroupOperations
-    :param credential: Credential needed for the client to connect to Azure.
-    :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param subscription_id: Subscription Id.
     :type subscription_id: str
+    :param credential: Credential needed for the client to connect to Azure.
+    :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :keyword endpoint: Service URL
     :paramtype endpoint: str
     """
 
     def __init__(
         self,
-        credential: "AsyncTokenCredential",
         subscription_id: str,
+        credential: "AsyncTokenCredential",
         *,
         endpoint: str = "http://localhost:3000",
         **kwargs: Any
     ) -> None:
-        self._config = MicrosoftAzureTestUrlConfiguration(credential, subscription_id, **kwargs)
+        self._config = MicrosoftAzureTestUrlConfiguration(subscription_id, credential, **kwargs)
         self._client = AsyncARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()

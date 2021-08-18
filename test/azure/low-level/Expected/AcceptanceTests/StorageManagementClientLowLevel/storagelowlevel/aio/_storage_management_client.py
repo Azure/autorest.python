@@ -25,24 +25,24 @@ if TYPE_CHECKING:
 class StorageManagementClient:
     """StorageManagementClient.
 
-    :param credential: Credential needed for the client to connect to Azure.
-    :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
      subscription. The subscription ID forms part of the URI for every service call.
     :type subscription_id: str
+    :param credential: Credential needed for the client to connect to Azure.
+    :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :keyword endpoint: Service URL
     :paramtype endpoint: str
     """
 
     def __init__(
         self,
-        credential: "AsyncTokenCredential",
         subscription_id: str,
+        credential: "AsyncTokenCredential",
         *,
         endpoint: str = "https://management.azure.com",
         **kwargs: Any
     ) -> None:
-        self._config = StorageManagementClientConfiguration(credential, subscription_id, **kwargs)
+        self._config = StorageManagementClientConfiguration(subscription_id, credential, **kwargs)
         self._client = AsyncARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()

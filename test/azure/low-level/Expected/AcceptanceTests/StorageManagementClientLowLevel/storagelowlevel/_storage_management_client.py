@@ -25,25 +25,25 @@ if TYPE_CHECKING:
 class StorageManagementClient(object):
     """StorageManagementClient.
 
-    :param credential: Credential needed for the client to connect to Azure.
-    :type credential: ~azure.core.credentials.TokenCredential
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
      subscription. The subscription ID forms part of the URI for every service call.
     :type subscription_id: str
+    :param credential: Credential needed for the client to connect to Azure.
+    :type credential: ~azure.core.credentials.TokenCredential
     :keyword endpoint: Service URL
     :paramtype endpoint: str
     """
 
     def __init__(
         self,
-        credential,  # type: "TokenCredential"
         subscription_id,  # type: str
+        credential,  # type: "TokenCredential"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         endpoint = kwargs.pop("endpoint", "https://management.azure.com")  # type: str
 
-        self._config = StorageManagementClientConfiguration(credential, subscription_id, **kwargs)
+        self._config = StorageManagementClientConfiguration(subscription_id, credential, **kwargs)
         self._client = ARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()

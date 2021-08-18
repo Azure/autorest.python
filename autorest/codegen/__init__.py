@@ -146,7 +146,7 @@ class CodeGenerator(Plugin):
         _build_convenience_layer(yaml_data=yaml_data, code_model=code_model)
 
         if options["credential"]:
-            code_model.add_credential_global_parameter()
+            code_model.global_parameters.add_credential_global_parameter()
 
         return code_model
 

@@ -364,6 +364,24 @@ class GlobalParameterList(ParameterList):
         )
         self.parameters.append(endpoint_param)
 
+    def add_credential_global_parameter(self) -> None:
+        credential_parameter = Parameter(
+            yaml_data={},
+            schema=self.code_model.credential_schema_policy.credential,
+            serialized_name="credential",
+            rest_api_name="credential",
+            implementation="Client",
+            description="Credential needed for the client to connect to Azure.",
+            required=True,
+            location=ParameterLocation.Other,
+            skip_url_encoding=True,
+            constraints=[],
+        )
+        if self.code_model.options["version_tolerant"] or self.code_model.options["low_level_client"]:
+            self.parameters.append(credential_parameter)
+        else:
+            self.parameters.insert(0, credential_parameter)
+
     @property
     def endpoint(self) -> Optional[Parameter]:
         try:
