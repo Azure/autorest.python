@@ -38,7 +38,7 @@ def client():
 
 @pytest.fixture
 def multi_client():
-    with AutoRestUrlMutliCollectionFormatTestService("http://localhost:3000") as client:
+    with AutoRestUrlMutliCollectionFormatTestService(endpoint="http://localhost:3000") as client:
         yield client
 
 @pytest.fixture
