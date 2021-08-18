@@ -34,7 +34,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 # fmt: off
 
-def build_upload_file_request(
+def build_formdata_upload_file_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -58,7 +58,7 @@ def build_upload_file_request(
     )
 
 
-def build_upload_file_via_body_request(
+def build_formdata_upload_file_via_body_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -82,7 +82,7 @@ def build_upload_file_via_body_request(
     )
 
 
-def build_upload_files_request(
+def build_formdata_upload_files_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -163,7 +163,7 @@ class FormdataOperations(object):
             "fileName": file_name,
         }
 
-        request = build_upload_file_request(
+        request = build_formdata_upload_file_request(
             content_type=content_type,
             files=files,
             data=data,
@@ -212,7 +212,7 @@ class FormdataOperations(object):
 
         content = file_content
 
-        request = build_upload_file_via_body_request(
+        request = build_formdata_upload_file_via_body_request(
             content_type=content_type,
             content=content,
             template_url=self.upload_file_via_body.metadata["url"],
@@ -265,7 +265,7 @@ class FormdataOperations(object):
             "fileContent": file_content,
         }
 
-        request = build_upload_files_request(
+        request = build_formdata_upload_files_request(
             content_type=content_type,
             files=files,
             data=data,

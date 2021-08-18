@@ -34,7 +34,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 # fmt: off
 
-def build_analyze_body_request(
+def build__analyze_body_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -58,7 +58,7 @@ def build_analyze_body_request(
     )
 
 
-def build_analyze_body_no_accept_header_request(
+def build__analyze_body_no_accept_header_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -80,7 +80,7 @@ def build_analyze_body_no_accept_header_request(
     )
 
 
-def build_content_type_with_encoding_request(
+def build__content_type_with_encoding_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -147,7 +147,7 @@ class MediaTypesClientOperationsMixin(object):
                 "['application/pdf', 'image/jpeg', 'image/png', 'image/tiff', 'application/json']".format(content_type)
             )
 
-        request = build_analyze_body_request(
+        request = build__analyze_body_request(
             content_type=content_type,
             json=json,
             content=content,
@@ -212,7 +212,7 @@ class MediaTypesClientOperationsMixin(object):
                 "['application/pdf', 'image/jpeg', 'image/png', 'image/tiff', 'application/json']".format(content_type)
             )
 
-        request = build_analyze_body_no_accept_header_request(
+        request = build__analyze_body_no_accept_header_request(
             content_type=content_type,
             json=json,
             content=content,
@@ -259,7 +259,7 @@ class MediaTypesClientOperationsMixin(object):
         else:
             content = None
 
-        request = build_content_type_with_encoding_request(
+        request = build__content_type_with_encoding_request(
             content_type=content_type,
             content=content,
             template_url=self.content_type_with_encoding.metadata["url"],

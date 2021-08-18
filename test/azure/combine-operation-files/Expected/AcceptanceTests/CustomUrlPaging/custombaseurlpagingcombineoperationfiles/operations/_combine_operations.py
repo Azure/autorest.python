@@ -36,7 +36,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 # fmt: off
 
-def build_get_pages_partial_url_request(
+def build_paging_get_pages_partial_url_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -56,7 +56,7 @@ def build_get_pages_partial_url_request(
     )
 
 
-def build_get_pages_partial_url_operation_request(
+def build_paging_get_pages_partial_url_operation_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -76,7 +76,7 @@ def build_get_pages_partial_url_operation_request(
     )
 
 
-def build_get_pages_partial_url_operation_next_request(
+def build_paging_get_pages_partial_url_operation_next_request(
     next_link,  # type: str
     **kwargs  # type: Any
 ):
@@ -151,7 +151,7 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_get_pages_partial_url_request(
+                request = build_paging_get_pages_partial_url_request(
                     template_url=self.get_pages_partial_url.metadata["url"],
                 )._to_pipeline_transport_request()
                 path_format_arguments = {
@@ -162,7 +162,7 @@ class PagingOperations(object):
 
             else:
 
-                request = build_get_pages_partial_url_request(
+                request = build_paging_get_pages_partial_url_request(
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 path_format_arguments = {
@@ -225,7 +225,7 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_get_pages_partial_url_operation_request(
+                request = build_paging_get_pages_partial_url_operation_request(
                     template_url=self.get_pages_partial_url_operation.metadata["url"],
                 )._to_pipeline_transport_request()
                 path_format_arguments = {
@@ -236,7 +236,7 @@ class PagingOperations(object):
 
             else:
 
-                request = build_get_pages_partial_url_operation_next_request(
+                request = build_paging_get_pages_partial_url_operation_next_request(
                     next_link=next_link,
                     template_url="/paging/customurl/{nextLink}",
                 )._to_pipeline_transport_request()

@@ -34,7 +34,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 # fmt: off
 
-def build_get_file_request(
+def build_files_get_file_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -54,7 +54,7 @@ def build_get_file_request(
     )
 
 
-def build_get_file_large_request(
+def build_files_get_file_large_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -74,7 +74,7 @@ def build_get_file_large_request(
     )
 
 
-def build_get_empty_file_request(
+def build_files_get_empty_file_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -134,7 +134,7 @@ class FilesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_file_request(
+        request = build_files_get_file_request(
             template_url=self.get_file.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -172,7 +172,7 @@ class FilesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_file_large_request(
+        request = build_files_get_file_large_request(
             template_url=self.get_file_large.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -210,7 +210,7 @@ class FilesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_empty_file_request(
+        request = build_files_get_empty_file_request(
             template_url=self.get_empty_file.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)

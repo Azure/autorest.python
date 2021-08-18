@@ -36,7 +36,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 # fmt: off
 
-def build_get_boolean_true_request(
+def build_paths_get_boolean_true_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -62,7 +62,7 @@ def build_get_boolean_true_request(
     )
 
 
-def build_get_boolean_false_request(
+def build_paths_get_boolean_false_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -88,7 +88,7 @@ def build_get_boolean_false_request(
     )
 
 
-def build_get_int_one_million_request(
+def build_paths_get_int_one_million_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -114,7 +114,7 @@ def build_get_int_one_million_request(
     )
 
 
-def build_get_int_negative_one_million_request(
+def build_paths_get_int_negative_one_million_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -140,7 +140,7 @@ def build_get_int_negative_one_million_request(
     )
 
 
-def build_get_ten_billion_request(
+def build_paths_get_ten_billion_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -166,7 +166,7 @@ def build_get_ten_billion_request(
     )
 
 
-def build_get_negative_ten_billion_request(
+def build_paths_get_negative_ten_billion_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -192,7 +192,7 @@ def build_get_negative_ten_billion_request(
     )
 
 
-def build_float_scientific_positive_request(
+def build_paths_float_scientific_positive_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -218,7 +218,7 @@ def build_float_scientific_positive_request(
     )
 
 
-def build_float_scientific_negative_request(
+def build_paths_float_scientific_negative_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -244,7 +244,7 @@ def build_float_scientific_negative_request(
     )
 
 
-def build_double_decimal_positive_request(
+def build_paths_double_decimal_positive_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -270,7 +270,7 @@ def build_double_decimal_positive_request(
     )
 
 
-def build_double_decimal_negative_request(
+def build_paths_double_decimal_negative_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -296,7 +296,7 @@ def build_double_decimal_negative_request(
     )
 
 
-def build_string_unicode_request(
+def build_paths_string_unicode_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -322,7 +322,7 @@ def build_string_unicode_request(
     )
 
 
-def build_string_url_encoded_request(
+def build_paths_string_url_encoded_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -348,7 +348,7 @@ def build_string_url_encoded_request(
     )
 
 
-def build_string_url_non_encoded_request(
+def build_paths_string_url_non_encoded_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -374,7 +374,7 @@ def build_string_url_non_encoded_request(
     )
 
 
-def build_string_empty_request(
+def build_paths_string_empty_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -400,7 +400,7 @@ def build_string_empty_request(
     )
 
 
-def build_string_null_request(
+def build_paths_string_null_request(
     string_path,  # type: str
     **kwargs  # type: Any
 ):
@@ -426,7 +426,7 @@ def build_string_null_request(
     )
 
 
-def build_enum_valid_request(
+def build_paths_enum_valid_request(
     enum_path,  # type: Union[str, "_models.UriColor"]
     **kwargs  # type: Any
 ):
@@ -452,7 +452,7 @@ def build_enum_valid_request(
     )
 
 
-def build_enum_null_request(
+def build_paths_enum_null_request(
     enum_path,  # type: Union[str, "_models.UriColor"]
     **kwargs  # type: Any
 ):
@@ -478,7 +478,7 @@ def build_enum_null_request(
     )
 
 
-def build_byte_multi_byte_request(
+def build_paths_byte_multi_byte_request(
     byte_path,  # type: bytearray
     **kwargs  # type: Any
 ):
@@ -504,7 +504,7 @@ def build_byte_multi_byte_request(
     )
 
 
-def build_byte_empty_request(
+def build_paths_byte_empty_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -530,7 +530,7 @@ def build_byte_empty_request(
     )
 
 
-def build_byte_null_request(
+def build_paths_byte_null_request(
     byte_path,  # type: bytearray
     **kwargs  # type: Any
 ):
@@ -556,7 +556,7 @@ def build_byte_null_request(
     )
 
 
-def build_date_valid_request(
+def build_paths_date_valid_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -582,7 +582,7 @@ def build_date_valid_request(
     )
 
 
-def build_date_null_request(
+def build_paths_date_null_request(
     date_path,  # type: datetime.date
     **kwargs  # type: Any
 ):
@@ -608,7 +608,7 @@ def build_date_null_request(
     )
 
 
-def build_date_time_valid_request(
+def build_paths_date_time_valid_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -634,7 +634,7 @@ def build_date_time_valid_request(
     )
 
 
-def build_date_time_null_request(
+def build_paths_date_time_null_request(
     date_time_path,  # type: datetime.datetime
     **kwargs  # type: Any
 ):
@@ -660,7 +660,7 @@ def build_date_time_null_request(
     )
 
 
-def build_base64_url_request(
+def build_paths_base64_url_request(
     base64_url_path,  # type: bytes
     **kwargs  # type: Any
 ):
@@ -686,7 +686,7 @@ def build_base64_url_request(
     )
 
 
-def build_array_csv_in_path_request(
+def build_paths_array_csv_in_path_request(
     array_path,  # type: List[str]
     **kwargs  # type: Any
 ):
@@ -712,7 +712,7 @@ def build_array_csv_in_path_request(
     )
 
 
-def build_unix_time_url_request(
+def build_paths_unix_time_url_request(
     unix_time_url_path,  # type: datetime.datetime
     **kwargs  # type: Any
 ):
@@ -738,7 +738,7 @@ def build_unix_time_url_request(
     )
 
 
-def build_get_boolean_true_request(
+def build_queries_get_boolean_true_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -764,7 +764,7 @@ def build_get_boolean_true_request(
     )
 
 
-def build_get_boolean_false_request(
+def build_queries_get_boolean_false_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -790,7 +790,7 @@ def build_get_boolean_false_request(
     )
 
 
-def build_get_boolean_null_request(
+def build_queries_get_boolean_null_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -818,7 +818,7 @@ def build_get_boolean_null_request(
     )
 
 
-def build_get_int_one_million_request(
+def build_queries_get_int_one_million_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -844,7 +844,7 @@ def build_get_int_one_million_request(
     )
 
 
-def build_get_int_negative_one_million_request(
+def build_queries_get_int_negative_one_million_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -870,7 +870,7 @@ def build_get_int_negative_one_million_request(
     )
 
 
-def build_get_int_null_request(
+def build_queries_get_int_null_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -898,7 +898,7 @@ def build_get_int_null_request(
     )
 
 
-def build_get_ten_billion_request(
+def build_queries_get_ten_billion_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -924,7 +924,7 @@ def build_get_ten_billion_request(
     )
 
 
-def build_get_negative_ten_billion_request(
+def build_queries_get_negative_ten_billion_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -950,7 +950,7 @@ def build_get_negative_ten_billion_request(
     )
 
 
-def build_get_long_null_request(
+def build_queries_get_long_null_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -978,7 +978,7 @@ def build_get_long_null_request(
     )
 
 
-def build_float_scientific_positive_request(
+def build_queries_float_scientific_positive_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1004,7 +1004,7 @@ def build_float_scientific_positive_request(
     )
 
 
-def build_float_scientific_negative_request(
+def build_queries_float_scientific_negative_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1030,7 +1030,7 @@ def build_float_scientific_negative_request(
     )
 
 
-def build_float_null_request(
+def build_queries_float_null_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1058,7 +1058,7 @@ def build_float_null_request(
     )
 
 
-def build_double_decimal_positive_request(
+def build_queries_double_decimal_positive_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1084,7 +1084,7 @@ def build_double_decimal_positive_request(
     )
 
 
-def build_double_decimal_negative_request(
+def build_queries_double_decimal_negative_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1110,7 +1110,7 @@ def build_double_decimal_negative_request(
     )
 
 
-def build_double_null_request(
+def build_queries_double_null_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1138,7 +1138,7 @@ def build_double_null_request(
     )
 
 
-def build_string_unicode_request(
+def build_queries_string_unicode_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1164,7 +1164,7 @@ def build_string_unicode_request(
     )
 
 
-def build_string_url_encoded_request(
+def build_queries_string_url_encoded_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1190,7 +1190,7 @@ def build_string_url_encoded_request(
     )
 
 
-def build_string_empty_request(
+def build_queries_string_empty_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1216,7 +1216,7 @@ def build_string_empty_request(
     )
 
 
-def build_string_null_request(
+def build_queries_string_null_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1244,7 +1244,7 @@ def build_string_null_request(
     )
 
 
-def build_enum_valid_request(
+def build_queries_enum_valid_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1272,7 +1272,7 @@ def build_enum_valid_request(
     )
 
 
-def build_enum_null_request(
+def build_queries_enum_null_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1300,7 +1300,7 @@ def build_enum_null_request(
     )
 
 
-def build_byte_multi_byte_request(
+def build_queries_byte_multi_byte_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1328,7 +1328,7 @@ def build_byte_multi_byte_request(
     )
 
 
-def build_byte_empty_request(
+def build_queries_byte_empty_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1354,7 +1354,7 @@ def build_byte_empty_request(
     )
 
 
-def build_byte_null_request(
+def build_queries_byte_null_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1382,7 +1382,7 @@ def build_byte_null_request(
     )
 
 
-def build_date_valid_request(
+def build_queries_date_valid_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1408,7 +1408,7 @@ def build_date_valid_request(
     )
 
 
-def build_date_null_request(
+def build_queries_date_null_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1436,7 +1436,7 @@ def build_date_null_request(
     )
 
 
-def build_date_time_valid_request(
+def build_queries_date_time_valid_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1462,7 +1462,7 @@ def build_date_time_valid_request(
     )
 
 
-def build_date_time_null_request(
+def build_queries_date_time_null_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1490,7 +1490,7 @@ def build_date_time_null_request(
     )
 
 
-def build_array_string_csv_valid_request(
+def build_queries_array_string_csv_valid_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1518,7 +1518,7 @@ def build_array_string_csv_valid_request(
     )
 
 
-def build_array_string_csv_null_request(
+def build_queries_array_string_csv_null_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1546,7 +1546,7 @@ def build_array_string_csv_null_request(
     )
 
 
-def build_array_string_csv_empty_request(
+def build_queries_array_string_csv_empty_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1574,7 +1574,7 @@ def build_array_string_csv_empty_request(
     )
 
 
-def build_array_string_no_collection_format_empty_request(
+def build_queries_array_string_no_collection_format_empty_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1602,7 +1602,7 @@ def build_array_string_no_collection_format_empty_request(
     )
 
 
-def build_array_string_ssv_valid_request(
+def build_queries_array_string_ssv_valid_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1630,7 +1630,7 @@ def build_array_string_ssv_valid_request(
     )
 
 
-def build_array_string_tsv_valid_request(
+def build_queries_array_string_tsv_valid_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1658,7 +1658,7 @@ def build_array_string_tsv_valid_request(
     )
 
 
-def build_array_string_pipes_valid_request(
+def build_queries_array_string_pipes_valid_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1686,7 +1686,7 @@ def build_array_string_pipes_valid_request(
     )
 
 
-def build_get_all_with_values_request(
+def build_path_items_get_all_with_values_request(
     path_item_string_path,  # type: str
     global_string_path,  # type: str
     local_string_path,  # type: str
@@ -1730,7 +1730,7 @@ def build_get_all_with_values_request(
     )
 
 
-def build_get_global_query_null_request(
+def build_path_items_get_global_query_null_request(
     path_item_string_path,  # type: str
     global_string_path,  # type: str
     local_string_path,  # type: str
@@ -1774,7 +1774,7 @@ def build_get_global_query_null_request(
     )
 
 
-def build_get_global_and_local_query_null_request(
+def build_path_items_get_global_and_local_query_null_request(
     path_item_string_path,  # type: str
     global_string_path,  # type: str
     local_string_path,  # type: str
@@ -1818,7 +1818,7 @@ def build_get_global_and_local_query_null_request(
     )
 
 
-def build_get_local_path_item_query_null_request(
+def build_path_items_get_local_path_item_query_null_request(
     path_item_string_path,  # type: str
     global_string_path,  # type: str
     local_string_path,  # type: str
@@ -1902,7 +1902,7 @@ class PathsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_boolean_true_request(
+        request = build_paths_get_boolean_true_request(
             template_url=self.get_boolean_true.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -1936,7 +1936,7 @@ class PathsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_boolean_false_request(
+        request = build_paths_get_boolean_false_request(
             template_url=self.get_boolean_false.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -1970,7 +1970,7 @@ class PathsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_int_one_million_request(
+        request = build_paths_get_int_one_million_request(
             template_url=self.get_int_one_million.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -2004,7 +2004,7 @@ class PathsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_int_negative_one_million_request(
+        request = build_paths_get_int_negative_one_million_request(
             template_url=self.get_int_negative_one_million.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -2038,7 +2038,7 @@ class PathsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_ten_billion_request(
+        request = build_paths_get_ten_billion_request(
             template_url=self.get_ten_billion.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -2072,7 +2072,7 @@ class PathsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_negative_ten_billion_request(
+        request = build_paths_get_negative_ten_billion_request(
             template_url=self.get_negative_ten_billion.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -2106,7 +2106,7 @@ class PathsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_float_scientific_positive_request(
+        request = build_paths_float_scientific_positive_request(
             template_url=self.float_scientific_positive.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -2140,7 +2140,7 @@ class PathsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_float_scientific_negative_request(
+        request = build_paths_float_scientific_negative_request(
             template_url=self.float_scientific_negative.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -2174,7 +2174,7 @@ class PathsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_double_decimal_positive_request(
+        request = build_paths_double_decimal_positive_request(
             template_url=self.double_decimal_positive.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -2208,7 +2208,7 @@ class PathsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_double_decimal_negative_request(
+        request = build_paths_double_decimal_negative_request(
             template_url=self.double_decimal_negative.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -2242,7 +2242,7 @@ class PathsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_string_unicode_request(
+        request = build_paths_string_unicode_request(
             template_url=self.string_unicode.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -2276,7 +2276,7 @@ class PathsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_string_url_encoded_request(
+        request = build_paths_string_url_encoded_request(
             template_url=self.string_url_encoded.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -2312,7 +2312,7 @@ class PathsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_string_url_non_encoded_request(
+        request = build_paths_string_url_non_encoded_request(
             template_url=self.string_url_non_encoded.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -2346,7 +2346,7 @@ class PathsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_string_empty_request(
+        request = build_paths_string_empty_request(
             template_url=self.string_empty.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -2384,7 +2384,7 @@ class PathsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_string_null_request(
+        request = build_paths_string_null_request(
             string_path=string_path,
             template_url=self.string_null.metadata["url"],
         )._to_pipeline_transport_request()
@@ -2423,7 +2423,7 @@ class PathsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_enum_valid_request(
+        request = build_paths_enum_valid_request(
             enum_path=enum_path,
             template_url=self.enum_valid.metadata["url"],
         )._to_pipeline_transport_request()
@@ -2462,7 +2462,7 @@ class PathsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_enum_null_request(
+        request = build_paths_enum_null_request(
             enum_path=enum_path,
             template_url=self.enum_null.metadata["url"],
         )._to_pipeline_transport_request()
@@ -2501,7 +2501,7 @@ class PathsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_byte_multi_byte_request(
+        request = build_paths_byte_multi_byte_request(
             byte_path=byte_path,
             template_url=self.byte_multi_byte.metadata["url"],
         )._to_pipeline_transport_request()
@@ -2536,7 +2536,7 @@ class PathsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_byte_empty_request(
+        request = build_paths_byte_empty_request(
             template_url=self.byte_empty.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -2574,7 +2574,7 @@ class PathsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_byte_null_request(
+        request = build_paths_byte_null_request(
             byte_path=byte_path,
             template_url=self.byte_null.metadata["url"],
         )._to_pipeline_transport_request()
@@ -2609,7 +2609,7 @@ class PathsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_date_valid_request(
+        request = build_paths_date_valid_request(
             template_url=self.date_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -2648,7 +2648,7 @@ class PathsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_date_null_request(
+        request = build_paths_date_null_request(
             date_path=date_path,
             template_url=self.date_null.metadata["url"],
         )._to_pipeline_transport_request()
@@ -2683,7 +2683,7 @@ class PathsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_date_time_valid_request(
+        request = build_paths_date_time_valid_request(
             template_url=self.date_time_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -2721,7 +2721,7 @@ class PathsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_date_time_null_request(
+        request = build_paths_date_time_null_request(
             date_time_path=date_time_path,
             template_url=self.date_time_null.metadata["url"],
         )._to_pipeline_transport_request()
@@ -2760,7 +2760,7 @@ class PathsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_base64_url_request(
+        request = build_paths_base64_url_request(
             base64_url_path=base64_url_path,
             template_url=self.base64_url.metadata["url"],
         )._to_pipeline_transport_request()
@@ -2801,7 +2801,7 @@ class PathsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_csv_in_path_request(
+        request = build_paths_array_csv_in_path_request(
             array_path=array_path,
             template_url=self.array_csv_in_path.metadata["url"],
         )._to_pipeline_transport_request()
@@ -2840,7 +2840,7 @@ class PathsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_unix_time_url_request(
+        request = build_paths_unix_time_url_request(
             unix_time_url_path=unix_time_url_path,
             template_url=self.unix_time_url.metadata["url"],
         )._to_pipeline_transport_request()
@@ -2898,7 +2898,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_boolean_true_request(
+        request = build_queries_get_boolean_true_request(
             template_url=self.get_boolean_true.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -2932,7 +2932,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_boolean_false_request(
+        request = build_queries_get_boolean_false_request(
             template_url=self.get_boolean_false.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -2970,7 +2970,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_boolean_null_request(
+        request = build_queries_get_boolean_null_request(
             bool_query=bool_query,
             template_url=self.get_boolean_null.metadata["url"],
         )._to_pipeline_transport_request()
@@ -3005,7 +3005,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_int_one_million_request(
+        request = build_queries_get_int_one_million_request(
             template_url=self.get_int_one_million.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -3039,7 +3039,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_int_negative_one_million_request(
+        request = build_queries_get_int_negative_one_million_request(
             template_url=self.get_int_negative_one_million.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -3077,7 +3077,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_int_null_request(
+        request = build_queries_get_int_null_request(
             int_query=int_query,
             template_url=self.get_int_null.metadata["url"],
         )._to_pipeline_transport_request()
@@ -3112,7 +3112,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_ten_billion_request(
+        request = build_queries_get_ten_billion_request(
             template_url=self.get_ten_billion.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -3146,7 +3146,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_negative_ten_billion_request(
+        request = build_queries_get_negative_ten_billion_request(
             template_url=self.get_negative_ten_billion.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -3184,7 +3184,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_long_null_request(
+        request = build_queries_get_long_null_request(
             long_query=long_query,
             template_url=self.get_long_null.metadata["url"],
         )._to_pipeline_transport_request()
@@ -3219,7 +3219,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_float_scientific_positive_request(
+        request = build_queries_float_scientific_positive_request(
             template_url=self.float_scientific_positive.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -3253,7 +3253,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_float_scientific_negative_request(
+        request = build_queries_float_scientific_negative_request(
             template_url=self.float_scientific_negative.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -3291,7 +3291,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_float_null_request(
+        request = build_queries_float_null_request(
             float_query=float_query,
             template_url=self.float_null.metadata["url"],
         )._to_pipeline_transport_request()
@@ -3326,7 +3326,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_double_decimal_positive_request(
+        request = build_queries_double_decimal_positive_request(
             template_url=self.double_decimal_positive.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -3360,7 +3360,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_double_decimal_negative_request(
+        request = build_queries_double_decimal_negative_request(
             template_url=self.double_decimal_negative.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -3398,7 +3398,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_double_null_request(
+        request = build_queries_double_null_request(
             double_query=double_query,
             template_url=self.double_null.metadata["url"],
         )._to_pipeline_transport_request()
@@ -3433,7 +3433,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_string_unicode_request(
+        request = build_queries_string_unicode_request(
             template_url=self.string_unicode.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -3467,7 +3467,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_string_url_encoded_request(
+        request = build_queries_string_url_encoded_request(
             template_url=self.string_url_encoded.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -3501,7 +3501,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_string_empty_request(
+        request = build_queries_string_empty_request(
             template_url=self.string_empty.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -3539,7 +3539,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_string_null_request(
+        request = build_queries_string_null_request(
             string_query=string_query,
             template_url=self.string_null.metadata["url"],
         )._to_pipeline_transport_request()
@@ -3578,7 +3578,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_enum_valid_request(
+        request = build_queries_enum_valid_request(
             enum_query=enum_query,
             template_url=self.enum_valid.metadata["url"],
         )._to_pipeline_transport_request()
@@ -3617,7 +3617,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_enum_null_request(
+        request = build_queries_enum_null_request(
             enum_query=enum_query,
             template_url=self.enum_null.metadata["url"],
         )._to_pipeline_transport_request()
@@ -3656,7 +3656,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_byte_multi_byte_request(
+        request = build_queries_byte_multi_byte_request(
             byte_query=byte_query,
             template_url=self.byte_multi_byte.metadata["url"],
         )._to_pipeline_transport_request()
@@ -3691,7 +3691,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_byte_empty_request(
+        request = build_queries_byte_empty_request(
             template_url=self.byte_empty.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -3729,7 +3729,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_byte_null_request(
+        request = build_queries_byte_null_request(
             byte_query=byte_query,
             template_url=self.byte_null.metadata["url"],
         )._to_pipeline_transport_request()
@@ -3764,7 +3764,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_date_valid_request(
+        request = build_queries_date_valid_request(
             template_url=self.date_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -3802,7 +3802,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_date_null_request(
+        request = build_queries_date_null_request(
             date_query=date_query,
             template_url=self.date_null.metadata["url"],
         )._to_pipeline_transport_request()
@@ -3837,7 +3837,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_date_time_valid_request(
+        request = build_queries_date_time_valid_request(
             template_url=self.date_time_valid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -3875,7 +3875,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_date_time_null_request(
+        request = build_queries_date_time_null_request(
             date_time_query=date_time_query,
             template_url=self.date_time_null.metadata["url"],
         )._to_pipeline_transport_request()
@@ -3916,7 +3916,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_string_csv_valid_request(
+        request = build_queries_array_string_csv_valid_request(
             array_query=array_query,
             template_url=self.array_string_csv_valid.metadata["url"],
         )._to_pipeline_transport_request()
@@ -3955,7 +3955,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_string_csv_null_request(
+        request = build_queries_array_string_csv_null_request(
             array_query=array_query,
             template_url=self.array_string_csv_null.metadata["url"],
         )._to_pipeline_transport_request()
@@ -3994,7 +3994,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_string_csv_empty_request(
+        request = build_queries_array_string_csv_empty_request(
             array_query=array_query,
             template_url=self.array_string_csv_empty.metadata["url"],
         )._to_pipeline_transport_request()
@@ -4034,7 +4034,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_string_no_collection_format_empty_request(
+        request = build_queries_array_string_no_collection_format_empty_request(
             array_query=array_query,
             template_url=self.array_string_no_collection_format_empty.metadata["url"],
         )._to_pipeline_transport_request()
@@ -4075,7 +4075,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_string_ssv_valid_request(
+        request = build_queries_array_string_ssv_valid_request(
             array_query=array_query,
             template_url=self.array_string_ssv_valid.metadata["url"],
         )._to_pipeline_transport_request()
@@ -4116,7 +4116,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_string_tsv_valid_request(
+        request = build_queries_array_string_tsv_valid_request(
             array_query=array_query,
             template_url=self.array_string_tsv_valid.metadata["url"],
         )._to_pipeline_transport_request()
@@ -4157,7 +4157,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_string_pipes_valid_request(
+        request = build_queries_array_string_pipes_valid_request(
             array_query=array_query,
             template_url=self.array_string_pipes_valid.metadata["url"],
         )._to_pipeline_transport_request()
@@ -4231,7 +4231,7 @@ class PathItemsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_all_with_values_request(
+        request = build_path_items_get_all_with_values_request(
             path_item_string_path=path_item_string_path,
             global_string_path=self._config.global_string_path,
             local_string_path=local_string_path,
@@ -4287,7 +4287,7 @@ class PathItemsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_global_query_null_request(
+        request = build_path_items_get_global_query_null_request(
             path_item_string_path=path_item_string_path,
             global_string_path=self._config.global_string_path,
             local_string_path=local_string_path,
@@ -4343,7 +4343,7 @@ class PathItemsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_global_and_local_query_null_request(
+        request = build_path_items_get_global_and_local_query_null_request(
             path_item_string_path=path_item_string_path,
             global_string_path=self._config.global_string_path,
             local_string_path=local_string_path,
@@ -4398,7 +4398,7 @@ class PathItemsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_local_path_item_query_null_request(
+        request = build_path_items_get_local_path_item_query_null_request(
             path_item_string_path=path_item_string_path,
             global_string_path=self._config.global_string_path,
             local_string_path=local_string_path,

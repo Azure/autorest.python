@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ...operations._combine_operations import build_get_request, build_put_request
+from ...operations._combine_operations import build_int_get_request, build_int_put_request
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -68,7 +68,7 @@ class IntOperations:
         else:
             json = None
 
-        request = build_put_request(
+        request = build_int_put_request(
             content_type=content_type,
             json=json,
             template_url=self.put.metadata["url"],
@@ -106,7 +106,7 @@ class IntOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_request(
+        request = build_int_get_request(
             template_url=self.get.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -170,7 +170,7 @@ class FloatOperations:
         else:
             json = None
 
-        request = build_put_request(
+        request = build_float_put_request(
             content_type=content_type,
             json=json,
             template_url=self.put.metadata["url"],
@@ -208,7 +208,7 @@ class FloatOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_request(
+        request = build_float_get_request(
             template_url=self.get.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)

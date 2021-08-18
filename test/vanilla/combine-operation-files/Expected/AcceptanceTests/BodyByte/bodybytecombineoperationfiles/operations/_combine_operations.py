@@ -34,7 +34,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 # fmt: off
 
-def build_get_null_request(
+def build_byte_get_null_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -54,7 +54,7 @@ def build_get_null_request(
     )
 
 
-def build_get_empty_request(
+def build_byte_get_empty_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -74,7 +74,7 @@ def build_get_empty_request(
     )
 
 
-def build_get_non_ascii_request(
+def build_byte_get_non_ascii_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -94,7 +94,7 @@ def build_get_non_ascii_request(
     )
 
 
-def build_put_non_ascii_request(
+def build_byte_put_non_ascii_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -118,7 +118,7 @@ def build_put_non_ascii_request(
     )
 
 
-def build_get_invalid_request(
+def build_byte_get_invalid_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -178,7 +178,7 @@ class ByteOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_null_request(
+        request = build_byte_get_null_request(
             template_url=self.get_null.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -216,7 +216,7 @@ class ByteOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_empty_request(
+        request = build_byte_get_empty_request(
             template_url=self.get_empty.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -254,7 +254,7 @@ class ByteOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_non_ascii_request(
+        request = build_byte_get_non_ascii_request(
             template_url=self.get_non_ascii.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -300,7 +300,7 @@ class ByteOperations(object):
 
         json = self._serialize.body(byte_body, "bytearray")
 
-        request = build_put_non_ascii_request(
+        request = build_byte_put_non_ascii_request(
             content_type=content_type,
             json=json,
             template_url=self.put_non_ascii.metadata["url"],
@@ -336,7 +336,7 @@ class ByteOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_invalid_request(
+        request = build_byte_get_invalid_request(
             template_url=self.get_invalid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)

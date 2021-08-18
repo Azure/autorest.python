@@ -35,7 +35,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 # fmt: off
 
-def build_get_pet_by_id_request(
+def build_pet_get_pet_by_id_request(
     pet_id,  # type: str
     **kwargs  # type: Any
 ):
@@ -61,7 +61,7 @@ def build_get_pet_by_id_request(
     )
 
 
-def build_do_something_request(
+def build_pet_do_something_request(
     what_action,  # type: str
     **kwargs  # type: Any
 ):
@@ -87,7 +87,7 @@ def build_do_something_request(
     )
 
 
-def build_has_models_param_request(
+def build_pet_has_models_param_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -167,7 +167,7 @@ class PetOperations(object):
         }
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_pet_by_id_request(
+        request = build_pet_get_pet_by_id_request(
             pet_id=pet_id,
             template_url=self.get_pet_by_id.metadata["url"],
         )._to_pipeline_transport_request()
@@ -218,7 +218,7 @@ class PetOperations(object):
         }
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_do_something_request(
+        request = build_pet_do_something_request(
             what_action=what_action,
             template_url=self.do_something.metadata["url"],
         )._to_pipeline_transport_request()
@@ -270,7 +270,7 @@ class PetOperations(object):
         }
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_has_models_param_request(
+        request = build_pet_has_models_param_request(
             models=models,
             template_url=self.has_models_param.metadata["url"],
         )._to_pipeline_transport_request()

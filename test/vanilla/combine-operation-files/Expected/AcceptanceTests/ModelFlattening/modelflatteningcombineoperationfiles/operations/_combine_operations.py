@@ -35,7 +35,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 # fmt: off
 
-def build_put_array_request(
+def build__put_array_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -59,7 +59,7 @@ def build_put_array_request(
     )
 
 
-def build_get_array_request(
+def build__get_array_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -79,7 +79,7 @@ def build_get_array_request(
     )
 
 
-def build_put_wrapped_array_request(
+def build__put_wrapped_array_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -103,7 +103,7 @@ def build_put_wrapped_array_request(
     )
 
 
-def build_get_wrapped_array_request(
+def build__get_wrapped_array_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -123,7 +123,7 @@ def build_get_wrapped_array_request(
     )
 
 
-def build_put_dictionary_request(
+def build__put_dictionary_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -147,7 +147,7 @@ def build_put_dictionary_request(
     )
 
 
-def build_get_dictionary_request(
+def build__get_dictionary_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -167,7 +167,7 @@ def build_get_dictionary_request(
     )
 
 
-def build_put_resource_collection_request(
+def build__put_resource_collection_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -191,7 +191,7 @@ def build_put_resource_collection_request(
     )
 
 
-def build_get_resource_collection_request(
+def build__get_resource_collection_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -211,7 +211,7 @@ def build_get_resource_collection_request(
     )
 
 
-def build_put_simple_product_request(
+def build__put_simple_product_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -235,7 +235,7 @@ def build_put_simple_product_request(
     )
 
 
-def build_post_flattened_simple_product_request(
+def build__post_flattened_simple_product_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -259,7 +259,7 @@ def build_post_flattened_simple_product_request(
     )
 
 
-def build_put_simple_product_with_grouping_request(
+def build__put_simple_product_with_grouping_request(
     name,  # type: str
     **kwargs  # type: Any
 ):
@@ -319,7 +319,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         else:
             json = None
 
-        request = build_put_array_request(
+        request = build__put_array_request(
             content_type=content_type,
             json=json,
             template_url=self.put_array.metadata["url"],
@@ -355,7 +355,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_array_request(
+        request = build__get_array_request(
             template_url=self.get_array.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -405,7 +405,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         else:
             json = None
 
-        request = build_put_wrapped_array_request(
+        request = build__put_wrapped_array_request(
             content_type=content_type,
             json=json,
             template_url=self.put_wrapped_array.metadata["url"],
@@ -442,7 +442,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_wrapped_array_request(
+        request = build__get_wrapped_array_request(
             template_url=self.get_wrapped_array.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -492,7 +492,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         else:
             json = None
 
-        request = build_put_dictionary_request(
+        request = build__put_dictionary_request(
             content_type=content_type,
             json=json,
             template_url=self.put_dictionary.metadata["url"],
@@ -528,7 +528,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_dictionary_request(
+        request = build__get_dictionary_request(
             template_url=self.get_dictionary.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -577,7 +577,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         else:
             json = None
 
-        request = build_put_resource_collection_request(
+        request = build__put_resource_collection_request(
             content_type=content_type,
             json=json,
             template_url=self.put_resource_collection.metadata["url"],
@@ -613,7 +613,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_resource_collection_request(
+        request = build__get_resource_collection_request(
             template_url=self.get_resource_collection.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -662,7 +662,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         else:
             json = None
 
-        request = build_put_simple_product_request(
+        request = build__put_simple_product_request(
             content_type=content_type,
             json=json,
             template_url=self.put_simple_product.metadata["url"],
@@ -738,7 +738,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         else:
             json = None
 
-        request = build_post_flattened_simple_product_request(
+        request = build__post_flattened_simple_product_request(
             content_type=content_type,
             json=json,
             template_url=self.post_flattened_simple_product.metadata["url"],
@@ -815,7 +815,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         else:
             json = None
 
-        request = build_put_simple_product_with_grouping_request(
+        request = build__put_simple_product_with_grouping_request(
             name=_name,
             content_type=content_type,
             json=json,

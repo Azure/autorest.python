@@ -32,7 +32,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 # fmt: off
 
-def build_operation_one_request(
+def build_import_builders_operation_one_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -99,7 +99,7 @@ class ImportOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_operation_one_request(
+        request = build_import_builders_operation_one_request(
             parameter1=parameter1,
             template_url=self.operation_one.metadata["url"],
         )._to_pipeline_transport_request()

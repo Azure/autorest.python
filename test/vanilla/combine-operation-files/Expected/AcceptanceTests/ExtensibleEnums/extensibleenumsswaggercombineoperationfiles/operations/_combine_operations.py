@@ -35,7 +35,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 # fmt: off
 
-def build_get_by_pet_id_request(
+def build_pet_get_by_pet_id_request(
     pet_id,  # type: str
     **kwargs  # type: Any
 ):
@@ -61,7 +61,7 @@ def build_get_by_pet_id_request(
     )
 
 
-def build_add_pet_request(
+def build_pet_add_pet_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -129,7 +129,7 @@ class PetOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_by_pet_id_request(
+        request = build_pet_get_by_pet_id_request(
             pet_id=pet_id,
             template_url=self.get_by_pet_id.metadata["url"],
         )._to_pipeline_transport_request()
@@ -178,7 +178,7 @@ class PetOperations(object):
         else:
             json = None
 
-        request = build_add_pet_request(
+        request = build_pet_add_pet_request(
             content_type=content_type,
             json=json,
             template_url=self.add_pet.metadata["url"],

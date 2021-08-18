@@ -27,9 +27,9 @@ from msrest import Serializer
 
 from ... import models as _models
 from ...operations._combine_operations import (
-    build_get_pages_partial_url_operation_next_request,
-    build_get_pages_partial_url_operation_request,
-    build_get_pages_partial_url_request,
+    build_paging_get_pages_partial_url_operation_next_request,
+    build_paging_get_pages_partial_url_operation_request,
+    build_paging_get_pages_partial_url_request,
 )
 
 T = TypeVar("T")
@@ -78,7 +78,7 @@ class PagingOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_get_pages_partial_url_request(
+                request = build_paging_get_pages_partial_url_request(
                     template_url=self.get_pages_partial_url.metadata["url"],
                 )._to_pipeline_transport_request()
                 path_format_arguments = {
@@ -89,7 +89,7 @@ class PagingOperations:
 
             else:
 
-                request = build_get_pages_partial_url_request(
+                request = build_paging_get_pages_partial_url_request(
                     template_url=next_link,
                 )._to_pipeline_transport_request()
                 path_format_arguments = {
@@ -149,7 +149,7 @@ class PagingOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_get_pages_partial_url_operation_request(
+                request = build_paging_get_pages_partial_url_operation_request(
                     template_url=self.get_pages_partial_url_operation.metadata["url"],
                 )._to_pipeline_transport_request()
                 path_format_arguments = {
@@ -160,7 +160,7 @@ class PagingOperations:
 
             else:
 
-                request = build_get_pages_partial_url_operation_next_request(
+                request = build_paging_get_pages_partial_url_operation_next_request(
                     next_link=next_link,
                     template_url="/paging/customurl/{nextLink}",
                 )._to_pipeline_transport_request()

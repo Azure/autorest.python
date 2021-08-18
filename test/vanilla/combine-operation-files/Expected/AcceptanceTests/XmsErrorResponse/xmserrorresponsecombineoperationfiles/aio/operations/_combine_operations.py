@@ -23,9 +23,9 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
 from ...operations._combine_operations import (
-    build_do_something_request,
-    build_get_pet_by_id_request,
-    build_has_models_param_request,
+    build_pet_do_something_request,
+    build_pet_get_pet_by_id_request,
+    build_pet_has_models_param_request,
 )
 
 T = TypeVar("T")
@@ -77,7 +77,7 @@ class PetOperations:
         }
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_pet_by_id_request(
+        request = build_pet_get_pet_by_id_request(
             pet_id=pet_id,
             template_url=self.get_pet_by_id.metadata["url"],
         )._to_pipeline_transport_request()
@@ -125,7 +125,7 @@ class PetOperations:
         }
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_do_something_request(
+        request = build_pet_do_something_request(
             what_action=what_action,
             template_url=self.do_something.metadata["url"],
         )._to_pipeline_transport_request()
@@ -174,7 +174,7 @@ class PetOperations:
         }
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_has_models_param_request(
+        request = build_pet_has_models_param_request(
             models=models,
             template_url=self.has_models_param.metadata["url"],
         )._to_pipeline_transport_request()

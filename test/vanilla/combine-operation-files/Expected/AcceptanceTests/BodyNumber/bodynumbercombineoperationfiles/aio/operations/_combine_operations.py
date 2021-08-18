@@ -23,30 +23,30 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
 from ...operations._combine_operations import (
-    build_get_big_decimal_negative_decimal_request,
-    build_get_big_decimal_positive_decimal_request,
-    build_get_big_decimal_request,
-    build_get_big_double_negative_decimal_request,
-    build_get_big_double_positive_decimal_request,
-    build_get_big_double_request,
-    build_get_big_float_request,
-    build_get_invalid_decimal_request,
-    build_get_invalid_double_request,
-    build_get_invalid_float_request,
-    build_get_null_request,
-    build_get_small_decimal_request,
-    build_get_small_double_request,
-    build_get_small_float_request,
-    build_put_big_decimal_negative_decimal_request,
-    build_put_big_decimal_positive_decimal_request,
-    build_put_big_decimal_request,
-    build_put_big_double_negative_decimal_request,
-    build_put_big_double_positive_decimal_request,
-    build_put_big_double_request,
-    build_put_big_float_request,
-    build_put_small_decimal_request,
-    build_put_small_double_request,
-    build_put_small_float_request,
+    build_number_get_big_decimal_negative_decimal_request,
+    build_number_get_big_decimal_positive_decimal_request,
+    build_number_get_big_decimal_request,
+    build_number_get_big_double_negative_decimal_request,
+    build_number_get_big_double_positive_decimal_request,
+    build_number_get_big_double_request,
+    build_number_get_big_float_request,
+    build_number_get_invalid_decimal_request,
+    build_number_get_invalid_double_request,
+    build_number_get_invalid_float_request,
+    build_number_get_null_request,
+    build_number_get_small_decimal_request,
+    build_number_get_small_double_request,
+    build_number_get_small_float_request,
+    build_number_put_big_decimal_negative_decimal_request,
+    build_number_put_big_decimal_positive_decimal_request,
+    build_number_put_big_decimal_request,
+    build_number_put_big_double_negative_decimal_request,
+    build_number_put_big_double_positive_decimal_request,
+    build_number_put_big_double_request,
+    build_number_put_big_float_request,
+    build_number_put_small_decimal_request,
+    build_number_put_small_double_request,
+    build_number_put_small_float_request,
 )
 
 T = TypeVar("T")
@@ -88,7 +88,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_null_request(
+        request = build_number_get_null_request(
             template_url=self.get_null.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -125,7 +125,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_invalid_float_request(
+        request = build_number_get_invalid_float_request(
             template_url=self.get_invalid_float.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -162,7 +162,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_invalid_double_request(
+        request = build_number_get_invalid_double_request(
             template_url=self.get_invalid_double.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -199,7 +199,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_invalid_decimal_request(
+        request = build_number_get_invalid_decimal_request(
             template_url=self.get_invalid_decimal.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -242,7 +242,7 @@ class NumberOperations:
 
         json = self._serialize.body(number_body, "float")
 
-        request = build_put_big_float_request(
+        request = build_number_put_big_float_request(
             content_type=content_type,
             json=json,
             template_url=self.put_big_float.metadata["url"],
@@ -277,7 +277,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_big_float_request(
+        request = build_number_get_big_float_request(
             template_url=self.get_big_float.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -320,7 +320,7 @@ class NumberOperations:
 
         json = self._serialize.body(number_body, "float")
 
-        request = build_put_big_double_request(
+        request = build_number_put_big_double_request(
             content_type=content_type,
             json=json,
             template_url=self.put_big_double.metadata["url"],
@@ -355,7 +355,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_big_double_request(
+        request = build_number_get_big_double_request(
             template_url=self.get_big_double.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -397,7 +397,7 @@ class NumberOperations:
         number_body = 99999999.99
         json = self._serialize.body(number_body, "float")
 
-        request = build_put_big_double_positive_decimal_request(
+        request = build_number_put_big_double_positive_decimal_request(
             content_type=content_type,
             json=json,
             template_url=self.put_big_double_positive_decimal.metadata["url"],
@@ -432,7 +432,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_big_double_positive_decimal_request(
+        request = build_number_get_big_double_positive_decimal_request(
             template_url=self.get_big_double_positive_decimal.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -474,7 +474,7 @@ class NumberOperations:
         number_body = -99999999.99
         json = self._serialize.body(number_body, "float")
 
-        request = build_put_big_double_negative_decimal_request(
+        request = build_number_put_big_double_negative_decimal_request(
             content_type=content_type,
             json=json,
             template_url=self.put_big_double_negative_decimal.metadata["url"],
@@ -509,7 +509,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_big_double_negative_decimal_request(
+        request = build_number_get_big_double_negative_decimal_request(
             template_url=self.get_big_double_negative_decimal.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -552,7 +552,7 @@ class NumberOperations:
 
         json = self._serialize.body(number_body, "float")
 
-        request = build_put_big_decimal_request(
+        request = build_number_put_big_decimal_request(
             content_type=content_type,
             json=json,
             template_url=self.put_big_decimal.metadata["url"],
@@ -587,7 +587,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_big_decimal_request(
+        request = build_number_get_big_decimal_request(
             template_url=self.get_big_decimal.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -629,7 +629,7 @@ class NumberOperations:
         number_body = 99999999.99
         json = self._serialize.body(number_body, "float")
 
-        request = build_put_big_decimal_positive_decimal_request(
+        request = build_number_put_big_decimal_positive_decimal_request(
             content_type=content_type,
             json=json,
             template_url=self.put_big_decimal_positive_decimal.metadata["url"],
@@ -664,7 +664,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_big_decimal_positive_decimal_request(
+        request = build_number_get_big_decimal_positive_decimal_request(
             template_url=self.get_big_decimal_positive_decimal.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -706,7 +706,7 @@ class NumberOperations:
         number_body = -99999999.99
         json = self._serialize.body(number_body, "float")
 
-        request = build_put_big_decimal_negative_decimal_request(
+        request = build_number_put_big_decimal_negative_decimal_request(
             content_type=content_type,
             json=json,
             template_url=self.put_big_decimal_negative_decimal.metadata["url"],
@@ -741,7 +741,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_big_decimal_negative_decimal_request(
+        request = build_number_get_big_decimal_negative_decimal_request(
             template_url=self.get_big_decimal_negative_decimal.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -784,7 +784,7 @@ class NumberOperations:
 
         json = self._serialize.body(number_body, "float")
 
-        request = build_put_small_float_request(
+        request = build_number_put_small_float_request(
             content_type=content_type,
             json=json,
             template_url=self.put_small_float.metadata["url"],
@@ -819,7 +819,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_small_float_request(
+        request = build_number_get_small_float_request(
             template_url=self.get_small_float.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -862,7 +862,7 @@ class NumberOperations:
 
         json = self._serialize.body(number_body, "float")
 
-        request = build_put_small_double_request(
+        request = build_number_put_small_double_request(
             content_type=content_type,
             json=json,
             template_url=self.put_small_double.metadata["url"],
@@ -897,7 +897,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_small_double_request(
+        request = build_number_get_small_double_request(
             template_url=self.get_small_double.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -940,7 +940,7 @@ class NumberOperations:
 
         json = self._serialize.body(number_body, "float")
 
-        request = build_put_small_decimal_request(
+        request = build_number_put_small_decimal_request(
             content_type=content_type,
             json=json,
             template_url=self.put_small_decimal.metadata["url"],
@@ -975,7 +975,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_small_decimal_request(
+        request = build_number_get_small_decimal_request(
             template_url=self.get_small_decimal.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)

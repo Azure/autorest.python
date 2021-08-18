@@ -21,7 +21,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ...operations._combine_operations import build_operation_one_request
+from ...operations._combine_operations import build_import_builders_operation_one_request
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -60,7 +60,7 @@ class ImportOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_operation_one_request(
+        request = build_import_builders_operation_one_request(
             parameter1=parameter1,
             template_url=self.operation_one.metadata["url"],
         )._to_pipeline_transport_request()

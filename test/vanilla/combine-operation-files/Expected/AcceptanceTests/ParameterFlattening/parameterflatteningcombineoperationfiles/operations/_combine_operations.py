@@ -35,7 +35,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 # fmt: off
 
-def build_update_request(
+def build_availability_sets_update_request(
     resource_group_name,  # type: str
     avset,  # type: str
     **kwargs  # type: Any
@@ -120,7 +120,7 @@ class AvailabilitySetsOperations(object):
         _tags = _models.AvailabilitySetUpdateParameters(tags=tags)
         json = self._serialize.body(_tags, "AvailabilitySetUpdateParameters")
 
-        request = build_update_request(
+        request = build_availability_sets_update_request(
             resource_group_name=resource_group_name,
             avset=avset,
             content_type=content_type,

@@ -34,7 +34,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 # fmt: off
 
-def build_put_request(
+def build_int_put_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -58,7 +58,7 @@ def build_put_request(
     )
 
 
-def build_get_request(
+def build_int_get_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -78,7 +78,7 @@ def build_get_request(
     )
 
 
-def build_put_request(
+def build_float_put_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -102,7 +102,7 @@ def build_put_request(
     )
 
 
-def build_get_request(
+def build_float_get_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -169,7 +169,7 @@ class IntOperations(object):
         else:
             json = None
 
-        request = build_put_request(
+        request = build_int_put_request(
             content_type=content_type,
             json=json,
             template_url=self.put.metadata["url"],
@@ -208,7 +208,7 @@ class IntOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_request(
+        request = build_int_get_request(
             template_url=self.get.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -275,7 +275,7 @@ class FloatOperations(object):
         else:
             json = None
 
-        request = build_put_request(
+        request = build_float_put_request(
             content_type=content_type,
             json=json,
             template_url=self.put.metadata["url"],
@@ -314,7 +314,7 @@ class FloatOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_request(
+        request = build_float_get_request(
             template_url=self.get.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)

@@ -34,7 +34,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 # fmt: off
 
-def build_get_true_request(
+def build_bool_get_true_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -54,7 +54,7 @@ def build_get_true_request(
     )
 
 
-def build_put_true_request(
+def build_bool_put_true_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -78,7 +78,7 @@ def build_put_true_request(
     )
 
 
-def build_get_false_request(
+def build_bool_get_false_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -98,7 +98,7 @@ def build_get_false_request(
     )
 
 
-def build_put_false_request(
+def build_bool_put_false_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -122,7 +122,7 @@ def build_put_false_request(
     )
 
 
-def build_get_null_request(
+def build_bool_get_null_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -142,7 +142,7 @@ def build_get_null_request(
     )
 
 
-def build_get_invalid_request(
+def build_bool_get_invalid_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -202,7 +202,7 @@ class BoolOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_true_request(
+        request = build_bool_get_true_request(
             template_url=self.get_true.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -245,7 +245,7 @@ class BoolOperations(object):
         bool_body = True
         json = self._serialize.body(bool_body, "bool")
 
-        request = build_put_true_request(
+        request = build_bool_put_true_request(
             content_type=content_type,
             json=json,
             template_url=self.put_true.metadata["url"],
@@ -281,7 +281,7 @@ class BoolOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_false_request(
+        request = build_bool_get_false_request(
             template_url=self.get_false.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -324,7 +324,7 @@ class BoolOperations(object):
         bool_body = False
         json = self._serialize.body(bool_body, "bool")
 
-        request = build_put_false_request(
+        request = build_bool_put_false_request(
             content_type=content_type,
             json=json,
             template_url=self.put_false.metadata["url"],
@@ -360,7 +360,7 @@ class BoolOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_null_request(
+        request = build_bool_get_null_request(
             template_url=self.get_null.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -398,7 +398,7 @@ class BoolOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_invalid_request(
+        request = build_bool_get_invalid_request(
             template_url=self.get_invalid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)

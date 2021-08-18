@@ -23,11 +23,11 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
 from ...operations._combine_operations import (
-    build_post_multi_param_groups_request,
-    build_post_optional_request,
-    build_post_required_request,
-    build_post_reserved_words_request,
-    build_post_shared_parameter_group_object_request,
+    build_parameter_grouping_post_multi_param_groups_request,
+    build_parameter_grouping_post_optional_request,
+    build_parameter_grouping_post_required_request,
+    build_parameter_grouping_post_reserved_words_request,
+    build_parameter_grouping_post_shared_parameter_group_object_request,
 )
 
 T = TypeVar("T")
@@ -89,7 +89,7 @@ class ParameterGroupingOperations:
             _body = parameter_grouping_post_required_parameters.body
         json = self._serialize.body(_body, "int")
 
-        request = build_post_required_request(
+        request = build_parameter_grouping_post_required_request(
             path=_path,
             content_type=content_type,
             custom_header=_custom_header,
@@ -140,7 +140,7 @@ class ParameterGroupingOperations:
             _custom_header = parameter_grouping_post_optional_parameters.custom_header
             _query = parameter_grouping_post_optional_parameters.query
 
-        request = build_post_optional_request(
+        request = build_parameter_grouping_post_optional_request(
             custom_header=_custom_header,
             query=_query,
             template_url=self.post_optional.metadata["url"],
@@ -190,7 +190,7 @@ class ParameterGroupingOperations:
             _from_parameter = parameter_grouping_post_reserved_words_parameters.from_property
             _accept_parameter = parameter_grouping_post_reserved_words_parameters.accept
 
-        request = build_post_reserved_words_request(
+        request = build_parameter_grouping_post_reserved_words_request(
             from_parameter=_from_parameter,
             accept_parameter=_accept_parameter,
             template_url=self.post_reserved_words.metadata["url"],
@@ -249,7 +249,7 @@ class ParameterGroupingOperations:
             _header_two = parameter_grouping_post_multi_param_groups_second_param_group.header_two
             _query_two = parameter_grouping_post_multi_param_groups_second_param_group.query_two
 
-        request = build_post_multi_param_groups_request(
+        request = build_parameter_grouping_post_multi_param_groups_request(
             header_one=_header_one,
             query_one=_query_one,
             header_two=_header_two,
@@ -297,7 +297,7 @@ class ParameterGroupingOperations:
             _header_one = first_parameter_group.header_one
             _query_one = first_parameter_group.query_one
 
-        request = build_post_shared_parameter_group_object_request(
+        request = build_parameter_grouping_post_shared_parameter_group_object_request(
             header_one=_header_one,
             query_one=_query_one,
             template_url=self.post_shared_parameter_group_object.metadata["url"],

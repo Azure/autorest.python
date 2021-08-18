@@ -79,8 +79,13 @@ class RequestBuilder(BaseBuilder):
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], *, code_model) -> "RequestBuilder":
 
+        # when combine embeded builders into one operation file, we need to avoid duplicated build function name.
+        # So add operation group name is effective method
+        additional_mark = ""
+        if code_model.options["combine_operation_files"] and code_model.options["builders_visibility"] == "embedded":
+            additional_mark = "_{}".format(yaml_data["language"]["python"]["builderGroupName"])
         names = [
-            "build",
+            "build{}".format(additional_mark),
             yaml_data["language"]["python"]["name"],
             "request"
         ]

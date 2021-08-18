@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ...operations._combine_operations import build_add_pet_request, build_get_by_pet_id_request
+from ...operations._combine_operations import build_pet_add_pet_request, build_pet_get_by_pet_id_request
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -65,7 +65,7 @@ class PetOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_by_pet_id_request(
+        request = build_pet_get_by_pet_id_request(
             pet_id=pet_id,
             template_url=self.get_by_pet_id.metadata["url"],
         )._to_pipeline_transport_request()
@@ -111,7 +111,7 @@ class PetOperations:
         else:
             json = None
 
-        request = build_add_pet_request(
+        request = build_pet_add_pet_request(
             content_type=content_type,
             json=json,
             template_url=self.add_pet.metadata["url"],

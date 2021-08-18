@@ -24,10 +24,10 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
 from ...operations._combine_operations import (
-    build_get_invalid_request,
-    build_get_null_request,
-    build_get_positive_duration_request,
-    build_put_positive_duration_request,
+    build_duration_get_invalid_request,
+    build_duration_get_null_request,
+    build_duration_get_positive_duration_request,
+    build_duration_put_positive_duration_request,
 )
 
 T = TypeVar("T")
@@ -69,7 +69,7 @@ class DurationOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_null_request(
+        request = build_duration_get_null_request(
             template_url=self.get_null.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -112,7 +112,7 @@ class DurationOperations:
 
         json = self._serialize.body(duration_body, "duration")
 
-        request = build_put_positive_duration_request(
+        request = build_duration_put_positive_duration_request(
             content_type=content_type,
             json=json,
             template_url=self.put_positive_duration.metadata["url"],
@@ -147,7 +147,7 @@ class DurationOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_positive_duration_request(
+        request = build_duration_get_positive_duration_request(
             template_url=self.get_positive_duration.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -184,7 +184,7 @@ class DurationOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_invalid_request(
+        request = build_duration_get_invalid_request(
             template_url=self.get_invalid.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)

@@ -33,7 +33,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 # fmt: off
 
-def build_head200_request(
+def build_http_success_head200_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -47,7 +47,7 @@ def build_head200_request(
     )
 
 
-def build_head204_request(
+def build_http_success_head204_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -61,7 +61,7 @@ def build_head204_request(
     )
 
 
-def build_head404_request(
+def build_http_success_head404_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -111,7 +111,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_head200_request(
+        request = build_http_success_head200_request(
             template_url=self.head200.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -145,7 +145,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_head204_request(
+        request = build_http_success_head204_request(
             template_url=self.head204.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -179,7 +179,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_head404_request(
+        request = build_http_success_head404_request(
             template_url=self.head404.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)

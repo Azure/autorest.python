@@ -23,9 +23,9 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
 from ...operations._combine_operations import (
-    build_upload_file_request,
-    build_upload_file_via_body_request,
-    build_upload_files_request,
+    build_formdata_upload_file_request,
+    build_formdata_upload_file_via_body_request,
+    build_formdata_upload_files_request,
 )
 
 T = TypeVar("T")
@@ -81,7 +81,7 @@ class FormdataOperations:
             "fileName": file_name,
         }
 
-        request = build_upload_file_request(
+        request = build_formdata_upload_file_request(
             content_type=content_type,
             files=files,
             data=data,
@@ -127,7 +127,7 @@ class FormdataOperations:
 
         content = file_content
 
-        request = build_upload_file_via_body_request(
+        request = build_formdata_upload_file_via_body_request(
             content_type=content_type,
             content=content,
             template_url=self.upload_file_via_body.metadata["url"],
@@ -177,7 +177,7 @@ class FormdataOperations:
             "fileContent": file_content,
         }
 
-        request = build_upload_files_request(
+        request = build_formdata_upload_files_request(
             content_type=content_type,
             files=files,
             data=data,

@@ -34,7 +34,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 # fmt: off
 
-def build_array_string_multi_null_request(
+def build_queries_array_string_multi_null_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -62,7 +62,7 @@ def build_array_string_multi_null_request(
     )
 
 
-def build_array_string_multi_empty_request(
+def build_queries_array_string_multi_empty_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -90,7 +90,7 @@ def build_array_string_multi_empty_request(
     )
 
 
-def build_array_string_multi_valid_request(
+def build_queries_array_string_multi_valid_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -162,7 +162,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_string_multi_null_request(
+        request = build_queries_array_string_multi_null_request(
             array_query=array_query,
             template_url=self.array_string_multi_null.metadata["url"],
         )._to_pipeline_transport_request()
@@ -201,7 +201,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_string_multi_empty_request(
+        request = build_queries_array_string_multi_empty_request(
             array_query=array_query,
             template_url=self.array_string_multi_empty.metadata["url"],
         )._to_pipeline_transport_request()
@@ -242,7 +242,7 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_string_multi_valid_request(
+        request = build_queries_array_string_multi_valid_request(
             array_query=array_query,
             template_url=self.array_string_multi_valid.metadata["url"],
         )._to_pipeline_transport_request()
