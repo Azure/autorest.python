@@ -36,11 +36,9 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
     def __init__(
         self,
         credential: AzureKeyCredential,
-        base_url: Optional[str] = None,
+        base_url: str = "http://localhost:3000",
         **kwargs: Any
     ) -> None:
-        if not base_url:
-            base_url = 'http://localhost:3000'
         self._config = MultiapiServiceClientConfiguration(credential, **kwargs)
         self._client = AsyncARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 

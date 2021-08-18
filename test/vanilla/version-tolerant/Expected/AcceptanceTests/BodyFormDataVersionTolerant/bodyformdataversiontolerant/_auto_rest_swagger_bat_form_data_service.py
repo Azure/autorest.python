@@ -27,20 +27,18 @@ class AutoRestSwaggerBATFormDataService(object):
 
     :ivar formdata: FormdataOperations operations
     :vartype formdata: bodyformdataversiontolerant.operations.FormdataOperations
-    :param base_url: Service URL
-    :type base_url: str
+    :param endpoint: Service URL
+    :type endpoint: str
     """
 
     def __init__(
         self,
-        base_url=None,  # type: Optional[str]
+        endpoint="http://localhost:3000",  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        if not base_url:
-            base_url = "http://localhost:3000"
         self._config = AutoRestSwaggerBATFormDataServiceConfiguration(**kwargs)
-        self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
+        self._client = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

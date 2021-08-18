@@ -46,12 +46,10 @@ class AutoRestLongRunningOperationTestService(object):
     def __init__(
         self,
         credential,  # type: "TokenCredential"
-        base_url=None,  # type: Optional[str]
+        base_url="http://localhost:3000",  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        if not base_url:
-            base_url = "http://localhost:3000"
         self._config = AutoRestLongRunningOperationTestServiceConfiguration(credential, **kwargs)
         self._client = ARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 

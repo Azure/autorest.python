@@ -40,11 +40,9 @@ class AutoRestRequiredOptionalTestService:
         required_global_path: str,
         required_global_query: str,
         optional_global_query: Optional[int] = None,
-        base_url: Optional[str] = None,
+        base_url: str = "http://localhost:3000",
         **kwargs: Any
     ) -> None:
-        if not base_url:
-            base_url = "http://localhost:3000"
         self._config = AutoRestRequiredOptionalTestServiceConfiguration(
             required_global_path, required_global_query, optional_global_query, **kwargs
         )

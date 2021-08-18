@@ -5,8 +5,8 @@
         "name": "MultiapiServiceClient",
         "filename": "_multiapi_service_client",
         "description": "Service client for multiapi client testing.",
-        "base_url": "\u0027http://localhost:3000\u0027",
-        "custom_base_url": null,
+        "endpoint_value": "\u0027http://localhost:3000\u0027",
+        "custom_endpoint_value": null,
         "azure_arm": true,
         "has_lro_operations": true,
         "client_side_validation": false,
@@ -42,7 +42,7 @@
                     "required": false
                 },
                 "base_url": {
-                    "signature": "base_url=None,  # type: Optional[str]",
+                    "signature": "base_url=\"http://localhost:3000\",  # type: str",
                     "description": "Service URL",
                     "docstring_type": "str",
                     "required": false
@@ -62,7 +62,7 @@
                     "required": false
                 },
                 "base_url": {
-                    "signature": "base_url: Optional[str] = None,",
+                    "signature": "base_url: str = \"http://localhost:3000\",",
                     "description": "Service URL",
                     "docstring_type": "str",
                     "required": false

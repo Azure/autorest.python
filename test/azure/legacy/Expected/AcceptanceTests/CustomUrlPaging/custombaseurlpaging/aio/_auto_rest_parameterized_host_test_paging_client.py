@@ -28,9 +28,9 @@ class AutoRestParameterizedHostTestPagingClient:
     """
 
     def __init__(self, host: str = "host", **kwargs: Any) -> None:
-        base_url = "http://{accountName}{host}"
+        endpoint = "http://{accountName}{host}"
         self._config = AutoRestParameterizedHostTestPagingClientConfiguration(host, **kwargs)
-        self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
+        self._client = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)

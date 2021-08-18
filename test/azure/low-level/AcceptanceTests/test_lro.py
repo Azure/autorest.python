@@ -77,7 +77,7 @@ def client(cookie_policy, credential):
         cookie_policy
     ]
 
-    with AutoRestLongRunningOperationTestService(credential, base_url="http://localhost:3000", policies=policies, polling_interval=POLLING_INTERVAL) as client:
+    with AutoRestLongRunningOperationTestService(credential, endpoint="http://localhost:3000", policies=policies, polling_interval=POLLING_INTERVAL) as client:
         yield client
 
 @pytest.fixture()

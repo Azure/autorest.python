@@ -29,7 +29,7 @@ import pytest
 
 @pytest.fixture
 def client():
-    with MultipleInheritanceServiceClient(base_url="http://localhost:3000") as client:
+    with MultipleInheritanceServiceClient(endpoint="http://localhost:3000") as client:
         yield client
 
 def test_get_pet(client):

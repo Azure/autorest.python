@@ -34,7 +34,7 @@ import pytest
 
 @pytest.fixture
 def client():
-    with AutoRestValidationTest("abc123", base_url="http://localhost:3000") as client:
+    with AutoRestValidationTest("abc123", endpoint="http://localhost:3000") as client:
         client.api_version = "12-34-5678"
         yield client
 
@@ -133,7 +133,7 @@ def test_maximum_validation(send_request):
 def test_api_version_validation(send_request):
     client = AutoRestValidationTest(
         "abc123",
-        base_url="http://localhost:3000")
+        endpoint="http://localhost:3000")
     client.api_version = "abc"
     try:
         request = build_validation_of_method_parameters_request(subscription_id="abc123", resource_group_name="123", id=150)

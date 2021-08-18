@@ -56,7 +56,7 @@ import pytest
 
 @pytest.fixture
 def client():
-    with AutoRestComplexTestService(base_url="http://localhost:3000") as client:
+    with AutoRestComplexTestService(endpoint="http://localhost:3000") as client:
         yield client
 
 @pytest.fixture

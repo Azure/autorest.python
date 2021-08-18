@@ -57,6 +57,15 @@ class ClientSerializer:
         retval.append('"""')
         return retval
 
+    def initialize_pipeline_client(self, async_mode: bool) -> str:
+        endpoint_name = (
+            self.code_model.service_client.endpoint.serialized_name
+            if self.code_model.service_client.endpoint
+            else "endpoint"
+        )
+        pipeline_client_name = self.code_model.service_client.pipeline_class(async_mode)
+        return f"self._client = {pipeline_client_name}(base_url={endpoint_name}, config=self._config, **kwargs)"
+
     def serializers_and_operation_groups_properties(self) -> List[str]:
         retval = []
         if self.code_model.sorted_schemas:

@@ -26,15 +26,13 @@ class XMSErrorResponseExtensions:
 
     :ivar pet: PetOperations operations
     :vartype pet: xmserrorresponseversiontolerant.aio.operations.PetOperations
-    :param base_url: Service URL
-    :type base_url: str
+    :param endpoint: Service URL
+    :type endpoint: str
     """
 
-    def __init__(self, base_url: Optional[str] = None, **kwargs: Any) -> None:
-        if not base_url:
-            base_url = "http://localhost"
+    def __init__(self, endpoint: str = "http://localhost", **kwargs: Any) -> None:
         self._config = XMSErrorResponseExtensionsConfiguration(**kwargs)
-        self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
+        self._client = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

@@ -33,7 +33,7 @@ from llcpackageversiontolerant.aio import LLCClient
 @pytest.fixture
 @async_generator
 async def client():
-    async with LLCClient(base_url="http://localhost:3000") as client:
+    async with LLCClient(endpoint="http://localhost:3000") as client:
         await yield_(client)
 
 @pytest.mark.asyncio

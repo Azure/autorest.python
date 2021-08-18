@@ -23,7 +23,6 @@ try:
     from ._request_builders_py3 import build_put_model_as_string_required_two_value_default_request
     from ._request_builders_py3 import build_put_model_as_string_required_one_value_no_default_request
     from ._request_builders_py3 import build_put_model_as_string_required_one_value_default_request
-    from ._request_builders_py3 import build_put_client_constants_request
 except (SyntaxError, ImportError):
     from ._request_builders import build_put_no_model_as_string_no_required_two_value_no_default_request  # type: ignore
     from ._request_builders import build_put_no_model_as_string_no_required_two_value_default_request  # type: ignore
@@ -41,7 +40,6 @@ except (SyntaxError, ImportError):
     from ._request_builders import build_put_model_as_string_required_two_value_default_request  # type: ignore
     from ._request_builders import build_put_model_as_string_required_one_value_no_default_request  # type: ignore
     from ._request_builders import build_put_model_as_string_required_one_value_default_request  # type: ignore
-    from ._request_builders import build_put_client_constants_request  # type: ignore
 
 __all__ = [
     "build_put_no_model_as_string_no_required_two_value_no_default_request",
@@ -60,5 +58,4 @@ __all__ = [
     "build_put_model_as_string_required_two_value_default_request",
     "build_put_model_as_string_required_one_value_no_default_request",
     "build_put_model_as_string_required_one_value_default_request",
-    "build_put_client_constants_request",
 ]

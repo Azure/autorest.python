@@ -27,21 +27,19 @@ class AutoRestUrlTestService:
     :type global_string_path: str
     :param global_string_query: should contain value null.
     :type global_string_query: str
-    :param base_url: Service URL
-    :type base_url: str
+    :param endpoint: Service URL
+    :type endpoint: str
     """
 
     def __init__(
         self,
         global_string_path: str,
         global_string_query: Optional[str] = None,
-        base_url: Optional[str] = None,
+        endpoint: str = "http://localhost:3000",
         **kwargs: Any
     ) -> None:
-        if not base_url:
-            base_url = "http://localhost:3000"
         self._config = AutoRestUrlTestServiceConfiguration(global_string_path, global_string_query, **kwargs)
-        self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
+        self._client = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

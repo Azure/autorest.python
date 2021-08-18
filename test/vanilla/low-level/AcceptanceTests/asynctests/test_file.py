@@ -39,7 +39,7 @@ cwd = dirname(realpath(__file__))
 @async_generator
 async def client(connection_data_block_size=None):
     async with AutoRestSwaggerBATFileService(
-        base_url="http://localhost:3000", connection_data_block_size=connection_data_block_size
+        endpoint="http://localhost:3000", connection_data_block_size=connection_data_block_size
     ) as client:
         await yield_(client)
 

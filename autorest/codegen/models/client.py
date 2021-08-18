@@ -17,8 +17,8 @@ class Client:
     def __init__(self, code_model, parameters: GlobalParameterList):
         self.code_model = code_model
         self.parameters = parameters
-        self.base_url: Optional[str] = None
-        self.custom_base_url = None
+        self.endpoint_value: Optional[str] = None
+        self.custom_endpoint_value: Optional[str] = None
         self._config_parameters = parameters
 
     def pipeline_class(self, async_mode: bool) -> str:
@@ -39,7 +39,7 @@ class Client:
 
         any_optional_gp = any(not gp.required for gp in self.parameters)
 
-        if any_optional_gp or self.code_model.service_client.base_url:
+        if any_optional_gp or self.code_model.service_client.endpoint:
             file_import.add_from_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
 
         if self.code_model.options["azure_arm"]:
@@ -95,22 +95,31 @@ class Client:
         return file_import
 
     @property
-    def method_parameters(self) -> List[Parameter]:
-        base_url_param = []
-        if self.base_url:
-            base_url_param = [Parameter(
+    def endpoint(self) -> Optional[Parameter]:
+        if self.endpoint_value:
+            endpoint_name = (
+                "endpoint" if self.code_model.options["version_tolerant"]
+                or self.code_model.options["low_level_client"]
+                else "base_url"
+            )
+            return Parameter(
                 yaml_data={},
                 schema=StringSchema(namespace="", yaml_data={"type": "str"}),
-                rest_api_name="base_url",
-                serialized_name="base_url",
+                rest_api_name=endpoint_name,
+                serialized_name=endpoint_name,
                 description="Service URL",
                 implementation="Client",
-                required=False,
+                required=True,
                 location=ParameterLocation.Other,
                 skip_url_encoding=False,
                 constraints=[],
-            )]
-        return self.parameters.method + base_url_param
+                client_default_value=self.endpoint_value,
+            )
+        return None
+
+    @property
+    def method_parameters(self) -> List[Parameter]:
+        return self.parameters.method + [self.endpoint] if self.endpoint else self.parameters.method
 
     def method_parameters_signature(self, async_mode) -> List[str]:
         return [

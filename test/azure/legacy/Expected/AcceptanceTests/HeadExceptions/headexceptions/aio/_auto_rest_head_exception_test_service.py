@@ -34,9 +34,9 @@ class AutoRestHeadExceptionTestService:
     :type base_url: str
     """
 
-    def __init__(self, credential: "AsyncTokenCredential", base_url: Optional[str] = None, **kwargs: Any) -> None:
-        if not base_url:
-            base_url = "http://localhost:3000"
+    def __init__(
+        self, credential: "AsyncTokenCredential", base_url: str = "http://localhost:3000", **kwargs: Any
+    ) -> None:
         self._config = AutoRestHeadExceptionTestServiceConfiguration(credential, **kwargs)
         self._client = AsyncARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 

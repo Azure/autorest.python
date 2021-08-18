@@ -29,8 +29,8 @@ class AutoRestPagingTestService(object):
     :vartype paging: custompollerpagerversiontolerant.operations.PagingOperations
     :param credential: Credential needed for the client to connect to Azure.
     :type credential: ~azure.core.credentials.TokenCredential
-    :param base_url: Service URL
-    :type base_url: str
+    :param endpoint: Service URL
+    :type endpoint: str
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
      Retry-After header is present.
     """
@@ -38,14 +38,12 @@ class AutoRestPagingTestService(object):
     def __init__(
         self,
         credential,  # type: "TokenCredential"
-        base_url=None,  # type: Optional[str]
+        endpoint="http://localhost:3000",  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        if not base_url:
-            base_url = 'http://localhost:3000'
         self._config = AutoRestPagingTestServiceConfiguration(credential, **kwargs)
-        self._client = ARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
+        self._client = ARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

@@ -33,7 +33,7 @@ from azure.core.exceptions import HttpResponseError
 import pytest
 
 def test_head(credential, authentication_policy):
-    with AutoRestHeadTestService(credential, base_url="http://localhost:3000", authentication_policy=authentication_policy) as client:
+    with AutoRestHeadTestService(credential, endpoint="http://localhost:3000", authentication_policy=authentication_policy) as client:
         request = http_success.build_head200_request()
         response = client.send_request(request)
         response.raise_for_status()
@@ -48,7 +48,7 @@ def test_head(credential, authentication_policy):
             response.raise_for_status()
 
 def test_head_exception(credential, authentication_policy):
-    with AutoRestHeadExceptionTestService(credential, base_url="http://localhost:3000", authentication_policy=authentication_policy) as client:
+    with AutoRestHeadExceptionTestService(credential, endpoint="http://localhost:3000", authentication_policy=authentication_policy) as client:
         request = head_exception.build_head200_request()
         response = client.send_request(request)
         response.raise_for_status()

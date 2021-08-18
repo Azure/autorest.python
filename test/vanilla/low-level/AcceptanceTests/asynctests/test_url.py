@@ -37,7 +37,7 @@ import pytest
 @pytest.fixture
 @async_generator
 async def client():
-    async with AutoRestUrlTestService('', base_url="http://localhost:3000") as client:
+    async with AutoRestUrlTestService('', endpoint="http://localhost:3000") as client:
         await yield_(client)
 
 @pytest.fixture

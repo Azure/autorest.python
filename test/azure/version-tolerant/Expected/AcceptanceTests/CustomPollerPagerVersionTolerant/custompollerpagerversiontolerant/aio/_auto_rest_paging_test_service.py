@@ -29,8 +29,8 @@ class AutoRestPagingTestService:
     :vartype paging: custompollerpagerversiontolerant.aio.operations.PagingOperations
     :param credential: Credential needed for the client to connect to Azure.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
-    :param base_url: Service URL
-    :type base_url: str
+    :param endpoint: Service URL
+    :type endpoint: str
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
      Retry-After header is present.
     """
@@ -38,13 +38,11 @@ class AutoRestPagingTestService:
     def __init__(
         self,
         credential: "AsyncTokenCredential",
-        base_url: Optional[str] = None,
+        endpoint: str = "http://localhost:3000",
         **kwargs: Any
     ) -> None:
-        if not base_url:
-            base_url = 'http://localhost:3000'
         self._config = AutoRestPagingTestServiceConfiguration(credential, **kwargs)
-        self._client = AsyncARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
+        self._client = AsyncARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

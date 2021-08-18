@@ -26,15 +26,13 @@ class AutoRestDateTestService:
 
     :ivar date: DateOperations operations
     :vartype date: bodydateversiontolerant.aio.operations.DateOperations
-    :param base_url: Service URL
-    :type base_url: str
+    :param endpoint: Service URL
+    :type endpoint: str
     """
 
-    def __init__(self, base_url: Optional[str] = None, **kwargs: Any) -> None:
-        if not base_url:
-            base_url = "http://localhost:3000"
+    def __init__(self, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
         self._config = AutoRestDateTestServiceConfiguration(**kwargs)
-        self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
+        self._client = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

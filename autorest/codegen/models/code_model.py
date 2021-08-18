@@ -51,8 +51,6 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
     :type primitives: Dict[int, ~autorest.models.BaseSchema]
     :param operation_groups: The operation groups we are going to serialize
     :type operation_groups: list[~autorest.models.OperationGroup]
-    :param str custom_base_url: Optional. If user specifies a custom base url, this will override the default
-    :param str base_url: Optional. The default base_url. Will include the host from yaml
     """
 
     def __init__(
@@ -72,8 +70,6 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         self.enums: Dict[int, EnumSchema] = {}
         self.primitives: Dict[int, BaseSchema] = {}
         self.operation_groups: List[OperationGroup] = []
-        self.custom_base_url: Optional[str] = None
-        self.base_url: Optional[str] = None
         self.service_client: Client = Client(self, GlobalParameterList())
         self._rest: Optional[Rest] = None
         self.request_builder_ids: Dict[int, RequestBuilder] = {}
@@ -165,6 +161,25 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             constraints=[],
         )
         self.global_parameters.insert(0, credential_parameter)
+
+    def setup_client_input_parameters(self, yaml_data: Dict[str, Any]):
+        dollar_host = [
+            parameter for parameter in self.global_parameters
+            if parameter.rest_api_name == "$host"
+        ]
+        if not dollar_host:
+            # We don't want to support multi-api customurl YET (will see if that goes well....)
+            # So far now, let's get the first one in the first operation
+            # UGLY as hell.....
+            if yaml_data.get("operationGroups"):
+                first_req_of_first_op_of_first_grp = yaml_data["operationGroups"][0]["operations"][0]["requests"][0]
+                self.service_client.custom_endpoint_value = (
+                    first_req_of_first_op_of_first_grp["protocol"]["http"]["uri"]
+                )
+        else:
+            for host in dollar_host:
+                self.global_parameters.remove(host)
+            self.service_client.endpoint_value = dollar_host[0].yaml_data["clientDefaultValue"]
 
     def format_lro_operations(self) -> None:
         """Adds operations and attributes needed for LROs.
@@ -353,12 +368,6 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             for operation_group in self.operation_groups
             for operation in operation_group.operations
         ])
-
-    @staticmethod
-    def base_url_method_signature(async_mode: bool) -> str:
-        if async_mode:
-            return "base_url: Optional[str] = None,"
-        return "base_url=None,  # type: Optional[str]"
 
     def _lookup_request_builder(self, schema_id: int) -> RequestBuilder:
         """Looks to see if the schema has already been created.

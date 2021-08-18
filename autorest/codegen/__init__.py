@@ -123,20 +123,7 @@ class CodeGenerator(Plugin):
         )
 
         # Custom URL
-        dollar_host = [parameter for parameter in code_model.global_parameters if parameter.rest_api_name == "$host"]
-        if not dollar_host:
-            # We don't want to support multi-api customurl YET (will see if that goes well....)
-            # So far now, let's get the first one in the first operation
-            # UGLY as hell.....
-            if yaml_data.get("operationGroups"):
-                first_req_of_first_op_of_first_grp = yaml_data["operationGroups"][0]["operations"][0]["requests"][0]
-                code_model.service_client.custom_base_url = (
-                    first_req_of_first_op_of_first_grp["protocol"]["http"]["uri"]
-                )
-        else:
-            for host in dollar_host:
-                code_model.global_parameters.remove(host)
-            code_model.service_client.base_url = dollar_host[0].yaml_data["clientDefaultValue"]
+        code_model.setup_client_input_parameters(yaml_data)
 
         # Get my namespace
         namespace = self._autorestapi.get_value("namespace")
@@ -289,7 +276,8 @@ class CodeGenerator(Plugin):
             "add_python_3_operation_files": self._autorestapi.get_boolean_value(
                 "add-python3-operation-files", False
             ),
-            "version_tolerant": version_tolerant
+            "version_tolerant": version_tolerant,
+            "low_level_client": low_level_client,
         }
 
         if options["builders_visibility"] is None:

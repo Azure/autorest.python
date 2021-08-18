@@ -37,15 +37,15 @@ def has_tracing_decorator(function):
 
 
 def test_paging():
-    with AutoRestPagingTestService(base_url="dummy url") as client:
+    with AutoRestPagingTestService(endpoint="dummy url") as client:
         assert has_tracing_decorator(client.paging.get_single_pages)
 
 
 def test_lro():
-    with AutoRestLongRunningOperationTestService("cred", base_url="dummy url") as client:
+    with AutoRestLongRunningOperationTestService("cred", endpoint="dummy url") as client:
         assert not has_tracing_decorator(client.lros._put201_creating_succeeded200_initial)
         assert has_tracing_decorator(client.lros.begin_put201_creating_succeeded200)
 
 def test_azure_url():
-    client = MicrosoftAzureTestUrl("cred", "sub_id", base_url="dummy url")
+    client = MicrosoftAzureTestUrl("cred", "sub_id", endpoint="dummy url")
     assert has_tracing_decorator(client.group.get_sample_resource_group)
