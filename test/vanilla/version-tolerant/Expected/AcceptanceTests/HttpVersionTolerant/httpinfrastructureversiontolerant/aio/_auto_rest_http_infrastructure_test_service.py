@@ -50,11 +50,11 @@ class AutoRestHttpInfrastructureTestService:
     :ivar multiple_responses: MultipleResponsesOperations operations
     :vartype multiple_responses:
      httpinfrastructureversiontolerant.aio.operations.MultipleResponsesOperations
-    :param endpoint: Service URL
-    :type endpoint: str
+    :keyword endpoint: Service URL
+    :paramtype endpoint: str
     """
 
-    def __init__(self, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
+    def __init__(self, *, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
         self._config = AutoRestHttpInfrastructureTestServiceConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 

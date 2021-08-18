@@ -23,11 +23,11 @@ if TYPE_CHECKING:
 class AutoRestSwaggerConstantService:
     """Test Infrastructure for AutoRest Swagger Constant.
 
-    :param endpoint: Service URL
-    :type endpoint: str
+    :keyword endpoint: Service URL
+    :paramtype endpoint: str
     """
 
-    def __init__(self, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
+    def __init__(self, *, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
         self._config = AutoRestSwaggerConstantServiceConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 

@@ -62,14 +62,15 @@ class AutoRestAzureSpecialParametersTestClient:
     :param subscription_id: The subscription id, which appears in the path, always modeled in
      credentials. The value is always '1234-5678-9012-3456'.
     :type subscription_id: str
-    :param endpoint: Service URL
-    :type endpoint: str
+    :keyword endpoint: Service URL
+    :paramtype endpoint: str
     """
 
     def __init__(
         self,
         credential: "AsyncTokenCredential",
         subscription_id: str,
+        *,
         endpoint: str = "http://localhost:3000",
         **kwargs: Any
     ) -> None:

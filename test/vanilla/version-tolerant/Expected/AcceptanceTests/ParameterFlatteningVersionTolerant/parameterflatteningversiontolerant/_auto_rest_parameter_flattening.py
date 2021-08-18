@@ -28,16 +28,16 @@ class AutoRestParameterFlattening(object):
     :ivar availability_sets: AvailabilitySetsOperations operations
     :vartype availability_sets:
      parameterflatteningversiontolerant.operations.AvailabilitySetsOperations
-    :param endpoint: Service URL
-    :type endpoint: str
+    :keyword endpoint: Service URL
+    :paramtype endpoint: str
     """
 
     def __init__(
-        self,
-        endpoint="http://localhost:3000",  # type: str
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> None
+        endpoint = kwargs.pop("endpoint", "http://localhost:3000")  # type: str
+
         self._config = AutoRestParameterFlatteningConfiguration(**kwargs)
         self._client = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
 

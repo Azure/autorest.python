@@ -28,18 +28,19 @@ class AutoRestUrlTestService(object):
     :type global_string_path: str
     :param global_string_query: should contain value null.
     :type global_string_query: str
-    :param endpoint: Service URL
-    :type endpoint: str
+    :keyword endpoint: Service URL
+    :paramtype endpoint: str
     """
 
     def __init__(
         self,
         global_string_path,  # type: str
         global_string_query=None,  # type: Optional[str]
-        endpoint="http://localhost:3000",  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
+        endpoint = kwargs.pop("endpoint", "http://localhost:3000")  # type: str
+
         self._config = AutoRestUrlTestServiceConfiguration(global_string_path, global_string_query, **kwargs)
         self._client = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
 

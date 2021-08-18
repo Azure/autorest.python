@@ -30,14 +30,15 @@ class StorageManagementClient:
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
      subscription. The subscription ID forms part of the URI for every service call.
     :type subscription_id: str
-    :param endpoint: Service URL
-    :type endpoint: str
+    :keyword endpoint: Service URL
+    :paramtype endpoint: str
     """
 
     def __init__(
         self,
         credential: "AsyncTokenCredential",
         subscription_id: str,
+        *,
         endpoint: str = "https://management.azure.com",
         **kwargs: Any
     ) -> None:

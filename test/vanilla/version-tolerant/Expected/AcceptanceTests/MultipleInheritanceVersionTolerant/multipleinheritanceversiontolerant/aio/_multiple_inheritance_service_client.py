@@ -24,11 +24,11 @@ if TYPE_CHECKING:
 class MultipleInheritanceServiceClient(MultipleInheritanceServiceClientOperationsMixin):
     """Service client for multiinheritance client testing.
 
-    :param endpoint: Service URL
-    :type endpoint: str
+    :keyword endpoint: Service URL
+    :paramtype endpoint: str
     """
 
-    def __init__(self, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
+    def __init__(self, *, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
         self._config = MultipleInheritanceServiceClientConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 

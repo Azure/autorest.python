@@ -366,18 +366,7 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
 
 
     def pop_kwargs_from_signature(self, builder: BuilderType) -> List[str]:
-        retval = []
-        for kwarg in self._get_kwargs_to_pop(builder):
-            if kwarg.has_default_value:
-                retval.append(
-                    f"{kwarg.serialized_name} = kwargs.pop('{kwarg.serialized_name}', "
-                    + f"{kwarg.default_value_declaration})  # type: {kwarg.type_annotation}"
-                )
-            else:
-                retval.append(
-                    f"{kwarg.serialized_name} = kwargs.pop('{kwarg.serialized_name}')  # type: {kwarg.type_annotation}"
-                )
-        return retval
+        return utils.pop_kwargs_from_signature(self._get_kwargs_to_pop(builder))
 
     @staticmethod
     def serialize_path(builder: BuilderType) -> List[str]:

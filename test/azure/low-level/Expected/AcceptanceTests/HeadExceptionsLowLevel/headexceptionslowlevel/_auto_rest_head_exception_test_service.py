@@ -27,17 +27,18 @@ class AutoRestHeadExceptionTestService(object):
 
     :param credential: Credential needed for the client to connect to Azure.
     :type credential: ~azure.core.credentials.TokenCredential
-    :param endpoint: Service URL
-    :type endpoint: str
+    :keyword endpoint: Service URL
+    :paramtype endpoint: str
     """
 
     def __init__(
         self,
         credential,  # type: "TokenCredential"
-        endpoint="http://localhost:3000",  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
+        endpoint = kwargs.pop("endpoint", "http://localhost:3000")  # type: str
+
         self._config = AutoRestHeadExceptionTestServiceConfiguration(credential, **kwargs)
         self._client = ARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 

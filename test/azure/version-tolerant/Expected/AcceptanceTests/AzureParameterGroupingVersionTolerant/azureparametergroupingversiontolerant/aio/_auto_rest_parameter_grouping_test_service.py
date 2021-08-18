@@ -27,11 +27,11 @@ class AutoRestParameterGroupingTestService:
     :ivar parameter_grouping: ParameterGroupingOperations operations
     :vartype parameter_grouping:
      azureparametergroupingversiontolerant.aio.operations.ParameterGroupingOperations
-    :param endpoint: Service URL
-    :type endpoint: str
+    :keyword endpoint: Service URL
+    :paramtype endpoint: str
     """
 
-    def __init__(self, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
+    def __init__(self, *, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
         self._config = AutoRestParameterGroupingTestServiceConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 

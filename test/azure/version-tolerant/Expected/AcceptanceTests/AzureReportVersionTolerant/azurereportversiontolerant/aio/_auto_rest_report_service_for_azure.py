@@ -24,11 +24,11 @@ if TYPE_CHECKING:
 class AutoRestReportServiceForAzure(AutoRestReportServiceForAzureOperationsMixin):
     """Test Infrastructure for AutoRest.
 
-    :param endpoint: Service URL
-    :type endpoint: str
+    :keyword endpoint: Service URL
+    :paramtype endpoint: str
     """
 
-    def __init__(self, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
+    def __init__(self, *, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
         self._config = AutoRestReportServiceForAzureConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 

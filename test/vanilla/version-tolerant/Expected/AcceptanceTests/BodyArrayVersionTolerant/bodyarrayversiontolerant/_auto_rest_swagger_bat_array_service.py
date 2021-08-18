@@ -27,16 +27,16 @@ class AutoRestSwaggerBATArrayService(object):
 
     :ivar array: ArrayOperations operations
     :vartype array: bodyarrayversiontolerant.operations.ArrayOperations
-    :param endpoint: Service URL
-    :type endpoint: str
+    :keyword endpoint: Service URL
+    :paramtype endpoint: str
     """
 
     def __init__(
-        self,
-        endpoint="http://localhost:3000",  # type: str
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> None
+        endpoint = kwargs.pop("endpoint", "http://localhost:3000")  # type: str
+
         self._config = AutoRestSwaggerBATArrayServiceConfiguration(**kwargs)
         self._client = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
 

@@ -34,14 +34,15 @@ class AutoRestUrlTestService:
     :type global_string_path: str
     :param global_string_query: should contain value null.
     :type global_string_query: str
-    :param endpoint: Service URL
-    :type endpoint: str
+    :keyword endpoint: Service URL
+    :paramtype endpoint: str
     """
 
     def __init__(
         self,
         global_string_path: str,
         global_string_query: Optional[str] = None,
+        *,
         endpoint: str = "http://localhost:3000",
         **kwargs: Any
     ) -> None:

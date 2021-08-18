@@ -70,7 +70,9 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         self.enums: Dict[int, EnumSchema] = {}
         self.primitives: Dict[int, BaseSchema] = {}
         self.operation_groups: List[OperationGroup] = []
-        self.service_client: Client = Client(self, GlobalParameterList())
+        params = GlobalParameterList()
+        params.code_model = self
+        self.service_client: Client = Client(self, params)
         self._rest: Optional[Rest] = None
         self.request_builder_ids: Dict[int, RequestBuilder] = {}
         self._credential_schema_policy: Optional[CredentialSchemaPolicy] = None
@@ -179,7 +181,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         else:
             for host in dollar_host:
                 self.global_parameters.remove(host)
-            self.service_client.endpoint_value = dollar_host[0].yaml_data["clientDefaultValue"]
+            self.service_client.parameters.add_endpoint(dollar_host[0].yaml_data["clientDefaultValue"])
 
     def format_lro_operations(self) -> None:
         """Adds operations and attributes needed for LROs.

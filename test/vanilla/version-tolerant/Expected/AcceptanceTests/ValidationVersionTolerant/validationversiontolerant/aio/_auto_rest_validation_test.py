@@ -26,11 +26,11 @@ class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
 
     :param subscription_id: Subscription ID.
     :type subscription_id: str
-    :param endpoint: Service URL
-    :type endpoint: str
+    :keyword endpoint: Service URL
+    :paramtype endpoint: str
     """
 
-    def __init__(self, subscription_id: str, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
+    def __init__(self, subscription_id: str, *, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
         self._config = AutoRestValidationTestConfiguration(subscription_id, **kwargs)
         self._client = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 

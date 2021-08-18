@@ -14,12 +14,16 @@ from .constant_schema import ConstantSchema
 from .base_schema import BaseSchema
 from .enum_schema import EnumSchema
 from .dictionary_schema import DictionarySchema
-from .primitive_schemas import AnySchema
+from .primitive_schemas import AnySchema, StringSchema
 
 T = TypeVar('T')
 OrderedSet = Dict[T, None]
 
 _LOGGER = logging.getLogger(__name__)
+
+def _method_signature_helper(positional: List[str], keyword_only: Optional[List[str]], kwarg_params: List[str]):
+    keyword_only = keyword_only or []
+    return positional + keyword_only + kwarg_params
 
 
 class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
@@ -213,17 +217,17 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
 
 
     def method_signature(self, is_python_3_file: bool) -> List[str]:
-        positional = self.method_signature_positional(is_python_3_file)
-        if is_python_3_file:
-            positional += self.method_signature_keyword_only(is_python_3_file)
-        kwargs = self.method_signature_kwargs(is_python_3_file)
-        return positional + kwargs
+        return _method_signature_helper(
+            positional=self.method_signature_positional(is_python_3_file),
+            keyword_only=self.method_signature_keyword_only(is_python_3_file),
+            kwarg_params=self.method_signature_kwargs(is_python_3_file)
+        )
 
     def method_signature_positional(self, is_python_3_file: bool) -> List[str]:
         return [parameter.method_signature(is_python_3_file) for parameter in self.positional]
 
     def method_signature_keyword_only(self, is_python_3_file: bool) -> List[str]:
-        if not self.keyword_only:
+        if not (self.keyword_only and is_python_3_file):
             return []
         return ["*,"] + [parameter.method_signature(is_python_3_file) for parameter in self.keyword_only]
 
@@ -316,10 +320,87 @@ class GlobalParameterList(ParameterList):
     def implementation(self) -> str:
         return "Client"
 
+    @property
+    def code_model(self):
+        try:
+            return self._code_model
+        except AttributeError:
+            raise ValueError("You need to first set the code model")
+
+    @code_model.setter
+    def code_model(self, val):
+        self._code_model = val
+
+    @property
+    def endpoint_name(self) -> str:
+        return (
+            "endpoint" if self.code_model.options["version_tolerant"]
+            or self.code_model.options["low_level_client"]
+            else "base_url"
+        )
+
     @staticmethod
     def _wanted_path_parameter(parameter: Parameter) -> bool:
         return (
             parameter.location == ParameterLocation.Uri and
             parameter.implementation == "Client" and
             parameter.rest_api_name != "$host"
+        )
+
+    def add_endpoint(self, endpoint_value: Optional[str]) -> None:
+        endpoint_param = Parameter(
+            yaml_data={},
+            schema=StringSchema(namespace="", yaml_data={"type": "str"}),
+            rest_api_name=self.endpoint_name,
+            serialized_name=self.endpoint_name,
+            description="Service URL",
+            implementation="Client",
+            required=True,
+            location=ParameterLocation.Other,
+            skip_url_encoding=False,
+            constraints=[],
+            client_default_value=endpoint_value,
+            keyword_only=self.code_model.options["version_tolerant"] or self.code_model.options["low_level_client"],
+        )
+        self.parameters.append(endpoint_param)
+
+    @property
+    def endpoint(self) -> Optional[Parameter]:
+        try:
+            return next(p for p in self.parameters if p.serialized_name == self.endpoint_name)
+        except StopIteration:
+            return None
+
+    @property
+    def endpoint_value(self) -> Optional[str]:
+        if not self.endpoint:
+            return None
+        return next(p for p in self.parameters if p.serialized_name == self.endpoint_name).default_value_declaration
+
+    @property
+    def client_method(self) -> List[Parameter]:
+        return self.method
+
+    @property
+    def config_method(self) -> List[Parameter]:
+        return [p for p in self.method if p.serialized_name != self.endpoint_name]
+
+    def client_method_signature(self, is_python_3_file: bool) -> List[str]:
+        return self.method_signature(is_python_3_file)
+
+    def config_method_signature(self, is_python_3_file: bool) -> List[str]:
+        positional = [
+            p.method_signature(is_python_3_file) for p in self.positional if p.serialized_name != self.endpoint_name
+        ]
+        keyword_only_params = [p for p in self.keyword_only if p.serialized_name != self.endpoint_name]
+        keyword_only_method_signature = (
+            ["*,"] +
+            [
+                p.method_signature(is_python_3_file) for p in keyword_only_params
+            ]
+        ) if keyword_only_params else []
+        return _method_signature_helper(
+            positional=positional,
+            keyword_only=keyword_only_method_signature,
+            kwarg_params=self.method_signature_kwargs(is_python_3_file)
         )

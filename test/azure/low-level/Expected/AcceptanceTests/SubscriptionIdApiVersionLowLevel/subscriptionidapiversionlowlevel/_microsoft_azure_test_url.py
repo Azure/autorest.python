@@ -29,18 +29,19 @@ class MicrosoftAzureTestUrl(object):
     :type credential: ~azure.core.credentials.TokenCredential
     :param subscription_id: Subscription Id.
     :type subscription_id: str
-    :param endpoint: Service URL
-    :type endpoint: str
+    :keyword endpoint: Service URL
+    :paramtype endpoint: str
     """
 
     def __init__(
         self,
         credential,  # type: "TokenCredential"
         subscription_id,  # type: str
-        endpoint="http://localhost:3000",  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
+        endpoint = kwargs.pop("endpoint", "http://localhost:3000")  # type: str
+
         self._config = MicrosoftAzureTestUrlConfiguration(credential, subscription_id, **kwargs)
         self._client = ARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 

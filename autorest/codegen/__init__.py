@@ -121,6 +121,7 @@ class CodeGenerator(Plugin):
         code_model.global_parameters = GlobalParameterList(
             [Parameter.from_yaml(param) for param in yaml_data.get("globalParameters", [])],
         )
+        code_model.global_parameters.code_model = code_model
 
         # Custom URL
         code_model.setup_client_input_parameters(yaml_data)

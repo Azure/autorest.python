@@ -24,11 +24,11 @@ if TYPE_CHECKING:
 class IncorrectReturnedErrorModel(IncorrectReturnedErrorModelOperationsMixin):
     """Test to see when throwing an HttpResponseError whether we swallow error model deserialization errors.
 
-    :param endpoint: Service URL
-    :type endpoint: str
+    :keyword endpoint: Service URL
+    :paramtype endpoint: str
     """
 
-    def __init__(self, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
+    def __init__(self, *, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
         self._config = IncorrectReturnedErrorModelConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 

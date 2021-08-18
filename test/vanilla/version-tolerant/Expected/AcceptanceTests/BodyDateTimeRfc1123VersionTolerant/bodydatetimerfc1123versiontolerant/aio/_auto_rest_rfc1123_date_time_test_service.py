@@ -27,11 +27,11 @@ class AutoRestRFC1123DateTimeTestService:
     :ivar datetimerfc1123: Datetimerfc1123Operations operations
     :vartype datetimerfc1123:
      bodydatetimerfc1123versiontolerant.aio.operations.Datetimerfc1123Operations
-    :param endpoint: Service URL
-    :type endpoint: str
+    :keyword endpoint: Service URL
+    :paramtype endpoint: str
     """
 
-    def __init__(self, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
+    def __init__(self, *, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
         self._config = AutoRestRFC1123DateTimeTestServiceConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 

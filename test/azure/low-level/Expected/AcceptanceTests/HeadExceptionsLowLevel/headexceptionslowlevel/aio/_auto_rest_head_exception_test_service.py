@@ -27,12 +27,12 @@ class AutoRestHeadExceptionTestService:
 
     :param credential: Credential needed for the client to connect to Azure.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
-    :param endpoint: Service URL
-    :type endpoint: str
+    :keyword endpoint: Service URL
+    :paramtype endpoint: str
     """
 
     def __init__(
-        self, credential: "AsyncTokenCredential", endpoint: str = "http://localhost:3000", **kwargs: Any
+        self, credential: "AsyncTokenCredential", *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         self._config = AutoRestHeadExceptionTestServiceConfiguration(credential, **kwargs)
         self._client = AsyncARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)

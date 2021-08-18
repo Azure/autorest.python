@@ -34,8 +34,8 @@ class AutoRestRequiredOptionalTestService:
     :type required_global_query: str
     :param optional_global_query: number of items to skip.
     :type optional_global_query: int
-    :param endpoint: Service URL
-    :type endpoint: str
+    :keyword endpoint: Service URL
+    :paramtype endpoint: str
     """
 
     def __init__(
@@ -43,6 +43,7 @@ class AutoRestRequiredOptionalTestService:
         required_global_path: str,
         required_global_query: str,
         optional_global_query: Optional[int] = None,
+        *,
         endpoint: str = "http://localhost:3000",
         **kwargs: Any
     ) -> None:

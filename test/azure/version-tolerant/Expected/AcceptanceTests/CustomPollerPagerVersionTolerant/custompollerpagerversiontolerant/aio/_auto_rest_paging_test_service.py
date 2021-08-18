@@ -29,8 +29,8 @@ class AutoRestPagingTestService:
     :vartype paging: custompollerpagerversiontolerant.aio.operations.PagingOperations
     :param credential: Credential needed for the client to connect to Azure.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
-    :param endpoint: Service URL
-    :type endpoint: str
+    :keyword endpoint: Service URL
+    :paramtype endpoint: str
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
      Retry-After header is present.
     """
@@ -38,6 +38,7 @@ class AutoRestPagingTestService:
     def __init__(
         self,
         credential: "AsyncTokenCredential",
+        *,
         endpoint: str = "http://localhost:3000",
         **kwargs: Any
     ) -> None:

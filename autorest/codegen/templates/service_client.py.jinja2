@@ -11,10 +11,13 @@
 
     {{ op_tools.serialize_with_wrap(serializer.property_descriptions(async_mode), "\n ") | indent }}
     {{ serializer.init_signature_and_response_type_annotation(async_mode) | indent }}
-        {% if not code_model.service_client.endpoint %}
-        endpoint = {{ keywords.escape_str(code_model.service_client.custom_endpoint_value) }}
+    {% if code_model.service_client.parameters.kwargs_to_pop(async_mode) %}
+        {{ op_tools.serialize(serializer.pop_kwargs_from_signature(async_mode)) | indent(8) }}
+    {% endif %}
+        {% if not code_model.service_client.parameters.endpoint %}
+        {{ code_model.service_client.parameters.endpoint_name }} = {{ keywords.escape_str(code_model.service_client.custom_endpoint_value) }}
         {% endif %}
-        self._config = {{ code_model.class_name }}Configuration({{ code_model.service_client.config_initialization }})
+        {{ serializer.initialize_config() }}
         {{ serializer.initialize_pipeline_client(async_mode) }}
 
         {{ op_tools.serialize(serializer.serializers_and_operation_groups_properties()) | indent(8) }}
