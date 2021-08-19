@@ -145,15 +145,13 @@ class JinjaSerializer:
         code_model: CodeModel,
         env: Environment,
         namespace_path: Path,
-        filename: str,
-        operation_group: OperationGroup = None,
-        operation_groups: List[OperationGroup] = None
+        operation_groups: List[OperationGroup],
+        filename: str
     ) -> None:
         # write sync operation group and operation files
         operation_group_serializer = OperationGroupSerializer(
             code_model=code_model,
             env=env,
-            operation_group=operation_group,
             operation_groups=operation_groups,
             async_mode=False,
             is_python_3_file=False,
@@ -168,7 +166,6 @@ class JinjaSerializer:
             operation_group_async_serializer = OperationGroupSerializer(
                 code_model=code_model,
                 env=env,
-                operation_group=operation_group,
                 operation_groups=operation_groups,
                 async_mode=True,
                 is_python_3_file=True,
@@ -188,7 +185,6 @@ class JinjaSerializer:
             operation_group_serializer = OperationGroupSerializer(
                 code_model=code_model,
                 env=env,
-                operation_group=operation_group,
                 operation_groups=operation_groups,
                 async_mode=False,
                 is_python_3_file=True,
@@ -221,16 +217,16 @@ class JinjaSerializer:
                     code_model=code_model,
                     env=env,
                     namespace_path=namespace_path,
-                    filename=operation_group.filename,
-                    operation_group=operation_group,
+                    operation_groups=[operation_group],
+                    filename=operation_group.filename
                 )
         else:
             self._serialize_and_write_operations_folder_process(
                 code_model=code_model,
                 env=env,
                 namespace_path=namespace_path,
-                filename="_combine_operations",
-                operation_groups=code_model.operation_groups
+                operation_groups=code_model.operation_groups,
+                filename="_combine_operations"
             )
 
 
