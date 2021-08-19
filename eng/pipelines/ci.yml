@@ -185,7 +185,3 @@ jobs:
           testRunTitle: "$(OSName) Python $(PythonVersion) - combine-operation-files azure"
           searchFolder: "$(TestFolder)/vanilla/combine-operation-files"
 
-      - script: |
-          npm run coverage-push -- $(Build.Repository.Name) $(Build.SourceBranch) $(github-token) $(storage-coverage-user) $(storage-coverage-pass)
-        workingDirectory: node_modules/@microsoft.azure/autorest.testserver
-        displayName: "Publish coverage report to stroage account"

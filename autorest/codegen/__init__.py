@@ -72,9 +72,8 @@ def _validate_code_model_options(options: Dict[str, Any]) -> None:
 
     if not options["show_operations"] and options["combine_operation_files"]:
         raise ValueError(
-            "Can not combile operation files if you are not showing operations. "
-            "If you want typed synced operation files, you have to add flag "
-            "--show-operations"
+            "Can not combine operation files if you are not showing operations. "
+            "If you want operation files, pass in flag --show-operations"
         )
 
 _LOGGER = logging.getLogger(__name__)

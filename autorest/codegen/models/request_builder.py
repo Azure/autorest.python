@@ -83,9 +83,10 @@ class RequestBuilder(BaseBuilder):
         # So add operation group name is effective method
         additional_mark = ""
         if code_model.options["combine_operation_files"] and code_model.options["builders_visibility"] == "embedded":
-            additional_mark = "_{}".format(yaml_data["language"]["python"]["builderGroupName"])
+            additional_mark = yaml_data["language"]["python"]["builderGroupName"]
         names = [
-            "build{}".format(additional_mark),
+            "build",
+            additional_mark,
             yaml_data["language"]["python"]["name"],
             "request"
         ]
