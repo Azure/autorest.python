@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+import itertools
 from multiprocessing import Pool
 import os
 from typing import Any, Dict, Optional
@@ -361,13 +362,19 @@ def regenerate_version_tolerant(c, swagger_name=None, debug=False):
         regenerate_custom_poller_pager_version_tolerant(c, debug)
 
 @task
-def test(c, env=None):
+def test(c):
     # run language-specific tests
     base_dir = os.path.dirname(__file__)
-    cmd = f'tox -e {env}' if env else 'tox'
-    os.chdir(f"{base_dir}/test/vanilla/")
-    c.run(cmd)
-    os.chdir(f"{base_dir}/test/azure/")
+    cmd = 'tox -e ci'
+
+    autorest_types = ["azure", "vanilla"]
+    gen_types = ["legacy", "low-level", "version-tolerant"]
+    for autorest_type, gen_type in itertools.product(autorest_types, gen_types):
+        os.chdir(f"{base_dir}/test/{autorest_type}/{gen_type}")
+        c.run(cmd)
+
+    # multiapi
+    os.chdir(f"{base_dir}/test/multiapi/")
     c.run(cmd)
 
 def _multiapi_command_line(location, debug):
