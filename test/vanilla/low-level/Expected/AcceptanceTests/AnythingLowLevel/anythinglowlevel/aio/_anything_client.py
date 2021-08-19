@@ -23,7 +23,7 @@ if TYPE_CHECKING:
 class AnythingClient:
     """Service client for testing basic anything types. Those schemas without types can be anything:  primitive, object, array.
 
-    :keyword endpoint: Service URL
+    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
     :paramtype endpoint: str
     """
 

@@ -26,7 +26,7 @@ class AutoRestSwaggerBATDictionaryService:
 
     :ivar dictionary: DictionaryOperations operations
     :vartype dictionary: bodydictionaryversiontolerant.aio.operations.DictionaryOperations
-    :keyword endpoint: Service URL
+    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
     :paramtype endpoint: str
     """
 

@@ -28,7 +28,7 @@ class AutoRestSwaggerBATService:
     :vartype string: bodystringversiontolerant.aio.operations.StringOperations
     :ivar enum: EnumOperations operations
     :vartype enum: bodystringversiontolerant.aio.operations.EnumOperations
-    :keyword endpoint: Service URL
+    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
     :paramtype endpoint: str
     """
 

@@ -26,7 +26,7 @@ class ReservedWordsClient:
 
     :ivar import_operations: ImportOperations operations
     :vartype import_operations: reservedwords.aio.operations.ImportOperations
-    :param base_url: Service URL
+    :param base_url: Service URL. Default value is 'http://localhost:3000'.
     :type base_url: str
     """
 

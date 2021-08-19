@@ -28,7 +28,7 @@ class NonStringEnumsClient:
     :vartype int: nonstringenums.aio.operations.IntOperations
     :ivar float: FloatOperations operations
     :vartype float: nonstringenums.aio.operations.FloatOperations
-    :param base_url: Service URL
+    :param base_url: Service URL. Default value is 'http://localhost:3000'.
     :type base_url: str
     """
 

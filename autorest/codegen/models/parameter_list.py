@@ -353,7 +353,7 @@ class GlobalParameterList(ParameterList):
             schema=StringSchema(namespace="", yaml_data={"type": "str"}),
             rest_api_name=self.endpoint_name,
             serialized_name=self.endpoint_name,
-            description="Service URL",
+            description=f"Service URL. Default value is '{endpoint_value}'.",
             implementation="Client",
             required=True,
             location=ParameterLocation.Other,

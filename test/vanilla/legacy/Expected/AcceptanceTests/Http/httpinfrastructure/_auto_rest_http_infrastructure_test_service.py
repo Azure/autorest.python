@@ -48,7 +48,7 @@ class AutoRestHttpInfrastructureTestService(object):
     :vartype http_retry: httpinfrastructure.operations.HttpRetryOperations
     :ivar multiple_responses: MultipleResponsesOperations operations
     :vartype multiple_responses: httpinfrastructure.operations.MultipleResponsesOperations
-    :param base_url: Service URL
+    :param base_url: Service URL. Default value is 'http://localhost:3000'.
     :type base_url: str
     """
 

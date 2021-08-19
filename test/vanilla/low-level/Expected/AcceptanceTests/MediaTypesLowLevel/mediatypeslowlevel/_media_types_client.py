@@ -24,7 +24,7 @@ if TYPE_CHECKING:
 class MediaTypesClient(object):
     """Play with produces/consumes and media-types in general.
 
-    :keyword endpoint: Service URL
+    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
     :paramtype endpoint: str
     """
 

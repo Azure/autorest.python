@@ -26,7 +26,7 @@ class AdditionalPropertiesClient:
 
     :ivar pets: PetsOperations operations
     :vartype pets: additionalpropertiesversiontolerant.aio.operations.PetsOperations
-    :keyword endpoint: Service URL
+    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
     :paramtype endpoint: str
     """
 

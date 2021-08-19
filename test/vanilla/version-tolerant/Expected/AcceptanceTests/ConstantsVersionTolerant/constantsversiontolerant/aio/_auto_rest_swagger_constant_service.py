@@ -26,7 +26,7 @@ class AutoRestSwaggerConstantService:
 
     :ivar contants: ContantsOperations operations
     :vartype contants: constantsversiontolerant.aio.operations.ContantsOperations
-    :keyword endpoint: Service URL
+    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
     :paramtype endpoint: str
     """
 

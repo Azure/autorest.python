@@ -36,7 +36,7 @@ class AutoRestUrlTestService(object):
     :type global_string_path: str
     :param global_string_query: should contain value null.
     :type global_string_query: str
-    :param base_url: Service URL
+    :param base_url: Service URL. Default value is 'http://localhost:3000'.
     :type base_url: str
     """
 

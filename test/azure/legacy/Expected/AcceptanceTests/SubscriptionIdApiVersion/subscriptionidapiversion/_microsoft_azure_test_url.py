@@ -33,7 +33,7 @@ class MicrosoftAzureTestUrl(object):
     :type credential: ~azure.core.credentials.TokenCredential
     :param subscription_id: Subscription Id.
     :type subscription_id: str
-    :param base_url: Service URL
+    :param base_url: Service URL. Default value is 'http://localhost:3000'.
     :type base_url: str
     """
 

@@ -24,7 +24,7 @@ if TYPE_CHECKING:
 class XMSErrorResponseExtensions(object):
     """XMS Error Response Extensions.
 
-    :keyword endpoint: Service URL
+    :keyword endpoint: Service URL. Default value is 'http://localhost'.
     :paramtype endpoint: str
     """
 

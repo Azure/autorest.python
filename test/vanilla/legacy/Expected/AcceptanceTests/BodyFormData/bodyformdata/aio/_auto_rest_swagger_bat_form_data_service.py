@@ -23,7 +23,7 @@ class AutoRestSwaggerBATFormDataService:
 
     :ivar formdata: FormdataOperations operations
     :vartype formdata: bodyformdata.aio.operations.FormdataOperations
-    :param base_url: Service URL
+    :param base_url: Service URL. Default value is 'http://localhost:3000'.
     :type base_url: str
     """
 

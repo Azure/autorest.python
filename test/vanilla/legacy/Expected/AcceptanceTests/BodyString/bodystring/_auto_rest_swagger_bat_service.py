@@ -30,7 +30,7 @@ class AutoRestSwaggerBATService(object):
     :vartype string: bodystring.operations.StringOperations
     :ivar enum: EnumOperations operations
     :vartype enum: bodystring.operations.EnumOperations
-    :param base_url: Service URL
+    :param base_url: Service URL. Default value is 'http://localhost:3000'.
     :type base_url: str
     """
 

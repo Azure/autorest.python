@@ -21,7 +21,7 @@ from .operations import AutoRestReportServiceForAzureOperationsMixin
 class AutoRestReportServiceForAzure(AutoRestReportServiceForAzureOperationsMixin):
     """Test Infrastructure for AutoRest.
 
-    :param base_url: Service URL
+    :param base_url: Service URL. Default value is 'http://localhost:3000'.
     :type base_url: str
     """
 

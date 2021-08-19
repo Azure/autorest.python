@@ -53,7 +53,7 @@ class AutoRestComplexTestService:
     :vartype readonlyproperty: bodycomplexversiontolerant.aio.operations.ReadonlypropertyOperations
     :ivar flattencomplex: FlattencomplexOperations operations
     :vartype flattencomplex: bodycomplexversiontolerant.aio.operations.FlattencomplexOperations
-    :keyword endpoint: Service URL
+    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
     :paramtype endpoint: str
     """
 

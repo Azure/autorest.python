@@ -23,7 +23,7 @@ class AutoRestParameterFlattening:
 
     :ivar availability_sets: AvailabilitySetsOperations operations
     :vartype availability_sets: parameterflattening.aio.operations.AvailabilitySetsOperations
-    :param base_url: Service URL
+    :param base_url: Service URL. Default value is 'http://localhost:3000'.
     :type base_url: str
     """
 

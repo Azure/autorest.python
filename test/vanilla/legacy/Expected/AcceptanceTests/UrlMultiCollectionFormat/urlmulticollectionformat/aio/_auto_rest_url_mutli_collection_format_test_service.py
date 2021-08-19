@@ -23,7 +23,7 @@ class AutoRestUrlMutliCollectionFormatTestService:
 
     :ivar queries: QueriesOperations operations
     :vartype queries: urlmulticollectionformat.aio.operations.QueriesOperations
-    :param base_url: Service URL
+    :param base_url: Service URL. Default value is 'http://localhost:3000'.
     :type base_url: str
     """
 

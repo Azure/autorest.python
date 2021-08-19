@@ -35,7 +35,7 @@ class AutoRestLongRunningOperationTestService:
     :vartype lr_os_custom_header: lro.aio.operations.LROsCustomHeaderOperations
     :param credential: Credential needed for the client to connect to Azure.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
-    :param base_url: Service URL
+    :param base_url: Service URL. Default value is 'http://localhost:3000'.
     :type base_url: str
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
      Retry-After header is present.

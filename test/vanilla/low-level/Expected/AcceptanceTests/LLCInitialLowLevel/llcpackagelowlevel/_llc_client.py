@@ -24,7 +24,7 @@ if TYPE_CHECKING:
 class LLCClient(object):
     """LLC Swagger, this is the initial swager a service could do.
 
-    :keyword endpoint: Service URL
+    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
     :paramtype endpoint: str
     """
 

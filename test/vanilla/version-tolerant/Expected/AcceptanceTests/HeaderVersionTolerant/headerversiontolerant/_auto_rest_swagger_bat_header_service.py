@@ -27,7 +27,7 @@ class AutoRestSwaggerBATHeaderService(object):
 
     :ivar header: HeaderOperations operations
     :vartype header: headerversiontolerant.operations.HeaderOperations
-    :keyword endpoint: Service URL
+    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
     :paramtype endpoint: str
     """
 

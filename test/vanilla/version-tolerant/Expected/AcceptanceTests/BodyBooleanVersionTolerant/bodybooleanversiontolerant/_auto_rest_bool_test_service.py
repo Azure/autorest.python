@@ -27,7 +27,7 @@ class AutoRestBoolTestService(object):
 
     :ivar bool: BoolOperations operations
     :vartype bool: bodybooleanversiontolerant.operations.BoolOperations
-    :keyword endpoint: Service URL
+    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
     :paramtype endpoint: str
     """
 

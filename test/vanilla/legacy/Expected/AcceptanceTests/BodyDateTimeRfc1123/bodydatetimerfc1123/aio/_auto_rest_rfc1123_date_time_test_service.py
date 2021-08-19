@@ -23,7 +23,7 @@ class AutoRestRFC1123DateTimeTestService:
 
     :ivar datetimerfc1123: Datetimerfc1123Operations operations
     :vartype datetimerfc1123: bodydatetimerfc1123.aio.operations.Datetimerfc1123Operations
-    :param base_url: Service URL
+    :param base_url: Service URL. Default value is 'http://localhost:3000'.
     :type base_url: str
     """
 

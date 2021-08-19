@@ -28,7 +28,7 @@ class AutoRestPagingTestService(object):
 
     :ivar paging: PagingOperations operations
     :vartype paging: paging.operations.PagingOperations
-    :param base_url: Service URL
+    :param base_url: Service URL. Default value is 'http://localhost:3000'.
     :type base_url: str
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
      Retry-After header is present.

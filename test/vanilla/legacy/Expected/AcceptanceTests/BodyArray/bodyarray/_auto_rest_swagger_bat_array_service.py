@@ -28,7 +28,7 @@ class AutoRestSwaggerBATArrayService(object):
 
     :ivar array: ArrayOperations operations
     :vartype array: bodyarray.operations.ArrayOperations
-    :param base_url: Service URL
+    :param base_url: Service URL. Default value is 'http://localhost:3000'.
     :type base_url: str
     """
 

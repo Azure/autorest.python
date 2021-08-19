@@ -30,7 +30,7 @@ class AutoRestHeadTestService:
     :vartype http_success: headversiontolerant.aio.operations.HttpSuccessOperations
     :param credential: Credential needed for the client to connect to Azure.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
-    :keyword endpoint: Service URL
+    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
     :paramtype endpoint: str
     """
 

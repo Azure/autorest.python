@@ -26,7 +26,7 @@ class XMSErrorResponseExtensions:
 
     :ivar pet: PetOperations operations
     :vartype pet: xmserrorresponseversiontolerant.aio.operations.PetOperations
-    :keyword endpoint: Service URL
+    :keyword endpoint: Service URL. Default value is 'http://localhost'.
     :paramtype endpoint: str
     """
 

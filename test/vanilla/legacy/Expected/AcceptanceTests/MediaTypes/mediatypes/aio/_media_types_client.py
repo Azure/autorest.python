@@ -21,7 +21,7 @@ from .operations import MediaTypesClientOperationsMixin
 class MediaTypesClient(MediaTypesClientOperationsMixin):
     """Play with produces/consumes and media-types in general.
 
-    :param base_url: Service URL
+    :param base_url: Service URL. Default value is 'http://localhost:3000'.
     :type base_url: str
     """
 

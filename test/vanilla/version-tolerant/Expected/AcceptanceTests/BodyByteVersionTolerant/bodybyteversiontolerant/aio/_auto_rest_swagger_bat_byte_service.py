@@ -26,7 +26,7 @@ class AutoRestSwaggerBATByteService:
 
     :ivar byte: ByteOperations operations
     :vartype byte: bodybyteversiontolerant.aio.operations.ByteOperations
-    :keyword endpoint: Service URL
+    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
     :paramtype endpoint: str
     """
 

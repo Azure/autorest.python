@@ -50,7 +50,7 @@ class AutoRestHttpInfrastructureTestService:
     :ivar multiple_responses: MultipleResponsesOperations operations
     :vartype multiple_responses:
      httpinfrastructureversiontolerant.aio.operations.MultipleResponsesOperations
-    :keyword endpoint: Service URL
+    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
     :paramtype endpoint: str
     """
 

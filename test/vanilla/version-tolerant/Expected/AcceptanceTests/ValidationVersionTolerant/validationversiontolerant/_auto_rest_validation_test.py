@@ -27,7 +27,7 @@ class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
 
     :param subscription_id: Subscription ID.
     :type subscription_id: str
-    :keyword endpoint: Service URL
+    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
     :paramtype endpoint: str
     """
 

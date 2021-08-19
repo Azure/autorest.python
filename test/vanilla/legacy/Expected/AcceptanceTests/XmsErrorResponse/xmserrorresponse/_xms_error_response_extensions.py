@@ -28,7 +28,7 @@ class XMSErrorResponseExtensions(object):
 
     :ivar pet: PetOperations operations
     :vartype pet: xmserrorresponse.operations.PetOperations
-    :param base_url: Service URL
+    :param base_url: Service URL. Default value is 'http://localhost'.
     :type base_url: str
     """
 

@@ -49,7 +49,7 @@ class AutoRestComplexTestService:
     :vartype readonlyproperty: bodycomplex.aio.operations.ReadonlypropertyOperations
     :ivar flattencomplex: FlattencomplexOperations operations
     :vartype flattencomplex: bodycomplex.aio.operations.FlattencomplexOperations
-    :param base_url: Service URL
+    :param base_url: Service URL. Default value is 'http://localhost:3000'.
     :type base_url: str
     """
 

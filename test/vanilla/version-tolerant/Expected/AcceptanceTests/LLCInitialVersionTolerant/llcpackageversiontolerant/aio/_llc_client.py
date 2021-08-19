@@ -26,7 +26,7 @@ class LLCClient:
 
     :ivar params: ParamsOperations operations
     :vartype params: llcpackageversiontolerant.aio.operations.ParamsOperations
-    :keyword endpoint: Service URL
+    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
     :paramtype endpoint: str
     """
 
