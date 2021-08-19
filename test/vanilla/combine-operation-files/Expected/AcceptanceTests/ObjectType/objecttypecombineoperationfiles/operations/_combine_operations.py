@@ -32,7 +32,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 # fmt: off
 
-def build__get_request(
+def build_get_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -52,7 +52,7 @@ def build__get_request(
     )
 
 
-def build__put_request(
+def build_put_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -96,7 +96,7 @@ class ObjectTypeClientOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build__get_request(
+        request = build_get_request(
             template_url=self.get.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -143,7 +143,7 @@ class ObjectTypeClientOperationsMixin(object):
 
         json = self._serialize.body(put_object, "object")
 
-        request = build__put_request(
+        request = build_put_request(
             content_type=content_type,
             json=json,
             template_url=self.put.metadata["url"],

@@ -21,7 +21,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ...operations._combine_operations import build__get_request, build__put_request
+from ...operations._combine_operations import build_get_request, build_put_request
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -42,7 +42,7 @@ class ObjectTypeClientOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build__get_request(
+        request = build_get_request(
             template_url=self.get.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -86,7 +86,7 @@ class ObjectTypeClientOperationsMixin:
 
         json = self._serialize.body(put_object, "object")
 
-        request = build__put_request(
+        request = build_put_request(
             content_type=content_type,
             json=json,
             template_url=self.put.metadata["url"],

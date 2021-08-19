@@ -32,7 +32,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 # fmt: off
 
-def build__get_object_request(
+def build_get_object_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -52,7 +52,7 @@ def build__get_object_request(
     )
 
 
-def build__put_object_request(
+def build_put_object_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -74,7 +74,7 @@ def build__put_object_request(
     )
 
 
-def build__get_string_request(
+def build_get_string_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -94,7 +94,7 @@ def build__get_string_request(
     )
 
 
-def build__put_string_request(
+def build_put_string_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -116,7 +116,7 @@ def build__put_string_request(
     )
 
 
-def build__get_array_request(
+def build_get_array_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -136,7 +136,7 @@ def build__get_array_request(
     )
 
 
-def build__put_array_request(
+def build_put_array_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -178,7 +178,7 @@ class AnythingClientOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build__get_object_request(
+        request = build_get_object_request(
             template_url=self.get_object.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -224,7 +224,7 @@ class AnythingClientOperationsMixin(object):
 
         json = self._serialize.body(input, "object")
 
-        request = build__put_object_request(
+        request = build_put_object_request(
             content_type=content_type,
             json=json,
             template_url=self.put_object.metadata["url"],
@@ -259,7 +259,7 @@ class AnythingClientOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build__get_string_request(
+        request = build_get_string_request(
             template_url=self.get_string.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -305,7 +305,7 @@ class AnythingClientOperationsMixin(object):
 
         json = self._serialize.body(input, "object")
 
-        request = build__put_string_request(
+        request = build_put_string_request(
             content_type=content_type,
             json=json,
             template_url=self.put_string.metadata["url"],
@@ -340,7 +340,7 @@ class AnythingClientOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build__get_array_request(
+        request = build_get_array_request(
             template_url=self.get_array.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -386,7 +386,7 @@ class AnythingClientOperationsMixin(object):
 
         json = self._serialize.body(input, "object")
 
-        request = build__put_array_request(
+        request = build_put_array_request(
             content_type=content_type,
             json=json,
             template_url=self.put_array.metadata["url"],

@@ -34,7 +34,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 # fmt: off
 
-def build__get_incorrect_error_from_server_request(
+def build_get_incorrect_error_from_server_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -68,7 +68,7 @@ class IncorrectReturnedErrorModelOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build__get_incorrect_error_from_server_request(
+        request = build_get_incorrect_error_from_server_request(
             template_url=self.get_incorrect_error_from_server.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)

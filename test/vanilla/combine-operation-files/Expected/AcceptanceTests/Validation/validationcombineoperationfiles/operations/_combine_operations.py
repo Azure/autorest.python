@@ -35,7 +35,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 # fmt: off
 
-def build__validation_of_method_parameters_request(
+def build_validation_of_method_parameters_request(
     subscription_id,  # type: str
     resource_group_name,  # type: str
     id,  # type: int
@@ -71,7 +71,7 @@ def build__validation_of_method_parameters_request(
     )
 
 
-def build__validation_of_body_request(
+def build_validation_of_body_request(
     subscription_id,  # type: str
     resource_group_name,  # type: str
     id,  # type: int
@@ -111,7 +111,7 @@ def build__validation_of_body_request(
     )
 
 
-def build__get_with_constant_in_path_request(
+def build_get_with_constant_in_path_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -131,7 +131,7 @@ def build__get_with_constant_in_path_request(
     )
 
 
-def build__post_with_constant_in_body_request(
+def build_post_with_constant_in_body_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -187,7 +187,7 @@ class AutoRestValidationTestOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build__validation_of_method_parameters_request(
+        request = build_validation_of_method_parameters_request(
             subscription_id=self._config.subscription_id,
             resource_group_name=resource_group_name,
             id=id,
@@ -245,7 +245,7 @@ class AutoRestValidationTestOperationsMixin(object):
         else:
             json = None
 
-        request = build__validation_of_body_request(
+        request = build_validation_of_body_request(
             subscription_id=self._config.subscription_id,
             resource_group_name=resource_group_name,
             id=id,
@@ -288,7 +288,7 @@ class AutoRestValidationTestOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build__get_with_constant_in_path_request(
+        request = build_get_with_constant_in_path_request(
             template_url=self.get_with_constant_in_path.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -332,7 +332,7 @@ class AutoRestValidationTestOperationsMixin(object):
         else:
             json = None
 
-        request = build__post_with_constant_in_body_request(
+        request = build_post_with_constant_in_body_request(
             content_type=content_type,
             json=json,
             template_url=self.post_with_constant_in_body.metadata["url"],

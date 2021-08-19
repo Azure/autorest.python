@@ -37,7 +37,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 # fmt: off
 
-def build__poll_with_parameterized_endpoints_request_initial(
+def build_poll_with_parameterized_endpoints_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -57,7 +57,7 @@ def build__poll_with_parameterized_endpoints_request_initial(
     )
 
 
-def build__poll_with_constant_parameterized_endpoints_request_initial(
+def build_poll_with_constant_parameterized_endpoints_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -96,7 +96,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build__poll_with_parameterized_endpoints_request_initial(
+        request = build_poll_with_parameterized_endpoints_request_initial(
             template_url=self._poll_with_parameterized_endpoints_initial.metadata["url"],
         )._to_pipeline_transport_request()
         path_format_arguments = {
@@ -205,7 +205,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build__poll_with_constant_parameterized_endpoints_request_initial(
+        request = build_poll_with_constant_parameterized_endpoints_request_initial(
             template_url=self._poll_with_constant_parameterized_endpoints_initial.metadata["url"],
         )._to_pipeline_transport_request()
         path_format_arguments = {

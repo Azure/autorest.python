@@ -34,7 +34,7 @@ if TYPE_CHECKING:
 _SERIALIZER = Serializer()
 # fmt: off
 
-def build__get_report_request(
+def build_get_report_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -62,7 +62,7 @@ def build__get_report_request(
     )
 
 
-def build__get_optional_report_request(
+def build_get_optional_report_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -115,7 +115,7 @@ class AutoRestReportServiceOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build__get_report_request(
+        request = build_get_report_request(
             qualifier=qualifier,
             template_url=self.get_report.metadata["url"],
         )._to_pipeline_transport_request()
@@ -160,7 +160,7 @@ class AutoRestReportServiceOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build__get_optional_report_request(
+        request = build_get_optional_report_request(
             qualifier=qualifier,
             template_url=self.get_optional_report.metadata["url"],
         )._to_pipeline_transport_request()
