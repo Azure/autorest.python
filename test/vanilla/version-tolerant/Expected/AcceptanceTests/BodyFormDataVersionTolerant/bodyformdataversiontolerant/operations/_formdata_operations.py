@@ -137,6 +137,15 @@ class FormdataOperations(object):
         :return: IO
         :rtype: IO
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # multipart input template you can fill out and use as your `files` input.
+                files = {
+                    "file_content": "IO. File to upload.",
+                    "file_name": "str. File name to upload. Name has to be spelled exactly as written here."
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[IO]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -144,13 +153,8 @@ class FormdataOperations(object):
 
         content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
-        files = None
         data = None
         # Construct form data
-        files = {
-            "fileContent": file_content,
-            "fileName": file_name,
-        }
 
         request = build_upload_file_request(
             content_type=content_type,
@@ -254,12 +258,8 @@ class FormdataOperations(object):
 
         content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
-        files = None
         data = None
         # Construct form data
-        files = {
-            "fileContent": file_content,
-        }
 
         request = build_upload_files_request(
             content_type=content_type,
