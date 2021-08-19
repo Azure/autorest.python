@@ -601,6 +601,8 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         if self.code_model.options['models_mode']:
             return False
         if builder.parameters.has_body:
+            if builder.parameters.body[0].is_multipart:
+                return True
             body_params = builder.parameters.body
             return any([b for b in body_params if isinstance(b.schema, (DictionarySchema, ListSchema, ObjectSchema))])
         return bool(self._get_json_response_template_to_status_codes(builder))
@@ -685,7 +687,11 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
     ) -> List[str]:
         retval = []
         if len(builder.body_kwargs_to_pass_to_request_builder) > 1:
-            for k in builder.body_kwargs_to_pass_to_request_builder:
+            # special case for files, bc we hardcode body param to be called 'files' for multipart
+            body_params_to_initialize = builder.body_kwargs_to_pass_to_request_builder
+            if self.code_model.options["version_tolerant"]:
+                body_params_to_initialize = [p for p in body_params_to_initialize if p != "files"]
+            for k in body_params_to_initialize:
                 retval.append(f"{k} = None")
         if builder.parameters.grouped:
             # request builders don't allow grouped parameters, so we group them before making the call
@@ -693,7 +699,8 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         if request_builder.multipart:
             # we have to construct our form data before passing to the request as well
             retval.append("# Construct form data")
-            retval.extend(_serialize_files_parameter(builder))
+            if not self.code_model.options["version_tolerant"]:
+                retval.extend(_serialize_files_parameter(builder))
         if builder.parameters.is_flattened:
             # unflatten before passing to request builder as well
             retval.append(builder.parameters.build_flattened_object())

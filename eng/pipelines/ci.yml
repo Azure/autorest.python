@@ -79,7 +79,7 @@ jobs:
 
       - script: |
           pip install pip==20.2
-          pip install tox coverage==4.5.4
+          pip install tox coverage
         displayName: "Install Env Specific Reqs in Target PyVersion $(PythonVersion)"
 
       - script: |

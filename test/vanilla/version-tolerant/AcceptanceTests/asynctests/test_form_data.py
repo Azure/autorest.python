@@ -58,7 +58,11 @@ async def test_file_upload_stream(client):
     test_bytes = bytearray(test_string, encoding='utf-8')
     result = io.BytesIO()
     with io.BytesIO(test_bytes) as stream_data:
-        resp = await client.formdata.upload_file(stream_data, "UploadFile.txt")
+        files = {
+            "file_content": stream_data,
+            "file_name": "UploadFile.txt"
+        }
+        resp = await client.formdata.upload_file(files)
         async for r in resp.iter_bytes():
             result.write(r)
         assert result.getvalue().decode() ==  test_string
@@ -72,7 +76,11 @@ async def test_file_upload_stream_raw(client):
     test_bytes = bytearray(test_string, encoding='utf-8')
     result = io.BytesIO()
     with io.BytesIO(test_bytes) as stream_data:
-        resp = await client.formdata.upload_file(stream_data, "UploadFile.txt", cls=test_callback)
+        files = {
+            "file_content": stream_data,
+            "file_name": "UploadFile.txt"
+        }
+        resp = await client.formdata.upload_file(files, cls=test_callback)
         async for data in resp.iter_bytes():
             result.write(data)
         assert result.getvalue().decode() ==  test_string
@@ -82,7 +90,11 @@ async def test_file_upload_file_stream(client, dummy_file):
     name = os.path.basename(dummy_file)
     result = io.BytesIO()
     with open(dummy_file, 'rb') as upload_data:
-        resp = await client.formdata.upload_file(upload_data, name)
+        files = {
+            "file_content": upload_data,
+            "file_name": name
+        }
+        resp = await client.formdata.upload_file(files)
         async for r in resp.iter_bytes():
             result.write(r)
         assert result.getvalue().decode() ==  "Test file"
@@ -96,7 +108,11 @@ async def test_file_upload_file_stream_raw(client, dummy_file):
     name = os.path.basename(dummy_file)
     result = io.BytesIO()
     with open(dummy_file, 'rb') as upload_data:
-        resp = await client.formdata.upload_file(upload_data, name, cls=test_callback)
+        files = {
+            "file_content": upload_data,
+            "file_name": name
+        }
+        resp = await client.formdata.upload_file(files, cls=test_callback)
         async for data in resp.iter_raw():
             result.write(data)
         assert result.getvalue().decode() ==  "Test file"
