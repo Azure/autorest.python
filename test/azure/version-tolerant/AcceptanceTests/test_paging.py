@@ -33,7 +33,7 @@ import pytest
 
 @pytest.fixture
 def client():
-    with AutoRestPagingTestService(base_url="http://localhost:3000") as client:
+    with AutoRestPagingTestService(endpoint="http://localhost:3000") as client:
         yield client
 
 

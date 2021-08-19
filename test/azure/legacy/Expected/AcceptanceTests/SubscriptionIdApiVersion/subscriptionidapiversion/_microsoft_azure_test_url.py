@@ -33,7 +33,7 @@ class MicrosoftAzureTestUrl(object):
     :type credential: ~azure.core.credentials.TokenCredential
     :param subscription_id: Subscription Id.
     :type subscription_id: str
-    :param base_url: Service URL
+    :param base_url: Service URL. Default value is 'http://localhost:3000'.
     :type base_url: str
     """
 
@@ -41,12 +41,10 @@ class MicrosoftAzureTestUrl(object):
         self,
         credential,  # type: "TokenCredential"
         subscription_id,  # type: str
-        base_url=None,  # type: Optional[str]
+        base_url="http://localhost:3000",  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        if not base_url:
-            base_url = "http://localhost:3000"
         self._config = MicrosoftAzureTestUrlConfiguration(credential, subscription_id, **kwargs)
         self._client = ARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 

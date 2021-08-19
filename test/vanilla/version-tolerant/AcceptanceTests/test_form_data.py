@@ -51,7 +51,7 @@ def dummy_file():
 @pytest.fixture
 def client():
     with AutoRestSwaggerBATFormDataService(
-        base_url="http://localhost:3000",
+        endpoint="http://localhost:3000",
         connection_data_block_size = 2,
         retry_total = 50,  # Be agressive on this test, sometimes testserver DDOS :-p
         retry_backoff_factor = 1.6

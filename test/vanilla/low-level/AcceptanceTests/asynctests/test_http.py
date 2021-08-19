@@ -55,7 +55,7 @@ async def client(cookie_policy):
         AsyncRetryPolicy(),
         cookie_policy
     ]
-    async with AutoRestHttpInfrastructureTestService(base_url="http://localhost:3000", policies=policies) as client:
+    async with AutoRestHttpInfrastructureTestService(endpoint="http://localhost:3000", policies=policies) as client:
         await yield_(client)
 
 @pytest.fixture

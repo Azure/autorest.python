@@ -35,7 +35,7 @@ from reportlowlevel import AutoRestReportService, rest
 class TestAcceptance(object):
 
     def test_ensure_coverage(self):
-        client = AutoRestReportService(base_url="http://localhost:3000")
+        client = AutoRestReportService(endpoint="http://localhost:3000")
         request = rest.build_get_report_request(qualifier=platform.python_version())
         report = client.send_request(request).json()
 

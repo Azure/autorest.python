@@ -28,7 +28,7 @@ from anythingversiontolerant import AnythingClient
 
 @pytest.fixture
 def client():
-    with AnythingClient(base_url="http://localhost:3000") as client:
+    with AnythingClient(endpoint="http://localhost:3000") as client:
         yield client
 
 def test_get_string(client):

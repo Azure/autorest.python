@@ -27,27 +27,27 @@ class AutoRestAzureSpecialParametersTestClientConfiguration(Configuration):
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
-    :param credential: Credential needed for the client to connect to Azure.
-    :type credential: ~azure.core.credentials.TokenCredential
     :param subscription_id: The subscription id, which appears in the path, always modeled in credentials. The value is always '1234-5678-9012-3456'.
     :type subscription_id: str
+    :param credential: Credential needed for the client to connect to Azure.
+    :type credential: ~azure.core.credentials.TokenCredential
     """
 
     def __init__(
         self,
-        credential,  # type: "TokenCredential"
         subscription_id,  # type: str
+        credential,  # type: "TokenCredential"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        if credential is None:
-            raise ValueError("Parameter 'credential' must not be None.")
         if subscription_id is None:
             raise ValueError("Parameter 'subscription_id' must not be None.")
+        if credential is None:
+            raise ValueError("Parameter 'credential' must not be None.")
         super(AutoRestAzureSpecialParametersTestClientConfiguration, self).__init__(**kwargs)
 
-        self.credential = credential
         self.subscription_id = subscription_id
+        self.credential = credential
         self.api_version = "2015-07-01-preview"
         self.credential_scopes = kwargs.pop("credential_scopes", ["https://management.azure.com/.default"])
         kwargs.setdefault("sdk_moniker", "autorestazurespecialparameterstestclient/{}".format(VERSION))

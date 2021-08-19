@@ -38,6 +38,7 @@ from ...operations._lros_operations import (
     build_delete_provisioning202_accepted200_succeeded_request_initial,
     build_delete_provisioning202_deleting_failed200_request_initial,
     build_delete_provisioning202_deletingcanceled200_request_initial,
+    build_patch200_succeeded_ignore_headers_request_initial,
     build_post200_with_payload_request_initial,
     build_post202_list_request_initial,
     build_post202_no_retry204_request_initial,
@@ -193,6 +194,113 @@ class LROsOperations:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     begin_put200_succeeded.metadata = {"url": "/lro/put/200/succeeded"}  # type: ignore
+
+    async def _patch200_succeeded_ignore_headers_initial(
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
+    ) -> "_models.Product":
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
+        if product is not None:
+            json = self._serialize.body(product, "Product")
+        else:
+            json = None
+
+        request = build_patch200_succeeded_ignore_headers_request_initial(
+            content_type=content_type,
+            json=json,
+            template_url=self._patch200_succeeded_ignore_headers_initial.metadata["url"],
+        )._to_pipeline_transport_request()
+        request.url = self._client.format_url(request.url)
+
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        response_headers = {}
+        response_headers["Azure-AsyncOperation"] = self._deserialize(
+            "str", response.headers.get("Azure-AsyncOperation")
+        )
+
+        deserialized = self._deserialize("Product", pipeline_response)
+
+        if cls:
+            return cls(pipeline_response, deserialized, response_headers)
+
+        return deserialized
+
+    _patch200_succeeded_ignore_headers_initial.metadata = {"url": "/lro/patch/200/succeeded/ignoreheaders"}  # type: ignore
+
+    @distributed_trace_async
+    async def begin_patch200_succeeded_ignore_headers(
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
+    ) -> AsyncLROPoller["_models.Product"]:
+        """Long running put request, service returns a 200 to the initial request with location header. We
+        should not have any subsequent calls after receiving this first response.
+
+        :param product: Product to patch.
+        :type product: ~lro.models.Product
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
+         this operation to not poll, or pass in your own initialized polling object for a personal
+         polling strategy.
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of AsyncLROPoller that returns either Product or the result of
+         cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
+        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
+        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
+        cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = await self._patch200_succeeded_ignore_headers_initial(
+                product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
+            )
+        kwargs.pop("error_map", None)
+
+        def get_long_running_output(pipeline_response):
+            response_headers = {}
+            response = pipeline_response.http_response
+            response_headers["Azure-AsyncOperation"] = self._deserialize(
+                "str", response.headers.get("Azure-AsyncOperation")
+            )
+
+            deserialized = self._deserialize("Product", pipeline_response)
+            if cls:
+                return cls(pipeline_response, deserialized, response_headers)
+            return deserialized
+
+        if polling is True:
+            polling_method = AsyncARMPolling(lro_delay, **kwargs)
+        elif polling is False:
+            polling_method = AsyncNoPolling()
+        else:
+            polling_method = polling
+        if cont_token:
+            return AsyncLROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output,
+            )
+        else:
+            return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
+
+    begin_patch200_succeeded_ignore_headers.metadata = {"url": "/lro/patch/200/succeeded/ignoreheaders"}  # type: ignore
 
     async def _put201_succeeded_initial(
         self, product: Optional["_models.Product"] = None, **kwargs: Any

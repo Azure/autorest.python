@@ -17,7 +17,7 @@ class ClientSerializer:
             function_def="def",
             method_name="__init__",
             is_in_class=True,
-            method_param_signatures=self.code_model.service_client.method_parameters_signature(async_mode),
+            method_param_signatures=self.code_model.service_client.parameters.client_method_signature(async_mode),
         )
 
     def init_signature_and_response_type_annotation(self, async_mode: bool) -> str:
@@ -27,6 +27,9 @@ class ClientSerializer:
             method_signature=init_signature,
             response_type_annotation="None",
         )
+
+    def pop_kwargs_from_signature(self, async_mode: bool) -> List[str]:
+        return utils.pop_kwargs_from_signature(self.code_model.service_client.parameters.kwargs_to_pop(async_mode))
 
     def class_definition(self, async_mode) -> str:
         class_name = self.code_model.class_name
@@ -46,9 +49,9 @@ class ClientSerializer:
         for og in [og for og in self.code_model.operation_groups if not og.is_empty_operation_group]:
             retval.append(f":ivar {og.name}: {og.class_name} operations")
             retval.append(f":vartype {og.name}: {self.code_model.namespace}{operations_folder}{og.class_name}")
-        for param in self.code_model.service_client.method_parameters:
-            retval.append(f":param {param.serialized_name}: {param.description}")
-            retval.append(f":type {param.serialized_name}: {param.docstring_type}")
+        for param in self.code_model.service_client.parameters.client_method:
+            retval.append(f":{param.description_keyword} {param.serialized_name}: {param.description}")
+            retval.append(f":{param.docstring_type_keyword} {param.serialized_name}: {param.docstring_type}")
         if self.code_model.has_lro_operations:
             retval.append(
                 ":keyword int polling_interval: Default waiting time between two polls for LRO operations "
@@ -56,6 +59,18 @@ class ClientSerializer:
             )
         retval.append('"""')
         return retval
+
+    def initialize_config(self) -> str:
+        config_name = f"{self.code_model.class_name}Configuration"
+        config_call = ", ".join(
+            [p.serialized_name for p in self.code_model.service_client.parameters.config_method
+        ] + ["**kwargs"])
+        return f"self._config = {config_name}({config_call})"
+
+    def initialize_pipeline_client(self, async_mode: bool) -> str:
+        endpoint_name = self.code_model.service_client.parameters.endpoint_name
+        pipeline_client_name = self.code_model.service_client.pipeline_class(async_mode)
+        return f"self._client = {pipeline_client_name}(base_url={endpoint_name}, config=self._config, **kwargs)"
 
     def serializers_and_operation_groups_properties(self) -> List[str]:
         retval = []

@@ -31,7 +31,7 @@ import pytest
 
 @pytest.fixture
 def client():
-    with AutoRestDateTimeTestService(base_url="http://localhost:3000") as client:
+    with AutoRestDateTimeTestService(endpoint="http://localhost:3000") as client:
         yield client
 
 def test_utc_max_date_time(client):

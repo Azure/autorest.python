@@ -36,7 +36,7 @@ class StorageManagementClient(object):
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
      subscription. The subscription ID forms part of the URI for every service call.
     :type subscription_id: str
-    :param base_url: Service URL
+    :param base_url: Service URL. Default value is 'https://management.azure.com'.
     :type base_url: str
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
      Retry-After header is present.
@@ -46,12 +46,10 @@ class StorageManagementClient(object):
         self,
         credential,  # type: "TokenCredential"
         subscription_id,  # type: str
-        base_url=None,  # type: Optional[str]
+        base_url="https://management.azure.com",  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        if not base_url:
-            base_url = "https://management.azure.com"
         self._config = StorageManagementClientConfiguration(credential, subscription_id, **kwargs)
         self._client = ARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 

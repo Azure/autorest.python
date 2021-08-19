@@ -34,7 +34,7 @@ from llcpackagelowlevel.rest.params import build_get_required_request
 @pytest.fixture
 @async_generator
 async def client():
-    async with LLCClient(base_url="http://localhost:3000") as client:
+    async with LLCClient(endpoint="http://localhost:3000") as client:
         await yield_(client)
 
 @pytest.mark.asyncio
@@ -46,4 +46,3 @@ async def test_required_to_optional(client):
     )
     response = await client.send_request(request)
     assert response.status_code == 200
-    

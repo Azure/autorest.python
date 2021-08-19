@@ -34,7 +34,7 @@ import pytest
 
 @pytest.fixture
 def client():
-    with AutoRestParameterGroupingTestService(base_url="http://localhost:3000") as client:
+    with AutoRestParameterGroupingTestService(endpoint="http://localhost:3000") as client:
         yield client
 
 @pytest.fixture
@@ -43,7 +43,7 @@ def valid_subscription():
 
 @pytest.fixture
 def azure_client(valid_subscription, credential, authentication_policy):
-    with AutoRestAzureSpecialParametersTestClient(credential, valid_subscription, base_url="http://localhost:3000", authentication_policy=authentication_policy) as client:
+    with AutoRestAzureSpecialParametersTestClient(valid_subscription, credential, endpoint="http://localhost:3000", authentication_policy=authentication_policy) as client:
         yield client
 
 @pytest.fixture

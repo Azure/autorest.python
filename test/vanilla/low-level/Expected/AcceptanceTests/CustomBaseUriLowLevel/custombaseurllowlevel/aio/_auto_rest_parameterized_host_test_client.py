@@ -28,9 +28,9 @@ class AutoRestParameterizedHostTestClient:
     """
 
     def __init__(self, host: str = "host", **kwargs: Any) -> None:
-        base_url = "http://{accountName}{host}"
+        endpoint = "http://{accountName}{host}"
         self._config = AutoRestParameterizedHostTestClientConfiguration(host, **kwargs)
-        self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
+        self._client = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

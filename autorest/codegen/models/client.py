@@ -4,8 +4,6 @@
 # license information.
 # --------------------------------------------------------------------------
 from typing import List, Optional
-from .primitive_schemas import StringSchema
-from .parameter import Parameter, ParameterLocation
 from .parameter_list import GlobalParameterList
 from .imports import FileImport, ImportType, TypingSection
 
@@ -17,9 +15,9 @@ class Client:
     def __init__(self, code_model, parameters: GlobalParameterList):
         self.code_model = code_model
         self.parameters = parameters
-        self.base_url: Optional[str] = None
-        self.custom_base_url = None
+        self.custom_endpoint_value: Optional[str] = None
         self._config_parameters = parameters
+
 
     def pipeline_class(self, async_mode: bool) -> str:
         if self.code_model.options["azure_arm"]:
@@ -39,7 +37,7 @@ class Client:
 
         any_optional_gp = any(not gp.required for gp in self.parameters)
 
-        if any_optional_gp or self.code_model.service_client.base_url:
+        if any_optional_gp or self.code_model.service_client.parameters.endpoint:
             file_import.add_from_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
 
         if self.code_model.options["azure_arm"]:
@@ -94,36 +92,6 @@ class Client:
             pass
         return file_import
 
-    @property
-    def method_parameters(self) -> List[Parameter]:
-        base_url_param = []
-        if self.base_url:
-            base_url_param = [Parameter(
-                yaml_data={},
-                schema=StringSchema(namespace="", yaml_data={"type": "str"}),
-                rest_api_name="base_url",
-                serialized_name="base_url",
-                description="Service URL",
-                implementation="Client",
-                required=False,
-                location=ParameterLocation.Other,
-                skip_url_encoding=False,
-                constraints=[],
-            )]
-        return self.parameters.method + base_url_param
-
-    def method_parameters_signature(self, async_mode) -> List[str]:
-        return [
-            parameter.method_signature(async_mode) for parameter in self.method_parameters
-        ] + self.parameters.method_signature_kwargs(async_mode)
-
     def send_request_signature(self, async_mode) -> List[str]:
         request_signature = ["request: HttpRequest," if async_mode else "request,  # type: HttpRequest"]
         return request_signature + self.parameters.method_signature_kwargs(async_mode)
-
-    @property
-    def config_initialization(self) -> str:
-        method = ", ".join([p.serialized_name for p in self.parameters.method])
-        if method:
-            return method + ", **kwargs"
-        return "**kwargs"

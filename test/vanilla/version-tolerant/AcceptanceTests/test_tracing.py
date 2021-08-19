@@ -34,5 +34,5 @@ def has_tracing_decorator(function):
     return "def wrapper_use_tracer" in source or "@distributed_trace" in source
 
 def test_url():
-    with AutoRestUrlTestService('', base_url="dummy url") as client:
+    with AutoRestUrlTestService('', endpoint="dummy url") as client:
         assert has_tracing_decorator(client.paths.get_boolean_false)

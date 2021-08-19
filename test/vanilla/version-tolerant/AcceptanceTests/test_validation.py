@@ -31,7 +31,7 @@ import pytest
 
 @pytest.fixture
 def client():
-    with AutoRestValidationTest("abc123", base_url="http://localhost:3000") as client:
+    with AutoRestValidationTest("abc123", endpoint="http://localhost:3000") as client:
         client.api_version = "12-34-5678"
         yield client
 
@@ -126,7 +126,7 @@ def test_max_items_validation(client, constant_body):
 def test_api_version_validation(client):
     client = AutoRestValidationTest(
         "abc123",
-        base_url="http://localhost:3000")
+        endpoint="http://localhost:3000")
     client.api_version = "abc"
     with pytest.raises(ValidationError) as ex:
         client.validation_of_method_parameters("123", 150)

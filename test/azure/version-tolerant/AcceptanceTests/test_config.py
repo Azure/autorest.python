@@ -29,7 +29,7 @@ from azure.mgmt.core.policies import ARMHttpLoggingPolicy
 from headversiontolerant import AutoRestHeadTestService
 
 def test_arm_http_logging_policy_default(credential):
-    with AutoRestHeadTestService(credential, base_url="http://localhost:3000") as client:
+    with AutoRestHeadTestService(credential, endpoint="http://localhost:3000") as client:
         assert isinstance(client._config.http_logging_policy, ARMHttpLoggingPolicy)
         assert client._config.http_logging_policy.allowed_header_names == ARMHttpLoggingPolicy.DEFAULT_HEADERS_WHITELIST
 
@@ -39,7 +39,7 @@ def test_arm_http_logging_policy_custom(credential):
     http_logging_policy.allowed_header_names.update(
         {"x-ms-added-header"}
     )
-    with AutoRestHeadTestService(credential, base_url="http://localhost:3000", http_logging_policy=http_logging_policy) as client:
+    with AutoRestHeadTestService(credential, endpoint="http://localhost:3000", http_logging_policy=http_logging_policy) as client:
         assert isinstance(client._config.http_logging_policy, ARMHttpLoggingPolicy)
         assert client._config.http_logging_policy.allowed_header_names == ARMHttpLoggingPolicy.DEFAULT_HEADERS_WHITELIST.union({"x-ms-added-header"})
 

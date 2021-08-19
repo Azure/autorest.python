@@ -80,6 +80,75 @@ def build_put200_succeeded_request(*, json: Any = None, content: Any = None, **k
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
+def build_patch200_succeeded_ignore_headers_request(
+    *, json: Any = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    """Long running put request, service returns a 200 to the initial request with location header. We
+    should not have any subsequent calls after receiving this first response.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
+     our example to find the input shape. Product to patch.
+    :paramtype json: any
+    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
+     a byte iterator, or stream input). Product to patch.
+    :paramtype content: any
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # JSON input template you can fill out and use as your body input.
+            json = {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                },
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
+
+            # response body for status code(s): 200
+            response.json() == {
+                "id": "str (optional)",
+                "location": "str (optional)",
+                "name": "str (optional)",
+                "properties": {
+                    "provisioningState": "str (optional)",
+                    "provisioningStateValues": "str (optional)"
+                },
+                "tags": {
+                    "str": "str (optional)"
+                },
+                "type": "str (optional)"
+            }
+    """
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", "/lro/patch/200/succeeded/ignoreheaders")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="PATCH", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+
+
 def build_put201_succeeded_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Long running put request, service returns a 201 to the initial request, with an entity that
     contains ProvisioningState=’Succeeded’.

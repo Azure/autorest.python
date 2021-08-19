@@ -95,3 +95,17 @@ def method_signature_and_response_type_annotation_template(
     if is_python_3_file:
         return f"{method_signature} -> {response_type_annotation}:"
     return f"{method_signature}:\n    # type: (...) -> {response_type_annotation}"
+
+def pop_kwargs_from_signature(kwargs_to_pop: List[Parameter]) -> List[str]:
+    retval = []
+    for kwarg in kwargs_to_pop:
+        if kwarg.has_default_value:
+            retval.append(
+                f"{kwarg.serialized_name} = kwargs.pop('{kwarg.serialized_name}', "
+                + f"{kwarg.default_value_declaration})  # type: {kwarg.type_annotation}"
+            )
+        else:
+            retval.append(
+                f"{kwarg.serialized_name} = kwargs.pop('{kwarg.serialized_name}')  # type: {kwarg.type_annotation}"
+            )
+    return retval

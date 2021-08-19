@@ -31,7 +31,7 @@ import pytest
 @pytest.fixture
 @async_generator
 async def client():
-    async with NonStringEnumsClient(base_url="http://localhost:3000") as client:
+    async with NonStringEnumsClient(endpoint="http://localhost:3000") as client:
         await yield_(client)
 
 @pytest.mark.asyncio
