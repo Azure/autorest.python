@@ -32,7 +32,7 @@ from reportversiontolerant import AutoRestReportService
 class TestAcceptance(object):
 
     def test_ensure_coverage(self):
-        client = AutoRestReportService(base_url="http://localhost:3000")
+        client = AutoRestReportService(endpoint="http://localhost:3000")
         report = client.get_report(qualifier=platform.python_version())
         optional_report = client.get_optional_report(qualifier=platform.python_version())
 

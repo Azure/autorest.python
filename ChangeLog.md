@@ -15,6 +15,7 @@
 - We have added a **provisional** `rest` layer to our generated code. We have also added the following **provisional** flags listed [here](https://github.com/Azure/autorest.python/wiki/Generating-Low-Level-Client#generate-a-low-level-client). #875
 - With this new release, we are also dropping support for Python 3.5 + async.  #875
 - For mgmt plan SDK, default policy changes from `BearerTokenCredentialPolicy` to `ARMChallengeAuthenticationPolicy`.
+- We now add tracing by default, the flag `--trace` now defaults to `True` if you have operations.
 
 **Bug Fixes**
 

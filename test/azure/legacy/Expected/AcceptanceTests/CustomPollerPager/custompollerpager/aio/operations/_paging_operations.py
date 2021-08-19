@@ -16,6 +16,8 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.pipeline.transport._base import _format_url_section
 from azure.core.polling import AsyncNoPolling, AsyncPollingMethod
 from azure.core.rest import HttpRequest
+from azure.core.tracing.decorator import distributed_trace
+from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 from custompollerpagerdefinitions.aio import AsyncCustomPager, AsyncCustomPoller
@@ -49,6 +51,7 @@ class PagingOperations:
         self._deserialize = deserializer
         self._config = config
 
+    @distributed_trace
     def get_no_item_name_pages(
         self,
         **kwargs: Any
@@ -107,6 +110,7 @@ class PagingOperations:
         )
     get_no_item_name_pages.metadata = {'url': '/paging/noitemname'}  # type: ignore
 
+    @distributed_trace
     def get_null_next_link_name_pages(
         self,
         **kwargs: Any
@@ -165,6 +169,7 @@ class PagingOperations:
         )
     get_null_next_link_name_pages.metadata = {'url': '/paging/nullnextlink'}  # type: ignore
 
+    @distributed_trace
     def get_single_pages(
         self,
         **kwargs: Any
@@ -224,6 +229,7 @@ class PagingOperations:
         )
     get_single_pages.metadata = {'url': '/paging/single'}  # type: ignore
 
+    @distributed_trace
     def first_response_empty(
         self,
         **kwargs: Any
@@ -283,6 +289,7 @@ class PagingOperations:
         )
     first_response_empty.metadata = {'url': '/paging/firstResponseEmpty/1'}  # type: ignore
 
+    @distributed_trace
     def get_multiple_pages(
         self,
         client_request_id: Optional[str] = None,
@@ -364,6 +371,7 @@ class PagingOperations:
         )
     get_multiple_pages.metadata = {'url': '/paging/multiple'}  # type: ignore
 
+    @distributed_trace
     def get_with_query_params(
         self,
         required_query_parameter: int,
@@ -428,6 +436,7 @@ class PagingOperations:
         )
     get_with_query_params.metadata = {'url': '/paging/multiple/getWithQueryParams'}  # type: ignore
 
+    @distributed_trace
     def get_odata_multiple_pages(
         self,
         client_request_id: Optional[str] = None,
@@ -509,6 +518,7 @@ class PagingOperations:
         )
     get_odata_multiple_pages.metadata = {'url': '/paging/multiple/odata'}  # type: ignore
 
+    @distributed_trace
     def get_multiple_pages_with_offset(
         self,
         paging_get_multiple_pages_with_offset_options: "_models.PagingGetMultiplePagesWithOffsetOptions",
@@ -596,6 +606,7 @@ class PagingOperations:
         )
     get_multiple_pages_with_offset.metadata = {'url': '/paging/multiple/withpath/{offset}'}  # type: ignore
 
+    @distributed_trace
     def get_multiple_pages_retry_first(
         self,
         **kwargs: Any
@@ -655,6 +666,7 @@ class PagingOperations:
         )
     get_multiple_pages_retry_first.metadata = {'url': '/paging/multiple/retryfirst'}  # type: ignore
 
+    @distributed_trace
     def get_multiple_pages_retry_second(
         self,
         **kwargs: Any
@@ -714,6 +726,7 @@ class PagingOperations:
         )
     get_multiple_pages_retry_second.metadata = {'url': '/paging/multiple/retrysecond'}  # type: ignore
 
+    @distributed_trace
     def get_single_pages_failure(
         self,
         **kwargs: Any
@@ -772,6 +785,7 @@ class PagingOperations:
         )
     get_single_pages_failure.metadata = {'url': '/paging/single/failure'}  # type: ignore
 
+    @distributed_trace
     def get_multiple_pages_failure(
         self,
         **kwargs: Any
@@ -830,6 +844,7 @@ class PagingOperations:
         )
     get_multiple_pages_failure.metadata = {'url': '/paging/multiple/failure'}  # type: ignore
 
+    @distributed_trace
     def get_multiple_pages_failure_uri(
         self,
         **kwargs: Any
@@ -888,6 +903,7 @@ class PagingOperations:
         )
     get_multiple_pages_failure_uri.metadata = {'url': '/paging/multiple/failureuri'}  # type: ignore
 
+    @distributed_trace
     def get_multiple_pages_fragment_next_link(
         self,
         api_version: str,
@@ -957,6 +973,7 @@ class PagingOperations:
         )
     get_multiple_pages_fragment_next_link.metadata = {'url': '/paging/multiple/fragment/{tenant}'}  # type: ignore
 
+    @distributed_trace
     def get_multiple_pages_fragment_with_grouping_next_link(
         self,
         custom_parameter_group: "_models.CustomParameterGroup",
@@ -1076,6 +1093,7 @@ class PagingOperations:
     _get_multiple_pages_lro_initial.metadata = {'url': '/paging/multiple/lro'}  # type: ignore
 
 
+    @distributed_trace_async
     async def begin_get_multiple_pages_lro(
         self,
         client_request_id: Optional[str] = None,
@@ -1205,6 +1223,7 @@ class PagingOperations:
     begin_get_multiple_pages_lro.metadata = {'url': '/paging/multiple/lro'}  # type: ignore
 
 
+    @distributed_trace
     def get_paging_model_with_item_name_with_xms_client_name(
         self,
         **kwargs: Any

@@ -43,6 +43,7 @@ class TestAcceptance(object):
 
         # Please add missing features or failing tests here
         missing_features_or_bugs = {
+            "LROPatchInlineCompleteIgnoreHeaders": 1,
         }
 
         print("Coverage:")

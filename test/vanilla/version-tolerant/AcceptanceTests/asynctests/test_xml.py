@@ -36,7 +36,7 @@ _LOGGER = logging.getLogger(__name__)
 @pytest.fixture
 @async_generator
 async def client():
-    async with AutoRestSwaggerBATXMLService(base_url="http://localhost:3000") as client:
+    async with AutoRestSwaggerBATXMLService(endpoint="http://localhost:3000") as client:
         await yield_(client)
 
 async def _assert_with_log(func, *args, **kwargs):

@@ -31,7 +31,7 @@ from llcpackageversiontolerant import LLCClient
 
 @pytest.fixture
 def client():
-    with LLCClient(base_url="http://localhost:3000") as client:
+    with LLCClient(endpoint="http://localhost:3000") as client:
         yield client
 
 

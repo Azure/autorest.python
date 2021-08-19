@@ -13,6 +13,7 @@ from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, 
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
+from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
 from ...operations._multiapi_custom_base_url_service_client_operations import build_test_request
@@ -22,6 +23,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class MultiapiCustomBaseUrlServiceClientOperationsMixin:
 
+    @distributed_trace_async
     async def test(
         self,
         id: int,

@@ -32,7 +32,7 @@ from azurereportversiontolerant import AutoRestReportServiceForAzure
 class TestAcceptance(object):
 
     def test_ensure_coverage(self):
-        client = AutoRestReportServiceForAzure(base_url="http://localhost:3000")
+        client = AutoRestReportServiceForAzure(endpoint="http://localhost:3000")
         report = client.get_report(qualifier=platform.python_version())
 
         # Add tests that wont be supported due to the nature of Python here
@@ -40,6 +40,7 @@ class TestAcceptance(object):
 
         # Please add missing features or failing tests here
         missing_features_or_bugs = {
+            "LROPatchInlineCompleteIgnoreHeaders": 1,
         }
 
         print("Coverage:")

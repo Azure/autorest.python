@@ -23,7 +23,6 @@ class AutoRestSwaggerConstantServiceConfiguration(Configuration):
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
-
     """
 
     def __init__(

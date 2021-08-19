@@ -57,22 +57,25 @@ class AutoRestAzureSpecialParametersTestClient:
     :vartype odata: azurespecialpropertiesversiontolerant.aio.operations.OdataOperations
     :ivar header: HeaderOperations operations
     :vartype header: azurespecialpropertiesversiontolerant.aio.operations.HeaderOperations
-    :param credential: Credential needed for the client to connect to Azure.
-    :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param subscription_id: The subscription id, which appears in the path, always modeled in
      credentials. The value is always '1234-5678-9012-3456'.
     :type subscription_id: str
-    :param base_url: Service URL
-    :type base_url: str
+    :param credential: Credential needed for the client to connect to Azure.
+    :type credential: ~azure.core.credentials_async.AsyncTokenCredential
+    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
+    :paramtype endpoint: str
     """
 
     def __init__(
-        self, credential: "AsyncTokenCredential", subscription_id: str, base_url: Optional[str] = None, **kwargs: Any
+        self,
+        subscription_id: str,
+        credential: "AsyncTokenCredential",
+        *,
+        endpoint: str = "http://localhost:3000",
+        **kwargs: Any
     ) -> None:
-        if not base_url:
-            base_url = "http://localhost:3000"
-        self._config = AutoRestAzureSpecialParametersTestClientConfiguration(credential, subscription_id, **kwargs)
-        self._client = AsyncARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
+        self._config = AutoRestAzureSpecialParametersTestClientConfiguration(subscription_id, credential, **kwargs)
+        self._client = AsyncARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

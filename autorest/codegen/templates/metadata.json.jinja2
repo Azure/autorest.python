@@ -1,5 +1,6 @@
 {% import 'operation_tools.jinja2' as op_tools %}
 {% import 'keywords.jinja2' as keywords %}
+{% set service_client = code_model.service_client %}
 {
     "chosen_version": {{ chosen_version | tojson }},
     "total_api_version_list": {{ total_api_version_list | tojson }},
@@ -7,8 +8,8 @@
         "name": {{ code_model.class_name | tojson }},
         "filename": {{ ("_" + code_model.module_name) | tojson }},
         "description": {{ code_model.description | tojson }},
-        "base_url": {{ (keywords.escape_str(code_model.service_client.base_url) if code_model.service_client.base_url else None) | tojson }},
-        "custom_base_url": {{ (keywords.escape_str(code_model.service_client.custom_base_url) if code_model.service_client.custom_base_url else None) | tojson }},
+        "endpoint_value": {{ (service_client.parameters.endpoint.default_value_declaration if service_client.parameters.endpoint else None) | tojson }},
+        "custom_endpoint_value": {{ (keywords.escape_str(service_client.custom_endpoint_value) if service_client.custom_endpoint_value else None) | tojson }},
         "azure_arm": {{ code_model.options["azure_arm"]  | tojson }},
         "has_lro_operations": {{ code_model.has_lro_operations | tojson }},
         "client_side_validation": {{ code_model.options["client_side_validation"] | tojson }},
@@ -17,7 +18,7 @@
     },
     "global_parameters": {
         "sync": {
-            {% for gp in sync_global_parameters.method %}
+            {% for gp in sync_global_parameters.config_method %}
             {{ gp.serialized_name | tojson }}: {
                 "signature": {{ gp.method_signature(is_python_3_file=False) | tojson }},
                 "description": {{ gp.description | tojson }},
@@ -27,7 +28,7 @@
             {% endfor %}
         },
         "async": {
-            {% for gp in async_global_parameters.method %}
+            {% for gp in async_global_parameters.config_method %}
             {{ gp.serialized_name | tojson }}: {
                 "signature": {{ (gp.method_signature(is_python_3_file=True)) | tojson }},
                 "description": {{ gp.description | tojson }},
@@ -41,7 +42,7 @@
             {{ gp.serialized_name | tojson }}: {{ gp.constant_declaration | tojson }}{{ "," if not loop.last else "" }}
             {% endfor %}
         },
-        "call": {{ code_model.global_parameters.method | map(attribute="serialized_name") | join(', ') | tojson }},
+        "call": {{ code_model.global_parameters.config_method | map(attribute="serialized_name") | join(', ') | tojson }},
         "service_client_specific": {
             "sync": {
                 "api_version": {
@@ -50,9 +51,9 @@
                     "docstring_type": "str",
                     "required": false
                 },
-                {% if not code_model.service_client.custom_base_url %}
+                {% if not service_client.custom_endpoint_value %}
                 "base_url": {
-                    "signature": {{ code_model.base_url_method_signature(False) | tojson }},
+                    "signature": {{ service_client.parameters.endpoint.method_signature(False) | tojson }},
                     "description": "Service URL",
                     "docstring_type": "str",
                     "required": false
@@ -72,9 +73,9 @@
                     "docstring_type": "str",
                     "required": false
                 },
-                {% if not code_model.service_client.custom_base_url %}
+                {% if not service_client.custom_endpoint_value %}
                 "base_url": {
-                    "signature": {{ code_model.base_url_method_signature(True) | tojson }},
+                    "signature": {{ service_client.parameters.endpoint.method_signature(True) | tojson }},
                     "description": "Service URL",
                     "docstring_type": "str",
                     "required": false

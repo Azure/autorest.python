@@ -29,7 +29,7 @@ class GlobalParameters:
     @property
     def service_client_specific_global_parameters(self) -> List[GlobalParameter]:
         """Return global params specific to multiapi service client + config
-        api_version, base_url (re-adding it in specific are), and profile
+        api_version, endpoint (re-adding it in specific are), and profile
         """
         service_client_params_sync = self.global_parameters_metadata["service_client_specific"]["sync"]
         service_client_params_async = self.global_parameters_metadata["service_client_specific"]["async"]

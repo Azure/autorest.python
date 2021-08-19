@@ -38,6 +38,7 @@ from ...operations._lros_operations import (
     build_delete_provisioning202_accepted200_succeeded_request_initial,
     build_delete_provisioning202_deleting_failed200_request_initial,
     build_delete_provisioning202_deletingcanceled200_request_initial,
+    build_patch200_succeeded_ignore_headers_request_initial,
     build_post200_with_payload_request_initial,
     build_post202_list_request_initial,
     build_post202_no_retry204_request_initial,
@@ -222,6 +223,146 @@ class LROsOperations:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     begin_put200_succeeded.metadata = {"url": "/lro/put/200/succeeded"}  # type: ignore
+
+    async def _patch200_succeeded_ignore_headers_initial(self, product: Any = None, **kwargs: Any) -> Any:
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
+        if product is not None:
+            json = product
+        else:
+            json = None
+
+        request = build_patch200_succeeded_ignore_headers_request_initial(
+            content_type=content_type,
+            json=json,
+            template_url=self._patch200_succeeded_ignore_headers_initial.metadata["url"],
+        )._to_pipeline_transport_request()
+        request.url = self._client.format_url(request.url)
+
+        pipeline_response = await self._client.send_request(
+            request, stream=False, _return_pipeline_response=True, **kwargs
+        )
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        response_headers = {}
+        response_headers["Azure-AsyncOperation"] = self._deserialize(
+            "str", response.headers.get("Azure-AsyncOperation")
+        )
+
+        if response.body():
+            deserialized = _loads(response.body())
+        else:
+            deserialized = None
+
+        if cls:
+            return cls(pipeline_response, deserialized, response_headers)
+
+        return deserialized
+
+    _patch200_succeeded_ignore_headers_initial.metadata = {"url": "/lro/patch/200/succeeded/ignoreheaders"}  # type: ignore
+
+    @distributed_trace_async
+    async def begin_patch200_succeeded_ignore_headers(self, product: Any = None, **kwargs: Any) -> AsyncLROPoller[Any]:
+        """Long running put request, service returns a 200 to the initial request with location header. We
+        should not have any subsequent calls after receiving this first response.
+
+        :param product: Product to patch.
+        :type product: Any
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
+         this operation to not poll, or pass in your own initialized polling object for a personal
+         polling strategy.
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of AsyncLROPoller that returns JSON object
+        :rtype: ~azure.core.polling.AsyncLROPoller[Any]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str (optional)",
+                    "location": "str (optional)",
+                    "name": "str (optional)",
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    },
+                    "tags": {
+                        "str": "str (optional)"
+                    },
+                    "type": "str (optional)"
+                }
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str (optional)",
+                    "location": "str (optional)",
+                    "name": "str (optional)",
+                    "properties": {
+                        "provisioningState": "str (optional)",
+                        "provisioningStateValues": "str (optional)"
+                    },
+                    "tags": {
+                        "str": "str (optional)"
+                    },
+                    "type": "str (optional)"
+                }
+        """
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
+        cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = await self._patch200_succeeded_ignore_headers_initial(
+                product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
+            )
+        kwargs.pop("error_map", None)
+
+        def get_long_running_output(pipeline_response):
+            response_headers = {}
+            response = pipeline_response.http_response
+            response_headers["Azure-AsyncOperation"] = self._deserialize(
+                "str", response.headers.get("Azure-AsyncOperation")
+            )
+
+            if response.body():
+                deserialized = _loads(response.body())
+            else:
+                deserialized = None
+            if cls:
+                return cls(pipeline_response, deserialized, response_headers)
+            return deserialized
+
+        if polling is True:
+            polling_method = AsyncARMPolling(lro_delay, **kwargs)
+        elif polling is False:
+            polling_method = AsyncNoPolling()
+        else:
+            polling_method = polling
+        if cont_token:
+            return AsyncLROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output,
+            )
+        else:
+            return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
+
+    begin_patch200_succeeded_ignore_headers.metadata = {"url": "/lro/patch/200/succeeded/ignoreheaders"}  # type: ignore
 
     async def _put201_succeeded_initial(self, product: Any = None, **kwargs: Any) -> Any:
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]

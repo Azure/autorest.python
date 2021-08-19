@@ -108,7 +108,7 @@ class MetadataSerializer:
             "azure.profiles.multiapiclient", "MultiApiClientMixin", import_type=ImportType.AZURECORE
         )
         file_import.add_from_import("._configuration", f"{self.code_model.class_name}Configuration", ImportType.LOCAL)
-        # api_version and potentially base_url require Optional typing
+        # api_version and potentially endpoint require Optional typing
         file_import.add_from_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
         if mixin_operation_group:
             file_import.add_from_import(
@@ -161,8 +161,8 @@ class MetadataSerializer:
 
         # setting to true, because for multiapi we always generate with a version file with version 0.1.0
         self.code_model.options["package_version"] = "0.1.0"
-        if self.code_model.options["azure_arm"] and not self.code_model.service_client.base_url:
-            self.code_model.service_client.base_url = "https://management.azure.com"
+        if self.code_model.options["azure_arm"] and not self.code_model.service_client.parameters.endpoint:
+            self.code_model.service_client.parameters.add_endpoint("https://management.azure.com")
         return template.render(
             chosen_version=chosen_version,
             total_api_version_list=total_api_version_list,

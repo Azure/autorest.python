@@ -46,7 +46,7 @@ def client(cookie_policy):
         RetryPolicy(),
         cookie_policy
     ]
-    with AutoRestHttpInfrastructureTestService(base_url="http://localhost:3000", policies=policies) as client:
+    with AutoRestHttpInfrastructureTestService(endpoint="http://localhost:3000", policies=policies) as client:
         yield client
 
 

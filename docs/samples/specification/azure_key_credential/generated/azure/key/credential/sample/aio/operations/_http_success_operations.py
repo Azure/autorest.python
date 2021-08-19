@@ -13,6 +13,7 @@ from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, 
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
+from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ...operations._http_success_operations import build_head200_request, build_head204_request, build_head404_request
 
@@ -37,6 +38,7 @@ class HttpSuccessOperations:
         self._deserialize = deserializer
         self._config = config
 
+    @distributed_trace_async
     async def head200(
         self,
         **kwargs: Any
@@ -73,6 +75,7 @@ class HttpSuccessOperations:
     head200.metadata = {'url': '/http/success/200'}  # type: ignore
 
 
+    @distributed_trace_async
     async def head204(
         self,
         **kwargs: Any
@@ -109,6 +112,7 @@ class HttpSuccessOperations:
     head204.metadata = {'url': '/http/success/204'}  # type: ignore
 
 
+    @distributed_trace_async
     async def head404(
         self,
         **kwargs: Any

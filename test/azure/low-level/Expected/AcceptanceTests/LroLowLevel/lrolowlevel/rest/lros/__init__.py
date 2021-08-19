@@ -8,6 +8,7 @@
 
 try:
     from ._request_builders_py3 import build_put200_succeeded_request
+    from ._request_builders_py3 import build_patch200_succeeded_ignore_headers_request
     from ._request_builders_py3 import build_put201_succeeded_request
     from ._request_builders_py3 import build_post202_list_request
     from ._request_builders_py3 import build_put200_succeeded_no_state_request
@@ -50,6 +51,7 @@ try:
     from ._request_builders_py3 import build_post_async_retrycanceled_request
 except (SyntaxError, ImportError):
     from ._request_builders import build_put200_succeeded_request  # type: ignore
+    from ._request_builders import build_patch200_succeeded_ignore_headers_request  # type: ignore
     from ._request_builders import build_put201_succeeded_request  # type: ignore
     from ._request_builders import build_post202_list_request  # type: ignore
     from ._request_builders import build_put200_succeeded_no_state_request  # type: ignore
@@ -93,6 +95,7 @@ except (SyntaxError, ImportError):
 
 __all__ = [
     "build_put200_succeeded_request",
+    "build_patch200_succeeded_ignore_headers_request",
     "build_put201_succeeded_request",
     "build_post202_list_request",
     "build_put200_succeeded_no_state_request",

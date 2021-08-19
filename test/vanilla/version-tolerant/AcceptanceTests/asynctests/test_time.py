@@ -35,7 +35,7 @@ from ..serializer import serialize_time, deserialize_time
 @pytest.fixture
 @async_generator
 async def client():
-    async with AutoRestTimeTestService(base_url="http://localhost:3000") as client:
+    async with AutoRestTimeTestService(endpoint="http://localhost:3000") as client:
         await yield_(client)
 
 @pytest.mark.asyncio

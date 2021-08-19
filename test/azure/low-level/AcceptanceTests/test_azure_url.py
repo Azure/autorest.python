@@ -33,7 +33,7 @@ def test_azure_url(credential, authentication_policy):
 
     sub_id = str(uuid4())
 
-    with MicrosoftAzureTestUrl(credential, sub_id, base_url="http://localhost:3000", authentication_policy=authentication_policy) as client:
+    with MicrosoftAzureTestUrl(credential, sub_id, endpoint="http://localhost:3000", authentication_policy=authentication_policy) as client:
         request = group.build_get_sample_resource_group_request(subscription_id=sub_id, resource_group_name="testgroup101")
         response = client.send_request(request)
         response.raise_for_status()

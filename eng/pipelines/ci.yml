@@ -58,19 +58,15 @@ jobs:
       - script: |
           pylint autorest
         displayName: 'Pylint'
-
       - script: |
           mypy autorest
         displayName: 'Mypy'
-
       - script: |
           pytest test/unittests
         displayName: 'Unit tests'
-
       - script: |
           inv regenerate
         displayName: 'Regenerate Code'
-
       - script: |
           git add -A  # 'add' first so 'diff' includes untracked files
           git diff --staged -w
@@ -83,7 +79,7 @@ jobs:
 
       - script: |
           pip install pip==20.2
-          pip install tox coverage==4.5.4
+          pip install tox coverage
         displayName: "Install Env Specific Reqs in Target PyVersion $(PythonVersion)"
 
       - script: |
@@ -107,6 +103,17 @@ jobs:
         inputs:
           testRunTitle: "$(OSName) Python $(PythonVersion) - low-level azure"
           searchFolder: "$(TestFolder)/azure/low-level"
+
+      - script: |
+          cd $(TestFolder)/azure/version-tolerant
+          tox -e ci
+        displayName: 'Execute version-tolerant "azure" Tests - Python $(PythonVersion)'
+      - task: PublishTestResults@2
+        condition: always()
+        displayName: 'Publish version-tolerant "azure" Test Results'
+        inputs:
+          testRunTitle: "$(OSName) Python $(PythonVersion) - version-tolerant azure"
+          searchFolder: "$(TestFolder)/azure/version-tolerant"
 
       - script: |
           cd $(TestFolder)/vanilla/legacy
@@ -133,6 +140,19 @@ jobs:
           searchFolder: "$(TestFolder)/vanilla/low-level"
 
       - script: |
+          cd $(TestFolder)/vanilla/version-tolerant
+          tox -e ci
+          tox -e initial-ci
+          tox -e update-ci
+        displayName: 'Execute version-tolerant "vanilla" Tests - Python $(PythonVersion)'
+      - task: PublishTestResults@2
+        displayName: 'Publish version-tolerant "vanilla" Test Results'
+        condition: always()
+        inputs:
+          testRunTitle: "$(OSName) Python $(PythonVersion) - version-tolerant vanilla"
+          searchFolder: "$(TestFolder)/vanilla/version-tolerant"
+
+      - script: |
           cd $(TestFolder)/multiapi
           tox -e ci
         displayName: 'Execute "multiapi" Tests - Python $(PythonVersion)'
@@ -142,8 +162,3 @@ jobs:
         inputs:
           testRunTitle: "$(OSName) Python $(PythonVersion) - multiapi"
           searchFolder: "$(TestFolder)/multiapi"
-
-      - script: |
-          npm run coverage-push -- $(Build.Repository.Name) $(Build.SourceBranch) $(github-token) $(storage-coverage-user) $(storage-coverage-pass)
-        workingDirectory: node_modules/@microsoft.azure/autorest.testserver
-        displayName: "Publish coverage report to stroage account"

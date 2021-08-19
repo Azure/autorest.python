@@ -27,20 +27,18 @@ class AutoRestBoolTestService(object):
 
     :ivar bool: BoolOperations operations
     :vartype bool: bodybooleanversiontolerant.operations.BoolOperations
-    :param base_url: Service URL
-    :type base_url: str
+    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
+    :paramtype endpoint: str
     """
 
     def __init__(
-        self,
-        base_url=None,  # type: Optional[str]
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> None
-        if not base_url:
-            base_url = "http://localhost:3000"
+        endpoint = kwargs.pop("endpoint", "http://localhost:3000")  # type: str
+
         self._config = AutoRestBoolTestServiceConfiguration(**kwargs)
-        self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
+        self._client = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

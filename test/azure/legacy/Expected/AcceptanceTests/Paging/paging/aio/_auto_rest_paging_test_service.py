@@ -23,15 +23,13 @@ class AutoRestPagingTestService:
 
     :ivar paging: PagingOperations operations
     :vartype paging: paging.aio.operations.PagingOperations
-    :param base_url: Service URL
+    :param base_url: Service URL. Default value is 'http://localhost:3000'.
     :type base_url: str
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
      Retry-After header is present.
     """
 
-    def __init__(self, base_url: Optional[str] = None, **kwargs: Any) -> None:
-        if not base_url:
-            base_url = "http://localhost:3000"
+    def __init__(self, base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
         self._config = AutoRestPagingTestServiceConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 

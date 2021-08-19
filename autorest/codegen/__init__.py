@@ -46,6 +46,13 @@ def _validate_code_model_options(options: Dict[str, Any]) -> None:
             "or 'embedded'"
         )
 
+    if options["models_mode"] not in ["msrest", "none"]:
+        raise ValueError(
+            "--models-mode can only be 'msrest' or 'none'. "
+            "Pass in 'msrest' if you want msrest models, or "
+            "'none' if you don't want any."
+        )
+
     if not options["show_operations"] and options["builders_visibility"] == "embedded":
         raise ValueError(
             "Can not embed builders without operations. "
@@ -114,22 +121,10 @@ class CodeGenerator(Plugin):
         code_model.global_parameters = GlobalParameterList(
             [Parameter.from_yaml(param) for param in yaml_data.get("globalParameters", [])],
         )
+        code_model.global_parameters.code_model = code_model
 
         # Custom URL
-        dollar_host = [parameter for parameter in code_model.global_parameters if parameter.rest_api_name == "$host"]
-        if not dollar_host:
-            # We don't want to support multi-api customurl YET (will see if that goes well....)
-            # So far now, let's get the first one in the first operation
-            # UGLY as hell.....
-            if yaml_data.get("operationGroups"):
-                first_req_of_first_op_of_first_grp = yaml_data["operationGroups"][0]["operations"][0]["requests"][0]
-                code_model.service_client.custom_base_url = (
-                    first_req_of_first_op_of_first_grp["protocol"]["http"]["uri"]
-                )
-        else:
-            for host in dollar_host:
-                code_model.global_parameters.remove(host)
-            code_model.service_client.base_url = dollar_host[0].yaml_data["clientDefaultValue"]
+        code_model.setup_client_input_parameters(yaml_data)
 
         # Get my namespace
         namespace = self._autorestapi.get_value("namespace")
@@ -151,7 +146,7 @@ class CodeGenerator(Plugin):
         _build_convenience_layer(yaml_data=yaml_data, code_model=code_model)
 
         if options["credential"]:
-            code_model.add_credential_global_parameter()
+            code_model.global_parameters.add_credential_global_parameter()
 
         return code_model
 
@@ -252,6 +247,8 @@ class CodeGenerator(Plugin):
 
         low_level_client = self._autorestapi.get_boolean_value("low-level-client", False)
         version_tolerant = self._autorestapi.get_boolean_value("version-tolerant", False)
+        show_operations = self._autorestapi.get_boolean_value("show-operations", not low_level_client)
+        models_mode_default = "none" if low_level_client or version_tolerant else "msrest"
 
         options: Dict[str, Any] = {
             "azure_arm": azure_arm,
@@ -265,12 +262,12 @@ class CodeGenerator(Plugin):
             "package_name": self._autorestapi.get_value("package-name"),
             "package_version": self._autorestapi.get_value("package-version"),
             "client_side_validation": self._autorestapi.get_boolean_value("client-side-validation", False),
-            "tracing": self._autorestapi.get_boolean_value("trace", False),
+            "tracing": self._autorestapi.get_boolean_value("trace", show_operations),
             "multiapi": self._autorestapi.get_boolean_value("multiapi", False),
             "polymorphic_examples": self._autorestapi.get_value("polymorphic-examples") or 5,
-            "models_mode": self._autorestapi.get_value("models-mode"),
+            "models_mode": (self._autorestapi.get_value("models-mode") or models_mode_default).lower(),
             "builders_visibility": self._autorestapi.get_value("builders-visibility"),
-            "show_operations": self._autorestapi.get_boolean_value("show-operations", not low_level_client),
+            "show_operations": show_operations,
             "show_send_request": self._autorestapi.get_boolean_value(
                 "show-send-request", low_level_client or version_tolerant
             ),
@@ -280,17 +277,9 @@ class CodeGenerator(Plugin):
             "add_python_3_operation_files": self._autorestapi.get_boolean_value(
                 "add-python3-operation-files", False
             ),
-            "version_tolerant": version_tolerant
+            "version_tolerant": version_tolerant,
+            "low_level_client": low_level_client,
         }
-        if options["models_mode"] is None:
-            if low_level_client or version_tolerant:
-                options["models_mode"] = False
-            else:
-                options["models_mode"] = "msrest"
-        else:
-            options["models_mode"] = options["models_mode"].lower()
-            if options["models_mode"] == "false":
-                options["models_mode"] = False
 
         if options["builders_visibility"] is None:
             options["builders_visibility"] = "public" if low_level_client else "embedded"
@@ -298,6 +287,10 @@ class CodeGenerator(Plugin):
             options["builders_visibility"] = options["builders_visibility"].lower()
 
         _validate_code_model_options(options)
+
+        if options["models_mode"] == "none":
+            # switch to falsy value for easier code writing
+            options["models_mode"] = False
 
         # Force some options in ARM MODE:
         if azure_arm:

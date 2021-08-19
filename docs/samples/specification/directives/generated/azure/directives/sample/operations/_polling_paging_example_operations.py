@@ -14,6 +14,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.polling import NoPolling, PollingMethod
 from azure.core.rest import HttpRequest
+from azure.core.tracing.decorator import distributed_trace
 from msrest import Serializer
 from my.library import CustomDefaultPollingMethod, CustomPager, CustomPoller
 
@@ -120,6 +121,7 @@ class PollingPagingExampleOperationsMixin(object):
     _basic_polling_initial.metadata = {'url': '/basic/polling'}  # type: ignore
 
 
+    @distributed_trace
     def begin_basic_polling(
         self,
         product=None,  # type: Optional["_models.Product"]
@@ -182,6 +184,7 @@ class PollingPagingExampleOperationsMixin(object):
 
     begin_basic_polling.metadata = {'url': '/basic/polling'}  # type: ignore
 
+    @distributed_trace
     def basic_paging(
         self,
         **kwargs  # type: Any
