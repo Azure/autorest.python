@@ -104,12 +104,8 @@ class BoolOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        bool_body = True
-        json = bool_body
-
         request = build_put_true_request(
             content_type=content_type,
-            json=json,
             template_url=self.put_true.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -180,12 +176,8 @@ class BoolOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        bool_body = False
-        json = bool_body
-
         request = build_put_false_request(
             content_type=content_type,
-            json=json,
             template_url=self.put_false.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

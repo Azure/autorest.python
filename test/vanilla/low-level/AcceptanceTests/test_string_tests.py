@@ -61,7 +61,7 @@ def test_empty(send_request, send_request_json_response):
     request = string.build_get_empty_request()
     assert "" == send_request_json_response(request)
     # changing this behavior because of this pr being merged: https://github.com/Azure/autorest.testserver/pull/145/files
-    request = string.build_put_empty_request(json="")
+    request = string.build_put_empty_request()
     send_request(request)
 
 def test_mbcs(send_request, send_request_json_response):
@@ -102,7 +102,7 @@ def test_mbcs(send_request, send_request_json_response):
     request = string.build_get_mbcs_request()
     assert test_str == send_request_json_response(request)
 
-    request = string.build_put_mbcs_request(json=test_str)
+    request = string.build_put_mbcs_request()
     send_request(request)
 
 def test_whitespace(send_request, send_request_json_response):
@@ -110,7 +110,7 @@ def test_whitespace(send_request, send_request_json_response):
     request = string.build_get_whitespace_request()
     assert test_str == send_request_json_response(request)
 
-    request = string.build_put_whitespace_request(json=test_str)
+    request = string.build_put_whitespace_request()
     send_request(request)
 
 def test_get_not_provided(send_request):

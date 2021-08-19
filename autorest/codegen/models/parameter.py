@@ -118,8 +118,12 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         Checking to see if it's required, because if not, we don't consider it
         a constant because it can have a value of None.
         """
-        if not isinstance(self.schema, ConstantSchema):
-            return False
+        if isinstance(self.schema, dict):
+            if not self.schema.get("type") == "constant":
+                return False
+        else:
+            if not isinstance(self.schema, ConstantSchema):
+                return False
         return self.required
 
     @property
@@ -171,11 +175,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
 
     @property
     def in_method_code(self) -> bool:
-        return not (
-            self.constant and
-            self.location == ParameterLocation.Other or
-            self.rest_api_name == '$host'
-        )
+        return self.rest_api_name != '$host'
 
     @property
     def implementation(self) -> str:

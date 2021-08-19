@@ -23,6 +23,7 @@ azure-core==1.16.0
 -e ./Expected/AcceptanceTests/BodyNumberVersionTolerant
 -e ./Expected/AcceptanceTests/BodyStringVersionTolerant
 -e ./Expected/AcceptanceTests/BodyTimeVersionTolerant
+-e ./Expected/AcceptanceTests/ConstantsVersionTolerant/
 -e ./Expected/AcceptanceTests/CustomBaseUriVersionTolerant
 -e ./Expected/AcceptanceTests/CustomBaseUriMoreOptionsVersionTolerant
 -e ./Expected/AcceptanceTests/ExtensibleEnumsVersionTolerant

@@ -394,12 +394,8 @@ class NumberOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        number_body = 99999999.99
-        json = self._serialize.body(number_body, "float")
-
         request = build_put_big_double_positive_decimal_request(
             content_type=content_type,
-            json=json,
             template_url=self.put_big_double_positive_decimal.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -471,12 +467,8 @@ class NumberOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        number_body = -99999999.99
-        json = self._serialize.body(number_body, "float")
-
         request = build_put_big_double_negative_decimal_request(
             content_type=content_type,
-            json=json,
             template_url=self.put_big_double_negative_decimal.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -626,12 +618,8 @@ class NumberOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        number_body = 99999999.99
-        json = self._serialize.body(number_body, "float")
-
         request = build_put_big_decimal_positive_decimal_request(
             content_type=content_type,
-            json=json,
             template_url=self.put_big_decimal_positive_decimal.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -703,12 +691,8 @@ class NumberOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        number_body = -99999999.99
-        json = self._serialize.body(number_body, "float")
-
         request = build_put_big_decimal_negative_decimal_request(
             content_type=content_type,
-            json=json,
             template_url=self.put_big_decimal_negative_decimal.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)

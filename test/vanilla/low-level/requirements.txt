@@ -23,6 +23,7 @@ azure-core==1.16.0
 -e ./Expected/AcceptanceTests/BodyNumberLowLevel
 -e ./Expected/AcceptanceTests/BodyStringLowLevel
 -e ./Expected/AcceptanceTests/BodyTimeLowLevel
+-e ./Expected/AcceptanceTests/ConstantsLowLevel/
 -e ./Expected/AcceptanceTests/CustomBaseUriLowLevel
 -e ./Expected/AcceptanceTests/CustomBaseUriMoreOptionsLowLevel
 -e ./Expected/AcceptanceTests/ExtensibleEnumsLowLevel

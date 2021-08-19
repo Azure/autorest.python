@@ -60,6 +60,7 @@ def build_put_true_request(
     # type: (...) -> HttpRequest
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
+    json = True
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/bool/true')
@@ -74,6 +75,7 @@ def build_put_true_request(
         method="PUT",
         url=url,
         headers=header_parameters,
+        json=json,
         **kwargs
     )
 
@@ -104,6 +106,7 @@ def build_put_false_request(
     # type: (...) -> HttpRequest
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
+    json = False
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/bool/false')
@@ -118,6 +121,7 @@ def build_put_false_request(
         method="PUT",
         url=url,
         headers=header_parameters,
+        json=json,
         **kwargs
     )
 
@@ -240,12 +244,8 @@ class BoolOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        bool_body = True
-        json = self._serialize.body(bool_body, "bool")
-
         request = build_put_true_request(
             content_type=content_type,
-            json=json,
             template_url=self.put_true.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -319,12 +319,8 @@ class BoolOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        bool_body = False
-        json = self._serialize.body(bool_body, "bool")
-
         request = build_put_false_request(
             content_type=content_type,
-            json=json,
             template_url=self.put_false.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)

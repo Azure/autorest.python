@@ -7,8 +7,8 @@
 {% if request_builder.parameters.kwargs_to_pop(is_python_3_file) %}
     {{ op_tools.serialize(request_builder_serializer.pop_kwargs_from_signature(request_builder)) | indent }}
 {% endif %}
-{% if request_builder.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") %}
-    {% for constant_parameter in request_builder.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") %}
+{% if request_builder.parameters.constant|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") %}
+    {% for constant_parameter in request_builder.parameters.constant|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") %}
     {{ constant_parameter.serialized_name }} = {{ constant_parameter.constant_declaration }}
     {% endfor %}
 {% endif %}

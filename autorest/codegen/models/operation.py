@@ -79,13 +79,16 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
     @property
     def body_kwargs_to_pass_to_request_builder(self) -> List[str]:
         kwargs = []
-        if self.request_builder.multipart:
-            kwargs.append("files")
-        if self.parameters.has_partial_body:
-            kwargs.append("data")
-        if any([ct for ct in self.parameters.content_types if "json" in ct]):
-            kwargs.append("json")
-        if self.request_builder.is_stream or not kwargs:
+        if not self.parameters.has_body:
+            return []
+        body_kwarg_names = self.request_builder.parameters.body_kwarg_names
+        for kwarg in body_kwarg_names:
+            if kwarg == "content":
+                if self.request_builder.is_stream:
+                    kwargs.append("content")
+            else:
+                kwargs.append(kwarg)
+        if not kwargs and not self.parameters.body[0].constant:
             kwargs.append("content")
         return kwargs
 

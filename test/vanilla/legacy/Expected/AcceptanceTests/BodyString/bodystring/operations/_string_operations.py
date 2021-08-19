@@ -104,6 +104,7 @@ def build_put_empty_request(
     # type: (...) -> HttpRequest
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
+    json = ""
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/string/empty')
@@ -118,6 +119,7 @@ def build_put_empty_request(
         method="PUT",
         url=url,
         headers=header_parameters,
+        json=json,
         **kwargs
     )
 
@@ -148,6 +150,7 @@ def build_put_mbcs_request(
     # type: (...) -> HttpRequest
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
+    json = "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/string/mbcs')
@@ -162,6 +165,7 @@ def build_put_mbcs_request(
         method="PUT",
         url=url,
         headers=header_parameters,
+        json=json,
         **kwargs
     )
 
@@ -192,6 +196,7 @@ def build_put_whitespace_request(
     # type: (...) -> HttpRequest
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
+    json = "    Now is the time for all good men to come to the aid of their country    "
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/string/whitespace')
@@ -206,6 +211,7 @@ def build_put_whitespace_request(
         method="PUT",
         url=url,
         headers=header_parameters,
+        json=json,
         **kwargs
     )
 
@@ -477,12 +483,8 @@ class StringOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        string_body = ""
-        json = self._serialize.body(string_body, "str")
-
         request = build_put_empty_request(
             content_type=content_type,
-            json=json,
             template_url=self.put_empty.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -556,12 +558,8 @@ class StringOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        string_body = "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
-        json = self._serialize.body(string_body, "str")
-
         request = build_put_mbcs_request(
             content_type=content_type,
-            json=json,
             template_url=self.put_mbcs.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
@@ -639,12 +637,8 @@ class StringOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        string_body = "    Now is the time for all good men to come to the aid of their country    "
-        json = self._serialize.body(string_body, "str")
-
         request = build_put_whitespace_request(
             content_type=content_type,
-            json=json,
             template_url=self.put_whitespace.metadata["url"],
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)

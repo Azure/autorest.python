@@ -9,7 +9,6 @@ import logging
 from typing import cast, List, Callable, Optional, TypeVar, Dict
 
 from .parameter import Parameter, ParameterLocation
-from .object_schema import ObjectSchema
 from .constant_schema import ConstantSchema
 from .base_schema import BaseSchema
 from .enum_schema import EnumSchema
@@ -143,13 +142,6 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
         )
 
     @property
-    def constant_bodies(self) -> List[Parameter]:
-        constants = self.constant
-        if not constants:
-            return []
-        return [c for c in constants if c.location == ParameterLocation.Body]
-
-    @property
     def multipart(self) -> List[Parameter]:
         return self.get_from_predicate(lambda parameter: parameter.is_multipart)
 
@@ -268,21 +260,6 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
     @property
     def is_flattened(self) -> bool:
         return cast(bool, self.get_from_predicate(lambda parameter: parameter.flattened))
-
-    def build_flattened_object(self) -> str:
-        if not self.is_flattened:
-            raise ValueError("This method can't be called if the operation doesn't need parameter flattening")
-
-        parameters = self.get_from_predicate(
-            lambda parameter: parameter.in_method_code
-        )
-        parameter_string = ", ".join(
-            [f"{param.target_property_name}={param.serialized_name}"
-            for param in parameters if param.target_property_name
-            ]
-        )
-        object_schema = cast(ObjectSchema, self.body[0].schema)
-        return f"{self.body[0].serialized_name} = _models.{object_schema.name}({parameter_string})"
 
 class ParameterOnlyPathAndBodyPositionalList(ParameterList):
     # use this to change the files parameter in the method
