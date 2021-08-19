@@ -9,7 +9,6 @@ import logging
 from typing import cast, List, Callable, Optional, TypeVar, Dict
 
 from .parameter import Parameter, ParameterLocation
-from .object_schema import ObjectSchema
 from .constant_schema import ConstantSchema
 from .base_schema import BaseSchema
 from .enum_schema import EnumSchema
