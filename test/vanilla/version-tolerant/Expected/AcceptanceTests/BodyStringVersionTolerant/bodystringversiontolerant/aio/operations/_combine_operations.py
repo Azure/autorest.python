@@ -22,6 +22,12 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ...operations._combine_operations import (
+    build_enum_get_not_expandable_request,
+    build_enum_get_referenced_constant_request,
+    build_enum_get_referenced_request,
+    build_enum_put_not_expandable_request,
+    build_enum_put_referenced_constant_request,
+    build_enum_put_referenced_request,
     build_string_get_base64_encoded_request,
     build_string_get_base64_url_encoded_request,
     build_string_get_empty_request,

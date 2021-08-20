@@ -227,3 +227,19 @@ def test_get_local_path_item_query_null(client):
         path_item_string_query=None,
         local_string_query=None,
     )
+
+def test_operation_groups():
+    from urlversiontolerant.operations import QueriesOperations
+    from urlmulticollectionformatversiontolerant.operations import QueriesOperations as MultiCollectionFormatQueriesOperations
+
+    with pytest.raises(ImportError):
+        from urlversiontolerant.operations import _combine_operations_py3
+
+    with pytest.raises(ImportError):
+        from urlmulticollectionformatversiontolerant.operations import _combine_operations_py3
+
+    from urlversiontolerant.operations._combine_operations import QueriesOperations as QueriesOperationsPy2
+    assert QueriesOperations == QueriesOperationsPy2
+
+    from urlmulticollectionformatversiontolerant.operations._combine_operations import QueriesOperations as QueriesOperationsPy2
+    assert MultiCollectionFormatQueriesOperations == QueriesOperationsPy2

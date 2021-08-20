@@ -21,7 +21,12 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ...operations._combine_operations import build_int_get_request, build_int_put_request
+from ...operations._combine_operations import (
+    build_float_get_request,
+    build_float_put_request,
+    build_int_get_request,
+    build_int_put_request,
+)
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]

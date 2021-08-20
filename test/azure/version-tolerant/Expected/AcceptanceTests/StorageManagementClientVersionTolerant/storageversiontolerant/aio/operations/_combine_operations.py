@@ -37,6 +37,7 @@ from ...operations._combine_operations import (
     build_storage_accounts_list_request,
     build_storage_accounts_regenerate_key_request,
     build_storage_accounts_update_request,
+    build_usage_list_request,
 )
 
 T = TypeVar("T")
