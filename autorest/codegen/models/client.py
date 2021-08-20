@@ -7,7 +7,6 @@ from typing import List, Optional
 from .parameter_list import GlobalParameterList
 from .imports import FileImport, ImportType, TypingSection
 
-
 class Client:
     """A service client.
     """
@@ -15,9 +14,12 @@ class Client:
     def __init__(self, code_model, parameters: GlobalParameterList):
         self.code_model = code_model
         self.parameters = parameters
-        self.custom_endpoint_value: Optional[str] = None
+        self.parameterized_host_template: Optional[str] = None
         self._config_parameters = parameters
 
+    @property
+    def has_parameterized_host(self) -> bool:
+        return bool(self.parameterized_host_template)
 
     def pipeline_class(self, async_mode: bool) -> str:
         if self.code_model.options["azure_arm"]:
@@ -37,7 +39,7 @@ class Client:
 
         any_optional_gp = any(not gp.required for gp in self.parameters)
 
-        if any_optional_gp or self.code_model.service_client.parameters.endpoint:
+        if any_optional_gp or self.code_model.service_client.parameters.host:
             file_import.add_from_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
 
         if self.code_model.options["azure_arm"]:

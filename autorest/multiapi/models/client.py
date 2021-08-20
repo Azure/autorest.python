@@ -33,7 +33,7 @@ class Client:
         self.name = default_version_metadata["client"]["name"]
         self.pipeline_client = "ARMPipelineClient" if azure_arm else "PipelineClient"
         self.filename = default_version_metadata["client"]["filename"]
-        self.endpoint_value = default_version_metadata["client"]["endpoint_value"]
+        self.host_value = default_version_metadata["client"]["host_value"]
         self.description = default_version_metadata["client"]["description"]
         self.client_side_validation = default_version_metadata["client"]["client_side_validation"]
         self.default_version_metadata = default_version_metadata
@@ -44,13 +44,13 @@ class Client:
         return FileImport(json.loads(self.default_version_metadata['client'][imports_to_load]))
 
     @property
-    def custom_endpoint_value_to_api_version(self) -> Dict[str, List[str]]:
-        custom_endpoint_value_to_api_version: Dict[str, List[str]] = {}
+    def parameterized_host_template_to_api_version(self) -> Dict[str, List[str]]:
+        parameterized_host_template_to_api_version: Dict[str, List[str]] = {}
         for version_path, metadata_json in self.version_path_to_metadata.items():
-            custom_endpoint_value = metadata_json["client"]["custom_endpoint_value"]
+            parameterized_host_template = metadata_json["client"]["parameterized_host_template"]
             version = _extract_version(metadata_json, version_path)
-            custom_endpoint_value_to_api_version.setdefault(custom_endpoint_value, []).append(version)
-        return custom_endpoint_value_to_api_version
+            parameterized_host_template_to_api_version.setdefault(parameterized_host_template, []).append(version)
+        return parameterized_host_template_to_api_version
 
     @property
     def has_lro_operations(self) -> bool:
