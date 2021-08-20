@@ -28,8 +28,9 @@ class ParmaterizedEndpointClient:
     """
 
     def __init__(self, endpoint: str, **kwargs: Any) -> None:
-        self._config = ParmaterizedEndpointClientConfiguration(**kwargs)
-        self._client = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
+        _endpoint = "{endpoint}"
+        self._config = ParmaterizedEndpointClientConfiguration(endpoint, **kwargs)
+        self._client = AsyncPipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

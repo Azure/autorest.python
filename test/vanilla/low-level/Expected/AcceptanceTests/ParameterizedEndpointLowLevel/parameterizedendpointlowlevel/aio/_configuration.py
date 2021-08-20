@@ -19,11 +19,17 @@ class ParmaterizedEndpointClientConfiguration(Configuration):
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
+
+    :param endpoint: The parameterized host. Pass in 'http://localhost:3000' to pass.
+    :type endpoint: str
     """
 
-    def __init__(self, **kwargs: Any) -> None:
+    def __init__(self, endpoint: str, **kwargs: Any) -> None:
+        if endpoint is None:
+            raise ValueError("Parameter 'endpoint' must not be None.")
         super(ParmaterizedEndpointClientConfiguration, self).__init__(**kwargs)
 
+        self.endpoint = endpoint
         kwargs.setdefault("sdk_moniker", "parmaterizedendpointclient/{}".format(VERSION))
         self._configure(**kwargs)
 
