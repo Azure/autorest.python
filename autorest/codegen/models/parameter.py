@@ -66,6 +66,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         grouped_by: Optional["Parameter"] = None,
         original_parameter: Optional["Parameter"] = None,
         client_default_value: Optional[Any] = None,
+        keyword_only: bool = False,
     ) -> None:
         super().__init__(yaml_data)
         self.schema = schema
@@ -88,6 +89,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         self.multiple_media_types_type_annot: Optional[str] = None
         self.multiple_media_types_docstring_type: Optional[str] = None
         self.is_partial_body = yaml_data.get("isPartialBody", False)
+        self._keyword_only = keyword_only
 
     def __hash__(self) -> int:
         return hash(self.serialized_name)
@@ -116,8 +118,12 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         Checking to see if it's required, because if not, we don't consider it
         a constant because it can have a value of None.
         """
-        if not isinstance(self.schema, ConstantSchema):
-            return False
+        if isinstance(self.schema, dict):
+            if not self.schema.get("type") == "constant":
+                return False
+        else:
+            if not isinstance(self.schema, ConstantSchema):
+                return False
         return self.required
 
     @property
@@ -169,11 +175,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
 
     @property
     def in_method_code(self) -> bool:
-        return not (
-            self.constant and
-            self.location == ParameterLocation.Other or
-            self.rest_api_name == '$host'
-        )
+        return self.rest_api_name != '$host'
 
     @property
     def implementation(self) -> str:
@@ -267,7 +269,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
     @property
     def is_keyword_only(self) -> bool:
         # this means in async mode, I am documented like def hello(positional_1, *, me!)
-        return False
+        return self._keyword_only
 
     @property
     def is_hidden(self) -> bool:

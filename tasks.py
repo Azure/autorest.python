@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+import itertools
 from multiprocessing import Pool
 import os
 from typing import Any, Dict, Optional
@@ -144,7 +145,6 @@ def _build_flags(
     namespace = _OVERWRITE_DEFAULT_NAMESPACE.get(package_name, package_name.lower())
     low_level_client = kwargs.pop("low_level_client", False)
     version_tolerant = kwargs.pop("version_tolerant", False)
-    combine_operation_files = kwargs.pop("combine_operation_files", False)
     if low_level_client:
         package_name += "LowLevel"
         generation_section += "/low-level"
@@ -157,12 +157,6 @@ def _build_flags(
         override_flags = override_flags or {}
         override_flags["version-tolerant"] = True
         namespace += "versiontolerant"
-    elif combine_operation_files:
-        generation_section += "/combine-operation-files"
-        override_flags = override_flags or {}
-        override_flags["combine-operation-files"] = True
-        override_flags["payload-flattening-threshold"] = 1
-        namespace += "combineoperationfiles"
     else:
         generation_section += "/legacy"
         override_flags = override_flags or {}
@@ -254,10 +248,6 @@ def regenerate_vanilla_legacy(c, swagger_name=None, debug=False, **kwargs):
     return _prepare_mapping_and_regenerate(c, _VANILLA_SWAGGER_MAPPINGS, _SwaggerGroup.VANILLA, swagger_name, debug, **kwargs)
 
 @task
-def regenerate_vanilla_combine_operation(c, swagger_name=None, debug=False, **kwargs):
-    return _prepare_mapping_and_regenerate(c, _VANILLA_SWAGGER_MAPPINGS, _SwaggerGroup.VANILLA, swagger_name, debug, combine_operation_files=True, **kwargs)
-
-@task
 def regenerate_vanilla_llc(c, swagger_name=None, debug=False, **kwargs):
     mapping = _VANILLA_SWAGGER_MAPPINGS.copy()
     mapping.update(_UPDATE_SWAGGER_MAPPINGS)
@@ -298,10 +288,6 @@ def regenerate_azure_version_tolerant(c, swagger_name=None, debug=False, **kwarg
     return _prepare_mapping_and_regenerate(c, _AZURE_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE, swagger_name, debug, version_tolerant=True, **kwargs)
 
 @task
-def regenerate_azure_combine_operation(c, swagger_name=None, debug=False, **kwargs):
-    return _prepare_mapping_and_regenerate(c, _AZURE_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE, swagger_name, debug, combine_operation_files=True, **kwargs)
-
-@task
 def regenerate_azure_arm_legacy(c, swagger_name=None, debug=False, **kwargs):
     return _prepare_mapping_and_regenerate(c, _AZURE_ARM_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE_ARM, swagger_name, debug, **kwargs)
 
@@ -312,10 +298,6 @@ def regenerate_azure_arm_llc(c, swagger_name=None, debug=False, **kwargs):
 @task
 def regenerate_azure_arm_version_tolerant(c, swagger_name=None, debug=False, **kwargs):
     return _prepare_mapping_and_regenerate(c, _AZURE_ARM_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE_ARM, swagger_name, debug, version_tolerant=True, **kwargs)
-
-@task
-def regenerate_azure_arm_combine_operation(c, swagger_name=None, debug=False, **kwargs):
-    return _prepare_mapping_and_regenerate(c, _AZURE_ARM_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE_ARM, swagger_name, debug, combine_operation_files=True, **kwargs)
 
 @task
 def regenerate_namespace_folders_test(c, debug=False):
@@ -359,18 +341,10 @@ def regenerate_legacy(c, swagger_name=None, debug=False):
         regenerate_with_python3_operation_files(c, debug)
 
 @task
-def regenerate_combine_operation(c, swagger_name=None, debug=False):
-    # regenerate expected code for tests
-    regenerate_azure_arm_combine_operation(c, swagger_name, debug)
-    regenerate_azure_combine_operation(c, swagger_name, debug)
-    regenerate_vanilla_combine_operation(c, swagger_name, debug)
-
-@task
 def regenerate(c, swagger_name=None, debug=False):
     regenerate_legacy(c, swagger_name, debug)
     regenerate_llc(c, swagger_name, debug)
     regenerate_version_tolerant(c, swagger_name, debug)
-    regenerate_combine_operation(c, swagger_name, debug)
 
 @task
 def regenerate_llc(c, swagger_name=None, debug=False):
@@ -387,13 +361,19 @@ def regenerate_version_tolerant(c, swagger_name=None, debug=False):
         regenerate_custom_poller_pager_version_tolerant(c, debug)
 
 @task
-def test(c, env=None):
+def test(c):
     # run language-specific tests
     base_dir = os.path.dirname(__file__)
-    cmd = f'tox -e {env}' if env else 'tox'
-    os.chdir(f"{base_dir}/test/vanilla/")
-    c.run(cmd)
-    os.chdir(f"{base_dir}/test/azure/")
+    cmd = 'tox -e ci'
+
+    autorest_types = ["azure", "vanilla"]
+    gen_types = ["legacy", "low-level", "version-tolerant"]
+    for autorest_type, gen_type in itertools.product(autorest_types, gen_types):
+        os.chdir(f"{base_dir}/test/{autorest_type}/{gen_type}")
+        c.run(cmd)
+
+    # multiapi
+    os.chdir(f"{base_dir}/test/multiapi/")
     c.run(cmd)
 
 def _multiapi_command_line(location, debug):

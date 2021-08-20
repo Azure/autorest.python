@@ -206,6 +206,7 @@ def build_put_big_double_positive_decimal_request(
     # type: (...) -> HttpRequest
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
+    json = 99999999.99
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/number/big/double/99999999.99')
@@ -220,6 +221,7 @@ def build_put_big_double_positive_decimal_request(
         method="PUT",
         url=url,
         headers=header_parameters,
+        json=json,
         **kwargs
     )
 
@@ -250,6 +252,7 @@ def build_put_big_double_negative_decimal_request(
     # type: (...) -> HttpRequest
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
+    json = -99999999.99
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/number/big/double/-99999999.99')
@@ -264,6 +267,7 @@ def build_put_big_double_negative_decimal_request(
         method="PUT",
         url=url,
         headers=header_parameters,
+        json=json,
         **kwargs
     )
 
@@ -338,6 +342,7 @@ def build_put_big_decimal_positive_decimal_request(
     # type: (...) -> HttpRequest
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
+    json = 99999999.99
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/number/big/decimal/99999999.99')
@@ -352,6 +357,7 @@ def build_put_big_decimal_positive_decimal_request(
         method="PUT",
         url=url,
         headers=header_parameters,
+        json=json,
         **kwargs
     )
 
@@ -382,6 +388,7 @@ def build_put_big_decimal_negative_decimal_request(
     # type: (...) -> HttpRequest
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
+    json = -99999999.99
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/number/big/decimal/-99999999.99')
@@ -396,6 +403,7 @@ def build_put_big_decimal_negative_decimal_request(
         method="PUT",
         url=url,
         headers=header_parameters,
+        json=json,
         **kwargs
     )
 
@@ -905,12 +913,8 @@ class NumberOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        number_body = 99999999.99
-        json = number_body
-
         request = build_put_big_double_positive_decimal_request(
             content_type=content_type,
-            json=json,
             template_url=self.put_big_double_positive_decimal.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -983,12 +987,8 @@ class NumberOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        number_body = -99999999.99
-        json = number_body
-
         request = build_put_big_double_negative_decimal_request(
             content_type=content_type,
-            json=json,
             template_url=self.put_big_double_negative_decimal.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1142,12 +1142,8 @@ class NumberOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        number_body = 99999999.99
-        json = number_body
-
         request = build_put_big_decimal_positive_decimal_request(
             content_type=content_type,
-            json=json,
             template_url=self.put_big_decimal_positive_decimal.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1220,12 +1216,8 @@ class NumberOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        number_body = -99999999.99
-        json = number_body
-
         request = build_put_big_decimal_negative_decimal_request(
             content_type=content_type,
-            json=json,
             template_url=self.put_big_decimal_negative_decimal.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

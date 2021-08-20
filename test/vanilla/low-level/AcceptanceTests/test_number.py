@@ -34,7 +34,7 @@ import pytest
 
 @pytest.fixture
 def client():
-    with AutoRestNumberTestService(base_url="http://localhost:3000") as client:
+    with AutoRestNumberTestService(endpoint="http://localhost:3000") as client:
         yield client
 
 @pytest.fixture
@@ -85,7 +85,7 @@ def test_big_double_negative_decimal(send_request, send_request_json_response):
     assert send_request_json_response(request) ==  -99999999.99
 
 def test_big_double_positive_decimal(send_request, send_request_json_response):
-    request = number.build_put_big_double_positive_decimal_request(json=99999999.99)
+    request = number.build_put_big_double_positive_decimal_request()
     send_request(request)
 
     request = number.build_get_big_double_positive_decimal_request()
@@ -106,13 +106,13 @@ def test_small_decimal(send_request, send_request_json_response):
     assert send_request_json_response(request) ==  2.5976931e-101
 
 def test_get_big_decimal_negative_decimal(send_request, send_request_json_response):
-    request = number.build_put_big_decimal_negative_decimal_request(json=-99999999.99)
+    request = number.build_put_big_decimal_negative_decimal_request()
 
     request = number.build_get_big_decimal_negative_decimal_request()
     assert send_request_json_response(request) ==  -99999999.99
 
 def test_get_big_decimal_positive_decimal(send_request, send_request_json_response):
-    request = number.build_put_big_decimal_positive_decimal_request(json=99999999.99)
+    request = number.build_put_big_decimal_positive_decimal_request()
     send_request(request)
 
     request = number.build_get_big_decimal_positive_decimal_request()

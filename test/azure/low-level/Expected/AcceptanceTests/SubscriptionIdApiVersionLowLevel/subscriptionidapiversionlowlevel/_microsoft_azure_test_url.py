@@ -25,26 +25,25 @@ if TYPE_CHECKING:
 class MicrosoftAzureTestUrl(object):
     """Some cool documentation.
 
-    :param credential: Credential needed for the client to connect to Azure.
-    :type credential: ~azure.core.credentials.TokenCredential
     :param subscription_id: Subscription Id.
     :type subscription_id: str
-    :param base_url: Service URL
-    :type base_url: str
+    :param credential: Credential needed for the client to connect to Azure.
+    :type credential: ~azure.core.credentials.TokenCredential
+    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
+    :paramtype endpoint: str
     """
 
     def __init__(
         self,
-        credential,  # type: "TokenCredential"
         subscription_id,  # type: str
-        base_url=None,  # type: Optional[str]
+        credential,  # type: "TokenCredential"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        if not base_url:
-            base_url = "http://localhost:3000"
-        self._config = MicrosoftAzureTestUrlConfiguration(credential, subscription_id, **kwargs)
-        self._client = ARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
+        endpoint = kwargs.pop("endpoint", "http://localhost:3000")  # type: str
+
+        self._config = MicrosoftAzureTestUrlConfiguration(subscription_id, credential, **kwargs)
+        self._client = ARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

@@ -79,7 +79,7 @@ jobs:
 
       - script: |
           pip install pip==20.2
-          pip install tox coverage==4.5.4
+          pip install tox coverage
         displayName: "Install Env Specific Reqs in Target PyVersion $(PythonVersion)"
 
       - script: |
@@ -162,26 +162,3 @@ jobs:
         inputs:
           testRunTitle: "$(OSName) Python $(PythonVersion) - multiapi"
           searchFolder: "$(TestFolder)/multiapi"
-
-      - script: |
-          cd $(TestFolder)/azure/combine-operation-files
-          tox -e ci
-        displayName: 'Execute combine-operation-files "azure" Tests - Python $(PythonVersion)'
-      - task: PublishTestResults@2
-        condition: always()
-        displayName: 'Publish combine-operation-files "azure" Test Results'
-        inputs:
-          testRunTitle: "$(OSName) Python $(PythonVersion) - combine-operation-files azure"
-          searchFolder: "$(TestFolder)/azure/combine-operation-files"
-
-      - script: |
-          cd $(TestFolder)/vanilla/combine-operation-files
-          tox -e ci
-        displayName: 'Execute combine-operation-files "vanilla" Tests - Python $(PythonVersion)'
-      - task: PublishTestResults@2
-        condition: always()
-        displayName: 'Publish combine-operation-files "vanilla" Test Results'
-        inputs:
-          testRunTitle: "$(OSName) Python $(PythonVersion) - combine-operation-files azure"
-          searchFolder: "$(TestFolder)/vanilla/combine-operation-files"
-

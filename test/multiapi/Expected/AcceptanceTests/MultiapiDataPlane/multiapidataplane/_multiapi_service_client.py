@@ -70,12 +70,10 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
         self,
         credential,  # type: "TokenCredential"
         api_version=None, # type: Optional[str]
-        base_url=None,  # type: Optional[str]
+        base_url="http://localhost:3000",  # type: str
         profile=KnownProfiles.default, # type: KnownProfiles
         **kwargs  # type: Any
     ):
-        if not base_url:
-            base_url = 'http://localhost:3000'
         self._config = MultiapiServiceClientConfiguration(credential, **kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
         super(MultiapiServiceClient, self).__init__(

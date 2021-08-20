@@ -229,34 +229,21 @@ def build_get_big_double_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_big_double_positive_decimal_request(
-    *, json: Any = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_put_big_double_positive_decimal_request(**kwargs: Any) -> HttpRequest:
     """Put big double value 99999999.99.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape.
-    :paramtype json: any
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input).
-    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your body input.
-            json = "float (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
+    json = 99999999.99
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", "/number/big/double/99999999.99")
@@ -267,7 +254,7 @@ def build_put_big_double_positive_decimal_request(
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, **kwargs)
 
 
 def build_get_big_double_positive_decimal_request(**kwargs: Any) -> HttpRequest:
@@ -293,34 +280,21 @@ def build_get_big_double_positive_decimal_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_big_double_negative_decimal_request(
-    *, json: Any = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_put_big_double_negative_decimal_request(**kwargs: Any) -> HttpRequest:
     """Put big double value -99999999.99.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape.
-    :paramtype json: any
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input).
-    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your body input.
-            json = "float (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
+    json = -99999999.99
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", "/number/big/double/-99999999.99")
@@ -331,7 +305,7 @@ def build_put_big_double_negative_decimal_request(
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, **kwargs)
 
 
 def build_get_big_double_negative_decimal_request(**kwargs: Any) -> HttpRequest:
@@ -419,34 +393,21 @@ def build_get_big_decimal_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_big_decimal_positive_decimal_request(
-    *, json: Any = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_put_big_decimal_positive_decimal_request(**kwargs: Any) -> HttpRequest:
     """Put big decimal value 99999999.99.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape.
-    :paramtype json: any
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input).
-    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your body input.
-            json = "float (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
+    json = 99999999.99
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", "/number/big/decimal/99999999.99")
@@ -457,7 +418,7 @@ def build_put_big_decimal_positive_decimal_request(
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, **kwargs)
 
 
 def build_get_big_decimal_positive_decimal_request(**kwargs: Any) -> HttpRequest:
@@ -483,34 +444,21 @@ def build_get_big_decimal_positive_decimal_request(**kwargs: Any) -> HttpRequest
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_big_decimal_negative_decimal_request(
-    *, json: Any = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_put_big_decimal_negative_decimal_request(**kwargs: Any) -> HttpRequest:
     """Put big decimal value -99999999.99.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape.
-    :paramtype json: any
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input).
-    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your body input.
-            json = "float (optional)"
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
+    json = -99999999.99
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", "/number/big/decimal/-99999999.99")
@@ -521,7 +469,7 @@ def build_put_big_decimal_negative_decimal_request(
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, **kwargs)
 
 
 def build_get_big_decimal_negative_decimal_request(**kwargs: Any) -> HttpRequest:

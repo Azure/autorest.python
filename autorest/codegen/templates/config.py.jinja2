@@ -3,7 +3,7 @@
 {% macro method_signature() %}
 def __init__(
     self,
-    {% for param_signature in code_model.global_parameters.method_signature(async_mode) %}
+    {% for param_signature in code_model.global_parameters.config_method_signature(async_mode) %}
     {{ param_signature }}
     {% endfor %}
 ){{" -> None" if async_mode else "" }}:{% endmacro %}
@@ -22,10 +22,10 @@ class {{ code_model.class_name }}Configuration(Configuration):
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
-{% if code_model.global_parameters | first %}
+{% if code_model.global_parameters.config_method | first %}
 
 {% endif %}
-{% for parameter in code_model.global_parameters.method %}
+{% for parameter in code_model.global_parameters.config_method %}
     :{{ parameter.description_keyword }} {{ parameter.serialized_name }}: {{ parameter.description }}
     :{{ parameter.docstring_type_keyword }} {{ parameter.serialized_name }}: {{ parameter.docstring_type }}
 {% endfor %}
@@ -35,13 +35,13 @@ class {{ code_model.class_name }}Configuration(Configuration):
     {% if not async_mode %}
         # type: (...) -> None
     {% endif %}
-{% for parameter in code_model.global_parameters.method|selectattr('required') %}
+{% for parameter in code_model.global_parameters.config_method|selectattr('required') %}
         if {{ parameter.serialized_name }} is None:
             raise ValueError("Parameter '{{ parameter.serialized_name }}' must not be None.")
 {% endfor %}
         super({{ code_model.class_name }}Configuration, self).__init__(**kwargs)
 
-{% for parameter in code_model.global_parameters.method %}
+{% for parameter in code_model.global_parameters.config_method %}
         self.{{ parameter.serialized_name }} = {{ parameter.serialized_name }}
 {% endfor %}
 {% if code_model.global_parameters.constant %}

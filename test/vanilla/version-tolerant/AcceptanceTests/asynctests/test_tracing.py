@@ -37,5 +37,5 @@ def has_tracing_decorator(function):
 
 
 def test_url():
-    client = AutoRestUrlTestService("", base_url="dummy url")
+    client = AutoRestUrlTestService("", endpoint="dummy url")
     assert has_tracing_decorator(client.paths.get_boolean_false)

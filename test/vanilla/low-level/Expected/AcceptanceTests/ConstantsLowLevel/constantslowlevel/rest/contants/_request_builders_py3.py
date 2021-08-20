@@ -455,3 +455,41 @@ def build_put_model_as_string_required_one_value_default_request(
     query_parameters["input"] = _SERIALIZER.query("input", input, "str")
 
     return HttpRequest(method="PUT", url=url, params=query_parameters, **kwargs)
+<<<<<<< HEAD
+=======
+
+
+def build_put_client_constants_request(**kwargs: Any) -> HttpRequest:
+    """Pass constants from the client to this function. Will pass in constant path, query, and header
+    parameters.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    header_constant = True
+    query_constant = 100
+    path_constant = "path"
+    # Construct URL
+    url = kwargs.pop("template_url", "/constants/clientConstants/{path-constant}")
+    path_format_arguments = {
+        "path-constant": _SERIALIZER.url("path_constant", path_constant, "str"),
+    }
+
+    url = _format_url_section(url, **path_format_arguments)
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters["query-constant"] = _SERIALIZER.query("query_constant", query_constant, "int")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["header-constant"] = _SERIALIZER.header("header_constant", header_constant, "bool")
+
+    return HttpRequest(method="PUT", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+>>>>>>> 4416673404f0e39bc2eaff06c4cefaefc1d32bf0

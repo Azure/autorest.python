@@ -31,7 +31,7 @@ from additionalpropertieslowlevel.rest import pets
 @pytest.fixture
 @async_generator
 async def client():
-    async with AdditionalPropertiesClient(base_url="http://localhost:3000") as client:
+    async with AdditionalPropertiesClient(endpoint="http://localhost:3000") as client:
         await yield_(client)
 
 @pytest.fixture

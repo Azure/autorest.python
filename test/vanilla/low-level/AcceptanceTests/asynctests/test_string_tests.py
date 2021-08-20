@@ -37,7 +37,7 @@ from base64 import b64decode
 @pytest.fixture
 @async_generator
 async def client():
-    async with AutoRestSwaggerBATService(base_url="http://localhost:3000") as client:
+    async with AutoRestSwaggerBATService(endpoint="http://localhost:3000") as client:
         await yield_(client)
 
 @pytest.fixture
@@ -65,7 +65,7 @@ async def test_empty(send_request, send_request_json_response):
     request = string.build_get_empty_request()
     assert "" == await send_request_json_response(request)
     # changing this behavior because of this pr being merged: https://github.com/Azure/autorest.testserver/pull/145/files
-    request = string.build_put_empty_request(json="")
+    request = string.build_put_empty_request()
     await send_request(request)
 
 @pytest.mark.asyncio
@@ -107,7 +107,7 @@ async def test_mbcs(send_request, send_request_json_response):
     request = string.build_get_mbcs_request()
     assert test_str == await send_request_json_response(request)
 
-    request = string.build_put_mbcs_request(json=test_str)
+    request = string.build_put_mbcs_request()
     await send_request(request)
 
 @pytest.mark.asyncio
@@ -116,7 +116,7 @@ async def test_whitespace(send_request, send_request_json_response):
     request = string.build_get_whitespace_request()
     assert test_str == await send_request_json_response(request)
 
-    request = string.build_put_whitespace_request(json=test_str)
+    request = string.build_put_whitespace_request()
     await send_request(request)
 
 @pytest.mark.asyncio

@@ -28,7 +28,7 @@ class AutoRestPagingTestService(object):
 
     :ivar paging: PagingOperations operations
     :vartype paging: paging.operations.PagingOperations
-    :param base_url: Service URL
+    :param base_url: Service URL. Default value is 'http://localhost:3000'.
     :type base_url: str
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
      Retry-After header is present.
@@ -36,12 +36,10 @@ class AutoRestPagingTestService(object):
 
     def __init__(
         self,
-        base_url=None,  # type: Optional[str]
+        base_url="http://localhost:3000",  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        if not base_url:
-            base_url = "http://localhost:3000"
         self._config = AutoRestPagingTestServiceConfiguration(**kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 

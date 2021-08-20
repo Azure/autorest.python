@@ -79,7 +79,7 @@ async def client(cookie_policy, credential):
         AsyncRetryPolicy(),
         cookie_policy
     ]
-    async with AutoRestLongRunningOperationTestService(credential, base_url="http://localhost:3000", policies=policies, polling_interval=POLLING_INTERVAL) as client:
+    async with AutoRestLongRunningOperationTestService(credential=credential, endpoint="http://localhost:3000", policies=policies, polling_interval=POLLING_INTERVAL) as client:
         await yield_(client)
 
 @pytest.fixture()

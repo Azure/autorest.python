@@ -40,7 +40,7 @@ async def client_required():
     async with AutoRestRequiredOptionalTestService(
             "required_path",
             "required_query",
-            base_url="http://localhost:3000") as client:
+            endpoint="http://localhost:3000") as client:
         client._config.required_global_path = "required_path"
         client._config.required_global_query = "required_query"
         await yield_(client)
@@ -58,7 +58,7 @@ async def client():
     async with AutoRestRequiredOptionalTestService(
             "required_path",
             "required_query",
-            base_url="http://localhost:3000") as client:
+            endpoint="http://localhost:3000") as client:
         client._config.required_global_path = None
         client._config.required_global_query = None
         await yield_(client)

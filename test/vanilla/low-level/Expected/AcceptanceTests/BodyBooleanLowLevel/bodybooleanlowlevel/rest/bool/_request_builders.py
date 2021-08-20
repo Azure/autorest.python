@@ -58,26 +58,15 @@ def build_put_true_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape.
-    :paramtype json: any
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input).
-    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your body input.
-            json = "bool (optional)"
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
+    json = True
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/bool/true')
@@ -92,6 +81,7 @@ def build_put_true_request(
         method="PUT",
         url=url,
         headers=header_parameters,
+        json=json,
         **kwargs
     )
 
@@ -136,26 +126,15 @@ def build_put_false_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape.
-    :paramtype json: any
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input).
-    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your body input.
-            json = "bool (optional)"
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
+    json = False
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/bool/false')
@@ -170,6 +149,7 @@ def build_put_false_request(
         method="PUT",
         url=url,
         headers=header_parameters,
+        json=json,
         **kwargs
     )
 

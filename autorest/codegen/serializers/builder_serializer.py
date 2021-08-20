@@ -68,8 +68,12 @@ def _content_type_error_check(builder: BuilderType) -> List[str]:
     retval.append("    )")
     return retval
 
-def _serialize_files_parameter(builder: BuilderType) -> List[str]:
-    retval = ["files = {"]
+def _serialize_files_body(builder: BuilderType) -> List[str]:
+    retval: List[str] = []
+    for constant in builder.parameters.constant:
+        if constant.is_multipart:
+            retval.append(_declare_constant(constant))
+    retval.append("files = {")
     for parameter in builder.parameters.body:
         retval.append(f'    "{parameter.rest_api_name}": {parameter.serialized_name},')
     retval.append("}")
@@ -92,14 +96,20 @@ def _serialize_parameter(
         ]
     return retval
 
+def _declare_constant(constant: Parameter) -> str:
+    return f"{constant.serialized_name} = {constant.constant_declaration}"
+
 def _pop_parameters_kwarg(
     function_name: str,
     kwarg_name: str,
 ) -> str:
     return f'{function_name}_parameters = kwargs.pop("{kwarg_name}", {{}})  # type: Dict[str, Any]'
 
-def _serialize_grouped_parameters(builder: BuilderType) -> List[str]:
-    retval = []
+def _serialize_grouped_body(builder: BuilderType) -> List[str]:
+    retval: List[str] = []
+    for constant in builder.parameters.constant:
+        if constant.grouped_by:
+            retval.append(_declare_constant(constant))
     for grouped_parameter in builder.parameters.grouped:
         retval.append(f"{grouped_parameter.serialized_name} = None")
     for grouper_name, grouped_parameters in groupby(
@@ -111,6 +121,31 @@ def _serialize_grouped_parameters(builder: BuilderType) -> List[str]:
                 f"    {grouped_parameter.serialized_name} = "
                 f"{ grouper_name }.{ grouped_parameter.corresponding_grouped_property.name }"
             )
+    return retval
+
+def _serialize_flattened_body(builder: BuilderType) -> List[str]:
+    retval: List[str] = []
+    for constant in builder.parameters.constant:
+        if constant.original_parameter:
+            # if the constant is part of the flattened object
+            retval.append(_declare_constant(constant))
+    if not builder.parameters.is_flattened:
+        raise ValueError(
+            "This method can't be called if the operation doesn't need parameter flattening"
+        )
+
+    parameters = builder.parameters.get_from_predicate(
+        lambda parameter: parameter.in_method_code
+    )
+    parameter_string = ", ".join(
+        [f"{param.target_property_name}={param.serialized_name}"
+        for param in parameters if param.target_property_name
+        ]
+    )
+    object_schema = cast(ObjectSchema, builder.parameters.body[0].schema)
+    retval.append(
+        f"{builder.parameters.body[0].serialized_name} = _models.{object_schema.name}({parameter_string})"
+    )
     return retval
 
 def _content_type_docstring(builder: BuilderType) -> str:
@@ -366,18 +401,7 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
 
 
     def pop_kwargs_from_signature(self, builder: BuilderType) -> List[str]:
-        retval = []
-        for kwarg in self._get_kwargs_to_pop(builder):
-            if kwarg.has_default_value:
-                retval.append(
-                    f"{kwarg.serialized_name} = kwargs.pop('{kwarg.serialized_name}', "
-                    + f"{kwarg.default_value_declaration})  # type: {kwarg.type_annotation}"
-                )
-            else:
-                retval.append(
-                    f"{kwarg.serialized_name} = kwargs.pop('{kwarg.serialized_name}')  # type: {kwarg.type_annotation}"
-                )
-        return retval
+        return utils.pop_kwargs_from_signature(self._get_kwargs_to_pop(builder))
 
     @staticmethod
     def serialize_path(builder: BuilderType) -> List[str]:
@@ -496,6 +520,10 @@ class RequestBuilderGenericSerializer(_RequestBuilderBaseSerializer):
         return builder.parameters.kwargs_to_pop(is_python_3_file=False)
 
     def _body_params_to_pass_to_request_creation(self, builder: BuilderType) -> List[str]:
+        if builder.parameters.has_body and not builder.parameters.body_kwarg_names:
+            # this means we have a constant body
+            # only doing json body in this case
+            return ["json"]
         return []
 
 
@@ -514,7 +542,14 @@ class RequestBuilderPython3Serializer(_RequestBuilderBaseSerializer):
         return builder.parameters.kwargs_to_pop(is_python_3_file=True)
 
     def _body_params_to_pass_to_request_creation(self, builder: BuilderType) -> List[str]:
-        return list(builder.parameters.body_kwarg_names.keys())
+        body_kwargs = list(builder.parameters.body_kwarg_names.keys())
+        if body_kwargs:
+            return body_kwargs
+        if builder.parameters.has_body:
+            # this means we have a constant body
+            # only doing json body in this case
+            return ["json"]
+        return body_kwargs
 
 
 ############################## NORMAL OPERATIONS ##############################
@@ -601,6 +636,8 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         if self.code_model.options['models_mode']:
             return False
         if builder.parameters.has_body:
+            if builder.parameters.body[0].is_multipart:
+                return True
             body_params = builder.parameters.body
             return any([b for b in body_params if isinstance(b.schema, (DictionarySchema, ListSchema, ObjectSchema))])
         return bool(self._get_json_response_template_to_status_codes(builder))
@@ -685,22 +722,24 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
     ) -> List[str]:
         retval = []
         if len(builder.body_kwargs_to_pass_to_request_builder) > 1:
-            for k in builder.body_kwargs_to_pass_to_request_builder:
+            # special case for files, bc we hardcode body param to be called 'files' for multipart
+            body_params_to_initialize = builder.body_kwargs_to_pass_to_request_builder
+            if self.code_model.options["version_tolerant"]:
+                body_params_to_initialize = [p for p in body_params_to_initialize if p != "files"]
+            for k in body_params_to_initialize:
                 retval.append(f"{k} = None")
         if builder.parameters.grouped:
             # request builders don't allow grouped parameters, so we group them before making the call
-            retval.extend(_serialize_grouped_parameters(builder))
+            retval.extend(_serialize_grouped_body(builder))
         if request_builder.multipart:
             # we have to construct our form data before passing to the request as well
             retval.append("# Construct form data")
-            retval.extend(_serialize_files_parameter(builder))
+            if not self.code_model.options["version_tolerant"]:
+                retval.extend(_serialize_files_body(builder))
         if builder.parameters.is_flattened:
             # unflatten before passing to request builder as well
-            retval.append(builder.parameters.build_flattened_object())
-        # we also don't do constant bodies in request builders
-        for constant_body in builder.parameters.constant_bodies:
-            retval.append(f"{constant_body.serialized_name} = {constant_body.constant_declaration}")
-        if builder.parameters.has_body:
+            retval.extend(_serialize_flattened_body(builder))
+        if builder.parameters.has_body and not builder.parameters.body[0].constant:
             retval.extend(self._serialize_body_parameters(builder))
         if self.code_model.options["builders_visibility"] == "embedded":
             request_path_name = request_builder.name
@@ -1163,7 +1202,7 @@ class _LROOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=
             if builder.lro_options else ""
         )
         retval = [
-            f"{p.serialized_name} = {p.constant_declaration}"
+            _declare_constant(p)
             for p in builder.parameters.path if p.constant
         ]
         path_format_arguments_str = ""

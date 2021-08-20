@@ -31,7 +31,7 @@ class AutoRestUrlTestService:
     :type global_string_path: str
     :param global_string_query: should contain value null.
     :type global_string_query: str
-    :param base_url: Service URL
+    :param base_url: Service URL. Default value is 'http://localhost:3000'.
     :type base_url: str
     """
 
@@ -39,11 +39,9 @@ class AutoRestUrlTestService:
         self,
         global_string_path: str,
         global_string_query: Optional[str] = None,
-        base_url: Optional[str] = None,
+        base_url: str = "http://localhost:3000",
         **kwargs: Any
     ) -> None:
-        if not base_url:
-            base_url = "http://localhost:3000"
         self._config = AutoRestUrlTestServiceConfiguration(global_string_path, global_string_query, **kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 

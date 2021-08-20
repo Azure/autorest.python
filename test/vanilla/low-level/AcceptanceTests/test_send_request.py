@@ -39,7 +39,7 @@ class TestSendRequest(object):
     def test_send_request_with_body_get_model_deserialize(self):
         from bodycomplexlowlevel import AutoRestComplexTestService
 
-        client = AutoRestComplexTestService(base_url="http://localhost:3000")
+        client = AutoRestComplexTestService(endpoint="http://localhost:3000")
 
         request = HttpRequest("GET", "/complex/inheritance/valid",
         )
@@ -56,7 +56,7 @@ class TestSendRequest(object):
     def test_send_request_with_stream_get_direct_json(self):
         from bodycomplexlowlevel import AutoRestComplexTestService
 
-        client = AutoRestComplexTestService(base_url="http://localhost:3000")
+        client = AutoRestComplexTestService(endpoint="http://localhost:3000")
 
         request = HttpRequest("GET", "/complex/inheritance/valid",
             headers={
@@ -76,7 +76,7 @@ class TestSendRequest(object):
     def test_send_request_with_body_put_json_dumps(self):
         from bodycomplexlowlevel import AutoRestComplexTestService
 
-        client = AutoRestComplexTestService(base_url="http://localhost:3000")
+        client = AutoRestComplexTestService(endpoint="http://localhost:3000")
 
         siamese_body = {
             "id": 2,
@@ -109,7 +109,7 @@ class TestSendRequest(object):
     def test_send_request_get_stream(self):
         from bodyfilelowlevel import AutoRestSwaggerBATFileService
 
-        client = AutoRestSwaggerBATFileService(base_url="http://localhost:3000", connection_data_block_size=1000)
+        client = AutoRestSwaggerBATFileService(endpoint="http://localhost:3000", connection_data_block_size=1000)
         file_length = 0
         with io.BytesIO() as file_handle:
 
@@ -139,7 +139,7 @@ class TestSendRequest(object):
         from bodyformdatalowlevel import AutoRestSwaggerBATFormDataService
 
         client = AutoRestSwaggerBATFormDataService(
-            base_url="http://localhost:3000",
+            endpoint="http://localhost:3000",
         )
 
         test_string = "Upload file test case"
@@ -155,7 +155,7 @@ class TestSendRequest(object):
     def test_send_request_full_url(self):
         from bodycomplexlowlevel import AutoRestComplexTestService
 
-        client = AutoRestComplexTestService(base_url="http://fakeUrl")
+        client = AutoRestComplexTestService(endpoint="http://fakeUrl")
 
         request = HttpRequest("GET", "http://localhost:3000/complex/inheritance/valid",
             headers={

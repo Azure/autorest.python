@@ -29,7 +29,7 @@ import pytest
 
 @pytest.fixture
 def client():
-    with PetStoreInc(base_url="http://localhost:3000") as client:
+    with PetStoreInc(endpoint="http://localhost:3000") as client:
         yield client
 
 def test_get_by_pet_id(client):

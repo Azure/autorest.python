@@ -51,7 +51,7 @@ def dummy_file():
 @pytest.fixture
 def client():
     with AutoRestSwaggerBATFormDataService(
-        base_url="http://localhost:3000",
+        endpoint="http://localhost:3000",
         connection_data_block_size = 2,
         retry_total = 50,  # Be agressive on this test, sometimes testserver DDOS :-p
         retry_backoff_factor = 1.6
@@ -65,7 +65,11 @@ def test_file_upload_stream(client):
     test_bytes = bytearray(test_string, encoding='utf-8')
     result = io.BytesIO()
     with io.BytesIO(test_bytes) as stream_data:
-        resp = client.formdata.upload_file(stream_data, "UploadFile.txt")
+        files = {
+            "file_content": stream_data,
+            "file_name": "UploadFile.txt"
+        }
+        resp = client.formdata.upload_file(files)
         for r in resp.iter_bytes():
             result.write(r)
         assert result.getvalue().decode() ==  test_string
@@ -79,7 +83,11 @@ def test_file_upload_stream_raw(client):
     test_bytes = bytearray(test_string, encoding='utf-8')
     result = io.BytesIO()
     with io.BytesIO(test_bytes) as stream_data:
-        stream = client.formdata.upload_file(stream_data, "UploadFile.txt", cls=test_callback)
+        files = {
+            "file_content": stream_data,
+            "file_name": "UploadFile.txt"
+        }
+        stream = client.formdata.upload_file(files, cls=test_callback)
         for data in stream.iter_bytes():
             result.write(data)
         assert result.getvalue().decode() ==  test_string
@@ -89,7 +97,11 @@ def test_file_upload_file_stream(client, dummy_file):
     name = os.path.basename(dummy_file)
     result = io.BytesIO()
     with open(dummy_file, 'rb') as upload_data:
-        resp = client.formdata.upload_file(upload_data, name)
+        files = {
+            "file_content": upload_data,
+            "file_name": name
+        }
+        resp = client.formdata.upload_file(files)
         for r in resp.iter_bytes():
             result.write(r)
         assert result.getvalue().decode() ==  "Test file"
@@ -102,7 +114,11 @@ def test_file_upload_file_stream_raw(client, dummy_file):
     name = os.path.basename(dummy_file)
     result = io.BytesIO()
     with open(dummy_file, 'rb') as upload_data:
-        stream = client.formdata.upload_file(upload_data, name, cls=test_callback)
+        files = {
+            "file_content": upload_data,
+            "file_name": name
+        }
+        stream = client.formdata.upload_file(files, cls=test_callback)
         for data in stream.iter_raw():
             result.write(data)
         assert result.getvalue().decode() ==  "Test file"

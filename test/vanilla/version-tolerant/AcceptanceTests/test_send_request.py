@@ -35,7 +35,7 @@ cwd = dirname(realpath(__file__))
 def test_send_request_with_body_get_model_deserialize():
     from bodycomplexversiontolerant import AutoRestComplexTestService\
 
-    client = AutoRestComplexTestService(base_url="http://localhost:3000")
+    client = AutoRestComplexTestService(endpoint="http://localhost:3000")
 
     request = HttpRequest("GET", "/complex/inheritance/valid",
         headers={
@@ -55,7 +55,7 @@ def test_send_request_with_body_get_model_deserialize():
 def test_send_request_with_stream_get_direct_json():
     from bodycomplexversiontolerant import AutoRestComplexTestService
 
-    client = AutoRestComplexTestService(base_url="http://localhost:3000")
+    client = AutoRestComplexTestService(endpoint="http://localhost:3000")
 
     request = HttpRequest("GET", "/complex/inheritance/valid",
         headers={
@@ -75,7 +75,7 @@ def test_send_request_with_stream_get_direct_json():
 def test_send_request_with_body_put_json_dumps():
     from bodycomplexversiontolerant import AutoRestComplexTestService
 
-    client = AutoRestComplexTestService(base_url="http://localhost:3000")
+    client = AutoRestComplexTestService(endpoint="http://localhost:3000")
 
     siamese_body = {
         "id": 2,
@@ -110,7 +110,7 @@ def test_send_request_with_body_put_json_dumps():
 def test_send_request_get_stream():
     from bodyfileversiontolerant import AutoRestSwaggerBATFileService
 
-    client = AutoRestSwaggerBATFileService(base_url="http://localhost:3000", connection_data_block_size=1000)
+    client = AutoRestSwaggerBATFileService(endpoint="http://localhost:3000", connection_data_block_size=1000)
     file_length = 0
     with io.BytesIO() as file_handle:
 
@@ -144,7 +144,7 @@ def test_send_request_put_stream():
     from bodyformdataversiontolerant import AutoRestSwaggerBATFormDataService
 
     client = AutoRestSwaggerBATFormDataService(
-        base_url="http://localhost:3000",
+        endpoint="http://localhost:3000",
     )
 
     test_string = "Upload file test case"
@@ -162,7 +162,7 @@ def test_send_request_put_stream():
 def test_send_request_full_url():
     from bodycomplexversiontolerant import AutoRestComplexTestService
 
-    client = AutoRestComplexTestService(base_url="http://fakeUrl")
+    client = AutoRestComplexTestService(endpoint="http://fakeUrl")
 
     request = HttpRequest("GET", "http://localhost:3000/complex/inheritance/valid",
             headers={
