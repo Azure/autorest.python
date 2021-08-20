@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._header_operations import HeaderOperations
+from ._combine_operations import HeaderOperations
 
 __all__ = [
     "HeaderOperations",

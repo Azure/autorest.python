@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._pet_operations import PetOperations
+from ._combine_operations import PetOperations
 
 __all__ = [
     "PetOperations",

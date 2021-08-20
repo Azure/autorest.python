@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._parameter_grouping_operations import ParameterGroupingOperations
+from ._combine_operations import ParameterGroupingOperations
 
 __all__ = [
     "ParameterGroupingOperations",

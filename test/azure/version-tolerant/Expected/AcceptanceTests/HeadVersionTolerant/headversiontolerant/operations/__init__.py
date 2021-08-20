@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._http_success_operations import HttpSuccessOperations
+from ._combine_operations import HttpSuccessOperations
 
 __all__ = [
     "HttpSuccessOperations",

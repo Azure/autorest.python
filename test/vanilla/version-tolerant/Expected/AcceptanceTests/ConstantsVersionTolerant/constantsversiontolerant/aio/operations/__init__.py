@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._contants_operations import ContantsOperations
+from ._combine_operations import ContantsOperations
 
 __all__ = [
     "ContantsOperations",

@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_report_service_for_azure_operations import AutoRestReportServiceForAzureOperationsMixin
+from ._combine_operations import AutoRestReportServiceForAzureOperationsMixin
 
 __all__ = [
     "AutoRestReportServiceForAzureOperationsMixin",

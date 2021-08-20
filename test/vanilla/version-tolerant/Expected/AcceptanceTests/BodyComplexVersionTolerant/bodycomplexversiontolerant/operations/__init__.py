@@ -6,15 +6,15 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._basic_operations import BasicOperations
-from ._primitive_operations import PrimitiveOperations
-from ._array_operations import ArrayOperations
-from ._dictionary_operations import DictionaryOperations
-from ._inheritance_operations import InheritanceOperations
-from ._polymorphism_operations import PolymorphismOperations
-from ._polymorphicrecursive_operations import PolymorphicrecursiveOperations
-from ._readonlyproperty_operations import ReadonlypropertyOperations
-from ._flattencomplex_operations import FlattencomplexOperations
+from ._combine_operations import BasicOperations
+from ._combine_operations import PrimitiveOperations
+from ._combine_operations import ArrayOperations
+from ._combine_operations import DictionaryOperations
+from ._combine_operations import InheritanceOperations
+from ._combine_operations import PolymorphismOperations
+from ._combine_operations import PolymorphicrecursiveOperations
+from ._combine_operations import ReadonlypropertyOperations
+from ._combine_operations import FlattencomplexOperations
 
 __all__ = [
     "BasicOperations",
