@@ -75,7 +75,7 @@ def client(cookie_policy, credential):
         cookie_policy
     ]
 
-    with AutoRestLongRunningOperationTestService(credential=credential, endpoint="http://localhost:3000", policies=policies, polling_interval=POLLING_INTERVAL) as client:
+    with AutoRestLongRunningOperationTestService(credential=credential, policies=policies, polling_interval=POLLING_INTERVAL) as client:
         yield client
 
 @pytest.fixture()
@@ -435,7 +435,7 @@ def test_polling_interval_config(cookie_policy, credential, client):
         RetryPolicy(),
         cookie_policy
     ]
-    client_one_second = AutoRestLongRunningOperationTestService(credential=credential, endpoint="http://localhost:3000", policies=policies, polling_interval=1)
+    client_one_second = AutoRestLongRunningOperationTestService(credential=credential, policies=policies, polling_interval=1)
     one_second_polling_interval_start_time = time.time()
     product2 = client_one_second.lros.begin_post_double_headers_final_azure_header_get_default().result()
     one_second_polling_interval_duration = time.time() - one_second_polling_interval_start_time

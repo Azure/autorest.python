@@ -29,7 +29,7 @@ from constantslowlevel.rest import contants
 
 @pytest.fixture
 def client():
-    with AutoRestSwaggerConstantService(base_url="http://localhost:3000") as client:
+    with AutoRestSwaggerConstantService() as client:
         yield client
 
 @pytest.fixture

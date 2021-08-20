@@ -35,7 +35,7 @@ from azurereportlowlevel import AutoRestReportServiceForAzure, rest
 class TestAcceptance(object):
 
     def test_ensure_coverage(self):
-        client = AutoRestReportServiceForAzure(endpoint="http://localhost:3000")
+        client = AutoRestReportServiceForAzure()
         request = rest.build_get_report_request(qualifier=platform.python_version())
         report = client.send_request(request).json()
 

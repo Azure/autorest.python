@@ -35,7 +35,7 @@ import pytest
 async def client():
     async with AutoRestValidationTest(
             "abc123",
-            endpoint="http://localhost:3000") as client:
+        ) as client:
         client.api_version = "12-34-5678"
         await yield_(client)
 
@@ -142,7 +142,7 @@ async def test_max_items_validation(client, constant_body):
 async def test_api_version_validation(client):
     client = AutoRestValidationTest(
         "abc123",
-        endpoint="http://localhost:3000")
+    )
     client.api_version = "abc"
     with pytest.raises(ValidationError) as ex:
         await client.validation_of_method_parameters("123", 150)

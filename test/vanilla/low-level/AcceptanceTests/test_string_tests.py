@@ -35,7 +35,7 @@ from base64 import b64decode
 
 @pytest.fixture
 def client():
-    with AutoRestSwaggerBATService(endpoint="http://localhost:3000") as client:
+    with AutoRestSwaggerBATService() as client:
         yield client
 
 @pytest.fixture

@@ -32,7 +32,7 @@ import pytest
 
 @pytest.fixture
 def client():
-    with AutoRestRFC1123DateTimeTestService(endpoint="http://localhost:3000") as client:
+    with AutoRestRFC1123DateTimeTestService() as client:
         yield client
 
 def test_get_null(client):

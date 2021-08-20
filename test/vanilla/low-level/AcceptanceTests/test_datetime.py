@@ -35,7 +35,7 @@ import pytest
 
 @pytest.fixture
 def client():
-    with AutoRestDateTimeTestService(endpoint="http://localhost:3000") as client:
+    with AutoRestDateTimeTestService() as client:
         yield client
 
 @pytest.fixture

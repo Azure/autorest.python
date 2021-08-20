@@ -29,7 +29,7 @@ import pytest
 
 @pytest.fixture()
 def client():
-    with AutoRestResourceFlatteningTestService(endpoint="http://localhost:3000") as client:
+    with AutoRestResourceFlatteningTestService() as client:
         yield client
 def test_flattening_array(client):
 

@@ -37,7 +37,7 @@ def client_required():
     with AutoRestRequiredOptionalTestService(
             "required_path",
             "required_query",
-            endpoint="http://localhost:3000") as client:
+        ) as client:
         client._config.required_global_path = "required_path"
         client._config.required_global_query = "required_query"
         yield client
@@ -47,7 +47,7 @@ def client():
     with AutoRestRequiredOptionalTestService(
             "required_path",
             "required_query",
-            endpoint="http://localhost:3000") as client:
+        ) as client:
         client._config.required_global_path = None
         client._config.required_global_query = None
         yield client

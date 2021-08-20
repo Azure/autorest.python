@@ -33,7 +33,7 @@ from .serializer import serialize_time, deserialize_time
 
 @pytest.fixture
 def client():
-    with AutoRestTimeTestService(endpoint="http://localhost:3000") as client:
+    with AutoRestTimeTestService() as client:
         yield client
 
 def test_get(client):

@@ -31,7 +31,7 @@ from anythinglowlevel import rest
 @pytest.fixture
 @async_generator
 async def client():
-    async with AnythingClient(endpoint="http://localhost:3000") as client:
+    async with AnythingClient() as client:
         await yield_(client)
 
 @pytest.fixture

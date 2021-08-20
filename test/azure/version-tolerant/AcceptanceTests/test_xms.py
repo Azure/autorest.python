@@ -36,7 +36,6 @@ def client(credential, authentication_policy):
     with AutoRestAzureSpecialParametersTestClient(
         credential,
         valid_subscription,
-        endpoint="http://localhost:3000",
         authentication_policy=authentication_policy,
     ) as client:
         yield client
@@ -48,7 +47,6 @@ def client_no_request_id(credential, authentication_policy):
     with AutoRestAzureSpecialParametersTestClient(
         credential,
         valid_subscription,
-        endpoint="http://localhost:3000",
         auto_request_id=False,
         authentication_policy=authentication_policy,
     ) as client:

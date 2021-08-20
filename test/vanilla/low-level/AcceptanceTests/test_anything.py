@@ -28,7 +28,7 @@ from anythinglowlevel import AnythingClient, rest
 
 @pytest.fixture
 def client():
-    with AnythingClient(endpoint="http://localhost:3000") as client:
+    with AnythingClient() as client:
         yield client
 
 @pytest.fixture

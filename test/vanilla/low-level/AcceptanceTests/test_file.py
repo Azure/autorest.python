@@ -36,7 +36,7 @@ cwd = dirname(realpath(__file__))
 @pytest.fixture
 def client(connection_data_block_size):
     with AutoRestSwaggerBATFileService(
-        endpoint="http://localhost:3000", connection_data_block_size=connection_data_block_size) as client:
+        connection_data_block_size=connection_data_block_size) as client:
         yield client
 
 @pytest.mark.parametrize('connection_data_block_size', [1000])

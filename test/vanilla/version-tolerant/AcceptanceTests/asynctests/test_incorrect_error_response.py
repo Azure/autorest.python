@@ -30,6 +30,6 @@ from incorrecterrorresponseversiontolerant.aio import IncorrectReturnedErrorMode
 @pytest.mark.skip(reason="Not deserializing models yet")
 @pytest.mark.asyncio
 async def test_swallow_deserialization_error_for_error_model():
-    client = IncorrectReturnedErrorModel(endpoint="http://localhost:3000")
+    client = IncorrectReturnedErrorModel()
     with pytest.raises(HttpResponseError):
         await client.get_incorrect_error_from_server()

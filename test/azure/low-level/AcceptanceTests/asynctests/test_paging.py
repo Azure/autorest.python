@@ -44,7 +44,7 @@ async def client(cookie_policy):
         AsyncRetryPolicy(),
         cookie_policy
     ]
-    async with AutoRestPagingTestService(endpoint="http://localhost:3000", policies=policies) as client:
+    async with AutoRestPagingTestService(policies=policies) as client:
         await yield_(client)
 
 @pytest.fixture

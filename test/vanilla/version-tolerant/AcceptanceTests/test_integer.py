@@ -33,7 +33,7 @@ import pytest
 
 @pytest.fixture
 def client():
-    with AutoRestIntegerTestService(endpoint="http://localhost:3000") as client:
+    with AutoRestIntegerTestService() as client:
         yield client
 
 def test_max_min_32_bit(client):

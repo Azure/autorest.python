@@ -46,12 +46,12 @@ def valid_subscription():
 
 @pytest.fixture
 def client(valid_subscription, credential, authentication_policy):
-    with AutoRestAzureSpecialParametersTestClient(credential, valid_subscription, endpoint="http://localhost:3000", authentication_policy=authentication_policy) as client:
+    with AutoRestAzureSpecialParametersTestClient(credential, valid_subscription, authentication_policy=authentication_policy) as client:
         yield client
 
 @pytest.fixture
 def parameter_grouping_client():
-    with AutoRestParameterGroupingTestService(endpoint="http://localhost:3000") as client:
+    with AutoRestParameterGroupingTestService() as client:
         yield client
 
 @pytest.fixture

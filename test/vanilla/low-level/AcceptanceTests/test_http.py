@@ -53,7 +53,7 @@ def client(cookie_policy):
         RetryPolicy(),
         cookie_policy
     ]
-    with AutoRestHttpInfrastructureTestService(endpoint="http://localhost:3000", policies=policies) as client:
+    with AutoRestHttpInfrastructureTestService(policies=policies) as client:
         yield client
 
 @pytest.fixture

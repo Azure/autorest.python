@@ -30,7 +30,7 @@ import pytest
 
 @pytest.fixture
 def client(credential, authentication_policy):
-    with AutoRestPagingTestService(credential, endpoint="http://localhost:3000", authentication_policy=authentication_policy) as client:
+    with AutoRestPagingTestService(credential, authentication_policy=authentication_policy) as client:
         yield client
 
 def test_custom_pager(client):
