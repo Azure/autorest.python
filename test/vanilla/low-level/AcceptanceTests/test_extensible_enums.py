@@ -31,7 +31,7 @@ import pytest
 
 @pytest.fixture
 def client():
-    with PetStoreInc(endpoint="http://localhost:3000") as client:
+    with PetStoreInc() as client:
         yield client
 
 @pytest.fixture

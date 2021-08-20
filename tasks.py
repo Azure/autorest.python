@@ -70,7 +70,8 @@ _VANILLA_SWAGGER_MAPPINGS = {
     'NonStringEnums': 'non-string-enum.json',
     'MultipleInheritance': 'multiple-inheritance.json',
     'NoOperations': 'no-operations.json',
-    "ReservedWords": "reserved-words.json"
+    "ParameterizedEndpoint": "parameterized-endpoint.json",
+    "ReservedWords": "reserved-words.json",
 }
 
 _UPDATE_SWAGGER_MAPPINGS = {

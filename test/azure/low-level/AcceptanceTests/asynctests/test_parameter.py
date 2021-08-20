@@ -48,7 +48,7 @@ def valid_subscription():
 @async_generator
 async def client(valid_subscription, credential, authentication_policy):
     async with AutoRestAzureSpecialParametersTestClient(
-        credential, valid_subscription, endpoint="http://localhost:3000", authentication_policy=authentication_policy
+        credential, valid_subscription, authentication_policy=authentication_policy
     ) as client:
         await yield_(client)
 
@@ -56,7 +56,6 @@ async def client(valid_subscription, credential, authentication_policy):
 @async_generator
 async def parameter_grouping_client(authentication_policy):
     async with AutoRestParameterGroupingTestService(
-        endpoint="http://localhost:3000"
     ) as client:
         await yield_(client)
 

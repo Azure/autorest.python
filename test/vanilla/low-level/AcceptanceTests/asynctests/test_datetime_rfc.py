@@ -34,7 +34,7 @@ import pytest
 @pytest.fixture
 @async_generator
 async def client():
-    async with AutoRestRFC1123DateTimeTestService(endpoint="http://localhost:3000") as client:
+    async with AutoRestRFC1123DateTimeTestService() as client:
         await yield_(client)
 
 

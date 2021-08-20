@@ -59,7 +59,7 @@ import pytest
 @pytest.fixture
 @async_generator
 async def client():
-    async with AutoRestComplexTestService(endpoint="http://localhost:3000") as client:
+    async with AutoRestComplexTestService() as client:
         await yield_(client)
 
 @pytest.fixture

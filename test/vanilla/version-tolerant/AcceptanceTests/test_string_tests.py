@@ -32,7 +32,7 @@ import pytest
 
 @pytest.fixture
 def client():
-    with AutoRestSwaggerBATService(endpoint="http://localhost:3000") as client:
+    with AutoRestSwaggerBATService() as client:
         yield client
 
 def test_null(client):

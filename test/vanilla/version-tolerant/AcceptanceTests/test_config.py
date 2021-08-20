@@ -27,7 +27,7 @@ from azure.core.pipeline.policies import HttpLoggingPolicy
 from bodystringversiontolerant import AutoRestSwaggerBATService
 
 def test_http_logging_policy_default():
-    with AutoRestSwaggerBATService(endpoint="http://localhost:3000") as client:
+    with AutoRestSwaggerBATService() as client:
         assert isinstance(client._config.http_logging_policy, HttpLoggingPolicy)
         assert client._config.http_logging_policy.allowed_header_names == HttpLoggingPolicy.DEFAULT_HEADERS_WHITELIST
 
@@ -37,6 +37,6 @@ def test_http_logging_policy_custom():
     http_logging_policy.allowed_header_names.update(
         {"x-ms-added-header"}
     )
-    with AutoRestSwaggerBATService(endpoint="http://localhost:3000", http_logging_policy=http_logging_policy) as client:
+    with AutoRestSwaggerBATService(http_logging_policy=http_logging_policy) as client:
         assert isinstance(client._config.http_logging_policy, HttpLoggingPolicy)
         assert client._config.http_logging_policy.allowed_header_names == HttpLoggingPolicy.DEFAULT_HEADERS_WHITELIST.union({"x-ms-added-header"})

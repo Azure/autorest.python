@@ -32,7 +32,7 @@ from azure.core.exceptions import DecodeError
 @pytest.fixture
 @async_generator
 async def client():
-    async with AutoRestBoolTestService(endpoint="http://localhost:3000") as client:
+    async with AutoRestBoolTestService() as client:
         await yield_(client)
 
 @pytest.fixture

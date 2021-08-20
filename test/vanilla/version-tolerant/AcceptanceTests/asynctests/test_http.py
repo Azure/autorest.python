@@ -48,7 +48,7 @@ async def client(cookie_policy):
         AsyncRetryPolicy(),
         cookie_policy
     ]
-    async with AutoRestHttpInfrastructureTestService(endpoint="http://localhost:3000", policies=policies) as client:
+    async with AutoRestHttpInfrastructureTestService(policies=policies) as client:
         await yield_(client)
 
 

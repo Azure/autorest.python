@@ -32,7 +32,7 @@ from azurereportversiontolerant import AutoRestReportServiceForAzure
 class TestAcceptance(object):
 
     def test_ensure_coverage(self):
-        client = AutoRestReportServiceForAzure(endpoint="http://localhost:3000")
+        client = AutoRestReportServiceForAzure()
         report = client.get_report(qualifier=platform.python_version())
 
         # Add tests that wont be supported due to the nature of Python here

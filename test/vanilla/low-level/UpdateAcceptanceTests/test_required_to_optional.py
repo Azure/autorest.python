@@ -33,7 +33,7 @@ from llcpackagelowlevel.rest.params import build_get_required_request
 
 @pytest.fixture
 def client():
-    with LLCClient(endpoint="http://localhost:3000") as client:
+    with LLCClient() as client:
         yield client
 
 

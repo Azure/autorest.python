@@ -39,7 +39,7 @@ class TestSendRequest(object):
     async def test_send_request_with_body_get_model_deserialize(self):
         from bodycomplexlowlevel.aio import AutoRestComplexTestService
 
-        client = AutoRestComplexTestService(endpoint="http://localhost:3000")
+        client = AutoRestComplexTestService()
 
         request = HttpRequest("GET", "/complex/inheritance/valid",
             headers={
@@ -57,7 +57,7 @@ class TestSendRequest(object):
     @pytest.mark.asyncio
     async def test_send_request_with_stream_get_direct_json(self):
         from bodycomplexlowlevel.aio import AutoRestComplexTestService
-        client = AutoRestComplexTestService(endpoint="http://localhost:3000")
+        client = AutoRestComplexTestService()
 
         request = HttpRequest("GET", "/complex/inheritance/valid",
             headers={
@@ -79,7 +79,7 @@ class TestSendRequest(object):
     async def test_send_request_with_body_put_json_dumps(self):
         from bodycomplexlowlevel.aio import AutoRestComplexTestService
 
-        client = AutoRestComplexTestService(endpoint="http://localhost:3000")
+        client = AutoRestComplexTestService()
 
         siamese_body = {
             "id": 2,
@@ -112,7 +112,7 @@ class TestSendRequest(object):
     async def test_send_request_get_stream(self):
         from bodyfilelowlevel.aio import AutoRestSwaggerBATFileService
 
-        client = AutoRestSwaggerBATFileService(endpoint="http://localhost:3000", connection_data_block_size=1000)
+        client = AutoRestSwaggerBATFileService(connection_data_block_size=1000)
         file_length = 0
         with io.BytesIO() as file_handle:
 
@@ -144,7 +144,6 @@ class TestSendRequest(object):
         from bodyformdatalowlevel.aio import AutoRestSwaggerBATFormDataService
 
         client = AutoRestSwaggerBATFormDataService(
-            endpoint="http://localhost:3000",
             headers={"Content-Type": "application/octet-stream"}
         )
 

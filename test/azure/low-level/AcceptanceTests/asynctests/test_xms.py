@@ -27,10 +27,8 @@
 from async_generator import yield_, async_generator
 from azure.core.exceptions import HttpResponseError
 
-from azurespecialpropertieslowlevel import AutoRestAzureSpecialParametersTestClient
-from azurespecialpropertieslowlevel.rest import xms_client_request_id, header
-
 from azurespecialpropertieslowlevel.aio import AutoRestAzureSpecialParametersTestClient
+from azurespecialpropertieslowlevel.rest import xms_client_request_id, header
 
 import pytest
 
@@ -42,7 +40,6 @@ async def client(credential, authentication_policy):
     async with AutoRestAzureSpecialParametersTestClient(
         credential,
         valid_subscription,
-        endpoint="http://localhost:3000",
         authentication_policy=authentication_policy,
     ) as client:
         await yield_(client)
@@ -55,7 +52,6 @@ async def client_no_request_id(credential, authentication_policy):
     async with AutoRestAzureSpecialParametersTestClient(
         credential,
         valid_subscription,
-        endpoint="http://localhost:3000",
         auto_request_id=False,
         authentication_policy=authentication_policy,
     ) as client:

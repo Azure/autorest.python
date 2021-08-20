@@ -38,7 +38,7 @@ import pytest
 async def client():
     async with AutoRestValidationTest(
             "abc123",
-            endpoint="http://localhost:3000") as client:
+        ) as client:
         client.api_version = "12-34-5678"
         await yield_(client)
 
@@ -146,7 +146,7 @@ async def test_maximum_validation(send_request):
 async def test_api_version_validation(send_request):
     client = AutoRestValidationTest(
         "abc123",
-        endpoint="http://localhost:3000")
+    )
     client.api_version = "abc"
     try:
         request = build_validation_of_method_parameters_request(subscription_id="abc123", resource_group_name="123", id=150)

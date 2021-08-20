@@ -38,7 +38,7 @@ except ImportError:
 
 @pytest.fixture
 def client():
-    with AutoRestIntegerTestService(endpoint="http://localhost:3000") as client:
+    with AutoRestIntegerTestService() as client:
         yield client
 
 @pytest.fixture
