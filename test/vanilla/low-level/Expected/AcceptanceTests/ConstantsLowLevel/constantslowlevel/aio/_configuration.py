@@ -24,6 +24,9 @@ class AutoRestSwaggerConstantServiceConfiguration(Configuration):
     def __init__(self, **kwargs: Any) -> None:
         super(AutoRestSwaggerConstantServiceConfiguration, self).__init__(**kwargs)
 
+        self.header_constant = True
+        self.query_constant = 100
+        self.path_constant = "path"
         kwargs.setdefault("sdk_moniker", "autorestswaggerconstantservice/{}".format(VERSION))
         self._configure(**kwargs)
 

@@ -54,7 +54,6 @@ def build_get_null_request(
         **kwargs
     )
 
-
 def build_put_positive_duration_request(
     **kwargs  # type: Any
 ):
