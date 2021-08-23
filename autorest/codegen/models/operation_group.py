@@ -97,7 +97,7 @@ class OperationGroup(BaseModel):
     @property
     def filename(self) -> str:
         if self.code_model.options["combine_operation_files"]:
-            return "_combine_operations"
+            return "_operations"
 
         basename = self.name
         if self.is_empty_operation_group:

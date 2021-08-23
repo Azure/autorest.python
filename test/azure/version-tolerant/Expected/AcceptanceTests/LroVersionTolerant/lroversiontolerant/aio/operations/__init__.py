@@ -6,10 +6,10 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._combine_operations import LROsOperations
-from ._combine_operations import LRORetrysOperations
-from ._combine_operations import LROSADsOperations
-from ._combine_operations import LROsCustomHeaderOperations
+from ._operations import LROsOperations
+from ._operations import LRORetrysOperations
+from ._operations import LROSADsOperations
+from ._operations import LROsCustomHeaderOperations
 
 __all__ = [
     "LROsOperations",

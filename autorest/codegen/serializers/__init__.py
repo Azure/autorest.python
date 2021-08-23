@@ -226,7 +226,7 @@ class JinjaSerializer:
                 env=env,
                 namespace_path=namespace_path,
                 operation_groups=code_model.operation_groups,
-                filename="_combine_operations"
+                filename="_operations"
             )
 
 

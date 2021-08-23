@@ -1,7 +1,7 @@
 {% macro operation_group_imports(filename_suffix) %}
 {% if code_model.options['combine_operation_files'] %}
 {% for operation_group in operation_groups %}
-from ._combine_operations import {{ operation_group.class_name }}
+from ._operations import {{ operation_group.class_name }}
 {% endfor %}
 {% else %}
 {% for operation_group in operation_groups %}

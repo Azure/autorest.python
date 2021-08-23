@@ -233,13 +233,13 @@ def test_operation_groups():
     from urlmulticollectionformatversiontolerant.operations import QueriesOperations as MultiCollectionFormatQueriesOperations
 
     with pytest.raises(ImportError):
-        from urlversiontolerant.operations import _combine_operations_py3
+        from urlversiontolerant.operations import _operations_py3
 
     with pytest.raises(ImportError):
-        from urlmulticollectionformatversiontolerant.operations import _combine_operations_py3
+        from urlmulticollectionformatversiontolerant.operations import _operations_py3
 
-    from urlversiontolerant.operations._combine_operations import QueriesOperations as QueriesOperationsPy2
+    from urlversiontolerant.operations._operations import QueriesOperations as QueriesOperationsPy2
     assert QueriesOperations == QueriesOperationsPy2
 
-    from urlmulticollectionformatversiontolerant.operations._combine_operations import QueriesOperations as QueriesOperationsPy2
+    from urlmulticollectionformatversiontolerant.operations._operations import QueriesOperations as QueriesOperationsPy2
     assert MultiCollectionFormatQueriesOperations == QueriesOperationsPy2

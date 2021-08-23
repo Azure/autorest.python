@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._combine_operations import MediaTypesClientOperationsMixin
+from ._operations import MediaTypesClientOperationsMixin
 
 __all__ = [
     "MediaTypesClientOperationsMixin",

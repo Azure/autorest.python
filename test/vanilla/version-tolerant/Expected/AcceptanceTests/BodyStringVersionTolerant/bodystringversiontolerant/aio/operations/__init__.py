@@ -6,8 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._combine_operations import StringOperations
-from ._combine_operations import EnumOperations
+from ._operations import StringOperations
+from ._operations import EnumOperations
 
 __all__ = [
     "StringOperations",

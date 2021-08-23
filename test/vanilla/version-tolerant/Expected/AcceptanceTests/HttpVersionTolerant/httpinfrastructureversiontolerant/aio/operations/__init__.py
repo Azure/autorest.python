@@ -6,13 +6,13 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._combine_operations import HttpFailureOperations
-from ._combine_operations import HttpSuccessOperations
-from ._combine_operations import HttpRedirectsOperations
-from ._combine_operations import HttpClientFailureOperations
-from ._combine_operations import HttpServerFailureOperations
-from ._combine_operations import HttpRetryOperations
-from ._combine_operations import MultipleResponsesOperations
+from ._operations import HttpFailureOperations
+from ._operations import HttpSuccessOperations
+from ._operations import HttpRedirectsOperations
+from ._operations import HttpClientFailureOperations
+from ._operations import HttpServerFailureOperations
+from ._operations import HttpRetryOperations
+from ._operations import MultipleResponsesOperations
 
 __all__ = [
     "HttpFailureOperations",
