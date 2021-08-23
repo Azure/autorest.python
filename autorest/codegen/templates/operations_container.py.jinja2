@@ -1,6 +1,7 @@
 {% set object_base_class = "" if async_mode else "(object)" %}
 {% set operations_description = "async operations" if async_mode else "operations" %}
 {% set return_none_type_annotation = " -> None" if async_mode else "" %}
+{% set operation_group = operation_groups[0] %}
 # coding=utf-8
 {{ code_model.options['license_header'] }}
 {{ imports }}
@@ -13,51 +14,29 @@ _SERIALIZER = Serializer()
 {% if not is_python_3_file %}
 # fmt: off
 {% endif %}
+{% if not code_model.options['combine_operation_files'] %}
     {% for request_builder in code_model.rest.request_builders | selectattr("operation_group_name", "equalto", operation_group.name) %}
 
-    {% include "request_builder.py.jinja2" %}
+        {% include "request_builder.py.jinja2" %}
     {% endfor %}
+{% else %}
+    {% for request_builder in code_model.rest.request_builders %}
+
+        {% include "request_builder.py.jinja2" %}
+    {% endfor %}
+{% endif %}
 {% if not is_python_3_file %}
 # fmt: on
 {% endif %}
 {% endif %}
-class {{ operation_group.class_name }}{{ object_base_class }}:
-    """{{ operation_group.class_name }} {{ operations_description }}.
-
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-{% if code_model.schemas and code_model.options["models_mode"] %}
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~{{ code_model.namespace }}.models
+{% if not code_model.options['combine_operation_files'] %}
+    {% include "operations_class.py.jinja2" %}
+{% else %}
+    {% for operation_group in operation_groups %}
+        {% if operation_group.is_empty_operation_group %}
+            {% include "operations_class_mixin.py.jinja2" %}
+        {% else %}
+            {% include "operations_class.py.jinja2" %}
+        {% endif %}
+    {% endfor %}
 {% endif %}
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
-    """
-
-{% if code_model.schemas and code_model.options["models_mode"] %}
-    models = _models
-
-{% endif %}
-    def __init__(self, client, config, serializer, deserializer){{ return_none_type_annotation }}:
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
-{% for operation in operation_group.operations %}
-
-{% set request_builder = operation.request_builder %}
-{% set operation_serializer = get_operation_serializer(operation) %}
-    {% if is_lro(operation) and is_paging(operation) %}
-    {%- macro someop() %}{% include "lro_paging_operation.py.jinja2" %}{% endmacro %}
-    {% elif is_lro(operation) %}
-    {%- macro someop() %}{% include "lro_operation.py.jinja2" %}{% endmacro %}
-    {% elif is_paging(operation) %}
-    {% macro someop() %}{% include "paging_operation.py.jinja2" %}{% endmacro %}
-    {% else %}
-    {% macro someop() %}{% include "operation.py.jinja2" %}{% endmacro %}
-    {% endif %}
-    {{ someop()|indent }}
-{% endfor %}

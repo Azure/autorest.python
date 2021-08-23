@@ -76,11 +76,14 @@ class OperationGroup(BaseModel):
         if has_schemas and self.code_model.options["models_mode"]:
             file_import.add_from_import(local_path, "models", ImportType.LOCAL, alias="_models")
         if self.code_model.options["builders_visibility"] == "embedded" and async_mode:
-            operation_group_name = "" if self.is_empty_operation_group else self.name
-            operation_group_builders = [
-                r for r in self.code_model.rest.request_builders
-                if r.operation_group_name == operation_group_name
-            ]
+            if not self.code_model.options["combine_operation_files"]:
+                operation_group_name = "" if self.is_empty_operation_group else self.name
+                operation_group_builders = [
+                    r for r in self.code_model.rest.request_builders
+                    if r.operation_group_name == operation_group_name
+                ]
+            else:
+                operation_group_builders = self.code_model.rest.request_builders
             for request_builder in operation_group_builders:
                 file_import.add_from_import(
                     f"...operations.{self.filename}",
@@ -93,6 +96,9 @@ class OperationGroup(BaseModel):
 
     @property
     def filename(self) -> str:
+        if self.code_model.options["combine_operation_files"]:
+            return "_operations"
+
         basename = self.name
         if self.is_empty_operation_group:
             basename = self.code_model.module_name

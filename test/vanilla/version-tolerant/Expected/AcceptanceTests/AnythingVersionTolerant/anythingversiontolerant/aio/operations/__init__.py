@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._anything_client_operations import AnythingClientOperationsMixin
+from ._operations import AnythingClientOperationsMixin
 
 __all__ = [
     "AnythingClientOperationsMixin",

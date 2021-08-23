@@ -6,8 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._int_operations import IntOperations
-from ._float_operations import FloatOperations
+from ._operations import IntOperations
+from ._operations import FloatOperations
 
 __all__ = [
     "IntOperations",

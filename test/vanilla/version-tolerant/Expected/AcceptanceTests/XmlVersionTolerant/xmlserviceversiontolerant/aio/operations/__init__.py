@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._xml_operations import XmlOperations
+from ._operations import XmlOperations
 
 __all__ = [
     "XmlOperations",

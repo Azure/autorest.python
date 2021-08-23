@@ -6,8 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._implicit_operations import ImplicitOperations
-from ._explicit_operations import ExplicitOperations
+from ._operations import ImplicitOperations
+from ._operations import ExplicitOperations
 
 __all__ = [
     "ImplicitOperations",

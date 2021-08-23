@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._parmaterized_endpoint_client_operations import ParmaterizedEndpointClientOperationsMixin
+from ._operations import ParmaterizedEndpointClientOperationsMixin
 
 __all__ = [
     "ParmaterizedEndpointClientOperationsMixin",

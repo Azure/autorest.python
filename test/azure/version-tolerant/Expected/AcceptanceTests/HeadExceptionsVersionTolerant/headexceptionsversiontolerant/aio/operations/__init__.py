@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._head_exception_operations import HeadExceptionOperations
+from ._operations import HeadExceptionOperations
 
 __all__ = [
     "HeadExceptionOperations",

@@ -1,4 +1,5 @@
 {% set object_base_class = "" if async_mode else "(object)" %}
+{% set operation_group = operation_groups[0] %}
 # coding=utf-8
 {{ code_model.options['license_header'] }}
 {{ imports }}
@@ -19,19 +20,4 @@ _SERIALIZER = Serializer()
 # fmt: on
 {% endif %}
 {% endif %}
-class {{ operation_group.class_name }}{{ object_base_class }}:
-{% for operation in operation_group.operations %}
-
-{% set request_builder = operation.request_builder %}
-{% set operation_serializer = get_operation_serializer(operation) %}
-    {% if is_lro(operation) and is_paging(operation) %}
-    {%- macro someop() %}{% include "lro_paging_operation.py.jinja2" %}{% endmacro %}
-    {% elif is_lro(operation) %}
-    {%- macro someop() %}{% include "lro_operation.py.jinja2" %}{% endmacro %}
-    {% elif is_paging(operation) %}
-    {% macro someop() %}{% include "paging_operation.py.jinja2" %}{% endmacro %}
-    {% else %}
-    {% macro someop() %}{% include "operation.py.jinja2" %}{% endmacro %}
-    {% endif %}
-    {{ someop()|indent }}
-{% endfor %}
+{% include "operations_class_mixin.py.jinja2" %}

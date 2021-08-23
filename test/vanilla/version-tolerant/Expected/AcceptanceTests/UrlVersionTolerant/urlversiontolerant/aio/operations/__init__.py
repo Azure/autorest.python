@@ -6,9 +6,9 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._paths_operations import PathsOperations
-from ._queries_operations import QueriesOperations
-from ._path_items_operations import PathItemsOperations
+from ._operations import PathsOperations
+from ._operations import QueriesOperations
+from ._operations import PathItemsOperations
 
 __all__ = [
     "PathsOperations",

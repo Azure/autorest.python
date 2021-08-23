@@ -6,8 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._storage_accounts_operations import StorageAccountsOperations
-from ._usage_operations import UsageOperations
+from ._operations import StorageAccountsOperations
+from ._operations import UsageOperations
 
 __all__ = [
     "StorageAccountsOperations",

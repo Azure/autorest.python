@@ -250,7 +250,7 @@ def regenerate_vanilla_legacy(c, swagger_name=None, debug=False, **kwargs):
 
 @task
 def regenerate_vanilla_llc(c, swagger_name=None, debug=False, **kwargs):
-    mapping = _VANILLA_SWAGGER_MAPPINGS
+    mapping = _VANILLA_SWAGGER_MAPPINGS.copy()
     mapping.update(_UPDATE_SWAGGER_MAPPINGS)
     return _prepare_mapping_and_regenerate(
         c,
@@ -264,7 +264,7 @@ def regenerate_vanilla_llc(c, swagger_name=None, debug=False, **kwargs):
 
 @task
 def regenerate_vanilla_version_tolerant(c, swagger_name=None, debug=False, **kwargs):
-    mapping = _VANILLA_SWAGGER_MAPPINGS
+    mapping = _VANILLA_SWAGGER_MAPPINGS.copy()
     mapping.update(_UPDATE_SWAGGER_MAPPINGS)
     return _prepare_mapping_and_regenerate(
         c,
@@ -340,7 +340,6 @@ def regenerate_legacy(c, swagger_name=None, debug=False):
         regenerate_custom_poller_pager_legacy(c, debug)
         regenerate_samples(c, debug)
         regenerate_with_python3_operation_files(c, debug)
-
 
 @task
 def regenerate(c, swagger_name=None, debug=False):

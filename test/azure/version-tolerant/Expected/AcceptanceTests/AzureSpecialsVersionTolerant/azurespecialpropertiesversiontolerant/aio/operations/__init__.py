@@ -6,14 +6,14 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._xms_client_request_id_operations import XMsClientRequestIdOperations
-from ._subscription_in_credentials_operations import SubscriptionInCredentialsOperations
-from ._subscription_in_method_operations import SubscriptionInMethodOperations
-from ._api_version_default_operations import ApiVersionDefaultOperations
-from ._api_version_local_operations import ApiVersionLocalOperations
-from ._skip_url_encoding_operations import SkipUrlEncodingOperations
-from ._odata_operations import OdataOperations
-from ._header_operations import HeaderOperations
+from ._operations import XMsClientRequestIdOperations
+from ._operations import SubscriptionInCredentialsOperations
+from ._operations import SubscriptionInMethodOperations
+from ._operations import ApiVersionDefaultOperations
+from ._operations import ApiVersionLocalOperations
+from ._operations import SkipUrlEncodingOperations
+from ._operations import OdataOperations
+from ._operations import HeaderOperations
 
 __all__ = [
     "XMsClientRequestIdOperations",

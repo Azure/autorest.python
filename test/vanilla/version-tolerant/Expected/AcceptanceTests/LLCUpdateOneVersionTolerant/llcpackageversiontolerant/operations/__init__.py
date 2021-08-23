@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._params_operations import ParamsOperations
+from ._operations import ParamsOperations
 
 __all__ = [
     "ParamsOperations",

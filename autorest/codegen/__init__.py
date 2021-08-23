@@ -70,6 +70,12 @@ def _validate_code_model_options(options: Dict[str, Any]) -> None:
     if options["basic_setup_py"] and not options["package_version"]:
         raise ValueError("--basic-setup-py must be used with --package-version")
 
+    if not options["show_operations"] and options["combine_operation_files"]:
+        raise ValueError(
+            "Can not combine operation files if you are not showing operations. "
+            "If you want operation files, pass in flag --show-operations"
+        )
+
 _LOGGER = logging.getLogger(__name__)
 class CodeGenerator(Plugin):
     @staticmethod
@@ -279,6 +285,7 @@ class CodeGenerator(Plugin):
             ),
             "version_tolerant": version_tolerant,
             "low_level_client": low_level_client,
+            "combine_operation_files": self._autorestapi.get_boolean_value("combine-operation-files", version_tolerant),
         }
 
         if options["builders_visibility"] is None:
