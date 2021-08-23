@@ -28,7 +28,7 @@ from constantsversiontolerant import AutoRestSwaggerConstantService
 
 @pytest.fixture
 def client():
-    with AutoRestSwaggerConstantService(endpoint="http://localhost:3000") as client:
+    with AutoRestSwaggerConstantService() as client:
         yield client
 
 def test_put_client_constants(client):

@@ -29,9 +29,9 @@ class LROWithParamaterizedEndpoints:
     """
 
     def __init__(self, host: str = "host", **kwargs: Any) -> None:
-        endpoint = "http://{accountName}{host}"
+        _endpoint = "http://{accountName}{host}"
         self._config = LROWithParamaterizedEndpointsConfiguration(host, **kwargs)
-        self._client = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
+        self._client = AsyncPipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

@@ -37,7 +37,7 @@ cwd = dirname(realpath(__file__))
 async def test_send_request_with_body_get_model_deserialize():
     from bodycomplexversiontolerant.aio import AutoRestComplexTestService\
 
-    client = AutoRestComplexTestService(endpoint="http://localhost:3000")
+    client = AutoRestComplexTestService()
 
     request = HttpRequest("GET", "/complex/inheritance/valid",
         headers={
@@ -58,7 +58,7 @@ async def test_send_request_with_body_get_model_deserialize():
 async def test_send_request_with_stream_get_direct_json():
     from bodycomplexversiontolerant.aio import AutoRestComplexTestService
 
-    client = AutoRestComplexTestService(endpoint="http://localhost:3000")
+    client = AutoRestComplexTestService()
 
     request = HttpRequest("GET", "/complex/inheritance/valid",
         headers={
@@ -79,7 +79,7 @@ async def test_send_request_with_stream_get_direct_json():
 async def test_send_request_with_body_put_json_dumps():
     from bodycomplexversiontolerant.aio import AutoRestComplexTestService
 
-    client = AutoRestComplexTestService(endpoint="http://localhost:3000")
+    client = AutoRestComplexTestService()
 
     siamese_body = {
         "id": 2,
@@ -115,7 +115,7 @@ async def test_send_request_with_body_put_json_dumps():
 async def test_send_request_get_stream():
     from bodyfileversiontolerant.aio import AutoRestSwaggerBATFileService
 
-    client = AutoRestSwaggerBATFileService(endpoint="http://localhost:3000", connection_data_block_size=1000)
+    client = AutoRestSwaggerBATFileService(connection_data_block_size=1000)
     file_length = 0
     with io.BytesIO() as file_handle:
 
@@ -149,9 +149,7 @@ async def test_send_request_get_stream():
 async def test_send_request_put_stream():
     from bodyformdataversiontolerant.aio import AutoRestSwaggerBATFormDataService
 
-    client = AutoRestSwaggerBATFormDataService(
-        endpoint="http://localhost:3000",
-    )
+    client = AutoRestSwaggerBATFormDataService()
 
     test_string = "Upload file test case"
     test_bytes = bytearray(test_string, encoding='utf-8')

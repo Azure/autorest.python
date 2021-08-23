@@ -31,7 +31,7 @@ import pytest
 
 @pytest.fixture
 def client():
-    with ObjectTypeClient(endpoint="http://localhost:3000") as client:
+    with ObjectTypeClient() as client:
         yield client
 
 def test_get_object(client):

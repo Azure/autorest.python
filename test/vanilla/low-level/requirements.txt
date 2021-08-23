@@ -37,6 +37,7 @@ azure-core==1.16.0
 -e ./Expected/AcceptanceTests/NonStringEnumsLowLevel
 -e ./Expected/AcceptanceTests/ObjectTypeLowLevel
 -e ./Expected/AcceptanceTests/ParameterFlatteningLowLevel
+-e ./Expected/AcceptanceTests/ParameterizedEndpointLowLevel/
 -e ./Expected/AcceptanceTests/ReportLowLevel
 -e ./Expected/AcceptanceTests/RequiredOptionalLowLevel
 -e ./Expected/AcceptanceTests/ReservedWordsLowLevel

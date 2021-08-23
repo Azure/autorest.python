@@ -155,13 +155,13 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             # UGLY as hell.....
             if yaml_data.get("operationGroups"):
                 first_req_of_first_op_of_first_grp = yaml_data["operationGroups"][0]["operations"][0]["requests"][0]
-                self.service_client.custom_endpoint_value = (
+                self.service_client.parameterized_host_template = (
                     first_req_of_first_op_of_first_grp["protocol"]["http"]["uri"]
                 )
         else:
             for host in dollar_host:
                 self.global_parameters.remove(host)
-            self.service_client.parameters.add_endpoint(dollar_host[0].yaml_data["clientDefaultValue"])
+            self.service_client.parameters.add_host(dollar_host[0].yaml_data["clientDefaultValue"])
 
     def format_lro_operations(self) -> None:
         """Adds operations and attributes needed for LROs.

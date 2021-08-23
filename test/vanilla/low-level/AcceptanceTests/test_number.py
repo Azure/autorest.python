@@ -34,7 +34,7 @@ import pytest
 
 @pytest.fixture
 def client():
-    with AutoRestNumberTestService(endpoint="http://localhost:3000") as client:
+    with AutoRestNumberTestService() as client:
         yield client
 
 @pytest.fixture

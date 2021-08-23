@@ -29,7 +29,7 @@ from bodystringversiontolerant.aio import AutoRestSwaggerBATService
 
 @pytest.mark.asyncio
 async def test_http_logging_policy_default():
-    async with AutoRestSwaggerBATService(endpoint="http://localhost:3000") as client:
+    async with AutoRestSwaggerBATService() as client:
         assert isinstance(client._config.http_logging_policy, HttpLoggingPolicy)
         assert client._config.http_logging_policy.allowed_header_names == HttpLoggingPolicy.DEFAULT_HEADERS_WHITELIST
 
@@ -40,6 +40,6 @@ async def test_http_logging_policy_custom():
     http_logging_policy.allowed_header_names.update(
         {"x-ms-added-header"}
     )
-    async with AutoRestSwaggerBATService(endpoint="http://localhost:3000", http_logging_policy=http_logging_policy) as client:
+    async with AutoRestSwaggerBATService(http_logging_policy=http_logging_policy) as client:
         assert isinstance(client._config.http_logging_policy, HttpLoggingPolicy)
         assert client._config.http_logging_policy.allowed_header_names == HttpLoggingPolicy.DEFAULT_HEADERS_WHITELIST.union({"x-ms-added-header"})

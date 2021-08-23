@@ -14,8 +14,8 @@
     {% if code_model.service_client.parameters.kwargs_to_pop(async_mode) %}
         {{ op_tools.serialize(serializer.pop_kwargs_from_signature(async_mode)) | indent(8) }}
     {% endif %}
-        {% if not code_model.service_client.parameters.endpoint %}
-        {{ code_model.service_client.parameters.endpoint_name }} = {{ keywords.escape_str(code_model.service_client.custom_endpoint_value) }}
+        {% if code_model.service_client.has_parameterized_host %}
+        _{{ code_model.service_client.parameters.host_variable_name }} = {{ keywords.escape_str(code_model.service_client.parameterized_host_template) }}
         {% endif %}
         {{ serializer.initialize_config() }}
         {{ serializer.initialize_pipeline_client(async_mode) }}

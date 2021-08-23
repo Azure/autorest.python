@@ -30,7 +30,7 @@ from additionalpropertiesversiontolerant import AdditionalPropertiesClient
 
 @pytest.fixture
 def client():
-    with AdditionalPropertiesClient(endpoint="http://localhost:3000") as client:
+    with AdditionalPropertiesClient() as client:
         yield client
 
 def test_create_ap_true(client):

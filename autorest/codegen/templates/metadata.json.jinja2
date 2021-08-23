@@ -8,8 +8,8 @@
         "name": {{ code_model.class_name | tojson }},
         "filename": {{ ("_" + code_model.module_name) | tojson }},
         "description": {{ code_model.description | tojson }},
-        "endpoint_value": {{ (service_client.parameters.endpoint.default_value_declaration if service_client.parameters.endpoint else None) | tojson }},
-        "custom_endpoint_value": {{ (keywords.escape_str(service_client.custom_endpoint_value) if service_client.custom_endpoint_value else None) | tojson }},
+        "host_value": {{ (service_client.parameters.host.default_value_declaration if not service_client.has_parameterized_host else None) | tojson }},
+        "parameterized_host_template": {{ (keywords.escape_str(service_client.parameterized_host_template) if service_client.has_parameterized_host else None) | tojson }},
         "azure_arm": {{ code_model.options["azure_arm"]  | tojson }},
         "has_lro_operations": {{ code_model.has_lro_operations | tojson }},
         "client_side_validation": {{ code_model.options["client_side_validation"] | tojson }},
@@ -51,9 +51,9 @@
                     "docstring_type": "str",
                     "required": false
                 },
-                {% if not service_client.custom_endpoint_value %}
+                {% if not service_client.has_parameterized_host %}
                 "base_url": {
-                    "signature": {{ service_client.parameters.endpoint.method_signature(False) | tojson }},
+                    "signature": {{ service_client.parameters.host.method_signature(False) | tojson }},
                     "description": "Service URL",
                     "docstring_type": "str",
                     "required": false
@@ -73,9 +73,9 @@
                     "docstring_type": "str",
                     "required": false
                 },
-                {% if not service_client.custom_endpoint_value %}
+                {% if not service_client.has_parameterized_host %}
                 "base_url": {
-                    "signature": {{ service_client.parameters.endpoint.method_signature(True) | tojson }},
+                    "signature": {{ service_client.parameters.host.method_signature(True) | tojson }},
                     "description": "Service URL",
                     "docstring_type": "str",
                     "required": false

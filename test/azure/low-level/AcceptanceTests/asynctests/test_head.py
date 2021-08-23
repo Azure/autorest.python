@@ -34,7 +34,7 @@ import pytest
 
 @pytest.mark.asyncio
 async def test_head(credential, authentication_policy):
-    async with AutoRestHeadTestService(credential, endpoint="http://localhost:3000", authentication_policy=authentication_policy) as client:
+    async with AutoRestHeadTestService(credential, authentication_policy=authentication_policy) as client:
         request = http_success.build_head200_request()
         response = await client.send_request(request)
         response.raise_for_status()
@@ -50,7 +50,7 @@ async def test_head(credential, authentication_policy):
 
 @pytest.mark.asyncio
 async def test_head_exception(credential, authentication_policy):
-    async with AutoRestHeadExceptionTestService(credential, endpoint="http://localhost:3000", authentication_policy=authentication_policy) as client:
+    async with AutoRestHeadExceptionTestService(credential, authentication_policy=authentication_policy) as client:
         request = head_exception.build_head200_request()
         response = await client.send_request(request)
         response.raise_for_status()

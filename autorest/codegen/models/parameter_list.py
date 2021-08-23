@@ -309,7 +309,7 @@ class GlobalParameterList(ParameterList):
         self._code_model = val
 
     @property
-    def endpoint_name(self) -> str:
+    def host_variable_name(self) -> str:
         return (
             "endpoint" if self.code_model.options["version_tolerant"]
             or self.code_model.options["low_level_client"]
@@ -324,22 +324,23 @@ class GlobalParameterList(ParameterList):
             parameter.rest_api_name != "$host"
         )
 
-    def add_endpoint(self, endpoint_value: Optional[str]) -> None:
-        endpoint_param = Parameter(
+    def add_host(self, host_value: Optional[str]) -> None:
+        # only adds if we don't have a parameterized host
+        host_param = Parameter(
             yaml_data={},
             schema=StringSchema(namespace="", yaml_data={"type": "str"}),
-            rest_api_name=self.endpoint_name,
-            serialized_name=self.endpoint_name,
-            description=f"Service URL. Default value is '{endpoint_value}'.",
+            rest_api_name=self.host_variable_name,
+            serialized_name=self.host_variable_name,
+            description=f"Service URL. Default value is '{host_value}'.",
             implementation="Client",
             required=True,
             location=ParameterLocation.Other,
             skip_url_encoding=False,
             constraints=[],
-            client_default_value=endpoint_value,
+            client_default_value=host_value,
             keyword_only=self.code_model.options["version_tolerant"] or self.code_model.options["low_level_client"],
         )
-        self.parameters.append(endpoint_param)
+        self.parameters.append(host_param)
 
     def add_credential_global_parameter(self) -> None:
         credential_parameter = Parameter(
@@ -360,34 +361,45 @@ class GlobalParameterList(ParameterList):
             self.parameters.insert(0, credential_parameter)
 
     @property
-    def endpoint(self) -> Optional[Parameter]:
+    def host(self) -> Optional[Parameter]:
         try:
-            return next(p for p in self.parameters if p.serialized_name == self.endpoint_name)
+            return next(p for p in self.parameters if p.serialized_name == self.host_variable_name)
         except StopIteration:
             return None
 
     @property
-    def endpoint_value(self) -> Optional[str]:
-        if not self.endpoint:
+    def host_value(self) -> Optional[str]:
+        if self.code_model.service_client.has_parameterized_host:
             return None
-        return next(p for p in self.parameters if p.serialized_name == self.endpoint_name).default_value_declaration
+        return next(
+            p for p in self.parameters
+            if p.serialized_name == self.host_variable_name
+        ).default_value_declaration
 
     @property
     def client_method(self) -> List[Parameter]:
         return self.method
 
+    def _param_is_in_config_method(self, serialized_name):
+        if self.code_model.service_client.has_parameterized_host:
+            return True
+        return serialized_name != self.host_variable_name
+
     @property
     def config_method(self) -> List[Parameter]:
-        return [p for p in self.method if p.serialized_name != self.endpoint_name]
+        return [p for p in self.method if self._param_is_in_config_method(p.serialized_name)]
 
     def client_method_signature(self, is_python_3_file: bool) -> List[str]:
         return self.method_signature(is_python_3_file)
 
     def config_method_signature(self, is_python_3_file: bool) -> List[str]:
+
         positional = [
-            p.method_signature(is_python_3_file) for p in self.positional if p.serialized_name != self.endpoint_name
+            p.method_signature(is_python_3_file)
+            for p in self.positional
+            if self._param_is_in_config_method(p.serialized_name)
         ]
-        keyword_only_params = [p for p in self.keyword_only if p.serialized_name != self.endpoint_name]
+        keyword_only_params = [p for p in self.keyword_only if self._param_is_in_config_method(p.serialized_name)]
         keyword_only_method_signature = (
             ["*,"] +
             [

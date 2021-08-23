@@ -28,7 +28,7 @@ from constantsversiontolerant.aio import AutoRestSwaggerConstantService
 
 @pytest.fixture
 async def client():
-    async with AutoRestSwaggerConstantService(endpoint="http://localhost:3000") as client:
+    async with AutoRestSwaggerConstantService() as client:
         yield client
 
 @pytest.mark.asyncio

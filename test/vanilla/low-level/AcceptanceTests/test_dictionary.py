@@ -34,7 +34,7 @@ import pytest
 
 @pytest.fixture
 def client():
-    with AutoRestSwaggerBATDictionaryService(endpoint="http://localhost:3000") as client:
+    with AutoRestSwaggerBATDictionaryService() as client:
         yield client
 
 @pytest.fixture

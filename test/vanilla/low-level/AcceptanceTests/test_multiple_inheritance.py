@@ -32,7 +32,7 @@ import pytest
 
 @pytest.fixture
 def client():
-    with MultipleInheritanceServiceClient(endpoint="http://localhost:3000") as client:
+    with MultipleInheritanceServiceClient() as client:
         yield client
 
 @pytest.fixture

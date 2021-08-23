@@ -36,7 +36,7 @@ import pytest
 @pytest.fixture
 @async_generator
 async def client():
-    async with AutoRestParameterGroupingTestService(endpoint="http://localhost:3000") as client:
+    async with AutoRestParameterGroupingTestService() as client:
         await yield_(client)
 
 @pytest.fixture
@@ -47,7 +47,7 @@ def valid_subscription():
 @async_generator
 async def azure_client(valid_subscription, credential, authentication_policy):
     async with AutoRestAzureSpecialParametersTestClient(
-        valid_subscription, credential, endpoint="http://localhost:3000", authentication_policy=authentication_policy
+        valid_subscription, credential, authentication_policy=authentication_policy
     ) as client:
         await yield_(client)
 
