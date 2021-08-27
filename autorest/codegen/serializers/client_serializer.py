@@ -113,6 +113,14 @@ class ClientSerializer:
             response_type_annotation="Awaitable[AsyncHttpResponse]" if async_mode else "HttpResponse",
         )
 
+    def _example_make_call(self, async_mode: bool) -> List[str]:
+        http_response = "AsyncHttpResponse" if async_mode else "HttpResponse"
+        retval = [
+            f">>> response = {'await ' if async_mode else ''}client.{self.code_model.send_request_name}(request)"
+        ]
+        retval.append(f"<{http_response}: 200 OK>")
+        return retval
+
     def _request_builder_example(self, async_mode: bool) -> List[str]:
         retval = [
             "We have helper methods to create requests specific to this service in " +
@@ -120,7 +128,7 @@ class ClientSerializer:
         ]
         retval.append("Use these helper methods to create the request you pass to this method.")
         retval.append("")
-        http_response = "AsyncHttpResponse" if async_mode else "HttpResponse"
+
         request_builder = self.code_model.rest.request_builders[0]
         request_builder_signature = ", ".join(request_builder.parameters.call)
         if request_builder.builder_group_name:
@@ -132,19 +140,24 @@ class ClientSerializer:
         retval.append(f">>> from {self.code_model.namespace}.{self.code_model.rest_layer_name} import {rest_imported}")
         retval.append(f">>> request = {request_builder_name}({request_builder_signature})")
         retval.append(f"<HttpRequest [{request_builder.method}], url: '{request_builder.url}'>")
-        retval.append(
-            f">>> response = {'await ' if async_mode else ''}client.{self.code_model.send_request_name}(request)"
-        )
-        retval.append(f"<{http_response}: 200 OK>")
+        retval.extend(self._example_make_call(async_mode))
+        return retval
+
+    def _rest_request_example(self, async_mode: bool) -> List[str]:
+        retval = [">>> from azure.core.rest import HttpRequest"]
+        retval.append('>>> request = HttpRequest("GET", "https://www.example.org/")')
+        retval.append(f"<HttpRequest [GET], url: 'https://www.example.org/'>")
+        retval.extend(self._example_make_call(async_mode))
         return retval
 
     def send_request_description(self, async_mode: bool) -> List[str]:
         retval = ['"""Runs the network request through the client\'s chained policies.']
         retval.append("")
         if self.code_model.options["builders_visibility"] != "embedded":
-
             retval.extend(self._request_builder_example(async_mode))
-            retval.append("")
+        else:
+            retval.extend(self._rest_request_example(async_mode))
+        retval.append("")
         retval.append("For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart")
         retval.append(f"")
         retval.append(":param request: The network request you want to make. Required.")
