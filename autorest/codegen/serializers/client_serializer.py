@@ -115,7 +115,7 @@ class ClientSerializer:
 
     def _request_builder_example(self, async_mode: bool) -> List[str]:
         retval = [
-            "We have helper methods to create requests specific to this service in" +
+            "We have helper methods to create requests specific to this service in " +
             f"`{self.code_model.namespace}.{self.code_model.rest_layer_name}`."
         ]
         retval.append("Use these helper methods to create the request you pass to this method.")
