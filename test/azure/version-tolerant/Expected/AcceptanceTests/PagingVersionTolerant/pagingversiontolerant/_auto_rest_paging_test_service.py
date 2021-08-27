@@ -55,14 +55,7 @@ class AutoRestPagingTestService(object):
         # type: (...) -> HttpResponse
         """Runs the network request through the client's chained policies.
 
-        We have helper methods to create requests specific to this service in `pagingversiontolerant.rest`.
-        Use these helper methods to create the request you pass to this method.
-
-
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
-
-        For advanced cases, you can also create your own :class:`~azure.core.rest.HttpRequest`
-        and pass it in.
 
         :param request: The network request you want to make. Required.
         :type request: ~azure.core.rest.HttpRequest

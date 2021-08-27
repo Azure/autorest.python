@@ -60,9 +60,6 @@ class AutoRestParameterFlattening(object):
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 
-        For advanced cases, you can also create your own :class:`~azure.core.rest.HttpRequest`
-        and pass it in.
-
         :param request: The network request you want to make. Required.
         :type request: ~azure.core.rest.HttpRequest
         :keyword bool stream: Whether the response payload will be streamed. Defaults to False.
