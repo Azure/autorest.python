@@ -55,6 +55,12 @@ class AutoRestHeadTestService:
     ) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
 
+        >>> from azure.core.rest import HttpRequest
+        >>> request = HttpRequest("GET", "https://www.example.org/")
+        <HttpRequest [GET], url: 'https://www.example.org/'>
+        >>> response = await client._send_request(request)
+        <AsyncHttpResponse: 200 OK>
+
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 
         :param request: The network request you want to make. Required.
