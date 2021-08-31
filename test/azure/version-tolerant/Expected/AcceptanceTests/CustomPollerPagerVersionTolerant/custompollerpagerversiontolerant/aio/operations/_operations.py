@@ -6,7 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import functools
-from json import loads as _loads
 from typing import Any, AsyncIterable, Callable, Dict, Generic, Optional, TypeVar, Union
 import warnings
 
@@ -84,20 +83,20 @@ class PagingOperations:
                 
                 request = build_paging_get_no_item_name_pages_request(
                     template_url=self.get_no_item_name_pages.metadata['url'],
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
                 
                 request = build_paging_get_no_item_name_pages_request(
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = _loads(pipeline_response.http_response.body())
+            deserialized = pipeline_response.http_response.json()
             list_of_elem = deserialized["value"]
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -106,7 +105,7 @@ class PagingOperations:
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+            pipeline_response = await self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
@@ -158,20 +157,20 @@ class PagingOperations:
                 
                 request = build_paging_get_null_next_link_name_pages_request(
                     template_url=self.get_null_next_link_name_pages.metadata['url'],
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
                 
                 request = build_paging_get_null_next_link_name_pages_request(
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = _loads(pipeline_response.http_response.body())
+            deserialized = pipeline_response.http_response.json()
             list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -180,7 +179,7 @@ class PagingOperations:
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+            pipeline_response = await self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
@@ -232,20 +231,20 @@ class PagingOperations:
                 
                 request = build_paging_get_single_pages_request(
                     template_url=self.get_single_pages.metadata['url'],
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
                 
                 request = build_paging_get_single_pages_request(
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = _loads(pipeline_response.http_response.body())
+            deserialized = pipeline_response.http_response.json()
             list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -254,7 +253,7 @@ class PagingOperations:
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+            pipeline_response = await self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
@@ -307,20 +306,20 @@ class PagingOperations:
                 
                 request = build_paging_first_response_empty_request(
                     template_url=self.first_response_empty.metadata['url'],
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
                 
                 request = build_paging_first_response_empty_request(
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = _loads(pipeline_response.http_response.body())
+            deserialized = pipeline_response.http_response.json()
             list_of_elem = deserialized["value"]
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -329,7 +328,7 @@ class PagingOperations:
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+            pipeline_response = await self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
@@ -395,7 +394,7 @@ class PagingOperations:
                     maxresults=maxresults,
                     timeout=timeout,
                     template_url=self.get_multiple_pages.metadata['url'],
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
@@ -405,13 +404,13 @@ class PagingOperations:
                     maxresults=maxresults,
                     timeout=timeout,
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = _loads(pipeline_response.http_response.body())
+            deserialized = pipeline_response.http_response.json()
             list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -420,7 +419,7 @@ class PagingOperations:
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+            pipeline_response = await self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
@@ -479,20 +478,20 @@ class PagingOperations:
                 request = build_paging_get_with_query_params_request(
                     required_query_parameter=required_query_parameter,
                     template_url=self.get_with_query_params.metadata['url'],
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
                 
                 request = build_paging_next_operation_with_query_params_request(
                     template_url='/paging/multiple/nextOperationWithQueryParams',
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = _loads(pipeline_response.http_response.body())
+            deserialized = pipeline_response.http_response.json()
             list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -501,7 +500,7 @@ class PagingOperations:
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+            pipeline_response = await self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
@@ -567,7 +566,7 @@ class PagingOperations:
                     maxresults=maxresults,
                     timeout=timeout,
                     template_url=self.get_odata_multiple_pages.metadata['url'],
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
@@ -577,13 +576,13 @@ class PagingOperations:
                     maxresults=maxresults,
                     timeout=timeout,
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = _loads(pipeline_response.http_response.body())
+            deserialized = pipeline_response.http_response.json()
             list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -592,7 +591,7 @@ class PagingOperations:
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+            pipeline_response = await self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
@@ -662,7 +661,7 @@ class PagingOperations:
                     maxresults=maxresults,
                     timeout=timeout,
                     template_url=self.get_multiple_pages_with_offset.metadata['url'],
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
@@ -673,13 +672,13 @@ class PagingOperations:
                     maxresults=maxresults,
                     timeout=timeout,
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = _loads(pipeline_response.http_response.body())
+            deserialized = pipeline_response.http_response.json()
             list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -688,7 +687,7 @@ class PagingOperations:
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+            pipeline_response = await self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
@@ -741,20 +740,20 @@ class PagingOperations:
                 
                 request = build_paging_get_multiple_pages_retry_first_request(
                     template_url=self.get_multiple_pages_retry_first.metadata['url'],
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
                 
                 request = build_paging_get_multiple_pages_retry_first_request(
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = _loads(pipeline_response.http_response.body())
+            deserialized = pipeline_response.http_response.json()
             list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -763,7 +762,7 @@ class PagingOperations:
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+            pipeline_response = await self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
@@ -816,20 +815,20 @@ class PagingOperations:
                 
                 request = build_paging_get_multiple_pages_retry_second_request(
                     template_url=self.get_multiple_pages_retry_second.metadata['url'],
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
                 
                 request = build_paging_get_multiple_pages_retry_second_request(
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = _loads(pipeline_response.http_response.body())
+            deserialized = pipeline_response.http_response.json()
             list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -838,7 +837,7 @@ class PagingOperations:
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+            pipeline_response = await self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
@@ -890,20 +889,20 @@ class PagingOperations:
                 
                 request = build_paging_get_single_pages_failure_request(
                     template_url=self.get_single_pages_failure.metadata['url'],
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
                 
                 request = build_paging_get_single_pages_failure_request(
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = _loads(pipeline_response.http_response.body())
+            deserialized = pipeline_response.http_response.json()
             list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -912,7 +911,7 @@ class PagingOperations:
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+            pipeline_response = await self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
@@ -964,20 +963,20 @@ class PagingOperations:
                 
                 request = build_paging_get_multiple_pages_failure_request(
                     template_url=self.get_multiple_pages_failure.metadata['url'],
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
                 
                 request = build_paging_get_multiple_pages_failure_request(
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = _loads(pipeline_response.http_response.body())
+            deserialized = pipeline_response.http_response.json()
             list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -986,7 +985,7 @@ class PagingOperations:
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+            pipeline_response = await self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
@@ -1038,20 +1037,20 @@ class PagingOperations:
                 
                 request = build_paging_get_multiple_pages_failure_uri_request(
                     template_url=self.get_multiple_pages_failure_uri.metadata['url'],
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
                 
                 request = build_paging_get_multiple_pages_failure_uri_request(
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = _loads(pipeline_response.http_response.body())
+            deserialized = pipeline_response.http_response.json()
             list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -1060,7 +1059,7 @@ class PagingOperations:
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+            pipeline_response = await self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
@@ -1121,7 +1120,7 @@ class PagingOperations:
                     tenant=tenant,
                     api_version=api_version,
                     template_url=self.get_multiple_pages_fragment_next_link.metadata['url'],
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
@@ -1131,13 +1130,13 @@ class PagingOperations:
                     next_link=next_link,
                     api_version=api_version,
                     template_url='/paging/multiple/fragment/{tenant}/{nextLink}',
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = _loads(pipeline_response.http_response.body())
+            deserialized = pipeline_response.http_response.json()
             list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -1146,7 +1145,7 @@ class PagingOperations:
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+            pipeline_response = await self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
@@ -1207,7 +1206,7 @@ class PagingOperations:
                     tenant=tenant,
                     api_version=api_version,
                     template_url=self.get_multiple_pages_fragment_with_grouping_next_link.metadata['url'],
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
@@ -1217,13 +1216,13 @@ class PagingOperations:
                     next_link=next_link,
                     api_version=api_version,
                     template_url='/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}',
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = _loads(pipeline_response.http_response.body())
+            deserialized = pipeline_response.http_response.json()
             list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -1232,7 +1231,7 @@ class PagingOperations:
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+            pipeline_response = await self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
@@ -1267,7 +1266,7 @@ class PagingOperations:
             maxresults=maxresults,
             timeout=timeout,
             template_url=self._get_multiple_pages_lro_initial.metadata['url'],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -1277,8 +1276,8 @@ class PagingOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.body():
-            deserialized = _loads(response.body())
+        if response.content:
+            deserialized = response.json()
         else:
             deserialized = None
 
@@ -1334,7 +1333,7 @@ class PagingOperations:
                     maxresults=maxresults,
                     timeout=timeout,
                     template_url=self.begin_get_multiple_pages_lro.metadata['url'],
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
@@ -1344,13 +1343,13 @@ class PagingOperations:
                     maxresults=maxresults,
                     timeout=timeout,
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = _loads(pipeline_response.http_response.body())
+            deserialized = pipeline_response.http_response.json()
             list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -1359,7 +1358,7 @@ class PagingOperations:
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+            pipeline_response = await self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
@@ -1451,20 +1450,20 @@ class PagingOperations:
                 
                 request = build_paging_get_paging_model_with_item_name_with_xms_client_name_request(
                     template_url=self.get_paging_model_with_item_name_with_xms_client_name.metadata['url'],
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
                 
                 request = build_paging_get_paging_model_with_item_name_with_xms_client_name_request(
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = _loads(pipeline_response.http_response.body())
+            deserialized = pipeline_response.http_response.json()
             list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -1473,7 +1472,7 @@ class PagingOperations:
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+            pipeline_response = await self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:

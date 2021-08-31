@@ -810,7 +810,9 @@ class StorageAccountsOperations(object):
         def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+            pipeline_response = self._client.send_request(
+                request, stream=False, _return_pipeline_response=True, **kwargs
+            )
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
@@ -876,7 +878,9 @@ class StorageAccountsOperations(object):
         def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+            pipeline_response = self._client.send_request(
+                request, stream=False, _return_pipeline_response=True, **kwargs
+            )
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
