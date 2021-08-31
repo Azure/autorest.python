@@ -51,7 +51,6 @@ class PagingOperation(Operation):
         self.operation_name: str = yaml_data["extensions"]["x-ms-pageable"].get("operationName")
         self.next_operation: Optional[Operation] = None
         self.override_success_response_to_200 = override_success_response_to_200
-        self.use_pipeline_transport = True
 
     def _get_response(self) -> SchemaResponse:
         response = self.responses[0]
@@ -153,7 +152,5 @@ class PagingOperation(Operation):
             file_import.add_from_import(
                 "azure.core.tracing.decorator", "distributed_trace", ImportType.AZURECORE,
             )
-        if not code_model.options["models_mode"]:
-            file_import.add_from_import("json", "loads", ImportType.STDLIB, alias="_loads")
 
         return file_import

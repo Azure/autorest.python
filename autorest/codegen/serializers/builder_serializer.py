@@ -762,7 +762,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         retval.append(f"    template_url={template_url},")
 
         convert_to_legacy = ""
-        if not self.code_model.options["version_tolerant"] or builder.use_pipeline_transport:
+        if not self.code_model.options["version_tolerant"]:
             convert_to_legacy = "._to_pipeline_transport_request()"
         retval.append(f"){convert_to_legacy}")
         if builder.parameters.path:
@@ -806,12 +806,9 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
                 deserialized_value = ""
                 if is_xml:
                     deserialized_value = "ET.fromstring(response.text)"
-                elif builder.use_pipeline_transport:
-                    deserialized_value = "_loads(response.body())"
                 else:
                     deserialized_value = "response.json()"
-                response_body = "response.body()" if builder.use_pipeline_transport else "response.content"
-                retval.append(f"if {response_body}:")
+                retval.append(f"if response.content:")
                 retval.append(f"    deserialized = {deserialized_value}")
                 retval.append("else:")
                 retval.append("    deserialized = None")
@@ -923,6 +920,13 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
     def get_metadata_url(builder: BuilderType) -> str:
         return f"{builder.python_name}.metadata = {{'url': '{ builder.request_builder.url }'}}  # type: ignore"
 
+    def get_pipeline_response(self, builder: BuilderType) -> str:
+        stream_request = "stream={}".format("True" if builder.is_stream_response else "False")
+        return (
+            f"pipeline_response = {self._call_method}self._client.send_request(request, {stream_request}," +
+            " _return_pipeline_response=True, **kwargs)"
+        )
+
 class _SyncOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=abstract-method
     @property
     def _want_inline_type_hints(self) -> bool:
@@ -935,6 +939,7 @@ class _SyncOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable
     @property
     def _call_method(self) -> str:
         return ""
+
 
 class SyncOperationGenericSerializer(_SyncOperationBaseSerializer):
     @property
@@ -1049,7 +1054,7 @@ class _PagingOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disab
         deserialized = (
             f'self._deserialize("{response.serialization_type}", pipeline_response)'
             if self.code_model.options["models_mode"] else
-            "_loads(pipeline_response.http_response.body())"
+            "pipeline_response.http_response.json()"
         )
         retval.append(f"    deserialized = {deserialized}")
         item_name = builder.item_name(self.code_model)
@@ -1073,8 +1078,7 @@ class _PagingOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disab
         retval.append("    request = prepare_request(next_link)")
         retval.append("")
         retval.append(
-            f"    pipeline_response = {self._call_method}self._client._pipeline.run(request, "
-            f"stream={builder.is_stream_response}, **kwargs)"
+            f"    {self.get_pipeline_response(builder)}"
         )
         retval.append("    response = pipeline_response.http_response")
         retval.append("")
