@@ -56,6 +56,12 @@ class AutoRestParameterFlattening(object):
         # type: (...) -> HttpResponse
         """Runs the network request through the client's chained policies.
 
+        >>> from azure.core.rest import HttpRequest
+        >>> request = HttpRequest("GET", "https://www.example.org/")
+        <HttpRequest [GET], url: 'https://www.example.org/'>
+        >>> response = client.send_request(request)
+        <HttpResponse: 200 OK>
+
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 
         :param request: The network request you want to make. Required.
