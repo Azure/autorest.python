@@ -43,6 +43,7 @@ cwd = dirname(realpath(__file__))
 
 #Ideally this would be in a common helper library shared between the tests
 def start_server_process():
+    print("WILL USE THAT FOR COVERage dir ", os.environ)
     print("WILL USE THAT FOR COVERage dir ", os.environ['AUTOREST_TESTSERVER_COVERAGE_DIRECTORY'])
     cmd = "node {}/../../../../node_modules/@microsoft.azure/autorest.testserver".format(cwd)
     if os.name == 'nt': #On windows, subprocess creation works without being in the shell
