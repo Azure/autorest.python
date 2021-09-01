@@ -13,6 +13,11 @@ from .imports import FileImport, ImportType, TypingSection
 
 
 _LOGGER = logging.getLogger(__name__)
+_CONVERT = {
+    'float': '0.0',
+    'bool': 'True',
+    'int': '0'
+}
 
 class RawString(object):
     def __init__(self, string: str) -> None:
@@ -29,12 +34,14 @@ def _add_optional_and_default_value_template_representation(
     description: Optional[str] = None,
     **kwargs: Any
 ):
-    if optional:
-        representation += " (optional)"
     if default_value_declaration and default_value_declaration != "None":  # not doing None bc that's assumed
-        representation += f". Default value is {default_value_declaration}"
+        representation = default_value_declaration.strip("\"")
+    representation = _CONVERT.get(representation, representation)
+    representation = f'{representation}",'  # prepare handle before json.dumps()
+    if optional:
+        representation += " # optional."
     if description:
-        representation += f". {description}"
+        representation += f" # {description}"
     return representation
 
 class PrimitiveSchema(BaseSchema):
