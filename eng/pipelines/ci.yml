@@ -88,7 +88,7 @@ jobs:
           tox -e ci
         displayName: 'Execute legacy "azure" Tests - Python $(PythonVersion)'
         env:
-          AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: $(CoverageDirectory)
+          AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: "$(Build.SourcesDirectory)/coverage/"
 
       - task: PublishTestResults@2
         condition: always()
