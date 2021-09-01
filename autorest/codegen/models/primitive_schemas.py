@@ -35,7 +35,7 @@ def _add_optional_and_default_value_template_representation(
     **kwargs: Any
 ):
     if default_value_declaration and default_value_declaration != 'None':
-        representation = default_value_declaration.strip('"')
+        representation = str(default_value_declaration).strip('"')
     else:
         representation = _CONVERT.get(representation, representation)
     representation = representation + "#%#"  # pre-handle before json.dumps()
