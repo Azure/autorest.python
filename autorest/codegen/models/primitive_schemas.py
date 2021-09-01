@@ -34,7 +34,7 @@ def _add_optional_and_default_value_template_representation(
     description: Optional[str] = None,
     **kwargs: Any
 ):
-    if default_value_declaration and default_value_declaration != '':
+    if default_value_declaration and default_value_declaration != 'None':
         representation = default_value_declaration.strip('"')
     else:
         representation = _CONVERT.get(representation, representation)
