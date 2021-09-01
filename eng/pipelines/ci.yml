@@ -12,7 +12,7 @@ variables:
   NodeVersion: "12.x"
   PythonVersion: "3.6"
   TestFolder: "$(Build.SourcesDirectory)/test/"
-  AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: "$(Build.SourcesDirectory)/coverage/"
+  CoverageDirectory: "$(Build.SourcesDirectory)/coverage/"
 
 jobs:
   - job: "AutoRest_Python_CI"
@@ -54,27 +54,27 @@ jobs:
           pip install -r dev_requirements.txt
           npm install -g autorest
           npm install
-        displayName: 'Prepare Environment for Generation'
+        displayName: "Prepare Environment for Generation"
 
       - script: |
           pylint autorest
-        displayName: 'Pylint'
+        displayName: "Pylint"
       - script: |
           mypy autorest
-        displayName: 'Mypy'
+        displayName: "Mypy"
       - script: |
           pytest test/unittests
-        displayName: 'Unit tests'
+        displayName: "Unit tests"
       - script: |
           inv regenerate
-        displayName: 'Regenerate Code'
+        displayName: "Regenerate Code"
       - script: |
           git add -A  # 'add' first so 'diff' includes untracked files
           git diff --staged -w
-        displayName: 'Diff regeneration'
+        displayName: "Diff regeneration"
 
       - task: UsePythonVersion@0
-        displayName: 'Use Python $(PythonVersion)'
+        displayName: "Use Python $(PythonVersion)"
         inputs:
           versionSpec: $(PythonVersion)
 
@@ -87,6 +87,9 @@ jobs:
           cd $(TestFolder)/azure/legacy
           tox -e ci
         displayName: 'Execute legacy "azure" Tests - Python $(PythonVersion)'
+        env:
+          AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: $(variables.CoverageDirectory)
+
       - task: PublishTestResults@2
         condition: always()
         displayName: 'Publish legacy "azure" Test Results'
@@ -98,6 +101,8 @@ jobs:
           cd $(TestFolder)/azure/low-level
           tox -e ci
         displayName: 'Execute low-level "azure" Tests - Python $(PythonVersion)'
+        env:
+          AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: $(variables.CoverageDirectory)
       - task: PublishTestResults@2
         condition: always()
         displayName: 'Publish low-level "azure" Test Results'
@@ -109,6 +114,8 @@ jobs:
           cd $(TestFolder)/azure/version-tolerant
           tox -e ci
         displayName: 'Execute version-tolerant "azure" Tests - Python $(PythonVersion)'
+        env:
+          AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: $(variables.CoverageDirectory)
       - task: PublishTestResults@2
         condition: always()
         displayName: 'Publish version-tolerant "azure" Test Results'
@@ -120,6 +127,8 @@ jobs:
           cd $(TestFolder)/vanilla/legacy
           tox -e ci
         displayName: 'Execute legacy "vanilla" Tests - Python $(PythonVersion)'
+        env:
+          AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: $(variables.CoverageDirectory)
       - task: PublishTestResults@2
         displayName: 'Publish legacy "vanilla" Test Results'
         condition: always()
@@ -133,6 +142,8 @@ jobs:
           tox -e initial-ci
           tox -e update-ci
         displayName: 'Execute low level "vanilla" Tests - Python $(PythonVersion)'
+        env:
+          AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: $(variables.CoverageDirectory)
       - task: PublishTestResults@2
         displayName: 'Publish low level "vanilla" Test Results'
         condition: always()
@@ -146,6 +157,8 @@ jobs:
           tox -e initial-ci
           tox -e update-ci
         displayName: 'Execute version-tolerant "vanilla" Tests - Python $(PythonVersion)'
+        env:
+          AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: $(variables.CoverageDirectory)
       - task: PublishTestResults@2
         displayName: 'Publish version-tolerant "vanilla" Test Results'
         condition: always()
@@ -157,6 +170,8 @@ jobs:
           cd $(TestFolder)/multiapi
           tox -e ci
         displayName: 'Execute "multiapi" Tests - Python $(PythonVersion)'
+        env:
+          AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: $(variables.CoverageDirectory)
       - task: PublishTestResults@2
         displayName: 'Publish "multiapi" Test Results'
         condition: always()
@@ -165,6 +180,6 @@ jobs:
           searchFolder: "$(TestFolder)/multiapi"
 
       - script: |
-          npm run coverage -- publish --repo=$(Build.Repository.Name) --ref=$(Build.SourceBranch) --githubToken=$(github-token) --azStorageAccount=$(storage-coverage-user) --azStorageAccessKey=$(storage-coverage-pass) --coverageDirectory=$(AUTOREST_TESTSERVER_COVERAGE_DIRECTORY)
+          npm run coverage -- publish --repo=$(Build.Repository.Name) --ref=$(Build.SourceBranch) --githubToken=$(github-token) --azStorageAccount=$(storage-coverage-user) --azStorageAccessKey=$(storage-coverage-pass) --coverageDirectory=$(variables.CoverageDirectory)
         workingDirectory: node_modules/@microsoft.azure/autorest.testserver
         displayName: "Publish coverage report to stroage account"
