@@ -34,11 +34,7 @@ OrderedSet = Dict[T, None]
 
 
 def _improve_json_string(template_representation: str) -> Any:
-    x = template_representation.replace('",\n', ',\n')
-    xx = x.replace('\\", #', '", #')
-    xxx = xx.replace('\\"', '"')
-    return xxx
-    # return template_representation.replace('",\n', ',\n').replace('\\", #', '", #').replace('\\"', '"')
+    return template_representation.replace('",', '').replace('#%#', '",').replace(',"', '').replace('."', '.')
 
 def _json_dumps_template(template_representation: Any) -> Any:
     # only for template use, since it wraps everything in strings

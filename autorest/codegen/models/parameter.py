@@ -195,7 +195,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         if self.multiple_media_types_type_annot:
             # means this parameter has multiple media types. We force default value to be None.
             default_value = None
-            default_value_declaration = "None"
+            default_value_declaration = ''
         else:
             if isinstance(self.schema, ConstantSchema):
                 default_value = self.schema.get_declaration(self.schema.value)

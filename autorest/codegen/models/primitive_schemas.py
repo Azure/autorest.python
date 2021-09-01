@@ -34,14 +34,15 @@ def _add_optional_and_default_value_template_representation(
     description: Optional[str] = None,
     **kwargs: Any
 ):
-    if default_value_declaration and default_value_declaration != "None":  # not doing None bc that's assumed
-        representation = default_value_declaration.strip("\"")
-    representation = _CONVERT.get(representation, representation)
-    representation = f'{representation}",'  # prepare handle before json.dumps()
+    if default_value_declaration and default_value_declaration != '':
+        representation = default_value_declaration.strip('"')
+    else:
+        representation = _CONVERT.get(representation, representation)
+    representation = representation + "#%#"  # pre-handle before json.dumps()
     if optional:
         representation += " # optional."
     if description:
-        representation += f" # {description}"
+        representation += f" # {description}."
     return representation
 
 class PrimitiveSchema(BaseSchema):

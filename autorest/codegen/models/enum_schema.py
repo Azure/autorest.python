@@ -132,7 +132,7 @@ class EnumSchema(BaseSchema):
         return values
 
     def get_json_template_representation(self, **kwargs: Any) -> Any:
-        # for better display effect, use the only value instead of var type 
+        # for better display effect, use the only value instead of var type
         if len(self.values) == 1:
             kwargs['default_value_declaration'] = self.values[0].value
         return self.enum_type.get_json_template_representation(**kwargs)
