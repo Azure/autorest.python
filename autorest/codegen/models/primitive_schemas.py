@@ -38,11 +38,10 @@ def _add_optional_and_default_value_template_representation(
         representation = str(default_value_declaration).strip('"')
     else:
         representation = _CONVERT.get(representation, representation)
-    representation = representation + "#%#"  # pre-handle before json.dumps()
     if optional:
-        representation += " # optional."
+        representation += "# optional."
     if description:
-        representation += f" # {description}."
+        representation += f"# {description}"
     return representation
 
 class PrimitiveSchema(BaseSchema):
