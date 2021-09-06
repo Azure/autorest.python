@@ -23,13 +23,27 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-
-from datetime import datetime
+import datetime
 from bodyintegerlowlevel import AutoRestIntegerTestService
 from bodyintegerlowlevel.rest import int as int_rest
-
 import pytest
 import calendar
+
+class UTC(datetime.tzinfo):
+    """Time Zone info for handling UTC"""
+
+    def utcoffset(self, dt):
+        """UTF offset for UTC is 0."""
+        return datetime.timedelta(0)
+
+    def tzname(self, dt):
+        """Timestamp representation."""
+        return "Z"
+
+    def dst(self, dt):
+        """No daylight saving for UTC."""
+        return datetime.timedelta(hours=1)
+
 try:
     from datetime import timezone
     TZ_UTC = timezone.utc  # type: ignore
@@ -85,14 +99,14 @@ def test_get_underflow(send_request):
     send_request(request)
 
 def test_unix_time_date(send_request):
-    unix_date = datetime(year=2016, month=4, day=13)
+    unix_date = datetime.datetime(year=2016, month=4, day=13)
 
     input = calendar.timegm(unix_date.utctimetuple())
     request = int_rest.build_put_unix_time_date_request(json=int(input))
     send_request(request)
 
     request = int_rest.build_get_unix_time_request()
-    assert unix_date.utctimetuple() == datetime.fromtimestamp(send_request(request).json(), TZ_UTC).utctimetuple()
+    assert unix_date.utctimetuple() == datetime.datetime.fromtimestamp(send_request(request).json(), TZ_UTC).utctimetuple()
 
 def test_get_null_and_invalid_unix_time(send_request):
     request = int_rest.build_get_null_unix_time_request()

@@ -25,12 +25,28 @@
 # --------------------------------------------------------------------------
 import pytest
 from async_generator import yield_, async_generator
-from datetime import datetime
+import datetime
 from azure.core.exceptions import DecodeError
 
 from bodyintegerlowlevel.aio import AutoRestIntegerTestService
 from bodyintegerlowlevel.rest import int as int_rest
 import calendar
+
+class UTC(datetime.tzinfo):
+    """Time Zone info for handling UTC"""
+
+    def utcoffset(self, dt):
+        """UTF offset for UTC is 0."""
+        return datetime.timedelta(0)
+
+    def tzname(self, dt):
+        """Timestamp representation."""
+        return "Z"
+
+    def dst(self, dt):
+        """No daylight saving for UTC."""
+        return datetime.timedelta(hours=1)
+
 try:
     from datetime import timezone
     TZ_UTC = timezone.utc  # type: ignore
@@ -94,12 +110,12 @@ async def test_get_underflow(send_request):
 
 @pytest.mark.asyncio
 async def test_unix_time_date(send_request):
-    unix_date = datetime(year=2016, month=4, day=13)
+    unix_date = datetime.datetime(year=2016, month=4, day=13)
     request = int_rest.build_put_unix_time_date_request(json=int(calendar.timegm(unix_date.utctimetuple())))
     await send_request(request)
 
     request = int_rest.build_get_unix_time_request()
-    assert unix_date.utctimetuple() == datetime.fromtimestamp((await send_request(request)).json(), TZ_UTC).utctimetuple()
+    assert unix_date.utctimetuple() == datetime.datetime.fromtimestamp((await send_request(request)).json(), TZ_UTC).utctimetuple()
 
 @pytest.mark.asyncio
 async def test_get_null_and_invalid_unix_time(send_request):

@@ -176,7 +176,7 @@ async def test_enum_referenced(send_request, send_request_json_response):
 
 @pytest.mark.asyncio
 async def test_enum_referenced_constant(send_request, send_request_json_response):
-    request = enum.build_put_referenced_request(json={"ColorConstant": "green-color"})
+    request = enum.build_put_referenced_request(json="red color")
     await send_request(request)
 
     request = enum.build_get_referenced_constant_request()
