@@ -28,7 +28,7 @@ import json
 from datetime import timedelta
 from bodydictionarylowlevel.rest import dictionary
 from bodydictionarylowlevel import AutoRestSwaggerBATDictionaryService
-from .utils import dicts_equal, JSON_DECODE_ERROR
+from .utils import JSON_DECODE_ERROR
 
 import pytest
 
@@ -53,10 +53,10 @@ def send_request_json_response(client, base_send_request_json_response):
 def get_deserialized_dict(send_request_json_response):
     def _get_deserialized_dict(request, deserialize_value_callable):
         json_response = send_request_json_response(request)
-        return {
-            str(idx): deserialize_value_callable(json_response[key]) if json_response[key] else None
-            for idx, key in enumerate(json_response.keys())
-        }
+        for key in json_response:
+            if json_response[key]:
+                json_response[key] = deserialize_value_callable(json_response[key])
+        return json_response
     return _get_deserialized_dict
 
 @pytest.fixture
@@ -179,7 +179,7 @@ def test_date_valid(send_request, get_serialized_dict, get_deserialized_dict, ms
     valid_date_dict = {"0":date1, "1":date2, "2":date3}
 
     request = dictionary.build_get_date_valid_request()
-    dicts_equal(get_deserialized_dict(request, msrest_deserializer.deserialize_date), valid_date_dict)
+    assert get_deserialized_dict(request, msrest_deserializer.deserialize_date) ==  valid_date_dict
 
     request = dictionary.build_put_date_valid_request(json=get_serialized_dict(valid_date_dict, msrest_serializer.serialize_date))
     send_request(request)
@@ -189,7 +189,7 @@ def test_get_date_invalid(send_request_json_response, msrest_deserializer, get_d
                         "1":None,
                         "2":isodate.parse_date("1776-07-04")}
     request = dictionary.build_get_date_invalid_null_request()
-    dicts_equal(date_null_dict, get_deserialized_dict(request, msrest_deserializer.deserialize_date))
+    assert date_null_dict == get_deserialized_dict(request, msrest_deserializer.deserialize_date)
 
     request = dictionary.build_get_date_invalid_chars_request()
     assert {"0": "2011-03-22", "1": "date"} == send_request_json_response(request)
@@ -201,7 +201,7 @@ def test_date_time_valid(send_request, get_deserialized_dict, get_serialized_dic
     valid_datetime_dict = {"0":datetime1, "1":datetime2, "2":datetime3}
 
     request = dictionary.build_get_date_time_valid_request()
-    dicts_equal(valid_datetime_dict, get_deserialized_dict(request, msrest_deserializer.deserialize_iso))
+    assert valid_datetime_dict == get_deserialized_dict(request, msrest_deserializer.deserialize_iso)
 
     request = dictionary.build_put_date_time_valid_request(
         json=get_serialized_dict(valid_datetime_dict, msrest_serializer.serialize_iso)
@@ -211,7 +211,7 @@ def test_date_time_valid(send_request, get_deserialized_dict, get_serialized_dic
 def test_get_date_time_invalid(send_request_json_response, msrest_deserializer, get_deserialized_dict):
     datetime_null_dict = {"0":isodate.parse_datetime("2000-12-01T00:00:01Z"), "1":None}
     request = dictionary.build_get_date_time_invalid_null_request()
-    dicts_equal(datetime_null_dict, get_deserialized_dict(request, msrest_deserializer.deserialize_iso))
+    assert datetime_null_dict == get_deserialized_dict(request, msrest_deserializer.deserialize_iso)
 
     request = dictionary.build_get_date_time_invalid_chars_request()
     assert {"0": "2000-12-01t00:00:01z", "1": "date-time"} == send_request_json_response(request)
@@ -223,7 +223,7 @@ def test_date_time_rfc1123_valid(send_request, get_deserialized_dict, get_serial
     valid_rfc_dict = {"0":rfc_datetime1, "1":rfc_datetime2, "2":rfc_datetime3}
 
     request = dictionary.build_get_date_time_rfc1123_valid_request()
-    dicts_equal(valid_rfc_dict, get_deserialized_dict(request, msrest_deserializer.deserialize_rfc))
+    assert valid_rfc_dict == get_deserialized_dict(request, msrest_deserializer.deserialize_rfc)
 
     request = dictionary.build_put_date_time_rfc1123_valid_request(json=get_serialized_dict(valid_rfc_dict, msrest_serializer.serialize_rfc))
     send_request(request)
@@ -234,7 +234,7 @@ def test_get_duration_valid(send_request, msrest_serializer, msrest_deserializer
     valid_duration_dict = {"0":duration1, "1":duration2}
 
     request = dictionary.build_get_duration_valid_request()
-    dicts_equal(valid_duration_dict, get_deserialized_dict(request, msrest_deserializer.deserialize_duration))
+    assert valid_duration_dict == get_deserialized_dict(request, msrest_deserializer.deserialize_duration)
 
     request = dictionary.build_put_duration_valid_request(json=get_serialized_dict(valid_duration_dict, msrest_serializer.serialize_duration))
     send_request(request)
@@ -250,19 +250,19 @@ def test_bytes_valid(send_request, msrest_serializer, msrest_deserializer, get_s
     send_request(request)
 
     request = dictionary.build_get_byte_valid_request()
-    dicts_equal(bytes_valid, get_deserialized_dict(request, msrest_deserializer.deserialize_bytearray))
+    assert bytes_valid == get_deserialized_dict(request, msrest_deserializer.deserialize_bytearray)
 
 def test_get_byte_invalid_null(msrest_deserializer, get_deserialized_dict):
     bytes4 = bytearray([0x0AB, 0x0AC, 0x0AD])
     bytes_null = {"0":bytes4, "1":None}
     request = dictionary.build_get_byte_invalid_null_request()
-    dicts_equal(bytes_null, get_deserialized_dict(request, msrest_deserializer.deserialize_bytearray))
+    assert bytes_null == get_deserialized_dict(request, msrest_deserializer.deserialize_bytearray)
 def test_get_base64_url(msrest_deserializer, get_deserialized_dict):
     test_dict = {'0': 'a string that gets encoded with base64url'.encode(),
                     '1': 'test string'.encode(),
                     '2': 'Lorem ipsum'.encode()}
     request = dictionary.build_get_base64_url_request()
-    dicts_equal(test_dict, get_deserialized_dict(request, msrest_deserializer.deserialize_base64))
+    assert test_dict == get_deserialized_dict(request, msrest_deserializer.deserialize_base64)
 
 # Basic dictionary parsing
 def test_empty(send_request, send_request_json_response):
