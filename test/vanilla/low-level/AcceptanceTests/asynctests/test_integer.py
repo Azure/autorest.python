@@ -104,7 +104,7 @@ async def test_unix_time_date(send_request):
 @pytest.mark.asyncio
 async def test_get_null_and_invalid_unix_time(send_request):
     request = int_rest.build_get_null_unix_time_request()
-    assert (await send_request(request)).text == ''
+    assert (await send_request(request)).text() == ''
 
     request = int_rest.build_get_invalid_unix_time_request()
     with pytest.raises(DecodeError):

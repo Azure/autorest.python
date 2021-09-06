@@ -47,7 +47,7 @@ def send_request(client, base_send_request):
 @pytest.fixture
 def send_request_text_response(client, base_send_request):
     async def _send_request(request):
-        return (await base_send_request(client, request)).text
+        return (await base_send_request(client, request)).text()
     return _send_request
 
 

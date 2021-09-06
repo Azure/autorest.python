@@ -66,7 +66,7 @@ def test_get_null_and_invalid(send_request):
     send_request(request)
 
     request = int_rest.build_get_invalid_request()
-    assert send_request(request).text == '123jkl'
+    assert send_request(request).text() == '123jkl'
 
 def test_get_overflow(send_request):
     # Testserver excepts these to fail, but they won't in Python and it's ok.
@@ -96,7 +96,7 @@ def test_unix_time_date(send_request):
 
 def test_get_null_and_invalid_unix_time(send_request):
     request = int_rest.build_get_null_unix_time_request()
-    assert send_request(request).text == ''
+    assert send_request(request).text() == ''
 
     request = int_rest.build_get_invalid_unix_time_request()
-    assert send_request(request).text == '123jkl'
+    assert send_request(request).text() == '123jkl'

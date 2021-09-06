@@ -79,7 +79,7 @@ def test_empty(send_request, send_request_json_response):
 
     request = array.build_get_null_request()
     response = send_request(request)
-    assert response.text == ''
+    assert response.text() == ''
 
     request = array.build_put_empty_request(json=[])
     send_request(request)
@@ -196,7 +196,7 @@ def test_get_byte_invalid_null(send_request_json_response):
 
 def test_get_complex_null(send_request):
     request = array.build_get_complex_null_request()
-    assert send_request(request).text == ''
+    assert send_request(request).text() == ''
 
 def test_get_complex_empty(send_request_json_response):
     request = array.build_get_complex_empty_request()
@@ -235,7 +235,7 @@ def test_get_complex_item_empty(send_request_json_response, products):
 
 def test_get_array_null(send_request):
     request = array.build_get_array_null_request()
-    assert send_request(request).text == ''
+    assert send_request(request).text() == ''
 
 def test_get_array_empty(send_request_json_response):
     request = array.build_get_array_empty_request()
@@ -254,7 +254,7 @@ def test_get_array_item_empty(send_request_json_response):
 def test_get_dictionary_and_dictionary_item_null(send_request, send_request_json_response, listdict):
 
     request = array.build_get_dictionary_null_request()
-    assert send_request(request).text == ''
+    assert send_request(request).text() == ''
 
     listdict[1] = None
     request = array.build_get_dictionary_item_null_request()

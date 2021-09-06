@@ -47,7 +47,7 @@ def test_get_object(send_request):
 
 def test_put_object_success(send_request):
     request = build_put_request(json={"foo": "bar"})
-    assert send_request(request).text == ''
+    assert send_request(request).text() == ''
 
 def test_put_object_fail(send_request):
     request = build_put_request(json={"should": "fail"})

@@ -142,7 +142,7 @@ async def test_local_positive_offset_max_date_time(send_request_json_response, s
 @pytest.mark.asyncio
 async def test_get_null(send_request, get_serialized_iso, get_deserialized_iso):
     request = datetime.build_get_null_request()
-    assert (await send_request(request)).text == ''
+    assert (await send_request(request)).text() == ''
 
 @pytest.mark.asyncio
 async def test_get_overflow(send_request_json_response):

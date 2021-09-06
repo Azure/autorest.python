@@ -55,7 +55,7 @@ def send_request_json_response(client, base_send_request_json_response):
 @pytest.mark.asyncio
 async def test_null(send_request):
     request = string.build_get_null_request()
-    assert (await send_request(request)).text == ''
+    assert (await send_request(request)).text() == ''
 
     request = string.build_put_null_request(content=None)
     await send_request(request)
@@ -122,7 +122,7 @@ async def test_whitespace(send_request, send_request_json_response):
 @pytest.mark.asyncio
 async def test_get_not_provided(send_request):
     request = string.build_get_not_provided_request()
-    assert (await send_request(request)).text == ''
+    assert (await send_request(request)).text() == ''
 
 @pytest.mark.asyncio
 async def test_enum_not_expandable(send_request, send_request_json_response):
@@ -144,13 +144,13 @@ async def test_enum_not_expandable(send_request, send_request_json_response):
 @pytest.mark.asyncio
 async def test_get_base64_encoded(send_request):
     request = string.build_get_base64_encoded_request()
-    assert b64decode((await send_request(request)).text) == 'a string that gets encoded with base64'.encode()
+    assert b64decode((await send_request(request)).text()) == 'a string that gets encoded with base64'.encode()
 
 @pytest.mark.asyncio
 async def test_base64_url_encoded(send_request):
     # the b64 encoding and decoding is taken from msrest
     request = string.build_get_base64_url_encoded_request()
-    response = (await send_request(request)).text
+    response = (await send_request(request)).text()
     response = Deserializer.deserialize_base64(response)
     assert response == 'a string that gets encoded with base64url'.encode()
 
@@ -161,7 +161,7 @@ async def test_base64_url_encoded(send_request):
 @pytest.mark.asyncio
 async def test_get_null_base64_url_encoded(send_request):
     request = string.build_get_null_base64_url_encoded_request()
-    assert (await send_request(request)).text == ''
+    assert (await send_request(request)).text() == ''
 
 @pytest.mark.asyncio
 async def test_enum_referenced(send_request, send_request_json_response):

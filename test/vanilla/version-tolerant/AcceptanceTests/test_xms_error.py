@@ -63,12 +63,12 @@ def test_get_by_pet_id_basic_types(client):
     with pytest.raises(Exception) as excinfo:
         client.pet.get_pet_by_id("ringo")
     assert excinfo.value.model is None  # no model attached
-    assert json.loads(excinfo.value.response.text) == "ringo is missing"
+    assert json.loads(excinfo.value.response.text()) == "ringo is missing"
 
     with pytest.raises(Exception) as excinfo:
         client.pet.get_pet_by_id("alien123")
     assert excinfo.value.model is None  # no model attached
-    assert json.loads(excinfo.value.response.text) == 123
+    assert json.loads(excinfo.value.response.text()) == 123
 
 def test_do_something_success(client):
     result = client.pet.do_something("stay")

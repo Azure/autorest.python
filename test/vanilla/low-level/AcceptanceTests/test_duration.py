@@ -52,7 +52,7 @@ def send_request_json_response(client, base_send_request_json_response):
 
 def test_get_null_and_invalid(send_request, send_request_json_response):
     request = duration.build_get_null_request()
-    assert send_request(request).text == ''
+    assert send_request(request).text() == ''
 
     request = duration.build_get_invalid_request()
     with pytest.raises(isodate.ISO8601Error):

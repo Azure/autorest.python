@@ -67,7 +67,7 @@ def test_model_get_and_put_min_date(send_request, send_request_json_response):
 
 def test_model_get_null(send_request):
     request = date.build_get_null_request()
-    assert send_request(request).text == ''
+    assert send_request(request).text() == ''
 
 def test_model_get_invalid_date(send_request_json_response):
     request = date.build_get_invalid_date_request()

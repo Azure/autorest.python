@@ -276,7 +276,7 @@ def test_empty(send_request, send_request_json_response):
 def test_get_null_and_invalid(send_request, send_request_json_response):
 
     request = dictionary.build_get_null_request()
-    assert send_request(request).text == ''
+    assert send_request(request).text() == ''
 
     request = dictionary.build_get_invalid_request()
     with pytest.raises(json.decoder.JSONDecodeError):
@@ -327,7 +327,7 @@ def test_dictionary_valid(send_request, send_request_json_response):
 def test_get_complex_null_and_empty(send_request, send_request_json_response):
 
     request = dictionary.build_get_complex_null_request()
-    assert send_request(request).text == ''
+    assert send_request(request).text() == ''
 
     request = dictionary.build_get_complex_empty_request()
     assert {} == send_request_json_response(request)
@@ -345,7 +345,7 @@ def test_get_complex_item_null_and_empty(send_request_json_response, test_dict):
 
 def test_get_array_empty(send_request, send_request_json_response):
     request = dictionary.build_get_array_null_request()
-    assert send_request(request).text == ''
+    assert send_request(request).text() == ''
 
     request = dictionary.build_get_array_empty_request()
     assert {} == send_request_json_response(request)
@@ -361,7 +361,7 @@ def test_get_array_item_null_and_empty(send_request_json_response):
 
 def test_get_dictionary_null_and_empty(send_request, send_request_json_response):
     request = dictionary.build_get_dictionary_null_request()
-    assert send_request(request).text == ''
+    assert send_request(request).text() == ''
 
     request = dictionary.build_get_dictionary_empty_request()
     assert {} == send_request_json_response(request)
