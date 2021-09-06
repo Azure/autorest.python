@@ -78,6 +78,7 @@ class TestAcceptance(object):
             "UpdatePetWithForm": 1,  # autorest core change needed to do this hasn't been merged yet
             "sendErrorWithParamNameModels": 1,
             "putDecimalBigNegativeDecimal": 1,
+            "verifyHost": 1,
         }
         for name in optional_report:
             if "Options" in name:

@@ -367,8 +367,8 @@ def test(c):
     base_dir = os.path.dirname(__file__)
     cmd = 'tox -e ci'
 
-    autorest_types = ["azure", "vanilla"]
-    gen_types = ["legacy", "low-level", "version-tolerant"]
+    autorest_types = ["vanilla"]
+    gen_types = ["low-level", "version-tolerant"]
     for autorest_type, gen_type in itertools.product(autorest_types, gen_types):
         os.chdir(f"{base_dir}/test/{autorest_type}/{gen_type}")
         c.run(cmd)
