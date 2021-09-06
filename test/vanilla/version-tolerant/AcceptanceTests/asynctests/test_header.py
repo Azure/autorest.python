@@ -36,6 +36,7 @@ import pytest
 async def client():
     async with AutoRestSwaggerBATHeaderService() as client:
         await yield_(client)
+
 @pytest.fixture
 def value_header():
     def _value_header(response, _, headers):

@@ -33,7 +33,7 @@ from xmserrorresponseversiontolerant import XMSErrorResponseExtensions
 
 @pytest.fixture
 def client():
-    with XMSErrorResponseExtensions() as client:
+    with XMSErrorResponseExtensions(endpoint="http://localhost:3000") as client:
         yield client
 
 def test_get_by_pet_id_success(client):

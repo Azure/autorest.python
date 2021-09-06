@@ -38,7 +38,7 @@ def client():
 @pytest.fixture
 def value_header():
     def _value_header(response, _, headers):
-        return headers.get("value")
+        return headers.get("value", "")
     return _value_header
 
 def test_integer(client, value_header):
