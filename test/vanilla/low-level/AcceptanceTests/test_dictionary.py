@@ -356,8 +356,9 @@ def test_get_array_item_null_and_empty(send_request_json_response):
     assert list_dict == send_request_json_response(request)
 
     # in convenience layer, we deserialize as {[str]}. Since we don't have that in llc, the value for "1" will be None, not an empty list
-    list_dict = {"0":["1","2","3"], "1":None, "2":["7","8","9"]}
-    assert list_dict == send_request_json_response(request)
+    request = dictionary.build_get_array_item_empty_request()
+    list_dict = {"0":["1","2","3"], "1":[], "2":["7","8","9"]}
+    assert list_dict ==  send_request_json_response(request)
 
 def test_get_dictionary_null_and_empty(send_request, send_request_json_response):
     request = dictionary.build_get_dictionary_null_request()

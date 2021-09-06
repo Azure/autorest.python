@@ -63,6 +63,7 @@ class TestAcceptance(object):
             "stringError": 1,
             "animalNotFoundError": 1,
             "linkNotFoundError": 1,
+            "putEnumReferencedConstant": 1,  # can't do constants on body
         }
 
         print("Coverage:")

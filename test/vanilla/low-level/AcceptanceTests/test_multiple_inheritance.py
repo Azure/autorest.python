@@ -25,7 +25,6 @@
 #
 # --------------------------------------------------------------------------
 
-
 from multipleinheritancelowlevel import MultipleInheritanceServiceClient
 from multipleinheritancelowlevel.rest import *
 import pytest

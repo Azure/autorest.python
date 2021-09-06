@@ -31,7 +31,7 @@ from bodyarraylowlevel import AutoRestSwaggerBATArrayService
 from bodyarraylowlevel.rest import array
 from azure.core.exceptions import DecodeError
 import msrest
-
+from .utils import JSON_DECODE_ERROR
 import pytest
 
 @pytest.fixture
@@ -270,7 +270,7 @@ def test_get_dictionary_and_dictionary_item_empty(send_request_json_response, li
 
 def test_array_get_invalid(send_request_json_response):
     request = array.build_get_invalid_request()
-    with pytest.raises(json.decoder.JSONDecodeError):
+    with pytest.raises(JSON_DECODE_ERROR):
         send_request_json_response(request)
 
 def test_array_get_boolean_invalid_null(send_request_json_response):
