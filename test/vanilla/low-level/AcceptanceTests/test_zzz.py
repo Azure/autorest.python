@@ -48,18 +48,6 @@ class TestAcceptance(object):
         # Please add missing features or failing tests here
         missing_features_or_bugs = {
             'ConstantsInBody': 1,  # https://github.com/Azure/autorest.modelerfour/issues/83
-        }
-
-        print("Coverage:")
-        self._print_report(report, not_supported, missing_features_or_bugs)
-
-        missing_features_or_bugs = {
-            "putDateTimeMaxLocalNegativeOffset": 1, # Python doesn't support year 1000
-            "putDateTimeMinLocalPositiveOffset": 1, # Python doesn't support BC time
-            'putDateTimeMaxUtc7MS': 1, # Python doesn't support 7 digits ms datetime
-            'FormdataStreamUploadFile': 1, # Form data not supported yet
-            'StreamUploadFile': 1, # Form data not supported yet
-            "UpdatePetWithForm": 1,  # autorest core change needed to do this hasn't been merged yet
             "verifyIncorrectErrorParsing": 1,  # we don't deserialize errors in llc
             "ImplicitOptionalBinaryBody": 1,  # these are properties on the client, don't know enough info in LLC
             "ExplicitRequiredBinaryBody": 1,  # these are properties on the client, don't know enough info in LLC
@@ -75,6 +63,18 @@ class TestAcceptance(object):
             "stringError": 1,
             "animalNotFoundError": 1,
             "linkNotFoundError": 1,
+        }
+
+        print("Coverage:")
+        self._print_report(report, not_supported, missing_features_or_bugs)
+
+        missing_features_or_bugs = {
+            "putDateTimeMaxLocalNegativeOffset": 1, # Python doesn't support year 1000
+            "putDateTimeMinLocalPositiveOffset": 1, # Python doesn't support BC time
+            'putDateTimeMaxUtc7MS': 1, # Python doesn't support 7 digits ms datetime
+            'FormdataStreamUploadFile': 1, # Form data not supported yet
+            'StreamUploadFile': 1, # Form data not supported yet
+            "UpdatePetWithForm": 1,  # autorest core change needed to do this hasn't been merged yet
         }
         for name in optional_report:
             if "Options" in name:
