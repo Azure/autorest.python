@@ -30,3 +30,9 @@ try:
     JSON_DECODE_ERROR = json.decoder.JSONDecodeError
 except:
     JSON_DECODE_ERROR = ValueError
+
+
+def dicts_equal(dict_one, dict_two):
+    assert set(dict_one.keys()) == set(dict_two.keys())
+    for key in dict_one.keys():
+        assert dict_one[key] == dict_two[key]

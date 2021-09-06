@@ -83,4 +83,4 @@ def test_model_get_underflow_date(send_request_json_response):
     request = date.build_get_underflow_date_request()
     with pytest.raises(ValueError) as ex:
         isodate.parse_date(send_request_json_response(request))
-    assert "year 0 is out of range" in str(ex.value)
+    assert "out of range" in str(ex.value)

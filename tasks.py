@@ -368,7 +368,7 @@ def test(c):
     cmd = 'tox -e ci'
 
     autorest_types = ["vanilla"]
-    gen_types = ["low-level", "version-tolerant"]
+    gen_types = ["version-tolerant"]
     for autorest_type, gen_type in itertools.product(autorest_types, gen_types):
         os.chdir(f"{base_dir}/test/{autorest_type}/{gen_type}")
         c.run(cmd)

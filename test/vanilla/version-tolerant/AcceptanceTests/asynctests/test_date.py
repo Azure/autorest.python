@@ -66,4 +66,4 @@ async def test_model_get_overflow_date(client):
 async def test_model_get_underflow_date(client):
     with pytest.raises(ValueError) as ex:
         deserialize_date(await client.date.get_underflow_date())
-    assert "year 0 is out of range" in str(ex.value)
+    assert "out of range" in str(ex.value)
