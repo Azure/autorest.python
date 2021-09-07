@@ -67,9 +67,6 @@ class PetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "": {
-                        "str": {}  # Optional. Unmatched properties from the message are deserialized to this collection.
-                    },
                     "id": 0,
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
@@ -77,9 +74,6 @@ class PetsOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "": {
-                        "str": {}  # Optional. Unmatched properties from the message are deserialized to this collection.
-                    },
                     "id": 0,
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
@@ -136,9 +130,6 @@ class PetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "": {
-                        "str": {}  # Optional. Unmatched properties from the message are deserialized to this collection.
-                    },
                     "friendly": bool,  # Optional.
                     "id": 0,
                     "name": "str",  # Optional.
@@ -147,9 +138,6 @@ class PetsOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "": {
-                        "str": {}  # Optional. Unmatched properties from the message are deserialized to this collection.
-                    },
                     "friendly": bool,  # Optional.
                     "id": 0,
                     "name": "str",  # Optional.
@@ -207,9 +195,6 @@ class PetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "": {
-                        "str": {}  # Optional. Unmatched properties from the message are deserialized to this collection.
-                    },
                     "id": 0,
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
@@ -217,9 +202,6 @@ class PetsOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "": {
-                        "str": {}  # Optional. Unmatched properties from the message are deserialized to this collection.
-                    },
                     "id": 0,
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
@@ -276,9 +258,6 @@ class PetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "": {
-                        "str": "str"  # Optional. Unmatched properties from the message are deserialized to this collection.
-                    },
                     "id": 0,
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
@@ -286,9 +265,6 @@ class PetsOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "": {
-                        "str": "str"  # Optional. Unmatched properties from the message are deserialized to this collection.
-                    },
                     "id": 0,
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
@@ -345,9 +321,6 @@ class PetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "additionalProperties": {
-                        "str": 0.0  # Optional. Dictionary of :code:`<number>`.
-                    },
                     "id": 0,
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
@@ -355,9 +328,6 @@ class PetsOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "additionalProperties": {
-                        "str": 0.0  # Optional. Dictionary of :code:`<number>`.
-                    },
                     "id": 0,
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
@@ -414,9 +384,6 @@ class PetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "": {
-                        "str": "str"  # Optional. Unmatched properties from the message are deserialized to this collection.
-                    },
                     "@odata.location": "str",
                     "additionalProperties": {
                         "str": 0.0  # Optional. Dictionary of :code:`<number>`.
@@ -428,9 +395,6 @@ class PetsOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "": {
-                        "str": "str"  # Optional. Unmatched properties from the message are deserialized to this collection.
-                    },
                     "@odata.location": "str",
                     "additionalProperties": {
                         "str": 0.0  # Optional. Dictionary of :code:`<number>`.
