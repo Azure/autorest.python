@@ -126,7 +126,7 @@ def build_put_big_float_request(*, json: Any = None, content: Any = None, **kwar
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "float (optional)"
+            json = 0.0  # Optional.
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -188,7 +188,7 @@ def build_put_big_double_request(*, json: Any = None, content: Any = None, **kwa
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "float (optional)"
+            json = 0.0  # Optional.
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -352,7 +352,7 @@ def build_put_big_decimal_request(*, json: Any = None, content: Any = None, **kw
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "float (optional)"
+            json = 0.0  # Optional.
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -516,7 +516,7 @@ def build_put_small_float_request(*, json: Any = None, content: Any = None, **kw
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "float (optional)"
+            json = 0.0  # Optional.
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -578,7 +578,7 @@ def build_put_small_double_request(*, json: Any = None, content: Any = None, **k
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "float (optional)"
+            json = 0.0  # Optional.
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -640,7 +640,7 @@ def build_put_small_decimal_request(*, json: Any = None, content: Any = None, **
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "float (optional)"
+            json = 0.0  # Optional.
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]

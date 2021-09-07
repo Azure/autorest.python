@@ -38,22 +38,22 @@ def build_validation_of_method_parameters_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "capacity": "int (optional)",
+                "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                 "child": {
-                    "constProperty": "str",
-                    "count": "int (optional)"
+                    "constProperty": "constant",  # Default value is "constant". Constant string.
+                    "count": 0  # Optional. Count.
                 },
                 "constChild": {
-                    "constProperty": "str",
-                    "constProperty2": "str"
+                    "constProperty": "constant",  # Default value is "constant". Constant string.
+                    "constProperty2": "constant2"  # Default value is "constant2". Constant string2.
                 },
-                "constInt": "int",
-                "constString": "str",
-                "constStringAsEnum": "str (optional)",
+                "constInt": 0,  # Default value is 0. Constant int.
+                "constString": "constant",  # Default value is "constant". Constant string.
+                "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is "constant_string_as_enum". Constant string as Enum.
                 "display_names": [
-                    "str (optional)"
+                    "str"  # Optional. Non required array of unique items from 0 to 6 elements.
                 ],
-                "image": "str (optional)"
+                "image": "str"  # Optional. Image URL representing the product.
             }
     """
 
@@ -112,42 +112,42 @@ def build_validation_of_body_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "capacity": "int (optional)",
+                "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                 "child": {
-                    "constProperty": "str",
-                    "count": "int (optional)"
+                    "constProperty": "constant",  # Default value is "constant". Constant string.
+                    "count": 0  # Optional. Count.
                 },
                 "constChild": {
-                    "constProperty": "str",
-                    "constProperty2": "str"
+                    "constProperty": "constant",  # Default value is "constant". Constant string.
+                    "constProperty2": "constant2"  # Default value is "constant2". Constant string2.
                 },
-                "constInt": "int",
-                "constString": "str",
-                "constStringAsEnum": "str (optional)",
+                "constInt": 0,  # Default value is 0. Constant int.
+                "constString": "constant",  # Default value is "constant". Constant string.
+                "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is "constant_string_as_enum". Constant string as Enum.
                 "display_names": [
-                    "str (optional)"
+                    "str"  # Optional. Non required array of unique items from 0 to 6 elements.
                 ],
-                "image": "str (optional)"
+                "image": "str"  # Optional. Image URL representing the product.
             }
 
             # response body for status code(s): 200
             response.json() == {
-                "capacity": "int (optional)",
+                "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                 "child": {
-                    "constProperty": "str",
-                    "count": "int (optional)"
+                    "constProperty": "constant",  # Default value is "constant". Constant string.
+                    "count": 0  # Optional. Count.
                 },
                 "constChild": {
-                    "constProperty": "str",
-                    "constProperty2": "str"
+                    "constProperty": "constant",  # Default value is "constant". Constant string.
+                    "constProperty2": "constant2"  # Default value is "constant2". Constant string2.
                 },
-                "constInt": "int",
-                "constString": "str",
-                "constStringAsEnum": "str (optional)",
+                "constInt": 0,  # Default value is 0. Constant int.
+                "constString": "constant",  # Default value is "constant". Constant string.
+                "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is "constant_string_as_enum". Constant string as Enum.
                 "display_names": [
-                    "str (optional)"
+                    "str"  # Optional. Non required array of unique items from 0 to 6 elements.
                 ],
-                "image": "str (optional)"
+                "image": "str"  # Optional. Image URL representing the product.
             }
     """
 
@@ -228,42 +228,42 @@ def build_post_with_constant_in_body_request(*, json: Any = None, content: Any =
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "capacity": "int (optional)",
+                "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                 "child": {
-                    "constProperty": "str",
-                    "count": "int (optional)"
+                    "constProperty": "constant",  # Default value is "constant". Constant string.
+                    "count": 0  # Optional. Count.
                 },
                 "constChild": {
-                    "constProperty": "str",
-                    "constProperty2": "str"
+                    "constProperty": "constant",  # Default value is "constant". Constant string.
+                    "constProperty2": "constant2"  # Default value is "constant2". Constant string2.
                 },
-                "constInt": "int",
-                "constString": "str",
-                "constStringAsEnum": "str (optional)",
+                "constInt": 0,  # Default value is 0. Constant int.
+                "constString": "constant",  # Default value is "constant". Constant string.
+                "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is "constant_string_as_enum". Constant string as Enum.
                 "display_names": [
-                    "str (optional)"
+                    "str"  # Optional. Non required array of unique items from 0 to 6 elements.
                 ],
-                "image": "str (optional)"
+                "image": "str"  # Optional. Image URL representing the product.
             }
 
             # response body for status code(s): 200
             response.json() == {
-                "capacity": "int (optional)",
+                "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                 "child": {
-                    "constProperty": "str",
-                    "count": "int (optional)"
+                    "constProperty": "constant",  # Default value is "constant". Constant string.
+                    "count": 0  # Optional. Count.
                 },
                 "constChild": {
-                    "constProperty": "str",
-                    "constProperty2": "str"
+                    "constProperty": "constant",  # Default value is "constant". Constant string.
+                    "constProperty2": "constant2"  # Default value is "constant2". Constant string2.
                 },
-                "constInt": "int",
-                "constString": "str",
-                "constStringAsEnum": "str (optional)",
+                "constInt": 0,  # Default value is 0. Constant int.
+                "constString": "constant",  # Default value is "constant". Constant string.
+                "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is "constant_string_as_enum". Constant string as Enum.
                 "display_names": [
-                    "str (optional)"
+                    "str"  # Optional. Non required array of unique items from 0 to 6 elements.
                 ],
-                "image": "str (optional)"
+                "image": "str"  # Optional. Image URL representing the product.
             }
     """
 

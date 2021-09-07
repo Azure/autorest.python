@@ -51,7 +51,7 @@ def build_update_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "tags": {
-                    "str": "str"
+                    "str": "str"  # A description about the set of tags.
                 }
             }
     """

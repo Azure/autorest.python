@@ -229,7 +229,7 @@ def build_put_max32_request(
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "int (optional)"
+            json = 0  # Optional.
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
@@ -276,7 +276,7 @@ def build_put_max64_request(
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "long (optional)"
+            json = 0.0  # Optional.
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
@@ -323,7 +323,7 @@ def build_put_min32_request(
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "int (optional)"
+            json = 0  # Optional.
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
@@ -370,7 +370,7 @@ def build_put_min64_request(
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "long (optional)"
+            json = 0.0  # Optional.
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
@@ -448,7 +448,7 @@ def build_put_unix_time_date_request(
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "datetime (optional)"
+            json = "2020-02-20 00:00:00"  # Optional.
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]

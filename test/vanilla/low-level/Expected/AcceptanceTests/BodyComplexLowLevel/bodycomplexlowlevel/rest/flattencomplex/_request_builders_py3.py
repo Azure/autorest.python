@@ -30,10 +30,10 @@ def build_get_valid_request(**kwargs: Any) -> HttpRequest:
             # response body for status code(s): 200
             response.json() == {
                 "helper": {
-                    "propBH1": "str (optional)"
+                    "propBH1": "str"  # Optional.
                 },
-                "kind": "kind",
-                "propB1": "str (optional)"
+                "propB1": "str",  # Optional.
+                kind: kind
             }
     """
 

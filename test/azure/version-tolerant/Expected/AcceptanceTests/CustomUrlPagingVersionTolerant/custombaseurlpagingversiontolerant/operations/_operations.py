@@ -140,12 +140,12 @@ class PagingOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "nextLink": "str (optional)",
+                    "nextLink": "str",  # Optional.
                     "values": [
                         {
                             "properties": {
-                                "id": "int (optional)",
-                                "name": "str (optional)"
+                                "id": 0,  # Optional.
+                                "name": "str"  # Optional.
                             }
                         }
                     ]
@@ -228,12 +228,12 @@ class PagingOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "nextLink": "str (optional)",
+                    "nextLink": "str",  # Optional.
                     "values": [
                         {
                             "properties": {
-                                "id": "int (optional)",
-                                "name": "str (optional)"
+                                "id": 0,  # Optional.
+                                "name": "str"  # Optional.
                             }
                         }
                     ]

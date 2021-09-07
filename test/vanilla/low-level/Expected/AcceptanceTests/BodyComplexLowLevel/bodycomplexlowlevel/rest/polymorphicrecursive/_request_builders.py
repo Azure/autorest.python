@@ -37,12 +37,12 @@ def build_get_valid_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "fishtype": "fishtype",
-                "length": "float",
+                "length": 0.0,
                 "siblings": [
-                    "..."
+                    ...
                 ],
-                "species": "str (optional)"
+                "species": "str",  # Optional.
+                fishtype: fishtype
             }
     """
 
@@ -193,12 +193,12 @@ def build_put_valid_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "fishtype": "fishtype",
-                "length": "float",
+                "length": 0.0,
                 "siblings": [
-                    "..."
+                    ...
                 ],
-                "species": "str (optional)"
+                "species": "str",  # Optional.
+                fishtype: fishtype
             }
     """
 

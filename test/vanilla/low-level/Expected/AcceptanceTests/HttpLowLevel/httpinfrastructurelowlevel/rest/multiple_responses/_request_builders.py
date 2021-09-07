@@ -37,7 +37,7 @@ def build_get200_model204_no_model_default_error200_valid_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "statusCode": "str (optional)"
+                "statusCode": "str"  # Optional.
             }
     """
 
@@ -76,7 +76,7 @@ def build_get200_model204_no_model_default_error204_valid_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "statusCode": "str (optional)"
+                "statusCode": "str"  # Optional.
             }
     """
 
@@ -115,7 +115,7 @@ def build_get200_model204_no_model_default_error201_invalid_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "statusCode": "str (optional)"
+                "statusCode": "str"  # Optional.
             }
     """
 
@@ -154,7 +154,7 @@ def build_get200_model204_no_model_default_error202_none_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "statusCode": "str (optional)"
+                "statusCode": "str"  # Optional.
             }
     """
 
@@ -193,7 +193,7 @@ def build_get200_model204_no_model_default_error400_valid_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "statusCode": "str (optional)"
+                "statusCode": "str"  # Optional.
             }
     """
 
@@ -232,12 +232,12 @@ def build_get200_model201_model_default_error200_valid_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "statusCode": "str (optional)"
+                "statusCode": "str"  # Optional.
             }
             # response body for status code(s): 201
             response.json() == {
-                "statusCode": "str (optional)",
-                "textStatusCode": "str (optional)"
+                "statusCode": "str",  # Optional.
+                "textStatusCode": "str"  # Optional.
             }
     """
 
@@ -276,12 +276,12 @@ def build_get200_model201_model_default_error201_valid_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "statusCode": "str (optional)"
+                "statusCode": "str"  # Optional.
             }
             # response body for status code(s): 201
             response.json() == {
-                "statusCode": "str (optional)",
-                "textStatusCode": "str (optional)"
+                "statusCode": "str",  # Optional.
+                "textStatusCode": "str"  # Optional.
             }
     """
 
@@ -320,12 +320,12 @@ def build_get200_model201_model_default_error400_valid_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "statusCode": "str (optional)"
+                "statusCode": "str"  # Optional.
             }
             # response body for status code(s): 201
             response.json() == {
-                "statusCode": "str (optional)",
-                "textStatusCode": "str (optional)"
+                "statusCode": "str",  # Optional.
+                "textStatusCode": "str"  # Optional.
             }
     """
 
@@ -364,15 +364,15 @@ def build_get200_model_a201_model_c404_model_d_default_error200_valid_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "statusCode": "str (optional)"
+                "statusCode": "str"  # Optional.
             }
             # response body for status code(s): 201
             response.json() == {
-                "httpCode": "str (optional)"
+                "httpCode": "str"  # Optional.
             }
             # response body for status code(s): 404
             response.json() == {
-                "httpStatusCode": "str (optional)"
+                "httpStatusCode": "str"  # Optional.
             }
     """
 
@@ -411,15 +411,15 @@ def build_get200_model_a201_model_c404_model_d_default_error201_valid_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "statusCode": "str (optional)"
+                "statusCode": "str"  # Optional.
             }
             # response body for status code(s): 201
             response.json() == {
-                "httpCode": "str (optional)"
+                "httpCode": "str"  # Optional.
             }
             # response body for status code(s): 404
             response.json() == {
-                "httpStatusCode": "str (optional)"
+                "httpStatusCode": "str"  # Optional.
             }
     """
 
@@ -458,15 +458,15 @@ def build_get200_model_a201_model_c404_model_d_default_error404_valid_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "statusCode": "str (optional)"
+                "statusCode": "str"  # Optional.
             }
             # response body for status code(s): 201
             response.json() == {
-                "httpCode": "str (optional)"
+                "httpCode": "str"  # Optional.
             }
             # response body for status code(s): 404
             response.json() == {
-                "httpStatusCode": "str (optional)"
+                "httpStatusCode": "str"  # Optional.
             }
     """
 
@@ -505,15 +505,15 @@ def build_get200_model_a201_model_c404_model_d_default_error400_valid_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "statusCode": "str (optional)"
+                "statusCode": "str"  # Optional.
             }
             # response body for status code(s): 201
             response.json() == {
-                "httpCode": "str (optional)"
+                "httpCode": "str"  # Optional.
             }
             # response body for status code(s): 404
             response.json() == {
-                "httpStatusCode": "str (optional)"
+                "httpStatusCode": "str"  # Optional.
             }
     """
 
@@ -745,7 +745,7 @@ def build_get_default_model_a200_valid_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "statusCode": "str (optional)"
+                "statusCode": "str"  # Optional.
             }
     """
 
@@ -784,7 +784,7 @@ def build_get_default_model_a200_none_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "statusCode": "str (optional)"
+                "statusCode": "str"  # Optional.
             }
     """
 
@@ -986,7 +986,7 @@ def build_get200_model_a200_none_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "statusCode": "str (optional)"
+                "statusCode": "str"  # Optional.
             }
     """
 
@@ -1025,7 +1025,7 @@ def build_get200_model_a200_valid_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "statusCode": "str (optional)"
+                "statusCode": "str"  # Optional.
             }
     """
 
@@ -1064,7 +1064,7 @@ def build_get200_model_a200_invalid_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "statusCode": "str (optional)"
+                "statusCode": "str"  # Optional.
             }
     """
 
@@ -1103,7 +1103,7 @@ def build_get200_model_a400_none_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "statusCode": "str (optional)"
+                "statusCode": "str"  # Optional.
             }
     """
 
@@ -1142,7 +1142,7 @@ def build_get200_model_a400_valid_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "statusCode": "str (optional)"
+                "statusCode": "str"  # Optional.
             }
     """
 
@@ -1181,7 +1181,7 @@ def build_get200_model_a400_invalid_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "statusCode": "str (optional)"
+                "statusCode": "str"  # Optional.
             }
     """
 
@@ -1220,7 +1220,7 @@ def build_get200_model_a202_valid_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "statusCode": "str (optional)"
+                "statusCode": "str"  # Optional.
             }
     """
 

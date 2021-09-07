@@ -214,22 +214,16 @@ class PetsOperations(object):
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "": {
-                        "str": "any (optional)"
-                    },
-                    "id": "int",
-                    "name": "str (optional)",
-                    "status": "bool (optional)"
+                    "id": 0,
+                    "name": "str",  # Optional.
+                    "status": bool  # Optional.
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "": {
-                        "str": "any (optional)"
-                    },
-                    "id": "int",
-                    "name": "str (optional)",
-                    "status": "bool (optional)"
+                    "id": 0,
+                    "name": "str",  # Optional.
+                    "status": bool  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -286,24 +280,18 @@ class PetsOperations(object):
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "": {
-                        "str": "any (optional)"
-                    },
-                    "friendly": "bool (optional)",
-                    "id": "int",
-                    "name": "str (optional)",
-                    "status": "bool (optional)"
+                    "friendly": bool,  # Optional.
+                    "id": 0,
+                    "name": "str",  # Optional.
+                    "status": bool  # Optional.
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "": {
-                        "str": "any (optional)"
-                    },
-                    "friendly": "bool (optional)",
-                    "id": "int",
-                    "name": "str (optional)",
-                    "status": "bool (optional)"
+                    "friendly": bool,  # Optional.
+                    "id": 0,
+                    "name": "str",  # Optional.
+                    "status": bool  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -360,22 +348,16 @@ class PetsOperations(object):
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "": {
-                        "str": "any (optional)"
-                    },
-                    "id": "int",
-                    "name": "str (optional)",
-                    "status": "bool (optional)"
+                    "id": 0,
+                    "name": "str",  # Optional.
+                    "status": bool  # Optional.
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "": {
-                        "str": "any (optional)"
-                    },
-                    "id": "int",
-                    "name": "str (optional)",
-                    "status": "bool (optional)"
+                    "id": 0,
+                    "name": "str",  # Optional.
+                    "status": bool  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -432,22 +414,16 @@ class PetsOperations(object):
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "": {
-                        "str": "str (optional)"
-                    },
-                    "id": "int",
-                    "name": "str (optional)",
-                    "status": "bool (optional)"
+                    "id": 0,
+                    "name": "str",  # Optional.
+                    "status": bool  # Optional.
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "": {
-                        "str": "str (optional)"
-                    },
-                    "id": "int",
-                    "name": "str (optional)",
-                    "status": "bool (optional)"
+                    "id": 0,
+                    "name": "str",  # Optional.
+                    "status": bool  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -504,22 +480,16 @@ class PetsOperations(object):
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "additionalProperties": {
-                        "str": "float (optional)"
-                    },
-                    "id": "int",
-                    "name": "str (optional)",
-                    "status": "bool (optional)"
+                    "id": 0,
+                    "name": "str",  # Optional.
+                    "status": bool  # Optional.
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "additionalProperties": {
-                        "str": "float (optional)"
-                    },
-                    "id": "int",
-                    "name": "str (optional)",
-                    "status": "bool (optional)"
+                    "id": 0,
+                    "name": "str",  # Optional.
+                    "status": bool  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -576,30 +546,24 @@ class PetsOperations(object):
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "": {
-                        "str": "str (optional)"
-                    },
                     "@odata.location": "str",
                     "additionalProperties": {
-                        "str": "float (optional)"
+                        "str": 0.0  # Optional. Dictionary of :code:`<number>`.
                     },
-                    "id": "int",
-                    "name": "str (optional)",
-                    "status": "bool (optional)"
+                    "id": 0,
+                    "name": "str",  # Optional.
+                    "status": bool  # Optional.
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "": {
-                        "str": "str (optional)"
-                    },
                     "@odata.location": "str",
                     "additionalProperties": {
-                        "str": "float (optional)"
+                        "str": 0.0  # Optional. Dictionary of :code:`<number>`.
                     },
-                    "id": "int",
-                    "name": "str (optional)",
-                    "status": "bool (optional)"
+                    "id": 0,
+                    "name": "str",  # Optional.
+                    "status": bool  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]

@@ -80,11 +80,14 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         if self._created_json_template_representation:
             return "..."  # do this to avoid loop
         self._created_json_template_representation = True
+        # don't add additional properties, because there's not really a concept of
+        # additional properties in the template
         representation = {
-            "{}".format(
-                prop.original_swagger_name
-            ): prop.get_json_template_representation(**kwargs)
-            for prop in [p for p in self.properties if not p.is_discriminator]
+            f'"{prop.original_swagger_name}"': prop.get_json_template_representation(**kwargs)
+            for prop in [
+                p for p in self.properties
+                if not (p.is_discriminator or p.name == "additional_properties")
+            ]
         }
         try:
             # add discriminator prop if there is one

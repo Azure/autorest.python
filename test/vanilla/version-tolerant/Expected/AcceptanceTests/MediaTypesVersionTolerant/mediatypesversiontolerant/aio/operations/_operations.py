@@ -50,7 +50,7 @@ class MediaTypesClientOperationsMixin:
 
                 # JSON input template you can fill out and use as your body input.
                 input = {
-                    "source": "str (optional)"
+                    "source": "str"  # Optional. File source path.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
@@ -120,7 +120,7 @@ class MediaTypesClientOperationsMixin:
 
                 # JSON input template you can fill out and use as your body input.
                 input = {
-                    "source": "str (optional)"
+                    "source": "str"  # Optional. File source path.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
