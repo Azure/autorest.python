@@ -81,9 +81,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
             return "..."  # do this to avoid loop
         self._created_json_template_representation = True
         representation = {
-            "{}".format(
-                prop.original_swagger_name
-            ): prop.get_json_template_representation(**kwargs)
+            f'"{prop.original_swagger_name}"': prop.get_json_template_representation(**kwargs)
             for prop in [p for p in self.properties if not p.is_discriminator]
         }
         try:

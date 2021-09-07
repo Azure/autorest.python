@@ -13,11 +13,6 @@ from .imports import FileImport, ImportType, TypingSection
 
 
 _LOGGER = logging.getLogger(__name__)
-_CONVERT = {
-    'float': '0.0',
-    'bool': 'True',
-    'int': '0'
-}
 
 class RawString(object):
     def __init__(self, string: str) -> None:
@@ -26,23 +21,7 @@ class RawString(object):
     def __repr__(self) -> str:
         return "r'{}'".format(self.string.replace('\'', '\\\''))
 
-def _add_optional_and_default_value_template_representation(
-    representation: str,   # pylint: disable=unused-argument
-    *,
-    optional: bool = True,
-    default_value_declaration: Optional[str] = None,
-    description: Optional[str] = None,
-    **kwargs: Any
-):
-    if default_value_declaration and default_value_declaration != 'None':
-        representation = str(default_value_declaration).strip('"')
-    else:
-        representation = _CONVERT.get(representation, representation)
-    if optional:
-        representation += "# optional."
-    if description:
-        representation += f"# {description}"
-    return representation
+
 
 class PrimitiveSchema(BaseSchema):
     _TYPE_MAPPINGS = {
@@ -68,17 +47,44 @@ class PrimitiveSchema(BaseSchema):
     def docstring_text(self) -> str:
         return self.docstring_type
 
+    def _add_optional_and_default_value_template_representation(
+        self,
+        *,
+        optional: bool = True,
+        default_value_declaration: Optional[str] = None,
+        description: Optional[str] = None,
+    ):
+        comment = ""
+        if optional:
+            comment += " Optional."
+        if default_value_declaration:
+            comment += f" Default value is {default_value_declaration}."
+        else:
+            default_value_declaration = self.default_template_representation_declaration
+        if description:
+            comment += f" {description}"
+        if comment:
+            comment = f"#{comment}"
+        return f"{default_value_declaration}{comment}"
+
     def get_json_template_representation(self, **kwargs: Any) -> Any:
-        return _add_optional_and_default_value_template_representation(
-            representation=self.docstring_text,
+        if self.default_value:
+            kwargs["default_value_declaration"] = kwargs.get(
+                "default_value_declaration",
+                self.get_declaration(self.default_value)
+            )
+        return self._add_optional_and_default_value_template_representation(
             **kwargs
         )
+
+    @property
+    def default_template_representation_declaration(self) -> str:
+        return self.get_declaration(self.docstring_type)
 
     def get_files_template_representation(self, **kwargs: Any) -> Any:
         """Template of what the files input should look like
         """
-        return _add_optional_and_default_value_template_representation(
-            representation=self.docstring_text,
+        return self._add_optional_and_default_value_template_representation(
             **kwargs
         )
 
@@ -104,6 +110,10 @@ class IOSchema(PrimitiveSchema):
     def docstring_text(self) -> str:
         return "IO"
 
+    @property
+    def default_template_representation_declaration(self) -> str:
+        return self.get_declaration(b"bytes")
+
     def imports(self) -> FileImport:
         file_import = FileImport()
         file_import.add_from_import("typing", "IO", ImportType.STDLIB, TypingSection.CONDITIONAL)
@@ -121,6 +131,10 @@ class AnySchema(PrimitiveSchema):
     @property
     def type_annotation(self) -> str:
         return "Any"
+
+    @property
+    def default_template_representation_declaration(self) -> str:
+        return self.get_declaration({})
 
     def imports(self) -> FileImport:
         file_import = FileImport()
@@ -187,6 +201,11 @@ class NumberSchema(PrimitiveSchema):
         if python_type == "long":
             return "int"
         return python_type
+
+    @property
+    def default_template_representation_declaration(self) -> str:
+        default_value = 0 if self.docstring_type == "int" else 0.0
+        return self.get_declaration(default_value)
 
 class StringSchema(PrimitiveSchema):
 
@@ -260,6 +279,10 @@ class DatetimeSchema(PrimitiveSchema):
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
 
+    @property
+    def default_template_representation_declaration(self):
+        return self.get_declaration(datetime.datetime(2020, 2, 20))
+
 class TimeSchema(PrimitiveSchema):
     @property
     def serialization_type(self) -> str:
@@ -287,6 +310,10 @@ class TimeSchema(PrimitiveSchema):
         file_import = FileImport()
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
+
+    @property
+    def default_template_representation_declaration(self) -> str:
+        return self.get_declaration(datetime.time(12, 30, 0))
 
 
 class UnixTimeSchema(PrimitiveSchema):
@@ -317,6 +344,10 @@ class UnixTimeSchema(PrimitiveSchema):
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
 
+    @property
+    def default_template_representation_declaration(self) -> str:
+        return self.get_declaration(datetime.datetime(2020, 2, 20))
+
 
 class DateSchema(PrimitiveSchema):
     @property
@@ -346,6 +377,10 @@ class DateSchema(PrimitiveSchema):
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
 
+    @property
+    def default_template_representation_declaration(self) -> str:
+        return self.get_declaration(datetime.date(2020, 2, 20))
+
 
 class DurationSchema(PrimitiveSchema):
     @property
@@ -374,6 +409,10 @@ class DurationSchema(PrimitiveSchema):
         file_import = FileImport()
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
+
+    @property
+    def default_template_representation_declaration(self) -> str:
+        return self.get_declaration(datetime.timedelta(1))
 
 
 class ByteArraySchema(PrimitiveSchema):

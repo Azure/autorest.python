@@ -37,32 +37,32 @@ def build_put201_creating_succeeded200_request(*, json: Any = None, content: Any
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "id": "str (optional)",
-                "location": "str (optional)",
-                "name": "str (optional)",
+                "id": "str",  # Optional. Resource Id.
+                "location": "str",  # Optional. Resource Location.
+                "name": "str",  # Optional. Resource Name.
                 "properties": {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "provisioningState": "str",  # Optional.
+                    "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
-                    "str": "str (optional)"
+                    "str": "str"  # Optional. Dictionary of :code:`<string>`.
                 },
-                "type": "str (optional)"
+                "type": "str"  # Optional. Resource Type.
             }
 
             # response body for status code(s): 200, 201
             response.json() == {
-                "id": "str (optional)",
-                "location": "str (optional)",
-                "name": "str (optional)",
+                "id": "str",  # Optional. Resource Id.
+                "location": "str",  # Optional. Resource Location.
+                "name": "str",  # Optional. Resource Name.
                 "properties": {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "provisioningState": "str",  # Optional.
+                    "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
-                    "str": "str (optional)"
+                    "str": "str"  # Optional. Dictionary of :code:`<string>`.
                 },
-                "type": "str (optional)"
+                "type": "str"  # Optional. Resource Type.
             }
     """
 
@@ -107,32 +107,32 @@ def build_put_async_relative_retry_succeeded_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "id": "str (optional)",
-                "location": "str (optional)",
-                "name": "str (optional)",
+                "id": "str",  # Optional. Resource Id.
+                "location": "str",  # Optional. Resource Location.
+                "name": "str",  # Optional. Resource Name.
                 "properties": {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "provisioningState": "str",  # Optional.
+                    "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
-                    "str": "str (optional)"
+                    "str": "str"  # Optional. Dictionary of :code:`<string>`.
                 },
-                "type": "str (optional)"
+                "type": "str"  # Optional. Resource Type.
             }
 
             # response body for status code(s): 200
             response.json() == {
-                "id": "str (optional)",
-                "location": "str (optional)",
-                "name": "str (optional)",
+                "id": "str",  # Optional. Resource Id.
+                "location": "str",  # Optional. Resource Location.
+                "name": "str",  # Optional. Resource Name.
                 "properties": {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "provisioningState": "str",  # Optional.
+                    "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
-                    "str": "str (optional)"
+                    "str": "str"  # Optional. Dictionary of :code:`<string>`.
                 },
-                "type": "str (optional)"
+                "type": "str"  # Optional. Resource Type.
             }
     """
 
@@ -169,17 +169,17 @@ def build_delete_provisioning202_accepted200_succeeded_request(**kwargs: Any) ->
 
             # response body for status code(s): 200, 202
             response.json() == {
-                "id": "str (optional)",
-                "location": "str (optional)",
-                "name": "str (optional)",
+                "id": "str",  # Optional. Resource Id.
+                "location": "str",  # Optional. Resource Location.
+                "name": "str",  # Optional. Resource Name.
                 "properties": {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "provisioningState": "str",  # Optional.
+                    "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
-                    "str": "str (optional)"
+                    "str": "str"  # Optional. Dictionary of :code:`<string>`.
                 },
-                "type": "str (optional)"
+                "type": "str"  # Optional. Resource Type.
             }
     """
 
@@ -265,17 +265,17 @@ def build_post202_retry200_request(*, json: Any = None, content: Any = None, **k
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "id": "str (optional)",
-                "location": "str (optional)",
-                "name": "str (optional)",
+                "id": "str",  # Optional. Resource Id.
+                "location": "str",  # Optional. Resource Location.
+                "name": "str",  # Optional. Resource Name.
                 "properties": {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "provisioningState": "str",  # Optional.
+                    "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
-                    "str": "str (optional)"
+                    "str": "str"  # Optional. Dictionary of :code:`<string>`.
                 },
-                "type": "str (optional)"
+                "type": "str"  # Optional. Resource Type.
             }
     """
 
@@ -320,17 +320,17 @@ def build_post_async_relative_retry_succeeded_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "id": "str (optional)",
-                "location": "str (optional)",
-                "name": "str (optional)",
+                "id": "str",  # Optional. Resource Id.
+                "location": "str",  # Optional. Resource Location.
+                "name": "str",  # Optional. Resource Name.
                 "properties": {
-                    "provisioningState": "str (optional)",
-                    "provisioningStateValues": "str (optional)"
+                    "provisioningState": "str",  # Optional.
+                    "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
-                    "str": "str (optional)"
+                    "str": "str"  # Optional. Dictionary of :code:`<string>`.
                 },
-                "type": "str (optional)"
+                "type": "str"  # Optional. Resource Type.
             }
     """
 

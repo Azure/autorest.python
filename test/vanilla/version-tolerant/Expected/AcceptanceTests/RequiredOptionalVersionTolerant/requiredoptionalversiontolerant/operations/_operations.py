@@ -1340,7 +1340,7 @@ class ExplicitOperations(object):
 
                 # JSON input template you can fill out and use as your body input.
                 body_parameter = {
-                    "value": "int"
+                    "value": 0
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -1390,7 +1390,7 @@ class ExplicitOperations(object):
 
                 # JSON input template you can fill out and use as your body input.
                 body_parameter = {
-                    "value": "int (optional)"
+                    "value": 0  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -1657,7 +1657,7 @@ class ExplicitOperations(object):
 
                 # JSON input template you can fill out and use as your body input.
                 body_parameter = {
-                    "value": "str (optional)"
+                    "value": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -1786,8 +1786,8 @@ class ExplicitOperations(object):
 
                 # JSON input template you can fill out and use as your body input.
                 body_parameter = {
-                    "id": "int",
-                    "name": "str (optional)"
+                    "id": 0,
+                    "name": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -1837,8 +1837,8 @@ class ExplicitOperations(object):
 
                 # JSON input template you can fill out and use as your body input.
                 body_parameter = {
-                    "id": "int",
-                    "name": "str (optional)"
+                    "id": 0,
+                    "name": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -1893,8 +1893,8 @@ class ExplicitOperations(object):
                 # JSON input template you can fill out and use as your body input.
                 body_parameter = {
                     "value": {
-                        "id": "int",
-                        "name": "str (optional)"
+                        "id": 0,
+                        "name": "str"  # Optional.
                     }
                 }
         """
@@ -1946,8 +1946,8 @@ class ExplicitOperations(object):
                 # JSON input template you can fill out and use as your body input.
                 body_parameter = {
                     "value": {
-                        "id": "int",
-                        "name": "str (optional)"
+                        "id": 0,
+                        "name": "str"  # Optional.
                     }
                 }
         """
@@ -2002,7 +2002,7 @@ class ExplicitOperations(object):
 
                 # JSON input template you can fill out and use as your body input.
                 body_parameter = [
-                    "str (optional)"
+                    "str"  # Optional.
                 ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -2052,7 +2052,7 @@ class ExplicitOperations(object):
 
                 # JSON input template you can fill out and use as your body input.
                 body_parameter = [
-                    "str (optional)"
+                    "str"  # Optional.
                 ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -2159,7 +2159,7 @@ class ExplicitOperations(object):
                 # JSON input template you can fill out and use as your body input.
                 body_parameter = {
                     "value": [
-                        "str (optional)"
+                        "str"  # Optional.
                     ]
                 }
         """

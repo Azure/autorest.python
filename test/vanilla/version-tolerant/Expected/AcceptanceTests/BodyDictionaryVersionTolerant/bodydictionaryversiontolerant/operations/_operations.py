@@ -1427,7 +1427,7 @@ class DictionaryOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "str": "int (optional)"
+                    "str": 0  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
@@ -1474,7 +1474,7 @@ class DictionaryOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "str": "int (optional)"
+                    "str": 0  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
@@ -1525,7 +1525,7 @@ class DictionaryOperations(object):
 
                 # JSON input template you can fill out and use as your body input.
                 array_body = {
-                    "str": "str (optional)"
+                    "str": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -1571,7 +1571,7 @@ class DictionaryOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "str": "str (optional)"
+                    "str": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
@@ -1618,7 +1618,7 @@ class DictionaryOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "str": "str (optional)"
+                    "str": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
@@ -1665,7 +1665,7 @@ class DictionaryOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "str": "str (optional)"
+                    "str": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
@@ -1712,7 +1712,7 @@ class DictionaryOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "str": "str (optional)"
+                    "str": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
@@ -1759,7 +1759,7 @@ class DictionaryOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "str": "bool (optional)"
+                    "str": bool  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bool]]
@@ -1810,7 +1810,7 @@ class DictionaryOperations(object):
 
                 # JSON input template you can fill out and use as your body input.
                 array_body = {
-                    "str": "bool (optional)"
+                    "str": bool  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -1856,7 +1856,7 @@ class DictionaryOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "str": "bool (optional)"
+                    "str": bool  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bool]]
@@ -1903,7 +1903,7 @@ class DictionaryOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "str": "bool (optional)"
+                    "str": bool  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bool]]
@@ -1950,7 +1950,7 @@ class DictionaryOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "str": "int (optional)"
+                    "str": 0  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
@@ -2001,7 +2001,7 @@ class DictionaryOperations(object):
 
                 # JSON input template you can fill out and use as your body input.
                 array_body = {
-                    "str": "int (optional)"
+                    "str": 0  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -2047,7 +2047,7 @@ class DictionaryOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "str": "int (optional)"
+                    "str": 0  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
@@ -2094,7 +2094,7 @@ class DictionaryOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "str": "int (optional)"
+                    "str": 0  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
@@ -2141,7 +2141,7 @@ class DictionaryOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "str": "long (optional)"
+                    "str": 0.0  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
@@ -2192,7 +2192,7 @@ class DictionaryOperations(object):
 
                 # JSON input template you can fill out and use as your body input.
                 array_body = {
-                    "str": "long (optional)"
+                    "str": 0.0  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -2238,7 +2238,7 @@ class DictionaryOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "str": "long (optional)"
+                    "str": 0.0  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
@@ -2285,7 +2285,7 @@ class DictionaryOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "str": "long (optional)"
+                    "str": 0.0  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
@@ -2332,7 +2332,7 @@ class DictionaryOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "str": "float (optional)"
+                    "str": 0.0  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
@@ -2383,7 +2383,7 @@ class DictionaryOperations(object):
 
                 # JSON input template you can fill out and use as your body input.
                 array_body = {
-                    "str": "float (optional)"
+                    "str": 0.0  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -2429,7 +2429,7 @@ class DictionaryOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "str": "float (optional)"
+                    "str": 0.0  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
@@ -2476,7 +2476,7 @@ class DictionaryOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "str": "float (optional)"
+                    "str": 0.0  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
@@ -2523,7 +2523,7 @@ class DictionaryOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "str": "float (optional)"
+                    "str": 0.0  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
@@ -2574,7 +2574,7 @@ class DictionaryOperations(object):
 
                 # JSON input template you can fill out and use as your body input.
                 array_body = {
-                    "str": "float (optional)"
+                    "str": 0.0  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -2620,7 +2620,7 @@ class DictionaryOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "str": "float (optional)"
+                    "str": 0.0  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
@@ -2667,7 +2667,7 @@ class DictionaryOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "str": "float (optional)"
+                    "str": 0.0  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
@@ -2714,7 +2714,7 @@ class DictionaryOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "str": "str (optional)"
+                    "str": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
@@ -2765,7 +2765,7 @@ class DictionaryOperations(object):
 
                 # JSON input template you can fill out and use as your body input.
                 array_body = {
-                    "str": "str (optional)"
+                    "str": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -2811,7 +2811,7 @@ class DictionaryOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "str": "str (optional)"
+                    "str": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
@@ -2858,7 +2858,7 @@ class DictionaryOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "str": "str (optional)"
+                    "str": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
@@ -2905,7 +2905,7 @@ class DictionaryOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "str": "date (optional)"
+                    "str": "2020-02-20"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.date]]
@@ -2956,7 +2956,7 @@ class DictionaryOperations(object):
 
                 # JSON input template you can fill out and use as your body input.
                 array_body = {
-                    "str": "date (optional)"
+                    "str": "2020-02-20"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -3002,7 +3002,7 @@ class DictionaryOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "str": "date (optional)"
+                    "str": "2020-02-20"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.date]]
@@ -3049,7 +3049,7 @@ class DictionaryOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "str": "date (optional)"
+                    "str": "2020-02-20"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.date]]
@@ -3097,7 +3097,7 @@ class DictionaryOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "str": "datetime (optional)"
+                    "str": "2020-02-20 00:00:00"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.datetime]]
@@ -3149,7 +3149,7 @@ class DictionaryOperations(object):
 
                 # JSON input template you can fill out and use as your body input.
                 array_body = {
-                    "str": "datetime (optional)"
+                    "str": "2020-02-20 00:00:00"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -3195,7 +3195,7 @@ class DictionaryOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "str": "datetime (optional)"
+                    "str": "2020-02-20 00:00:00"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.datetime]]
@@ -3242,7 +3242,7 @@ class DictionaryOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "str": "datetime (optional)"
+                    "str": "2020-02-20 00:00:00"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.datetime]]
@@ -3290,7 +3290,7 @@ class DictionaryOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "str": "datetime (optional)"
+                    "str": "2020-02-20 00:00:00"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.datetime]]
@@ -3342,7 +3342,7 @@ class DictionaryOperations(object):
 
                 # JSON input template you can fill out and use as your body input.
                 array_body = {
-                    "str": "datetime (optional)"
+                    "str": "2020-02-20 00:00:00"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -3388,7 +3388,7 @@ class DictionaryOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "str": "timedelta (optional)"
+                    "str": "1 day, 0:00:00"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.timedelta]]
@@ -3439,7 +3439,7 @@ class DictionaryOperations(object):
 
                 # JSON input template you can fill out and use as your body input.
                 array_body = {
-                    "str": "timedelta (optional)"
+                    "str": "1 day, 0:00:00"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -3486,7 +3486,7 @@ class DictionaryOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "str": "bytearray (optional)"
+                    "str": bytearray("bytearray", encoding="utf-8")  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bytearray]]
@@ -3538,7 +3538,7 @@ class DictionaryOperations(object):
 
                 # JSON input template you can fill out and use as your body input.
                 array_body = {
-                    "str": "bytearray (optional)"
+                    "str": bytearray("bytearray", encoding="utf-8")  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -3585,7 +3585,7 @@ class DictionaryOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "str": "bytearray (optional)"
+                    "str": bytearray("bytearray", encoding="utf-8")  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bytearray]]
@@ -3633,7 +3633,7 @@ class DictionaryOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "str": "bytes (optional)"
+                    "str": bytes("bytes", encoding="utf-8")  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bytes]]
@@ -3681,8 +3681,8 @@ class DictionaryOperations(object):
                 # response body for status code(s): 200
                 response.json() == {
                     "str": {
-                        "integer": "int (optional)",
-                        "string": "str (optional)"
+                        "integer": 0,  # Optional.
+                        "string": "str"  # Optional.
                     }
                 }
         """
@@ -3731,8 +3731,8 @@ class DictionaryOperations(object):
                 # response body for status code(s): 200
                 response.json() == {
                     "str": {
-                        "integer": "int (optional)",
-                        "string": "str (optional)"
+                        "integer": 0,  # Optional.
+                        "string": "str"  # Optional.
                     }
                 }
         """
@@ -3782,8 +3782,8 @@ class DictionaryOperations(object):
                 # response body for status code(s): 200
                 response.json() == {
                     "str": {
-                        "integer": "int (optional)",
-                        "string": "str (optional)"
+                        "integer": 0,  # Optional.
+                        "string": "str"  # Optional.
                     }
                 }
         """
@@ -3833,8 +3833,8 @@ class DictionaryOperations(object):
                 # response body for status code(s): 200
                 response.json() == {
                     "str": {
-                        "integer": "int (optional)",
-                        "string": "str (optional)"
+                        "integer": 0,  # Optional.
+                        "string": "str"  # Optional.
                     }
                 }
         """
@@ -3884,8 +3884,8 @@ class DictionaryOperations(object):
                 # response body for status code(s): 200
                 response.json() == {
                     "str": {
-                        "integer": "int (optional)",
-                        "string": "str (optional)"
+                        "integer": 0,  # Optional.
+                        "string": "str"  # Optional.
                     }
                 }
         """
@@ -3939,8 +3939,8 @@ class DictionaryOperations(object):
                 # JSON input template you can fill out and use as your body input.
                 array_body = {
                     "str": {
-                        "integer": "int (optional)",
-                        "string": "str (optional)"
+                        "integer": 0,  # Optional.
+                        "string": "str"  # Optional.
                     }
                 }
         """
@@ -3988,7 +3988,7 @@ class DictionaryOperations(object):
                 # response body for status code(s): 200
                 response.json() == {
                     "str": [
-                        "str (optional)"
+                        "str"  # Optional.
                     ]
                 }
         """
@@ -4037,7 +4037,7 @@ class DictionaryOperations(object):
                 # response body for status code(s): 200
                 response.json() == {
                     "str": [
-                        "str (optional)"
+                        "str"  # Optional.
                     ]
                 }
         """
@@ -4086,7 +4086,7 @@ class DictionaryOperations(object):
                 # response body for status code(s): 200
                 response.json() == {
                     "str": [
-                        "str (optional)"
+                        "str"  # Optional.
                     ]
                 }
         """
@@ -4135,7 +4135,7 @@ class DictionaryOperations(object):
                 # response body for status code(s): 200
                 response.json() == {
                     "str": [
-                        "str (optional)"
+                        "str"  # Optional.
                     ]
                 }
         """
@@ -4185,7 +4185,7 @@ class DictionaryOperations(object):
                 # response body for status code(s): 200
                 response.json() == {
                     "str": [
-                        "str (optional)"
+                        "str"  # Optional.
                     ]
                 }
         """
@@ -4239,7 +4239,7 @@ class DictionaryOperations(object):
                 # JSON input template you can fill out and use as your body input.
                 array_body = {
                     "str": [
-                        "str (optional)"
+                        "str"  # Optional.
                     ]
                 }
         """
@@ -4287,7 +4287,7 @@ class DictionaryOperations(object):
                 # response body for status code(s): 200
                 response.json() == {
                     "str": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional.
                     }
                 }
         """
@@ -4336,7 +4336,7 @@ class DictionaryOperations(object):
                 # response body for status code(s): 200
                 response.json() == {
                     "str": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional.
                     }
                 }
         """
@@ -4386,7 +4386,7 @@ class DictionaryOperations(object):
                 # response body for status code(s): 200
                 response.json() == {
                     "str": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional.
                     }
                 }
         """
@@ -4436,7 +4436,7 @@ class DictionaryOperations(object):
                 # response body for status code(s): 200
                 response.json() == {
                     "str": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional.
                     }
                 }
         """
@@ -4487,7 +4487,7 @@ class DictionaryOperations(object):
                 # response body for status code(s): 200
                 response.json() == {
                     "str": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional.
                     }
                 }
         """
@@ -4542,7 +4542,7 @@ class DictionaryOperations(object):
                 # JSON input template you can fill out and use as your body input.
                 array_body = {
                     "str": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional.
                     }
                 }
         """

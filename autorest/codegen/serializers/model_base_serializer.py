@@ -58,8 +58,6 @@ class ModelBaseSerializer:
         else:
             param_doc_string = f":param {prop.name}:"
         description = prop.description
-        if description and description[-1] != ".":
-            description += "."
         if prop.name == "tags":
             description = "A set of tags. " + description
 

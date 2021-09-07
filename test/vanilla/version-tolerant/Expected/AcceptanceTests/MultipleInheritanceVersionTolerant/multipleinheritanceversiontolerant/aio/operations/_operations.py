@@ -52,7 +52,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "isAShowHorse": "bool (optional)",
+                    "isAShowHorse": bool,  # Optional.
                     "name": "str"
                 }
         """
@@ -101,7 +101,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
                 # JSON input template you can fill out and use as your body input.
                 horse = {
-                    "isAShowHorse": "bool (optional)",
+                    "isAShowHorse": bool,  # Optional.
                     "name": "str"
                 }
         """
@@ -254,8 +254,8 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "hisses": "bool (optional)",
-                    "meows": "bool (optional)"
+                    "hisses": bool,  # Optional.
+                    "meows": bool  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -303,8 +303,8 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
                 # JSON input template you can fill out and use as your body input.
                 feline = {
-                    "hisses": "bool (optional)",
-                    "meows": "bool (optional)"
+                    "hisses": bool,  # Optional.
+                    "meows": bool  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
@@ -356,9 +356,9 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "hisses": "bool (optional)",
-                    "likesMilk": "bool (optional)",
-                    "meows": "bool (optional)",
+                    "hisses": bool,  # Optional.
+                    "likesMilk": bool,  # Optional.
+                    "meows": bool,  # Optional.
                     "name": "str"
                 }
         """
@@ -407,9 +407,9 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
                 # JSON input template you can fill out and use as your body input.
                 cat = {
-                    "hisses": "bool (optional)",
-                    "likesMilk": "bool (optional)",
-                    "meows": "bool (optional)",
+                    "hisses": bool,  # Optional.
+                    "likesMilk": bool,  # Optional.
+                    "meows": bool,  # Optional.
                     "name": "str"
                 }
         """
@@ -463,10 +463,10 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "eatsMiceYet": "bool (optional)",
-                    "hisses": "bool (optional)",
-                    "likesMilk": "bool (optional)",
-                    "meows": "bool (optional)",
+                    "eatsMiceYet": bool,  # Optional.
+                    "hisses": bool,  # Optional.
+                    "likesMilk": bool,  # Optional.
+                    "meows": bool,  # Optional.
                     "name": "str"
                 }
         """
@@ -517,10 +517,10 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
                 # JSON input template you can fill out and use as your body input.
                 kitten = {
-                    "eatsMiceYet": "bool (optional)",
-                    "hisses": "bool (optional)",
-                    "likesMilk": "bool (optional)",
-                    "meows": "bool (optional)",
+                    "eatsMiceYet": bool,  # Optional.
+                    "hisses": bool,  # Optional.
+                    "likesMilk": bool,  # Optional.
+                    "meows": bool,  # Optional.
                     "name": "str"
                 }
         """

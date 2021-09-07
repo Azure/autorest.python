@@ -39,10 +39,13 @@ def _improve_json_string(template_representation: str) -> Any:
     for line in origin:
         idx0 = line.find('#')
         idx1 = line.rfind('"')
+        modified_line = ""
         if idx0 > -1 and idx1 > -1:
-            final.append(line[:idx0] + line[idx1:] + ' ' + line[idx0:idx1] + '\n')
+            modified_line = line[:idx0] + line[idx1:] + '  ' + line[idx0:idx1] + '\n'
         else:
-            final.append(line + '\n')
+            modified_line = line + '\n'
+        modified_line = modified_line.replace('"', "").replace("\\", '"')
+        final.append(modified_line)
     return ''.join(final)
 
 def _json_dumps_template(template_representation: Any) -> Any:

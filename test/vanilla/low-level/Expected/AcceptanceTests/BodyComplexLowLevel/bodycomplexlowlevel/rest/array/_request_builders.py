@@ -38,7 +38,7 @@ def build_get_valid_request(
             # response body for status code(s): 200
             response.json() == {
                 "array": [
-                    "str (optional)"
+                    "str"  # Optional.
                 ]
             }
     """
@@ -87,7 +87,7 @@ def build_put_valid_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "array": [
-                    "str (optional)"
+                    "str"  # Optional.
                 ]
             }
     """
@@ -132,7 +132,7 @@ def build_get_empty_request(
             # response body for status code(s): 200
             response.json() == {
                 "array": [
-                    "str (optional)"
+                    "str"  # Optional.
                 ]
             }
     """
@@ -179,7 +179,7 @@ def build_put_empty_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "array": [
-                    "str (optional)"
+                    "str"  # Optional.
                 ]
             }
     """
@@ -224,7 +224,7 @@ def build_get_not_provided_request(
             # response body for status code(s): 200
             response.json() == {
                 "array": [
-                    "str (optional)"
+                    "str"  # Optional.
                 ]
             }
     """

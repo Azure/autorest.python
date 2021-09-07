@@ -44,21 +44,21 @@ def build_create_ap_true_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "": {
-                    "str": "any (optional)"
+                    "str": {}  # Optional. Unmatched properties from the message are deserialized to this collection.
                 },
-                "id": "int",
-                "name": "str (optional)",
-                "status": "bool (optional)"
+                "id": 0,
+                "name": "str",  # Optional.
+                "status": bool  # Optional.
             }
 
             # response body for status code(s): 200
             response.json() == {
                 "": {
-                    "str": "any (optional)"
+                    "str": {}  # Optional. Unmatched properties from the message are deserialized to this collection.
                 },
-                "id": "int",
-                "name": "str (optional)",
-                "status": "bool (optional)"
+                "id": 0,
+                "name": "str",  # Optional.
+                "status": bool  # Optional.
             }
     """
 
@@ -108,23 +108,23 @@ def build_create_cat_ap_true_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "": {
-                    "str": "any (optional)"
+                    "str": {}  # Optional. Unmatched properties from the message are deserialized to this collection.
                 },
-                "friendly": "bool (optional)",
-                "id": "int",
-                "name": "str (optional)",
-                "status": "bool (optional)"
+                "friendly": bool,  # Optional.
+                "id": 0,
+                "name": "str",  # Optional.
+                "status": bool  # Optional.
             }
 
             # response body for status code(s): 200
             response.json() == {
                 "": {
-                    "str": "any (optional)"
+                    "str": {}  # Optional. Unmatched properties from the message are deserialized to this collection.
                 },
-                "friendly": "bool (optional)",
-                "id": "int",
-                "name": "str (optional)",
-                "status": "bool (optional)"
+                "friendly": bool,  # Optional.
+                "id": 0,
+                "name": "str",  # Optional.
+                "status": bool  # Optional.
             }
     """
 
@@ -174,21 +174,21 @@ def build_create_ap_object_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "": {
-                    "str": "any (optional)"
+                    "str": {}  # Optional. Unmatched properties from the message are deserialized to this collection.
                 },
-                "id": "int",
-                "name": "str (optional)",
-                "status": "bool (optional)"
+                "id": 0,
+                "name": "str",  # Optional.
+                "status": bool  # Optional.
             }
 
             # response body for status code(s): 200
             response.json() == {
                 "": {
-                    "str": "any (optional)"
+                    "str": {}  # Optional. Unmatched properties from the message are deserialized to this collection.
                 },
-                "id": "int",
-                "name": "str (optional)",
-                "status": "bool (optional)"
+                "id": 0,
+                "name": "str",  # Optional.
+                "status": bool  # Optional.
             }
     """
 
@@ -238,21 +238,21 @@ def build_create_ap_string_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "": {
-                    "str": "str (optional)"
+                    "str": "str"  # Optional. Unmatched properties from the message are deserialized to this collection.
                 },
-                "id": "int",
-                "name": "str (optional)",
-                "status": "bool (optional)"
+                "id": 0,
+                "name": "str",  # Optional.
+                "status": bool  # Optional.
             }
 
             # response body for status code(s): 200
             response.json() == {
                 "": {
-                    "str": "str (optional)"
+                    "str": "str"  # Optional. Unmatched properties from the message are deserialized to this collection.
                 },
-                "id": "int",
-                "name": "str (optional)",
-                "status": "bool (optional)"
+                "id": 0,
+                "name": "str",  # Optional.
+                "status": bool  # Optional.
             }
     """
 
@@ -302,21 +302,21 @@ def build_create_ap_in_properties_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "additionalProperties": {
-                    "str": "float (optional)"
+                    "str": 0.0  # Optional. Dictionary of :code:`<number>`.
                 },
-                "id": "int",
-                "name": "str (optional)",
-                "status": "bool (optional)"
+                "id": 0,
+                "name": "str",  # Optional.
+                "status": bool  # Optional.
             }
 
             # response body for status code(s): 200
             response.json() == {
                 "additionalProperties": {
-                    "str": "float (optional)"
+                    "str": 0.0  # Optional. Dictionary of :code:`<number>`.
                 },
-                "id": "int",
-                "name": "str (optional)",
-                "status": "bool (optional)"
+                "id": 0,
+                "name": "str",  # Optional.
+                "status": bool  # Optional.
             }
     """
 
@@ -366,29 +366,29 @@ def build_create_ap_in_properties_with_ap_string_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "": {
-                    "str": "str (optional)"
+                    "str": "str"  # Optional. Unmatched properties from the message are deserialized to this collection.
                 },
                 "@odata.location": "str",
                 "additionalProperties": {
-                    "str": "float (optional)"
+                    "str": 0.0  # Optional. Dictionary of :code:`<number>`.
                 },
-                "id": "int",
-                "name": "str (optional)",
-                "status": "bool (optional)"
+                "id": 0,
+                "name": "str",  # Optional.
+                "status": bool  # Optional.
             }
 
             # response body for status code(s): 200
             response.json() == {
                 "": {
-                    "str": "str (optional)"
+                    "str": "str"  # Optional. Unmatched properties from the message are deserialized to this collection.
                 },
                 "@odata.location": "str",
                 "additionalProperties": {
-                    "str": "float (optional)"
+                    "str": 0.0  # Optional. Dictionary of :code:`<number>`.
                 },
-                "id": "int",
-                "name": "str (optional)",
-                "status": "bool (optional)"
+                "id": 0,
+                "name": "str",  # Optional.
+                "status": bool  # Optional.
             }
     """
 

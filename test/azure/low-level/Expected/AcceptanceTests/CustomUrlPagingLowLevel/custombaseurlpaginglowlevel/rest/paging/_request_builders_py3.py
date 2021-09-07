@@ -31,12 +31,12 @@ def build_get_pages_partial_url_request(**kwargs: Any) -> HttpRequest:
 
             # response body for status code(s): 200
             response.json() == {
-                "nextLink": "str (optional)",
+                "nextLink": "str",  # Optional.
                 "values": [
                     {
                         "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
+                            "id": 0,  # Optional.
+                            "name": "str"  # Optional.
                         }
                     }
                 ]
@@ -70,12 +70,12 @@ def build_get_pages_partial_url_operation_request(**kwargs: Any) -> HttpRequest:
 
             # response body for status code(s): 200
             response.json() == {
-                "nextLink": "str (optional)",
+                "nextLink": "str",  # Optional.
                 "values": [
                     {
                         "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
+                            "id": 0,  # Optional.
+                            "name": "str"  # Optional.
                         }
                     }
                 ]
@@ -111,12 +111,12 @@ def build_get_pages_partial_url_operation_next_request(next_link: str, **kwargs:
 
             # response body for status code(s): 200
             response.json() == {
-                "nextLink": "str (optional)",
+                "nextLink": "str",  # Optional.
                 "values": [
                     {
                         "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
+                            "id": 0,  # Optional.
+                            "name": "str"  # Optional.
                         }
                     }
                 ]

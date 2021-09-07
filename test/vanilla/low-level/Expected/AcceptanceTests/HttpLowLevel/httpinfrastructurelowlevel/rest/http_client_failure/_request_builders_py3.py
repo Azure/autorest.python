@@ -103,7 +103,7 @@ def build_put400_request(*, json: Any = None, content: Any = None, **kwargs: Any
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "bool (optional)"
+            json = True  # Optional. Default value is True.
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -142,7 +142,7 @@ def build_patch400_request(*, json: Any = None, content: Any = None, **kwargs: A
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "bool (optional)"
+            json = True  # Optional. Default value is True.
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -181,7 +181,7 @@ def build_post400_request(*, json: Any = None, content: Any = None, **kwargs: An
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "bool (optional)"
+            json = True  # Optional. Default value is True.
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -220,7 +220,7 @@ def build_delete400_request(*, json: Any = None, content: Any = None, **kwargs: 
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "bool (optional)"
+            json = True  # Optional. Default value is True.
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -351,7 +351,7 @@ def build_put404_request(*, json: Any = None, content: Any = None, **kwargs: Any
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "bool (optional)"
+            json = True  # Optional. Default value is True.
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -390,7 +390,7 @@ def build_patch405_request(*, json: Any = None, content: Any = None, **kwargs: A
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "bool (optional)"
+            json = True  # Optional. Default value is True.
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -429,7 +429,7 @@ def build_post406_request(*, json: Any = None, content: Any = None, **kwargs: An
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "bool (optional)"
+            json = True  # Optional. Default value is True.
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -468,7 +468,7 @@ def build_delete407_request(*, json: Any = None, content: Any = None, **kwargs: 
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "bool (optional)"
+            json = True  # Optional. Default value is True.
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -507,7 +507,7 @@ def build_put409_request(*, json: Any = None, content: Any = None, **kwargs: Any
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "bool (optional)"
+            json = True  # Optional. Default value is True.
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -638,7 +638,7 @@ def build_put413_request(*, json: Any = None, content: Any = None, **kwargs: Any
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "bool (optional)"
+            json = True  # Optional. Default value is True.
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -677,7 +677,7 @@ def build_patch414_request(*, json: Any = None, content: Any = None, **kwargs: A
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "bool (optional)"
+            json = True  # Optional. Default value is True.
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -716,7 +716,7 @@ def build_post415_request(*, json: Any = None, content: Any = None, **kwargs: An
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "bool (optional)"
+            json = True  # Optional. Default value is True.
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -778,7 +778,7 @@ def build_delete417_request(*, json: Any = None, content: Any = None, **kwargs: 
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "bool (optional)"
+            json = True  # Optional. Default value is True.
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]

@@ -74,7 +74,7 @@ def build_put_positive_duration_request(
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "timedelta (optional)"
+            json = "1 day, 0:00:00"  # Optional.
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]

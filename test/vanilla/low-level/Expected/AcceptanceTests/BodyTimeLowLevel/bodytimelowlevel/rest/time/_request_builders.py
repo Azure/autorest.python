@@ -74,7 +74,7 @@ def build_put_request(
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "time (optional)"
+            json = "12:30:00"  # Optional.
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
