@@ -224,7 +224,6 @@ def test_response_protected_key(send_request):
     request = header.build_response_protected_key_request()
     assert send_request(request).headers['Content-Type'] == "text/html; charset=utf-8"
 
-@pytest.mark.xfail(reason="https://github.com/Azure/azure-sdk-for-python/issues/17757")
 def test_custom_request_id(send_request):
     custom_headers = {"x-ms-client-request-id": "9C4D50EE-2D56-4CD3-8152-34347DC9F2B0"}
     request = header.build_custom_request_id_request(headers=custom_headers)

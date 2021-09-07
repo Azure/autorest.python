@@ -53,7 +53,7 @@ def send_request_json_response(client, base_send_request_json_response):
 @pytest.mark.asyncio
 async def test_get_null(send_request):
     request = datetimerfc1123.build_get_null_request()
-    assert (await send_request(request)).text == ''
+    assert (await send_request(request)).text() == ''
 
 @pytest.mark.asyncio
 async def test_get_invalid(send_request_json_response):

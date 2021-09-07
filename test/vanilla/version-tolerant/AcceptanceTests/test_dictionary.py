@@ -57,11 +57,21 @@ def test_dict():
     test_product3 = {"integer": 5, "string": "6"}
     return {"0":test_product1, "1":test_product2, "2":test_product3}
 
+@pytest.fixture
+def get_deserialized_dict(send_request_json_response):
+    def _get_deserialized_dict(request, deserialize_value_callable):
+        json_response = send_request_json_response(request)
+        for key in json_response:
+            if json_response[key]:
+                json_response[key] = deserialize_value_callable(json_response[key])
+        return json_response
+    return _get_deserialized_dict
+
 def get_deserialized_dict(response, deserializer):
-    return {
-        str(idx): deserializer(response[key]) if response[key] else None
-        for idx, key in enumerate(response.keys())
-    }
+    for key in response:
+        if response[key]:
+            response[key] = deserializer(response[key])
+    return response
 
 def get_serialized_dict(dict, serializer):
     return {

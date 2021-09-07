@@ -54,12 +54,12 @@ async def test_non_ascii(send_request):
     await send_request(request)
 
     request = byte.build_get_non_ascii_request()
-    assert tests == deserialize_base64((await send_request(request)).text)
+    assert tests == deserialize_base64((await send_request(request)).text())
 
 @pytest.mark.asyncio
 async def test_get_null(send_request):
     request = byte.build_get_null_request()
-    assert (await send_request(request)).text == ''
+    assert (await send_request(request)).text() == ''
 
 @pytest.mark.asyncio
 async def test_get_empty(send_request):

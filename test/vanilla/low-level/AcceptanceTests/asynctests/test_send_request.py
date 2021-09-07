@@ -66,10 +66,10 @@ class TestSendRequest(object):
         )
 
         async with client.send_request(request, stream=True) as response:
-            data = ''
-            async for chunk in response.iter_text():
+            data = b''
+            async for chunk in response.iter_bytes():
                 data += chunk
-        json_response = json.loads(data)
+        json_response = json.loads(data.decode('utf-8'))
         assert 2 == json_response['id']
         assert "Siameeee" == json_response['name']
         assert - 1 == json_response['hates'][1]['id']

@@ -124,7 +124,7 @@ def test_get200_model204(send_request, send_request_assert_status, send_request_
 
     request = multiple_responses.build_get200_model204_no_model_default_error204_valid_request()
 
-    assert send_request(request).text == ''
+    assert send_request(request).text() == ''
 
     request = multiple_responses.build_get200_model204_no_model_default_error400_valid_request()
     send_request_assert_raises_with_status_and_response_contains_message(request, 400, "client error")
@@ -185,7 +185,7 @@ def test_get_default_model_a200(send_request, send_request_assert_status):
     send_request_assert_status(request, 200)
 
     request = multiple_responses.build_get_default_model_a200_none_request()
-    assert send_request(request).text == ''
+    assert send_request(request).text() == ''
 
     request = multiple_responses.build_get_default_model_a200_valid_request()
     send_request(request)
@@ -208,7 +208,7 @@ def test_get_default_none400(send_request_assert_raises_with_status):
 
 def test_get200_model_a200(send_request, send_request_assert_status):
     request = multiple_responses.build_get200_model_a200_none_request()
-    assert send_request(request).text == ''
+    assert send_request(request).text() == ''
 
     request = multiple_responses.build_get200_model_a200_valid_request()
     send_request_assert_status(request, 200)
@@ -430,7 +430,7 @@ def test_success_status_codes_200(send_request):
     request = http_success.build_head200_request()
     send_request(request)
     request = http_success.build_get200_request()
-    assert send_request(request).text
+    assert send_request(request).text()
 
     request = http_success.build_put200_request()
     send_request(request)

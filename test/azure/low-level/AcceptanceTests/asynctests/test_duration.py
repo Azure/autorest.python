@@ -54,7 +54,7 @@ def send_request_json_response(client, base_send_request_json_response):
 @pytest.mark.asyncio
 async def test_get_null_and_invalid(send_request, send_request_json_response):
     request = duration.build_get_null_request()
-    assert (await send_request(request)).text == ''
+    assert (await send_request(request)).text() == ''
 
     # in llc, we don't raise deserialization error
     request = duration.build_get_invalid_request()
