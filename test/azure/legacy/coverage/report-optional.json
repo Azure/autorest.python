@@ -1,5 +1,5 @@
 {
-  "StreamUploadFile": 89,
+  "StreamUploadFile": 99,
   "UpdatePetWithForm": 0,
   "getDecimalInvalid": 17,
   "getDecimalBig": 17,
@@ -17,8 +17,8 @@
   "putDateTimeMinLocalPositiveOffset": 0,
   "putDateTimeMinLocalNegativeOffset": 17,
   "HeaderParameterProtectedKey": 1,
-  "CustomHeaderInRequest": 26,
-  "FormdataStreamUploadFile": 49,
+  "CustomHeaderInRequest": 28,
+  "FormdataStreamUploadFile": 59,
   "HttpSuccess200Options": 0,
   "HttpRedirect307Options": 0,
   "HttpRetry502Options": 0,

@@ -76,6 +76,7 @@ def test_file_upload_stream(client):
                 result.write(data)
     assert result.getvalue().decode() ==  test_string
 
+@pytest.mark.skipif(sys.version_info < (3, 0), reason="our copying of the request is closing the file in 2.7")
 def test_file_upload_file_stream(client, dummy_file):
 
     name = os.path.basename(dummy_file)
@@ -92,6 +93,8 @@ def test_file_upload_file_stream(client, dummy_file):
                 result.write(data)
         assert result.getvalue().decode() ==  "Test file"
 
+
+@pytest.mark.skipif(sys.version_info < (3, 0), reason="our copying of the request is closing the file in 2.7")
 def test_file_body_upload(client, dummy_file):
 
     test_string = "Upload file test case"
