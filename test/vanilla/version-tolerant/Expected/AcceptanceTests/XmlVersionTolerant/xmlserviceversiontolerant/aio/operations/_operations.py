@@ -119,7 +119,7 @@ class XmlOperations:
             raise HttpResponseError(response=response)
 
         if response.content:
-            deserialized = ET.fromstring(response.text)
+            deserialized = ET.fromstring(response.text())
         else:
             deserialized = None
 
@@ -218,7 +218,7 @@ class XmlOperations:
             raise HttpResponseError(response=response)
 
         if response.content:
-            deserialized = ET.fromstring(response.text)
+            deserialized = ET.fromstring(response.text())
         else:
             deserialized = None
 
@@ -325,7 +325,7 @@ class XmlOperations:
             raise HttpResponseError(response=response)
 
         if response.content:
-            deserialized = ET.fromstring(response.text)
+            deserialized = ET.fromstring(response.text())
         else:
             deserialized = None
 
@@ -434,7 +434,7 @@ class XmlOperations:
             raise HttpResponseError(response=response)
 
         if response.content:
-            deserialized = ET.fromstring(response.text)
+            deserialized = ET.fromstring(response.text())
         else:
             deserialized = None
 
@@ -577,7 +577,7 @@ class XmlOperations:
             raise HttpResponseError(response=response)
 
         if response.content:
-            deserialized = ET.fromstring(response.text)
+            deserialized = ET.fromstring(response.text())
         else:
             deserialized = None
 
@@ -686,7 +686,7 @@ class XmlOperations:
             raise HttpResponseError(response=response)
 
         if response.content:
-            deserialized = ET.fromstring(response.text)
+            deserialized = ET.fromstring(response.text())
         else:
             deserialized = None
 
@@ -788,7 +788,7 @@ class XmlOperations:
             raise HttpResponseError(response=response)
 
         if response.content:
-            deserialized = ET.fromstring(response.text)
+            deserialized = ET.fromstring(response.text())
         else:
             deserialized = None
 
@@ -890,7 +890,7 @@ class XmlOperations:
             raise HttpResponseError(response=response)
 
         if response.content:
-            deserialized = ET.fromstring(response.text)
+            deserialized = ET.fromstring(response.text())
         else:
             deserialized = None
 
@@ -992,7 +992,7 @@ class XmlOperations:
             raise HttpResponseError(response=response)
 
         if response.content:
-            deserialized = ET.fromstring(response.text)
+            deserialized = ET.fromstring(response.text())
         else:
             deserialized = None
 
@@ -1092,7 +1092,7 @@ class XmlOperations:
             raise HttpResponseError(response=response)
 
         if response.content:
-            deserialized = ET.fromstring(response.text)
+            deserialized = ET.fromstring(response.text())
         else:
             deserialized = None
 
@@ -1207,7 +1207,7 @@ class XmlOperations:
             raise HttpResponseError(response=response)
 
         if response.content:
-            deserialized = ET.fromstring(response.text)
+            deserialized = ET.fromstring(response.text())
         else:
             deserialized = None
 
@@ -1294,7 +1294,7 @@ class XmlOperations:
             raise HttpResponseError(response=response)
 
         if response.content:
-            deserialized = ET.fromstring(response.text)
+            deserialized = ET.fromstring(response.text())
         else:
             deserialized = None
 
@@ -1435,7 +1435,7 @@ class XmlOperations:
             raise HttpResponseError(response=response)
 
         if response.content:
-            deserialized = ET.fromstring(response.text)
+            deserialized = ET.fromstring(response.text())
         else:
             deserialized = None
 
@@ -1589,7 +1589,7 @@ class XmlOperations:
             raise HttpResponseError(response=response)
 
         if response.content:
-            deserialized = ET.fromstring(response.text)
+            deserialized = ET.fromstring(response.text())
         else:
             deserialized = None
 
@@ -1731,7 +1731,7 @@ class XmlOperations:
             raise HttpResponseError(response=response)
 
         if response.content:
-            deserialized = ET.fromstring(response.text)
+            deserialized = ET.fromstring(response.text())
         else:
             deserialized = None
 
@@ -1777,7 +1777,7 @@ class XmlOperations:
             raise HttpResponseError(response=response)
 
         if response.content:
-            deserialized = ET.fromstring(response.text)
+            deserialized = ET.fromstring(response.text())
         else:
             deserialized = None
 
@@ -1870,7 +1870,7 @@ class XmlOperations:
             raise HttpResponseError(response=response)
 
         if response.content:
-            deserialized = ET.fromstring(response.text)
+            deserialized = ET.fromstring(response.text())
         else:
             deserialized = None
 

@@ -1,3 +1,4 @@
+# coding=utf-8
 # --------------------------------------------------------------------------
 #
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -23,34 +24,15 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
+import json
 
-from objecttypelowlevel import ObjectTypeClient
-from objecttypelowlevel.rest import build_get_request, build_put_request
-from azure.core.exceptions import HttpResponseError
+try:
+    JSON_DECODE_ERROR = json.decoder.JSONDecodeError
+except:
+    JSON_DECODE_ERROR = ValueError
 
-import pytest
 
-@pytest.fixture
-def client():
-    with ObjectTypeClient() as client:
-        yield client
-
-@pytest.fixture
-def send_request(client, base_send_request):
-    def _send_request(request):
-        return base_send_request(client, request)
-    return _send_request
-
-def test_get_object(send_request):
-    request = build_get_request()
-    assert send_request(request).json() == {"message": "An object was successfully returned"}
-
-def test_put_object_success(send_request):
-    request = build_put_request(json={"foo": "bar"})
-    assert send_request(request).text() == ''
-
-def test_put_object_fail(send_request):
-    request = build_put_request(json={"should": "fail"})
-    with pytest.raises(HttpResponseError) as ex:
-        send_request(request)
-    assert ex.value.response.json()['message'] == 'The object you passed was incorrect'
+def dicts_equal(dict_one, dict_two):
+    assert set(dict_one.keys()) == set(dict_two.keys())
+    for key in dict_one.keys():
+        assert dict_one[key] == dict_two[key]

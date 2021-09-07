@@ -45,7 +45,7 @@ async def _assert_with_log(func, *args, **kwargs):
     try:
         http_response = await func(*args, cls=raise_for_status, **kwargs)
     except Exception as err:
-        print(err.response.text)
+        print(err.response.text())
         pytest.fail()
 
 @pytest.mark.asyncio

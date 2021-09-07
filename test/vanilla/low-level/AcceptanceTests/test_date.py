@@ -67,7 +67,7 @@ def test_model_get_and_put_min_date(send_request, send_request_json_response):
 
 def test_model_get_null(send_request):
     request = date.build_get_null_request()
-    assert send_request(request).text == ''
+    assert send_request(request).text() == ''
 
 def test_model_get_invalid_date(send_request_json_response):
     request = date.build_get_invalid_date_request()
@@ -83,4 +83,4 @@ def test_model_get_underflow_date(send_request_json_response):
     request = date.build_get_underflow_date_request()
     with pytest.raises(ValueError) as ex:
         isodate.parse_date(send_request_json_response(request))
-    assert "year 0 is out of range" in str(ex.value)
+    assert "out of range" in str(ex.value)
