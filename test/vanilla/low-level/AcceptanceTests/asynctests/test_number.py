@@ -86,7 +86,7 @@ async def test_small_double(send_request, send_request_json_response):
 
 @pytest.mark.asyncio
 async def test_big_double_negative_decimal(send_request, send_request_json_response):
-    request = number.build_get_big_double_negative_decimal_request(json=-99999999.99)
+    request = number.build_put_big_double_negative_decimal_request()
     await send_request(request)
 
     request = number.build_get_big_double_negative_decimal_request()
@@ -134,7 +134,7 @@ async def test_get_big_decimal_positive_decimal(send_request, send_request_json_
 @pytest.mark.asyncio
 async def test_get_null(send_request):
     request = number.build_get_null_request()
-    assert (await send_request(request)).text == ''
+    assert (await send_request(request)).text() == ''
 
 @pytest.mark.asyncio
 async def test_get_invalid_decimal(send_request):

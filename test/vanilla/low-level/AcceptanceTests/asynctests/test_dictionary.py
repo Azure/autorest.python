@@ -302,7 +302,7 @@ async def test_empty(send_request, send_request_json_response):
 async def test_get_null_and_invalid(send_request, send_request_json_response):
 
     request = dictionary.build_get_null_request()
-    assert (await send_request(request)).text == ''
+    assert (await send_request(request)).text() == ''
 
     request = dictionary.build_get_invalid_request()
     with pytest.raises(DecodeError):
@@ -359,7 +359,7 @@ async def test_dictionary_valid(send_request, send_request_json_response):
 async def test_get_complex_null_and_empty(send_request, send_request_json_response):
 
     request = dictionary.build_get_complex_null_request()
-    assert (await send_request(request)).text == ''
+    assert (await send_request(request)).text() == ''
 
     request = dictionary.build_get_complex_empty_request()
     assert {} == await send_request_json_response(request)
@@ -379,7 +379,7 @@ async def test_get_complex_item_null_and_empty(send_request_json_response, test_
 @pytest.mark.asyncio
 async def test_get_array_empty(send_request, send_request_json_response):
     request = dictionary.build_get_array_null_request()
-    assert (await send_request(request)).text == ''
+    assert (await send_request(request)).text() == ''
 
     request = dictionary.build_get_array_empty_request()
     assert {} == await send_request_json_response(request)
@@ -391,13 +391,14 @@ async def test_get_array_item_null_and_empty(send_request_json_response):
     assert list_dict == await send_request_json_response(request)
 
     # in convenience layer, we deserialize as {[str]}. Since we don't have that in llc, the value for "1" will be None, not an empty list
-    list_dict = {"0":["1","2","3"], "1":None, "2":["7","8","9"]}
+    request = dictionary.build_get_array_item_empty_request()
+    list_dict = {"0":["1","2","3"], "1":[], "2":["7","8","9"]}
     assert list_dict == await send_request_json_response(request)
 
 @pytest.mark.asyncio
 async def test_get_dictionary_null_and_empty(send_request, send_request_json_response):
     request = dictionary.build_get_dictionary_null_request()
-    assert (await send_request(request)).text == ''
+    assert (await send_request(request)).text() == ''
 
     request = dictionary.build_get_dictionary_empty_request()
     assert {} == await send_request_json_response(request)

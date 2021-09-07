@@ -36,6 +36,7 @@ import pytest
 async def client():
     async with AutoRestSwaggerBATHeaderService() as client:
         await yield_(client)
+
 @pytest.fixture
 def value_header():
     def _value_header(response, _, headers):
@@ -104,7 +105,7 @@ async def test_string(client, value_header):
     response = await client.header.response_string(scenario="null", cls=value_header)
     assert response == "null"  # TODO This should be None
     response = await client.header.response_string(scenario="empty", cls=value_header)
-    assert response == ""
+    assert response is None
 
 @pytest.mark.asyncio
 async def test_enum(client, value_header):
@@ -120,7 +121,7 @@ async def test_enum(client, value_header):
     # Here we now return empty string without failin **on purpose**
     # with pytest.raises(DeserializationError):
     response = await client.header.response_enum(scenario="null", cls=value_header)
-    assert response == ""
+    assert response is None
 
 @pytest.mark.asyncio
 async def test_date(client, value_header):

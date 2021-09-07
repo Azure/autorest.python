@@ -50,11 +50,11 @@ def test_non_ascii(send_request):
     send_request(request)
 
     request = byte.build_get_non_ascii_request()
-    assert tests == deserialize_base64(send_request(request).text)
+    assert tests == deserialize_base64(send_request(request).text())
 
 def test_get_null(send_request):
     request = byte.build_get_null_request()
-    assert send_request(request).text == ''
+    assert send_request(request).text() == ''
 
 def test_get_empty(send_request):
     request = byte.build_get_empty_request()

@@ -103,7 +103,7 @@ async def assert_raises_with_status_and_response_contains(code, msg, func, *args
 
     except HttpResponseError as err:
         assert err.response.status_code == code
-        assert msg in err.response.text
+        assert msg in err.response.text()
 
 @pytest.mark.asyncio
 async def test_get200_model204(client):

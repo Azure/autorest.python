@@ -60,7 +60,7 @@ async def test_model_get_false(send_request_json_response):
 @pytest.mark.asyncio
 async def test_model_get_null(send_request):
     request = bool.build_get_null_request()
-    assert (await send_request(request)).text == ''
+    assert (await send_request(request)).text() == ''
 
 @pytest.mark.asyncio
 async def test_model_put_false(send_request):

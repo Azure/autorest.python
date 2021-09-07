@@ -45,7 +45,7 @@ def send_request(client, base_send_request):
 @pytest.fixture
 def send_request_text_response(client, base_send_request):
     def _send_request(request):
-        return base_send_request(client, request).text
+        return base_send_request(client, request).text()
     return _send_request
 
 def test_json_xml(send_request):

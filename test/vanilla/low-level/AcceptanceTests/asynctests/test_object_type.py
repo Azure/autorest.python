@@ -50,7 +50,7 @@ async def test_get_object(send_request):
 @pytest.mark.asyncio
 async def test_put_object_success(send_request):
     request = build_put_request(json={"foo": "bar"})
-    assert (await send_request(request)).text == ''
+    assert (await send_request(request)).text() == ''
 
 @pytest.mark.asyncio
 async def test_put_object_fail(send_request):

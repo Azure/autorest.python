@@ -101,7 +101,7 @@ def assert_raises_with_status_and_response_contains(code, msg, func, *args, **kw
 
     except HttpResponseError as err:
         assert err.response.status_code == code
-        assert msg in err.response.text
+        assert msg in err.response.text()
 
 def test_get200_model204(client):
     r = client.multiple_responses.get200_model204_no_model_default_error200_valid()

@@ -123,7 +123,7 @@ async def test_basic_get_null(send_request_json_response):
 async def test_basic_get_not_provided(send_request):
     # GET basic/notprovided
     request = basic.build_get_not_provided_request()
-    assert (await send_request(request)).text == ''
+    assert (await send_request(request)).text() == ''
 
 @pytest.mark.asyncio
 async def test_basic_get_invalid(send_request_json_response):
@@ -312,7 +312,7 @@ async def test_readonlyproperty_get_and_put_valid(send_request, send_request_jso
 
     # PUT readonly/valid
     request = readonlyproperty.build_put_valid_request(json=2)
-    assert (await send_request(request)).text == ''
+    assert (await send_request(request)).text() == ''
 
 # COMPLEX TYPE WITH ARRAY PROPERTIES
 
@@ -513,7 +513,7 @@ async def test_polymorphism_put_valid_missing_required(send_request):
     # in convenience layer, this raises a ValidationError (when generated with client side validation)
     with pytest.raises(HttpResponseError) as e:
         await send_request(request)
-    assert "Reached server in scenario: /complex/polymorphism/missingrequired/invalid" in str(e.value.response.text)
+    assert "Reached server in scenario: /complex/polymorphism/missingrequired/invalid" in str(e.value.response.text())
 
 # COMPLEX TYPES THAT INVOLVE RECURSIVE REFERENCE
 
