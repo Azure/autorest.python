@@ -65,7 +65,7 @@ def test_send_request_with_stream_get_direct_json():
 
     response = client.send_request(request, stream=True)
 
-    data = ''.join([chunk for chunk in response.iter_text()])
+    data = b''.join([chunk for chunk in response.iter_bytes()]).decode('utf-8')
     json_response = json.loads(data)
     assert 2 == json_response['id']
     assert "Siameeee" == json_response['name']

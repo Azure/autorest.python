@@ -50,7 +50,7 @@ def send_request_json_response(client, base_send_request_json_response):
 
 def test_get_null(send_request):
     request = datetimerfc1123.build_get_null_request()
-    assert send_request(request).text == ''
+    assert send_request(request).text() == ''
 
 def test_get_invalid(send_request_json_response):
     request = datetimerfc1123.build_get_invalid_request()

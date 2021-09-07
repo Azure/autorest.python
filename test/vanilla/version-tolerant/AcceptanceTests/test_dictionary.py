@@ -57,11 +57,12 @@ def test_dict():
     test_product3 = {"integer": 5, "string": "6"}
     return {"0":test_product1, "1":test_product2, "2":test_product3}
 
+
 def get_deserialized_dict(response, deserializer):
-    return {
-        str(idx): deserializer(response[key]) if response[key] else None
-        for idx, key in enumerate(response.keys())
-    }
+    for key in response:
+        if response[key]:
+            response[key] = deserializer(response[key])
+    return response
 
 def get_serialized_dict(dict, serializer):
     return {

@@ -55,7 +55,7 @@ def test_model_get_false(send_request_json_response):
 
 def test_model_get_null(send_request):
     request = bool.build_get_null_request()
-    assert send_request(request).text == ''
+    assert send_request(request).text() == ''
 
 def test_model_put_false(send_request):
     request = bool.build_put_false_request()
@@ -67,4 +67,4 @@ def test_model_put_true(send_request):
 
 def test_model_get_invalid(send_request):
     request = bool.build_get_invalid_request()
-    assert send_request(request).text == "true1"
+    assert send_request(request).text() == "true1"

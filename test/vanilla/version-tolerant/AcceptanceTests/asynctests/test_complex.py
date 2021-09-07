@@ -433,7 +433,7 @@ async def test_polymorphism_put_valid_missing_required(client):
     # in legacy, this raises a ValidationError (when generated with client side validation)
     with pytest.raises(HttpResponseError) as e:
         await client.polymorphism.put_valid_missing_required(bad_request)
-    assert "Reached server in scenario: /complex/polymorphism/missingrequired/invalid" in str(e.value.response.text)
+    assert "Reached server in scenario: /complex/polymorphism/missingrequired/invalid" in str(e.value.response.text())
 
 # COMPLEX TYPES THAT INVOLVE RECURSIVE REFERENCE
 

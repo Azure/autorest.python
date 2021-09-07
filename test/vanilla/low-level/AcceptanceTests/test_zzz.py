@@ -48,6 +48,22 @@ class TestAcceptance(object):
         # Please add missing features or failing tests here
         missing_features_or_bugs = {
             'ConstantsInBody': 1,  # https://github.com/Azure/autorest.modelerfour/issues/83
+            "verifyIncorrectErrorParsing": 1,  # we don't deserialize errors in llc
+            "ImplicitOptionalBinaryBody": 1,  # these are properties on the client, don't know enough info in LLC
+            "ExplicitRequiredBinaryBody": 1,  # these are properties on the client, don't know enough info in LLC
+            "ResponsesScenarioF400DefaultModel": 1,  # don't test this
+            "ResponsesScenarioF400DefaultNone": 1,  # don't test this
+            "ResponsesScenarioG200DefaultNoModel": 1,  # don't test this
+            "CustomBaseUri": 1, # don't have enough info on LLC
+            "CustomBaseUriMoreOptions": 1,
+            "expectedNoErrors": 1,
+            "expectedPetSadError": 1,
+            "expectedPetHungryError": 1,
+            "intError": 1,
+            "stringError": 1,
+            "animalNotFoundError": 1,
+            "linkNotFoundError": 1,
+            "putEnumReferencedConstant": 1,  # can't do constants on body
         }
 
         print("Coverage:")
@@ -60,6 +76,9 @@ class TestAcceptance(object):
             'FormdataStreamUploadFile': 1, # Form data not supported yet
             'StreamUploadFile': 1, # Form data not supported yet
             "UpdatePetWithForm": 1,  # autorest core change needed to do this hasn't been merged yet
+            "sendErrorWithParamNameModels": 1,
+            "putDecimalBigNegativeDecimal": 1,
+            "verifyHost": 1,
         }
         for name in optional_report:
             if "Options" in name:

@@ -28,7 +28,7 @@ import json
 from datetime import timedelta
 from bodydictionarylowlevel.rest import dictionary
 from bodydictionarylowlevel import AutoRestSwaggerBATDictionaryService
-
+from .utils import JSON_DECODE_ERROR
 
 import pytest
 
@@ -53,10 +53,10 @@ def send_request_json_response(client, base_send_request_json_response):
 def get_deserialized_dict(send_request_json_response):
     def _get_deserialized_dict(request, deserialize_value_callable):
         json_response = send_request_json_response(request)
-        return {
-            str(idx): deserialize_value_callable(json_response[key]) if json_response[key] else None
-            for idx, key in enumerate(json_response.keys())
-        }
+        for key in json_response:
+            if json_response[key]:
+                json_response[key] = deserialize_value_callable(json_response[key])
+        return json_response
     return _get_deserialized_dict
 
 @pytest.fixture
@@ -276,17 +276,17 @@ def test_empty(send_request, send_request_json_response):
 def test_get_null_and_invalid(send_request, send_request_json_response):
 
     request = dictionary.build_get_null_request()
-    assert send_request(request).text == ''
+    assert send_request(request).text() == ''
 
     request = dictionary.build_get_invalid_request()
-    with pytest.raises(json.decoder.JSONDecodeError):
+    with pytest.raises(JSON_DECODE_ERROR):
         send_request_json_response(request)
 
 def test_get_null_key_and_value(send_request, send_request_json_response):
     # {null:"val1"} is not standard JSON format. C# might work and expects this test to pass,
     # but we fail and we're happy with it.
     request = dictionary.build_get_null_key_request()
-    with pytest.raises(json.decoder.JSONDecodeError):
+    with pytest.raises(JSON_DECODE_ERROR):
         send_request_json_response(request)
 
     request = dictionary.build_get_null_value_request()
@@ -327,7 +327,7 @@ def test_dictionary_valid(send_request, send_request_json_response):
 def test_get_complex_null_and_empty(send_request, send_request_json_response):
 
     request = dictionary.build_get_complex_null_request()
-    assert send_request(request).text == ''
+    assert send_request(request).text() == ''
 
     request = dictionary.build_get_complex_empty_request()
     assert {} == send_request_json_response(request)
@@ -345,7 +345,7 @@ def test_get_complex_item_null_and_empty(send_request_json_response, test_dict):
 
 def test_get_array_empty(send_request, send_request_json_response):
     request = dictionary.build_get_array_null_request()
-    assert send_request(request).text == ''
+    assert send_request(request).text() == ''
 
     request = dictionary.build_get_array_empty_request()
     assert {} == send_request_json_response(request)
@@ -356,12 +356,13 @@ def test_get_array_item_null_and_empty(send_request_json_response):
     assert list_dict == send_request_json_response(request)
 
     # in convenience layer, we deserialize as {[str]}. Since we don't have that in llc, the value for "1" will be None, not an empty list
-    list_dict = {"0":["1","2","3"], "1":None, "2":["7","8","9"]}
-    assert list_dict == send_request_json_response(request)
+    request = dictionary.build_get_array_item_empty_request()
+    list_dict = {"0":["1","2","3"], "1":[], "2":["7","8","9"]}
+    assert list_dict ==  send_request_json_response(request)
 
 def test_get_dictionary_null_and_empty(send_request, send_request_json_response):
     request = dictionary.build_get_dictionary_null_request()
-    assert send_request(request).text == ''
+    assert send_request(request).text() == ''
 
     request = dictionary.build_get_dictionary_empty_request()
     assert {} == send_request_json_response(request)

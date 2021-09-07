@@ -82,7 +82,7 @@ async def test_empty(send_request, send_request_json_response):
 
     request = array.build_get_null_request()
     response = await send_request(request)
-    assert response.text == ''
+    assert response.text() == ''
 
     request = array.build_put_empty_request(json=[])
     await send_request(request)
@@ -216,7 +216,7 @@ async def test_get_byte_invalid_null(send_request_json_response):
 @pytest.mark.asyncio
 async def test_get_complex_null(send_request):
     request = array.build_get_complex_null_request()
-    assert (await send_request(request)).text == ''
+    assert (await send_request(request)).text() == ''
 
 @pytest.mark.asyncio
 async def test_get_complex_empty(send_request_json_response):
@@ -262,7 +262,7 @@ async def test_get_complex_item_empty(send_request_json_response, products):
 @pytest.mark.asyncio
 async def test_get_array_null(send_request):
     request = array.build_get_array_null_request()
-    assert (await send_request(request)).text == ''
+    assert (await send_request(request)).text() == ''
 
 @pytest.mark.asyncio
 async def test_get_array_empty(send_request_json_response):
@@ -285,7 +285,7 @@ async def test_get_array_item_empty(send_request_json_response):
 async def test_get_dictionary_and_dictionary_item_null(send_request, send_request_json_response, listdict):
 
     request = array.build_get_dictionary_null_request()
-    assert (await send_request(request)).text == ''
+    assert (await send_request(request)).text() == ''
 
     listdict[1] = None
     request = array.build_get_dictionary_item_null_request()

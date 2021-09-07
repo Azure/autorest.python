@@ -803,7 +803,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
                 is_xml = any(["xml" in ct for ct in response.media_types])
                 deserialized_value = ""
                 if is_xml:
-                    deserialized_value = "ET.fromstring(response.text)"
+                    deserialized_value = "ET.fromstring(response.text())"
                 else:
                     deserialized_value = "response.json()"
                 retval.append(f"if response.content:")

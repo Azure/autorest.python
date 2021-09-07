@@ -72,7 +72,7 @@ async def test_model_get_and_put_min_date(send_request, send_request_json_respon
 @pytest.mark.asyncio
 async def test_model_get_null(send_request):
     request = date.build_get_null_request()
-    assert (await send_request(request)).text == ''
+    assert (await send_request(request)).text() == ''
 
 @pytest.mark.asyncio
 async def test_model_get_invalid_date(send_request_json_response):
