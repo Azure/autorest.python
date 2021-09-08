@@ -13,8 +13,8 @@ import msrest.serialization
 class ArrayWrapper(msrest.serialization.Model):
     """ArrayWrapper.
 
-    :param array:
-    :type array: list[str]
+    :keyword array:
+    :paramtype array: list[str]
     """
 
     _attribute_map = {
@@ -29,13 +29,13 @@ class ArrayWrapper(msrest.serialization.Model):
 class Basic(msrest.serialization.Model):
     """Basic.
 
-    :param id: Basic Id.
-    :type id: int
-    :param name: Name property with a very long description that does not fit on a single line and
-     a line break.
-    :type name: str
-    :param color:  Possible values include: "cyan", "Magenta", "YELLOW", "blacK".
-    :type color: str or ~bodycomplex.models.CMYKColors
+    :keyword id: Basic Id.
+    :paramtype id: int
+    :keyword name: Name property with a very long description that does not fit on a single line
+     and a line break.
+    :paramtype name: str
+    :keyword color:  Possible values include: "cyan", "Magenta", "YELLOW", "blacK".
+    :paramtype color: str or ~bodycomplex.models.CMYKColors
     """
 
     _attribute_map = {
@@ -54,10 +54,10 @@ class Basic(msrest.serialization.Model):
 class BooleanWrapper(msrest.serialization.Model):
     """BooleanWrapper.
 
-    :param field_true:
-    :type field_true: bool
-    :param field_false:
-    :type field_false: bool
+    :keyword field_true:
+    :paramtype field_true: bool
+    :keyword field_false:
+    :paramtype field_false: bool
     """
 
     _attribute_map = {
@@ -74,8 +74,8 @@ class BooleanWrapper(msrest.serialization.Model):
 class ByteWrapper(msrest.serialization.Model):
     """ByteWrapper.
 
-    :param field:
-    :type field: bytearray
+    :keyword field:
+    :paramtype field: bytearray
     """
 
     _attribute_map = {
@@ -90,10 +90,10 @@ class ByteWrapper(msrest.serialization.Model):
 class Pet(msrest.serialization.Model):
     """Pet.
 
-    :param id:
-    :type id: int
-    :param name:
-    :type name: str
+    :keyword id:
+    :paramtype id: int
+    :keyword name:
+    :paramtype name: str
     """
 
     _attribute_map = {
@@ -110,14 +110,14 @@ class Pet(msrest.serialization.Model):
 class Cat(Pet):
     """Cat.
 
-    :param id:
-    :type id: int
-    :param name:
-    :type name: str
-    :param color:
-    :type color: str
-    :param hates:
-    :type hates: list[~bodycomplex.models.Dog]
+    :keyword id:
+    :paramtype id: int
+    :keyword name:
+    :paramtype name: str
+    :keyword color:
+    :paramtype color: str
+    :keyword hates:
+    :paramtype hates: list[~bodycomplex.models.Dog]
     """
 
     _attribute_map = {
@@ -141,14 +141,14 @@ class Fish(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param fishtype: Required. Constant filled by server.
-    :type fishtype: str
-    :param species:
-    :type species: str
-    :param length: Required.
-    :type length: float
-    :param siblings:
-    :type siblings: list[~bodycomplex.models.Fish]
+    :keyword fishtype: Required. Constant filled by server.
+    :paramtype fishtype: str
+    :keyword species:
+    :paramtype species: str
+    :keyword length: Required.
+    :paramtype length: float
+    :keyword siblings:
+    :paramtype siblings: list[~bodycomplex.models.Fish]
     """
 
     _validation = {
@@ -181,18 +181,18 @@ class Shark(Fish):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param fishtype: Required. Constant filled by server.
-    :type fishtype: str
-    :param species:
-    :type species: str
-    :param length: Required.
-    :type length: float
-    :param siblings:
-    :type siblings: list[~bodycomplex.models.Fish]
-    :param age:
-    :type age: int
-    :param birthday: Required.
-    :type birthday: ~datetime.datetime
+    :keyword fishtype: Required. Constant filled by server.
+    :paramtype fishtype: str
+    :keyword species:
+    :paramtype species: str
+    :keyword length: Required.
+    :paramtype length: float
+    :keyword siblings:
+    :paramtype siblings: list[~bodycomplex.models.Fish]
+    :keyword age:
+    :paramtype age: int
+    :keyword birthday: Required.
+    :paramtype birthday: ~datetime.datetime
     """
 
     _validation = {
@@ -226,18 +226,18 @@ class Cookiecuttershark(Shark):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param fishtype: Required. Constant filled by server.
-    :type fishtype: str
-    :param species:
-    :type species: str
-    :param length: Required.
-    :type length: float
-    :param siblings:
-    :type siblings: list[~bodycomplex.models.Fish]
-    :param age:
-    :type age: int
-    :param birthday: Required.
-    :type birthday: ~datetime.datetime
+    :keyword fishtype: Required. Constant filled by server.
+    :paramtype fishtype: str
+    :keyword species:
+    :paramtype species: str
+    :keyword length: Required.
+    :paramtype length: float
+    :keyword siblings:
+    :paramtype siblings: list[~bodycomplex.models.Fish]
+    :keyword age:
+    :paramtype age: int
+    :keyword birthday: Required.
+    :paramtype birthday: ~datetime.datetime
     """
 
     _validation = {
@@ -263,10 +263,10 @@ class Cookiecuttershark(Shark):
 class Datetimerfc1123Wrapper(msrest.serialization.Model):
     """Datetimerfc1123Wrapper.
 
-    :param field:
-    :type field: ~datetime.datetime
-    :param now:
-    :type now: ~datetime.datetime
+    :keyword field:
+    :paramtype field: ~datetime.datetime
+    :keyword now:
+    :paramtype now: ~datetime.datetime
     """
 
     _attribute_map = {
@@ -283,10 +283,10 @@ class Datetimerfc1123Wrapper(msrest.serialization.Model):
 class DatetimeWrapper(msrest.serialization.Model):
     """DatetimeWrapper.
 
-    :param field:
-    :type field: ~datetime.datetime
-    :param now:
-    :type now: ~datetime.datetime
+    :keyword field:
+    :paramtype field: ~datetime.datetime
+    :keyword now:
+    :paramtype now: ~datetime.datetime
     """
 
     _attribute_map = {
@@ -303,10 +303,10 @@ class DatetimeWrapper(msrest.serialization.Model):
 class DateWrapper(msrest.serialization.Model):
     """DateWrapper.
 
-    :param field:
-    :type field: ~datetime.date
-    :param leap:
-    :type leap: ~datetime.date
+    :keyword field:
+    :paramtype field: ~datetime.date
+    :keyword leap:
+    :paramtype leap: ~datetime.date
     """
 
     _attribute_map = {
@@ -323,8 +323,8 @@ class DateWrapper(msrest.serialization.Model):
 class DictionaryWrapper(msrest.serialization.Model):
     """DictionaryWrapper.
 
-    :param default_program: Dictionary of :code:`<string>`.
-    :type default_program: dict[str, str]
+    :keyword default_program: Dictionary of :code:`<string>`.
+    :paramtype default_program: dict[str, str]
     """
 
     _attribute_map = {
@@ -339,12 +339,12 @@ class DictionaryWrapper(msrest.serialization.Model):
 class Dog(Pet):
     """Dog.
 
-    :param id:
-    :type id: int
-    :param name:
-    :type name: str
-    :param food:
-    :type food: str
+    :keyword id:
+    :paramtype id: int
+    :keyword name:
+    :paramtype name: str
+    :keyword food:
+    :paramtype food: str
     """
 
     _attribute_map = {
@@ -366,10 +366,10 @@ class DotFish(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param fish_type: Required. Constant filled by server.
-    :type fish_type: str
-    :param species:
-    :type species: str
+    :keyword fish_type: Required. Constant filled by server.
+    :paramtype fish_type: str
+    :keyword species:
+    :paramtype species: str
     """
 
     _validation = {
@@ -392,14 +392,14 @@ class DotFish(msrest.serialization.Model):
 class DotFishMarket(msrest.serialization.Model):
     """DotFishMarket.
 
-    :param sample_salmon:
-    :type sample_salmon: ~bodycomplex.models.DotSalmon
-    :param salmons:
-    :type salmons: list[~bodycomplex.models.DotSalmon]
-    :param sample_fish:
-    :type sample_fish: ~bodycomplex.models.DotFish
-    :param fishes:
-    :type fishes: list[~bodycomplex.models.DotFish]
+    :keyword sample_salmon:
+    :paramtype sample_salmon: ~bodycomplex.models.DotSalmon
+    :keyword salmons:
+    :paramtype salmons: list[~bodycomplex.models.DotSalmon]
+    :keyword sample_fish:
+    :paramtype sample_fish: ~bodycomplex.models.DotFish
+    :keyword fishes:
+    :paramtype fishes: list[~bodycomplex.models.DotFish]
     """
 
     _attribute_map = {
@@ -422,14 +422,14 @@ class DotSalmon(DotFish):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param fish_type: Required. Constant filled by server.
-    :type fish_type: str
-    :param species:
-    :type species: str
-    :param location:
-    :type location: str
-    :param iswild:
-    :type iswild: bool
+    :keyword fish_type: Required. Constant filled by server.
+    :paramtype fish_type: str
+    :keyword species:
+    :paramtype species: str
+    :keyword location:
+    :paramtype location: str
+    :keyword iswild:
+    :paramtype iswild: bool
     """
 
     _validation = {
@@ -453,11 +453,11 @@ class DotSalmon(DotFish):
 class DoubleWrapper(msrest.serialization.Model):
     """DoubleWrapper.
 
-    :param field1:
-    :type field1: float
-    :param
+    :keyword field1:
+    :paramtype field1: float
+    :keyword
      field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose:
-    :type
+    :paramtype
      field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose:
      float
     """
@@ -484,8 +484,8 @@ class DoubleWrapper(msrest.serialization.Model):
 class DurationWrapper(msrest.serialization.Model):
     """DurationWrapper.
 
-    :param field:
-    :type field: ~datetime.timedelta
+    :keyword field:
+    :paramtype field: ~datetime.timedelta
     """
 
     _attribute_map = {
@@ -500,10 +500,10 @@ class DurationWrapper(msrest.serialization.Model):
 class Error(msrest.serialization.Model):
     """Error.
 
-    :param status:
-    :type status: int
-    :param message:
-    :type message: str
+    :keyword status:
+    :paramtype status: int
+    :keyword message:
+    :paramtype message: str
     """
 
     _attribute_map = {
@@ -520,10 +520,10 @@ class Error(msrest.serialization.Model):
 class FloatWrapper(msrest.serialization.Model):
     """FloatWrapper.
 
-    :param field1:
-    :type field1: float
-    :param field2:
-    :type field2: float
+    :keyword field1:
+    :paramtype field1: float
+    :keyword field2:
+    :paramtype field2: float
     """
 
     _attribute_map = {
@@ -542,23 +542,23 @@ class Goblinshark(Shark):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param fishtype: Required. Constant filled by server.
-    :type fishtype: str
-    :param species:
-    :type species: str
-    :param length: Required.
-    :type length: float
-    :param siblings:
-    :type siblings: list[~bodycomplex.models.Fish]
-    :param age:
-    :type age: int
-    :param birthday: Required.
-    :type birthday: ~datetime.datetime
-    :param jawsize:
-    :type jawsize: int
-    :param color: Colors possible. Possible values include: "pink", "gray", "brown", "RED", "red".
-     Default value: "gray".
-    :type color: str or ~bodycomplex.models.GoblinSharkColor
+    :keyword fishtype: Required. Constant filled by server.
+    :paramtype fishtype: str
+    :keyword species:
+    :paramtype species: str
+    :keyword length: Required.
+    :paramtype length: float
+    :keyword siblings:
+    :paramtype siblings: list[~bodycomplex.models.Fish]
+    :keyword age:
+    :paramtype age: int
+    :keyword birthday: Required.
+    :paramtype birthday: ~datetime.datetime
+    :keyword jawsize:
+    :paramtype jawsize: int
+    :keyword color: Colors possible. Possible values include: "pink", "gray", "brown", "RED",
+     "red". Default value: "gray".
+    :paramtype color: str or ~bodycomplex.models.GoblinSharkColor
     """
 
     _validation = {
@@ -588,10 +588,10 @@ class Goblinshark(Shark):
 class IntWrapper(msrest.serialization.Model):
     """IntWrapper.
 
-    :param field1:
-    :type field1: int
-    :param field2:
-    :type field2: int
+    :keyword field1:
+    :paramtype field1: int
+    :keyword field2:
+    :paramtype field2: int
     """
 
     _attribute_map = {
@@ -608,10 +608,10 @@ class IntWrapper(msrest.serialization.Model):
 class LongWrapper(msrest.serialization.Model):
     """LongWrapper.
 
-    :param field1:
-    :type field1: long
-    :param field2:
-    :type field2: long
+    :keyword field1:
+    :paramtype field1: long
+    :keyword field2:
+    :paramtype field2: long
     """
 
     _attribute_map = {
@@ -633,12 +633,12 @@ class MyBaseType(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param kind: Required. Constant filled by server.  Possible values include: "Kind1".
-    :type kind: str or ~bodycomplex.models.MyKind
-    :param prop_b1:
-    :type prop_b1: str
-    :param prop_bh1:
-    :type prop_bh1: str
+    :keyword kind: Required. Constant filled by server.  Possible values include: "Kind1".
+    :paramtype kind: str or ~bodycomplex.models.MyKind
+    :keyword prop_b1:
+    :paramtype prop_b1: str
+    :keyword prop_bh1:
+    :paramtype prop_bh1: str
     """
 
     _validation = {
@@ -665,14 +665,14 @@ class MyDerivedType(MyBaseType):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param kind: Required. Constant filled by server.  Possible values include: "Kind1".
-    :type kind: str or ~bodycomplex.models.MyKind
-    :param prop_b1:
-    :type prop_b1: str
-    :param prop_bh1:
-    :type prop_bh1: str
-    :param prop_d1:
-    :type prop_d1: str
+    :keyword kind: Required. Constant filled by server.  Possible values include: "Kind1".
+    :paramtype kind: str or ~bodycomplex.models.MyKind
+    :keyword prop_b1:
+    :paramtype prop_b1: str
+    :keyword prop_bh1:
+    :paramtype prop_bh1: str
+    :keyword prop_d1:
+    :paramtype prop_d1: str
     """
 
     _validation = {
@@ -699,8 +699,8 @@ class ReadonlyObj(msrest.serialization.Model):
 
     :ivar id:
     :vartype id: str
-    :param size:
-    :type size: int
+    :keyword size:
+    :paramtype size: int
     """
 
     _validation = {
@@ -726,18 +726,18 @@ class Salmon(Fish):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param fishtype: Required. Constant filled by server.
-    :type fishtype: str
-    :param species:
-    :type species: str
-    :param length: Required.
-    :type length: float
-    :param siblings:
-    :type siblings: list[~bodycomplex.models.Fish]
-    :param location:
-    :type location: str
-    :param iswild:
-    :type iswild: bool
+    :keyword fishtype: Required. Constant filled by server.
+    :paramtype fishtype: str
+    :keyword species:
+    :paramtype species: str
+    :keyword length: Required.
+    :paramtype length: float
+    :keyword siblings:
+    :paramtype siblings: list[~bodycomplex.models.Fish]
+    :keyword location:
+    :paramtype location: str
+    :keyword iswild:
+    :paramtype iswild: bool
     """
 
     _validation = {
@@ -768,20 +768,20 @@ class Sawshark(Shark):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param fishtype: Required. Constant filled by server.
-    :type fishtype: str
-    :param species:
-    :type species: str
-    :param length: Required.
-    :type length: float
-    :param siblings:
-    :type siblings: list[~bodycomplex.models.Fish]
-    :param age:
-    :type age: int
-    :param birthday: Required.
-    :type birthday: ~datetime.datetime
-    :param picture:
-    :type picture: bytearray
+    :keyword fishtype: Required. Constant filled by server.
+    :paramtype fishtype: str
+    :keyword species:
+    :paramtype species: str
+    :keyword length: Required.
+    :paramtype length: float
+    :keyword siblings:
+    :paramtype siblings: list[~bodycomplex.models.Fish]
+    :keyword age:
+    :paramtype age: int
+    :keyword birthday: Required.
+    :paramtype birthday: ~datetime.datetime
+    :keyword picture:
+    :paramtype picture: bytearray
     """
 
     _validation = {
@@ -809,16 +809,16 @@ class Sawshark(Shark):
 class Siamese(Cat):
     """Siamese.
 
-    :param id:
-    :type id: int
-    :param name:
-    :type name: str
-    :param color:
-    :type color: str
-    :param hates:
-    :type hates: list[~bodycomplex.models.Dog]
-    :param breed:
-    :type breed: str
+    :keyword id:
+    :paramtype id: int
+    :keyword name:
+    :paramtype name: str
+    :keyword color:
+    :paramtype color: str
+    :keyword hates:
+    :paramtype hates: list[~bodycomplex.models.Dog]
+    :keyword breed:
+    :paramtype breed: str
     """
 
     _attribute_map = {
@@ -839,23 +839,23 @@ class SmartSalmon(Salmon):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param fishtype: Required. Constant filled by server.
-    :type fishtype: str
-    :param species:
-    :type species: str
-    :param length: Required.
-    :type length: float
-    :param siblings:
-    :type siblings: list[~bodycomplex.models.Fish]
-    :param location:
-    :type location: str
-    :param iswild:
-    :type iswild: bool
-    :param additional_properties: Unmatched properties from the message are deserialized to this
+    :keyword fishtype: Required. Constant filled by server.
+    :paramtype fishtype: str
+    :keyword species:
+    :paramtype species: str
+    :keyword length: Required.
+    :paramtype length: float
+    :keyword siblings:
+    :paramtype siblings: list[~bodycomplex.models.Fish]
+    :keyword location:
+    :paramtype location: str
+    :keyword iswild:
+    :paramtype iswild: bool
+    :keyword additional_properties: Unmatched properties from the message are deserialized to this
      collection.
-    :type additional_properties: dict[str, any]
-    :param college_degree:
-    :type college_degree: str
+    :paramtype additional_properties: dict[str, any]
+    :keyword college_degree:
+    :paramtype college_degree: str
     """
 
     _validation = {
@@ -884,12 +884,12 @@ class SmartSalmon(Salmon):
 class StringWrapper(msrest.serialization.Model):
     """StringWrapper.
 
-    :param field:
-    :type field: str
-    :param empty:
-    :type empty: str
-    :param null:
-    :type null: str
+    :keyword field:
+    :paramtype field: str
+    :keyword empty:
+    :paramtype empty: str
+    :keyword null:
+    :paramtype null: str
     """
 
     _attribute_map = {

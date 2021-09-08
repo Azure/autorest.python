@@ -13,10 +13,10 @@ import msrest.serialization
 class Error(msrest.serialization.Model):
     """Error.
 
-    :param status:
-    :type status: int
-    :param message:
-    :type message: str
+    :keyword status:
+    :paramtype status: int
+    :keyword message:
+    :paramtype message: str
     """
 
     _attribute_map = {
@@ -33,10 +33,10 @@ class Error(msrest.serialization.Model):
 class Product(msrest.serialization.Model):
     """Product.
 
-    :param integer:
-    :type integer: int
-    :param string:
-    :type string: str
+    :keyword integer:
+    :paramtype integer: int
+    :keyword string:
+    :paramtype string: str
     """
 
     _attribute_map = {

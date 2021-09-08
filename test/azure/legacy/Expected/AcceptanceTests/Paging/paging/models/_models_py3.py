@@ -18,10 +18,10 @@ class CustomParameterGroup(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param api_version: Required. Sets the api version to use.
-    :type api_version: str
-    :param tenant: Required. Sets the tenant to use.
-    :type tenant: str
+    :keyword api_version: Required. Sets the api version to use.
+    :paramtype api_version: str
+    :keyword tenant: Required. Sets the tenant to use.
+    :paramtype tenant: str
     """
 
     _validation = {
@@ -43,10 +43,10 @@ class CustomParameterGroup(msrest.serialization.Model):
 class OdataProductResult(msrest.serialization.Model):
     """OdataProductResult.
 
-    :param values:
-    :type values: list[~paging.models.Product]
-    :param odata_next_link:
-    :type odata_next_link: str
+    :keyword values:
+    :paramtype values: list[~paging.models.Product]
+    :keyword odata_next_link:
+    :paramtype odata_next_link: str
     """
 
     _attribute_map = {
@@ -63,10 +63,10 @@ class OdataProductResult(msrest.serialization.Model):
 class OperationResult(msrest.serialization.Model):
     """OperationResult.
 
-    :param status: The status of the request. Possible values include: "Succeeded", "Failed",
+    :keyword status: The status of the request. Possible values include: "Succeeded", "Failed",
      "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
      "OK".
-    :type status: str or ~paging.models.OperationResultStatus
+    :paramtype status: str or ~paging.models.OperationResultStatus
     """
 
     _attribute_map = {
@@ -81,11 +81,11 @@ class OperationResult(msrest.serialization.Model):
 class PagingGetMultiplePagesLroOptions(msrest.serialization.Model):
     """Parameter group.
 
-    :param maxresults: Sets the maximum number of items to return in the response.
-    :type maxresults: int
-    :param timeout: Sets the maximum time that the server can spend processing the request, in
+    :keyword maxresults: Sets the maximum number of items to return in the response.
+    :paramtype maxresults: int
+    :keyword timeout: Sets the maximum time that the server can spend processing the request, in
      seconds. The default is 30 seconds.
-    :type timeout: int
+    :paramtype timeout: int
     """
 
     _attribute_map = {
@@ -102,11 +102,11 @@ class PagingGetMultiplePagesLroOptions(msrest.serialization.Model):
 class PagingGetMultiplePagesOptions(msrest.serialization.Model):
     """Parameter group.
 
-    :param maxresults: Sets the maximum number of items to return in the response.
-    :type maxresults: int
-    :param timeout: Sets the maximum time that the server can spend processing the request, in
+    :keyword maxresults: Sets the maximum number of items to return in the response.
+    :paramtype maxresults: int
+    :keyword timeout: Sets the maximum time that the server can spend processing the request, in
      seconds. The default is 30 seconds.
-    :type timeout: int
+    :paramtype timeout: int
     """
 
     _attribute_map = {
@@ -125,13 +125,13 @@ class PagingGetMultiplePagesWithOffsetOptions(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param maxresults: Sets the maximum number of items to return in the response.
-    :type maxresults: int
-    :param offset: Required. Offset of return value.
-    :type offset: int
-    :param timeout: Sets the maximum time that the server can spend processing the request, in
+    :keyword maxresults: Sets the maximum number of items to return in the response.
+    :paramtype maxresults: int
+    :keyword offset: Required. Offset of return value.
+    :paramtype offset: int
+    :keyword timeout: Sets the maximum time that the server can spend processing the request, in
      seconds. The default is 30 seconds.
-    :type timeout: int
+    :paramtype timeout: int
     """
 
     _validation = {
@@ -154,11 +154,11 @@ class PagingGetMultiplePagesWithOffsetOptions(msrest.serialization.Model):
 class PagingGetOdataMultiplePagesOptions(msrest.serialization.Model):
     """Parameter group.
 
-    :param maxresults: Sets the maximum number of items to return in the response.
-    :type maxresults: int
-    :param timeout: Sets the maximum time that the server can spend processing the request, in
+    :keyword maxresults: Sets the maximum number of items to return in the response.
+    :paramtype maxresults: int
+    :keyword timeout: Sets the maximum time that the server can spend processing the request, in
      seconds. The default is 30 seconds.
-    :type timeout: int
+    :paramtype timeout: int
     """
 
     _attribute_map = {
@@ -175,8 +175,8 @@ class PagingGetOdataMultiplePagesOptions(msrest.serialization.Model):
 class Product(msrest.serialization.Model):
     """Product.
 
-    :param properties:
-    :type properties: ~paging.models.ProductProperties
+    :keyword properties:
+    :paramtype properties: ~paging.models.ProductProperties
     """
 
     _attribute_map = {
@@ -191,10 +191,10 @@ class Product(msrest.serialization.Model):
 class ProductProperties(msrest.serialization.Model):
     """ProductProperties.
 
-    :param id:
-    :type id: int
-    :param name:
-    :type name: str
+    :keyword id:
+    :paramtype id: int
+    :keyword name:
+    :paramtype name: str
     """
 
     _attribute_map = {
@@ -211,10 +211,10 @@ class ProductProperties(msrest.serialization.Model):
 class ProductResult(msrest.serialization.Model):
     """ProductResult.
 
-    :param values:
-    :type values: list[~paging.models.Product]
-    :param next_link:
-    :type next_link: str
+    :keyword values:
+    :paramtype values: list[~paging.models.Product]
+    :keyword next_link:
+    :paramtype next_link: str
     """
 
     _attribute_map = {
@@ -231,10 +231,10 @@ class ProductResult(msrest.serialization.Model):
 class ProductResultValue(msrest.serialization.Model):
     """ProductResultValue.
 
-    :param value:
-    :type value: list[~paging.models.Product]
-    :param next_link:
-    :type next_link: str
+    :keyword value:
+    :paramtype value: list[~paging.models.Product]
+    :keyword next_link:
+    :paramtype next_link: str
     """
 
     _attribute_map = {
@@ -251,10 +251,10 @@ class ProductResultValue(msrest.serialization.Model):
 class ProductResultValueWithXMSClientName(msrest.serialization.Model):
     """ProductResultValueWithXMSClientName.
 
-    :param indexes:
-    :type indexes: list[~paging.models.Product]
-    :param next_link:
-    :type next_link: str
+    :keyword indexes:
+    :paramtype indexes: list[~paging.models.Product]
+    :keyword next_link:
+    :paramtype next_link: str
     """
 
     _attribute_map = {

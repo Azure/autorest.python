@@ -15,10 +15,10 @@ import msrest.serialization
 class Error(msrest.serialization.Model):
     """Error.
 
-    :param code:
-    :type code: int
-    :param message:
-    :type message: str
+    :keyword code:
+    :paramtype code: int
+    :keyword message:
+    :paramtype message: str
     """
 
     _attribute_map = {
@@ -35,10 +35,10 @@ class Error(msrest.serialization.Model):
 class SampleResourceGroup(msrest.serialization.Model):
     """SampleResourceGroup.
 
-    :param name: resource group name 'testgroup101'.
-    :type name: str
-    :param location: resource group location 'West US'.
-    :type location: str
+    :keyword name: resource group name 'testgroup101'.
+    :paramtype name: str
+    :keyword location: resource group location 'West US'.
+    :paramtype location: str
     """
 
     _attribute_map = {
