@@ -35,13 +35,13 @@ def build_list_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
             response.json() == {
                 "value": [
                     {
-                        "currentValue": "int (optional)",
-                        "limit": "int (optional)",
+                        "currentValue": 0,  # Optional. Gets the current count of the allocated resources in the subscription.
+                        "limit": 0,  # Optional. Gets the maximum count of the resources that can be allocated in the subscription.
                         "name": {
-                            "localizedValue": "str (optional)",
-                            "value": "str (optional)"
+                            "localizedValue": "str",  # Optional. Gets a localized string describing the resource name.
+                            "value": "str"  # Optional. Gets a string describing the resource name.
                         },
-                        "unit": "str (optional)"
+                        "unit": "str"  # Optional. Gets the unit of measurement. Valid values are: "Count", "Bytes", "Seconds", "Percent", "CountsPerSecond", "BytesPerSecond".
                     }
                 ]
             }

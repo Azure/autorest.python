@@ -38,7 +38,7 @@ def build_get_null_request(
 
             # response body for status code(s): 200
             response.json() == [
-                "int (optional)"
+                0  # Optional.
             ]
     """
 
@@ -77,7 +77,7 @@ def build_get_invalid_request(
 
             # response body for status code(s): 200
             response.json() == [
-                "int (optional)"
+                0  # Optional.
             ]
     """
 
@@ -116,7 +116,7 @@ def build_get_empty_request(
 
             # response body for status code(s): 200
             response.json() == [
-                "int (optional)"
+                0  # Optional.
             ]
     """
 
@@ -161,7 +161,7 @@ def build_put_empty_request(
 
             # JSON input template you can fill out and use as your body input.
             json = [
-                "str (optional)"
+                "str"  # Optional.
             ]
     """
 
@@ -204,7 +204,7 @@ def build_get_boolean_tfft_request(
 
             # response body for status code(s): 200
             response.json() == [
-                "bool (optional)"
+                bool  # Optional.
             ]
     """
 
@@ -249,7 +249,7 @@ def build_put_boolean_tfft_request(
 
             # JSON input template you can fill out and use as your body input.
             json = [
-                "bool (optional)"
+                bool  # Optional.
             ]
     """
 
@@ -292,7 +292,7 @@ def build_get_boolean_invalid_null_request(
 
             # response body for status code(s): 200
             response.json() == [
-                "bool (optional)"
+                bool  # Optional.
             ]
     """
 
@@ -331,7 +331,7 @@ def build_get_boolean_invalid_string_request(
 
             # response body for status code(s): 200
             response.json() == [
-                "bool (optional)"
+                bool  # Optional.
             ]
     """
 
@@ -370,7 +370,7 @@ def build_get_integer_valid_request(
 
             # response body for status code(s): 200
             response.json() == [
-                "int (optional)"
+                0  # Optional.
             ]
     """
 
@@ -415,7 +415,7 @@ def build_put_integer_valid_request(
 
             # JSON input template you can fill out and use as your body input.
             json = [
-                "int (optional)"
+                0  # Optional.
             ]
     """
 
@@ -458,7 +458,7 @@ def build_get_int_invalid_null_request(
 
             # response body for status code(s): 200
             response.json() == [
-                "int (optional)"
+                0  # Optional.
             ]
     """
 
@@ -497,7 +497,7 @@ def build_get_int_invalid_string_request(
 
             # response body for status code(s): 200
             response.json() == [
-                "int (optional)"
+                0  # Optional.
             ]
     """
 
@@ -536,7 +536,7 @@ def build_get_long_valid_request(
 
             # response body for status code(s): 200
             response.json() == [
-                "long (optional)"
+                0.0  # Optional.
             ]
     """
 
@@ -581,7 +581,7 @@ def build_put_long_valid_request(
 
             # JSON input template you can fill out and use as your body input.
             json = [
-                "long (optional)"
+                0.0  # Optional.
             ]
     """
 
@@ -624,7 +624,7 @@ def build_get_long_invalid_null_request(
 
             # response body for status code(s): 200
             response.json() == [
-                "long (optional)"
+                0.0  # Optional.
             ]
     """
 
@@ -663,7 +663,7 @@ def build_get_long_invalid_string_request(
 
             # response body for status code(s): 200
             response.json() == [
-                "long (optional)"
+                0.0  # Optional.
             ]
     """
 
@@ -702,7 +702,7 @@ def build_get_float_valid_request(
 
             # response body for status code(s): 200
             response.json() == [
-                "float (optional)"
+                0.0  # Optional.
             ]
     """
 
@@ -747,7 +747,7 @@ def build_put_float_valid_request(
 
             # JSON input template you can fill out and use as your body input.
             json = [
-                "float (optional)"
+                0.0  # Optional.
             ]
     """
 
@@ -790,7 +790,7 @@ def build_get_float_invalid_null_request(
 
             # response body for status code(s): 200
             response.json() == [
-                "float (optional)"
+                0.0  # Optional.
             ]
     """
 
@@ -829,7 +829,7 @@ def build_get_float_invalid_string_request(
 
             # response body for status code(s): 200
             response.json() == [
-                "float (optional)"
+                0.0  # Optional.
             ]
     """
 
@@ -868,7 +868,7 @@ def build_get_double_valid_request(
 
             # response body for status code(s): 200
             response.json() == [
-                "float (optional)"
+                0.0  # Optional.
             ]
     """
 
@@ -913,7 +913,7 @@ def build_put_double_valid_request(
 
             # JSON input template you can fill out and use as your body input.
             json = [
-                "float (optional)"
+                0.0  # Optional.
             ]
     """
 
@@ -956,7 +956,7 @@ def build_get_double_invalid_null_request(
 
             # response body for status code(s): 200
             response.json() == [
-                "float (optional)"
+                0.0  # Optional.
             ]
     """
 
@@ -995,7 +995,7 @@ def build_get_double_invalid_string_request(
 
             # response body for status code(s): 200
             response.json() == [
-                "float (optional)"
+                0.0  # Optional.
             ]
     """
 
@@ -1034,7 +1034,7 @@ def build_get_string_valid_request(
 
             # response body for status code(s): 200
             response.json() == [
-                "str (optional)"
+                "str"  # Optional.
             ]
     """
 
@@ -1079,7 +1079,7 @@ def build_put_string_valid_request(
 
             # JSON input template you can fill out and use as your body input.
             json = [
-                "str (optional)"
+                "str"  # Optional.
             ]
     """
 
@@ -1122,7 +1122,7 @@ def build_get_enum_valid_request(
 
             # response body for status code(s): 200
             response.json() == [
-                "str (optional)"
+                "str"  # Optional.  Valid values are: "foo1", "foo2", "foo3". 
             ]
     """
 
@@ -1167,7 +1167,7 @@ def build_put_enum_valid_request(
 
             # JSON input template you can fill out and use as your body input.
             json = [
-                "str (optional)"
+                "str"  # Optional.  Valid values are: "foo1", "foo2", "foo3". 
             ]
     """
 
@@ -1210,7 +1210,7 @@ def build_get_string_enum_valid_request(
 
             # response body for status code(s): 200
             response.json() == [
-                "str (optional)"
+                "str"  # Optional.  Valid values are: "foo1", "foo2", "foo3". 
             ]
     """
 
@@ -1255,7 +1255,7 @@ def build_put_string_enum_valid_request(
 
             # JSON input template you can fill out and use as your body input.
             json = [
-                "str (optional)"
+                "str"  # Optional.  Valid values are: "foo1", "foo2", "foo3". 
             ]
     """
 
@@ -1298,7 +1298,7 @@ def build_get_string_with_null_request(
 
             # response body for status code(s): 200
             response.json() == [
-                "str (optional)"
+                "str"  # Optional.
             ]
     """
 
@@ -1337,7 +1337,7 @@ def build_get_string_with_invalid_request(
 
             # response body for status code(s): 200
             response.json() == [
-                "str (optional)"
+                "str"  # Optional.
             ]
     """
 
@@ -1377,7 +1377,7 @@ def build_get_uuid_valid_request(
 
             # response body for status code(s): 200
             response.json() == [
-                "str (optional)"
+                str  # Optional.
             ]
     """
 
@@ -1423,7 +1423,7 @@ def build_put_uuid_valid_request(
 
             # JSON input template you can fill out and use as your body input.
             json = [
-                "str (optional)"
+                str  # Optional.
             ]
     """
 
@@ -1466,7 +1466,7 @@ def build_get_uuid_invalid_chars_request(
 
             # response body for status code(s): 200
             response.json() == [
-                "str (optional)"
+                str  # Optional.
             ]
     """
 
@@ -1505,7 +1505,7 @@ def build_get_date_valid_request(
 
             # response body for status code(s): 200
             response.json() == [
-                "date (optional)"
+                "2020-02-20"  # Optional.
             ]
     """
 
@@ -1550,7 +1550,7 @@ def build_put_date_valid_request(
 
             # JSON input template you can fill out and use as your body input.
             json = [
-                "date (optional)"
+                "2020-02-20"  # Optional.
             ]
     """
 
@@ -1593,7 +1593,7 @@ def build_get_date_invalid_null_request(
 
             # response body for status code(s): 200
             response.json() == [
-                "date (optional)"
+                "2020-02-20"  # Optional.
             ]
     """
 
@@ -1632,7 +1632,7 @@ def build_get_date_invalid_chars_request(
 
             # response body for status code(s): 200
             response.json() == [
-                "date (optional)"
+                "2020-02-20"  # Optional.
             ]
     """
 
@@ -1672,7 +1672,7 @@ def build_get_date_time_valid_request(
 
             # response body for status code(s): 200
             response.json() == [
-                "datetime (optional)"
+                "2020-02-20 00:00:00"  # Optional.
             ]
     """
 
@@ -1718,7 +1718,7 @@ def build_put_date_time_valid_request(
 
             # JSON input template you can fill out and use as your body input.
             json = [
-                "datetime (optional)"
+                "2020-02-20 00:00:00"  # Optional.
             ]
     """
 
@@ -1761,7 +1761,7 @@ def build_get_date_time_invalid_null_request(
 
             # response body for status code(s): 200
             response.json() == [
-                "datetime (optional)"
+                "2020-02-20 00:00:00"  # Optional.
             ]
     """
 
@@ -1800,7 +1800,7 @@ def build_get_date_time_invalid_chars_request(
 
             # response body for status code(s): 200
             response.json() == [
-                "datetime (optional)"
+                "2020-02-20 00:00:00"  # Optional.
             ]
     """
 
@@ -1840,7 +1840,7 @@ def build_get_date_time_rfc1123_valid_request(
 
             # response body for status code(s): 200
             response.json() == [
-                "datetime (optional)"
+                "2020-02-20 00:00:00"  # Optional.
             ]
     """
 
@@ -1886,7 +1886,7 @@ def build_put_date_time_rfc1123_valid_request(
 
             # JSON input template you can fill out and use as your body input.
             json = [
-                "datetime (optional)"
+                "2020-02-20 00:00:00"  # Optional.
             ]
     """
 
@@ -1929,7 +1929,7 @@ def build_get_duration_valid_request(
 
             # response body for status code(s): 200
             response.json() == [
-                "timedelta (optional)"
+                "1 day, 0:00:00"  # Optional.
             ]
     """
 
@@ -1974,7 +1974,7 @@ def build_put_duration_valid_request(
 
             # JSON input template you can fill out and use as your body input.
             json = [
-                "timedelta (optional)"
+                "1 day, 0:00:00"  # Optional.
             ]
     """
 
@@ -2018,7 +2018,7 @@ def build_get_byte_valid_request(
 
             # response body for status code(s): 200
             response.json() == [
-                "bytearray (optional)"
+                bytearray("bytearray", encoding="utf-8")  # Optional.
             ]
     """
 
@@ -2064,7 +2064,7 @@ def build_put_byte_valid_request(
 
             # JSON input template you can fill out and use as your body input.
             json = [
-                "bytearray (optional)"
+                bytearray("bytearray", encoding="utf-8")  # Optional.
             ]
     """
 
@@ -2107,7 +2107,7 @@ def build_get_byte_invalid_null_request(
 
             # response body for status code(s): 200
             response.json() == [
-                "bytearray (optional)"
+                bytearray("bytearray", encoding="utf-8")  # Optional.
             ]
     """
 
@@ -2147,7 +2147,7 @@ def build_get_base64_url_request(
 
             # response body for status code(s): 200
             response.json() == [
-                "bytes (optional)"
+                bytes("bytes", encoding="utf-8")  # Optional.
             ]
     """
 
@@ -2187,8 +2187,8 @@ def build_get_complex_null_request(
             # response body for status code(s): 200
             response.json() == [
                 {
-                    "integer": "int (optional)",
-                    "string": "str (optional)"
+                    "integer": 0,  # Optional.
+                    "string": "str"  # Optional.
                 }
             ]
     """
@@ -2229,8 +2229,8 @@ def build_get_complex_empty_request(
             # response body for status code(s): 200
             response.json() == [
                 {
-                    "integer": "int (optional)",
-                    "string": "str (optional)"
+                    "integer": 0,  # Optional.
+                    "string": "str"  # Optional.
                 }
             ]
     """
@@ -2272,8 +2272,8 @@ def build_get_complex_item_null_request(
             # response body for status code(s): 200
             response.json() == [
                 {
-                    "integer": "int (optional)",
-                    "string": "str (optional)"
+                    "integer": 0,  # Optional.
+                    "string": "str"  # Optional.
                 }
             ]
     """
@@ -2315,8 +2315,8 @@ def build_get_complex_item_empty_request(
             # response body for status code(s): 200
             response.json() == [
                 {
-                    "integer": "int (optional)",
-                    "string": "str (optional)"
+                    "integer": 0,  # Optional.
+                    "string": "str"  # Optional.
                 }
             ]
     """
@@ -2358,8 +2358,8 @@ def build_get_complex_valid_request(
             # response body for status code(s): 200
             response.json() == [
                 {
-                    "integer": "int (optional)",
-                    "string": "str (optional)"
+                    "integer": 0,  # Optional.
+                    "string": "str"  # Optional.
                 }
             ]
     """
@@ -2407,8 +2407,8 @@ def build_put_complex_valid_request(
             # JSON input template you can fill out and use as your body input.
             json = [
                 {
-                    "integer": "int (optional)",
-                    "string": "str (optional)"
+                    "integer": 0,  # Optional.
+                    "string": "str"  # Optional.
                 }
             ]
     """
@@ -2453,7 +2453,7 @@ def build_get_array_null_request(
             # response body for status code(s): 200
             response.json() == [
                 [
-                    "str (optional)"
+                    "str"  # Optional.
                 ]
             ]
     """
@@ -2494,7 +2494,7 @@ def build_get_array_empty_request(
             # response body for status code(s): 200
             response.json() == [
                 [
-                    "str (optional)"
+                    "str"  # Optional.
                 ]
             ]
     """
@@ -2535,7 +2535,7 @@ def build_get_array_item_null_request(
             # response body for status code(s): 200
             response.json() == [
                 [
-                    "str (optional)"
+                    "str"  # Optional.
                 ]
             ]
     """
@@ -2576,7 +2576,7 @@ def build_get_array_item_empty_request(
             # response body for status code(s): 200
             response.json() == [
                 [
-                    "str (optional)"
+                    "str"  # Optional.
                 ]
             ]
     """
@@ -2617,7 +2617,7 @@ def build_get_array_valid_request(
             # response body for status code(s): 200
             response.json() == [
                 [
-                    "str (optional)"
+                    "str"  # Optional.
                 ]
             ]
     """
@@ -2664,7 +2664,7 @@ def build_put_array_valid_request(
             # JSON input template you can fill out and use as your body input.
             json = [
                 [
-                    "str (optional)"
+                    "str"  # Optional.
                 ]
             ]
     """
@@ -2709,7 +2709,7 @@ def build_get_dictionary_null_request(
             # response body for status code(s): 200
             response.json() == [
                 {
-                    "str": "str (optional)"
+                    "str": "str"  # Optional.
                 }
             ]
     """
@@ -2750,7 +2750,7 @@ def build_get_dictionary_empty_request(
             # response body for status code(s): 200
             response.json() == [
                 {
-                    "str": "str (optional)"
+                    "str": "str"  # Optional.
                 }
             ]
     """
@@ -2792,7 +2792,7 @@ def build_get_dictionary_item_null_request(
             # response body for status code(s): 200
             response.json() == [
                 {
-                    "str": "str (optional)"
+                    "str": "str"  # Optional.
                 }
             ]
     """
@@ -2834,7 +2834,7 @@ def build_get_dictionary_item_empty_request(
             # response body for status code(s): 200
             response.json() == [
                 {
-                    "str": "str (optional)"
+                    "str": "str"  # Optional.
                 }
             ]
     """
@@ -2876,7 +2876,7 @@ def build_get_dictionary_valid_request(
             # response body for status code(s): 200
             response.json() == [
                 {
-                    "str": "str (optional)"
+                    "str": "str"  # Optional.
                 }
             ]
     """
@@ -2924,7 +2924,7 @@ def build_put_dictionary_valid_request(
             # JSON input template you can fill out and use as your body input.
             json = [
                 {
-                    "str": "str (optional)"
+                    "str": "str"  # Optional.
                 }
             ]
     """

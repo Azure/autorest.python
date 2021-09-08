@@ -1010,7 +1010,7 @@ class EnumOperations(object):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == "str (optional)"
+                response.json() == "str"  # Optional.  Valid values are: "red color", "green-color", "blue_color".
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1098,7 +1098,7 @@ class EnumOperations(object):
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == "str (optional)"
+                response.json() == "str"  # Optional.  Valid values are: "red color", "green-color", "blue_color".
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1187,8 +1187,8 @@ class EnumOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "ColorConstant": "str",
-                    "field1": "str (optional)"
+                    "ColorConstant": "green-color",  # Default value is "green-color". Referenced Color Constant Description.
+                    "field1": "str"  # Optional. Sample string.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -1239,8 +1239,8 @@ class EnumOperations(object):
 
                 # JSON input template you can fill out and use as your body input.
                 enum_string_body = {
-                    "ColorConstant": "str",
-                    "field1": "str (optional)"
+                    "ColorConstant": "green-color",  # Default value is "green-color". Referenced Color Constant Description.
+                    "field1": "str"  # Optional. Sample string.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]

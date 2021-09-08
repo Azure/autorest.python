@@ -38,12 +38,12 @@ def build_get_no_item_name_pages_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "nextLink": "str (optional)",
+                "nextLink": "str",  # Optional.
                 "value": [
                     {
                         "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
+                            "id": 0,  # Optional.
+                            "name": "str"  # Optional.
                         }
                     }
                 ]
@@ -85,12 +85,12 @@ def build_get_null_next_link_name_pages_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "nextLink": "str (optional)",
+                "nextLink": "str",  # Optional.
                 "values": [
                     {
                         "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
+                            "id": 0,  # Optional.
+                            "name": "str"  # Optional.
                         }
                     }
                 ]
@@ -132,12 +132,12 @@ def build_get_single_pages_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "nextLink": "str (optional)",
+                "nextLink": "str",  # Optional.
                 "values": [
                     {
                         "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
+                            "id": 0,  # Optional.
+                            "name": "str"  # Optional.
                         }
                     }
                 ]
@@ -180,12 +180,12 @@ def build_first_response_empty_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "nextLink": "str (optional)",
+                "nextLink": "str",  # Optional.
                 "value": [
                     {
                         "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
+                            "id": 0,  # Optional.
+                            "name": "str"  # Optional.
                         }
                     }
                 ]
@@ -234,12 +234,12 @@ def build_get_multiple_pages_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "nextLink": "str (optional)",
+                "nextLink": "str",  # Optional.
                 "values": [
                     {
                         "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
+                            "id": 0,  # Optional.
+                            "name": "str"  # Optional.
                         }
                     }
                 ]
@@ -295,12 +295,12 @@ def build_get_with_query_params_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "nextLink": "str (optional)",
+                "nextLink": "str",  # Optional.
                 "values": [
                     {
                         "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
+                            "id": 0,  # Optional.
+                            "name": "str"  # Optional.
                         }
                     }
                 ]
@@ -351,12 +351,12 @@ def build_next_operation_with_query_params_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "nextLink": "str (optional)",
+                "nextLink": "str",  # Optional.
                 "values": [
                     {
                         "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
+                            "id": 0,  # Optional.
+                            "name": "str"  # Optional.
                         }
                     }
                 ]
@@ -411,12 +411,12 @@ def build_get_odata_multiple_pages_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "odata.nextLink": "str (optional)",
+                "odata.nextLink": "str",  # Optional.
                 "values": [
                     {
                         "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
+                            "id": 0,  # Optional.
+                            "name": "str"  # Optional.
                         }
                     }
                 ]
@@ -478,12 +478,12 @@ def build_get_multiple_pages_with_offset_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "nextLink": "str (optional)",
+                "nextLink": "str",  # Optional.
                 "values": [
                     {
                         "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
+                            "id": 0,  # Optional.
+                            "name": "str"  # Optional.
                         }
                     }
                 ]
@@ -541,12 +541,12 @@ def build_get_multiple_pages_retry_first_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "nextLink": "str (optional)",
+                "nextLink": "str",  # Optional.
                 "values": [
                     {
                         "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
+                            "id": 0,  # Optional.
+                            "name": "str"  # Optional.
                         }
                     }
                 ]
@@ -589,12 +589,12 @@ def build_get_multiple_pages_retry_second_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "nextLink": "str (optional)",
+                "nextLink": "str",  # Optional.
                 "values": [
                     {
                         "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
+                            "id": 0,  # Optional.
+                            "name": "str"  # Optional.
                         }
                     }
                 ]
@@ -636,12 +636,12 @@ def build_get_single_pages_failure_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "nextLink": "str (optional)",
+                "nextLink": "str",  # Optional.
                 "values": [
                     {
                         "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
+                            "id": 0,  # Optional.
+                            "name": "str"  # Optional.
                         }
                     }
                 ]
@@ -683,12 +683,12 @@ def build_get_multiple_pages_failure_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "nextLink": "str (optional)",
+                "nextLink": "str",  # Optional.
                 "values": [
                     {
                         "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
+                            "id": 0,  # Optional.
+                            "name": "str"  # Optional.
                         }
                     }
                 ]
@@ -730,12 +730,12 @@ def build_get_multiple_pages_failure_uri_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "nextLink": "str (optional)",
+                "nextLink": "str",  # Optional.
                 "values": [
                     {
                         "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
+                            "id": 0,  # Optional.
+                            "name": "str"  # Optional.
                         }
                     }
                 ]
@@ -782,12 +782,12 @@ def build_get_multiple_pages_fragment_next_link_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "odata.nextLink": "str (optional)",
+                "odata.nextLink": "str",  # Optional.
                 "values": [
                     {
                         "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
+                            "id": 0,  # Optional.
+                            "name": "str"  # Optional.
                         }
                     }
                 ]
@@ -846,12 +846,12 @@ def build_get_multiple_pages_fragment_with_grouping_next_link_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "odata.nextLink": "str (optional)",
+                "odata.nextLink": "str",  # Optional.
                 "values": [
                     {
                         "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
+                            "id": 0,  # Optional.
+                            "name": "str"  # Optional.
                         }
                     }
                 ]
@@ -912,12 +912,12 @@ def build_get_multiple_pages_lro_request(
 
             # response body for status code(s): 202
             response.json() == {
-                "nextLink": "str (optional)",
+                "nextLink": "str",  # Optional.
                 "values": [
                     {
                         "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
+                            "id": 0,  # Optional.
+                            "name": "str"  # Optional.
                         }
                     }
                 ]
@@ -977,12 +977,12 @@ def build_next_fragment_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "odata.nextLink": "str (optional)",
+                "odata.nextLink": "str",  # Optional.
                 "values": [
                     {
                         "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
+                            "id": 0,  # Optional.
+                            "name": "str"  # Optional.
                         }
                     }
                 ]
@@ -1045,12 +1045,12 @@ def build_next_fragment_with_grouping_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "odata.nextLink": "str (optional)",
+                "odata.nextLink": "str",  # Optional.
                 "values": [
                     {
                         "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
+                            "id": 0,  # Optional.
+                            "name": "str"  # Optional.
                         }
                     }
                 ]
@@ -1106,12 +1106,12 @@ def build_get_paging_model_with_item_name_with_xms_client_name_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "nextLink": "str (optional)",
+                "nextLink": "str",  # Optional.
                 "values": [
                     {
                         "properties": {
-                            "id": "int (optional)",
-                            "name": "str (optional)"
+                            "id": 0,  # Optional.
+                            "name": "str"  # Optional.
                         }
                     }
                 ]

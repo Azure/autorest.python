@@ -120,7 +120,7 @@ def build_post_required_integer_parameter_request(
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "int (optional)"
+            json = 0  # Optional.
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
@@ -167,7 +167,7 @@ def build_post_optional_integer_parameter_request(
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "int (optional)"
+            json = 0  # Optional.
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
@@ -216,7 +216,7 @@ def build_post_required_integer_property_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "value": "int"
+                "value": 0
             }
     """
 
@@ -265,7 +265,7 @@ def build_post_optional_integer_property_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "value": "int (optional)"
+                "value": 0  # Optional.
             }
     """
 
@@ -388,7 +388,7 @@ def build_post_required_string_parameter_request(
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "str (optional)"
+            json = "str"  # Optional.
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
@@ -435,7 +435,7 @@ def build_post_optional_string_parameter_request(
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "str (optional)"
+            json = "str"  # Optional.
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
@@ -533,7 +533,7 @@ def build_post_optional_string_property_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "value": "str (optional)"
+                "value": "str"  # Optional.
             }
     """
 
@@ -657,8 +657,8 @@ def build_post_required_class_parameter_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "id": "int",
-                "name": "str (optional)"
+                "id": 0,
+                "name": "str"  # Optional.
             }
     """
 
@@ -707,8 +707,8 @@ def build_post_optional_class_parameter_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "id": "int",
-                "name": "str (optional)"
+                "id": 0,
+                "name": "str"  # Optional.
             }
     """
 
@@ -759,8 +759,8 @@ def build_post_required_class_property_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "value": {
-                    "id": "int",
-                    "name": "str (optional)"
+                    "id": 0,
+                    "name": "str"  # Optional.
                 }
             }
     """
@@ -811,8 +811,8 @@ def build_post_optional_class_property_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "value": {
-                    "id": "int",
-                    "name": "str (optional)"
+                    "id": 0,
+                    "name": "str"  # Optional.
                 }
             }
     """
@@ -863,7 +863,7 @@ def build_post_required_array_parameter_request(
 
             # JSON input template you can fill out and use as your body input.
             json = [
-                "str (optional)"
+                "str"  # Optional.
             ]
     """
 
@@ -912,7 +912,7 @@ def build_post_optional_array_parameter_request(
 
             # JSON input template you can fill out and use as your body input.
             json = [
-                "str (optional)"
+                "str"  # Optional.
             ]
     """
 
@@ -1014,7 +1014,7 @@ def build_post_optional_array_property_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "value": [
-                    "str (optional)"
+                    "str"  # Optional.
                 ]
             }
     """

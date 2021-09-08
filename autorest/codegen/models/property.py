@@ -36,7 +36,8 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
             self.description = description
         else:
             self.description = yaml_data["language"]["python"]["description"]
-
+        if self.description and self.description[-1] != ".":
+            self.description += "."
         self.client_default_value = client_default_value
 
     @property
@@ -127,7 +128,10 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
 
     def get_json_template_representation(self, **kwargs: Any) -> Any:
         kwargs["optional"] = not self.required
-        kwargs["default_value_declaration"] = self.default_value_declaration
+        if self.default_value:
+            kwargs["default_value_declaration"] = self.schema.get_declaration(self.default_value)
+        if self.description:
+            kwargs["description"] = self.description
         return self.schema.get_json_template_representation(**kwargs)
 
     def get_files_template_representation(self, **kwargs: Any) -> Any:

@@ -104,7 +104,7 @@ def build_post505_request(
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "bool (optional)"
+            json = True  # Optional. Default value is True.
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
@@ -151,7 +151,7 @@ def build_delete505_request(
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "bool (optional)"
+            json = True  # Optional. Default value is True.
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]

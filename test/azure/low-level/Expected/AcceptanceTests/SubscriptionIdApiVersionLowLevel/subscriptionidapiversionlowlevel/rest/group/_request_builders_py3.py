@@ -36,8 +36,8 @@ def build_get_sample_resource_group_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "location": "str (optional)",
-                "name": "str (optional)"
+                "location": "str",  # Optional. resource group location 'West US'.
+                "name": "str"  # Optional. resource group name 'testgroup101'.
             }
     """
 

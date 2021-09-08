@@ -194,32 +194,32 @@ class LROsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -329,32 +329,32 @@ class LROsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -464,32 +464,32 @@ class LROsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
 
                 # response body for status code(s): 201
                 response.json() == {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -593,17 +593,17 @@ class LROsOperations:
                 # response body for status code(s): 200
                 response.json() == [
                     {
-                        "id": "str (optional)",
-                        "location": "str (optional)",
-                        "name": "str (optional)",
+                        "id": "str",  # Optional. Resource Id.
+                        "location": "str",  # Optional. Resource Location.
+                        "name": "str",  # Optional. Resource Name.
                         "properties": {
-                            "provisioningState": "str (optional)",
-                            "provisioningStateValues": "str (optional)"
+                            "provisioningState": "str",  # Optional.
+                            "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                         },
                         "tags": {
-                            "str": "str (optional)"
+                            "str": "str"  # Optional. Dictionary of :code:`<string>`.
                         },
-                        "type": "str (optional)"
+                        "type": "str"  # Optional. Resource Type.
                     }
                 ]
         """
@@ -706,32 +706,32 @@ class LROsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -837,32 +837,32 @@ class LROsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
 
                 # response body for status code(s): 202
                 response.json() == {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -975,32 +975,32 @@ class LROsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
 
                 # response body for status code(s): 200, 201
                 response.json() == {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -1106,32 +1106,32 @@ class LROsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -1244,32 +1244,32 @@ class LROsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
 
                 # response body for status code(s): 200, 201
                 response.json() == {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -1375,32 +1375,32 @@ class LROsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -1508,32 +1508,32 @@ class LROsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
 
                 # response body for status code(s): 202
                 response.json() == {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -1649,32 +1649,32 @@ class LROsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -1793,32 +1793,32 @@ class LROsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -1937,32 +1937,32 @@ class LROsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -2081,32 +2081,32 @@ class LROsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -2223,32 +2223,32 @@ class LROsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
 
                 # response body for status code(s): 201
                 response.json() == {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -2357,14 +2357,14 @@ class LROsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 sku = {
-                    "id": "str (optional)",
-                    "name": "str (optional)"
+                    "id": "str",  # Optional.
+                    "name": "str"  # Optional.
                 }
 
                 # response body for status code(s): 202
                 response.json() == {
-                    "id": "str (optional)",
-                    "name": "str (optional)"
+                    "id": "str",  # Optional.
+                    "name": "str"  # Optional.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -2468,14 +2468,14 @@ class LROsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 sku = {
-                    "id": "str (optional)",
-                    "name": "str (optional)"
+                    "id": "str",  # Optional.
+                    "name": "str"  # Optional.
                 }
 
                 # response body for status code(s): 202
                 response.json() == {
-                    "id": "str (optional)",
-                    "name": "str (optional)"
+                    "id": "str",  # Optional.
+                    "name": "str"  # Optional.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -2579,19 +2579,19 @@ class LROsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
+                    "id": "str",  # Optional. Sub Resource Id.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     }
                 }
 
                 # response body for status code(s): 202
                 response.json() == {
-                    "id": "str (optional)",
+                    "id": "str",  # Optional. Sub Resource Id.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     }
                 }
         """
@@ -2696,19 +2696,19 @@ class LROsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
+                    "id": "str",  # Optional. Sub Resource Id.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     }
                 }
 
                 # response body for status code(s): 202
                 response.json() == {
-                    "id": "str (optional)",
+                    "id": "str",  # Optional. Sub Resource Id.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     }
                 }
         """
@@ -2815,17 +2815,17 @@ class LROsOperations:
 
                 # response body for status code(s): 200, 202
                 response.json() == {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
@@ -2930,17 +2930,17 @@ class LROsOperations:
 
                 # response body for status code(s): 200, 202
                 response.json() == {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
@@ -3043,17 +3043,17 @@ class LROsOperations:
 
                 # response body for status code(s): 200, 202
                 response.json() == {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
@@ -3220,17 +3220,17 @@ class LROsOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
@@ -3328,17 +3328,17 @@ class LROsOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
@@ -3892,8 +3892,8 @@ class LROsOperations:
 
                 # response body for status code(s): 200, 202
                 response.json() == {
-                    "id": "str (optional)",
-                    "name": "str (optional)"
+                    "id": "str",  # Optional.
+                    "name": "str"  # Optional.
                 }
         """
         polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
@@ -3992,17 +3992,17 @@ class LROsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -4105,32 +4105,32 @@ class LROsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
 
                 # response body for status code(s): 202
                 response.json() == {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -4229,17 +4229,17 @@ class LROsOperations:
 
                 # response body for status code(s): 202
                 response.json() == {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
@@ -4331,17 +4331,17 @@ class LROsOperations:
 
                 # response body for status code(s): 202
                 response.json() == {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
@@ -4435,17 +4435,17 @@ class LROsOperations:
 
                 # response body for status code(s): 202
                 response.json() == {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
@@ -4560,32 +4560,32 @@ class LROsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -4701,32 +4701,32 @@ class LROsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -4832,17 +4832,17 @@ class LROsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -4942,17 +4942,17 @@ class LROsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -5078,32 +5078,32 @@ class LRORetrysOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
 
                 # response body for status code(s): 200, 201
                 response.json() == {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -5216,32 +5216,32 @@ class LRORetrysOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -5354,17 +5354,17 @@ class LRORetrysOperations:
 
                 # response body for status code(s): 200, 202
                 response.json() == {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
@@ -5616,17 +5616,17 @@ class LRORetrysOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -5728,17 +5728,17 @@ class LRORetrysOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -5862,32 +5862,32 @@ class LROSADsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
 
                 # response body for status code(s): 200, 201
                 response.json() == {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -5999,32 +5999,32 @@ class LROSADsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
 
                 # response body for status code(s): 200, 201
                 response.json() == {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -6138,32 +6138,32 @@ class LROSADsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
 
                 # response body for status code(s): 200, 201
                 response.json() == {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -6275,32 +6275,32 @@ class LROSADsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -6631,17 +6631,17 @@ class LROSADsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -6736,17 +6736,17 @@ class LROSADsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -6845,17 +6845,17 @@ class LROSADsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -6962,32 +6962,32 @@ class LROSADsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
 
                 # response body for status code(s): 200, 201
                 response.json() == {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -7100,32 +7100,32 @@ class LROSADsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -7247,32 +7247,32 @@ class LROSADsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -7527,17 +7527,17 @@ class LROSADsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -7639,17 +7639,17 @@ class LROSADsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -7750,32 +7750,32 @@ class LROSADsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -7890,32 +7890,32 @@ class LROSADsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -8037,32 +8037,32 @@ class LROSADsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -8401,17 +8401,17 @@ class LROSADsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -8513,17 +8513,17 @@ class LROSADsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -8625,17 +8625,17 @@ class LROSADsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -8762,32 +8762,32 @@ class LROsCustomHeaderOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -8908,32 +8908,32 @@ class LROsCustomHeaderOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
 
                 # response body for status code(s): 200, 201
                 response.json() == {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -9036,17 +9036,17 @@ class LROsCustomHeaderOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
@@ -9147,17 +9147,17 @@ class LROsCustomHeaderOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)"
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
         """
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]

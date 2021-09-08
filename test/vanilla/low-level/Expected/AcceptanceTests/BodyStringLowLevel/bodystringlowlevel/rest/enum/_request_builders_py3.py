@@ -28,7 +28,7 @@ def build_get_not_expandable_request(**kwargs: Any) -> HttpRequest:
         .. code-block:: python
 
             # response body for status code(s): 200
-            response.json() == "str (optional)"
+            response.json() == "str"  # Optional.  Valid values are: "red color", "green-color", "blue_color".
     """
 
     accept = "application/json"
@@ -63,7 +63,7 @@ def build_put_not_expandable_request(*, json: Any = None, content: Any = None, *
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "str (optional)"
+            json = "str"  # Optional.  Valid values are: "red color", "green-color", "blue_color".
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -96,7 +96,7 @@ def build_get_referenced_request(**kwargs: Any) -> HttpRequest:
         .. code-block:: python
 
             # response body for status code(s): 200
-            response.json() == "str (optional)"
+            response.json() == "str"  # Optional.  Valid values are: "red color", "green-color", "blue_color".
     """
 
     accept = "application/json"
@@ -131,7 +131,7 @@ def build_put_referenced_request(*, json: Any = None, content: Any = None, **kwa
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "str (optional)"
+            json = "str"  # Optional.  Valid values are: "red color", "green-color", "blue_color".
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -165,8 +165,8 @@ def build_get_referenced_constant_request(**kwargs: Any) -> HttpRequest:
 
             # response body for status code(s): 200
             response.json() == {
-                "ColorConstant": "str",
-                "field1": "str (optional)"
+                "ColorConstant": "green-color",  # Default value is "green-color". Referenced Color Constant Description.
+                "field1": "str"  # Optional. Sample string.
             }
     """
 
@@ -203,8 +203,8 @@ def build_put_referenced_constant_request(*, json: Any = None, content: Any = No
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "ColorConstant": "str",
-                "field1": "str (optional)"
+                "ColorConstant": "green-color",  # Default value is "green-color". Referenced Color Constant Description.
+                "field1": "str"  # Optional. Sample string.
             }
     """
 

@@ -37,8 +37,8 @@ def build_get_int_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "field1": "int (optional)",
-                "field2": "int (optional)"
+                "field1": 0,  # Optional.
+                "field2": 0  # Optional.
             }
     """
 
@@ -83,8 +83,8 @@ def build_put_int_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "field1": "int (optional)",
-                "field2": "int (optional)"
+                "field1": 0,  # Optional.
+                "field2": 0  # Optional.
             }
     """
 
@@ -127,8 +127,8 @@ def build_get_long_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "field1": "long (optional)",
-                "field2": "long (optional)"
+                "field1": 0.0,  # Optional.
+                "field2": 0.0  # Optional.
             }
     """
 
@@ -173,8 +173,8 @@ def build_put_long_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "field1": "long (optional)",
-                "field2": "long (optional)"
+                "field1": 0.0,  # Optional.
+                "field2": 0.0  # Optional.
             }
     """
 
@@ -217,8 +217,8 @@ def build_get_float_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "field1": "float (optional)",
-                "field2": "float (optional)"
+                "field1": 0.0,  # Optional.
+                "field2": 0.0  # Optional.
             }
     """
 
@@ -263,8 +263,8 @@ def build_put_float_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "field1": "float (optional)",
-                "field2": "float (optional)"
+                "field1": 0.0,  # Optional.
+                "field2": 0.0  # Optional.
             }
     """
 
@@ -307,8 +307,8 @@ def build_get_double_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "field1": "float (optional)",
-                "field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose": "float (optional)"
+                "field1": 0.0,  # Optional.
+                "field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose": 0.0  # Optional.
             }
     """
 
@@ -355,8 +355,8 @@ def build_put_double_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "field1": "float (optional)",
-                "field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose": "float (optional)"
+                "field1": 0.0,  # Optional.
+                "field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose": 0.0  # Optional.
             }
     """
 
@@ -399,8 +399,8 @@ def build_get_bool_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "field_false": "bool (optional)",
-                "field_true": "bool (optional)"
+                "field_false": bool,  # Optional.
+                "field_true": bool  # Optional.
             }
     """
 
@@ -445,8 +445,8 @@ def build_put_bool_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "field_false": "bool (optional)",
-                "field_true": "bool (optional)"
+                "field_false": bool,  # Optional.
+                "field_true": bool  # Optional.
             }
     """
 
@@ -489,9 +489,9 @@ def build_get_string_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "empty": "str (optional)",
-                "field": "str (optional)",
-                "null": "str (optional)"
+                "empty": "str",  # Optional.
+                "field": "str",  # Optional.
+                "null": "str"  # Optional.
             }
     """
 
@@ -536,9 +536,9 @@ def build_put_string_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "empty": "str (optional)",
-                "field": "str (optional)",
-                "null": "str (optional)"
+                "empty": "str",  # Optional.
+                "field": "str",  # Optional.
+                "null": "str"  # Optional.
             }
     """
 
@@ -581,8 +581,8 @@ def build_get_date_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "field": "date (optional)",
-                "leap": "date (optional)"
+                "field": "2020-02-20",  # Optional.
+                "leap": "2020-02-20"  # Optional.
             }
     """
 
@@ -627,8 +627,8 @@ def build_put_date_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "field": "date (optional)",
-                "leap": "date (optional)"
+                "field": "2020-02-20",  # Optional.
+                "leap": "2020-02-20"  # Optional.
             }
     """
 
@@ -671,8 +671,8 @@ def build_get_date_time_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "field": "datetime (optional)",
-                "now": "datetime (optional)"
+                "field": "2020-02-20 00:00:00",  # Optional.
+                "now": "2020-02-20 00:00:00"  # Optional.
             }
     """
 
@@ -719,8 +719,8 @@ def build_put_date_time_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "field": "datetime (optional)",
-                "now": "datetime (optional)"
+                "field": "2020-02-20 00:00:00",  # Optional.
+                "now": "2020-02-20 00:00:00"  # Optional.
             }
     """
 
@@ -763,8 +763,8 @@ def build_get_date_time_rfc1123_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "field": "datetime (optional)",
-                "now": "datetime (optional)"
+                "field": "2020-02-20 00:00:00",  # Optional.
+                "now": "2020-02-20 00:00:00"  # Optional.
             }
     """
 
@@ -811,8 +811,8 @@ def build_put_date_time_rfc1123_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "field": "datetime (optional)",
-                "now": "datetime (optional)"
+                "field": "2020-02-20 00:00:00",  # Optional.
+                "now": "2020-02-20 00:00:00"  # Optional.
             }
     """
 
@@ -855,7 +855,7 @@ def build_get_duration_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "field": "timedelta (optional)"
+                "field": "1 day, 0:00:00"  # Optional.
             }
     """
 
@@ -900,7 +900,7 @@ def build_put_duration_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "field": "timedelta (optional)"
+                "field": "1 day, 0:00:00"  # Optional.
             }
     """
 
@@ -943,7 +943,7 @@ def build_get_byte_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "field": "bytearray (optional)"
+                "field": bytearray("bytearray", encoding="utf-8")  # Optional.
             }
     """
 
@@ -990,7 +990,7 @@ def build_put_byte_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "field": "bytearray (optional)"
+                "field": bytearray("bytearray", encoding="utf-8")  # Optional.
             }
     """
 

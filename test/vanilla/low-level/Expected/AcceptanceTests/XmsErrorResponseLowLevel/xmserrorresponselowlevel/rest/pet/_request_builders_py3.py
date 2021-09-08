@@ -32,8 +32,8 @@ def build_get_pet_by_id_request(pet_id: str, **kwargs: Any) -> HttpRequest:
 
             # response body for status code(s): 200
             response.json() == {
-                "aniType": "str (optional)",
-                "name": "str (optional)"
+                "aniType": "str",  # Optional.
+                "name": "str"  # Optional. Gets the Pet by id.
             }
     """
 
@@ -71,7 +71,7 @@ def build_do_something_request(what_action: str, **kwargs: Any) -> HttpRequest:
 
             # response body for status code(s): 200
             response.json() == {
-                "actionResponse": "str (optional)"
+                "actionResponse": "str"  # Optional. action feedback.
             }
     """
 

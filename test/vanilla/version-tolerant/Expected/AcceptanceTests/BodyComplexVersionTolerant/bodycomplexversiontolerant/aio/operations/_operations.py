@@ -114,9 +114,9 @@ class BasicOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "color": "str (optional)",
-                    "id": "int (optional)",
-                    "name": "str (optional)"
+                    "color": "str",  # Optional.  Valid values are: "cyan", "Magenta", "YELLOW", "blacK".
+                    "id": 0,  # Optional. Basic Id.
+                    "name": "str"  # Optional. Name property with a very long description that does not fit on a single line and a line break.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -164,9 +164,9 @@ class BasicOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "color": "str (optional)",
-                    "id": "int (optional)",
-                    "name": "str (optional)"
+                    "color": "str",  # Optional.  Valid values are: "cyan", "Magenta", "YELLOW", "blacK".
+                    "id": 0,  # Optional. Basic Id.
+                    "name": "str"  # Optional. Name property with a very long description that does not fit on a single line and a line break.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -211,9 +211,9 @@ class BasicOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "color": "str (optional)",
-                    "id": "int (optional)",
-                    "name": "str (optional)"
+                    "color": "str",  # Optional.  Valid values are: "cyan", "Magenta", "YELLOW", "blacK".
+                    "id": 0,  # Optional. Basic Id.
+                    "name": "str"  # Optional. Name property with a very long description that does not fit on a single line and a line break.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -259,9 +259,9 @@ class BasicOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "color": "str (optional)",
-                    "id": "int (optional)",
-                    "name": "str (optional)"
+                    "color": "str",  # Optional.  Valid values are: "cyan", "Magenta", "YELLOW", "blacK".
+                    "id": 0,  # Optional. Basic Id.
+                    "name": "str"  # Optional. Name property with a very long description that does not fit on a single line and a line break.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -307,9 +307,9 @@ class BasicOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "color": "str (optional)",
-                    "id": "int (optional)",
-                    "name": "str (optional)"
+                    "color": "str",  # Optional.  Valid values are: "cyan", "Magenta", "YELLOW", "blacK".
+                    "id": 0,  # Optional. Basic Id.
+                    "name": "str"  # Optional. Name property with a very long description that does not fit on a single line and a line break.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -355,9 +355,9 @@ class BasicOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "color": "str (optional)",
-                    "id": "int (optional)",
-                    "name": "str (optional)"
+                    "color": "str",  # Optional.  Valid values are: "cyan", "Magenta", "YELLOW", "blacK".
+                    "id": 0,  # Optional. Basic Id.
+                    "name": "str"  # Optional. Name property with a very long description that does not fit on a single line and a line break.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -422,8 +422,8 @@ class PrimitiveOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "field1": "int (optional)",
-                    "field2": "int (optional)"
+                    "field1": 0,  # Optional.
+                    "field2": 0  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -471,8 +471,8 @@ class PrimitiveOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field1": "int (optional)",
-                    "field2": "int (optional)"
+                    "field1": 0,  # Optional.
+                    "field2": 0  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -517,8 +517,8 @@ class PrimitiveOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "field1": "long (optional)",
-                    "field2": "long (optional)"
+                    "field1": 0.0,  # Optional.
+                    "field2": 0.0  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -566,8 +566,8 @@ class PrimitiveOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field1": "long (optional)",
-                    "field2": "long (optional)"
+                    "field1": 0.0,  # Optional.
+                    "field2": 0.0  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -612,8 +612,8 @@ class PrimitiveOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "field1": "float (optional)",
-                    "field2": "float (optional)"
+                    "field1": 0.0,  # Optional.
+                    "field2": 0.0  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -661,8 +661,8 @@ class PrimitiveOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field1": "float (optional)",
-                    "field2": "float (optional)"
+                    "field1": 0.0,  # Optional.
+                    "field2": 0.0  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -707,8 +707,8 @@ class PrimitiveOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "field1": "float (optional)",
-                    "field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose": "float (optional)"
+                    "field1": 0.0,  # Optional.
+                    "field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose": 0.0  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -757,8 +757,8 @@ class PrimitiveOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field1": "float (optional)",
-                    "field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose": "float (optional)"
+                    "field1": 0.0,  # Optional.
+                    "field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose": 0.0  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -803,8 +803,8 @@ class PrimitiveOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "field_false": "bool (optional)",
-                    "field_true": "bool (optional)"
+                    "field_false": bool,  # Optional.
+                    "field_true": bool  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -852,8 +852,8 @@ class PrimitiveOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field_false": "bool (optional)",
-                    "field_true": "bool (optional)"
+                    "field_false": bool,  # Optional.
+                    "field_true": bool  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -898,9 +898,9 @@ class PrimitiveOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "empty": "str (optional)",
-                    "field": "str (optional)",
-                    "null": "str (optional)"
+                    "empty": "str",  # Optional.
+                    "field": "str",  # Optional.
+                    "null": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -948,9 +948,9 @@ class PrimitiveOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "empty": "str (optional)",
-                    "field": "str (optional)",
-                    "null": "str (optional)"
+                    "empty": "str",  # Optional.
+                    "field": "str",  # Optional.
+                    "null": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -995,8 +995,8 @@ class PrimitiveOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "field": "date (optional)",
-                    "leap": "date (optional)"
+                    "field": "2020-02-20",  # Optional.
+                    "leap": "2020-02-20"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -1044,8 +1044,8 @@ class PrimitiveOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field": "date (optional)",
-                    "leap": "date (optional)"
+                    "field": "2020-02-20",  # Optional.
+                    "leap": "2020-02-20"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -1090,8 +1090,8 @@ class PrimitiveOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "field": "datetime (optional)",
-                    "now": "datetime (optional)"
+                    "field": "2020-02-20 00:00:00",  # Optional.
+                    "now": "2020-02-20 00:00:00"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -1139,8 +1139,8 @@ class PrimitiveOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field": "datetime (optional)",
-                    "now": "datetime (optional)"
+                    "field": "2020-02-20 00:00:00",  # Optional.
+                    "now": "2020-02-20 00:00:00"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -1185,8 +1185,8 @@ class PrimitiveOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "field": "datetime (optional)",
-                    "now": "datetime (optional)"
+                    "field": "2020-02-20 00:00:00",  # Optional.
+                    "now": "2020-02-20 00:00:00"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -1235,8 +1235,8 @@ class PrimitiveOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field": "datetime (optional)",
-                    "now": "datetime (optional)"
+                    "field": "2020-02-20 00:00:00",  # Optional.
+                    "now": "2020-02-20 00:00:00"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -1281,7 +1281,7 @@ class PrimitiveOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "field": "timedelta (optional)"
+                    "field": "1 day, 0:00:00"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -1329,7 +1329,7 @@ class PrimitiveOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field": "timedelta (optional)"
+                    "field": "1 day, 0:00:00"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -1374,7 +1374,7 @@ class PrimitiveOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "field": "bytearray (optional)"
+                    "field": bytearray("bytearray", encoding="utf-8")  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -1422,7 +1422,7 @@ class PrimitiveOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field": "bytearray (optional)"
+                    "field": bytearray("bytearray", encoding="utf-8")  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -1487,7 +1487,7 @@ class ArrayOperations:
                 # response body for status code(s): 200
                 response.json() == {
                     "array": [
-                        "str (optional)"
+                        "str"  # Optional.
                     ]
                 }
         """
@@ -1538,7 +1538,7 @@ class ArrayOperations:
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
                     "array": [
-                        "str (optional)"
+                        "str"  # Optional.
                     ]
                 }
         """
@@ -1585,7 +1585,7 @@ class ArrayOperations:
                 # response body for status code(s): 200
                 response.json() == {
                     "array": [
-                        "str (optional)"
+                        "str"  # Optional.
                     ]
                 }
         """
@@ -1635,7 +1635,7 @@ class ArrayOperations:
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
                     "array": [
-                        "str (optional)"
+                        "str"  # Optional.
                     ]
                 }
         """
@@ -1682,7 +1682,7 @@ class ArrayOperations:
                 # response body for status code(s): 200
                 response.json() == {
                     "array": [
-                        "str (optional)"
+                        "str"  # Optional.
                     ]
                 }
         """
@@ -1749,7 +1749,7 @@ class DictionaryOperations:
                 # response body for status code(s): 200
                 response.json() == {
                     "defaultProgram": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     }
                 }
         """
@@ -1800,7 +1800,7 @@ class DictionaryOperations:
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
                     "defaultProgram": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     }
                 }
         """
@@ -1847,7 +1847,7 @@ class DictionaryOperations:
                 # response body for status code(s): 200
                 response.json() == {
                     "defaultProgram": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     }
                 }
         """
@@ -1897,7 +1897,7 @@ class DictionaryOperations:
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
                     "defaultProgram": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     }
                 }
         """
@@ -1944,7 +1944,7 @@ class DictionaryOperations:
                 # response body for status code(s): 200
                 response.json() == {
                     "defaultProgram": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     }
                 }
         """
@@ -1992,7 +1992,7 @@ class DictionaryOperations:
                 # response body for status code(s): 200
                 response.json() == {
                     "defaultProgram": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     }
                 }
         """
@@ -2058,17 +2058,17 @@ class InheritanceOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "breed": "str (optional)",
-                    "color": "str (optional)",
+                    "breed": "str",  # Optional.
+                    "color": "str",  # Optional.
                     "hates": [
                         {
-                            "food": "str (optional)",
-                            "id": "int (optional)",
-                            "name": "str (optional)"
+                            "food": "str",  # Optional.
+                            "id": 0,  # Optional.
+                            "name": "str"  # Optional.
                         }
                     ],
-                    "id": "int (optional)",
-                    "name": "str (optional)"
+                    "id": 0,  # Optional.
+                    "name": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -2118,17 +2118,17 @@ class InheritanceOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "breed": "str (optional)",
-                    "color": "str (optional)",
+                    "breed": "str",  # Optional.
+                    "color": "str",  # Optional.
                     "hates": [
                         {
-                            "food": "str (optional)",
-                            "id": "int (optional)",
-                            "name": "str (optional)"
+                            "food": "str",  # Optional.
+                            "id": 0,  # Optional.
+                            "name": "str"  # Optional.
                         }
                     ],
-                    "id": "int (optional)",
-                    "name": "str (optional)"
+                    "id": 0,  # Optional.
+                    "name": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -2192,12 +2192,12 @@ class PolymorphismOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "fishtype": "fishtype",
-                    "length": "float",
+                    "length": 0.0,
                     "siblings": [
-                        "..."
+                        ...
                     ],
-                    "species": "str (optional)"
+                    "species": "str",  # Optional.
+                    fishtype: fishtype
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -2279,12 +2279,12 @@ class PolymorphismOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "fishtype": "fishtype",
-                    "length": "float",
+                    "length": 0.0,
                     "siblings": [
-                        "..."
+                        ...
                     ],
-                    "species": "str (optional)"
+                    "species": "str",  # Optional.
+                    fishtype: fishtype
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -2329,8 +2329,8 @@ class PolymorphismOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "fish.type": "fish.type",
-                    "species": "str (optional)"
+                    "species": "str",  # Optional.
+                    fish.type: fish.type
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -2380,27 +2380,27 @@ class PolymorphismOperations:
                 response.json() == {
                     "fishes": [
                         {
-                            "fish.type": "fish.type",
-                            "species": "str (optional)"
+                            "species": "str",  # Optional.
+                            fish.type: fish.type
                         }
                     ],
                     "salmons": [
                         {
-                            "fish.type": "DotSalmon",
-                            "iswild": "bool (optional)",
-                            "location": "str (optional)",
-                            "species": "str (optional)"
+                            "iswild": bool,  # Optional.
+                            "location": "str",  # Optional.
+                            "species": "str",  # Optional.
+                            fish.type: DotSalmon
                         }
                     ],
                     "sampleFish": {
-                        "fish.type": "fish.type",
-                        "species": "str (optional)"
+                        "species": "str",  # Optional.
+                        fish.type: fish.type
                     },
                     "sampleSalmon": {
-                        "fish.type": "DotSalmon",
-                        "iswild": "bool (optional)",
-                        "location": "str (optional)",
-                        "species": "str (optional)"
+                        "iswild": bool,  # Optional.
+                        "location": "str",  # Optional.
+                        "species": "str",  # Optional.
+                        fish.type: DotSalmon
                     }
                 }
         """
@@ -2451,27 +2451,27 @@ class PolymorphismOperations:
                 response.json() == {
                     "fishes": [
                         {
-                            "fish.type": "fish.type",
-                            "species": "str (optional)"
+                            "species": "str",  # Optional.
+                            fish.type: fish.type
                         }
                     ],
                     "salmons": [
                         {
-                            "fish.type": "DotSalmon",
-                            "iswild": "bool (optional)",
-                            "location": "str (optional)",
-                            "species": "str (optional)"
+                            "iswild": bool,  # Optional.
+                            "location": "str",  # Optional.
+                            "species": "str",  # Optional.
+                            fish.type: DotSalmon
                         }
                     ],
                     "sampleFish": {
-                        "fish.type": "fish.type",
-                        "species": "str (optional)"
+                        "species": "str",  # Optional.
+                        fish.type: fish.type
                     },
                     "sampleSalmon": {
-                        "fish.type": "DotSalmon",
-                        "iswild": "bool (optional)",
-                        "location": "str (optional)",
-                        "species": "str (optional)"
+                        "iswild": bool,  # Optional.
+                        "location": "str",  # Optional.
+                        "species": "str",  # Optional.
+                        fish.type: DotSalmon
                     }
                 }
         """
@@ -2519,21 +2519,21 @@ class PolymorphismOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "fishtype": "salmon",
-                    "iswild": "bool (optional)",
-                    "length": "float",
-                    "location": "str (optional)",
+                    "iswild": bool,  # Optional.
+                    "length": 0.0,
+                    "location": "str",  # Optional.
                     "siblings": [
                         {
-                            "fishtype": "fishtype",
-                            "length": "float",
+                            "length": 0.0,
                             "siblings": [
-                                "..."
+                                ...
                             ],
-                            "species": "str (optional)"
+                            "species": "str",  # Optional.
+                            fishtype: fishtype
                         }
                     ],
-                    "species": "str (optional)"
+                    "species": "str",  # Optional.
+                    fishtype: salmon
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -2584,21 +2584,21 @@ class PolymorphismOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "fishtype": "salmon",
-                    "iswild": "bool (optional)",
-                    "length": "float",
-                    "location": "str (optional)",
+                    "iswild": bool,  # Optional.
+                    "length": 0.0,
+                    "location": "str",  # Optional.
                     "siblings": [
                         {
-                            "fishtype": "fishtype",
-                            "length": "float",
+                            "length": 0.0,
                             "siblings": [
-                                "..."
+                                ...
                             ],
-                            "species": "str (optional)"
+                            "species": "str",  # Optional.
+                            fishtype: fishtype
                         }
                     ],
-                    "species": "str (optional)"
+                    "species": "str",  # Optional.
+                    fishtype: salmon
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -2647,40 +2647,40 @@ class PolymorphismOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "fishtype": "salmon",
-                    "iswild": "bool (optional)",
-                    "length": "float",
-                    "location": "str (optional)",
+                    "iswild": bool,  # Optional.
+                    "length": 0.0,
+                    "location": "str",  # Optional.
                     "siblings": [
                         {
-                            "fishtype": "fishtype",
-                            "length": "float",
+                            "length": 0.0,
                             "siblings": [
-                                "..."
+                                ...
                             ],
-                            "species": "str (optional)"
+                            "species": "str",  # Optional.
+                            fishtype: fishtype
                         }
                     ],
-                    "species": "str (optional)"
+                    "species": "str",  # Optional.
+                    fishtype: salmon
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "fishtype": "salmon",
-                    "iswild": "bool (optional)",
-                    "length": "float",
-                    "location": "str (optional)",
+                    "iswild": bool,  # Optional.
+                    "length": 0.0,
+                    "location": "str",  # Optional.
                     "siblings": [
                         {
-                            "fishtype": "fishtype",
-                            "length": "float",
+                            "length": 0.0,
                             "siblings": [
-                                "..."
+                                ...
                             ],
-                            "species": "str (optional)"
+                            "species": "str",  # Optional.
+                            fishtype: fishtype
                         }
                     ],
-                    "species": "str (optional)"
+                    "species": "str",  # Optional.
+                    fishtype: salmon
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -2763,12 +2763,12 @@ class PolymorphismOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "fishtype": "fishtype",
-                    "length": "float",
+                    "length": 0.0,
                     "siblings": [
-                        "..."
+                        ...
                     ],
-                    "species": "str (optional)"
+                    "species": "str",  # Optional.
+                    fishtype: fishtype
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -2832,12 +2832,12 @@ class PolymorphicrecursiveOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "fishtype": "fishtype",
-                    "length": "float",
+                    "length": 0.0,
                     "siblings": [
-                        "..."
+                        ...
                     ],
-                    "species": "str (optional)"
+                    "species": "str",  # Optional.
+                    fishtype: fishtype
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -2939,12 +2939,12 @@ class PolymorphicrecursiveOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "fishtype": "fishtype",
-                    "length": "float",
+                    "length": 0.0,
                     "siblings": [
-                        "..."
+                        ...
                     ],
-                    "species": "str (optional)"
+                    "species": "str",  # Optional.
+                    fishtype: fishtype
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -3008,8 +3008,8 @@ class ReadonlypropertyOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "id": "str (optional)",
-                    "size": "int (optional)"
+                    "id": "str",  # Optional.
+                    "size": 0  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -3057,8 +3057,8 @@ class ReadonlypropertyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "id": "str (optional)",
-                    "size": "int (optional)"
+                    "id": "str",  # Optional.
+                    "size": 0  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -3123,10 +3123,10 @@ class FlattencomplexOperations:
                 # response body for status code(s): 200
                 response.json() == {
                     "helper": {
-                        "propBH1": "str (optional)"
+                        "propBH1": "str"  # Optional.
                     },
-                    "kind": "kind",
-                    "propB1": "str (optional)"
+                    "propB1": "str",  # Optional.
+                    kind: kind
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]

@@ -37,7 +37,7 @@ def build_get_horse_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "isAShowHorse": "bool (optional)",
+                "isAShowHorse": bool,  # Optional.
                 "name": "str"
             }
     """
@@ -83,7 +83,7 @@ def build_put_horse_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "isAShowHorse": "bool (optional)",
+                "isAShowHorse": bool,  # Optional.
                 "name": "str"
             }
     """
@@ -215,8 +215,8 @@ def build_get_feline_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "hisses": "bool (optional)",
-                "meows": "bool (optional)"
+                "hisses": bool,  # Optional.
+                "meows": bool  # Optional.
             }
     """
 
@@ -261,8 +261,8 @@ def build_put_feline_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "hisses": "bool (optional)",
-                "meows": "bool (optional)"
+                "hisses": bool,  # Optional.
+                "meows": bool  # Optional.
             }
     """
 
@@ -305,9 +305,9 @@ def build_get_cat_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "hisses": "bool (optional)",
-                "likesMilk": "bool (optional)",
-                "meows": "bool (optional)",
+                "hisses": bool,  # Optional.
+                "likesMilk": bool,  # Optional.
+                "meows": bool,  # Optional.
                 "name": "str"
             }
     """
@@ -355,9 +355,9 @@ def build_put_cat_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "hisses": "bool (optional)",
-                "likesMilk": "bool (optional)",
-                "meows": "bool (optional)",
+                "hisses": bool,  # Optional.
+                "likesMilk": bool,  # Optional.
+                "meows": bool,  # Optional.
                 "name": "str"
             }
     """
@@ -402,10 +402,10 @@ def build_get_kitten_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "eatsMiceYet": "bool (optional)",
-                "hisses": "bool (optional)",
-                "likesMilk": "bool (optional)",
-                "meows": "bool (optional)",
+                "eatsMiceYet": bool,  # Optional.
+                "hisses": bool,  # Optional.
+                "likesMilk": bool,  # Optional.
+                "meows": bool,  # Optional.
                 "name": "str"
             }
     """
@@ -454,10 +454,10 @@ def build_put_kitten_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "eatsMiceYet": "bool (optional)",
-                "hisses": "bool (optional)",
-                "likesMilk": "bool (optional)",
-                "meows": "bool (optional)",
+                "eatsMiceYet": bool,  # Optional.
+                "hisses": bool,  # Optional.
+                "likesMilk": bool,  # Optional.
+                "meows": bool,  # Optional.
                 "name": "str"
             }
     """

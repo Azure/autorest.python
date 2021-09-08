@@ -127,7 +127,7 @@ def build_put_max_date_request(*, json: Any = None, content: Any = None, **kwarg
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "date (optional)"
+            json = "2020-02-20"  # Optional.
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
@@ -189,7 +189,7 @@ def build_put_min_date_request(*, json: Any = None, content: Any = None, **kwarg
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "date (optional)"
+            json = "2020-02-20"  # Optional.
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]

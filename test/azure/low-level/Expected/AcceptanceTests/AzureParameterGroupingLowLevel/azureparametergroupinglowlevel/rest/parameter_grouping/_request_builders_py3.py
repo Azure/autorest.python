@@ -49,7 +49,7 @@ def build_post_required_request(
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "int (optional)"
+            json = 0  # Optional.
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]

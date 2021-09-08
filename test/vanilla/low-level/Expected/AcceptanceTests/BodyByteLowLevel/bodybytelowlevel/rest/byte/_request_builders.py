@@ -137,7 +137,7 @@ def build_put_non_ascii_request(
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "bytearray (optional)"
+            json = bytearray("bytearray", encoding="utf-8")  # Optional.
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]

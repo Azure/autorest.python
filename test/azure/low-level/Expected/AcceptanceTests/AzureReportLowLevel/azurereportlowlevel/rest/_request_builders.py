@@ -41,7 +41,7 @@ def build_get_report_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "str": "int (optional)"
+                "str": 0  # Optional.
             }
     """
 
