@@ -15,8 +15,8 @@ import msrest.serialization
 class ArrayOptionalWrapper(msrest.serialization.Model):
     """ArrayOptionalWrapper.
 
-    :param value:
-    :type value: list[str]
+    :keyword value:
+    :paramtype value: list[str]
     """
 
     _attribute_map = {
@@ -33,8 +33,8 @@ class ArrayWrapper(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param value: Required.
-    :type value: list[str]
+    :keyword value: Required.
+    :paramtype value: list[str]
     """
 
     _validation = {
@@ -53,8 +53,8 @@ class ArrayWrapper(msrest.serialization.Model):
 class ClassOptionalWrapper(msrest.serialization.Model):
     """ClassOptionalWrapper.
 
-    :param value:
-    :type value: ~requiredoptional.models.Product
+    :keyword value:
+    :paramtype value: ~requiredoptional.models.Product
     """
 
     _attribute_map = {
@@ -71,8 +71,8 @@ class ClassWrapper(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param value: Required.
-    :type value: ~requiredoptional.models.Product
+    :keyword value: Required.
+    :paramtype value: ~requiredoptional.models.Product
     """
 
     _validation = {
@@ -91,10 +91,10 @@ class ClassWrapper(msrest.serialization.Model):
 class Error(msrest.serialization.Model):
     """Error.
 
-    :param status:
-    :type status: int
-    :param message:
-    :type message: str
+    :keyword status:
+    :paramtype status: int
+    :keyword message:
+    :paramtype message: str
     """
 
     _attribute_map = {
@@ -111,8 +111,8 @@ class Error(msrest.serialization.Model):
 class IntOptionalWrapper(msrest.serialization.Model):
     """IntOptionalWrapper.
 
-    :param value:
-    :type value: int
+    :keyword value:
+    :paramtype value: int
     """
 
     _attribute_map = {
@@ -129,8 +129,8 @@ class IntWrapper(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param value: Required.
-    :type value: int
+    :keyword value: Required.
+    :paramtype value: int
     """
 
     _validation = {
@@ -151,10 +151,10 @@ class Product(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param id: Required.
-    :type id: int
-    :param name:
-    :type name: str
+    :keyword id: Required.
+    :paramtype id: int
+    :keyword name:
+    :paramtype name: str
     """
 
     _validation = {
@@ -175,8 +175,8 @@ class Product(msrest.serialization.Model):
 class StringOptionalWrapper(msrest.serialization.Model):
     """StringOptionalWrapper.
 
-    :param value:
-    :type value: str
+    :keyword value:
+    :paramtype value: str
     """
 
     _attribute_map = {
@@ -193,8 +193,8 @@ class StringWrapper(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param value: Required.
-    :type value: str
+    :keyword value: Required.
+    :paramtype value: str
     """
 
     _validation = {

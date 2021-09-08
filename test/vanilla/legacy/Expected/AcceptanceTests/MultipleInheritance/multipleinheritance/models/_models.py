@@ -13,10 +13,10 @@ import msrest.serialization
 class Feline(msrest.serialization.Model):
     """Feline.
 
-    :param meows:
-    :type meows: bool
-    :param hisses:
-    :type hisses: bool
+    :keyword meows:
+    :paramtype meows: bool
+    :keyword hisses:
+    :paramtype hisses: bool
     """
 
     _attribute_map = {
@@ -35,8 +35,8 @@ class Pet(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param name: Required.
-    :type name: str
+    :keyword name: Required.
+    :paramtype name: str
     """
 
     _validation = {
@@ -57,14 +57,14 @@ class Cat(Pet, Feline):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param meows:
-    :type meows: bool
-    :param hisses:
-    :type hisses: bool
-    :param name: Required.
-    :type name: str
-    :param likes_milk:
-    :type likes_milk: bool
+    :keyword meows:
+    :paramtype meows: bool
+    :keyword hisses:
+    :paramtype hisses: bool
+    :keyword name: Required.
+    :paramtype name: str
+    :keyword likes_milk:
+    :paramtype likes_milk: bool
     """
 
     _validation = {
@@ -90,10 +90,10 @@ class Cat(Pet, Feline):
 class Error(msrest.serialization.Model):
     """Error.
 
-    :param status:
-    :type status: int
-    :param message:
-    :type message: str
+    :keyword status:
+    :paramtype status: int
+    :keyword message:
+    :paramtype message: str
     """
 
     _attribute_map = {
@@ -112,10 +112,10 @@ class Horse(Pet):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param name: Required.
-    :type name: str
-    :param is_a_show_horse:
-    :type is_a_show_horse: bool
+    :keyword name: Required.
+    :paramtype name: str
+    :keyword is_a_show_horse:
+    :paramtype is_a_show_horse: bool
     """
 
     _validation = {
@@ -137,16 +137,16 @@ class Kitten(Cat):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param meows:
-    :type meows: bool
-    :param hisses:
-    :type hisses: bool
-    :param name: Required.
-    :type name: str
-    :param likes_milk:
-    :type likes_milk: bool
-    :param eats_mice_yet:
-    :type eats_mice_yet: bool
+    :keyword meows:
+    :paramtype meows: bool
+    :keyword hisses:
+    :paramtype hisses: bool
+    :keyword name: Required.
+    :paramtype name: str
+    :keyword likes_milk:
+    :paramtype likes_milk: bool
+    :keyword eats_mice_yet:
+    :paramtype eats_mice_yet: bool
     """
 
     _validation = {

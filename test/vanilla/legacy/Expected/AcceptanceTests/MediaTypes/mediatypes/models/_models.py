@@ -12,8 +12,8 @@ import msrest.serialization
 class SourcePath(msrest.serialization.Model):
     """Uri or local path to source data.
 
-    :param source: File source path.
-    :type source: str
+    :keyword source: File source path.
+    :paramtype source: str
     """
 
     _validation = {

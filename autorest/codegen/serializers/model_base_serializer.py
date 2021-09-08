@@ -56,7 +56,7 @@ class ModelBaseSerializer:
         if prop.constant or prop.readonly:
             param_doc_string = f":ivar {prop.name}:"
         else:
-            param_doc_string = f":param {prop.name}:"
+            param_doc_string = f":keyword {prop.name}:"
         description = prop.description
         if prop.name == "tags":
             description = "A set of tags. " + description
@@ -90,7 +90,7 @@ class ModelBaseSerializer:
         if prop.constant or prop.readonly:
             type_doc_string = f":vartype {prop.name}: "
         else:
-            type_doc_string = f":type {prop.name}: "
+            type_doc_string = f":paramtype {prop.name}: "
         type_doc_string += prop.schema.docstring_type
         return type_doc_string
 

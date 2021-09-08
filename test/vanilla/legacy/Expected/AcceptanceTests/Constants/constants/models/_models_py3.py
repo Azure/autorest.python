@@ -16,8 +16,8 @@ from ._auto_rest_swagger_constant_service_enums import *
 class ModelAsStringNoRequiredOneValueDefault(msrest.serialization.Model):
     """ModelAsStringNoRequiredOneValueDefault.
 
-    :param parameter:  Possible values include: "value1".
-    :type parameter: str or ~constants.models.ModelAsStringNoRequiredOneValueDefaultEnum
+    :keyword parameter:  Possible values include: "value1".
+    :paramtype parameter: str or ~constants.models.ModelAsStringNoRequiredOneValueDefaultEnum
     """
 
     _attribute_map = {
@@ -34,8 +34,8 @@ class ModelAsStringNoRequiredOneValueDefault(msrest.serialization.Model):
 class ModelAsStringNoRequiredOneValueNoDefault(msrest.serialization.Model):
     """ModelAsStringNoRequiredOneValueNoDefault.
 
-    :param parameter:  Possible values include: "value1".
-    :type parameter: str or ~constants.models.ModelAsStringNoRequiredOneValueNoDefaultEnum
+    :keyword parameter:  Possible values include: "value1".
+    :paramtype parameter: str or ~constants.models.ModelAsStringNoRequiredOneValueNoDefaultEnum
     """
 
     _attribute_map = {
@@ -52,8 +52,8 @@ class ModelAsStringNoRequiredOneValueNoDefault(msrest.serialization.Model):
 class ModelAsStringNoRequiredTwoValueDefault(msrest.serialization.Model):
     """ModelAsStringNoRequiredTwoValueDefault.
 
-    :param parameter:  Possible values include: "value1", "value2".
-    :type parameter: str or ~constants.models.ModelAsStringNoRequiredTwoValueDefaultEnum
+    :keyword parameter:  Possible values include: "value1", "value2".
+    :paramtype parameter: str or ~constants.models.ModelAsStringNoRequiredTwoValueDefaultEnum
     """
 
     _attribute_map = {
@@ -70,8 +70,8 @@ class ModelAsStringNoRequiredTwoValueDefault(msrest.serialization.Model):
 class ModelAsStringNoRequiredTwoValueNoDefault(msrest.serialization.Model):
     """ModelAsStringNoRequiredTwoValueNoDefault.
 
-    :param parameter:  Possible values include: "value1", "value2".
-    :type parameter: str or ~constants.models.ModelAsStringNoRequiredTwoValueNoDefaultEnum
+    :keyword parameter:  Possible values include: "value1", "value2".
+    :paramtype parameter: str or ~constants.models.ModelAsStringNoRequiredTwoValueNoDefaultEnum
     """
 
     _attribute_map = {
@@ -90,8 +90,8 @@ class ModelAsStringRequiredOneValueDefault(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param parameter: Required.  Possible values include: "value1".
-    :type parameter: str or ~constants.models.ModelAsStringRequiredOneValueDefaultEnum
+    :keyword parameter: Required.  Possible values include: "value1".
+    :paramtype parameter: str or ~constants.models.ModelAsStringRequiredOneValueDefaultEnum
     """
 
     _validation = {
@@ -112,8 +112,8 @@ class ModelAsStringRequiredOneValueNoDefault(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param parameter: Required.  Possible values include: "value1".
-    :type parameter: str or ~constants.models.ModelAsStringRequiredOneValueNoDefaultEnum
+    :keyword parameter: Required.  Possible values include: "value1".
+    :paramtype parameter: str or ~constants.models.ModelAsStringRequiredOneValueNoDefaultEnum
     """
 
     _validation = {
@@ -134,8 +134,8 @@ class ModelAsStringRequiredTwoValueDefault(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param parameter: Required.  Possible values include: "value1", "value2".
-    :type parameter: str or ~constants.models.ModelAsStringRequiredTwoValueDefaultEnum
+    :keyword parameter: Required.  Possible values include: "value1", "value2".
+    :paramtype parameter: str or ~constants.models.ModelAsStringRequiredTwoValueDefaultEnum
     """
 
     _validation = {
@@ -156,8 +156,8 @@ class ModelAsStringRequiredTwoValueNoDefault(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param parameter: Required.  Possible values include: "value1", "value2".
-    :type parameter: str or ~constants.models.ModelAsStringRequiredTwoValueNoDefaultEnum
+    :keyword parameter: Required.  Possible values include: "value1", "value2".
+    :paramtype parameter: str or ~constants.models.ModelAsStringRequiredTwoValueNoDefaultEnum
     """
 
     _validation = {
@@ -176,9 +176,9 @@ class ModelAsStringRequiredTwoValueNoDefault(msrest.serialization.Model):
 class NoModelAsStringNoRequiredOneValueDefault(msrest.serialization.Model):
     """NoModelAsStringNoRequiredOneValueDefault.
 
-    :param parameter:  The only acceptable values to pass in are None and "value1". The default
+    :keyword parameter:  The only acceptable values to pass in are None and "value1". The default
      value is "value1".
-    :type parameter: str
+    :paramtype parameter: str
     """
 
     _attribute_map = {
@@ -193,9 +193,9 @@ class NoModelAsStringNoRequiredOneValueDefault(msrest.serialization.Model):
 class NoModelAsStringNoRequiredOneValueNoDefault(msrest.serialization.Model):
     """NoModelAsStringNoRequiredOneValueNoDefault.
 
-    :param parameter:  The only acceptable values to pass in are None and "value1". The default
+    :keyword parameter:  The only acceptable values to pass in are None and "value1". The default
      value is None.
-    :type parameter: str
+    :paramtype parameter: str
     """
 
     _attribute_map = {
@@ -210,8 +210,8 @@ class NoModelAsStringNoRequiredOneValueNoDefault(msrest.serialization.Model):
 class NoModelAsStringNoRequiredTwoValueDefault(msrest.serialization.Model):
     """NoModelAsStringNoRequiredTwoValueDefault.
 
-    :param parameter:  Possible values include: "value1", "value2".
-    :type parameter: str or ~constants.models.NoModelAsStringNoRequiredTwoValueDefaultEnum
+    :keyword parameter:  Possible values include: "value1", "value2".
+    :paramtype parameter: str or ~constants.models.NoModelAsStringNoRequiredTwoValueDefaultEnum
     """
 
     _attribute_map = {
@@ -228,8 +228,8 @@ class NoModelAsStringNoRequiredTwoValueDefault(msrest.serialization.Model):
 class NoModelAsStringNoRequiredTwoValueNoDefault(msrest.serialization.Model):
     """NoModelAsStringNoRequiredTwoValueNoDefault.
 
-    :param parameter:  Possible values include: "value1", "value2".
-    :type parameter: str or ~constants.models.NoModelAsStringNoRequiredTwoValueNoDefaultEnum
+    :keyword parameter:  Possible values include: "value1", "value2".
+    :paramtype parameter: str or ~constants.models.NoModelAsStringNoRequiredTwoValueNoDefaultEnum
     """
 
     _attribute_map = {
@@ -298,8 +298,8 @@ class NoModelAsStringRequiredTwoValueDefault(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param parameter: Required.  Possible values include: "value1", "value2".
-    :type parameter: str or ~constants.models.NoModelAsStringRequiredTwoValueDefaultEnum
+    :keyword parameter: Required.  Possible values include: "value1", "value2".
+    :paramtype parameter: str or ~constants.models.NoModelAsStringRequiredTwoValueDefaultEnum
     """
 
     _validation = {
@@ -320,8 +320,8 @@ class NoModelAsStringRequiredTwoValueNoDefault(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param parameter: Required.  Possible values include: "value1", "value2".
-    :type parameter: str or ~constants.models.NoModelAsStringRequiredTwoValueNoDefaultEnum
+    :keyword parameter: Required.  Possible values include: "value1", "value2".
+    :paramtype parameter: str or ~constants.models.NoModelAsStringRequiredTwoValueNoDefaultEnum
     """
 
     _validation = {

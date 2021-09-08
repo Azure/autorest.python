@@ -15,8 +15,8 @@ import msrest.serialization
 class MyException(msrest.serialization.Model):
     """MyException.
 
-    :param status_code:
-    :type status_code: str
+    :keyword status_code:
+    :paramtype status_code: str
     """
 
     _attribute_map = {
@@ -31,10 +31,10 @@ class MyException(msrest.serialization.Model):
 class B(MyException):
     """B.
 
-    :param status_code:
-    :type status_code: str
-    :param text_status_code:
-    :type text_status_code: str
+    :keyword status_code:
+    :paramtype status_code: str
+    :keyword text_status_code:
+    :paramtype text_status_code: str
     """
 
     _attribute_map = {
@@ -50,8 +50,8 @@ class B(MyException):
 class C(msrest.serialization.Model):
     """C.
 
-    :param http_code:
-    :type http_code: str
+    :keyword http_code:
+    :paramtype http_code: str
     """
 
     _attribute_map = {
@@ -66,8 +66,8 @@ class C(msrest.serialization.Model):
 class D(msrest.serialization.Model):
     """D.
 
-    :param http_status_code:
-    :type http_status_code: str
+    :keyword http_status_code:
+    :paramtype http_status_code: str
     """
 
     _attribute_map = {
@@ -82,10 +82,10 @@ class D(msrest.serialization.Model):
 class Error(msrest.serialization.Model):
     """Error.
 
-    :param status:
-    :type status: int
-    :param message:
-    :type message: str
+    :keyword status:
+    :paramtype status: int
+    :keyword message:
+    :paramtype message: str
     """
 
     _attribute_map = {

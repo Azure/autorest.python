@@ -15,10 +15,10 @@ import msrest.serialization
 class Error(msrest.serialization.Model):
     """Error.
 
-    :param status:
-    :type status: int
-    :param message:
-    :type message: str
+    :keyword status:
+    :paramtype status: int
+    :keyword message:
+    :paramtype message: str
     """
 
     _attribute_map = {
@@ -41,8 +41,8 @@ class RefColorConstant(msrest.serialization.Model):
 
     :ivar color_constant: Referenced Color Constant Description. Has constant value: "green-color".
     :vartype color_constant: str
-    :param field1: Sample string.
-    :type field1: str
+    :keyword field1: Sample string.
+    :paramtype field1: str
     """
 
     _validation = {

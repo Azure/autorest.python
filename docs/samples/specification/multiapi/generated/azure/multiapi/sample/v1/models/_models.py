@@ -13,10 +13,10 @@ import msrest.serialization
 class Error(msrest.serialization.Model):
     """Error.
 
-    :param status:
-    :type status: int
-    :param message:
-    :type message: str
+    :keyword status:
+    :paramtype status: int
+    :keyword message:
+    :paramtype message: str
     """
 
     _attribute_map = {
@@ -36,10 +36,10 @@ class Error(msrest.serialization.Model):
 class PagingResult(msrest.serialization.Model):
     """PagingResult.
 
-    :param values:
-    :type values: list[~azure.multiapi.sample.v1.models.Product]
-    :param next_link:
-    :type next_link: str
+    :keyword values:
+    :paramtype values: list[~azure.multiapi.sample.v1.models.Product]
+    :keyword next_link:
+    :paramtype next_link: str
     """
 
     _attribute_map = {
@@ -59,8 +59,8 @@ class PagingResult(msrest.serialization.Model):
 class Product(msrest.serialization.Model):
     """Product.
 
-    :param id:
-    :type id: int
+    :keyword id:
+    :paramtype id: int
     """
 
     _attribute_map = {
@@ -78,11 +78,11 @@ class Product(msrest.serialization.Model):
 class TestLroAndPagingOptions(msrest.serialization.Model):
     """Parameter group.
 
-    :param maxresults: Sets the maximum number of items to return in the response.
-    :type maxresults: int
-    :param timeout: Sets the maximum time that the server can spend processing the request, in
+    :keyword maxresults: Sets the maximum number of items to return in the response.
+    :paramtype maxresults: int
+    :keyword timeout: Sets the maximum time that the server can spend processing the request, in
      seconds. The default is 30 seconds.
-    :type timeout: int
+    :paramtype timeout: int
     """
 
     _attribute_map = {
