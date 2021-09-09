@@ -14,10 +14,10 @@ class CustomParameterGroup(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :keyword api_version: Required. Sets the api version to use.
-    :paramtype api_version: str
-    :keyword tenant: Required. Sets the tenant to use.
-    :paramtype tenant: str
+    :ivar api_version: Required. Sets the api version to use.
+    :vartype api_version: str
+    :ivar tenant: Required. Sets the tenant to use.
+    :vartype tenant: str
     """
 
     _validation = {
@@ -34,6 +34,12 @@ class CustomParameterGroup(msrest.serialization.Model):
         self,
         **kwargs
     ):
+        """
+        :keyword api_version: Required. Sets the api version to use.
+        :paramtype api_version: str
+        :keyword tenant: Required. Sets the tenant to use.
+        :paramtype tenant: str
+        """
         super(CustomParameterGroup, self).__init__(**kwargs)
         self.api_version = kwargs['api_version']
         self.tenant = kwargs['tenant']
@@ -42,10 +48,10 @@ class CustomParameterGroup(msrest.serialization.Model):
 class OdataProductResult(msrest.serialization.Model):
     """OdataProductResult.
 
-    :keyword values:
-    :paramtype values: list[~custompollerpager.models.Product]
-    :keyword odata_next_link:
-    :paramtype odata_next_link: str
+    :ivar values:
+    :vartype values: list[~custompollerpager.models.Product]
+    :ivar odata_next_link:
+    :vartype odata_next_link: str
     """
 
     _attribute_map = {
@@ -57,6 +63,12 @@ class OdataProductResult(msrest.serialization.Model):
         self,
         **kwargs
     ):
+        """
+        :keyword values:
+        :paramtype values: list[~custompollerpager.models.Product]
+        :keyword odata_next_link:
+        :paramtype odata_next_link: str
+        """
         super(OdataProductResult, self).__init__(**kwargs)
         self.values = kwargs.get('values', None)
         self.odata_next_link = kwargs.get('odata_next_link', None)
@@ -65,10 +77,10 @@ class OdataProductResult(msrest.serialization.Model):
 class OperationResult(msrest.serialization.Model):
     """OperationResult.
 
-    :keyword status: The status of the request. Possible values include: "Succeeded", "Failed",
+    :ivar status: The status of the request. Possible values include: "Succeeded", "Failed",
      "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
      "OK".
-    :paramtype status: str or ~custompollerpager.models.OperationResultStatus
+    :vartype status: str or ~custompollerpager.models.OperationResultStatus
     """
 
     _attribute_map = {
@@ -79,6 +91,12 @@ class OperationResult(msrest.serialization.Model):
         self,
         **kwargs
     ):
+        """
+        :keyword status: The status of the request. Possible values include: "Succeeded", "Failed",
+         "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
+         "OK".
+        :paramtype status: str or ~custompollerpager.models.OperationResultStatus
+        """
         super(OperationResult, self).__init__(**kwargs)
         self.status = kwargs.get('status', None)
 
@@ -86,11 +104,11 @@ class OperationResult(msrest.serialization.Model):
 class PagingGetMultiplePagesLroOptions(msrest.serialization.Model):
     """Parameter group.
 
-    :keyword maxresults: Sets the maximum number of items to return in the response.
-    :paramtype maxresults: int
-    :keyword timeout: Sets the maximum time that the server can spend processing the request, in
+    :ivar maxresults: Sets the maximum number of items to return in the response.
+    :vartype maxresults: int
+    :ivar timeout: Sets the maximum time that the server can spend processing the request, in
      seconds. The default is 30 seconds.
-    :paramtype timeout: int
+    :vartype timeout: int
     """
 
     _attribute_map = {
@@ -102,6 +120,13 @@ class PagingGetMultiplePagesLroOptions(msrest.serialization.Model):
         self,
         **kwargs
     ):
+        """
+        :keyword maxresults: Sets the maximum number of items to return in the response.
+        :paramtype maxresults: int
+        :keyword timeout: Sets the maximum time that the server can spend processing the request, in
+         seconds. The default is 30 seconds.
+        :paramtype timeout: int
+        """
         super(PagingGetMultiplePagesLroOptions, self).__init__(**kwargs)
         self.maxresults = kwargs.get('maxresults', None)
         self.timeout = kwargs.get('timeout', 30)
@@ -110,11 +135,11 @@ class PagingGetMultiplePagesLroOptions(msrest.serialization.Model):
 class PagingGetMultiplePagesOptions(msrest.serialization.Model):
     """Parameter group.
 
-    :keyword maxresults: Sets the maximum number of items to return in the response.
-    :paramtype maxresults: int
-    :keyword timeout: Sets the maximum time that the server can spend processing the request, in
+    :ivar maxresults: Sets the maximum number of items to return in the response.
+    :vartype maxresults: int
+    :ivar timeout: Sets the maximum time that the server can spend processing the request, in
      seconds. The default is 30 seconds.
-    :paramtype timeout: int
+    :vartype timeout: int
     """
 
     _attribute_map = {
@@ -126,6 +151,13 @@ class PagingGetMultiplePagesOptions(msrest.serialization.Model):
         self,
         **kwargs
     ):
+        """
+        :keyword maxresults: Sets the maximum number of items to return in the response.
+        :paramtype maxresults: int
+        :keyword timeout: Sets the maximum time that the server can spend processing the request, in
+         seconds. The default is 30 seconds.
+        :paramtype timeout: int
+        """
         super(PagingGetMultiplePagesOptions, self).__init__(**kwargs)
         self.maxresults = kwargs.get('maxresults', None)
         self.timeout = kwargs.get('timeout', 30)
@@ -136,13 +168,13 @@ class PagingGetMultiplePagesWithOffsetOptions(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :keyword maxresults: Sets the maximum number of items to return in the response.
-    :paramtype maxresults: int
-    :keyword offset: Required. Offset of return value.
-    :paramtype offset: int
-    :keyword timeout: Sets the maximum time that the server can spend processing the request, in
+    :ivar maxresults: Sets the maximum number of items to return in the response.
+    :vartype maxresults: int
+    :ivar offset: Required. Offset of return value.
+    :vartype offset: int
+    :ivar timeout: Sets the maximum time that the server can spend processing the request, in
      seconds. The default is 30 seconds.
-    :paramtype timeout: int
+    :vartype timeout: int
     """
 
     _validation = {
@@ -159,6 +191,15 @@ class PagingGetMultiplePagesWithOffsetOptions(msrest.serialization.Model):
         self,
         **kwargs
     ):
+        """
+        :keyword maxresults: Sets the maximum number of items to return in the response.
+        :paramtype maxresults: int
+        :keyword offset: Required. Offset of return value.
+        :paramtype offset: int
+        :keyword timeout: Sets the maximum time that the server can spend processing the request, in
+         seconds. The default is 30 seconds.
+        :paramtype timeout: int
+        """
         super(PagingGetMultiplePagesWithOffsetOptions, self).__init__(**kwargs)
         self.maxresults = kwargs.get('maxresults', None)
         self.offset = kwargs['offset']
@@ -168,11 +209,11 @@ class PagingGetMultiplePagesWithOffsetOptions(msrest.serialization.Model):
 class PagingGetOdataMultiplePagesOptions(msrest.serialization.Model):
     """Parameter group.
 
-    :keyword maxresults: Sets the maximum number of items to return in the response.
-    :paramtype maxresults: int
-    :keyword timeout: Sets the maximum time that the server can spend processing the request, in
+    :ivar maxresults: Sets the maximum number of items to return in the response.
+    :vartype maxresults: int
+    :ivar timeout: Sets the maximum time that the server can spend processing the request, in
      seconds. The default is 30 seconds.
-    :paramtype timeout: int
+    :vartype timeout: int
     """
 
     _attribute_map = {
@@ -184,6 +225,13 @@ class PagingGetOdataMultiplePagesOptions(msrest.serialization.Model):
         self,
         **kwargs
     ):
+        """
+        :keyword maxresults: Sets the maximum number of items to return in the response.
+        :paramtype maxresults: int
+        :keyword timeout: Sets the maximum time that the server can spend processing the request, in
+         seconds. The default is 30 seconds.
+        :paramtype timeout: int
+        """
         super(PagingGetOdataMultiplePagesOptions, self).__init__(**kwargs)
         self.maxresults = kwargs.get('maxresults', None)
         self.timeout = kwargs.get('timeout', 30)
@@ -192,8 +240,8 @@ class PagingGetOdataMultiplePagesOptions(msrest.serialization.Model):
 class Product(msrest.serialization.Model):
     """Product.
 
-    :keyword properties:
-    :paramtype properties: ~custompollerpager.models.ProductProperties
+    :ivar properties:
+    :vartype properties: ~custompollerpager.models.ProductProperties
     """
 
     _attribute_map = {
@@ -204,6 +252,10 @@ class Product(msrest.serialization.Model):
         self,
         **kwargs
     ):
+        """
+        :keyword properties:
+        :paramtype properties: ~custompollerpager.models.ProductProperties
+        """
         super(Product, self).__init__(**kwargs)
         self.properties = kwargs.get('properties', None)
 
@@ -211,10 +263,10 @@ class Product(msrest.serialization.Model):
 class ProductProperties(msrest.serialization.Model):
     """ProductProperties.
 
-    :keyword id:
-    :paramtype id: int
-    :keyword name:
-    :paramtype name: str
+    :ivar id:
+    :vartype id: int
+    :ivar name:
+    :vartype name: str
     """
 
     _attribute_map = {
@@ -226,6 +278,12 @@ class ProductProperties(msrest.serialization.Model):
         self,
         **kwargs
     ):
+        """
+        :keyword id:
+        :paramtype id: int
+        :keyword name:
+        :paramtype name: str
+        """
         super(ProductProperties, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
         self.name = kwargs.get('name', None)
@@ -234,10 +292,10 @@ class ProductProperties(msrest.serialization.Model):
 class ProductResult(msrest.serialization.Model):
     """ProductResult.
 
-    :keyword values:
-    :paramtype values: list[~custompollerpager.models.Product]
-    :keyword next_link:
-    :paramtype next_link: str
+    :ivar values:
+    :vartype values: list[~custompollerpager.models.Product]
+    :ivar next_link:
+    :vartype next_link: str
     """
 
     _attribute_map = {
@@ -249,6 +307,12 @@ class ProductResult(msrest.serialization.Model):
         self,
         **kwargs
     ):
+        """
+        :keyword values:
+        :paramtype values: list[~custompollerpager.models.Product]
+        :keyword next_link:
+        :paramtype next_link: str
+        """
         super(ProductResult, self).__init__(**kwargs)
         self.values = kwargs.get('values', None)
         self.next_link = kwargs.get('next_link', None)
@@ -257,10 +321,10 @@ class ProductResult(msrest.serialization.Model):
 class ProductResultValue(msrest.serialization.Model):
     """ProductResultValue.
 
-    :keyword value:
-    :paramtype value: list[~custompollerpager.models.Product]
-    :keyword next_link:
-    :paramtype next_link: str
+    :ivar value:
+    :vartype value: list[~custompollerpager.models.Product]
+    :ivar next_link:
+    :vartype next_link: str
     """
 
     _attribute_map = {
@@ -272,6 +336,12 @@ class ProductResultValue(msrest.serialization.Model):
         self,
         **kwargs
     ):
+        """
+        :keyword value:
+        :paramtype value: list[~custompollerpager.models.Product]
+        :keyword next_link:
+        :paramtype next_link: str
+        """
         super(ProductResultValue, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
         self.next_link = kwargs.get('next_link', None)
@@ -280,10 +350,10 @@ class ProductResultValue(msrest.serialization.Model):
 class ProductResultValueWithXMSClientName(msrest.serialization.Model):
     """ProductResultValueWithXMSClientName.
 
-    :keyword indexes:
-    :paramtype indexes: list[~custompollerpager.models.Product]
-    :keyword next_link:
-    :paramtype next_link: str
+    :ivar indexes:
+    :vartype indexes: list[~custompollerpager.models.Product]
+    :ivar next_link:
+    :vartype next_link: str
     """
 
     _attribute_map = {
@@ -295,6 +365,12 @@ class ProductResultValueWithXMSClientName(msrest.serialization.Model):
         self,
         **kwargs
     ):
+        """
+        :keyword indexes:
+        :paramtype indexes: list[~custompollerpager.models.Product]
+        :keyword next_link:
+        :paramtype next_link: str
+        """
         super(ProductResultValueWithXMSClientName, self).__init__(**kwargs)
         self.indexes = kwargs.get('indexes', None)
         self.next_link = kwargs.get('next_link', None)

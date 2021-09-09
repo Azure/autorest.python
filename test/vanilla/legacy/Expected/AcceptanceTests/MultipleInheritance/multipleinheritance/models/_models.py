@@ -13,10 +13,10 @@ import msrest.serialization
 class Feline(msrest.serialization.Model):
     """Feline.
 
-    :keyword meows:
-    :paramtype meows: bool
-    :keyword hisses:
-    :paramtype hisses: bool
+    :ivar meows:
+    :vartype meows: bool
+    :ivar hisses:
+    :vartype hisses: bool
     """
 
     _attribute_map = {
@@ -25,6 +25,12 @@ class Feline(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword meows:
+        :paramtype meows: bool
+        :keyword hisses:
+        :paramtype hisses: bool
+        """
         super(Feline, self).__init__(**kwargs)
         self.meows = kwargs.get("meows", None)
         self.hisses = kwargs.get("hisses", None)
@@ -35,8 +41,8 @@ class Pet(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :keyword name: Required.
-    :paramtype name: str
+    :ivar name: Required.
+    :vartype name: str
     """
 
     _validation = {
@@ -48,6 +54,10 @@ class Pet(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword name: Required.
+        :paramtype name: str
+        """
         super(Pet, self).__init__(**kwargs)
         self.name = kwargs["name"]
 
@@ -57,14 +67,14 @@ class Cat(Pet, Feline):
 
     All required parameters must be populated in order to send to Azure.
 
-    :keyword meows:
-    :paramtype meows: bool
-    :keyword hisses:
-    :paramtype hisses: bool
-    :keyword name: Required.
-    :paramtype name: str
-    :keyword likes_milk:
-    :paramtype likes_milk: bool
+    :ivar meows:
+    :vartype meows: bool
+    :ivar hisses:
+    :vartype hisses: bool
+    :ivar name: Required.
+    :vartype name: str
+    :ivar likes_milk:
+    :vartype likes_milk: bool
     """
 
     _validation = {
@@ -79,6 +89,16 @@ class Cat(Pet, Feline):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword meows:
+        :paramtype meows: bool
+        :keyword hisses:
+        :paramtype hisses: bool
+        :keyword name: Required.
+        :paramtype name: str
+        :keyword likes_milk:
+        :paramtype likes_milk: bool
+        """
         super(Cat, self).__init__(**kwargs)
         self.meows = kwargs.get("meows", None)
         self.hisses = kwargs.get("hisses", None)
@@ -90,10 +110,10 @@ class Cat(Pet, Feline):
 class Error(msrest.serialization.Model):
     """Error.
 
-    :keyword status:
-    :paramtype status: int
-    :keyword message:
-    :paramtype message: str
+    :ivar status:
+    :vartype status: int
+    :ivar message:
+    :vartype message: str
     """
 
     _attribute_map = {
@@ -102,6 +122,12 @@ class Error(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword status:
+        :paramtype status: int
+        :keyword message:
+        :paramtype message: str
+        """
         super(Error, self).__init__(**kwargs)
         self.status = kwargs.get("status", None)
         self.message = kwargs.get("message", None)
@@ -112,10 +138,10 @@ class Horse(Pet):
 
     All required parameters must be populated in order to send to Azure.
 
-    :keyword name: Required.
-    :paramtype name: str
-    :keyword is_a_show_horse:
-    :paramtype is_a_show_horse: bool
+    :ivar name: Required.
+    :vartype name: str
+    :ivar is_a_show_horse:
+    :vartype is_a_show_horse: bool
     """
 
     _validation = {
@@ -128,6 +154,12 @@ class Horse(Pet):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword name: Required.
+        :paramtype name: str
+        :keyword is_a_show_horse:
+        :paramtype is_a_show_horse: bool
+        """
         super(Horse, self).__init__(**kwargs)
         self.is_a_show_horse = kwargs.get("is_a_show_horse", None)
 
@@ -137,16 +169,16 @@ class Kitten(Cat):
 
     All required parameters must be populated in order to send to Azure.
 
-    :keyword meows:
-    :paramtype meows: bool
-    :keyword hisses:
-    :paramtype hisses: bool
-    :keyword name: Required.
-    :paramtype name: str
-    :keyword likes_milk:
-    :paramtype likes_milk: bool
-    :keyword eats_mice_yet:
-    :paramtype eats_mice_yet: bool
+    :ivar meows:
+    :vartype meows: bool
+    :ivar hisses:
+    :vartype hisses: bool
+    :ivar name: Required.
+    :vartype name: str
+    :ivar likes_milk:
+    :vartype likes_milk: bool
+    :ivar eats_mice_yet:
+    :vartype eats_mice_yet: bool
     """
 
     _validation = {
@@ -162,5 +194,17 @@ class Kitten(Cat):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword meows:
+        :paramtype meows: bool
+        :keyword hisses:
+        :paramtype hisses: bool
+        :keyword name: Required.
+        :paramtype name: str
+        :keyword likes_milk:
+        :paramtype likes_milk: bool
+        :keyword eats_mice_yet:
+        :paramtype eats_mice_yet: bool
+        """
         super(Kitten, self).__init__(**kwargs)
         self.eats_mice_yet = kwargs.get("eats_mice_yet", None)

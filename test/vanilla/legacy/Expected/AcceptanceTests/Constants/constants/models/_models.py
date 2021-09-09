@@ -12,8 +12,8 @@ import msrest.serialization
 class ModelAsStringNoRequiredOneValueDefault(msrest.serialization.Model):
     """ModelAsStringNoRequiredOneValueDefault.
 
-    :keyword parameter:  Possible values include: "value1".
-    :paramtype parameter: str or ~constants.models.ModelAsStringNoRequiredOneValueDefaultEnum
+    :ivar parameter: Possible values include: "value1".
+    :vartype parameter: str or ~constants.models.ModelAsStringNoRequiredOneValueDefaultEnum
     """
 
     _attribute_map = {
@@ -21,6 +21,10 @@ class ModelAsStringNoRequiredOneValueDefault(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword parameter: Possible values include: "value1".
+        :paramtype parameter: str or ~constants.models.ModelAsStringNoRequiredOneValueDefaultEnum
+        """
         super(ModelAsStringNoRequiredOneValueDefault, self).__init__(**kwargs)
         self.parameter = kwargs.get("parameter", "value1")
 
@@ -28,8 +32,8 @@ class ModelAsStringNoRequiredOneValueDefault(msrest.serialization.Model):
 class ModelAsStringNoRequiredOneValueNoDefault(msrest.serialization.Model):
     """ModelAsStringNoRequiredOneValueNoDefault.
 
-    :keyword parameter:  Possible values include: "value1".
-    :paramtype parameter: str or ~constants.models.ModelAsStringNoRequiredOneValueNoDefaultEnum
+    :ivar parameter: Possible values include: "value1".
+    :vartype parameter: str or ~constants.models.ModelAsStringNoRequiredOneValueNoDefaultEnum
     """
 
     _attribute_map = {
@@ -37,6 +41,10 @@ class ModelAsStringNoRequiredOneValueNoDefault(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword parameter: Possible values include: "value1".
+        :paramtype parameter: str or ~constants.models.ModelAsStringNoRequiredOneValueNoDefaultEnum
+        """
         super(ModelAsStringNoRequiredOneValueNoDefault, self).__init__(**kwargs)
         self.parameter = kwargs.get("parameter", None)
 
@@ -44,8 +52,8 @@ class ModelAsStringNoRequiredOneValueNoDefault(msrest.serialization.Model):
 class ModelAsStringNoRequiredTwoValueDefault(msrest.serialization.Model):
     """ModelAsStringNoRequiredTwoValueDefault.
 
-    :keyword parameter:  Possible values include: "value1", "value2".
-    :paramtype parameter: str or ~constants.models.ModelAsStringNoRequiredTwoValueDefaultEnum
+    :ivar parameter: Possible values include: "value1", "value2".
+    :vartype parameter: str or ~constants.models.ModelAsStringNoRequiredTwoValueDefaultEnum
     """
 
     _attribute_map = {
@@ -53,6 +61,10 @@ class ModelAsStringNoRequiredTwoValueDefault(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword parameter: Possible values include: "value1", "value2".
+        :paramtype parameter: str or ~constants.models.ModelAsStringNoRequiredTwoValueDefaultEnum
+        """
         super(ModelAsStringNoRequiredTwoValueDefault, self).__init__(**kwargs)
         self.parameter = kwargs.get("parameter", "value1")
 
@@ -60,8 +72,8 @@ class ModelAsStringNoRequiredTwoValueDefault(msrest.serialization.Model):
 class ModelAsStringNoRequiredTwoValueNoDefault(msrest.serialization.Model):
     """ModelAsStringNoRequiredTwoValueNoDefault.
 
-    :keyword parameter:  Possible values include: "value1", "value2".
-    :paramtype parameter: str or ~constants.models.ModelAsStringNoRequiredTwoValueNoDefaultEnum
+    :ivar parameter: Possible values include: "value1", "value2".
+    :vartype parameter: str or ~constants.models.ModelAsStringNoRequiredTwoValueNoDefaultEnum
     """
 
     _attribute_map = {
@@ -69,6 +81,10 @@ class ModelAsStringNoRequiredTwoValueNoDefault(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword parameter: Possible values include: "value1", "value2".
+        :paramtype parameter: str or ~constants.models.ModelAsStringNoRequiredTwoValueNoDefaultEnum
+        """
         super(ModelAsStringNoRequiredTwoValueNoDefault, self).__init__(**kwargs)
         self.parameter = kwargs.get("parameter", None)
 
@@ -78,8 +94,8 @@ class ModelAsStringRequiredOneValueDefault(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :keyword parameter: Required.  Possible values include: "value1".
-    :paramtype parameter: str or ~constants.models.ModelAsStringRequiredOneValueDefaultEnum
+    :ivar parameter: Required. Possible values include: "value1".
+    :vartype parameter: str or ~constants.models.ModelAsStringRequiredOneValueDefaultEnum
     """
 
     _validation = {
@@ -91,6 +107,10 @@ class ModelAsStringRequiredOneValueDefault(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword parameter: Required. Possible values include: "value1".
+        :paramtype parameter: str or ~constants.models.ModelAsStringRequiredOneValueDefaultEnum
+        """
         super(ModelAsStringRequiredOneValueDefault, self).__init__(**kwargs)
         self.parameter = kwargs.get("parameter", "value1")
 
@@ -100,8 +120,8 @@ class ModelAsStringRequiredOneValueNoDefault(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :keyword parameter: Required.  Possible values include: "value1".
-    :paramtype parameter: str or ~constants.models.ModelAsStringRequiredOneValueNoDefaultEnum
+    :ivar parameter: Required. Possible values include: "value1".
+    :vartype parameter: str or ~constants.models.ModelAsStringRequiredOneValueNoDefaultEnum
     """
 
     _validation = {
@@ -113,6 +133,10 @@ class ModelAsStringRequiredOneValueNoDefault(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword parameter: Required. Possible values include: "value1".
+        :paramtype parameter: str or ~constants.models.ModelAsStringRequiredOneValueNoDefaultEnum
+        """
         super(ModelAsStringRequiredOneValueNoDefault, self).__init__(**kwargs)
         self.parameter = kwargs["parameter"]
 
@@ -122,8 +146,8 @@ class ModelAsStringRequiredTwoValueDefault(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :keyword parameter: Required.  Possible values include: "value1", "value2".
-    :paramtype parameter: str or ~constants.models.ModelAsStringRequiredTwoValueDefaultEnum
+    :ivar parameter: Required. Possible values include: "value1", "value2".
+    :vartype parameter: str or ~constants.models.ModelAsStringRequiredTwoValueDefaultEnum
     """
 
     _validation = {
@@ -135,6 +159,10 @@ class ModelAsStringRequiredTwoValueDefault(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword parameter: Required. Possible values include: "value1", "value2".
+        :paramtype parameter: str or ~constants.models.ModelAsStringRequiredTwoValueDefaultEnum
+        """
         super(ModelAsStringRequiredTwoValueDefault, self).__init__(**kwargs)
         self.parameter = kwargs.get("parameter", "value1")
 
@@ -144,8 +172,8 @@ class ModelAsStringRequiredTwoValueNoDefault(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :keyword parameter: Required.  Possible values include: "value1", "value2".
-    :paramtype parameter: str or ~constants.models.ModelAsStringRequiredTwoValueNoDefaultEnum
+    :ivar parameter: Required. Possible values include: "value1", "value2".
+    :vartype parameter: str or ~constants.models.ModelAsStringRequiredTwoValueNoDefaultEnum
     """
 
     _validation = {
@@ -157,6 +185,10 @@ class ModelAsStringRequiredTwoValueNoDefault(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword parameter: Required. Possible values include: "value1", "value2".
+        :paramtype parameter: str or ~constants.models.ModelAsStringRequiredTwoValueNoDefaultEnum
+        """
         super(ModelAsStringRequiredTwoValueNoDefault, self).__init__(**kwargs)
         self.parameter = kwargs["parameter"]
 
@@ -164,9 +196,9 @@ class ModelAsStringRequiredTwoValueNoDefault(msrest.serialization.Model):
 class NoModelAsStringNoRequiredOneValueDefault(msrest.serialization.Model):
     """NoModelAsStringNoRequiredOneValueDefault.
 
-    :keyword parameter:  The only acceptable values to pass in are None and "value1". The default
+    :ivar parameter:  The only acceptable values to pass in are None and "value1". The default
      value is "value1".
-    :paramtype parameter: str
+    :vartype parameter: str
     """
 
     _attribute_map = {
@@ -174,6 +206,11 @@ class NoModelAsStringNoRequiredOneValueDefault(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword parameter:  The only acceptable values to pass in are None and "value1". The default
+         value is "value1".
+        :paramtype parameter: str
+        """
         super(NoModelAsStringNoRequiredOneValueDefault, self).__init__(**kwargs)
         self.parameter = kwargs.get("parameter", "value1")
 
@@ -181,9 +218,9 @@ class NoModelAsStringNoRequiredOneValueDefault(msrest.serialization.Model):
 class NoModelAsStringNoRequiredOneValueNoDefault(msrest.serialization.Model):
     """NoModelAsStringNoRequiredOneValueNoDefault.
 
-    :keyword parameter:  The only acceptable values to pass in are None and "value1". The default
+    :ivar parameter:  The only acceptable values to pass in are None and "value1". The default
      value is None.
-    :paramtype parameter: str
+    :vartype parameter: str
     """
 
     _attribute_map = {
@@ -191,6 +228,11 @@ class NoModelAsStringNoRequiredOneValueNoDefault(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword parameter:  The only acceptable values to pass in are None and "value1". The default
+         value is None.
+        :paramtype parameter: str
+        """
         super(NoModelAsStringNoRequiredOneValueNoDefault, self).__init__(**kwargs)
         self.parameter = kwargs.get("parameter", None)
 
@@ -198,8 +240,8 @@ class NoModelAsStringNoRequiredOneValueNoDefault(msrest.serialization.Model):
 class NoModelAsStringNoRequiredTwoValueDefault(msrest.serialization.Model):
     """NoModelAsStringNoRequiredTwoValueDefault.
 
-    :keyword parameter:  Possible values include: "value1", "value2".
-    :paramtype parameter: str or ~constants.models.NoModelAsStringNoRequiredTwoValueDefaultEnum
+    :ivar parameter: Possible values include: "value1", "value2".
+    :vartype parameter: str or ~constants.models.NoModelAsStringNoRequiredTwoValueDefaultEnum
     """
 
     _attribute_map = {
@@ -207,6 +249,10 @@ class NoModelAsStringNoRequiredTwoValueDefault(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword parameter: Possible values include: "value1", "value2".
+        :paramtype parameter: str or ~constants.models.NoModelAsStringNoRequiredTwoValueDefaultEnum
+        """
         super(NoModelAsStringNoRequiredTwoValueDefault, self).__init__(**kwargs)
         self.parameter = kwargs.get("parameter", "value1")
 
@@ -214,8 +260,8 @@ class NoModelAsStringNoRequiredTwoValueDefault(msrest.serialization.Model):
 class NoModelAsStringNoRequiredTwoValueNoDefault(msrest.serialization.Model):
     """NoModelAsStringNoRequiredTwoValueNoDefault.
 
-    :keyword parameter:  Possible values include: "value1", "value2".
-    :paramtype parameter: str or ~constants.models.NoModelAsStringNoRequiredTwoValueNoDefaultEnum
+    :ivar parameter: Possible values include: "value1", "value2".
+    :vartype parameter: str or ~constants.models.NoModelAsStringNoRequiredTwoValueNoDefaultEnum
     """
 
     _attribute_map = {
@@ -223,6 +269,10 @@ class NoModelAsStringNoRequiredTwoValueNoDefault(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword parameter: Possible values include: "value1", "value2".
+        :paramtype parameter: str or ~constants.models.NoModelAsStringNoRequiredTwoValueNoDefaultEnum
+        """
         super(NoModelAsStringNoRequiredTwoValueNoDefault, self).__init__(**kwargs)
         self.parameter = kwargs.get("parameter", None)
 
@@ -249,6 +299,7 @@ class NoModelAsStringRequiredOneValueDefault(msrest.serialization.Model):
     parameter = "value1"
 
     def __init__(self, **kwargs):
+        """ """
         super(NoModelAsStringRequiredOneValueDefault, self).__init__(**kwargs)
 
 
@@ -274,6 +325,7 @@ class NoModelAsStringRequiredOneValueNoDefault(msrest.serialization.Model):
     parameter = "value1"
 
     def __init__(self, **kwargs):
+        """ """
         super(NoModelAsStringRequiredOneValueNoDefault, self).__init__(**kwargs)
 
 
@@ -282,8 +334,8 @@ class NoModelAsStringRequiredTwoValueDefault(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :keyword parameter: Required.  Possible values include: "value1", "value2".
-    :paramtype parameter: str or ~constants.models.NoModelAsStringRequiredTwoValueDefaultEnum
+    :ivar parameter: Required. Possible values include: "value1", "value2".
+    :vartype parameter: str or ~constants.models.NoModelAsStringRequiredTwoValueDefaultEnum
     """
 
     _validation = {
@@ -295,6 +347,10 @@ class NoModelAsStringRequiredTwoValueDefault(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword parameter: Required. Possible values include: "value1", "value2".
+        :paramtype parameter: str or ~constants.models.NoModelAsStringRequiredTwoValueDefaultEnum
+        """
         super(NoModelAsStringRequiredTwoValueDefault, self).__init__(**kwargs)
         self.parameter = kwargs.get("parameter", "value1")
 
@@ -304,8 +360,8 @@ class NoModelAsStringRequiredTwoValueNoDefault(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :keyword parameter: Required.  Possible values include: "value1", "value2".
-    :paramtype parameter: str or ~constants.models.NoModelAsStringRequiredTwoValueNoDefaultEnum
+    :ivar parameter: Required. Possible values include: "value1", "value2".
+    :vartype parameter: str or ~constants.models.NoModelAsStringRequiredTwoValueNoDefaultEnum
     """
 
     _validation = {
@@ -317,5 +373,9 @@ class NoModelAsStringRequiredTwoValueNoDefault(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword parameter: Required. Possible values include: "value1", "value2".
+        :paramtype parameter: str or ~constants.models.NoModelAsStringRequiredTwoValueNoDefaultEnum
+        """
         super(NoModelAsStringRequiredTwoValueNoDefault, self).__init__(**kwargs)
         self.parameter = kwargs["parameter"]

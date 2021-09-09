@@ -13,10 +13,10 @@ import msrest.serialization
 class Error(msrest.serialization.Model):
     """Error.
 
-    :keyword status:
-    :paramtype status: int
-    :keyword message:
-    :paramtype message: str
+    :ivar status:
+    :vartype status: int
+    :ivar message:
+    :vartype message: str
     """
 
     _attribute_map = {
@@ -28,6 +28,12 @@ class Error(msrest.serialization.Model):
         self,
         **kwargs
     ):
+        """
+        :keyword status:
+        :paramtype status: int
+        :keyword message:
+        :paramtype message: str
+        """
         super(Error, self).__init__(**kwargs)
         self.status = kwargs.get('status', None)
         self.message = kwargs.get('message', None)
@@ -36,8 +42,8 @@ class Error(msrest.serialization.Model):
 class ModelThree(msrest.serialization.Model):
     """Only exists in api version 3.0.0.
 
-    :keyword optional_property:
-    :paramtype optional_property: str
+    :ivar optional_property:
+    :vartype optional_property: str
     """
 
     _attribute_map = {
@@ -48,6 +54,10 @@ class ModelThree(msrest.serialization.Model):
         self,
         **kwargs
     ):
+        """
+        :keyword optional_property:
+        :paramtype optional_property: str
+        """
         super(ModelThree, self).__init__(**kwargs)
         self.optional_property = kwargs.get('optional_property', None)
 
@@ -55,10 +65,10 @@ class ModelThree(msrest.serialization.Model):
 class PagingResult(msrest.serialization.Model):
     """PagingResult.
 
-    :keyword values:
-    :paramtype values: list[~multiapi.v3.models.ModelThree]
-    :keyword next_link:
-    :paramtype next_link: str
+    :ivar values:
+    :vartype values: list[~multiapi.v3.models.ModelThree]
+    :ivar next_link:
+    :vartype next_link: str
     """
 
     _attribute_map = {
@@ -70,6 +80,12 @@ class PagingResult(msrest.serialization.Model):
         self,
         **kwargs
     ):
+        """
+        :keyword values:
+        :paramtype values: list[~multiapi.v3.models.ModelThree]
+        :keyword next_link:
+        :paramtype next_link: str
+        """
         super(PagingResult, self).__init__(**kwargs)
         self.values = kwargs.get('values', None)
         self.next_link = kwargs.get('next_link', None)
@@ -78,8 +94,8 @@ class PagingResult(msrest.serialization.Model):
 class SourcePath(msrest.serialization.Model):
     """Uri or local path to source data.
 
-    :keyword source: File source path.
-    :paramtype source: str
+    :ivar source: File source path.
+    :vartype source: str
     """
 
     _validation = {
@@ -94,5 +110,9 @@ class SourcePath(msrest.serialization.Model):
         self,
         **kwargs
     ):
+        """
+        :keyword source: File source path.
+        :paramtype source: str
+        """
         super(SourcePath, self).__init__(**kwargs)
         self.source = kwargs.get('source', None)

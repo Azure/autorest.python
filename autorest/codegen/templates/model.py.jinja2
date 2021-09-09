@@ -24,15 +24,6 @@ class {{ model.name }}(msrest.serialization.Model):
 
     {% if model.properties != None %}
         {% for p in model.properties %}
-            {% if p.is_input %}
-                {% for line in input_documentation_string(p) %}
-                    {% for doc_string in line.replace('\n', '\n ').split('\n') %}
-    {{ doc_string | wordwrap(width=95, break_long_words=False, break_on_hyphens=False, wrapstring='\n     ') }}
-                    {% endfor %}
-                {% endfor %}
-            {% endif %}
-        {% endfor %}
-        {% for p in model.properties %}
             {% for line in variable_documentation_string(p) %}
                 {% for doc_string in line.replace('\n', '\n ').split('\n') %}
     {{ doc_string | wordwrap(width=95, break_long_words=False, break_on_hyphens=False, wrapstring='\n     ') }}
@@ -83,6 +74,19 @@ class {{ model.name }}(msrest.serialization.Model):
         {% endfor %}
         **kwargs
     ):
+        """
+    {% if model.properties %}
+        {% for p in model.properties %}
+            {% if p.is_input %}
+                {% for line in input_documentation_string(p) %}
+                    {% for doc_string in line.replace('\n', '\n ').split('\n') %}
+        {{ doc_string | wordwrap(width=95, break_long_words=False, break_on_hyphens=False, wrapstring='\n         ') }}
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+        """
     {% for arg in init_args(model) %}
         {{ arg }}
     {% endfor %}
