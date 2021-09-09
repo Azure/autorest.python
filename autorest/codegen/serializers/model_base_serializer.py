@@ -10,6 +10,18 @@ from ..models import ObjectSchema, CodeModel, Property
 from ..models.imports import FileImport, ImportType
 from .import_serializer import FileImportSerializer
 
+def _documentation_string(
+    prop: Property, description_keyword: str, docstring_type_keyword: str
+) -> List[str]:
+    retval: List[str] = []
+    sphinx_prefix = f":{description_keyword} {prop.name}:"
+    retval.append(
+        f"{sphinx_prefix} {prop.description}" if prop.description
+        else sphinx_prefix
+    )
+    retval.append(f":{docstring_type_keyword} {prop.name}: {prop.schema.docstring_type}")
+    return retval
+
 
 class ModelBaseSerializer:
     def __init__(self, code_model: CodeModel, env: Environment, is_python_3_file: bool) -> None:
@@ -26,8 +38,8 @@ class ModelBaseSerializer:
             str=str,
             init_line=self.init_line,
             init_args=self.init_args,
-            prop_documentation_string=ModelBaseSerializer.prop_documentation_string,
-            prop_type_documentation_string=ModelBaseSerializer.prop_type_documentation_string,
+            input_documentation_string=ModelBaseSerializer.input_documentation_string,
+            variable_documentation_string=ModelBaseSerializer.variable_documentation_string,
         )
 
     def imports(self) -> FileImport:
@@ -51,25 +63,13 @@ class ModelBaseSerializer:
         return properties_to_initialize
 
     @staticmethod
-    def prop_documentation_string(prop: Property) -> str:
+    def input_documentation_string(prop: Property) -> List[str]:
         # building the param line of the property doc
-        if prop.constant or prop.readonly:
-            param_doc_string = f":ivar {prop.name}:"
-        else:
-            param_doc_string = f":keyword {prop.name}:"
-        if prop.description:
-            param_doc_string += " " + prop.description
-        return param_doc_string
+        return _documentation_string(prop, "keyword", "paramtype")
 
     @staticmethod
-    def prop_type_documentation_string(prop: Property) -> str:
-        # building the type line of the property doc
-        if prop.constant or prop.readonly:
-            type_doc_string = f":vartype {prop.name}: "
-        else:
-            type_doc_string = f":paramtype {prop.name}: "
-        type_doc_string += prop.schema.docstring_type
-        return type_doc_string
+    def variable_documentation_string(prop: Property) -> List[str]:
+        return _documentation_string(prop, "ivar", "vartype")
 
     def init_args(self, model: ObjectSchema) -> List[str]:
         init_args = []

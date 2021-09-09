@@ -58,7 +58,9 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
             description += "Constant filled by server. "
         if isinstance(self.schema, EnumSchema):
             values = [self.schema.enum_type.get_declaration(v.value) for v in self.schema.values]
-            description += " Possible values include: {}.".format(", ".join(values))
+            if description and description[-1] != " ":
+                description += " "
+            description += "Possible values include: {}.".format(", ".join(values))
             if self.schema.default_value:
                 description += f' Default value: "{self.schema.default_value}".'
         return description
@@ -115,7 +117,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
 
     @property
     def is_input(self):
-        return not (self.constant or self.readonly)
+        return not (self.constant or self.readonly or self.is_discriminator)
 
     @property
     def constant_declaration(self) -> str:

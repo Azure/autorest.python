@@ -24,10 +24,20 @@ class {{ model.name }}(msrest.serialization.Model):
 
     {% if model.properties != None %}
         {% for p in model.properties %}
-            {% for doc_string in prop_documentation_string(p).replace('\n', '\n ').split('\n') %}
+            {% if p.is_input %}
+                {% for line in input_documentation_string(p) %}
+                    {% for doc_string in line.replace('\n', '\n ').split('\n') %}
     {{ doc_string | wordwrap(width=95, break_long_words=False, break_on_hyphens=False, wrapstring='\n     ') }}
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+        {% for p in model.properties %}
+            {% for line in variable_documentation_string(p) %}
+                {% for doc_string in line.replace('\n', '\n ').split('\n') %}
+    {{ doc_string | wordwrap(width=95, break_long_words=False, break_on_hyphens=False, wrapstring='\n     ') }}
+                {% endfor %}
             {% endfor %}
-    {{ prop_type_documentation_string(p) | wordwrap(width=95, break_long_words=False, break_on_hyphens=False, wrapstring='\n     ') }}
         {% endfor %}
     {% endif %}
     """
