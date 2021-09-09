@@ -27,7 +27,7 @@ import time
 
 from azure.core.exceptions import DecodeError, HttpResponseError
 from azure.core.pipeline.policies import ContentDecodePolicy, RetryPolicy, HeadersPolicy, RequestIdPolicy
-
+from azure.core.rest import HttpRequest
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 
 from lroversiontolerant import AutoRestLongRunningOperationTestService
@@ -58,11 +58,11 @@ class AutorestTestARMPolling(ARMPolling):
         return {}
 
     def request_status(self, status_link):
-        request = self._client.get(status_link, headers=self._polling_cookie(self._pipeline_response.http_response))
+        request = HttpRequest("GET", status_link, headers=self._polling_cookie(self._pipeline_response.http_response))
         # ARM requires to re-inject 'x-ms-client-request-id' while polling
         if 'request_id' not in self._operation_config:
             self._operation_config['request_id'] = self._get_request_id()
-        return self._client._pipeline.run(request, stream=False, **self._operation_config)
+        return self._client.send_request(request, stream=False, _return_pipeline_response=True, **self._operation_config)
 
 @pytest.fixture()
 def client(cookie_policy, credential):
@@ -112,7 +112,8 @@ def assert_raises_with_message(msg, func, *args, **kwargs):
 def lro_result(func, *args, **kwargs):
     if "polling" not in kwargs:
         kwargs["polling"] = AutorestTestARMPolling(0)
-    return func(*args, **kwargs).result()
+    poller = func(*args, **kwargs)
+    return poller.result()
 
 def test_post_double_headers_final_continuation_token(client):
     poller = client.lros.begin_post_double_headers_final_location_get()

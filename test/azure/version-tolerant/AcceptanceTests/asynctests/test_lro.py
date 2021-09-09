@@ -23,7 +23,7 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-
+from azure.core.rest import HttpRequest
 from async_generator import yield_, async_generator
 import time
 
@@ -60,11 +60,11 @@ class AutorestTestARMPolling(AsyncARMPolling):
         return {}
 
     async def request_status(self, status_link):
-        request = self._client.get(status_link, headers=self._polling_cookie(self._pipeline_response.http_response))
+        request = HttpRequest("GET", status_link, headers=self._polling_cookie(self._pipeline_response.http_response))
         # ARM requires to re-inject 'x-ms-client-request-id' while polling
         if 'request_id' not in self._operation_config:
             self._operation_config['request_id'] = self._get_request_id()
-        return (await self._client._pipeline.run(request, stream=False, **self._operation_config))
+        return (await self._client.send_request(request, stream=False, _return_pipeline_response=True, **self._operation_config))
 
 @pytest.fixture
 @async_generator

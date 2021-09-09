@@ -503,7 +503,7 @@ class StorageAccountsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._create_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -515,8 +515,8 @@ class StorageAccountsOperations(object):
 
         deserialized = None
         if response.status_code == 200:
-            if response.body():
-                deserialized = _loads(response.body())
+            if response.content:
+                deserialized = response.json()
             else:
                 deserialized = None
 
@@ -642,8 +642,8 @@ class StorageAccountsOperations(object):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.body():
-                deserialized = _loads(response.body())
+            if response.content:
+                deserialized = response.json()
             else:
                 deserialized = None
             if cls:
@@ -1099,7 +1099,7 @@ class StorageAccountsOperations(object):
             return request
 
         def extract_data(pipeline_response):
-            deserialized = _loads(pipeline_response.http_response.body())
+            deserialized = pipeline_response.http_response.json()
             list_of_elem = deserialized["value"]
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -1218,7 +1218,7 @@ class StorageAccountsOperations(object):
             return request
 
         def extract_data(pipeline_response):
-            deserialized = _loads(pipeline_response.http_response.body())
+            deserialized = pipeline_response.http_response.json()
             list_of_elem = deserialized["value"]
             if cls:
                 list_of_elem = cls(list_of_elem)
