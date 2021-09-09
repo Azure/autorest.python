@@ -9,7 +9,7 @@ from .base_model import BaseModel
 from .constant_schema import ConstantSchema
 from .imports import FileImport, ImportType, TypingSection
 from .base_schema import BaseSchema
-
+from .enum_schema import EnumSchema
 
 class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
     def __init__(
@@ -32,13 +32,36 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         self.required: bool = yaml_data.get("required", False)
         self.readonly: bool = yaml_data.get("readOnly", False)
         self.is_discriminator: bool = yaml_data.get("isDiscriminator", False)
-        if description:
-            self.description = description
-        else:
-            self.description = yaml_data["language"]["python"]["description"]
-        if self.description and self.description[-1] != ".":
-            self.description += "."
         self.client_default_value = client_default_value
+        self.description = self._create_description(description, yaml_data)
+
+
+    def _create_description(self, description_input: Optional[str], yaml_data: Dict[str, Any]) -> str:
+        description: str = description_input or yaml_data["language"]["python"]["description"]
+        if description and description[-1] != ".":
+            description += "."
+        if self.name == "tags":
+            description = "A set of tags. " + description
+        if self.constant:
+            description += f' Has constant value: {self.constant_declaration}.'
+        elif self.required:
+            if description:
+                description = "Required. " + description
+            else:
+                description = "Required. "
+        elif isinstance(self.schema, ConstantSchema):
+            description += (
+                f" The only acceptable values to pass in are None and {self.constant_declaration}. " +
+                f"The default value is {self.default_value_declaration}."
+            )
+        if self.is_discriminator:
+            description += "Constant filled by server. "
+        if isinstance(self.schema, EnumSchema):
+            values = [self.schema.enum_type.get_declaration(v.value) for v in self.schema.values]
+            description += " Possible values include: {}.".format(", ".join(values))
+            if self.schema.default_value:
+                description += f' Default value: "{self.schema.default_value}".'
+        return description
 
     @property
     def constant(self) -> bool:
@@ -89,6 +112,10 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
             flattened_names=yaml_data.get("flattenedNames", []),
             client_default_value=yaml_data.get("clientDefaultValue"),
         )
+
+    @property
+    def is_input(self):
+        return not (self.constant or self.readonly)
 
     @property
     def constant_declaration(self) -> str:

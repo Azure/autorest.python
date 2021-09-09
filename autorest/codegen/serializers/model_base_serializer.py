@@ -6,7 +6,7 @@
 from abc import abstractmethod
 from typing import cast, List
 from jinja2 import Environment
-from ..models import EnumSchema, ObjectSchema, CodeModel, Property, ConstantSchema
+from ..models import ObjectSchema, CodeModel, Property
 from ..models.imports import FileImport, ImportType
 from .import_serializer import FileImportSerializer
 
@@ -57,31 +57,8 @@ class ModelBaseSerializer:
             param_doc_string = f":ivar {prop.name}:"
         else:
             param_doc_string = f":keyword {prop.name}:"
-        description = prop.description
-        if prop.name == "tags":
-            description = "A set of tags. " + description
-
-        if prop.constant:
-            description += f' Has constant value: {prop.constant_declaration}.'
-        elif prop.required:
-            if description:
-                description = "Required. " + description
-            else:
-                description = "Required. "
-        elif isinstance(prop.schema, ConstantSchema):
-            description += (
-                f" The only acceptable values to pass in are None and {prop.constant_declaration}. " +
-                f"The default value is {prop.default_value_declaration}."
-            )
-        if prop.is_discriminator:
-            description += "Constant filled by server. "
-        if isinstance(prop.schema, EnumSchema):
-            values = [prop.schema.enum_type.get_declaration(v.value) for v in prop.schema.values]
-            description += " Possible values include: {}.".format(", ".join(values))
-            if prop.schema.default_value:
-                description += f' Default value: "{prop.schema.default_value}".'
-        if description:
-            param_doc_string += " " + description
+        if prop.description:
+            param_doc_string += " " + prop.description
         return param_doc_string
 
     @staticmethod
