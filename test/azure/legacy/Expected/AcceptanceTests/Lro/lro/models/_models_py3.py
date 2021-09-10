@@ -16,12 +16,12 @@ from ._auto_rest_long_running_operation_test_service_enums import *
 class OperationResult(msrest.serialization.Model):
     """OperationResult.
 
-    :param status: The status of the request. Possible values include: "Succeeded", "Failed",
+    :keyword status: The status of the request. Possible values include: "Succeeded", "Failed",
      "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
      "OK".
-    :type status: str or ~lro.models.OperationResultStatus
-    :param error:
-    :type error: ~lro.models.OperationResultError
+    :paramtype status: str or ~lro.models.OperationResultStatus
+    :keyword error:
+    :paramtype error: ~lro.models.OperationResultError
     """
 
     _attribute_map = {
@@ -44,10 +44,10 @@ class OperationResult(msrest.serialization.Model):
 class OperationResultError(msrest.serialization.Model):
     """OperationResultError.
 
-    :param code: The error code for an operation failure.
-    :type code: int
-    :param message: The detailed arror message.
-    :type message: str
+    :keyword code: The error code for an operation failure.
+    :paramtype code: int
+    :keyword message: The detailed arror message.
+    :paramtype message: str
     """
 
     _attribute_map = {
@@ -70,10 +70,10 @@ class Resource(msrest.serialization.Model):
     :vartype id: str
     :ivar type: Resource Type.
     :vartype type: str
-    :param tags: A set of tags. Dictionary of :code:`<string>`.
-    :type tags: dict[str, str]
-    :param location: Resource Location.
-    :type location: str
+    :keyword tags: A set of tags. Dictionary of :code:`<string>`.
+    :paramtype tags: dict[str, str]
+    :keyword location: Resource Location.
+    :paramtype location: str
     :ivar name: Resource Name.
     :vartype name: str
     """
@@ -110,14 +110,14 @@ class Product(Resource):
     :vartype id: str
     :ivar type: Resource Type.
     :vartype type: str
-    :param tags: A set of tags. Dictionary of :code:`<string>`.
-    :type tags: dict[str, str]
-    :param location: Resource Location.
-    :type location: str
+    :keyword tags: A set of tags. Dictionary of :code:`<string>`.
+    :paramtype tags: dict[str, str]
+    :keyword location: Resource Location.
+    :paramtype location: str
     :ivar name: Resource Name.
     :vartype name: str
-    :param provisioning_state:
-    :type provisioning_state: str
+    :keyword provisioning_state:
+    :paramtype provisioning_state: str
     :ivar provisioning_state_values:  Possible values include: "Succeeded", "Failed", "canceled",
      "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
     :vartype provisioning_state_values: str or ~lro.models.ProductPropertiesProvisioningStateValues
@@ -156,10 +156,10 @@ class Product(Resource):
 class Sku(msrest.serialization.Model):
     """Sku.
 
-    :param name:
-    :type name: str
-    :param id:
-    :type id: str
+    :keyword name:
+    :paramtype name: str
+    :keyword id:
+    :paramtype id: str
     """
 
     _attribute_map = {
@@ -202,8 +202,8 @@ class SubProduct(SubResource):
 
     :ivar id: Sub Resource Id.
     :vartype id: str
-    :param provisioning_state:
-    :type provisioning_state: str
+    :keyword provisioning_state:
+    :paramtype provisioning_state: str
     :ivar provisioning_state_values:  Possible values include: "Succeeded", "Failed", "canceled",
      "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
     :vartype provisioning_state_values: str or

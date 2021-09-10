@@ -13,10 +13,10 @@ import msrest.serialization
 class Error(msrest.serialization.Model):
     """Error.
 
-    :param status:
-    :type status: int
-    :param message:
-    :type message: str
+    :keyword status:
+    :paramtype status: int
+    :keyword message:
+    :paramtype message: str
     """
 
     _attribute_map = {
@@ -36,8 +36,8 @@ class Error(msrest.serialization.Model):
 class ModelThree(msrest.serialization.Model):
     """Only exists in api version 3.0.0.
 
-    :param optional_property:
-    :type optional_property: str
+    :keyword optional_property:
+    :paramtype optional_property: str
     """
 
     _attribute_map = {
@@ -55,10 +55,10 @@ class ModelThree(msrest.serialization.Model):
 class PagingResult(msrest.serialization.Model):
     """PagingResult.
 
-    :param values:
-    :type values: list[~multiapinoasync.v3.models.ModelThree]
-    :param next_link:
-    :type next_link: str
+    :keyword values:
+    :paramtype values: list[~multiapinoasync.v3.models.ModelThree]
+    :keyword next_link:
+    :paramtype next_link: str
     """
 
     _attribute_map = {
@@ -78,8 +78,8 @@ class PagingResult(msrest.serialization.Model):
 class SourcePath(msrest.serialization.Model):
     """Uri or local path to source data.
 
-    :param source: File source path.
-    :type source: str
+    :keyword source: File source path.
+    :paramtype source: str
     """
 
     _validation = {

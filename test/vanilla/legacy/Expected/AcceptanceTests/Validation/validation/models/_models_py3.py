@@ -21,8 +21,8 @@ class ChildProduct(msrest.serialization.Model):
 
     :ivar const_property: Constant string. Has constant value: "constant".
     :vartype const_property: str
-    :param count: Count.
-    :type count: int
+    :keyword count: Count.
+    :paramtype count: int
     """
 
     _validation = {
@@ -74,12 +74,12 @@ class ConstantProduct(msrest.serialization.Model):
 class Error(msrest.serialization.Model):
     """Error.
 
-    :param code:
-    :type code: int
-    :param message:
-    :type message: str
-    :param fields:
-    :type fields: str
+    :keyword code:
+    :paramtype code: int
+    :keyword message:
+    :paramtype message: str
+    :keyword fields:
+    :paramtype fields: str
     """
 
     _attribute_map = {
@@ -104,23 +104,23 @@ class Product(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param display_names: Non required array of unique items from 0 to 6 elements.
-    :type display_names: list[str]
-    :param capacity: Non required int betwen 0 and 100 exclusive.
-    :type capacity: int
-    :param image: Image URL representing the product.
-    :type image: str
-    :param child: Required. The product documentation.
-    :type child: ~validation.models.ChildProduct
-    :param const_child: Required. The product documentation.
-    :type const_child: ~validation.models.ConstantProduct
+    :keyword display_names: Non required array of unique items from 0 to 6 elements.
+    :paramtype display_names: list[str]
+    :keyword capacity: Non required int betwen 0 and 100 exclusive.
+    :paramtype capacity: int
+    :keyword image: Image URL representing the product.
+    :paramtype image: str
+    :keyword child: Required. The product documentation.
+    :paramtype child: ~validation.models.ChildProduct
+    :keyword const_child: Required. The product documentation.
+    :paramtype const_child: ~validation.models.ConstantProduct
     :ivar const_int: Constant int. Has constant value: 0.
     :vartype const_int: int
     :ivar const_string: Constant string. Has constant value: "constant".
     :vartype const_string: str
-    :param const_string_as_enum: Constant string as Enum. The only acceptable values to pass in are
-     None and "constant_string_as_enum". The default value is None.
-    :type const_string_as_enum: str
+    :keyword const_string_as_enum: Constant string as Enum. The only acceptable values to pass in
+     are None and "constant_string_as_enum". The default value is None.
+    :paramtype const_string_as_enum: str
     """
 
     _validation = {

@@ -15,10 +15,10 @@ import msrest.serialization
 class Error(msrest.serialization.Model):
     """Error.
 
-    :param status:
-    :type status: int
-    :param message:
-    :type message: str
+    :keyword status:
+    :paramtype status: int
+    :keyword message:
+    :paramtype message: str
     """
 
     _attribute_map = {
@@ -41,10 +41,10 @@ class Error(msrest.serialization.Model):
 class PagingResult(msrest.serialization.Model):
     """PagingResult.
 
-    :param values:
-    :type values: list[~multiapi.v0.models.Product]
-    :param next_link:
-    :type next_link: str
+    :keyword values:
+    :paramtype values: list[~multiapi.v0.models.Product]
+    :keyword next_link:
+    :paramtype next_link: str
     """
 
     _attribute_map = {
@@ -67,8 +67,8 @@ class PagingResult(msrest.serialization.Model):
 class Product(msrest.serialization.Model):
     """Product.
 
-    :param id:
-    :type id: int
+    :keyword id:
+    :paramtype id: int
     """
 
     _attribute_map = {

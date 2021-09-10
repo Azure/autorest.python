@@ -15,10 +15,10 @@ import msrest.serialization
 class Error(msrest.serialization.Model):
     """Error.
 
-    :param status:
-    :type status: int
-    :param message:
-    :type message: str
+    :keyword status:
+    :paramtype status: int
+    :keyword message:
+    :paramtype message: str
     """
 
     _attribute_map = {
@@ -41,8 +41,8 @@ class Error(msrest.serialization.Model):
 class Product(msrest.serialization.Model):
     """Product.
 
-    :param properties:
-    :type properties: ~azure.directives.sample.models.ProductProperties
+    :keyword properties:
+    :paramtype properties: ~azure.directives.sample.models.ProductProperties
     """
 
     _attribute_map = {
@@ -62,10 +62,10 @@ class Product(msrest.serialization.Model):
 class ProductProperties(msrest.serialization.Model):
     """ProductProperties.
 
-    :param id:
-    :type id: int
-    :param name:
-    :type name: str
+    :keyword id:
+    :paramtype id: int
+    :keyword name:
+    :paramtype name: str
     """
 
     _attribute_map = {
@@ -88,10 +88,10 @@ class ProductProperties(msrest.serialization.Model):
 class ProductResult(msrest.serialization.Model):
     """ProductResult.
 
-    :param value:
-    :type value: list[~azure.directives.sample.models.Product]
-    :param next_link:
-    :type next_link: str
+    :keyword value:
+    :paramtype value: list[~azure.directives.sample.models.Product]
+    :keyword next_link:
+    :paramtype next_link: str
     """
 
     _attribute_map = {

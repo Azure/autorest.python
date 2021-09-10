@@ -15,12 +15,12 @@ class BaseProduct(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param product_id: Required. Unique identifier representing a specific product for a given
+    :keyword product_id: Required. Unique identifier representing a specific product for a given
      latitude & longitude. For example, uberX in San Francisco will have a different product_id than
      uberX in Los Angeles.
-    :type product_id: str
-    :param description: Description of product.
-    :type description: str
+    :paramtype product_id: str
+    :keyword description: Description of product.
+    :paramtype description: str
     """
 
     _validation = {
@@ -41,12 +41,12 @@ class BaseProduct(msrest.serialization.Model):
 class Error(msrest.serialization.Model):
     """Error.
 
-    :param status:
-    :type status: int
-    :param message:
-    :type message: str
-    :param parent_error:
-    :type parent_error: ~modelflattening.models.Error
+    :keyword status:
+    :paramtype status: int
+    :keyword message:
+    :paramtype message: str
+    :keyword parent_error:
+    :paramtype parent_error: ~modelflattening.models.Error
     """
 
     _attribute_map = {
@@ -71,10 +71,10 @@ class Resource(msrest.serialization.Model):
     :vartype id: str
     :ivar type: Resource Type.
     :vartype type: str
-    :param tags: A set of tags. Dictionary of :code:`<string>`.
-    :type tags: dict[str, str]
-    :param location: Resource Location.
-    :type location: str
+    :keyword tags: A set of tags. Dictionary of :code:`<string>`.
+    :paramtype tags: dict[str, str]
+    :keyword location: Resource Location.
+    :paramtype location: str
     :ivar name: Resource Name.
     :vartype name: str
     """
@@ -111,22 +111,22 @@ class FlattenedProduct(Resource):
     :vartype id: str
     :ivar type: Resource Type.
     :vartype type: str
-    :param tags: A set of tags. Dictionary of :code:`<string>`.
-    :type tags: dict[str, str]
-    :param location: Resource Location.
-    :type location: str
+    :keyword tags: A set of tags. Dictionary of :code:`<string>`.
+    :paramtype tags: dict[str, str]
+    :keyword location: Resource Location.
+    :paramtype location: str
     :ivar name: Resource Name.
     :vartype name: str
-    :param p_name:
-    :type p_name: str
-    :param type_properties_type:
-    :type type_properties_type: str
+    :keyword p_name:
+    :paramtype p_name: str
+    :keyword type_properties_type:
+    :paramtype type_properties_type: str
     :ivar provisioning_state_values:  Possible values include: "Succeeded", "Failed", "canceled",
      "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
     :vartype provisioning_state_values: str or
      ~modelflattening.models.FlattenedProductPropertiesProvisioningStateValues
-    :param provisioning_state:
-    :type provisioning_state: str
+    :keyword provisioning_state:
+    :paramtype provisioning_state: str
     """
 
     _validation = {
@@ -161,25 +161,25 @@ class FlattenParameterGroup(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param name: Required. Product name with value 'groupproduct'.
-    :type name: str
-    :param simple_body_product: Simple body product to put.
-    :type simple_body_product: ~modelflattening.models.SimpleProduct
-    :param product_id: Required. Unique identifier representing a specific product for a given
+    :keyword name: Required. Product name with value 'groupproduct'.
+    :paramtype name: str
+    :keyword simple_body_product: Simple body product to put.
+    :paramtype simple_body_product: ~modelflattening.models.SimpleProduct
+    :keyword product_id: Required. Unique identifier representing a specific product for a given
      latitude & longitude. For example, uberX in San Francisco will have a different product_id than
      uberX in Los Angeles.
-    :type product_id: str
-    :param description: Description of product.
-    :type description: str
-    :param max_product_display_name: Display name of product.
-    :type max_product_display_name: str
-    :param capacity: Capacity of product. For example, 4 people. The only acceptable values to pass
-     in are None and "Large". The default value is None.
-    :type capacity: str
-    :param generic_value: Generic URL value.
-    :type generic_value: str
-    :param odata_value: URL value.
-    :type odata_value: str
+    :paramtype product_id: str
+    :keyword description: Description of product.
+    :paramtype description: str
+    :keyword max_product_display_name: Display name of product.
+    :paramtype max_product_display_name: str
+    :keyword capacity: Capacity of product. For example, 4 people. The only acceptable values to
+     pass in are None and "Large". The default value is None.
+    :paramtype capacity: str
+    :keyword generic_value: Generic URL value.
+    :paramtype generic_value: str
+    :keyword odata_value: URL value.
+    :paramtype odata_value: str
     """
 
     _validation = {
@@ -213,8 +213,8 @@ class FlattenParameterGroup(msrest.serialization.Model):
 class GenericUrl(msrest.serialization.Model):
     """The Generic URL.
 
-    :param generic_value: Generic URL value.
-    :type generic_value: str
+    :keyword generic_value: Generic URL value.
+    :paramtype generic_value: str
     """
 
     _attribute_map = {
@@ -229,10 +229,10 @@ class GenericUrl(msrest.serialization.Model):
 class ProductUrl(GenericUrl):
     """The product URL.
 
-    :param generic_value: Generic URL value.
-    :type generic_value: str
-    :param odata_value: URL value.
-    :type odata_value: str
+    :keyword generic_value: Generic URL value.
+    :paramtype generic_value: str
+    :keyword odata_value: URL value.
+    :paramtype odata_value: str
     """
 
     _attribute_map = {
@@ -248,8 +248,8 @@ class ProductUrl(GenericUrl):
 class ProductWrapper(msrest.serialization.Model):
     """The wrapped produc.
 
-    :param value: the product value.
-    :type value: str
+    :keyword value: the product value.
+    :paramtype value: str
     """
 
     _attribute_map = {
@@ -264,12 +264,12 @@ class ProductWrapper(msrest.serialization.Model):
 class ResourceCollection(msrest.serialization.Model):
     """ResourceCollection.
 
-    :param productresource: Flattened product.
-    :type productresource: ~modelflattening.models.FlattenedProduct
-    :param arrayofresources:
-    :type arrayofresources: list[~modelflattening.models.FlattenedProduct]
-    :param dictionaryofresources: Dictionary of :code:`<FlattenedProduct>`.
-    :type dictionaryofresources: dict[str, ~modelflattening.models.FlattenedProduct]
+    :keyword productresource: Flattened product.
+    :paramtype productresource: ~modelflattening.models.FlattenedProduct
+    :keyword arrayofresources:
+    :paramtype arrayofresources: list[~modelflattening.models.FlattenedProduct]
+    :keyword dictionaryofresources: Dictionary of :code:`<FlattenedProduct>`.
+    :paramtype dictionaryofresources: dict[str, ~modelflattening.models.FlattenedProduct]
     """
 
     _attribute_map = {
@@ -290,21 +290,21 @@ class SimpleProduct(BaseProduct):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param product_id: Required. Unique identifier representing a specific product for a given
+    :keyword product_id: Required. Unique identifier representing a specific product for a given
      latitude & longitude. For example, uberX in San Francisco will have a different product_id than
      uberX in Los Angeles.
-    :type product_id: str
-    :param description: Description of product.
-    :type description: str
-    :param max_product_display_name: Display name of product.
-    :type max_product_display_name: str
-    :param capacity: Capacity of product. For example, 4 people. The only acceptable values to pass
-     in are None and "Large". The default value is None.
-    :type capacity: str
-    :param generic_value: Generic URL value.
-    :type generic_value: str
-    :param odata_value: URL value.
-    :type odata_value: str
+    :paramtype product_id: str
+    :keyword description: Description of product.
+    :paramtype description: str
+    :keyword max_product_display_name: Display name of product.
+    :paramtype max_product_display_name: str
+    :keyword capacity: Capacity of product. For example, 4 people. The only acceptable values to
+     pass in are None and "Large". The default value is None.
+    :paramtype capacity: str
+    :keyword generic_value: Generic URL value.
+    :paramtype generic_value: str
+    :keyword odata_value: URL value.
+    :paramtype odata_value: str
     """
 
     _validation = {
@@ -331,8 +331,8 @@ class SimpleProduct(BaseProduct):
 class WrappedProduct(msrest.serialization.Model):
     """The wrapped produc.
 
-    :param value: the product value.
-    :type value: str
+    :keyword value: the product value.
+    :paramtype value: str
     """
 
     _attribute_map = {
