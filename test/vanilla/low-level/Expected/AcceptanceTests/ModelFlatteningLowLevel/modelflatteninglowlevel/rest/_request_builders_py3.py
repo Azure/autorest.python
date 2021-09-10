@@ -37,13 +37,13 @@ def build_put_array_request(*, json: Any = None, content: Any = None, **kwargs: 
             # JSON input template you can fill out and use as your body input.
             json = [
                 {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
             ]
     """
@@ -80,19 +80,19 @@ def build_get_array_request(**kwargs: Any) -> HttpRequest:
             # response body for status code(s): 200
             response.json() == [
                 {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "p.name": "str (optional)",
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)",
-                        "type": "str (optional)"
+                        "p.name": "str",  # Optional.
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str",  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "type": "str"  # Optional.
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
             ]
     """
@@ -132,7 +132,7 @@ def build_put_wrapped_array_request(*, json: Any = None, content: Any = None, **
             # JSON input template you can fill out and use as your body input.
             json = [
                 {
-                    "value": "str (optional)"
+                    "value": "str"  # Optional. the product value.
                 }
             ]
     """
@@ -171,7 +171,7 @@ def build_get_wrapped_array_request(**kwargs: Any) -> HttpRequest:
             response.json() == [
                 {
                     "property": {
-                        "value": "str (optional)"
+                        "value": "str"  # Optional. the product value.
                     }
                 }
             ]
@@ -211,19 +211,19 @@ def build_put_dictionary_request(*, json: Any = None, content: Any = None, **kwa
             # JSON input template you can fill out and use as your body input.
             json = {
                 "str": {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "p.name": "str (optional)",
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)",
-                        "type": "str (optional)"
+                        "p.name": "str",  # Optional.
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str",  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "type": "str"  # Optional.
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
             }
     """
@@ -260,19 +260,19 @@ def build_get_dictionary_request(**kwargs: Any) -> HttpRequest:
             # response body for status code(s): 200
             response.json() == {
                 "str": {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "p.name": "str (optional)",
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)",
-                        "type": "str (optional)"
+                        "p.name": "str",  # Optional.
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str",  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "type": "str"  # Optional.
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
             }
     """
@@ -312,52 +312,52 @@ def build_put_resource_collection_request(*, json: Any = None, content: Any = No
             json = {
                 "arrayofresources": [
                     {
-                        "id": "str (optional)",
-                        "location": "str (optional)",
-                        "name": "str (optional)",
+                        "id": "str",  # Optional. Resource Id.
+                        "location": "str",  # Optional. Resource Location.
+                        "name": "str",  # Optional. Resource Name.
                         "properties": {
-                            "p.name": "str (optional)",
-                            "provisioningState": "str (optional)",
-                            "provisioningStateValues": "str (optional)",
-                            "type": "str (optional)"
+                            "p.name": "str",  # Optional.
+                            "provisioningState": "str",  # Optional.
+                            "provisioningStateValues": "str",  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                            "type": "str"  # Optional.
                         },
                         "tags": {
-                            "str": "str (optional)"
+                            "str": "str"  # Optional. Dictionary of :code:`<string>`.
                         },
-                        "type": "str (optional)"
+                        "type": "str"  # Optional. Resource Type.
                     }
                 ],
                 "dictionaryofresources": {
                     "str": {
-                        "id": "str (optional)",
-                        "location": "str (optional)",
-                        "name": "str (optional)",
+                        "id": "str",  # Optional. Resource Id.
+                        "location": "str",  # Optional. Resource Location.
+                        "name": "str",  # Optional. Resource Name.
                         "properties": {
-                            "p.name": "str (optional)",
-                            "provisioningState": "str (optional)",
-                            "provisioningStateValues": "str (optional)",
-                            "type": "str (optional)"
+                            "p.name": "str",  # Optional. Dictionary of :code:`<FlattenedProduct>`.
+                            "provisioningState": "str",  # Optional. Dictionary of :code:`<FlattenedProduct>`.
+                            "provisioningStateValues": "str",  # Optional. Dictionary of :code:`<FlattenedProduct>`. Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                            "type": "str"  # Optional. Dictionary of :code:`<FlattenedProduct>`.
                         },
                         "tags": {
-                            "str": "str (optional)"
+                            "str": "str"  # Optional. Dictionary of :code:`<string>`.
                         },
-                        "type": "str (optional)"
+                        "type": "str"  # Optional. Resource Type.
                     }
                 },
                 "productresource": {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "p.name": "str (optional)",
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)",
-                        "type": "str (optional)"
+                        "p.name": "str",  # Optional. Flattened product.
+                        "provisioningState": "str",  # Optional. Flattened product.
+                        "provisioningStateValues": "str",  # Optional. Flattened product. Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "type": "str"  # Optional. Flattened product.
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
             }
     """
@@ -395,52 +395,52 @@ def build_get_resource_collection_request(**kwargs: Any) -> HttpRequest:
             response.json() == {
                 "arrayofresources": [
                     {
-                        "id": "str (optional)",
-                        "location": "str (optional)",
-                        "name": "str (optional)",
+                        "id": "str",  # Optional. Resource Id.
+                        "location": "str",  # Optional. Resource Location.
+                        "name": "str",  # Optional. Resource Name.
                         "properties": {
-                            "p.name": "str (optional)",
-                            "provisioningState": "str (optional)",
-                            "provisioningStateValues": "str (optional)",
-                            "type": "str (optional)"
+                            "p.name": "str",  # Optional.
+                            "provisioningState": "str",  # Optional.
+                            "provisioningStateValues": "str",  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                            "type": "str"  # Optional.
                         },
                         "tags": {
-                            "str": "str (optional)"
+                            "str": "str"  # Optional. Dictionary of :code:`<string>`.
                         },
-                        "type": "str (optional)"
+                        "type": "str"  # Optional. Resource Type.
                     }
                 ],
                 "dictionaryofresources": {
                     "str": {
-                        "id": "str (optional)",
-                        "location": "str (optional)",
-                        "name": "str (optional)",
+                        "id": "str",  # Optional. Resource Id.
+                        "location": "str",  # Optional. Resource Location.
+                        "name": "str",  # Optional. Resource Name.
                         "properties": {
-                            "p.name": "str (optional)",
-                            "provisioningState": "str (optional)",
-                            "provisioningStateValues": "str (optional)",
-                            "type": "str (optional)"
+                            "p.name": "str",  # Optional. Dictionary of :code:`<FlattenedProduct>`.
+                            "provisioningState": "str",  # Optional. Dictionary of :code:`<FlattenedProduct>`.
+                            "provisioningStateValues": "str",  # Optional. Dictionary of :code:`<FlattenedProduct>`. Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                            "type": "str"  # Optional. Dictionary of :code:`<FlattenedProduct>`.
                         },
                         "tags": {
-                            "str": "str (optional)"
+                            "str": "str"  # Optional. Dictionary of :code:`<string>`.
                         },
-                        "type": "str (optional)"
+                        "type": "str"  # Optional. Resource Type.
                     }
                 },
                 "productresource": {
-                    "id": "str (optional)",
-                    "location": "str (optional)",
-                    "name": "str (optional)",
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
                     "properties": {
-                        "p.name": "str (optional)",
-                        "provisioningState": "str (optional)",
-                        "provisioningStateValues": "str (optional)",
-                        "type": "str (optional)"
+                        "p.name": "str",  # Optional. Flattened product.
+                        "provisioningState": "str",  # Optional. Flattened product.
+                        "provisioningStateValues": "str",  # Optional. Flattened product. Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "type": "str"  # Optional. Flattened product.
                     },
                     "tags": {
-                        "str": "str (optional)"
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
-                    "type": "str (optional)"
+                    "type": "str"  # Optional. Resource Type.
                 }
             }
     """
@@ -478,28 +478,28 @@ def build_put_simple_product_request(*, json: Any = None, content: Any = None, *
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "base_product_description": "str (optional)",
-                "base_product_id": "str",
+                "base_product_description": "str",  # Optional. Description of product.
+                "base_product_id": "str",  # Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
                 "details": {
-                    "max_product_capacity": "str",
-                    "max_product_display_name": "str",
+                    "max_product_capacity": "Large",  # Default value is "Large". Capacity of product. For example, 4 people.
+                    "max_product_display_name": "str",  # Display name of product.
                     "max_product_image": {
-                        "@odata.value": "str (optional)",
-                        "generic_value": "str (optional)"
+                        "@odata.value": "str",  # Optional. URL value.
+                        "generic_value": "str"  # Optional. Generic URL value.
                     }
                 }
             }
 
             # response body for status code(s): 200
             response.json() == {
-                "base_product_description": "str (optional)",
-                "base_product_id": "str",
+                "base_product_description": "str",  # Optional. Description of product.
+                "base_product_id": "str",  # Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
                 "details": {
-                    "max_product_capacity": "str",
-                    "max_product_display_name": "str",
+                    "max_product_capacity": "Large",  # Default value is "Large". Capacity of product. For example, 4 people.
+                    "max_product_display_name": "str",  # Display name of product.
                     "max_product_image": {
-                        "@odata.value": "str (optional)",
-                        "generic_value": "str (optional)"
+                        "@odata.value": "str",  # Optional. URL value.
+                        "generic_value": "str"  # Optional. Generic URL value.
                     }
                 }
             }
@@ -542,28 +542,28 @@ def build_post_flattened_simple_product_request(*, json: Any = None, content: An
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "base_product_description": "str (optional)",
-                "base_product_id": "str",
+                "base_product_description": "str",  # Optional. Description of product.
+                "base_product_id": "str",  # Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
                 "details": {
-                    "max_product_capacity": "str",
-                    "max_product_display_name": "str",
+                    "max_product_capacity": "Large",  # Default value is "Large". Capacity of product. For example, 4 people.
+                    "max_product_display_name": "str",  # Display name of product.
                     "max_product_image": {
-                        "@odata.value": "str (optional)",
-                        "generic_value": "str (optional)"
+                        "@odata.value": "str",  # Optional. URL value.
+                        "generic_value": "str"  # Optional. Generic URL value.
                     }
                 }
             }
 
             # response body for status code(s): 200
             response.json() == {
-                "base_product_description": "str (optional)",
-                "base_product_id": "str",
+                "base_product_description": "str",  # Optional. Description of product.
+                "base_product_id": "str",  # Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
                 "details": {
-                    "max_product_capacity": "str",
-                    "max_product_display_name": "str",
+                    "max_product_capacity": "Large",  # Default value is "Large". Capacity of product. For example, 4 people.
+                    "max_product_display_name": "str",  # Display name of product.
                     "max_product_image": {
-                        "@odata.value": "str (optional)",
-                        "generic_value": "str (optional)"
+                        "@odata.value": "str",  # Optional. URL value.
+                        "generic_value": "str"  # Optional. Generic URL value.
                     }
                 }
             }
@@ -610,28 +610,28 @@ def build_put_simple_product_with_grouping_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "base_product_description": "str (optional)",
-                "base_product_id": "str",
+                "base_product_description": "str",  # Optional. Description of product.
+                "base_product_id": "str",  # Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
                 "details": {
-                    "max_product_capacity": "str",
-                    "max_product_display_name": "str",
+                    "max_product_capacity": "Large",  # Default value is "Large". Capacity of product. For example, 4 people.
+                    "max_product_display_name": "str",  # Display name of product.
                     "max_product_image": {
-                        "@odata.value": "str (optional)",
-                        "generic_value": "str (optional)"
+                        "@odata.value": "str",  # Optional. URL value.
+                        "generic_value": "str"  # Optional. Generic URL value.
                     }
                 }
             }
 
             # response body for status code(s): 200
             response.json() == {
-                "base_product_description": "str (optional)",
-                "base_product_id": "str",
+                "base_product_description": "str",  # Optional. Description of product.
+                "base_product_id": "str",  # Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
                 "details": {
-                    "max_product_capacity": "str",
-                    "max_product_display_name": "str",
+                    "max_product_capacity": "Large",  # Default value is "Large". Capacity of product. For example, 4 people.
+                    "max_product_display_name": "str",  # Display name of product.
                     "max_product_image": {
-                        "@odata.value": "str (optional)",
-                        "generic_value": "str (optional)"
+                        "@odata.value": "str",  # Optional. URL value.
+                        "generic_value": "str"  # Optional. Generic URL value.
                     }
                 }
             }

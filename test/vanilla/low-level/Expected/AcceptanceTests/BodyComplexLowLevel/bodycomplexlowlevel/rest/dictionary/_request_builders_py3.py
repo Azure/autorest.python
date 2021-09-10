@@ -30,7 +30,7 @@ def build_get_valid_request(**kwargs: Any) -> HttpRequest:
             # response body for status code(s): 200
             response.json() == {
                 "defaultProgram": {
-                    "str": "str (optional)"
+                    "str": "str"  # Optional. Dictionary of :code:`<string>`.
                 }
             }
     """
@@ -71,7 +71,7 @@ def build_put_valid_request(*, json: Any = None, content: Any = None, **kwargs: 
             # JSON input template you can fill out and use as your body input.
             json = {
                 "defaultProgram": {
-                    "str": "str (optional)"
+                    "str": "str"  # Optional. Dictionary of :code:`<string>`.
                 }
             }
     """
@@ -108,7 +108,7 @@ def build_get_empty_request(**kwargs: Any) -> HttpRequest:
             # response body for status code(s): 200
             response.json() == {
                 "defaultProgram": {
-                    "str": "str (optional)"
+                    "str": "str"  # Optional. Dictionary of :code:`<string>`.
                 }
             }
     """
@@ -147,7 +147,7 @@ def build_put_empty_request(*, json: Any = None, content: Any = None, **kwargs: 
             # JSON input template you can fill out and use as your body input.
             json = {
                 "defaultProgram": {
-                    "str": "str (optional)"
+                    "str": "str"  # Optional. Dictionary of :code:`<string>`.
                 }
             }
     """
@@ -184,7 +184,7 @@ def build_get_null_request(**kwargs: Any) -> HttpRequest:
             # response body for status code(s): 200
             response.json() == {
                 "defaultProgram": {
-                    "str": "str (optional)"
+                    "str": "str"  # Optional. Dictionary of :code:`<string>`.
                 }
             }
     """
@@ -217,7 +217,7 @@ def build_get_not_provided_request(**kwargs: Any) -> HttpRequest:
             # response body for status code(s): 200
             response.json() == {
                 "defaultProgram": {
-                    "str": "str (optional)"
+                    "str": "str"  # Optional. Dictionary of :code:`<string>`.
                 }
             }
     """

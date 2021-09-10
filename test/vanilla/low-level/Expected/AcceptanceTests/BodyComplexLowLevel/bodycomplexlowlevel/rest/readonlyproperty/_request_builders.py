@@ -37,8 +37,8 @@ def build_get_valid_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "id": "str (optional)",
-                "size": "int (optional)"
+                "id": "str",  # Optional.
+                "size": 0  # Optional.
             }
     """
 
@@ -83,8 +83,8 @@ def build_put_valid_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "id": "str (optional)",
-                "size": "int (optional)"
+                "id": "str",  # Optional.
+                "size": 0  # Optional.
             }
     """
 

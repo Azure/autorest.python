@@ -13,8 +13,8 @@ import msrest.serialization
 class Animal(msrest.serialization.Model):
     """Animal.
 
-    :param ani_type:
-    :type ani_type: str
+    :keyword ani_type:
+    :paramtype ani_type: str
     """
 
     _attribute_map = {
@@ -29,8 +29,8 @@ class Animal(msrest.serialization.Model):
 class BaseError(msrest.serialization.Model):
     """BaseError.
 
-    :param some_base_prop:
-    :type some_base_prop: str
+    :keyword some_base_prop:
+    :paramtype some_base_prop: str
     """
 
     _attribute_map = {
@@ -50,12 +50,12 @@ class NotFoundErrorBase(BaseError):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param some_base_prop:
-    :type some_base_prop: str
-    :param reason:
-    :type reason: str
-    :param what_not_found: Required. Constant filled by server.
-    :type what_not_found: str
+    :keyword some_base_prop:
+    :paramtype some_base_prop: str
+    :keyword reason:
+    :paramtype reason: str
+    :keyword what_not_found: Required. Constant filled by server.
+    :paramtype what_not_found: str
     """
 
     _validation = {
@@ -81,14 +81,14 @@ class AnimalNotFound(NotFoundErrorBase):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param some_base_prop:
-    :type some_base_prop: str
-    :param reason:
-    :type reason: str
-    :param what_not_found: Required. Constant filled by server.
-    :type what_not_found: str
-    :param name:
-    :type name: str
+    :keyword some_base_prop:
+    :paramtype some_base_prop: str
+    :keyword reason:
+    :paramtype reason: str
+    :keyword what_not_found: Required. Constant filled by server.
+    :paramtype what_not_found: str
+    :keyword name:
+    :paramtype name: str
     """
 
     _validation = {
@@ -113,14 +113,14 @@ class LinkNotFound(NotFoundErrorBase):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param some_base_prop:
-    :type some_base_prop: str
-    :param reason:
-    :type reason: str
-    :param what_not_found: Required. Constant filled by server.
-    :type what_not_found: str
-    :param what_sub_address:
-    :type what_sub_address: str
+    :keyword some_base_prop:
+    :paramtype some_base_prop: str
+    :keyword reason:
+    :paramtype reason: str
+    :keyword what_not_found: Required. Constant filled by server.
+    :paramtype what_not_found: str
+    :keyword what_sub_address:
+    :paramtype what_sub_address: str
     """
 
     _validation = {
@@ -145,8 +145,8 @@ class Pet(Animal):
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
-    :param ani_type:
-    :type ani_type: str
+    :keyword ani_type:
+    :paramtype ani_type: str
     :ivar name: Gets the Pet by id.
     :vartype name: str
     """
@@ -168,8 +168,8 @@ class Pet(Animal):
 class PetAction(msrest.serialization.Model):
     """PetAction.
 
-    :param action_response: action feedback.
-    :type action_response: str
+    :keyword action_response: action feedback.
+    :paramtype action_response: str
     """
 
     _attribute_map = {
@@ -189,12 +189,12 @@ class PetActionError(PetAction):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param action_response: action feedback.
-    :type action_response: str
-    :param error_type: Required. Constant filled by server.
-    :type error_type: str
-    :param error_message: the error message.
-    :type error_message: str
+    :keyword action_response: action feedback.
+    :paramtype action_response: str
+    :keyword error_type: Required. Constant filled by server.
+    :paramtype error_type: str
+    :keyword error_message: the error message.
+    :paramtype error_message: str
     """
 
     _validation = {
@@ -223,14 +223,14 @@ class PetSadError(PetActionError):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param action_response: action feedback.
-    :type action_response: str
-    :param error_type: Required. Constant filled by server.
-    :type error_type: str
-    :param error_message: the error message.
-    :type error_message: str
-    :param reason: why is the pet sad.
-    :type reason: str
+    :keyword action_response: action feedback.
+    :paramtype action_response: str
+    :keyword error_type: Required. Constant filled by server.
+    :paramtype error_type: str
+    :keyword error_message: the error message.
+    :paramtype error_message: str
+    :keyword reason: why is the pet sad.
+    :paramtype reason: str
     """
 
     _validation = {
@@ -257,16 +257,16 @@ class PetHungryOrThirstyError(PetSadError):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param action_response: action feedback.
-    :type action_response: str
-    :param error_type: Required. Constant filled by server.
-    :type error_type: str
-    :param error_message: the error message.
-    :type error_message: str
-    :param reason: why is the pet sad.
-    :type reason: str
-    :param hungry_or_thirsty: is the pet hungry or thirsty or both.
-    :type hungry_or_thirsty: str
+    :keyword action_response: action feedback.
+    :paramtype action_response: str
+    :keyword error_type: Required. Constant filled by server.
+    :paramtype error_type: str
+    :keyword error_message: the error message.
+    :paramtype error_message: str
+    :keyword reason: why is the pet sad.
+    :paramtype reason: str
+    :keyword hungry_or_thirsty: is the pet hungry or thirsty or both.
+    :paramtype hungry_or_thirsty: str
     """
 
     _validation = {

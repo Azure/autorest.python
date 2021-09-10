@@ -99,7 +99,7 @@ class EnumSchema(BaseSchema):
         return f'Union[{self.enum_type.type_annotation}, "_models.{self.name}"]'
 
     def get_declaration(self, value: Any) -> str:
-        return f'"{value}"'
+        return self.enum_type.get_declaration(value)
 
     @property
     def docstring_text(self) -> str:
@@ -131,11 +131,22 @@ class EnumSchema(BaseSchema):
             seen_enums.add(enum_name)
         return values
 
+    def _template_kwargs(self, **kwargs: Any) -> Any:
+        if len(self.values) == 1 and not kwargs.get("default_value_declaration"):
+            kwargs['default_value_declaration'] = self.enum_type.get_declaration(self.values[0].value)
+        description = kwargs.pop("description", "")
+        values = [self.enum_type.get_declaration(v.value) for v in self.values]
+        description += " Valid values are: {}. ".format(", ".join(values))
+        kwargs["description"] = description
+        return kwargs
+
+
     def get_json_template_representation(self, **kwargs: Any) -> Any:
-        return self.enum_type.get_json_template_representation(**kwargs)
+        # for better display effect, use the only value instead of var type
+        return self.enum_type.get_json_template_representation(**self._template_kwargs(**kwargs))
 
     def get_files_template_representation(self, **kwargs: Any) -> Any:
-        return self.enum_type.get_files_template_representation(**kwargs)
+        return self.enum_type.get_files_template_representation(**self._template_kwargs(**kwargs))
 
     @classmethod
     def from_yaml(cls, namespace: str, yaml_data: Dict[str, Any], **kwargs: Any) -> "EnumSchema":

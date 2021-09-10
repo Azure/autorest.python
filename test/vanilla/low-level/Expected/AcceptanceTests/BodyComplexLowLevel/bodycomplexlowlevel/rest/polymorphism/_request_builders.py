@@ -37,12 +37,12 @@ def build_get_valid_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "fishtype": "fishtype",
-                "length": "float",
+                "length": 0.0,
                 "siblings": [
-                    "..."
+                    ...
                 ],
-                "species": "str (optional)"
+                "species": "str",  # Optional.
+                fishtype: fishtype
             }
     """
 
@@ -153,12 +153,12 @@ def build_put_valid_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "fishtype": "fishtype",
-                "length": "float",
+                "length": 0.0,
                 "siblings": [
-                    "..."
+                    ...
                 ],
-                "species": "str (optional)"
+                "species": "str",  # Optional.
+                fishtype: fishtype
             }
     """
 
@@ -201,8 +201,8 @@ def build_get_dot_syntax_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "fish.type": "fish.type",
-                "species": "str (optional)"
+                "species": "str",  # Optional.
+                fish.type: fish.type
             }
     """
 
@@ -245,27 +245,27 @@ def build_get_composed_with_discriminator_request(
             response.json() == {
                 "fishes": [
                     {
-                        "fish.type": "fish.type",
-                        "species": "str (optional)"
+                        "species": "str",  # Optional.
+                        fish.type: fish.type
                     }
                 ],
                 "salmons": [
                     {
-                        "fish.type": "DotSalmon",
-                        "iswild": "bool (optional)",
-                        "location": "str (optional)",
-                        "species": "str (optional)"
+                        "iswild": bool,  # Optional.
+                        "location": "str",  # Optional.
+                        "species": "str",  # Optional.
+                        fish.type: DotSalmon
                     }
                 ],
                 "sampleFish": {
-                    "fish.type": "fish.type",
-                    "species": "str (optional)"
+                    "species": "str",  # Optional.
+                    fish.type: fish.type
                 },
                 "sampleSalmon": {
-                    "fish.type": "DotSalmon",
-                    "iswild": "bool (optional)",
-                    "location": "str (optional)",
-                    "species": "str (optional)"
+                    "iswild": bool,  # Optional.
+                    "location": "str",  # Optional.
+                    "species": "str",  # Optional.
+                    fish.type: DotSalmon
                 }
             }
     """
@@ -309,27 +309,27 @@ def build_get_composed_without_discriminator_request(
             response.json() == {
                 "fishes": [
                     {
-                        "fish.type": "fish.type",
-                        "species": "str (optional)"
+                        "species": "str",  # Optional.
+                        fish.type: fish.type
                     }
                 ],
                 "salmons": [
                     {
-                        "fish.type": "DotSalmon",
-                        "iswild": "bool (optional)",
-                        "location": "str (optional)",
-                        "species": "str (optional)"
+                        "iswild": bool,  # Optional.
+                        "location": "str",  # Optional.
+                        "species": "str",  # Optional.
+                        fish.type: DotSalmon
                     }
                 ],
                 "sampleFish": {
-                    "fish.type": "fish.type",
-                    "species": "str (optional)"
+                    "species": "str",  # Optional.
+                    fish.type: fish.type
                 },
                 "sampleSalmon": {
-                    "fish.type": "DotSalmon",
-                    "iswild": "bool (optional)",
-                    "location": "str (optional)",
-                    "species": "str (optional)"
+                    "iswild": bool,  # Optional.
+                    "location": "str",  # Optional.
+                    "species": "str",  # Optional.
+                    fish.type: DotSalmon
                 }
             }
     """
@@ -370,21 +370,21 @@ def build_get_complicated_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "fishtype": "salmon",
-                "iswild": "bool (optional)",
-                "length": "float",
-                "location": "str (optional)",
+                "iswild": bool,  # Optional.
+                "length": 0.0,
+                "location": "str",  # Optional.
                 "siblings": [
                     {
-                        "fishtype": "fishtype",
-                        "length": "float",
+                        "length": 0.0,
                         "siblings": [
-                            "..."
+                            ...
                         ],
-                        "species": "str (optional)"
+                        "species": "str",  # Optional.
+                        fishtype: fishtype
                     }
                 ],
-                "species": "str (optional)"
+                "species": "str",  # Optional.
+                fishtype: salmon
             }
     """
 
@@ -432,21 +432,21 @@ def build_put_complicated_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "fishtype": "salmon",
-                "iswild": "bool (optional)",
-                "length": "float",
-                "location": "str (optional)",
+                "iswild": bool,  # Optional.
+                "length": 0.0,
+                "location": "str",  # Optional.
                 "siblings": [
                     {
-                        "fishtype": "fishtype",
-                        "length": "float",
+                        "length": 0.0,
                         "siblings": [
-                            "..."
+                            ...
                         ],
-                        "species": "str (optional)"
+                        "species": "str",  # Optional.
+                        fishtype: fishtype
                     }
                 ],
-                "species": "str (optional)"
+                "species": "str",  # Optional.
+                fishtype: salmon
             }
     """
 
@@ -497,40 +497,40 @@ def build_put_missing_discriminator_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "fishtype": "salmon",
-                "iswild": "bool (optional)",
-                "length": "float",
-                "location": "str (optional)",
+                "iswild": bool,  # Optional.
+                "length": 0.0,
+                "location": "str",  # Optional.
                 "siblings": [
                     {
-                        "fishtype": "fishtype",
-                        "length": "float",
+                        "length": 0.0,
                         "siblings": [
-                            "..."
+                            ...
                         ],
-                        "species": "str (optional)"
+                        "species": "str",  # Optional.
+                        fishtype: fishtype
                     }
                 ],
-                "species": "str (optional)"
+                "species": "str",  # Optional.
+                fishtype: salmon
             }
 
             # response body for status code(s): 200
             response.json() == {
-                "fishtype": "salmon",
-                "iswild": "bool (optional)",
-                "length": "float",
-                "location": "str (optional)",
+                "iswild": bool,  # Optional.
+                "length": 0.0,
+                "location": "str",  # Optional.
                 "siblings": [
                     {
-                        "fishtype": "fishtype",
-                        "length": "float",
+                        "length": 0.0,
                         "siblings": [
-                            "..."
+                            ...
                         ],
-                        "species": "str (optional)"
+                        "species": "str",  # Optional.
+                        fishtype: fishtype
                     }
                 ],
-                "species": "str (optional)"
+                "species": "str",  # Optional.
+                fishtype: salmon
             }
     """
 
@@ -634,12 +634,12 @@ def build_put_valid_missing_required_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "fishtype": "fishtype",
-                "length": "float",
+                "length": 0.0,
                 "siblings": [
-                    "..."
+                    ...
                 ],
-                "species": "str (optional)"
+                "species": "str",  # Optional.
+                fishtype: fishtype
             }
     """
 

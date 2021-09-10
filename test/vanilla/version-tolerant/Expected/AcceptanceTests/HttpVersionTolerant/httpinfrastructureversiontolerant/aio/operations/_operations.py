@@ -1114,7 +1114,7 @@ class HttpRedirectsOperations:
 
                 # response body for status code(s): 300
                 response.json() == [
-                    "str (optional)"
+                    "str"  # Optional.
                 ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[List[str]]]
@@ -3256,7 +3256,7 @@ class MultipleResponsesOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "statusCode": "str (optional)"
+                    "statusCode": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Any]]
@@ -3304,7 +3304,7 @@ class MultipleResponsesOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "statusCode": "str (optional)"
+                    "statusCode": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Any]]
@@ -3352,7 +3352,7 @@ class MultipleResponsesOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "statusCode": "str (optional)"
+                    "statusCode": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Any]]
@@ -3400,7 +3400,7 @@ class MultipleResponsesOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "statusCode": "str (optional)"
+                    "statusCode": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Any]]
@@ -3448,7 +3448,7 @@ class MultipleResponsesOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "statusCode": "str (optional)"
+                    "statusCode": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Any]]
@@ -3496,12 +3496,12 @@ class MultipleResponsesOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "statusCode": "str (optional)"
+                    "statusCode": "str"  # Optional.
                 }
                 # response body for status code(s): 201
                 response.json() == {
-                    "statusCode": "str (optional)",
-                    "textStatusCode": "str (optional)"
+                    "statusCode": "str",  # Optional.
+                    "textStatusCode": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -3554,12 +3554,12 @@ class MultipleResponsesOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "statusCode": "str (optional)"
+                    "statusCode": "str"  # Optional.
                 }
                 # response body for status code(s): 201
                 response.json() == {
-                    "statusCode": "str (optional)",
-                    "textStatusCode": "str (optional)"
+                    "statusCode": "str",  # Optional.
+                    "textStatusCode": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -3612,12 +3612,12 @@ class MultipleResponsesOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "statusCode": "str (optional)"
+                    "statusCode": "str"  # Optional.
                 }
                 # response body for status code(s): 201
                 response.json() == {
-                    "statusCode": "str (optional)",
-                    "textStatusCode": "str (optional)"
+                    "statusCode": "str",  # Optional.
+                    "textStatusCode": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -3670,15 +3670,15 @@ class MultipleResponsesOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "statusCode": "str (optional)"
+                    "statusCode": "str"  # Optional.
                 }
                 # response body for status code(s): 201
                 response.json() == {
-                    "httpCode": "str (optional)"
+                    "httpCode": "str"  # Optional.
                 }
                 # response body for status code(s): 404
                 response.json() == {
-                    "httpStatusCode": "str (optional)"
+                    "httpStatusCode": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -3737,15 +3737,15 @@ class MultipleResponsesOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "statusCode": "str (optional)"
+                    "statusCode": "str"  # Optional.
                 }
                 # response body for status code(s): 201
                 response.json() == {
-                    "httpCode": "str (optional)"
+                    "httpCode": "str"  # Optional.
                 }
                 # response body for status code(s): 404
                 response.json() == {
-                    "httpStatusCode": "str (optional)"
+                    "httpStatusCode": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -3804,15 +3804,15 @@ class MultipleResponsesOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "statusCode": "str (optional)"
+                    "statusCode": "str"  # Optional.
                 }
                 # response body for status code(s): 201
                 response.json() == {
-                    "httpCode": "str (optional)"
+                    "httpCode": "str"  # Optional.
                 }
                 # response body for status code(s): 404
                 response.json() == {
-                    "httpStatusCode": "str (optional)"
+                    "httpStatusCode": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -3871,15 +3871,15 @@ class MultipleResponsesOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "statusCode": "str (optional)"
+                    "statusCode": "str"  # Optional.
                 }
                 # response body for status code(s): 201
                 response.json() == {
-                    "httpCode": "str (optional)"
+                    "httpCode": "str"  # Optional.
                 }
                 # response body for status code(s): 404
                 response.json() == {
-                    "httpStatusCode": "str (optional)"
+                    "httpStatusCode": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -4155,7 +4155,7 @@ class MultipleResponsesOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "statusCode": "str (optional)"
+                    "statusCode": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -4201,7 +4201,7 @@ class MultipleResponsesOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "statusCode": "str (optional)"
+                    "statusCode": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -4434,7 +4434,7 @@ class MultipleResponsesOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "statusCode": "str (optional)"
+                    "statusCode": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -4480,7 +4480,7 @@ class MultipleResponsesOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "statusCode": "str (optional)"
+                    "statusCode": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -4526,7 +4526,7 @@ class MultipleResponsesOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "statusCode": "str (optional)"
+                    "statusCode": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -4572,7 +4572,7 @@ class MultipleResponsesOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "statusCode": "str (optional)"
+                    "statusCode": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -4618,7 +4618,7 @@ class MultipleResponsesOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "statusCode": "str (optional)"
+                    "statusCode": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -4664,7 +4664,7 @@ class MultipleResponsesOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "statusCode": "str (optional)"
+                    "statusCode": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -4710,7 +4710,7 @@ class MultipleResponsesOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "statusCode": "str (optional)"
+                    "statusCode": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]

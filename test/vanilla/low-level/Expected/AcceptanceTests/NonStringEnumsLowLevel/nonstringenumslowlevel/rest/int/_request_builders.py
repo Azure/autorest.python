@@ -42,7 +42,7 @@ def build_put_request(
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "int (optional)"
+            json = 0  # Optional.  Valid values are: 200, 403, 405, 406, 429. 
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
@@ -83,7 +83,7 @@ def build_get_request(
         .. code-block:: python
 
             # response body for status code(s): 200
-            response.json() == "int (optional)"
+            response.json() == 0  # Optional.  Valid values are: 200, 403, 405, 406, 429. 
     """
 
     accept = "application/json"

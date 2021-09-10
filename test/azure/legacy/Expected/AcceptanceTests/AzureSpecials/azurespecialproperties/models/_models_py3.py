@@ -19,12 +19,12 @@ class Error(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param status:
-    :type status: int
+    :keyword status:
+    :paramtype status: int
     :ivar constant_id:  Has constant value: 1.
     :vartype constant_id: int
-    :param message:
-    :type message: str
+    :keyword message:
+    :paramtype message: str
     """
 
     _validation = {
@@ -50,8 +50,8 @@ class HeaderCustomNamedRequestIdParamGroupingParameters(msrest.serialization.Mod
 
     All required parameters must be populated in order to send to Azure.
 
-    :param foo_client_request_id: Required. The fooRequestId.
-    :type foo_client_request_id: str
+    :keyword foo_client_request_id: Required. The fooRequestId.
+    :paramtype foo_client_request_id: str
     """
 
     _validation = {
@@ -70,10 +70,10 @@ class HeaderCustomNamedRequestIdParamGroupingParameters(msrest.serialization.Mod
 class OdataFilter(msrest.serialization.Model):
     """OdataFilter.
 
-    :param id:
-    :type id: int
-    :param name:
-    :type name: str
+    :keyword id:
+    :paramtype id: int
+    :keyword name:
+    :paramtype name: str
     """
 
     _attribute_map = {

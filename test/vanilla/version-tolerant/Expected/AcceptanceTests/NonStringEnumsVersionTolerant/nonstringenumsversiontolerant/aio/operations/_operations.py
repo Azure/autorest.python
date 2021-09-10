@@ -54,7 +54,7 @@ class IntOperations:
     async def put(self, input: Optional[int] = None, **kwargs: Any) -> str:
         """Put an int enum.
 
-        :param input: Input int enum. Possible values are: "200", "403", "405", "406", and "429".
+        :param input: Input int enum. Possible values are: 200, 403, 405, 406, and 429.
         :type input: int
         :return: str
         :rtype: str
@@ -103,7 +103,7 @@ class IntOperations:
     async def get(self, **kwargs: Any) -> int:
         """Get an int enum.
 
-        :return: int. Possible values are: "200", "403", "405", "406", and "429".
+        :return: int. Possible values are: 200, 403, 405, 406, and 429.
         :rtype: int
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -111,7 +111,7 @@ class IntOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == "int (optional)"
+                response.json() == 0  # Optional.  Valid values are: 200, 403, 405, 406, 429.
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[int]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -166,8 +166,7 @@ class FloatOperations:
     async def put(self, input: Optional[float] = None, **kwargs: Any) -> str:
         """Put a float enum.
 
-        :param input: Input float enum. Possible values are: "200.4", "403.4", "405.3", "406.2", and
-         "429.1".
+        :param input: Input float enum. Possible values are: 200.4, 403.4, 405.3, 406.2, and 429.1.
         :type input: float
         :return: str
         :rtype: str
@@ -216,7 +215,7 @@ class FloatOperations:
     async def get(self, **kwargs: Any) -> float:
         """Get a float enum.
 
-        :return: float. Possible values are: "200.4", "403.4", "405.3", "406.2", and "429.1".
+        :return: float. Possible values are: 200.4, 403.4, 405.3, 406.2, and 429.1.
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -224,7 +223,7 @@ class FloatOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == "float (optional)"
+                response.json() == 0.0  # Optional.  Valid values are: 200.4, 403.4, 405.3, 406.2, 429.1.
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[float]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}

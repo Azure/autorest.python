@@ -73,7 +73,7 @@ def build_put_null_request(
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "str (optional)"
+            json = "str"  # Optional.
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
@@ -421,7 +421,7 @@ def build_put_base64_url_encoded_request(
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "bytes (optional)"
+            json = bytes("bytes", encoding="utf-8")  # Optional.
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]

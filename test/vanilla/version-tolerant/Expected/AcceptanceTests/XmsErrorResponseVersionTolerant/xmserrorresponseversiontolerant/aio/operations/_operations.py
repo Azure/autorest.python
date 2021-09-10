@@ -64,8 +64,8 @@ class PetOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "aniType": "str (optional)",
-                    "name": "str (optional)"
+                    "aniType": "str",  # Optional.
+                    "name": "str"  # Optional. Gets the Pet by id.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Any]]
@@ -122,7 +122,7 @@ class PetOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "actionResponse": "str (optional)"
+                    "actionResponse": "str"  # Optional. action feedback.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]

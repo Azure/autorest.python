@@ -20,12 +20,12 @@ class AccessPolicy(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param start: Required. the date-time the policy is active.
-    :type start: ~datetime.datetime
-    :param expiry: Required. the date-time the policy expires.
-    :type expiry: ~datetime.datetime
-    :param permission: Required. the permissions for the acl policy.
-    :type permission: str
+    :keyword start: Required. the date-time the policy is active.
+    :paramtype start: ~datetime.datetime
+    :keyword expiry: Required. the date-time the policy expires.
+    :paramtype expiry: ~datetime.datetime
+    :keyword permission: Required. the permissions for the acl policy.
+    :paramtype permission: str
     """
 
     _validation = {
@@ -50,10 +50,10 @@ class AccessPolicy(msrest.serialization.Model):
 class AppleBarrel(msrest.serialization.Model):
     """A barrel of apples.
 
-    :param good_apples:
-    :type good_apples: list[str]
-    :param bad_apples:
-    :type bad_apples: list[str]
+    :keyword good_apples:
+    :paramtype good_apples: list[str]
+    :keyword bad_apples:
+    :paramtype bad_apples: list[str]
     """
 
     _attribute_map = {
@@ -70,12 +70,12 @@ class AppleBarrel(msrest.serialization.Model):
 class Banana(msrest.serialization.Model):
     """A banana.
 
-    :param name:
-    :type name: str
-    :param flavor:
-    :type flavor: str
-    :param expiration: The time at which you should reconsider eating this banana.
-    :type expiration: ~datetime.datetime
+    :keyword name:
+    :paramtype name: str
+    :keyword flavor:
+    :paramtype flavor: str
+    :keyword expiration: The time at which you should reconsider eating this banana.
+    :paramtype expiration: ~datetime.datetime
     """
 
     _attribute_map = {
@@ -104,16 +104,16 @@ class Blob(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param name: Required.
-    :type name: str
-    :param deleted: Required.
-    :type deleted: bool
-    :param snapshot: Required.
-    :type snapshot: str
-    :param properties: Required. Properties of a blob.
-    :type properties: ~xmlservice.models.BlobProperties
-    :param metadata: Dictionary of :code:`<string>`.
-    :type metadata: dict[str, str]
+    :keyword name: Required.
+    :paramtype name: str
+    :keyword deleted: Required.
+    :paramtype deleted: bool
+    :keyword snapshot: Required.
+    :paramtype snapshot: str
+    :keyword properties: Required. Properties of a blob.
+    :paramtype properties: ~xmlservice.models.BlobProperties
+    :keyword metadata: Dictionary of :code:`<string>`.
+    :paramtype metadata: dict[str, str]
     """
 
     _validation = {
@@ -155,8 +155,8 @@ class BlobPrefix(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param name: Required.
-    :type name: str
+    :keyword name: Required.
+    :paramtype name: str
     """
 
     _validation = {
@@ -177,65 +177,65 @@ class BlobProperties(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param last_modified: Required.
-    :type last_modified: ~datetime.datetime
-    :param etag: Required.
-    :type etag: str
-    :param content_length: Size in bytes.
-    :type content_length: long
-    :param content_type:
-    :type content_type: str
-    :param content_encoding:
-    :type content_encoding: str
-    :param content_language:
-    :type content_language: str
-    :param content_md5:
-    :type content_md5: str
-    :param content_disposition:
-    :type content_disposition: str
-    :param cache_control:
-    :type cache_control: str
-    :param blob_sequence_number:
-    :type blob_sequence_number: int
-    :param blob_type:  Possible values include: "BlockBlob", "PageBlob", "AppendBlob".
-    :type blob_type: str or ~xmlservice.models.BlobType
-    :param lease_status:  Possible values include: "locked", "unlocked".
-    :type lease_status: str or ~xmlservice.models.LeaseStatusType
-    :param lease_state:  Possible values include: "available", "leased", "expired", "breaking",
+    :keyword last_modified: Required.
+    :paramtype last_modified: ~datetime.datetime
+    :keyword etag: Required.
+    :paramtype etag: str
+    :keyword content_length: Size in bytes.
+    :paramtype content_length: long
+    :keyword content_type:
+    :paramtype content_type: str
+    :keyword content_encoding:
+    :paramtype content_encoding: str
+    :keyword content_language:
+    :paramtype content_language: str
+    :keyword content_md5:
+    :paramtype content_md5: str
+    :keyword content_disposition:
+    :paramtype content_disposition: str
+    :keyword cache_control:
+    :paramtype cache_control: str
+    :keyword blob_sequence_number:
+    :paramtype blob_sequence_number: int
+    :keyword blob_type:  Possible values include: "BlockBlob", "PageBlob", "AppendBlob".
+    :paramtype blob_type: str or ~xmlservice.models.BlobType
+    :keyword lease_status:  Possible values include: "locked", "unlocked".
+    :paramtype lease_status: str or ~xmlservice.models.LeaseStatusType
+    :keyword lease_state:  Possible values include: "available", "leased", "expired", "breaking",
      "broken".
-    :type lease_state: str or ~xmlservice.models.LeaseStateType
-    :param lease_duration:  Possible values include: "infinite", "fixed".
-    :type lease_duration: str or ~xmlservice.models.LeaseDurationType
-    :param copy_id:
-    :type copy_id: str
-    :param copy_status:  Possible values include: "pending", "success", "aborted", "failed".
-    :type copy_status: str or ~xmlservice.models.CopyStatusType
-    :param copy_source:
-    :type copy_source: str
-    :param copy_progress:
-    :type copy_progress: str
-    :param copy_completion_time:
-    :type copy_completion_time: ~datetime.datetime
-    :param copy_status_description:
-    :type copy_status_description: str
-    :param server_encrypted:
-    :type server_encrypted: bool
-    :param incremental_copy:
-    :type incremental_copy: bool
-    :param destination_snapshot:
-    :type destination_snapshot: str
-    :param deleted_time:
-    :type deleted_time: ~datetime.datetime
-    :param remaining_retention_days:
-    :type remaining_retention_days: int
-    :param access_tier:  Possible values include: "P4", "P6", "P10", "P20", "P30", "P40", "P50",
+    :paramtype lease_state: str or ~xmlservice.models.LeaseStateType
+    :keyword lease_duration:  Possible values include: "infinite", "fixed".
+    :paramtype lease_duration: str or ~xmlservice.models.LeaseDurationType
+    :keyword copy_id:
+    :paramtype copy_id: str
+    :keyword copy_status:  Possible values include: "pending", "success", "aborted", "failed".
+    :paramtype copy_status: str or ~xmlservice.models.CopyStatusType
+    :keyword copy_source:
+    :paramtype copy_source: str
+    :keyword copy_progress:
+    :paramtype copy_progress: str
+    :keyword copy_completion_time:
+    :paramtype copy_completion_time: ~datetime.datetime
+    :keyword copy_status_description:
+    :paramtype copy_status_description: str
+    :keyword server_encrypted:
+    :paramtype server_encrypted: bool
+    :keyword incremental_copy:
+    :paramtype incremental_copy: bool
+    :keyword destination_snapshot:
+    :paramtype destination_snapshot: str
+    :keyword deleted_time:
+    :paramtype deleted_time: ~datetime.datetime
+    :keyword remaining_retention_days:
+    :paramtype remaining_retention_days: int
+    :keyword access_tier:  Possible values include: "P4", "P6", "P10", "P20", "P30", "P40", "P50",
      "Hot", "Cool", "Archive".
-    :type access_tier: str or ~xmlservice.models.AccessTier
-    :param access_tier_inferred:
-    :type access_tier_inferred: bool
-    :param archive_status:  Possible values include: "rehydrate-pending-to-hot",
+    :paramtype access_tier: str or ~xmlservice.models.AccessTier
+    :keyword access_tier_inferred:
+    :paramtype access_tier_inferred: bool
+    :keyword archive_status:  Possible values include: "rehydrate-pending-to-hot",
      "rehydrate-pending-to-cool".
-    :type archive_status: str or ~xmlservice.models.ArchiveStatus
+    :paramtype archive_status: str or ~xmlservice.models.ArchiveStatus
     """
 
     _validation = {
@@ -341,10 +341,10 @@ class BlobProperties(msrest.serialization.Model):
 class Blobs(msrest.serialization.Model):
     """Blobs.
 
-    :param blob_prefix:
-    :type blob_prefix: list[~xmlservice.models.BlobPrefix]
-    :param blob:
-    :type blob: list[~xmlservice.models.Blob]
+    :keyword blob_prefix:
+    :paramtype blob_prefix: list[~xmlservice.models.BlobPrefix]
+    :keyword blob:
+    :paramtype blob: list[~xmlservice.models.Blob]
     """
 
     _attribute_map = {
@@ -363,8 +363,8 @@ class Blobs(msrest.serialization.Model):
 class ComplexTypeNoMeta(msrest.serialization.Model):
     """I am a complex type with no XML node.
 
-    :param id: The id of the res.
-    :type id: str
+    :keyword id: The id of the res.
+    :paramtype id: str
     """
 
     _attribute_map = {
@@ -379,8 +379,8 @@ class ComplexTypeNoMeta(msrest.serialization.Model):
 class ComplexTypeWithMeta(msrest.serialization.Model):
     """I am a complex type with XML node.
 
-    :param id: The id of the res.
-    :type id: str
+    :keyword id: The id of the res.
+    :paramtype id: str
     """
 
     _attribute_map = {
@@ -398,12 +398,12 @@ class Container(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param name: Required.
-    :type name: str
-    :param properties: Required. Properties of a container.
-    :type properties: ~xmlservice.models.ContainerProperties
-    :param metadata: Dictionary of :code:`<string>`.
-    :type metadata: dict[str, str]
+    :keyword name: Required.
+    :paramtype name: str
+    :keyword properties: Required. Properties of a container.
+    :paramtype properties: ~xmlservice.models.ContainerProperties
+    :keyword metadata: Dictionary of :code:`<string>`.
+    :paramtype metadata: dict[str, str]
     """
 
     _validation = {
@@ -431,19 +431,19 @@ class ContainerProperties(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param last_modified: Required.
-    :type last_modified: ~datetime.datetime
-    :param etag: Required.
-    :type etag: str
-    :param lease_status:  Possible values include: "locked", "unlocked".
-    :type lease_status: str or ~xmlservice.models.LeaseStatusType
-    :param lease_state:  Possible values include: "available", "leased", "expired", "breaking",
+    :keyword last_modified: Required.
+    :paramtype last_modified: ~datetime.datetime
+    :keyword etag: Required.
+    :paramtype etag: str
+    :keyword lease_status:  Possible values include: "locked", "unlocked".
+    :paramtype lease_status: str or ~xmlservice.models.LeaseStatusType
+    :keyword lease_state:  Possible values include: "available", "leased", "expired", "breaking",
      "broken".
-    :type lease_state: str or ~xmlservice.models.LeaseStateType
-    :param lease_duration:  Possible values include: "infinite", "fixed".
-    :type lease_duration: str or ~xmlservice.models.LeaseDurationType
-    :param public_access:  Possible values include: "container", "blob".
-    :type public_access: str or ~xmlservice.models.PublicAccessType
+    :paramtype lease_state: str or ~xmlservice.models.LeaseStateType
+    :keyword lease_duration:  Possible values include: "infinite", "fixed".
+    :paramtype lease_duration: str or ~xmlservice.models.LeaseDurationType
+    :keyword public_access:  Possible values include: "container", "blob".
+    :paramtype public_access: str or ~xmlservice.models.PublicAccessType
     """
 
     _validation = {
@@ -485,24 +485,24 @@ class CorsRule(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param allowed_origins: Required. The origin domains that are permitted to make a request
+    :keyword allowed_origins: Required. The origin domains that are permitted to make a request
      against the storage service via CORS. The origin domain is the domain from which the request
      originates. Note that the origin must be an exact case-sensitive match with the origin that the
      user age sends to the service. You can also use the wildcard character '*' to allow all origin
      domains to make requests via CORS.
-    :type allowed_origins: str
-    :param allowed_methods: Required. The methods (HTTP request verbs) that the origin domain may
+    :paramtype allowed_origins: str
+    :keyword allowed_methods: Required. The methods (HTTP request verbs) that the origin domain may
      use for a CORS request. (comma separated).
-    :type allowed_methods: str
-    :param allowed_headers: Required. the request headers that the origin domain may specify on the
-     CORS request.
-    :type allowed_headers: str
-    :param exposed_headers: Required. The response headers that may be sent in the response to the
-     CORS request and exposed by the browser to the request issuer.
-    :type exposed_headers: str
-    :param max_age_in_seconds: Required. The maximum amount time that a browser should cache the
+    :paramtype allowed_methods: str
+    :keyword allowed_headers: Required. the request headers that the origin domain may specify on
+     the CORS request.
+    :paramtype allowed_headers: str
+    :keyword exposed_headers: Required. The response headers that may be sent in the response to
+     the CORS request and exposed by the browser to the request issuer.
+    :paramtype exposed_headers: str
+    :keyword max_age_in_seconds: Required. The maximum amount time that a browser should cache the
      preflight OPTIONS request.
-    :type max_age_in_seconds: int
+    :paramtype max_age_in_seconds: int
     """
 
     _validation = {
@@ -543,10 +543,10 @@ class CorsRule(msrest.serialization.Model):
 class Error(msrest.serialization.Model):
     """Error.
 
-    :param status:
-    :type status: int
-    :param message:
-    :type message: str
+    :keyword status:
+    :paramtype status: int
+    :keyword message:
+    :paramtype message: str
     """
 
     _attribute_map = {
@@ -563,8 +563,8 @@ class Error(msrest.serialization.Model):
 class JSONInput(msrest.serialization.Model):
     """JSONInput.
 
-    :param id:
-    :type id: int
+    :keyword id:
+    :paramtype id: int
     """
 
     _attribute_map = {
@@ -579,8 +579,8 @@ class JSONInput(msrest.serialization.Model):
 class JSONOutput(msrest.serialization.Model):
     """JSONOutput.
 
-    :param id:
-    :type id: int
+    :keyword id:
+    :paramtype id: int
     """
 
     _attribute_map = {
@@ -597,22 +597,22 @@ class ListBlobsResponse(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param service_endpoint:
-    :type service_endpoint: str
-    :param container_name: Required.
-    :type container_name: str
-    :param prefix: Required.
-    :type prefix: str
-    :param marker: Required.
-    :type marker: str
-    :param max_results: Required.
-    :type max_results: int
-    :param delimiter: Required.
-    :type delimiter: str
-    :param blobs: Required.
-    :type blobs: ~xmlservice.models.Blobs
-    :param next_marker: Required.
-    :type next_marker: str
+    :keyword service_endpoint:
+    :paramtype service_endpoint: str
+    :keyword container_name: Required.
+    :paramtype container_name: str
+    :keyword prefix: Required.
+    :paramtype prefix: str
+    :keyword marker: Required.
+    :paramtype marker: str
+    :keyword max_results: Required.
+    :paramtype max_results: int
+    :keyword delimiter: Required.
+    :paramtype delimiter: str
+    :keyword blobs: Required.
+    :paramtype blobs: ~xmlservice.models.Blobs
+    :keyword next_marker: Required.
+    :paramtype next_marker: str
     """
 
     _validation = {
@@ -666,18 +666,18 @@ class ListContainersResponse(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param service_endpoint: Required.
-    :type service_endpoint: str
-    :param prefix: Required.
-    :type prefix: str
-    :param marker:
-    :type marker: str
-    :param max_results: Required.
-    :type max_results: int
-    :param containers:
-    :type containers: list[~xmlservice.models.Container]
-    :param next_marker: Required.
-    :type next_marker: str
+    :keyword service_endpoint: Required.
+    :paramtype service_endpoint: str
+    :keyword prefix: Required.
+    :paramtype prefix: str
+    :keyword marker:
+    :paramtype marker: str
+    :keyword max_results: Required.
+    :paramtype max_results: int
+    :keyword containers:
+    :paramtype containers: list[~xmlservice.models.Container]
+    :keyword next_marker: Required.
+    :paramtype next_marker: str
     """
 
     _validation = {
@@ -722,16 +722,16 @@ class Logging(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param version: Required. The version of Storage Analytics to configure.
-    :type version: str
-    :param delete: Required. Indicates whether all delete requests should be logged.
-    :type delete: bool
-    :param read: Required. Indicates whether all read requests should be logged.
-    :type read: bool
-    :param write: Required. Indicates whether all write requests should be logged.
-    :type write: bool
-    :param retention_policy: Required. the retention policy.
-    :type retention_policy: ~xmlservice.models.RetentionPolicy
+    :keyword version: Required. The version of Storage Analytics to configure.
+    :paramtype version: str
+    :keyword delete: Required. Indicates whether all delete requests should be logged.
+    :paramtype delete: bool
+    :keyword read: Required. Indicates whether all read requests should be logged.
+    :paramtype read: bool
+    :keyword write: Required. Indicates whether all write requests should be logged.
+    :paramtype write: bool
+    :keyword retention_policy: Required. the retention policy.
+    :paramtype retention_policy: ~xmlservice.models.RetentionPolicy
     """
 
     _validation = {
@@ -766,15 +766,15 @@ class Metrics(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param version: The version of Storage Analytics to configure.
-    :type version: str
-    :param enabled: Required. Indicates whether metrics are enabled for the Blob service.
-    :type enabled: bool
-    :param include_apis: Indicates whether metrics should generate summary statistics for called
+    :keyword version: The version of Storage Analytics to configure.
+    :paramtype version: str
+    :keyword enabled: Required. Indicates whether metrics are enabled for the Blob service.
+    :paramtype enabled: bool
+    :keyword include_apis: Indicates whether metrics should generate summary statistics for called
      API operations.
-    :type include_apis: bool
-    :param retention_policy: the retention policy.
-    :type retention_policy: ~xmlservice.models.RetentionPolicy
+    :paramtype include_apis: bool
+    :keyword retention_policy: the retention policy.
+    :paramtype retention_policy: ~xmlservice.models.RetentionPolicy
     """
 
     _validation = {
@@ -807,8 +807,8 @@ class Metrics(msrest.serialization.Model):
 class ModelWithByteProperty(msrest.serialization.Model):
     """ModelWithByteProperty.
 
-    :param bytes:
-    :type bytes: bytearray
+    :keyword bytes:
+    :paramtype bytes: bytearray
     """
 
     _attribute_map = {
@@ -823,8 +823,8 @@ class ModelWithByteProperty(msrest.serialization.Model):
 class ModelWithUrlProperty(msrest.serialization.Model):
     """ModelWithUrlProperty.
 
-    :param url:
-    :type url: str
+    :keyword url:
+    :paramtype url: str
     """
 
     _attribute_map = {
@@ -839,10 +839,10 @@ class ModelWithUrlProperty(msrest.serialization.Model):
 class ObjectWithXMsTextProperty(msrest.serialization.Model):
     """Contans property.
 
-    :param language: Returned value should be 'english'.
-    :type language: str
-    :param content: Returned value should be 'I am text'.
-    :type content: str
+    :keyword language: Returned value should be 'english'.
+    :paramtype language: str
+    :keyword content: Returned value should be 'I am text'.
+    :paramtype content: str
     """
 
     _attribute_map = {
@@ -862,12 +862,12 @@ class RetentionPolicy(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param enabled: Required. Indicates whether a retention policy is enabled for the storage
+    :keyword enabled: Required. Indicates whether a retention policy is enabled for the storage
      service.
-    :type enabled: bool
-    :param days: Indicates the number of days that metrics or logging or soft-deleted data should
+    :paramtype enabled: bool
+    :keyword days: Indicates the number of days that metrics or logging or soft-deleted data should
      be retained. All data older than this value will be deleted.
-    :type days: int
+    :paramtype days: int
     """
 
     _validation = {
@@ -889,10 +889,10 @@ class RetentionPolicy(msrest.serialization.Model):
 class RootWithRefAndMeta(msrest.serialization.Model):
     """I am root, and I ref a model WITH meta.
 
-    :param ref_to_model: XML will use XMLComplexTypeWithMeta.
-    :type ref_to_model: ~xmlservice.models.ComplexTypeWithMeta
-    :param something: Something else (just to avoid flattening).
-    :type something: str
+    :keyword ref_to_model: XML will use XMLComplexTypeWithMeta.
+    :paramtype ref_to_model: ~xmlservice.models.ComplexTypeWithMeta
+    :keyword something: Something else (just to avoid flattening).
+    :paramtype something: str
     """
 
     _attribute_map = {
@@ -911,10 +911,10 @@ class RootWithRefAndMeta(msrest.serialization.Model):
 class RootWithRefAndNoMeta(msrest.serialization.Model):
     """I am root, and I ref a model with no meta.
 
-    :param ref_to_model: XML will use RefToModel.
-    :type ref_to_model: ~xmlservice.models.ComplexTypeNoMeta
-    :param something: Something else (just to avoid flattening).
-    :type something: str
+    :keyword ref_to_model: XML will use RefToModel.
+    :paramtype ref_to_model: ~xmlservice.models.ComplexTypeNoMeta
+    :keyword something: Something else (just to avoid flattening).
+    :paramtype something: str
     """
 
     _attribute_map = {
@@ -935,10 +935,10 @@ class SignedIdentifier(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param id: Required. a unique id.
-    :type id: str
-    :param access_policy: Required. The access policy.
-    :type access_policy: ~xmlservice.models.AccessPolicy
+    :keyword id: Required. a unique id.
+    :paramtype id: str
+    :keyword access_policy: Required. The access policy.
+    :paramtype access_policy: ~xmlservice.models.AccessPolicy
     """
 
     _validation = {
@@ -961,12 +961,12 @@ class SignedIdentifier(msrest.serialization.Model):
 class Slide(msrest.serialization.Model):
     """A slide in a slideshow.
 
-    :param type:
-    :type type: str
-    :param title:
-    :type title: str
-    :param items:
-    :type items: list[str]
+    :keyword type:
+    :paramtype type: str
+    :keyword title:
+    :paramtype title: str
+    :keyword items:
+    :paramtype items: list[str]
     """
 
     _attribute_map = {
@@ -988,14 +988,14 @@ class Slide(msrest.serialization.Model):
 class Slideshow(msrest.serialization.Model):
     """Data about a slideshow.
 
-    :param title:
-    :type title: str
-    :param date:
-    :type date: str
-    :param author:
-    :type author: str
-    :param slides:
-    :type slides: list[~xmlservice.models.Slide]
+    :keyword title:
+    :paramtype title: str
+    :keyword date:
+    :paramtype date: str
+    :keyword author:
+    :paramtype author: str
+    :keyword slides:
+    :paramtype slides: list[~xmlservice.models.Slide]
     """
 
     _attribute_map = {
@@ -1025,22 +1025,22 @@ class Slideshow(msrest.serialization.Model):
 class StorageServiceProperties(msrest.serialization.Model):
     """Storage Service Properties.
 
-    :param logging: Azure Analytics Logging settings.
-    :type logging: ~xmlservice.models.Logging
-    :param hour_metrics: A summary of request statistics grouped by API in hourly aggregates for
+    :keyword logging: Azure Analytics Logging settings.
+    :paramtype logging: ~xmlservice.models.Logging
+    :keyword hour_metrics: A summary of request statistics grouped by API in hourly aggregates for
      blobs.
-    :type hour_metrics: ~xmlservice.models.Metrics
-    :param minute_metrics: a summary of request statistics grouped by API in minute aggregates for
-     blobs.
-    :type minute_metrics: ~xmlservice.models.Metrics
-    :param cors: The set of CORS rules.
-    :type cors: list[~xmlservice.models.CorsRule]
-    :param default_service_version: The default version to use for requests to the Blob service if
-     an incoming request's version is not specified. Possible values include version 2008-10-27 and
-     all more recent versions.
-    :type default_service_version: str
-    :param delete_retention_policy: The Delete Retention Policy for the service.
-    :type delete_retention_policy: ~xmlservice.models.RetentionPolicy
+    :paramtype hour_metrics: ~xmlservice.models.Metrics
+    :keyword minute_metrics: a summary of request statistics grouped by API in minute aggregates
+     for blobs.
+    :paramtype minute_metrics: ~xmlservice.models.Metrics
+    :keyword cors: The set of CORS rules.
+    :paramtype cors: list[~xmlservice.models.CorsRule]
+    :keyword default_service_version: The default version to use for requests to the Blob service
+     if an incoming request's version is not specified. Possible values include version 2008-10-27
+     and all more recent versions.
+    :paramtype default_service_version: str
+    :keyword delete_retention_policy: The Delete Retention Policy for the service.
+    :paramtype delete_retention_policy: ~xmlservice.models.RetentionPolicy
     """
 
     _attribute_map = {

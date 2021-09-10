@@ -45,7 +45,7 @@ class AutoRestReportServiceForAzureOperationsMixin:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "str": "int (optional)"
+                    "str": 0  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]

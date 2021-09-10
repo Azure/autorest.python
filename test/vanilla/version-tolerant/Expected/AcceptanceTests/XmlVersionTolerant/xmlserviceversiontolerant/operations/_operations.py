@@ -826,9 +826,9 @@ class XmlOperations(object):
                 # response body for status code(s): 200
                 response.json() == {
                     "RefToModel": {
-                        "ID": "str (optional)"
+                        "ID": "str"  # Optional. The id of the res.
                     },
-                    "Something": "str (optional)"
+                    "Something": "str"  # Optional. Something else (just to avoid flattening).
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -880,9 +880,9 @@ class XmlOperations(object):
                 # JSON input template you can fill out and use as your body input.
                 model = {
                     "RefToModel": {
-                        "ID": "str (optional)"
+                        "ID": "str"  # Optional. The id of the res.
                     },
-                    "Something": "str (optional)"
+                    "Something": "str"  # Optional. Something else (just to avoid flattening).
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -929,9 +929,9 @@ class XmlOperations(object):
                 # response body for status code(s): 200
                 response.json() == {
                     "RefToModel": {
-                        "ID": "str (optional)"
+                        "ID": "str"  # Optional. The id of the res.
                     },
-                    "Something": "str (optional)"
+                    "Something": "str"  # Optional. Something else (just to avoid flattening).
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -983,9 +983,9 @@ class XmlOperations(object):
                 # JSON input template you can fill out and use as your body input.
                 model = {
                     "RefToModel": {
-                        "ID": "str (optional)"
+                        "ID": "str"  # Optional. The id of the res.
                     },
-                    "Something": "str (optional)"
+                    "Something": "str"  # Optional. Something else (just to avoid flattening).
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -1031,18 +1031,18 @@ class XmlOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "author": "str (optional)",
-                    "date": "str (optional)",
+                    "author": "str",  # Optional.
+                    "date": "str",  # Optional.
                     "slides": [
                         {
                             "items": [
-                                "str (optional)"
+                                "str"  # Optional.
                             ],
-                            "title": "str (optional)",
-                            "type": "str (optional)"
+                            "title": "str",  # Optional.
+                            "type": "str"  # Optional.
                         }
                     ],
-                    "title": "str (optional)"
+                    "title": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -1093,18 +1093,18 @@ class XmlOperations(object):
 
                 # JSON input template you can fill out and use as your body input.
                 slideshow = {
-                    "author": "str (optional)",
-                    "date": "str (optional)",
+                    "author": "str",  # Optional.
+                    "date": "str",  # Optional.
                     "slides": [
                         {
                             "items": [
-                                "str (optional)"
+                                "str"  # Optional.
                             ],
-                            "title": "str (optional)",
-                            "type": "str (optional)"
+                            "title": "str",  # Optional.
+                            "type": "str"  # Optional.
                         }
                     ],
-                    "title": "str (optional)"
+                    "title": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -1151,10 +1151,10 @@ class XmlOperations(object):
                 # response body for status code(s): 200
                 response.json() == {
                     "BadApples": [
-                        "str (optional)"
+                        "str"  # Optional.
                     ],
                     "GoodApples": [
-                        "str (optional)"
+                        "str"  # Optional.
                     ]
                 }
         """
@@ -1207,10 +1207,10 @@ class XmlOperations(object):
                 # JSON input template you can fill out and use as your body input.
                 wrapped_lists = {
                     "BadApples": [
-                        "str (optional)"
+                        "str"  # Optional.
                     ],
                     "GoodApples": [
-                        "str (optional)"
+                        "str"  # Optional.
                     ]
                 }
         """
@@ -1292,18 +1292,18 @@ class XmlOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "author": "str (optional)",
-                    "date": "str (optional)",
+                    "author": "str",  # Optional.
+                    "date": "str",  # Optional.
                     "slides": [
                         {
                             "items": [
-                                "str (optional)"
+                                "str"  # Optional.
                             ],
-                            "title": "str (optional)",
-                            "type": "str (optional)"
+                            "title": "str",  # Optional.
+                            "type": "str"  # Optional.
                         }
                     ],
-                    "title": "str (optional)"
+                    "title": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -1354,18 +1354,18 @@ class XmlOperations(object):
 
                 # JSON input template you can fill out and use as your body input.
                 slideshow = {
-                    "author": "str (optional)",
-                    "date": "str (optional)",
+                    "author": "str",  # Optional.
+                    "date": "str",  # Optional.
                     "slides": [
                         {
                             "items": [
-                                "str (optional)"
+                                "str"  # Optional.
                             ],
-                            "title": "str (optional)",
-                            "type": "str (optional)"
+                            "title": "str",  # Optional.
+                            "type": "str"  # Optional.
                         }
                     ],
-                    "title": "str (optional)"
+                    "title": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -1412,10 +1412,10 @@ class XmlOperations(object):
                 # response body for status code(s): 200
                 response.json() == {
                     "BadApples": [
-                        "str (optional)"
+                        "str"  # Optional.
                     ],
                     "GoodApples": [
-                        "str (optional)"
+                        "str"  # Optional.
                     ]
                 }
         """
@@ -1468,10 +1468,10 @@ class XmlOperations(object):
                 # JSON input template you can fill out and use as your body input.
                 apple_barrel = {
                     "BadApples": [
-                        "str (optional)"
+                        "str"  # Optional.
                     ],
                     "GoodApples": [
-                        "str (optional)"
+                        "str"  # Optional.
                     ]
                 }
         """
@@ -1519,9 +1519,9 @@ class XmlOperations(object):
                 # response body for status code(s): 200
                 response.json() == [
                     {
-                        "expiration": "datetime (optional)",
-                        "flavor": "str (optional)",
-                        "name": "str (optional)"
+                        "expiration": "2020-02-20 00:00:00",  # Optional. The time at which you should reconsider eating this banana.
+                        "flavor": "str",  # Optional.
+                        "name": "str"  # Optional.
                     }
                 ]
         """
@@ -1574,9 +1574,9 @@ class XmlOperations(object):
                 # JSON input template you can fill out and use as your body input.
                 bananas = [
                     {
-                        "expiration": "datetime (optional)",
-                        "flavor": "str (optional)",
-                        "name": "str (optional)"
+                        "expiration": "2020-02-20 00:00:00",  # Optional. The time at which you should reconsider eating this banana.
+                        "flavor": "str",  # Optional.
+                        "name": "str"  # Optional.
                     }
                 ]
         """
@@ -1625,9 +1625,9 @@ class XmlOperations(object):
                 # response body for status code(s): 200
                 response.json() == [
                     {
-                        "expiration": "datetime (optional)",
-                        "flavor": "str (optional)",
-                        "name": "str (optional)"
+                        "expiration": "2020-02-20 00:00:00",  # Optional. The time at which you should reconsider eating this banana.
+                        "flavor": "str",  # Optional.
+                        "name": "str"  # Optional.
                     }
                 ]
         """
@@ -1680,9 +1680,9 @@ class XmlOperations(object):
                 # JSON input template you can fill out and use as your body input.
                 bananas = [
                     {
-                        "expiration": "datetime (optional)",
-                        "flavor": "str (optional)",
-                        "name": "str (optional)"
+                        "expiration": "2020-02-20 00:00:00",  # Optional. The time at which you should reconsider eating this banana.
+                        "flavor": "str",  # Optional.
+                        "name": "str"  # Optional.
                     }
                 ]
         """
@@ -1731,9 +1731,9 @@ class XmlOperations(object):
                 # response body for status code(s): 200
                 response.json() == [
                     {
-                        "expiration": "datetime (optional)",
-                        "flavor": "str (optional)",
-                        "name": "str (optional)"
+                        "expiration": "2020-02-20 00:00:00",  # Optional. The time at which you should reconsider eating this banana.
+                        "flavor": "str",  # Optional.
+                        "name": "str"  # Optional.
                     }
                 ]
         """
@@ -1786,9 +1786,9 @@ class XmlOperations(object):
                 # JSON input template you can fill out and use as your body input.
                 bananas = [
                     {
-                        "expiration": "datetime (optional)",
-                        "flavor": "str (optional)",
-                        "name": "str (optional)"
+                        "expiration": "2020-02-20 00:00:00",  # Optional. The time at which you should reconsider eating this banana.
+                        "flavor": "str",  # Optional.
+                        "name": "str"  # Optional.
                     }
                 ]
         """
@@ -1836,9 +1836,9 @@ class XmlOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "expiration": "datetime (optional)",
-                    "flavor": "str (optional)",
-                    "name": "str (optional)"
+                    "expiration": "2020-02-20 00:00:00",  # Optional. The time at which you should reconsider eating this banana.
+                    "flavor": "str",  # Optional.
+                    "name": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -1889,9 +1889,9 @@ class XmlOperations(object):
 
                 # JSON input template you can fill out and use as your body input.
                 banana = {
-                    "expiration": "datetime (optional)",
-                    "flavor": "str (optional)",
-                    "name": "str (optional)"
+                    "expiration": "2020-02-20 00:00:00",  # Optional. The time at which you should reconsider eating this banana.
+                    "flavor": "str",  # Optional.
+                    "name": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -1940,21 +1940,21 @@ class XmlOperations(object):
                     "Containers": [
                         {
                             "Metadata": {
-                                "str": "str (optional)"
+                                "str": "str"  # Optional. Dictionary of :code:`<string>`.
                             },
                             "Name": "str",
                             "Properties": {
-                                "Etag": "str",
-                                "Last-Modified": "datetime",
-                                "LeaseDuration": "str (optional)",
-                                "LeaseState": "str (optional)",
-                                "LeaseStatus": "str (optional)",
-                                "PublicAccess": "str (optional)"
+                                "Etag": "str",  # Properties of a container.
+                                "Last-Modified": "2020-02-20 00:00:00",  # Properties of a container.
+                                "LeaseDuration": "str",  # Optional. Properties of a container. Valid values are: "infinite", "fixed".
+                                "LeaseState": "str",  # Optional. Properties of a container. Valid values are: "available", "leased", "expired", "breaking", "broken".
+                                "LeaseStatus": "str",  # Optional. Properties of a container. Valid values are: "locked", "unlocked".
+                                "PublicAccess": "str"  # Optional. Properties of a container. Valid values are: "container", "blob".
                             }
                         }
                     ],
-                    "Marker": "str (optional)",
-                    "MaxResults": "int",
+                    "Marker": "str",  # Optional.
+                    "MaxResults": 0,
                     "NextMarker": "str",
                     "Prefix": "str",
                     "ServiceEndpoint": "str"
@@ -2006,45 +2006,45 @@ class XmlOperations(object):
                 response.json() == {
                     "Cors": [
                         {
-                            "AllowedHeaders": "str",
-                            "AllowedMethods": "str",
-                            "AllowedOrigins": "str",
-                            "ExposedHeaders": "str",
-                            "MaxAgeInSeconds": "int"
+                            "AllowedHeaders": "str",  # the request headers that the origin domain may specify on the CORS request.
+                            "AllowedMethods": "str",  # The methods (HTTP request verbs) that the origin domain may use for a CORS request. (comma separated).
+                            "AllowedOrigins": "str",  # The origin domains that are permitted to make a request against the storage service via CORS. The origin domain is the domain from which the request originates. Note that the origin must be an exact case-sensitive match with the origin that the user age sends to the service. You can also use the wildcard character '*' to allow all origin domains to make requests via CORS.
+                            "ExposedHeaders": "str",  # The response headers that may be sent in the response to the CORS request and exposed by the browser to the request issuer.
+                            "MaxAgeInSeconds": 0  # The maximum amount time that a browser should cache the preflight OPTIONS request.
                         }
                     ],
-                    "DefaultServiceVersion": "str (optional)",
+                    "DefaultServiceVersion": "str",  # Optional. The default version to use for requests to the Blob service if an incoming request's version is not specified. Possible values include version 2008-10-27 and all more recent versions.
                     "DeleteRetentionPolicy": {
-                        "Days": "int (optional)",
-                        "Enabled": "bool"
+                        "Days": 0,  # Optional. Indicates the number of days that metrics or logging or soft-deleted data should be retained. All data older than this value will be deleted.
+                        "Enabled": bool  # Indicates whether a retention policy is enabled for the storage service.
                     },
                     "HourMetrics": {
-                        "Enabled": "bool",
-                        "IncludeAPIs": "bool (optional)",
+                        "Enabled": bool,  # Indicates whether metrics are enabled for the Blob service.
+                        "IncludeAPIs": bool,  # Optional. Indicates whether metrics should generate summary statistics for called API operations.
                         "RetentionPolicy": {
-                            "Days": "int (optional)",
-                            "Enabled": "bool"
+                            "Days": 0,  # Optional. Indicates the number of days that metrics or logging or soft-deleted data should be retained. All data older than this value will be deleted.
+                            "Enabled": bool  # Indicates whether a retention policy is enabled for the storage service.
                         },
-                        "Version": "str (optional)"
+                        "Version": "str"  # Optional. The version of Storage Analytics to configure.
                     },
                     "Logging": {
-                        "Delete": "bool",
-                        "Read": "bool",
+                        "Delete": bool,  # Indicates whether all delete requests should be logged.
+                        "Read": bool,  # Indicates whether all read requests should be logged.
                         "RetentionPolicy": {
-                            "Days": "int (optional)",
-                            "Enabled": "bool"
+                            "Days": 0,  # Optional. Indicates the number of days that metrics or logging or soft-deleted data should be retained. All data older than this value will be deleted.
+                            "Enabled": bool  # Indicates whether a retention policy is enabled for the storage service.
                         },
-                        "Version": "str",
-                        "Write": "bool"
+                        "Version": "str",  # The version of Storage Analytics to configure.
+                        "Write": bool  # Indicates whether all write requests should be logged.
                     },
                     "MinuteMetrics": {
-                        "Enabled": "bool",
-                        "IncludeAPIs": "bool (optional)",
+                        "Enabled": bool,  # Indicates whether metrics are enabled for the Blob service.
+                        "IncludeAPIs": bool,  # Optional. Indicates whether metrics should generate summary statistics for called API operations.
                         "RetentionPolicy": {
-                            "Days": "int (optional)",
-                            "Enabled": "bool"
+                            "Days": 0,  # Optional. Indicates the number of days that metrics or logging or soft-deleted data should be retained. All data older than this value will be deleted.
+                            "Enabled": bool  # Indicates whether a retention policy is enabled for the storage service.
                         },
-                        "Version": "str (optional)"
+                        "Version": "str"  # Optional. The version of Storage Analytics to configure.
                     }
                 }
         """
@@ -2098,45 +2098,45 @@ class XmlOperations(object):
                 properties = {
                     "Cors": [
                         {
-                            "AllowedHeaders": "str",
-                            "AllowedMethods": "str",
-                            "AllowedOrigins": "str",
-                            "ExposedHeaders": "str",
-                            "MaxAgeInSeconds": "int"
+                            "AllowedHeaders": "str",  # the request headers that the origin domain may specify on the CORS request.
+                            "AllowedMethods": "str",  # The methods (HTTP request verbs) that the origin domain may use for a CORS request. (comma separated).
+                            "AllowedOrigins": "str",  # The origin domains that are permitted to make a request against the storage service via CORS. The origin domain is the domain from which the request originates. Note that the origin must be an exact case-sensitive match with the origin that the user age sends to the service. You can also use the wildcard character '*' to allow all origin domains to make requests via CORS.
+                            "ExposedHeaders": "str",  # The response headers that may be sent in the response to the CORS request and exposed by the browser to the request issuer.
+                            "MaxAgeInSeconds": 0  # The maximum amount time that a browser should cache the preflight OPTIONS request.
                         }
                     ],
-                    "DefaultServiceVersion": "str (optional)",
+                    "DefaultServiceVersion": "str",  # Optional. The default version to use for requests to the Blob service if an incoming request's version is not specified. Possible values include version 2008-10-27 and all more recent versions.
                     "DeleteRetentionPolicy": {
-                        "Days": "int (optional)",
-                        "Enabled": "bool"
+                        "Days": 0,  # Optional. Indicates the number of days that metrics or logging or soft-deleted data should be retained. All data older than this value will be deleted.
+                        "Enabled": bool  # Indicates whether a retention policy is enabled for the storage service.
                     },
                     "HourMetrics": {
-                        "Enabled": "bool",
-                        "IncludeAPIs": "bool (optional)",
+                        "Enabled": bool,  # Indicates whether metrics are enabled for the Blob service.
+                        "IncludeAPIs": bool,  # Optional. Indicates whether metrics should generate summary statistics for called API operations.
                         "RetentionPolicy": {
-                            "Days": "int (optional)",
-                            "Enabled": "bool"
+                            "Days": 0,  # Optional. Indicates the number of days that metrics or logging or soft-deleted data should be retained. All data older than this value will be deleted.
+                            "Enabled": bool  # Indicates whether a retention policy is enabled for the storage service.
                         },
-                        "Version": "str (optional)"
+                        "Version": "str"  # Optional. The version of Storage Analytics to configure.
                     },
                     "Logging": {
-                        "Delete": "bool",
-                        "Read": "bool",
+                        "Delete": bool,  # Indicates whether all delete requests should be logged.
+                        "Read": bool,  # Indicates whether all read requests should be logged.
                         "RetentionPolicy": {
-                            "Days": "int (optional)",
-                            "Enabled": "bool"
+                            "Days": 0,  # Optional. Indicates the number of days that metrics or logging or soft-deleted data should be retained. All data older than this value will be deleted.
+                            "Enabled": bool  # Indicates whether a retention policy is enabled for the storage service.
                         },
-                        "Version": "str",
-                        "Write": "bool"
+                        "Version": "str",  # The version of Storage Analytics to configure.
+                        "Write": bool  # Indicates whether all write requests should be logged.
                     },
                     "MinuteMetrics": {
-                        "Enabled": "bool",
-                        "IncludeAPIs": "bool (optional)",
+                        "Enabled": bool,  # Indicates whether metrics are enabled for the Blob service.
+                        "IncludeAPIs": bool,  # Optional. Indicates whether metrics should generate summary statistics for called API operations.
                         "RetentionPolicy": {
-                            "Days": "int (optional)",
-                            "Enabled": "bool"
+                            "Days": 0,  # Optional. Indicates the number of days that metrics or logging or soft-deleted data should be retained. All data older than this value will be deleted.
+                            "Enabled": bool  # Indicates whether a retention policy is enabled for the storage service.
                         },
-                        "Version": "str (optional)"
+                        "Version": "str"  # Optional. The version of Storage Analytics to configure.
                     }
                 }
         """
@@ -2185,11 +2185,11 @@ class XmlOperations(object):
                 response.json() == [
                     {
                         "AccessPolicy": {
-                            "Expiry": "datetime",
-                            "Permission": "str",
-                            "Start": "datetime"
+                            "Expiry": "2020-02-20 00:00:00",  # the date-time the policy expires.
+                            "Permission": "str",  # the permissions for the acl policy.
+                            "Start": "2020-02-20 00:00:00"  # the date-time the policy is active.
                         },
-                        "Id": "str"
+                        "Id": "str"  # a unique id.
                     }
                 ]
         """
@@ -2243,11 +2243,11 @@ class XmlOperations(object):
                 properties = [
                     {
                         "AccessPolicy": {
-                            "Expiry": "datetime",
-                            "Permission": "str",
-                            "Start": "datetime"
+                            "Expiry": "2020-02-20 00:00:00",  # the date-time the policy expires.
+                            "Permission": "str",  # the permissions for the acl policy.
+                            "Start": "2020-02-20 00:00:00"  # the date-time the policy is active.
                         },
-                        "Id": "str"
+                        "Id": "str"  # a unique id.
                     }
                 ]
         """
@@ -2298,40 +2298,40 @@ class XmlOperations(object):
                     "Blobs": {
                         "Blob": [
                             {
-                                "Deleted": "bool",
+                                "Deleted": bool,
                                 "Metadata": {
-                                    "str": "str (optional)"
+                                    "str": "str"  # Optional. Dictionary of :code:`<string>`.
                                 },
                                 "Name": "str",
                                 "Properties": {
-                                    "AccessTier": "str (optional)",
-                                    "AccessTierInferred": "bool (optional)",
-                                    "ArchiveStatus": "str (optional)",
-                                    "BlobType": "str (optional)",
-                                    "Cache-Control": "str (optional)",
-                                    "Content-Disposition": "str (optional)",
-                                    "Content-Encoding": "str (optional)",
-                                    "Content-Language": "str (optional)",
-                                    "Content-Length": "long (optional)",
-                                    "Content-MD5": "str (optional)",
-                                    "Content-Type": "str (optional)",
-                                    "CopyCompletionTime": "datetime (optional)",
-                                    "CopyId": "str (optional)",
-                                    "CopyProgress": "str (optional)",
-                                    "CopySource": "str (optional)",
-                                    "CopyStatus": "str (optional)",
-                                    "CopyStatusDescription": "str (optional)",
-                                    "DeletedTime": "datetime (optional)",
-                                    "DestinationSnapshot": "str (optional)",
-                                    "Etag": "str",
-                                    "IncrementalCopy": "bool (optional)",
-                                    "Last-Modified": "datetime",
-                                    "LeaseDuration": "str (optional)",
-                                    "LeaseState": "str (optional)",
-                                    "LeaseStatus": "str (optional)",
-                                    "RemainingRetentionDays": "int (optional)",
-                                    "ServerEncrypted": "bool (optional)",
-                                    "x-ms-blob-sequence-number": "int (optional)"
+                                    "AccessTier": "str",  # Optional. Properties of a blob. Valid values are: "P4", "P6", "P10", "P20", "P30", "P40", "P50", "Hot", "Cool", "Archive".
+                                    "AccessTierInferred": bool,  # Optional. Properties of a blob.
+                                    "ArchiveStatus": "str",  # Optional. Properties of a blob. Valid values are: "rehydrate-pending-to-hot", "rehydrate-pending-to-cool".
+                                    "BlobType": "str",  # Optional. Properties of a blob. Valid values are: "BlockBlob", "PageBlob", "AppendBlob".
+                                    "Cache-Control": "str",  # Optional. Properties of a blob.
+                                    "Content-Disposition": "str",  # Optional. Properties of a blob.
+                                    "Content-Encoding": "str",  # Optional. Properties of a blob.
+                                    "Content-Language": "str",  # Optional. Properties of a blob.
+                                    "Content-Length": 0.0,  # Optional. Size in bytes.
+                                    "Content-MD5": "str",  # Optional. Properties of a blob.
+                                    "Content-Type": "str",  # Optional. Properties of a blob.
+                                    "CopyCompletionTime": "2020-02-20 00:00:00",  # Optional. Properties of a blob.
+                                    "CopyId": "str",  # Optional. Properties of a blob.
+                                    "CopyProgress": "str",  # Optional. Properties of a blob.
+                                    "CopySource": "str",  # Optional. Properties of a blob.
+                                    "CopyStatus": "str",  # Optional. Properties of a blob. Valid values are: "pending", "success", "aborted", "failed".
+                                    "CopyStatusDescription": "str",  # Optional. Properties of a blob.
+                                    "DeletedTime": "2020-02-20 00:00:00",  # Optional. Properties of a blob.
+                                    "DestinationSnapshot": "str",  # Optional. Properties of a blob.
+                                    "Etag": "str",  # Properties of a blob.
+                                    "IncrementalCopy": bool,  # Optional. Properties of a blob.
+                                    "Last-Modified": "2020-02-20 00:00:00",  # Properties of a blob.
+                                    "LeaseDuration": "str",  # Optional. Properties of a blob. Valid values are: "infinite", "fixed".
+                                    "LeaseState": "str",  # Optional. Properties of a blob. Valid values are: "available", "leased", "expired", "breaking", "broken".
+                                    "LeaseStatus": "str",  # Optional. Properties of a blob. Valid values are: "locked", "unlocked".
+                                    "RemainingRetentionDays": 0,  # Optional. Properties of a blob.
+                                    "ServerEncrypted": bool,  # Optional. Properties of a blob.
+                                    "x-ms-blob-sequence-number": 0  # Optional. Properties of a blob.
                                 },
                                 "Snapshot": "str"
                             }
@@ -2345,10 +2345,10 @@ class XmlOperations(object):
                     "ContainerName": "str",
                     "Delimiter": "str",
                     "Marker": "str",
-                    "MaxResults": "int",
+                    "MaxResults": 0,
                     "NextMarker": "str",
                     "Prefix": "str",
-                    "ServiceEndpoint": "str (optional)"
+                    "ServiceEndpoint": "str"  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -2400,7 +2400,7 @@ class XmlOperations(object):
 
                 # JSON input template you can fill out and use as your body input.
                 properties = {
-                    "id": "int (optional)"
+                    "id": 0  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -2446,7 +2446,7 @@ class XmlOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "id": "int (optional)"
+                    "id": 0  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -2494,8 +2494,8 @@ class XmlOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "content": "str (optional)",
-                    "language": "str (optional)"
+                    "content": "str",  # Optional. Returned value should be 'I am text'.
+                    "language": "str"  # Optional. Returned value should be 'english'.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -2542,7 +2542,7 @@ class XmlOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "Bytes": "bytearray (optional)"
+                    "Bytes": bytearray("bytearray", encoding="utf-8")  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -2593,7 +2593,7 @@ class XmlOperations(object):
 
                 # JSON input template you can fill out and use as your body input.
                 slideshow = {
-                    "Bytes": "bytearray (optional)"
+                    "Bytes": bytearray("bytearray", encoding="utf-8")  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -2639,7 +2639,7 @@ class XmlOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "Url": "str (optional)"
+                    "Url": str  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -2690,7 +2690,7 @@ class XmlOperations(object):
 
                 # JSON input template you can fill out and use as your body input.
                 model = {
-                    "Url": "str (optional)"
+                    "Url": str  # Optional.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]

@@ -33,9 +33,24 @@ T = TypeVar("T")
 OrderedSet = Dict[T, None]
 
 
+def _improve_json_string(template_representation: str) -> Any:
+    origin = template_representation.split('\n')
+    final = []
+    for line in origin:
+        idx0 = line.find('#')
+        idx1 = line.rfind('"')
+        modified_line = ""
+        if idx0 > -1 and idx1 > -1:
+            modified_line = line[:idx0] + line[idx1:] + '  ' + line[idx0:idx1] + '\n'
+        else:
+            modified_line = line + '\n'
+        modified_line = modified_line.replace('"', "").replace("\\", '"')
+        final.append(modified_line)
+    return ''.join(final)
+
 def _json_dumps_template(template_representation: Any) -> Any:
     # only for template use, since it wraps everything in strings
-    return json.dumps(template_representation, sort_keys=True, indent=4)
+    return _improve_json_string(json.dumps(template_representation, sort_keys=True, indent=4))
 
 def _serialize_files_dict(multipart_parameters: List[Parameter]) -> str:
     # only for template use

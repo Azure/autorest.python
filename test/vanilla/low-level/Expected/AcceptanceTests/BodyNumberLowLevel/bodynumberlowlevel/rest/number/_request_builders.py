@@ -166,7 +166,7 @@ def build_put_big_float_request(
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "float (optional)"
+            json = 0.0  # Optional.
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
@@ -244,7 +244,7 @@ def build_put_big_double_request(
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "float (optional)"
+            json = 0.0  # Optional.
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
@@ -458,7 +458,7 @@ def build_put_big_decimal_request(
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "float (optional)"
+            json = 0.0  # Optional.
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
@@ -672,7 +672,7 @@ def build_put_small_float_request(
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "float (optional)"
+            json = 0.0  # Optional.
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
@@ -750,7 +750,7 @@ def build_put_small_double_request(
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "float (optional)"
+            json = 0.0  # Optional.
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
@@ -828,7 +828,7 @@ def build_put_small_decimal_request(
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "float (optional)"
+            json = 0.0  # Optional.
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]

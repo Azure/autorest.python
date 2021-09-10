@@ -46,7 +46,7 @@ def build_analyze_body_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "source": "str (optional)"
+                "source": "str"  # Optional. File source path.
             }
     """
 
@@ -99,7 +99,7 @@ def build_analyze_body_no_accept_header_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "source": "str (optional)"
+                "source": "str"  # Optional. File source path.
             }
     """
 

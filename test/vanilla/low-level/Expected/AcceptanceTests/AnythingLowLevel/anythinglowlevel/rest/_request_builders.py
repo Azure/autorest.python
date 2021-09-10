@@ -77,7 +77,7 @@ def build_put_object_request(
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "any (optional)"
+            json = {}  # Optional.
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
@@ -156,7 +156,7 @@ def build_put_string_request(
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "any (optional)"
+            json = {}  # Optional.
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
@@ -235,7 +235,7 @@ def build_put_array_request(
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "any (optional)"
+            json = {}  # Optional.
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]

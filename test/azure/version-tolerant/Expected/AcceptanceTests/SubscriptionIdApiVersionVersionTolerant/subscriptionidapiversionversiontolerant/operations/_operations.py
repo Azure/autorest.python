@@ -106,8 +106,8 @@ class GroupOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "location": "str (optional)",
-                    "name": "str (optional)"
+                    "location": "str",  # Optional. resource group location 'West US'.
+                    "name": "str"  # Optional. resource group name 'testgroup101'.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]

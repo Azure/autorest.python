@@ -15,10 +15,10 @@ import msrest.serialization
 class Error(msrest.serialization.Model):
     """Error.
 
-    :param status:
-    :type status: int
-    :param message:
-    :type message: str
+    :keyword status:
+    :paramtype status: int
+    :keyword message:
+    :paramtype message: str
     """
 
     _attribute_map = {
@@ -35,10 +35,10 @@ class Error(msrest.serialization.Model):
 class FirstParameterGroup(msrest.serialization.Model):
     """Parameter group.
 
-    :param header_one:
-    :type header_one: str
-    :param query_one: Query parameter with default.
-    :type query_one: int
+    :keyword header_one:
+    :paramtype header_one: str
+    :keyword query_one: Query parameter with default.
+    :paramtype query_one: int
     """
 
     _attribute_map = {
@@ -55,10 +55,10 @@ class FirstParameterGroup(msrest.serialization.Model):
 class ParameterGroupingPostMultiParamGroupsSecondParamGroup(msrest.serialization.Model):
     """Parameter group.
 
-    :param header_two:
-    :type header_two: str
-    :param query_two: Query parameter with default.
-    :type query_two: int
+    :keyword header_two:
+    :paramtype header_two: str
+    :keyword query_two: Query parameter with default.
+    :paramtype query_two: int
     """
 
     _attribute_map = {
@@ -75,10 +75,10 @@ class ParameterGroupingPostMultiParamGroupsSecondParamGroup(msrest.serialization
 class ParameterGroupingPostOptionalParameters(msrest.serialization.Model):
     """Parameter group.
 
-    :param custom_header:
-    :type custom_header: str
-    :param query: Query parameter with default.
-    :type query: int
+    :keyword custom_header:
+    :paramtype custom_header: str
+    :keyword query: Query parameter with default.
+    :paramtype query: int
     """
 
     _attribute_map = {
@@ -97,14 +97,14 @@ class ParameterGroupingPostRequiredParameters(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param custom_header:
-    :type custom_header: str
-    :param query: Query parameter with default.
-    :type query: int
-    :param path: Required. Path parameter.
-    :type path: str
-    :param body: Required.
-    :type body: int
+    :keyword custom_header:
+    :paramtype custom_header: str
+    :keyword query: Query parameter with default.
+    :paramtype query: int
+    :keyword path: Required. Path parameter.
+    :paramtype path: str
+    :keyword body: Required.
+    :paramtype body: int
     """
 
     _validation = {
@@ -132,10 +132,10 @@ class ParameterGroupingPostRequiredParameters(msrest.serialization.Model):
 class ParameterGroupingPostReservedWordsParameters(msrest.serialization.Model):
     """Parameter group.
 
-    :param from_property: 'from' is a reserved word. Pass in 'bob' to pass.
-    :type from_property: str
-    :param accept: 'accept' is a reserved word. Pass in 'yes' to pass.
-    :type accept: str
+    :keyword from_property: 'from' is a reserved word. Pass in 'bob' to pass.
+    :paramtype from_property: str
+    :keyword accept: 'accept' is a reserved word. Pass in 'yes' to pass.
+    :paramtype accept: str
     """
 
     _attribute_map = {

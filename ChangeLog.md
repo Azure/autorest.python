@@ -20,6 +20,7 @@
 **Bug Fixes**
 
 - Correctly pad operation groups with reserved names with `Operations`  #1005
+- Fix the generated docstrings for input kwargs of models  #1026
 
 ### 2021-07-13 - 5.8.4
 

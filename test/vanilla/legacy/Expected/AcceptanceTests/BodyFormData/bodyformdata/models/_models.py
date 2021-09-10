@@ -13,10 +13,10 @@ import msrest.serialization
 class Error(msrest.serialization.Model):
     """Error.
 
-    :param status:
-    :type status: int
-    :param message:
-    :type message: str
+    :keyword status:
+    :paramtype status: int
+    :keyword message:
+    :paramtype message: str
     """
 
     _attribute_map = {
@@ -35,11 +35,11 @@ class Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDat
 
     All required parameters must be populated in order to send to Azure.
 
-    :param file_content: Required. File to upload.
-    :type file_content: IO
-    :param file_name: Required. File name to upload. Name has to be spelled exactly as written
+    :keyword file_content: Required. File to upload.
+    :paramtype file_content: IO
+    :keyword file_name: Required. File name to upload. Name has to be spelled exactly as written
      here.
-    :type file_name: str
+    :paramtype file_name: str
     """
 
     _validation = {
@@ -65,8 +65,8 @@ class Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDa
 
     All required parameters must be populated in order to send to Azure.
 
-    :param file_content: Required. Files to upload.
-    :type file_content: list[IO]
+    :keyword file_content: Required. Files to upload.
+    :paramtype file_content: list[IO]
     """
 
     _validation = {
