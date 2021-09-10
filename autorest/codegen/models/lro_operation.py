@@ -89,6 +89,7 @@ class LROOperation(Operation):
             want_description_docstring=False,
             want_tracing=False,
         )
+        operation.use_pipeline_transport = self.use_pipeline_transport
         operation.request_builder = self.request_builder
         return operation
 

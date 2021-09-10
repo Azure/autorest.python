@@ -1205,7 +1205,7 @@ class PagingOperations:
             maxresults=maxresults,
             timeout=timeout,
             template_url=self._get_multiple_pages_lro_initial.metadata["url"],
-        )
+        )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1217,8 +1217,8 @@ class PagingOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
+        if response.body():
+            deserialized = _loads(response.body())
         else:
             deserialized = None
 

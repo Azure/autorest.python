@@ -8,6 +8,9 @@ from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
 
 class LROPagingOperation(PagingOperation, LROOperation):
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+        self.use_pipeline_transport = True
 
     def imports(self, code_model, async_mode: bool) -> FileImport:
         lro_imports = LROOperation.imports(self, code_model, async_mode)
