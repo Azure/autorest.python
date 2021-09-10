@@ -1064,7 +1064,7 @@ class _PagingOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disab
         deserialized = (
             f'self._deserialize("{response.serialization_type}", pipeline_response)'
             if self.code_model.options["models_mode"] else
-            "pipeline_response.http_response.json()"
+            "_loads(pipeline_response.http_response.body())"
         )
         retval.append(f"    deserialized = {deserialized}")
         item_name = builder.item_name(self.code_model)

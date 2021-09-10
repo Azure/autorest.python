@@ -119,7 +119,7 @@ class PagingOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = pipeline_response.http_response.json()
+            deserialized = _loads(pipeline_response.http_response.body())
             list_of_elem = deserialized["value"]
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -187,7 +187,7 @@ class PagingOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = pipeline_response.http_response.json()
+            deserialized = _loads(pipeline_response.http_response.body())
             list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -255,7 +255,7 @@ class PagingOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = pipeline_response.http_response.json()
+            deserialized = _loads(pipeline_response.http_response.body())
             list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -324,7 +324,7 @@ class PagingOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = pipeline_response.http_response.json()
+            deserialized = _loads(pipeline_response.http_response.body())
             list_of_elem = deserialized["value"]
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -412,7 +412,7 @@ class PagingOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = pipeline_response.http_response.json()
+            deserialized = _loads(pipeline_response.http_response.body())
             list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -485,7 +485,7 @@ class PagingOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = pipeline_response.http_response.json()
+            deserialized = _loads(pipeline_response.http_response.body())
             list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -573,7 +573,7 @@ class PagingOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = pipeline_response.http_response.json()
+            deserialized = _loads(pipeline_response.http_response.body())
             list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -666,7 +666,7 @@ class PagingOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = pipeline_response.http_response.json()
+            deserialized = _loads(pipeline_response.http_response.body())
             list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -735,7 +735,7 @@ class PagingOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = pipeline_response.http_response.json()
+            deserialized = _loads(pipeline_response.http_response.body())
             list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -804,7 +804,7 @@ class PagingOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = pipeline_response.http_response.json()
+            deserialized = _loads(pipeline_response.http_response.body())
             list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -872,7 +872,7 @@ class PagingOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = pipeline_response.http_response.json()
+            deserialized = _loads(pipeline_response.http_response.body())
             list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -940,7 +940,7 @@ class PagingOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = pipeline_response.http_response.json()
+            deserialized = _loads(pipeline_response.http_response.body())
             list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -1008,7 +1008,7 @@ class PagingOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = pipeline_response.http_response.json()
+            deserialized = _loads(pipeline_response.http_response.body())
             list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -1087,7 +1087,7 @@ class PagingOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = pipeline_response.http_response.json()
+            deserialized = _loads(pipeline_response.http_response.body())
             list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -1166,7 +1166,7 @@ class PagingOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = pipeline_response.http_response.json()
+            deserialized = _loads(pipeline_response.http_response.body())
             list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -1287,7 +1287,7 @@ class PagingOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = pipeline_response.http_response.json()
+            deserialized = _loads(pipeline_response.http_response.body())
             list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -1393,7 +1393,7 @@ class PagingOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = pipeline_response.http_response.json()
+            deserialized = _loads(pipeline_response.http_response.body())
             list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
