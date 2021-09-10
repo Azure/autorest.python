@@ -12,6 +12,7 @@ variables:
   NodeVersion: "12.x"
   PythonVersion: "3.6"
   TestFolder: "$(Build.SourcesDirectory)/test/"
+  AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: "$(Build.SourcesDirectory)/coverage/"
 
 jobs:
   - job: "AutoRest_Python_CI"
@@ -170,3 +171,8 @@ jobs:
         inputs:
           testRunTitle: "$(OSName) Python $(PythonVersion) - multiapi"
           searchFolder: "$(TestFolder)/multiapi"
+
+      - script: |
+          npm run coverage -- publish --repo=$(Build.Repository.Name) --ref=$(Build.SourceBranch) --githubToken=$(github-token) --azStorageAccount=$(storage-coverage-user) --azStorageAccessKey=$(storage-coverage-pass) --coverageDirectory=$(AUTOREST_TESTSERVER_COVERAGE_DIRECTORY)
+        workingDirectory: node_modules/@microsoft.azure/autorest.testserver
+        displayName: "Publish coverage report to stroage account"
