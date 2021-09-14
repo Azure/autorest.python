@@ -842,7 +842,9 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         retval.append("    map_error(status_code=response.status_code, response=response, error_map=error_map)")
         error_model = ""
         if builder.default_exception and self.code_model.options["models_mode"]:
-            retval.append(f"    error = self._deserialize.failsafe_deserialize({builder.default_exception}, response)")
+            retval.append(
+                f"    error = self._deserialize.failsafe_deserialize({builder.default_exception}, pipeline_response)"
+            )
             error_model = ", model=error"
         retval.append("    raise HttpResponseError(response=response{}{})".format(
             error_model,
