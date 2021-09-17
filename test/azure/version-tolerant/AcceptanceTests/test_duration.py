@@ -46,3 +46,19 @@ def test_positive_duration(client):
     client.duration.get_positive_duration()
     delta = timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11)
     client.duration.put_positive_duration(serialize_duration(delta))
+
+def test_operation_groups():
+    from bodydurationversiontolerant.operations import DurationOperations
+
+    if sys.version_info < (3,0):
+        with pytest.raises(ImportError):
+            from bodydurationversiontolerant.operations import _operations_py3
+
+        from bodydurationversiontolerant.operations._operations import DurationOperations as DurationOperationsPy2
+        assert DurationOperations == DurationOperationsPy2
+
+    else:
+        from bodydurationversiontolerant.operations import _operations_py3
+
+        from bodydurationversiontolerant.operations._operations import DurationOperations as DurationOperationsPy3
+        assert DurationOperations == DurationOperationsPy3

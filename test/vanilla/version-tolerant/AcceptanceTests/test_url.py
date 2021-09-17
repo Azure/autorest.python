@@ -30,6 +30,7 @@ from urlversiontolerant import AutoRestUrlTestService
 from urlmulticollectionformatversiontolerant import AutoRestUrlMutliCollectionFormatTestService
 
 import pytest
+import sys
 
 @pytest.fixture
 def client():
@@ -232,14 +233,24 @@ def test_operation_groups():
     from urlversiontolerant.operations import QueriesOperations
     from urlmulticollectionformatversiontolerant.operations import QueriesOperations as MultiCollectionFormatQueriesOperations
 
-    with pytest.raises(ImportError):
-        from urlversiontolerant.operations import _operations_py3
+    if sys.version_info < (3,0):
+        with pytest.raises(ImportError):
+            from urlversiontolerant.operations import _operations_py3
 
-    with pytest.raises(ImportError):
+        with pytest.raises(ImportError):
+            from urlmulticollectionformatversiontolerant.operations import _operations_py3
+
+        from urlversiontolerant.operations._operations import QueriesOperations as QueriesOperationsPy2
+        assert QueriesOperations == QueriesOperationsPy2
+
+        from urlmulticollectionformatversiontolerant.operations._operations import QueriesOperations as QueriesOperationsPy2
+        assert MultiCollectionFormatQueriesOperations == QueriesOperationsPy2
+    else:
+        from urlversiontolerant.operations import _operations_py3
         from urlmulticollectionformatversiontolerant.operations import _operations_py3
 
-    from urlversiontolerant.operations._operations import QueriesOperations as QueriesOperationsPy2
-    assert QueriesOperations == QueriesOperationsPy2
+        from urlversiontolerant.operations._operations_py3 import QueriesOperations as QueriesOperationsPy3
+        assert QueriesOperations == QueriesOperationsPy3
 
-    from urlmulticollectionformatversiontolerant.operations._operations import QueriesOperations as QueriesOperationsPy2
-    assert MultiCollectionFormatQueriesOperations == QueriesOperationsPy2
+        from urlmulticollectionformatversiontolerant.operations._operations_py3 import QueriesOperations as QueriesOperationsPy3
+        assert MultiCollectionFormatQueriesOperations == QueriesOperationsPy3

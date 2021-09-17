@@ -281,7 +281,7 @@ class CodeGenerator(Plugin):
                 "only-path-and-body-params-positional", low_level_client or version_tolerant
             ),
             "add_python_3_operation_files": self._autorestapi.get_boolean_value(
-                "add-python3-operation-files", False
+                "add-python3-operation-files", version_tolerant
             ),
             "version_tolerant": version_tolerant,
             "low_level_client": low_level_client,
