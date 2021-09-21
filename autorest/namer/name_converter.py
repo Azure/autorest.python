@@ -105,16 +105,21 @@ class NameConverter:
                     id(p) for p in params_of_header[1:]
                 ])
             else:
-                # currently there's max of 2, so assume this is 2 for now
-                # in this case, one of them is a constant and one is not.
-                # Set the client default value to the one of the constant
+                # if one of them is an enum schema, set the default value to constant
                 param_with_constant_schema = next(p for p in params_of_header if p['schema']['type'] == 'constant')
-                param_with_enum_schema = next(
-                    p for p in params_of_header
-                    if p['schema']['type'] == 'sealed-choice' or p.schema['type'] == 'choice'
-                )
-                param_with_enum_schema['clientDefaultValue'] = param_with_constant_schema['schema']['value']['value']
-                m4_header_params_to_remove.append(id(param_with_constant_schema))
+                try:
+                    param_with_enum_schema = next(
+                        p for p in params_of_header
+                        if p['schema']['type'] == 'sealed-choice' or p.schema['type'] == 'choice'
+                    )
+                except AttributeError:
+                    # this means there's no enum schema
+                    pass
+                else:
+                    param_with_enum_schema['clientDefaultValue'] = (
+                        param_with_constant_schema['schema']['value']['value']
+                    )
+                    m4_header_params_to_remove.append(id(param_with_constant_schema))
 
         for request in requests:
             if not request.get('parameters'):

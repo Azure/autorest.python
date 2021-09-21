@@ -189,6 +189,21 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
             return xml_content_types[0]
         return self.content_types[0]
 
+    def _filter_out_multiple_content_type(self, kwarg_params):
+        """We don't want multiple content type kwargs in the method signature"""
+        content_type_params = [k for k in kwarg_params if k.rest_api_name == "Content-Type"]
+        if len(content_type_params) > 1:
+            # we don't want multiple content type params in the method, just one
+            # we'll pick the one with the default content type
+            kwarg_params = [
+                k for k in kwarg_params
+                if not (
+                    k.rest_api_name == "Content-Type"
+                    and k.default_value_declaration != f'"{self.default_content_type}"'
+                )
+            ]
+        return kwarg_params
+
     @property
     def method(self) -> List[Parameter]:
         """The list of parameter used in method signature.
@@ -199,7 +214,9 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
         )
         positional = [p for p in parameters_of_this_implementation if p.is_positional]
         keyword_only = [p for p in parameters_of_this_implementation if p.is_keyword_only]
-        kwargs = [p for p in parameters_of_this_implementation if p.is_kwarg]
+        kwargs = self._filter_out_multiple_content_type(
+            [p for p in parameters_of_this_implementation if p.is_kwarg]
+        )
         def _sort(params):
             return sorted(params, key=lambda x: not x.default_value and x.required, reverse=True)
         signature_parameters = (
@@ -283,7 +300,9 @@ class ParameterOnlyPathAndBodyPositionalList(ParameterList):
         method_params = [p for p in method_params if not p.is_multipart]
         positional = [p for p in method_params if p.is_positional]
         keyword_only = [p for p in method_params if p.is_keyword_only]
-        kwargs = [p for p in method_params if p.is_kwarg]
+        kwargs = self._filter_out_multiple_content_type(
+            [p for p in method_params if p.is_kwarg]
+        )
         return positional + [files_param] + keyword_only + kwargs
 
 def get_parameter_list(code_model):
