@@ -15,8 +15,8 @@ import msrest.serialization
 class ArrayOptionalWrapper(msrest.serialization.Model):
     """ArrayOptionalWrapper.
 
-    :keyword value:
-    :paramtype value: list[str]
+    :ivar value:
+    :vartype value: list[str]
     """
 
     _attribute_map = {
@@ -24,6 +24,10 @@ class ArrayOptionalWrapper(msrest.serialization.Model):
     }
 
     def __init__(self, *, value: Optional[List[str]] = None, **kwargs):
+        """
+        :keyword value:
+        :paramtype value: list[str]
+        """
         super(ArrayOptionalWrapper, self).__init__(**kwargs)
         self.value = value
 
@@ -33,8 +37,8 @@ class ArrayWrapper(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :keyword value: Required.
-    :paramtype value: list[str]
+    :ivar value: Required.
+    :vartype value: list[str]
     """
 
     _validation = {
@@ -46,6 +50,10 @@ class ArrayWrapper(msrest.serialization.Model):
     }
 
     def __init__(self, *, value: List[str], **kwargs):
+        """
+        :keyword value: Required.
+        :paramtype value: list[str]
+        """
         super(ArrayWrapper, self).__init__(**kwargs)
         self.value = value
 
@@ -53,8 +61,8 @@ class ArrayWrapper(msrest.serialization.Model):
 class ClassOptionalWrapper(msrest.serialization.Model):
     """ClassOptionalWrapper.
 
-    :keyword value:
-    :paramtype value: ~requiredoptional.models.Product
+    :ivar value:
+    :vartype value: ~requiredoptional.models.Product
     """
 
     _attribute_map = {
@@ -62,6 +70,10 @@ class ClassOptionalWrapper(msrest.serialization.Model):
     }
 
     def __init__(self, *, value: Optional["Product"] = None, **kwargs):
+        """
+        :keyword value:
+        :paramtype value: ~requiredoptional.models.Product
+        """
         super(ClassOptionalWrapper, self).__init__(**kwargs)
         self.value = value
 
@@ -71,8 +83,8 @@ class ClassWrapper(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :keyword value: Required.
-    :paramtype value: ~requiredoptional.models.Product
+    :ivar value: Required.
+    :vartype value: ~requiredoptional.models.Product
     """
 
     _validation = {
@@ -84,6 +96,10 @@ class ClassWrapper(msrest.serialization.Model):
     }
 
     def __init__(self, *, value: "Product", **kwargs):
+        """
+        :keyword value: Required.
+        :paramtype value: ~requiredoptional.models.Product
+        """
         super(ClassWrapper, self).__init__(**kwargs)
         self.value = value
 
@@ -91,10 +107,10 @@ class ClassWrapper(msrest.serialization.Model):
 class Error(msrest.serialization.Model):
     """Error.
 
-    :keyword status:
-    :paramtype status: int
-    :keyword message:
-    :paramtype message: str
+    :ivar status:
+    :vartype status: int
+    :ivar message:
+    :vartype message: str
     """
 
     _attribute_map = {
@@ -103,6 +119,12 @@ class Error(msrest.serialization.Model):
     }
 
     def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
+        """
+        :keyword status:
+        :paramtype status: int
+        :keyword message:
+        :paramtype message: str
+        """
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
@@ -111,8 +133,8 @@ class Error(msrest.serialization.Model):
 class IntOptionalWrapper(msrest.serialization.Model):
     """IntOptionalWrapper.
 
-    :keyword value:
-    :paramtype value: int
+    :ivar value:
+    :vartype value: int
     """
 
     _attribute_map = {
@@ -120,6 +142,10 @@ class IntOptionalWrapper(msrest.serialization.Model):
     }
 
     def __init__(self, *, value: Optional[int] = None, **kwargs):
+        """
+        :keyword value:
+        :paramtype value: int
+        """
         super(IntOptionalWrapper, self).__init__(**kwargs)
         self.value = value
 
@@ -129,8 +155,8 @@ class IntWrapper(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :keyword value: Required.
-    :paramtype value: int
+    :ivar value: Required.
+    :vartype value: int
     """
 
     _validation = {
@@ -142,6 +168,10 @@ class IntWrapper(msrest.serialization.Model):
     }
 
     def __init__(self, *, value: int, **kwargs):
+        """
+        :keyword value: Required.
+        :paramtype value: int
+        """
         super(IntWrapper, self).__init__(**kwargs)
         self.value = value
 
@@ -151,10 +181,10 @@ class Product(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :keyword id: Required.
-    :paramtype id: int
-    :keyword name:
-    :paramtype name: str
+    :ivar id: Required.
+    :vartype id: int
+    :ivar name:
+    :vartype name: str
     """
 
     _validation = {
@@ -167,6 +197,12 @@ class Product(msrest.serialization.Model):
     }
 
     def __init__(self, *, id: int, name: Optional[str] = None, **kwargs):
+        """
+        :keyword id: Required.
+        :paramtype id: int
+        :keyword name:
+        :paramtype name: str
+        """
         super(Product, self).__init__(**kwargs)
         self.id = id
         self.name = name
@@ -175,8 +211,8 @@ class Product(msrest.serialization.Model):
 class StringOptionalWrapper(msrest.serialization.Model):
     """StringOptionalWrapper.
 
-    :keyword value:
-    :paramtype value: str
+    :ivar value:
+    :vartype value: str
     """
 
     _attribute_map = {
@@ -184,6 +220,10 @@ class StringOptionalWrapper(msrest.serialization.Model):
     }
 
     def __init__(self, *, value: Optional[str] = None, **kwargs):
+        """
+        :keyword value:
+        :paramtype value: str
+        """
         super(StringOptionalWrapper, self).__init__(**kwargs)
         self.value = value
 
@@ -193,8 +233,8 @@ class StringWrapper(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :keyword value: Required.
-    :paramtype value: str
+    :ivar value: Required.
+    :vartype value: str
     """
 
     _validation = {
@@ -206,5 +246,9 @@ class StringWrapper(msrest.serialization.Model):
     }
 
     def __init__(self, *, value: str, **kwargs):
+        """
+        :keyword value: Required.
+        :paramtype value: str
+        """
         super(StringWrapper, self).__init__(**kwargs)
         self.value = value

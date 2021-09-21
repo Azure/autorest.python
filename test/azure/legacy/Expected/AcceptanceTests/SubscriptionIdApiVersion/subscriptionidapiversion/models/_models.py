@@ -13,10 +13,10 @@ import msrest.serialization
 class Error(msrest.serialization.Model):
     """Error.
 
-    :keyword code:
-    :paramtype code: int
-    :keyword message:
-    :paramtype message: str
+    :ivar code:
+    :vartype code: int
+    :ivar message:
+    :vartype message: str
     """
 
     _attribute_map = {
@@ -25,6 +25,12 @@ class Error(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword code:
+        :paramtype code: int
+        :keyword message:
+        :paramtype message: str
+        """
         super(Error, self).__init__(**kwargs)
         self.code = kwargs.get("code", None)
         self.message = kwargs.get("message", None)
@@ -33,10 +39,10 @@ class Error(msrest.serialization.Model):
 class SampleResourceGroup(msrest.serialization.Model):
     """SampleResourceGroup.
 
-    :keyword name: resource group name 'testgroup101'.
-    :paramtype name: str
-    :keyword location: resource group location 'West US'.
-    :paramtype location: str
+    :ivar name: resource group name 'testgroup101'.
+    :vartype name: str
+    :ivar location: resource group location 'West US'.
+    :vartype location: str
     """
 
     _attribute_map = {
@@ -45,6 +51,12 @@ class SampleResourceGroup(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword name: resource group name 'testgroup101'.
+        :paramtype name: str
+        :keyword location: resource group location 'West US'.
+        :paramtype location: str
+        """
         super(SampleResourceGroup, self).__init__(**kwargs)
         self.name = kwargs.get("name", None)
         self.location = kwargs.get("location", None)

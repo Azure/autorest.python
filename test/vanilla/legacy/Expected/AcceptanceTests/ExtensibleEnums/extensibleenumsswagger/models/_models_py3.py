@@ -18,13 +18,13 @@ class Pet(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :keyword name: name.
-    :paramtype name: str
-    :keyword days_of_week: Type of Pet. Possible values include: "Monday", "Tuesday", "Wednesday",
+    :ivar name: name.
+    :vartype name: str
+    :ivar days_of_week: Type of Pet. Possible values include: "Monday", "Tuesday", "Wednesday",
      "Thursday", "Friday", "Saturday", "Sunday". Default value: "Friday".
-    :paramtype days_of_week: str or ~extensibleenumsswagger.models.DaysOfWeekExtensibleEnum
-    :keyword int_enum: Required.  Possible values include: "1", "2", "3".
-    :paramtype int_enum: str or ~extensibleenumsswagger.models.IntEnum
+    :vartype days_of_week: str or ~extensibleenumsswagger.models.DaysOfWeekExtensibleEnum
+    :ivar int_enum: Required. Possible values include: "1", "2", "3".
+    :vartype int_enum: str or ~extensibleenumsswagger.models.IntEnum
     """
 
     _validation = {
@@ -45,6 +45,15 @@ class Pet(msrest.serialization.Model):
         days_of_week: Optional[Union[str, "DaysOfWeekExtensibleEnum"]] = "Friday",
         **kwargs
     ):
+        """
+        :keyword name: name.
+        :paramtype name: str
+        :keyword days_of_week: Type of Pet. Possible values include: "Monday", "Tuesday", "Wednesday",
+         "Thursday", "Friday", "Saturday", "Sunday". Default value: "Friday".
+        :paramtype days_of_week: str or ~extensibleenumsswagger.models.DaysOfWeekExtensibleEnum
+        :keyword int_enum: Required. Possible values include: "1", "2", "3".
+        :paramtype int_enum: str or ~extensibleenumsswagger.models.IntEnum
+        """
         super(Pet, self).__init__(**kwargs)
         self.name = name
         self.days_of_week = days_of_week
