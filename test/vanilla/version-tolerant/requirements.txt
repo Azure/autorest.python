@@ -12,6 +12,7 @@ azure-core==1.18.0
 -e ./Expected/AcceptanceTests/BodyBooleanVersionTolerant
 -e ./Expected/AcceptanceTests/BodyByteVersionTolerant
 -e ./Expected/AcceptanceTests/BodyComplexVersionTolerant
+-e ./Expected/AcceptanceTests/BodyComplexPythonThreeOnlyVersionTolerant/
 -e ./Expected/AcceptanceTests/BodyDateVersionTolerant
 -e ./Expected/AcceptanceTests/BodyDateTimeVersionTolerant
 -e ./Expected/AcceptanceTests/BodyDateTimeRfc1123VersionTolerant
