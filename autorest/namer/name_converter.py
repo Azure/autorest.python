@@ -110,9 +110,9 @@ class NameConverter:
                 try:
                     param_with_enum_schema = next(
                         p for p in params_of_header
-                        if p['schema']['type'] == 'sealed-choice' or p.schema['type'] == 'choice'
+                        if p['schema']['type'] == 'sealed-choice' or p['schema']['type'] == 'choice'
                     )
-                except AttributeError:
+                except StopIteration:
                     # this means there's no enum schema
                     pass
                 else:
