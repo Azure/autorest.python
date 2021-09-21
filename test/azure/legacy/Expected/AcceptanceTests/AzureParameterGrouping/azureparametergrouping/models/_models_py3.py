@@ -15,10 +15,10 @@ import msrest.serialization
 class Error(msrest.serialization.Model):
     """Error.
 
-    :keyword status:
-    :paramtype status: int
-    :keyword message:
-    :paramtype message: str
+    :ivar status:
+    :vartype status: int
+    :ivar message:
+    :vartype message: str
     """
 
     _attribute_map = {
@@ -27,6 +27,12 @@ class Error(msrest.serialization.Model):
     }
 
     def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
+        """
+        :keyword status:
+        :paramtype status: int
+        :keyword message:
+        :paramtype message: str
+        """
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
@@ -35,10 +41,10 @@ class Error(msrest.serialization.Model):
 class FirstParameterGroup(msrest.serialization.Model):
     """Parameter group.
 
-    :keyword header_one:
-    :paramtype header_one: str
-    :keyword query_one: Query parameter with default.
-    :paramtype query_one: int
+    :ivar header_one:
+    :vartype header_one: str
+    :ivar query_one: Query parameter with default.
+    :vartype query_one: int
     """
 
     _attribute_map = {
@@ -47,6 +53,12 @@ class FirstParameterGroup(msrest.serialization.Model):
     }
 
     def __init__(self, *, header_one: Optional[str] = None, query_one: Optional[int] = 30, **kwargs):
+        """
+        :keyword header_one:
+        :paramtype header_one: str
+        :keyword query_one: Query parameter with default.
+        :paramtype query_one: int
+        """
         super(FirstParameterGroup, self).__init__(**kwargs)
         self.header_one = header_one
         self.query_one = query_one
@@ -55,10 +67,10 @@ class FirstParameterGroup(msrest.serialization.Model):
 class ParameterGroupingPostMultiParamGroupsSecondParamGroup(msrest.serialization.Model):
     """Parameter group.
 
-    :keyword header_two:
-    :paramtype header_two: str
-    :keyword query_two: Query parameter with default.
-    :paramtype query_two: int
+    :ivar header_two:
+    :vartype header_two: str
+    :ivar query_two: Query parameter with default.
+    :vartype query_two: int
     """
 
     _attribute_map = {
@@ -67,6 +79,12 @@ class ParameterGroupingPostMultiParamGroupsSecondParamGroup(msrest.serialization
     }
 
     def __init__(self, *, header_two: Optional[str] = None, query_two: Optional[int] = 30, **kwargs):
+        """
+        :keyword header_two:
+        :paramtype header_two: str
+        :keyword query_two: Query parameter with default.
+        :paramtype query_two: int
+        """
         super(ParameterGroupingPostMultiParamGroupsSecondParamGroup, self).__init__(**kwargs)
         self.header_two = header_two
         self.query_two = query_two
@@ -75,10 +93,10 @@ class ParameterGroupingPostMultiParamGroupsSecondParamGroup(msrest.serialization
 class ParameterGroupingPostOptionalParameters(msrest.serialization.Model):
     """Parameter group.
 
-    :keyword custom_header:
-    :paramtype custom_header: str
-    :keyword query: Query parameter with default.
-    :paramtype query: int
+    :ivar custom_header:
+    :vartype custom_header: str
+    :ivar query: Query parameter with default.
+    :vartype query: int
     """
 
     _attribute_map = {
@@ -87,6 +105,12 @@ class ParameterGroupingPostOptionalParameters(msrest.serialization.Model):
     }
 
     def __init__(self, *, custom_header: Optional[str] = None, query: Optional[int] = 30, **kwargs):
+        """
+        :keyword custom_header:
+        :paramtype custom_header: str
+        :keyword query: Query parameter with default.
+        :paramtype query: int
+        """
         super(ParameterGroupingPostOptionalParameters, self).__init__(**kwargs)
         self.custom_header = custom_header
         self.query = query
@@ -97,14 +121,14 @@ class ParameterGroupingPostRequiredParameters(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :keyword custom_header:
-    :paramtype custom_header: str
-    :keyword query: Query parameter with default.
-    :paramtype query: int
-    :keyword path: Required. Path parameter.
-    :paramtype path: str
-    :keyword body: Required.
-    :paramtype body: int
+    :ivar custom_header:
+    :vartype custom_header: str
+    :ivar query: Query parameter with default.
+    :vartype query: int
+    :ivar path: Required. Path parameter.
+    :vartype path: str
+    :ivar body: Required.
+    :vartype body: int
     """
 
     _validation = {
@@ -122,6 +146,16 @@ class ParameterGroupingPostRequiredParameters(msrest.serialization.Model):
     def __init__(
         self, *, path: str, body: int, custom_header: Optional[str] = None, query: Optional[int] = 30, **kwargs
     ):
+        """
+        :keyword custom_header:
+        :paramtype custom_header: str
+        :keyword query: Query parameter with default.
+        :paramtype query: int
+        :keyword path: Required. Path parameter.
+        :paramtype path: str
+        :keyword body: Required.
+        :paramtype body: int
+        """
         super(ParameterGroupingPostRequiredParameters, self).__init__(**kwargs)
         self.custom_header = custom_header
         self.query = query
@@ -132,10 +166,10 @@ class ParameterGroupingPostRequiredParameters(msrest.serialization.Model):
 class ParameterGroupingPostReservedWordsParameters(msrest.serialization.Model):
     """Parameter group.
 
-    :keyword from_property: 'from' is a reserved word. Pass in 'bob' to pass.
-    :paramtype from_property: str
-    :keyword accept: 'accept' is a reserved word. Pass in 'yes' to pass.
-    :paramtype accept: str
+    :ivar from_property: 'from' is a reserved word. Pass in 'bob' to pass.
+    :vartype from_property: str
+    :ivar accept: 'accept' is a reserved word. Pass in 'yes' to pass.
+    :vartype accept: str
     """
 
     _attribute_map = {
@@ -144,6 +178,12 @@ class ParameterGroupingPostReservedWordsParameters(msrest.serialization.Model):
     }
 
     def __init__(self, *, from_property: Optional[str] = None, accept: Optional[str] = None, **kwargs):
+        """
+        :keyword from_property: 'from' is a reserved word. Pass in 'bob' to pass.
+        :paramtype from_property: str
+        :keyword accept: 'accept' is a reserved word. Pass in 'yes' to pass.
+        :paramtype accept: str
+        """
         super(ParameterGroupingPostReservedWordsParameters, self).__init__(**kwargs)
         self.from_property = from_property
         self.accept = accept

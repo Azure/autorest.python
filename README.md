@@ -34,7 +34,7 @@ modelerfour:
 pass-thru:
   - model-deduplicator
   - subset-reducer
-version: ~3.4.5
+version: ~3.6.2
 use-extension:
   "@autorest/modelerfour": ~4.19.1
 

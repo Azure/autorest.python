@@ -15,10 +15,10 @@ import msrest.serialization
 class Error(msrest.serialization.Model):
     """Error.
 
-    :keyword status:
-    :paramtype status: int
-    :keyword message:
-    :paramtype message: str
+    :ivar status:
+    :vartype status: int
+    :ivar message:
+    :vartype message: str
     """
 
     _attribute_map = {
@@ -33,6 +33,12 @@ class Error(msrest.serialization.Model):
         message: Optional[str] = None,
         **kwargs
     ):
+        """
+        :keyword status:
+        :paramtype status: int
+        :keyword message:
+        :paramtype message: str
+        """
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
@@ -41,8 +47,8 @@ class Error(msrest.serialization.Model):
 class Product(msrest.serialization.Model):
     """Product.
 
-    :keyword properties:
-    :paramtype properties: ~azure.directives.sample.models.ProductProperties
+    :ivar properties:
+    :vartype properties: ~azure.directives.sample.models.ProductProperties
     """
 
     _attribute_map = {
@@ -55,6 +61,10 @@ class Product(msrest.serialization.Model):
         properties: Optional["ProductProperties"] = None,
         **kwargs
     ):
+        """
+        :keyword properties:
+        :paramtype properties: ~azure.directives.sample.models.ProductProperties
+        """
         super(Product, self).__init__(**kwargs)
         self.properties = properties
 
@@ -62,10 +72,10 @@ class Product(msrest.serialization.Model):
 class ProductProperties(msrest.serialization.Model):
     """ProductProperties.
 
-    :keyword id:
-    :paramtype id: int
-    :keyword name:
-    :paramtype name: str
+    :ivar id:
+    :vartype id: int
+    :ivar name:
+    :vartype name: str
     """
 
     _attribute_map = {
@@ -80,6 +90,12 @@ class ProductProperties(msrest.serialization.Model):
         name: Optional[str] = None,
         **kwargs
     ):
+        """
+        :keyword id:
+        :paramtype id: int
+        :keyword name:
+        :paramtype name: str
+        """
         super(ProductProperties, self).__init__(**kwargs)
         self.id = id
         self.name = name
@@ -88,10 +104,10 @@ class ProductProperties(msrest.serialization.Model):
 class ProductResult(msrest.serialization.Model):
     """ProductResult.
 
-    :keyword value:
-    :paramtype value: list[~azure.directives.sample.models.Product]
-    :keyword next_link:
-    :paramtype next_link: str
+    :ivar value:
+    :vartype value: list[~azure.directives.sample.models.Product]
+    :ivar next_link:
+    :vartype next_link: str
     """
 
     _attribute_map = {
@@ -106,6 +122,12 @@ class ProductResult(msrest.serialization.Model):
         next_link: Optional[str] = None,
         **kwargs
     ):
+        """
+        :keyword value:
+        :paramtype value: list[~azure.directives.sample.models.Product]
+        :keyword next_link:
+        :paramtype next_link: str
+        """
         super(ProductResult, self).__init__(**kwargs)
         self.value = value
         self.next_link = next_link

@@ -15,12 +15,12 @@ class BaseProduct(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :keyword product_id: Required. Unique identifier representing a specific product for a given
+    :ivar product_id: Required. Unique identifier representing a specific product for a given
      latitude & longitude. For example, uberX in San Francisco will have a different product_id than
      uberX in Los Angeles.
-    :paramtype product_id: str
-    :keyword description: Description of product.
-    :paramtype description: str
+    :vartype product_id: str
+    :ivar description: Description of product.
+    :vartype description: str
     """
 
     _validation = {
@@ -33,6 +33,14 @@ class BaseProduct(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword product_id: Required. Unique identifier representing a specific product for a given
+         latitude & longitude. For example, uberX in San Francisco will have a different product_id than
+         uberX in Los Angeles.
+        :paramtype product_id: str
+        :keyword description: Description of product.
+        :paramtype description: str
+        """
         super(BaseProduct, self).__init__(**kwargs)
         self.product_id = kwargs["product_id"]
         self.description = kwargs.get("description", None)
@@ -41,12 +49,12 @@ class BaseProduct(msrest.serialization.Model):
 class Error(msrest.serialization.Model):
     """Error.
 
-    :keyword status:
-    :paramtype status: int
-    :keyword message:
-    :paramtype message: str
-    :keyword parent_error:
-    :paramtype parent_error: ~modelflattening.models.Error
+    :ivar status:
+    :vartype status: int
+    :ivar message:
+    :vartype message: str
+    :ivar parent_error:
+    :vartype parent_error: ~modelflattening.models.Error
     """
 
     _attribute_map = {
@@ -56,6 +64,14 @@ class Error(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword status:
+        :paramtype status: int
+        :keyword message:
+        :paramtype message: str
+        :keyword parent_error:
+        :paramtype parent_error: ~modelflattening.models.Error
+        """
         super(Error, self).__init__(**kwargs)
         self.status = kwargs.get("status", None)
         self.message = kwargs.get("message", None)
@@ -71,10 +87,10 @@ class Resource(msrest.serialization.Model):
     :vartype id: str
     :ivar type: Resource Type.
     :vartype type: str
-    :keyword tags: A set of tags. Dictionary of :code:`<string>`.
-    :paramtype tags: dict[str, str]
-    :keyword location: Resource Location.
-    :paramtype location: str
+    :ivar tags: A set of tags. Dictionary of :code:`<string>`.
+    :vartype tags: dict[str, str]
+    :ivar location: Resource Location.
+    :vartype location: str
     :ivar name: Resource Name.
     :vartype name: str
     """
@@ -94,6 +110,12 @@ class Resource(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword tags: A set of tags. Dictionary of :code:`<string>`.
+        :paramtype tags: dict[str, str]
+        :keyword location: Resource Location.
+        :paramtype location: str
+        """
         super(Resource, self).__init__(**kwargs)
         self.id = None
         self.type = None
@@ -111,22 +133,22 @@ class FlattenedProduct(Resource):
     :vartype id: str
     :ivar type: Resource Type.
     :vartype type: str
-    :keyword tags: A set of tags. Dictionary of :code:`<string>`.
-    :paramtype tags: dict[str, str]
-    :keyword location: Resource Location.
-    :paramtype location: str
+    :ivar tags: A set of tags. Dictionary of :code:`<string>`.
+    :vartype tags: dict[str, str]
+    :ivar location: Resource Location.
+    :vartype location: str
     :ivar name: Resource Name.
     :vartype name: str
-    :keyword p_name:
-    :paramtype p_name: str
-    :keyword type_properties_type:
-    :paramtype type_properties_type: str
-    :ivar provisioning_state_values:  Possible values include: "Succeeded", "Failed", "canceled",
+    :ivar p_name:
+    :vartype p_name: str
+    :ivar type_properties_type:
+    :vartype type_properties_type: str
+    :ivar provisioning_state_values: Possible values include: "Succeeded", "Failed", "canceled",
      "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
     :vartype provisioning_state_values: str or
      ~modelflattening.models.FlattenedProductPropertiesProvisioningStateValues
-    :keyword provisioning_state:
-    :paramtype provisioning_state: str
+    :ivar provisioning_state:
+    :vartype provisioning_state: str
     """
 
     _validation = {
@@ -149,6 +171,18 @@ class FlattenedProduct(Resource):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword tags: A set of tags. Dictionary of :code:`<string>`.
+        :paramtype tags: dict[str, str]
+        :keyword location: Resource Location.
+        :paramtype location: str
+        :keyword p_name:
+        :paramtype p_name: str
+        :keyword type_properties_type:
+        :paramtype type_properties_type: str
+        :keyword provisioning_state:
+        :paramtype provisioning_state: str
+        """
         super(FlattenedProduct, self).__init__(**kwargs)
         self.p_name = kwargs.get("p_name", None)
         self.type_properties_type = kwargs.get("type_properties_type", None)
@@ -161,25 +195,25 @@ class FlattenParameterGroup(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :keyword name: Required. Product name with value 'groupproduct'.
-    :paramtype name: str
-    :keyword simple_body_product: Simple body product to put.
-    :paramtype simple_body_product: ~modelflattening.models.SimpleProduct
-    :keyword product_id: Required. Unique identifier representing a specific product for a given
+    :ivar name: Required. Product name with value 'groupproduct'.
+    :vartype name: str
+    :ivar simple_body_product: Simple body product to put.
+    :vartype simple_body_product: ~modelflattening.models.SimpleProduct
+    :ivar product_id: Required. Unique identifier representing a specific product for a given
      latitude & longitude. For example, uberX in San Francisco will have a different product_id than
      uberX in Los Angeles.
-    :paramtype product_id: str
-    :keyword description: Description of product.
-    :paramtype description: str
-    :keyword max_product_display_name: Display name of product.
-    :paramtype max_product_display_name: str
-    :keyword capacity: Capacity of product. For example, 4 people. The only acceptable values to
-     pass in are None and "Large". The default value is None.
-    :paramtype capacity: str
-    :keyword generic_value: Generic URL value.
-    :paramtype generic_value: str
-    :keyword odata_value: URL value.
-    :paramtype odata_value: str
+    :vartype product_id: str
+    :ivar description: Description of product.
+    :vartype description: str
+    :ivar max_product_display_name: Display name of product.
+    :vartype max_product_display_name: str
+    :ivar capacity: Capacity of product. For example, 4 people. The only acceptable values to pass
+     in are None and "Large". The default value is None.
+    :vartype capacity: str
+    :ivar generic_value: Generic URL value.
+    :vartype generic_value: str
+    :ivar odata_value: URL value.
+    :vartype odata_value: str
     """
 
     _validation = {
@@ -199,6 +233,27 @@ class FlattenParameterGroup(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword name: Required. Product name with value 'groupproduct'.
+        :paramtype name: str
+        :keyword simple_body_product: Simple body product to put.
+        :paramtype simple_body_product: ~modelflattening.models.SimpleProduct
+        :keyword product_id: Required. Unique identifier representing a specific product for a given
+         latitude & longitude. For example, uberX in San Francisco will have a different product_id than
+         uberX in Los Angeles.
+        :paramtype product_id: str
+        :keyword description: Description of product.
+        :paramtype description: str
+        :keyword max_product_display_name: Display name of product.
+        :paramtype max_product_display_name: str
+        :keyword capacity: Capacity of product. For example, 4 people. The only acceptable values to
+         pass in are None and "Large". The default value is None.
+        :paramtype capacity: str
+        :keyword generic_value: Generic URL value.
+        :paramtype generic_value: str
+        :keyword odata_value: URL value.
+        :paramtype odata_value: str
+        """
         super(FlattenParameterGroup, self).__init__(**kwargs)
         self.name = kwargs["name"]
         self.simple_body_product = kwargs.get("simple_body_product", None)
@@ -213,8 +268,8 @@ class FlattenParameterGroup(msrest.serialization.Model):
 class GenericUrl(msrest.serialization.Model):
     """The Generic URL.
 
-    :keyword generic_value: Generic URL value.
-    :paramtype generic_value: str
+    :ivar generic_value: Generic URL value.
+    :vartype generic_value: str
     """
 
     _attribute_map = {
@@ -222,6 +277,10 @@ class GenericUrl(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword generic_value: Generic URL value.
+        :paramtype generic_value: str
+        """
         super(GenericUrl, self).__init__(**kwargs)
         self.generic_value = kwargs.get("generic_value", None)
 
@@ -229,10 +288,10 @@ class GenericUrl(msrest.serialization.Model):
 class ProductUrl(GenericUrl):
     """The product URL.
 
-    :keyword generic_value: Generic URL value.
-    :paramtype generic_value: str
-    :keyword odata_value: URL value.
-    :paramtype odata_value: str
+    :ivar generic_value: Generic URL value.
+    :vartype generic_value: str
+    :ivar odata_value: URL value.
+    :vartype odata_value: str
     """
 
     _attribute_map = {
@@ -241,6 +300,12 @@ class ProductUrl(GenericUrl):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword generic_value: Generic URL value.
+        :paramtype generic_value: str
+        :keyword odata_value: URL value.
+        :paramtype odata_value: str
+        """
         super(ProductUrl, self).__init__(**kwargs)
         self.odata_value = kwargs.get("odata_value", None)
 
@@ -248,8 +313,8 @@ class ProductUrl(GenericUrl):
 class ProductWrapper(msrest.serialization.Model):
     """The wrapped produc.
 
-    :keyword value: the product value.
-    :paramtype value: str
+    :ivar value: the product value.
+    :vartype value: str
     """
 
     _attribute_map = {
@@ -257,6 +322,10 @@ class ProductWrapper(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword value: the product value.
+        :paramtype value: str
+        """
         super(ProductWrapper, self).__init__(**kwargs)
         self.value = kwargs.get("value", None)
 
@@ -264,12 +333,12 @@ class ProductWrapper(msrest.serialization.Model):
 class ResourceCollection(msrest.serialization.Model):
     """ResourceCollection.
 
-    :keyword productresource: Flattened product.
-    :paramtype productresource: ~modelflattening.models.FlattenedProduct
-    :keyword arrayofresources:
-    :paramtype arrayofresources: list[~modelflattening.models.FlattenedProduct]
-    :keyword dictionaryofresources: Dictionary of :code:`<FlattenedProduct>`.
-    :paramtype dictionaryofresources: dict[str, ~modelflattening.models.FlattenedProduct]
+    :ivar productresource: Flattened product.
+    :vartype productresource: ~modelflattening.models.FlattenedProduct
+    :ivar arrayofresources:
+    :vartype arrayofresources: list[~modelflattening.models.FlattenedProduct]
+    :ivar dictionaryofresources: Dictionary of :code:`<FlattenedProduct>`.
+    :vartype dictionaryofresources: dict[str, ~modelflattening.models.FlattenedProduct]
     """
 
     _attribute_map = {
@@ -279,6 +348,14 @@ class ResourceCollection(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword productresource: Flattened product.
+        :paramtype productresource: ~modelflattening.models.FlattenedProduct
+        :keyword arrayofresources:
+        :paramtype arrayofresources: list[~modelflattening.models.FlattenedProduct]
+        :keyword dictionaryofresources: Dictionary of :code:`<FlattenedProduct>`.
+        :paramtype dictionaryofresources: dict[str, ~modelflattening.models.FlattenedProduct]
+        """
         super(ResourceCollection, self).__init__(**kwargs)
         self.productresource = kwargs.get("productresource", None)
         self.arrayofresources = kwargs.get("arrayofresources", None)
@@ -290,21 +367,21 @@ class SimpleProduct(BaseProduct):
 
     All required parameters must be populated in order to send to Azure.
 
-    :keyword product_id: Required. Unique identifier representing a specific product for a given
+    :ivar product_id: Required. Unique identifier representing a specific product for a given
      latitude & longitude. For example, uberX in San Francisco will have a different product_id than
      uberX in Los Angeles.
-    :paramtype product_id: str
-    :keyword description: Description of product.
-    :paramtype description: str
-    :keyword max_product_display_name: Display name of product.
-    :paramtype max_product_display_name: str
-    :keyword capacity: Capacity of product. For example, 4 people. The only acceptable values to
-     pass in are None and "Large". The default value is None.
-    :paramtype capacity: str
-    :keyword generic_value: Generic URL value.
-    :paramtype generic_value: str
-    :keyword odata_value: URL value.
-    :paramtype odata_value: str
+    :vartype product_id: str
+    :ivar description: Description of product.
+    :vartype description: str
+    :ivar max_product_display_name: Display name of product.
+    :vartype max_product_display_name: str
+    :ivar capacity: Capacity of product. For example, 4 people. The only acceptable values to pass
+     in are None and "Large". The default value is None.
+    :vartype capacity: str
+    :ivar generic_value: Generic URL value.
+    :vartype generic_value: str
+    :ivar odata_value: URL value.
+    :vartype odata_value: str
     """
 
     _validation = {
@@ -321,6 +398,23 @@ class SimpleProduct(BaseProduct):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword product_id: Required. Unique identifier representing a specific product for a given
+         latitude & longitude. For example, uberX in San Francisco will have a different product_id than
+         uberX in Los Angeles.
+        :paramtype product_id: str
+        :keyword description: Description of product.
+        :paramtype description: str
+        :keyword max_product_display_name: Display name of product.
+        :paramtype max_product_display_name: str
+        :keyword capacity: Capacity of product. For example, 4 people. The only acceptable values to
+         pass in are None and "Large". The default value is None.
+        :paramtype capacity: str
+        :keyword generic_value: Generic URL value.
+        :paramtype generic_value: str
+        :keyword odata_value: URL value.
+        :paramtype odata_value: str
+        """
         super(SimpleProduct, self).__init__(**kwargs)
         self.max_product_display_name = kwargs.get("max_product_display_name", None)
         self.capacity = kwargs.get("capacity", None)
@@ -331,8 +425,8 @@ class SimpleProduct(BaseProduct):
 class WrappedProduct(msrest.serialization.Model):
     """The wrapped produc.
 
-    :keyword value: the product value.
-    :paramtype value: str
+    :ivar value: the product value.
+    :vartype value: str
     """
 
     _attribute_map = {
@@ -340,5 +434,9 @@ class WrappedProduct(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword value: the product value.
+        :paramtype value: str
+        """
         super(WrappedProduct, self).__init__(**kwargs)
         self.value = kwargs.get("value", None)

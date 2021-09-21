@@ -21,8 +21,8 @@ class ChildProduct(msrest.serialization.Model):
 
     :ivar const_property: Constant string. Has constant value: "constant".
     :vartype const_property: str
-    :keyword count: Count.
-    :paramtype count: int
+    :ivar count: Count.
+    :vartype count: int
     """
 
     _validation = {
@@ -37,6 +37,10 @@ class ChildProduct(msrest.serialization.Model):
     const_property = "constant"
 
     def __init__(self, *, count: Optional[int] = None, **kwargs):
+        """
+        :keyword count: Count.
+        :paramtype count: int
+        """
         super(ChildProduct, self).__init__(**kwargs)
         self.count = count
 
@@ -68,18 +72,19 @@ class ConstantProduct(msrest.serialization.Model):
     const_property2 = "constant2"
 
     def __init__(self, **kwargs):
+        """ """
         super(ConstantProduct, self).__init__(**kwargs)
 
 
 class Error(msrest.serialization.Model):
     """Error.
 
-    :keyword code:
-    :paramtype code: int
-    :keyword message:
-    :paramtype message: str
-    :keyword fields:
-    :paramtype fields: str
+    :ivar code:
+    :vartype code: int
+    :ivar message:
+    :vartype message: str
+    :ivar fields:
+    :vartype fields: str
     """
 
     _attribute_map = {
@@ -91,6 +96,14 @@ class Error(msrest.serialization.Model):
     def __init__(
         self, *, code: Optional[int] = None, message: Optional[str] = None, fields: Optional[str] = None, **kwargs
     ):
+        """
+        :keyword code:
+        :paramtype code: int
+        :keyword message:
+        :paramtype message: str
+        :keyword fields:
+        :paramtype fields: str
+        """
         super(Error, self).__init__(**kwargs)
         self.code = code
         self.message = message
@@ -104,23 +117,23 @@ class Product(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :keyword display_names: Non required array of unique items from 0 to 6 elements.
-    :paramtype display_names: list[str]
-    :keyword capacity: Non required int betwen 0 and 100 exclusive.
-    :paramtype capacity: int
-    :keyword image: Image URL representing the product.
-    :paramtype image: str
-    :keyword child: Required. The product documentation.
-    :paramtype child: ~validation.models.ChildProduct
-    :keyword const_child: Required. The product documentation.
-    :paramtype const_child: ~validation.models.ConstantProduct
+    :ivar display_names: Non required array of unique items from 0 to 6 elements.
+    :vartype display_names: list[str]
+    :ivar capacity: Non required int betwen 0 and 100 exclusive.
+    :vartype capacity: int
+    :ivar image: Image URL representing the product.
+    :vartype image: str
+    :ivar child: Required. The product documentation.
+    :vartype child: ~validation.models.ChildProduct
+    :ivar const_child: Required. The product documentation.
+    :vartype const_child: ~validation.models.ConstantProduct
     :ivar const_int: Constant int. Has constant value: 0.
     :vartype const_int: int
     :ivar const_string: Constant string. Has constant value: "constant".
     :vartype const_string: str
-    :keyword const_string_as_enum: Constant string as Enum. The only acceptable values to pass in
-     are None and "constant_string_as_enum". The default value is None.
-    :paramtype const_string_as_enum: str
+    :ivar const_string_as_enum: Constant string as Enum. The only acceptable values to pass in are
+     None and "constant_string_as_enum". The default value is None.
+    :vartype const_string_as_enum: str
     """
 
     _validation = {
@@ -158,6 +171,21 @@ class Product(msrest.serialization.Model):
         const_string_as_enum: Optional[str] = None,
         **kwargs
     ):
+        """
+        :keyword display_names: Non required array of unique items from 0 to 6 elements.
+        :paramtype display_names: list[str]
+        :keyword capacity: Non required int betwen 0 and 100 exclusive.
+        :paramtype capacity: int
+        :keyword image: Image URL representing the product.
+        :paramtype image: str
+        :keyword child: Required. The product documentation.
+        :paramtype child: ~validation.models.ChildProduct
+        :keyword const_child: Required. The product documentation.
+        :paramtype const_child: ~validation.models.ConstantProduct
+        :keyword const_string_as_enum: Constant string as Enum. The only acceptable values to pass in
+         are None and "constant_string_as_enum". The default value is None.
+        :paramtype const_string_as_enum: str
+        """
         super(Product, self).__init__(**kwargs)
         self.display_names = display_names
         self.capacity = capacity

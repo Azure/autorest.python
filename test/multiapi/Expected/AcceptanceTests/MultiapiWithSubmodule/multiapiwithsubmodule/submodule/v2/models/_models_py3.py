@@ -15,10 +15,10 @@ import msrest.serialization
 class Error(msrest.serialization.Model):
     """Error.
 
-    :keyword status:
-    :paramtype status: int
-    :keyword message:
-    :paramtype message: str
+    :ivar status:
+    :vartype status: int
+    :ivar message:
+    :vartype message: str
     """
 
     _attribute_map = {
@@ -33,6 +33,12 @@ class Error(msrest.serialization.Model):
         message: Optional[str] = None,
         **kwargs
     ):
+        """
+        :keyword status:
+        :paramtype status: int
+        :keyword message:
+        :paramtype message: str
+        """
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
@@ -43,10 +49,10 @@ class ModelTwo(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :keyword id: Required.
-    :paramtype id: int
-    :keyword message:
-    :paramtype message: str
+    :ivar id: Required.
+    :vartype id: int
+    :ivar message:
+    :vartype message: str
     """
 
     _validation = {
@@ -65,6 +71,12 @@ class ModelTwo(msrest.serialization.Model):
         message: Optional[str] = None,
         **kwargs
     ):
+        """
+        :keyword id: Required.
+        :paramtype id: int
+        :keyword message:
+        :paramtype message: str
+        """
         super(ModelTwo, self).__init__(**kwargs)
         self.id = id
         self.message = message

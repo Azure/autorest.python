@@ -15,10 +15,10 @@ import msrest.serialization
 class Error(msrest.serialization.Model):
     """Error.
 
-    :keyword status:
-    :paramtype status: int
-    :keyword message:
-    :paramtype message: str
+    :ivar status:
+    :vartype status: int
+    :ivar message:
+    :vartype message: str
     """
 
     _attribute_map = {
@@ -27,6 +27,12 @@ class Error(msrest.serialization.Model):
     }
 
     def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
+        """
+        :keyword status:
+        :paramtype status: int
+        :keyword message:
+        :paramtype message: str
+        """
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
@@ -41,8 +47,8 @@ class RefColorConstant(msrest.serialization.Model):
 
     :ivar color_constant: Referenced Color Constant Description. Has constant value: "green-color".
     :vartype color_constant: str
-    :keyword field1: Sample string.
-    :paramtype field1: str
+    :ivar field1: Sample string.
+    :vartype field1: str
     """
 
     _validation = {
@@ -57,5 +63,9 @@ class RefColorConstant(msrest.serialization.Model):
     color_constant = "green-color"
 
     def __init__(self, *, field1: Optional[str] = None, **kwargs):
+        """
+        :keyword field1: Sample string.
+        :paramtype field1: str
+        """
         super(RefColorConstant, self).__init__(**kwargs)
         self.field1 = field1
