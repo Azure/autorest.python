@@ -158,6 +158,7 @@ class RequestBuilderParameterList(ParameterList):
 
         signature_parameters = signature_parameters_no_default_value + signature_parameters_default_value
         signature_parameters.sort(key=lambda item: item.is_keyword_only)
+        signature_parameters = self._filter_out_multiple_content_type(signature_parameters)
         return signature_parameters
 
     @staticmethod
