@@ -15,8 +15,8 @@ import msrest.serialization
 class MyException(msrest.serialization.Model):
     """MyException.
 
-    :keyword status_code:
-    :paramtype status_code: str
+    :ivar status_code:
+    :vartype status_code: str
     """
 
     _attribute_map = {
@@ -24,6 +24,10 @@ class MyException(msrest.serialization.Model):
     }
 
     def __init__(self, *, status_code: Optional[str] = None, **kwargs):
+        """
+        :keyword status_code:
+        :paramtype status_code: str
+        """
         super(MyException, self).__init__(**kwargs)
         self.status_code = status_code
 
@@ -31,10 +35,10 @@ class MyException(msrest.serialization.Model):
 class B(MyException):
     """B.
 
-    :keyword status_code:
-    :paramtype status_code: str
-    :keyword text_status_code:
-    :paramtype text_status_code: str
+    :ivar status_code:
+    :vartype status_code: str
+    :ivar text_status_code:
+    :vartype text_status_code: str
     """
 
     _attribute_map = {
@@ -43,6 +47,12 @@ class B(MyException):
     }
 
     def __init__(self, *, status_code: Optional[str] = None, text_status_code: Optional[str] = None, **kwargs):
+        """
+        :keyword status_code:
+        :paramtype status_code: str
+        :keyword text_status_code:
+        :paramtype text_status_code: str
+        """
         super(B, self).__init__(status_code=status_code, **kwargs)
         self.text_status_code = text_status_code
 
@@ -50,8 +60,8 @@ class B(MyException):
 class C(msrest.serialization.Model):
     """C.
 
-    :keyword http_code:
-    :paramtype http_code: str
+    :ivar http_code:
+    :vartype http_code: str
     """
 
     _attribute_map = {
@@ -59,6 +69,10 @@ class C(msrest.serialization.Model):
     }
 
     def __init__(self, *, http_code: Optional[str] = None, **kwargs):
+        """
+        :keyword http_code:
+        :paramtype http_code: str
+        """
         super(C, self).__init__(**kwargs)
         self.http_code = http_code
 
@@ -66,8 +80,8 @@ class C(msrest.serialization.Model):
 class D(msrest.serialization.Model):
     """D.
 
-    :keyword http_status_code:
-    :paramtype http_status_code: str
+    :ivar http_status_code:
+    :vartype http_status_code: str
     """
 
     _attribute_map = {
@@ -75,6 +89,10 @@ class D(msrest.serialization.Model):
     }
 
     def __init__(self, *, http_status_code: Optional[str] = None, **kwargs):
+        """
+        :keyword http_status_code:
+        :paramtype http_status_code: str
+        """
         super(D, self).__init__(**kwargs)
         self.http_status_code = http_status_code
 
@@ -82,10 +100,10 @@ class D(msrest.serialization.Model):
 class Error(msrest.serialization.Model):
     """Error.
 
-    :keyword status:
-    :paramtype status: int
-    :keyword message:
-    :paramtype message: str
+    :ivar status:
+    :vartype status: int
+    :ivar message:
+    :vartype message: str
     """
 
     _attribute_map = {
@@ -94,6 +112,12 @@ class Error(msrest.serialization.Model):
     }
 
     def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
+        """
+        :keyword status:
+        :paramtype status: int
+        :keyword message:
+        :paramtype message: str
+        """
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message

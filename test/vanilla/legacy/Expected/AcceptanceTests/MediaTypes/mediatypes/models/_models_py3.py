@@ -14,8 +14,8 @@ import msrest.serialization
 class SourcePath(msrest.serialization.Model):
     """Uri or local path to source data.
 
-    :keyword source: File source path.
-    :paramtype source: str
+    :ivar source: File source path.
+    :vartype source: str
     """
 
     _validation = {
@@ -27,5 +27,9 @@ class SourcePath(msrest.serialization.Model):
     }
 
     def __init__(self, *, source: Optional[str] = None, **kwargs):
+        """
+        :keyword source: File source path.
+        :paramtype source: str
+        """
         super(SourcePath, self).__init__(**kwargs)
         self.source = source

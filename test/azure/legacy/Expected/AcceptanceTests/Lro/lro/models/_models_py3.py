@@ -16,12 +16,12 @@ from ._auto_rest_long_running_operation_test_service_enums import *
 class OperationResult(msrest.serialization.Model):
     """OperationResult.
 
-    :keyword status: The status of the request. Possible values include: "Succeeded", "Failed",
+    :ivar status: The status of the request. Possible values include: "Succeeded", "Failed",
      "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
      "OK".
-    :paramtype status: str or ~lro.models.OperationResultStatus
-    :keyword error:
-    :paramtype error: ~lro.models.OperationResultError
+    :vartype status: str or ~lro.models.OperationResultStatus
+    :ivar error:
+    :vartype error: ~lro.models.OperationResultError
     """
 
     _attribute_map = {
@@ -36,6 +36,14 @@ class OperationResult(msrest.serialization.Model):
         error: Optional["OperationResultError"] = None,
         **kwargs
     ):
+        """
+        :keyword status: The status of the request. Possible values include: "Succeeded", "Failed",
+         "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
+         "OK".
+        :paramtype status: str or ~lro.models.OperationResultStatus
+        :keyword error:
+        :paramtype error: ~lro.models.OperationResultError
+        """
         super(OperationResult, self).__init__(**kwargs)
         self.status = status
         self.error = error
@@ -44,10 +52,10 @@ class OperationResult(msrest.serialization.Model):
 class OperationResultError(msrest.serialization.Model):
     """OperationResultError.
 
-    :keyword code: The error code for an operation failure.
-    :paramtype code: int
-    :keyword message: The detailed arror message.
-    :paramtype message: str
+    :ivar code: The error code for an operation failure.
+    :vartype code: int
+    :ivar message: The detailed arror message.
+    :vartype message: str
     """
 
     _attribute_map = {
@@ -56,6 +64,12 @@ class OperationResultError(msrest.serialization.Model):
     }
 
     def __init__(self, *, code: Optional[int] = None, message: Optional[str] = None, **kwargs):
+        """
+        :keyword code: The error code for an operation failure.
+        :paramtype code: int
+        :keyword message: The detailed arror message.
+        :paramtype message: str
+        """
         super(OperationResultError, self).__init__(**kwargs)
         self.code = code
         self.message = message
@@ -70,10 +84,10 @@ class Resource(msrest.serialization.Model):
     :vartype id: str
     :ivar type: Resource Type.
     :vartype type: str
-    :keyword tags: A set of tags. Dictionary of :code:`<string>`.
-    :paramtype tags: dict[str, str]
-    :keyword location: Resource Location.
-    :paramtype location: str
+    :ivar tags: A set of tags. Dictionary of :code:`<string>`.
+    :vartype tags: dict[str, str]
+    :ivar location: Resource Location.
+    :vartype location: str
     :ivar name: Resource Name.
     :vartype name: str
     """
@@ -93,6 +107,12 @@ class Resource(msrest.serialization.Model):
     }
 
     def __init__(self, *, tags: Optional[Dict[str, str]] = None, location: Optional[str] = None, **kwargs):
+        """
+        :keyword tags: A set of tags. Dictionary of :code:`<string>`.
+        :paramtype tags: dict[str, str]
+        :keyword location: Resource Location.
+        :paramtype location: str
+        """
         super(Resource, self).__init__(**kwargs)
         self.id = None
         self.type = None
@@ -110,15 +130,15 @@ class Product(Resource):
     :vartype id: str
     :ivar type: Resource Type.
     :vartype type: str
-    :keyword tags: A set of tags. Dictionary of :code:`<string>`.
-    :paramtype tags: dict[str, str]
-    :keyword location: Resource Location.
-    :paramtype location: str
+    :ivar tags: A set of tags. Dictionary of :code:`<string>`.
+    :vartype tags: dict[str, str]
+    :ivar location: Resource Location.
+    :vartype location: str
     :ivar name: Resource Name.
     :vartype name: str
-    :keyword provisioning_state:
-    :paramtype provisioning_state: str
-    :ivar provisioning_state_values:  Possible values include: "Succeeded", "Failed", "canceled",
+    :ivar provisioning_state:
+    :vartype provisioning_state: str
+    :ivar provisioning_state_values: Possible values include: "Succeeded", "Failed", "canceled",
      "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
     :vartype provisioning_state_values: str or ~lro.models.ProductPropertiesProvisioningStateValues
     """
@@ -148,6 +168,14 @@ class Product(Resource):
         provisioning_state: Optional[str] = None,
         **kwargs
     ):
+        """
+        :keyword tags: A set of tags. Dictionary of :code:`<string>`.
+        :paramtype tags: dict[str, str]
+        :keyword location: Resource Location.
+        :paramtype location: str
+        :keyword provisioning_state:
+        :paramtype provisioning_state: str
+        """
         super(Product, self).__init__(tags=tags, location=location, **kwargs)
         self.provisioning_state = provisioning_state
         self.provisioning_state_values = None
@@ -156,10 +184,10 @@ class Product(Resource):
 class Sku(msrest.serialization.Model):
     """Sku.
 
-    :keyword name:
-    :paramtype name: str
-    :keyword id:
-    :paramtype id: str
+    :ivar name:
+    :vartype name: str
+    :ivar id:
+    :vartype id: str
     """
 
     _attribute_map = {
@@ -168,6 +196,12 @@ class Sku(msrest.serialization.Model):
     }
 
     def __init__(self, *, name: Optional[str] = None, id: Optional[str] = None, **kwargs):
+        """
+        :keyword name:
+        :paramtype name: str
+        :keyword id:
+        :paramtype id: str
+        """
         super(Sku, self).__init__(**kwargs)
         self.name = name
         self.id = id
@@ -191,6 +225,7 @@ class SubResource(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """ """
         super(SubResource, self).__init__(**kwargs)
         self.id = None
 
@@ -202,9 +237,9 @@ class SubProduct(SubResource):
 
     :ivar id: Sub Resource Id.
     :vartype id: str
-    :keyword provisioning_state:
-    :paramtype provisioning_state: str
-    :ivar provisioning_state_values:  Possible values include: "Succeeded", "Failed", "canceled",
+    :ivar provisioning_state:
+    :vartype provisioning_state: str
+    :ivar provisioning_state_values: Possible values include: "Succeeded", "Failed", "canceled",
      "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
     :vartype provisioning_state_values: str or
      ~lro.models.SubProductPropertiesProvisioningStateValues
@@ -222,6 +257,10 @@ class SubProduct(SubResource):
     }
 
     def __init__(self, *, provisioning_state: Optional[str] = None, **kwargs):
+        """
+        :keyword provisioning_state:
+        :paramtype provisioning_state: str
+        """
         super(SubProduct, self).__init__(**kwargs)
         self.provisioning_state = provisioning_state
         self.provisioning_state_values = None

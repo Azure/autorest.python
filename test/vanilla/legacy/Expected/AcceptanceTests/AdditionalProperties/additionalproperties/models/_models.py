@@ -17,13 +17,13 @@ class PetAPTrue(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :keyword additional_properties: Unmatched properties from the message are deserialized to this
+    :ivar additional_properties: Unmatched properties from the message are deserialized to this
      collection.
-    :paramtype additional_properties: dict[str, any]
-    :keyword id: Required.
-    :paramtype id: int
-    :keyword name:
-    :paramtype name: str
+    :vartype additional_properties: dict[str, any]
+    :ivar id: Required.
+    :vartype id: int
+    :ivar name:
+    :vartype name: str
     :ivar status:
     :vartype status: bool
     """
@@ -41,6 +41,15 @@ class PetAPTrue(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword additional_properties: Unmatched properties from the message are deserialized to this
+         collection.
+        :paramtype additional_properties: dict[str, any]
+        :keyword id: Required.
+        :paramtype id: int
+        :keyword name:
+        :paramtype name: str
+        """
         super(PetAPTrue, self).__init__(**kwargs)
         self.additional_properties = kwargs.get("additional_properties", None)
         self.id = kwargs["id"]
@@ -55,17 +64,17 @@ class CatAPTrue(PetAPTrue):
 
     All required parameters must be populated in order to send to Azure.
 
-    :keyword additional_properties: Unmatched properties from the message are deserialized to this
+    :ivar additional_properties: Unmatched properties from the message are deserialized to this
      collection.
-    :paramtype additional_properties: dict[str, any]
-    :keyword id: Required.
-    :paramtype id: int
-    :keyword name:
-    :paramtype name: str
+    :vartype additional_properties: dict[str, any]
+    :ivar id: Required.
+    :vartype id: int
+    :ivar name:
+    :vartype name: str
     :ivar status:
     :vartype status: bool
-    :keyword friendly:
-    :paramtype friendly: bool
+    :ivar friendly:
+    :vartype friendly: bool
     """
 
     _validation = {
@@ -82,6 +91,17 @@ class CatAPTrue(PetAPTrue):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword additional_properties: Unmatched properties from the message are deserialized to this
+         collection.
+        :paramtype additional_properties: dict[str, any]
+        :keyword id: Required.
+        :paramtype id: int
+        :keyword name:
+        :paramtype name: str
+        :keyword friendly:
+        :paramtype friendly: bool
+        """
         super(CatAPTrue, self).__init__(**kwargs)
         self.friendly = kwargs.get("friendly", None)
 
@@ -89,10 +109,10 @@ class CatAPTrue(PetAPTrue):
 class Error(msrest.serialization.Model):
     """Error.
 
-    :keyword status:
-    :paramtype status: int
-    :keyword message:
-    :paramtype message: str
+    :ivar status:
+    :vartype status: int
+    :ivar message:
+    :vartype message: str
     """
 
     _attribute_map = {
@@ -101,6 +121,12 @@ class Error(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword status:
+        :paramtype status: int
+        :keyword message:
+        :paramtype message: str
+        """
         super(Error, self).__init__(**kwargs)
         self.status = kwargs.get("status", None)
         self.message = kwargs.get("message", None)
@@ -113,14 +139,14 @@ class PetAPInProperties(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :keyword id: Required.
-    :paramtype id: int
-    :keyword name:
-    :paramtype name: str
+    :ivar id: Required.
+    :vartype id: int
+    :ivar name:
+    :vartype name: str
     :ivar status:
     :vartype status: bool
-    :keyword additional_properties: Dictionary of :code:`<number>`.
-    :paramtype additional_properties: dict[str, float]
+    :ivar additional_properties: Dictionary of :code:`<number>`.
+    :vartype additional_properties: dict[str, float]
     """
 
     _validation = {
@@ -136,6 +162,14 @@ class PetAPInProperties(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword id: Required.
+        :paramtype id: int
+        :keyword name:
+        :paramtype name: str
+        :keyword additional_properties: Dictionary of :code:`<number>`.
+        :paramtype additional_properties: dict[str, float]
+        """
         super(PetAPInProperties, self).__init__(**kwargs)
         self.id = kwargs["id"]
         self.name = kwargs.get("name", None)
@@ -150,19 +184,19 @@ class PetAPInPropertiesWithAPString(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :keyword additional_properties: Unmatched properties from the message are deserialized to this
+    :ivar additional_properties: Unmatched properties from the message are deserialized to this
      collection.
-    :paramtype additional_properties: dict[str, str]
-    :keyword id: Required.
-    :paramtype id: int
-    :keyword name:
-    :paramtype name: str
+    :vartype additional_properties: dict[str, str]
+    :ivar id: Required.
+    :vartype id: int
+    :ivar name:
+    :vartype name: str
     :ivar status:
     :vartype status: bool
-    :keyword odata_location: Required.
-    :paramtype odata_location: str
-    :keyword additional_properties1: Dictionary of :code:`<number>`.
-    :paramtype additional_properties1: dict[str, float]
+    :ivar odata_location: Required.
+    :vartype odata_location: str
+    :ivar additional_properties1: Dictionary of :code:`<number>`.
+    :vartype additional_properties1: dict[str, float]
     """
 
     _validation = {
@@ -181,6 +215,19 @@ class PetAPInPropertiesWithAPString(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword additional_properties: Unmatched properties from the message are deserialized to this
+         collection.
+        :paramtype additional_properties: dict[str, str]
+        :keyword id: Required.
+        :paramtype id: int
+        :keyword name:
+        :paramtype name: str
+        :keyword odata_location: Required.
+        :paramtype odata_location: str
+        :keyword additional_properties1: Dictionary of :code:`<number>`.
+        :paramtype additional_properties1: dict[str, float]
+        """
         super(PetAPInPropertiesWithAPString, self).__init__(**kwargs)
         self.additional_properties = kwargs.get("additional_properties", None)
         self.id = kwargs["id"]
@@ -197,13 +244,13 @@ class PetAPObject(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :keyword additional_properties: Unmatched properties from the message are deserialized to this
+    :ivar additional_properties: Unmatched properties from the message are deserialized to this
      collection.
-    :paramtype additional_properties: dict[str, any]
-    :keyword id: Required.
-    :paramtype id: int
-    :keyword name:
-    :paramtype name: str
+    :vartype additional_properties: dict[str, any]
+    :ivar id: Required.
+    :vartype id: int
+    :ivar name:
+    :vartype name: str
     :ivar status:
     :vartype status: bool
     """
@@ -221,6 +268,15 @@ class PetAPObject(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword additional_properties: Unmatched properties from the message are deserialized to this
+         collection.
+        :paramtype additional_properties: dict[str, any]
+        :keyword id: Required.
+        :paramtype id: int
+        :keyword name:
+        :paramtype name: str
+        """
         super(PetAPObject, self).__init__(**kwargs)
         self.additional_properties = kwargs.get("additional_properties", None)
         self.id = kwargs["id"]
@@ -235,13 +291,13 @@ class PetAPString(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :keyword additional_properties: Unmatched properties from the message are deserialized to this
+    :ivar additional_properties: Unmatched properties from the message are deserialized to this
      collection.
-    :paramtype additional_properties: dict[str, str]
-    :keyword id: Required.
-    :paramtype id: int
-    :keyword name:
-    :paramtype name: str
+    :vartype additional_properties: dict[str, str]
+    :ivar id: Required.
+    :vartype id: int
+    :ivar name:
+    :vartype name: str
     :ivar status:
     :vartype status: bool
     """
@@ -259,6 +315,15 @@ class PetAPString(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword additional_properties: Unmatched properties from the message are deserialized to this
+         collection.
+        :paramtype additional_properties: dict[str, str]
+        :keyword id: Required.
+        :paramtype id: int
+        :keyword name:
+        :paramtype name: str
+        """
         super(PetAPString, self).__init__(**kwargs)
         self.additional_properties = kwargs.get("additional_properties", None)
         self.id = kwargs["id"]
