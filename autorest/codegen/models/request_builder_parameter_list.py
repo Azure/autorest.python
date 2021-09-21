@@ -147,7 +147,6 @@ class RequestBuilderParameterList(ParameterList):
             if seen_content_type and parameter.serialized_name == "content_type":
                 # we ony want one content type
                 # there can be multiple content types in the case of multiple media types
-                
                 continue
             if parameter.serialized_name == "content_type":
                 seen_content_type = True
