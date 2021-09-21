@@ -14,8 +14,8 @@ class AvailabilitySetUpdateParameters(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :keyword tags: Required. A set of tags. A description about the set of tags.
-    :paramtype tags: dict[str, str]
+    :ivar tags: Required. A set of tags. A description about the set of tags.
+    :vartype tags: dict[str, str]
     """
 
     _validation = {
@@ -27,5 +27,9 @@ class AvailabilitySetUpdateParameters(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword tags: Required. A set of tags. A description about the set of tags.
+        :paramtype tags: dict[str, str]
+        """
         super(AvailabilitySetUpdateParameters, self).__init__(**kwargs)
         self.tags = kwargs["tags"]

@@ -15,10 +15,10 @@ import msrest.serialization
 class Error(msrest.serialization.Model):
     """Error.
 
-    :keyword status:
-    :paramtype status: int
-    :keyword message:
-    :paramtype message: str
+    :ivar status:
+    :vartype status: int
+    :ivar message:
+    :vartype message: str
     """
 
     _attribute_map = {
@@ -27,6 +27,12 @@ class Error(msrest.serialization.Model):
     }
 
     def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
+        """
+        :keyword status:
+        :paramtype status: int
+        :keyword message:
+        :paramtype message: str
+        """
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
@@ -37,11 +43,10 @@ class Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDat
 
     All required parameters must be populated in order to send to Azure.
 
-    :keyword file_content: Required. File to upload.
-    :paramtype file_content: IO
-    :keyword file_name: Required. File name to upload. Name has to be spelled exactly as written
-     here.
-    :paramtype file_name: str
+    :ivar file_content: Required. File to upload.
+    :vartype file_content: IO
+    :ivar file_name: Required. File name to upload. Name has to be spelled exactly as written here.
+    :vartype file_name: str
     """
 
     _validation = {
@@ -55,6 +60,13 @@ class Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDat
     }
 
     def __init__(self, *, file_content: IO, file_name: str, **kwargs):
+        """
+        :keyword file_content: Required. File to upload.
+        :paramtype file_content: IO
+        :keyword file_name: Required. File name to upload. Name has to be spelled exactly as written
+         here.
+        :paramtype file_name: str
+        """
         super(Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema, self).__init__(
             **kwargs
         )
@@ -67,8 +79,8 @@ class Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDa
 
     All required parameters must be populated in order to send to Azure.
 
-    :keyword file_content: Required. Files to upload.
-    :paramtype file_content: list[IO]
+    :ivar file_content: Required. Files to upload.
+    :vartype file_content: list[IO]
     """
 
     _validation = {
@@ -80,6 +92,10 @@ class Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDa
     }
 
     def __init__(self, *, file_content: List[IO], **kwargs):
+        """
+        :keyword file_content: Required. Files to upload.
+        :paramtype file_content: list[IO]
+        """
         super(Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema, self).__init__(
             **kwargs
         )

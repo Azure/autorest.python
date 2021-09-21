@@ -15,10 +15,10 @@ import msrest.serialization
 class Error(msrest.serialization.Model):
     """Error.
 
-    :keyword status:
-    :paramtype status: int
-    :keyword message:
-    :paramtype message: str
+    :ivar status:
+    :vartype status: int
+    :ivar message:
+    :vartype message: str
     """
 
     _attribute_map = {
@@ -33,6 +33,12 @@ class Error(msrest.serialization.Model):
         message: Optional[str] = None,
         **kwargs
     ):
+        """
+        :keyword status:
+        :paramtype status: int
+        :keyword message:
+        :paramtype message: str
+        """
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
@@ -41,8 +47,8 @@ class Error(msrest.serialization.Model):
 class ModelThree(msrest.serialization.Model):
     """Only exists in api version 3.0.0.
 
-    :keyword optional_property:
-    :paramtype optional_property: str
+    :ivar optional_property:
+    :vartype optional_property: str
     """
 
     _attribute_map = {
@@ -55,6 +61,10 @@ class ModelThree(msrest.serialization.Model):
         optional_property: Optional[str] = None,
         **kwargs
     ):
+        """
+        :keyword optional_property:
+        :paramtype optional_property: str
+        """
         super(ModelThree, self).__init__(**kwargs)
         self.optional_property = optional_property
 
@@ -62,10 +72,10 @@ class ModelThree(msrest.serialization.Model):
 class PagingResult(msrest.serialization.Model):
     """PagingResult.
 
-    :keyword values:
-    :paramtype values: list[~azure.multiapi.sample.v3.models.ModelThree]
-    :keyword next_link:
-    :paramtype next_link: str
+    :ivar values:
+    :vartype values: list[~azure.multiapi.sample.v3.models.ModelThree]
+    :ivar next_link:
+    :vartype next_link: str
     """
 
     _attribute_map = {
@@ -80,6 +90,12 @@ class PagingResult(msrest.serialization.Model):
         next_link: Optional[str] = None,
         **kwargs
     ):
+        """
+        :keyword values:
+        :paramtype values: list[~azure.multiapi.sample.v3.models.ModelThree]
+        :keyword next_link:
+        :paramtype next_link: str
+        """
         super(PagingResult, self).__init__(**kwargs)
         self.values = values
         self.next_link = next_link
@@ -88,8 +104,8 @@ class PagingResult(msrest.serialization.Model):
 class SourcePath(msrest.serialization.Model):
     """Uri or local path to source data.
 
-    :keyword source: File source path.
-    :paramtype source: str
+    :ivar source: File source path.
+    :vartype source: str
     """
 
     _validation = {
@@ -106,5 +122,9 @@ class SourcePath(msrest.serialization.Model):
         source: Optional[str] = None,
         **kwargs
     ):
+        """
+        :keyword source: File source path.
+        :paramtype source: str
+        """
         super(SourcePath, self).__init__(**kwargs)
         self.source = source

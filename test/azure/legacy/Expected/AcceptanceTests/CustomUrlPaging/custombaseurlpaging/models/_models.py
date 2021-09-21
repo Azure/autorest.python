@@ -12,10 +12,10 @@ import msrest.serialization
 class Error(msrest.serialization.Model):
     """Error.
 
-    :keyword status:
-    :paramtype status: int
-    :keyword message:
-    :paramtype message: str
+    :ivar status:
+    :vartype status: int
+    :ivar message:
+    :vartype message: str
     """
 
     _attribute_map = {
@@ -24,6 +24,12 @@ class Error(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword status:
+        :paramtype status: int
+        :keyword message:
+        :paramtype message: str
+        """
         super(Error, self).__init__(**kwargs)
         self.status = kwargs.get("status", None)
         self.message = kwargs.get("message", None)
@@ -32,8 +38,8 @@ class Error(msrest.serialization.Model):
 class Product(msrest.serialization.Model):
     """Product.
 
-    :keyword properties:
-    :paramtype properties: ~custombaseurlpaging.models.ProductProperties
+    :ivar properties:
+    :vartype properties: ~custombaseurlpaging.models.ProductProperties
     """
 
     _attribute_map = {
@@ -41,6 +47,10 @@ class Product(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword properties:
+        :paramtype properties: ~custombaseurlpaging.models.ProductProperties
+        """
         super(Product, self).__init__(**kwargs)
         self.properties = kwargs.get("properties", None)
 
@@ -48,10 +58,10 @@ class Product(msrest.serialization.Model):
 class ProductProperties(msrest.serialization.Model):
     """ProductProperties.
 
-    :keyword id:
-    :paramtype id: int
-    :keyword name:
-    :paramtype name: str
+    :ivar id:
+    :vartype id: int
+    :ivar name:
+    :vartype name: str
     """
 
     _attribute_map = {
@@ -60,6 +70,12 @@ class ProductProperties(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword id:
+        :paramtype id: int
+        :keyword name:
+        :paramtype name: str
+        """
         super(ProductProperties, self).__init__(**kwargs)
         self.id = kwargs.get("id", None)
         self.name = kwargs.get("name", None)
@@ -68,10 +84,10 @@ class ProductProperties(msrest.serialization.Model):
 class ProductResult(msrest.serialization.Model):
     """ProductResult.
 
-    :keyword values:
-    :paramtype values: list[~custombaseurlpaging.models.Product]
-    :keyword next_link:
-    :paramtype next_link: str
+    :ivar values:
+    :vartype values: list[~custombaseurlpaging.models.Product]
+    :ivar next_link:
+    :vartype next_link: str
     """
 
     _attribute_map = {
@@ -80,6 +96,12 @@ class ProductResult(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword values:
+        :paramtype values: list[~custombaseurlpaging.models.Product]
+        :keyword next_link:
+        :paramtype next_link: str
+        """
         super(ProductResult, self).__init__(**kwargs)
         self.values = kwargs.get("values", None)
         self.next_link = kwargs.get("next_link", None)

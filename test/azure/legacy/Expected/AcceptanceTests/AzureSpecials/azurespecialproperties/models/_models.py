@@ -17,12 +17,12 @@ class Error(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :keyword status:
-    :paramtype status: int
+    :ivar status:
+    :vartype status: int
     :ivar constant_id:  Has constant value: 1.
     :vartype constant_id: int
-    :keyword message:
-    :paramtype message: str
+    :ivar message:
+    :vartype message: str
     """
 
     _validation = {
@@ -38,6 +38,12 @@ class Error(msrest.serialization.Model):
     constant_id = 1
 
     def __init__(self, **kwargs):
+        """
+        :keyword status:
+        :paramtype status: int
+        :keyword message:
+        :paramtype message: str
+        """
         super(Error, self).__init__(**kwargs)
         self.status = kwargs.get("status", None)
         self.message = kwargs.get("message", None)
@@ -48,8 +54,8 @@ class HeaderCustomNamedRequestIdParamGroupingParameters(msrest.serialization.Mod
 
     All required parameters must be populated in order to send to Azure.
 
-    :keyword foo_client_request_id: Required. The fooRequestId.
-    :paramtype foo_client_request_id: str
+    :ivar foo_client_request_id: Required. The fooRequestId.
+    :vartype foo_client_request_id: str
     """
 
     _validation = {
@@ -61,6 +67,10 @@ class HeaderCustomNamedRequestIdParamGroupingParameters(msrest.serialization.Mod
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword foo_client_request_id: Required. The fooRequestId.
+        :paramtype foo_client_request_id: str
+        """
         super(HeaderCustomNamedRequestIdParamGroupingParameters, self).__init__(**kwargs)
         self.foo_client_request_id = kwargs["foo_client_request_id"]
 
@@ -68,10 +78,10 @@ class HeaderCustomNamedRequestIdParamGroupingParameters(msrest.serialization.Mod
 class OdataFilter(msrest.serialization.Model):
     """OdataFilter.
 
-    :keyword id:
-    :paramtype id: int
-    :keyword name:
-    :paramtype name: str
+    :ivar id:
+    :vartype id: int
+    :ivar name:
+    :vartype name: str
     """
 
     _attribute_map = {
@@ -80,6 +90,12 @@ class OdataFilter(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword id:
+        :paramtype id: int
+        :keyword name:
+        :paramtype name: str
+        """
         super(OdataFilter, self).__init__(**kwargs)
         self.id = kwargs.get("id", None)
         self.name = kwargs.get("name", None)

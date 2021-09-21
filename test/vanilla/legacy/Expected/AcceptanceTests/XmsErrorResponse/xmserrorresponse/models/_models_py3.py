@@ -15,8 +15,8 @@ import msrest.serialization
 class Animal(msrest.serialization.Model):
     """Animal.
 
-    :keyword ani_type:
-    :paramtype ani_type: str
+    :ivar ani_type:
+    :vartype ani_type: str
     """
 
     _attribute_map = {
@@ -24,6 +24,10 @@ class Animal(msrest.serialization.Model):
     }
 
     def __init__(self, *, ani_type: Optional[str] = None, **kwargs):
+        """
+        :keyword ani_type:
+        :paramtype ani_type: str
+        """
         super(Animal, self).__init__(**kwargs)
         self.ani_type = ani_type
 
@@ -31,8 +35,8 @@ class Animal(msrest.serialization.Model):
 class BaseError(msrest.serialization.Model):
     """BaseError.
 
-    :keyword some_base_prop:
-    :paramtype some_base_prop: str
+    :ivar some_base_prop:
+    :vartype some_base_prop: str
     """
 
     _attribute_map = {
@@ -40,6 +44,10 @@ class BaseError(msrest.serialization.Model):
     }
 
     def __init__(self, *, some_base_prop: Optional[str] = None, **kwargs):
+        """
+        :keyword some_base_prop:
+        :paramtype some_base_prop: str
+        """
         super(BaseError, self).__init__(**kwargs)
         self.some_base_prop = some_base_prop
 
@@ -52,12 +60,12 @@ class NotFoundErrorBase(BaseError):
 
     All required parameters must be populated in order to send to Azure.
 
-    :keyword some_base_prop:
-    :paramtype some_base_prop: str
-    :keyword reason:
-    :paramtype reason: str
-    :keyword what_not_found: Required. Constant filled by server.
-    :paramtype what_not_found: str
+    :ivar some_base_prop:
+    :vartype some_base_prop: str
+    :ivar reason:
+    :vartype reason: str
+    :ivar what_not_found: Required. Constant filled by server.
+    :vartype what_not_found: str
     """
 
     _validation = {
@@ -73,6 +81,12 @@ class NotFoundErrorBase(BaseError):
     _subtype_map = {"what_not_found": {"AnimalNotFound": "AnimalNotFound", "InvalidResourceLink": "LinkNotFound"}}
 
     def __init__(self, *, some_base_prop: Optional[str] = None, reason: Optional[str] = None, **kwargs):
+        """
+        :keyword some_base_prop:
+        :paramtype some_base_prop: str
+        :keyword reason:
+        :paramtype reason: str
+        """
         super(NotFoundErrorBase, self).__init__(some_base_prop=some_base_prop, **kwargs)
         self.reason = reason
         self.what_not_found = "NotFoundErrorBase"  # type: str
@@ -83,14 +97,14 @@ class AnimalNotFound(NotFoundErrorBase):
 
     All required parameters must be populated in order to send to Azure.
 
-    :keyword some_base_prop:
-    :paramtype some_base_prop: str
-    :keyword reason:
-    :paramtype reason: str
-    :keyword what_not_found: Required. Constant filled by server.
-    :paramtype what_not_found: str
-    :keyword name:
-    :paramtype name: str
+    :ivar some_base_prop:
+    :vartype some_base_prop: str
+    :ivar reason:
+    :vartype reason: str
+    :ivar what_not_found: Required. Constant filled by server.
+    :vartype what_not_found: str
+    :ivar name:
+    :vartype name: str
     """
 
     _validation = {
@@ -112,6 +126,14 @@ class AnimalNotFound(NotFoundErrorBase):
         name: Optional[str] = None,
         **kwargs
     ):
+        """
+        :keyword some_base_prop:
+        :paramtype some_base_prop: str
+        :keyword reason:
+        :paramtype reason: str
+        :keyword name:
+        :paramtype name: str
+        """
         super(AnimalNotFound, self).__init__(some_base_prop=some_base_prop, reason=reason, **kwargs)
         self.what_not_found = "AnimalNotFound"  # type: str
         self.name = name
@@ -122,14 +144,14 @@ class LinkNotFound(NotFoundErrorBase):
 
     All required parameters must be populated in order to send to Azure.
 
-    :keyword some_base_prop:
-    :paramtype some_base_prop: str
-    :keyword reason:
-    :paramtype reason: str
-    :keyword what_not_found: Required. Constant filled by server.
-    :paramtype what_not_found: str
-    :keyword what_sub_address:
-    :paramtype what_sub_address: str
+    :ivar some_base_prop:
+    :vartype some_base_prop: str
+    :ivar reason:
+    :vartype reason: str
+    :ivar what_not_found: Required. Constant filled by server.
+    :vartype what_not_found: str
+    :ivar what_sub_address:
+    :vartype what_sub_address: str
     """
 
     _validation = {
@@ -151,6 +173,14 @@ class LinkNotFound(NotFoundErrorBase):
         what_sub_address: Optional[str] = None,
         **kwargs
     ):
+        """
+        :keyword some_base_prop:
+        :paramtype some_base_prop: str
+        :keyword reason:
+        :paramtype reason: str
+        :keyword what_sub_address:
+        :paramtype what_sub_address: str
+        """
         super(LinkNotFound, self).__init__(some_base_prop=some_base_prop, reason=reason, **kwargs)
         self.what_not_found = "InvalidResourceLink"  # type: str
         self.what_sub_address = what_sub_address
@@ -161,8 +191,8 @@ class Pet(Animal):
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
-    :keyword ani_type:
-    :paramtype ani_type: str
+    :ivar ani_type:
+    :vartype ani_type: str
     :ivar name: Gets the Pet by id.
     :vartype name: str
     """
@@ -177,6 +207,10 @@ class Pet(Animal):
     }
 
     def __init__(self, *, ani_type: Optional[str] = None, **kwargs):
+        """
+        :keyword ani_type:
+        :paramtype ani_type: str
+        """
         super(Pet, self).__init__(ani_type=ani_type, **kwargs)
         self.name = None
 
@@ -184,8 +218,8 @@ class Pet(Animal):
 class PetAction(msrest.serialization.Model):
     """PetAction.
 
-    :keyword action_response: action feedback.
-    :paramtype action_response: str
+    :ivar action_response: action feedback.
+    :vartype action_response: str
     """
 
     _attribute_map = {
@@ -193,6 +227,10 @@ class PetAction(msrest.serialization.Model):
     }
 
     def __init__(self, *, action_response: Optional[str] = None, **kwargs):
+        """
+        :keyword action_response: action feedback.
+        :paramtype action_response: str
+        """
         super(PetAction, self).__init__(**kwargs)
         self.action_response = action_response
 
@@ -205,12 +243,12 @@ class PetActionError(PetAction):
 
     All required parameters must be populated in order to send to Azure.
 
-    :keyword action_response: action feedback.
-    :paramtype action_response: str
-    :keyword error_type: Required. Constant filled by server.
-    :paramtype error_type: str
-    :keyword error_message: the error message.
-    :paramtype error_message: str
+    :ivar action_response: action feedback.
+    :vartype action_response: str
+    :ivar error_type: Required. Constant filled by server.
+    :vartype error_type: str
+    :ivar error_message: the error message.
+    :vartype error_message: str
     """
 
     _validation = {
@@ -226,6 +264,12 @@ class PetActionError(PetAction):
     _subtype_map = {"error_type": {"PetSadError": "PetSadError"}}
 
     def __init__(self, *, action_response: Optional[str] = None, error_message: Optional[str] = None, **kwargs):
+        """
+        :keyword action_response: action feedback.
+        :paramtype action_response: str
+        :keyword error_message: the error message.
+        :paramtype error_message: str
+        """
         super(PetActionError, self).__init__(action_response=action_response, **kwargs)
         self.error_type = "PetActionError"  # type: str
         self.error_message = error_message
@@ -239,14 +283,14 @@ class PetSadError(PetActionError):
 
     All required parameters must be populated in order to send to Azure.
 
-    :keyword action_response: action feedback.
-    :paramtype action_response: str
-    :keyword error_type: Required. Constant filled by server.
-    :paramtype error_type: str
-    :keyword error_message: the error message.
-    :paramtype error_message: str
-    :keyword reason: why is the pet sad.
-    :paramtype reason: str
+    :ivar action_response: action feedback.
+    :vartype action_response: str
+    :ivar error_type: Required. Constant filled by server.
+    :vartype error_type: str
+    :ivar error_message: the error message.
+    :vartype error_message: str
+    :ivar reason: why is the pet sad.
+    :vartype reason: str
     """
 
     _validation = {
@@ -270,6 +314,14 @@ class PetSadError(PetActionError):
         reason: Optional[str] = None,
         **kwargs
     ):
+        """
+        :keyword action_response: action feedback.
+        :paramtype action_response: str
+        :keyword error_message: the error message.
+        :paramtype error_message: str
+        :keyword reason: why is the pet sad.
+        :paramtype reason: str
+        """
         super(PetSadError, self).__init__(action_response=action_response, error_message=error_message, **kwargs)
         self.error_type = "PetSadError"  # type: str
         self.reason = reason
@@ -280,16 +332,16 @@ class PetHungryOrThirstyError(PetSadError):
 
     All required parameters must be populated in order to send to Azure.
 
-    :keyword action_response: action feedback.
-    :paramtype action_response: str
-    :keyword error_type: Required. Constant filled by server.
-    :paramtype error_type: str
-    :keyword error_message: the error message.
-    :paramtype error_message: str
-    :keyword reason: why is the pet sad.
-    :paramtype reason: str
-    :keyword hungry_or_thirsty: is the pet hungry or thirsty or both.
-    :paramtype hungry_or_thirsty: str
+    :ivar action_response: action feedback.
+    :vartype action_response: str
+    :ivar error_type: Required. Constant filled by server.
+    :vartype error_type: str
+    :ivar error_message: the error message.
+    :vartype error_message: str
+    :ivar reason: why is the pet sad.
+    :vartype reason: str
+    :ivar hungry_or_thirsty: is the pet hungry or thirsty or both.
+    :vartype hungry_or_thirsty: str
     """
 
     _validation = {
@@ -313,6 +365,16 @@ class PetHungryOrThirstyError(PetSadError):
         hungry_or_thirsty: Optional[str] = None,
         **kwargs
     ):
+        """
+        :keyword action_response: action feedback.
+        :paramtype action_response: str
+        :keyword error_message: the error message.
+        :paramtype error_message: str
+        :keyword reason: why is the pet sad.
+        :paramtype reason: str
+        :keyword hungry_or_thirsty: is the pet hungry or thirsty or both.
+        :paramtype hungry_or_thirsty: str
+        """
         super(PetHungryOrThirstyError, self).__init__(
             action_response=action_response, error_message=error_message, reason=reason, **kwargs
         )

@@ -4,7 +4,7 @@
 
 | Library | Min Version
 | --------------- | -------
-|`@autorest/core` |  `3.4.5`
+|`@autorest/core` |  `3.6.2`
 |`@autorest/modelerfour` | `4.19.1`
 |`azure-core` dep of generated code | `1.18.0`
 |`msrest` dep of generated code | `0.6.21`
