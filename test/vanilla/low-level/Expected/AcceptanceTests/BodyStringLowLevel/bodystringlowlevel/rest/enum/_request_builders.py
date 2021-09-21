@@ -36,7 +36,7 @@ def build_get_not_expandable_request(
         .. code-block:: python
 
             # response body for status code(s): 200
-            response.json() == "str"  # Optional.  Valid values are: "red color", "green-color", "blue_color". 
+            response.json() == "str"  # Optional.
     """
 
     accept = "application/json"
@@ -79,7 +79,7 @@ def build_put_not_expandable_request(
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "str"  # Optional.  Valid values are: "red color", "green-color", "blue_color". 
+            json = "str"  # Optional.
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
@@ -120,7 +120,7 @@ def build_get_referenced_request(
         .. code-block:: python
 
             # response body for status code(s): 200
-            response.json() == "str"  # Optional.  Valid values are: "red color", "green-color", "blue_color". 
+            response.json() == "str"  # Optional.
     """
 
     accept = "application/json"
@@ -163,7 +163,7 @@ def build_put_referenced_request(
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "str"  # Optional.  Valid values are: "red color", "green-color", "blue_color". 
+            json = "str"  # Optional.
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
@@ -205,7 +205,7 @@ def build_get_referenced_constant_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "ColorConstant": "green-color",  # Default value is "green-color". Referenced Color Constant Description.
+                "ColorConstant": "green-color",  # Default value is "green-color". Referenced Color Constant Description. Has constant value: "green-color".
                 "field1": "str"  # Optional. Sample string.
             }
     """
@@ -251,7 +251,7 @@ def build_put_referenced_constant_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "ColorConstant": "green-color",  # Default value is "green-color". Referenced Color Constant Description.
+                "ColorConstant": "green-color",  # Default value is "green-color". Referenced Color Constant Description. Has constant value: "green-color".
                 "field1": "str"  # Optional. Sample string.
             }
     """
