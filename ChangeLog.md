@@ -16,6 +16,7 @@
 - With this new release, we are also dropping support for Python 3.5 + async.  #875
 - For mgmt plan SDK, default policy changes from `BearerTokenCredentialPolicy` to `ARMChallengeAuthenticationPolicy`.
 - We now add tracing by default, the flag `--trace` now defaults to `True` if you have operations.
+- Added flag `--python3-only` for users looking to generate SDKs that only support Python 3  #1044
 
 **Bug Fixes**
 
