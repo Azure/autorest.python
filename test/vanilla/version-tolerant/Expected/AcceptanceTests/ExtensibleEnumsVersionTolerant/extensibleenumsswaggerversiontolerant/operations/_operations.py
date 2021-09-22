@@ -121,8 +121,8 @@ class PetOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet. Valid values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday".
-                    "IntEnum": "str",  #  Valid values are: "1", "2", "3".
+                    "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet. Possible values include: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday". Default value: "Friday".
+                    "IntEnum": "str",  # Required. Possible values include: "1", "2", "3".
                     "name": "str"  # Optional. name.
                 }
         """
@@ -175,15 +175,15 @@ class PetOperations(object):
 
                 # JSON input template you can fill out and use as your body input.
                 pet_param = {
-                    "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet. Valid values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday".
-                    "IntEnum": "str",  #  Valid values are: "1", "2", "3".
+                    "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet. Possible values include: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday". Default value: "Friday".
+                    "IntEnum": "str",  # Required. Possible values include: "1", "2", "3".
                     "name": "str"  # Optional. name.
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet. Valid values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday".
-                    "IntEnum": "str",  #  Valid values are: "1", "2", "3".
+                    "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet. Possible values include: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday". Default value: "Friday".
+                    "IntEnum": "str",  # Required. Possible values include: "1", "2", "3".
                     "name": "str"  # Optional. name.
                 }
         """

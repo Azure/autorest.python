@@ -30,7 +30,7 @@ def build_get_horse_request(**kwargs: Any) -> HttpRequest:
             # response body for status code(s): 200
             response.json() == {
                 "isAShowHorse": bool,  # Optional.
-                "name": "str"
+                "name": "str"  # Required.
             }
     """
 
@@ -68,7 +68,7 @@ def build_put_horse_request(*, json: Any = None, content: Any = None, **kwargs: 
             # JSON input template you can fill out and use as your body input.
             json = {
                 "isAShowHorse": bool,  # Optional.
-                "name": "str"
+                "name": "str"  # Required.
             }
     """
 
@@ -103,7 +103,7 @@ def build_get_pet_request(**kwargs: Any) -> HttpRequest:
 
             # response body for status code(s): 200
             response.json() == {
-                "name": "str"
+                "name": "str"  # Required.
             }
     """
 
@@ -140,7 +140,7 @@ def build_put_pet_request(*, json: Any = None, content: Any = None, **kwargs: An
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "name": "str"
+                "name": "str"  # Required.
             }
     """
 
@@ -252,7 +252,7 @@ def build_get_cat_request(**kwargs: Any) -> HttpRequest:
                 "hisses": bool,  # Optional.
                 "likesMilk": bool,  # Optional.
                 "meows": bool,  # Optional.
-                "name": "str"
+                "name": "str"  # Required.
             }
     """
 
@@ -294,7 +294,7 @@ def build_put_cat_request(*, json: Any = None, content: Any = None, **kwargs: An
                 "hisses": bool,  # Optional.
                 "likesMilk": bool,  # Optional.
                 "meows": bool,  # Optional.
-                "name": "str"
+                "name": "str"  # Required.
             }
     """
 
@@ -334,7 +334,7 @@ def build_get_kitten_request(**kwargs: Any) -> HttpRequest:
                 "hisses": bool,  # Optional.
                 "likesMilk": bool,  # Optional.
                 "meows": bool,  # Optional.
-                "name": "str"
+                "name": "str"  # Required.
             }
     """
 
@@ -378,7 +378,7 @@ def build_put_kitten_request(*, json: Any = None, content: Any = None, **kwargs:
                 "hisses": bool,  # Optional.
                 "likesMilk": bool,  # Optional.
                 "meows": bool,  # Optional.
-                "name": "str"
+                "name": "str"  # Required.
             }
     """
 

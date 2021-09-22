@@ -52,7 +52,7 @@ def build_check_name_availability_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "name": "str",
+                "name": "str",  # Required. 
                 "type": "Microsoft.Storage/storageAccounts"  # Optional. Default value is "Microsoft.Storage/storageAccounts".
             }
 
@@ -60,7 +60,7 @@ def build_check_name_availability_request(
             response.json() == {
                 "message": "str",  # Optional. Gets an error message explaining the Reason value in more detail.
                 "nameAvailable": bool,  # Optional. Gets a boolean value that indicates whether the name is available for you to use. If true, the name is available. If false, the name has already been taken or invalid and cannot be used.
-                "reason": "str"  # Optional. Gets the reason that a storage account name could not be used. The Reason element is only returned if NameAvailable is false. Valid values are: "AccountNameInvalid", "AlreadyExists". 
+                "reason": "str"  # Optional. Gets the reason that a storage account name could not be used. The Reason element is only returned if NameAvailable is false. Possible values include: "AccountNameInvalid", "AlreadyExists".
             }
     """
 
@@ -136,13 +136,13 @@ def build_create_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "id": "str",  # Optional. Resource Id.
-                "location": "str",  # Resource location.
+                "location": "str",  # Required. Resource location.
                 "name": "str",  # Optional. Resource name.
                 "properties": {
-                    "accountType": "str"  # Optional. Gets or sets the account type. Valid values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS". 
+                    "accountType": "str"  # Optional. Gets or sets the account type. Possible values include: "Standard_LRS", "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
                 },
                 "tags": {
-                    "str": "str"  # Optional. Resource tags.
+                    "str": "str"  # Optional. A set of tags. Resource tags.
                 },
                 "type": "str"  # Optional. Resource type.
             }
@@ -150,10 +150,10 @@ def build_create_request(
             # response body for status code(s): 200
             response.json() == {
                 "id": "str",  # Optional. Resource Id.
-                "location": "str",  # Resource location.
+                "location": "str",  # Required. Resource location.
                 "name": "str",  # Optional. Resource name.
                 "properties": {
-                    "accountType": "str",  # Optional. Gets the type of the storage account. Valid values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS". 
+                    "accountType": "str",  # Optional. Gets the type of the storage account. Possible values include: "Standard_LRS", "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
                     "creationTime": "2020-02-20 00:00:00",  # Optional. Gets the creation date and time of the storage account in UTC.
                     "customDomain": {
                         "name": "str",  # Optional. Gets or sets the custom domain name. Name is the CNAME source.
@@ -172,7 +172,7 @@ def build_create_request(
                         "table": "str"  # Optional. Gets the table endpoint.
                     },
                     "primaryLocation": "str",  # Optional. Gets the location of the primary for the storage account.
-                    "provisioningState": "str",  # Optional. Gets the status of the storage account at the time the operation was called. Valid values are: "Creating", "ResolvingDNS", "Succeeded". 
+                    "provisioningState": "str",  # Optional. Gets the status of the storage account at the time the operation was called. Possible values include: "Creating", "ResolvingDNS", "Succeeded".
                     "secondaryEndpoints": {
                         "FooPoint": {
                             "Bar.Point": {
@@ -185,11 +185,11 @@ def build_create_request(
                         "table": "str"  # Optional. Gets the table endpoint.
                     },
                     "secondaryLocation": "str",  # Optional. Gets the location of the geo replicated secondary for the storage account. Only available if the accountType is StandardGRS or StandardRAGRS.
-                    "statusOfPrimary": "str",  # Optional. Gets the status indicating whether the primary location of the storage account is available or unavailable. Valid values are: "Available", "Unavailable". 
-                    "statusOfSecondary": "str"  # Optional. Gets the status indicating whether the secondary location of the storage account is available or unavailable. Only available if the accountType is StandardGRS or StandardRAGRS. Valid values are: "Available", "Unavailable". 
+                    "statusOfPrimary": "str",  # Optional. Gets the status indicating whether the primary location of the storage account is available or unavailable. Possible values include: "Available", "Unavailable".
+                    "statusOfSecondary": "str"  # Optional. Gets the status indicating whether the secondary location of the storage account is available or unavailable. Only available if the accountType is StandardGRS or StandardRAGRS. Possible values include: "Available", "Unavailable".
                 },
                 "tags": {
-                    "str": "str"  # Optional. Resource tags.
+                    "str": "str"  # Optional. A set of tags. Resource tags.
                 },
                 "type": "str"  # Optional. Resource type.
             }
@@ -312,10 +312,10 @@ def build_get_properties_request(
             # response body for status code(s): 200
             response.json() == {
                 "id": "str",  # Optional. Resource Id.
-                "location": "str",  # Resource location.
+                "location": "str",  # Required. Resource location.
                 "name": "str",  # Optional. Resource name.
                 "properties": {
-                    "accountType": "str",  # Optional. Gets the type of the storage account. Valid values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS". 
+                    "accountType": "str",  # Optional. Gets the type of the storage account. Possible values include: "Standard_LRS", "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
                     "creationTime": "2020-02-20 00:00:00",  # Optional. Gets the creation date and time of the storage account in UTC.
                     "customDomain": {
                         "name": "str",  # Optional. Gets or sets the custom domain name. Name is the CNAME source.
@@ -334,7 +334,7 @@ def build_get_properties_request(
                         "table": "str"  # Optional. Gets the table endpoint.
                     },
                     "primaryLocation": "str",  # Optional. Gets the location of the primary for the storage account.
-                    "provisioningState": "str",  # Optional. Gets the status of the storage account at the time the operation was called. Valid values are: "Creating", "ResolvingDNS", "Succeeded". 
+                    "provisioningState": "str",  # Optional. Gets the status of the storage account at the time the operation was called. Possible values include: "Creating", "ResolvingDNS", "Succeeded".
                     "secondaryEndpoints": {
                         "FooPoint": {
                             "Bar.Point": {
@@ -347,11 +347,11 @@ def build_get_properties_request(
                         "table": "str"  # Optional. Gets the table endpoint.
                     },
                     "secondaryLocation": "str",  # Optional. Gets the location of the geo replicated secondary for the storage account. Only available if the accountType is StandardGRS or StandardRAGRS.
-                    "statusOfPrimary": "str",  # Optional. Gets the status indicating whether the primary location of the storage account is available or unavailable. Valid values are: "Available", "Unavailable". 
-                    "statusOfSecondary": "str"  # Optional. Gets the status indicating whether the secondary location of the storage account is available or unavailable. Only available if the accountType is StandardGRS or StandardRAGRS. Valid values are: "Available", "Unavailable". 
+                    "statusOfPrimary": "str",  # Optional. Gets the status indicating whether the primary location of the storage account is available or unavailable. Possible values include: "Available", "Unavailable".
+                    "statusOfSecondary": "str"  # Optional. Gets the status indicating whether the secondary location of the storage account is available or unavailable. Only available if the accountType is StandardGRS or StandardRAGRS. Possible values include: "Available", "Unavailable".
                 },
                 "tags": {
-                    "str": "str"  # Optional. Resource tags.
+                    "str": "str"  # Optional. A set of tags. Resource tags.
                 },
                 "type": "str"  # Optional. Resource type.
             }
@@ -432,17 +432,17 @@ def build_update_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "id": "str",  # Optional. Resource Id.
-                "location": "str",  # Resource location.
+                "location": "str",  # Required. Resource location.
                 "name": "str",  # Optional. Resource name.
                 "properties": {
-                    "accountType": "str",  # Optional. Gets or sets the account type. Note that StandardZRS and PremiumLRS accounts cannot be changed to other account types, and other account types cannot be changed to StandardZRS or PremiumLRS. Valid values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS". 
+                    "accountType": "str",  # Optional. Gets or sets the account type. Note that StandardZRS and PremiumLRS accounts cannot be changed to other account types, and other account types cannot be changed to StandardZRS or PremiumLRS. Possible values include: "Standard_LRS", "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
                     "customDomain": {
                         "name": "str",  # Optional. Gets or sets the custom domain name. Name is the CNAME source.
                         "useSubDomain": bool  # Optional. Indicates whether indirect CName validation is enabled. Default value is false. This should only be set on updates.
                     }
                 },
                 "tags": {
-                    "str": "str"  # Optional. Resource tags.
+                    "str": "str"  # Optional. A set of tags. Resource tags.
                 },
                 "type": "str"  # Optional. Resource type.
             }
@@ -450,10 +450,10 @@ def build_update_request(
             # response body for status code(s): 200
             response.json() == {
                 "id": "str",  # Optional. Resource Id.
-                "location": "str",  # Resource location.
+                "location": "str",  # Required. Resource location.
                 "name": "str",  # Optional. Resource name.
                 "properties": {
-                    "accountType": "str",  # Optional. Gets the type of the storage account. Valid values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS". 
+                    "accountType": "str",  # Optional. Gets the type of the storage account. Possible values include: "Standard_LRS", "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
                     "creationTime": "2020-02-20 00:00:00",  # Optional. Gets the creation date and time of the storage account in UTC.
                     "customDomain": {
                         "name": "str",  # Optional. Gets or sets the custom domain name. Name is the CNAME source.
@@ -472,7 +472,7 @@ def build_update_request(
                         "table": "str"  # Optional. Gets the table endpoint.
                     },
                     "primaryLocation": "str",  # Optional. Gets the location of the primary for the storage account.
-                    "provisioningState": "str",  # Optional. Gets the status of the storage account at the time the operation was called. Valid values are: "Creating", "ResolvingDNS", "Succeeded". 
+                    "provisioningState": "str",  # Optional. Gets the status of the storage account at the time the operation was called. Possible values include: "Creating", "ResolvingDNS", "Succeeded".
                     "secondaryEndpoints": {
                         "FooPoint": {
                             "Bar.Point": {
@@ -485,11 +485,11 @@ def build_update_request(
                         "table": "str"  # Optional. Gets the table endpoint.
                     },
                     "secondaryLocation": "str",  # Optional. Gets the location of the geo replicated secondary for the storage account. Only available if the accountType is StandardGRS or StandardRAGRS.
-                    "statusOfPrimary": "str",  # Optional. Gets the status indicating whether the primary location of the storage account is available or unavailable. Valid values are: "Available", "Unavailable". 
-                    "statusOfSecondary": "str"  # Optional. Gets the status indicating whether the secondary location of the storage account is available or unavailable. Only available if the accountType is StandardGRS or StandardRAGRS. Valid values are: "Available", "Unavailable". 
+                    "statusOfPrimary": "str",  # Optional. Gets the status indicating whether the primary location of the storage account is available or unavailable. Possible values include: "Available", "Unavailable".
+                    "statusOfSecondary": "str"  # Optional. Gets the status indicating whether the secondary location of the storage account is available or unavailable. Only available if the accountType is StandardGRS or StandardRAGRS. Possible values include: "Available", "Unavailable".
                 },
                 "tags": {
-                    "str": "str"  # Optional. Resource tags.
+                    "str": "str"  # Optional. A set of tags. Resource tags.
                 },
                 "type": "str"  # Optional. Resource type.
             }
@@ -619,10 +619,10 @@ def build_list_request(
                 "value": [
                     {
                         "id": "str",  # Optional. Resource Id.
-                        "location": "str",  # Resource location.
+                        "location": "str",  # Required. Resource location.
                         "name": "str",  # Optional. Resource name.
                         "properties": {
-                            "accountType": "str",  # Optional. Gets the type of the storage account. Valid values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS". 
+                            "accountType": "str",  # Optional. Gets the type of the storage account. Possible values include: "Standard_LRS", "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
                             "creationTime": "2020-02-20 00:00:00",  # Optional. Gets the creation date and time of the storage account in UTC.
                             "customDomain": {
                                 "name": "str",  # Optional. Gets or sets the custom domain name. Name is the CNAME source.
@@ -641,7 +641,7 @@ def build_list_request(
                                 "table": "str"  # Optional. Gets the table endpoint.
                             },
                             "primaryLocation": "str",  # Optional. Gets the location of the primary for the storage account.
-                            "provisioningState": "str",  # Optional. Gets the status of the storage account at the time the operation was called. Valid values are: "Creating", "ResolvingDNS", "Succeeded". 
+                            "provisioningState": "str",  # Optional. Gets the status of the storage account at the time the operation was called. Possible values include: "Creating", "ResolvingDNS", "Succeeded".
                             "secondaryEndpoints": {
                                 "FooPoint": {
                                     "Bar.Point": {
@@ -654,11 +654,11 @@ def build_list_request(
                                 "table": "str"  # Optional. Gets the table endpoint.
                             },
                             "secondaryLocation": "str",  # Optional. Gets the location of the geo replicated secondary for the storage account. Only available if the accountType is StandardGRS or StandardRAGRS.
-                            "statusOfPrimary": "str",  # Optional. Gets the status indicating whether the primary location of the storage account is available or unavailable. Valid values are: "Available", "Unavailable". 
-                            "statusOfSecondary": "str"  # Optional. Gets the status indicating whether the secondary location of the storage account is available or unavailable. Only available if the accountType is StandardGRS or StandardRAGRS. Valid values are: "Available", "Unavailable". 
+                            "statusOfPrimary": "str",  # Optional. Gets the status indicating whether the primary location of the storage account is available or unavailable. Possible values include: "Available", "Unavailable".
+                            "statusOfSecondary": "str"  # Optional. Gets the status indicating whether the secondary location of the storage account is available or unavailable. Only available if the accountType is StandardGRS or StandardRAGRS. Possible values include: "Available", "Unavailable".
                         },
                         "tags": {
-                            "str": "str"  # Optional. Resource tags.
+                            "str": "str"  # Optional. A set of tags. Resource tags.
                         },
                         "type": "str"  # Optional. Resource type.
                     }
@@ -724,10 +724,10 @@ def build_list_by_resource_group_request(
                 "value": [
                     {
                         "id": "str",  # Optional. Resource Id.
-                        "location": "str",  # Resource location.
+                        "location": "str",  # Required. Resource location.
                         "name": "str",  # Optional. Resource name.
                         "properties": {
-                            "accountType": "str",  # Optional. Gets the type of the storage account. Valid values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS". 
+                            "accountType": "str",  # Optional. Gets the type of the storage account. Possible values include: "Standard_LRS", "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
                             "creationTime": "2020-02-20 00:00:00",  # Optional. Gets the creation date and time of the storage account in UTC.
                             "customDomain": {
                                 "name": "str",  # Optional. Gets or sets the custom domain name. Name is the CNAME source.
@@ -746,7 +746,7 @@ def build_list_by_resource_group_request(
                                 "table": "str"  # Optional. Gets the table endpoint.
                             },
                             "primaryLocation": "str",  # Optional. Gets the location of the primary for the storage account.
-                            "provisioningState": "str",  # Optional. Gets the status of the storage account at the time the operation was called. Valid values are: "Creating", "ResolvingDNS", "Succeeded". 
+                            "provisioningState": "str",  # Optional. Gets the status of the storage account at the time the operation was called. Possible values include: "Creating", "ResolvingDNS", "Succeeded".
                             "secondaryEndpoints": {
                                 "FooPoint": {
                                     "Bar.Point": {
@@ -759,11 +759,11 @@ def build_list_by_resource_group_request(
                                 "table": "str"  # Optional. Gets the table endpoint.
                             },
                             "secondaryLocation": "str",  # Optional. Gets the location of the geo replicated secondary for the storage account. Only available if the accountType is StandardGRS or StandardRAGRS.
-                            "statusOfPrimary": "str",  # Optional. Gets the status indicating whether the primary location of the storage account is available or unavailable. Valid values are: "Available", "Unavailable". 
-                            "statusOfSecondary": "str"  # Optional. Gets the status indicating whether the secondary location of the storage account is available or unavailable. Only available if the accountType is StandardGRS or StandardRAGRS. Valid values are: "Available", "Unavailable". 
+                            "statusOfPrimary": "str",  # Optional. Gets the status indicating whether the primary location of the storage account is available or unavailable. Possible values include: "Available", "Unavailable".
+                            "statusOfSecondary": "str"  # Optional. Gets the status indicating whether the secondary location of the storage account is available or unavailable. Only available if the accountType is StandardGRS or StandardRAGRS. Possible values include: "Available", "Unavailable".
                         },
                         "tags": {
-                            "str": "str"  # Optional. Resource tags.
+                            "str": "str"  # Optional. A set of tags. Resource tags.
                         },
                         "type": "str"  # Optional. Resource type.
                     }
@@ -836,7 +836,7 @@ def build_regenerate_key_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "keyName": "str"  # Optional.  Valid values are: "key1", "key2". 
+                "keyName": "str"  # Optional. Possible values include: "key1", "key2".
             }
 
             # response body for status code(s): 200

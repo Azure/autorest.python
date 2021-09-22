@@ -135,8 +135,6 @@ class EnumSchema(BaseSchema):
         if len(self.values) == 1 and not kwargs.get("default_value_declaration"):
             kwargs['default_value_declaration'] = self.enum_type.get_declaration(self.values[0].value)
         description = kwargs.pop("description", "")
-        values = [self.enum_type.get_declaration(v.value) for v in self.values]
-        description += " Valid values are: {}. ".format(", ".join(values))
         kwargs["description"] = description
         return kwargs
 
