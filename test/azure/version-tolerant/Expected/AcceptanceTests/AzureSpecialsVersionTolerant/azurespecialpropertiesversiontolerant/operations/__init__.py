@@ -6,14 +6,25 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._operations import XMsClientRequestIdOperations
-from ._operations import SubscriptionInCredentialsOperations
-from ._operations import SubscriptionInMethodOperations
-from ._operations import ApiVersionDefaultOperations
-from ._operations import ApiVersionLocalOperations
-from ._operations import SkipUrlEncodingOperations
-from ._operations import OdataOperations
-from ._operations import HeaderOperations
+try:
+    from ._operations_py3 import XMsClientRequestIdOperations
+    from ._operations_py3 import SubscriptionInCredentialsOperations
+    from ._operations_py3 import SubscriptionInMethodOperations
+    from ._operations_py3 import ApiVersionDefaultOperations
+    from ._operations_py3 import ApiVersionLocalOperations
+    from ._operations_py3 import SkipUrlEncodingOperations
+    from ._operations_py3 import OdataOperations
+    from ._operations_py3 import HeaderOperations
+
+except (SyntaxError, ImportError):
+    from ._operations import XMsClientRequestIdOperations
+    from ._operations import SubscriptionInCredentialsOperations
+    from ._operations import SubscriptionInMethodOperations
+    from ._operations import ApiVersionDefaultOperations
+    from ._operations import ApiVersionLocalOperations
+    from ._operations import SkipUrlEncodingOperations
+    from ._operations import OdataOperations
+    from ._operations import HeaderOperations
 
 __all__ = [
     "XMsClientRequestIdOperations",

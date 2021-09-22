@@ -6,7 +6,11 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._operations import ImportOperations
+try:
+    from ._operations_py3 import ImportOperations
+
+except (SyntaxError, ImportError):
+    from ._operations import ImportOperations
 
 __all__ = [
     "ImportOperations",

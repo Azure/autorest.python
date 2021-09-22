@@ -6,7 +6,11 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._operations import ParmaterizedEndpointClientOperationsMixin
+try:
+    from ._operations_py3 import ParmaterizedEndpointClientOperationsMixin
+
+except (SyntaxError, ImportError):
+    from ._operations import ParmaterizedEndpointClientOperationsMixin
 
 __all__ = [
     "ParmaterizedEndpointClientOperationsMixin",

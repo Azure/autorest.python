@@ -6,10 +6,17 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._operations import LROsOperations
-from ._operations import LRORetrysOperations
-from ._operations import LROSADsOperations
-from ._operations import LROsCustomHeaderOperations
+try:
+    from ._operations_py3 import LROsOperations
+    from ._operations_py3 import LRORetrysOperations
+    from ._operations_py3 import LROSADsOperations
+    from ._operations_py3 import LROsCustomHeaderOperations
+
+except (SyntaxError, ImportError):
+    from ._operations import LROsOperations
+    from ._operations import LRORetrysOperations
+    from ._operations import LROSADsOperations
+    from ._operations import LROsCustomHeaderOperations
 
 __all__ = [
     "LROsOperations",

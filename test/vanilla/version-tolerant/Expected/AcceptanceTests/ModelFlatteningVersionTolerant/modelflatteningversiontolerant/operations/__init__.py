@@ -6,7 +6,11 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._operations import AutoRestResourceFlatteningTestServiceOperationsMixin
+try:
+    from ._operations_py3 import AutoRestResourceFlatteningTestServiceOperationsMixin
+
+except (SyntaxError, ImportError):
+    from ._operations import AutoRestResourceFlatteningTestServiceOperationsMixin
 
 __all__ = [
     "AutoRestResourceFlatteningTestServiceOperationsMixin",
