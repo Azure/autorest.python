@@ -2113,7 +2113,7 @@ class ArrayOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == [
-                    "str"  # Optional.  Valid values are: "foo1", "foo2", "foo3".
+                    "str"  # Optional.
                 ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[str]]
@@ -2159,7 +2159,7 @@ class ArrayOperations(object):
 
                 # JSON input template you can fill out and use as your body input.
                 array_body = [
-                    "str"  # Optional.  Valid values are: "foo1", "foo2", "foo3".
+                    "str"  # Optional.
                 ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -2202,7 +2202,7 @@ class ArrayOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == [
-                    "str"  # Optional.  Valid values are: "foo1", "foo2", "foo3".
+                    "str"  # Optional.
                 ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[str]]
@@ -2248,7 +2248,7 @@ class ArrayOperations(object):
 
                 # JSON input template you can fill out and use as your body input.
                 array_body = [
-                    "str"  # Optional.  Valid values are: "foo1", "foo2", "foo3".
+                    "str"  # Optional.
                 ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]

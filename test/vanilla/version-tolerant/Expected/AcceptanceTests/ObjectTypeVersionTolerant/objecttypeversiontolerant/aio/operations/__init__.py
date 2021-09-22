@@ -6,7 +6,11 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._operations import ObjectTypeClientOperationsMixin
+try:
+    from ._operations_py3 import ObjectTypeClientOperationsMixin
+
+except (SyntaxError, ImportError):
+    from ._operations import ObjectTypeClientOperationsMixin
 
 __all__ = [
     "ObjectTypeClientOperationsMixin",

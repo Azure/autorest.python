@@ -1360,10 +1360,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -1375,10 +1375,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -1493,10 +1493,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -1508,10 +1508,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -1626,10 +1626,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -1641,10 +1641,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -1753,10 +1753,10 @@ class LROsOperations(object):
                         "name": "str",  # Optional. Resource Name.
                         "properties": {
                             "provisioningState": "str",  # Optional.
-                            "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                            "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                         },
                         "tags": {
-                            "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                            "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                         },
                         "type": "str"  # Optional. Resource Type.
                     }
@@ -1864,10 +1864,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -1879,10 +1879,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -1993,10 +1993,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -2008,10 +2008,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -2129,10 +2129,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -2144,10 +2144,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -2258,10 +2258,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -2273,10 +2273,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -2394,10 +2394,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -2409,10 +2409,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -2523,10 +2523,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -2538,10 +2538,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -2654,10 +2654,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -2669,10 +2669,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -2793,10 +2793,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -2808,10 +2808,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -2935,10 +2935,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -2950,10 +2950,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -3077,10 +3077,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -3092,10 +3092,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -3219,10 +3219,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -3234,10 +3234,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -3359,10 +3359,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -3374,10 +3374,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -3707,7 +3707,7 @@ class LROsOperations(object):
                     "id": "str",  # Optional. Sub Resource Id.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     }
                 }
 
@@ -3716,7 +3716,7 @@ class LROsOperations(object):
                     "id": "str",  # Optional. Sub Resource Id.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     }
                 }
         """
@@ -3822,7 +3822,7 @@ class LROsOperations(object):
                     "id": "str",  # Optional. Sub Resource Id.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     }
                 }
 
@@ -3831,7 +3831,7 @@ class LROsOperations(object):
                     "id": "str",  # Optional. Sub Resource Id.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     }
                 }
         """
@@ -3941,10 +3941,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -4052,10 +4052,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -4163,10 +4163,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -4336,10 +4336,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -4442,10 +4442,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -5090,10 +5090,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -5201,10 +5201,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -5216,10 +5216,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -5323,10 +5323,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -5423,10 +5423,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -5523,10 +5523,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -5646,10 +5646,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -5661,10 +5661,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -5785,10 +5785,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -5800,10 +5800,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -5914,10 +5914,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -6022,10 +6022,10 @@ class LROsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -6156,10 +6156,10 @@ class LRORetrysOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -6171,10 +6171,10 @@ class LRORetrysOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -6292,10 +6292,10 @@ class LRORetrysOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -6307,10 +6307,10 @@ class LRORetrysOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -6428,10 +6428,10 @@ class LRORetrysOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -6682,10 +6682,10 @@ class LRORetrysOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -6790,10 +6790,10 @@ class LRORetrysOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -6922,10 +6922,10 @@ class LROSADsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -6937,10 +6937,10 @@ class LROSADsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -7057,10 +7057,10 @@ class LROSADsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -7072,10 +7072,10 @@ class LROSADsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -7192,10 +7192,10 @@ class LROSADsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -7207,10 +7207,10 @@ class LROSADsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -7327,10 +7327,10 @@ class LROSADsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -7342,10 +7342,10 @@ class LROSADsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -7675,10 +7675,10 @@ class LROSADsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -7778,10 +7778,10 @@ class LROSADsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -7885,10 +7885,10 @@ class LROSADsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -7998,10 +7998,10 @@ class LROSADsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -8013,10 +8013,10 @@ class LROSADsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -8134,10 +8134,10 @@ class LROSADsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -8149,10 +8149,10 @@ class LROSADsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -8277,10 +8277,10 @@ class LROSADsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -8292,10 +8292,10 @@ class LROSADsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -8551,10 +8551,10 @@ class LROSADsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -8659,10 +8659,10 @@ class LROSADsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -8768,10 +8768,10 @@ class LROSADsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -8783,10 +8783,10 @@ class LROSADsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -8904,10 +8904,10 @@ class LROSADsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -8919,10 +8919,10 @@ class LROSADsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -9047,10 +9047,10 @@ class LROSADsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -9062,10 +9062,10 @@ class LROSADsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -9401,10 +9401,10 @@ class LROSADsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -9509,10 +9509,10 @@ class LROSADsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -9619,10 +9619,10 @@ class LROSADsOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -9754,10 +9754,10 @@ class LROsCustomHeaderOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -9769,10 +9769,10 @@ class LROsCustomHeaderOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -9898,10 +9898,10 @@ class LROsCustomHeaderOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -9913,10 +9913,10 @@ class LROsCustomHeaderOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -10024,10 +10024,10 @@ class LROsCustomHeaderOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -10133,10 +10133,10 @@ class LROsCustomHeaderOperations(object):
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional.  Valid values are: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }

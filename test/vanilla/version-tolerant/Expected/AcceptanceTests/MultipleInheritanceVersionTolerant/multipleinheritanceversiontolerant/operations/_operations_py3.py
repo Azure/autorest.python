@@ -183,7 +183,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
                 # response body for status code(s): 200
                 response.json() == {
                     "isAShowHorse": bool,  # Optional.
-                    "name": "str"
+                    "name": "str"  # Required.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -230,7 +230,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
                 # JSON input template you can fill out and use as your body input.
                 horse = {
                     "isAShowHorse": bool,  # Optional.
-                    "name": "str"
+                    "name": "str"  # Required.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
@@ -280,7 +280,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "name": "str"
+                    "name": "str"  # Required.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -326,7 +326,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
 
                 # JSON input template you can fill out and use as your body input.
                 pet = {
-                    "name": "str"
+                    "name": "str"  # Required.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
@@ -477,7 +477,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
                     "hisses": bool,  # Optional.
                     "likesMilk": bool,  # Optional.
                     "meows": bool,  # Optional.
-                    "name": "str"
+                    "name": "str"  # Required.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -526,7 +526,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
                     "hisses": bool,  # Optional.
                     "likesMilk": bool,  # Optional.
                     "meows": bool,  # Optional.
-                    "name": "str"
+                    "name": "str"  # Required.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
@@ -581,7 +581,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
                     "hisses": bool,  # Optional.
                     "likesMilk": bool,  # Optional.
                     "meows": bool,  # Optional.
-                    "name": "str"
+                    "name": "str"  # Required.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -633,7 +633,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
                     "hisses": bool,  # Optional.
                     "likesMilk": bool,  # Optional.
                     "meows": bool,  # Optional.
-                    "name": "str"
+                    "name": "str"  # Required.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[str]

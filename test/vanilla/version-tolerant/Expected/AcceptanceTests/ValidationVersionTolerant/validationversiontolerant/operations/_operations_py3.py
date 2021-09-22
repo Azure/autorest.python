@@ -146,16 +146,16 @@ class AutoRestValidationTestOperationsMixin(object):
                 response.json() == {
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
-                        "constProperty": "constant",  # Default value is "constant". Constant string.
+                        "constProperty": "constant",  # Default value is "constant". Constant string. Has constant value: "constant".
                         "count": 0  # Optional. Count.
                     },
                     "constChild": {
-                        "constProperty": "constant",  # Default value is "constant". Constant string.
-                        "constProperty2": "constant2"  # Default value is "constant2". Constant string2.
+                        "constProperty": "constant",  # Default value is "constant". Constant string. Has constant value: "constant".
+                        "constProperty2": "constant2"  # Default value is "constant2". Constant string2. Has constant value: "constant2".
                     },
-                    "constInt": 0,  # Default value is 0. Constant int.
-                    "constString": "constant",  # Default value is "constant". Constant string.
-                    "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is "constant_string_as_enum". Constant string as Enum.
+                    "constInt": 0,  # Default value is 0. Constant int. Has constant value: 0.
+                    "constString": "constant",  # Default value is "constant". Constant string. Has constant value: "constant".
+                    "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is "constant_string_as_enum". Constant string as Enum. The only acceptable values to pass in are None and "constant_string_as_enum". The default value is None.
                     "display_names": [
                         "str"  # Optional. Non required array of unique items from 0 to 6 elements.
                     ],
@@ -214,16 +214,16 @@ class AutoRestValidationTestOperationsMixin(object):
                 body = {
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
-                        "constProperty": "constant",  # Default value is "constant". Constant string.
+                        "constProperty": "constant",  # Default value is "constant". Constant string. Has constant value: "constant".
                         "count": 0  # Optional. Count.
                     },
                     "constChild": {
-                        "constProperty": "constant",  # Default value is "constant". Constant string.
-                        "constProperty2": "constant2"  # Default value is "constant2". Constant string2.
+                        "constProperty": "constant",  # Default value is "constant". Constant string. Has constant value: "constant".
+                        "constProperty2": "constant2"  # Default value is "constant2". Constant string2. Has constant value: "constant2".
                     },
-                    "constInt": 0,  # Default value is 0. Constant int.
-                    "constString": "constant",  # Default value is "constant". Constant string.
-                    "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is "constant_string_as_enum". Constant string as Enum.
+                    "constInt": 0,  # Default value is 0. Constant int. Has constant value: 0.
+                    "constString": "constant",  # Default value is "constant". Constant string. Has constant value: "constant".
+                    "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is "constant_string_as_enum". Constant string as Enum. The only acceptable values to pass in are None and "constant_string_as_enum". The default value is None.
                     "display_names": [
                         "str"  # Optional. Non required array of unique items from 0 to 6 elements.
                     ],
@@ -234,16 +234,16 @@ class AutoRestValidationTestOperationsMixin(object):
                 response.json() == {
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
-                        "constProperty": "constant",  # Default value is "constant". Constant string.
+                        "constProperty": "constant",  # Default value is "constant". Constant string. Has constant value: "constant".
                         "count": 0  # Optional. Count.
                     },
                     "constChild": {
-                        "constProperty": "constant",  # Default value is "constant". Constant string.
-                        "constProperty2": "constant2"  # Default value is "constant2". Constant string2.
+                        "constProperty": "constant",  # Default value is "constant". Constant string. Has constant value: "constant".
+                        "constProperty2": "constant2"  # Default value is "constant2". Constant string2. Has constant value: "constant2".
                     },
-                    "constInt": 0,  # Default value is 0. Constant int.
-                    "constString": "constant",  # Default value is "constant". Constant string.
-                    "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is "constant_string_as_enum". Constant string as Enum.
+                    "constInt": 0,  # Default value is 0. Constant int. Has constant value: 0.
+                    "constString": "constant",  # Default value is "constant". Constant string. Has constant value: "constant".
+                    "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is "constant_string_as_enum". Constant string as Enum. The only acceptable values to pass in are None and "constant_string_as_enum". The default value is None.
                     "display_names": [
                         "str"  # Optional. Non required array of unique items from 0 to 6 elements.
                     ],
@@ -336,16 +336,16 @@ class AutoRestValidationTestOperationsMixin(object):
                 body = {
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
-                        "constProperty": "constant",  # Default value is "constant". Constant string.
+                        "constProperty": "constant",  # Default value is "constant". Constant string. Has constant value: "constant".
                         "count": 0  # Optional. Count.
                     },
                     "constChild": {
-                        "constProperty": "constant",  # Default value is "constant". Constant string.
-                        "constProperty2": "constant2"  # Default value is "constant2". Constant string2.
+                        "constProperty": "constant",  # Default value is "constant". Constant string. Has constant value: "constant".
+                        "constProperty2": "constant2"  # Default value is "constant2". Constant string2. Has constant value: "constant2".
                     },
-                    "constInt": 0,  # Default value is 0. Constant int.
-                    "constString": "constant",  # Default value is "constant". Constant string.
-                    "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is "constant_string_as_enum". Constant string as Enum.
+                    "constInt": 0,  # Default value is 0. Constant int. Has constant value: 0.
+                    "constString": "constant",  # Default value is "constant". Constant string. Has constant value: "constant".
+                    "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is "constant_string_as_enum". Constant string as Enum. The only acceptable values to pass in are None and "constant_string_as_enum". The default value is None.
                     "display_names": [
                         "str"  # Optional. Non required array of unique items from 0 to 6 elements.
                     ],
@@ -356,16 +356,16 @@ class AutoRestValidationTestOperationsMixin(object):
                 response.json() == {
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
-                        "constProperty": "constant",  # Default value is "constant". Constant string.
+                        "constProperty": "constant",  # Default value is "constant". Constant string. Has constant value: "constant".
                         "count": 0  # Optional. Count.
                     },
                     "constChild": {
-                        "constProperty": "constant",  # Default value is "constant". Constant string.
-                        "constProperty2": "constant2"  # Default value is "constant2". Constant string2.
+                        "constProperty": "constant",  # Default value is "constant". Constant string. Has constant value: "constant".
+                        "constProperty2": "constant2"  # Default value is "constant2". Constant string2. Has constant value: "constant2".
                     },
-                    "constInt": 0,  # Default value is 0. Constant int.
-                    "constString": "constant",  # Default value is "constant". Constant string.
-                    "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is "constant_string_as_enum". Constant string as Enum.
+                    "constInt": 0,  # Default value is 0. Constant int. Has constant value: 0.
+                    "constString": "constant",  # Default value is "constant". Constant string. Has constant value: "constant".
+                    "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is "constant_string_as_enum". Constant string as Enum. The only acceptable values to pass in are None and "constant_string_as_enum". The default value is None.
                     "display_names": [
                         "str"  # Optional. Non required array of unique items from 0 to 6 elements.
                     ],

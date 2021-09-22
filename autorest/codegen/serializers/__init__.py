@@ -150,7 +150,7 @@ class JinjaSerializer:
         filename: str
     ) -> None:
         # write sync operation group and operation files
-        if not code_model.options['python_3_only'] and not code_model.options["add_python_3_operation_files"]:
+        if not code_model.options['python_3_only']:
             operation_group_serializer = OperationGroupSerializer(
                 code_model=code_model,
                 env=env,
