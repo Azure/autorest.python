@@ -698,22 +698,22 @@ def build_list_containers_request(**kwargs: Any) -> HttpRequest:
                         "Metadata": {
                             "str": "str"  # Optional. Dictionary of :code:`<string>`.
                         },
-                        "Name": "str",
+                        "Name": "str",  # Required.
                         "Properties": {
-                            "Etag": "str",  # Properties of a container.
-                            "Last-Modified": "2020-02-20 00:00:00",  # Properties of a container.
-                            "LeaseDuration": "str",  # Optional. Properties of a container. Valid values are: "infinite", "fixed".
-                            "LeaseState": "str",  # Optional. Properties of a container. Valid values are: "available", "leased", "expired", "breaking", "broken".
-                            "LeaseStatus": "str",  # Optional. Properties of a container. Valid values are: "locked", "unlocked".
-                            "PublicAccess": "str"  # Optional. Properties of a container. Valid values are: "container", "blob".
+                            "Etag": "str",  # Required.
+                            "Last-Modified": "2020-02-20 00:00:00",  # Required.
+                            "LeaseDuration": "str",  # Optional. Possible values include: "infinite", "fixed".
+                            "LeaseState": "str",  # Optional. Possible values include: "available", "leased", "expired", "breaking", "broken".
+                            "LeaseStatus": "str",  # Optional. Possible values include: "locked", "unlocked".
+                            "PublicAccess": "str"  # Optional. Possible values include: "container", "blob".
                         }
                     }
                 ],
                 "Marker": "str",  # Optional.
-                "MaxResults": 0,
-                "NextMarker": "str",
-                "Prefix": "str",
-                "ServiceEndpoint": "str"
+                "MaxResults": 0,  # Required.
+                "NextMarker": "str",  # Required.
+                "Prefix": "str",  # Required.
+                "ServiceEndpoint": "str"  # Required.
             }
     """
 
@@ -751,43 +751,43 @@ def build_get_service_properties_request(**kwargs: Any) -> HttpRequest:
             response.json() == {
                 "Cors": [
                     {
-                        "AllowedHeaders": "str",  # the request headers that the origin domain may specify on the CORS request.
-                        "AllowedMethods": "str",  # The methods (HTTP request verbs) that the origin domain may use for a CORS request. (comma separated).
-                        "AllowedOrigins": "str",  # The origin domains that are permitted to make a request against the storage service via CORS. The origin domain is the domain from which the request originates. Note that the origin must be an exact case-sensitive match with the origin that the user age sends to the service. You can also use the wildcard character '*' to allow all origin domains to make requests via CORS.
-                        "ExposedHeaders": "str",  # The response headers that may be sent in the response to the CORS request and exposed by the browser to the request issuer.
-                        "MaxAgeInSeconds": 0  # The maximum amount time that a browser should cache the preflight OPTIONS request.
+                        "AllowedHeaders": "str",  # Required. the request headers that the origin domain may specify on the CORS request.
+                        "AllowedMethods": "str",  # Required. The methods (HTTP request verbs) that the origin domain may use for a CORS request. (comma separated).
+                        "AllowedOrigins": "str",  # Required. The origin domains that are permitted to make a request against the storage service via CORS. The origin domain is the domain from which the request originates. Note that the origin must be an exact case-sensitive match with the origin that the user age sends to the service. You can also use the wildcard character '*' to allow all origin domains to make requests via CORS.
+                        "ExposedHeaders": "str",  # Required. The response headers that may be sent in the response to the CORS request and exposed by the browser to the request issuer.
+                        "MaxAgeInSeconds": 0  # Required. The maximum amount time that a browser should cache the preflight OPTIONS request.
                     }
                 ],
                 "DefaultServiceVersion": "str",  # Optional. The default version to use for requests to the Blob service if an incoming request's version is not specified. Possible values include version 2008-10-27 and all more recent versions.
                 "DeleteRetentionPolicy": {
                     "Days": 0,  # Optional. Indicates the number of days that metrics or logging or soft-deleted data should be retained. All data older than this value will be deleted.
-                    "Enabled": bool  # Indicates whether a retention policy is enabled for the storage service.
+                    "Enabled": bool  # Required. Indicates whether a retention policy is enabled for the storage service.
                 },
                 "HourMetrics": {
-                    "Enabled": bool,  # Indicates whether metrics are enabled for the Blob service.
+                    "Enabled": bool,  # Required. Indicates whether metrics are enabled for the Blob service.
                     "IncludeAPIs": bool,  # Optional. Indicates whether metrics should generate summary statistics for called API operations.
                     "RetentionPolicy": {
                         "Days": 0,  # Optional. Indicates the number of days that metrics or logging or soft-deleted data should be retained. All data older than this value will be deleted.
-                        "Enabled": bool  # Indicates whether a retention policy is enabled for the storage service.
+                        "Enabled": bool  # Required. Indicates whether a retention policy is enabled for the storage service.
                     },
                     "Version": "str"  # Optional. The version of Storage Analytics to configure.
                 },
                 "Logging": {
-                    "Delete": bool,  # Indicates whether all delete requests should be logged.
-                    "Read": bool,  # Indicates whether all read requests should be logged.
+                    "Delete": bool,  # Required. Indicates whether all delete requests should be logged.
+                    "Read": bool,  # Required. Indicates whether all read requests should be logged.
                     "RetentionPolicy": {
                         "Days": 0,  # Optional. Indicates the number of days that metrics or logging or soft-deleted data should be retained. All data older than this value will be deleted.
-                        "Enabled": bool  # Indicates whether a retention policy is enabled for the storage service.
+                        "Enabled": bool  # Required. Indicates whether a retention policy is enabled for the storage service.
                     },
-                    "Version": "str",  # The version of Storage Analytics to configure.
-                    "Write": bool  # Indicates whether all write requests should be logged.
+                    "Version": "str",  # Required. The version of Storage Analytics to configure.
+                    "Write": bool  # Required. Indicates whether all write requests should be logged.
                 },
                 "MinuteMetrics": {
-                    "Enabled": bool,  # Indicates whether metrics are enabled for the Blob service.
+                    "Enabled": bool,  # Required. Indicates whether metrics are enabled for the Blob service.
                     "IncludeAPIs": bool,  # Optional. Indicates whether metrics should generate summary statistics for called API operations.
                     "RetentionPolicy": {
                         "Days": 0,  # Optional. Indicates the number of days that metrics or logging or soft-deleted data should be retained. All data older than this value will be deleted.
-                        "Enabled": bool  # Indicates whether a retention policy is enabled for the storage service.
+                        "Enabled": bool  # Required. Indicates whether a retention policy is enabled for the storage service.
                     },
                     "Version": "str"  # Optional. The version of Storage Analytics to configure.
                 }
@@ -867,11 +867,11 @@ def build_get_acls_request(**kwargs: Any) -> HttpRequest:
             response.json() == [
                 {
                     "AccessPolicy": {
-                        "Expiry": "2020-02-20 00:00:00",  # the date-time the policy expires.
-                        "Permission": "str",  # the permissions for the acl policy.
-                        "Start": "2020-02-20 00:00:00"  # the date-time the policy is active.
+                        "Expiry": "2020-02-20 00:00:00",  # Required. the date-time the policy expires.
+                        "Permission": "str",  # Required. the permissions for the acl policy.
+                        "Start": "2020-02-20 00:00:00"  # Required. the date-time the policy is active.
                     },
-                    "Id": "str"  # a unique id.
+                    "Id": "str"  # Required. a unique id.
                 }
             ]
     """
@@ -950,56 +950,56 @@ def build_list_blobs_request(**kwargs: Any) -> HttpRequest:
                 "Blobs": {
                     "Blob": [
                         {
-                            "Deleted": bool,
+                            "Deleted": bool,  # Required.
                             "Metadata": {
                                 "str": "str"  # Optional. Dictionary of :code:`<string>`.
                             },
-                            "Name": "str",
+                            "Name": "str",  # Required.
                             "Properties": {
-                                "AccessTier": "str",  # Optional. Properties of a blob. Valid values are: "P4", "P6", "P10", "P20", "P30", "P40", "P50", "Hot", "Cool", "Archive".
-                                "AccessTierInferred": bool,  # Optional. Properties of a blob.
-                                "ArchiveStatus": "str",  # Optional. Properties of a blob. Valid values are: "rehydrate-pending-to-hot", "rehydrate-pending-to-cool".
-                                "BlobType": "str",  # Optional. Properties of a blob. Valid values are: "BlockBlob", "PageBlob", "AppendBlob".
-                                "Cache-Control": "str",  # Optional. Properties of a blob.
-                                "Content-Disposition": "str",  # Optional. Properties of a blob.
-                                "Content-Encoding": "str",  # Optional. Properties of a blob.
-                                "Content-Language": "str",  # Optional. Properties of a blob.
+                                "AccessTier": "str",  # Optional. Possible values include: "P4", "P6", "P10", "P20", "P30", "P40", "P50", "Hot", "Cool", "Archive".
+                                "AccessTierInferred": bool,  # Optional. Required. Properties of a blob.
+                                "ArchiveStatus": "str",  # Optional. Possible values include: "rehydrate-pending-to-hot", "rehydrate-pending-to-cool".
+                                "BlobType": "str",  # Optional. Possible values include: "BlockBlob", "PageBlob", "AppendBlob".
+                                "Cache-Control": "str",  # Optional. Required. Properties of a blob.
+                                "Content-Disposition": "str",  # Optional. Required. Properties of a blob.
+                                "Content-Encoding": "str",  # Optional. Required. Properties of a blob.
+                                "Content-Language": "str",  # Optional. Required. Properties of a blob.
                                 "Content-Length": 0.0,  # Optional. Size in bytes.
-                                "Content-MD5": "str",  # Optional. Properties of a blob.
-                                "Content-Type": "str",  # Optional. Properties of a blob.
-                                "CopyCompletionTime": "2020-02-20 00:00:00",  # Optional. Properties of a blob.
-                                "CopyId": "str",  # Optional. Properties of a blob.
-                                "CopyProgress": "str",  # Optional. Properties of a blob.
-                                "CopySource": "str",  # Optional. Properties of a blob.
-                                "CopyStatus": "str",  # Optional. Properties of a blob. Valid values are: "pending", "success", "aborted", "failed".
-                                "CopyStatusDescription": "str",  # Optional. Properties of a blob.
-                                "DeletedTime": "2020-02-20 00:00:00",  # Optional. Properties of a blob.
-                                "DestinationSnapshot": "str",  # Optional. Properties of a blob.
-                                "Etag": "str",  # Properties of a blob.
-                                "IncrementalCopy": bool,  # Optional. Properties of a blob.
-                                "Last-Modified": "2020-02-20 00:00:00",  # Properties of a blob.
-                                "LeaseDuration": "str",  # Optional. Properties of a blob. Valid values are: "infinite", "fixed".
-                                "LeaseState": "str",  # Optional. Properties of a blob. Valid values are: "available", "leased", "expired", "breaking", "broken".
-                                "LeaseStatus": "str",  # Optional. Properties of a blob. Valid values are: "locked", "unlocked".
-                                "RemainingRetentionDays": 0,  # Optional. Properties of a blob.
-                                "ServerEncrypted": bool,  # Optional. Properties of a blob.
-                                "x-ms-blob-sequence-number": 0  # Optional. Properties of a blob.
+                                "Content-MD5": "str",  # Optional. Required. Properties of a blob.
+                                "Content-Type": "str",  # Optional. Required. Properties of a blob.
+                                "CopyCompletionTime": "2020-02-20 00:00:00",  # Optional. Required. Properties of a blob.
+                                "CopyId": "str",  # Optional. Required. Properties of a blob.
+                                "CopyProgress": "str",  # Optional. Required. Properties of a blob.
+                                "CopySource": "str",  # Optional. Required. Properties of a blob.
+                                "CopyStatus": "str",  # Optional. Possible values include: "pending", "success", "aborted", "failed".
+                                "CopyStatusDescription": "str",  # Optional. Required. Properties of a blob.
+                                "DeletedTime": "2020-02-20 00:00:00",  # Optional. Required. Properties of a blob.
+                                "DestinationSnapshot": "str",  # Optional. Required. Properties of a blob.
+                                "Etag": "str",  # Required.
+                                "IncrementalCopy": bool,  # Optional. Required. Properties of a blob.
+                                "Last-Modified": "2020-02-20 00:00:00",  # Required.
+                                "LeaseDuration": "str",  # Optional. Possible values include: "infinite", "fixed".
+                                "LeaseState": "str",  # Optional. Possible values include: "available", "leased", "expired", "breaking", "broken".
+                                "LeaseStatus": "str",  # Optional. Possible values include: "locked", "unlocked".
+                                "RemainingRetentionDays": 0,  # Optional. Required. Properties of a blob.
+                                "ServerEncrypted": bool,  # Optional. Required. Properties of a blob.
+                                "x-ms-blob-sequence-number": 0  # Optional. Required. Properties of a blob.
                             },
-                            "Snapshot": "str"
+                            "Snapshot": "str"  # Required.
                         }
                     ],
                     "BlobPrefix": [
                         {
-                            "Name": "str"
+                            "Name": "str"  # Required.
                         }
                     ]
                 },
-                "ContainerName": "str",
-                "Delimiter": "str",
-                "Marker": "str",
-                "MaxResults": 0,
-                "NextMarker": "str",
-                "Prefix": "str",
+                "ContainerName": "str",  # Required.
+                "Delimiter": "str",  # Required.
+                "Marker": "str",  # Required.
+                "MaxResults": 0,  # Required.
+                "NextMarker": "str",  # Required.
+                "Prefix": "str",  # Required.
                 "ServiceEndpoint": "str"  # Optional.
             }
     """

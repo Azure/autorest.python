@@ -29,7 +29,7 @@ def build_get_valid_request(**kwargs: Any) -> HttpRequest:
 
             # response body for status code(s): 200
             response.json() == {
-                "length": 0.0,
+                "length": 0.0,  # Required.
                 "siblings": [
                     ...
                 ],
@@ -177,7 +177,7 @@ def build_put_valid_request(*, json: Any = None, content: Any = None, **kwargs: 
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "length": 0.0,
+                "length": 0.0,  # Required.
                 "siblings": [
                     ...
                 ],

@@ -906,7 +906,7 @@ def build_get_enum_valid_request(**kwargs: Any) -> HttpRequest:
 
             # response body for status code(s): 200
             response.json() == [
-                "str"  # Optional.  Valid values are: "foo1", "foo2", "foo3".
+                "str"  # Optional.
             ]
     """
 
@@ -943,7 +943,7 @@ def build_put_enum_valid_request(*, json: Any = None, content: Any = None, **kwa
 
             # JSON input template you can fill out and use as your body input.
             json = [
-                "str"  # Optional.  Valid values are: "foo1", "foo2", "foo3".
+                "str"  # Optional.
             ]
     """
 
@@ -978,7 +978,7 @@ def build_get_string_enum_valid_request(**kwargs: Any) -> HttpRequest:
 
             # response body for status code(s): 200
             response.json() == [
-                "str"  # Optional.  Valid values are: "foo1", "foo2", "foo3".
+                "str"  # Optional.
             ]
     """
 
@@ -1015,7 +1015,7 @@ def build_put_string_enum_valid_request(*, json: Any = None, content: Any = None
 
             # JSON input template you can fill out and use as your body input.
             json = [
-                "str"  # Optional.  Valid values are: "foo1", "foo2", "foo3".
+                "str"  # Optional.
             ]
     """
 

@@ -111,7 +111,7 @@ class IntOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == 0  # Optional.  Valid values are: 200, 403, 405, 406, 429.
+                response.json() == 0  # Optional.
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[int]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -223,7 +223,7 @@ class FloatOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == 0.0  # Optional.  Valid values are: 200.4, 403.4, 405.3, 406.2, 429.1.
+                response.json() == 0.0  # Optional.
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[float]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}

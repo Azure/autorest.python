@@ -143,7 +143,7 @@ def _build_flags(
         generation_section = "vanilla"
     else:
         generation_section = "azure"
-    namespace = _OVERWRITE_DEFAULT_NAMESPACE.get(package_name, package_name.lower())
+    namespace = kwargs.pop("namespace", _OVERWRITE_DEFAULT_NAMESPACE.get(package_name, package_name.lower()))
     low_level_client = kwargs.pop("low_level_client", False)
     version_tolerant = kwargs.pop("version_tolerant", False)
     if low_level_client:
@@ -340,6 +340,7 @@ def regenerate_legacy(c, swagger_name=None, debug=False):
         regenerate_custom_poller_pager_legacy(c, debug)
         regenerate_samples(c, debug)
         regenerate_with_python3_operation_files(c, debug)
+        regenerate_python3_only(c, debug)
 
 @task
 def regenerate(c, swagger_name=None, debug=False):
@@ -360,6 +361,7 @@ def regenerate_version_tolerant(c, swagger_name=None, debug=False):
     regenerate_azure_arm_version_tolerant(c, swagger_name, debug)
     if not swagger_name:
         regenerate_custom_poller_pager_version_tolerant(c, debug)
+        regenerate_python3_only(c, debug, version_tolerant=True)
 
 @task
 def test(c):
@@ -455,3 +457,13 @@ def regenerate_with_python3_operation_files(c, debug=False):
     mapping = {'BodyArrayWithPythonThreeOperationFiles': 'body-array.json'}
     override_flags = {"add-python3-operation-files": True}
     _regenerate(mapping, debug, swagger_group=_SwaggerGroup.VANILLA, override_flags=override_flags)
+
+@task
+def regenerate_python3_only(c, debug=False, version_tolerant=False):
+    mapping = {'BodyComplexPythonThreeOnly': 'body-complex.json'}
+    override_flags = {
+        "python3-only": True,
+        "namespace": "bodycomplexpython3only",
+        "package-name": "bodycomplexpython3only",
+    }
+    _regenerate(mapping, debug, swagger_group=_SwaggerGroup.VANILLA, override_flags=override_flags, version_tolerant=version_tolerant)

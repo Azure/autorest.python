@@ -76,9 +76,10 @@ class JinjaSerializer:
         # Write the models folder
         models_path = namespace_path / Path("models")
         if code_model.schemas:
-            self._autorestapi.write_file(
-                models_path / Path("_models.py"), ModelGenericSerializer(code_model=code_model, env=env).serialize()
-            )
+            if not code_model.options['python_3_only']:
+                self._autorestapi.write_file(
+                    models_path / Path("_models.py"), ModelGenericSerializer(code_model=code_model, env=env).serialize()
+                )
             self._autorestapi.write_file(
                 models_path / Path("_models_py3.py"), ModelPython3Serializer(code_model=code_model, env=env).serialize()
             )
@@ -149,17 +150,18 @@ class JinjaSerializer:
         filename: str
     ) -> None:
         # write sync operation group and operation files
-        operation_group_serializer = OperationGroupSerializer(
-            code_model=code_model,
-            env=env,
-            operation_groups=operation_groups,
-            async_mode=False,
-            is_python_3_file=False,
-        )
-        self._autorestapi.write_file(
-            namespace_path / Path(f"operations") / Path(f"{filename}.py"),
-            operation_group_serializer.serialize(),
-        )
+        if not code_model.options['python_3_only'] and not code_model.options["add_python_3_operation_files"]:
+            operation_group_serializer = OperationGroupSerializer(
+                code_model=code_model,
+                env=env,
+                operation_groups=operation_groups,
+                async_mode=False,
+                is_python_3_file=False,
+            )
+            self._autorestapi.write_file(
+                namespace_path / Path(f"operations") / Path(f"{filename}.py"),
+                operation_group_serializer.serialize(),
+            )
 
         if not code_model.options["no_async"]:
             # write async operation group and operation files

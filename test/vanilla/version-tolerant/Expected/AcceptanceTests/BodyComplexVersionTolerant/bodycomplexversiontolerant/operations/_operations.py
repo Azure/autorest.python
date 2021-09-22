@@ -1264,7 +1264,7 @@ class BasicOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "color": "str",  # Optional.  Valid values are: "cyan", "Magenta", "YELLOW", "blacK".
+                    "color": "str",  # Optional. Possible values include: "cyan", "Magenta", "YELLOW", "blacK".
                     "id": 0,  # Optional. Basic Id.
                     "name": "str"  # Optional. Name property with a very long description that does not fit on a single line and a line break.
                 }
@@ -1317,7 +1317,7 @@ class BasicOperations(object):
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "color": "str",  # Optional.  Valid values are: "cyan", "Magenta", "YELLOW", "blacK".
+                    "color": "str",  # Optional. Possible values include: "cyan", "Magenta", "YELLOW", "blacK".
                     "id": 0,  # Optional. Basic Id.
                     "name": "str"  # Optional. Name property with a very long description that does not fit on a single line and a line break.
                 }
@@ -1365,7 +1365,7 @@ class BasicOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "color": "str",  # Optional.  Valid values are: "cyan", "Magenta", "YELLOW", "blacK".
+                    "color": "str",  # Optional. Possible values include: "cyan", "Magenta", "YELLOW", "blacK".
                     "id": 0,  # Optional. Basic Id.
                     "name": "str"  # Optional. Name property with a very long description that does not fit on a single line and a line break.
                 }
@@ -1414,7 +1414,7 @@ class BasicOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "color": "str",  # Optional.  Valid values are: "cyan", "Magenta", "YELLOW", "blacK".
+                    "color": "str",  # Optional. Possible values include: "cyan", "Magenta", "YELLOW", "blacK".
                     "id": 0,  # Optional. Basic Id.
                     "name": "str"  # Optional. Name property with a very long description that does not fit on a single line and a line break.
                 }
@@ -1463,7 +1463,7 @@ class BasicOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "color": "str",  # Optional.  Valid values are: "cyan", "Magenta", "YELLOW", "blacK".
+                    "color": "str",  # Optional. Possible values include: "cyan", "Magenta", "YELLOW", "blacK".
                     "id": 0,  # Optional. Basic Id.
                     "name": "str"  # Optional. Name property with a very long description that does not fit on a single line and a line break.
                 }
@@ -1512,7 +1512,7 @@ class BasicOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "color": "str",  # Optional.  Valid values are: "cyan", "Magenta", "YELLOW", "blacK".
+                    "color": "str",  # Optional. Possible values include: "cyan", "Magenta", "YELLOW", "blacK".
                     "id": 0,  # Optional. Basic Id.
                     "name": "str"  # Optional. Name property with a very long description that does not fit on a single line and a line break.
                 }
@@ -3417,7 +3417,7 @@ class PolymorphismOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "length": 0.0,
+                    "length": 0.0,  # Required.
                     "siblings": [
                         ...
                     ],
@@ -3507,7 +3507,7 @@ class PolymorphismOperations(object):
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "length": 0.0,
+                    "length": 0.0,  # Required.
                     "siblings": [
                         ...
                     ],
@@ -3752,11 +3752,11 @@ class PolymorphismOperations(object):
                 # response body for status code(s): 200
                 response.json() == {
                     "iswild": bool,  # Optional.
-                    "length": 0.0,
+                    "length": 0.0,  # Required.
                     "location": "str",  # Optional.
                     "siblings": [
                         {
-                            "length": 0.0,
+                            "length": 0.0,  # Required.
                             "siblings": [
                                 ...
                             ],
@@ -3820,11 +3820,11 @@ class PolymorphismOperations(object):
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
                     "iswild": bool,  # Optional.
-                    "length": 0.0,
+                    "length": 0.0,  # Required.
                     "location": "str",  # Optional.
                     "siblings": [
                         {
-                            "length": 0.0,
+                            "length": 0.0,  # Required.
                             "siblings": [
                                 ...
                             ],
@@ -3886,11 +3886,11 @@ class PolymorphismOperations(object):
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
                     "iswild": bool,  # Optional.
-                    "length": 0.0,
+                    "length": 0.0,  # Required.
                     "location": "str",  # Optional.
                     "siblings": [
                         {
-                            "length": 0.0,
+                            "length": 0.0,  # Required.
                             "siblings": [
                                 ...
                             ],
@@ -3905,11 +3905,11 @@ class PolymorphismOperations(object):
                 # response body for status code(s): 200
                 response.json() == {
                     "iswild": bool,  # Optional.
-                    "length": 0.0,
+                    "length": 0.0,  # Required.
                     "location": "str",  # Optional.
                     "siblings": [
                         {
-                            "length": 0.0,
+                            "length": 0.0,  # Required.
                             "siblings": [
                                 ...
                             ],
@@ -4004,7 +4004,7 @@ class PolymorphismOperations(object):
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "length": 0.0,
+                    "length": 0.0,  # Required.
                     "siblings": [
                         ...
                     ],
@@ -4074,7 +4074,7 @@ class PolymorphicrecursiveOperations(object):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "length": 0.0,
+                    "length": 0.0,  # Required.
                     "siblings": [
                         ...
                     ],
@@ -4184,7 +4184,7 @@ class PolymorphicrecursiveOperations(object):
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "length": 0.0,
+                    "length": 0.0,  # Required.
                     "siblings": [
                         ...
                     ],

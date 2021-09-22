@@ -50,7 +50,7 @@ def build_list_request(
                             "localizedValue": "str",  # Optional. Gets a localized string describing the resource name.
                             "value": "str"  # Optional. Gets a string describing the resource name.
                         },
-                        "unit": "str"  # Optional. Gets the unit of measurement. Valid values are: "Count", "Bytes", "Seconds", "Percent", "CountsPerSecond", "BytesPerSecond". 
+                        "unit": "str"  # Optional. Gets the unit of measurement. Possible values include: "Count", "Bytes", "Seconds", "Percent", "CountsPerSecond", "BytesPerSecond".
                     }
                 ]
             }

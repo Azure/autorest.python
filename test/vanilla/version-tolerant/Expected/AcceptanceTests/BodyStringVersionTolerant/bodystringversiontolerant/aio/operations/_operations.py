@@ -587,7 +587,7 @@ class EnumOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == "str"  # Optional.  Valid values are: "red color", "green-color", "blue_color".
+                response.json() == "str"  # Optional.
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -671,7 +671,7 @@ class EnumOperations:
             .. code-block:: python
 
                 # response body for status code(s): 200
-                response.json() == "str"  # Optional.  Valid values are: "red color", "green-color", "blue_color".
+                response.json() == "str"  # Optional.
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -756,7 +756,7 @@ class EnumOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "ColorConstant": "green-color",  # Default value is "green-color". Referenced Color Constant Description.
+                    "ColorConstant": "green-color",  # Default value is "green-color". Referenced Color Constant Description. Has constant value: "green-color".
                     "field1": "str"  # Optional. Sample string.
                 }
         """
@@ -805,7 +805,7 @@ class EnumOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 enum_string_body = {
-                    "ColorConstant": "green-color",  # Default value is "green-color". Referenced Color Constant Description.
+                    "ColorConstant": "green-color",  # Default value is "green-color". Referenced Color Constant Description. Has constant value: "green-color".
                     "field1": "str"  # Optional. Sample string.
                 }
         """

@@ -13,10 +13,10 @@ import msrest.serialization
 class Error(msrest.serialization.Model):
     """Error.
 
-    :keyword status:
-    :paramtype status: int
-    :keyword message:
-    :paramtype message: str
+    :ivar status:
+    :vartype status: int
+    :ivar message:
+    :vartype message: str
     """
 
     _attribute_map = {
@@ -25,6 +25,12 @@ class Error(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword status:
+        :paramtype status: int
+        :keyword message:
+        :paramtype message: str
+        """
         super(Error, self).__init__(**kwargs)
         self.status = kwargs.get("status", None)
         self.message = kwargs.get("message", None)
@@ -33,10 +39,10 @@ class Error(msrest.serialization.Model):
 class Widget(msrest.serialization.Model):
     """Widget.
 
-    :keyword integer:
-    :paramtype integer: int
-    :keyword string:
-    :paramtype string: str
+    :ivar integer:
+    :vartype integer: int
+    :ivar string:
+    :vartype string: str
     """
 
     _attribute_map = {
@@ -45,6 +51,12 @@ class Widget(msrest.serialization.Model):
     }
 
     def __init__(self, **kwargs):
+        """
+        :keyword integer:
+        :paramtype integer: int
+        :keyword string:
+        :paramtype string: str
+        """
         super(Widget, self).__init__(**kwargs)
         self.integer = kwargs.get("integer", None)
         self.string = kwargs.get("string", None)

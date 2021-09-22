@@ -15,10 +15,10 @@ import msrest.serialization
 class Error(msrest.serialization.Model):
     """Error.
 
-    :keyword status:
-    :paramtype status: int
-    :keyword message:
-    :paramtype message: str
+    :ivar status:
+    :vartype status: int
+    :ivar message:
+    :vartype message: str
     """
 
     _attribute_map = {
@@ -27,6 +27,12 @@ class Error(msrest.serialization.Model):
     }
 
     def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
+        """
+        :keyword status:
+        :paramtype status: int
+        :keyword message:
+        :paramtype message: str
+        """
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
@@ -35,10 +41,10 @@ class Error(msrest.serialization.Model):
 class Product(msrest.serialization.Model):
     """Product.
 
-    :keyword integer:
-    :paramtype integer: int
-    :keyword string:
-    :paramtype string: str
+    :ivar integer:
+    :vartype integer: int
+    :ivar string:
+    :vartype string: str
     """
 
     _attribute_map = {
@@ -47,6 +53,12 @@ class Product(msrest.serialization.Model):
     }
 
     def __init__(self, *, integer: Optional[int] = None, string: Optional[str] = None, **kwargs):
+        """
+        :keyword integer:
+        :paramtype integer: int
+        :keyword string:
+        :paramtype string: str
+        """
         super(Product, self).__init__(**kwargs)
         self.integer = integer
         self.string = string

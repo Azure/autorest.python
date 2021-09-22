@@ -13,10 +13,10 @@ import msrest.serialization
 class Error(msrest.serialization.Model):
     """Error.
 
-    :keyword status:
-    :paramtype status: int
-    :keyword message:
-    :paramtype message: str
+    :ivar status:
+    :vartype status: int
+    :ivar message:
+    :vartype message: str
     """
 
     _attribute_map = {
@@ -28,6 +28,12 @@ class Error(msrest.serialization.Model):
         self,
         **kwargs
     ):
+        """
+        :keyword status:
+        :paramtype status: int
+        :keyword message:
+        :paramtype message: str
+        """
         super(Error, self).__init__(**kwargs)
         self.status = kwargs.get('status', None)
         self.message = kwargs.get('message', None)
@@ -36,10 +42,10 @@ class Error(msrest.serialization.Model):
 class PagingResult(msrest.serialization.Model):
     """PagingResult.
 
-    :keyword values:
-    :paramtype values: list[~multiapi.v0.models.Product]
-    :keyword next_link:
-    :paramtype next_link: str
+    :ivar values:
+    :vartype values: list[~multiapi.v0.models.Product]
+    :ivar next_link:
+    :vartype next_link: str
     """
 
     _attribute_map = {
@@ -51,6 +57,12 @@ class PagingResult(msrest.serialization.Model):
         self,
         **kwargs
     ):
+        """
+        :keyword values:
+        :paramtype values: list[~multiapi.v0.models.Product]
+        :keyword next_link:
+        :paramtype next_link: str
+        """
         super(PagingResult, self).__init__(**kwargs)
         self.values = kwargs.get('values', None)
         self.next_link = kwargs.get('next_link', None)
@@ -59,8 +71,8 @@ class PagingResult(msrest.serialization.Model):
 class Product(msrest.serialization.Model):
     """Product.
 
-    :keyword id:
-    :paramtype id: int
+    :ivar id:
+    :vartype id: int
     """
 
     _attribute_map = {
@@ -71,5 +83,9 @@ class Product(msrest.serialization.Model):
         self,
         **kwargs
     ):
+        """
+        :keyword id:
+        :paramtype id: int
+        """
         super(Product, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
