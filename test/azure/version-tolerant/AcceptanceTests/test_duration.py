@@ -24,6 +24,7 @@
 #
 # --------------------------------------------------------------------------
 import isodate
+import sys
 from datetime import timedelta
 from serializer import serialize_duration, deserialize_duration
 
