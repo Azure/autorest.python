@@ -48,9 +48,14 @@ steps:
     displayName: 'Install Env Specific Reqs in Target PyVersion $(PythonVersion)'
 
   - script: |
-      cd $(TestFolder)/azure
+      cd $(TestFolder)/azure/legacy
       tox -e ci
-    displayName: 'Execute "azure" Tests - Python $(PythonVersion)'
+    displayName: 'Execute legacy "azure" Tests - Python $(PythonVersion)'
+    
+  - script: |
+      cd $(TestFolder)/azure/version-tolerant
+      tox -e ci
+    displayName: 'Execute version tolerant "azure" Tests - Python $(PythonVersion)'
 
   - script: |
       export RELEASE_VERSION=$(node -p -e "require('./package.json').version")
