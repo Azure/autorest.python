@@ -52,7 +52,7 @@ def test_operation_groups():
     from bodydurationversiontolerant.operations import DurationOperations
 
     if sys.version_info < (3,0):
-        with pytest.raises(ImportError):
+        with pytest.raises(SyntaxError):
             from bodydurationversiontolerant.operations import _operations_py3
 
         from bodydurationversiontolerant.operations._operations import DurationOperations as DurationOperationsPy2
@@ -61,5 +61,5 @@ def test_operation_groups():
     else:
         from bodydurationversiontolerant.operations import _operations_py3
 
-        from bodydurationversiontolerant.operations._operations import DurationOperations as DurationOperationsPy3
+        from bodydurationversiontolerant.operations._operations_py3 import DurationOperations as DurationOperationsPy3
         assert DurationOperations == DurationOperationsPy3

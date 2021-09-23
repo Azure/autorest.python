@@ -234,10 +234,10 @@ def test_operation_groups():
     from urlmulticollectionformatversiontolerant.operations import QueriesOperations as MultiCollectionFormatQueriesOperations
 
     if sys.version_info < (3,0):
-        with pytest.raises(ImportError):
+        with pytest.raises(SyntaxError):
             from urlversiontolerant.operations import _operations_py3
 
-        with pytest.raises(ImportError):
+        with pytest.raises(SyntaxError):
             from urlmulticollectionformatversiontolerant.operations import _operations_py3
 
         from urlversiontolerant.operations._operations import QueriesOperations as QueriesOperationsPy2
