@@ -794,7 +794,6 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
 
     def response_headers_and_deserialization(
         self,
-        builder: BuilderType,
         response: SchemaResponse,
     ) -> List[str]:
         retval: List[str] = [
@@ -863,12 +862,12 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
                         retval.append(f"if response.status_code == {status_code}:")
                         retval.extend([
                             f"    {line}"
-                            for line in self.response_headers_and_deserialization(builder, response)
+                            for line in self.response_headers_and_deserialization(response)
                         ])
                         retval.append("")
             else:
                 retval.extend(self.response_headers_and_deserialization(
-                    builder, builder.responses[0]
+                    builder.responses[0]
                 ))
                 retval.append("")
         retval.append("if cls:")
@@ -1251,7 +1250,7 @@ class _LROOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=
             retval.append("    response = pipeline_response.http_response")
             retval.extend([
                 f"    {line}"
-                for line in self.response_headers_and_deserialization(builder, builder.lro_response)
+                for line in self.response_headers_and_deserialization(builder.lro_response)
             ])
         retval.append("    if cls:")
         retval.append("        return cls(pipeline_response, {}, {})".format(
