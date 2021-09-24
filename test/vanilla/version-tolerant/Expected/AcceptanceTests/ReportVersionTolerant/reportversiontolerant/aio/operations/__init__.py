@@ -6,11 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._operations_py3 import AutoRestReportServiceOperationsMixin
-
-except (SyntaxError, ImportError):
-    from ._operations import AutoRestReportServiceOperationsMixin
+from ._operations import AutoRestReportServiceOperationsMixin
 
 __all__ = [
     "AutoRestReportServiceOperationsMixin",

@@ -6,23 +6,13 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._operations_py3 import HttpFailureOperations
-    from ._operations_py3 import HttpSuccessOperations
-    from ._operations_py3 import HttpRedirectsOperations
-    from ._operations_py3 import HttpClientFailureOperations
-    from ._operations_py3 import HttpServerFailureOperations
-    from ._operations_py3 import HttpRetryOperations
-    from ._operations_py3 import MultipleResponsesOperations
-
-except (SyntaxError, ImportError):
-    from ._operations import HttpFailureOperations
-    from ._operations import HttpSuccessOperations
-    from ._operations import HttpRedirectsOperations
-    from ._operations import HttpClientFailureOperations
-    from ._operations import HttpServerFailureOperations
-    from ._operations import HttpRetryOperations
-    from ._operations import MultipleResponsesOperations
+from ._operations import HttpFailureOperations
+from ._operations import HttpSuccessOperations
+from ._operations import HttpRedirectsOperations
+from ._operations import HttpClientFailureOperations
+from ._operations import HttpServerFailureOperations
+from ._operations import HttpRetryOperations
+from ._operations import MultipleResponsesOperations
 
 __all__ = [
     "HttpFailureOperations",

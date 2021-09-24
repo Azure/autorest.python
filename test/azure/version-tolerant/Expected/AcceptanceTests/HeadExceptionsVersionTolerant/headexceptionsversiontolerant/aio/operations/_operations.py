@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
-from ...operations._operations import (
+from ...operations._operations_py3 import (
     build_head_exception_head200_request,
     build_head_exception_head204_request,
     build_head_exception_head404_request,

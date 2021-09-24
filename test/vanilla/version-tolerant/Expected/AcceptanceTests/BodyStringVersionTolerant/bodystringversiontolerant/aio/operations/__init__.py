@@ -6,13 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._operations_py3 import StringOperations
-    from ._operations_py3 import EnumOperations
-
-except (SyntaxError, ImportError):
-    from ._operations import StringOperations
-    from ._operations import EnumOperations
+from ._operations import StringOperations
+from ._operations import EnumOperations
 
 __all__ = [
     "StringOperations",

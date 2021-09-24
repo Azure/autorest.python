@@ -7,10 +7,10 @@ from .{{ ("_operations" if code_model.options['combine_operation_files'] else op
 # coding=utf-8
 {{ code_model.options['license_header'] }}
 
-{% if code_model.options["python_3_only"] %}
-{{ operation_group_imports("_py3") }}
-{% elif not code_model.options["add_python_3_operation_files"] %}
+{% if (not code_model.options["add_python_3_operation_files"]) or async_mode %}
 {{ operation_group_imports() }}
+{% elif code_model.options["add_python_3_operation_files"] and code_model.options["python_3_only"] %}
+{{ operation_group_imports("_py3") }}
 {% else %}
 try:
     {{ operation_group_imports("_py3") | indent }}

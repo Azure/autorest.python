@@ -6,11 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._operations_py3 import Datetimerfc1123Operations
-
-except (SyntaxError, ImportError):
-    from ._operations import Datetimerfc1123Operations
+from ._operations import Datetimerfc1123Operations
 
 __all__ = [
     "Datetimerfc1123Operations",

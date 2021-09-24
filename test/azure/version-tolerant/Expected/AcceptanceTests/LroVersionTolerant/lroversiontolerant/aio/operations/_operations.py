@@ -25,7 +25,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
-from ...operations._operations import (
+from ...operations._operations_py3 import (
     build_lr_os_custom_header_post202_retry200_request_initial,
     build_lr_os_custom_header_post_async_retry_succeeded_request_initial,
     build_lr_os_custom_header_put201_creating_succeeded200_request_initial,

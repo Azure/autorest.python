@@ -24,7 +24,7 @@ from azure.core.polling.async_base_polling import AsyncLROBasePolling
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ...operations._operations import (
+from ...operations._operations_py3 import (
     build_poll_with_constant_parameterized_endpoints_request_initial,
     build_poll_with_parameterized_endpoints_request_initial,
 )

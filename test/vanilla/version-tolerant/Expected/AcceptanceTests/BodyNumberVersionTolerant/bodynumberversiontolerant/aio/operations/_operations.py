@@ -21,7 +21,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ...operations._operations import (
+from ...operations._operations_py3 import (
     build_number_get_big_decimal_negative_decimal_request,
     build_number_get_big_decimal_positive_decimal_request,
     build_number_get_big_decimal_request,

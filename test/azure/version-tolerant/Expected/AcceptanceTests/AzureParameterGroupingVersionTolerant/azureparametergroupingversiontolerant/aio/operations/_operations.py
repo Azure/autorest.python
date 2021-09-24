@@ -21,7 +21,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ...operations._operations import (
+from ...operations._operations_py3 import (
     build_parameter_grouping_post_multi_param_groups_request,
     build_parameter_grouping_post_optional_request,
     build_parameter_grouping_post_required_request,

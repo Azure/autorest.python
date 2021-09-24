@@ -22,7 +22,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ...operations._operations import (
+from ...operations._operations_py3 import (
     build_header_custom_request_id_request,
     build_header_param_bool_request,
     build_header_param_byte_request,

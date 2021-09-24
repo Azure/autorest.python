@@ -6,13 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._operations_py3 import ImplicitOperations
-    from ._operations_py3 import ExplicitOperations
-
-except (SyntaxError, ImportError):
-    from ._operations import ImplicitOperations
-    from ._operations import ExplicitOperations
+from ._operations import ImplicitOperations
+from ._operations import ExplicitOperations
 
 __all__ = [
     "ImplicitOperations",

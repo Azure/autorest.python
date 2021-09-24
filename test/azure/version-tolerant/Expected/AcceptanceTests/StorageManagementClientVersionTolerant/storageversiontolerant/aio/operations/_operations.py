@@ -27,7 +27,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
-from ...operations._operations import (
+from ...operations._operations_py3 import (
     build_storage_accounts_check_name_availability_request,
     build_storage_accounts_create_request_initial,
     build_storage_accounts_delete_request,

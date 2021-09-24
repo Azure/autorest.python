@@ -28,7 +28,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.tracing.decorator_async import distributed_trace_async
 from msrest import Serializer
 
-from ...operations._operations import (
+from ...operations._operations_py3 import (
     build_paging_first_response_empty_request,
     build_paging_get_multiple_pages_failure_request,
     build_paging_get_multiple_pages_failure_uri_request,

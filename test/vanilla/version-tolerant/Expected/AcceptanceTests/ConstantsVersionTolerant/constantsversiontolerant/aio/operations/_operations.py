@@ -21,7 +21,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ...operations._operations import (
+from ...operations._operations_py3 import (
     build_contants_put_client_constants_request,
     build_contants_put_model_as_string_no_required_one_value_default_request,
     build_contants_put_model_as_string_no_required_one_value_no_default_request,
