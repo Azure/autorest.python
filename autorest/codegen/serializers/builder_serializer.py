@@ -773,8 +773,9 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         if request_builder.parameters.has_body:
             for kwarg in builder.body_kwargs_to_pass_to_request_builder:
                 retval.append(f"    {kwarg}={kwarg},")
-        template_url = template_url or f"self.{builder.name}.metadata['url']"
-        retval.append(f"    template_url={template_url},")
+        if not self.code_model.options["version_tolerant"]:
+            template_url = template_url or f"self.{builder.name}.metadata['url']"
+            retval.append(f"    template_url={template_url},")
 
         convert_to_legacy = ""
         if not self.code_model.options["version_tolerant"] or builder.use_pipeline_transport:
@@ -1011,18 +1012,21 @@ class _PagingOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disab
         return f"# type: ClsType[{interior}]"
 
     def call_next_link_request_builder(self, builder: BuilderType) -> List[str]:
-        if builder.next_request_builder:
+        if builder.next_request_builder and not self.code_model.options["version_tolerant"]:
             request_builder = builder.next_request_builder
             template_url = f"'{request_builder.url}'"
         else:
             request_builder = builder.request_builder
             template_url = "next_link"
         request_builder = builder.next_request_builder or builder.request_builder
-        return self._call_request_builder_helper(
+        call_request_builder = self._call_request_builder_helper(
             builder,
             request_builder,
             template_url=template_url,
         )
+        if template_url == "next_link" and self.code_model.options["version_tolerant"]:
+            call_request_builder.append("request.url = next_link")
+        return call_request_builder
 
     def _prepare_request_callback(self, builder: BuilderType) -> List[str]:
         retval = ["def prepare_request(next_link=None):"]

@@ -17,4 +17,6 @@
     return {{ operation.get_pager(async_mode) }}(
         get_next, extract_data
     )
+{% if not code_model.options["version_tolerant"] %}
 {{ operation.python_name }}.metadata = {'url': '{{ request_builder.url|replace("'", "\\'") }}'}  # type: ignore
+{% endif %}

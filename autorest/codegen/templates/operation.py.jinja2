@@ -20,4 +20,6 @@
     {{ op_tools.serialize(operation_serializer.call_request_builder(operation)) | indent }}
     pipeline_response = {{ keywords.await }}self._client.send_request(request, {{ stream_request_parameter }}, _return_pipeline_response=True, **kwargs)
     {{ op_tools.serialize(operation_serializer.handle_response(operation)) | indent }}
+{% if not code_model.options["version_tolerant"] %}
 {{ operation.python_name }}.metadata = {'url': {{ keywords.escape_str(request_builder.url) }}}  # type: ignore
+{% endif %}

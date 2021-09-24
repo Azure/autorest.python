@@ -13,7 +13,9 @@
     {% endfor %}
 {% endif %}
     # Construct URL
-    url = kwargs.pop("template_url", {{ keywords.escape_str(request_builder.url) }})
+    {% set swagger_url_value = keywords.escape_str(request_builder.url) %}
+    {% set url_value = swagger_url_value if code_model.options["version_tolerant"] else 'kwargs.pop("template_url", ' + swagger_url_value + ')' %}
+    url = {{ url_value }}
 {% if request_builder.parameters.path %}
     {{ op_tools.serialize(request_builder_serializer.serialize_path(request_builder)) | indent }}
     url = _format_url_section(url, **path_format_arguments)
