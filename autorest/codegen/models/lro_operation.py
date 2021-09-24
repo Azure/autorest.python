@@ -45,7 +45,6 @@ class LROOperation(Operation):
         )
         self.lro_options = yaml_data.get("extensions", {}).get("x-ms-long-running-operation-options", {})
         self.name = "begin_" + self.name
-        self.use_pipeline_transport = True
 
     @property
     def lro_response(self) -> Optional[SchemaResponse]:
@@ -91,7 +90,6 @@ class LROOperation(Operation):
             want_tracing=False,
         )
         operation.request_builder = self.request_builder
-        operation.use_pipeline_transport = True
         return operation
 
     @property

@@ -503,7 +503,7 @@ class StorageAccountsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._create_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -515,8 +515,8 @@ class StorageAccountsOperations(object):
 
         deserialized = None
         if response.status_code == 200:
-            if response.body():
-                deserialized = _loads(response.body())
+            if response.content:
+                deserialized = response.json()
             else:
                 deserialized = None
 
@@ -642,8 +642,8 @@ class StorageAccountsOperations(object):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.body():
-                deserialized = _loads(response.body())
+            if response.content:
+                deserialized = response.json()
             else:
                 deserialized = None
             if cls:
@@ -1085,7 +1085,7 @@ class StorageAccountsOperations(object):
                 request = build_storage_accounts_list_request(
                     subscription_id=self._config.subscription_id,
                     template_url=self.list.metadata["url"],
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
@@ -1093,7 +1093,7 @@ class StorageAccountsOperations(object):
                 request = build_storage_accounts_list_request(
                     subscription_id=self._config.subscription_id,
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
@@ -1203,7 +1203,7 @@ class StorageAccountsOperations(object):
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
                     template_url=self.list_by_resource_group.metadata["url"],
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
@@ -1212,7 +1212,7 @@ class StorageAccountsOperations(object):
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
                 request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request

@@ -777,7 +777,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         retval.append(f"    template_url={template_url},")
 
         convert_to_legacy = ""
-        if not self.code_model.options["version_tolerant"] or builder.use_pipeline_transport:
+        if not self.code_model.options["version_tolerant"]:
             convert_to_legacy = "._to_pipeline_transport_request()"
         retval.append(f"){convert_to_legacy}")
         if builder.parameters.path:
@@ -819,14 +819,8 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
             else:
                 is_xml = any(["xml" in ct for ct in response.media_types])
                 deserialized_value = ""
-                if is_xml:
-                    deserialized_value = "ET.fromstring(response.text())"
-                elif builder.use_pipeline_transport:
-                    deserialized_value = "_loads(response.body())"
-                else:
-                    deserialized_value = "response.json()"
-                response_body = "response.body()" if builder.use_pipeline_transport else "response.content"
-                retval.append(f"if {response_body}:")
+                deserialized_value = "ET.fromstring(response.text())" if is_xml else "response.json()"
+                retval.append(f"if response.content:")
                 retval.append(f"    deserialized = {deserialized_value}")
                 retval.append("else:")
                 retval.append("    deserialized = None")
