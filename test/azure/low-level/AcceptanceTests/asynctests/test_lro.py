@@ -110,7 +110,7 @@ def get_poller(get_long_running_output, client):
 
     async def _callback(request, **kwargs):
         pipeline_response = await client.send_request(
-            request._to_pipeline_transport_request(),
+            request,
             _return_pipeline_response=True
         )
         pipeline_response.http_response.raise_for_status()
