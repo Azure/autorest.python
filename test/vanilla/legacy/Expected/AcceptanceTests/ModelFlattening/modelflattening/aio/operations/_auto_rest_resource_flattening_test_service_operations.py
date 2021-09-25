@@ -22,6 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._configuration import _convert_request
 from ...operations._auto_rest_resource_flattening_test_service_operations import (
     build_get_array_request,
     build_get_dictionary_request,
@@ -67,7 +68,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             content_type=content_type,
             json=json,
             template_url=self.put_array.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -100,7 +102,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
         request = build_get_array_request(
             template_url=self.get_array.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -151,7 +154,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             content_type=content_type,
             json=json,
             template_url=self.put_wrapped_array.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -185,7 +189,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
         request = build_get_wrapped_array_request(
             template_url=self.get_wrapped_array.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -235,7 +240,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             content_type=content_type,
             json=json,
             template_url=self.put_dictionary.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -268,7 +274,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
         request = build_get_dictionary_request(
             template_url=self.get_dictionary.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -318,7 +325,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             content_type=content_type,
             json=json,
             template_url=self.put_resource_collection.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -351,7 +359,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
         request = build_get_resource_collection_request(
             template_url=self.get_resource_collection.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -401,7 +410,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             content_type=content_type,
             json=json,
             template_url=self.put_simple_product.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -478,7 +488,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             content_type=content_type,
             json=json,
             template_url=self.post_flattened_simple_product.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -554,7 +565,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             content_type=content_type,
             json=json,
             template_url=self.put_simple_product_with_grouping.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

@@ -26,6 +26,7 @@ from azure.core.tracing.decorator import distributed_trace
 from msrest import Serializer
 
 from .. import models as _models
+from .._configuration import _convert_request
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -96,7 +97,8 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
 
         request = build_poll_with_parameterized_endpoints_request_initial(
             template_url=self._poll_with_parameterized_endpoints_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         path_format_arguments = {
             "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
@@ -205,7 +207,8 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
 
         request = build_poll_with_constant_parameterized_endpoints_request_initial(
             template_url=self._poll_with_constant_parameterized_endpoints_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         path_format_arguments = {
             "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),

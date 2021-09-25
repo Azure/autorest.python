@@ -25,6 +25,7 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 from msrest import Serializer
 
 from .. import models as _models
+from .._configuration import _convert_request
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -109,7 +110,8 @@ class UsageOperations(object):
         request = build_list_request(
             subscription_id=self._config.subscription_id,
             template_url=self.list.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

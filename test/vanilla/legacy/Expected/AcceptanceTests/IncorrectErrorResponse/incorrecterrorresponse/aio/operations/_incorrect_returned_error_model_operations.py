@@ -22,6 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._configuration import _convert_request
 from ...operations._incorrect_returned_error_model_operations import build_get_incorrect_error_from_server_request
 
 T = TypeVar("T")
@@ -45,7 +46,8 @@ class IncorrectReturnedErrorModelOperationsMixin:
 
         request = build_get_incorrect_error_from_server_request(
             template_url=self.get_incorrect_error_from_server.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

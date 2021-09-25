@@ -23,6 +23,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models
+from ..._configuration import _convert_request
 from ...operations._api_version_default_operations import (
     build_get_method_global_not_provided_valid_request,
     build_get_method_global_valid_request,
@@ -71,7 +72,8 @@ class ApiVersionDefaultOperations:
 
         request = build_get_method_global_valid_request(
             template_url=self.get_method_global_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -104,7 +106,8 @@ class ApiVersionDefaultOperations:
 
         request = build_get_method_global_not_provided_valid_request(
             template_url=self.get_method_global_not_provided_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -137,7 +140,8 @@ class ApiVersionDefaultOperations:
 
         request = build_get_path_global_valid_request(
             template_url=self.get_path_global_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -170,7 +174,8 @@ class ApiVersionDefaultOperations:
 
         request = build_get_swagger_global_valid_request(
             template_url=self.get_swagger_global_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

@@ -22,6 +22,8 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from msrest import Serializer
 
+from .._configuration import _convert_request
+
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Generic, Optional, TypeVar
@@ -65,7 +67,8 @@ class ParmaterizedEndpointClientOperationsMixin(object):
 
         request = build_get_request(
             template_url=self.get.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
         }

@@ -23,6 +23,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._configuration import _convert_request
 from ...operations._duration_operations import (
     build_get_invalid_request,
     build_get_null_request,
@@ -71,7 +72,8 @@ class DurationOperations:
 
         request = build_get_null_request(
             template_url=self.get_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -116,7 +118,8 @@ class DurationOperations:
             content_type=content_type,
             json=json,
             template_url=self.put_positive_duration.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -149,7 +152,8 @@ class DurationOperations:
 
         request = build_get_positive_duration_request(
             template_url=self.get_positive_duration.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -186,7 +190,8 @@ class DurationOperations:
 
         request = build_get_invalid_request(
             template_url=self.get_invalid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

@@ -24,6 +24,7 @@ from azure.core.tracing.decorator import distributed_trace
 from msrest import Serializer
 
 from .. import models as _models
+from .._configuration import _convert_request
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -127,7 +128,8 @@ class PathsOperations(object):
             subscription_id=self._config.subscription_id,
             key_version=key_version,
             template_url=self.get_empty.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         path_format_arguments = {
             "vault": self._serialize.url("vault", vault, "str", skip_quote=True),
             "secret": self._serialize.url("secret", secret, "str", skip_quote=True),

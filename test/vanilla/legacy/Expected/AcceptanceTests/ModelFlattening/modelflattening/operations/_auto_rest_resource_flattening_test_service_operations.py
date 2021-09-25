@@ -24,6 +24,7 @@ from azure.core.tracing.decorator import distributed_trace
 from msrest import Serializer
 
 from .. import models as _models
+from .._configuration import _convert_request
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -321,7 +322,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             content_type=content_type,
             json=json,
             template_url=self.put_array.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -355,7 +357,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         request = build_get_array_request(
             template_url=self.get_array.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -407,7 +410,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             content_type=content_type,
             json=json,
             template_url=self.put_wrapped_array.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -442,7 +446,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         request = build_get_wrapped_array_request(
             template_url=self.get_wrapped_array.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -493,7 +498,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             content_type=content_type,
             json=json,
             template_url=self.put_dictionary.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -527,7 +533,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         request = build_get_dictionary_request(
             template_url=self.get_dictionary.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -578,7 +585,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             content_type=content_type,
             json=json,
             template_url=self.put_resource_collection.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -612,7 +620,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         request = build_get_resource_collection_request(
             template_url=self.get_resource_collection.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -663,7 +672,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             content_type=content_type,
             json=json,
             template_url=self.put_simple_product.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -739,7 +749,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             content_type=content_type,
             json=json,
             template_url=self.post_flattened_simple_product.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -816,7 +827,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             content_type=content_type,
             json=json,
             template_url=self.put_simple_product_with_grouping.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

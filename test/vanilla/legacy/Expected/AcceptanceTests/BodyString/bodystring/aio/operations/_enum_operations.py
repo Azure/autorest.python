@@ -22,6 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._configuration import _convert_request
 from ...operations._enum_operations import (
     build_get_not_expandable_request,
     build_get_referenced_constant_request,
@@ -72,7 +73,8 @@ class EnumOperations:
 
         request = build_get_not_expandable_request(
             template_url=self.get_not_expandable.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -117,7 +119,8 @@ class EnumOperations:
             content_type=content_type,
             json=json,
             template_url=self.put_not_expandable.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -150,7 +153,8 @@ class EnumOperations:
 
         request = build_get_referenced_request(
             template_url=self.get_referenced.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -195,7 +199,8 @@ class EnumOperations:
             content_type=content_type,
             json=json,
             template_url=self.put_referenced.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -228,7 +233,8 @@ class EnumOperations:
 
         request = build_get_referenced_constant_request(
             template_url=self.get_referenced_constant.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -275,7 +281,8 @@ class EnumOperations:
             content_type=content_type,
             json=json,
             template_url=self.put_referenced_constant.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

@@ -17,6 +17,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models
+from ..._configuration import _convert_request
 from ...operations._multiapi_service_client_operations import build_test_different_calls_request, build_test_one_request
 
 T = TypeVar('T')
@@ -53,7 +54,8 @@ class MultiapiServiceClientOperationsMixin:
             id=id,
             message=message,
             template_url=self.test_one.metadata['url'],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -103,7 +105,8 @@ class MultiapiServiceClientOperationsMixin:
             greeting_in_english=greeting_in_english,
             greeting_in_chinese=greeting_in_chinese,
             template_url=self.test_different_calls.metadata['url'],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

@@ -26,6 +26,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from msrest import Serializer
 
 from ... import models as _models
+from ..._configuration import _convert_request
 from ...operations._paging_operations import (
     build_get_pages_partial_url_operation_next_request,
     build_get_pages_partial_url_operation_request,
@@ -79,7 +80,8 @@ class PagingOperations:
 
                 request = build_get_pages_partial_url_request(
                     template_url=self.get_pages_partial_url.metadata["url"],
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
                     "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
@@ -90,7 +92,8 @@ class PagingOperations:
 
                 request = build_get_pages_partial_url_request(
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
                     "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
@@ -149,7 +152,8 @@ class PagingOperations:
 
                 request = build_get_pages_partial_url_operation_request(
                     template_url=self.get_pages_partial_url_operation.metadata["url"],
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
                     "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
@@ -161,7 +165,8 @@ class PagingOperations:
                 request = build_get_pages_partial_url_operation_next_request(
                     next_link=next_link,
                     template_url="/paging/customurl/{nextLink}",
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
                     "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),

@@ -17,6 +17,7 @@ from azure.core.tracing.decorator import distributed_trace
 from msrest import Serializer
 
 from .. import models as _models
+from .._configuration import _convert_request
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -86,7 +87,8 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin(object):
         request = build_test_request(
             id=id,
             template_url=self.test.metadata['url'],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         path_format_arguments = {
             "Endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, 'str', skip_quote=True),
         }

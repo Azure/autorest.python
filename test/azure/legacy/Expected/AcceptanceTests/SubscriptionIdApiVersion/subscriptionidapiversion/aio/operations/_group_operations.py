@@ -23,6 +23,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models
+from ..._configuration import _convert_request
 from ...operations._group_operations import build_get_sample_resource_group_request
 
 T = TypeVar("T")
@@ -70,7 +71,8 @@ class GroupOperations:
             subscription_id=self._config.subscription_id,
             resource_group_name=resource_group_name,
             template_url=self.get_sample_resource_group.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

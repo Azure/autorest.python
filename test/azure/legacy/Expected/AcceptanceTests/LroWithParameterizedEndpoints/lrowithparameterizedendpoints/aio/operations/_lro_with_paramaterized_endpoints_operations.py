@@ -24,6 +24,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._configuration import _convert_request
 from ...operations._lro_with_paramaterized_endpoints_operations import (
     build_poll_with_constant_parameterized_endpoints_request_initial,
     build_poll_with_parameterized_endpoints_request_initial,
@@ -41,7 +42,8 @@ class LROWithParamaterizedEndpointsOperationsMixin:
 
         request = build_poll_with_parameterized_endpoints_request_initial(
             template_url=self._poll_with_parameterized_endpoints_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         path_format_arguments = {
             "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
@@ -144,7 +146,8 @@ class LROWithParamaterizedEndpointsOperationsMixin:
 
         request = build_poll_with_constant_parameterized_endpoints_request_initial(
             template_url=self._poll_with_constant_parameterized_endpoints_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         path_format_arguments = {
             "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),

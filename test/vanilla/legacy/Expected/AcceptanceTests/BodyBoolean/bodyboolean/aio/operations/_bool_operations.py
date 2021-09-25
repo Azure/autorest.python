@@ -22,6 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._configuration import _convert_request
 from ...operations._bool_operations import (
     build_get_false_request,
     build_get_invalid_request,
@@ -72,7 +73,8 @@ class BoolOperations:
 
         request = build_get_true_request(
             template_url=self.get_true.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -112,7 +114,8 @@ class BoolOperations:
         request = build_put_true_request(
             content_type=content_type,
             template_url=self.put_true.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -145,7 +148,8 @@ class BoolOperations:
 
         request = build_get_false_request(
             template_url=self.get_false.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -185,7 +189,8 @@ class BoolOperations:
         request = build_put_false_request(
             content_type=content_type,
             template_url=self.put_false.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -218,7 +223,8 @@ class BoolOperations:
 
         request = build_get_null_request(
             template_url=self.get_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -255,7 +261,8 @@ class BoolOperations:
 
         request = build_get_invalid_request(
             template_url=self.get_invalid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

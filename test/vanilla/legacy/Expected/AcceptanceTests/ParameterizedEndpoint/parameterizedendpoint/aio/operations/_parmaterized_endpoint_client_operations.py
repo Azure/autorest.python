@@ -21,6 +21,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
+from ..._configuration import _convert_request
 from ...operations._parmaterized_endpoint_client_operations import build_get_request
 
 T = TypeVar("T")
@@ -43,7 +44,8 @@ class ParmaterizedEndpointClientOperationsMixin:
 
         request = build_get_request(
             template_url=self.get.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
         }

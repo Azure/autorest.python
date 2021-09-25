@@ -26,6 +26,7 @@ from azure.mgmt.core.polling.arm_polling import ARMPolling
 from msrest import Serializer
 
 from .. import models as _models
+from .._configuration import _convert_request
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -176,7 +177,8 @@ class LROsCustomHeaderOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put_async_retry_succeeded_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -292,7 +294,8 @@ class LROsCustomHeaderOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put201_creating_succeeded200_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -398,7 +401,8 @@ class LROsCustomHeaderOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._post202_retry200_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -496,7 +500,8 @@ class LROsCustomHeaderOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._post_async_retry_succeeded_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

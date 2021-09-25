@@ -16,6 +16,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._configuration import _convert_request
 from ...operations._operation_group_two_operations import build_test_five_request, build_test_four_request
 
 T = TypeVar('T')
@@ -87,7 +88,8 @@ class OperationGroupTwoOperations:
             json=json,
             content=content,
             template_url=self.test_four.metadata['url'],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -125,7 +127,8 @@ class OperationGroupTwoOperations:
         
         request = build_test_five_request(
             template_url=self.test_five.metadata['url'],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

@@ -24,6 +24,7 @@ from azure.core.tracing.decorator import distributed_trace
 from msrest import Serializer
 
 from .. import models as _models
+from .._configuration import _convert_request
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -273,7 +274,8 @@ class PathItemsOperations(object):
             global_string_query=self._config.global_string_query,
             local_string_query=local_string_query,
             template_url=self.get_all_with_values.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -329,7 +331,8 @@ class PathItemsOperations(object):
             global_string_query=self._config.global_string_query,
             local_string_query=local_string_query,
             template_url=self.get_global_query_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -385,7 +388,8 @@ class PathItemsOperations(object):
             global_string_query=self._config.global_string_query,
             local_string_query=local_string_query,
             template_url=self.get_global_and_local_query_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -440,7 +444,8 @@ class PathItemsOperations(object):
             global_string_query=self._config.global_string_query,
             local_string_query=local_string_query,
             template_url=self.get_local_path_item_query_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

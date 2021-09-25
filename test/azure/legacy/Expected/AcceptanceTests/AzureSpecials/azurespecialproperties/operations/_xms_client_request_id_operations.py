@@ -24,6 +24,7 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 from msrest import Serializer
 
 from .. import models as _models
+from .._configuration import _convert_request
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -113,7 +114,8 @@ class XMsClientRequestIdOperations(object):
 
         request = build_get_request(
             template_url=self.get.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -153,7 +155,8 @@ class XMsClientRequestIdOperations(object):
         request = build_param_get_request(
             x_ms_client_request_id=x_ms_client_request_id,
             template_url=self.param_get.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

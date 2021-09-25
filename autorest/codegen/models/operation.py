@@ -233,6 +233,11 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
                 )
         if code_model.options["builders_visibility"] == "embedded" and not async_mode:
             file_import.merge(self.request_builder.imports())
+        if code_model.need_request_converter:
+            relative_path = "..." if async_mode else ".."
+            file_import.add_from_import(
+                f"{relative_path}_configuration", "_convert_request", ImportType.LOCAL
+            )
         return file_import
 
     def convert_multiple_media_type_parameters(self) -> None:

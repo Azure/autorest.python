@@ -22,6 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._configuration import _convert_request
 from ...operations._pet_operations import (
     build_do_something_request,
     build_get_pet_by_id_request,
@@ -80,7 +81,8 @@ class PetOperations:
         request = build_get_pet_by_id_request(
             pet_id=pet_id,
             template_url=self.get_pet_by_id.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -128,7 +130,8 @@ class PetOperations:
         request = build_do_something_request(
             what_action=what_action,
             template_url=self.do_something.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -177,7 +180,8 @@ class PetOperations:
         request = build_has_models_param_request(
             models=models,
             template_url=self.has_models_param.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

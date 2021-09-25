@@ -344,6 +344,17 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                     operation.convert_multiple_media_type_parameters()
 
     @property
+    def need_request_converter(self) -> bool:
+        if not self.options["show_operations"]:
+            return False
+        if not self.options["version_tolerant"]:
+            return True
+        for og in self.operation_groups:
+            if any(o for o in og.operations if o.use_pipeline_transport):
+                return True
+        return False
+
+    @property
     def has_lro_operations(self) -> bool:
         return any([
             isinstance(operation, LROOperation)

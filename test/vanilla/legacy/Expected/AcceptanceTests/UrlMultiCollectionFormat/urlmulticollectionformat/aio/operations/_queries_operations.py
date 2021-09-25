@@ -22,6 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._configuration import _convert_request
 from ...operations._queries_operations import (
     build_array_string_multi_empty_request,
     build_array_string_multi_null_request,
@@ -72,7 +73,8 @@ class QueriesOperations:
         request = build_array_string_multi_null_request(
             array_query=array_query,
             template_url=self.array_string_multi_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -108,7 +110,8 @@ class QueriesOperations:
         request = build_array_string_multi_empty_request(
             array_query=array_query,
             template_url=self.array_string_multi_empty.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -146,7 +149,8 @@ class QueriesOperations:
         request = build_array_string_multi_valid_request(
             array_query=array_query,
             template_url=self.array_string_multi_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

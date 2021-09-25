@@ -23,6 +23,7 @@ from azure.core.tracing.decorator import distributed_trace
 from msrest import Serializer
 
 from .. import models as _models
+from .._configuration import _convert_request
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -116,7 +117,8 @@ class AutoRestReportServiceOperationsMixin(object):
         request = build_get_report_request(
             qualifier=qualifier,
             template_url=self.get_report.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -161,7 +163,8 @@ class AutoRestReportServiceOperationsMixin(object):
         request = build_get_optional_report_request(
             qualifier=qualifier,
             template_url=self.get_optional_report.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

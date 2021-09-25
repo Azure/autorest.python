@@ -25,6 +25,7 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 from msrest import Serializer
 
 from .. import models as _models
+from .._configuration import _convert_request
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -267,7 +268,8 @@ class SkipUrlEncodingOperations(object):
         request = build_get_method_path_valid_request(
             unencoded_path_param=unencoded_path_param,
             template_url=self.get_method_path_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -306,7 +308,8 @@ class SkipUrlEncodingOperations(object):
         request = build_get_path_valid_request(
             unencoded_path_param=unencoded_path_param,
             template_url=self.get_path_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -340,7 +343,8 @@ class SkipUrlEncodingOperations(object):
 
         request = build_get_swagger_path_valid_request(
             template_url=self.get_swagger_path_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -379,7 +383,8 @@ class SkipUrlEncodingOperations(object):
         request = build_get_method_query_valid_request(
             q1=q1,
             template_url=self.get_method_query_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -418,7 +423,8 @@ class SkipUrlEncodingOperations(object):
         request = build_get_method_query_null_request(
             q1=q1,
             template_url=self.get_method_query_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -457,7 +463,8 @@ class SkipUrlEncodingOperations(object):
         request = build_get_path_query_valid_request(
             q1=q1,
             template_url=self.get_path_query_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -491,7 +498,8 @@ class SkipUrlEncodingOperations(object):
 
         request = build_get_swagger_query_valid_request(
             template_url=self.get_swagger_query_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

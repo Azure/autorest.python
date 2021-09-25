@@ -10,6 +10,7 @@ from typing import TYPE_CHECKING
 
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
+from azure.core.pipeline.transport import HttpRequest
 from azure.mgmt.core.policies import ARMChallengeAuthenticationPolicy, ARMHttpLoggingPolicy
 
 from ._version import VERSION
@@ -19,6 +20,14 @@ if TYPE_CHECKING:
     from typing import Any
 
     from azure.core.credentials import TokenCredential
+
+
+def _convert_request(request, files=None):
+    data = request.content if not files else None
+    request = HttpRequest(method=request.method, url=request.url, headers=request.headers, data=data)
+    if files:
+        request.set_formdata_body(files)
+    return request
 
 
 class StorageManagementClientConfiguration(Configuration):

@@ -22,6 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._configuration import _convert_request
 from ...operations._readonlyproperty_operations import build_get_valid_request, build_put_valid_request
 
 T = TypeVar("T")
@@ -65,7 +66,8 @@ class ReadonlypropertyOperations:
 
         request = build_get_valid_request(
             template_url=self.get_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -111,7 +113,8 @@ class ReadonlypropertyOperations:
             content_type=content_type,
             json=json,
             template_url=self.put_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

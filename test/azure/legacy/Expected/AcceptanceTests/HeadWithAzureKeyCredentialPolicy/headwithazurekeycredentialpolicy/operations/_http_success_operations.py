@@ -23,6 +23,8 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from msrest import Serializer
 
+from .._configuration import _convert_request
+
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Generic, Optional, TypeVar
@@ -111,7 +113,8 @@ class HttpSuccessOperations(object):
 
         request = build_head200_request(
             template_url=self.head200.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -145,7 +148,8 @@ class HttpSuccessOperations(object):
 
         request = build_head204_request(
             template_url=self.head204.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -179,7 +183,8 @@ class HttpSuccessOperations(object):
 
         request = build_head404_request(
             template_url=self.head404.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

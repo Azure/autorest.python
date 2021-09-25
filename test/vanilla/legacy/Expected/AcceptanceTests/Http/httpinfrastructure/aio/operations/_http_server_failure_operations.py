@@ -22,6 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._configuration import _convert_request
 from ...operations._http_server_failure_operations import (
     build_delete505_request,
     build_get501_request,
@@ -70,7 +71,8 @@ class HttpServerFailureOperations:
 
         request = build_head501_request(
             template_url=self.head501.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -103,7 +105,8 @@ class HttpServerFailureOperations:
 
         request = build_get501_request(
             template_url=self.get501.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -147,7 +150,8 @@ class HttpServerFailureOperations:
             content_type=content_type,
             json=json,
             template_url=self.post505.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -191,7 +195,8 @@ class HttpServerFailureOperations:
             content_type=content_type,
             json=json,
             template_url=self.delete505.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

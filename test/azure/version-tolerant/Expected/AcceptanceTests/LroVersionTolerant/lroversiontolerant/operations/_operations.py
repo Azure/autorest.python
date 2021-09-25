@@ -26,6 +26,8 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 from msrest import Serializer
 
+from .._configuration import _convert_request
+
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar, Union
@@ -1859,7 +1861,8 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put200_succeeded_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -1999,7 +2002,8 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._patch200_succeeded_ignore_headers_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -2147,7 +2151,8 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put201_succeeded_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -2274,7 +2279,8 @@ class LROsOperations(object):
 
         request = build_lros_post202_list_request_initial(
             template_url=self._post202_list_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -2401,7 +2407,8 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put200_succeeded_no_state_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -2539,7 +2546,8 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put202_retry200_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -2678,7 +2686,8 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put201_creating_succeeded200_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -2824,7 +2833,8 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put200_updating_succeeded204_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -2963,7 +2973,8 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put201_creating_failed200_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -3109,7 +3120,8 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put200_acceptedcanceled200_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -3248,7 +3260,8 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put_no_header_in_retry_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -3392,7 +3405,8 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put_async_retry_succeeded_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -3545,7 +3559,8 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put_async_no_retry_succeeded_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -3696,7 +3711,8 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put_async_retry_failed_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -3849,7 +3865,8 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put_async_no_retrycanceled_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -4000,7 +4017,8 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put_async_no_header_in_retry_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -4149,7 +4167,8 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put_non_resource_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -4268,7 +4287,8 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put_async_non_resource_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -4387,7 +4407,8 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put_sub_resource_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -4512,7 +4533,8 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put_async_sub_resource_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -4626,7 +4648,8 @@ class LROsOperations(object):
 
         request = build_lros_delete_provisioning202_accepted200_succeeded_request_initial(
             template_url=self._delete_provisioning202_accepted200_succeeded_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -4743,7 +4766,8 @@ class LROsOperations(object):
 
         request = build_lros_delete_provisioning202_deleting_failed200_request_initial(
             template_url=self._delete_provisioning202_deleting_failed200_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -4860,7 +4884,8 @@ class LROsOperations(object):
 
         request = build_lros_delete_provisioning202_deletingcanceled200_request_initial(
             template_url=self._delete_provisioning202_deletingcanceled200_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -4977,7 +5002,8 @@ class LROsOperations(object):
 
         request = build_lros_delete204_succeeded_request_initial(
             template_url=self._delete204_succeeded_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -5050,7 +5076,8 @@ class LROsOperations(object):
 
         request = build_lros_delete202_retry200_request_initial(
             template_url=self._delete202_retry200_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -5162,7 +5189,8 @@ class LROsOperations(object):
 
         request = build_lros_delete202_no_retry204_request_initial(
             template_url=self._delete202_no_retry204_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -5274,7 +5302,8 @@ class LROsOperations(object):
 
         request = build_lros_delete_no_header_in_retry_request_initial(
             template_url=self._delete_no_header_in_retry_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -5352,7 +5381,8 @@ class LROsOperations(object):
 
         request = build_lros_delete_async_no_header_in_retry_request_initial(
             template_url=self._delete_async_no_header_in_retry_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -5430,7 +5460,8 @@ class LROsOperations(object):
 
         request = build_lros_delete_async_retry_succeeded_request_initial(
             template_url=self._delete_async_retry_succeeded_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -5511,7 +5542,8 @@ class LROsOperations(object):
 
         request = build_lros_delete_async_no_retry_succeeded_request_initial(
             template_url=self._delete_async_no_retry_succeeded_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -5592,7 +5624,8 @@ class LROsOperations(object):
 
         request = build_lros_delete_async_retry_failed_request_initial(
             template_url=self._delete_async_retry_failed_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -5673,7 +5706,8 @@ class LROsOperations(object):
 
         request = build_lros_delete_async_retrycanceled_request_initial(
             template_url=self._delete_async_retrycanceled_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -5754,7 +5788,8 @@ class LROsOperations(object):
 
         request = build_lros_post200_with_payload_request_initial(
             template_url=self._post200_with_payload_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -5868,7 +5903,8 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._post202_retry200_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -5982,7 +6018,8 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._post202_no_retry204_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -6117,7 +6154,8 @@ class LROsOperations(object):
 
         request = build_lros_post_double_headers_final_location_get_request_initial(
             template_url=self._post_double_headers_final_location_get_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -6223,7 +6261,8 @@ class LROsOperations(object):
 
         request = build_lros_post_double_headers_final_azure_header_get_request_initial(
             template_url=self._post_double_headers_final_azure_header_get_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -6329,7 +6368,8 @@ class LROsOperations(object):
 
         request = build_lros_post_double_headers_final_azure_header_get_default_request_initial(
             template_url=self._post_double_headers_final_azure_header_get_default_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -6448,7 +6488,8 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._post_async_retry_succeeded_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -6597,7 +6638,8 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._post_async_no_retry_succeeded_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -6746,7 +6788,8 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._post_async_retry_failed_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -6864,7 +6907,8 @@ class LROsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._post_async_retrycanceled_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -7001,7 +7045,8 @@ class LRORetrysOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put201_creating_succeeded200_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -7147,7 +7192,8 @@ class LRORetrysOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put_async_relative_retry_succeeded_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -7289,7 +7335,8 @@ class LRORetrysOperations(object):
 
         request = build_lro_retrys_delete_provisioning202_accepted200_succeeded_request_initial(
             template_url=self._delete_provisioning202_accepted200_succeeded_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -7406,7 +7453,8 @@ class LRORetrysOperations(object):
 
         request = build_lro_retrys_delete202_retry200_request_initial(
             template_url=self._delete202_retry200_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -7484,7 +7532,8 @@ class LRORetrysOperations(object):
 
         request = build_lro_retrys_delete_async_relative_retry_succeeded_request_initial(
             template_url=self._delete_async_relative_retry_succeeded_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -7576,7 +7625,8 @@ class LRORetrysOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._post202_retry200_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -7690,7 +7740,8 @@ class LRORetrysOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._post_async_relative_retry_succeeded_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -7827,7 +7878,8 @@ class LROSADsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put_non_retry400_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -7971,7 +8023,8 @@ class LROSADsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put_non_retry201_creating400_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -8116,7 +8169,8 @@ class LROSADsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put_non_retry201_creating400_invalid_json_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -8261,7 +8315,8 @@ class LROSADsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put_async_relative_retry400_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -8402,7 +8457,8 @@ class LROSADsOperations(object):
 
         request = build_lrosads_delete_non_retry400_request_initial(
             template_url=self._delete_non_retry400_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -8479,7 +8535,8 @@ class LROSADsOperations(object):
 
         request = build_lrosads_delete202_non_retry400_request_initial(
             template_url=self._delete202_non_retry400_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -8556,7 +8613,8 @@ class LROSADsOperations(object):
 
         request = build_lrosads_delete_async_relative_retry400_request_initial(
             template_url=self._delete_async_relative_retry400_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -8648,7 +8706,8 @@ class LROSADsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._post_non_retry400_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -8761,7 +8820,8 @@ class LROSADsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._post202_non_retry400_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -8874,7 +8934,8 @@ class LROSADsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._post_async_relative_retry400_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -8991,7 +9052,8 @@ class LROSADsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put_error201_no_provisioning_state_payload_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -9135,7 +9197,8 @@ class LROSADsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put_async_relative_retry_no_status_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -9288,7 +9351,8 @@ class LROSADsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put_async_relative_retry_no_status_payload_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -9430,7 +9494,8 @@ class LROSADsOperations(object):
 
         request = build_lrosads_delete204_succeeded_request_initial(
             template_url=self._delete204_succeeded_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -9503,7 +9568,8 @@ class LROSADsOperations(object):
 
         request = build_lrosads_delete_async_relative_retry_no_status_request_initial(
             template_url=self._delete_async_relative_retry_no_status_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -9595,7 +9661,8 @@ class LROSADsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._post202_no_location_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -9709,7 +9776,8 @@ class LROSADsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._post_async_relative_retry_no_payload_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -9827,7 +9895,8 @@ class LROSADsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put200_invalid_json_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -9967,7 +10036,8 @@ class LROSADsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put_async_relative_retry_invalid_header_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -10120,7 +10190,8 @@ class LROSADsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put_async_relative_retry_invalid_json_polling_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -10262,7 +10333,8 @@ class LROSADsOperations(object):
 
         request = build_lrosads_delete202_retry_invalid_header_request_initial(
             template_url=self._delete202_retry_invalid_header_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -10340,7 +10412,8 @@ class LROSADsOperations(object):
 
         request = build_lrosads_delete_async_relative_retry_invalid_header_request_initial(
             template_url=self._delete_async_relative_retry_invalid_header_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -10421,7 +10494,8 @@ class LROSADsOperations(object):
 
         request = build_lrosads_delete_async_relative_retry_invalid_json_polling_request_initial(
             template_url=self._delete_async_relative_retry_invalid_json_polling_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -10513,7 +10587,8 @@ class LROSADsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._post202_retry_invalid_header_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -10627,7 +10702,8 @@ class LROSADsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._post_async_relative_retry_invalid_header_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -10745,7 +10821,8 @@ class LROSADsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._post_async_relative_retry_invalid_json_polling_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -10882,7 +10959,8 @@ class LROsCustomHeaderOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put_async_retry_succeeded_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -11036,7 +11114,8 @@ class LROsCustomHeaderOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._put201_creating_succeeded200_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -11183,7 +11262,8 @@ class LROsCustomHeaderOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._post202_retry200_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -11298,7 +11378,8 @@ class LROsCustomHeaderOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._post_async_retry_succeeded_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

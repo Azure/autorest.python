@@ -19,6 +19,7 @@ from msrest import Serializer
 from my.library import CustomDefaultPollingMethod, CustomPager, CustomPoller
 
 from .. import models as _models
+from .._configuration import _convert_request
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -99,7 +100,8 @@ class PollingPagingExampleOperationsMixin(object):
             content_type=content_type,
             json=json,
             template_url=self._basic_polling_initial.metadata['url'],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -207,14 +209,16 @@ class PollingPagingExampleOperationsMixin(object):
                 
                 request = build_basic_paging_request(
                     template_url=self.basic_paging.metadata['url'],
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
 
             else:
                 
                 request = build_basic_paging_request(
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request

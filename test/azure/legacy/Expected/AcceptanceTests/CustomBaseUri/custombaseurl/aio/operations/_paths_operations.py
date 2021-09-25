@@ -22,6 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._configuration import _convert_request
 from ...operations._paths_operations import build_get_empty_request
 
 T = TypeVar("T")
@@ -67,7 +68,8 @@ class PathsOperations:
 
         request = build_get_empty_request(
             template_url=self.get_empty.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         path_format_arguments = {
             "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
