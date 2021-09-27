@@ -67,4 +67,5 @@ def test_model_put_true(send_request):
 
 def test_model_get_invalid(send_request):
     request = bool.build_get_invalid_request()
-    assert send_request(request).text() == "true1"
+    with pytest.raises(DecodeError):
+        send_request(request)

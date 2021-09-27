@@ -25,6 +25,7 @@
 # --------------------------------------------------------------------------
 
 from decimal import Decimal
+from azure.core.exceptions import DecodeError
 import pytest
 
 from bodynumberlowlevel import AutoRestNumberTestService
@@ -124,12 +125,15 @@ def test_get_null(send_request):
 
 def test_get_invalid_decimal(send_request):
     request = number.build_get_invalid_decimal_request()
-    assert send_request(request).text() == '9223372036854775910.980089k'
+    with pytest.raises(DecodeError):
+        send_request(request)
 
 def test_get_invalid_double(send_request):
     request = number.build_get_invalid_double_request()
-    assert send_request(request).text() == '9223372036854775910.980089k'
+    with pytest.raises(DecodeError):
+        send_request(request)
 
 def test_get_invalid_float(send_request):
     request = number.build_get_invalid_float_request()
-    assert send_request(request).text() == '2147483656.090096789909j'
+    with pytest.raises(DecodeError):
+        send_request(request)
