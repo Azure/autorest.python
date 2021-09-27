@@ -13,7 +13,6 @@ from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
-from azure.core.pipeline.transport._base import _format_url_section
 from azure.core.polling import AsyncNoPolling, AsyncPollingMethod
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
@@ -21,7 +20,6 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 from custompollerpagerdefinitions.aio import AsyncCustomPager, AsyncCustomPoller
-from msrest import Serializer
 
 from ... import models as _models
 from ..._vendor import _convert_request

@@ -68,7 +68,7 @@ class RequestBuilder(BaseBuilder):
         )
         if self.parameters.path:
             file_import.add_from_import(
-                "azure.core.pipeline.transport._base", "_format_url_section", ImportType.AZURECORE
+                ".._vendor", "_format_url_section", ImportType.LOCAL
             )
         file_import.add_from_import(
             "typing", "Any", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL

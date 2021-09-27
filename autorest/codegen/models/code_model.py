@@ -345,7 +345,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
 
     @property
     def need_vendored_code(self) -> bool:
-        return self.need_request_converter
+        return self.need_request_converter or self.need_format_url
 
     @property
     def need_request_converter(self) -> bool:
@@ -357,6 +357,10 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             if any(o for o in og.operations if o.use_pipeline_transport):
                 return True
         return False
+
+    @property
+    def need_format_url(self) -> bool:
+        return any(rq for rq in self.rest.request_builders if rq.parameters.path)
 
     @property
     def has_lro_operations(self) -> bool:

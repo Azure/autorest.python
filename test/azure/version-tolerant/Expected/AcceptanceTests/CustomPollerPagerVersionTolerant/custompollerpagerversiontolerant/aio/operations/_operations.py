@@ -14,7 +14,6 @@ from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
-from azure.core.pipeline.transport._base import _format_url_section
 from azure.core.polling import AsyncNoPolling, AsyncPollingMethod
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
@@ -22,9 +21,8 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 from custompollerpagerdefinitions.aio import AsyncCustomPager, AsyncCustomPoller
-from msrest import Serializer
 
-from ..._configuration import _convert_request
+from ..._vendor import _convert_request
 from ...operations._operations import build_paging_first_response_empty_request, build_paging_get_multiple_pages_failure_request, build_paging_get_multiple_pages_failure_uri_request, build_paging_get_multiple_pages_fragment_next_link_request, build_paging_get_multiple_pages_fragment_with_grouping_next_link_request, build_paging_get_multiple_pages_lro_request_initial, build_paging_get_multiple_pages_request, build_paging_get_multiple_pages_retry_first_request, build_paging_get_multiple_pages_retry_second_request, build_paging_get_multiple_pages_with_offset_request, build_paging_get_no_item_name_pages_request, build_paging_get_null_next_link_name_pages_request, build_paging_get_odata_multiple_pages_request, build_paging_get_paging_model_with_item_name_with_xms_client_name_request, build_paging_get_single_pages_failure_request, build_paging_get_single_pages_request, build_paging_get_with_query_params_request, build_paging_next_fragment_request, build_paging_next_fragment_with_grouping_request, build_paging_next_operation_with_query_params_request
 
 T = TypeVar('T')
