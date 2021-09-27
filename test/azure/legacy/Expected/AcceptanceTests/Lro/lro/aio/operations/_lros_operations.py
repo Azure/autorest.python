@@ -25,7 +25,7 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
 from ... import models as _models
-from ..._configuration import _convert_request
+from ..._vendor import _convert_request
 from ...operations._lros_operations import (
     build_delete202_no_retry204_request_initial,
     build_delete202_retry200_request_initial,

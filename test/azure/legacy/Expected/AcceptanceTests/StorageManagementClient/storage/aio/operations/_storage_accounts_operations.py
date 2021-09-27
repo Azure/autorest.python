@@ -27,7 +27,7 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
 from ... import models as _models
-from ..._configuration import _convert_request
+from ..._vendor import _convert_request
 from ...operations._storage_accounts_operations import (
     build_check_name_availability_request,
     build_create_request_initial,

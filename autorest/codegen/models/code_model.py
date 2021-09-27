@@ -344,6 +344,10 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                     operation.convert_multiple_media_type_parameters()
 
     @property
+    def need_vendored_code(self) -> bool:
+        return self.need_request_converter
+
+    @property
     def need_request_converter(self) -> bool:
         if not self.options["show_operations"]:
             return False

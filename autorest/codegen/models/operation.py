@@ -236,7 +236,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         if code_model.need_request_converter:
             relative_path = "..." if async_mode else ".."
             file_import.add_from_import(
-                f"{relative_path}_configuration", "_convert_request", ImportType.LOCAL
+                f"{relative_path}_vendor", "_convert_request", ImportType.LOCAL
             )
         return file_import
 

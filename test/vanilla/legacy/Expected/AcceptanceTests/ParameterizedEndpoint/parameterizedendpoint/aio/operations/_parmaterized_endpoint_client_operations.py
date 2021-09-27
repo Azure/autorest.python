@@ -21,7 +21,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ..._configuration import _convert_request
+from ..._vendor import _convert_request
 from ...operations._parmaterized_endpoint_client_operations import build_get_request
 
 T = TypeVar("T")

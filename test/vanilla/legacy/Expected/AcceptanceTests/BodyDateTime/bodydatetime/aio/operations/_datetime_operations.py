@@ -23,7 +23,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._configuration import _convert_request
+from ..._vendor import _convert_request
 from ...operations._datetime_operations import (
     build_get_invalid_request,
     build_get_local_negative_offset_lowercase_max_date_time_request,

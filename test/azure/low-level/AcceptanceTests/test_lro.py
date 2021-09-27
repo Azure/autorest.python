@@ -28,7 +28,7 @@ import time
 
 from azure.core.exceptions import DecodeError, HttpResponseError
 from azure.core.pipeline.policies import ContentDecodePolicy, RetryPolicy, HeadersPolicy, RequestIdPolicy
-
+from azure.core.rest import HttpRequest
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 
 from lrolowlevel import AutoRestLongRunningOperationTestService

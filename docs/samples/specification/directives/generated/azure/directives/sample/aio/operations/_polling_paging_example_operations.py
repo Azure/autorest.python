@@ -20,7 +20,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from my.library.aio import AsyncCustomDefaultPollingMethod, AsyncCustomPager, AsyncCustomPoller
 
 from ... import models as _models
-from ..._configuration import _convert_request
+from ..._vendor import _convert_request
 from ...operations._polling_paging_example_operations import build_basic_paging_request, build_basic_polling_request_initial
 
 T = TypeVar('T')

@@ -19,7 +19,7 @@ from msrest import Serializer
 from my.library import CustomDefaultPollingMethod, CustomPager, CustomPoller
 
 from .. import models as _models
-from .._configuration import _convert_request
+from .._vendor import _convert_request
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports

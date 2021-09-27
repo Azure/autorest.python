@@ -23,7 +23,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models
-from ..._configuration import _convert_request
+from ..._vendor import _convert_request
 from ...operations._xms_client_request_id_operations import build_get_request, build_param_get_request
 
 T = TypeVar("T")

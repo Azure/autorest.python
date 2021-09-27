@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._configuration import _convert_request
+from ..._vendor import _convert_request
 from ...operations._auto_rest_validation_test_operations import (
     build_get_with_constant_in_path_request,
     build_post_with_constant_in_body_request,
