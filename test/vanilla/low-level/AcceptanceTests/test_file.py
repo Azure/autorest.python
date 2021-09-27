@@ -85,7 +85,7 @@ def test_files_long_running(client):
     request = files.build_get_file_large_request()
     with client.send_request(request, stream=True) as response:
         for data in response.iter_bytes():
-            assert 0 < len(data) <= response._connection_data_block_size
+            assert 0 < len(data) <= response.block_size
             file_length += len(data)
 
     assert file_length ==  3000 * 1024 * 1024

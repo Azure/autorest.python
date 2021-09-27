@@ -54,7 +54,7 @@ def test_get_file(client):
         assert not stream._internal_response._content_consumed
 
         for data in stream.iter_bytes():
-            assert 0 < len(data) <= stream._connection_data_block_size
+            assert 0 < len(data) <= stream.block_size
             file_length += len(data)
             file_handle.write(data)
 
@@ -86,7 +86,7 @@ def test_files_long_running(client):
     file_length = 0
     stream = client.files.get_file_large()
     for data in stream.iter_raw():
-        assert 0 < len(data) <= stream._connection_data_block_size
+        assert 0 < len(data) <= stream.block_size
         file_length += len(data)
 
     assert file_length ==  3000 * 1024 * 1024
@@ -97,7 +97,7 @@ def test_get_file_with_callback(client, callback):
     with io.BytesIO() as file_handle:
         stream = client.files.get_file(cls=callback)
         for data in stream.iter_raw():
-            assert 0 < len(data) <= stream._connection_data_block_size
+            assert 0 < len(data) <= stream.block_size
             file_length += len(data)
             file_handle.write(data)
 

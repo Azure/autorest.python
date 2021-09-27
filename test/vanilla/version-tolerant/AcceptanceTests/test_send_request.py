@@ -126,7 +126,7 @@ def test_send_request_get_stream():
         assert not response._internal_response._content_consumed
 
         for data in response.iter_bytes():
-            assert 0 < len(data) <= response._connection_data_block_size
+            assert 0 < len(data) <= response.block_size
             file_length += len(data)
             file_handle.write(data)
 
