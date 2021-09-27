@@ -56,7 +56,7 @@ class RequestBuilder(BaseBuilder):
     def builder_group_name(self) -> str:
         return self.yaml_data["language"]["python"]["builderGroupName"]
 
-    def imports(self) -> FileImport:
+    def imports(self, code_model) -> FileImport:
         file_import = FileImport()
         for parameter in self.parameters:
             file_import.merge(parameter.imports())
@@ -67,7 +67,9 @@ class RequestBuilder(BaseBuilder):
             ImportType.AZURECORE,
         )
         if self.parameters.path:
-            relative_path = "..." if self.operation_group_name else ".."
+            relative_path = ".."
+            if not code_model.options["builders_visibility"] == "embedded" and self.operation_group_name:
+                relative_path = "..." if self.operation_group_name else ".."
             file_import.add_from_import(
                 f"{relative_path}_vendor", "_format_url_section", ImportType.LOCAL
             )
