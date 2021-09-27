@@ -22,6 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._vendor import _convert_request
 from ...operations._formdata_operations import (
     build_upload_file_request,
     build_upload_file_via_body_request,
@@ -86,7 +87,8 @@ class FormdataOperations:
             files=files,
             data=data,
             template_url=self.upload_file.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request, files)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)
@@ -129,7 +131,8 @@ class FormdataOperations:
             content_type=content_type,
             content=content,
             template_url=self.upload_file_via_body.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)
@@ -178,7 +181,8 @@ class FormdataOperations:
             files=files,
             data=data,
             template_url=self.upload_files.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request, files)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)

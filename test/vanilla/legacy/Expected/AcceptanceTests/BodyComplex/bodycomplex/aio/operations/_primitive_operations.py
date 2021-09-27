@@ -23,6 +23,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._vendor import _convert_request
 from ...operations._primitive_operations import (
     build_get_bool_request,
     build_get_byte_request,
@@ -89,7 +90,8 @@ class PrimitiveOperations:
 
         request = build_get_int_request(
             template_url=self.get_int.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -132,7 +134,8 @@ class PrimitiveOperations:
             content_type=content_type,
             json=json,
             template_url=self.put_int.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -163,7 +166,8 @@ class PrimitiveOperations:
 
         request = build_get_long_request(
             template_url=self.get_long.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -206,7 +210,8 @@ class PrimitiveOperations:
             content_type=content_type,
             json=json,
             template_url=self.put_long.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -237,7 +242,8 @@ class PrimitiveOperations:
 
         request = build_get_float_request(
             template_url=self.get_float.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -280,7 +286,8 @@ class PrimitiveOperations:
             content_type=content_type,
             json=json,
             template_url=self.put_float.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -311,7 +318,8 @@ class PrimitiveOperations:
 
         request = build_get_double_request(
             template_url=self.get_double.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -355,7 +363,8 @@ class PrimitiveOperations:
             content_type=content_type,
             json=json,
             template_url=self.put_double.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -386,7 +395,8 @@ class PrimitiveOperations:
 
         request = build_get_bool_request(
             template_url=self.get_bool.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -429,7 +439,8 @@ class PrimitiveOperations:
             content_type=content_type,
             json=json,
             template_url=self.put_bool.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -460,7 +471,8 @@ class PrimitiveOperations:
 
         request = build_get_string_request(
             template_url=self.get_string.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -503,7 +515,8 @@ class PrimitiveOperations:
             content_type=content_type,
             json=json,
             template_url=self.put_string.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -534,7 +547,8 @@ class PrimitiveOperations:
 
         request = build_get_date_request(
             template_url=self.get_date.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -577,7 +591,8 @@ class PrimitiveOperations:
             content_type=content_type,
             json=json,
             template_url=self.put_date.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -608,7 +623,8 @@ class PrimitiveOperations:
 
         request = build_get_date_time_request(
             template_url=self.get_date_time.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -651,7 +667,8 @@ class PrimitiveOperations:
             content_type=content_type,
             json=json,
             template_url=self.put_date_time.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -682,7 +699,8 @@ class PrimitiveOperations:
 
         request = build_get_date_time_rfc1123_request(
             template_url=self.get_date_time_rfc1123.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -726,7 +744,8 @@ class PrimitiveOperations:
             content_type=content_type,
             json=json,
             template_url=self.put_date_time_rfc1123.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -757,7 +776,8 @@ class PrimitiveOperations:
 
         request = build_get_duration_request(
             template_url=self.get_duration.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -801,7 +821,8 @@ class PrimitiveOperations:
             content_type=content_type,
             json=json,
             template_url=self.put_duration.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -832,7 +853,8 @@ class PrimitiveOperations:
 
         request = build_get_byte_request(
             template_url=self.get_byte.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -876,7 +898,8 @@ class PrimitiveOperations:
             content_type=content_type,
             json=json,
             template_url=self.put_byte.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

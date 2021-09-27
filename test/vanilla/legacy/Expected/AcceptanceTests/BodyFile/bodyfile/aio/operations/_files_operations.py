@@ -22,6 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._vendor import _convert_request
 from ...operations._files_operations import (
     build_get_empty_file_request,
     build_get_file_large_request,
@@ -69,7 +70,8 @@ class FilesOperations:
 
         request = build_get_file_request(
             template_url=self.get_file.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)
@@ -104,7 +106,8 @@ class FilesOperations:
 
         request = build_get_file_large_request(
             template_url=self.get_file_large.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)
@@ -139,7 +142,8 @@ class FilesOperations:
 
         request = build_get_empty_file_request(
             template_url=self.get_empty_file.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)

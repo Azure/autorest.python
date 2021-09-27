@@ -22,6 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._vendor import _convert_request
 from ...operations._pets_operations import (
     build_create_ap_in_properties_request,
     build_create_ap_in_properties_with_ap_string_request,
@@ -80,7 +81,8 @@ class PetsOperations:
             content_type=content_type,
             json=json,
             template_url=self.create_ap_true.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -123,7 +125,8 @@ class PetsOperations:
             content_type=content_type,
             json=json,
             template_url=self.create_cat_ap_true.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -166,7 +169,8 @@ class PetsOperations:
             content_type=content_type,
             json=json,
             template_url=self.create_ap_object.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -209,7 +213,8 @@ class PetsOperations:
             content_type=content_type,
             json=json,
             template_url=self.create_ap_string.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -254,7 +259,8 @@ class PetsOperations:
             content_type=content_type,
             json=json,
             template_url=self.create_ap_in_properties.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -299,7 +305,8 @@ class PetsOperations:
             content_type=content_type,
             json=json,
             template_url=self.create_ap_in_properties_with_ap_string.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

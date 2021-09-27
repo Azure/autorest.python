@@ -22,6 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._vendor import _convert_request
 from ...operations._auto_rest_validation_test_operations import (
     build_get_with_constant_in_path_request,
     build_post_with_constant_in_body_request,
@@ -58,7 +59,8 @@ class AutoRestValidationTestOperationsMixin:
             resource_group_name=resource_group_name,
             id=id,
             template_url=self.validation_of_method_parameters.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -113,7 +115,8 @@ class AutoRestValidationTestOperationsMixin:
             content_type=content_type,
             json=json,
             template_url=self.validation_of_body.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -148,7 +151,8 @@ class AutoRestValidationTestOperationsMixin:
 
         request = build_get_with_constant_in_path_request(
             template_url=self.get_with_constant_in_path.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -191,7 +195,8 @@ class AutoRestValidationTestOperationsMixin:
             content_type=content_type,
             json=json,
             template_url=self.post_with_constant_in_body.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

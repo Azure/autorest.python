@@ -18,13 +18,13 @@ from azure.core.exceptions import (
 )
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
-from azure.core.pipeline.transport._base import _format_url_section
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from msrest import Serializer
 
 from .. import models as _models
+from .._vendor import _convert_request, _format_url_section
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -187,7 +187,8 @@ class SubscriptionInMethodOperations(object):
         request = build_post_method_local_valid_request(
             subscription_id=subscription_id,
             template_url=self.post_method_local_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -228,7 +229,8 @@ class SubscriptionInMethodOperations(object):
         request = build_post_method_local_null_request(
             subscription_id=subscription_id,
             template_url=self.post_method_local_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -268,7 +270,8 @@ class SubscriptionInMethodOperations(object):
         request = build_post_path_local_valid_request(
             subscription_id=subscription_id,
             template_url=self.post_path_local_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -309,7 +312,8 @@ class SubscriptionInMethodOperations(object):
         request = build_post_swagger_local_valid_request(
             subscription_id=subscription_id,
             template_url=self.post_swagger_local_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

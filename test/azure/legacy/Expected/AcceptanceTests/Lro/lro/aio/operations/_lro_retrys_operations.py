@@ -25,6 +25,7 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
 from ... import models as _models
+from ..._vendor import _convert_request
 from ...operations._lro_retrys_operations import (
     build_delete202_retry200_request_initial,
     build_delete_async_relative_retry_succeeded_request_initial,
@@ -79,7 +80,8 @@ class LRORetrysOperations:
             content_type=content_type,
             json=json,
             template_url=self._put201_creating_succeeded200_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -179,7 +181,8 @@ class LRORetrysOperations:
             content_type=content_type,
             json=json,
             template_url=self._put_async_relative_retry_succeeded_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -278,7 +281,8 @@ class LRORetrysOperations:
 
         request = build_delete_provisioning202_accepted200_succeeded_request_initial(
             template_url=self._delete_provisioning202_accepted200_succeeded_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -368,7 +372,8 @@ class LRORetrysOperations:
 
         request = build_delete202_retry200_request_initial(
             template_url=self._delete202_retry200_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -441,7 +446,8 @@ class LRORetrysOperations:
 
         request = build_delete_async_relative_retry_succeeded_request_initial(
             template_url=self._delete_async_relative_retry_succeeded_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -526,7 +532,8 @@ class LRORetrysOperations:
             content_type=content_type,
             json=json,
             template_url=self._post202_retry200_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -617,7 +624,8 @@ class LRORetrysOperations:
             content_type=content_type,
             json=json,
             template_url=self._post_async_relative_retry_succeeded_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

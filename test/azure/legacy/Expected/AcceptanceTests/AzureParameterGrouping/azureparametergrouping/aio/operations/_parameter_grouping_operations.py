@@ -22,6 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._vendor import _convert_request
 from ...operations._parameter_grouping_operations import (
     build_post_multi_param_groups_request,
     build_post_optional_request,
@@ -96,7 +97,8 @@ class ParameterGroupingOperations:
             query=_query,
             json=json,
             template_url=self.post_required.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -142,7 +144,8 @@ class ParameterGroupingOperations:
             custom_header=_custom_header,
             query=_query,
             template_url=self.post_optional.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -190,7 +193,8 @@ class ParameterGroupingOperations:
             from_parameter=_from_parameter,
             accept_parameter=_accept_parameter,
             template_url=self.post_reserved_words.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -248,7 +252,8 @@ class ParameterGroupingOperations:
             header_two=_header_two,
             query_two=_query_two,
             template_url=self.post_multi_param_groups.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -291,7 +296,8 @@ class ParameterGroupingOperations:
             header_one=_header_one,
             query_one=_query_one,
             template_url=self.post_shared_parameter_group_object.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

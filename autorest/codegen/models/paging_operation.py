@@ -122,8 +122,8 @@ class PagingOperation(Operation):
             file_import.add_from_import("typing", "AsyncIterable", ImportType.STDLIB, TypingSection.CONDITIONAL)
         else:
             file_import.add_from_import("typing", "Iterable", ImportType.STDLIB, TypingSection.CONDITIONAL)
-        if self.next_request_builder:
-            file_import.merge(self.next_request_builder.imports())
+        if self.next_request_builder and code_model.options["builders_visibility"] == "embedded" and not async_mode:
+            file_import.merge(self.next_request_builder.imports(code_model))
         return file_import
 
     def imports_for_multiapi(self, code_model, async_mode: bool) -> FileImport:

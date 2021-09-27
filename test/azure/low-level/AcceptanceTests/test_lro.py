@@ -28,7 +28,7 @@ import time
 
 from azure.core.exceptions import DecodeError, HttpResponseError
 from azure.core.pipeline.policies import ContentDecodePolicy, RetryPolicy, HeadersPolicy, RequestIdPolicy
-
+from azure.core.pipeline.transport import HttpRequest
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 
 from lrolowlevel import AutoRestLongRunningOperationTestService
@@ -112,9 +112,7 @@ def get_long_running_output_return_none():
 def get_poller(get_long_running_output, client):
 
     def _callback(request, **kwargs):
-        pipeline_response = client._client._pipeline.run(
-            request._to_pipeline_transport_request(),=
-        )
+        pipeline_response = client._client._pipeline.run(request)
         pipeline_response.http_response.raise_for_status()
         polling = kwargs.pop("polling", True)
         deserializer = kwargs.pop("get_long_running_output", get_long_running_output)

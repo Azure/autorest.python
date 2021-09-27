@@ -22,6 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
+from ..._vendor import _convert_request
 from ...operations._head_exception_operations import build_head200_request, build_head204_request, build_head404_request
 
 T = TypeVar("T")
@@ -61,7 +62,8 @@ class HeadExceptionOperations:
 
         request = build_head200_request(
             template_url=self.head200.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -92,7 +94,8 @@ class HeadExceptionOperations:
 
         request = build_head204_request(
             template_url=self.head204.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -123,7 +126,8 @@ class HeadExceptionOperations:
 
         request = build_head404_request(
             template_url=self.head404.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

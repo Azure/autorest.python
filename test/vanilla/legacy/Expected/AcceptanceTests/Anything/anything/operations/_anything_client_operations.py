@@ -22,6 +22,8 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from msrest import Serializer
 
+from .._vendor import _convert_request
+
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Generic, Optional, TypeVar
@@ -178,7 +180,8 @@ class AnythingClientOperationsMixin(object):
 
         request = build_get_object_request(
             template_url=self.get_object.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -226,7 +229,8 @@ class AnythingClientOperationsMixin(object):
             content_type=content_type,
             json=json,
             template_url=self.put_object.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -259,7 +263,8 @@ class AnythingClientOperationsMixin(object):
 
         request = build_get_string_request(
             template_url=self.get_string.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -307,7 +312,8 @@ class AnythingClientOperationsMixin(object):
             content_type=content_type,
             json=json,
             template_url=self.put_string.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -340,7 +346,8 @@ class AnythingClientOperationsMixin(object):
 
         request = build_get_array_request(
             template_url=self.get_array.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -388,7 +395,8 @@ class AnythingClientOperationsMixin(object):
             content_type=content_type,
             json=json,
             template_url=self.put_array.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

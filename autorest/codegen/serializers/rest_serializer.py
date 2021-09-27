@@ -33,7 +33,7 @@ class RestPython3Serializer(RestSerializer):
         return template.render(
             code_model=self.code_model,
             request_builders=self.request_builders,
-            imports=FileImportSerializer(self.code_model.rest.imports(), is_python_3_file=True),
+            imports=FileImportSerializer(self.code_model.rest.imports(self.code_model), is_python_3_file=True),
             is_python_3_file=True,
             request_builder_serializer=RequestBuilderPython3Serializer(self.code_model),
         )
@@ -46,7 +46,7 @@ class RestGenericSerializer(RestSerializer):
         return template.render(
             code_model=self.code_model,
             request_builders=self.request_builders,
-            imports=FileImportSerializer(self.code_model.rest.imports(), is_python_3_file=False),
+            imports=FileImportSerializer(self.code_model.rest.imports(self.code_model), is_python_3_file=False),
             is_python_3_file=False,
             request_builder_serializer=RequestBuilderGenericSerializer(self.code_model),
         )

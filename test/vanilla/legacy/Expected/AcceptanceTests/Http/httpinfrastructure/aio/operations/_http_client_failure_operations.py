@@ -22,6 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._vendor import _convert_request
 from ...operations._http_client_failure_operations import (
     build_delete400_request,
     build_delete407_request,
@@ -92,7 +93,8 @@ class HttpClientFailureOperations:
 
         request = build_head400_request(
             template_url=self.head400.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -123,7 +125,8 @@ class HttpClientFailureOperations:
 
         request = build_get400_request(
             template_url=self.get400.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -154,7 +157,8 @@ class HttpClientFailureOperations:
 
         request = build_options400_request(
             template_url=self.options400.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -196,7 +200,8 @@ class HttpClientFailureOperations:
             content_type=content_type,
             json=json,
             template_url=self.put400.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -238,7 +243,8 @@ class HttpClientFailureOperations:
             content_type=content_type,
             json=json,
             template_url=self.patch400.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -280,7 +286,8 @@ class HttpClientFailureOperations:
             content_type=content_type,
             json=json,
             template_url=self.post400.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -322,7 +329,8 @@ class HttpClientFailureOperations:
             content_type=content_type,
             json=json,
             template_url=self.delete400.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -353,7 +361,8 @@ class HttpClientFailureOperations:
 
         request = build_head401_request(
             template_url=self.head401.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -384,7 +393,8 @@ class HttpClientFailureOperations:
 
         request = build_get402_request(
             template_url=self.get402.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -415,7 +425,8 @@ class HttpClientFailureOperations:
 
         request = build_options403_request(
             template_url=self.options403.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -446,7 +457,8 @@ class HttpClientFailureOperations:
 
         request = build_get403_request(
             template_url=self.get403.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -488,7 +500,8 @@ class HttpClientFailureOperations:
             content_type=content_type,
             json=json,
             template_url=self.put404.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -530,7 +543,8 @@ class HttpClientFailureOperations:
             content_type=content_type,
             json=json,
             template_url=self.patch405.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -572,7 +586,8 @@ class HttpClientFailureOperations:
             content_type=content_type,
             json=json,
             template_url=self.post406.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -614,7 +629,8 @@ class HttpClientFailureOperations:
             content_type=content_type,
             json=json,
             template_url=self.delete407.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -656,7 +672,8 @@ class HttpClientFailureOperations:
             content_type=content_type,
             json=json,
             template_url=self.put409.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -687,7 +704,8 @@ class HttpClientFailureOperations:
 
         request = build_head410_request(
             template_url=self.head410.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -718,7 +736,8 @@ class HttpClientFailureOperations:
 
         request = build_get411_request(
             template_url=self.get411.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -749,7 +768,8 @@ class HttpClientFailureOperations:
 
         request = build_options412_request(
             template_url=self.options412.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -780,7 +800,8 @@ class HttpClientFailureOperations:
 
         request = build_get412_request(
             template_url=self.get412.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -822,7 +843,8 @@ class HttpClientFailureOperations:
             content_type=content_type,
             json=json,
             template_url=self.put413.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -864,7 +886,8 @@ class HttpClientFailureOperations:
             content_type=content_type,
             json=json,
             template_url=self.patch414.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -906,7 +929,8 @@ class HttpClientFailureOperations:
             content_type=content_type,
             json=json,
             template_url=self.post415.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -937,7 +961,8 @@ class HttpClientFailureOperations:
 
         request = build_get416_request(
             template_url=self.get416.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -979,7 +1004,8 @@ class HttpClientFailureOperations:
             content_type=content_type,
             json=json,
             template_url=self.delete417.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1010,7 +1036,8 @@ class HttpClientFailureOperations:
 
         request = build_head429_request(
             template_url=self.head429.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

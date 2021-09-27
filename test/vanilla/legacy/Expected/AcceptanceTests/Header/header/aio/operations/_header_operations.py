@@ -23,6 +23,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._vendor import _convert_request
 from ...operations._header_operations import (
     build_custom_request_id_request,
     build_param_bool_request,
@@ -99,7 +100,8 @@ class HeaderOperations:
         request = build_param_existing_key_request(
             user_agent_parameter=user_agent_parameter,
             template_url=self.param_existing_key.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -130,7 +132,8 @@ class HeaderOperations:
 
         request = build_response_existing_key_request(
             template_url=self.response_existing_key.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -167,7 +170,8 @@ class HeaderOperations:
         request = build_param_protected_key_request(
             content_type=content_type,
             template_url=self.param_protected_key.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -198,7 +202,8 @@ class HeaderOperations:
 
         request = build_response_protected_key_request(
             template_url=self.response_protected_key.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -239,7 +244,8 @@ class HeaderOperations:
             scenario=scenario,
             value=value,
             template_url=self.param_integer.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -273,7 +279,8 @@ class HeaderOperations:
         request = build_response_integer_request(
             scenario=scenario,
             template_url=self.response_integer.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -314,7 +321,8 @@ class HeaderOperations:
             scenario=scenario,
             value=value,
             template_url=self.param_long.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -348,7 +356,8 @@ class HeaderOperations:
         request = build_response_long_request(
             scenario=scenario,
             template_url=self.response_long.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -389,7 +398,8 @@ class HeaderOperations:
             scenario=scenario,
             value=value,
             template_url=self.param_float.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -423,7 +433,8 @@ class HeaderOperations:
         request = build_response_float_request(
             scenario=scenario,
             template_url=self.response_float.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -464,7 +475,8 @@ class HeaderOperations:
             scenario=scenario,
             value=value,
             template_url=self.param_double.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -498,7 +510,8 @@ class HeaderOperations:
         request = build_response_double_request(
             scenario=scenario,
             template_url=self.response_double.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -539,7 +552,8 @@ class HeaderOperations:
             scenario=scenario,
             value=value,
             template_url=self.param_bool.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -573,7 +587,8 @@ class HeaderOperations:
         request = build_response_bool_request(
             scenario=scenario,
             template_url=self.response_bool.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -616,7 +631,8 @@ class HeaderOperations:
             scenario=scenario,
             value=value,
             template_url=self.param_string.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -651,7 +667,8 @@ class HeaderOperations:
         request = build_response_string_request(
             scenario=scenario,
             template_url=self.response_string.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -692,7 +709,8 @@ class HeaderOperations:
             scenario=scenario,
             value=value,
             template_url=self.param_date.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -726,7 +744,8 @@ class HeaderOperations:
         request = build_response_date_request(
             scenario=scenario,
             template_url=self.response_date.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -768,7 +787,8 @@ class HeaderOperations:
             scenario=scenario,
             value=value,
             template_url=self.param_datetime.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -802,7 +822,8 @@ class HeaderOperations:
         request = build_response_datetime_request(
             scenario=scenario,
             template_url=self.response_datetime.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -846,7 +867,8 @@ class HeaderOperations:
             scenario=scenario,
             value=value,
             template_url=self.param_datetime_rfc1123.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -881,7 +903,8 @@ class HeaderOperations:
         request = build_response_datetime_rfc1123_request(
             scenario=scenario,
             template_url=self.response_datetime_rfc1123.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -921,7 +944,8 @@ class HeaderOperations:
             scenario=scenario,
             value=value,
             template_url=self.param_duration.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -955,7 +979,8 @@ class HeaderOperations:
         request = build_response_duration_request(
             scenario=scenario,
             template_url=self.response_duration.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -995,7 +1020,8 @@ class HeaderOperations:
             scenario=scenario,
             value=value,
             template_url=self.param_byte.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1029,7 +1055,8 @@ class HeaderOperations:
         request = build_response_byte_request(
             scenario=scenario,
             template_url=self.response_byte.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1073,7 +1100,8 @@ class HeaderOperations:
             scenario=scenario,
             value=value,
             template_url=self.param_enum.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1108,7 +1136,8 @@ class HeaderOperations:
         request = build_response_enum_request(
             scenario=scenario,
             template_url=self.response_enum.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1143,7 +1172,8 @@ class HeaderOperations:
 
         request = build_custom_request_id_request(
             template_url=self.custom_request_id.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

@@ -23,6 +23,7 @@ from azure.core.tracing.decorator import distributed_trace
 from msrest import Serializer
 
 from .. import models as _models
+from .._vendor import _convert_request
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -657,7 +658,8 @@ class ExplicitOperations(object):
             content_type=content_type,
             content=content,
             template_url=self.put_optional_binary_body.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -701,7 +703,8 @@ class ExplicitOperations(object):
             content_type=content_type,
             content=content,
             template_url=self.put_required_binary_body.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -746,7 +749,8 @@ class ExplicitOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post_required_integer_parameter.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -793,7 +797,8 @@ class ExplicitOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post_optional_integer_parameter.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -839,7 +844,8 @@ class ExplicitOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post_required_integer_property.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -887,7 +893,8 @@ class ExplicitOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post_optional_integer_property.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -927,7 +934,8 @@ class ExplicitOperations(object):
         request = build_post_required_integer_header_request(
             header_parameter=header_parameter,
             template_url=self.post_required_integer_header.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -966,7 +974,8 @@ class ExplicitOperations(object):
         request = build_post_optional_integer_header_request(
             header_parameter=header_parameter,
             template_url=self.post_optional_integer_header.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1011,7 +1020,8 @@ class ExplicitOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post_required_string_parameter.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1058,7 +1068,8 @@ class ExplicitOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post_optional_string_parameter.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1104,7 +1115,8 @@ class ExplicitOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post_required_string_property.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1152,7 +1164,8 @@ class ExplicitOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post_optional_string_property.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1192,7 +1205,8 @@ class ExplicitOperations(object):
         request = build_post_required_string_header_request(
             header_parameter=header_parameter,
             template_url=self.post_required_string_header.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1231,7 +1245,8 @@ class ExplicitOperations(object):
         request = build_post_optional_string_header_request(
             body_parameter=body_parameter,
             template_url=self.post_optional_string_header.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1276,7 +1291,8 @@ class ExplicitOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post_required_class_parameter.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1323,7 +1339,8 @@ class ExplicitOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post_optional_class_parameter.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1369,7 +1386,8 @@ class ExplicitOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post_required_class_property.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1417,7 +1435,8 @@ class ExplicitOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post_optional_class_property.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1462,7 +1481,8 @@ class ExplicitOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post_required_array_parameter.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1509,7 +1529,8 @@ class ExplicitOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post_optional_array_parameter.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1555,7 +1576,8 @@ class ExplicitOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post_required_array_property.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1603,7 +1625,8 @@ class ExplicitOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post_optional_array_property.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1643,7 +1666,8 @@ class ExplicitOperations(object):
         request = build_post_required_array_header_request(
             header_parameter=header_parameter,
             template_url=self.post_required_array_header.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1682,7 +1706,8 @@ class ExplicitOperations(object):
         request = build_post_optional_array_header_request(
             header_parameter=header_parameter,
             template_url=self.post_optional_array_header.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

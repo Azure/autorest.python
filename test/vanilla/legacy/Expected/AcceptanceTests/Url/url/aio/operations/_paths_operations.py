@@ -23,6 +23,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._vendor import _convert_request
 from ...operations._paths_operations import (
     build_array_csv_in_path_request,
     build_base64_url_request,
@@ -94,7 +95,8 @@ class PathsOperations:
 
         request = build_get_boolean_true_request(
             template_url=self.get_boolean_true.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -125,7 +127,8 @@ class PathsOperations:
 
         request = build_get_boolean_false_request(
             template_url=self.get_boolean_false.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -156,7 +159,8 @@ class PathsOperations:
 
         request = build_get_int_one_million_request(
             template_url=self.get_int_one_million.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -187,7 +191,8 @@ class PathsOperations:
 
         request = build_get_int_negative_one_million_request(
             template_url=self.get_int_negative_one_million.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -218,7 +223,8 @@ class PathsOperations:
 
         request = build_get_ten_billion_request(
             template_url=self.get_ten_billion.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -249,7 +255,8 @@ class PathsOperations:
 
         request = build_get_negative_ten_billion_request(
             template_url=self.get_negative_ten_billion.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -280,7 +287,8 @@ class PathsOperations:
 
         request = build_float_scientific_positive_request(
             template_url=self.float_scientific_positive.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -311,7 +319,8 @@ class PathsOperations:
 
         request = build_float_scientific_negative_request(
             template_url=self.float_scientific_negative.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -342,7 +351,8 @@ class PathsOperations:
 
         request = build_double_decimal_positive_request(
             template_url=self.double_decimal_positive.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -373,7 +383,8 @@ class PathsOperations:
 
         request = build_double_decimal_negative_request(
             template_url=self.double_decimal_negative.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -404,7 +415,8 @@ class PathsOperations:
 
         request = build_string_unicode_request(
             template_url=self.string_unicode.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -435,7 +447,8 @@ class PathsOperations:
 
         request = build_string_url_encoded_request(
             template_url=self.string_url_encoded.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -468,7 +481,8 @@ class PathsOperations:
 
         request = build_string_url_non_encoded_request(
             template_url=self.string_url_non_encoded.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -499,7 +513,8 @@ class PathsOperations:
 
         request = build_string_empty_request(
             template_url=self.string_empty.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -533,7 +548,8 @@ class PathsOperations:
         request = build_string_null_request(
             string_path=string_path,
             template_url=self.string_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -567,7 +583,8 @@ class PathsOperations:
         request = build_enum_valid_request(
             enum_path=enum_path,
             template_url=self.enum_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -601,7 +618,8 @@ class PathsOperations:
         request = build_enum_null_request(
             enum_path=enum_path,
             template_url=self.enum_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -635,7 +653,8 @@ class PathsOperations:
         request = build_byte_multi_byte_request(
             byte_path=byte_path,
             template_url=self.byte_multi_byte.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -666,7 +685,8 @@ class PathsOperations:
 
         request = build_byte_empty_request(
             template_url=self.byte_empty.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -700,7 +720,8 @@ class PathsOperations:
         request = build_byte_null_request(
             byte_path=byte_path,
             template_url=self.byte_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -731,7 +752,8 @@ class PathsOperations:
 
         request = build_date_valid_request(
             template_url=self.date_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -766,7 +788,8 @@ class PathsOperations:
         request = build_date_null_request(
             date_path=date_path,
             template_url=self.date_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -797,7 +820,8 @@ class PathsOperations:
 
         request = build_date_time_valid_request(
             template_url=self.date_time_valid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -831,7 +855,8 @@ class PathsOperations:
         request = build_date_time_null_request(
             date_time_path=date_time_path,
             template_url=self.date_time_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -865,7 +890,8 @@ class PathsOperations:
         request = build_base64_url_request(
             base64_url_path=base64_url_path,
             template_url=self.base64_url.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -901,7 +927,8 @@ class PathsOperations:
         request = build_array_csv_in_path_request(
             array_path=array_path,
             template_url=self.array_csv_in_path.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -935,7 +962,8 @@ class PathsOperations:
         request = build_unix_time_url_request(
             unix_time_url_path=unix_time_url_path,
             template_url=self.unix_time_url.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

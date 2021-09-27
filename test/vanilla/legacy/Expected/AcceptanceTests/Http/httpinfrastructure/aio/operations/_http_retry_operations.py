@@ -22,6 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._vendor import _convert_request
 from ...operations._http_retry_operations import (
     build_delete503_request,
     build_get502_request,
@@ -75,7 +76,8 @@ class HttpRetryOperations:
 
         request = build_head408_request(
             template_url=self.head408.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -117,7 +119,8 @@ class HttpRetryOperations:
             content_type=content_type,
             json=json,
             template_url=self.put500.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -159,7 +162,8 @@ class HttpRetryOperations:
             content_type=content_type,
             json=json,
             template_url=self.patch500.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -190,7 +194,8 @@ class HttpRetryOperations:
 
         request = build_get502_request(
             template_url=self.get502.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -221,7 +226,8 @@ class HttpRetryOperations:
 
         request = build_options502_request(
             template_url=self.options502.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -267,7 +273,8 @@ class HttpRetryOperations:
             content_type=content_type,
             json=json,
             template_url=self.post503.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -309,7 +316,8 @@ class HttpRetryOperations:
             content_type=content_type,
             json=json,
             template_url=self.delete503.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -351,7 +359,8 @@ class HttpRetryOperations:
             content_type=content_type,
             json=json,
             template_url=self.put504.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -393,7 +402,8 @@ class HttpRetryOperations:
             content_type=content_type,
             json=json,
             template_url=self.patch504.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

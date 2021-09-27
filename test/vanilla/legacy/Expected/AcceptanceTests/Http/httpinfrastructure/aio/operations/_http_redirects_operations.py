@@ -22,6 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._vendor import _convert_request
 from ...operations._http_redirects_operations import (
     build_delete307_request,
     build_get300_request,
@@ -82,7 +83,8 @@ class HttpRedirectsOperations:
 
         request = build_head300_request(
             template_url=self.head300.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -117,7 +119,8 @@ class HttpRedirectsOperations:
 
         request = build_get300_request(
             template_url=self.get300.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -157,7 +160,8 @@ class HttpRedirectsOperations:
 
         request = build_head301_request(
             template_url=self.head301.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -192,7 +196,8 @@ class HttpRedirectsOperations:
 
         request = build_get301_request(
             template_url=self.get301.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -239,7 +244,8 @@ class HttpRedirectsOperations:
             content_type=content_type,
             json=json,
             template_url=self.put301.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -273,7 +279,8 @@ class HttpRedirectsOperations:
 
         request = build_head302_request(
             template_url=self.head302.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -308,7 +315,8 @@ class HttpRedirectsOperations:
 
         request = build_get302_request(
             template_url=self.get302.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -355,7 +363,8 @@ class HttpRedirectsOperations:
             content_type=content_type,
             json=json,
             template_url=self.patch302.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -401,7 +410,8 @@ class HttpRedirectsOperations:
             content_type=content_type,
             json=json,
             template_url=self.post303.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -436,7 +446,8 @@ class HttpRedirectsOperations:
 
         request = build_head307_request(
             template_url=self.head307.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -471,7 +482,8 @@ class HttpRedirectsOperations:
 
         request = build_get307_request(
             template_url=self.get307.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -506,7 +518,8 @@ class HttpRedirectsOperations:
 
         request = build_options307_request(
             template_url=self.options307.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -552,7 +565,8 @@ class HttpRedirectsOperations:
             content_type=content_type,
             json=json,
             template_url=self.put307.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -598,7 +612,8 @@ class HttpRedirectsOperations:
             content_type=content_type,
             json=json,
             template_url=self.patch307.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -644,7 +659,8 @@ class HttpRedirectsOperations:
             content_type=content_type,
             json=json,
             template_url=self.post307.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -690,7 +706,8 @@ class HttpRedirectsOperations:
             content_type=content_type,
             json=json,
             template_url=self.delete307.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

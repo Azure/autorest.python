@@ -19,7 +19,6 @@ from azure.core.exceptions import (
 from azure.core.paging import ItemPaged
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
-from azure.core.pipeline.transport._base import _format_url_section
 from azure.core.polling import LROPoller, NoPolling, PollingMethod
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
@@ -28,6 +27,7 @@ from azure.mgmt.core.polling.arm_polling import ARMPolling
 from msrest import Serializer
 
 from .. import models as _models
+from .._vendor import _convert_request, _format_url_section
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -416,7 +416,8 @@ class StorageAccountsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.check_name_availability.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -458,7 +459,8 @@ class StorageAccountsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self._create_initial.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -585,7 +587,8 @@ class StorageAccountsOperations(object):
             account_name=account_name,
             subscription_id=self._config.subscription_id,
             template_url=self.delete.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -632,7 +635,8 @@ class StorageAccountsOperations(object):
             account_name=account_name,
             subscription_id=self._config.subscription_id,
             template_url=self.get_properties.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -697,7 +701,8 @@ class StorageAccountsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.update.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -744,7 +749,8 @@ class StorageAccountsOperations(object):
             account_name=account_name,
             subscription_id=self._config.subscription_id,
             template_url=self.list_keys.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -787,7 +793,8 @@ class StorageAccountsOperations(object):
                 request = build_list_request(
                     subscription_id=self._config.subscription_id,
                     template_url=self.list.metadata["url"],
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
 
             else:
@@ -795,7 +802,8 @@ class StorageAccountsOperations(object):
                 request = build_list_request(
                     subscription_id=self._config.subscription_id,
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
@@ -852,7 +860,8 @@ class StorageAccountsOperations(object):
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
                     template_url=self.list_by_resource_group.metadata["url"],
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
 
             else:
@@ -861,7 +870,8 @@ class StorageAccountsOperations(object):
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
@@ -929,7 +939,8 @@ class StorageAccountsOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.regenerate_key.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

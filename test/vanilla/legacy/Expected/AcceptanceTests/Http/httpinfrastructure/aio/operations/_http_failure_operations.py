@@ -22,6 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._vendor import _convert_request
 from ...operations._http_failure_operations import (
     build_get_empty_error_request,
     build_get_no_model_empty_request,
@@ -69,7 +70,8 @@ class HttpFailureOperations:
 
         request = build_get_empty_error_request(
             template_url=self.get_empty_error.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -104,7 +106,8 @@ class HttpFailureOperations:
 
         request = build_get_no_model_error_request(
             template_url=self.get_no_model_error.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -138,7 +141,8 @@ class HttpFailureOperations:
 
         request = build_get_no_model_empty_request(
             template_url=self.get_no_model_empty.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

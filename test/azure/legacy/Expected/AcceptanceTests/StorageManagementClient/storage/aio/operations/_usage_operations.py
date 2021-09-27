@@ -23,6 +23,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models
+from ..._vendor import _convert_request
 from ...operations._usage_operations import build_list_request
 
 T = TypeVar("T")
@@ -67,7 +68,8 @@ class UsageOperations:
         request = build_list_request(
             subscription_id=self._config.subscription_id,
             template_url=self.list.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

@@ -23,6 +23,7 @@ from azure.core.tracing.decorator import distributed_trace
 from msrest import Serializer
 
 from .. import models as _models
+from .._vendor import _convert_request
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -510,7 +511,8 @@ class HttpSuccessOperations(object):
 
         request = build_head200_request(
             template_url=self.head200.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -544,7 +546,8 @@ class HttpSuccessOperations(object):
 
         request = build_get200_request(
             template_url=self.get200.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -582,7 +585,8 @@ class HttpSuccessOperations(object):
 
         request = build_options200_request(
             template_url=self.options200.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -633,7 +637,8 @@ class HttpSuccessOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.put200.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -680,7 +685,8 @@ class HttpSuccessOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.patch200.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -727,7 +733,8 @@ class HttpSuccessOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post200.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -774,7 +781,8 @@ class HttpSuccessOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.delete200.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -821,7 +829,8 @@ class HttpSuccessOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.put201.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -868,7 +877,8 @@ class HttpSuccessOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post201.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -915,7 +925,8 @@ class HttpSuccessOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.put202.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -962,7 +973,8 @@ class HttpSuccessOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.patch202.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1009,7 +1021,8 @@ class HttpSuccessOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post202.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1056,7 +1069,8 @@ class HttpSuccessOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.delete202.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1090,7 +1104,8 @@ class HttpSuccessOperations(object):
 
         request = build_head204_request(
             template_url=self.head204.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1137,7 +1152,8 @@ class HttpSuccessOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.put204.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1184,7 +1200,8 @@ class HttpSuccessOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.patch204.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1231,7 +1248,8 @@ class HttpSuccessOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post204.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1278,7 +1296,8 @@ class HttpSuccessOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.delete204.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1312,7 +1331,8 @@ class HttpSuccessOperations(object):
 
         request = build_head404_request(
             template_url=self.head404.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

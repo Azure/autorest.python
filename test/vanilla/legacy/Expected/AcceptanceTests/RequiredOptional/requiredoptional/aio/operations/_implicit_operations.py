@@ -22,6 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._vendor import _convert_request
 from ...operations._implicit_operations import (
     build_get_optional_global_query_request,
     build_get_required_global_path_request,
@@ -77,7 +78,8 @@ class ImplicitOperations:
         request = build_get_required_path_request(
             path_parameter=path_parameter,
             template_url=self.get_required_path.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -111,7 +113,8 @@ class ImplicitOperations:
         request = build_put_optional_query_request(
             query_parameter=query_parameter,
             template_url=self.put_optional_query.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -145,7 +148,8 @@ class ImplicitOperations:
         request = build_put_optional_header_request(
             query_parameter=query_parameter,
             template_url=self.put_optional_header.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -187,7 +191,8 @@ class ImplicitOperations:
             content_type=content_type,
             json=json,
             template_url=self.put_optional_body.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -226,7 +231,8 @@ class ImplicitOperations:
             content_type=content_type,
             content=content,
             template_url=self.put_optional_binary_body.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -258,7 +264,8 @@ class ImplicitOperations:
         request = build_get_required_global_path_request(
             required_global_path=self._config.required_global_path,
             template_url=self.get_required_global_path.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -290,7 +297,8 @@ class ImplicitOperations:
         request = build_get_required_global_query_request(
             required_global_query=self._config.required_global_query,
             template_url=self.get_required_global_query.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -322,7 +330,8 @@ class ImplicitOperations:
         request = build_get_optional_global_query_request(
             optional_global_query=self._config.optional_global_query,
             template_url=self.get_optional_global_query.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

@@ -22,6 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._vendor import _convert_request
 from ...operations._media_types_client_operations import (
     build_analyze_body_no_accept_header_request,
     build_analyze_body_request,
@@ -73,7 +74,8 @@ class MediaTypesClientOperationsMixin:
             json=json,
             content=content,
             template_url=self.analyze_body.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -135,7 +137,8 @@ class MediaTypesClientOperationsMixin:
             json=json,
             content=content,
             template_url=self.analyze_body_no_accept_header.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -176,7 +179,8 @@ class MediaTypesClientOperationsMixin:
             content_type=content_type,
             content=content,
             template_url=self.content_type_with_encoding.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

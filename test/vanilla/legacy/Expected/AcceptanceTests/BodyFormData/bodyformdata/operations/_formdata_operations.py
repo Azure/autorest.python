@@ -23,6 +23,7 @@ from azure.core.tracing.decorator import distributed_trace
 from msrest import Serializer
 
 from .. import models as _models
+from .._vendor import _convert_request
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -166,7 +167,8 @@ class FormdataOperations(object):
             files=files,
             data=data,
             template_url=self.upload_file.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request, files)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=True, **kwargs)
@@ -214,7 +216,8 @@ class FormdataOperations(object):
             content_type=content_type,
             content=content,
             template_url=self.upload_file_via_body.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=True, **kwargs)
@@ -268,7 +271,8 @@ class FormdataOperations(object):
             files=files,
             data=data,
             template_url=self.upload_files.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request, files)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=True, **kwargs)

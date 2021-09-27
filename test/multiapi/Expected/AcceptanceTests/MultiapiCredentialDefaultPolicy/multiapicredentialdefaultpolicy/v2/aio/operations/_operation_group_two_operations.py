@@ -17,6 +17,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models
+from ..._vendor import _convert_request
 from ...operations._operation_group_two_operations import build_test_four_request
 
 T = TypeVar('T')
@@ -69,7 +70,8 @@ class OperationGroupTwoOperations:
         request = build_test_four_request(
             parameter_one=parameter_one,
             template_url=self.test_four.metadata['url'],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
