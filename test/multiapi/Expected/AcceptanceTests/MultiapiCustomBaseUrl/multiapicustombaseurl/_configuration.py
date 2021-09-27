@@ -12,7 +12,6 @@ from typing import TYPE_CHECKING
 
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
-from azure.core.pipeline.transport import HttpRequest
 
 from ._version import VERSION
 

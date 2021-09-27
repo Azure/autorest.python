@@ -13,13 +13,6 @@ def config_imports(code_model, global_parameters: ParameterList, async_mode: boo
     file_import.add_from_import("azure.core.configuration", "Configuration", ImportType.AZURECORE)
     file_import.add_from_import("azure.core.pipeline", "policies", ImportType.AZURECORE)
     file_import.add_from_import("typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL)
-    if code_model.need_request_converter and not async_mode:
-        # we will need to conver requests in this case
-        file_import.add_from_import(
-            "azure.core.pipeline.transport",
-            "HttpRequest",
-            ImportType.AZURECORE,
-        )
     if code_model.options["package_version"]:
         file_import.add_from_import(".._version" if async_mode else "._version", "VERSION", ImportType.LOCAL)
     for gp in global_parameters:
