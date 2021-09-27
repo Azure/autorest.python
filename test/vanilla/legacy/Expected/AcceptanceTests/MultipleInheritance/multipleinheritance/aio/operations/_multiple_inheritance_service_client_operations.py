@@ -22,6 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._vendor import _convert_request
 from ...operations._multiple_inheritance_service_client_operations import (
     build_get_cat_request,
     build_get_feline_request,
@@ -55,7 +56,8 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
         request = build_get_horse_request(
             template_url=self.get_horse.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -100,7 +102,8 @@ class MultipleInheritanceServiceClientOperationsMixin:
             content_type=content_type,
             json=json,
             template_url=self.put_horse.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -136,7 +139,8 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
         request = build_get_pet_request(
             template_url=self.get_pet.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -182,7 +186,8 @@ class MultipleInheritanceServiceClientOperationsMixin:
             content_type=content_type,
             json=json,
             template_url=self.put_pet.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -218,7 +223,8 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
         request = build_get_feline_request(
             template_url=self.get_feline.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -263,7 +269,8 @@ class MultipleInheritanceServiceClientOperationsMixin:
             content_type=content_type,
             json=json,
             template_url=self.put_feline.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -299,7 +306,8 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
         request = build_get_cat_request(
             template_url=self.get_cat.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -344,7 +352,8 @@ class MultipleInheritanceServiceClientOperationsMixin:
             content_type=content_type,
             json=json,
             template_url=self.put_cat.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -381,7 +390,8 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
         request = build_get_kitten_request(
             template_url=self.get_kitten.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -428,7 +438,8 @@ class MultipleInheritanceServiceClientOperationsMixin:
             content_type=content_type,
             json=json,
             template_url=self.put_kitten.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

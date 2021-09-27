@@ -21,6 +21,7 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
 from ... import models as _models
+from ..._vendor import _convert_request
 from ...operations._multiapi_service_client_operations import build_test_different_calls_request, build_test_lro_and_paging_request_initial, build_test_lro_request_initial, build_test_one_request
 
 T = TypeVar('T')
@@ -57,7 +58,8 @@ class MultiapiServiceClientOperationsMixin:
             id=id,
             message=message,
             template_url=self.test_one.metadata['url'],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -96,7 +98,8 @@ class MultiapiServiceClientOperationsMixin:
             content_type=content_type,
             json=json,
             template_url=self._test_lro_initial.metadata['url'],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -204,7 +207,8 @@ class MultiapiServiceClientOperationsMixin:
             maxresults=_maxresults,
             timeout=_timeout,
             template_url=self._test_lro_and_paging_initial.metadata['url'],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -271,7 +275,8 @@ class MultiapiServiceClientOperationsMixin:
                     maxresults=_maxresults,
                     timeout=_timeout,
                     template_url=self.begin_test_lro_and_paging.metadata['url'],
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
 
             else:
@@ -286,7 +291,8 @@ class MultiapiServiceClientOperationsMixin:
                     maxresults=_maxresults,
                     timeout=_timeout,
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
@@ -379,7 +385,8 @@ class MultiapiServiceClientOperationsMixin:
         request = build_test_different_calls_request(
             greeting_in_english=greeting_in_english,
             template_url=self.test_different_calls.metadata['url'],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

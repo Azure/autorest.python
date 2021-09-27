@@ -14,7 +14,6 @@ from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, 
 from azure.core.paging import ItemPaged
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
-from azure.core.pipeline.transport._base import _format_url_section
 from azure.core.polling import NoPolling, PollingMethod
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
@@ -22,6 +21,8 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 from custompollerpagerdefinitions import CustomPager, CustomPoller
 from msrest import Serializer
+
+from .._vendor import _convert_request, _format_url_section
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -606,14 +607,16 @@ class PagingOperations(object):
                 
                 request = build_paging_get_no_item_name_pages_request(
                     template_url=self.get_no_item_name_pages.metadata['url'],
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
 
             else:
                 
                 request = build_paging_get_no_item_name_pages_request(
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
@@ -681,14 +684,16 @@ class PagingOperations(object):
                 
                 request = build_paging_get_null_next_link_name_pages_request(
                     template_url=self.get_null_next_link_name_pages.metadata['url'],
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
 
             else:
                 
                 request = build_paging_get_null_next_link_name_pages_request(
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
@@ -756,14 +761,16 @@ class PagingOperations(object):
                 
                 request = build_paging_get_single_pages_request(
                     template_url=self.get_single_pages.metadata['url'],
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
 
             else:
                 
                 request = build_paging_get_single_pages_request(
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
@@ -832,14 +839,16 @@ class PagingOperations(object):
                 
                 request = build_paging_first_response_empty_request(
                     template_url=self.first_response_empty.metadata['url'],
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
 
             else:
                 
                 request = build_paging_first_response_empty_request(
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
@@ -921,7 +930,8 @@ class PagingOperations(object):
                     maxresults=maxresults,
                     timeout=timeout,
                     template_url=self.get_multiple_pages.metadata['url'],
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
 
             else:
@@ -931,7 +941,8 @@ class PagingOperations(object):
                     maxresults=maxresults,
                     timeout=timeout,
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
@@ -1006,14 +1017,16 @@ class PagingOperations(object):
                 request = build_paging_get_with_query_params_request(
                     required_query_parameter=required_query_parameter,
                     template_url=self.get_with_query_params.metadata['url'],
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
 
             else:
                 
                 request = build_paging_next_operation_with_query_params_request(
                     template_url='/paging/multiple/nextOperationWithQueryParams',
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
 
             return request
@@ -1095,7 +1108,8 @@ class PagingOperations(object):
                     maxresults=maxresults,
                     timeout=timeout,
                     template_url=self.get_odata_multiple_pages.metadata['url'],
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
 
             else:
@@ -1105,7 +1119,8 @@ class PagingOperations(object):
                     maxresults=maxresults,
                     timeout=timeout,
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
@@ -1191,7 +1206,8 @@ class PagingOperations(object):
                     maxresults=maxresults,
                     timeout=timeout,
                     template_url=self.get_multiple_pages_with_offset.metadata['url'],
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
 
             else:
@@ -1202,7 +1218,8 @@ class PagingOperations(object):
                     maxresults=maxresults,
                     timeout=timeout,
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
@@ -1271,14 +1288,16 @@ class PagingOperations(object):
                 
                 request = build_paging_get_multiple_pages_retry_first_request(
                     template_url=self.get_multiple_pages_retry_first.metadata['url'],
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
 
             else:
                 
                 request = build_paging_get_multiple_pages_retry_first_request(
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
@@ -1347,14 +1366,16 @@ class PagingOperations(object):
                 
                 request = build_paging_get_multiple_pages_retry_second_request(
                     template_url=self.get_multiple_pages_retry_second.metadata['url'],
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
 
             else:
                 
                 request = build_paging_get_multiple_pages_retry_second_request(
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
@@ -1422,14 +1443,16 @@ class PagingOperations(object):
                 
                 request = build_paging_get_single_pages_failure_request(
                     template_url=self.get_single_pages_failure.metadata['url'],
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
 
             else:
                 
                 request = build_paging_get_single_pages_failure_request(
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
@@ -1497,14 +1520,16 @@ class PagingOperations(object):
                 
                 request = build_paging_get_multiple_pages_failure_request(
                     template_url=self.get_multiple_pages_failure.metadata['url'],
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
 
             else:
                 
                 request = build_paging_get_multiple_pages_failure_request(
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
@@ -1572,14 +1597,16 @@ class PagingOperations(object):
                 
                 request = build_paging_get_multiple_pages_failure_uri_request(
                     template_url=self.get_multiple_pages_failure_uri.metadata['url'],
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
 
             else:
                 
                 request = build_paging_get_multiple_pages_failure_uri_request(
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
@@ -1656,7 +1683,8 @@ class PagingOperations(object):
                     tenant=tenant,
                     api_version=api_version,
                     template_url=self.get_multiple_pages_fragment_next_link.metadata['url'],
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
 
             else:
@@ -1666,7 +1694,8 @@ class PagingOperations(object):
                     next_link=next_link,
                     api_version=api_version,
                     template_url='/paging/multiple/fragment/{tenant}/{nextLink}',
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
 
             return request
@@ -1743,7 +1772,8 @@ class PagingOperations(object):
                     tenant=tenant,
                     api_version=api_version,
                     template_url=self.get_multiple_pages_fragment_with_grouping_next_link.metadata['url'],
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
 
             else:
@@ -1753,7 +1783,8 @@ class PagingOperations(object):
                     next_link=next_link,
                     api_version=api_version,
                     template_url='/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}',
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
 
             return request
@@ -1804,7 +1835,8 @@ class PagingOperations(object):
             maxresults=maxresults,
             timeout=timeout,
             template_url=self._get_multiple_pages_lro_initial.metadata['url'],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -1871,7 +1903,8 @@ class PagingOperations(object):
                     maxresults=maxresults,
                     timeout=timeout,
                     template_url=self.begin_get_multiple_pages_lro.metadata['url'],
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
 
             else:
@@ -1881,7 +1914,8 @@ class PagingOperations(object):
                     maxresults=maxresults,
                     timeout=timeout,
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
@@ -1989,14 +2023,16 @@ class PagingOperations(object):
                 
                 request = build_paging_get_paging_model_with_item_name_with_xms_client_name_request(
                     template_url=self.get_paging_model_with_item_name_with_xms_client_name.metadata['url'],
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
 
             else:
                 
                 request = build_paging_get_paging_model_with_item_name_with_xms_client_name_request(
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request

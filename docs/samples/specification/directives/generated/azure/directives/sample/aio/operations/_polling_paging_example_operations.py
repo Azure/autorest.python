@@ -20,6 +20,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from my.library.aio import AsyncCustomDefaultPollingMethod, AsyncCustomPager, AsyncCustomPoller
 
 from ... import models as _models
+from ..._vendor import _convert_request
 from ...operations._polling_paging_example_operations import build_basic_paging_request, build_basic_polling_request_initial
 
 T = TypeVar('T')
@@ -49,7 +50,8 @@ class PollingPagingExampleOperationsMixin:
             content_type=content_type,
             json=json,
             template_url=self._basic_polling_initial.metadata['url'],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -156,14 +158,16 @@ class PollingPagingExampleOperationsMixin:
                 
                 request = build_basic_paging_request(
                     template_url=self.basic_paging.metadata['url'],
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
 
             else:
                 
                 request = build_basic_paging_request(
                     template_url=next_link,
-                )._to_pipeline_transport_request()
+                )
+                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request

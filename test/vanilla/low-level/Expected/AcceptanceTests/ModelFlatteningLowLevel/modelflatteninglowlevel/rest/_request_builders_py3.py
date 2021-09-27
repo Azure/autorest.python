@@ -7,9 +7,10 @@
 # --------------------------------------------------------------------------
 from typing import Any, Dict, List, Optional
 
-from azure.core.pipeline.transport._base import _format_url_section
 from azure.core.rest import HttpRequest
 from msrest import Serializer
+
+from .._vendor import _format_url_section
 
 _SERIALIZER = Serializer()
 

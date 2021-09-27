@@ -22,6 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._vendor import _convert_request
 from ...operations._explicit_operations import (
     build_post_optional_array_header_request,
     build_post_optional_array_parameter_request,
@@ -98,7 +99,8 @@ class ExplicitOperations:
             content_type=content_type,
             content=content,
             template_url=self.put_optional_binary_body.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -139,7 +141,8 @@ class ExplicitOperations:
             content_type=content_type,
             content=content,
             template_url=self.put_required_binary_body.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -181,7 +184,8 @@ class ExplicitOperations:
             content_type=content_type,
             json=json,
             template_url=self.post_required_integer_parameter.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -225,7 +229,8 @@ class ExplicitOperations:
             content_type=content_type,
             json=json,
             template_url=self.post_optional_integer_parameter.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -268,7 +273,8 @@ class ExplicitOperations:
             content_type=content_type,
             json=json,
             template_url=self.post_required_integer_property.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -313,7 +319,8 @@ class ExplicitOperations:
             content_type=content_type,
             json=json,
             template_url=self.post_optional_integer_property.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -350,7 +357,8 @@ class ExplicitOperations:
         request = build_post_required_integer_header_request(
             header_parameter=header_parameter,
             template_url=self.post_required_integer_header.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -386,7 +394,8 @@ class ExplicitOperations:
         request = build_post_optional_integer_header_request(
             header_parameter=header_parameter,
             template_url=self.post_optional_integer_header.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -428,7 +437,8 @@ class ExplicitOperations:
             content_type=content_type,
             json=json,
             template_url=self.post_required_string_parameter.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -472,7 +482,8 @@ class ExplicitOperations:
             content_type=content_type,
             json=json,
             template_url=self.post_optional_string_parameter.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -515,7 +526,8 @@ class ExplicitOperations:
             content_type=content_type,
             json=json,
             template_url=self.post_required_string_property.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -560,7 +572,8 @@ class ExplicitOperations:
             content_type=content_type,
             json=json,
             template_url=self.post_optional_string_property.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -597,7 +610,8 @@ class ExplicitOperations:
         request = build_post_required_string_header_request(
             header_parameter=header_parameter,
             template_url=self.post_required_string_header.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -633,7 +647,8 @@ class ExplicitOperations:
         request = build_post_optional_string_header_request(
             body_parameter=body_parameter,
             template_url=self.post_optional_string_header.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -675,7 +690,8 @@ class ExplicitOperations:
             content_type=content_type,
             json=json,
             template_url=self.post_required_class_parameter.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -721,7 +737,8 @@ class ExplicitOperations:
             content_type=content_type,
             json=json,
             template_url=self.post_optional_class_parameter.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -764,7 +781,8 @@ class ExplicitOperations:
             content_type=content_type,
             json=json,
             template_url=self.post_required_class_property.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -809,7 +827,8 @@ class ExplicitOperations:
             content_type=content_type,
             json=json,
             template_url=self.post_optional_class_property.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -851,7 +870,8 @@ class ExplicitOperations:
             content_type=content_type,
             json=json,
             template_url=self.post_required_array_parameter.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -895,7 +915,8 @@ class ExplicitOperations:
             content_type=content_type,
             json=json,
             template_url=self.post_optional_array_parameter.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -938,7 +959,8 @@ class ExplicitOperations:
             content_type=content_type,
             json=json,
             template_url=self.post_required_array_property.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -983,7 +1005,8 @@ class ExplicitOperations:
             content_type=content_type,
             json=json,
             template_url=self.post_optional_array_property.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1020,7 +1043,8 @@ class ExplicitOperations:
         request = build_post_required_array_header_request(
             header_parameter=header_parameter,
             template_url=self.post_required_array_header.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1056,7 +1080,8 @@ class ExplicitOperations:
         request = build_post_optional_array_header_request(
             header_parameter=header_parameter,
             template_url=self.post_optional_array_header.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
