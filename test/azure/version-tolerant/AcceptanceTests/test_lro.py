@@ -62,7 +62,7 @@ class AutorestTestARMPolling(ARMPolling):
         # ARM requires to re-inject 'x-ms-client-request-id' while polling
         if 'request_id' not in self._operation_config:
             self._operation_config['request_id'] = self._get_request_id()
-        return self._client.send_request(request, stream=False, **self._operation_config, _return_pipeline_response=True)
+        return self._client._pipeline.run(request, stream=False, **self._operation_config)
 
 @pytest.fixture()
 def client(cookie_policy, credential):

@@ -101,7 +101,7 @@ class TestXmsErrorResponse(object):
     def test_failsafe_deserialize(self, client):
         from xmserrorresponse.operations._pet_operations import build_do_something_request
         request = build_do_something_request(what_action="jump")
-        pipeline_response = client._send_request(request, _return_pipeline_response=True)
+        pipeline_response = client._client._pipeline.run(request)
         class MyPetSadError(PetSadError):
             def read(self):
                 return b"ignore me"

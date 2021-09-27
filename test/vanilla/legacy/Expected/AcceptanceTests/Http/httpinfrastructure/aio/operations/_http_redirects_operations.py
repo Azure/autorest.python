@@ -85,9 +85,7 @@ class HttpRedirectsOperations:
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client.send_request(
-            request, stream=False, _return_pipeline_response=True, **kwargs
-        )
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 300]:
@@ -122,9 +120,7 @@ class HttpRedirectsOperations:
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client.send_request(
-            request, stream=False, _return_pipeline_response=True, **kwargs
-        )
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 300]:
@@ -164,9 +160,7 @@ class HttpRedirectsOperations:
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client.send_request(
-            request, stream=False, _return_pipeline_response=True, **kwargs
-        )
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 301]:
@@ -201,9 +195,7 @@ class HttpRedirectsOperations:
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client.send_request(
-            request, stream=False, _return_pipeline_response=True, **kwargs
-        )
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 301]:
@@ -250,9 +242,7 @@ class HttpRedirectsOperations:
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client.send_request(
-            request, stream=False, _return_pipeline_response=True, **kwargs
-        )
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [301]:
@@ -286,9 +276,7 @@ class HttpRedirectsOperations:
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client.send_request(
-            request, stream=False, _return_pipeline_response=True, **kwargs
-        )
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 302]:
@@ -323,9 +311,7 @@ class HttpRedirectsOperations:
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client.send_request(
-            request, stream=False, _return_pipeline_response=True, **kwargs
-        )
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 302]:
@@ -372,9 +358,7 @@ class HttpRedirectsOperations:
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client.send_request(
-            request, stream=False, _return_pipeline_response=True, **kwargs
-        )
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [302]:
@@ -420,9 +404,7 @@ class HttpRedirectsOperations:
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client.send_request(
-            request, stream=False, _return_pipeline_response=True, **kwargs
-        )
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 303]:
@@ -457,9 +439,7 @@ class HttpRedirectsOperations:
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client.send_request(
-            request, stream=False, _return_pipeline_response=True, **kwargs
-        )
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 307]:
@@ -494,9 +474,7 @@ class HttpRedirectsOperations:
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client.send_request(
-            request, stream=False, _return_pipeline_response=True, **kwargs
-        )
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 307]:
@@ -531,9 +509,7 @@ class HttpRedirectsOperations:
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client.send_request(
-            request, stream=False, _return_pipeline_response=True, **kwargs
-        )
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 307]:
@@ -579,9 +555,7 @@ class HttpRedirectsOperations:
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client.send_request(
-            request, stream=False, _return_pipeline_response=True, **kwargs
-        )
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 307]:
@@ -627,9 +601,7 @@ class HttpRedirectsOperations:
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client.send_request(
-            request, stream=False, _return_pipeline_response=True, **kwargs
-        )
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 307]:
@@ -675,9 +647,7 @@ class HttpRedirectsOperations:
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client.send_request(
-            request, stream=False, _return_pipeline_response=True, **kwargs
-        )
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 307]:
@@ -723,9 +693,7 @@ class HttpRedirectsOperations:
         )._to_pipeline_transport_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client.send_request(
-            request, stream=False, _return_pipeline_response=True, **kwargs
-        )
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 307]:

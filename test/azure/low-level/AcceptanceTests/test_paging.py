@@ -57,9 +57,8 @@ def get_next_fixture(client):
     def _callback(prepare_request, next_link=None):
         request = prepare_request(next_link)
 
-        pipeline_response = client.send_request(
-            request,
-            _return_pipeline_response=True
+        pipeline_response = client._client.pipeline.run(
+            request,=
         )
         pipeline_response.http_response.raise_for_status()
 
@@ -244,9 +243,8 @@ def test_get_multiple_pages_lro(client, get_next_fixture, extract_data_fixture):
     from azure.mgmt.core.polling.arm_polling import ARMPolling
     from azure.core.polling import LROPoller
     # initial LRO call
-    pipeline_response = client.send_request(
+    pipeline_response = client._client._pipeline.run(
         paging.build_get_multiple_pages_lro_request(),
-        _return_pipeline_response=True
     )
     pipeline_response.http_response.raise_for_status()
     prepare_request = functools.partial(
