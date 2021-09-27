@@ -67,8 +67,9 @@ class RequestBuilder(BaseBuilder):
             ImportType.AZURECORE,
         )
         if self.parameters.path:
+            relative_path = "..." if self.operation_group_name else ".."
             file_import.add_from_import(
-                ".._vendor", "_format_url_section", ImportType.LOCAL
+                f"{relative_path}_vendor", "_format_url_section", ImportType.LOCAL
             )
         file_import.add_from_import(
             "typing", "Any", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL

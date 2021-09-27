@@ -11,7 +11,7 @@ from typing import Any, List, Optional
 from azure.core.rest import HttpRequest
 from msrest import Serializer
 
-from .._vendor import _format_url_section
+from ..._vendor import _format_url_section
 
 _SERIALIZER = Serializer()
 
