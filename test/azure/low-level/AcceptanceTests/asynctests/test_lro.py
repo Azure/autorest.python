@@ -109,6 +109,7 @@ def get_long_running_output_return_none():
 def get_poller(get_long_running_output, client):
 
     async def _callback(request, **kwargs):
+        request.url = client._client.format_url(request.url)
         pipeline_response = await client._client._pipeline.run(request)
         pipeline_response.http_response.raise_for_status()
         polling = kwargs.pop("polling", True)

@@ -65,9 +65,8 @@ def get_next_fixture(client):
     async def _callback(prepare_request, next_link=None):
         request = prepare_request(next_link)
 
-        pipeline_response = await client._client._pipeline.run(
-            request,
-        )
+        request.url = client._client.format_url(request.url)
+        pipeline_response = await client._client._pipeline.run(request)
         pipeline_response.http_response.raise_for_status()
 
         return pipeline_response

@@ -56,8 +56,8 @@ def extract_data_fixture(deserializer):
 def get_next_fixture(client):
     def _callback(prepare_request, next_link=None):
         request = prepare_request(next_link)
-
-        pipeline_response = client._client.pipeline.run(request)
+        request.url = client._client.format_url(request.url)
+        pipeline_response = client._client._pipeline.run(request)
         pipeline_response.http_response.raise_for_status()
 
         return pipeline_response
