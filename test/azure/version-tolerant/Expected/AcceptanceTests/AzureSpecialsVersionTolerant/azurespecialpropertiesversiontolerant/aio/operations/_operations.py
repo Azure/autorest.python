@@ -90,9 +90,7 @@ class XMsClientRequestIdOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_xms_client_request_id_get_request(
-            template_url=self.get.metadata["url"],
-        )
+        request = build_xms_client_request_id_get_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -106,8 +104,6 @@ class XMsClientRequestIdOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get.metadata = {"url": "/azurespecials/overwrite/x-ms-client-request-id/method/"}  # type: ignore
 
     @distributed_trace_async
     async def param_get(self, *, x_ms_client_request_id: str, **kwargs: Any) -> None:
@@ -127,7 +123,6 @@ class XMsClientRequestIdOperations:
 
         request = build_xms_client_request_id_param_get_request(
             x_ms_client_request_id=x_ms_client_request_id,
-            template_url=self.param_get.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -142,8 +137,6 @@ class XMsClientRequestIdOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    param_get.metadata = {"url": "/azurespecials/overwrite/x-ms-client-request-id/via-param/method/"}  # type: ignore
 
 
 class SubscriptionInCredentialsOperations:
@@ -179,7 +172,6 @@ class SubscriptionInCredentialsOperations:
 
         request = build_subscription_in_credentials_post_method_global_valid_request(
             subscription_id=self._config.subscription_id,
-            template_url=self.post_method_global_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -194,8 +186,6 @@ class SubscriptionInCredentialsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_method_global_valid.metadata = {"url": "/azurespecials/subscriptionId/method/string/none/path/global/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
 
     @distributed_trace_async
     async def post_method_global_null(self, **kwargs: Any) -> None:
@@ -212,7 +202,6 @@ class SubscriptionInCredentialsOperations:
 
         request = build_subscription_in_credentials_post_method_global_null_request(
             subscription_id=self._config.subscription_id,
-            template_url=self.post_method_global_null.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -227,8 +216,6 @@ class SubscriptionInCredentialsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_method_global_null.metadata = {"url": "/azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}"}  # type: ignore
 
     @distributed_trace_async
     async def post_method_global_not_provided_valid(self, **kwargs: Any) -> None:
@@ -245,7 +232,6 @@ class SubscriptionInCredentialsOperations:
 
         request = build_subscription_in_credentials_post_method_global_not_provided_valid_request(
             subscription_id=self._config.subscription_id,
-            template_url=self.post_method_global_not_provided_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -260,8 +246,6 @@ class SubscriptionInCredentialsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_method_global_not_provided_valid.metadata = {"url": "/azurespecials/subscriptionId/method/string/none/path/globalNotProvided/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
 
     @distributed_trace_async
     async def post_path_global_valid(self, **kwargs: Any) -> None:
@@ -278,7 +262,6 @@ class SubscriptionInCredentialsOperations:
 
         request = build_subscription_in_credentials_post_path_global_valid_request(
             subscription_id=self._config.subscription_id,
-            template_url=self.post_path_global_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -293,8 +276,6 @@ class SubscriptionInCredentialsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_path_global_valid.metadata = {"url": "/azurespecials/subscriptionId/path/string/none/path/global/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
 
     @distributed_trace_async
     async def post_swagger_global_valid(self, **kwargs: Any) -> None:
@@ -311,7 +292,6 @@ class SubscriptionInCredentialsOperations:
 
         request = build_subscription_in_credentials_post_swagger_global_valid_request(
             subscription_id=self._config.subscription_id,
-            template_url=self.post_swagger_global_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -326,8 +306,6 @@ class SubscriptionInCredentialsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_swagger_global_valid.metadata = {"url": "/azurespecials/subscriptionId/swagger/string/none/path/global/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
 
 
 class SubscriptionInMethodOperations:
@@ -366,7 +344,6 @@ class SubscriptionInMethodOperations:
 
         request = build_subscription_in_method_post_method_local_valid_request(
             subscription_id=subscription_id,
-            template_url=self.post_method_local_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -381,8 +358,6 @@ class SubscriptionInMethodOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_method_local_valid.metadata = {"url": "/azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
 
     @distributed_trace_async
     async def post_method_local_null(self, subscription_id: str, **kwargs: Any) -> None:
@@ -402,7 +377,6 @@ class SubscriptionInMethodOperations:
 
         request = build_subscription_in_method_post_method_local_null_request(
             subscription_id=subscription_id,
-            template_url=self.post_method_local_null.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -417,8 +391,6 @@ class SubscriptionInMethodOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_method_local_null.metadata = {"url": "/azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}"}  # type: ignore
 
     @distributed_trace_async
     async def post_path_local_valid(self, subscription_id: str, **kwargs: Any) -> None:
@@ -437,7 +409,6 @@ class SubscriptionInMethodOperations:
 
         request = build_subscription_in_method_post_path_local_valid_request(
             subscription_id=subscription_id,
-            template_url=self.post_path_local_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -452,8 +423,6 @@ class SubscriptionInMethodOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_path_local_valid.metadata = {"url": "/azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
 
     @distributed_trace_async
     async def post_swagger_local_valid(self, subscription_id: str, **kwargs: Any) -> None:
@@ -473,7 +442,6 @@ class SubscriptionInMethodOperations:
 
         request = build_subscription_in_method_post_swagger_local_valid_request(
             subscription_id=subscription_id,
-            template_url=self.post_swagger_local_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -488,8 +456,6 @@ class SubscriptionInMethodOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_swagger_local_valid.metadata = {"url": "/azurespecials/subscriptionId/swagger/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
 
 
 class ApiVersionDefaultOperations:
@@ -522,9 +488,7 @@ class ApiVersionDefaultOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_api_version_default_get_method_global_valid_request(
-            template_url=self.get_method_global_valid.metadata["url"],
-        )
+        request = build_api_version_default_get_method_global_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -538,8 +502,6 @@ class ApiVersionDefaultOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_method_global_valid.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview"}  # type: ignore
 
     @distributed_trace_async
     async def get_method_global_not_provided_valid(self, **kwargs: Any) -> None:
@@ -553,9 +515,7 @@ class ApiVersionDefaultOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_api_version_default_get_method_global_not_provided_valid_request(
-            template_url=self.get_method_global_not_provided_valid.metadata["url"],
-        )
+        request = build_api_version_default_get_method_global_not_provided_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -569,8 +529,6 @@ class ApiVersionDefaultOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_method_global_not_provided_valid.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview"}  # type: ignore
 
     @distributed_trace_async
     async def get_path_global_valid(self, **kwargs: Any) -> None:
@@ -584,9 +542,7 @@ class ApiVersionDefaultOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_api_version_default_get_path_global_valid_request(
-            template_url=self.get_path_global_valid.metadata["url"],
-        )
+        request = build_api_version_default_get_path_global_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -600,8 +556,6 @@ class ApiVersionDefaultOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_path_global_valid.metadata = {"url": "/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview"}  # type: ignore
 
     @distributed_trace_async
     async def get_swagger_global_valid(self, **kwargs: Any) -> None:
@@ -615,9 +569,7 @@ class ApiVersionDefaultOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_api_version_default_get_swagger_global_valid_request(
-            template_url=self.get_swagger_global_valid.metadata["url"],
-        )
+        request = build_api_version_default_get_swagger_global_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -631,8 +583,6 @@ class ApiVersionDefaultOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_swagger_global_valid.metadata = {"url": "/azurespecials/apiVersion/swagger/string/none/query/global/2015-07-01-preview"}  # type: ignore
 
 
 class ApiVersionLocalOperations:
@@ -665,9 +615,7 @@ class ApiVersionLocalOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_api_version_local_get_method_local_valid_request(
-            template_url=self.get_method_local_valid.metadata["url"],
-        )
+        request = build_api_version_local_get_method_local_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -681,8 +629,6 @@ class ApiVersionLocalOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_method_local_valid.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/local/2.0"}  # type: ignore
 
     @distributed_trace_async
     async def get_method_local_null(self, *, api_version: Optional[str] = None, **kwargs: Any) -> None:
@@ -701,7 +647,6 @@ class ApiVersionLocalOperations:
 
         request = build_api_version_local_get_method_local_null_request(
             api_version=api_version,
-            template_url=self.get_method_local_null.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -716,8 +661,6 @@ class ApiVersionLocalOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_method_local_null.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/local/null"}  # type: ignore
 
     @distributed_trace_async
     async def get_path_local_valid(self, **kwargs: Any) -> None:
@@ -731,9 +674,7 @@ class ApiVersionLocalOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_api_version_local_get_path_local_valid_request(
-            template_url=self.get_path_local_valid.metadata["url"],
-        )
+        request = build_api_version_local_get_path_local_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -747,8 +688,6 @@ class ApiVersionLocalOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_path_local_valid.metadata = {"url": "/azurespecials/apiVersion/path/string/none/query/local/2.0"}  # type: ignore
 
     @distributed_trace_async
     async def get_swagger_local_valid(self, **kwargs: Any) -> None:
@@ -762,9 +701,7 @@ class ApiVersionLocalOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_api_version_local_get_swagger_local_valid_request(
-            template_url=self.get_swagger_local_valid.metadata["url"],
-        )
+        request = build_api_version_local_get_swagger_local_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -778,8 +715,6 @@ class ApiVersionLocalOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_swagger_local_valid.metadata = {"url": "/azurespecials/apiVersion/swagger/string/none/query/local/2.0"}  # type: ignore
 
 
 class SkipUrlEncodingOperations:
@@ -816,7 +751,6 @@ class SkipUrlEncodingOperations:
 
         request = build_skip_url_encoding_get_method_path_valid_request(
             unencoded_path_param=unencoded_path_param,
-            template_url=self.get_method_path_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -831,8 +765,6 @@ class SkipUrlEncodingOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_method_path_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}"}  # type: ignore
 
     @distributed_trace_async
     async def get_path_valid(self, unencoded_path_param: str, **kwargs: Any) -> None:
@@ -850,7 +782,6 @@ class SkipUrlEncodingOperations:
 
         request = build_skip_url_encoding_get_path_valid_request(
             unencoded_path_param=unencoded_path_param,
-            template_url=self.get_path_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -865,8 +796,6 @@ class SkipUrlEncodingOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_path_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}"}  # type: ignore
 
     @distributed_trace_async
     async def get_swagger_path_valid(self, **kwargs: Any) -> None:
@@ -880,9 +809,7 @@ class SkipUrlEncodingOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_skip_url_encoding_get_swagger_path_valid_request(
-            template_url=self.get_swagger_path_valid.metadata["url"],
-        )
+        request = build_skip_url_encoding_get_swagger_path_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -896,8 +823,6 @@ class SkipUrlEncodingOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_swagger_path_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}"}  # type: ignore
 
     @distributed_trace_async
     async def get_method_query_valid(self, *, q1: str, **kwargs: Any) -> None:
@@ -915,7 +840,6 @@ class SkipUrlEncodingOperations:
 
         request = build_skip_url_encoding_get_method_query_valid_request(
             q1=q1,
-            template_url=self.get_method_query_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -930,8 +854,6 @@ class SkipUrlEncodingOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_method_query_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/method/query/valid"}  # type: ignore
 
     @distributed_trace_async
     async def get_method_query_null(self, *, q1: Optional[str] = None, **kwargs: Any) -> None:
@@ -949,7 +871,6 @@ class SkipUrlEncodingOperations:
 
         request = build_skip_url_encoding_get_method_query_null_request(
             q1=q1,
-            template_url=self.get_method_query_null.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -964,8 +885,6 @@ class SkipUrlEncodingOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_method_query_null.metadata = {"url": "/azurespecials/skipUrlEncoding/method/query/null"}  # type: ignore
 
     @distributed_trace_async
     async def get_path_query_valid(self, *, q1: str, **kwargs: Any) -> None:
@@ -983,7 +902,6 @@ class SkipUrlEncodingOperations:
 
         request = build_skip_url_encoding_get_path_query_valid_request(
             q1=q1,
-            template_url=self.get_path_query_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -998,8 +916,6 @@ class SkipUrlEncodingOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_path_query_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/path/query/valid"}  # type: ignore
 
     @distributed_trace_async
     async def get_swagger_query_valid(self, **kwargs: Any) -> None:
@@ -1013,9 +929,7 @@ class SkipUrlEncodingOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_skip_url_encoding_get_swagger_query_valid_request(
-            template_url=self.get_swagger_query_valid.metadata["url"],
-        )
+        request = build_skip_url_encoding_get_swagger_query_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1029,8 +943,6 @@ class SkipUrlEncodingOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_swagger_query_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/swagger/query/valid"}  # type: ignore
 
 
 class OdataOperations:
@@ -1075,7 +987,6 @@ class OdataOperations:
             filter=filter,
             top=top,
             orderby=orderby,
-            template_url=self.get_with_filter.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1090,8 +1001,6 @@ class OdataOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_with_filter.metadata = {"url": "/azurespecials/odata/filter"}  # type: ignore
 
 
 class HeaderOperations:
@@ -1128,7 +1037,6 @@ class HeaderOperations:
 
         request = build_header_custom_named_request_id_request(
             foo_client_request_id=foo_client_request_id,
-            template_url=self.custom_named_request_id.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1146,8 +1054,6 @@ class HeaderOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    custom_named_request_id.metadata = {"url": "/azurespecials/customNamedRequestId"}  # type: ignore
 
     @distributed_trace_async
     async def custom_named_request_id_param_grouping(self, *, foo_client_request_id: str, **kwargs: Any) -> None:
@@ -1166,7 +1072,6 @@ class HeaderOperations:
 
         request = build_header_custom_named_request_id_param_grouping_request(
             foo_client_request_id=foo_client_request_id,
-            template_url=self.custom_named_request_id_param_grouping.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1185,8 +1090,6 @@ class HeaderOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    custom_named_request_id_param_grouping.metadata = {"url": "/azurespecials/customNamedRequestIdParamGrouping"}  # type: ignore
-
     @distributed_trace_async
     async def custom_named_request_id_head(self, *, foo_client_request_id: str, **kwargs: Any) -> None:
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.
@@ -1203,7 +1106,6 @@ class HeaderOperations:
 
         request = build_header_custom_named_request_id_head_request(
             foo_client_request_id=foo_client_request_id,
-            template_url=self.custom_named_request_id_head.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1223,5 +1125,3 @@ class HeaderOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
         return 200 <= response.status_code <= 299
-
-    custom_named_request_id_head.metadata = {"url": "/azurespecials/customNamedRequestIdHead"}  # type: ignore

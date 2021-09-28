@@ -40,7 +40,7 @@ def build_get_report_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/report')
+    url = '/report'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -68,7 +68,7 @@ def build_get_optional_report_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/report/optional')
+    url = '/report/optional'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -120,7 +120,6 @@ class AutoRestReportServiceOperationsMixin(object):
 
         request = build_get_report_request(
             qualifier=qualifier,
-            template_url=self.get_report.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -140,8 +139,6 @@ class AutoRestReportServiceOperationsMixin(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_report.metadata = {"url": "/report"}  # type: ignore
 
     @distributed_trace
     def get_optional_report(
@@ -174,7 +171,6 @@ class AutoRestReportServiceOperationsMixin(object):
 
         request = build_get_optional_report_request(
             qualifier=qualifier,
-            template_url=self.get_optional_report.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -194,5 +190,3 @@ class AutoRestReportServiceOperationsMixin(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_optional_report.metadata = {"url": "/report/optional"}  # type: ignore

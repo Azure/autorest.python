@@ -125,9 +125,7 @@ class PathsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_paths_get_boolean_true_request(
-            template_url=self.get_boolean_true.metadata["url"],
-        )
+        request = build_paths_get_boolean_true_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -141,8 +139,6 @@ class PathsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_boolean_true.metadata = {"url": "/paths/bool/true/{boolPath}"}  # type: ignore
 
     @distributed_trace_async
     async def get_boolean_false(self, **kwargs: Any) -> None:
@@ -156,9 +152,7 @@ class PathsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_paths_get_boolean_false_request(
-            template_url=self.get_boolean_false.metadata["url"],
-        )
+        request = build_paths_get_boolean_false_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -172,8 +166,6 @@ class PathsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_boolean_false.metadata = {"url": "/paths/bool/false/{boolPath}"}  # type: ignore
 
     @distributed_trace_async
     async def get_int_one_million(self, **kwargs: Any) -> None:
@@ -187,9 +179,7 @@ class PathsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_paths_get_int_one_million_request(
-            template_url=self.get_int_one_million.metadata["url"],
-        )
+        request = build_paths_get_int_one_million_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -203,8 +193,6 @@ class PathsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_int_one_million.metadata = {"url": "/paths/int/1000000/{intPath}"}  # type: ignore
 
     @distributed_trace_async
     async def get_int_negative_one_million(self, **kwargs: Any) -> None:
@@ -218,9 +206,7 @@ class PathsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_paths_get_int_negative_one_million_request(
-            template_url=self.get_int_negative_one_million.metadata["url"],
-        )
+        request = build_paths_get_int_negative_one_million_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -234,8 +220,6 @@ class PathsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_int_negative_one_million.metadata = {"url": "/paths/int/-1000000/{intPath}"}  # type: ignore
 
     @distributed_trace_async
     async def get_ten_billion(self, **kwargs: Any) -> None:
@@ -249,9 +233,7 @@ class PathsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_paths_get_ten_billion_request(
-            template_url=self.get_ten_billion.metadata["url"],
-        )
+        request = build_paths_get_ten_billion_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -265,8 +247,6 @@ class PathsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_ten_billion.metadata = {"url": "/paths/long/10000000000/{longPath}"}  # type: ignore
 
     @distributed_trace_async
     async def get_negative_ten_billion(self, **kwargs: Any) -> None:
@@ -280,9 +260,7 @@ class PathsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_paths_get_negative_ten_billion_request(
-            template_url=self.get_negative_ten_billion.metadata["url"],
-        )
+        request = build_paths_get_negative_ten_billion_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -296,8 +274,6 @@ class PathsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_negative_ten_billion.metadata = {"url": "/paths/long/-10000000000/{longPath}"}  # type: ignore
 
     @distributed_trace_async
     async def float_scientific_positive(self, **kwargs: Any) -> None:
@@ -311,9 +287,7 @@ class PathsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_paths_float_scientific_positive_request(
-            template_url=self.float_scientific_positive.metadata["url"],
-        )
+        request = build_paths_float_scientific_positive_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -327,8 +301,6 @@ class PathsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    float_scientific_positive.metadata = {"url": "/paths/float/1.034E+20/{floatPath}"}  # type: ignore
 
     @distributed_trace_async
     async def float_scientific_negative(self, **kwargs: Any) -> None:
@@ -342,9 +314,7 @@ class PathsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_paths_float_scientific_negative_request(
-            template_url=self.float_scientific_negative.metadata["url"],
-        )
+        request = build_paths_float_scientific_negative_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -358,8 +328,6 @@ class PathsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    float_scientific_negative.metadata = {"url": "/paths/float/-1.034E-20/{floatPath}"}  # type: ignore
 
     @distributed_trace_async
     async def double_decimal_positive(self, **kwargs: Any) -> None:
@@ -373,9 +341,7 @@ class PathsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_paths_double_decimal_positive_request(
-            template_url=self.double_decimal_positive.metadata["url"],
-        )
+        request = build_paths_double_decimal_positive_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -389,8 +355,6 @@ class PathsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    double_decimal_positive.metadata = {"url": "/paths/double/9999999.999/{doublePath}"}  # type: ignore
 
     @distributed_trace_async
     async def double_decimal_negative(self, **kwargs: Any) -> None:
@@ -404,9 +368,7 @@ class PathsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_paths_double_decimal_negative_request(
-            template_url=self.double_decimal_negative.metadata["url"],
-        )
+        request = build_paths_double_decimal_negative_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -420,8 +382,6 @@ class PathsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    double_decimal_negative.metadata = {"url": "/paths/double/-9999999.999/{doublePath}"}  # type: ignore
 
     @distributed_trace_async
     async def string_unicode(self, **kwargs: Any) -> None:
@@ -435,9 +395,7 @@ class PathsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_paths_string_unicode_request(
-            template_url=self.string_unicode.metadata["url"],
-        )
+        request = build_paths_string_unicode_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -451,8 +409,6 @@ class PathsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    string_unicode.metadata = {"url": "/paths/string/unicode/{stringPath}"}  # type: ignore
 
     @distributed_trace_async
     async def string_url_encoded(self, **kwargs: Any) -> None:
@@ -466,9 +422,7 @@ class PathsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_paths_string_url_encoded_request(
-            template_url=self.string_url_encoded.metadata["url"],
-        )
+        request = build_paths_string_url_encoded_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -482,8 +436,6 @@ class PathsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    string_url_encoded.metadata = {"url": "/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}"}  # type: ignore
 
     @distributed_trace_async
     async def string_url_non_encoded(self, **kwargs: Any) -> None:
@@ -499,9 +451,7 @@ class PathsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_paths_string_url_non_encoded_request(
-            template_url=self.string_url_non_encoded.metadata["url"],
-        )
+        request = build_paths_string_url_non_encoded_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -515,8 +465,6 @@ class PathsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    string_url_non_encoded.metadata = {"url": "/paths/string/begin!*'();:@&=+$,end/{stringPath}"}  # type: ignore
 
     @distributed_trace_async
     async def string_empty(self, **kwargs: Any) -> None:
@@ -530,9 +478,7 @@ class PathsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_paths_string_empty_request(
-            template_url=self.string_empty.metadata["url"],
-        )
+        request = build_paths_string_empty_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -546,8 +492,6 @@ class PathsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    string_empty.metadata = {"url": "/paths/string/empty/{stringPath}"}  # type: ignore
 
     @distributed_trace_async
     async def string_null(self, string_path: str, **kwargs: Any) -> None:
@@ -565,7 +509,6 @@ class PathsOperations:
 
         request = build_paths_string_null_request(
             string_path=string_path,
-            template_url=self.string_null.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -580,8 +523,6 @@ class PathsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    string_null.metadata = {"url": "/paths/string/null/{stringPath}"}  # type: ignore
 
     @distributed_trace_async
     async def enum_valid(self, enum_path: str, **kwargs: Any) -> None:
@@ -600,7 +541,6 @@ class PathsOperations:
 
         request = build_paths_enum_valid_request(
             enum_path=enum_path,
-            template_url=self.enum_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -615,8 +555,6 @@ class PathsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    enum_valid.metadata = {"url": "/paths/enum/green%20color/{enumPath}"}  # type: ignore
 
     @distributed_trace_async
     async def enum_null(self, enum_path: str, **kwargs: Any) -> None:
@@ -635,7 +573,6 @@ class PathsOperations:
 
         request = build_paths_enum_null_request(
             enum_path=enum_path,
-            template_url=self.enum_null.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -650,8 +587,6 @@ class PathsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    enum_null.metadata = {"url": "/paths/string/null/{enumPath}"}  # type: ignore
 
     @distributed_trace_async
     async def byte_multi_byte(self, byte_path: bytearray, **kwargs: Any) -> None:
@@ -669,7 +604,6 @@ class PathsOperations:
 
         request = build_paths_byte_multi_byte_request(
             byte_path=byte_path,
-            template_url=self.byte_multi_byte.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -684,8 +618,6 @@ class PathsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    byte_multi_byte.metadata = {"url": "/paths/byte/multibyte/{bytePath}"}  # type: ignore
 
     @distributed_trace_async
     async def byte_empty(self, **kwargs: Any) -> None:
@@ -699,9 +631,7 @@ class PathsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_paths_byte_empty_request(
-            template_url=self.byte_empty.metadata["url"],
-        )
+        request = build_paths_byte_empty_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -715,8 +645,6 @@ class PathsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    byte_empty.metadata = {"url": "/paths/byte/empty/{bytePath}"}  # type: ignore
 
     @distributed_trace_async
     async def byte_null(self, byte_path: bytearray, **kwargs: Any) -> None:
@@ -734,7 +662,6 @@ class PathsOperations:
 
         request = build_paths_byte_null_request(
             byte_path=byte_path,
-            template_url=self.byte_null.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -750,8 +677,6 @@ class PathsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    byte_null.metadata = {"url": "/paths/byte/null/{bytePath}"}  # type: ignore
-
     @distributed_trace_async
     async def date_valid(self, **kwargs: Any) -> None:
         """Get '2012-01-01' as date.
@@ -764,9 +689,7 @@ class PathsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_paths_date_valid_request(
-            template_url=self.date_valid.metadata["url"],
-        )
+        request = build_paths_date_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -780,8 +703,6 @@ class PathsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    date_valid.metadata = {"url": "/paths/date/2012-01-01/{datePath}"}  # type: ignore
 
     @distributed_trace_async
     async def date_null(self, date_path: datetime.date, **kwargs: Any) -> None:
@@ -800,7 +721,6 @@ class PathsOperations:
 
         request = build_paths_date_null_request(
             date_path=date_path,
-            template_url=self.date_null.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -816,8 +736,6 @@ class PathsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    date_null.metadata = {"url": "/paths/date/null/{datePath}"}  # type: ignore
-
     @distributed_trace_async
     async def date_time_valid(self, **kwargs: Any) -> None:
         """Get '2012-01-01T01:01:01Z' as date-time.
@@ -830,9 +748,7 @@ class PathsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_paths_date_time_valid_request(
-            template_url=self.date_time_valid.metadata["url"],
-        )
+        request = build_paths_date_time_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -846,8 +762,6 @@ class PathsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    date_time_valid.metadata = {"url": "/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}"}  # type: ignore
 
     @distributed_trace_async
     async def date_time_null(self, date_time_path: datetime.datetime, **kwargs: Any) -> None:
@@ -865,7 +779,6 @@ class PathsOperations:
 
         request = build_paths_date_time_null_request(
             date_time_path=date_time_path,
-            template_url=self.date_time_null.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -880,8 +793,6 @@ class PathsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    date_time_null.metadata = {"url": "/paths/datetime/null/{dateTimePath}"}  # type: ignore
 
     @distributed_trace_async
     async def base64_url(self, base64_url_path: bytes, **kwargs: Any) -> None:
@@ -899,7 +810,6 @@ class PathsOperations:
 
         request = build_paths_base64_url_request(
             base64_url_path=base64_url_path,
-            template_url=self.base64_url.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -914,8 +824,6 @@ class PathsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    base64_url.metadata = {"url": "/paths/string/bG9yZW0/{base64UrlPath}"}  # type: ignore
 
     @distributed_trace_async
     async def array_csv_in_path(self, array_path: List[str], **kwargs: Any) -> None:
@@ -935,7 +843,6 @@ class PathsOperations:
 
         request = build_paths_array_csv_in_path_request(
             array_path=array_path,
-            template_url=self.array_csv_in_path.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -950,8 +857,6 @@ class PathsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    array_csv_in_path.metadata = {"url": "/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}"}  # type: ignore
 
     @distributed_trace_async
     async def unix_time_url(self, unix_time_url_path: datetime.datetime, **kwargs: Any) -> None:
@@ -969,7 +874,6 @@ class PathsOperations:
 
         request = build_paths_unix_time_url_request(
             unix_time_url_path=unix_time_url_path,
-            template_url=self.unix_time_url.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -984,8 +888,6 @@ class PathsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    unix_time_url.metadata = {"url": "/paths/int/1460505600/{unixTimeUrlPath}"}  # type: ignore
 
 
 class QueriesOperations:
@@ -1018,9 +920,7 @@ class QueriesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_queries_get_boolean_true_request(
-            template_url=self.get_boolean_true.metadata["url"],
-        )
+        request = build_queries_get_boolean_true_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1034,8 +934,6 @@ class QueriesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_boolean_true.metadata = {"url": "/queries/bool/true"}  # type: ignore
 
     @distributed_trace_async
     async def get_boolean_false(self, **kwargs: Any) -> None:
@@ -1049,9 +947,7 @@ class QueriesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_queries_get_boolean_false_request(
-            template_url=self.get_boolean_false.metadata["url"],
-        )
+        request = build_queries_get_boolean_false_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1065,8 +961,6 @@ class QueriesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_boolean_false.metadata = {"url": "/queries/bool/false"}  # type: ignore
 
     @distributed_trace_async
     async def get_boolean_null(self, *, bool_query: Optional[bool] = None, **kwargs: Any) -> None:
@@ -1084,7 +978,6 @@ class QueriesOperations:
 
         request = build_queries_get_boolean_null_request(
             bool_query=bool_query,
-            template_url=self.get_boolean_null.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1099,8 +992,6 @@ class QueriesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_boolean_null.metadata = {"url": "/queries/bool/null"}  # type: ignore
 
     @distributed_trace_async
     async def get_int_one_million(self, **kwargs: Any) -> None:
@@ -1114,9 +1005,7 @@ class QueriesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_queries_get_int_one_million_request(
-            template_url=self.get_int_one_million.metadata["url"],
-        )
+        request = build_queries_get_int_one_million_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1130,8 +1019,6 @@ class QueriesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_int_one_million.metadata = {"url": "/queries/int/1000000"}  # type: ignore
 
     @distributed_trace_async
     async def get_int_negative_one_million(self, **kwargs: Any) -> None:
@@ -1145,9 +1032,7 @@ class QueriesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_queries_get_int_negative_one_million_request(
-            template_url=self.get_int_negative_one_million.metadata["url"],
-        )
+        request = build_queries_get_int_negative_one_million_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1161,8 +1046,6 @@ class QueriesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_int_negative_one_million.metadata = {"url": "/queries/int/-1000000"}  # type: ignore
 
     @distributed_trace_async
     async def get_int_null(self, *, int_query: Optional[int] = None, **kwargs: Any) -> None:
@@ -1180,7 +1063,6 @@ class QueriesOperations:
 
         request = build_queries_get_int_null_request(
             int_query=int_query,
-            template_url=self.get_int_null.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1195,8 +1077,6 @@ class QueriesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_int_null.metadata = {"url": "/queries/int/null"}  # type: ignore
 
     @distributed_trace_async
     async def get_ten_billion(self, **kwargs: Any) -> None:
@@ -1210,9 +1090,7 @@ class QueriesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_queries_get_ten_billion_request(
-            template_url=self.get_ten_billion.metadata["url"],
-        )
+        request = build_queries_get_ten_billion_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1226,8 +1104,6 @@ class QueriesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_ten_billion.metadata = {"url": "/queries/long/10000000000"}  # type: ignore
 
     @distributed_trace_async
     async def get_negative_ten_billion(self, **kwargs: Any) -> None:
@@ -1241,9 +1117,7 @@ class QueriesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_queries_get_negative_ten_billion_request(
-            template_url=self.get_negative_ten_billion.metadata["url"],
-        )
+        request = build_queries_get_negative_ten_billion_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1257,8 +1131,6 @@ class QueriesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_negative_ten_billion.metadata = {"url": "/queries/long/-10000000000"}  # type: ignore
 
     @distributed_trace_async
     async def get_long_null(self, *, long_query: Optional[int] = None, **kwargs: Any) -> None:
@@ -1276,7 +1148,6 @@ class QueriesOperations:
 
         request = build_queries_get_long_null_request(
             long_query=long_query,
-            template_url=self.get_long_null.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1291,8 +1162,6 @@ class QueriesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_long_null.metadata = {"url": "/queries/long/null"}  # type: ignore
 
     @distributed_trace_async
     async def float_scientific_positive(self, **kwargs: Any) -> None:
@@ -1306,9 +1175,7 @@ class QueriesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_queries_float_scientific_positive_request(
-            template_url=self.float_scientific_positive.metadata["url"],
-        )
+        request = build_queries_float_scientific_positive_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1322,8 +1189,6 @@ class QueriesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    float_scientific_positive.metadata = {"url": "/queries/float/1.034E+20"}  # type: ignore
 
     @distributed_trace_async
     async def float_scientific_negative(self, **kwargs: Any) -> None:
@@ -1337,9 +1202,7 @@ class QueriesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_queries_float_scientific_negative_request(
-            template_url=self.float_scientific_negative.metadata["url"],
-        )
+        request = build_queries_float_scientific_negative_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1353,8 +1216,6 @@ class QueriesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    float_scientific_negative.metadata = {"url": "/queries/float/-1.034E-20"}  # type: ignore
 
     @distributed_trace_async
     async def float_null(self, *, float_query: Optional[float] = None, **kwargs: Any) -> None:
@@ -1372,7 +1233,6 @@ class QueriesOperations:
 
         request = build_queries_float_null_request(
             float_query=float_query,
-            template_url=self.float_null.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1387,8 +1247,6 @@ class QueriesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    float_null.metadata = {"url": "/queries/float/null"}  # type: ignore
 
     @distributed_trace_async
     async def double_decimal_positive(self, **kwargs: Any) -> None:
@@ -1402,9 +1260,7 @@ class QueriesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_queries_double_decimal_positive_request(
-            template_url=self.double_decimal_positive.metadata["url"],
-        )
+        request = build_queries_double_decimal_positive_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1418,8 +1274,6 @@ class QueriesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    double_decimal_positive.metadata = {"url": "/queries/double/9999999.999"}  # type: ignore
 
     @distributed_trace_async
     async def double_decimal_negative(self, **kwargs: Any) -> None:
@@ -1433,9 +1287,7 @@ class QueriesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_queries_double_decimal_negative_request(
-            template_url=self.double_decimal_negative.metadata["url"],
-        )
+        request = build_queries_double_decimal_negative_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1449,8 +1301,6 @@ class QueriesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    double_decimal_negative.metadata = {"url": "/queries/double/-9999999.999"}  # type: ignore
 
     @distributed_trace_async
     async def double_null(self, *, double_query: Optional[float] = None, **kwargs: Any) -> None:
@@ -1468,7 +1318,6 @@ class QueriesOperations:
 
         request = build_queries_double_null_request(
             double_query=double_query,
-            template_url=self.double_null.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1483,8 +1332,6 @@ class QueriesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    double_null.metadata = {"url": "/queries/double/null"}  # type: ignore
 
     @distributed_trace_async
     async def string_unicode(self, **kwargs: Any) -> None:
@@ -1498,9 +1345,7 @@ class QueriesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_queries_string_unicode_request(
-            template_url=self.string_unicode.metadata["url"],
-        )
+        request = build_queries_string_unicode_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1514,8 +1359,6 @@ class QueriesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    string_unicode.metadata = {"url": "/queries/string/unicode/"}  # type: ignore
 
     @distributed_trace_async
     async def string_url_encoded(self, **kwargs: Any) -> None:
@@ -1529,9 +1372,7 @@ class QueriesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_queries_string_url_encoded_request(
-            template_url=self.string_url_encoded.metadata["url"],
-        )
+        request = build_queries_string_url_encoded_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1545,8 +1386,6 @@ class QueriesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    string_url_encoded.metadata = {"url": "/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend"}  # type: ignore
 
     @distributed_trace_async
     async def string_empty(self, **kwargs: Any) -> None:
@@ -1560,9 +1399,7 @@ class QueriesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_queries_string_empty_request(
-            template_url=self.string_empty.metadata["url"],
-        )
+        request = build_queries_string_empty_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1576,8 +1413,6 @@ class QueriesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    string_empty.metadata = {"url": "/queries/string/empty"}  # type: ignore
 
     @distributed_trace_async
     async def string_null(self, *, string_query: Optional[str] = None, **kwargs: Any) -> None:
@@ -1595,7 +1430,6 @@ class QueriesOperations:
 
         request = build_queries_string_null_request(
             string_query=string_query,
-            template_url=self.string_null.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1610,8 +1444,6 @@ class QueriesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    string_null.metadata = {"url": "/queries/string/null"}  # type: ignore
 
     @distributed_trace_async
     async def enum_valid(self, *, enum_query: Optional[str] = None, **kwargs: Any) -> None:
@@ -1630,7 +1462,6 @@ class QueriesOperations:
 
         request = build_queries_enum_valid_request(
             enum_query=enum_query,
-            template_url=self.enum_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1645,8 +1476,6 @@ class QueriesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    enum_valid.metadata = {"url": "/queries/enum/green%20color"}  # type: ignore
 
     @distributed_trace_async
     async def enum_null(self, *, enum_query: Optional[str] = None, **kwargs: Any) -> None:
@@ -1665,7 +1494,6 @@ class QueriesOperations:
 
         request = build_queries_enum_null_request(
             enum_query=enum_query,
-            template_url=self.enum_null.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1680,8 +1508,6 @@ class QueriesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    enum_null.metadata = {"url": "/queries/enum/null"}  # type: ignore
 
     @distributed_trace_async
     async def byte_multi_byte(self, *, byte_query: Optional[bytearray] = None, **kwargs: Any) -> None:
@@ -1699,7 +1525,6 @@ class QueriesOperations:
 
         request = build_queries_byte_multi_byte_request(
             byte_query=byte_query,
-            template_url=self.byte_multi_byte.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1714,8 +1539,6 @@ class QueriesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    byte_multi_byte.metadata = {"url": "/queries/byte/multibyte"}  # type: ignore
 
     @distributed_trace_async
     async def byte_empty(self, **kwargs: Any) -> None:
@@ -1729,9 +1552,7 @@ class QueriesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_queries_byte_empty_request(
-            template_url=self.byte_empty.metadata["url"],
-        )
+        request = build_queries_byte_empty_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1745,8 +1566,6 @@ class QueriesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    byte_empty.metadata = {"url": "/queries/byte/empty"}  # type: ignore
 
     @distributed_trace_async
     async def byte_null(self, *, byte_query: Optional[bytearray] = None, **kwargs: Any) -> None:
@@ -1764,7 +1583,6 @@ class QueriesOperations:
 
         request = build_queries_byte_null_request(
             byte_query=byte_query,
-            template_url=self.byte_null.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1779,8 +1597,6 @@ class QueriesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    byte_null.metadata = {"url": "/queries/byte/null"}  # type: ignore
 
     @distributed_trace_async
     async def date_valid(self, **kwargs: Any) -> None:
@@ -1794,9 +1610,7 @@ class QueriesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_queries_date_valid_request(
-            template_url=self.date_valid.metadata["url"],
-        )
+        request = build_queries_date_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1810,8 +1624,6 @@ class QueriesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    date_valid.metadata = {"url": "/queries/date/2012-01-01"}  # type: ignore
 
     @distributed_trace_async
     async def date_null(self, *, date_query: Optional[datetime.date] = None, **kwargs: Any) -> None:
@@ -1829,7 +1641,6 @@ class QueriesOperations:
 
         request = build_queries_date_null_request(
             date_query=date_query,
-            template_url=self.date_null.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1844,8 +1655,6 @@ class QueriesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    date_null.metadata = {"url": "/queries/date/null"}  # type: ignore
 
     @distributed_trace_async
     async def date_time_valid(self, **kwargs: Any) -> None:
@@ -1859,9 +1668,7 @@ class QueriesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_queries_date_time_valid_request(
-            template_url=self.date_time_valid.metadata["url"],
-        )
+        request = build_queries_date_time_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1875,8 +1682,6 @@ class QueriesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    date_time_valid.metadata = {"url": "/queries/datetime/2012-01-01T01%3A01%3A01Z"}  # type: ignore
 
     @distributed_trace_async
     async def date_time_null(self, *, date_time_query: Optional[datetime.datetime] = None, **kwargs: Any) -> None:
@@ -1894,7 +1699,6 @@ class QueriesOperations:
 
         request = build_queries_date_time_null_request(
             date_time_query=date_time_query,
-            template_url=self.date_time_null.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1909,8 +1713,6 @@ class QueriesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    date_time_null.metadata = {"url": "/queries/datetime/null"}  # type: ignore
 
     @distributed_trace_async
     async def array_string_csv_valid(self, *, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
@@ -1930,7 +1732,6 @@ class QueriesOperations:
 
         request = build_queries_array_string_csv_valid_request(
             array_query=array_query,
-            template_url=self.array_string_csv_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1945,8 +1746,6 @@ class QueriesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    array_string_csv_valid.metadata = {"url": "/queries/array/csv/string/valid"}  # type: ignore
 
     @distributed_trace_async
     async def array_string_csv_null(self, *, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
@@ -1964,7 +1763,6 @@ class QueriesOperations:
 
         request = build_queries_array_string_csv_null_request(
             array_query=array_query,
-            template_url=self.array_string_csv_null.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1979,8 +1777,6 @@ class QueriesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    array_string_csv_null.metadata = {"url": "/queries/array/csv/string/null"}  # type: ignore
 
     @distributed_trace_async
     async def array_string_csv_empty(self, *, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
@@ -1998,7 +1794,6 @@ class QueriesOperations:
 
         request = build_queries_array_string_csv_empty_request(
             array_query=array_query,
-            template_url=self.array_string_csv_empty.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2013,8 +1808,6 @@ class QueriesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    array_string_csv_empty.metadata = {"url": "/queries/array/csv/string/empty"}  # type: ignore
 
     @distributed_trace_async
     async def array_string_no_collection_format_empty(
@@ -2035,7 +1828,6 @@ class QueriesOperations:
 
         request = build_queries_array_string_no_collection_format_empty_request(
             array_query=array_query,
-            template_url=self.array_string_no_collection_format_empty.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2050,8 +1842,6 @@ class QueriesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    array_string_no_collection_format_empty.metadata = {"url": "/queries/array/none/string/empty"}  # type: ignore
 
     @distributed_trace_async
     async def array_string_ssv_valid(self, *, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
@@ -2071,7 +1861,6 @@ class QueriesOperations:
 
         request = build_queries_array_string_ssv_valid_request(
             array_query=array_query,
-            template_url=self.array_string_ssv_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2086,8 +1875,6 @@ class QueriesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    array_string_ssv_valid.metadata = {"url": "/queries/array/ssv/string/valid"}  # type: ignore
 
     @distributed_trace_async
     async def array_string_tsv_valid(self, *, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
@@ -2107,7 +1894,6 @@ class QueriesOperations:
 
         request = build_queries_array_string_tsv_valid_request(
             array_query=array_query,
-            template_url=self.array_string_tsv_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2122,8 +1908,6 @@ class QueriesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    array_string_tsv_valid.metadata = {"url": "/queries/array/tsv/string/valid"}  # type: ignore
 
     @distributed_trace_async
     async def array_string_pipes_valid(self, *, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
@@ -2143,7 +1927,6 @@ class QueriesOperations:
 
         request = build_queries_array_string_pipes_valid_request(
             array_query=array_query,
-            template_url=self.array_string_pipes_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2158,8 +1941,6 @@ class QueriesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    array_string_pipes_valid.metadata = {"url": "/queries/array/pipes/string/valid"}  # type: ignore
 
 
 class PathItemsOperations:
@@ -2218,7 +1999,6 @@ class PathItemsOperations:
             path_item_string_query=path_item_string_query,
             global_string_query=self._config.global_string_query,
             local_string_query=local_string_query,
-            template_url=self.get_all_with_values.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2233,8 +2013,6 @@ class PathItemsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_all_with_values.metadata = {"url": "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery"}  # type: ignore
 
     @distributed_trace_async
     async def get_global_query_null(
@@ -2274,7 +2052,6 @@ class PathItemsOperations:
             path_item_string_query=path_item_string_query,
             global_string_query=self._config.global_string_query,
             local_string_query=local_string_query,
-            template_url=self.get_global_query_null.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2289,8 +2066,6 @@ class PathItemsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_global_query_null.metadata = {"url": "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery"}  # type: ignore
 
     @distributed_trace_async
     async def get_global_and_local_query_null(
@@ -2330,7 +2105,6 @@ class PathItemsOperations:
             path_item_string_query=path_item_string_query,
             global_string_query=self._config.global_string_query,
             local_string_query=local_string_query,
-            template_url=self.get_global_and_local_query_null.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2345,8 +2119,6 @@ class PathItemsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_global_and_local_query_null.metadata = {"url": "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null"}  # type: ignore
 
     @distributed_trace_async
     async def get_local_path_item_query_null(
@@ -2385,7 +2157,6 @@ class PathItemsOperations:
             path_item_string_query=path_item_string_query,
             global_string_query=self._config.global_string_query,
             local_string_query=local_string_query,
-            template_url=self.get_local_path_item_query_null.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2400,5 +2171,3 @@ class PathItemsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_local_path_item_query_null.metadata = {"url": "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null"}  # type: ignore

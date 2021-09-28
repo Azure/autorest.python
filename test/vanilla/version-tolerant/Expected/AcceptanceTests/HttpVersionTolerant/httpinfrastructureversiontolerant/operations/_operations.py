@@ -38,7 +38,7 @@ def build_http_failure_get_empty_error_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/emptybody/error')
+    url = '/http/failure/emptybody/error'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -58,7 +58,7 @@ def build_http_failure_get_no_model_error_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/nomodel/error')
+    url = '/http/failure/nomodel/error'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -78,7 +78,7 @@ def build_http_failure_get_no_model_empty_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/nomodel/empty')
+    url = '/http/failure/nomodel/empty'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -98,7 +98,7 @@ def build_http_success_head200_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/200')
+    url = '/http/success/200'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -118,7 +118,7 @@ def build_http_success_get200_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/200')
+    url = '/http/success/200'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -138,7 +138,7 @@ def build_http_success_options200_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/200')
+    url = '/http/success/200'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -160,7 +160,7 @@ def build_http_success_put200_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/200')
+    url = '/http/success/200'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -184,7 +184,7 @@ def build_http_success_patch200_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/200')
+    url = '/http/success/200'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -208,7 +208,7 @@ def build_http_success_post200_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/200')
+    url = '/http/success/200'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -232,7 +232,7 @@ def build_http_success_delete200_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/200')
+    url = '/http/success/200'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -256,7 +256,7 @@ def build_http_success_put201_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/201')
+    url = '/http/success/201'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -280,7 +280,7 @@ def build_http_success_post201_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/201')
+    url = '/http/success/201'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -304,7 +304,7 @@ def build_http_success_put202_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/202')
+    url = '/http/success/202'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -328,7 +328,7 @@ def build_http_success_patch202_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/202')
+    url = '/http/success/202'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -352,7 +352,7 @@ def build_http_success_post202_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/202')
+    url = '/http/success/202'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -376,7 +376,7 @@ def build_http_success_delete202_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/202')
+    url = '/http/success/202'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -398,7 +398,7 @@ def build_http_success_head204_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/204')
+    url = '/http/success/204'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -420,7 +420,7 @@ def build_http_success_put204_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/204')
+    url = '/http/success/204'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -444,7 +444,7 @@ def build_http_success_patch204_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/204')
+    url = '/http/success/204'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -468,7 +468,7 @@ def build_http_success_post204_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/204')
+    url = '/http/success/204'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -492,7 +492,7 @@ def build_http_success_delete204_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/204')
+    url = '/http/success/204'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -514,7 +514,7 @@ def build_http_success_head404_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/404')
+    url = '/http/success/404'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -534,7 +534,7 @@ def build_http_redirects_head300_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/redirect/300')
+    url = '/http/redirect/300'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -554,7 +554,7 @@ def build_http_redirects_get300_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/redirect/300')
+    url = '/http/redirect/300'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -574,7 +574,7 @@ def build_http_redirects_head301_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/redirect/301')
+    url = '/http/redirect/301'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -594,7 +594,7 @@ def build_http_redirects_get301_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/redirect/301')
+    url = '/http/redirect/301'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -616,7 +616,7 @@ def build_http_redirects_put301_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/redirect/301')
+    url = '/http/redirect/301'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -638,7 +638,7 @@ def build_http_redirects_head302_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/redirect/302')
+    url = '/http/redirect/302'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -658,7 +658,7 @@ def build_http_redirects_get302_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/redirect/302')
+    url = '/http/redirect/302'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -680,7 +680,7 @@ def build_http_redirects_patch302_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/redirect/302')
+    url = '/http/redirect/302'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -704,7 +704,7 @@ def build_http_redirects_post303_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/redirect/303')
+    url = '/http/redirect/303'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -726,7 +726,7 @@ def build_http_redirects_head307_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/redirect/307')
+    url = '/http/redirect/307'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -746,7 +746,7 @@ def build_http_redirects_get307_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/redirect/307')
+    url = '/http/redirect/307'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -766,7 +766,7 @@ def build_http_redirects_options307_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/redirect/307')
+    url = '/http/redirect/307'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -788,7 +788,7 @@ def build_http_redirects_put307_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/redirect/307')
+    url = '/http/redirect/307'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -812,7 +812,7 @@ def build_http_redirects_patch307_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/redirect/307')
+    url = '/http/redirect/307'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -836,7 +836,7 @@ def build_http_redirects_post307_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/redirect/307')
+    url = '/http/redirect/307'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -860,7 +860,7 @@ def build_http_redirects_delete307_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/redirect/307')
+    url = '/http/redirect/307'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -882,7 +882,7 @@ def build_http_client_failure_head400_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/400')
+    url = '/http/failure/client/400'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -902,7 +902,7 @@ def build_http_client_failure_get400_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/400')
+    url = '/http/failure/client/400'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -922,7 +922,7 @@ def build_http_client_failure_options400_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/400')
+    url = '/http/failure/client/400'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -944,7 +944,7 @@ def build_http_client_failure_put400_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/400')
+    url = '/http/failure/client/400'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -968,7 +968,7 @@ def build_http_client_failure_patch400_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/400')
+    url = '/http/failure/client/400'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -992,7 +992,7 @@ def build_http_client_failure_post400_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/400')
+    url = '/http/failure/client/400'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1016,7 +1016,7 @@ def build_http_client_failure_delete400_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/400')
+    url = '/http/failure/client/400'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1038,7 +1038,7 @@ def build_http_client_failure_head401_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/401')
+    url = '/http/failure/client/401'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1058,7 +1058,7 @@ def build_http_client_failure_get402_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/402')
+    url = '/http/failure/client/402'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1078,7 +1078,7 @@ def build_http_client_failure_options403_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/403')
+    url = '/http/failure/client/403'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1098,7 +1098,7 @@ def build_http_client_failure_get403_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/403')
+    url = '/http/failure/client/403'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1120,7 +1120,7 @@ def build_http_client_failure_put404_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/404')
+    url = '/http/failure/client/404'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1144,7 +1144,7 @@ def build_http_client_failure_patch405_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/405')
+    url = '/http/failure/client/405'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1168,7 +1168,7 @@ def build_http_client_failure_post406_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/406')
+    url = '/http/failure/client/406'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1192,7 +1192,7 @@ def build_http_client_failure_delete407_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/407')
+    url = '/http/failure/client/407'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1216,7 +1216,7 @@ def build_http_client_failure_put409_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/409')
+    url = '/http/failure/client/409'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1238,7 +1238,7 @@ def build_http_client_failure_head410_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/410')
+    url = '/http/failure/client/410'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1258,7 +1258,7 @@ def build_http_client_failure_get411_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/411')
+    url = '/http/failure/client/411'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1278,7 +1278,7 @@ def build_http_client_failure_options412_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/412')
+    url = '/http/failure/client/412'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1298,7 +1298,7 @@ def build_http_client_failure_get412_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/412')
+    url = '/http/failure/client/412'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1320,7 +1320,7 @@ def build_http_client_failure_put413_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/413')
+    url = '/http/failure/client/413'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1344,7 +1344,7 @@ def build_http_client_failure_patch414_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/414')
+    url = '/http/failure/client/414'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1368,7 +1368,7 @@ def build_http_client_failure_post415_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/415')
+    url = '/http/failure/client/415'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1390,7 +1390,7 @@ def build_http_client_failure_get416_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/416')
+    url = '/http/failure/client/416'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1412,7 +1412,7 @@ def build_http_client_failure_delete417_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/417')
+    url = '/http/failure/client/417'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1434,7 +1434,7 @@ def build_http_client_failure_head429_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/429')
+    url = '/http/failure/client/429'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1454,7 +1454,7 @@ def build_http_server_failure_head501_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/server/501')
+    url = '/http/failure/server/501'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1474,7 +1474,7 @@ def build_http_server_failure_get501_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/server/501')
+    url = '/http/failure/server/501'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1496,7 +1496,7 @@ def build_http_server_failure_post505_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/server/505')
+    url = '/http/failure/server/505'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1520,7 +1520,7 @@ def build_http_server_failure_delete505_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/server/505')
+    url = '/http/failure/server/505'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1542,7 +1542,7 @@ def build_http_retry_head408_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/retry/408')
+    url = '/http/retry/408'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1564,7 +1564,7 @@ def build_http_retry_put500_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/retry/500')
+    url = '/http/retry/500'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1588,7 +1588,7 @@ def build_http_retry_patch500_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/retry/500')
+    url = '/http/retry/500'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1610,7 +1610,7 @@ def build_http_retry_get502_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/retry/502')
+    url = '/http/retry/502'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1630,7 +1630,7 @@ def build_http_retry_options502_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/retry/502')
+    url = '/http/retry/502'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1652,7 +1652,7 @@ def build_http_retry_post503_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/retry/503')
+    url = '/http/retry/503'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1676,7 +1676,7 @@ def build_http_retry_delete503_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/retry/503')
+    url = '/http/retry/503'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1700,7 +1700,7 @@ def build_http_retry_put504_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/retry/504')
+    url = '/http/retry/504'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1724,7 +1724,7 @@ def build_http_retry_patch504_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/retry/504')
+    url = '/http/retry/504'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1746,7 +1746,7 @@ def build_multiple_responses_get200_model204_no_model_default_error200_valid_req
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/payloads/200/A/204/none/default/Error/response/200/valid')
+    url = '/http/payloads/200/A/204/none/default/Error/response/200/valid'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1766,7 +1766,7 @@ def build_multiple_responses_get200_model204_no_model_default_error204_valid_req
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/payloads/200/A/204/none/default/Error/response/204/none')
+    url = '/http/payloads/200/A/204/none/default/Error/response/204/none'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1786,7 +1786,7 @@ def build_multiple_responses_get200_model204_no_model_default_error201_invalid_r
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/payloads/200/A/204/none/default/Error/response/201/valid')
+    url = '/http/payloads/200/A/204/none/default/Error/response/201/valid'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1806,7 +1806,7 @@ def build_multiple_responses_get200_model204_no_model_default_error202_none_requ
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/payloads/200/A/204/none/default/Error/response/202/none')
+    url = '/http/payloads/200/A/204/none/default/Error/response/202/none'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1826,7 +1826,7 @@ def build_multiple_responses_get200_model204_no_model_default_error400_valid_req
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/payloads/200/A/204/none/default/Error/response/400/valid')
+    url = '/http/payloads/200/A/204/none/default/Error/response/400/valid'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1846,7 +1846,7 @@ def build_multiple_responses_get200_model201_model_default_error200_valid_reques
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/payloads/200/A/201/B/default/Error/response/200/valid')
+    url = '/http/payloads/200/A/201/B/default/Error/response/200/valid'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1866,7 +1866,7 @@ def build_multiple_responses_get200_model201_model_default_error201_valid_reques
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/payloads/200/A/201/B/default/Error/response/201/valid')
+    url = '/http/payloads/200/A/201/B/default/Error/response/201/valid'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1886,7 +1886,7 @@ def build_multiple_responses_get200_model201_model_default_error400_valid_reques
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/payloads/200/A/201/B/default/Error/response/400/valid')
+    url = '/http/payloads/200/A/201/B/default/Error/response/400/valid'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1906,7 +1906,7 @@ def build_multiple_responses_get200_model_a201_model_c404_model_d_default_error2
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/payloads/200/A/201/C/404/D/default/Error/response/200/valid')
+    url = '/http/payloads/200/A/201/C/404/D/default/Error/response/200/valid'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1926,7 +1926,7 @@ def build_multiple_responses_get200_model_a201_model_c404_model_d_default_error2
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/payloads/200/A/201/C/404/D/default/Error/response/201/valid')
+    url = '/http/payloads/200/A/201/C/404/D/default/Error/response/201/valid'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1946,7 +1946,7 @@ def build_multiple_responses_get200_model_a201_model_c404_model_d_default_error4
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/payloads/200/A/201/C/404/D/default/Error/response/404/valid')
+    url = '/http/payloads/200/A/201/C/404/D/default/Error/response/404/valid'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1966,7 +1966,7 @@ def build_multiple_responses_get200_model_a201_model_c404_model_d_default_error4
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/payloads/200/A/201/C/404/D/default/Error/response/400/valid')
+    url = '/http/payloads/200/A/201/C/404/D/default/Error/response/400/valid'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1986,7 +1986,7 @@ def build_multiple_responses_get202_none204_none_default_error202_none_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/payloads/202/none/204/none/default/Error/response/202/none')
+    url = '/http/payloads/202/none/204/none/default/Error/response/202/none'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -2006,7 +2006,7 @@ def build_multiple_responses_get202_none204_none_default_error204_none_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/payloads/202/none/204/none/default/Error/response/204/none')
+    url = '/http/payloads/202/none/204/none/default/Error/response/204/none'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -2026,7 +2026,7 @@ def build_multiple_responses_get202_none204_none_default_error400_valid_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/payloads/202/none/204/none/default/Error/response/400/valid')
+    url = '/http/payloads/202/none/204/none/default/Error/response/400/valid'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -2045,7 +2045,7 @@ def build_multiple_responses_get202_none204_none_default_none202_invalid_request
 ):
     # type: (...) -> HttpRequest
     # Construct URL
-    url = kwargs.pop("template_url", '/http/payloads/202/none/204/none/default/none/response/202/invalid')
+    url = '/http/payloads/202/none/204/none/default/none/response/202/invalid'
 
     return HttpRequest(
         method="GET",
@@ -2059,7 +2059,7 @@ def build_multiple_responses_get202_none204_none_default_none204_none_request(
 ):
     # type: (...) -> HttpRequest
     # Construct URL
-    url = kwargs.pop("template_url", '/http/payloads/202/none/204/none/default/none/response/204/none')
+    url = '/http/payloads/202/none/204/none/default/none/response/204/none'
 
     return HttpRequest(
         method="GET",
@@ -2073,7 +2073,7 @@ def build_multiple_responses_get202_none204_none_default_none400_none_request(
 ):
     # type: (...) -> HttpRequest
     # Construct URL
-    url = kwargs.pop("template_url", '/http/payloads/202/none/204/none/default/none/response/400/none')
+    url = '/http/payloads/202/none/204/none/default/none/response/400/none'
 
     return HttpRequest(
         method="GET",
@@ -2087,7 +2087,7 @@ def build_multiple_responses_get202_none204_none_default_none400_invalid_request
 ):
     # type: (...) -> HttpRequest
     # Construct URL
-    url = kwargs.pop("template_url", '/http/payloads/202/none/204/none/default/none/response/400/invalid')
+    url = '/http/payloads/202/none/204/none/default/none/response/400/invalid'
 
     return HttpRequest(
         method="GET",
@@ -2102,7 +2102,7 @@ def build_multiple_responses_get_default_model_a200_valid_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/payloads/default/A/response/200/valid')
+    url = '/http/payloads/default/A/response/200/valid'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -2122,7 +2122,7 @@ def build_multiple_responses_get_default_model_a200_none_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/payloads/default/A/response/200/none')
+    url = '/http/payloads/default/A/response/200/none'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -2142,7 +2142,7 @@ def build_multiple_responses_get_default_model_a400_valid_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/payloads/default/A/response/400/valid')
+    url = '/http/payloads/default/A/response/400/valid'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -2162,7 +2162,7 @@ def build_multiple_responses_get_default_model_a400_none_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/payloads/default/A/response/400/none')
+    url = '/http/payloads/default/A/response/400/none'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -2181,7 +2181,7 @@ def build_multiple_responses_get_default_none200_invalid_request(
 ):
     # type: (...) -> HttpRequest
     # Construct URL
-    url = kwargs.pop("template_url", '/http/payloads/default/none/response/200/invalid')
+    url = '/http/payloads/default/none/response/200/invalid'
 
     return HttpRequest(
         method="GET",
@@ -2195,7 +2195,7 @@ def build_multiple_responses_get_default_none200_none_request(
 ):
     # type: (...) -> HttpRequest
     # Construct URL
-    url = kwargs.pop("template_url", '/http/payloads/default/none/response/200/none')
+    url = '/http/payloads/default/none/response/200/none'
 
     return HttpRequest(
         method="GET",
@@ -2209,7 +2209,7 @@ def build_multiple_responses_get_default_none400_invalid_request(
 ):
     # type: (...) -> HttpRequest
     # Construct URL
-    url = kwargs.pop("template_url", '/http/payloads/default/none/response/400/invalid')
+    url = '/http/payloads/default/none/response/400/invalid'
 
     return HttpRequest(
         method="GET",
@@ -2223,7 +2223,7 @@ def build_multiple_responses_get_default_none400_none_request(
 ):
     # type: (...) -> HttpRequest
     # Construct URL
-    url = kwargs.pop("template_url", '/http/payloads/default/none/response/400/none')
+    url = '/http/payloads/default/none/response/400/none'
 
     return HttpRequest(
         method="GET",
@@ -2238,7 +2238,7 @@ def build_multiple_responses_get200_model_a200_none_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/payloads/200/A/response/200/none')
+    url = '/http/payloads/200/A/response/200/none'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -2258,7 +2258,7 @@ def build_multiple_responses_get200_model_a200_valid_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/payloads/200/A/response/200/valid')
+    url = '/http/payloads/200/A/response/200/valid'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -2278,7 +2278,7 @@ def build_multiple_responses_get200_model_a200_invalid_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/payloads/200/A/response/200/invalid')
+    url = '/http/payloads/200/A/response/200/invalid'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -2298,7 +2298,7 @@ def build_multiple_responses_get200_model_a400_none_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/payloads/200/A/response/400/none')
+    url = '/http/payloads/200/A/response/400/none'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -2318,7 +2318,7 @@ def build_multiple_responses_get200_model_a400_valid_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/payloads/200/A/response/400/valid')
+    url = '/http/payloads/200/A/response/400/valid'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -2338,7 +2338,7 @@ def build_multiple_responses_get200_model_a400_invalid_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/payloads/200/A/response/400/invalid')
+    url = '/http/payloads/200/A/response/400/invalid'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -2358,7 +2358,7 @@ def build_multiple_responses_get200_model_a202_valid_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/payloads/200/A/response/202/valid')
+    url = '/http/payloads/200/A/response/202/valid'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -2405,9 +2405,7 @@ class HttpFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_http_failure_get_empty_error_request(
-            template_url=self.get_empty_error.metadata["url"],
-        )
+        request = build_http_failure_get_empty_error_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -2426,8 +2424,6 @@ class HttpFailureOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_empty_error.metadata = {"url": "/http/failure/emptybody/error"}  # type: ignore
 
     @distributed_trace
     def get_no_model_error(
@@ -2444,9 +2440,7 @@ class HttpFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_http_failure_get_no_model_error_request(
-            template_url=self.get_no_model_error.metadata["url"],
-        )
+        request = build_http_failure_get_no_model_error_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -2465,8 +2459,6 @@ class HttpFailureOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_no_model_error.metadata = {"url": "/http/failure/nomodel/error"}  # type: ignore
 
     @distributed_trace
     def get_no_model_empty(
@@ -2483,9 +2475,7 @@ class HttpFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_http_failure_get_no_model_empty_request(
-            template_url=self.get_no_model_empty.metadata["url"],
-        )
+        request = build_http_failure_get_no_model_empty_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -2504,8 +2494,6 @@ class HttpFailureOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_no_model_empty.metadata = {"url": "/http/failure/nomodel/empty"}  # type: ignore
 
 
 class HttpSuccessOperations(object):
@@ -2541,9 +2529,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_http_success_head200_request(
-            template_url=self.head200.metadata["url"],
-        )
+        request = build_http_success_head200_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -2555,8 +2541,6 @@ class HttpSuccessOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    head200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace
     def get200(
@@ -2573,9 +2557,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_http_success_get200_request(
-            template_url=self.get200.metadata["url"],
-        )
+        request = build_http_success_get200_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -2594,8 +2576,6 @@ class HttpSuccessOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace
     def options200(
@@ -2612,9 +2592,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_http_success_options200_request(
-            template_url=self.options200.metadata["url"],
-        )
+        request = build_http_success_options200_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -2633,8 +2611,6 @@ class HttpSuccessOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    options200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace
     def put200(
@@ -2665,7 +2641,6 @@ class HttpSuccessOperations(object):
         request = build_http_success_put200_request(
             content_type=content_type,
             json=json,
-            template_url=self.put200.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2678,8 +2653,6 @@ class HttpSuccessOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace
     def patch200(
@@ -2710,7 +2683,6 @@ class HttpSuccessOperations(object):
         request = build_http_success_patch200_request(
             content_type=content_type,
             json=json,
-            template_url=self.patch200.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2723,8 +2695,6 @@ class HttpSuccessOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    patch200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace
     def post200(
@@ -2755,7 +2725,6 @@ class HttpSuccessOperations(object):
         request = build_http_success_post200_request(
             content_type=content_type,
             json=json,
-            template_url=self.post200.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2768,8 +2737,6 @@ class HttpSuccessOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace
     def delete200(
@@ -2800,7 +2767,6 @@ class HttpSuccessOperations(object):
         request = build_http_success_delete200_request(
             content_type=content_type,
             json=json,
-            template_url=self.delete200.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2813,8 +2779,6 @@ class HttpSuccessOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    delete200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace
     def put201(
@@ -2845,7 +2809,6 @@ class HttpSuccessOperations(object):
         request = build_http_success_put201_request(
             content_type=content_type,
             json=json,
-            template_url=self.put201.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2858,8 +2821,6 @@ class HttpSuccessOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put201.metadata = {"url": "/http/success/201"}  # type: ignore
 
     @distributed_trace
     def post201(
@@ -2890,7 +2851,6 @@ class HttpSuccessOperations(object):
         request = build_http_success_post201_request(
             content_type=content_type,
             json=json,
-            template_url=self.post201.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2903,8 +2863,6 @@ class HttpSuccessOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post201.metadata = {"url": "/http/success/201"}  # type: ignore
 
     @distributed_trace
     def put202(
@@ -2935,7 +2893,6 @@ class HttpSuccessOperations(object):
         request = build_http_success_put202_request(
             content_type=content_type,
             json=json,
-            template_url=self.put202.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2948,8 +2905,6 @@ class HttpSuccessOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put202.metadata = {"url": "/http/success/202"}  # type: ignore
 
     @distributed_trace
     def patch202(
@@ -2980,7 +2935,6 @@ class HttpSuccessOperations(object):
         request = build_http_success_patch202_request(
             content_type=content_type,
             json=json,
-            template_url=self.patch202.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2993,8 +2947,6 @@ class HttpSuccessOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    patch202.metadata = {"url": "/http/success/202"}  # type: ignore
 
     @distributed_trace
     def post202(
@@ -3025,7 +2977,6 @@ class HttpSuccessOperations(object):
         request = build_http_success_post202_request(
             content_type=content_type,
             json=json,
-            template_url=self.post202.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -3038,8 +2989,6 @@ class HttpSuccessOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post202.metadata = {"url": "/http/success/202"}  # type: ignore
 
     @distributed_trace
     def delete202(
@@ -3070,7 +3019,6 @@ class HttpSuccessOperations(object):
         request = build_http_success_delete202_request(
             content_type=content_type,
             json=json,
-            template_url=self.delete202.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -3083,8 +3031,6 @@ class HttpSuccessOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    delete202.metadata = {"url": "/http/success/202"}  # type: ignore
 
     @distributed_trace
     def head204(
@@ -3101,9 +3047,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_http_success_head204_request(
-            template_url=self.head204.metadata["url"],
-        )
+        request = build_http_success_head204_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -3115,8 +3059,6 @@ class HttpSuccessOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    head204.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace
     def put204(
@@ -3147,7 +3089,6 @@ class HttpSuccessOperations(object):
         request = build_http_success_put204_request(
             content_type=content_type,
             json=json,
-            template_url=self.put204.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -3160,8 +3101,6 @@ class HttpSuccessOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put204.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace
     def patch204(
@@ -3192,7 +3131,6 @@ class HttpSuccessOperations(object):
         request = build_http_success_patch204_request(
             content_type=content_type,
             json=json,
-            template_url=self.patch204.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -3205,8 +3143,6 @@ class HttpSuccessOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    patch204.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace
     def post204(
@@ -3237,7 +3173,6 @@ class HttpSuccessOperations(object):
         request = build_http_success_post204_request(
             content_type=content_type,
             json=json,
-            template_url=self.post204.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -3250,8 +3185,6 @@ class HttpSuccessOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post204.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace
     def delete204(
@@ -3282,7 +3215,6 @@ class HttpSuccessOperations(object):
         request = build_http_success_delete204_request(
             content_type=content_type,
             json=json,
-            template_url=self.delete204.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -3295,8 +3227,6 @@ class HttpSuccessOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    delete204.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace
     def head404(
@@ -3313,9 +3243,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_http_success_head404_request(
-            template_url=self.head404.metadata["url"],
-        )
+        request = build_http_success_head404_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -3327,8 +3255,6 @@ class HttpSuccessOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    head404.metadata = {"url": "/http/success/404"}  # type: ignore
 
 
 class HttpRedirectsOperations(object):
@@ -3364,9 +3290,7 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_http_redirects_head300_request(
-            template_url=self.head300.metadata["url"],
-        )
+        request = build_http_redirects_head300_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -3382,8 +3306,6 @@ class HttpRedirectsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    head300.metadata = {"url": "/http/redirect/300"}  # type: ignore
 
     @distributed_trace
     def get300(
@@ -3408,9 +3330,7 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_http_redirects_get300_request(
-            template_url=self.get300.metadata["url"],
-        )
+        request = build_http_redirects_get300_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -3435,8 +3355,6 @@ class HttpRedirectsOperations(object):
 
         return deserialized
 
-    get300.metadata = {"url": "/http/redirect/300"}  # type: ignore
-
     @distributed_trace
     def head301(
         self, **kwargs  # type: Any
@@ -3452,9 +3370,7 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_http_redirects_head301_request(
-            template_url=self.head301.metadata["url"],
-        )
+        request = build_http_redirects_head301_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -3470,8 +3386,6 @@ class HttpRedirectsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    head301.metadata = {"url": "/http/redirect/301"}  # type: ignore
 
     @distributed_trace
     def get301(
@@ -3488,9 +3402,7 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_http_redirects_get301_request(
-            template_url=self.get301.metadata["url"],
-        )
+        request = build_http_redirects_get301_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -3506,8 +3418,6 @@ class HttpRedirectsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    get301.metadata = {"url": "/http/redirect/301"}  # type: ignore
 
     @distributed_trace
     def put301(
@@ -3539,7 +3449,6 @@ class HttpRedirectsOperations(object):
         request = build_http_redirects_put301_request(
             content_type=content_type,
             json=json,
-            template_url=self.put301.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -3556,8 +3465,6 @@ class HttpRedirectsOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    put301.metadata = {"url": "/http/redirect/301"}  # type: ignore
-
     @distributed_trace
     def head302(
         self, **kwargs  # type: Any
@@ -3573,9 +3480,7 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_http_redirects_head302_request(
-            template_url=self.head302.metadata["url"],
-        )
+        request = build_http_redirects_head302_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -3591,8 +3496,6 @@ class HttpRedirectsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    head302.metadata = {"url": "/http/redirect/302"}  # type: ignore
 
     @distributed_trace
     def get302(
@@ -3609,9 +3512,7 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_http_redirects_get302_request(
-            template_url=self.get302.metadata["url"],
-        )
+        request = build_http_redirects_get302_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -3627,8 +3528,6 @@ class HttpRedirectsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    get302.metadata = {"url": "/http/redirect/302"}  # type: ignore
 
     @distributed_trace
     def patch302(
@@ -3660,7 +3559,6 @@ class HttpRedirectsOperations(object):
         request = build_http_redirects_patch302_request(
             content_type=content_type,
             json=json,
-            template_url=self.patch302.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -3676,8 +3574,6 @@ class HttpRedirectsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    patch302.metadata = {"url": "/http/redirect/302"}  # type: ignore
 
     @distributed_trace
     def post303(
@@ -3709,7 +3605,6 @@ class HttpRedirectsOperations(object):
         request = build_http_redirects_post303_request(
             content_type=content_type,
             json=json,
-            template_url=self.post303.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -3727,8 +3622,6 @@ class HttpRedirectsOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    post303.metadata = {"url": "/http/redirect/303"}  # type: ignore
-
     @distributed_trace
     def head307(
         self, **kwargs  # type: Any
@@ -3744,9 +3637,7 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_http_redirects_head307_request(
-            template_url=self.head307.metadata["url"],
-        )
+        request = build_http_redirects_head307_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -3762,8 +3653,6 @@ class HttpRedirectsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    head307.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
     @distributed_trace
     def get307(
@@ -3780,9 +3669,7 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_http_redirects_get307_request(
-            template_url=self.get307.metadata["url"],
-        )
+        request = build_http_redirects_get307_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -3798,8 +3685,6 @@ class HttpRedirectsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    get307.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
     @distributed_trace
     def options307(
@@ -3816,9 +3701,7 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_http_redirects_options307_request(
-            template_url=self.options307.metadata["url"],
-        )
+        request = build_http_redirects_options307_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -3834,8 +3717,6 @@ class HttpRedirectsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    options307.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
     @distributed_trace
     def put307(
@@ -3866,7 +3747,6 @@ class HttpRedirectsOperations(object):
         request = build_http_redirects_put307_request(
             content_type=content_type,
             json=json,
-            template_url=self.put307.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -3883,8 +3763,6 @@ class HttpRedirectsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    put307.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
     @distributed_trace
     def patch307(
@@ -3915,7 +3793,6 @@ class HttpRedirectsOperations(object):
         request = build_http_redirects_patch307_request(
             content_type=content_type,
             json=json,
-            template_url=self.patch307.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -3932,8 +3809,6 @@ class HttpRedirectsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    patch307.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
     @distributed_trace
     def post307(
@@ -3964,7 +3839,6 @@ class HttpRedirectsOperations(object):
         request = build_http_redirects_post307_request(
             content_type=content_type,
             json=json,
-            template_url=self.post307.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -3981,8 +3855,6 @@ class HttpRedirectsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    post307.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
     @distributed_trace
     def delete307(
@@ -4013,7 +3885,6 @@ class HttpRedirectsOperations(object):
         request = build_http_redirects_delete307_request(
             content_type=content_type,
             json=json,
-            template_url=self.delete307.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -4030,8 +3901,6 @@ class HttpRedirectsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    delete307.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
 
 class HttpClientFailureOperations(object):
@@ -4067,9 +3936,7 @@ class HttpClientFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_http_client_failure_head400_request(
-            template_url=self.head400.metadata["url"],
-        )
+        request = build_http_client_failure_head400_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -4081,8 +3948,6 @@ class HttpClientFailureOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    head400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace
     def get400(
@@ -4099,9 +3964,7 @@ class HttpClientFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_http_client_failure_get400_request(
-            template_url=self.get400.metadata["url"],
-        )
+        request = build_http_client_failure_get400_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -4113,8 +3976,6 @@ class HttpClientFailureOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace
     def options400(
@@ -4131,9 +3992,7 @@ class HttpClientFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_http_client_failure_options400_request(
-            template_url=self.options400.metadata["url"],
-        )
+        request = build_http_client_failure_options400_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -4145,8 +4004,6 @@ class HttpClientFailureOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    options400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace
     def put400(
@@ -4177,7 +4034,6 @@ class HttpClientFailureOperations(object):
         request = build_http_client_failure_put400_request(
             content_type=content_type,
             json=json,
-            template_url=self.put400.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -4190,8 +4046,6 @@ class HttpClientFailureOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace
     def patch400(
@@ -4222,7 +4076,6 @@ class HttpClientFailureOperations(object):
         request = build_http_client_failure_patch400_request(
             content_type=content_type,
             json=json,
-            template_url=self.patch400.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -4235,8 +4088,6 @@ class HttpClientFailureOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    patch400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace
     def post400(
@@ -4267,7 +4118,6 @@ class HttpClientFailureOperations(object):
         request = build_http_client_failure_post400_request(
             content_type=content_type,
             json=json,
-            template_url=self.post400.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -4280,8 +4130,6 @@ class HttpClientFailureOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace
     def delete400(
@@ -4312,7 +4160,6 @@ class HttpClientFailureOperations(object):
         request = build_http_client_failure_delete400_request(
             content_type=content_type,
             json=json,
-            template_url=self.delete400.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -4325,8 +4172,6 @@ class HttpClientFailureOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    delete400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace
     def head401(
@@ -4343,9 +4188,7 @@ class HttpClientFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_http_client_failure_head401_request(
-            template_url=self.head401.metadata["url"],
-        )
+        request = build_http_client_failure_head401_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -4357,8 +4200,6 @@ class HttpClientFailureOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    head401.metadata = {"url": "/http/failure/client/401"}  # type: ignore
 
     @distributed_trace
     def get402(
@@ -4375,9 +4216,7 @@ class HttpClientFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_http_client_failure_get402_request(
-            template_url=self.get402.metadata["url"],
-        )
+        request = build_http_client_failure_get402_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -4389,8 +4228,6 @@ class HttpClientFailureOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get402.metadata = {"url": "/http/failure/client/402"}  # type: ignore
 
     @distributed_trace
     def options403(
@@ -4407,9 +4244,7 @@ class HttpClientFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_http_client_failure_options403_request(
-            template_url=self.options403.metadata["url"],
-        )
+        request = build_http_client_failure_options403_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -4421,8 +4256,6 @@ class HttpClientFailureOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    options403.metadata = {"url": "/http/failure/client/403"}  # type: ignore
 
     @distributed_trace
     def get403(
@@ -4439,9 +4272,7 @@ class HttpClientFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_http_client_failure_get403_request(
-            template_url=self.get403.metadata["url"],
-        )
+        request = build_http_client_failure_get403_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -4453,8 +4284,6 @@ class HttpClientFailureOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get403.metadata = {"url": "/http/failure/client/403"}  # type: ignore
 
     @distributed_trace
     def put404(
@@ -4485,7 +4314,6 @@ class HttpClientFailureOperations(object):
         request = build_http_client_failure_put404_request(
             content_type=content_type,
             json=json,
-            template_url=self.put404.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -4498,8 +4326,6 @@ class HttpClientFailureOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put404.metadata = {"url": "/http/failure/client/404"}  # type: ignore
 
     @distributed_trace
     def patch405(
@@ -4530,7 +4356,6 @@ class HttpClientFailureOperations(object):
         request = build_http_client_failure_patch405_request(
             content_type=content_type,
             json=json,
-            template_url=self.patch405.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -4543,8 +4368,6 @@ class HttpClientFailureOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    patch405.metadata = {"url": "/http/failure/client/405"}  # type: ignore
 
     @distributed_trace
     def post406(
@@ -4575,7 +4398,6 @@ class HttpClientFailureOperations(object):
         request = build_http_client_failure_post406_request(
             content_type=content_type,
             json=json,
-            template_url=self.post406.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -4588,8 +4410,6 @@ class HttpClientFailureOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post406.metadata = {"url": "/http/failure/client/406"}  # type: ignore
 
     @distributed_trace
     def delete407(
@@ -4620,7 +4440,6 @@ class HttpClientFailureOperations(object):
         request = build_http_client_failure_delete407_request(
             content_type=content_type,
             json=json,
-            template_url=self.delete407.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -4633,8 +4452,6 @@ class HttpClientFailureOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    delete407.metadata = {"url": "/http/failure/client/407"}  # type: ignore
 
     @distributed_trace
     def put409(
@@ -4665,7 +4482,6 @@ class HttpClientFailureOperations(object):
         request = build_http_client_failure_put409_request(
             content_type=content_type,
             json=json,
-            template_url=self.put409.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -4678,8 +4494,6 @@ class HttpClientFailureOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put409.metadata = {"url": "/http/failure/client/409"}  # type: ignore
 
     @distributed_trace
     def head410(
@@ -4696,9 +4510,7 @@ class HttpClientFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_http_client_failure_head410_request(
-            template_url=self.head410.metadata["url"],
-        )
+        request = build_http_client_failure_head410_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -4710,8 +4522,6 @@ class HttpClientFailureOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    head410.metadata = {"url": "/http/failure/client/410"}  # type: ignore
 
     @distributed_trace
     def get411(
@@ -4728,9 +4538,7 @@ class HttpClientFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_http_client_failure_get411_request(
-            template_url=self.get411.metadata["url"],
-        )
+        request = build_http_client_failure_get411_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -4742,8 +4550,6 @@ class HttpClientFailureOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get411.metadata = {"url": "/http/failure/client/411"}  # type: ignore
 
     @distributed_trace
     def options412(
@@ -4760,9 +4566,7 @@ class HttpClientFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_http_client_failure_options412_request(
-            template_url=self.options412.metadata["url"],
-        )
+        request = build_http_client_failure_options412_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -4774,8 +4578,6 @@ class HttpClientFailureOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    options412.metadata = {"url": "/http/failure/client/412"}  # type: ignore
 
     @distributed_trace
     def get412(
@@ -4792,9 +4594,7 @@ class HttpClientFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_http_client_failure_get412_request(
-            template_url=self.get412.metadata["url"],
-        )
+        request = build_http_client_failure_get412_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -4806,8 +4606,6 @@ class HttpClientFailureOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get412.metadata = {"url": "/http/failure/client/412"}  # type: ignore
 
     @distributed_trace
     def put413(
@@ -4838,7 +4636,6 @@ class HttpClientFailureOperations(object):
         request = build_http_client_failure_put413_request(
             content_type=content_type,
             json=json,
-            template_url=self.put413.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -4851,8 +4648,6 @@ class HttpClientFailureOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put413.metadata = {"url": "/http/failure/client/413"}  # type: ignore
 
     @distributed_trace
     def patch414(
@@ -4883,7 +4678,6 @@ class HttpClientFailureOperations(object):
         request = build_http_client_failure_patch414_request(
             content_type=content_type,
             json=json,
-            template_url=self.patch414.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -4896,8 +4690,6 @@ class HttpClientFailureOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    patch414.metadata = {"url": "/http/failure/client/414"}  # type: ignore
 
     @distributed_trace
     def post415(
@@ -4928,7 +4720,6 @@ class HttpClientFailureOperations(object):
         request = build_http_client_failure_post415_request(
             content_type=content_type,
             json=json,
-            template_url=self.post415.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -4941,8 +4732,6 @@ class HttpClientFailureOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post415.metadata = {"url": "/http/failure/client/415"}  # type: ignore
 
     @distributed_trace
     def get416(
@@ -4959,9 +4748,7 @@ class HttpClientFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_http_client_failure_get416_request(
-            template_url=self.get416.metadata["url"],
-        )
+        request = build_http_client_failure_get416_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -4973,8 +4760,6 @@ class HttpClientFailureOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get416.metadata = {"url": "/http/failure/client/416"}  # type: ignore
 
     @distributed_trace
     def delete417(
@@ -5005,7 +4790,6 @@ class HttpClientFailureOperations(object):
         request = build_http_client_failure_delete417_request(
             content_type=content_type,
             json=json,
-            template_url=self.delete417.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -5018,8 +4802,6 @@ class HttpClientFailureOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    delete417.metadata = {"url": "/http/failure/client/417"}  # type: ignore
 
     @distributed_trace
     def head429(
@@ -5036,9 +4818,7 @@ class HttpClientFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_http_client_failure_head429_request(
-            template_url=self.head429.metadata["url"],
-        )
+        request = build_http_client_failure_head429_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -5050,8 +4830,6 @@ class HttpClientFailureOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    head429.metadata = {"url": "/http/failure/client/429"}  # type: ignore
 
 
 class HttpServerFailureOperations(object):
@@ -5087,9 +4865,7 @@ class HttpServerFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_http_server_failure_head501_request(
-            template_url=self.head501.metadata["url"],
-        )
+        request = build_http_server_failure_head501_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -5101,8 +4877,6 @@ class HttpServerFailureOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    head501.metadata = {"url": "/http/failure/server/501"}  # type: ignore
 
     @distributed_trace
     def get501(
@@ -5119,9 +4893,7 @@ class HttpServerFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_http_server_failure_get501_request(
-            template_url=self.get501.metadata["url"],
-        )
+        request = build_http_server_failure_get501_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -5133,8 +4905,6 @@ class HttpServerFailureOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get501.metadata = {"url": "/http/failure/server/501"}  # type: ignore
 
     @distributed_trace
     def post505(
@@ -5165,7 +4935,6 @@ class HttpServerFailureOperations(object):
         request = build_http_server_failure_post505_request(
             content_type=content_type,
             json=json,
-            template_url=self.post505.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -5178,8 +4947,6 @@ class HttpServerFailureOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post505.metadata = {"url": "/http/failure/server/505"}  # type: ignore
 
     @distributed_trace
     def delete505(
@@ -5210,7 +4977,6 @@ class HttpServerFailureOperations(object):
         request = build_http_server_failure_delete505_request(
             content_type=content_type,
             json=json,
-            template_url=self.delete505.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -5223,8 +4989,6 @@ class HttpServerFailureOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    delete505.metadata = {"url": "/http/failure/server/505"}  # type: ignore
 
 
 class HttpRetryOperations(object):
@@ -5260,9 +5024,7 @@ class HttpRetryOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_http_retry_head408_request(
-            template_url=self.head408.metadata["url"],
-        )
+        request = build_http_retry_head408_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -5274,8 +5036,6 @@ class HttpRetryOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    head408.metadata = {"url": "/http/retry/408"}  # type: ignore
 
     @distributed_trace
     def put500(
@@ -5306,7 +5066,6 @@ class HttpRetryOperations(object):
         request = build_http_retry_put500_request(
             content_type=content_type,
             json=json,
-            template_url=self.put500.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -5319,8 +5078,6 @@ class HttpRetryOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put500.metadata = {"url": "/http/retry/500"}  # type: ignore
 
     @distributed_trace
     def patch500(
@@ -5351,7 +5108,6 @@ class HttpRetryOperations(object):
         request = build_http_retry_patch500_request(
             content_type=content_type,
             json=json,
-            template_url=self.patch500.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -5364,8 +5120,6 @@ class HttpRetryOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    patch500.metadata = {"url": "/http/retry/500"}  # type: ignore
 
     @distributed_trace
     def get502(
@@ -5382,9 +5136,7 @@ class HttpRetryOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_http_retry_get502_request(
-            template_url=self.get502.metadata["url"],
-        )
+        request = build_http_retry_get502_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -5396,8 +5148,6 @@ class HttpRetryOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get502.metadata = {"url": "/http/retry/502"}  # type: ignore
 
     @distributed_trace
     def options502(
@@ -5414,9 +5164,7 @@ class HttpRetryOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_http_retry_options502_request(
-            template_url=self.options502.metadata["url"],
-        )
+        request = build_http_retry_options502_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -5435,8 +5183,6 @@ class HttpRetryOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    options502.metadata = {"url": "/http/retry/502"}  # type: ignore
 
     @distributed_trace
     def post503(
@@ -5467,7 +5213,6 @@ class HttpRetryOperations(object):
         request = build_http_retry_post503_request(
             content_type=content_type,
             json=json,
-            template_url=self.post503.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -5480,8 +5225,6 @@ class HttpRetryOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post503.metadata = {"url": "/http/retry/503"}  # type: ignore
 
     @distributed_trace
     def delete503(
@@ -5512,7 +5255,6 @@ class HttpRetryOperations(object):
         request = build_http_retry_delete503_request(
             content_type=content_type,
             json=json,
-            template_url=self.delete503.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -5525,8 +5267,6 @@ class HttpRetryOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    delete503.metadata = {"url": "/http/retry/503"}  # type: ignore
 
     @distributed_trace
     def put504(
@@ -5557,7 +5297,6 @@ class HttpRetryOperations(object):
         request = build_http_retry_put504_request(
             content_type=content_type,
             json=json,
-            template_url=self.put504.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -5570,8 +5309,6 @@ class HttpRetryOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put504.metadata = {"url": "/http/retry/504"}  # type: ignore
 
     @distributed_trace
     def patch504(
@@ -5602,7 +5339,6 @@ class HttpRetryOperations(object):
         request = build_http_retry_patch504_request(
             content_type=content_type,
             json=json,
-            template_url=self.patch504.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -5615,8 +5351,6 @@ class HttpRetryOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    patch504.metadata = {"url": "/http/retry/504"}  # type: ignore
 
 
 class MultipleResponsesOperations(object):
@@ -5660,9 +5394,7 @@ class MultipleResponsesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_multiple_responses_get200_model204_no_model_default_error200_valid_request(
-            template_url=self.get200_model204_no_model_default_error200_valid.metadata["url"],
-        )
+        request = build_multiple_responses_get200_model204_no_model_default_error200_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -5683,8 +5415,6 @@ class MultipleResponsesOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get200_model204_no_model_default_error200_valid.metadata = {"url": "/http/payloads/200/A/204/none/default/Error/response/200/valid"}  # type: ignore
 
     @distributed_trace
     def get200_model204_no_model_default_error204_valid(
@@ -5709,9 +5439,7 @@ class MultipleResponsesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_multiple_responses_get200_model204_no_model_default_error204_valid_request(
-            template_url=self.get200_model204_no_model_default_error204_valid.metadata["url"],
-        )
+        request = build_multiple_responses_get200_model204_no_model_default_error204_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -5732,8 +5460,6 @@ class MultipleResponsesOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get200_model204_no_model_default_error204_valid.metadata = {"url": "/http/payloads/200/A/204/none/default/Error/response/204/none"}  # type: ignore
 
     @distributed_trace
     def get200_model204_no_model_default_error201_invalid(
@@ -5758,9 +5484,7 @@ class MultipleResponsesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_multiple_responses_get200_model204_no_model_default_error201_invalid_request(
-            template_url=self.get200_model204_no_model_default_error201_invalid.metadata["url"],
-        )
+        request = build_multiple_responses_get200_model204_no_model_default_error201_invalid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -5781,8 +5505,6 @@ class MultipleResponsesOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get200_model204_no_model_default_error201_invalid.metadata = {"url": "/http/payloads/200/A/204/none/default/Error/response/201/valid"}  # type: ignore
 
     @distributed_trace
     def get200_model204_no_model_default_error202_none(
@@ -5807,9 +5529,7 @@ class MultipleResponsesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_multiple_responses_get200_model204_no_model_default_error202_none_request(
-            template_url=self.get200_model204_no_model_default_error202_none.metadata["url"],
-        )
+        request = build_multiple_responses_get200_model204_no_model_default_error202_none_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -5830,8 +5550,6 @@ class MultipleResponsesOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get200_model204_no_model_default_error202_none.metadata = {"url": "/http/payloads/200/A/204/none/default/Error/response/202/none"}  # type: ignore
 
     @distributed_trace
     def get200_model204_no_model_default_error400_valid(
@@ -5856,9 +5574,7 @@ class MultipleResponsesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_multiple_responses_get200_model204_no_model_default_error400_valid_request(
-            template_url=self.get200_model204_no_model_default_error400_valid.metadata["url"],
-        )
+        request = build_multiple_responses_get200_model204_no_model_default_error400_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -5879,8 +5595,6 @@ class MultipleResponsesOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get200_model204_no_model_default_error400_valid.metadata = {"url": "/http/payloads/200/A/204/none/default/Error/response/400/valid"}  # type: ignore
 
     @distributed_trace
     def get200_model201_model_default_error200_valid(
@@ -5910,9 +5624,7 @@ class MultipleResponsesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_multiple_responses_get200_model201_model_default_error200_valid_request(
-            template_url=self.get200_model201_model_default_error200_valid.metadata["url"],
-        )
+        request = build_multiple_responses_get200_model201_model_default_error200_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -5938,8 +5650,6 @@ class MultipleResponsesOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get200_model201_model_default_error200_valid.metadata = {"url": "/http/payloads/200/A/201/B/default/Error/response/200/valid"}  # type: ignore
 
     @distributed_trace
     def get200_model201_model_default_error201_valid(
@@ -5969,9 +5679,7 @@ class MultipleResponsesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_multiple_responses_get200_model201_model_default_error201_valid_request(
-            template_url=self.get200_model201_model_default_error201_valid.metadata["url"],
-        )
+        request = build_multiple_responses_get200_model201_model_default_error201_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -5997,8 +5705,6 @@ class MultipleResponsesOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get200_model201_model_default_error201_valid.metadata = {"url": "/http/payloads/200/A/201/B/default/Error/response/201/valid"}  # type: ignore
 
     @distributed_trace
     def get200_model201_model_default_error400_valid(
@@ -6028,9 +5734,7 @@ class MultipleResponsesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_multiple_responses_get200_model201_model_default_error400_valid_request(
-            template_url=self.get200_model201_model_default_error400_valid.metadata["url"],
-        )
+        request = build_multiple_responses_get200_model201_model_default_error400_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -6056,8 +5760,6 @@ class MultipleResponsesOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get200_model201_model_default_error400_valid.metadata = {"url": "/http/payloads/200/A/201/B/default/Error/response/400/valid"}  # type: ignore
 
     @distributed_trace
     def get200_model_a201_model_c404_model_d_default_error200_valid(
@@ -6090,9 +5792,7 @@ class MultipleResponsesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_multiple_responses_get200_model_a201_model_c404_model_d_default_error200_valid_request(
-            template_url=self.get200_model_a201_model_c404_model_d_default_error200_valid.metadata["url"],
-        )
+        request = build_multiple_responses_get200_model_a201_model_c404_model_d_default_error200_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -6124,8 +5824,6 @@ class MultipleResponsesOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get200_model_a201_model_c404_model_d_default_error200_valid.metadata = {"url": "/http/payloads/200/A/201/C/404/D/default/Error/response/200/valid"}  # type: ignore
 
     @distributed_trace
     def get200_model_a201_model_c404_model_d_default_error201_valid(
@@ -6158,9 +5856,7 @@ class MultipleResponsesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_multiple_responses_get200_model_a201_model_c404_model_d_default_error201_valid_request(
-            template_url=self.get200_model_a201_model_c404_model_d_default_error201_valid.metadata["url"],
-        )
+        request = build_multiple_responses_get200_model_a201_model_c404_model_d_default_error201_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -6192,8 +5888,6 @@ class MultipleResponsesOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get200_model_a201_model_c404_model_d_default_error201_valid.metadata = {"url": "/http/payloads/200/A/201/C/404/D/default/Error/response/201/valid"}  # type: ignore
 
     @distributed_trace
     def get200_model_a201_model_c404_model_d_default_error404_valid(
@@ -6226,9 +5920,7 @@ class MultipleResponsesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_multiple_responses_get200_model_a201_model_c404_model_d_default_error404_valid_request(
-            template_url=self.get200_model_a201_model_c404_model_d_default_error404_valid.metadata["url"],
-        )
+        request = build_multiple_responses_get200_model_a201_model_c404_model_d_default_error404_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -6260,8 +5952,6 @@ class MultipleResponsesOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get200_model_a201_model_c404_model_d_default_error404_valid.metadata = {"url": "/http/payloads/200/A/201/C/404/D/default/Error/response/404/valid"}  # type: ignore
 
     @distributed_trace
     def get200_model_a201_model_c404_model_d_default_error400_valid(
@@ -6294,9 +5984,7 @@ class MultipleResponsesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_multiple_responses_get200_model_a201_model_c404_model_d_default_error400_valid_request(
-            template_url=self.get200_model_a201_model_c404_model_d_default_error400_valid.metadata["url"],
-        )
+        request = build_multiple_responses_get200_model_a201_model_c404_model_d_default_error400_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -6329,8 +6017,6 @@ class MultipleResponsesOperations(object):
 
         return deserialized
 
-    get200_model_a201_model_c404_model_d_default_error400_valid.metadata = {"url": "/http/payloads/200/A/201/C/404/D/default/Error/response/400/valid"}  # type: ignore
-
     @distributed_trace
     def get202_none204_none_default_error202_none(
         self, **kwargs  # type: Any
@@ -6346,9 +6032,7 @@ class MultipleResponsesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_multiple_responses_get202_none204_none_default_error202_none_request(
-            template_url=self.get202_none204_none_default_error202_none.metadata["url"],
-        )
+        request = build_multiple_responses_get202_none204_none_default_error202_none_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -6360,8 +6044,6 @@ class MultipleResponsesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get202_none204_none_default_error202_none.metadata = {"url": "/http/payloads/202/none/204/none/default/Error/response/202/none"}  # type: ignore
 
     @distributed_trace
     def get202_none204_none_default_error204_none(
@@ -6378,9 +6060,7 @@ class MultipleResponsesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_multiple_responses_get202_none204_none_default_error204_none_request(
-            template_url=self.get202_none204_none_default_error204_none.metadata["url"],
-        )
+        request = build_multiple_responses_get202_none204_none_default_error204_none_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -6392,8 +6072,6 @@ class MultipleResponsesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get202_none204_none_default_error204_none.metadata = {"url": "/http/payloads/202/none/204/none/default/Error/response/204/none"}  # type: ignore
 
     @distributed_trace
     def get202_none204_none_default_error400_valid(
@@ -6410,9 +6088,7 @@ class MultipleResponsesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_multiple_responses_get202_none204_none_default_error400_valid_request(
-            template_url=self.get202_none204_none_default_error400_valid.metadata["url"],
-        )
+        request = build_multiple_responses_get202_none204_none_default_error400_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -6424,8 +6100,6 @@ class MultipleResponsesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get202_none204_none_default_error400_valid.metadata = {"url": "/http/payloads/202/none/204/none/default/Error/response/400/valid"}  # type: ignore
 
     @distributed_trace
     def get202_none204_none_default_none202_invalid(
@@ -6442,9 +6116,7 @@ class MultipleResponsesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_multiple_responses_get202_none204_none_default_none202_invalid_request(
-            template_url=self.get202_none204_none_default_none202_invalid.metadata["url"],
-        )
+        request = build_multiple_responses_get202_none204_none_default_none202_invalid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -6456,8 +6128,6 @@ class MultipleResponsesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get202_none204_none_default_none202_invalid.metadata = {"url": "/http/payloads/202/none/204/none/default/none/response/202/invalid"}  # type: ignore
 
     @distributed_trace
     def get202_none204_none_default_none204_none(
@@ -6474,9 +6144,7 @@ class MultipleResponsesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_multiple_responses_get202_none204_none_default_none204_none_request(
-            template_url=self.get202_none204_none_default_none204_none.metadata["url"],
-        )
+        request = build_multiple_responses_get202_none204_none_default_none204_none_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -6488,8 +6156,6 @@ class MultipleResponsesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get202_none204_none_default_none204_none.metadata = {"url": "/http/payloads/202/none/204/none/default/none/response/204/none"}  # type: ignore
 
     @distributed_trace
     def get202_none204_none_default_none400_none(
@@ -6506,9 +6172,7 @@ class MultipleResponsesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_multiple_responses_get202_none204_none_default_none400_none_request(
-            template_url=self.get202_none204_none_default_none400_none.metadata["url"],
-        )
+        request = build_multiple_responses_get202_none204_none_default_none400_none_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -6520,8 +6184,6 @@ class MultipleResponsesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get202_none204_none_default_none400_none.metadata = {"url": "/http/payloads/202/none/204/none/default/none/response/400/none"}  # type: ignore
 
     @distributed_trace
     def get202_none204_none_default_none400_invalid(
@@ -6538,9 +6200,7 @@ class MultipleResponsesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_multiple_responses_get202_none204_none_default_none400_invalid_request(
-            template_url=self.get202_none204_none_default_none400_invalid.metadata["url"],
-        )
+        request = build_multiple_responses_get202_none204_none_default_none400_invalid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -6552,8 +6212,6 @@ class MultipleResponsesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get202_none204_none_default_none400_invalid.metadata = {"url": "/http/payloads/202/none/204/none/default/none/response/400/invalid"}  # type: ignore
 
     @distributed_trace
     def get_default_model_a200_valid(
@@ -6578,9 +6236,7 @@ class MultipleResponsesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_multiple_responses_get_default_model_a200_valid_request(
-            template_url=self.get_default_model_a200_valid.metadata["url"],
-        )
+        request = build_multiple_responses_get_default_model_a200_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -6599,8 +6255,6 @@ class MultipleResponsesOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_default_model_a200_valid.metadata = {"url": "/http/payloads/default/A/response/200/valid"}  # type: ignore
 
     @distributed_trace
     def get_default_model_a200_none(
@@ -6625,9 +6279,7 @@ class MultipleResponsesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_multiple_responses_get_default_model_a200_none_request(
-            template_url=self.get_default_model_a200_none.metadata["url"],
-        )
+        request = build_multiple_responses_get_default_model_a200_none_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -6647,8 +6299,6 @@ class MultipleResponsesOperations(object):
 
         return deserialized
 
-    get_default_model_a200_none.metadata = {"url": "/http/payloads/default/A/response/200/none"}  # type: ignore
-
     @distributed_trace
     def get_default_model_a400_valid(
         self, **kwargs  # type: Any
@@ -6664,9 +6314,7 @@ class MultipleResponsesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_multiple_responses_get_default_model_a400_valid_request(
-            template_url=self.get_default_model_a400_valid.metadata["url"],
-        )
+        request = build_multiple_responses_get_default_model_a400_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -6678,8 +6326,6 @@ class MultipleResponsesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_default_model_a400_valid.metadata = {"url": "/http/payloads/default/A/response/400/valid"}  # type: ignore
 
     @distributed_trace
     def get_default_model_a400_none(
@@ -6696,9 +6342,7 @@ class MultipleResponsesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_multiple_responses_get_default_model_a400_none_request(
-            template_url=self.get_default_model_a400_none.metadata["url"],
-        )
+        request = build_multiple_responses_get_default_model_a400_none_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -6710,8 +6354,6 @@ class MultipleResponsesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_default_model_a400_none.metadata = {"url": "/http/payloads/default/A/response/400/none"}  # type: ignore
 
     @distributed_trace
     def get_default_none200_invalid(
@@ -6728,9 +6370,7 @@ class MultipleResponsesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_multiple_responses_get_default_none200_invalid_request(
-            template_url=self.get_default_none200_invalid.metadata["url"],
-        )
+        request = build_multiple_responses_get_default_none200_invalid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -6742,8 +6382,6 @@ class MultipleResponsesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_default_none200_invalid.metadata = {"url": "/http/payloads/default/none/response/200/invalid"}  # type: ignore
 
     @distributed_trace
     def get_default_none200_none(
@@ -6760,9 +6398,7 @@ class MultipleResponsesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_multiple_responses_get_default_none200_none_request(
-            template_url=self.get_default_none200_none.metadata["url"],
-        )
+        request = build_multiple_responses_get_default_none200_none_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -6774,8 +6410,6 @@ class MultipleResponsesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_default_none200_none.metadata = {"url": "/http/payloads/default/none/response/200/none"}  # type: ignore
 
     @distributed_trace
     def get_default_none400_invalid(
@@ -6792,9 +6426,7 @@ class MultipleResponsesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_multiple_responses_get_default_none400_invalid_request(
-            template_url=self.get_default_none400_invalid.metadata["url"],
-        )
+        request = build_multiple_responses_get_default_none400_invalid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -6806,8 +6438,6 @@ class MultipleResponsesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_default_none400_invalid.metadata = {"url": "/http/payloads/default/none/response/400/invalid"}  # type: ignore
 
     @distributed_trace
     def get_default_none400_none(
@@ -6824,9 +6454,7 @@ class MultipleResponsesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_multiple_responses_get_default_none400_none_request(
-            template_url=self.get_default_none400_none.metadata["url"],
-        )
+        request = build_multiple_responses_get_default_none400_none_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -6838,8 +6466,6 @@ class MultipleResponsesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_default_none400_none.metadata = {"url": "/http/payloads/default/none/response/400/none"}  # type: ignore
 
     @distributed_trace
     def get200_model_a200_none(
@@ -6865,9 +6491,7 @@ class MultipleResponsesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_multiple_responses_get200_model_a200_none_request(
-            template_url=self.get200_model_a200_none.metadata["url"],
-        )
+        request = build_multiple_responses_get200_model_a200_none_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -6886,8 +6510,6 @@ class MultipleResponsesOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get200_model_a200_none.metadata = {"url": "/http/payloads/200/A/response/200/none"}  # type: ignore
 
     @distributed_trace
     def get200_model_a200_valid(
@@ -6912,9 +6534,7 @@ class MultipleResponsesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_multiple_responses_get200_model_a200_valid_request(
-            template_url=self.get200_model_a200_valid.metadata["url"],
-        )
+        request = build_multiple_responses_get200_model_a200_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -6933,8 +6553,6 @@ class MultipleResponsesOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get200_model_a200_valid.metadata = {"url": "/http/payloads/200/A/response/200/valid"}  # type: ignore
 
     @distributed_trace
     def get200_model_a200_invalid(
@@ -6959,9 +6577,7 @@ class MultipleResponsesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_multiple_responses_get200_model_a200_invalid_request(
-            template_url=self.get200_model_a200_invalid.metadata["url"],
-        )
+        request = build_multiple_responses_get200_model_a200_invalid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -6980,8 +6596,6 @@ class MultipleResponsesOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get200_model_a200_invalid.metadata = {"url": "/http/payloads/200/A/response/200/invalid"}  # type: ignore
 
     @distributed_trace
     def get200_model_a400_none(
@@ -7006,9 +6620,7 @@ class MultipleResponsesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_multiple_responses_get200_model_a400_none_request(
-            template_url=self.get200_model_a400_none.metadata["url"],
-        )
+        request = build_multiple_responses_get200_model_a400_none_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -7027,8 +6639,6 @@ class MultipleResponsesOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get200_model_a400_none.metadata = {"url": "/http/payloads/200/A/response/400/none"}  # type: ignore
 
     @distributed_trace
     def get200_model_a400_valid(
@@ -7053,9 +6663,7 @@ class MultipleResponsesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_multiple_responses_get200_model_a400_valid_request(
-            template_url=self.get200_model_a400_valid.metadata["url"],
-        )
+        request = build_multiple_responses_get200_model_a400_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -7074,8 +6682,6 @@ class MultipleResponsesOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get200_model_a400_valid.metadata = {"url": "/http/payloads/200/A/response/400/valid"}  # type: ignore
 
     @distributed_trace
     def get200_model_a400_invalid(
@@ -7100,9 +6706,7 @@ class MultipleResponsesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_multiple_responses_get200_model_a400_invalid_request(
-            template_url=self.get200_model_a400_invalid.metadata["url"],
-        )
+        request = build_multiple_responses_get200_model_a400_invalid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -7121,8 +6725,6 @@ class MultipleResponsesOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get200_model_a400_invalid.metadata = {"url": "/http/payloads/200/A/response/400/invalid"}  # type: ignore
 
     @distributed_trace
     def get200_model_a202_valid(
@@ -7147,9 +6749,7 @@ class MultipleResponsesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_multiple_responses_get200_model_a202_valid_request(
-            template_url=self.get200_model_a202_valid.metadata["url"],
-        )
+        request = build_multiple_responses_get200_model_a202_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -7168,5 +6768,3 @@ class MultipleResponsesOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get200_model_a202_valid.metadata = {"url": "/http/payloads/200/A/response/202/valid"}  # type: ignore

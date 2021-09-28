@@ -87,6 +87,7 @@ class MultiapiServiceClientOperationsMixin:
         )
     test_paging.metadata = {'url': '/multiapi/paging'}  # type: ignore
 
+
     @distributed_trace_async
     async def test_different_calls(
         self,

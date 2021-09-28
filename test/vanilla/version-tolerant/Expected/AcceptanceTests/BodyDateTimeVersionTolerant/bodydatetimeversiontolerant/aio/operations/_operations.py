@@ -81,9 +81,7 @@ class DatetimeOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetime_get_null_request(
-            template_url=self.get_null.metadata["url"],
-        )
+        request = build_datetime_get_null_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -104,8 +102,6 @@ class DatetimeOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_null.metadata = {"url": "/datetime/null"}  # type: ignore
 
     @distributed_trace_async
     async def get_invalid(self, **kwargs: Any) -> datetime.datetime:
@@ -119,9 +115,7 @@ class DatetimeOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetime_get_invalid_request(
-            template_url=self.get_invalid.metadata["url"],
-        )
+        request = build_datetime_get_invalid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -142,8 +136,6 @@ class DatetimeOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_invalid.metadata = {"url": "/datetime/invalid"}  # type: ignore
 
     @distributed_trace_async
     async def get_overflow(self, **kwargs: Any) -> datetime.datetime:
@@ -157,9 +149,7 @@ class DatetimeOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetime_get_overflow_request(
-            template_url=self.get_overflow.metadata["url"],
-        )
+        request = build_datetime_get_overflow_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -180,8 +170,6 @@ class DatetimeOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_overflow.metadata = {"url": "/datetime/overflow"}  # type: ignore
 
     @distributed_trace_async
     async def get_underflow(self, **kwargs: Any) -> datetime.datetime:
@@ -195,9 +183,7 @@ class DatetimeOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetime_get_underflow_request(
-            template_url=self.get_underflow.metadata["url"],
-        )
+        request = build_datetime_get_underflow_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -218,8 +204,6 @@ class DatetimeOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_underflow.metadata = {"url": "/datetime/underflow"}  # type: ignore
 
     @distributed_trace_async
     async def put_utc_max_date_time(self, datetime_body: datetime.datetime, **kwargs: Any) -> None:
@@ -242,7 +226,6 @@ class DatetimeOperations:
         request = build_datetime_put_utc_max_date_time_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_utc_max_date_time.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -257,8 +240,6 @@ class DatetimeOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_utc_max_date_time.metadata = {"url": "/datetime/max/utc"}  # type: ignore
 
     @distributed_trace_async
     async def put_utc_max_date_time7_digits(self, datetime_body: datetime.datetime, **kwargs: Any) -> None:
@@ -284,7 +265,6 @@ class DatetimeOperations:
         request = build_datetime_put_utc_max_date_time7_digits_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_utc_max_date_time7_digits.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -300,8 +280,6 @@ class DatetimeOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_utc_max_date_time7_digits.metadata = {"url": "/datetime/max/utc7ms"}  # type: ignore
-
     @distributed_trace_async
     async def get_utc_lowercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
         """Get max datetime value 9999-12-31t23:59:59.999z.
@@ -314,9 +292,7 @@ class DatetimeOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetime_get_utc_lowercase_max_date_time_request(
-            template_url=self.get_utc_lowercase_max_date_time.metadata["url"],
-        )
+        request = build_datetime_get_utc_lowercase_max_date_time_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -337,8 +313,6 @@ class DatetimeOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_utc_lowercase_max_date_time.metadata = {"url": "/datetime/max/utc/lowercase"}  # type: ignore
 
     @distributed_trace_async
     async def get_utc_uppercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
@@ -352,9 +326,7 @@ class DatetimeOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetime_get_utc_uppercase_max_date_time_request(
-            template_url=self.get_utc_uppercase_max_date_time.metadata["url"],
-        )
+        request = build_datetime_get_utc_uppercase_max_date_time_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -375,8 +347,6 @@ class DatetimeOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_utc_uppercase_max_date_time.metadata = {"url": "/datetime/max/utc/uppercase"}  # type: ignore
 
     @distributed_trace_async
     async def get_utc_uppercase_max_date_time7_digits(self, **kwargs: Any) -> datetime.datetime:
@@ -393,9 +363,7 @@ class DatetimeOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetime_get_utc_uppercase_max_date_time7_digits_request(
-            template_url=self.get_utc_uppercase_max_date_time7_digits.metadata["url"],
-        )
+        request = build_datetime_get_utc_uppercase_max_date_time7_digits_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -416,8 +384,6 @@ class DatetimeOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_utc_uppercase_max_date_time7_digits.metadata = {"url": "/datetime/max/utc7ms/uppercase"}  # type: ignore
 
     @distributed_trace_async
     async def put_local_positive_offset_max_date_time(self, datetime_body: datetime.datetime, **kwargs: Any) -> None:
@@ -440,7 +406,6 @@ class DatetimeOperations:
         request = build_datetime_put_local_positive_offset_max_date_time_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_local_positive_offset_max_date_time.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -456,8 +421,6 @@ class DatetimeOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_local_positive_offset_max_date_time.metadata = {"url": "/datetime/max/localpositiveoffset"}  # type: ignore
-
     @distributed_trace_async
     async def get_local_positive_offset_lowercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
         """Get max datetime value with positive num offset 9999-12-31t23:59:59.999+14:00.
@@ -470,9 +433,7 @@ class DatetimeOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetime_get_local_positive_offset_lowercase_max_date_time_request(
-            template_url=self.get_local_positive_offset_lowercase_max_date_time.metadata["url"],
-        )
+        request = build_datetime_get_local_positive_offset_lowercase_max_date_time_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -493,8 +454,6 @@ class DatetimeOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_local_positive_offset_lowercase_max_date_time.metadata = {"url": "/datetime/max/localpositiveoffset/lowercase"}  # type: ignore
 
     @distributed_trace_async
     async def get_local_positive_offset_uppercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
@@ -508,9 +467,7 @@ class DatetimeOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetime_get_local_positive_offset_uppercase_max_date_time_request(
-            template_url=self.get_local_positive_offset_uppercase_max_date_time.metadata["url"],
-        )
+        request = build_datetime_get_local_positive_offset_uppercase_max_date_time_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -531,8 +488,6 @@ class DatetimeOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_local_positive_offset_uppercase_max_date_time.metadata = {"url": "/datetime/max/localpositiveoffset/uppercase"}  # type: ignore
 
     @distributed_trace_async
     async def put_local_negative_offset_max_date_time(self, datetime_body: datetime.datetime, **kwargs: Any) -> None:
@@ -555,7 +510,6 @@ class DatetimeOperations:
         request = build_datetime_put_local_negative_offset_max_date_time_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_local_negative_offset_max_date_time.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -571,8 +525,6 @@ class DatetimeOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_local_negative_offset_max_date_time.metadata = {"url": "/datetime/max/localnegativeoffset"}  # type: ignore
-
     @distributed_trace_async
     async def get_local_negative_offset_uppercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
         """Get max datetime value with positive num offset 9999-12-31T23:59:59.999-14:00.
@@ -585,9 +537,7 @@ class DatetimeOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetime_get_local_negative_offset_uppercase_max_date_time_request(
-            template_url=self.get_local_negative_offset_uppercase_max_date_time.metadata["url"],
-        )
+        request = build_datetime_get_local_negative_offset_uppercase_max_date_time_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -608,8 +558,6 @@ class DatetimeOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_local_negative_offset_uppercase_max_date_time.metadata = {"url": "/datetime/max/localnegativeoffset/uppercase"}  # type: ignore
 
     @distributed_trace_async
     async def get_local_negative_offset_lowercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
@@ -623,9 +571,7 @@ class DatetimeOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetime_get_local_negative_offset_lowercase_max_date_time_request(
-            template_url=self.get_local_negative_offset_lowercase_max_date_time.metadata["url"],
-        )
+        request = build_datetime_get_local_negative_offset_lowercase_max_date_time_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -646,8 +592,6 @@ class DatetimeOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_local_negative_offset_lowercase_max_date_time.metadata = {"url": "/datetime/max/localnegativeoffset/lowercase"}  # type: ignore
 
     @distributed_trace_async
     async def put_utc_min_date_time(self, datetime_body: datetime.datetime, **kwargs: Any) -> None:
@@ -670,7 +614,6 @@ class DatetimeOperations:
         request = build_datetime_put_utc_min_date_time_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_utc_min_date_time.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -686,8 +629,6 @@ class DatetimeOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_utc_min_date_time.metadata = {"url": "/datetime/min/utc"}  # type: ignore
-
     @distributed_trace_async
     async def get_utc_min_date_time(self, **kwargs: Any) -> datetime.datetime:
         """Get min datetime value 0001-01-01T00:00:00Z.
@@ -700,9 +641,7 @@ class DatetimeOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetime_get_utc_min_date_time_request(
-            template_url=self.get_utc_min_date_time.metadata["url"],
-        )
+        request = build_datetime_get_utc_min_date_time_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -723,8 +662,6 @@ class DatetimeOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_utc_min_date_time.metadata = {"url": "/datetime/min/utc"}  # type: ignore
 
     @distributed_trace_async
     async def put_local_positive_offset_min_date_time(self, datetime_body: datetime.datetime, **kwargs: Any) -> None:
@@ -747,7 +684,6 @@ class DatetimeOperations:
         request = build_datetime_put_local_positive_offset_min_date_time_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_local_positive_offset_min_date_time.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -763,8 +699,6 @@ class DatetimeOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_local_positive_offset_min_date_time.metadata = {"url": "/datetime/min/localpositiveoffset"}  # type: ignore
-
     @distributed_trace_async
     async def get_local_positive_offset_min_date_time(self, **kwargs: Any) -> datetime.datetime:
         """Get min datetime value 0001-01-01T00:00:00+14:00.
@@ -777,9 +711,7 @@ class DatetimeOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetime_get_local_positive_offset_min_date_time_request(
-            template_url=self.get_local_positive_offset_min_date_time.metadata["url"],
-        )
+        request = build_datetime_get_local_positive_offset_min_date_time_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -800,8 +732,6 @@ class DatetimeOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_local_positive_offset_min_date_time.metadata = {"url": "/datetime/min/localpositiveoffset"}  # type: ignore
 
     @distributed_trace_async
     async def put_local_negative_offset_min_date_time(self, datetime_body: datetime.datetime, **kwargs: Any) -> None:
@@ -824,7 +754,6 @@ class DatetimeOperations:
         request = build_datetime_put_local_negative_offset_min_date_time_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_local_negative_offset_min_date_time.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -840,8 +769,6 @@ class DatetimeOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_local_negative_offset_min_date_time.metadata = {"url": "/datetime/min/localnegativeoffset"}  # type: ignore
-
     @distributed_trace_async
     async def get_local_negative_offset_min_date_time(self, **kwargs: Any) -> datetime.datetime:
         """Get min datetime value 0001-01-01T00:00:00-14:00.
@@ -854,9 +781,7 @@ class DatetimeOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetime_get_local_negative_offset_min_date_time_request(
-            template_url=self.get_local_negative_offset_min_date_time.metadata["url"],
-        )
+        request = build_datetime_get_local_negative_offset_min_date_time_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -877,8 +802,6 @@ class DatetimeOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_local_negative_offset_min_date_time.metadata = {"url": "/datetime/min/localnegativeoffset"}  # type: ignore
 
     @distributed_trace_async
     async def get_local_no_offset_min_date_time(self, **kwargs: Any) -> datetime.datetime:
@@ -892,9 +815,7 @@ class DatetimeOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetime_get_local_no_offset_min_date_time_request(
-            template_url=self.get_local_no_offset_min_date_time.metadata["url"],
-        )
+        request = build_datetime_get_local_no_offset_min_date_time_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -915,5 +836,3 @@ class DatetimeOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_local_no_offset_min_date_time.metadata = {"url": "/datetime/min/localnooffset"}  # type: ignore

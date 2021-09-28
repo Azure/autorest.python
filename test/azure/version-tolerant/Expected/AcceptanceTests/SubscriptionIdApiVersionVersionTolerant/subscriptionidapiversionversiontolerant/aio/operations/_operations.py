@@ -72,7 +72,6 @@ class GroupOperations:
         request = build_group_get_sample_resource_group_request(
             subscription_id=self._config.subscription_id,
             resource_group_name=resource_group_name,
-            template_url=self.get_sample_resource_group.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -94,5 +93,3 @@ class GroupOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_sample_resource_group.metadata = {"url": "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}"}  # type: ignore

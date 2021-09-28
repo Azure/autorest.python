@@ -103,19 +103,16 @@ class PagingOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_no_item_name_pages_request(
-                    template_url=self.get_no_item_name_pages.metadata["url"],
-                )
+                request = build_paging_get_no_item_name_pages_request()
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
 
             else:
 
-                request = build_paging_get_no_item_name_pages_request(
-                    template_url=next_link,
-                )
+                request = build_paging_get_no_item_name_pages_request()
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
+                request.url = next_link
                 request.method = "GET"
             return request
 
@@ -139,8 +136,6 @@ class PagingOperations:
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
-
-    get_no_item_name_pages.metadata = {"url": "/paging/noitemname"}  # type: ignore
 
     @distributed_trace
     def get_null_next_link_name_pages(self, **kwargs: Any) -> AsyncIterable[Any]:
@@ -173,19 +168,16 @@ class PagingOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_null_next_link_name_pages_request(
-                    template_url=self.get_null_next_link_name_pages.metadata["url"],
-                )
+                request = build_paging_get_null_next_link_name_pages_request()
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
 
             else:
 
-                request = build_paging_get_null_next_link_name_pages_request(
-                    template_url=next_link,
-                )
+                request = build_paging_get_null_next_link_name_pages_request()
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
+                request.url = next_link
                 request.method = "GET"
             return request
 
@@ -209,8 +201,6 @@ class PagingOperations:
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
-
-    get_null_next_link_name_pages.metadata = {"url": "/paging/nullnextlink"}  # type: ignore
 
     @distributed_trace
     def get_single_pages(self, **kwargs: Any) -> AsyncIterable[Any]:
@@ -243,19 +233,16 @@ class PagingOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_single_pages_request(
-                    template_url=self.get_single_pages.metadata["url"],
-                )
+                request = build_paging_get_single_pages_request()
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
 
             else:
 
-                request = build_paging_get_single_pages_request(
-                    template_url=next_link,
-                )
+                request = build_paging_get_single_pages_request()
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
+                request.url = next_link
                 request.method = "GET"
             return request
 
@@ -279,8 +266,6 @@ class PagingOperations:
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
-
-    get_single_pages.metadata = {"url": "/paging/single"}  # type: ignore
 
     @distributed_trace
     def first_response_empty(self, **kwargs: Any) -> AsyncIterable[Any]:
@@ -314,19 +299,16 @@ class PagingOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_first_response_empty_request(
-                    template_url=self.first_response_empty.metadata["url"],
-                )
+                request = build_paging_first_response_empty_request()
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
 
             else:
 
-                request = build_paging_first_response_empty_request(
-                    template_url=next_link,
-                )
+                request = build_paging_first_response_empty_request()
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
+                request.url = next_link
                 request.method = "GET"
             return request
 
@@ -350,8 +332,6 @@ class PagingOperations:
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
-
-    first_response_empty.metadata = {"url": "/paging/firstResponseEmpty/1"}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages(
@@ -402,7 +382,6 @@ class PagingOperations:
                     client_request_id=client_request_id,
                     maxresults=maxresults,
                     timeout=timeout,
-                    template_url=self.get_multiple_pages.metadata["url"],
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -413,10 +392,10 @@ class PagingOperations:
                     client_request_id=client_request_id,
                     maxresults=maxresults,
                     timeout=timeout,
-                    template_url=next_link,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
+                request.url = next_link
                 request.method = "GET"
             return request
 
@@ -440,8 +419,6 @@ class PagingOperations:
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
-
-    get_multiple_pages.metadata = {"url": "/paging/multiple"}  # type: ignore
 
     @distributed_trace
     def get_with_query_params(self, *, required_query_parameter: int, **kwargs: Any) -> AsyncIterable[Any]:
@@ -480,18 +457,16 @@ class PagingOperations:
 
                 request = build_paging_get_with_query_params_request(
                     required_query_parameter=required_query_parameter,
-                    template_url=self.get_with_query_params.metadata["url"],
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
 
             else:
 
-                request = build_paging_next_operation_with_query_params_request(
-                    template_url="/paging/multiple/nextOperationWithQueryParams",
-                )
+                request = build_paging_next_operation_with_query_params_request()
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
+                request.url = next_link
 
             return request
 
@@ -515,8 +490,6 @@ class PagingOperations:
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
-
-    get_with_query_params.metadata = {"url": "/paging/multiple/getWithQueryParams"}  # type: ignore
 
     @distributed_trace
     def get_odata_multiple_pages(
@@ -567,7 +540,6 @@ class PagingOperations:
                     client_request_id=client_request_id,
                     maxresults=maxresults,
                     timeout=timeout,
-                    template_url=self.get_odata_multiple_pages.metadata["url"],
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -578,10 +550,10 @@ class PagingOperations:
                     client_request_id=client_request_id,
                     maxresults=maxresults,
                     timeout=timeout,
-                    template_url=next_link,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
+                request.url = next_link
                 request.method = "GET"
             return request
 
@@ -605,8 +577,6 @@ class PagingOperations:
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
-
-    get_odata_multiple_pages.metadata = {"url": "/paging/multiple/odata"}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages_with_offset(
@@ -661,7 +631,6 @@ class PagingOperations:
                     client_request_id=client_request_id,
                     maxresults=maxresults,
                     timeout=timeout,
-                    template_url=self.get_multiple_pages_with_offset.metadata["url"],
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -673,10 +642,10 @@ class PagingOperations:
                     client_request_id=client_request_id,
                     maxresults=maxresults,
                     timeout=timeout,
-                    template_url=next_link,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
+                request.url = next_link
                 request.method = "GET"
             return request
 
@@ -700,8 +669,6 @@ class PagingOperations:
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
-
-    get_multiple_pages_with_offset.metadata = {"url": "/paging/multiple/withpath/{offset}"}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages_retry_first(self, **kwargs: Any) -> AsyncIterable[Any]:
@@ -735,19 +702,16 @@ class PagingOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_multiple_pages_retry_first_request(
-                    template_url=self.get_multiple_pages_retry_first.metadata["url"],
-                )
+                request = build_paging_get_multiple_pages_retry_first_request()
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
 
             else:
 
-                request = build_paging_get_multiple_pages_retry_first_request(
-                    template_url=next_link,
-                )
+                request = build_paging_get_multiple_pages_retry_first_request()
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
+                request.url = next_link
                 request.method = "GET"
             return request
 
@@ -771,8 +735,6 @@ class PagingOperations:
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
-
-    get_multiple_pages_retry_first.metadata = {"url": "/paging/multiple/retryfirst"}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages_retry_second(self, **kwargs: Any) -> AsyncIterable[Any]:
@@ -806,19 +768,16 @@ class PagingOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_multiple_pages_retry_second_request(
-                    template_url=self.get_multiple_pages_retry_second.metadata["url"],
-                )
+                request = build_paging_get_multiple_pages_retry_second_request()
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
 
             else:
 
-                request = build_paging_get_multiple_pages_retry_second_request(
-                    template_url=next_link,
-                )
+                request = build_paging_get_multiple_pages_retry_second_request()
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
+                request.url = next_link
                 request.method = "GET"
             return request
 
@@ -842,8 +801,6 @@ class PagingOperations:
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
-
-    get_multiple_pages_retry_second.metadata = {"url": "/paging/multiple/retrysecond"}  # type: ignore
 
     @distributed_trace
     def get_single_pages_failure(self, **kwargs: Any) -> AsyncIterable[Any]:
@@ -876,19 +833,16 @@ class PagingOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_single_pages_failure_request(
-                    template_url=self.get_single_pages_failure.metadata["url"],
-                )
+                request = build_paging_get_single_pages_failure_request()
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
 
             else:
 
-                request = build_paging_get_single_pages_failure_request(
-                    template_url=next_link,
-                )
+                request = build_paging_get_single_pages_failure_request()
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
+                request.url = next_link
                 request.method = "GET"
             return request
 
@@ -912,8 +866,6 @@ class PagingOperations:
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
-
-    get_single_pages_failure.metadata = {"url": "/paging/single/failure"}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages_failure(self, **kwargs: Any) -> AsyncIterable[Any]:
@@ -946,19 +898,16 @@ class PagingOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_multiple_pages_failure_request(
-                    template_url=self.get_multiple_pages_failure.metadata["url"],
-                )
+                request = build_paging_get_multiple_pages_failure_request()
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
 
             else:
 
-                request = build_paging_get_multiple_pages_failure_request(
-                    template_url=next_link,
-                )
+                request = build_paging_get_multiple_pages_failure_request()
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
+                request.url = next_link
                 request.method = "GET"
             return request
 
@@ -982,8 +931,6 @@ class PagingOperations:
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
-
-    get_multiple_pages_failure.metadata = {"url": "/paging/multiple/failure"}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages_failure_uri(self, **kwargs: Any) -> AsyncIterable[Any]:
@@ -1016,19 +963,16 @@ class PagingOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_multiple_pages_failure_uri_request(
-                    template_url=self.get_multiple_pages_failure_uri.metadata["url"],
-                )
+                request = build_paging_get_multiple_pages_failure_uri_request()
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
 
             else:
 
-                request = build_paging_get_multiple_pages_failure_uri_request(
-                    template_url=next_link,
-                )
+                request = build_paging_get_multiple_pages_failure_uri_request()
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
+                request.url = next_link
                 request.method = "GET"
             return request
 
@@ -1052,8 +996,6 @@ class PagingOperations:
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
-
-    get_multiple_pages_failure_uri.metadata = {"url": "/paging/multiple/failureuri"}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages_fragment_next_link(
@@ -1095,7 +1037,6 @@ class PagingOperations:
                 request = build_paging_get_multiple_pages_fragment_next_link_request(
                     tenant=tenant,
                     api_version=api_version,
-                    template_url=self.get_multiple_pages_fragment_next_link.metadata["url"],
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -1106,10 +1047,10 @@ class PagingOperations:
                     tenant=tenant,
                     next_link=next_link,
                     api_version=api_version,
-                    template_url="/paging/multiple/fragment/{tenant}/{nextLink}",
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
+                request.url = next_link
 
             return request
 
@@ -1133,8 +1074,6 @@ class PagingOperations:
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
-
-    get_multiple_pages_fragment_next_link.metadata = {"url": "/paging/multiple/fragment/{tenant}"}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages_fragment_with_grouping_next_link(
@@ -1176,7 +1115,6 @@ class PagingOperations:
                 request = build_paging_get_multiple_pages_fragment_with_grouping_next_link_request(
                     tenant=tenant,
                     api_version=api_version,
-                    template_url=self.get_multiple_pages_fragment_with_grouping_next_link.metadata["url"],
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -1187,10 +1125,10 @@ class PagingOperations:
                     tenant=tenant,
                     next_link=next_link,
                     api_version=api_version,
-                    template_url="/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}",
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
+                request.url = next_link
 
             return request
 
@@ -1215,8 +1153,6 @@ class PagingOperations:
 
         return AsyncItemPaged(get_next, extract_data)
 
-    get_multiple_pages_fragment_with_grouping_next_link.metadata = {"url": "/paging/multiple/fragmentwithgrouping/{tenant}"}  # type: ignore
-
     async def _get_multiple_pages_lro_initial(
         self,
         *,
@@ -1233,7 +1169,6 @@ class PagingOperations:
             client_request_id=client_request_id,
             maxresults=maxresults,
             timeout=timeout,
-            template_url=self._get_multiple_pages_lro_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1256,8 +1191,6 @@ class PagingOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _get_multiple_pages_lro_initial.metadata = {"url": "/paging/multiple/lro"}  # type: ignore
 
     @distributed_trace_async
     async def begin_get_multiple_pages_lro(
@@ -1300,7 +1233,6 @@ class PagingOperations:
                     client_request_id=client_request_id,
                     maxresults=maxresults,
                     timeout=timeout,
-                    template_url=self.begin_get_multiple_pages_lro.metadata["url"],
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -1311,10 +1243,10 @@ class PagingOperations:
                     client_request_id=client_request_id,
                     maxresults=maxresults,
                     timeout=timeout,
-                    template_url=next_link,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
+                request.url = next_link
                 request.method = "GET"
             return request
 
@@ -1410,19 +1342,16 @@ class PagingOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_paging_model_with_item_name_with_xms_client_name_request(
-                    template_url=self.get_paging_model_with_item_name_with_xms_client_name.metadata["url"],
-                )
+                request = build_paging_get_paging_model_with_item_name_with_xms_client_name_request()
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
 
             else:
 
-                request = build_paging_get_paging_model_with_item_name_with_xms_client_name_request(
-                    template_url=next_link,
-                )
+                request = build_paging_get_paging_model_with_item_name_with_xms_client_name_request()
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
+                request.url = next_link
                 request.method = "GET"
             return request
 
@@ -1446,5 +1375,3 @@ class PagingOperations:
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
-
-    get_paging_model_with_item_name_with_xms_client_name.metadata = {"url": "/paging/itemNameWithXMSClientName"}  # type: ignore

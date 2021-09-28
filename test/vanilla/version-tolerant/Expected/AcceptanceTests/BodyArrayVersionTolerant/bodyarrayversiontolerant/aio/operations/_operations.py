@@ -136,9 +136,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_null_request(
-            template_url=self.get_null.metadata["url"],
-        )
+        request = build_array_get_null_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -159,8 +157,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_null.metadata = {"url": "/array/null"}  # type: ignore
 
     @distributed_trace_async
     async def get_invalid(self, **kwargs: Any) -> List[int]:
@@ -182,9 +178,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_invalid_request(
-            template_url=self.get_invalid.metadata["url"],
-        )
+        request = build_array_get_invalid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -205,8 +199,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_invalid.metadata = {"url": "/array/invalid"}  # type: ignore
 
     @distributed_trace_async
     async def get_empty(self, **kwargs: Any) -> List[int]:
@@ -228,9 +220,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_empty_request(
-            template_url=self.get_empty.metadata["url"],
-        )
+        request = build_array_get_empty_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -251,8 +241,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_empty.metadata = {"url": "/array/empty"}  # type: ignore
 
     @distributed_trace_async
     async def put_empty(self, array_body: List[str], **kwargs: Any) -> None:
@@ -283,7 +271,6 @@ class ArrayOperations:
         request = build_array_put_empty_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_empty.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -298,8 +285,6 @@ class ArrayOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_empty.metadata = {"url": "/array/empty"}  # type: ignore
 
     @distributed_trace_async
     async def get_boolean_tfft(self, **kwargs: Any) -> List[bool]:
@@ -321,9 +306,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_boolean_tfft_request(
-            template_url=self.get_boolean_tfft.metadata["url"],
-        )
+        request = build_array_get_boolean_tfft_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -344,8 +327,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_boolean_tfft.metadata = {"url": "/array/prim/boolean/tfft"}  # type: ignore
 
     @distributed_trace_async
     async def put_boolean_tfft(self, array_body: List[bool], **kwargs: Any) -> None:
@@ -376,7 +357,6 @@ class ArrayOperations:
         request = build_array_put_boolean_tfft_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_boolean_tfft.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -391,8 +371,6 @@ class ArrayOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_boolean_tfft.metadata = {"url": "/array/prim/boolean/tfft"}  # type: ignore
 
     @distributed_trace_async
     async def get_boolean_invalid_null(self, **kwargs: Any) -> List[bool]:
@@ -414,9 +392,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_boolean_invalid_null_request(
-            template_url=self.get_boolean_invalid_null.metadata["url"],
-        )
+        request = build_array_get_boolean_invalid_null_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -437,8 +413,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_boolean_invalid_null.metadata = {"url": "/array/prim/boolean/true.null.false"}  # type: ignore
 
     @distributed_trace_async
     async def get_boolean_invalid_string(self, **kwargs: Any) -> List[bool]:
@@ -460,9 +434,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_boolean_invalid_string_request(
-            template_url=self.get_boolean_invalid_string.metadata["url"],
-        )
+        request = build_array_get_boolean_invalid_string_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -483,8 +455,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_boolean_invalid_string.metadata = {"url": "/array/prim/boolean/true.boolean.false"}  # type: ignore
 
     @distributed_trace_async
     async def get_integer_valid(self, **kwargs: Any) -> List[int]:
@@ -506,9 +476,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_integer_valid_request(
-            template_url=self.get_integer_valid.metadata["url"],
-        )
+        request = build_array_get_integer_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -529,8 +497,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_integer_valid.metadata = {"url": "/array/prim/integer/1.-1.3.300"}  # type: ignore
 
     @distributed_trace_async
     async def put_integer_valid(self, array_body: List[int], **kwargs: Any) -> None:
@@ -561,7 +527,6 @@ class ArrayOperations:
         request = build_array_put_integer_valid_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_integer_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -576,8 +541,6 @@ class ArrayOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_integer_valid.metadata = {"url": "/array/prim/integer/1.-1.3.300"}  # type: ignore
 
     @distributed_trace_async
     async def get_int_invalid_null(self, **kwargs: Any) -> List[int]:
@@ -599,9 +562,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_int_invalid_null_request(
-            template_url=self.get_int_invalid_null.metadata["url"],
-        )
+        request = build_array_get_int_invalid_null_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -622,8 +583,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_int_invalid_null.metadata = {"url": "/array/prim/integer/1.null.zero"}  # type: ignore
 
     @distributed_trace_async
     async def get_int_invalid_string(self, **kwargs: Any) -> List[int]:
@@ -645,9 +604,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_int_invalid_string_request(
-            template_url=self.get_int_invalid_string.metadata["url"],
-        )
+        request = build_array_get_int_invalid_string_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -668,8 +625,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_int_invalid_string.metadata = {"url": "/array/prim/integer/1.integer.0"}  # type: ignore
 
     @distributed_trace_async
     async def get_long_valid(self, **kwargs: Any) -> List[int]:
@@ -691,9 +646,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_long_valid_request(
-            template_url=self.get_long_valid.metadata["url"],
-        )
+        request = build_array_get_long_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -714,8 +667,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_long_valid.metadata = {"url": "/array/prim/long/1.-1.3.300"}  # type: ignore
 
     @distributed_trace_async
     async def put_long_valid(self, array_body: List[int], **kwargs: Any) -> None:
@@ -746,7 +697,6 @@ class ArrayOperations:
         request = build_array_put_long_valid_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_long_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -761,8 +711,6 @@ class ArrayOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_long_valid.metadata = {"url": "/array/prim/long/1.-1.3.300"}  # type: ignore
 
     @distributed_trace_async
     async def get_long_invalid_null(self, **kwargs: Any) -> List[int]:
@@ -784,9 +732,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_long_invalid_null_request(
-            template_url=self.get_long_invalid_null.metadata["url"],
-        )
+        request = build_array_get_long_invalid_null_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -807,8 +753,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_long_invalid_null.metadata = {"url": "/array/prim/long/1.null.zero"}  # type: ignore
 
     @distributed_trace_async
     async def get_long_invalid_string(self, **kwargs: Any) -> List[int]:
@@ -830,9 +774,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_long_invalid_string_request(
-            template_url=self.get_long_invalid_string.metadata["url"],
-        )
+        request = build_array_get_long_invalid_string_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -853,8 +795,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_long_invalid_string.metadata = {"url": "/array/prim/long/1.integer.0"}  # type: ignore
 
     @distributed_trace_async
     async def get_float_valid(self, **kwargs: Any) -> List[float]:
@@ -876,9 +816,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_float_valid_request(
-            template_url=self.get_float_valid.metadata["url"],
-        )
+        request = build_array_get_float_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -899,8 +837,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_float_valid.metadata = {"url": "/array/prim/float/0--0.01-1.2e20"}  # type: ignore
 
     @distributed_trace_async
     async def put_float_valid(self, array_body: List[float], **kwargs: Any) -> None:
@@ -931,7 +867,6 @@ class ArrayOperations:
         request = build_array_put_float_valid_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_float_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -946,8 +881,6 @@ class ArrayOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_float_valid.metadata = {"url": "/array/prim/float/0--0.01-1.2e20"}  # type: ignore
 
     @distributed_trace_async
     async def get_float_invalid_null(self, **kwargs: Any) -> List[float]:
@@ -969,9 +902,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_float_invalid_null_request(
-            template_url=self.get_float_invalid_null.metadata["url"],
-        )
+        request = build_array_get_float_invalid_null_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -992,8 +923,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_float_invalid_null.metadata = {"url": "/array/prim/float/0.0-null-1.2e20"}  # type: ignore
 
     @distributed_trace_async
     async def get_float_invalid_string(self, **kwargs: Any) -> List[float]:
@@ -1015,9 +944,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_float_invalid_string_request(
-            template_url=self.get_float_invalid_string.metadata["url"],
-        )
+        request = build_array_get_float_invalid_string_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1038,8 +965,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_float_invalid_string.metadata = {"url": "/array/prim/float/1.number.0"}  # type: ignore
 
     @distributed_trace_async
     async def get_double_valid(self, **kwargs: Any) -> List[float]:
@@ -1061,9 +986,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_double_valid_request(
-            template_url=self.get_double_valid.metadata["url"],
-        )
+        request = build_array_get_double_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1084,8 +1007,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_double_valid.metadata = {"url": "/array/prim/double/0--0.01-1.2e20"}  # type: ignore
 
     @distributed_trace_async
     async def put_double_valid(self, array_body: List[float], **kwargs: Any) -> None:
@@ -1116,7 +1037,6 @@ class ArrayOperations:
         request = build_array_put_double_valid_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_double_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1131,8 +1051,6 @@ class ArrayOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_double_valid.metadata = {"url": "/array/prim/double/0--0.01-1.2e20"}  # type: ignore
 
     @distributed_trace_async
     async def get_double_invalid_null(self, **kwargs: Any) -> List[float]:
@@ -1154,9 +1072,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_double_invalid_null_request(
-            template_url=self.get_double_invalid_null.metadata["url"],
-        )
+        request = build_array_get_double_invalid_null_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1177,8 +1093,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_double_invalid_null.metadata = {"url": "/array/prim/double/0.0-null-1.2e20"}  # type: ignore
 
     @distributed_trace_async
     async def get_double_invalid_string(self, **kwargs: Any) -> List[float]:
@@ -1200,9 +1114,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_double_invalid_string_request(
-            template_url=self.get_double_invalid_string.metadata["url"],
-        )
+        request = build_array_get_double_invalid_string_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1223,8 +1135,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_double_invalid_string.metadata = {"url": "/array/prim/double/1.number.0"}  # type: ignore
 
     @distributed_trace_async
     async def get_string_valid(self, **kwargs: Any) -> List[str]:
@@ -1246,9 +1156,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_string_valid_request(
-            template_url=self.get_string_valid.metadata["url"],
-        )
+        request = build_array_get_string_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1269,8 +1177,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_string_valid.metadata = {"url": "/array/prim/string/foo1.foo2.foo3"}  # type: ignore
 
     @distributed_trace_async
     async def put_string_valid(self, array_body: List[str], **kwargs: Any) -> None:
@@ -1301,7 +1207,6 @@ class ArrayOperations:
         request = build_array_put_string_valid_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_string_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1316,8 +1221,6 @@ class ArrayOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_string_valid.metadata = {"url": "/array/prim/string/foo1.foo2.foo3"}  # type: ignore
 
     @distributed_trace_async
     async def get_enum_valid(self, **kwargs: Any) -> List[str]:
@@ -1339,9 +1242,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_enum_valid_request(
-            template_url=self.get_enum_valid.metadata["url"],
-        )
+        request = build_array_get_enum_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1362,8 +1263,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_enum_valid.metadata = {"url": "/array/prim/enum/foo1.foo2.foo3"}  # type: ignore
 
     @distributed_trace_async
     async def put_enum_valid(self, array_body: List[str], **kwargs: Any) -> None:
@@ -1394,7 +1293,6 @@ class ArrayOperations:
         request = build_array_put_enum_valid_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_enum_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1409,8 +1307,6 @@ class ArrayOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_enum_valid.metadata = {"url": "/array/prim/enum/foo1.foo2.foo3"}  # type: ignore
 
     @distributed_trace_async
     async def get_string_enum_valid(self, **kwargs: Any) -> List[str]:
@@ -1432,9 +1328,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_string_enum_valid_request(
-            template_url=self.get_string_enum_valid.metadata["url"],
-        )
+        request = build_array_get_string_enum_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1455,8 +1349,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_string_enum_valid.metadata = {"url": "/array/prim/string-enum/foo1.foo2.foo3"}  # type: ignore
 
     @distributed_trace_async
     async def put_string_enum_valid(self, array_body: List[str], **kwargs: Any) -> None:
@@ -1487,7 +1379,6 @@ class ArrayOperations:
         request = build_array_put_string_enum_valid_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_string_enum_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1502,8 +1393,6 @@ class ArrayOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_string_enum_valid.metadata = {"url": "/array/prim/string-enum/foo1.foo2.foo3"}  # type: ignore
 
     @distributed_trace_async
     async def get_string_with_null(self, **kwargs: Any) -> List[str]:
@@ -1525,9 +1414,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_string_with_null_request(
-            template_url=self.get_string_with_null.metadata["url"],
-        )
+        request = build_array_get_string_with_null_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1548,8 +1435,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_string_with_null.metadata = {"url": "/array/prim/string/foo.null.foo2"}  # type: ignore
 
     @distributed_trace_async
     async def get_string_with_invalid(self, **kwargs: Any) -> List[str]:
@@ -1571,9 +1456,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_string_with_invalid_request(
-            template_url=self.get_string_with_invalid.metadata["url"],
-        )
+        request = build_array_get_string_with_invalid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1594,8 +1477,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_string_with_invalid.metadata = {"url": "/array/prim/string/foo.123.foo2"}  # type: ignore
 
     @distributed_trace_async
     async def get_uuid_valid(self, **kwargs: Any) -> List[str]:
@@ -1618,9 +1499,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_uuid_valid_request(
-            template_url=self.get_uuid_valid.metadata["url"],
-        )
+        request = build_array_get_uuid_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1641,8 +1520,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_uuid_valid.metadata = {"url": "/array/prim/uuid/valid"}  # type: ignore
 
     @distributed_trace_async
     async def put_uuid_valid(self, array_body: List[str], **kwargs: Any) -> None:
@@ -1674,7 +1551,6 @@ class ArrayOperations:
         request = build_array_put_uuid_valid_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_uuid_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1689,8 +1565,6 @@ class ArrayOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_uuid_valid.metadata = {"url": "/array/prim/uuid/valid"}  # type: ignore
 
     @distributed_trace_async
     async def get_uuid_invalid_chars(self, **kwargs: Any) -> List[str]:
@@ -1712,9 +1586,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_uuid_invalid_chars_request(
-            template_url=self.get_uuid_invalid_chars.metadata["url"],
-        )
+        request = build_array_get_uuid_invalid_chars_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1735,8 +1607,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_uuid_invalid_chars.metadata = {"url": "/array/prim/uuid/invalidchars"}  # type: ignore
 
     @distributed_trace_async
     async def get_date_valid(self, **kwargs: Any) -> List[datetime.date]:
@@ -1758,9 +1628,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_date_valid_request(
-            template_url=self.get_date_valid.metadata["url"],
-        )
+        request = build_array_get_date_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1781,8 +1649,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_date_valid.metadata = {"url": "/array/prim/date/valid"}  # type: ignore
 
     @distributed_trace_async
     async def put_date_valid(self, array_body: List[datetime.date], **kwargs: Any) -> None:
@@ -1813,7 +1679,6 @@ class ArrayOperations:
         request = build_array_put_date_valid_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_date_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1828,8 +1693,6 @@ class ArrayOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_date_valid.metadata = {"url": "/array/prim/date/valid"}  # type: ignore
 
     @distributed_trace_async
     async def get_date_invalid_null(self, **kwargs: Any) -> List[datetime.date]:
@@ -1851,9 +1714,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_date_invalid_null_request(
-            template_url=self.get_date_invalid_null.metadata["url"],
-        )
+        request = build_array_get_date_invalid_null_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1874,8 +1735,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_date_invalid_null.metadata = {"url": "/array/prim/date/invalidnull"}  # type: ignore
 
     @distributed_trace_async
     async def get_date_invalid_chars(self, **kwargs: Any) -> List[datetime.date]:
@@ -1897,9 +1756,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_date_invalid_chars_request(
-            template_url=self.get_date_invalid_chars.metadata["url"],
-        )
+        request = build_array_get_date_invalid_chars_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1920,8 +1777,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_date_invalid_chars.metadata = {"url": "/array/prim/date/invalidchars"}  # type: ignore
 
     @distributed_trace_async
     async def get_date_time_valid(self, **kwargs: Any) -> List[datetime.datetime]:
@@ -1944,9 +1799,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_date_time_valid_request(
-            template_url=self.get_date_time_valid.metadata["url"],
-        )
+        request = build_array_get_date_time_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1967,8 +1820,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_date_time_valid.metadata = {"url": "/array/prim/date-time/valid"}  # type: ignore
 
     @distributed_trace_async
     async def put_date_time_valid(self, array_body: List[datetime.datetime], **kwargs: Any) -> None:
@@ -2000,7 +1851,6 @@ class ArrayOperations:
         request = build_array_put_date_time_valid_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_date_time_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2015,8 +1865,6 @@ class ArrayOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_date_time_valid.metadata = {"url": "/array/prim/date-time/valid"}  # type: ignore
 
     @distributed_trace_async
     async def get_date_time_invalid_null(self, **kwargs: Any) -> List[datetime.datetime]:
@@ -2038,9 +1886,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_date_time_invalid_null_request(
-            template_url=self.get_date_time_invalid_null.metadata["url"],
-        )
+        request = build_array_get_date_time_invalid_null_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2061,8 +1907,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_date_time_invalid_null.metadata = {"url": "/array/prim/date-time/invalidnull"}  # type: ignore
 
     @distributed_trace_async
     async def get_date_time_invalid_chars(self, **kwargs: Any) -> List[datetime.datetime]:
@@ -2084,9 +1928,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_date_time_invalid_chars_request(
-            template_url=self.get_date_time_invalid_chars.metadata["url"],
-        )
+        request = build_array_get_date_time_invalid_chars_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2107,8 +1949,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_date_time_invalid_chars.metadata = {"url": "/array/prim/date-time/invalidchars"}  # type: ignore
 
     @distributed_trace_async
     async def get_date_time_rfc1123_valid(self, **kwargs: Any) -> List[datetime.datetime]:
@@ -2131,9 +1971,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_date_time_rfc1123_valid_request(
-            template_url=self.get_date_time_rfc1123_valid.metadata["url"],
-        )
+        request = build_array_get_date_time_rfc1123_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2154,8 +1992,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_date_time_rfc1123_valid.metadata = {"url": "/array/prim/date-time-rfc1123/valid"}  # type: ignore
 
     @distributed_trace_async
     async def put_date_time_rfc1123_valid(self, array_body: List[datetime.datetime], **kwargs: Any) -> None:
@@ -2187,7 +2023,6 @@ class ArrayOperations:
         request = build_array_put_date_time_rfc1123_valid_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_date_time_rfc1123_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2202,8 +2037,6 @@ class ArrayOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_date_time_rfc1123_valid.metadata = {"url": "/array/prim/date-time-rfc1123/valid"}  # type: ignore
 
     @distributed_trace_async
     async def get_duration_valid(self, **kwargs: Any) -> List[datetime.timedelta]:
@@ -2225,9 +2058,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_duration_valid_request(
-            template_url=self.get_duration_valid.metadata["url"],
-        )
+        request = build_array_get_duration_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2248,8 +2079,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_duration_valid.metadata = {"url": "/array/prim/duration/valid"}  # type: ignore
 
     @distributed_trace_async
     async def put_duration_valid(self, array_body: List[datetime.timedelta], **kwargs: Any) -> None:
@@ -2280,7 +2109,6 @@ class ArrayOperations:
         request = build_array_put_duration_valid_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_duration_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2295,8 +2123,6 @@ class ArrayOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_duration_valid.metadata = {"url": "/array/prim/duration/valid"}  # type: ignore
 
     @distributed_trace_async
     async def get_byte_valid(self, **kwargs: Any) -> List[bytearray]:
@@ -2319,9 +2145,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_byte_valid_request(
-            template_url=self.get_byte_valid.metadata["url"],
-        )
+        request = build_array_get_byte_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2342,8 +2166,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_byte_valid.metadata = {"url": "/array/prim/byte/valid"}  # type: ignore
 
     @distributed_trace_async
     async def put_byte_valid(self, array_body: List[bytearray], **kwargs: Any) -> None:
@@ -2375,7 +2197,6 @@ class ArrayOperations:
         request = build_array_put_byte_valid_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_byte_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2390,8 +2211,6 @@ class ArrayOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_byte_valid.metadata = {"url": "/array/prim/byte/valid"}  # type: ignore
 
     @distributed_trace_async
     async def get_byte_invalid_null(self, **kwargs: Any) -> List[bytearray]:
@@ -2413,9 +2232,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_byte_invalid_null_request(
-            template_url=self.get_byte_invalid_null.metadata["url"],
-        )
+        request = build_array_get_byte_invalid_null_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2436,8 +2253,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_byte_invalid_null.metadata = {"url": "/array/prim/byte/invalidnull"}  # type: ignore
 
     @distributed_trace_async
     async def get_base64_url(self, **kwargs: Any) -> List[bytes]:
@@ -2460,9 +2275,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_base64_url_request(
-            template_url=self.get_base64_url.metadata["url"],
-        )
+        request = build_array_get_base64_url_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2483,8 +2296,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_base64_url.metadata = {"url": "/array/prim/base64url/valid"}  # type: ignore
 
     @distributed_trace_async
     async def get_complex_null(self, **kwargs: Any) -> List[Any]:
@@ -2509,9 +2320,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_complex_null_request(
-            template_url=self.get_complex_null.metadata["url"],
-        )
+        request = build_array_get_complex_null_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2532,8 +2341,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_complex_null.metadata = {"url": "/array/complex/null"}  # type: ignore
 
     @distributed_trace_async
     async def get_complex_empty(self, **kwargs: Any) -> List[Any]:
@@ -2558,9 +2365,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_complex_empty_request(
-            template_url=self.get_complex_empty.metadata["url"],
-        )
+        request = build_array_get_complex_empty_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2581,8 +2386,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_complex_empty.metadata = {"url": "/array/complex/empty"}  # type: ignore
 
     @distributed_trace_async
     async def get_complex_item_null(self, **kwargs: Any) -> List[Any]:
@@ -2608,9 +2411,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_complex_item_null_request(
-            template_url=self.get_complex_item_null.metadata["url"],
-        )
+        request = build_array_get_complex_item_null_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2631,8 +2432,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_complex_item_null.metadata = {"url": "/array/complex/itemnull"}  # type: ignore
 
     @distributed_trace_async
     async def get_complex_item_empty(self, **kwargs: Any) -> List[Any]:
@@ -2658,9 +2457,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_complex_item_empty_request(
-            template_url=self.get_complex_item_empty.metadata["url"],
-        )
+        request = build_array_get_complex_item_empty_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2681,8 +2478,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_complex_item_empty.metadata = {"url": "/array/complex/itemempty"}  # type: ignore
 
     @distributed_trace_async
     async def get_complex_valid(self, **kwargs: Any) -> List[Any]:
@@ -2708,9 +2503,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_complex_valid_request(
-            template_url=self.get_complex_valid.metadata["url"],
-        )
+        request = build_array_get_complex_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2731,8 +2524,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_complex_valid.metadata = {"url": "/array/complex/valid"}  # type: ignore
 
     @distributed_trace_async
     async def put_complex_valid(self, array_body: List[Any], **kwargs: Any) -> None:
@@ -2767,7 +2558,6 @@ class ArrayOperations:
         request = build_array_put_complex_valid_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_complex_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2782,8 +2572,6 @@ class ArrayOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_complex_valid.metadata = {"url": "/array/complex/valid"}  # type: ignore
 
     @distributed_trace_async
     async def get_array_null(self, **kwargs: Any) -> List[List[str]]:
@@ -2807,9 +2595,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_array_null_request(
-            template_url=self.get_array_null.metadata["url"],
-        )
+        request = build_array_get_array_null_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2830,8 +2616,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_array_null.metadata = {"url": "/array/array/null"}  # type: ignore
 
     @distributed_trace_async
     async def get_array_empty(self, **kwargs: Any) -> List[List[str]]:
@@ -2855,9 +2639,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_array_empty_request(
-            template_url=self.get_array_empty.metadata["url"],
-        )
+        request = build_array_get_array_empty_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2878,8 +2660,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_array_empty.metadata = {"url": "/array/array/empty"}  # type: ignore
 
     @distributed_trace_async
     async def get_array_item_null(self, **kwargs: Any) -> List[List[str]]:
@@ -2903,9 +2683,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_array_item_null_request(
-            template_url=self.get_array_item_null.metadata["url"],
-        )
+        request = build_array_get_array_item_null_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2926,8 +2704,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_array_item_null.metadata = {"url": "/array/array/itemnull"}  # type: ignore
 
     @distributed_trace_async
     async def get_array_item_empty(self, **kwargs: Any) -> List[List[str]]:
@@ -2951,9 +2727,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_array_item_empty_request(
-            template_url=self.get_array_item_empty.metadata["url"],
-        )
+        request = build_array_get_array_item_empty_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2974,8 +2748,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_array_item_empty.metadata = {"url": "/array/array/itemempty"}  # type: ignore
 
     @distributed_trace_async
     async def get_array_valid(self, **kwargs: Any) -> List[List[str]]:
@@ -2999,9 +2771,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_array_valid_request(
-            template_url=self.get_array_valid.metadata["url"],
-        )
+        request = build_array_get_array_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -3022,8 +2792,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_array_valid.metadata = {"url": "/array/array/valid"}  # type: ignore
 
     @distributed_trace_async
     async def put_array_valid(self, array_body: List[List[str]], **kwargs: Any) -> None:
@@ -3056,7 +2824,6 @@ class ArrayOperations:
         request = build_array_put_array_valid_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_array_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -3071,8 +2838,6 @@ class ArrayOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_array_valid.metadata = {"url": "/array/array/valid"}  # type: ignore
 
     @distributed_trace_async
     async def get_dictionary_null(self, **kwargs: Any) -> List[Dict[str, str]]:
@@ -3096,9 +2861,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_dictionary_null_request(
-            template_url=self.get_dictionary_null.metadata["url"],
-        )
+        request = build_array_get_dictionary_null_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -3119,8 +2882,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_dictionary_null.metadata = {"url": "/array/dictionary/null"}  # type: ignore
 
     @distributed_trace_async
     async def get_dictionary_empty(self, **kwargs: Any) -> List[Dict[str, str]]:
@@ -3144,9 +2905,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_dictionary_empty_request(
-            template_url=self.get_dictionary_empty.metadata["url"],
-        )
+        request = build_array_get_dictionary_empty_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -3167,8 +2926,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_dictionary_empty.metadata = {"url": "/array/dictionary/empty"}  # type: ignore
 
     @distributed_trace_async
     async def get_dictionary_item_null(self, **kwargs: Any) -> List[Dict[str, str]]:
@@ -3193,9 +2950,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_dictionary_item_null_request(
-            template_url=self.get_dictionary_item_null.metadata["url"],
-        )
+        request = build_array_get_dictionary_item_null_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -3216,8 +2971,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_dictionary_item_null.metadata = {"url": "/array/dictionary/itemnull"}  # type: ignore
 
     @distributed_trace_async
     async def get_dictionary_item_empty(self, **kwargs: Any) -> List[Dict[str, str]]:
@@ -3242,9 +2995,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_dictionary_item_empty_request(
-            template_url=self.get_dictionary_item_empty.metadata["url"],
-        )
+        request = build_array_get_dictionary_item_empty_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -3265,8 +3016,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_dictionary_item_empty.metadata = {"url": "/array/dictionary/itemempty"}  # type: ignore
 
     @distributed_trace_async
     async def get_dictionary_valid(self, **kwargs: Any) -> List[Dict[str, str]]:
@@ -3291,9 +3040,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_dictionary_valid_request(
-            template_url=self.get_dictionary_valid.metadata["url"],
-        )
+        request = build_array_get_dictionary_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -3314,8 +3061,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_dictionary_valid.metadata = {"url": "/array/dictionary/valid"}  # type: ignore
 
     @distributed_trace_async
     async def put_dictionary_valid(self, array_body: List[Dict[str, str]], **kwargs: Any) -> None:
@@ -3349,7 +3094,6 @@ class ArrayOperations:
         request = build_array_put_dictionary_valid_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_dictionary_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -3364,5 +3108,3 @@ class ArrayOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_dictionary_valid.metadata = {"url": "/array/dictionary/valid"}  # type: ignore

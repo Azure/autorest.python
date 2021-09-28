@@ -40,7 +40,7 @@ def build_pets_create_ap_true_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/additionalProperties/true')
+    url = '/additionalProperties/true'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -64,7 +64,7 @@ def build_pets_create_cat_ap_true_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/additionalProperties/true-subclass')
+    url = '/additionalProperties/true-subclass'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -88,7 +88,7 @@ def build_pets_create_ap_object_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/additionalProperties/type/object')
+    url = '/additionalProperties/type/object'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -112,7 +112,7 @@ def build_pets_create_ap_string_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/additionalProperties/type/string')
+    url = '/additionalProperties/type/string'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -136,7 +136,7 @@ def build_pets_create_ap_in_properties_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/additionalProperties/in/properties')
+    url = '/additionalProperties/in/properties'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -160,7 +160,7 @@ def build_pets_create_ap_in_properties_with_ap_string_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/additionalProperties/in/properties/with/additionalProperties/string')
+    url = '/additionalProperties/in/properties/with/additionalProperties/string'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -237,7 +237,6 @@ class PetsOperations(object):
         request = build_pets_create_ap_true_request(
             content_type=content_type,
             json=json,
-            template_url=self.create_ap_true.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -257,8 +256,6 @@ class PetsOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    create_ap_true.metadata = {"url": "/additionalProperties/true"}  # type: ignore
 
     @distributed_trace
     def create_cat_ap_true(
@@ -305,7 +302,6 @@ class PetsOperations(object):
         request = build_pets_create_cat_ap_true_request(
             content_type=content_type,
             json=json,
-            template_url=self.create_cat_ap_true.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -325,8 +321,6 @@ class PetsOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    create_cat_ap_true.metadata = {"url": "/additionalProperties/true-subclass"}  # type: ignore
 
     @distributed_trace
     def create_ap_object(
@@ -371,7 +365,6 @@ class PetsOperations(object):
         request = build_pets_create_ap_object_request(
             content_type=content_type,
             json=json,
-            template_url=self.create_ap_object.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -391,8 +384,6 @@ class PetsOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    create_ap_object.metadata = {"url": "/additionalProperties/type/object"}  # type: ignore
 
     @distributed_trace
     def create_ap_string(
@@ -437,7 +428,6 @@ class PetsOperations(object):
         request = build_pets_create_ap_string_request(
             content_type=content_type,
             json=json,
-            template_url=self.create_ap_string.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -457,8 +447,6 @@ class PetsOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    create_ap_string.metadata = {"url": "/additionalProperties/type/string"}  # type: ignore
 
     @distributed_trace
     def create_ap_in_properties(
@@ -503,7 +491,6 @@ class PetsOperations(object):
         request = build_pets_create_ap_in_properties_request(
             content_type=content_type,
             json=json,
-            template_url=self.create_ap_in_properties.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -523,8 +510,6 @@ class PetsOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    create_ap_in_properties.metadata = {"url": "/additionalProperties/in/properties"}  # type: ignore
 
     @distributed_trace
     def create_ap_in_properties_with_ap_string(
@@ -577,7 +562,6 @@ class PetsOperations(object):
         request = build_pets_create_ap_in_properties_with_ap_string_request(
             content_type=content_type,
             json=json,
-            template_url=self.create_ap_in_properties_with_ap_string.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -597,5 +581,3 @@ class PetsOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    create_ap_in_properties_with_ap_string.metadata = {"url": "/additionalProperties/in/properties/with/additionalProperties/string"}  # type: ignore

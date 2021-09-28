@@ -63,9 +63,7 @@ class ByteOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_byte_get_null_request(
-            template_url=self.get_null.metadata["url"],
-        )
+        request = build_byte_get_null_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -86,8 +84,6 @@ class ByteOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_null.metadata = {"url": "/byte/null"}  # type: ignore
 
     @distributed_trace_async
     async def get_empty(self, **kwargs: Any) -> bytearray:
@@ -101,9 +97,7 @@ class ByteOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_byte_get_empty_request(
-            template_url=self.get_empty.metadata["url"],
-        )
+        request = build_byte_get_empty_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -124,8 +118,6 @@ class ByteOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_empty.metadata = {"url": "/byte/empty"}  # type: ignore
 
     @distributed_trace_async
     async def get_non_ascii(self, **kwargs: Any) -> bytearray:
@@ -139,9 +131,7 @@ class ByteOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_byte_get_non_ascii_request(
-            template_url=self.get_non_ascii.metadata["url"],
-        )
+        request = build_byte_get_non_ascii_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -162,8 +152,6 @@ class ByteOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_non_ascii.metadata = {"url": "/byte/nonAscii"}  # type: ignore
 
     @distributed_trace_async
     async def put_non_ascii(self, byte_body: bytearray, **kwargs: Any) -> None:
@@ -186,7 +174,6 @@ class ByteOperations:
         request = build_byte_put_non_ascii_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_non_ascii.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -202,8 +189,6 @@ class ByteOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_non_ascii.metadata = {"url": "/byte/nonAscii"}  # type: ignore
-
     @distributed_trace_async
     async def get_invalid(self, **kwargs: Any) -> bytearray:
         """Get invalid byte value ':::SWAGGER::::'.
@@ -216,9 +201,7 @@ class ByteOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_byte_get_invalid_request(
-            template_url=self.get_invalid.metadata["url"],
-        )
+        request = build_byte_get_invalid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -239,5 +222,3 @@ class ByteOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_invalid.metadata = {"url": "/byte/invalid"}  # type: ignore

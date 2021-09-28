@@ -44,7 +44,7 @@ def build_validation_of_method_parameters_request(
     api_version = "1.0.0"
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/fakepath/{subscriptionId}/{resourceGroupName}/{id}')
+    url = '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, 'str'),
         "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, 'str', max_length=10, min_length=3, pattern=r'[a-zA-Z0-9\']+'),
@@ -82,7 +82,7 @@ def build_validation_of_body_request(
     api_version = "1.0.0"
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/fakepath/{subscriptionId}/{resourceGroupName}/{id}')
+    url = '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, 'str'),
         "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, 'str', max_length=10, min_length=3, pattern=r'[a-zA-Z0-9]+'),
@@ -116,7 +116,7 @@ def build_get_with_constant_in_path_request(
     # type: (...) -> HttpRequest
     constant_param = "constant"
     # Construct URL
-    url = kwargs.pop("template_url", '/validation/constantsInPath/{constantParam}/value')
+    url = '/validation/constantsInPath/{constantParam}/value'
     path_format_arguments = {
         "constantParam": _SERIALIZER.url("constant_param", constant_param, 'str'),
     }
@@ -139,7 +139,7 @@ def build_post_with_constant_in_body_request(
     constant_param = "constant"
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/validation/constantsInPath/{constantParam}/value')
+    url = '/validation/constantsInPath/{constantParam}/value'
     path_format_arguments = {
         "constantParam": _SERIALIZER.url("constant_param", constant_param, 'str'),
     }
@@ -210,7 +210,6 @@ class AutoRestValidationTestOperationsMixin(object):
             subscription_id=self._config.subscription_id,
             resource_group_name=resource_group_name,
             id=id,
-            template_url=self.validation_of_method_parameters.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -230,8 +229,6 @@ class AutoRestValidationTestOperationsMixin(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    validation_of_method_parameters.metadata = {"url": "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"}  # type: ignore
 
     @distributed_trace
     def validation_of_body(
@@ -314,7 +311,6 @@ class AutoRestValidationTestOperationsMixin(object):
             id=id,
             content_type=content_type,
             json=json,
-            template_url=self.validation_of_body.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -335,8 +331,6 @@ class AutoRestValidationTestOperationsMixin(object):
 
         return deserialized
 
-    validation_of_body.metadata = {"url": "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"}  # type: ignore
-
     @distributed_trace
     def get_with_constant_in_path(
         self, **kwargs  # type: Any
@@ -352,9 +346,7 @@ class AutoRestValidationTestOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_with_constant_in_path_request(
-            template_url=self.get_with_constant_in_path.metadata["url"],
-        )
+        request = build_get_with_constant_in_path_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -366,8 +358,6 @@ class AutoRestValidationTestOperationsMixin(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_with_constant_in_path.metadata = {"url": "/validation/constantsInPath/{constantParam}/value"}  # type: ignore
 
     @distributed_trace
     def post_with_constant_in_body(
@@ -441,7 +431,6 @@ class AutoRestValidationTestOperationsMixin(object):
         request = build_post_with_constant_in_body_request(
             content_type=content_type,
             json=json,
-            template_url=self.post_with_constant_in_body.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -461,5 +450,3 @@ class AutoRestValidationTestOperationsMixin(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    post_with_constant_in_body.metadata = {"url": "/validation/constantsInPath/{constantParam}/value"}  # type: ignore

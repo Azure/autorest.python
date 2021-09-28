@@ -38,7 +38,7 @@ def build_http_success_head200_request(
 ):
     # type: (...) -> HttpRequest
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/200')
+    url = '/http/success/200'
 
     return HttpRequest(
         method="HEAD",
@@ -52,7 +52,7 @@ def build_http_success_head204_request(
 ):
     # type: (...) -> HttpRequest
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/204')
+    url = '/http/success/204'
 
     return HttpRequest(
         method="HEAD",
@@ -66,7 +66,7 @@ def build_http_success_head404_request(
 ):
     # type: (...) -> HttpRequest
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/404')
+    url = '/http/success/404'
 
     return HttpRequest(
         method="HEAD",
@@ -108,9 +108,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_http_success_head200_request(
-            template_url=self.head200.metadata["url"],
-        )
+        request = build_http_success_head200_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -123,8 +121,6 @@ class HttpSuccessOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
         return 200 <= response.status_code <= 299
-
-    head200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace
     def head204(
@@ -141,9 +137,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_http_success_head204_request(
-            template_url=self.head204.metadata["url"],
-        )
+        request = build_http_success_head204_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -156,8 +150,6 @@ class HttpSuccessOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
         return 200 <= response.status_code <= 299
-
-    head204.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace
     def head404(
@@ -174,9 +166,7 @@ class HttpSuccessOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_http_success_head404_request(
-            template_url=self.head404.metadata["url"],
-        )
+        request = build_http_success_head404_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -189,5 +179,3 @@ class HttpSuccessOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
         return 200 <= response.status_code <= 299
-
-    head404.metadata = {"url": "/http/success/404"}  # type: ignore

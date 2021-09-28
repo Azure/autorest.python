@@ -42,7 +42,7 @@ def build_put_array_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/model-flatten/array')
+    url = '/model-flatten/array'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -64,7 +64,7 @@ def build_get_array_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/model-flatten/array')
+    url = '/model-flatten/array'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -86,7 +86,7 @@ def build_put_wrapped_array_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/model-flatten/wrappedarray')
+    url = '/model-flatten/wrappedarray'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -108,7 +108,7 @@ def build_get_wrapped_array_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/model-flatten/wrappedarray')
+    url = '/model-flatten/wrappedarray'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -130,7 +130,7 @@ def build_put_dictionary_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/model-flatten/dictionary')
+    url = '/model-flatten/dictionary'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -152,7 +152,7 @@ def build_get_dictionary_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/model-flatten/dictionary')
+    url = '/model-flatten/dictionary'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -174,7 +174,7 @@ def build_put_resource_collection_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/model-flatten/resourcecollection')
+    url = '/model-flatten/resourcecollection'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -196,7 +196,7 @@ def build_get_resource_collection_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/model-flatten/resourcecollection')
+    url = '/model-flatten/resourcecollection'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -218,7 +218,7 @@ def build_put_simple_product_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/model-flatten/customFlattening')
+    url = '/model-flatten/customFlattening'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -242,7 +242,7 @@ def build_post_flattened_simple_product_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/model-flatten/customFlattening')
+    url = '/model-flatten/customFlattening'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -267,7 +267,7 @@ def build_put_simple_product_with_grouping_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/model-flatten/customFlattening/parametergrouping/{name}/')
+    url = '/model-flatten/customFlattening/parametergrouping/{name}/'
     path_format_arguments = {
         "name": _SERIALIZER.url("name", name, 'str'),
     }
@@ -334,7 +334,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         request = build_put_array_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_array.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -347,8 +346,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_array.metadata = {"url": "/model-flatten/array"}  # type: ignore
 
     @distributed_trace
     def get_array(
@@ -387,9 +384,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_array_request(
-            template_url=self.get_array.metadata["url"],
-        )
+        request = build_get_array_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -408,8 +403,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_array.metadata = {"url": "/model-flatten/array"}  # type: ignore
 
     @distributed_trace
     def put_wrapped_array(
@@ -451,7 +444,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         request = build_put_wrapped_array_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_wrapped_array.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -464,8 +456,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_wrapped_array.metadata = {"url": "/model-flatten/wrappedarray"}  # type: ignore
 
     @distributed_trace
     def get_wrapped_array(
@@ -495,9 +485,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_wrapped_array_request(
-            template_url=self.get_wrapped_array.metadata["url"],
-        )
+        request = build_get_wrapped_array_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -516,8 +504,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_wrapped_array.metadata = {"url": "/model-flatten/wrappedarray"}  # type: ignore
 
     @distributed_trace
     def put_dictionary(
@@ -570,7 +556,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         request = build_put_dictionary_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_dictionary.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -583,8 +568,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_dictionary.metadata = {"url": "/model-flatten/dictionary"}  # type: ignore
 
     @distributed_trace
     def get_dictionary(
@@ -623,9 +606,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_dictionary_request(
-            template_url=self.get_dictionary.metadata["url"],
-        )
+        request = build_get_dictionary_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -644,8 +625,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_dictionary.metadata = {"url": "/model-flatten/dictionary"}  # type: ignore
 
     @distributed_trace
     def put_resource_collection(
@@ -732,7 +711,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         request = build_put_resource_collection_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_resource_collection.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -745,8 +723,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_resource_collection.metadata = {"url": "/model-flatten/resourcecollection"}  # type: ignore
 
     @distributed_trace
     def get_resource_collection(
@@ -819,9 +795,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_resource_collection_request(
-            template_url=self.get_resource_collection.metadata["url"],
-        )
+        request = build_get_resource_collection_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -840,8 +814,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_resource_collection.metadata = {"url": "/model-flatten/resourcecollection"}  # type: ignore
 
     @distributed_trace
     def put_simple_product(
@@ -903,7 +875,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         request = build_put_simple_product_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_simple_product.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -923,8 +894,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    put_simple_product.metadata = {"url": "/model-flatten/customFlattening"}  # type: ignore
 
     @distributed_trace
     def post_flattened_simple_product(
@@ -986,7 +955,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         request = build_post_flattened_simple_product_request(
             content_type=content_type,
             json=json,
-            template_url=self.post_flattened_simple_product.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1006,8 +974,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    post_flattened_simple_product.metadata = {"url": "/model-flatten/customFlattening"}  # type: ignore
 
     @distributed_trace
     def put_simple_product_with_grouping(
@@ -1073,7 +1039,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             name=name,
             content_type=content_type,
             json=json,
-            template_url=self.put_simple_product_with_grouping.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1093,5 +1058,3 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    put_simple_product_with_grouping.metadata = {"url": "/model-flatten/customFlattening/parametergrouping/{name}/"}  # type: ignore

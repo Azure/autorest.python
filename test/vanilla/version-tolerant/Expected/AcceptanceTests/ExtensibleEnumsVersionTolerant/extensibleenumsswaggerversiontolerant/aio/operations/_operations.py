@@ -71,7 +71,6 @@ class PetOperations:
 
         request = build_pet_get_by_pet_id_request(
             pet_id=pet_id,
-            template_url=self.get_by_pet_id.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -93,8 +92,6 @@ class PetOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_by_pet_id.metadata = {"url": "/extensibleenums/pet/{petId}"}  # type: ignore
 
     @distributed_trace_async
     async def add_pet(self, pet_param: Any = None, **kwargs: Any) -> Any:
@@ -137,7 +134,6 @@ class PetOperations:
         request = build_pet_add_pet_request(
             content_type=content_type,
             json=json,
-            template_url=self.add_pet.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -159,5 +155,3 @@ class PetOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    add_pet.metadata = {"url": "/extensibleenums/pet/addPet"}  # type: ignore

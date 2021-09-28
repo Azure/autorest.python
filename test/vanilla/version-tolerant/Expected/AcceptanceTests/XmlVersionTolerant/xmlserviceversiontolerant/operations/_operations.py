@@ -39,7 +39,7 @@ def build_xml_get_complex_type_ref_no_meta_request(
     # type: (...) -> HttpRequest
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/complex-type-ref-no-meta')
+    url = '/xml/complex-type-ref-no-meta'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -60,7 +60,7 @@ def build_xml_put_complex_type_ref_no_meta_request(
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/complex-type-ref-no-meta')
+    url = '/xml/complex-type-ref-no-meta'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -81,7 +81,7 @@ def build_xml_get_complex_type_ref_with_meta_request(
     # type: (...) -> HttpRequest
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/complex-type-ref-with-meta')
+    url = '/xml/complex-type-ref-with-meta'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -102,7 +102,7 @@ def build_xml_put_complex_type_ref_with_meta_request(
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/complex-type-ref-with-meta')
+    url = '/xml/complex-type-ref-with-meta'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -123,7 +123,7 @@ def build_xml_get_simple_request(
     # type: (...) -> HttpRequest
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/simple')
+    url = '/xml/simple'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -145,7 +145,7 @@ def build_xml_put_simple_request(
 
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/simple')
+    url = '/xml/simple'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -167,7 +167,7 @@ def build_xml_get_wrapped_lists_request(
     # type: (...) -> HttpRequest
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/wrapped-lists')
+    url = '/xml/wrapped-lists'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -189,7 +189,7 @@ def build_xml_put_wrapped_lists_request(
 
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/wrapped-lists')
+    url = '/xml/wrapped-lists'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -210,7 +210,7 @@ def build_xml_get_headers_request(
 ):
     # type: (...) -> HttpRequest
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/headers')
+    url = '/xml/headers'
 
     return HttpRequest(
         method="GET",
@@ -225,7 +225,7 @@ def build_xml_get_empty_list_request(
     # type: (...) -> HttpRequest
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/empty-list')
+    url = '/xml/empty-list'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -246,7 +246,7 @@ def build_xml_put_empty_list_request(
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/empty-list')
+    url = '/xml/empty-list'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -267,7 +267,7 @@ def build_xml_get_empty_wrapped_lists_request(
     # type: (...) -> HttpRequest
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/empty-wrapped-lists')
+    url = '/xml/empty-wrapped-lists'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -288,7 +288,7 @@ def build_xml_put_empty_wrapped_lists_request(
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/empty-wrapped-lists')
+    url = '/xml/empty-wrapped-lists'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -309,7 +309,7 @@ def build_xml_get_root_list_request(
     # type: (...) -> HttpRequest
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/root-list')
+    url = '/xml/root-list'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -330,7 +330,7 @@ def build_xml_put_root_list_request(
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/root-list')
+    url = '/xml/root-list'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -351,7 +351,7 @@ def build_xml_get_root_list_single_item_request(
     # type: (...) -> HttpRequest
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/root-list-single-item')
+    url = '/xml/root-list-single-item'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -372,7 +372,7 @@ def build_xml_put_root_list_single_item_request(
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/root-list-single-item')
+    url = '/xml/root-list-single-item'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -393,7 +393,7 @@ def build_xml_get_empty_root_list_request(
     # type: (...) -> HttpRequest
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/empty-root-list')
+    url = '/xml/empty-root-list'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -414,7 +414,7 @@ def build_xml_put_empty_root_list_request(
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/empty-root-list')
+    url = '/xml/empty-root-list'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -435,7 +435,7 @@ def build_xml_get_empty_child_element_request(
     # type: (...) -> HttpRequest
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/empty-child-element')
+    url = '/xml/empty-child-element'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -456,7 +456,7 @@ def build_xml_put_empty_child_element_request(
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/empty-child-element')
+    url = '/xml/empty-child-element'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -478,7 +478,7 @@ def build_xml_list_containers_request(
     comp = "list"
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/')
+    url = '/xml/'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -505,7 +505,7 @@ def build_xml_get_service_properties_request(
     restype = "service"
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/')
+    url = '/xml/'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -534,7 +534,7 @@ def build_xml_put_service_properties_request(
     comp = "properties"
     restype = "service"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/')
+    url = '/xml/'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -563,7 +563,7 @@ def build_xml_get_acls_request(
     restype = "container"
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/mycontainer')
+    url = '/xml/mycontainer'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -592,7 +592,7 @@ def build_xml_put_acls_request(
     comp = "acl"
     restype = "container"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/mycontainer')
+    url = '/xml/mycontainer'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -621,7 +621,7 @@ def build_xml_list_blobs_request(
     restype = "container"
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/mycontainer')
+    url = '/xml/mycontainer'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -648,7 +648,7 @@ def build_xml_json_input_request(
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/jsoninput')
+    url = '/xml/jsoninput'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -669,7 +669,7 @@ def build_xml_json_output_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/jsonoutput')
+    url = '/xml/jsonoutput'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -689,7 +689,7 @@ def build_xml_get_xms_text_request(
     # type: (...) -> HttpRequest
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/x-ms-text')
+    url = '/xml/x-ms-text'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -709,7 +709,7 @@ def build_xml_get_bytes_request(
     # type: (...) -> HttpRequest
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/bytes')
+    url = '/xml/bytes'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -731,7 +731,7 @@ def build_xml_put_binary_request(
 
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/bytes')
+    url = '/xml/bytes'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -753,7 +753,7 @@ def build_xml_get_uri_request(
     # type: (...) -> HttpRequest
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/url')
+    url = '/xml/url'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -775,7 +775,7 @@ def build_xml_put_uri_request(
 
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/url')
+    url = '/xml/url'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -835,9 +835,7 @@ class XmlOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_xml_get_complex_type_ref_no_meta_request(
-            template_url=self.get_complex_type_ref_no_meta.metadata["url"],
-        )
+        request = build_xml_get_complex_type_ref_no_meta_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -856,8 +854,6 @@ class XmlOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_complex_type_ref_no_meta.metadata = {"url": "/xml/complex-type-ref-no-meta"}  # type: ignore
 
     @distributed_trace
     def put_complex_type_ref_no_meta(
@@ -896,7 +892,6 @@ class XmlOperations(object):
         request = build_xml_put_complex_type_ref_no_meta_request(
             content_type=content_type,
             content=content,
-            template_url=self.put_complex_type_ref_no_meta.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -909,8 +904,6 @@ class XmlOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_complex_type_ref_no_meta.metadata = {"url": "/xml/complex-type-ref-no-meta"}  # type: ignore
 
     @distributed_trace
     def get_complex_type_ref_with_meta(
@@ -938,9 +931,7 @@ class XmlOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_xml_get_complex_type_ref_with_meta_request(
-            template_url=self.get_complex_type_ref_with_meta.metadata["url"],
-        )
+        request = build_xml_get_complex_type_ref_with_meta_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -959,8 +950,6 @@ class XmlOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_complex_type_ref_with_meta.metadata = {"url": "/xml/complex-type-ref-with-meta"}  # type: ignore
 
     @distributed_trace
     def put_complex_type_ref_with_meta(
@@ -999,7 +988,6 @@ class XmlOperations(object):
         request = build_xml_put_complex_type_ref_with_meta_request(
             content_type=content_type,
             content=content,
-            template_url=self.put_complex_type_ref_with_meta.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1012,8 +1000,6 @@ class XmlOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_complex_type_ref_with_meta.metadata = {"url": "/xml/complex-type-ref-with-meta"}  # type: ignore
 
     @distributed_trace
     def get_simple(
@@ -1049,9 +1035,7 @@ class XmlOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_xml_get_simple_request(
-            template_url=self.get_simple.metadata["url"],
-        )
+        request = build_xml_get_simple_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -1070,8 +1054,6 @@ class XmlOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_simple.metadata = {"url": "/xml/simple"}  # type: ignore
 
     @distributed_trace
     def put_simple(
@@ -1118,7 +1100,6 @@ class XmlOperations(object):
         request = build_xml_put_simple_request(
             content_type=content_type,
             content=content,
-            template_url=self.put_simple.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1131,8 +1112,6 @@ class XmlOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_simple.metadata = {"url": "/xml/simple"}  # type: ignore
 
     @distributed_trace
     def get_wrapped_lists(
@@ -1162,9 +1141,7 @@ class XmlOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_xml_get_wrapped_lists_request(
-            template_url=self.get_wrapped_lists.metadata["url"],
-        )
+        request = build_xml_get_wrapped_lists_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -1183,8 +1160,6 @@ class XmlOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_wrapped_lists.metadata = {"url": "/xml/wrapped-lists"}  # type: ignore
 
     @distributed_trace
     def put_wrapped_lists(
@@ -1225,7 +1200,6 @@ class XmlOperations(object):
         request = build_xml_put_wrapped_lists_request(
             content_type=content_type,
             content=content,
-            template_url=self.put_wrapped_lists.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1238,8 +1212,6 @@ class XmlOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_wrapped_lists.metadata = {"url": "/xml/wrapped-lists"}  # type: ignore
 
     @distributed_trace
     def get_headers(
@@ -1256,9 +1228,7 @@ class XmlOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_xml_get_headers_request(
-            template_url=self.get_headers.metadata["url"],
-        )
+        request = build_xml_get_headers_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -1273,8 +1243,6 @@ class XmlOperations(object):
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    get_headers.metadata = {"url": "/xml/headers"}  # type: ignore
 
     @distributed_trace
     def get_empty_list(
@@ -1310,9 +1278,7 @@ class XmlOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_xml_get_empty_list_request(
-            template_url=self.get_empty_list.metadata["url"],
-        )
+        request = build_xml_get_empty_list_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -1331,8 +1297,6 @@ class XmlOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_empty_list.metadata = {"url": "/xml/empty-list"}  # type: ignore
 
     @distributed_trace
     def put_empty_list(
@@ -1379,7 +1343,6 @@ class XmlOperations(object):
         request = build_xml_put_empty_list_request(
             content_type=content_type,
             content=content,
-            template_url=self.put_empty_list.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1392,8 +1355,6 @@ class XmlOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_empty_list.metadata = {"url": "/xml/empty-list"}  # type: ignore
 
     @distributed_trace
     def get_empty_wrapped_lists(
@@ -1423,9 +1384,7 @@ class XmlOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_xml_get_empty_wrapped_lists_request(
-            template_url=self.get_empty_wrapped_lists.metadata["url"],
-        )
+        request = build_xml_get_empty_wrapped_lists_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -1444,8 +1403,6 @@ class XmlOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_empty_wrapped_lists.metadata = {"url": "/xml/empty-wrapped-lists"}  # type: ignore
 
     @distributed_trace
     def put_empty_wrapped_lists(
@@ -1486,7 +1443,6 @@ class XmlOperations(object):
         request = build_xml_put_empty_wrapped_lists_request(
             content_type=content_type,
             content=content,
-            template_url=self.put_empty_wrapped_lists.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1499,8 +1455,6 @@ class XmlOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_empty_wrapped_lists.metadata = {"url": "/xml/empty-wrapped-lists"}  # type: ignore
 
     @distributed_trace
     def get_root_list(
@@ -1529,9 +1483,7 @@ class XmlOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_xml_get_root_list_request(
-            template_url=self.get_root_list.metadata["url"],
-        )
+        request = build_xml_get_root_list_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -1550,8 +1502,6 @@ class XmlOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_root_list.metadata = {"url": "/xml/root-list"}  # type: ignore
 
     @distributed_trace
     def put_root_list(
@@ -1592,7 +1542,6 @@ class XmlOperations(object):
         request = build_xml_put_root_list_request(
             content_type=content_type,
             content=content,
-            template_url=self.put_root_list.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1605,8 +1554,6 @@ class XmlOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_root_list.metadata = {"url": "/xml/root-list"}  # type: ignore
 
     @distributed_trace
     def get_root_list_single_item(
@@ -1635,9 +1582,7 @@ class XmlOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_xml_get_root_list_single_item_request(
-            template_url=self.get_root_list_single_item.metadata["url"],
-        )
+        request = build_xml_get_root_list_single_item_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -1656,8 +1601,6 @@ class XmlOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_root_list_single_item.metadata = {"url": "/xml/root-list-single-item"}  # type: ignore
 
     @distributed_trace
     def put_root_list_single_item(
@@ -1698,7 +1641,6 @@ class XmlOperations(object):
         request = build_xml_put_root_list_single_item_request(
             content_type=content_type,
             content=content,
-            template_url=self.put_root_list_single_item.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1711,8 +1653,6 @@ class XmlOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_root_list_single_item.metadata = {"url": "/xml/root-list-single-item"}  # type: ignore
 
     @distributed_trace
     def get_empty_root_list(
@@ -1741,9 +1681,7 @@ class XmlOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_xml_get_empty_root_list_request(
-            template_url=self.get_empty_root_list.metadata["url"],
-        )
+        request = build_xml_get_empty_root_list_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -1762,8 +1700,6 @@ class XmlOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_empty_root_list.metadata = {"url": "/xml/empty-root-list"}  # type: ignore
 
     @distributed_trace
     def put_empty_root_list(
@@ -1804,7 +1740,6 @@ class XmlOperations(object):
         request = build_xml_put_empty_root_list_request(
             content_type=content_type,
             content=content,
-            template_url=self.put_empty_root_list.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1817,8 +1752,6 @@ class XmlOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_empty_root_list.metadata = {"url": "/xml/empty-root-list"}  # type: ignore
 
     @distributed_trace
     def get_empty_child_element(
@@ -1845,9 +1778,7 @@ class XmlOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_xml_get_empty_child_element_request(
-            template_url=self.get_empty_child_element.metadata["url"],
-        )
+        request = build_xml_get_empty_child_element_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -1866,8 +1797,6 @@ class XmlOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_empty_child_element.metadata = {"url": "/xml/empty-child-element"}  # type: ignore
 
     @distributed_trace
     def put_empty_child_element(
@@ -1905,7 +1834,6 @@ class XmlOperations(object):
         request = build_xml_put_empty_child_element_request(
             content_type=content_type,
             content=content,
-            template_url=self.put_empty_child_element.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1918,8 +1846,6 @@ class XmlOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_empty_child_element.metadata = {"url": "/xml/empty-child-element"}  # type: ignore
 
     @distributed_trace
     def list_containers(
@@ -1964,9 +1890,7 @@ class XmlOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_xml_list_containers_request(
-            template_url=self.list_containers.metadata["url"],
-        )
+        request = build_xml_list_containers_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -1985,8 +1909,6 @@ class XmlOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    list_containers.metadata = {"url": "/xml/"}  # type: ignore
 
     @distributed_trace
     def get_service_properties(
@@ -2052,9 +1974,7 @@ class XmlOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_xml_get_service_properties_request(
-            template_url=self.get_service_properties.metadata["url"],
-        )
+        request = build_xml_get_service_properties_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -2073,8 +1993,6 @@ class XmlOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_service_properties.metadata = {"url": "/xml/"}  # type: ignore
 
     @distributed_trace
     def put_service_properties(
@@ -2151,7 +2069,6 @@ class XmlOperations(object):
         request = build_xml_put_service_properties_request(
             content_type=content_type,
             content=content,
-            template_url=self.put_service_properties.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2164,8 +2081,6 @@ class XmlOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_service_properties.metadata = {"url": "/xml/"}  # type: ignore
 
     @distributed_trace
     def get_acls(
@@ -2197,9 +2112,7 @@ class XmlOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_xml_get_acls_request(
-            template_url=self.get_acls.metadata["url"],
-        )
+        request = build_xml_get_acls_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -2218,8 +2131,6 @@ class XmlOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_acls.metadata = {"url": "/xml/mycontainer"}  # type: ignore
 
     @distributed_trace
     def put_acls(
@@ -2263,7 +2174,6 @@ class XmlOperations(object):
         request = build_xml_put_acls_request(
             content_type=content_type,
             content=content,
-            template_url=self.put_acls.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2276,8 +2186,6 @@ class XmlOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_acls.metadata = {"url": "/xml/mycontainer"}  # type: ignore
 
     @distributed_trace
     def list_blobs(
@@ -2355,9 +2263,7 @@ class XmlOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_xml_list_blobs_request(
-            template_url=self.list_blobs.metadata["url"],
-        )
+        request = build_xml_list_blobs_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -2376,8 +2282,6 @@ class XmlOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    list_blobs.metadata = {"url": "/xml/mycontainer"}  # type: ignore
 
     @distributed_trace
     def json_input(
@@ -2414,7 +2318,6 @@ class XmlOperations(object):
         request = build_xml_json_input_request(
             content_type=content_type,
             json=json,
-            template_url=self.json_input.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2427,8 +2330,6 @@ class XmlOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    json_input.metadata = {"url": "/xml/jsoninput"}  # type: ignore
 
     @distributed_trace
     def json_output(
@@ -2453,9 +2354,7 @@ class XmlOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_xml_json_output_request(
-            template_url=self.json_output.metadata["url"],
-        )
+        request = build_xml_json_output_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -2474,8 +2373,6 @@ class XmlOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    json_output.metadata = {"url": "/xml/jsonoutput"}  # type: ignore
 
     @distributed_trace
     def get_xms_text(
@@ -2502,9 +2399,7 @@ class XmlOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_xml_get_xms_text_request(
-            template_url=self.get_xms_text.metadata["url"],
-        )
+        request = build_xml_get_xms_text_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -2523,8 +2418,6 @@ class XmlOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_xms_text.metadata = {"url": "/xml/x-ms-text"}  # type: ignore
 
     @distributed_trace
     def get_bytes(
@@ -2549,9 +2442,7 @@ class XmlOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_xml_get_bytes_request(
-            template_url=self.get_bytes.metadata["url"],
-        )
+        request = build_xml_get_bytes_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -2570,8 +2461,6 @@ class XmlOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_bytes.metadata = {"url": "/xml/bytes"}  # type: ignore
 
     @distributed_trace
     def put_binary(
@@ -2607,7 +2496,6 @@ class XmlOperations(object):
         request = build_xml_put_binary_request(
             content_type=content_type,
             content=content,
-            template_url=self.put_binary.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2620,8 +2508,6 @@ class XmlOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_binary.metadata = {"url": "/xml/bytes"}  # type: ignore
 
     @distributed_trace
     def get_uri(
@@ -2646,9 +2532,7 @@ class XmlOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_xml_get_uri_request(
-            template_url=self.get_uri.metadata["url"],
-        )
+        request = build_xml_get_uri_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -2667,8 +2551,6 @@ class XmlOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_uri.metadata = {"url": "/xml/url"}  # type: ignore
 
     @distributed_trace
     def put_uri(
@@ -2704,7 +2586,6 @@ class XmlOperations(object):
         request = build_xml_put_uri_request(
             content_type=content_type,
             content=content,
-            template_url=self.put_uri.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2717,5 +2598,3 @@ class XmlOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_uri.metadata = {"url": "/xml/url"}  # type: ignore

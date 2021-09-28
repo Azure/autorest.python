@@ -62,9 +62,7 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_http_success_head200_request(
-            template_url=self.head200.metadata["url"],
-        )
+        request = build_http_success_head200_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -80,8 +78,6 @@ class HttpSuccessOperations:
             return cls(pipeline_response, None, {})
         return 200 <= response.status_code <= 299
 
-    head200.metadata = {"url": "/http/success/200"}  # type: ignore
-
     @distributed_trace_async
     async def head204(self, **kwargs: Any) -> None:
         """Return 204 status code if successful.
@@ -94,9 +90,7 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_http_success_head204_request(
-            template_url=self.head204.metadata["url"],
-        )
+        request = build_http_success_head204_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -111,8 +105,6 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
         return 200 <= response.status_code <= 299
-
-    head204.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace_async
     async def head404(self, **kwargs: Any) -> None:
@@ -126,9 +118,7 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_http_success_head404_request(
-            template_url=self.head404.metadata["url"],
-        )
+        request = build_http_success_head404_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -143,5 +133,3 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
         return 200 <= response.status_code <= 299
-
-    head404.metadata = {"url": "/http/success/404"}  # type: ignore

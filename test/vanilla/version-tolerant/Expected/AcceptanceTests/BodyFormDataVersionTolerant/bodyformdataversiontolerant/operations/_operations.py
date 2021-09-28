@@ -40,7 +40,7 @@ def build_formdata_upload_file_request(
 
     accept = "application/octet-stream, application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/formdata/stream/uploadfile')
+    url = '/formdata/stream/uploadfile'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -64,7 +64,7 @@ def build_formdata_upload_file_via_body_request(
 
     accept = "application/octet-stream, application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/formdata/stream/uploadfile')
+    url = '/formdata/stream/uploadfile'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -88,7 +88,7 @@ def build_formdata_upload_files_request(
 
     accept = "application/octet-stream, application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/formdata/stream/uploadfiles')
+    url = '/formdata/stream/uploadfiles'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -160,7 +160,6 @@ class FormdataOperations(object):
             content_type=content_type,
             files=files,
             data=data,
-            template_url=self.upload_file.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -177,8 +176,6 @@ class FormdataOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    upload_file.metadata = {"url": "/formdata/stream/uploadfile"}  # type: ignore
 
     @distributed_trace
     def upload_file_via_body(
@@ -206,7 +203,6 @@ class FormdataOperations(object):
         request = build_formdata_upload_file_via_body_request(
             content_type=content_type,
             content=content,
-            template_url=self.upload_file_via_body.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -223,8 +219,6 @@ class FormdataOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    upload_file_via_body.metadata = {"url": "/formdata/stream/uploadfile"}  # type: ignore
 
     @distributed_trace
     def upload_files(
@@ -265,7 +259,6 @@ class FormdataOperations(object):
             content_type=content_type,
             files=files,
             data=data,
-            template_url=self.upload_files.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -282,5 +275,3 @@ class FormdataOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    upload_files.metadata = {"url": "/formdata/stream/uploadfiles"}  # type: ignore

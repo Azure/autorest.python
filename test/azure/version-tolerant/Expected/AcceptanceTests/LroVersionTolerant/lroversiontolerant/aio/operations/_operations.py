@@ -145,7 +145,6 @@ class LROsOperations:
         request = build_lros_put200_succeeded_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._put200_succeeded_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -170,8 +169,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _put200_succeeded_initial.metadata = {"url": "/lro/put/200/succeeded"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put200_succeeded(self, product: Any = None, **kwargs: Any) -> AsyncLROPoller[Any]:
@@ -278,7 +275,6 @@ class LROsOperations:
         request = build_lros_patch200_succeeded_ignore_headers_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._patch200_succeeded_ignore_headers_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -306,8 +302,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _patch200_succeeded_ignore_headers_initial.metadata = {"url": "/lro/patch/200/succeeded/ignoreheaders"}  # type: ignore
 
     @distributed_trace_async
     async def begin_patch200_succeeded_ignore_headers(self, product: Any = None, **kwargs: Any) -> AsyncLROPoller[Any]:
@@ -419,7 +413,6 @@ class LROsOperations:
         request = build_lros_put201_succeeded_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._put201_succeeded_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -442,8 +435,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _put201_succeeded_initial.metadata = {"url": "/lro/put/201/succeeded"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put201_succeeded(self, product: Any = None, **kwargs: Any) -> AsyncLROPoller[Any]:
@@ -540,9 +531,7 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_lros_post202_list_request_initial(
-            template_url=self._post202_list_initial.metadata["url"],
-        )
+        request = build_lros_post202_list_request_initial()
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
@@ -573,8 +562,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _post202_list_initial.metadata = {"url": "/lro/list"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post202_list(self, **kwargs: Any) -> AsyncLROPoller[List[Any]]:
@@ -663,7 +650,6 @@ class LROsOperations:
         request = build_lros_put200_succeeded_no_state_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._put200_succeeded_no_state_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -686,8 +672,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _put200_succeeded_no_state_initial.metadata = {"url": "/lro/put/200/succeeded/nostate"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put200_succeeded_no_state(self, product: Any = None, **kwargs: Any) -> AsyncLROPoller[Any]:
@@ -794,7 +778,6 @@ class LROsOperations:
         request = build_lros_put202_retry200_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._put202_retry200_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -817,8 +800,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _put202_retry200_initial.metadata = {"url": "/lro/put/202/retry/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put202_retry200(self, product: Any = None, **kwargs: Any) -> AsyncLROPoller[Any]:
@@ -926,7 +907,6 @@ class LROsOperations:
         request = build_lros_put201_creating_succeeded200_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._put201_creating_succeeded200_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -956,8 +936,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _put201_creating_succeeded200_initial.metadata = {"url": "/lro/put/201/creating/succeeded/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put201_creating_succeeded200(self, product: Any = None, **kwargs: Any) -> AsyncLROPoller[Any]:
@@ -1065,7 +1043,6 @@ class LROsOperations:
         request = build_lros_put200_updating_succeeded204_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._put200_updating_succeeded204_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1088,8 +1065,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _put200_updating_succeeded204_initial.metadata = {"url": "/lro/put/200/updating/succeeded/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put200_updating_succeeded204(self, product: Any = None, **kwargs: Any) -> AsyncLROPoller[Any]:
@@ -1197,7 +1172,6 @@ class LROsOperations:
         request = build_lros_put201_creating_failed200_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._put201_creating_failed200_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1227,8 +1201,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _put201_creating_failed200_initial.metadata = {"url": "/lro/put/201/created/failed/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put201_creating_failed200(self, product: Any = None, **kwargs: Any) -> AsyncLROPoller[Any]:
@@ -1336,7 +1308,6 @@ class LROsOperations:
         request = build_lros_put200_acceptedcanceled200_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._put200_acceptedcanceled200_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1359,8 +1330,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _put200_acceptedcanceled200_initial.metadata = {"url": "/lro/put/200/accepted/canceled/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put200_acceptedcanceled200(self, product: Any = None, **kwargs: Any) -> AsyncLROPoller[Any]:
@@ -1468,7 +1437,6 @@ class LROsOperations:
         request = build_lros_put_no_header_in_retry_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._put_no_header_in_retry_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1494,8 +1462,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _put_no_header_in_retry_initial.metadata = {"url": "/lro/put/noheader/202/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_no_header_in_retry(self, product: Any = None, **kwargs: Any) -> AsyncLROPoller[Any]:
@@ -1605,7 +1571,6 @@ class LROsOperations:
         request = build_lros_put_async_retry_succeeded_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._put_async_retry_succeeded_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1635,8 +1600,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _put_async_retry_succeeded_initial.metadata = {"url": "/lro/putasync/retry/succeeded"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_async_retry_succeeded(self, product: Any = None, **kwargs: Any) -> AsyncLROPoller[Any]:
@@ -1751,7 +1714,6 @@ class LROsOperations:
         request = build_lros_put_async_no_retry_succeeded_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._put_async_no_retry_succeeded_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1780,8 +1742,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _put_async_no_retry_succeeded_initial.metadata = {"url": "/lro/putasync/noretry/succeeded"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_async_no_retry_succeeded(self, product: Any = None, **kwargs: Any) -> AsyncLROPoller[Any]:
@@ -1895,7 +1855,6 @@ class LROsOperations:
         request = build_lros_put_async_retry_failed_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._put_async_retry_failed_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1925,8 +1884,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _put_async_retry_failed_initial.metadata = {"url": "/lro/putasync/retry/failed"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_async_retry_failed(self, product: Any = None, **kwargs: Any) -> AsyncLROPoller[Any]:
@@ -2041,7 +1998,6 @@ class LROsOperations:
         request = build_lros_put_async_no_retrycanceled_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._put_async_no_retrycanceled_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -2070,8 +2026,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _put_async_no_retrycanceled_initial.metadata = {"url": "/lro/putasync/noretry/canceled"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_async_no_retrycanceled(self, product: Any = None, **kwargs: Any) -> AsyncLROPoller[Any]:
@@ -2185,7 +2139,6 @@ class LROsOperations:
         request = build_lros_put_async_no_header_in_retry_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._put_async_no_header_in_retry_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -2213,8 +2166,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _put_async_no_header_in_retry_initial.metadata = {"url": "/lro/putasync/noheader/201/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_async_no_header_in_retry(self, product: Any = None, **kwargs: Any) -> AsyncLROPoller[Any]:
@@ -2327,7 +2278,6 @@ class LROsOperations:
         request = build_lros_put_non_resource_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._put_non_resource_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -2350,8 +2300,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _put_non_resource_initial.metadata = {"url": "/lro/putnonresource/202/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_non_resource(self, sku: Any = None, **kwargs: Any) -> AsyncLROPoller[Any]:
@@ -2439,7 +2387,6 @@ class LROsOperations:
         request = build_lros_put_async_non_resource_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._put_async_non_resource_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -2462,8 +2409,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _put_async_non_resource_initial.metadata = {"url": "/lro/putnonresourceasync/202/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_async_non_resource(self, sku: Any = None, **kwargs: Any) -> AsyncLROPoller[Any]:
@@ -2551,7 +2496,6 @@ class LROsOperations:
         request = build_lros_put_sub_resource_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._put_sub_resource_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -2574,8 +2518,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _put_sub_resource_initial.metadata = {"url": "/lro/putsubresource/202/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_sub_resource(self, product: Any = None, **kwargs: Any) -> AsyncLROPoller[Any]:
@@ -2669,7 +2611,6 @@ class LROsOperations:
         request = build_lros_put_async_sub_resource_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._put_async_sub_resource_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -2692,8 +2633,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _put_async_sub_resource_initial.metadata = {"url": "/lro/putsubresourceasync/202/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_async_sub_resource(self, product: Any = None, **kwargs: Any) -> AsyncLROPoller[Any]:
@@ -2777,9 +2716,7 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_lros_delete_provisioning202_accepted200_succeeded_request_initial(
-            template_url=self._delete_provisioning202_accepted200_succeeded_initial.metadata["url"],
-        )
+        request = build_lros_delete_provisioning202_accepted200_succeeded_request_initial()
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
@@ -2812,8 +2749,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _delete_provisioning202_accepted200_succeeded_initial.metadata = {"url": "/lro/delete/provisioning/202/accepted/200/succeeded"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_provisioning202_accepted200_succeeded(self, **kwargs: Any) -> AsyncLROPoller[Any]:
@@ -2893,9 +2828,7 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_lros_delete_provisioning202_deleting_failed200_request_initial(
-            template_url=self._delete_provisioning202_deleting_failed200_initial.metadata["url"],
-        )
+        request = build_lros_delete_provisioning202_deleting_failed200_request_initial()
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
@@ -2928,8 +2861,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _delete_provisioning202_deleting_failed200_initial.metadata = {"url": "/lro/delete/provisioning/202/deleting/200/failed"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_provisioning202_deleting_failed200(self, **kwargs: Any) -> AsyncLROPoller[Any]:
@@ -3007,9 +2938,7 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_lros_delete_provisioning202_deletingcanceled200_request_initial(
-            template_url=self._delete_provisioning202_deletingcanceled200_initial.metadata["url"],
-        )
+        request = build_lros_delete_provisioning202_deletingcanceled200_request_initial()
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
@@ -3042,8 +2971,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _delete_provisioning202_deletingcanceled200_initial.metadata = {"url": "/lro/delete/provisioning/202/deleting/200/canceled"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_provisioning202_deletingcanceled200(self, **kwargs: Any) -> AsyncLROPoller[Any]:
@@ -3121,9 +3048,7 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_lros_delete204_succeeded_request_initial(
-            template_url=self._delete204_succeeded_initial.metadata["url"],
-        )
+        request = build_lros_delete204_succeeded_request_initial()
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
@@ -3138,8 +3063,6 @@ class LROsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    _delete204_succeeded_initial.metadata = {"url": "/lro/delete/204/succeeded"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete204_succeeded(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -3191,9 +3114,7 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_lros_delete202_retry200_request_initial(
-            template_url=self._delete202_retry200_initial.metadata["url"],
-        )
+        request = build_lros_delete202_retry200_request_initial()
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
@@ -3222,8 +3143,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _delete202_retry200_initial.metadata = {"url": "/lro/delete/202/retry/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete202_retry200(self, **kwargs: Any) -> AsyncLROPoller[Any]:
@@ -3300,9 +3219,7 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_lros_delete202_no_retry204_request_initial(
-            template_url=self._delete202_no_retry204_initial.metadata["url"],
-        )
+        request = build_lros_delete202_no_retry204_request_initial()
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
@@ -3331,8 +3248,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _delete202_no_retry204_initial.metadata = {"url": "/lro/delete/202/noretry/204"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete202_no_retry204(self, **kwargs: Any) -> AsyncLROPoller[Any]:
@@ -3409,9 +3324,7 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_lros_delete_no_header_in_retry_request_initial(
-            template_url=self._delete_no_header_in_retry_initial.metadata["url"],
-        )
+        request = build_lros_delete_no_header_in_retry_request_initial()
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
@@ -3430,8 +3343,6 @@ class LROsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _delete_no_header_in_retry_initial.metadata = {"url": "/lro/delete/noheader"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_no_header_in_retry(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -3484,9 +3395,7 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_lros_delete_async_no_header_in_retry_request_initial(
-            template_url=self._delete_async_no_header_in_retry_initial.metadata["url"],
-        )
+        request = build_lros_delete_async_no_header_in_retry_request_initial()
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
@@ -3505,8 +3414,6 @@ class LROsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _delete_async_no_header_in_retry_initial.metadata = {"url": "/lro/deleteasync/noheader/202/204"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_async_no_header_in_retry(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -3559,9 +3466,7 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_lros_delete_async_retry_succeeded_request_initial(
-            template_url=self._delete_async_retry_succeeded_initial.metadata["url"],
-        )
+        request = build_lros_delete_async_retry_succeeded_request_initial()
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
@@ -3583,8 +3488,6 @@ class LROsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _delete_async_retry_succeeded_initial.metadata = {"url": "/lro/deleteasync/retry/succeeded"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_async_retry_succeeded(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -3637,9 +3540,7 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_lros_delete_async_no_retry_succeeded_request_initial(
-            template_url=self._delete_async_no_retry_succeeded_initial.metadata["url"],
-        )
+        request = build_lros_delete_async_no_retry_succeeded_request_initial()
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
@@ -3661,8 +3562,6 @@ class LROsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _delete_async_no_retry_succeeded_initial.metadata = {"url": "/lro/deleteasync/noretry/succeeded"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_async_no_retry_succeeded(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -3715,9 +3614,7 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_lros_delete_async_retry_failed_request_initial(
-            template_url=self._delete_async_retry_failed_initial.metadata["url"],
-        )
+        request = build_lros_delete_async_retry_failed_request_initial()
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
@@ -3739,8 +3636,6 @@ class LROsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _delete_async_retry_failed_initial.metadata = {"url": "/lro/deleteasync/retry/failed"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_async_retry_failed(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -3793,9 +3688,7 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_lros_delete_async_retrycanceled_request_initial(
-            template_url=self._delete_async_retrycanceled_initial.metadata["url"],
-        )
+        request = build_lros_delete_async_retrycanceled_request_initial()
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
@@ -3817,8 +3710,6 @@ class LROsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _delete_async_retrycanceled_initial.metadata = {"url": "/lro/deleteasync/retry/canceled"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_async_retrycanceled(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -3871,9 +3762,7 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_lros_post200_with_payload_request_initial(
-            template_url=self._post200_with_payload_initial.metadata["url"],
-        )
+        request = build_lros_post200_with_payload_request_initial()
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
@@ -3902,8 +3791,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _post200_with_payload_initial.metadata = {"url": "/lro/post/payload/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post200_with_payload(self, **kwargs: Any) -> AsyncLROPoller[Any]:
@@ -3981,7 +3868,6 @@ class LROsOperations:
         request = build_lros_post202_retry200_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._post202_retry200_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -4001,8 +3887,6 @@ class LROsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _post202_retry200_initial.metadata = {"url": "/lro/post/202/retry/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post202_retry200(self, product: Any = None, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -4088,7 +3972,6 @@ class LROsOperations:
         request = build_lros_post202_no_retry204_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._post202_no_retry204_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -4115,8 +3998,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _post202_no_retry204_initial.metadata = {"url": "/lro/post/202/noretry/204"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post202_no_retry204(self, product: Any = None, **kwargs: Any) -> AsyncLROPoller[Any]:
@@ -4217,9 +4098,7 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_lros_post_double_headers_final_location_get_request_initial(
-            template_url=self._post_double_headers_final_location_get_initial.metadata["url"],
-        )
+        request = build_lros_post_double_headers_final_location_get_request_initial()
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
@@ -4241,8 +4120,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _post_double_headers_final_location_get_initial.metadata = {"url": "/lro/LROPostDoubleHeadersFinalLocationGet"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post_double_headers_final_location_get(self, **kwargs: Any) -> AsyncLROPoller[Any]:
@@ -4320,9 +4197,7 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_lros_post_double_headers_final_azure_header_get_request_initial(
-            template_url=self._post_double_headers_final_azure_header_get_initial.metadata["url"],
-        )
+        request = build_lros_post_double_headers_final_azure_header_get_request_initial()
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
@@ -4344,8 +4219,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _post_double_headers_final_azure_header_get_initial.metadata = {"url": "/lro/LROPostDoubleHeadersFinalAzureHeaderGet"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post_double_headers_final_azure_header_get(self, **kwargs: Any) -> AsyncLROPoller[Any]:
@@ -4425,9 +4298,7 @@ class LROsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_lros_post_double_headers_final_azure_header_get_default_request_initial(
-            template_url=self._post_double_headers_final_azure_header_get_default_initial.metadata["url"],
-        )
+        request = build_lros_post_double_headers_final_azure_header_get_default_request_initial()
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
@@ -4449,8 +4320,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _post_double_headers_final_azure_header_get_default_initial.metadata = {"url": "/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post_double_headers_final_azure_header_get_default(self, **kwargs: Any) -> AsyncLROPoller[Any]:
@@ -4540,7 +4409,6 @@ class LROsOperations:
         request = build_lros_post_async_retry_succeeded_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._post_async_retry_succeeded_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -4573,8 +4441,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _post_async_retry_succeeded_initial.metadata = {"url": "/lro/postasync/retry/succeeded"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post_async_retry_succeeded(self, product: Any = None, **kwargs: Any) -> AsyncLROPoller[Any]:
@@ -4682,7 +4548,6 @@ class LROsOperations:
         request = build_lros_post_async_no_retry_succeeded_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._post_async_no_retry_succeeded_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -4715,8 +4580,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _post_async_no_retry_succeeded_initial.metadata = {"url": "/lro/postasync/noretry/succeeded"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post_async_no_retry_succeeded(self, product: Any = None, **kwargs: Any) -> AsyncLROPoller[Any]:
@@ -4824,7 +4687,6 @@ class LROsOperations:
         request = build_lros_post_async_retry_failed_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._post_async_retry_failed_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -4847,8 +4709,6 @@ class LROsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _post_async_retry_failed_initial.metadata = {"url": "/lro/postasync/retry/failed"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post_async_retry_failed(self, product: Any = None, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -4935,7 +4795,6 @@ class LROsOperations:
         request = build_lros_post_async_retrycanceled_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._post_async_retrycanceled_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -4958,8 +4817,6 @@ class LROsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _post_async_retrycanceled_initial.metadata = {"url": "/lro/postasync/retry/canceled"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post_async_retrycanceled(self, product: Any = None, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -5065,7 +4922,6 @@ class LRORetrysOperations:
         request = build_lro_retrys_put201_creating_succeeded200_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._put201_creating_succeeded200_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -5095,8 +4951,6 @@ class LRORetrysOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _put201_creating_succeeded200_initial.metadata = {"url": "/lro/retryerror/put/201/creating/succeeded/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put201_creating_succeeded200(self, product: Any = None, **kwargs: Any) -> AsyncLROPoller[Any]:
@@ -5204,7 +5058,6 @@ class LRORetrysOperations:
         request = build_lro_retrys_put_async_relative_retry_succeeded_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._put_async_relative_retry_succeeded_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -5234,8 +5087,6 @@ class LRORetrysOperations:
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _put_async_relative_retry_succeeded_initial.metadata = {"url": "/lro/retryerror/putasync/retry/succeeded"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_async_relative_retry_succeeded(self, product: Any = None, **kwargs: Any) -> AsyncLROPoller[Any]:
@@ -5340,9 +5191,7 @@ class LRORetrysOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_lro_retrys_delete_provisioning202_accepted200_succeeded_request_initial(
-            template_url=self._delete_provisioning202_accepted200_succeeded_initial.metadata["url"],
-        )
+        request = build_lro_retrys_delete_provisioning202_accepted200_succeeded_request_initial()
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
@@ -5375,8 +5224,6 @@ class LRORetrysOperations:
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _delete_provisioning202_accepted200_succeeded_initial.metadata = {"url": "/lro/retryerror/delete/provisioning/202/accepted/200/succeeded"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_provisioning202_accepted200_succeeded(self, **kwargs: Any) -> AsyncLROPoller[Any]:
@@ -5456,9 +5303,7 @@ class LRORetrysOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_lro_retrys_delete202_retry200_request_initial(
-            template_url=self._delete202_retry200_initial.metadata["url"],
-        )
+        request = build_lro_retrys_delete202_retry200_request_initial()
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
@@ -5477,8 +5322,6 @@ class LRORetrysOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _delete202_retry200_initial.metadata = {"url": "/lro/retryerror/delete/202/retry/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete202_retry200(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -5531,9 +5374,7 @@ class LRORetrysOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_lro_retrys_delete_async_relative_retry_succeeded_request_initial(
-            template_url=self._delete_async_relative_retry_succeeded_initial.metadata["url"],
-        )
+        request = build_lro_retrys_delete_async_relative_retry_succeeded_request_initial()
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
@@ -5555,8 +5396,6 @@ class LRORetrysOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _delete_async_relative_retry_succeeded_initial.metadata = {"url": "/lro/retryerror/deleteasync/retry/succeeded"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_async_relative_retry_succeeded(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -5619,7 +5458,6 @@ class LRORetrysOperations:
         request = build_lro_retrys_post202_retry200_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._post202_retry200_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -5639,8 +5477,6 @@ class LRORetrysOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _post202_retry200_initial.metadata = {"url": "/lro/retryerror/post/202/retry/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post202_retry200(self, product: Any = None, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -5726,7 +5562,6 @@ class LRORetrysOperations:
         request = build_lro_retrys_post_async_relative_retry_succeeded_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._post_async_relative_retry_succeeded_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -5749,8 +5584,6 @@ class LRORetrysOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _post_async_relative_retry_succeeded_initial.metadata = {"url": "/lro/retryerror/postasync/retry/succeeded"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post_async_relative_retry_succeeded(
@@ -5858,7 +5691,6 @@ class LROSADsOperations:
         request = build_lrosads_put_non_retry400_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._put_non_retry400_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -5888,8 +5720,6 @@ class LROSADsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _put_non_retry400_initial.metadata = {"url": "/lro/nonretryerror/put/400"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_non_retry400(self, product: Any = None, **kwargs: Any) -> AsyncLROPoller[Any]:
@@ -5995,7 +5825,6 @@ class LROSADsOperations:
         request = build_lrosads_put_non_retry201_creating400_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._put_non_retry201_creating400_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -6025,8 +5854,6 @@ class LROSADsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _put_non_retry201_creating400_initial.metadata = {"url": "/lro/nonretryerror/put/201/creating/400"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_non_retry201_creating400(self, product: Any = None, **kwargs: Any) -> AsyncLROPoller[Any]:
@@ -6133,7 +5960,6 @@ class LROSADsOperations:
         request = build_lrosads_put_non_retry201_creating400_invalid_json_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._put_non_retry201_creating400_invalid_json_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -6163,8 +5989,6 @@ class LROSADsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _put_non_retry201_creating400_invalid_json_initial.metadata = {"url": "/lro/nonretryerror/put/201/creating/400/invalidjson"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_non_retry201_creating400_invalid_json(
@@ -6273,7 +6097,6 @@ class LROSADsOperations:
         request = build_lrosads_put_async_relative_retry400_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._put_async_relative_retry400_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -6303,8 +6126,6 @@ class LROSADsOperations:
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _put_async_relative_retry400_initial.metadata = {"url": "/lro/nonretryerror/putasync/retry/400"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_async_relative_retry400(self, product: Any = None, **kwargs: Any) -> AsyncLROPoller[Any]:
@@ -6408,9 +6229,7 @@ class LROSADsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_lrosads_delete_non_retry400_request_initial(
-            template_url=self._delete_non_retry400_initial.metadata["url"],
-        )
+        request = build_lrosads_delete_non_retry400_request_initial()
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
@@ -6429,8 +6248,6 @@ class LROSADsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _delete_non_retry400_initial.metadata = {"url": "/lro/nonretryerror/delete/400"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_non_retry400(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -6482,9 +6299,7 @@ class LROSADsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_lrosads_delete202_non_retry400_request_initial(
-            template_url=self._delete202_non_retry400_initial.metadata["url"],
-        )
+        request = build_lrosads_delete202_non_retry400_request_initial()
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
@@ -6503,8 +6318,6 @@ class LROSADsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _delete202_non_retry400_initial.metadata = {"url": "/lro/nonretryerror/delete/202/retry/400"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete202_non_retry400(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -6556,9 +6369,7 @@ class LROSADsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_lrosads_delete_async_relative_retry400_request_initial(
-            template_url=self._delete_async_relative_retry400_initial.metadata["url"],
-        )
+        request = build_lrosads_delete_async_relative_retry400_request_initial()
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
@@ -6580,8 +6391,6 @@ class LROSADsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _delete_async_relative_retry400_initial.metadata = {"url": "/lro/nonretryerror/deleteasync/retry/400"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_async_relative_retry400(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -6644,7 +6453,6 @@ class LROSADsOperations:
         request = build_lrosads_post_non_retry400_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._post_non_retry400_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -6664,8 +6472,6 @@ class LROSADsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _post_non_retry400_initial.metadata = {"url": "/lro/nonretryerror/post/400"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post_non_retry400(self, product: Any = None, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -6750,7 +6556,6 @@ class LROSADsOperations:
         request = build_lrosads_post202_non_retry400_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._post202_non_retry400_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -6770,8 +6575,6 @@ class LROSADsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _post202_non_retry400_initial.metadata = {"url": "/lro/nonretryerror/post/202/retry/400"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post202_non_retry400(self, product: Any = None, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -6856,7 +6659,6 @@ class LROSADsOperations:
         request = build_lrosads_post_async_relative_retry400_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._post_async_relative_retry400_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -6879,8 +6681,6 @@ class LROSADsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _post_async_relative_retry400_initial.metadata = {"url": "/lro/nonretryerror/postasync/retry/400"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post_async_relative_retry400(self, product: Any = None, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -6966,7 +6766,6 @@ class LROSADsOperations:
         request = build_lrosads_put_error201_no_provisioning_state_payload_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._put_error201_no_provisioning_state_payload_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -6996,8 +6795,6 @@ class LROSADsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _put_error201_no_provisioning_state_payload_initial.metadata = {"url": "/lro/error/put/201/noprovisioningstatepayload"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_error201_no_provisioning_state_payload(
@@ -7105,7 +6902,6 @@ class LROSADsOperations:
         request = build_lrosads_put_async_relative_retry_no_status_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._put_async_relative_retry_no_status_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -7135,8 +6931,6 @@ class LROSADsOperations:
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _put_async_relative_retry_no_status_initial.metadata = {"url": "/lro/error/putasync/retry/nostatus"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_async_relative_retry_no_status(self, product: Any = None, **kwargs: Any) -> AsyncLROPoller[Any]:
@@ -7251,7 +7045,6 @@ class LROSADsOperations:
         request = build_lrosads_put_async_relative_retry_no_status_payload_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._put_async_relative_retry_no_status_payload_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -7281,8 +7074,6 @@ class LROSADsOperations:
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _put_async_relative_retry_no_status_payload_initial.metadata = {"url": "/lro/error/putasync/retry/nostatuspayload"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_async_relative_retry_no_status_payload(
@@ -7389,9 +7180,7 @@ class LROSADsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_lrosads_delete204_succeeded_request_initial(
-            template_url=self._delete204_succeeded_initial.metadata["url"],
-        )
+        request = build_lrosads_delete204_succeeded_request_initial()
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
@@ -7406,8 +7195,6 @@ class LROSADsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    _delete204_succeeded_initial.metadata = {"url": "/lro/error/delete/204/nolocation"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete204_succeeded(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -7459,9 +7246,7 @@ class LROSADsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_lrosads_delete_async_relative_retry_no_status_request_initial(
-            template_url=self._delete_async_relative_retry_no_status_initial.metadata["url"],
-        )
+        request = build_lrosads_delete_async_relative_retry_no_status_request_initial()
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
@@ -7483,8 +7268,6 @@ class LROSADsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _delete_async_relative_retry_no_status_initial.metadata = {"url": "/lro/error/deleteasync/retry/nostatus"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_async_relative_retry_no_status(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -7547,7 +7330,6 @@ class LROSADsOperations:
         request = build_lrosads_post202_no_location_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._post202_no_location_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -7567,8 +7349,6 @@ class LROSADsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _post202_no_location_initial.metadata = {"url": "/lro/error/post/202/nolocation"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post202_no_location(self, product: Any = None, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -7654,7 +7434,6 @@ class LROSADsOperations:
         request = build_lrosads_post_async_relative_retry_no_payload_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._post_async_relative_retry_no_payload_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -7677,8 +7456,6 @@ class LROSADsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _post_async_relative_retry_no_payload_initial.metadata = {"url": "/lro/error/postasync/retry/nopayload"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post_async_relative_retry_no_payload(
@@ -7767,7 +7544,6 @@ class LROSADsOperations:
         request = build_lrosads_put200_invalid_json_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._put200_invalid_json_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -7792,8 +7568,6 @@ class LROSADsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _put200_invalid_json_initial.metadata = {"url": "/lro/error/put/200/invalidjson"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put200_invalid_json(self, product: Any = None, **kwargs: Any) -> AsyncLROPoller[Any]:
@@ -7900,7 +7674,6 @@ class LROSADsOperations:
         request = build_lrosads_put_async_relative_retry_invalid_header_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._put_async_relative_retry_invalid_header_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -7930,8 +7703,6 @@ class LROSADsOperations:
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _put_async_relative_retry_invalid_header_initial.metadata = {"url": "/lro/error/putasync/retry/invalidheader"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_async_relative_retry_invalid_header(
@@ -8048,7 +7819,6 @@ class LROSADsOperations:
         request = build_lrosads_put_async_relative_retry_invalid_json_polling_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._put_async_relative_retry_invalid_json_polling_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -8078,8 +7848,6 @@ class LROSADsOperations:
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _put_async_relative_retry_invalid_json_polling_initial.metadata = {"url": "/lro/error/putasync/retry/invalidjsonpolling"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_async_relative_retry_invalid_json_polling(
@@ -8186,9 +7954,7 @@ class LROSADsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_lrosads_delete202_retry_invalid_header_request_initial(
-            template_url=self._delete202_retry_invalid_header_initial.metadata["url"],
-        )
+        request = build_lrosads_delete202_retry_invalid_header_request_initial()
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
@@ -8207,8 +7973,6 @@ class LROSADsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _delete202_retry_invalid_header_initial.metadata = {"url": "/lro/error/delete/202/retry/invalidheader"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete202_retry_invalid_header(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -8261,9 +8025,7 @@ class LROSADsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_lrosads_delete_async_relative_retry_invalid_header_request_initial(
-            template_url=self._delete_async_relative_retry_invalid_header_initial.metadata["url"],
-        )
+        request = build_lrosads_delete_async_relative_retry_invalid_header_request_initial()
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
@@ -8285,8 +8047,6 @@ class LROSADsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _delete_async_relative_retry_invalid_header_initial.metadata = {"url": "/lro/error/deleteasync/retry/invalidheader"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_async_relative_retry_invalid_header(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -8339,9 +8099,7 @@ class LROSADsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_lrosads_delete_async_relative_retry_invalid_json_polling_request_initial(
-            template_url=self._delete_async_relative_retry_invalid_json_polling_initial.metadata["url"],
-        )
+        request = build_lrosads_delete_async_relative_retry_invalid_json_polling_request_initial()
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
@@ -8363,8 +8121,6 @@ class LROSADsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _delete_async_relative_retry_invalid_json_polling_initial.metadata = {"url": "/lro/error/deleteasync/retry/invalidjsonpolling"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_async_relative_retry_invalid_json_polling(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -8429,7 +8185,6 @@ class LROSADsOperations:
         request = build_lrosads_post202_retry_invalid_header_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._post202_retry_invalid_header_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -8449,8 +8204,6 @@ class LROSADsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _post202_retry_invalid_header_initial.metadata = {"url": "/lro/error/post/202/retry/invalidheader"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post202_retry_invalid_header(self, product: Any = None, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -8536,7 +8289,6 @@ class LROSADsOperations:
         request = build_lrosads_post_async_relative_retry_invalid_header_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._post_async_relative_retry_invalid_header_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -8559,8 +8311,6 @@ class LROSADsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _post_async_relative_retry_invalid_header_initial.metadata = {"url": "/lro/error/postasync/retry/invalidheader"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post_async_relative_retry_invalid_header(
@@ -8649,7 +8399,6 @@ class LROSADsOperations:
         request = build_lrosads_post_async_relative_retry_invalid_json_polling_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._post_async_relative_retry_invalid_json_polling_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -8672,8 +8421,6 @@ class LROSADsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _post_async_relative_retry_invalid_json_polling_initial.metadata = {"url": "/lro/error/postasync/retry/invalidjsonpolling"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post_async_relative_retry_invalid_json_polling(
@@ -8781,7 +8528,6 @@ class LROsCustomHeaderOperations:
         request = build_lr_os_custom_header_put_async_retry_succeeded_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._put_async_retry_succeeded_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -8811,8 +8557,6 @@ class LROsCustomHeaderOperations:
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _put_async_retry_succeeded_initial.metadata = {"url": "/lro/customheader/putasync/retry/succeeded"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_async_retry_succeeded(self, product: Any = None, **kwargs: Any) -> AsyncLROPoller[Any]:
@@ -8928,7 +8672,6 @@ class LROsCustomHeaderOperations:
         request = build_lr_os_custom_header_put201_creating_succeeded200_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._put201_creating_succeeded200_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -8958,8 +8701,6 @@ class LROsCustomHeaderOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _put201_creating_succeeded200_initial.metadata = {"url": "/lro/customheader/put/201/creating/succeeded/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put201_creating_succeeded200(self, product: Any = None, **kwargs: Any) -> AsyncLROPoller[Any]:
@@ -9068,7 +8809,6 @@ class LROsCustomHeaderOperations:
         request = build_lr_os_custom_header_post202_retry200_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._post202_retry200_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -9088,8 +8828,6 @@ class LROsCustomHeaderOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _post202_retry200_initial.metadata = {"url": "/lro/customheader/post/202/retry/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post202_retry200(self, product: Any = None, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -9176,7 +8914,6 @@ class LROsCustomHeaderOperations:
         request = build_lr_os_custom_header_post_async_retry_succeeded_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._post_async_retry_succeeded_initial.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -9199,8 +8936,6 @@ class LROsCustomHeaderOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _post_async_retry_succeeded_initial.metadata = {"url": "/lro/customheader/postasync/retry/succeeded"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post_async_retry_succeeded(self, product: Any = None, **kwargs: Any) -> AsyncLROPoller[None]:

@@ -61,9 +61,7 @@ class FilesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_files_get_file_request(
-            template_url=self.get_file.metadata["url"],
-        )
+        request = build_files_get_file_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -81,8 +79,6 @@ class FilesOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_file.metadata = {"url": "/files/stream/nonempty"}  # type: ignore
 
     @distributed_trace_async
     async def get_file_large(self, **kwargs: Any) -> IO:
@@ -96,9 +92,7 @@ class FilesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_files_get_file_large_request(
-            template_url=self.get_file_large.metadata["url"],
-        )
+        request = build_files_get_file_large_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -116,8 +110,6 @@ class FilesOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_file_large.metadata = {"url": "/files/stream/verylarge"}  # type: ignore
 
     @distributed_trace_async
     async def get_empty_file(self, **kwargs: Any) -> IO:
@@ -131,9 +123,7 @@ class FilesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_files_get_empty_file_request(
-            template_url=self.get_empty_file.metadata["url"],
-        )
+        request = build_files_get_empty_file_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -151,5 +141,3 @@ class FilesOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_empty_file.metadata = {"url": "/files/stream/empty"}  # type: ignore

@@ -64,9 +64,7 @@ class BoolOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_bool_get_true_request(
-            template_url=self.get_true.metadata["url"],
-        )
+        request = build_bool_get_true_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -87,8 +85,6 @@ class BoolOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_true.metadata = {"url": "/bool/true"}  # type: ignore
 
     @distributed_trace_async
     async def put_true(self, **kwargs: Any) -> None:
@@ -106,7 +102,6 @@ class BoolOperations:
 
         request = build_bool_put_true_request(
             content_type=content_type,
-            template_url=self.put_true.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -122,8 +117,6 @@ class BoolOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_true.metadata = {"url": "/bool/true"}  # type: ignore
-
     @distributed_trace_async
     async def get_false(self, **kwargs: Any) -> bool:
         """Get false Boolean value.
@@ -136,9 +129,7 @@ class BoolOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_bool_get_false_request(
-            template_url=self.get_false.metadata["url"],
-        )
+        request = build_bool_get_false_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -159,8 +150,6 @@ class BoolOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_false.metadata = {"url": "/bool/false"}  # type: ignore
 
     @distributed_trace_async
     async def put_false(self, **kwargs: Any) -> None:
@@ -178,7 +167,6 @@ class BoolOperations:
 
         request = build_bool_put_false_request(
             content_type=content_type,
-            template_url=self.put_false.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -194,8 +182,6 @@ class BoolOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_false.metadata = {"url": "/bool/false"}  # type: ignore
-
     @distributed_trace_async
     async def get_null(self, **kwargs: Any) -> Optional[bool]:
         """Get null Boolean value.
@@ -208,9 +194,7 @@ class BoolOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_bool_get_null_request(
-            template_url=self.get_null.metadata["url"],
-        )
+        request = build_bool_get_null_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -231,8 +215,6 @@ class BoolOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_null.metadata = {"url": "/bool/null"}  # type: ignore
 
     @distributed_trace_async
     async def get_invalid(self, **kwargs: Any) -> bool:
@@ -246,9 +228,7 @@ class BoolOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_bool_get_invalid_request(
-            template_url=self.get_invalid.metadata["url"],
-        )
+        request = build_bool_get_invalid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -269,5 +249,3 @@ class BoolOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_invalid.metadata = {"url": "/bool/invalid"}  # type: ignore

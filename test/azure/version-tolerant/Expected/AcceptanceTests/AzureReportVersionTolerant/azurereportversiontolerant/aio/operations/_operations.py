@@ -54,7 +54,6 @@ class AutoRestReportServiceForAzureOperationsMixin:
 
         request = build_get_report_request(
             qualifier=qualifier,
-            template_url=self.get_report.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -76,5 +75,3 @@ class AutoRestReportServiceForAzureOperationsMixin:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_report.metadata = {"url": "/report/azure"}  # type: ignore

@@ -123,9 +123,7 @@ class BasicOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_basic_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
-        )
+        request = build_basic_get_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -146,8 +144,6 @@ class BasicOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_valid.metadata = {"url": "/complex/basic/valid"}  # type: ignore
 
     @distributed_trace_async
     async def put_valid(self, complex_body: Any, **kwargs: Any) -> None:
@@ -180,7 +176,6 @@ class BasicOperations:
         request = build_basic_put_valid_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -195,8 +190,6 @@ class BasicOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_valid.metadata = {"url": "/complex/basic/valid"}  # type: ignore
 
     @distributed_trace_async
     async def get_invalid(self, **kwargs: Any) -> Any:
@@ -220,9 +213,7 @@ class BasicOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_basic_get_invalid_request(
-            template_url=self.get_invalid.metadata["url"],
-        )
+        request = build_basic_get_invalid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -243,8 +234,6 @@ class BasicOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_invalid.metadata = {"url": "/complex/basic/invalid"}  # type: ignore
 
     @distributed_trace_async
     async def get_empty(self, **kwargs: Any) -> Any:
@@ -268,9 +257,7 @@ class BasicOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_basic_get_empty_request(
-            template_url=self.get_empty.metadata["url"],
-        )
+        request = build_basic_get_empty_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -291,8 +278,6 @@ class BasicOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_empty.metadata = {"url": "/complex/basic/empty"}  # type: ignore
 
     @distributed_trace_async
     async def get_null(self, **kwargs: Any) -> Any:
@@ -316,9 +301,7 @@ class BasicOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_basic_get_null_request(
-            template_url=self.get_null.metadata["url"],
-        )
+        request = build_basic_get_null_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -339,8 +322,6 @@ class BasicOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_null.metadata = {"url": "/complex/basic/null"}  # type: ignore
 
     @distributed_trace_async
     async def get_not_provided(self, **kwargs: Any) -> Any:
@@ -364,9 +345,7 @@ class BasicOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_basic_get_not_provided_request(
-            template_url=self.get_not_provided.metadata["url"],
-        )
+        request = build_basic_get_not_provided_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -387,8 +366,6 @@ class BasicOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_not_provided.metadata = {"url": "/complex/basic/notprovided"}  # type: ignore
 
 
 class PrimitiveOperations:
@@ -430,9 +407,7 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_primitive_get_int_request(
-            template_url=self.get_int.metadata["url"],
-        )
+        request = build_primitive_get_int_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -453,8 +428,6 @@ class PrimitiveOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_int.metadata = {"url": "/complex/primitive/integer"}  # type: ignore
 
     @distributed_trace_async
     async def put_int(self, complex_body: Any, **kwargs: Any) -> None:
@@ -486,7 +459,6 @@ class PrimitiveOperations:
         request = build_primitive_put_int_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_int.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -501,8 +473,6 @@ class PrimitiveOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_int.metadata = {"url": "/complex/primitive/integer"}  # type: ignore
 
     @distributed_trace_async
     async def get_long(self, **kwargs: Any) -> Any:
@@ -525,9 +495,7 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_primitive_get_long_request(
-            template_url=self.get_long.metadata["url"],
-        )
+        request = build_primitive_get_long_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -548,8 +516,6 @@ class PrimitiveOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_long.metadata = {"url": "/complex/primitive/long"}  # type: ignore
 
     @distributed_trace_async
     async def put_long(self, complex_body: Any, **kwargs: Any) -> None:
@@ -581,7 +547,6 @@ class PrimitiveOperations:
         request = build_primitive_put_long_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_long.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -596,8 +561,6 @@ class PrimitiveOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_long.metadata = {"url": "/complex/primitive/long"}  # type: ignore
 
     @distributed_trace_async
     async def get_float(self, **kwargs: Any) -> Any:
@@ -620,9 +583,7 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_primitive_get_float_request(
-            template_url=self.get_float.metadata["url"],
-        )
+        request = build_primitive_get_float_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -643,8 +604,6 @@ class PrimitiveOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_float.metadata = {"url": "/complex/primitive/float"}  # type: ignore
 
     @distributed_trace_async
     async def put_float(self, complex_body: Any, **kwargs: Any) -> None:
@@ -676,7 +635,6 @@ class PrimitiveOperations:
         request = build_primitive_put_float_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_float.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -691,8 +649,6 @@ class PrimitiveOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_float.metadata = {"url": "/complex/primitive/float"}  # type: ignore
 
     @distributed_trace_async
     async def get_double(self, **kwargs: Any) -> Any:
@@ -715,9 +671,7 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_primitive_get_double_request(
-            template_url=self.get_double.metadata["url"],
-        )
+        request = build_primitive_get_double_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -738,8 +692,6 @@ class PrimitiveOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_double.metadata = {"url": "/complex/primitive/double"}  # type: ignore
 
     @distributed_trace_async
     async def put_double(self, complex_body: Any, **kwargs: Any) -> None:
@@ -772,7 +724,6 @@ class PrimitiveOperations:
         request = build_primitive_put_double_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_double.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -787,8 +738,6 @@ class PrimitiveOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_double.metadata = {"url": "/complex/primitive/double"}  # type: ignore
 
     @distributed_trace_async
     async def get_bool(self, **kwargs: Any) -> Any:
@@ -811,9 +760,7 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_primitive_get_bool_request(
-            template_url=self.get_bool.metadata["url"],
-        )
+        request = build_primitive_get_bool_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -834,8 +781,6 @@ class PrimitiveOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_bool.metadata = {"url": "/complex/primitive/bool"}  # type: ignore
 
     @distributed_trace_async
     async def put_bool(self, complex_body: Any, **kwargs: Any) -> None:
@@ -867,7 +812,6 @@ class PrimitiveOperations:
         request = build_primitive_put_bool_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_bool.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -882,8 +826,6 @@ class PrimitiveOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_bool.metadata = {"url": "/complex/primitive/bool"}  # type: ignore
 
     @distributed_trace_async
     async def get_string(self, **kwargs: Any) -> Any:
@@ -907,9 +849,7 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_primitive_get_string_request(
-            template_url=self.get_string.metadata["url"],
-        )
+        request = build_primitive_get_string_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -930,8 +870,6 @@ class PrimitiveOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_string.metadata = {"url": "/complex/primitive/string"}  # type: ignore
 
     @distributed_trace_async
     async def put_string(self, complex_body: Any, **kwargs: Any) -> None:
@@ -964,7 +902,6 @@ class PrimitiveOperations:
         request = build_primitive_put_string_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_string.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -979,8 +916,6 @@ class PrimitiveOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_string.metadata = {"url": "/complex/primitive/string"}  # type: ignore
 
     @distributed_trace_async
     async def get_date(self, **kwargs: Any) -> Any:
@@ -1003,9 +938,7 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_primitive_get_date_request(
-            template_url=self.get_date.metadata["url"],
-        )
+        request = build_primitive_get_date_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1026,8 +959,6 @@ class PrimitiveOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_date.metadata = {"url": "/complex/primitive/date"}  # type: ignore
 
     @distributed_trace_async
     async def put_date(self, complex_body: Any, **kwargs: Any) -> None:
@@ -1059,7 +990,6 @@ class PrimitiveOperations:
         request = build_primitive_put_date_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_date.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1074,8 +1004,6 @@ class PrimitiveOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_date.metadata = {"url": "/complex/primitive/date"}  # type: ignore
 
     @distributed_trace_async
     async def get_date_time(self, **kwargs: Any) -> Any:
@@ -1098,9 +1026,7 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_primitive_get_date_time_request(
-            template_url=self.get_date_time.metadata["url"],
-        )
+        request = build_primitive_get_date_time_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1121,8 +1047,6 @@ class PrimitiveOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_date_time.metadata = {"url": "/complex/primitive/datetime"}  # type: ignore
 
     @distributed_trace_async
     async def put_date_time(self, complex_body: Any, **kwargs: Any) -> None:
@@ -1154,7 +1078,6 @@ class PrimitiveOperations:
         request = build_primitive_put_date_time_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_date_time.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1169,8 +1092,6 @@ class PrimitiveOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_date_time.metadata = {"url": "/complex/primitive/datetime"}  # type: ignore
 
     @distributed_trace_async
     async def get_date_time_rfc1123(self, **kwargs: Any) -> Any:
@@ -1193,9 +1114,7 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_primitive_get_date_time_rfc1123_request(
-            template_url=self.get_date_time_rfc1123.metadata["url"],
-        )
+        request = build_primitive_get_date_time_rfc1123_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1216,8 +1135,6 @@ class PrimitiveOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_date_time_rfc1123.metadata = {"url": "/complex/primitive/datetimerfc1123"}  # type: ignore
 
     @distributed_trace_async
     async def put_date_time_rfc1123(self, complex_body: Any, **kwargs: Any) -> None:
@@ -1250,7 +1167,6 @@ class PrimitiveOperations:
         request = build_primitive_put_date_time_rfc1123_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_date_time_rfc1123.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1265,8 +1181,6 @@ class PrimitiveOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_date_time_rfc1123.metadata = {"url": "/complex/primitive/datetimerfc1123"}  # type: ignore
 
     @distributed_trace_async
     async def get_duration(self, **kwargs: Any) -> Any:
@@ -1288,9 +1202,7 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_primitive_get_duration_request(
-            template_url=self.get_duration.metadata["url"],
-        )
+        request = build_primitive_get_duration_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1311,8 +1223,6 @@ class PrimitiveOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_duration.metadata = {"url": "/complex/primitive/duration"}  # type: ignore
 
     @distributed_trace_async
     async def put_duration(self, complex_body: Any, **kwargs: Any) -> None:
@@ -1343,7 +1253,6 @@ class PrimitiveOperations:
         request = build_primitive_put_duration_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_duration.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1358,8 +1267,6 @@ class PrimitiveOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_duration.metadata = {"url": "/complex/primitive/duration"}  # type: ignore
 
     @distributed_trace_async
     async def get_byte(self, **kwargs: Any) -> Any:
@@ -1381,9 +1288,7 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_primitive_get_byte_request(
-            template_url=self.get_byte.metadata["url"],
-        )
+        request = build_primitive_get_byte_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1404,8 +1309,6 @@ class PrimitiveOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_byte.metadata = {"url": "/complex/primitive/byte"}  # type: ignore
 
     @distributed_trace_async
     async def put_byte(self, complex_body: Any, **kwargs: Any) -> None:
@@ -1436,7 +1339,6 @@ class PrimitiveOperations:
         request = build_primitive_put_byte_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_byte.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1451,8 +1353,6 @@ class PrimitiveOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_byte.metadata = {"url": "/complex/primitive/byte"}  # type: ignore
 
 
 class ArrayOperations:
@@ -1495,9 +1395,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
-        )
+        request = build_array_get_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1518,8 +1416,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_valid.metadata = {"url": "/complex/array/valid"}  # type: ignore
 
     @distributed_trace_async
     async def put_valid(self, complex_body: Any, **kwargs: Any) -> None:
@@ -1553,7 +1449,6 @@ class ArrayOperations:
         request = build_array_put_valid_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1568,8 +1463,6 @@ class ArrayOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_valid.metadata = {"url": "/complex/array/valid"}  # type: ignore
 
     @distributed_trace_async
     async def get_empty(self, **kwargs: Any) -> Any:
@@ -1593,9 +1486,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_empty_request(
-            template_url=self.get_empty.metadata["url"],
-        )
+        request = build_array_get_empty_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1616,8 +1507,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_empty.metadata = {"url": "/complex/array/empty"}  # type: ignore
 
     @distributed_trace_async
     async def put_empty(self, complex_body: Any, **kwargs: Any) -> None:
@@ -1650,7 +1539,6 @@ class ArrayOperations:
         request = build_array_put_empty_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_empty.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1665,8 +1553,6 @@ class ArrayOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_empty.metadata = {"url": "/complex/array/empty"}  # type: ignore
 
     @distributed_trace_async
     async def get_not_provided(self, **kwargs: Any) -> Any:
@@ -1690,9 +1576,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_not_provided_request(
-            template_url=self.get_not_provided.metadata["url"],
-        )
+        request = build_array_get_not_provided_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1713,8 +1597,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_not_provided.metadata = {"url": "/complex/array/notprovided"}  # type: ignore
 
 
 class DictionaryOperations:
@@ -1757,9 +1639,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
-        )
+        request = build_dictionary_get_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1780,8 +1660,6 @@ class DictionaryOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_valid.metadata = {"url": "/complex/dictionary/typed/valid"}  # type: ignore
 
     @distributed_trace_async
     async def put_valid(self, complex_body: Any, **kwargs: Any) -> None:
@@ -1815,7 +1693,6 @@ class DictionaryOperations:
         request = build_dictionary_put_valid_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1830,8 +1707,6 @@ class DictionaryOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_valid.metadata = {"url": "/complex/dictionary/typed/valid"}  # type: ignore
 
     @distributed_trace_async
     async def get_empty(self, **kwargs: Any) -> Any:
@@ -1855,9 +1730,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_empty_request(
-            template_url=self.get_empty.metadata["url"],
-        )
+        request = build_dictionary_get_empty_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1878,8 +1751,6 @@ class DictionaryOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_empty.metadata = {"url": "/complex/dictionary/typed/empty"}  # type: ignore
 
     @distributed_trace_async
     async def put_empty(self, complex_body: Any, **kwargs: Any) -> None:
@@ -1912,7 +1783,6 @@ class DictionaryOperations:
         request = build_dictionary_put_empty_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_empty.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1927,8 +1797,6 @@ class DictionaryOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_empty.metadata = {"url": "/complex/dictionary/typed/empty"}  # type: ignore
 
     @distributed_trace_async
     async def get_null(self, **kwargs: Any) -> Any:
@@ -1952,9 +1820,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_null_request(
-            template_url=self.get_null.metadata["url"],
-        )
+        request = build_dictionary_get_null_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1975,8 +1841,6 @@ class DictionaryOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_null.metadata = {"url": "/complex/dictionary/typed/null"}  # type: ignore
 
     @distributed_trace_async
     async def get_not_provided(self, **kwargs: Any) -> Any:
@@ -2000,9 +1864,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_not_provided_request(
-            template_url=self.get_not_provided.metadata["url"],
-        )
+        request = build_dictionary_get_not_provided_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2023,8 +1885,6 @@ class DictionaryOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_not_provided.metadata = {"url": "/complex/dictionary/typed/notprovided"}  # type: ignore
 
 
 class InheritanceOperations:
@@ -2075,9 +1935,7 @@ class InheritanceOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_inheritance_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
-        )
+        request = build_inheritance_get_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2098,8 +1956,6 @@ class InheritanceOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_valid.metadata = {"url": "/complex/inheritance/valid"}  # type: ignore
 
     @distributed_trace_async
     async def put_valid(self, complex_body: Any, **kwargs: Any) -> None:
@@ -2142,7 +1998,6 @@ class InheritanceOperations:
         request = build_inheritance_put_valid_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2157,8 +2012,6 @@ class InheritanceOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_valid.metadata = {"url": "/complex/inheritance/valid"}  # type: ignore
 
 
 class PolymorphismOperations:
@@ -2204,9 +2057,7 @@ class PolymorphismOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_polymorphism_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
-        )
+        request = build_polymorphism_get_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2227,8 +2078,6 @@ class PolymorphismOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_valid.metadata = {"url": "/complex/polymorphism/valid"}  # type: ignore
 
     @distributed_trace_async
     async def put_valid(self, complex_body: Any, **kwargs: Any) -> None:
@@ -2298,7 +2147,6 @@ class PolymorphismOperations:
         request = build_polymorphism_put_valid_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2313,8 +2161,6 @@ class PolymorphismOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_valid.metadata = {"url": "/complex/polymorphism/valid"}  # type: ignore
 
     @distributed_trace_async
     async def get_dot_syntax(self, **kwargs: Any) -> Any:
@@ -2337,9 +2183,7 @@ class PolymorphismOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_polymorphism_get_dot_syntax_request(
-            template_url=self.get_dot_syntax.metadata["url"],
-        )
+        request = build_polymorphism_get_dot_syntax_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2360,8 +2204,6 @@ class PolymorphismOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_dot_syntax.metadata = {"url": "/complex/polymorphism/dotsyntax"}  # type: ignore
 
     @distributed_trace_async
     async def get_composed_with_discriminator(self, **kwargs: Any) -> Any:
@@ -2408,9 +2250,7 @@ class PolymorphismOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_polymorphism_get_composed_with_discriminator_request(
-            template_url=self.get_composed_with_discriminator.metadata["url"],
-        )
+        request = build_polymorphism_get_composed_with_discriminator_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2431,8 +2271,6 @@ class PolymorphismOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_composed_with_discriminator.metadata = {"url": "/complex/polymorphism/composedWithDiscriminator"}  # type: ignore
 
     @distributed_trace_async
     async def get_composed_without_discriminator(self, **kwargs: Any) -> Any:
@@ -2479,9 +2317,7 @@ class PolymorphismOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_polymorphism_get_composed_without_discriminator_request(
-            template_url=self.get_composed_without_discriminator.metadata["url"],
-        )
+        request = build_polymorphism_get_composed_without_discriminator_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2502,8 +2338,6 @@ class PolymorphismOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_composed_without_discriminator.metadata = {"url": "/complex/polymorphism/composedWithoutDiscriminator"}  # type: ignore
 
     @distributed_trace_async
     async def get_complicated(self, **kwargs: Any) -> Any:
@@ -2540,9 +2374,7 @@ class PolymorphismOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_polymorphism_get_complicated_request(
-            template_url=self.get_complicated.metadata["url"],
-        )
+        request = build_polymorphism_get_complicated_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2563,8 +2395,6 @@ class PolymorphismOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_complicated.metadata = {"url": "/complex/polymorphism/complicated"}  # type: ignore
 
     @distributed_trace_async
     async def put_complicated(self, complex_body: Any, **kwargs: Any) -> None:
@@ -2612,7 +2442,6 @@ class PolymorphismOperations:
         request = build_polymorphism_put_complicated_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_complicated.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2627,8 +2456,6 @@ class PolymorphismOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_complicated.metadata = {"url": "/complex/polymorphism/complicated"}  # type: ignore
 
     @distributed_trace_async
     async def put_missing_discriminator(self, complex_body: Any, **kwargs: Any) -> Any:
@@ -2694,7 +2521,6 @@ class PolymorphismOperations:
         request = build_polymorphism_put_missing_discriminator_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_missing_discriminator.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2716,8 +2542,6 @@ class PolymorphismOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    put_missing_discriminator.metadata = {"url": "/complex/polymorphism/missingdiscriminator"}  # type: ignore
 
     @distributed_trace_async
     async def put_valid_missing_required(self, complex_body: Any, **kwargs: Any) -> None:
@@ -2782,7 +2606,6 @@ class PolymorphismOperations:
         request = build_polymorphism_put_valid_missing_required_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_valid_missing_required.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2797,8 +2620,6 @@ class PolymorphismOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_valid_missing_required.metadata = {"url": "/complex/polymorphism/missingrequired/invalid"}  # type: ignore
 
 
 class PolymorphicrecursiveOperations:
@@ -2844,9 +2665,7 @@ class PolymorphicrecursiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_polymorphicrecursive_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
-        )
+        request = build_polymorphicrecursive_get_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -2867,8 +2686,6 @@ class PolymorphicrecursiveOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_valid.metadata = {"url": "/complex/polymorphicrecursive/valid"}  # type: ignore
 
     @distributed_trace_async
     async def put_valid(self, complex_body: Any, **kwargs: Any) -> None:
@@ -2958,7 +2775,6 @@ class PolymorphicrecursiveOperations:
         request = build_polymorphicrecursive_put_valid_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2973,8 +2789,6 @@ class PolymorphicrecursiveOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_valid.metadata = {"url": "/complex/polymorphicrecursive/valid"}  # type: ignore
 
 
 class ReadonlypropertyOperations:
@@ -3016,9 +2830,7 @@ class ReadonlypropertyOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_readonlyproperty_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
-        )
+        request = build_readonlyproperty_get_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -3039,8 +2851,6 @@ class ReadonlypropertyOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_valid.metadata = {"url": "/complex/readonlyproperty/valid"}  # type: ignore
 
     @distributed_trace_async
     async def put_valid(self, complex_body: Any, **kwargs: Any) -> None:
@@ -3072,7 +2882,6 @@ class ReadonlypropertyOperations:
         request = build_readonlyproperty_put_valid_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -3087,8 +2896,6 @@ class ReadonlypropertyOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_valid.metadata = {"url": "/complex/readonlyproperty/valid"}  # type: ignore
 
 
 class FlattencomplexOperations:
@@ -3133,9 +2940,7 @@ class FlattencomplexOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_flattencomplex_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
-        )
+        request = build_flattencomplex_get_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -3156,5 +2961,3 @@ class FlattencomplexOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_valid.metadata = {"url": "/complex/flatten/valid"}  # type: ignore

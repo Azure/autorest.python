@@ -63,9 +63,7 @@ class DurationOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_duration_get_null_request(
-            template_url=self.get_null.metadata["url"],
-        )
+        request = build_duration_get_null_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -86,8 +84,6 @@ class DurationOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_null.metadata = {"url": "/duration/null"}  # type: ignore
 
     @distributed_trace_async
     async def put_positive_duration(self, duration_body: datetime.timedelta, **kwargs: Any) -> None:
@@ -110,7 +106,6 @@ class DurationOperations:
         request = build_duration_put_positive_duration_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_positive_duration.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -126,8 +121,6 @@ class DurationOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_positive_duration.metadata = {"url": "/duration/positiveduration"}  # type: ignore
-
     @distributed_trace_async
     async def get_positive_duration(self, **kwargs: Any) -> datetime.timedelta:
         """Get a positive duration value.
@@ -140,9 +133,7 @@ class DurationOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_duration_get_positive_duration_request(
-            template_url=self.get_positive_duration.metadata["url"],
-        )
+        request = build_duration_get_positive_duration_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -163,8 +154,6 @@ class DurationOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_positive_duration.metadata = {"url": "/duration/positiveduration"}  # type: ignore
 
     @distributed_trace_async
     async def get_invalid(self, **kwargs: Any) -> datetime.timedelta:
@@ -178,9 +167,7 @@ class DurationOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_duration_get_invalid_request(
-            template_url=self.get_invalid.metadata["url"],
-        )
+        request = build_duration_get_invalid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -201,5 +188,3 @@ class DurationOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_invalid.metadata = {"url": "/duration/invalid"}  # type: ignore

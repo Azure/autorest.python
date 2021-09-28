@@ -69,7 +69,6 @@ class ParamsOperations:
             parameter3=parameter3,
             parameter1=parameter1,
             parameter2=parameter2,
-            template_url=self.get_required.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -91,5 +90,3 @@ class ParamsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_required.metadata = {"url": "/llc/parameters"}  # type: ignore

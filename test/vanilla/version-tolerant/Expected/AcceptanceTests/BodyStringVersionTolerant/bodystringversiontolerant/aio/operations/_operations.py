@@ -77,9 +77,7 @@ class StringOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_string_get_null_request(
-            template_url=self.get_null.metadata["url"],
-        )
+        request = build_string_get_null_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -100,8 +98,6 @@ class StringOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_null.metadata = {"url": "/string/null"}  # type: ignore
 
     @distributed_trace_async
     async def put_null(self, string_body: Optional[str] = None, **kwargs: Any) -> None:
@@ -127,7 +123,6 @@ class StringOperations:
         request = build_string_put_null_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_null.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -143,8 +138,6 @@ class StringOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_null.metadata = {"url": "/string/null"}  # type: ignore
-
     @distributed_trace_async
     async def get_empty(self, **kwargs: Any) -> str:
         """Get empty string value value ''.
@@ -157,9 +150,7 @@ class StringOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_string_get_empty_request(
-            template_url=self.get_empty.metadata["url"],
-        )
+        request = build_string_get_empty_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -180,8 +171,6 @@ class StringOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_empty.metadata = {"url": "/string/empty"}  # type: ignore
 
     @distributed_trace_async
     async def put_empty(self, **kwargs: Any) -> None:
@@ -199,7 +188,6 @@ class StringOperations:
 
         request = build_string_put_empty_request(
             content_type=content_type,
-            template_url=self.put_empty.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -215,8 +203,6 @@ class StringOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_empty.metadata = {"url": "/string/empty"}  # type: ignore
-
     @distributed_trace_async
     async def get_mbcs(self, **kwargs: Any) -> str:
         """Get mbcs string value '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
@@ -229,9 +215,7 @@ class StringOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_string_get_mbcs_request(
-            template_url=self.get_mbcs.metadata["url"],
-        )
+        request = build_string_get_mbcs_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -252,8 +236,6 @@ class StringOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_mbcs.metadata = {"url": "/string/mbcs"}  # type: ignore
 
     @distributed_trace_async
     async def put_mbcs(self, **kwargs: Any) -> None:
@@ -271,7 +253,6 @@ class StringOperations:
 
         request = build_string_put_mbcs_request(
             content_type=content_type,
-            template_url=self.put_mbcs.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -287,8 +268,6 @@ class StringOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_mbcs.metadata = {"url": "/string/mbcs"}  # type: ignore
-
     @distributed_trace_async
     async def get_whitespace(self, **kwargs: Any) -> str:
         """Get string value with leading and trailing whitespace
@@ -303,9 +282,7 @@ class StringOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_string_get_whitespace_request(
-            template_url=self.get_whitespace.metadata["url"],
-        )
+        request = build_string_get_whitespace_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -326,8 +303,6 @@ class StringOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_whitespace.metadata = {"url": "/string/whitespace"}  # type: ignore
 
     @distributed_trace_async
     async def put_whitespace(self, **kwargs: Any) -> None:
@@ -347,7 +322,6 @@ class StringOperations:
 
         request = build_string_put_whitespace_request(
             content_type=content_type,
-            template_url=self.put_whitespace.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -363,8 +337,6 @@ class StringOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_whitespace.metadata = {"url": "/string/whitespace"}  # type: ignore
-
     @distributed_trace_async
     async def get_not_provided(self, **kwargs: Any) -> str:
         """Get String value when no string value is sent in response payload.
@@ -377,9 +349,7 @@ class StringOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_string_get_not_provided_request(
-            template_url=self.get_not_provided.metadata["url"],
-        )
+        request = build_string_get_not_provided_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -400,8 +370,6 @@ class StringOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_not_provided.metadata = {"url": "/string/notProvided"}  # type: ignore
 
     @distributed_trace_async
     async def get_base64_encoded(self, **kwargs: Any) -> bytearray:
@@ -415,9 +383,7 @@ class StringOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_string_get_base64_encoded_request(
-            template_url=self.get_base64_encoded.metadata["url"],
-        )
+        request = build_string_get_base64_encoded_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -438,8 +404,6 @@ class StringOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_base64_encoded.metadata = {"url": "/string/base64Encoding"}  # type: ignore
 
     @distributed_trace_async
     async def get_base64_url_encoded(self, **kwargs: Any) -> bytes:
@@ -453,9 +417,7 @@ class StringOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_string_get_base64_url_encoded_request(
-            template_url=self.get_base64_url_encoded.metadata["url"],
-        )
+        request = build_string_get_base64_url_encoded_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -476,8 +438,6 @@ class StringOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_base64_url_encoded.metadata = {"url": "/string/base64UrlEncoding"}  # type: ignore
 
     @distributed_trace_async
     async def put_base64_url_encoded(self, string_body: bytes, **kwargs: Any) -> None:
@@ -500,7 +460,6 @@ class StringOperations:
         request = build_string_put_base64_url_encoded_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_base64_url_encoded.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -516,8 +475,6 @@ class StringOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_base64_url_encoded.metadata = {"url": "/string/base64UrlEncoding"}  # type: ignore
-
     @distributed_trace_async
     async def get_null_base64_url_encoded(self, **kwargs: Any) -> Optional[bytes]:
         """Get null value that is expected to be base64url encoded.
@@ -530,9 +487,7 @@ class StringOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_string_get_null_base64_url_encoded_request(
-            template_url=self.get_null_base64_url_encoded.metadata["url"],
-        )
+        request = build_string_get_null_base64_url_encoded_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -553,8 +508,6 @@ class StringOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_null_base64_url_encoded.metadata = {"url": "/string/nullBase64UrlEncoding"}  # type: ignore
 
 
 class EnumOperations:
@@ -593,9 +546,7 @@ class EnumOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_enum_get_not_expandable_request(
-            template_url=self.get_not_expandable.metadata["url"],
-        )
+        request = build_enum_get_not_expandable_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -616,8 +567,6 @@ class EnumOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_not_expandable.metadata = {"url": "/string/enum/notExpandable"}  # type: ignore
 
     @distributed_trace_async
     async def put_not_expandable(self, string_body: str, **kwargs: Any) -> None:
@@ -641,7 +590,6 @@ class EnumOperations:
         request = build_enum_put_not_expandable_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_not_expandable.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -656,8 +604,6 @@ class EnumOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_not_expandable.metadata = {"url": "/string/enum/notExpandable"}  # type: ignore
 
     @distributed_trace_async
     async def get_referenced(self, **kwargs: Any) -> str:
@@ -677,9 +623,7 @@ class EnumOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_enum_get_referenced_request(
-            template_url=self.get_referenced.metadata["url"],
-        )
+        request = build_enum_get_referenced_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -700,8 +644,6 @@ class EnumOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_referenced.metadata = {"url": "/string/enum/Referenced"}  # type: ignore
 
     @distributed_trace_async
     async def put_referenced(self, enum_string_body: str, **kwargs: Any) -> None:
@@ -725,7 +667,6 @@ class EnumOperations:
         request = build_enum_put_referenced_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_referenced.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -740,8 +681,6 @@ class EnumOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_referenced.metadata = {"url": "/string/enum/Referenced"}  # type: ignore
 
     @distributed_trace_async
     async def get_referenced_constant(self, **kwargs: Any) -> Any:
@@ -764,9 +703,7 @@ class EnumOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_enum_get_referenced_constant_request(
-            template_url=self.get_referenced_constant.metadata["url"],
-        )
+        request = build_enum_get_referenced_constant_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -787,8 +724,6 @@ class EnumOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_referenced_constant.metadata = {"url": "/string/enum/ReferencedConstant"}  # type: ignore
 
     @distributed_trace_async
     async def put_referenced_constant(self, enum_string_body: Any, **kwargs: Any) -> None:
@@ -820,7 +755,6 @@ class EnumOperations:
         request = build_enum_put_referenced_constant_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_referenced_constant.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -835,5 +769,3 @@ class EnumOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_referenced_constant.metadata = {"url": "/string/enum/ReferencedConstant"}  # type: ignore

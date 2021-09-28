@@ -82,7 +82,6 @@ class AvailabilitySetsOperations:
             avset=avset,
             content_type=content_type,
             json=json,
-            template_url=self.update.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -97,5 +96,3 @@ class AvailabilitySetsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    update.metadata = {"url": "/parameterFlattening/{resourceGroupName}/{availabilitySetName}"}  # type: ignore

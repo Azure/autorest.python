@@ -54,7 +54,6 @@ class AutoRestReportServiceOperationsMixin:
 
         request = build_get_report_request(
             qualifier=qualifier,
-            template_url=self.get_report.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -76,8 +75,6 @@ class AutoRestReportServiceOperationsMixin:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_report.metadata = {"url": "/report"}  # type: ignore
 
     @distributed_trace_async
     async def get_optional_report(self, *, qualifier: Optional[str] = None, **kwargs: Any) -> Dict[str, int]:
@@ -105,7 +102,6 @@ class AutoRestReportServiceOperationsMixin:
 
         request = build_get_optional_report_request(
             qualifier=qualifier,
-            template_url=self.get_optional_report.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -127,5 +123,3 @@ class AutoRestReportServiceOperationsMixin:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_optional_report.metadata = {"url": "/report/optional"}  # type: ignore

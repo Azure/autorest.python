@@ -74,7 +74,6 @@ class IntOperations:
         request = build_int_put_request(
             content_type=content_type,
             json=json,
-            template_url=self.put.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -96,8 +95,6 @@ class IntOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    put.metadata = {"url": "/nonStringEnums/int/put"}  # type: ignore
 
     @distributed_trace_async
     async def get(self, **kwargs: Any) -> int:
@@ -117,9 +114,7 @@ class IntOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_int_get_request(
-            template_url=self.get.metadata["url"],
-        )
+        request = build_int_get_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -140,8 +135,6 @@ class IntOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get.metadata = {"url": "/nonStringEnums/int/get"}  # type: ignore
 
 
 class FloatOperations:
@@ -186,7 +179,6 @@ class FloatOperations:
         request = build_float_put_request(
             content_type=content_type,
             json=json,
-            template_url=self.put.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -208,8 +200,6 @@ class FloatOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    put.metadata = {"url": "/nonStringEnums/float/put"}  # type: ignore
 
     @distributed_trace_async
     async def get(self, **kwargs: Any) -> float:
@@ -229,9 +219,7 @@ class FloatOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_float_get_request(
-            template_url=self.get.metadata["url"],
-        )
+        request = build_float_get_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -252,5 +240,3 @@ class FloatOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get.metadata = {"url": "/nonStringEnums/float/get"}  # type: ignore

@@ -39,7 +39,7 @@ def build_date_get_null_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/date/null')
+    url = '/date/null'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -59,7 +59,7 @@ def build_date_get_invalid_date_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/date/invaliddate')
+    url = '/date/invaliddate'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -79,7 +79,7 @@ def build_date_get_overflow_date_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/date/overflowdate')
+    url = '/date/overflowdate'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -99,7 +99,7 @@ def build_date_get_underflow_date_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/date/underflowdate')
+    url = '/date/underflowdate'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -121,7 +121,7 @@ def build_date_put_max_date_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/date/max')
+    url = '/date/max'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -143,7 +143,7 @@ def build_date_get_max_date_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/date/max')
+    url = '/date/max'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -165,7 +165,7 @@ def build_date_put_min_date_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/date/min')
+    url = '/date/min'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -187,7 +187,7 @@ def build_date_get_min_date_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/date/min')
+    url = '/date/min'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -234,9 +234,7 @@ class DateOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_date_get_null_request(
-            template_url=self.get_null.metadata["url"],
-        )
+        request = build_date_get_null_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -255,8 +253,6 @@ class DateOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_null.metadata = {"url": "/date/null"}  # type: ignore
 
     @distributed_trace
     def get_invalid_date(
@@ -273,9 +269,7 @@ class DateOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_date_get_invalid_date_request(
-            template_url=self.get_invalid_date.metadata["url"],
-        )
+        request = build_date_get_invalid_date_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -294,8 +288,6 @@ class DateOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_invalid_date.metadata = {"url": "/date/invaliddate"}  # type: ignore
 
     @distributed_trace
     def get_overflow_date(
@@ -312,9 +304,7 @@ class DateOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_date_get_overflow_date_request(
-            template_url=self.get_overflow_date.metadata["url"],
-        )
+        request = build_date_get_overflow_date_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -333,8 +323,6 @@ class DateOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_overflow_date.metadata = {"url": "/date/overflowdate"}  # type: ignore
 
     @distributed_trace
     def get_underflow_date(
@@ -351,9 +339,7 @@ class DateOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_date_get_underflow_date_request(
-            template_url=self.get_underflow_date.metadata["url"],
-        )
+        request = build_date_get_underflow_date_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -372,8 +358,6 @@ class DateOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_underflow_date.metadata = {"url": "/date/underflowdate"}  # type: ignore
 
     @distributed_trace
     def put_max_date(
@@ -401,7 +385,6 @@ class DateOperations(object):
         request = build_date_put_max_date_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_max_date.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -414,8 +397,6 @@ class DateOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_max_date.metadata = {"url": "/date/max"}  # type: ignore
 
     @distributed_trace
     def get_max_date(
@@ -432,9 +413,7 @@ class DateOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_date_get_max_date_request(
-            template_url=self.get_max_date.metadata["url"],
-        )
+        request = build_date_get_max_date_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -453,8 +432,6 @@ class DateOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_max_date.metadata = {"url": "/date/max"}  # type: ignore
 
     @distributed_trace
     def put_min_date(
@@ -482,7 +459,6 @@ class DateOperations(object):
         request = build_date_put_min_date_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_min_date.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -495,8 +471,6 @@ class DateOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_min_date.metadata = {"url": "/date/min"}  # type: ignore
 
     @distributed_trace
     def get_min_date(
@@ -513,9 +487,7 @@ class DateOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_date_get_min_date_request(
-            template_url=self.get_min_date.metadata["url"],
-        )
+        request = build_date_get_min_date_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -534,5 +506,3 @@ class DateOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_min_date.metadata = {"url": "/date/min"}  # type: ignore

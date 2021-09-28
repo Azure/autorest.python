@@ -41,9 +41,7 @@ class ObjectTypeClientOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_request(
-            template_url=self.get.metadata["url"],
-        )
+        request = build_get_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -64,8 +62,6 @@ class ObjectTypeClientOperationsMixin:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get.metadata = {"url": "/objectType/get"}  # type: ignore
 
     @distributed_trace_async
     async def put(self, put_object: Any, **kwargs: Any) -> None:
@@ -89,7 +85,6 @@ class ObjectTypeClientOperationsMixin:
         request = build_put_request(
             content_type=content_type,
             json=json,
-            template_url=self.put.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -104,5 +99,3 @@ class ObjectTypeClientOperationsMixin:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put.metadata = {"url": "/objectType/put"}  # type: ignore

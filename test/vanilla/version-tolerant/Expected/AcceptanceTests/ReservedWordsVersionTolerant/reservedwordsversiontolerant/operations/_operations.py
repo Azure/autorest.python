@@ -40,7 +40,7 @@ def build_import_builders_operation_one_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/reservedWords/operationGroup/import')
+    url = '/reservedWords/operationGroup/import'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -98,7 +98,6 @@ class ImportOperations(object):
 
         request = build_import_builders_operation_one_request(
             parameter1=parameter1,
-            template_url=self.operation_one.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -118,5 +117,3 @@ class ImportOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    operation_one.metadata = {"url": "/reservedWords/operationGroup/import"}  # type: ignore

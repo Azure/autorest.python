@@ -80,7 +80,6 @@ class PetOperations:
 
         request = build_pet_get_pet_by_id_request(
             pet_id=pet_id,
-            template_url=self.get_pet_by_id.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -104,8 +103,6 @@ class PetOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_pet_by_id.metadata = {"url": "/errorStatusCodes/Pets/{petId}/GetPet"}  # type: ignore
 
     @distributed_trace_async
     async def do_something(self, what_action: str, **kwargs: Any) -> Any:
@@ -136,7 +133,6 @@ class PetOperations:
 
         request = build_pet_do_something_request(
             what_action=what_action,
-            template_url=self.do_something.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -158,8 +154,6 @@ class PetOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    do_something.metadata = {"url": "/errorStatusCodes/Pets/doSomething/{whatAction}"}  # type: ignore
 
     @distributed_trace_async
     async def has_models_param(self, *, models: Optional[str] = "value1", **kwargs: Any) -> None:
@@ -184,7 +178,6 @@ class PetOperations:
 
         request = build_pet_has_models_param_request(
             models=models,
-            template_url=self.has_models_param.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -199,5 +192,3 @@ class PetOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    has_models_param.metadata = {"url": "/errorStatusCodes/Pets/hasModelsParam"}  # type: ignore

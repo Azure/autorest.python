@@ -104,9 +104,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_xml_get_complex_type_ref_no_meta_request(
-            template_url=self.get_complex_type_ref_no_meta.metadata["url"],
-        )
+        request = build_xml_get_complex_type_ref_no_meta_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -127,8 +125,6 @@ class XmlOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_complex_type_ref_no_meta.metadata = {"url": "/xml/complex-type-ref-no-meta"}  # type: ignore
 
     @distributed_trace_async
     async def put_complex_type_ref_no_meta(self, model: Any, **kwargs: Any) -> None:
@@ -162,7 +158,6 @@ class XmlOperations:
         request = build_xml_put_complex_type_ref_no_meta_request(
             content_type=content_type,
             content=content,
-            template_url=self.put_complex_type_ref_no_meta.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -177,8 +172,6 @@ class XmlOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_complex_type_ref_no_meta.metadata = {"url": "/xml/complex-type-ref-no-meta"}  # type: ignore
 
     @distributed_trace_async
     async def get_complex_type_ref_with_meta(self, **kwargs: Any) -> Any:
@@ -203,9 +196,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_xml_get_complex_type_ref_with_meta_request(
-            template_url=self.get_complex_type_ref_with_meta.metadata["url"],
-        )
+        request = build_xml_get_complex_type_ref_with_meta_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -226,8 +217,6 @@ class XmlOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_complex_type_ref_with_meta.metadata = {"url": "/xml/complex-type-ref-with-meta"}  # type: ignore
 
     @distributed_trace_async
     async def put_complex_type_ref_with_meta(self, model: Any, **kwargs: Any) -> None:
@@ -261,7 +250,6 @@ class XmlOperations:
         request = build_xml_put_complex_type_ref_with_meta_request(
             content_type=content_type,
             content=content,
-            template_url=self.put_complex_type_ref_with_meta.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -276,8 +264,6 @@ class XmlOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_complex_type_ref_with_meta.metadata = {"url": "/xml/complex-type-ref-with-meta"}  # type: ignore
 
     @distributed_trace_async
     async def get_simple(self, **kwargs: Any) -> Any:
@@ -310,9 +296,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_xml_get_simple_request(
-            template_url=self.get_simple.metadata["url"],
-        )
+        request = build_xml_get_simple_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -333,8 +317,6 @@ class XmlOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_simple.metadata = {"url": "/xml/simple"}  # type: ignore
 
     @distributed_trace_async
     async def put_simple(self, slideshow: Any, **kwargs: Any) -> None:
@@ -376,7 +358,6 @@ class XmlOperations:
         request = build_xml_put_simple_request(
             content_type=content_type,
             content=content,
-            template_url=self.put_simple.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -391,8 +372,6 @@ class XmlOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_simple.metadata = {"url": "/xml/simple"}  # type: ignore
 
     @distributed_trace_async
     async def get_wrapped_lists(self, **kwargs: Any) -> Any:
@@ -419,9 +398,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_xml_get_wrapped_lists_request(
-            template_url=self.get_wrapped_lists.metadata["url"],
-        )
+        request = build_xml_get_wrapped_lists_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -442,8 +419,6 @@ class XmlOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_wrapped_lists.metadata = {"url": "/xml/wrapped-lists"}  # type: ignore
 
     @distributed_trace_async
     async def put_wrapped_lists(self, wrapped_lists: Any, **kwargs: Any) -> None:
@@ -479,7 +454,6 @@ class XmlOperations:
         request = build_xml_put_wrapped_lists_request(
             content_type=content_type,
             content=content,
-            template_url=self.put_wrapped_lists.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -495,8 +469,6 @@ class XmlOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_wrapped_lists.metadata = {"url": "/xml/wrapped-lists"}  # type: ignore
-
     @distributed_trace_async
     async def get_headers(self, **kwargs: Any) -> None:
         """Get strongly-typed response headers.
@@ -509,9 +481,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_xml_get_headers_request(
-            template_url=self.get_headers.metadata["url"],
-        )
+        request = build_xml_get_headers_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -528,8 +498,6 @@ class XmlOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    get_headers.metadata = {"url": "/xml/headers"}  # type: ignore
 
     @distributed_trace_async
     async def get_empty_list(self, **kwargs: Any) -> Any:
@@ -562,9 +530,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_xml_get_empty_list_request(
-            template_url=self.get_empty_list.metadata["url"],
-        )
+        request = build_xml_get_empty_list_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -585,8 +551,6 @@ class XmlOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_empty_list.metadata = {"url": "/xml/empty-list"}  # type: ignore
 
     @distributed_trace_async
     async def put_empty_list(self, slideshow: Any, **kwargs: Any) -> None:
@@ -628,7 +592,6 @@ class XmlOperations:
         request = build_xml_put_empty_list_request(
             content_type=content_type,
             content=content,
-            template_url=self.put_empty_list.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -643,8 +606,6 @@ class XmlOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_empty_list.metadata = {"url": "/xml/empty-list"}  # type: ignore
 
     @distributed_trace_async
     async def get_empty_wrapped_lists(self, **kwargs: Any) -> Any:
@@ -671,9 +632,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_xml_get_empty_wrapped_lists_request(
-            template_url=self.get_empty_wrapped_lists.metadata["url"],
-        )
+        request = build_xml_get_empty_wrapped_lists_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -694,8 +653,6 @@ class XmlOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_empty_wrapped_lists.metadata = {"url": "/xml/empty-wrapped-lists"}  # type: ignore
 
     @distributed_trace_async
     async def put_empty_wrapped_lists(self, apple_barrel: Any, **kwargs: Any) -> None:
@@ -731,7 +688,6 @@ class XmlOperations:
         request = build_xml_put_empty_wrapped_lists_request(
             content_type=content_type,
             content=content,
-            template_url=self.put_empty_wrapped_lists.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -746,8 +702,6 @@ class XmlOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_empty_wrapped_lists.metadata = {"url": "/xml/empty-wrapped-lists"}  # type: ignore
 
     @distributed_trace_async
     async def get_root_list(self, **kwargs: Any) -> List[Any]:
@@ -773,9 +727,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_xml_get_root_list_request(
-            template_url=self.get_root_list.metadata["url"],
-        )
+        request = build_xml_get_root_list_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -796,8 +748,6 @@ class XmlOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_root_list.metadata = {"url": "/xml/root-list"}  # type: ignore
 
     @distributed_trace_async
     async def put_root_list(self, bananas: List[Any], **kwargs: Any) -> None:
@@ -833,7 +783,6 @@ class XmlOperations:
         request = build_xml_put_root_list_request(
             content_type=content_type,
             content=content,
-            template_url=self.put_root_list.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -848,8 +797,6 @@ class XmlOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_root_list.metadata = {"url": "/xml/root-list"}  # type: ignore
 
     @distributed_trace_async
     async def get_root_list_single_item(self, **kwargs: Any) -> List[Any]:
@@ -875,9 +822,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_xml_get_root_list_single_item_request(
-            template_url=self.get_root_list_single_item.metadata["url"],
-        )
+        request = build_xml_get_root_list_single_item_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -898,8 +843,6 @@ class XmlOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_root_list_single_item.metadata = {"url": "/xml/root-list-single-item"}  # type: ignore
 
     @distributed_trace_async
     async def put_root_list_single_item(self, bananas: List[Any], **kwargs: Any) -> None:
@@ -935,7 +878,6 @@ class XmlOperations:
         request = build_xml_put_root_list_single_item_request(
             content_type=content_type,
             content=content,
-            template_url=self.put_root_list_single_item.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -950,8 +892,6 @@ class XmlOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_root_list_single_item.metadata = {"url": "/xml/root-list-single-item"}  # type: ignore
 
     @distributed_trace_async
     async def get_empty_root_list(self, **kwargs: Any) -> List[Any]:
@@ -977,9 +917,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_xml_get_empty_root_list_request(
-            template_url=self.get_empty_root_list.metadata["url"],
-        )
+        request = build_xml_get_empty_root_list_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1000,8 +938,6 @@ class XmlOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_empty_root_list.metadata = {"url": "/xml/empty-root-list"}  # type: ignore
 
     @distributed_trace_async
     async def put_empty_root_list(self, bananas: List[Any], **kwargs: Any) -> None:
@@ -1037,7 +973,6 @@ class XmlOperations:
         request = build_xml_put_empty_root_list_request(
             content_type=content_type,
             content=content,
-            template_url=self.put_empty_root_list.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1052,8 +987,6 @@ class XmlOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_empty_root_list.metadata = {"url": "/xml/empty-root-list"}  # type: ignore
 
     @distributed_trace_async
     async def get_empty_child_element(self, **kwargs: Any) -> Any:
@@ -1077,9 +1010,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_xml_get_empty_child_element_request(
-            template_url=self.get_empty_child_element.metadata["url"],
-        )
+        request = build_xml_get_empty_child_element_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1100,8 +1031,6 @@ class XmlOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_empty_child_element.metadata = {"url": "/xml/empty-child-element"}  # type: ignore
 
     @distributed_trace_async
     async def put_empty_child_element(self, banana: Any, **kwargs: Any) -> None:
@@ -1134,7 +1063,6 @@ class XmlOperations:
         request = build_xml_put_empty_child_element_request(
             content_type=content_type,
             content=content,
-            template_url=self.put_empty_child_element.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1149,8 +1077,6 @@ class XmlOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_empty_child_element.metadata = {"url": "/xml/empty-child-element"}  # type: ignore
 
     @distributed_trace_async
     async def list_containers(self, **kwargs: Any) -> Any:
@@ -1192,9 +1118,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_xml_list_containers_request(
-            template_url=self.list_containers.metadata["url"],
-        )
+        request = build_xml_list_containers_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1215,8 +1139,6 @@ class XmlOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    list_containers.metadata = {"url": "/xml/"}  # type: ignore
 
     @distributed_trace_async
     async def get_service_properties(self, **kwargs: Any) -> Any:
@@ -1279,9 +1201,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_xml_get_service_properties_request(
-            template_url=self.get_service_properties.metadata["url"],
-        )
+        request = build_xml_get_service_properties_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1302,8 +1222,6 @@ class XmlOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_service_properties.metadata = {"url": "/xml/"}  # type: ignore
 
     @distributed_trace_async
     async def put_service_properties(self, properties: Any, **kwargs: Any) -> None:
@@ -1375,7 +1293,6 @@ class XmlOperations:
         request = build_xml_put_service_properties_request(
             content_type=content_type,
             content=content,
-            template_url=self.put_service_properties.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1390,8 +1307,6 @@ class XmlOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_service_properties.metadata = {"url": "/xml/"}  # type: ignore
 
     @distributed_trace_async
     async def get_acls(self, **kwargs: Any) -> List[Any]:
@@ -1420,9 +1335,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_xml_get_acls_request(
-            template_url=self.get_acls.metadata["url"],
-        )
+        request = build_xml_get_acls_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1443,8 +1356,6 @@ class XmlOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_acls.metadata = {"url": "/xml/mycontainer"}  # type: ignore
 
     @distributed_trace_async
     async def put_acls(self, properties: List[Any], **kwargs: Any) -> None:
@@ -1483,7 +1394,6 @@ class XmlOperations:
         request = build_xml_put_acls_request(
             content_type=content_type,
             content=content,
-            template_url=self.put_acls.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1498,8 +1408,6 @@ class XmlOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_acls.metadata = {"url": "/xml/mycontainer"}  # type: ignore
 
     @distributed_trace_async
     async def list_blobs(self, **kwargs: Any) -> Any:
@@ -1574,9 +1482,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_xml_list_blobs_request(
-            template_url=self.list_blobs.metadata["url"],
-        )
+        request = build_xml_list_blobs_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1597,8 +1503,6 @@ class XmlOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    list_blobs.metadata = {"url": "/xml/mycontainer"}  # type: ignore
 
     @distributed_trace_async
     async def json_input(self, properties: Any, **kwargs: Any) -> None:
@@ -1630,7 +1534,6 @@ class XmlOperations:
         request = build_xml_json_input_request(
             content_type=content_type,
             json=json,
-            template_url=self.json_input.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1645,8 +1548,6 @@ class XmlOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    json_input.metadata = {"url": "/xml/jsoninput"}  # type: ignore
 
     @distributed_trace_async
     async def json_output(self, **kwargs: Any) -> Any:
@@ -1668,9 +1569,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_xml_json_output_request(
-            template_url=self.json_output.metadata["url"],
-        )
+        request = build_xml_json_output_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1691,8 +1590,6 @@ class XmlOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    json_output.metadata = {"url": "/xml/jsonoutput"}  # type: ignore
 
     @distributed_trace_async
     async def get_xms_text(self, **kwargs: Any) -> Any:
@@ -1716,9 +1613,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_xml_get_xms_text_request(
-            template_url=self.get_xms_text.metadata["url"],
-        )
+        request = build_xml_get_xms_text_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1739,8 +1634,6 @@ class XmlOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_xms_text.metadata = {"url": "/xml/x-ms-text"}  # type: ignore
 
     @distributed_trace_async
     async def get_bytes(self, **kwargs: Any) -> Any:
@@ -1762,9 +1655,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_xml_get_bytes_request(
-            template_url=self.get_bytes.metadata["url"],
-        )
+        request = build_xml_get_bytes_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1785,8 +1676,6 @@ class XmlOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_bytes.metadata = {"url": "/xml/bytes"}  # type: ignore
 
     @distributed_trace_async
     async def put_binary(self, slideshow: Any, **kwargs: Any) -> None:
@@ -1817,7 +1706,6 @@ class XmlOperations:
         request = build_xml_put_binary_request(
             content_type=content_type,
             content=content,
-            template_url=self.put_binary.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1832,8 +1720,6 @@ class XmlOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_binary.metadata = {"url": "/xml/bytes"}  # type: ignore
 
     @distributed_trace_async
     async def get_uri(self, **kwargs: Any) -> Any:
@@ -1855,9 +1741,7 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_xml_get_uri_request(
-            template_url=self.get_uri.metadata["url"],
-        )
+        request = build_xml_get_uri_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -1878,8 +1762,6 @@ class XmlOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_uri.metadata = {"url": "/xml/url"}  # type: ignore
 
     @distributed_trace_async
     async def put_uri(self, model: Any, **kwargs: Any) -> None:
@@ -1910,7 +1792,6 @@ class XmlOperations:
         request = build_xml_put_uri_request(
             content_type=content_type,
             content=content,
-            template_url=self.put_uri.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1925,5 +1806,3 @@ class XmlOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_uri.metadata = {"url": "/xml/url"}  # type: ignore

@@ -48,9 +48,7 @@ class AnythingClientOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_object_request(
-            template_url=self.get_object.metadata["url"],
-        )
+        request = build_get_object_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -71,8 +69,6 @@ class AnythingClientOperationsMixin:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_object.metadata = {"url": "/anything/object"}  # type: ignore
 
     @distributed_trace_async
     async def put_object(self, input: Any, **kwargs: Any) -> None:
@@ -96,7 +92,6 @@ class AnythingClientOperationsMixin:
         request = build_put_object_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_object.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -112,8 +107,6 @@ class AnythingClientOperationsMixin:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_object.metadata = {"url": "/anything/object"}  # type: ignore
-
     @distributed_trace_async
     async def get_string(self, **kwargs: Any) -> Any:
         """Basic get that returns an string as anything. Returns string 'foo'.
@@ -126,9 +119,7 @@ class AnythingClientOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_string_request(
-            template_url=self.get_string.metadata["url"],
-        )
+        request = build_get_string_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -149,8 +140,6 @@ class AnythingClientOperationsMixin:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_string.metadata = {"url": "/anything/string"}  # type: ignore
 
     @distributed_trace_async
     async def put_string(self, input: Any, **kwargs: Any) -> None:
@@ -174,7 +163,6 @@ class AnythingClientOperationsMixin:
         request = build_put_string_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_string.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -190,8 +178,6 @@ class AnythingClientOperationsMixin:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_string.metadata = {"url": "/anything/string"}  # type: ignore
-
     @distributed_trace_async
     async def get_array(self, **kwargs: Any) -> Any:
         """Basic get that returns an array as anything. Returns string ['foo', 'bar'].
@@ -204,9 +190,7 @@ class AnythingClientOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_array_request(
-            template_url=self.get_array.metadata["url"],
-        )
+        request = build_get_array_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -227,8 +211,6 @@ class AnythingClientOperationsMixin:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_array.metadata = {"url": "/anything/array"}  # type: ignore
 
     @distributed_trace_async
     async def put_array(self, input: Any, **kwargs: Any) -> None:
@@ -252,7 +234,6 @@ class AnythingClientOperationsMixin:
         request = build_put_array_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_array.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -267,5 +248,3 @@ class AnythingClientOperationsMixin:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_array.metadata = {"url": "/anything/array"}  # type: ignore

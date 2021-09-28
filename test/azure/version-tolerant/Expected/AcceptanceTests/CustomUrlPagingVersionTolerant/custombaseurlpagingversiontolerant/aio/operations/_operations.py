@@ -87,9 +87,7 @@ class PagingOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_pages_partial_url_request(
-                    template_url=self.get_pages_partial_url.metadata["url"],
-                )
+                request = build_paging_get_pages_partial_url_request()
                 request = _convert_request(request)
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
@@ -99,15 +97,14 @@ class PagingOperations:
 
             else:
 
-                request = build_paging_get_pages_partial_url_request(
-                    template_url=next_link,
-                )
+                request = build_paging_get_pages_partial_url_request()
                 request = _convert_request(request)
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
                     "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
                 }
                 request.url = self._client.format_url(request.url, **path_format_arguments)
+                request.url = next_link
 
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
@@ -136,8 +133,6 @@ class PagingOperations:
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
-
-    get_pages_partial_url.metadata = {"url": "/paging/customurl/partialnextlink"}  # type: ignore
 
     @distributed_trace
     def get_pages_partial_url_operation(self, account_name: str, **kwargs: Any) -> AsyncIterable[Any]:
@@ -172,9 +167,7 @@ class PagingOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_pages_partial_url_operation_request(
-                    template_url=self.get_pages_partial_url_operation.metadata["url"],
-                )
+                request = build_paging_get_pages_partial_url_operation_request()
                 request = _convert_request(request)
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
@@ -186,7 +179,6 @@ class PagingOperations:
 
                 request = build_paging_get_pages_partial_url_operation_next_request(
                     next_link=next_link,
-                    template_url="/paging/customurl/{nextLink}",
                 )
                 request = _convert_request(request)
                 path_format_arguments = {
@@ -194,6 +186,7 @@ class PagingOperations:
                     "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
                 }
                 request.url = self._client.format_url(request.url, **path_format_arguments)
+                request.url = next_link
 
             return request
 
@@ -217,5 +210,3 @@ class PagingOperations:
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
-
-    get_pages_partial_url_operation.metadata = {"url": "/paging/customurl/partialnextlinkop"}  # type: ignore

@@ -40,7 +40,7 @@ def build_get_report_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/report/azure')
+    url = '/report/azure'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -92,7 +92,6 @@ class AutoRestReportServiceForAzureOperationsMixin(object):
 
         request = build_get_report_request(
             qualifier=qualifier,
-            template_url=self.get_report.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -112,5 +111,3 @@ class AutoRestReportServiceForAzureOperationsMixin(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_report.metadata = {"url": "/report/azure"}  # type: ignore

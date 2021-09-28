@@ -83,7 +83,6 @@ class ParameterGroupingOperations:
             custom_header=custom_header,
             query=query,
             json=json,
-            template_url=self.post_required.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -98,8 +97,6 @@ class ParameterGroupingOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_required.metadata = {"url": "/parameterGrouping/postRequired/{path}"}  # type: ignore
 
     @distributed_trace_async
     async def post_optional(
@@ -122,7 +119,6 @@ class ParameterGroupingOperations:
         request = build_parameter_grouping_post_optional_request(
             custom_header=custom_header,
             query=query,
-            template_url=self.post_optional.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -137,8 +133,6 @@ class ParameterGroupingOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_optional.metadata = {"url": "/parameterGrouping/postOptional"}  # type: ignore
 
     @distributed_trace_async
     async def post_reserved_words(
@@ -161,7 +155,6 @@ class ParameterGroupingOperations:
         request = build_parameter_grouping_post_reserved_words_request(
             from_parameter=from_parameter,
             accept_parameter=accept_parameter,
-            template_url=self.post_reserved_words.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -176,8 +169,6 @@ class ParameterGroupingOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_reserved_words.metadata = {"url": "/parameterGrouping/postReservedWords"}  # type: ignore
 
     @distributed_trace_async
     async def post_multi_param_groups(
@@ -212,7 +203,6 @@ class ParameterGroupingOperations:
             query_one=query_one,
             header_two=header_two,
             query_two=query_two,
-            template_url=self.post_multi_param_groups.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -227,8 +217,6 @@ class ParameterGroupingOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_multi_param_groups.metadata = {"url": "/parameterGrouping/postMultipleParameterGroups"}  # type: ignore
 
     @distributed_trace_async
     async def post_shared_parameter_group_object(
@@ -251,7 +239,6 @@ class ParameterGroupingOperations:
         request = build_parameter_grouping_post_shared_parameter_group_object_request(
             header_one=header_one,
             query_one=query_one,
-            template_url=self.post_shared_parameter_group_object.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -266,5 +253,3 @@ class ParameterGroupingOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_shared_parameter_group_object.metadata = {"url": "/parameterGrouping/sharedParameterGroupObject"}  # type: ignore

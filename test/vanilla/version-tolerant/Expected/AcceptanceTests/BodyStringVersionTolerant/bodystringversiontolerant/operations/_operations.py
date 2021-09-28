@@ -38,7 +38,7 @@ def build_string_get_null_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/null')
+    url = '/string/null'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -60,7 +60,7 @@ def build_string_put_null_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/null')
+    url = '/string/null'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -82,7 +82,7 @@ def build_string_get_empty_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/empty')
+    url = '/string/empty'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -105,7 +105,7 @@ def build_string_put_empty_request(
     json = ""
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/empty')
+    url = '/string/empty'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -128,7 +128,7 @@ def build_string_get_mbcs_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/mbcs')
+    url = '/string/mbcs'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -151,7 +151,7 @@ def build_string_put_mbcs_request(
     json = "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/mbcs')
+    url = '/string/mbcs'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -174,7 +174,7 @@ def build_string_get_whitespace_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/whitespace')
+    url = '/string/whitespace'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -197,7 +197,7 @@ def build_string_put_whitespace_request(
     json = "    Now is the time for all good men to come to the aid of their country    "
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/whitespace')
+    url = '/string/whitespace'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -220,7 +220,7 @@ def build_string_get_not_provided_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/notProvided')
+    url = '/string/notProvided'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -240,7 +240,7 @@ def build_string_get_base64_encoded_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/base64Encoding')
+    url = '/string/base64Encoding'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -260,7 +260,7 @@ def build_string_get_base64_url_encoded_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/base64UrlEncoding')
+    url = '/string/base64UrlEncoding'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -282,7 +282,7 @@ def build_string_put_base64_url_encoded_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/base64UrlEncoding')
+    url = '/string/base64UrlEncoding'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -304,7 +304,7 @@ def build_string_get_null_base64_url_encoded_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/nullBase64UrlEncoding')
+    url = '/string/nullBase64UrlEncoding'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -324,7 +324,7 @@ def build_enum_get_not_expandable_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/enum/notExpandable')
+    url = '/string/enum/notExpandable'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -346,7 +346,7 @@ def build_enum_put_not_expandable_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/enum/notExpandable')
+    url = '/string/enum/notExpandable'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -368,7 +368,7 @@ def build_enum_get_referenced_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/enum/Referenced')
+    url = '/string/enum/Referenced'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -390,7 +390,7 @@ def build_enum_put_referenced_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/enum/Referenced')
+    url = '/string/enum/Referenced'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -412,7 +412,7 @@ def build_enum_get_referenced_constant_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/enum/ReferencedConstant')
+    url = '/string/enum/ReferencedConstant'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -434,7 +434,7 @@ def build_enum_put_referenced_constant_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/enum/ReferencedConstant')
+    url = '/string/enum/ReferencedConstant'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -483,9 +483,7 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_string_get_null_request(
-            template_url=self.get_null.metadata["url"],
-        )
+        request = build_string_get_null_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -504,8 +502,6 @@ class StringOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_null.metadata = {"url": "/string/null"}  # type: ignore
 
     @distributed_trace
     def put_null(
@@ -536,7 +532,6 @@ class StringOperations(object):
         request = build_string_put_null_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_null.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -549,8 +544,6 @@ class StringOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_null.metadata = {"url": "/string/null"}  # type: ignore
 
     @distributed_trace
     def get_empty(
@@ -567,9 +560,7 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_string_get_empty_request(
-            template_url=self.get_empty.metadata["url"],
-        )
+        request = build_string_get_empty_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -588,8 +579,6 @@ class StringOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_empty.metadata = {"url": "/string/empty"}  # type: ignore
 
     @distributed_trace
     def put_empty(
@@ -610,7 +599,6 @@ class StringOperations(object):
 
         request = build_string_put_empty_request(
             content_type=content_type,
-            template_url=self.put_empty.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -623,8 +611,6 @@ class StringOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_empty.metadata = {"url": "/string/empty"}  # type: ignore
 
     @distributed_trace
     def get_mbcs(
@@ -641,9 +627,7 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_string_get_mbcs_request(
-            template_url=self.get_mbcs.metadata["url"],
-        )
+        request = build_string_get_mbcs_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -662,8 +646,6 @@ class StringOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_mbcs.metadata = {"url": "/string/mbcs"}  # type: ignore
 
     @distributed_trace
     def put_mbcs(
@@ -684,7 +666,6 @@ class StringOperations(object):
 
         request = build_string_put_mbcs_request(
             content_type=content_type,
-            template_url=self.put_mbcs.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -697,8 +678,6 @@ class StringOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_mbcs.metadata = {"url": "/string/mbcs"}  # type: ignore
 
     @distributed_trace
     def get_whitespace(
@@ -717,9 +696,7 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_string_get_whitespace_request(
-            template_url=self.get_whitespace.metadata["url"],
-        )
+        request = build_string_get_whitespace_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -738,8 +715,6 @@ class StringOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_whitespace.metadata = {"url": "/string/whitespace"}  # type: ignore
 
     @distributed_trace
     def put_whitespace(
@@ -762,7 +737,6 @@ class StringOperations(object):
 
         request = build_string_put_whitespace_request(
             content_type=content_type,
-            template_url=self.put_whitespace.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -775,8 +749,6 @@ class StringOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_whitespace.metadata = {"url": "/string/whitespace"}  # type: ignore
 
     @distributed_trace
     def get_not_provided(
@@ -793,9 +765,7 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_string_get_not_provided_request(
-            template_url=self.get_not_provided.metadata["url"],
-        )
+        request = build_string_get_not_provided_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -814,8 +784,6 @@ class StringOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_not_provided.metadata = {"url": "/string/notProvided"}  # type: ignore
 
     @distributed_trace
     def get_base64_encoded(
@@ -832,9 +800,7 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_string_get_base64_encoded_request(
-            template_url=self.get_base64_encoded.metadata["url"],
-        )
+        request = build_string_get_base64_encoded_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -853,8 +819,6 @@ class StringOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_base64_encoded.metadata = {"url": "/string/base64Encoding"}  # type: ignore
 
     @distributed_trace
     def get_base64_url_encoded(
@@ -871,9 +835,7 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_string_get_base64_url_encoded_request(
-            template_url=self.get_base64_url_encoded.metadata["url"],
-        )
+        request = build_string_get_base64_url_encoded_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -892,8 +854,6 @@ class StringOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_base64_url_encoded.metadata = {"url": "/string/base64UrlEncoding"}  # type: ignore
 
     @distributed_trace
     def put_base64_url_encoded(
@@ -921,7 +881,6 @@ class StringOperations(object):
         request = build_string_put_base64_url_encoded_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_base64_url_encoded.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -934,8 +893,6 @@ class StringOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_base64_url_encoded.metadata = {"url": "/string/base64UrlEncoding"}  # type: ignore
 
     @distributed_trace
     def get_null_base64_url_encoded(
@@ -952,9 +909,7 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_string_get_null_base64_url_encoded_request(
-            template_url=self.get_null_base64_url_encoded.metadata["url"],
-        )
+        request = build_string_get_null_base64_url_encoded_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -973,8 +928,6 @@ class StringOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_null_base64_url_encoded.metadata = {"url": "/string/nullBase64UrlEncoding"}  # type: ignore
 
 
 class EnumOperations(object):
@@ -1016,9 +969,7 @@ class EnumOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_enum_get_not_expandable_request(
-            template_url=self.get_not_expandable.metadata["url"],
-        )
+        request = build_enum_get_not_expandable_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -1037,8 +988,6 @@ class EnumOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_not_expandable.metadata = {"url": "/string/enum/notExpandable"}  # type: ignore
 
     @distributed_trace
     def put_not_expandable(
@@ -1067,7 +1016,6 @@ class EnumOperations(object):
         request = build_enum_put_not_expandable_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_not_expandable.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1080,8 +1028,6 @@ class EnumOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_not_expandable.metadata = {"url": "/string/enum/notExpandable"}  # type: ignore
 
     @distributed_trace
     def get_referenced(
@@ -1104,9 +1050,7 @@ class EnumOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_enum_get_referenced_request(
-            template_url=self.get_referenced.metadata["url"],
-        )
+        request = build_enum_get_referenced_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -1125,8 +1069,6 @@ class EnumOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_referenced.metadata = {"url": "/string/enum/Referenced"}  # type: ignore
 
     @distributed_trace
     def put_referenced(
@@ -1155,7 +1097,6 @@ class EnumOperations(object):
         request = build_enum_put_referenced_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_referenced.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1168,8 +1109,6 @@ class EnumOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_referenced.metadata = {"url": "/string/enum/Referenced"}  # type: ignore
 
     @distributed_trace
     def get_referenced_constant(
@@ -1195,9 +1134,7 @@ class EnumOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_enum_get_referenced_constant_request(
-            template_url=self.get_referenced_constant.metadata["url"],
-        )
+        request = build_enum_get_referenced_constant_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -1216,8 +1153,6 @@ class EnumOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_referenced_constant.metadata = {"url": "/string/enum/ReferencedConstant"}  # type: ignore
 
     @distributed_trace
     def put_referenced_constant(
@@ -1254,7 +1189,6 @@ class EnumOperations(object):
         request = build_enum_put_referenced_constant_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_referenced_constant.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1267,5 +1201,3 @@ class EnumOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_referenced_constant.metadata = {"url": "/string/enum/ReferencedConstant"}  # type: ignore

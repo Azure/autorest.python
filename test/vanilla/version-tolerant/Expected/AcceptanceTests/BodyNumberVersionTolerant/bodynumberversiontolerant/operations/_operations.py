@@ -38,7 +38,7 @@ def build_number_get_null_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/null')
+    url = '/number/null'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -58,7 +58,7 @@ def build_number_get_invalid_float_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/invalidfloat')
+    url = '/number/invalidfloat'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -78,7 +78,7 @@ def build_number_get_invalid_double_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/invaliddouble')
+    url = '/number/invaliddouble'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -98,7 +98,7 @@ def build_number_get_invalid_decimal_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/invaliddecimal')
+    url = '/number/invaliddecimal'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -120,7 +120,7 @@ def build_number_put_big_float_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/big/float/3.402823e+20')
+    url = '/number/big/float/3.402823e+20'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -142,7 +142,7 @@ def build_number_get_big_float_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/big/float/3.402823e+20')
+    url = '/number/big/float/3.402823e+20'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -164,7 +164,7 @@ def build_number_put_big_double_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/big/double/2.5976931e+101')
+    url = '/number/big/double/2.5976931e+101'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -186,7 +186,7 @@ def build_number_get_big_double_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/big/double/2.5976931e+101')
+    url = '/number/big/double/2.5976931e+101'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -209,7 +209,7 @@ def build_number_put_big_double_positive_decimal_request(
     json = 99999999.99
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/big/double/99999999.99')
+    url = '/number/big/double/99999999.99'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -232,7 +232,7 @@ def build_number_get_big_double_positive_decimal_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/big/double/99999999.99')
+    url = '/number/big/double/99999999.99'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -255,7 +255,7 @@ def build_number_put_big_double_negative_decimal_request(
     json = -99999999.99
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/big/double/-99999999.99')
+    url = '/number/big/double/-99999999.99'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -278,7 +278,7 @@ def build_number_get_big_double_negative_decimal_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/big/double/-99999999.99')
+    url = '/number/big/double/-99999999.99'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -300,7 +300,7 @@ def build_number_put_big_decimal_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/big/decimal/2.5976931e+101')
+    url = '/number/big/decimal/2.5976931e+101'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -322,7 +322,7 @@ def build_number_get_big_decimal_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/big/decimal/2.5976931e+101')
+    url = '/number/big/decimal/2.5976931e+101'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -345,7 +345,7 @@ def build_number_put_big_decimal_positive_decimal_request(
     json = 99999999.99
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/big/decimal/99999999.99')
+    url = '/number/big/decimal/99999999.99'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -368,7 +368,7 @@ def build_number_get_big_decimal_positive_decimal_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/big/decimal/99999999.99')
+    url = '/number/big/decimal/99999999.99'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -391,7 +391,7 @@ def build_number_put_big_decimal_negative_decimal_request(
     json = -99999999.99
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/big/decimal/-99999999.99')
+    url = '/number/big/decimal/-99999999.99'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -414,7 +414,7 @@ def build_number_get_big_decimal_negative_decimal_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/big/decimal/-99999999.99')
+    url = '/number/big/decimal/-99999999.99'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -436,7 +436,7 @@ def build_number_put_small_float_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/small/float/3.402823e-20')
+    url = '/number/small/float/3.402823e-20'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -458,7 +458,7 @@ def build_number_get_small_float_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/small/float/3.402823e-20')
+    url = '/number/small/float/3.402823e-20'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -480,7 +480,7 @@ def build_number_put_small_double_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/small/double/2.5976931e-101')
+    url = '/number/small/double/2.5976931e-101'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -502,7 +502,7 @@ def build_number_get_small_double_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/small/double/2.5976931e-101')
+    url = '/number/small/double/2.5976931e-101'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -524,7 +524,7 @@ def build_number_put_small_decimal_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/small/decimal/2.5976931e-101')
+    url = '/number/small/decimal/2.5976931e-101'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -546,7 +546,7 @@ def build_number_get_small_decimal_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/small/decimal/2.5976931e-101')
+    url = '/number/small/decimal/2.5976931e-101'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -593,9 +593,7 @@ class NumberOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_number_get_null_request(
-            template_url=self.get_null.metadata["url"],
-        )
+        request = build_number_get_null_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -614,8 +612,6 @@ class NumberOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_null.metadata = {"url": "/number/null"}  # type: ignore
 
     @distributed_trace
     def get_invalid_float(
@@ -632,9 +628,7 @@ class NumberOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_number_get_invalid_float_request(
-            template_url=self.get_invalid_float.metadata["url"],
-        )
+        request = build_number_get_invalid_float_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -653,8 +647,6 @@ class NumberOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_invalid_float.metadata = {"url": "/number/invalidfloat"}  # type: ignore
 
     @distributed_trace
     def get_invalid_double(
@@ -671,9 +663,7 @@ class NumberOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_number_get_invalid_double_request(
-            template_url=self.get_invalid_double.metadata["url"],
-        )
+        request = build_number_get_invalid_double_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -692,8 +682,6 @@ class NumberOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_invalid_double.metadata = {"url": "/number/invaliddouble"}  # type: ignore
 
     @distributed_trace
     def get_invalid_decimal(
@@ -710,9 +698,7 @@ class NumberOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_number_get_invalid_decimal_request(
-            template_url=self.get_invalid_decimal.metadata["url"],
-        )
+        request = build_number_get_invalid_decimal_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -731,8 +717,6 @@ class NumberOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_invalid_decimal.metadata = {"url": "/number/invaliddecimal"}  # type: ignore
 
     @distributed_trace
     def put_big_float(
@@ -760,7 +744,6 @@ class NumberOperations(object):
         request = build_number_put_big_float_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_big_float.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -773,8 +756,6 @@ class NumberOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_big_float.metadata = {"url": "/number/big/float/3.402823e+20"}  # type: ignore
 
     @distributed_trace
     def get_big_float(
@@ -791,9 +772,7 @@ class NumberOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_number_get_big_float_request(
-            template_url=self.get_big_float.metadata["url"],
-        )
+        request = build_number_get_big_float_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -812,8 +791,6 @@ class NumberOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_big_float.metadata = {"url": "/number/big/float/3.402823e+20"}  # type: ignore
 
     @distributed_trace
     def put_big_double(
@@ -841,7 +818,6 @@ class NumberOperations(object):
         request = build_number_put_big_double_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_big_double.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -854,8 +830,6 @@ class NumberOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_big_double.metadata = {"url": "/number/big/double/2.5976931e+101"}  # type: ignore
 
     @distributed_trace
     def get_big_double(
@@ -872,9 +846,7 @@ class NumberOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_number_get_big_double_request(
-            template_url=self.get_big_double.metadata["url"],
-        )
+        request = build_number_get_big_double_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -893,8 +865,6 @@ class NumberOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_big_double.metadata = {"url": "/number/big/double/2.5976931e+101"}  # type: ignore
 
     @distributed_trace
     def put_big_double_positive_decimal(
@@ -915,7 +885,6 @@ class NumberOperations(object):
 
         request = build_number_put_big_double_positive_decimal_request(
             content_type=content_type,
-            template_url=self.put_big_double_positive_decimal.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -928,8 +897,6 @@ class NumberOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_big_double_positive_decimal.metadata = {"url": "/number/big/double/99999999.99"}  # type: ignore
 
     @distributed_trace
     def get_big_double_positive_decimal(
@@ -946,9 +913,7 @@ class NumberOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_number_get_big_double_positive_decimal_request(
-            template_url=self.get_big_double_positive_decimal.metadata["url"],
-        )
+        request = build_number_get_big_double_positive_decimal_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -967,8 +932,6 @@ class NumberOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_big_double_positive_decimal.metadata = {"url": "/number/big/double/99999999.99"}  # type: ignore
 
     @distributed_trace
     def put_big_double_negative_decimal(
@@ -989,7 +952,6 @@ class NumberOperations(object):
 
         request = build_number_put_big_double_negative_decimal_request(
             content_type=content_type,
-            template_url=self.put_big_double_negative_decimal.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1002,8 +964,6 @@ class NumberOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_big_double_negative_decimal.metadata = {"url": "/number/big/double/-99999999.99"}  # type: ignore
 
     @distributed_trace
     def get_big_double_negative_decimal(
@@ -1020,9 +980,7 @@ class NumberOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_number_get_big_double_negative_decimal_request(
-            template_url=self.get_big_double_negative_decimal.metadata["url"],
-        )
+        request = build_number_get_big_double_negative_decimal_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -1041,8 +999,6 @@ class NumberOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_big_double_negative_decimal.metadata = {"url": "/number/big/double/-99999999.99"}  # type: ignore
 
     @distributed_trace
     def put_big_decimal(
@@ -1070,7 +1026,6 @@ class NumberOperations(object):
         request = build_number_put_big_decimal_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_big_decimal.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1083,8 +1038,6 @@ class NumberOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_big_decimal.metadata = {"url": "/number/big/decimal/2.5976931e+101"}  # type: ignore
 
     @distributed_trace
     def get_big_decimal(
@@ -1101,9 +1054,7 @@ class NumberOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_number_get_big_decimal_request(
-            template_url=self.get_big_decimal.metadata["url"],
-        )
+        request = build_number_get_big_decimal_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -1122,8 +1073,6 @@ class NumberOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_big_decimal.metadata = {"url": "/number/big/decimal/2.5976931e+101"}  # type: ignore
 
     @distributed_trace
     def put_big_decimal_positive_decimal(
@@ -1144,7 +1093,6 @@ class NumberOperations(object):
 
         request = build_number_put_big_decimal_positive_decimal_request(
             content_type=content_type,
-            template_url=self.put_big_decimal_positive_decimal.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1157,8 +1105,6 @@ class NumberOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_big_decimal_positive_decimal.metadata = {"url": "/number/big/decimal/99999999.99"}  # type: ignore
 
     @distributed_trace
     def get_big_decimal_positive_decimal(
@@ -1175,9 +1121,7 @@ class NumberOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_number_get_big_decimal_positive_decimal_request(
-            template_url=self.get_big_decimal_positive_decimal.metadata["url"],
-        )
+        request = build_number_get_big_decimal_positive_decimal_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -1196,8 +1140,6 @@ class NumberOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_big_decimal_positive_decimal.metadata = {"url": "/number/big/decimal/99999999.99"}  # type: ignore
 
     @distributed_trace
     def put_big_decimal_negative_decimal(
@@ -1218,7 +1160,6 @@ class NumberOperations(object):
 
         request = build_number_put_big_decimal_negative_decimal_request(
             content_type=content_type,
-            template_url=self.put_big_decimal_negative_decimal.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1231,8 +1172,6 @@ class NumberOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_big_decimal_negative_decimal.metadata = {"url": "/number/big/decimal/-99999999.99"}  # type: ignore
 
     @distributed_trace
     def get_big_decimal_negative_decimal(
@@ -1249,9 +1188,7 @@ class NumberOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_number_get_big_decimal_negative_decimal_request(
-            template_url=self.get_big_decimal_negative_decimal.metadata["url"],
-        )
+        request = build_number_get_big_decimal_negative_decimal_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -1270,8 +1207,6 @@ class NumberOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_big_decimal_negative_decimal.metadata = {"url": "/number/big/decimal/-99999999.99"}  # type: ignore
 
     @distributed_trace
     def put_small_float(
@@ -1299,7 +1234,6 @@ class NumberOperations(object):
         request = build_number_put_small_float_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_small_float.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1312,8 +1246,6 @@ class NumberOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_small_float.metadata = {"url": "/number/small/float/3.402823e-20"}  # type: ignore
 
     @distributed_trace
     def get_small_float(
@@ -1330,9 +1262,7 @@ class NumberOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_number_get_small_float_request(
-            template_url=self.get_small_float.metadata["url"],
-        )
+        request = build_number_get_small_float_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -1351,8 +1281,6 @@ class NumberOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_small_float.metadata = {"url": "/number/small/float/3.402823e-20"}  # type: ignore
 
     @distributed_trace
     def put_small_double(
@@ -1380,7 +1308,6 @@ class NumberOperations(object):
         request = build_number_put_small_double_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_small_double.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1393,8 +1320,6 @@ class NumberOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_small_double.metadata = {"url": "/number/small/double/2.5976931e-101"}  # type: ignore
 
     @distributed_trace
     def get_small_double(
@@ -1411,9 +1336,7 @@ class NumberOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_number_get_small_double_request(
-            template_url=self.get_small_double.metadata["url"],
-        )
+        request = build_number_get_small_double_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -1432,8 +1355,6 @@ class NumberOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_small_double.metadata = {"url": "/number/small/double/2.5976931e-101"}  # type: ignore
 
     @distributed_trace
     def put_small_decimal(
@@ -1461,7 +1382,6 @@ class NumberOperations(object):
         request = build_number_put_small_decimal_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_small_decimal.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1474,8 +1394,6 @@ class NumberOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_small_decimal.metadata = {"url": "/number/small/decimal/2.5976931e-101"}  # type: ignore
 
     @distributed_trace
     def get_small_decimal(
@@ -1492,9 +1410,7 @@ class NumberOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_number_get_small_decimal_request(
-            template_url=self.get_small_decimal.metadata["url"],
-        )
+        request = build_number_get_small_decimal_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -1513,5 +1429,3 @@ class NumberOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_small_decimal.metadata = {"url": "/number/small/decimal/2.5976931e-101"}  # type: ignore

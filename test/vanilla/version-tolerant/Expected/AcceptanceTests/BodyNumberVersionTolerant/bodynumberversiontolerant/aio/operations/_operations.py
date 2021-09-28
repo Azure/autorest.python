@@ -82,9 +82,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_number_get_null_request(
-            template_url=self.get_null.metadata["url"],
-        )
+        request = build_number_get_null_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -105,8 +103,6 @@ class NumberOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_null.metadata = {"url": "/number/null"}  # type: ignore
 
     @distributed_trace_async
     async def get_invalid_float(self, **kwargs: Any) -> float:
@@ -120,9 +116,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_number_get_invalid_float_request(
-            template_url=self.get_invalid_float.metadata["url"],
-        )
+        request = build_number_get_invalid_float_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -143,8 +137,6 @@ class NumberOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_invalid_float.metadata = {"url": "/number/invalidfloat"}  # type: ignore
 
     @distributed_trace_async
     async def get_invalid_double(self, **kwargs: Any) -> float:
@@ -158,9 +150,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_number_get_invalid_double_request(
-            template_url=self.get_invalid_double.metadata["url"],
-        )
+        request = build_number_get_invalid_double_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -181,8 +171,6 @@ class NumberOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_invalid_double.metadata = {"url": "/number/invaliddouble"}  # type: ignore
 
     @distributed_trace_async
     async def get_invalid_decimal(self, **kwargs: Any) -> float:
@@ -196,9 +184,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_number_get_invalid_decimal_request(
-            template_url=self.get_invalid_decimal.metadata["url"],
-        )
+        request = build_number_get_invalid_decimal_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -219,8 +205,6 @@ class NumberOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_invalid_decimal.metadata = {"url": "/number/invaliddecimal"}  # type: ignore
 
     @distributed_trace_async
     async def put_big_float(self, number_body: float, **kwargs: Any) -> None:
@@ -243,7 +227,6 @@ class NumberOperations:
         request = build_number_put_big_float_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_big_float.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -259,8 +242,6 @@ class NumberOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_big_float.metadata = {"url": "/number/big/float/3.402823e+20"}  # type: ignore
-
     @distributed_trace_async
     async def get_big_float(self, **kwargs: Any) -> float:
         """Get big float value 3.402823e+20.
@@ -273,9 +254,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_number_get_big_float_request(
-            template_url=self.get_big_float.metadata["url"],
-        )
+        request = build_number_get_big_float_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -296,8 +275,6 @@ class NumberOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_big_float.metadata = {"url": "/number/big/float/3.402823e+20"}  # type: ignore
 
     @distributed_trace_async
     async def put_big_double(self, number_body: float, **kwargs: Any) -> None:
@@ -320,7 +297,6 @@ class NumberOperations:
         request = build_number_put_big_double_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_big_double.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -336,8 +312,6 @@ class NumberOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_big_double.metadata = {"url": "/number/big/double/2.5976931e+101"}  # type: ignore
-
     @distributed_trace_async
     async def get_big_double(self, **kwargs: Any) -> float:
         """Get big double value 2.5976931e+101.
@@ -350,9 +324,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_number_get_big_double_request(
-            template_url=self.get_big_double.metadata["url"],
-        )
+        request = build_number_get_big_double_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -373,8 +345,6 @@ class NumberOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_big_double.metadata = {"url": "/number/big/double/2.5976931e+101"}  # type: ignore
 
     @distributed_trace_async
     async def put_big_double_positive_decimal(self, **kwargs: Any) -> None:
@@ -392,7 +362,6 @@ class NumberOperations:
 
         request = build_number_put_big_double_positive_decimal_request(
             content_type=content_type,
-            template_url=self.put_big_double_positive_decimal.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -408,8 +377,6 @@ class NumberOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_big_double_positive_decimal.metadata = {"url": "/number/big/double/99999999.99"}  # type: ignore
-
     @distributed_trace_async
     async def get_big_double_positive_decimal(self, **kwargs: Any) -> float:
         """Get big double value 99999999.99.
@@ -422,9 +389,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_number_get_big_double_positive_decimal_request(
-            template_url=self.get_big_double_positive_decimal.metadata["url"],
-        )
+        request = build_number_get_big_double_positive_decimal_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -445,8 +410,6 @@ class NumberOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_big_double_positive_decimal.metadata = {"url": "/number/big/double/99999999.99"}  # type: ignore
 
     @distributed_trace_async
     async def put_big_double_negative_decimal(self, **kwargs: Any) -> None:
@@ -464,7 +427,6 @@ class NumberOperations:
 
         request = build_number_put_big_double_negative_decimal_request(
             content_type=content_type,
-            template_url=self.put_big_double_negative_decimal.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -480,8 +442,6 @@ class NumberOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_big_double_negative_decimal.metadata = {"url": "/number/big/double/-99999999.99"}  # type: ignore
-
     @distributed_trace_async
     async def get_big_double_negative_decimal(self, **kwargs: Any) -> float:
         """Get big double value -99999999.99.
@@ -494,9 +454,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_number_get_big_double_negative_decimal_request(
-            template_url=self.get_big_double_negative_decimal.metadata["url"],
-        )
+        request = build_number_get_big_double_negative_decimal_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -517,8 +475,6 @@ class NumberOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_big_double_negative_decimal.metadata = {"url": "/number/big/double/-99999999.99"}  # type: ignore
 
     @distributed_trace_async
     async def put_big_decimal(self, number_body: float, **kwargs: Any) -> None:
@@ -541,7 +497,6 @@ class NumberOperations:
         request = build_number_put_big_decimal_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_big_decimal.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -557,8 +512,6 @@ class NumberOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_big_decimal.metadata = {"url": "/number/big/decimal/2.5976931e+101"}  # type: ignore
-
     @distributed_trace_async
     async def get_big_decimal(self, **kwargs: Any) -> float:
         """Get big decimal value 2.5976931e+101.
@@ -571,9 +524,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_number_get_big_decimal_request(
-            template_url=self.get_big_decimal.metadata["url"],
-        )
+        request = build_number_get_big_decimal_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -594,8 +545,6 @@ class NumberOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_big_decimal.metadata = {"url": "/number/big/decimal/2.5976931e+101"}  # type: ignore
 
     @distributed_trace_async
     async def put_big_decimal_positive_decimal(self, **kwargs: Any) -> None:
@@ -613,7 +562,6 @@ class NumberOperations:
 
         request = build_number_put_big_decimal_positive_decimal_request(
             content_type=content_type,
-            template_url=self.put_big_decimal_positive_decimal.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -629,8 +577,6 @@ class NumberOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_big_decimal_positive_decimal.metadata = {"url": "/number/big/decimal/99999999.99"}  # type: ignore
-
     @distributed_trace_async
     async def get_big_decimal_positive_decimal(self, **kwargs: Any) -> float:
         """Get big decimal value 99999999.99.
@@ -643,9 +589,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_number_get_big_decimal_positive_decimal_request(
-            template_url=self.get_big_decimal_positive_decimal.metadata["url"],
-        )
+        request = build_number_get_big_decimal_positive_decimal_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -666,8 +610,6 @@ class NumberOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_big_decimal_positive_decimal.metadata = {"url": "/number/big/decimal/99999999.99"}  # type: ignore
 
     @distributed_trace_async
     async def put_big_decimal_negative_decimal(self, **kwargs: Any) -> None:
@@ -685,7 +627,6 @@ class NumberOperations:
 
         request = build_number_put_big_decimal_negative_decimal_request(
             content_type=content_type,
-            template_url=self.put_big_decimal_negative_decimal.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -701,8 +642,6 @@ class NumberOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_big_decimal_negative_decimal.metadata = {"url": "/number/big/decimal/-99999999.99"}  # type: ignore
-
     @distributed_trace_async
     async def get_big_decimal_negative_decimal(self, **kwargs: Any) -> float:
         """Get big decimal value -99999999.99.
@@ -715,9 +654,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_number_get_big_decimal_negative_decimal_request(
-            template_url=self.get_big_decimal_negative_decimal.metadata["url"],
-        )
+        request = build_number_get_big_decimal_negative_decimal_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -738,8 +675,6 @@ class NumberOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_big_decimal_negative_decimal.metadata = {"url": "/number/big/decimal/-99999999.99"}  # type: ignore
 
     @distributed_trace_async
     async def put_small_float(self, number_body: float, **kwargs: Any) -> None:
@@ -762,7 +697,6 @@ class NumberOperations:
         request = build_number_put_small_float_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_small_float.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -778,8 +712,6 @@ class NumberOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_small_float.metadata = {"url": "/number/small/float/3.402823e-20"}  # type: ignore
-
     @distributed_trace_async
     async def get_small_float(self, **kwargs: Any) -> float:
         """Get big double value 3.402823e-20.
@@ -792,9 +724,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_number_get_small_float_request(
-            template_url=self.get_small_float.metadata["url"],
-        )
+        request = build_number_get_small_float_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -815,8 +745,6 @@ class NumberOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_small_float.metadata = {"url": "/number/small/float/3.402823e-20"}  # type: ignore
 
     @distributed_trace_async
     async def put_small_double(self, number_body: float, **kwargs: Any) -> None:
@@ -839,7 +767,6 @@ class NumberOperations:
         request = build_number_put_small_double_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_small_double.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -855,8 +782,6 @@ class NumberOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_small_double.metadata = {"url": "/number/small/double/2.5976931e-101"}  # type: ignore
-
     @distributed_trace_async
     async def get_small_double(self, **kwargs: Any) -> float:
         """Get big double value 2.5976931e-101.
@@ -869,9 +794,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_number_get_small_double_request(
-            template_url=self.get_small_double.metadata["url"],
-        )
+        request = build_number_get_small_double_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -892,8 +815,6 @@ class NumberOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_small_double.metadata = {"url": "/number/small/double/2.5976931e-101"}  # type: ignore
 
     @distributed_trace_async
     async def put_small_decimal(self, number_body: float, **kwargs: Any) -> None:
@@ -916,7 +837,6 @@ class NumberOperations:
         request = build_number_put_small_decimal_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_small_decimal.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -932,8 +852,6 @@ class NumberOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_small_decimal.metadata = {"url": "/number/small/decimal/2.5976931e-101"}  # type: ignore
-
     @distributed_trace_async
     async def get_small_decimal(self, **kwargs: Any) -> float:
         """Get small decimal value 2.5976931e-101.
@@ -946,9 +864,7 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_number_get_small_decimal_request(
-            template_url=self.get_small_decimal.metadata["url"],
-        )
+        request = build_number_get_small_decimal_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -969,5 +885,3 @@ class NumberOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_small_decimal.metadata = {"url": "/number/small/decimal/2.5976931e-101"}  # type: ignore

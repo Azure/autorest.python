@@ -71,7 +71,6 @@ class PathsOperations:
             key_name=key_name,
             subscription_id=self._config.subscription_id,
             key_version=key_version,
-            template_url=self.get_empty.metadata["url"],
         )
         path_format_arguments = {
             "vault": self._serialize.url("vault", vault, "str", skip_quote=True),
@@ -93,5 +92,3 @@ class PathsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_empty.metadata = {"url": "/customuri/{subscriptionId}/{keyName}"}  # type: ignore

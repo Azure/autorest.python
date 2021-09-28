@@ -44,7 +44,7 @@ def build_paths_get_empty_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/customuri/{subscriptionId}/{keyName}')
+    url = '/customuri/{subscriptionId}/{keyName}'
     path_format_arguments = {
         "keyName": _SERIALIZER.url("key_name", key_name, 'str'),
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, 'str'),
@@ -121,7 +121,6 @@ class PathsOperations(object):
             key_name=key_name,
             subscription_id=self._config.subscription_id,
             key_version=key_version,
-            template_url=self.get_empty.metadata["url"],
         )
         path_format_arguments = {
             "vault": self._serialize.url("vault", vault, "str", skip_quote=True),
@@ -141,5 +140,3 @@ class PathsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_empty.metadata = {"url": "/customuri/{subscriptionId}/{keyName}"}  # type: ignore

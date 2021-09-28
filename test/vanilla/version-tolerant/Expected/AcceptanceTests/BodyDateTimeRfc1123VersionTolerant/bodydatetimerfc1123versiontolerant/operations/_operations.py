@@ -39,7 +39,7 @@ def build_datetimerfc1123_get_null_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/datetimerfc1123/null')
+    url = '/datetimerfc1123/null'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -59,7 +59,7 @@ def build_datetimerfc1123_get_invalid_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/datetimerfc1123/invalid')
+    url = '/datetimerfc1123/invalid'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -79,7 +79,7 @@ def build_datetimerfc1123_get_overflow_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/datetimerfc1123/overflow')
+    url = '/datetimerfc1123/overflow'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -99,7 +99,7 @@ def build_datetimerfc1123_get_underflow_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/datetimerfc1123/underflow')
+    url = '/datetimerfc1123/underflow'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -121,7 +121,7 @@ def build_datetimerfc1123_put_utc_max_date_time_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/datetimerfc1123/max')
+    url = '/datetimerfc1123/max'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -143,7 +143,7 @@ def build_datetimerfc1123_get_utc_lowercase_max_date_time_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/datetimerfc1123/max/lowercase')
+    url = '/datetimerfc1123/max/lowercase'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -163,7 +163,7 @@ def build_datetimerfc1123_get_utc_uppercase_max_date_time_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/datetimerfc1123/max/uppercase')
+    url = '/datetimerfc1123/max/uppercase'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -185,7 +185,7 @@ def build_datetimerfc1123_put_utc_min_date_time_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/datetimerfc1123/min')
+    url = '/datetimerfc1123/min'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -207,7 +207,7 @@ def build_datetimerfc1123_get_utc_min_date_time_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/datetimerfc1123/min')
+    url = '/datetimerfc1123/min'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -254,9 +254,7 @@ class Datetimerfc1123Operations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetimerfc1123_get_null_request(
-            template_url=self.get_null.metadata["url"],
-        )
+        request = build_datetimerfc1123_get_null_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -275,8 +273,6 @@ class Datetimerfc1123Operations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_null.metadata = {"url": "/datetimerfc1123/null"}  # type: ignore
 
     @distributed_trace
     def get_invalid(
@@ -293,9 +289,7 @@ class Datetimerfc1123Operations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetimerfc1123_get_invalid_request(
-            template_url=self.get_invalid.metadata["url"],
-        )
+        request = build_datetimerfc1123_get_invalid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -314,8 +308,6 @@ class Datetimerfc1123Operations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_invalid.metadata = {"url": "/datetimerfc1123/invalid"}  # type: ignore
 
     @distributed_trace
     def get_overflow(
@@ -332,9 +324,7 @@ class Datetimerfc1123Operations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetimerfc1123_get_overflow_request(
-            template_url=self.get_overflow.metadata["url"],
-        )
+        request = build_datetimerfc1123_get_overflow_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -353,8 +343,6 @@ class Datetimerfc1123Operations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_overflow.metadata = {"url": "/datetimerfc1123/overflow"}  # type: ignore
 
     @distributed_trace
     def get_underflow(
@@ -371,9 +359,7 @@ class Datetimerfc1123Operations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetimerfc1123_get_underflow_request(
-            template_url=self.get_underflow.metadata["url"],
-        )
+        request = build_datetimerfc1123_get_underflow_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -392,8 +378,6 @@ class Datetimerfc1123Operations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_underflow.metadata = {"url": "/datetimerfc1123/underflow"}  # type: ignore
 
     @distributed_trace
     def put_utc_max_date_time(
@@ -421,7 +405,6 @@ class Datetimerfc1123Operations(object):
         request = build_datetimerfc1123_put_utc_max_date_time_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_utc_max_date_time.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -434,8 +417,6 @@ class Datetimerfc1123Operations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_utc_max_date_time.metadata = {"url": "/datetimerfc1123/max"}  # type: ignore
 
     @distributed_trace
     def get_utc_lowercase_max_date_time(
@@ -452,9 +433,7 @@ class Datetimerfc1123Operations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetimerfc1123_get_utc_lowercase_max_date_time_request(
-            template_url=self.get_utc_lowercase_max_date_time.metadata["url"],
-        )
+        request = build_datetimerfc1123_get_utc_lowercase_max_date_time_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -473,8 +452,6 @@ class Datetimerfc1123Operations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_utc_lowercase_max_date_time.metadata = {"url": "/datetimerfc1123/max/lowercase"}  # type: ignore
 
     @distributed_trace
     def get_utc_uppercase_max_date_time(
@@ -491,9 +468,7 @@ class Datetimerfc1123Operations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetimerfc1123_get_utc_uppercase_max_date_time_request(
-            template_url=self.get_utc_uppercase_max_date_time.metadata["url"],
-        )
+        request = build_datetimerfc1123_get_utc_uppercase_max_date_time_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -512,8 +487,6 @@ class Datetimerfc1123Operations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_utc_uppercase_max_date_time.metadata = {"url": "/datetimerfc1123/max/uppercase"}  # type: ignore
 
     @distributed_trace
     def put_utc_min_date_time(
@@ -541,7 +514,6 @@ class Datetimerfc1123Operations(object):
         request = build_datetimerfc1123_put_utc_min_date_time_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_utc_min_date_time.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -554,8 +526,6 @@ class Datetimerfc1123Operations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_utc_min_date_time.metadata = {"url": "/datetimerfc1123/min"}  # type: ignore
 
     @distributed_trace
     def get_utc_min_date_time(
@@ -572,9 +542,7 @@ class Datetimerfc1123Operations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetimerfc1123_get_utc_min_date_time_request(
-            template_url=self.get_utc_min_date_time.metadata["url"],
-        )
+        request = build_datetimerfc1123_get_utc_min_date_time_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -593,5 +561,3 @@ class Datetimerfc1123Operations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_utc_min_date_time.metadata = {"url": "/datetimerfc1123/min"}  # type: ignore

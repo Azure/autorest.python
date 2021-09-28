@@ -40,7 +40,7 @@ def build_analyze_body_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/mediatypes/analyze')
+    url = '/mediatypes/analyze'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -63,7 +63,7 @@ def build_analyze_body_no_accept_header_request(
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/mediatypes/analyzeNoAccept')
+    url = '/mediatypes/analyzeNoAccept'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -86,7 +86,7 @@ def build_content_type_with_encoding_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/mediatypes/contentTypeWithEncoding')
+    url = '/mediatypes/contentTypeWithEncoding'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -152,7 +152,6 @@ class MediaTypesClientOperationsMixin(object):
             content_type=content_type,
             json=json,
             content=content,
-            template_url=self.analyze_body.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -172,8 +171,6 @@ class MediaTypesClientOperationsMixin(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    analyze_body.metadata = {"url": "/mediatypes/analyze"}  # type: ignore
 
     @distributed_trace
     def analyze_body_no_accept_header(
@@ -225,7 +222,6 @@ class MediaTypesClientOperationsMixin(object):
             content_type=content_type,
             json=json,
             content=content,
-            template_url=self.analyze_body_no_accept_header.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -238,8 +234,6 @@ class MediaTypesClientOperationsMixin(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    analyze_body_no_accept_header.metadata = {"url": "/mediatypes/analyzeNoAccept"}  # type: ignore
 
     @distributed_trace
     def content_type_with_encoding(
@@ -270,7 +264,6 @@ class MediaTypesClientOperationsMixin(object):
         request = build_content_type_with_encoding_request(
             content_type=content_type,
             content=content,
-            template_url=self.content_type_with_encoding.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -290,5 +283,3 @@ class MediaTypesClientOperationsMixin(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    content_type_with_encoding.metadata = {"url": "/mediatypes/contentTypeWithEncoding"}  # type: ignore

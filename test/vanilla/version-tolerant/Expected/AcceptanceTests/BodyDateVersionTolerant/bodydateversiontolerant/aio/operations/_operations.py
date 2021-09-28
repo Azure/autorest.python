@@ -67,9 +67,7 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_date_get_null_request(
-            template_url=self.get_null.metadata["url"],
-        )
+        request = build_date_get_null_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -90,8 +88,6 @@ class DateOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_null.metadata = {"url": "/date/null"}  # type: ignore
 
     @distributed_trace_async
     async def get_invalid_date(self, **kwargs: Any) -> datetime.date:
@@ -105,9 +101,7 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_date_get_invalid_date_request(
-            template_url=self.get_invalid_date.metadata["url"],
-        )
+        request = build_date_get_invalid_date_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -128,8 +122,6 @@ class DateOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_invalid_date.metadata = {"url": "/date/invaliddate"}  # type: ignore
 
     @distributed_trace_async
     async def get_overflow_date(self, **kwargs: Any) -> datetime.date:
@@ -143,9 +135,7 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_date_get_overflow_date_request(
-            template_url=self.get_overflow_date.metadata["url"],
-        )
+        request = build_date_get_overflow_date_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -166,8 +156,6 @@ class DateOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_overflow_date.metadata = {"url": "/date/overflowdate"}  # type: ignore
 
     @distributed_trace_async
     async def get_underflow_date(self, **kwargs: Any) -> datetime.date:
@@ -181,9 +169,7 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_date_get_underflow_date_request(
-            template_url=self.get_underflow_date.metadata["url"],
-        )
+        request = build_date_get_underflow_date_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -204,8 +190,6 @@ class DateOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_underflow_date.metadata = {"url": "/date/underflowdate"}  # type: ignore
 
     @distributed_trace_async
     async def put_max_date(self, date_body: datetime.date, **kwargs: Any) -> None:
@@ -228,7 +212,6 @@ class DateOperations:
         request = build_date_put_max_date_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_max_date.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -244,8 +227,6 @@ class DateOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_max_date.metadata = {"url": "/date/max"}  # type: ignore
-
     @distributed_trace_async
     async def get_max_date(self, **kwargs: Any) -> datetime.date:
         """Get max date value 9999-12-31.
@@ -258,9 +239,7 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_date_get_max_date_request(
-            template_url=self.get_max_date.metadata["url"],
-        )
+        request = build_date_get_max_date_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -281,8 +260,6 @@ class DateOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_max_date.metadata = {"url": "/date/max"}  # type: ignore
 
     @distributed_trace_async
     async def put_min_date(self, date_body: datetime.date, **kwargs: Any) -> None:
@@ -305,7 +282,6 @@ class DateOperations:
         request = build_date_put_min_date_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_min_date.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -321,8 +297,6 @@ class DateOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_min_date.metadata = {"url": "/date/min"}  # type: ignore
-
     @distributed_trace_async
     async def get_min_date(self, **kwargs: Any) -> datetime.date:
         """Get min date value 0000-01-01.
@@ -335,9 +309,7 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_date_get_min_date_request(
-            template_url=self.get_min_date.metadata["url"],
-        )
+        request = build_date_get_min_date_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -358,5 +330,3 @@ class DateOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_min_date.metadata = {"url": "/date/min"}  # type: ignore

@@ -83,7 +83,6 @@ class ContantsOperations:
 
         request = build_contants_put_no_model_as_string_no_required_two_value_no_default_request(
             input=input,
-            template_url=self.put_no_model_as_string_no_required_two_value_no_default.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -98,8 +97,6 @@ class ContantsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_no_model_as_string_no_required_two_value_no_default.metadata = {"url": "/constants/putNoModelAsStringNoRequiredTwoValueNoDefault"}  # type: ignore
 
     @distributed_trace_async
     async def put_no_model_as_string_no_required_two_value_default(
@@ -121,7 +118,6 @@ class ContantsOperations:
 
         request = build_contants_put_no_model_as_string_no_required_two_value_default_request(
             input=input,
-            template_url=self.put_no_model_as_string_no_required_two_value_default.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -136,8 +132,6 @@ class ContantsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_no_model_as_string_no_required_two_value_default.metadata = {"url": "/constants/putNoModelAsStringNoRequiredTwoValueDefault"}  # type: ignore
 
     @distributed_trace_async
     async def put_no_model_as_string_no_required_one_value_no_default(
@@ -159,7 +153,6 @@ class ContantsOperations:
 
         request = build_contants_put_no_model_as_string_no_required_one_value_no_default_request(
             input=input,
-            template_url=self.put_no_model_as_string_no_required_one_value_no_default.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -174,8 +167,6 @@ class ContantsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_no_model_as_string_no_required_one_value_no_default.metadata = {"url": "/constants/putNoModelAsStringNoRequiredOneValueNoDefault"}  # type: ignore
 
     @distributed_trace_async
     async def put_no_model_as_string_no_required_one_value_default(
@@ -197,7 +188,6 @@ class ContantsOperations:
 
         request = build_contants_put_no_model_as_string_no_required_one_value_default_request(
             input=input,
-            template_url=self.put_no_model_as_string_no_required_one_value_default.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -212,8 +202,6 @@ class ContantsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_no_model_as_string_no_required_one_value_default.metadata = {"url": "/constants/putNoModelAsStringNoRequiredOneValueDefault"}  # type: ignore
 
     @distributed_trace_async
     async def put_no_model_as_string_required_two_value_no_default(self, *, input: str, **kwargs: Any) -> None:
@@ -233,7 +221,6 @@ class ContantsOperations:
 
         request = build_contants_put_no_model_as_string_required_two_value_no_default_request(
             input=input,
-            template_url=self.put_no_model_as_string_required_two_value_no_default.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -248,8 +235,6 @@ class ContantsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_no_model_as_string_required_two_value_no_default.metadata = {"url": "/constants/putNoModelAsStringRequiredTwoValueNoDefault"}  # type: ignore
 
     @distributed_trace_async
     async def put_no_model_as_string_required_two_value_default(self, *, input: str = "value1", **kwargs: Any) -> None:
@@ -269,7 +254,6 @@ class ContantsOperations:
 
         request = build_contants_put_no_model_as_string_required_two_value_default_request(
             input=input,
-            template_url=self.put_no_model_as_string_required_two_value_default.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -284,8 +268,6 @@ class ContantsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_no_model_as_string_required_two_value_default.metadata = {"url": "/constants/putNoModelAsStringRequiredTwoValueDefault"}  # type: ignore
 
     @distributed_trace_async
     async def put_no_model_as_string_required_one_value_no_default(self, **kwargs: Any) -> None:
@@ -301,9 +283,7 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_contants_put_no_model_as_string_required_one_value_no_default_request(
-            template_url=self.put_no_model_as_string_required_one_value_no_default.metadata["url"],
-        )
+        request = build_contants_put_no_model_as_string_required_one_value_no_default_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -317,8 +297,6 @@ class ContantsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_no_model_as_string_required_one_value_no_default.metadata = {"url": "/constants/putNoModelAsStringRequiredOneValueNoDefault"}  # type: ignore
 
     @distributed_trace_async
     async def put_no_model_as_string_required_one_value_default(self, **kwargs: Any) -> None:
@@ -334,9 +312,7 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_contants_put_no_model_as_string_required_one_value_default_request(
-            template_url=self.put_no_model_as_string_required_one_value_default.metadata["url"],
-        )
+        request = build_contants_put_no_model_as_string_required_one_value_default_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -350,8 +326,6 @@ class ContantsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_no_model_as_string_required_one_value_default.metadata = {"url": "/constants/putNoModelAsStringRequiredOneValueDefault"}  # type: ignore
 
     @distributed_trace_async
     async def put_model_as_string_no_required_two_value_no_default(
@@ -373,7 +347,6 @@ class ContantsOperations:
 
         request = build_contants_put_model_as_string_no_required_two_value_no_default_request(
             input=input,
-            template_url=self.put_model_as_string_no_required_two_value_no_default.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -388,8 +361,6 @@ class ContantsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_model_as_string_no_required_two_value_no_default.metadata = {"url": "/constants/putModelAsStringNoRequiredTwoValueNoDefault"}  # type: ignore
 
     @distributed_trace_async
     async def put_model_as_string_no_required_two_value_default(
@@ -411,7 +382,6 @@ class ContantsOperations:
 
         request = build_contants_put_model_as_string_no_required_two_value_default_request(
             input=input,
-            template_url=self.put_model_as_string_no_required_two_value_default.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -426,8 +396,6 @@ class ContantsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_model_as_string_no_required_two_value_default.metadata = {"url": "/constants/putModelAsStringNoRequiredTwoValueDefault"}  # type: ignore
 
     @distributed_trace_async
     async def put_model_as_string_no_required_one_value_no_default(
@@ -449,7 +417,6 @@ class ContantsOperations:
 
         request = build_contants_put_model_as_string_no_required_one_value_no_default_request(
             input=input,
-            template_url=self.put_model_as_string_no_required_one_value_no_default.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -464,8 +431,6 @@ class ContantsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_model_as_string_no_required_one_value_no_default.metadata = {"url": "/constants/putModelAsStringNoRequiredOneValueNoDefault"}  # type: ignore
 
     @distributed_trace_async
     async def put_model_as_string_no_required_one_value_default(
@@ -487,7 +452,6 @@ class ContantsOperations:
 
         request = build_contants_put_model_as_string_no_required_one_value_default_request(
             input=input,
-            template_url=self.put_model_as_string_no_required_one_value_default.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -502,8 +466,6 @@ class ContantsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_model_as_string_no_required_one_value_default.metadata = {"url": "/constants/putModelAsStringNoRequiredOneValueDefault"}  # type: ignore
 
     @distributed_trace_async
     async def put_model_as_string_required_two_value_no_default(self, *, input: str, **kwargs: Any) -> None:
@@ -523,7 +485,6 @@ class ContantsOperations:
 
         request = build_contants_put_model_as_string_required_two_value_no_default_request(
             input=input,
-            template_url=self.put_model_as_string_required_two_value_no_default.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -538,8 +499,6 @@ class ContantsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_model_as_string_required_two_value_no_default.metadata = {"url": "/constants/putModelAsStringRequiredTwoValueNoDefault"}  # type: ignore
 
     @distributed_trace_async
     async def put_model_as_string_required_two_value_default(self, *, input: str = "value1", **kwargs: Any) -> None:
@@ -559,7 +518,6 @@ class ContantsOperations:
 
         request = build_contants_put_model_as_string_required_two_value_default_request(
             input=input,
-            template_url=self.put_model_as_string_required_two_value_default.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -574,8 +532,6 @@ class ContantsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_model_as_string_required_two_value_default.metadata = {"url": "/constants/putModelAsStringRequiredTwoValueDefault"}  # type: ignore
 
     @distributed_trace_async
     async def put_model_as_string_required_one_value_no_default(self, *, input: str, **kwargs: Any) -> None:
@@ -595,7 +551,6 @@ class ContantsOperations:
 
         request = build_contants_put_model_as_string_required_one_value_no_default_request(
             input=input,
-            template_url=self.put_model_as_string_required_one_value_no_default.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -610,8 +565,6 @@ class ContantsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_model_as_string_required_one_value_no_default.metadata = {"url": "/constants/putModelAsStringRequiredOneValueNoDefault"}  # type: ignore
 
     @distributed_trace_async
     async def put_model_as_string_required_one_value_default(self, *, input: str = "value1", **kwargs: Any) -> None:
@@ -631,7 +584,6 @@ class ContantsOperations:
 
         request = build_contants_put_model_as_string_required_one_value_default_request(
             input=input,
-            template_url=self.put_model_as_string_required_one_value_default.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -647,8 +599,6 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_model_as_string_required_one_value_default.metadata = {"url": "/constants/putModelAsStringRequiredOneValueDefault"}  # type: ignore
-
     @distributed_trace_async
     async def put_client_constants(self, **kwargs: Any) -> None:
         """Pass constants from the client to this function. Will pass in constant path, query, and header
@@ -662,9 +612,7 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_contants_put_client_constants_request(
-            template_url=self.put_client_constants.metadata["url"],
-        )
+        request = build_contants_put_client_constants_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -678,5 +626,3 @@ class ContantsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_client_constants.metadata = {"url": "/constants/clientConstants/{path-constant}"}  # type: ignore

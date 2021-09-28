@@ -76,7 +76,6 @@ class AutoRestValidationTestOperationsMixin:
             subscription_id=self._config.subscription_id,
             resource_group_name=resource_group_name,
             id=id,
-            template_url=self.validation_of_method_parameters.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -98,8 +97,6 @@ class AutoRestValidationTestOperationsMixin:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    validation_of_method_parameters.metadata = {"url": "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"}  # type: ignore
 
     @distributed_trace_async
     async def validation_of_body(self, resource_group_name: str, id: int, body: Any = None, **kwargs: Any) -> Any:
@@ -175,7 +172,6 @@ class AutoRestValidationTestOperationsMixin:
             id=id,
             content_type=content_type,
             json=json,
-            template_url=self.validation_of_body.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -198,8 +194,6 @@ class AutoRestValidationTestOperationsMixin:
 
         return deserialized
 
-    validation_of_body.metadata = {"url": "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"}  # type: ignore
-
     @distributed_trace_async
     async def get_with_constant_in_path(self, **kwargs: Any) -> None:
         """get_with_constant_in_path.
@@ -212,9 +206,7 @@ class AutoRestValidationTestOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_with_constant_in_path_request(
-            template_url=self.get_with_constant_in_path.metadata["url"],
-        )
+        request = build_get_with_constant_in_path_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -228,8 +220,6 @@ class AutoRestValidationTestOperationsMixin:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_with_constant_in_path.metadata = {"url": "/validation/constantsInPath/{constantParam}/value"}  # type: ignore
 
     @distributed_trace_async
     async def post_with_constant_in_body(self, body: Any = None, **kwargs: Any) -> Any:
@@ -298,7 +288,6 @@ class AutoRestValidationTestOperationsMixin:
         request = build_post_with_constant_in_body_request(
             content_type=content_type,
             json=json,
-            template_url=self.post_with_constant_in_body.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -320,5 +309,3 @@ class AutoRestValidationTestOperationsMixin:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    post_with_constant_in_body.metadata = {"url": "/validation/constantsInPath/{constantParam}/value"}  # type: ignore

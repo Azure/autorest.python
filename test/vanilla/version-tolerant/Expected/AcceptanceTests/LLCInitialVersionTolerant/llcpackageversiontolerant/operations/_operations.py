@@ -42,7 +42,7 @@ def build_params_get_required_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/llc/parameters')
+    url = '/llc/parameters'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -110,7 +110,6 @@ class ParamsOperations(object):
             parameter1=parameter1,
             parameter2=parameter2,
             parameter3=parameter3,
-            template_url=self.get_required.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -130,5 +129,3 @@ class ParamsOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_required.metadata = {"url": "/llc/parameters"}  # type: ignore
