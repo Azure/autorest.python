@@ -84,9 +84,12 @@ class OperationGroup(BaseModel):
                 ]
             else:
                 operation_group_builders = self.code_model.rest.request_builders
+            suffix = ""
+            if self.code_model.options["combine_operation_files"] and self.code_model.options["add_python_3_operation_files"]:   
+                suffix = "_py3"
             for request_builder in operation_group_builders:
                 file_import.add_from_import(
-                    f"...operations.{self.filename}",
+                    f"...operations.{self.filename + suffix}",
                     request_builder.name,
                     import_type=ImportType.LOCAL
                 )
@@ -97,8 +100,6 @@ class OperationGroup(BaseModel):
     @property
     def filename(self) -> str:
         if self.code_model.options["combine_operation_files"]:
-            if self.code_model.options["add_python_3_operation_files"]:
-                return "_operations_py3"
             return "_operations"
 
         basename = self.name

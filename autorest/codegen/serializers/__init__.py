@@ -222,13 +222,13 @@ class JinjaSerializer:
                     operation_groups=[operation_group],
                     filename=operation_group.filename
                 )
-        else:
+        elif code_model.operation_groups:
             self._serialize_and_write_operations_folder_process(
                 code_model=code_model,
                 env=env,
                 namespace_path=namespace_path,
                 operation_groups=code_model.operation_groups,
-                filename="_operations"
+                filename=code_model.operation_groups[0].filename
             )
 
 
