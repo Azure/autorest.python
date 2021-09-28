@@ -105,15 +105,6 @@ def get_long_running_output_return_none():
         return None
     return _callback
 
-def _convert_request(new_request):
-    return HttpRequest(
-        new_request.method,
-        new_request.url,
-        headers=new_request.headers,
-        files=new_request._files,
-        data=new_request._data
-    )
-
 @pytest.fixture
 def get_poller(get_long_running_output, client):
 
