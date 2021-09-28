@@ -109,6 +109,7 @@ class TestXmsErrorResponse(object):
     async def test_failsafe_deserialize(self, client):
         from xmserrorresponse.operations._pet_operations import build_do_something_request
         request = build_do_something_request(what_action="jump")
+        request.url = client._client.format_url(request.url)
         pipeline_response = await client._client._pipeline.run(request)
         class MyPetSadError(PetSadError):
             def read(self):
