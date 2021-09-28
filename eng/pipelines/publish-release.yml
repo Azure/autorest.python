@@ -58,7 +58,7 @@ steps:
       tox -e ci
     displayName: 'Execute low level "azure" Tests - Python $(PythonVersion)'
     
-   - script: |
+  - script: |
       cd $(TestFolder)/vanilla/legacy
       tox -e ci
     displayName: 'Execute legacy "vanilla" Tests - Python $(PythonVersion)'
