@@ -1,7 +1,7 @@
 aiohttp; python_full_version >= '3.5.2'
 azure-common
 msrest==0.6.21
-git+https://github.com/iscai-msft/azure-sdk-for-python@add_response_backcompat#subdirectory=sdk/core/azure-core&egg=azure-core
+git+https://github.com/Azure/azure-sdk-for-python#subdirectory=sdk/core/azure-core
 azure-mgmt-core==1.3.0
 pytest
 pytest-cov
