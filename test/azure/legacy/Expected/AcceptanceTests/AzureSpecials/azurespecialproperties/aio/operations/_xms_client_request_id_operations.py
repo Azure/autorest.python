@@ -23,6 +23,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models
+from ..._vendor import _convert_request
 from ...operations._xms_client_request_id_operations import build_get_request, build_param_get_request
 
 T = TypeVar("T")
@@ -67,7 +68,8 @@ class XMsClientRequestIdOperations:
 
         request = build_get_request(
             template_url=self.get.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -104,7 +106,8 @@ class XMsClientRequestIdOperations:
         request = build_param_get_request(
             x_ms_client_request_id=x_ms_client_request_id,
             template_url=self.param_get.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

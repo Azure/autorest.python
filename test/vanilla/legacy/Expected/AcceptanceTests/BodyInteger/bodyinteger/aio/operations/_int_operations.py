@@ -23,6 +23,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._vendor import _convert_request
 from ...operations._int_operations import (
     build_get_invalid_request,
     build_get_invalid_unix_time_request,
@@ -81,7 +82,8 @@ class IntOperations:
 
         request = build_get_null_request(
             template_url=self.get_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -118,7 +120,8 @@ class IntOperations:
 
         request = build_get_invalid_request(
             template_url=self.get_invalid.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -155,7 +158,8 @@ class IntOperations:
 
         request = build_get_overflow_int32_request(
             template_url=self.get_overflow_int32.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -192,7 +196,8 @@ class IntOperations:
 
         request = build_get_underflow_int32_request(
             template_url=self.get_underflow_int32.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -229,7 +234,8 @@ class IntOperations:
 
         request = build_get_overflow_int64_request(
             template_url=self.get_overflow_int64.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -266,7 +272,8 @@ class IntOperations:
 
         request = build_get_underflow_int64_request(
             template_url=self.get_underflow_int64.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -311,7 +318,8 @@ class IntOperations:
             content_type=content_type,
             json=json,
             template_url=self.put_max32.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -352,7 +360,8 @@ class IntOperations:
             content_type=content_type,
             json=json,
             template_url=self.put_max64.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -393,7 +402,8 @@ class IntOperations:
             content_type=content_type,
             json=json,
             template_url=self.put_min32.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -434,7 +444,8 @@ class IntOperations:
             content_type=content_type,
             json=json,
             template_url=self.put_min64.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -467,7 +478,8 @@ class IntOperations:
 
         request = build_get_unix_time_request(
             template_url=self.get_unix_time.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -512,7 +524,8 @@ class IntOperations:
             content_type=content_type,
             json=json,
             template_url=self.put_unix_time_date.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -545,7 +558,8 @@ class IntOperations:
 
         request = build_get_invalid_unix_time_request(
             template_url=self.get_invalid_unix_time.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -582,7 +596,8 @@ class IntOperations:
 
         request = build_get_null_unix_time_request(
             template_url=self.get_null_unix_time.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

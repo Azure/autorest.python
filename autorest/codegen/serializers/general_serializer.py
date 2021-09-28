@@ -64,6 +64,27 @@ class GeneralSerializer:
             ),
         )
 
+    def serialize_vendor_file(self) -> str:
+        template = self.env.get_template("vendor.py.jinja2")
+
+        # configure imports
+        file_import = FileImport()
+        if self.code_model.need_request_converter:
+            file_import.add_from_import(
+                "azure.core.pipeline.transport",
+                "HttpRequest",
+                ImportType.AZURECORE,
+            )
+
+        return template.render(
+            code_model=self.code_model,
+            imports=FileImportSerializer(
+                file_import,
+                is_python_3_file=self.async_mode,
+            )
+        )
+
+
     def serialize_config_file(self) -> str:
 
         package_name = self.code_model.options['package_name']

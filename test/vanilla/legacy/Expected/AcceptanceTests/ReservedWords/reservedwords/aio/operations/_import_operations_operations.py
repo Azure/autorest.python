@@ -21,6 +21,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
+from ..._vendor import _convert_request
 from ...operations._import_operations_operations import build_operation_one_request
 
 T = TypeVar("T")
@@ -63,7 +64,8 @@ class ImportOperations:
         request = build_operation_one_request(
             parameter1=parameter1,
             template_url=self.operation_one.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

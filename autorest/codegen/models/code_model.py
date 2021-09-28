@@ -344,6 +344,25 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                     operation.convert_multiple_media_type_parameters()
 
     @property
+    def need_vendored_code(self) -> bool:
+        return self.need_request_converter or self.need_format_url
+
+    @property
+    def need_request_converter(self) -> bool:
+        if not self.options["show_operations"]:
+            return False
+        if not self.options["version_tolerant"]:
+            return True
+        for og in self.operation_groups:
+            if any(o for o in og.operations if o.use_pipeline_transport):
+                return True
+        return False
+
+    @property
+    def need_format_url(self) -> bool:
+        return any(rq for rq in self.rest.request_builders if rq.parameters.path)
+
+    @property
     def has_lro_operations(self) -> bool:
         return any([
             isinstance(operation, LROOperation)

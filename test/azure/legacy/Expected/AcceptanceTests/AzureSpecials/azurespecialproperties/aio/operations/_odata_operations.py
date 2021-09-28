@@ -23,6 +23,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models
+from ..._vendor import _convert_request
 from ...operations._odata_operations import build_get_with_filter_request
 
 T = TypeVar("T")
@@ -77,7 +78,8 @@ class OdataOperations:
             top=top,
             orderby=orderby,
             template_url=self.get_with_filter.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(

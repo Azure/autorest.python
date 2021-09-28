@@ -775,11 +775,12 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
                 retval.append(f"    {kwarg}={kwarg},")
         template_url = template_url or f"self.{builder.name}.metadata['url']"
         retval.append(f"    template_url={template_url},")
-
-        convert_to_legacy = ""
+        retval.append(f")")
         if not self.code_model.options["version_tolerant"] or builder.use_pipeline_transport:
-            convert_to_legacy = "._to_pipeline_transport_request()"
-        retval.append(f"){convert_to_legacy}")
+            pass_files = ""
+            if "files" in builder.body_kwargs_to_pass_to_request_builder:
+                pass_files = ", files"
+            retval.append(f"request = _convert_request(request{pass_files})")
         if builder.parameters.path:
             retval.extend(self.serialize_path(builder))
         retval.append(

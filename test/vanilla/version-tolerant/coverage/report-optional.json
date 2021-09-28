@@ -18,7 +18,7 @@
   "putDateTimeMinLocalNegativeOffset": 2,
   "HeaderParameterProtectedKey": 1,
   "CustomHeaderInRequest": 2,
-  "FormdataStreamUploadFile": 0,
+  "FormdataStreamUploadFile": 8,
   "HttpSuccess200Options": 0,
   "HttpRedirect307Options": 0,
   "HttpRetry502Options": 0,

@@ -40,17 +40,38 @@ steps:
     displayName: 'Unit tests'
 
   - script: |
-      inv regenerate
-    displayName: 'Regenerate Code'
-
-  - script: |
       pip install tox coverage==4.5.4
     displayName: 'Install Env Specific Reqs in Target PyVersion $(PythonVersion)'
 
   - script: |
-      cd $(TestFolder)/azure
+      cd $(TestFolder)/azure/legacy
       tox -e ci
-    displayName: 'Execute "azure" Tests - Python $(PythonVersion)'
+    displayName: 'Execute legacy "azure" Tests - Python $(PythonVersion)'
+    
+  - script: |
+      cd $(TestFolder)/azure/version-tolerant
+      tox -e ci
+    displayName: 'Execute version tolerant "azure" Tests - Python $(PythonVersion)'
+    
+  - script: |
+      cd $(TestFolder)/azure/low-level
+      tox -e ci
+    displayName: 'Execute low level "azure" Tests - Python $(PythonVersion)'
+    
+  - script: |
+      cd $(TestFolder)/vanilla/legacy
+      tox -e ci
+    displayName: 'Execute legacy "vanilla" Tests - Python $(PythonVersion)'
+    
+  - script: |
+      cd $(TestFolder)/vanilla/version-tolerant
+      tox -e ci
+    displayName: 'Execute version tolerant "vanilla" Tests - Python $(PythonVersion)'
+    
+  - script: |
+      cd $(TestFolder)/vanilla/low-level
+      tox -e ci
+    displayName: 'Execute low level "vanilla" Tests - Python $(PythonVersion)'
 
   - script: |
       export RELEASE_VERSION=$(node -p -e "require('./package.json').version")

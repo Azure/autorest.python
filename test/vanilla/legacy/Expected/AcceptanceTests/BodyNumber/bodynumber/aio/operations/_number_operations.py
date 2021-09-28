@@ -22,6 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._vendor import _convert_request
 from ...operations._number_operations import (
     build_get_big_decimal_negative_decimal_request,
     build_get_big_decimal_positive_decimal_request,
@@ -90,7 +91,8 @@ class NumberOperations:
 
         request = build_get_null_request(
             template_url=self.get_null.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -127,7 +129,8 @@ class NumberOperations:
 
         request = build_get_invalid_float_request(
             template_url=self.get_invalid_float.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -164,7 +167,8 @@ class NumberOperations:
 
         request = build_get_invalid_double_request(
             template_url=self.get_invalid_double.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -201,7 +205,8 @@ class NumberOperations:
 
         request = build_get_invalid_decimal_request(
             template_url=self.get_invalid_decimal.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -246,7 +251,8 @@ class NumberOperations:
             content_type=content_type,
             json=json,
             template_url=self.put_big_float.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -279,7 +285,8 @@ class NumberOperations:
 
         request = build_get_big_float_request(
             template_url=self.get_big_float.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -324,7 +331,8 @@ class NumberOperations:
             content_type=content_type,
             json=json,
             template_url=self.put_big_double.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -357,7 +365,8 @@ class NumberOperations:
 
         request = build_get_big_double_request(
             template_url=self.get_big_double.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -397,7 +406,8 @@ class NumberOperations:
         request = build_put_big_double_positive_decimal_request(
             content_type=content_type,
             template_url=self.put_big_double_positive_decimal.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -430,7 +440,8 @@ class NumberOperations:
 
         request = build_get_big_double_positive_decimal_request(
             template_url=self.get_big_double_positive_decimal.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -470,7 +481,8 @@ class NumberOperations:
         request = build_put_big_double_negative_decimal_request(
             content_type=content_type,
             template_url=self.put_big_double_negative_decimal.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -503,7 +515,8 @@ class NumberOperations:
 
         request = build_get_big_double_negative_decimal_request(
             template_url=self.get_big_double_negative_decimal.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -548,7 +561,8 @@ class NumberOperations:
             content_type=content_type,
             json=json,
             template_url=self.put_big_decimal.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -581,7 +595,8 @@ class NumberOperations:
 
         request = build_get_big_decimal_request(
             template_url=self.get_big_decimal.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -621,7 +636,8 @@ class NumberOperations:
         request = build_put_big_decimal_positive_decimal_request(
             content_type=content_type,
             template_url=self.put_big_decimal_positive_decimal.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -654,7 +670,8 @@ class NumberOperations:
 
         request = build_get_big_decimal_positive_decimal_request(
             template_url=self.get_big_decimal_positive_decimal.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -694,7 +711,8 @@ class NumberOperations:
         request = build_put_big_decimal_negative_decimal_request(
             content_type=content_type,
             template_url=self.put_big_decimal_negative_decimal.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -727,7 +745,8 @@ class NumberOperations:
 
         request = build_get_big_decimal_negative_decimal_request(
             template_url=self.get_big_decimal_negative_decimal.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -772,7 +791,8 @@ class NumberOperations:
             content_type=content_type,
             json=json,
             template_url=self.put_small_float.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -805,7 +825,8 @@ class NumberOperations:
 
         request = build_get_small_float_request(
             template_url=self.get_small_float.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -850,7 +871,8 @@ class NumberOperations:
             content_type=content_type,
             json=json,
             template_url=self.put_small_double.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -883,7 +905,8 @@ class NumberOperations:
 
         request = build_get_small_double_request(
             template_url=self.get_small_double.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -928,7 +951,8 @@ class NumberOperations:
             content_type=content_type,
             json=json,
             template_url=self.put_small_decimal.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
@@ -961,7 +985,8 @@ class NumberOperations:
 
         request = build_get_small_decimal_request(
             template_url=self.get_small_decimal.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client.send_request(
