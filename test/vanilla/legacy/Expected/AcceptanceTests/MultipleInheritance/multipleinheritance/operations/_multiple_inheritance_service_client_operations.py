@@ -23,6 +23,7 @@ from azure.core.tracing.decorator import distributed_trace
 from msrest import Serializer
 
 from .. import models as _models
+from .._vendor import _convert_request
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -273,7 +274,8 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
 
         request = build_get_horse_request(
             template_url=self.get_horse.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -321,7 +323,8 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
             content_type=content_type,
             json=json,
             template_url=self.put_horse.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -358,7 +361,8 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
 
         request = build_get_pet_request(
             template_url=self.get_pet.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -407,7 +411,8 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
             content_type=content_type,
             json=json,
             template_url=self.put_pet.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -444,7 +449,8 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
 
         request = build_get_feline_request(
             template_url=self.get_feline.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -492,7 +498,8 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
             content_type=content_type,
             json=json,
             template_url=self.put_feline.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -529,7 +536,8 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
 
         request = build_get_cat_request(
             template_url=self.get_cat.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -577,7 +585,8 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
             content_type=content_type,
             json=json,
             template_url=self.put_cat.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -615,7 +624,8 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
 
         request = build_get_kitten_request(
             template_url=self.get_kitten.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)
@@ -665,7 +675,8 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
             content_type=content_type,
             json=json,
             template_url=self.put_kitten.metadata["url"],
-        )._to_pipeline_transport_request()
+        )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client.send_request(request, stream=False, _return_pipeline_response=True, **kwargs)

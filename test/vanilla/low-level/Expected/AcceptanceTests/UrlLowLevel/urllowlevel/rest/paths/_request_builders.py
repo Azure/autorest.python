@@ -8,9 +8,10 @@
 import datetime
 from typing import TYPE_CHECKING
 
-from azure.core.pipeline.transport._base import _format_url_section
 from azure.core.rest import HttpRequest
 from msrest import Serializer
+
+from ..._vendor import _format_url_section
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
