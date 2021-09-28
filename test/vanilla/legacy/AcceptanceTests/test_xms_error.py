@@ -105,19 +105,13 @@ class TestXmsErrorResponse(object):
         class MyPetSadError(PetSadError):
             def read(self):
                 return b"ignore me"
+
         pipeline_response.context['deserialized_data'] = {
             "reason": "Not OK",
             "errorMessage": "i should be the message",
             "errorType": "my own error type",
             "actionResponse": "hello"
         }
-
-        # deserialize without pipeline context
-        # shouldn't have a model
-        error_model = client._deserialize.failsafe_deserialize(MyPetSadError, pipeline_response.http_response)
-        assert error_model is None
-        error = HttpResponseError(response=pipeline_response.http_response, model=error_model)
-        assert error.model is None
 
         # add pipeline context with deserialized data and pass to failsafe_deserialize
         # should get a correct model

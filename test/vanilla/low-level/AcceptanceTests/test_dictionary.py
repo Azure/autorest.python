@@ -28,6 +28,7 @@ import json
 from datetime import timedelta
 from bodydictionarylowlevel.rest import dictionary
 from bodydictionarylowlevel import AutoRestSwaggerBATDictionaryService
+from azure.core.exceptions import DecodeError
 from .utils import JSON_DECODE_ERROR
 
 import pytest
@@ -279,14 +280,14 @@ def test_get_null_and_invalid(send_request, send_request_json_response):
     assert send_request(request).text() == ''
 
     request = dictionary.build_get_invalid_request()
-    with pytest.raises(JSON_DECODE_ERROR):
+    with pytest.raises(DecodeError):
         send_request_json_response(request)
 
 def test_get_null_key_and_value(send_request, send_request_json_response):
     # {null:"val1"} is not standard JSON format. C# might work and expects this test to pass,
     # but we fail and we're happy with it.
     request = dictionary.build_get_null_key_request()
-    with pytest.raises(JSON_DECODE_ERROR):
+    with pytest.raises(DecodeError):
         send_request_json_response(request)
 
     request = dictionary.build_get_null_value_request()
