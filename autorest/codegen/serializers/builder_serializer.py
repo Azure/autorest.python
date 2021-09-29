@@ -784,8 +784,12 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
             retval.append(f"request = _convert_request(request{pass_files})")
         if builder.parameters.path:
             retval.extend(self.serialize_path(builder))
+        url_to_format = "request.url"
+        if self.code_model.options["version_tolerant"] and template_url:
+            url_to_format = template_url
         retval.append(
-            "request.url = self._client.format_url(request.url{})".format(
+            "request.url = self._client.format_url({}{})".format(
+                url_to_format,
                 ", **path_format_arguments" if builder.parameters.path else ""
             )
         )
@@ -1025,8 +1029,6 @@ class _PagingOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disab
             request_builder,
             template_url=template_url,
         )
-        if template_url == "next_link" and self.code_model.options["version_tolerant"]:
-            call_request_builder.append("request.url = next_link")
         return call_request_builder
 
     def _prepare_request_callback(self, builder: BuilderType) -> List[str]:

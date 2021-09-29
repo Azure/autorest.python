@@ -175,8 +175,7 @@ class PagingOperations(object):
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
                     "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
                 }
-                request.url = self._client.format_url(request.url, **path_format_arguments)
-                request.url = next_link
+                request.url = self._client.format_url(next_link, **path_format_arguments)
 
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
@@ -262,8 +261,7 @@ class PagingOperations(object):
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
                     "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
                 }
-                request.url = self._client.format_url(request.url, **path_format_arguments)
-                request.url = next_link
+                request.url = self._client.format_url(next_link, **path_format_arguments)
 
             return request
 
