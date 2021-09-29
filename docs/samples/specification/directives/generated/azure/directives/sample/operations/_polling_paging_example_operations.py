@@ -247,4 +247,3 @@ class PollingPagingExampleOperationsMixin(object):
             get_next, extract_data
         )
     basic_paging.metadata = {'url': '/basic/paging'}  # type: ignore
-
