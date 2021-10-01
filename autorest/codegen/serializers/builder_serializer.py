@@ -1017,12 +1017,15 @@ class _PagingOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disab
         return f"# type: ClsType[{interior}]"
 
     def call_next_link_request_builder(self, builder: BuilderType) -> List[str]:
-        if builder.next_request_builder and not self.code_model.options["version_tolerant"]:
-            request_builder = builder.next_request_builder
-            template_url = f"'{request_builder.url}'"
-        else:
-            request_builder = builder.request_builder
-            template_url = "next_link"
+        template_url = None
+        if builder.next_request_builder:
+            if self.code_model.options["version_tolerant"]:
+                request_builder = builder.request_builder
+                template_url = "next_link"
+            else:
+                request_builder = builder.next_request_builder
+                template_url = f"'{request_builder.url}'"
+
         request_builder = builder.next_request_builder or builder.request_builder
         call_request_builder = self._call_request_builder_helper(
             builder,

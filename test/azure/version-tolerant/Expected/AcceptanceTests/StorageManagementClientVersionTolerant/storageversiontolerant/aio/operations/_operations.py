@@ -697,7 +697,7 @@ class StorageAccountsOperations:
                     subscription_id=self._config.subscription_id,
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(next_link)
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
@@ -809,7 +809,7 @@ class StorageAccountsOperations:
                     subscription_id=self._config.subscription_id,
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(next_link)
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 

@@ -91,7 +91,7 @@ class PagingOperations:
                 request = build_paging_get_no_item_name_pages_request(
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(next_link)
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
@@ -165,7 +165,7 @@ class PagingOperations:
                 request = build_paging_get_null_next_link_name_pages_request(
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(next_link)
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
@@ -239,7 +239,7 @@ class PagingOperations:
                 request = build_paging_get_single_pages_request(
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(next_link)
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
@@ -314,7 +314,7 @@ class PagingOperations:
                 request = build_paging_first_response_empty_request(
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(next_link)
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
@@ -405,7 +405,7 @@ class PagingOperations:
                     timeout=timeout,
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(next_link)
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
@@ -577,7 +577,7 @@ class PagingOperations:
                     timeout=timeout,
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(next_link)
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
@@ -673,7 +673,7 @@ class PagingOperations:
                     timeout=timeout,
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(next_link)
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
@@ -748,7 +748,7 @@ class PagingOperations:
                 request = build_paging_get_multiple_pages_retry_first_request(
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(next_link)
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
@@ -823,7 +823,7 @@ class PagingOperations:
                 request = build_paging_get_multiple_pages_retry_second_request(
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(next_link)
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
@@ -897,7 +897,7 @@ class PagingOperations:
                 request = build_paging_get_single_pages_failure_request(
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(next_link)
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
@@ -971,7 +971,7 @@ class PagingOperations:
                 request = build_paging_get_multiple_pages_failure_request(
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(next_link)
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
@@ -1045,7 +1045,7 @@ class PagingOperations:
                 request = build_paging_get_multiple_pages_failure_uri_request(
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(next_link)
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
@@ -1343,7 +1343,7 @@ class PagingOperations:
                     timeout=timeout,
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(next_link)
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
@@ -1457,7 +1457,7 @@ class PagingOperations:
                 request = build_paging_get_paging_model_with_item_name_with_xms_client_name_request(
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(next_link)
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
