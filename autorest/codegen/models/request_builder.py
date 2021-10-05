@@ -101,7 +101,9 @@ class RequestBuilder(BaseBuilder):
             create_parameters(yaml_data, RequestBuilderParameter.from_yaml)
         )
         parameter_list = RequestBuilderParameterList(parameters + multiple_media_type_parameters)
-        parameter_list.add_body_kwargs()
+
+        schema_requests = [SchemaRequest.from_yaml(yaml) for yaml in yaml_data["requests"]]
+        parameter_list.add_body_kwargs(schema_requests)
 
         request_builder_class = cls(
             yaml_data=yaml_data,
@@ -109,7 +111,7 @@ class RequestBuilder(BaseBuilder):
             url=first_request["protocol"]["http"]["path"],
             method=first_request["protocol"]["http"]["method"].upper(),
             multipart=first_request["protocol"]["http"].get("multipart", False),
-            schema_requests=[SchemaRequest.from_yaml(yaml) for yaml in yaml_data["requests"]],
+            schema_requests=schema_requests,
             parameters=parameter_list,
             description=yaml_data["language"]["python"]["description"],
             responses=[SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("responses", [])],

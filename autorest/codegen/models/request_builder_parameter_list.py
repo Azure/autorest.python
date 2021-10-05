@@ -11,6 +11,7 @@ from .parameter import ParameterLocation, Parameter
 from .primitive_schemas import IOSchema, AnySchema
 from .dictionary_schema import DictionarySchema
 from .base_schema import BaseSchema
+from .schema_request import SchemaRequest
 
 T = TypeVar('T')
 OrderedSet = Dict[T, None]
@@ -32,7 +33,7 @@ class RequestBuilderParameterList(ParameterList):
         self.body_kwarg_names[name] = None
         parameter.serialized_name = name
 
-    def add_body_kwargs(self) -> None:
+    def add_body_kwargs(self, schema_requests: List[SchemaRequest]) -> None:
         try:
             body_kwargs_added = []
             body_method_param = next(
@@ -71,7 +72,10 @@ class RequestBuilderParameterList(ParameterList):
                     data_kwarg.description
                 )
                 body_kwargs_added.append(data_kwarg)
-            if any([ct for ct in self.content_types if "json" in ct]):
+            if (
+                any(sr for sr in schema_requests if not sr.is_stream_request) and
+                any([ct for ct in self.content_types if "json" in ct])
+            ):
                 json_kwarg = copy(body_method_param)
                 self._change_body_param_name(json_kwarg, "json")
                 json_kwarg.description = (

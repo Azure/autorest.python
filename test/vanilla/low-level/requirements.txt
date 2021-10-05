@@ -9,6 +9,7 @@ azure-core==1.19.0
 -e ./Expected/AcceptanceTests/AdditionalPropertiesLowLevel
 -e ./Expected/AcceptanceTests/AnythingLowLevel
 -e ./Expected/AcceptanceTests/BodyArrayLowLevel
+-e ./Expected/AcceptanceTests/BodyBinaryLowLevel
 -e ./Expected/AcceptanceTests/BodyBooleanLowLevel
 -e ./Expected/AcceptanceTests/BodyByteLowLevel
 -e ./Expected/AcceptanceTests/BodyComplexLowLevel

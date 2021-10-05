@@ -36,6 +36,7 @@ _VANILLA_SWAGGER_MAPPINGS = {
     'Anything': 'any-type.json',
     'ParameterFlattening': 'parameter-flattening.json',
     'BodyArray': 'body-array.json',
+    'BodyBinary': 'body-binary.json',
     'BodyBoolean': 'body-boolean.json',
     'BodyByte': 'body-byte.json',
     'BodyComplex': 'body-complex.json',
