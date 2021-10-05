@@ -24,7 +24,6 @@ from azure.core.polling.async_base_polling import AsyncLROBasePolling
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ..._vendor import _convert_request
 from ...operations._operations import (
     build_poll_with_constant_parameterized_endpoints_request_initial,
     build_poll_with_parameterized_endpoints_request_initial,
@@ -43,16 +42,13 @@ class LROWithParamaterizedEndpointsOperationsMixin:
         request = build_poll_with_parameterized_endpoints_request_initial(
             template_url=self._poll_with_parameterized_endpoints_initial.metadata["url"],
         )
-        request = _convert_request(request)
         path_format_arguments = {
             "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
         }
         request.url = self._client.format_url(request.url, **path_format_arguments)
 
-        pipeline_response = await self._client.send_request(
-            request, stream=False, _return_pipeline_response=True, **kwargs
-        )
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202]:
@@ -62,8 +58,8 @@ class LROWithParamaterizedEndpointsOperationsMixin:
         deserialized = None
         response_headers = {}
         if response.status_code == 200:
-            if response.body():
-                deserialized = _loads(response.body())
+            if response.content:
+                deserialized = response.json()
             else:
                 deserialized = None
 
@@ -106,8 +102,8 @@ class LROWithParamaterizedEndpointsOperationsMixin:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.body():
-                deserialized = _loads(response.body())
+            if response.content:
+                deserialized = response.json()
             else:
                 deserialized = None
             if cls:
@@ -152,16 +148,13 @@ class LROWithParamaterizedEndpointsOperationsMixin:
         request = build_poll_with_constant_parameterized_endpoints_request_initial(
             template_url=self._poll_with_constant_parameterized_endpoints_initial.metadata["url"],
         )
-        request = _convert_request(request)
         path_format_arguments = {
             "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
         }
         request.url = self._client.format_url(request.url, **path_format_arguments)
 
-        pipeline_response = await self._client.send_request(
-            request, stream=False, _return_pipeline_response=True, **kwargs
-        )
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202]:
@@ -171,8 +164,8 @@ class LROWithParamaterizedEndpointsOperationsMixin:
         deserialized = None
         response_headers = {}
         if response.status_code == 200:
-            if response.body():
-                deserialized = _loads(response.body())
+            if response.content:
+                deserialized = response.json()
             else:
                 deserialized = None
 
@@ -217,8 +210,8 @@ class LROWithParamaterizedEndpointsOperationsMixin:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.body():
-                deserialized = _loads(response.body())
+            if response.content:
+                deserialized = response.json()
             else:
                 deserialized = None
             if cls:

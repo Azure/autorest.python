@@ -27,7 +27,6 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
-from ..._vendor import _convert_request
 from ...operations._operations import (
     build_storage_accounts_check_name_availability_request,
     build_storage_accounts_create_request_initial,
@@ -107,9 +106,7 @@ class StorageAccountsOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client.send_request(
-            request, stream=False, _return_pipeline_response=True, **kwargs
-        )
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -147,12 +144,9 @@ class StorageAccountsOperations:
             json=json,
             template_url=self._create_initial.metadata["url"],
         )
-        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client.send_request(
-            request, stream=False, _return_pipeline_response=True, **kwargs
-        )
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202]:
@@ -161,8 +155,8 @@ class StorageAccountsOperations:
 
         deserialized = None
         if response.status_code == 200:
-            if response.body():
-                deserialized = _loads(response.body())
+            if response.content:
+                deserialized = response.json()
             else:
                 deserialized = None
 
@@ -283,8 +277,8 @@ class StorageAccountsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.body():
-                deserialized = _loads(response.body())
+            if response.content:
+                deserialized = response.json()
             else:
                 deserialized = None
             if cls:
@@ -335,9 +329,7 @@ class StorageAccountsOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client.send_request(
-            request, stream=False, _return_pipeline_response=True, **kwargs
-        )
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 204]:
@@ -427,9 +419,7 @@ class StorageAccountsOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client.send_request(
-            request, stream=False, _return_pipeline_response=True, **kwargs
-        )
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -557,9 +547,7 @@ class StorageAccountsOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client.send_request(
-            request, stream=False, _return_pipeline_response=True, **kwargs
-        )
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -611,9 +599,7 @@ class StorageAccountsOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client.send_request(
-            request, stream=False, _return_pipeline_response=True, **kwargs
-        )
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -707,7 +693,6 @@ class StorageAccountsOperations:
                     subscription_id=self._config.subscription_id,
                     template_url=self.list.metadata["url"],
                 )
-                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
 
             else:
@@ -716,7 +701,6 @@ class StorageAccountsOperations:
                     subscription_id=self._config.subscription_id,
                     template_url=next_link,
                 )
-                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
@@ -822,7 +806,6 @@ class StorageAccountsOperations:
                     subscription_id=self._config.subscription_id,
                     template_url=self.list_by_resource_group.metadata["url"],
                 )
-                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
 
             else:
@@ -832,7 +815,6 @@ class StorageAccountsOperations:
                     subscription_id=self._config.subscription_id,
                     template_url=next_link,
                 )
-                request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
@@ -910,9 +892,7 @@ class StorageAccountsOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client.send_request(
-            request, stream=False, _return_pipeline_response=True, **kwargs
-        )
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -986,9 +966,7 @@ class UsageOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client.send_request(
-            request, stream=False, _return_pipeline_response=True, **kwargs
-        )
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:

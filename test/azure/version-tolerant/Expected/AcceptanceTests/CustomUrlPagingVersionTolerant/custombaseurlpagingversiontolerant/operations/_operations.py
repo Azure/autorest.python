@@ -24,7 +24,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from msrest import Serializer
 
-from .._vendor import _convert_request, _format_url_section
+from .._vendor import _format_url_section
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -162,7 +162,6 @@ class PagingOperations(object):
                 request = build_paging_get_pages_partial_url_request(
                     template_url=self.get_pages_partial_url.metadata["url"],
                 )
-                request = _convert_request(request)
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
                     "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
@@ -174,7 +173,6 @@ class PagingOperations(object):
                 request = build_paging_get_pages_partial_url_request(
                     template_url=next_link,
                 )
-                request = _convert_request(request)
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
                     "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
@@ -252,7 +250,6 @@ class PagingOperations(object):
                 request = build_paging_get_pages_partial_url_operation_request(
                     template_url=self.get_pages_partial_url_operation.metadata["url"],
                 )
-                request = _convert_request(request)
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
                     "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
@@ -265,7 +262,6 @@ class PagingOperations(object):
                     next_link=next_link,
                     template_url="/paging/customurl/{nextLink}",
                 )
-                request = _convert_request(request)
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
                     "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),

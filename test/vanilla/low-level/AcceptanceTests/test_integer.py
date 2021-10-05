@@ -26,6 +26,7 @@
 import datetime
 from bodyintegerlowlevel import AutoRestIntegerTestService
 from bodyintegerlowlevel.rest import int as int_rest
+from azure.core.exceptions import DecodeError
 import pytest
 import calendar
 
@@ -80,7 +81,8 @@ def test_get_null_and_invalid(send_request):
     send_request(request)
 
     request = int_rest.build_get_invalid_request()
-    assert send_request(request).text() == '123jkl'
+    with pytest.raises(DecodeError):
+        send_request(request)
 
 def test_get_overflow(send_request):
     # Testserver excepts these to fail, but they won't in Python and it's ok.
@@ -113,4 +115,5 @@ def test_get_null_and_invalid_unix_time(send_request):
     assert send_request(request).text() == ''
 
     request = int_rest.build_get_invalid_unix_time_request()
-    assert send_request(request).text() == '123jkl'
+    with pytest.raises(DecodeError):
+        send_request(request)

@@ -349,14 +349,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
 
     @property
     def need_request_converter(self) -> bool:
-        if not self.options["show_operations"]:
-            return False
-        if not self.options["version_tolerant"]:
-            return True
-        for og in self.operation_groups:
-            if any(o for o in og.operations if o.use_pipeline_transport):
-                return True
-        return False
+        return self.options["show_operations"] and not self.options["version_tolerant"]
 
     @property
     def need_format_url(self) -> bool:
