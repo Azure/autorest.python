@@ -1,12 +1,25 @@
 # Change Log
 
-### 2021-09-27 - 5.9.1
+### 2021-10-05 - 5.9.2
 
 | Library | Min Version
 | --------------- | -------
 |`@autorest/core` |  `3.6.2`
 |`@autorest/modelerfour` | `4.19.1`
 |`azure-core` dep of generated code | `1.19.0`
+|`msrest` dep of generated code | `0.6.21`
+|`azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`
+
+**New Features**
+- Updating generated code for `azure-core` release `1.19.0`.
+
+### 2021-09-27 - 5.9.1
+
+| Library | Min Version
+| --------------- | -------
+|`@autorest/core` |  `3.6.2`
+|`@autorest/modelerfour` | `4.19.1`
+|`azure-core` dep of generated code | `1.18.0`
 |`msrest` dep of generated code | `0.6.21`
 |`azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`
 
