@@ -18,7 +18,7 @@ class _SwaggerGroup(Enum):
     VANILLA = auto()
     AZURE = auto()
     AZURE_ARM = auto()
-    GROW_UP = auto()
+    LLC = auto()
 
 _SERVICE_TO_README_PATH = {
     'azure-ai-textanalytics': 'test/services/azure-ai-textanalytics/README.md',
@@ -143,8 +143,8 @@ def _build_flags(
 
     if swagger_group == _SwaggerGroup.VANILLA:
         generation_section = "vanilla"
-    elif swagger_group == _SwaggerGroup.GROW_UP:
-        generation_section = "growup"
+    elif swagger_group == _SwaggerGroup.LLC:
+        generation_section = "llc"
     else:
         generation_section = "azure"
     namespace = kwargs.pop("namespace", _OVERWRITE_DEFAULT_NAMESPACE.get(package_name, package_name.lower()))
@@ -253,11 +253,11 @@ def regenerate_vanilla_legacy(c, swagger_name=None, debug=False, **kwargs):
     return _prepare_mapping_and_regenerate(c, _VANILLA_SWAGGER_MAPPINGS, _SwaggerGroup.VANILLA, swagger_name, debug, **kwargs)
 
 @task
-def regenerate_growup_llc(c, swagger_name=None, debug=False, **kwargs):
+def regenerate_llc_llc(c, swagger_name=None, debug=False, **kwargs):
     return _prepare_mapping_and_regenerate(
         c,
         _LLC_SWAGGER_MAPPINGS,
-        _SwaggerGroup.GROW_UP,
+        _SwaggerGroup.LLC,
         swagger_name,
         debug,
         low_level_client=True,
@@ -277,11 +277,11 @@ def regenerate_vanilla_llc(c, swagger_name=None, debug=False, **kwargs):
     )
 
 @task
-def regenerate_growup_version_tolerant(c, swagger_name=None, debug=False, **kwargs):
+def regenerate_llc_version_tolerant(c, swagger_name=None, debug=False, **kwargs):
     return _prepare_mapping_and_regenerate(
         c,
         _LLC_SWAGGER_MAPPINGS,
-        _SwaggerGroup.GROW_UP,
+        _SwaggerGroup.LLC,
         swagger_name,
         debug,
         version_tolerant=True,
@@ -374,14 +374,14 @@ def regenerate(c, swagger_name=None, debug=False):
 
 @task
 def regenerate_llc(c, swagger_name=None, debug=False):
-    regenerate_growup_llc(c, swagger_name, debug)
+    regenerate_llc_llc(c, swagger_name, debug)
     regenerate_vanilla_llc(c, swagger_name, debug)
     regenerate_azure_llc(c, swagger_name, debug)
     regenerate_azure_arm_llc(c, swagger_name, debug)
 
 @task
 def regenerate_version_tolerant(c, swagger_name=None, debug=False):
-    regenerate_growup_version_tolerant(c, swagger_name, debug)
+    regenerate_llc_version_tolerant(c, swagger_name, debug)
     regenerate_vanilla_version_tolerant(c, swagger_name, debug)
     regenerate_azure_version_tolerant(c, swagger_name, debug)
     regenerate_azure_arm_version_tolerant(c, swagger_name, debug)

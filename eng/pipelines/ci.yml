@@ -150,16 +150,16 @@ jobs:
           searchFolder: "$(TestFolder)/vanilla/version-tolerant"
 
       - script: |
-          cd $(TestFolder)/growup/low-level
+          cd $(TestFolder)/llc/low-level
           tox -e initial-ci
           tox -e update-ci
-        displayName: 'Execute low level update "growup" Tests - Python $(PythonVersion)'
+        displayName: 'Execute low level update "llc" Tests - Python $(PythonVersion)'
 
       - script: |
-          cd $(TestFolder)/growup/version-tolerant
+          cd $(TestFolder)/llc/version-tolerant
           tox -e initial-ci
           tox -e update-ci
-        displayName: 'Execute version-tolerant update "growup" Tests - Python $(PythonVersion)'
+        displayName: 'Execute version-tolerant update "llc" Tests - Python $(PythonVersion)'
 
       - script: |
           cd $(TestFolder)/multiapi
