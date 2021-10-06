@@ -129,12 +129,6 @@ jobs:
 
       - script: |
           cd $(TestFolder)/vanilla/low-level
-          tox -e initial-ci
-          tox -e update-ci
-        displayName: 'Execute low level update "vanilla" Tests - Python $(PythonVersion)'
-
-      - script: |
-          cd $(TestFolder)/vanilla/low-level
           tox -e ci
         displayName: 'Execute low level "vanilla" Tests - Python $(PythonVersion)'
       - task: PublishTestResults@2
@@ -146,12 +140,6 @@ jobs:
 
       - script: |
           cd $(TestFolder)/vanilla/version-tolerant
-          tox -e initial-ci
-          tox -e update-ci
-        displayName: 'Execute version-tolerant update "vanilla" Tests - Python $(PythonVersion)'
-
-      - script: |
-          cd $(TestFolder)/vanilla/version-tolerant
           tox -e ci
         displayName: 'Execute version-tolerant "vanilla" Tests - Python $(PythonVersion)'
       - task: PublishTestResults@2
@@ -160,6 +148,18 @@ jobs:
         inputs:
           testRunTitle: "$(OSName) Python $(PythonVersion) - version-tolerant vanilla"
           searchFolder: "$(TestFolder)/vanilla/version-tolerant"
+
+      - script: |
+          cd $(TestFolder)/llc/low-level
+          tox -e initial-ci
+          tox -e update-ci
+        displayName: 'Execute low level update "llc" Tests - Python $(PythonVersion)'
+
+      - script: |
+          cd $(TestFolder)/llc/version-tolerant
+          tox -e initial-ci
+          tox -e update-ci
+        displayName: 'Execute version-tolerant update "llc" Tests - Python $(PythonVersion)'
 
       - script: |
           cd $(TestFolder)/multiapi

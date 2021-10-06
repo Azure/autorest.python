@@ -18,6 +18,7 @@ class _SwaggerGroup(Enum):
     VANILLA = auto()
     AZURE = auto()
     AZURE_ARM = auto()
+    LLC = auto()
 
 _SERVICE_TO_README_PATH = {
     'azure-ai-textanalytics': 'test/services/azure-ai-textanalytics/README.md',
@@ -75,7 +76,7 @@ _VANILLA_SWAGGER_MAPPINGS = {
     "ReservedWords": "reserved-words.json",
 }
 
-_UPDATE_SWAGGER_MAPPINGS = {
+_LLC_SWAGGER_MAPPINGS = {
     'LLCInitial': 'llc_initial.json',
     'LLCUpdateOne': 'llc_update1.json'
 }
@@ -142,6 +143,8 @@ def _build_flags(
 
     if swagger_group == _SwaggerGroup.VANILLA:
         generation_section = "vanilla"
+    elif swagger_group == _SwaggerGroup.LLC:
+        generation_section = "llc"
     else:
         generation_section = "azure"
     namespace = kwargs.pop("namespace", _OVERWRITE_DEFAULT_NAMESPACE.get(package_name, package_name.lower()))
@@ -250,12 +253,22 @@ def regenerate_vanilla_legacy(c, swagger_name=None, debug=False, **kwargs):
     return _prepare_mapping_and_regenerate(c, _VANILLA_SWAGGER_MAPPINGS, _SwaggerGroup.VANILLA, swagger_name, debug, **kwargs)
 
 @task
-def regenerate_vanilla_llc(c, swagger_name=None, debug=False, **kwargs):
-    mapping = _VANILLA_SWAGGER_MAPPINGS.copy()
-    mapping.update(_UPDATE_SWAGGER_MAPPINGS)
+def regenerate_llc_llc(c, swagger_name=None, debug=False, **kwargs):
     return _prepare_mapping_and_regenerate(
         c,
-        mapping,
+        _LLC_SWAGGER_MAPPINGS,
+        _SwaggerGroup.LLC,
+        swagger_name,
+        debug,
+        low_level_client=True,
+        **kwargs
+    )
+
+@task
+def regenerate_vanilla_llc(c, swagger_name=None, debug=False, **kwargs):
+    return _prepare_mapping_and_regenerate(
+        c,
+        _VANILLA_SWAGGER_MAPPINGS,
         _SwaggerGroup.VANILLA,
         swagger_name,
         debug,
@@ -264,12 +277,22 @@ def regenerate_vanilla_llc(c, swagger_name=None, debug=False, **kwargs):
     )
 
 @task
-def regenerate_vanilla_version_tolerant(c, swagger_name=None, debug=False, **kwargs):
-    mapping = _VANILLA_SWAGGER_MAPPINGS.copy()
-    mapping.update(_UPDATE_SWAGGER_MAPPINGS)
+def regenerate_llc_version_tolerant(c, swagger_name=None, debug=False, **kwargs):
     return _prepare_mapping_and_regenerate(
         c,
-        mapping,
+        _LLC_SWAGGER_MAPPINGS,
+        _SwaggerGroup.LLC,
+        swagger_name,
+        debug,
+        version_tolerant=True,
+        **kwargs
+    )
+
+@task
+def regenerate_vanilla_version_tolerant(c, swagger_name=None, debug=False, **kwargs):
+    return _prepare_mapping_and_regenerate(
+        c,
+        _VANILLA_SWAGGER_MAPPINGS,
         _SwaggerGroup.VANILLA,
         swagger_name,
         debug,
@@ -351,12 +374,14 @@ def regenerate(c, swagger_name=None, debug=False):
 
 @task
 def regenerate_llc(c, swagger_name=None, debug=False):
+    regenerate_llc_llc(c, swagger_name, debug)
     regenerate_vanilla_llc(c, swagger_name, debug)
     regenerate_azure_llc(c, swagger_name, debug)
     regenerate_azure_arm_llc(c, swagger_name, debug)
 
 @task
 def regenerate_version_tolerant(c, swagger_name=None, debug=False):
+    regenerate_llc_version_tolerant(c, swagger_name, debug)
     regenerate_vanilla_version_tolerant(c, swagger_name, debug)
     regenerate_azure_version_tolerant(c, swagger_name, debug)
     regenerate_azure_arm_version_tolerant(c, swagger_name, debug)
