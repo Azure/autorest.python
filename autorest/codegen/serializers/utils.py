@@ -25,7 +25,9 @@ def serialize_method(
     lines.append(")")
     return "\n".join(lines)
 
-def build_serialize_data_call(parameter: Parameter, function_name: str) -> str:
+def build_serialize_data_call(
+    parameter: Parameter, function_name: str, serializer_name: str
+) -> str:
 
     optional_parameters = []
 
@@ -66,20 +68,20 @@ def build_serialize_data_call(parameter: Parameter, function_name: str) -> str:
     ]
     parameters_line = ', '.join(parameters)
 
-    serialize_line = parameter.serialize_line(function_name, parameters_line)
+    serialize_line = f'{serializer_name}.{function_name}({parameters_line})'
 
     if parameter.explode:
         return f"[{serialize_line} if q is not None else '' for q in {origin_name}]"
     return serialize_line
 
 def serialize_path(
-    parameters: List[Parameter]
+    parameters: List[Parameter], serializer_name: str
 ) -> List[str]:
     retval = ["path_format_arguments = {"]
     retval.extend([
         "    \"{}\": {},".format(
             path_parameter.rest_api_name,
-            build_serialize_data_call(path_parameter, "url")
+            build_serialize_data_call(path_parameter, "url", serializer_name)
         )
         for path_parameter in parameters
     ])
