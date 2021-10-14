@@ -70,12 +70,13 @@ class DurationOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_null.metadata["url"])
+        _url = self.get_null.metadata["url"]
 
         request = build_get_null_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -112,7 +113,7 @@ class DurationOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(duration_body, "duration")
-        _url = self._client.format_url(self.put_positive_duration.metadata["url"])
+        _url = self.put_positive_duration.metadata["url"]
 
         request = build_put_positive_duration_request(
             content_type=content_type,
@@ -120,6 +121,7 @@ class DurationOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -147,12 +149,13 @@ class DurationOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_positive_duration.metadata["url"])
+        _url = self.get_positive_duration.metadata["url"]
 
         request = build_get_positive_duration_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -184,12 +187,13 @@ class DurationOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_invalid.metadata["url"])
+        _url = self.get_invalid.metadata["url"]
 
         request = build_get_invalid_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

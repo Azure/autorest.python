@@ -69,12 +69,13 @@ class HttpServerFailureOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.head501.metadata["url"])
+        _url = self.head501.metadata["url"]
 
         request = build_head501_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -102,12 +103,13 @@ class HttpServerFailureOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get501.metadata["url"])
+        _url = self.get501.metadata["url"]
 
         request = build_get501_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -143,7 +145,7 @@ class HttpServerFailureOperations:
             json = self._serialize.body(boolean_value, "bool")
         else:
             json = None
-        _url = self._client.format_url(self.post505.metadata["url"])
+        _url = self.post505.metadata["url"]
 
         request = build_post505_request(
             content_type=content_type,
@@ -151,6 +153,7 @@ class HttpServerFailureOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -186,7 +189,7 @@ class HttpServerFailureOperations:
             json = self._serialize.body(boolean_value, "bool")
         else:
             json = None
-        _url = self._client.format_url(self.delete505.metadata["url"])
+        _url = self.delete505.metadata["url"]
 
         request = build_delete505_request(
             content_type=content_type,
@@ -194,6 +197,7 @@ class HttpServerFailureOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

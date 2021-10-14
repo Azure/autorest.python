@@ -74,12 +74,13 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_null.metadata["url"])
+        _url = self.get_null.metadata["url"]
 
         request = build_get_null_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -111,12 +112,13 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_invalid_date.metadata["url"])
+        _url = self.get_invalid_date.metadata["url"]
 
         request = build_get_invalid_date_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -148,12 +150,13 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_overflow_date.metadata["url"])
+        _url = self.get_overflow_date.metadata["url"]
 
         request = build_get_overflow_date_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -185,12 +188,13 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_underflow_date.metadata["url"])
+        _url = self.get_underflow_date.metadata["url"]
 
         request = build_get_underflow_date_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -227,7 +231,7 @@ class DateOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(date_body, "date")
-        _url = self._client.format_url(self.put_max_date.metadata["url"])
+        _url = self.put_max_date.metadata["url"]
 
         request = build_put_max_date_request(
             content_type=content_type,
@@ -235,6 +239,7 @@ class DateOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -262,12 +267,13 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_max_date.metadata["url"])
+        _url = self.get_max_date.metadata["url"]
 
         request = build_get_max_date_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -304,7 +310,7 @@ class DateOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(date_body, "date")
-        _url = self._client.format_url(self.put_min_date.metadata["url"])
+        _url = self.put_min_date.metadata["url"]
 
         request = build_put_min_date_request(
             content_type=content_type,
@@ -312,6 +318,7 @@ class DateOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -339,12 +346,13 @@ class DateOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_min_date.metadata["url"])
+        _url = self.get_min_date.metadata["url"]
 
         request = build_get_min_date_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

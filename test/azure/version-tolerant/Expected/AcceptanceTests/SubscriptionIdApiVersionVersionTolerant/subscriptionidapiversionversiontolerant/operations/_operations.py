@@ -115,10 +115,12 @@ class GroupOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get_sample_resource_group.metadata["url"]
+
         request = build_group_get_sample_resource_group_request(
             subscription_id=self._config.subscription_id,
             resource_group_name=resource_group_name,
-            template_url=self.get_sample_resource_group.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 

@@ -65,11 +65,13 @@ class ParamsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get_required.metadata["url"]
+
         request = build_params_get_required_request(
             parameter3=parameter3,
             parameter1=parameter1,
             parameter2=parameter2,
-            template_url=self.get_required.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 

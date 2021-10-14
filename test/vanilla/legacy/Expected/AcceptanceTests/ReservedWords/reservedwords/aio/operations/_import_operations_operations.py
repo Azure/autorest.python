@@ -61,13 +61,14 @@ class ImportOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.operation_one.metadata["url"])
+        _url = self.operation_one.metadata["url"]
 
         request = build_operation_one_request(
             parameter1=parameter1,
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

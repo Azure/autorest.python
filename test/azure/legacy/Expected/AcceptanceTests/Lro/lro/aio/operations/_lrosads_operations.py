@@ -94,7 +94,7 @@ class LROSADsOperations:
             json = self._serialize.body(product, "Product")
         else:
             json = None
-        _url = self._client.format_url(self._put_non_retry400_initial.metadata["url"])
+        _url = self._put_non_retry400_initial.metadata["url"]
 
         request = build_put_non_retry400_request_initial(
             content_type=content_type,
@@ -102,6 +102,7 @@ class LROSADsOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -193,7 +194,7 @@ class LROSADsOperations:
             json = self._serialize.body(product, "Product")
         else:
             json = None
-        _url = self._client.format_url(self._put_non_retry201_creating400_initial.metadata["url"])
+        _url = self._put_non_retry201_creating400_initial.metadata["url"]
 
         request = build_put_non_retry201_creating400_request_initial(
             content_type=content_type,
@@ -201,6 +202,7 @@ class LROSADsOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -293,7 +295,7 @@ class LROSADsOperations:
             json = self._serialize.body(product, "Product")
         else:
             json = None
-        _url = self._client.format_url(self._put_non_retry201_creating400_invalid_json_initial.metadata["url"])
+        _url = self._put_non_retry201_creating400_invalid_json_initial.metadata["url"]
 
         request = build_put_non_retry201_creating400_invalid_json_request_initial(
             content_type=content_type,
@@ -301,6 +303,7 @@ class LROSADsOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -393,7 +396,7 @@ class LROSADsOperations:
             json = self._serialize.body(product, "Product")
         else:
             json = None
-        _url = self._client.format_url(self._put_async_relative_retry400_initial.metadata["url"])
+        _url = self._put_async_relative_retry400_initial.metadata["url"]
 
         request = build_put_async_relative_retry400_request_initial(
             content_type=content_type,
@@ -401,6 +404,7 @@ class LROSADsOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -495,12 +499,13 @@ class LROSADsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self._delete_non_retry400_initial.metadata["url"])
+        _url = self._delete_non_retry400_initial.metadata["url"]
 
         request = build_delete_non_retry400_request_initial(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -569,12 +574,13 @@ class LROSADsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self._delete202_non_retry400_initial.metadata["url"])
+        _url = self._delete202_non_retry400_initial.metadata["url"]
 
         request = build_delete202_non_retry400_request_initial(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -643,12 +649,13 @@ class LROSADsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self._delete_async_relative_retry400_initial.metadata["url"])
+        _url = self._delete_async_relative_retry400_initial.metadata["url"]
 
         request = build_delete_async_relative_retry400_request_initial(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -727,7 +734,7 @@ class LROSADsOperations:
             json = self._serialize.body(product, "Product")
         else:
             json = None
-        _url = self._client.format_url(self._post_non_retry400_initial.metadata["url"])
+        _url = self._post_non_retry400_initial.metadata["url"]
 
         request = build_post_non_retry400_request_initial(
             content_type=content_type,
@@ -735,6 +742,7 @@ class LROSADsOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -816,7 +824,7 @@ class LROSADsOperations:
             json = self._serialize.body(product, "Product")
         else:
             json = None
-        _url = self._client.format_url(self._post202_non_retry400_initial.metadata["url"])
+        _url = self._post202_non_retry400_initial.metadata["url"]
 
         request = build_post202_non_retry400_request_initial(
             content_type=content_type,
@@ -824,6 +832,7 @@ class LROSADsOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -907,7 +916,7 @@ class LROSADsOperations:
             json = self._serialize.body(product, "Product")
         else:
             json = None
-        _url = self._client.format_url(self._post_async_relative_retry400_initial.metadata["url"])
+        _url = self._post_async_relative_retry400_initial.metadata["url"]
 
         request = build_post_async_relative_retry400_request_initial(
             content_type=content_type,
@@ -915,6 +924,7 @@ class LROSADsOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1002,7 +1012,7 @@ class LROSADsOperations:
             json = self._serialize.body(product, "Product")
         else:
             json = None
-        _url = self._client.format_url(self._put_error201_no_provisioning_state_payload_initial.metadata["url"])
+        _url = self._put_error201_no_provisioning_state_payload_initial.metadata["url"]
 
         request = build_put_error201_no_provisioning_state_payload_request_initial(
             content_type=content_type,
@@ -1010,6 +1020,7 @@ class LROSADsOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1101,7 +1112,7 @@ class LROSADsOperations:
             json = self._serialize.body(product, "Product")
         else:
             json = None
-        _url = self._client.format_url(self._put_async_relative_retry_no_status_initial.metadata["url"])
+        _url = self._put_async_relative_retry_no_status_initial.metadata["url"]
 
         request = build_put_async_relative_retry_no_status_request_initial(
             content_type=content_type,
@@ -1109,6 +1120,7 @@ class LROSADsOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1212,7 +1224,7 @@ class LROSADsOperations:
             json = self._serialize.body(product, "Product")
         else:
             json = None
-        _url = self._client.format_url(self._put_async_relative_retry_no_status_payload_initial.metadata["url"])
+        _url = self._put_async_relative_retry_no_status_payload_initial.metadata["url"]
 
         request = build_put_async_relative_retry_no_status_payload_request_initial(
             content_type=content_type,
@@ -1220,6 +1232,7 @@ class LROSADsOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1315,12 +1328,13 @@ class LROSADsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self._delete204_succeeded_initial.metadata["url"])
+        _url = self._delete204_succeeded_initial.metadata["url"]
 
         request = build_delete204_succeeded_request_initial(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1385,12 +1399,13 @@ class LROSADsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self._delete_async_relative_retry_no_status_initial.metadata["url"])
+        _url = self._delete_async_relative_retry_no_status_initial.metadata["url"]
 
         request = build_delete_async_relative_retry_no_status_request_initial(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1469,7 +1484,7 @@ class LROSADsOperations:
             json = self._serialize.body(product, "Product")
         else:
             json = None
-        _url = self._client.format_url(self._post202_no_location_initial.metadata["url"])
+        _url = self._post202_no_location_initial.metadata["url"]
 
         request = build_post202_no_location_request_initial(
             content_type=content_type,
@@ -1477,6 +1492,7 @@ class LROSADsOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1561,7 +1577,7 @@ class LROSADsOperations:
             json = self._serialize.body(product, "Product")
         else:
             json = None
-        _url = self._client.format_url(self._post_async_relative_retry_no_payload_initial.metadata["url"])
+        _url = self._post_async_relative_retry_no_payload_initial.metadata["url"]
 
         request = build_post_async_relative_retry_no_payload_request_initial(
             content_type=content_type,
@@ -1569,6 +1585,7 @@ class LROSADsOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1657,7 +1674,7 @@ class LROSADsOperations:
             json = self._serialize.body(product, "Product")
         else:
             json = None
-        _url = self._client.format_url(self._put200_invalid_json_initial.metadata["url"])
+        _url = self._put200_invalid_json_initial.metadata["url"]
 
         request = build_put200_invalid_json_request_initial(
             content_type=content_type,
@@ -1665,6 +1682,7 @@ class LROSADsOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1755,7 +1773,7 @@ class LROSADsOperations:
             json = self._serialize.body(product, "Product")
         else:
             json = None
-        _url = self._client.format_url(self._put_async_relative_retry_invalid_header_initial.metadata["url"])
+        _url = self._put_async_relative_retry_invalid_header_initial.metadata["url"]
 
         request = build_put_async_relative_retry_invalid_header_request_initial(
             content_type=content_type,
@@ -1763,6 +1781,7 @@ class LROSADsOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1866,7 +1885,7 @@ class LROSADsOperations:
             json = self._serialize.body(product, "Product")
         else:
             json = None
-        _url = self._client.format_url(self._put_async_relative_retry_invalid_json_polling_initial.metadata["url"])
+        _url = self._put_async_relative_retry_invalid_json_polling_initial.metadata["url"]
 
         request = build_put_async_relative_retry_invalid_json_polling_request_initial(
             content_type=content_type,
@@ -1874,6 +1893,7 @@ class LROSADsOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1969,12 +1989,13 @@ class LROSADsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self._delete202_retry_invalid_header_initial.metadata["url"])
+        _url = self._delete202_retry_invalid_header_initial.metadata["url"]
 
         request = build_delete202_retry_invalid_header_request_initial(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -2044,12 +2065,13 @@ class LROSADsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self._delete_async_relative_retry_invalid_header_initial.metadata["url"])
+        _url = self._delete_async_relative_retry_invalid_header_initial.metadata["url"]
 
         request = build_delete_async_relative_retry_invalid_header_request_initial(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -2122,12 +2144,13 @@ class LROSADsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self._delete_async_relative_retry_invalid_json_polling_initial.metadata["url"])
+        _url = self._delete_async_relative_retry_invalid_json_polling_initial.metadata["url"]
 
         request = build_delete_async_relative_retry_invalid_json_polling_request_initial(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -2210,7 +2233,7 @@ class LROSADsOperations:
             json = self._serialize.body(product, "Product")
         else:
             json = None
-        _url = self._client.format_url(self._post202_retry_invalid_header_initial.metadata["url"])
+        _url = self._post202_retry_invalid_header_initial.metadata["url"]
 
         request = build_post202_retry_invalid_header_request_initial(
             content_type=content_type,
@@ -2218,6 +2241,7 @@ class LROSADsOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -2302,7 +2326,7 @@ class LROSADsOperations:
             json = self._serialize.body(product, "Product")
         else:
             json = None
-        _url = self._client.format_url(self._post_async_relative_retry_invalid_header_initial.metadata["url"])
+        _url = self._post_async_relative_retry_invalid_header_initial.metadata["url"]
 
         request = build_post_async_relative_retry_invalid_header_request_initial(
             content_type=content_type,
@@ -2310,6 +2334,7 @@ class LROSADsOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -2398,7 +2423,7 @@ class LROSADsOperations:
             json = self._serialize.body(product, "Product")
         else:
             json = None
-        _url = self._client.format_url(self._post_async_relative_retry_invalid_json_polling_initial.metadata["url"])
+        _url = self._post_async_relative_retry_invalid_json_polling_initial.metadata["url"]
 
         request = build_post_async_relative_retry_invalid_json_polling_request_initial(
             content_type=content_type,
@@ -2406,6 +2431,7 @@ class LROSADsOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

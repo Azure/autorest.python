@@ -205,12 +205,13 @@ class EnumOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_not_expandable.metadata["url"])
+        _url = self.get_not_expandable.metadata["url"]
 
         request = build_get_not_expandable_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -252,7 +253,7 @@ class EnumOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(string_body, "str")
-        _url = self._client.format_url(self.put_not_expandable.metadata["url"])
+        _url = self.put_not_expandable.metadata["url"]
 
         request = build_put_not_expandable_request(
             content_type=content_type,
@@ -260,6 +261,7 @@ class EnumOperations(object):
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -290,12 +292,13 @@ class EnumOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_referenced.metadata["url"])
+        _url = self.get_referenced.metadata["url"]
 
         request = build_get_referenced_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -337,7 +340,7 @@ class EnumOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(enum_string_body, "str")
-        _url = self._client.format_url(self.put_referenced.metadata["url"])
+        _url = self.put_referenced.metadata["url"]
 
         request = build_put_referenced_request(
             content_type=content_type,
@@ -345,6 +348,7 @@ class EnumOperations(object):
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -375,12 +379,13 @@ class EnumOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_referenced_constant.metadata["url"])
+        _url = self.get_referenced_constant.metadata["url"]
 
         request = build_get_referenced_constant_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -424,7 +429,7 @@ class EnumOperations(object):
         color_constant = "green-color"
         _enum_string_body = _models.RefColorConstant(color_constant=color_constant, field1=field1)
         json = self._serialize.body(_enum_string_body, "RefColorConstant")
-        _url = self._client.format_url(self.put_referenced_constant.metadata["url"])
+        _url = self.put_referenced_constant.metadata["url"]
 
         request = build_put_referenced_constant_request(
             content_type=content_type,
@@ -432,6 +437,7 @@ class EnumOperations(object):
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

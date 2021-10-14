@@ -90,13 +90,14 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.put_no_model_as_string_no_required_two_value_no_default.metadata["url"])
+        _url = self.put_no_model_as_string_no_required_two_value_no_default.metadata["url"]
 
         request = build_put_no_model_as_string_no_required_two_value_no_default_request(
             input=input,
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -131,13 +132,14 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.put_no_model_as_string_no_required_two_value_default.metadata["url"])
+        _url = self.put_no_model_as_string_no_required_two_value_default.metadata["url"]
 
         request = build_put_no_model_as_string_no_required_two_value_default_request(
             input=input,
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -170,13 +172,14 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.put_no_model_as_string_no_required_one_value_no_default.metadata["url"])
+        _url = self.put_no_model_as_string_no_required_one_value_no_default.metadata["url"]
 
         request = build_put_no_model_as_string_no_required_one_value_no_default_request(
             input=input,
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -209,13 +212,14 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.put_no_model_as_string_no_required_one_value_default.metadata["url"])
+        _url = self.put_no_model_as_string_no_required_one_value_default.metadata["url"]
 
         request = build_put_no_model_as_string_no_required_one_value_default_request(
             input=input,
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -248,13 +252,14 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.put_no_model_as_string_required_two_value_no_default.metadata["url"])
+        _url = self.put_no_model_as_string_required_two_value_no_default.metadata["url"]
 
         request = build_put_no_model_as_string_required_two_value_no_default_request(
             input=input,
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -287,13 +292,14 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.put_no_model_as_string_required_two_value_default.metadata["url"])
+        _url = self.put_no_model_as_string_required_two_value_default.metadata["url"]
 
         request = build_put_no_model_as_string_required_two_value_default_request(
             input=input,
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -322,12 +328,13 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.put_no_model_as_string_required_one_value_no_default.metadata["url"])
+        _url = self.put_no_model_as_string_required_one_value_no_default.metadata["url"]
 
         request = build_put_no_model_as_string_required_one_value_no_default_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -356,12 +363,13 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.put_no_model_as_string_required_one_value_default.metadata["url"])
+        _url = self.put_no_model_as_string_required_one_value_default.metadata["url"]
 
         request = build_put_no_model_as_string_required_one_value_default_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -396,13 +404,14 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.put_model_as_string_no_required_two_value_no_default.metadata["url"])
+        _url = self.put_model_as_string_no_required_two_value_no_default.metadata["url"]
 
         request = build_put_model_as_string_no_required_two_value_no_default_request(
             input=input,
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -437,13 +446,14 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.put_model_as_string_no_required_two_value_default.metadata["url"])
+        _url = self.put_model_as_string_no_required_two_value_default.metadata["url"]
 
         request = build_put_model_as_string_no_required_two_value_default_request(
             input=input,
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -478,13 +488,14 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.put_model_as_string_no_required_one_value_no_default.metadata["url"])
+        _url = self.put_model_as_string_no_required_one_value_no_default.metadata["url"]
 
         request = build_put_model_as_string_no_required_one_value_no_default_request(
             input=input,
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -519,13 +530,14 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.put_model_as_string_no_required_one_value_default.metadata["url"])
+        _url = self.put_model_as_string_no_required_one_value_default.metadata["url"]
 
         request = build_put_model_as_string_no_required_one_value_default_request(
             input=input,
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -558,13 +570,14 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.put_model_as_string_required_two_value_no_default.metadata["url"])
+        _url = self.put_model_as_string_required_two_value_no_default.metadata["url"]
 
         request = build_put_model_as_string_required_two_value_no_default_request(
             input=input,
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -597,13 +610,14 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.put_model_as_string_required_two_value_default.metadata["url"])
+        _url = self.put_model_as_string_required_two_value_default.metadata["url"]
 
         request = build_put_model_as_string_required_two_value_default_request(
             input=input,
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -636,13 +650,14 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.put_model_as_string_required_one_value_no_default.metadata["url"])
+        _url = self.put_model_as_string_required_one_value_no_default.metadata["url"]
 
         request = build_put_model_as_string_required_one_value_no_default_request(
             input=input,
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -675,13 +690,14 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.put_model_as_string_required_one_value_default.metadata["url"])
+        _url = self.put_model_as_string_required_one_value_default.metadata["url"]
 
         request = build_put_model_as_string_required_one_value_default_request(
             input=input,
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -709,12 +725,13 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.put_client_constants.metadata["url"])
+        _url = self.put_client_constants.metadata["url"]
 
         request = build_put_client_constants_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

@@ -155,12 +155,13 @@ class FormdataOperations(object):
 
         data = None
         # Construct form data
+        _url = self.upload_file.metadata["url"]
 
         request = build_formdata_upload_file_request(
             content_type=content_type,
             files=files,
             data=data,
-            template_url=self.upload_file.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -202,11 +203,12 @@ class FormdataOperations(object):
         content_type = kwargs.pop("content_type", "application/octet-stream")  # type: Optional[str]
 
         content = file_content
+        _url = self.upload_file_via_body.metadata["url"]
 
         request = build_formdata_upload_file_via_body_request(
             content_type=content_type,
             content=content,
-            template_url=self.upload_file_via_body.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -260,12 +262,13 @@ class FormdataOperations(object):
 
         data = None
         # Construct form data
+        _url = self.upload_files.metadata["url"]
 
         request = build_formdata_upload_files_request(
             content_type=content_type,
             files=files,
             data=data,
-            template_url=self.upload_files.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 

@@ -48,7 +48,7 @@ class MultiapiServiceClientOperationsMixin:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        _url = self._client.format_url(self.test_one.metadata['url'])
+        _url = self.test_one.metadata['url']
 
         request = build_test_one_request(
             id=id,
@@ -56,6 +56,7 @@ class MultiapiServiceClientOperationsMixin:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -99,7 +100,7 @@ class MultiapiServiceClientOperationsMixin:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        _url = self._client.format_url(self.test_different_calls.metadata['url'])
+        _url = self.test_different_calls.metadata['url']
 
         request = build_test_different_calls_request(
             greeting_in_english=greeting_in_english,
@@ -107,6 +108,7 @@ class MultiapiServiceClientOperationsMixin:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

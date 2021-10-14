@@ -170,4 +170,13 @@ class ClientSerializer:
         return retval
 
     def serialize_path(self) -> List[str]:
-        return utils.serialize_path(self.code_model.global_parameters.path, "self._serialize")
+        def _callback(param):
+            origin_name = param.serialized_name
+            if param.implementation == "Client":
+                origin_name = f"self._config.{param.serialized_name}"
+            return origin_name
+        return utils.serialize_path(
+            self.code_model.global_parameters.path,
+            "self._serialize",
+            get_full_serialized_name=_callback
+        )

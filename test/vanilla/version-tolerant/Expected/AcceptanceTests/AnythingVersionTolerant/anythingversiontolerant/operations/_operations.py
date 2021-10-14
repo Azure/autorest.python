@@ -175,8 +175,10 @@ class AnythingClientOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get_object.metadata["url"]
+
         request = build_get_object_request(
-            template_url=self.get_object.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -222,11 +224,12 @@ class AnythingClientOperationsMixin(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = input
+        _url = self.put_object.metadata["url"]
 
         request = build_put_object_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_object.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -257,8 +260,10 @@ class AnythingClientOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get_string.metadata["url"]
+
         request = build_get_string_request(
-            template_url=self.get_string.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -304,11 +309,12 @@ class AnythingClientOperationsMixin(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = input
+        _url = self.put_string.metadata["url"]
 
         request = build_put_string_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_string.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -339,8 +345,10 @@ class AnythingClientOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get_array.metadata["url"]
+
         request = build_get_array_request(
-            template_url=self.get_array.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -386,11 +394,12 @@ class AnythingClientOperationsMixin(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = input
+        _url = self.put_array.metadata["url"]
 
         request = build_put_array_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_array.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 

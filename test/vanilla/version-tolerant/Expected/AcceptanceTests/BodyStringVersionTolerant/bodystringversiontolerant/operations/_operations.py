@@ -483,8 +483,10 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get_null.metadata["url"]
+
         request = build_string_get_null_request(
-            template_url=self.get_null.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -532,11 +534,12 @@ class StringOperations(object):
             json = string_body
         else:
             json = None
+        _url = self.put_null.metadata["url"]
 
         request = build_string_put_null_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_null.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -567,8 +570,10 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get_empty.metadata["url"]
+
         request = build_string_get_empty_request(
-            template_url=self.get_empty.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -608,9 +613,11 @@ class StringOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
+        _url = self.put_empty.metadata["url"]
+
         request = build_string_put_empty_request(
             content_type=content_type,
-            template_url=self.put_empty.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -641,8 +648,10 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get_mbcs.metadata["url"]
+
         request = build_string_get_mbcs_request(
-            template_url=self.get_mbcs.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -682,9 +691,11 @@ class StringOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
+        _url = self.put_mbcs.metadata["url"]
+
         request = build_string_put_mbcs_request(
             content_type=content_type,
-            template_url=self.put_mbcs.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -717,8 +728,10 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get_whitespace.metadata["url"]
+
         request = build_string_get_whitespace_request(
-            template_url=self.get_whitespace.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -760,9 +773,11 @@ class StringOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
+        _url = self.put_whitespace.metadata["url"]
+
         request = build_string_put_whitespace_request(
             content_type=content_type,
-            template_url=self.put_whitespace.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -793,8 +808,10 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get_not_provided.metadata["url"]
+
         request = build_string_get_not_provided_request(
-            template_url=self.get_not_provided.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -832,8 +849,10 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get_base64_encoded.metadata["url"]
+
         request = build_string_get_base64_encoded_request(
-            template_url=self.get_base64_encoded.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -871,8 +890,10 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get_base64_url_encoded.metadata["url"]
+
         request = build_string_get_base64_url_encoded_request(
-            template_url=self.get_base64_url_encoded.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -917,11 +938,12 @@ class StringOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = string_body
+        _url = self.put_base64_url_encoded.metadata["url"]
 
         request = build_string_put_base64_url_encoded_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_base64_url_encoded.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -952,8 +974,10 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get_null_base64_url_encoded.metadata["url"]
+
         request = build_string_get_null_base64_url_encoded_request(
-            template_url=self.get_null_base64_url_encoded.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -1016,8 +1040,10 @@ class EnumOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get_not_expandable.metadata["url"]
+
         request = build_enum_get_not_expandable_request(
-            template_url=self.get_not_expandable.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -1063,11 +1089,12 @@ class EnumOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = string_body
+        _url = self.put_not_expandable.metadata["url"]
 
         request = build_enum_put_not_expandable_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_not_expandable.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -1104,8 +1131,10 @@ class EnumOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get_referenced.metadata["url"]
+
         request = build_enum_get_referenced_request(
-            template_url=self.get_referenced.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -1151,11 +1180,12 @@ class EnumOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = enum_string_body
+        _url = self.put_referenced.metadata["url"]
 
         request = build_enum_put_referenced_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_referenced.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -1195,8 +1225,10 @@ class EnumOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get_referenced_constant.metadata["url"]
+
         request = build_enum_get_referenced_constant_request(
-            template_url=self.get_referenced_constant.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -1250,11 +1282,12 @@ class EnumOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = enum_string_body
+        _url = self.put_referenced_constant.metadata["url"]
 
         request = build_enum_put_referenced_constant_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_referenced_constant.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 

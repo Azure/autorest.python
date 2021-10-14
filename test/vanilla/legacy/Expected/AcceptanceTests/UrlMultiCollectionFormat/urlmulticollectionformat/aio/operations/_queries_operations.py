@@ -70,13 +70,14 @@ class QueriesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.array_string_multi_null.metadata["url"])
+        _url = self.array_string_multi_null.metadata["url"]
 
         request = build_array_string_multi_null_request(
             array_query=array_query,
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -106,13 +107,14 @@ class QueriesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.array_string_multi_empty.metadata["url"])
+        _url = self.array_string_multi_empty.metadata["url"]
 
         request = build_array_string_multi_empty_request(
             array_query=array_query,
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -144,13 +146,14 @@ class QueriesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.array_string_multi_valid.metadata["url"])
+        _url = self.array_string_multi_valid.metadata["url"]
 
         request = build_array_string_multi_valid_request(
             array_query=array_query,
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

@@ -128,6 +128,8 @@ class PathsOperations(object):
             "dnsSuffix": self._serialize.url(
                 "self._config.dns_suffix", self._config.dns_suffix, "str", skip_quote=True
             ),
+            "keyName": self._serialize.url("key_name", key_name, "str"),
+            "subscriptionId": self._serialize.url("self._config.subscription_id", self._config.subscription_id, "str"),
         }
         _url = self._client.format_url(self.get_empty.metadata["url"], **path_format_arguments)
 

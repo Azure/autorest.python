@@ -169,8 +169,10 @@ class ByteOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get_null.metadata["url"]
+
         request = build_byte_get_null_request(
-            template_url=self.get_null.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -208,8 +210,10 @@ class ByteOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get_empty.metadata["url"]
+
         request = build_byte_get_empty_request(
-            template_url=self.get_empty.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -247,8 +251,10 @@ class ByteOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get_non_ascii.metadata["url"]
+
         request = build_byte_get_non_ascii_request(
-            template_url=self.get_non_ascii.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -293,11 +299,12 @@ class ByteOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = byte_body
+        _url = self.put_non_ascii.metadata["url"]
 
         request = build_byte_put_non_ascii_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_non_ascii.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -328,8 +335,10 @@ class ByteOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get_invalid.metadata["url"]
+
         request = build_byte_get_invalid_request(
-            template_url=self.get_invalid.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 

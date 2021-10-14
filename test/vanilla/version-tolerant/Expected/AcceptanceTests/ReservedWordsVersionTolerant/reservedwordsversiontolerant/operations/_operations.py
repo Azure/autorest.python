@@ -96,9 +96,11 @@ class ImportOperations(object):
 
         parameter1 = kwargs.pop("parameter1")  # type: str
 
+        _url = self.operation_one.metadata["url"]
+
         request = build_import_builders_operation_one_request(
             parameter1=parameter1,
-            template_url=self.operation_one.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 

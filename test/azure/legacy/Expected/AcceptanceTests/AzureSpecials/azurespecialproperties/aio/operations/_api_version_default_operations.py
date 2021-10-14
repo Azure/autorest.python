@@ -70,12 +70,13 @@ class ApiVersionDefaultOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_method_global_valid.metadata["url"])
+        _url = self.get_method_global_valid.metadata["url"]
 
         request = build_get_method_global_valid_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -103,12 +104,13 @@ class ApiVersionDefaultOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_method_global_not_provided_valid.metadata["url"])
+        _url = self.get_method_global_not_provided_valid.metadata["url"]
 
         request = build_get_method_global_not_provided_valid_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -136,12 +138,13 @@ class ApiVersionDefaultOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_path_global_valid.metadata["url"])
+        _url = self.get_path_global_valid.metadata["url"]
 
         request = build_get_path_global_valid_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -169,12 +172,13 @@ class ApiVersionDefaultOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_swagger_global_valid.metadata["url"])
+        _url = self.get_swagger_global_valid.metadata["url"]
 
         request = build_get_swagger_global_valid_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

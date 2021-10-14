@@ -410,7 +410,7 @@ class StorageAccountsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(account_name, "StorageAccountCheckNameAvailabilityParameters")
-        _url = self._client.format_url(self.check_name_availability.metadata["url"])
+        _url = self.check_name_availability.metadata["url"]
 
         request = build_check_name_availability_request(
             subscription_id=self._config.subscription_id,
@@ -419,6 +419,7 @@ class StorageAccountsOperations(object):
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -451,7 +452,7 @@ class StorageAccountsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(parameters, "StorageAccountCreateParameters")
-        _url = self._client.format_url(self._create_initial.metadata["url"])
+        _url = self._create_initial.metadata["url"]
 
         request = build_create_request_initial(
             resource_group_name=resource_group_name,
@@ -462,6 +463,7 @@ class StorageAccountsOperations(object):
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -582,7 +584,7 @@ class StorageAccountsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.delete.metadata["url"])
+        _url = self.delete.metadata["url"]
 
         request = build_delete_request(
             resource_group_name=resource_group_name,
@@ -591,6 +593,7 @@ class StorageAccountsOperations(object):
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -631,7 +634,7 @@ class StorageAccountsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_properties.metadata["url"])
+        _url = self.get_properties.metadata["url"]
 
         request = build_get_properties_request(
             resource_group_name=resource_group_name,
@@ -640,6 +643,7 @@ class StorageAccountsOperations(object):
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -695,7 +699,7 @@ class StorageAccountsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(parameters, "StorageAccountUpdateParameters")
-        _url = self._client.format_url(self.update.metadata["url"])
+        _url = self.update.metadata["url"]
 
         request = build_update_request(
             resource_group_name=resource_group_name,
@@ -706,6 +710,7 @@ class StorageAccountsOperations(object):
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -746,7 +751,7 @@ class StorageAccountsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.list_keys.metadata["url"])
+        _url = self.list_keys.metadata["url"]
 
         request = build_list_keys_request(
             resource_group_name=resource_group_name,
@@ -755,6 +760,7 @@ class StorageAccountsOperations(object):
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -792,22 +798,24 @@ class StorageAccountsOperations(object):
 
         def prepare_request(next_link=None):
             if not next_link:
-                _url = self._client.format_url(self.list.metadata["url"])
+                _url = self.list.metadata["url"]
 
                 request = build_list_request(
                     subscription_id=self._config.subscription_id,
                     template_url=_url,
                 )
                 request = _convert_request(request)
+                request.url = self._client.format_url(request.url)
 
             else:
-                _url = self._client.format_url(next_link)
+                _url = next_link
 
                 request = build_list_request(
                     subscription_id=self._config.subscription_id,
                     template_url=_url,
                 )
                 request = _convert_request(request)
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
@@ -858,7 +866,7 @@ class StorageAccountsOperations(object):
 
         def prepare_request(next_link=None):
             if not next_link:
-                _url = self._client.format_url(self.list_by_resource_group.metadata["url"])
+                _url = self.list_by_resource_group.metadata["url"]
 
                 request = build_list_by_resource_group_request(
                     resource_group_name=resource_group_name,
@@ -866,9 +874,10 @@ class StorageAccountsOperations(object):
                     template_url=_url,
                 )
                 request = _convert_request(request)
+                request.url = self._client.format_url(request.url)
 
             else:
-                _url = self._client.format_url(next_link)
+                _url = next_link
 
                 request = build_list_by_resource_group_request(
                     resource_group_name=resource_group_name,
@@ -876,6 +885,7 @@ class StorageAccountsOperations(object):
                     template_url=_url,
                 )
                 request = _convert_request(request)
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
@@ -934,7 +944,7 @@ class StorageAccountsOperations(object):
 
         _regenerate_key = _models.StorageAccountRegenerateKeyParameters(key_name=key_name)
         json = self._serialize.body(_regenerate_key, "StorageAccountRegenerateKeyParameters")
-        _url = self._client.format_url(self.regenerate_key.metadata["url"])
+        _url = self.regenerate_key.metadata["url"]
 
         request = build_regenerate_key_request(
             resource_group_name=resource_group_name,
@@ -945,6 +955,7 @@ class StorageAccountsOperations(object):
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

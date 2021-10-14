@@ -153,9 +153,11 @@ class QueriesOperations(object):
 
         array_query = kwargs.pop("array_query", None)  # type: Optional[List[str]]
 
+        _url = self.array_string_multi_null.metadata["url"]
+
         request = build_queries_array_string_multi_null_request(
             array_query=array_query,
-            template_url=self.array_string_multi_null.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -190,9 +192,11 @@ class QueriesOperations(object):
 
         array_query = kwargs.pop("array_query", None)  # type: Optional[List[str]]
 
+        _url = self.array_string_multi_empty.metadata["url"]
+
         request = build_queries_array_string_multi_empty_request(
             array_query=array_query,
-            template_url=self.array_string_multi_empty.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -229,9 +233,11 @@ class QueriesOperations(object):
 
         array_query = kwargs.pop("array_query", None)  # type: Optional[List[str]]
 
+        _url = self.array_string_multi_valid.metadata["url"]
+
         request = build_queries_array_string_multi_valid_request(
             array_query=array_query,
-            template_url=self.array_string_multi_valid.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 

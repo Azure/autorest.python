@@ -181,12 +181,13 @@ class ArrayOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_valid.metadata["url"])
+        _url = self.get_valid.metadata["url"]
 
         request = build_get_valid_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -229,7 +230,7 @@ class ArrayOperations(object):
 
         _complex_body = _models.ArrayWrapper(array=array)
         json = self._serialize.body(_complex_body, "ArrayWrapper")
-        _url = self._client.format_url(self.put_valid.metadata["url"])
+        _url = self.put_valid.metadata["url"]
 
         request = build_put_valid_request(
             content_type=content_type,
@@ -237,6 +238,7 @@ class ArrayOperations(object):
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -267,12 +269,13 @@ class ArrayOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_empty.metadata["url"])
+        _url = self.get_empty.metadata["url"]
 
         request = build_get_empty_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -315,7 +318,7 @@ class ArrayOperations(object):
 
         _complex_body = _models.ArrayWrapper(array=array)
         json = self._serialize.body(_complex_body, "ArrayWrapper")
-        _url = self._client.format_url(self.put_empty.metadata["url"])
+        _url = self.put_empty.metadata["url"]
 
         request = build_put_empty_request(
             content_type=content_type,
@@ -323,6 +326,7 @@ class ArrayOperations(object):
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -353,12 +357,13 @@ class ArrayOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_not_provided.metadata["url"])
+        _url = self.get_not_provided.metadata["url"]
 
         request = build_get_not_provided_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

@@ -542,12 +542,13 @@ class DatetimeOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_null.metadata["url"])
+        _url = self.get_null.metadata["url"]
 
         request = build_get_null_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -582,12 +583,13 @@ class DatetimeOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_invalid.metadata["url"])
+        _url = self.get_invalid.metadata["url"]
 
         request = build_get_invalid_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -622,12 +624,13 @@ class DatetimeOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_overflow.metadata["url"])
+        _url = self.get_overflow.metadata["url"]
 
         request = build_get_overflow_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -662,12 +665,13 @@ class DatetimeOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_underflow.metadata["url"])
+        _url = self.get_underflow.metadata["url"]
 
         request = build_get_underflow_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -709,7 +713,7 @@ class DatetimeOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(datetime_body, "iso-8601")
-        _url = self._client.format_url(self.put_utc_max_date_time.metadata["url"])
+        _url = self.put_utc_max_date_time.metadata["url"]
 
         request = build_put_utc_max_date_time_request(
             content_type=content_type,
@@ -717,6 +721,7 @@ class DatetimeOperations(object):
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -757,7 +762,7 @@ class DatetimeOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(datetime_body, "iso-8601")
-        _url = self._client.format_url(self.put_utc_max_date_time7_digits.metadata["url"])
+        _url = self.put_utc_max_date_time7_digits.metadata["url"]
 
         request = build_put_utc_max_date_time7_digits_request(
             content_type=content_type,
@@ -765,6 +770,7 @@ class DatetimeOperations(object):
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -795,12 +801,13 @@ class DatetimeOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_utc_lowercase_max_date_time.metadata["url"])
+        _url = self.get_utc_lowercase_max_date_time.metadata["url"]
 
         request = build_get_utc_lowercase_max_date_time_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -835,12 +842,13 @@ class DatetimeOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_utc_uppercase_max_date_time.metadata["url"])
+        _url = self.get_utc_uppercase_max_date_time.metadata["url"]
 
         request = build_get_utc_uppercase_max_date_time_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -878,12 +886,13 @@ class DatetimeOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_utc_uppercase_max_date_time7_digits.metadata["url"])
+        _url = self.get_utc_uppercase_max_date_time7_digits.metadata["url"]
 
         request = build_get_utc_uppercase_max_date_time7_digits_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -925,7 +934,7 @@ class DatetimeOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(datetime_body, "iso-8601")
-        _url = self._client.format_url(self.put_local_positive_offset_max_date_time.metadata["url"])
+        _url = self.put_local_positive_offset_max_date_time.metadata["url"]
 
         request = build_put_local_positive_offset_max_date_time_request(
             content_type=content_type,
@@ -933,6 +942,7 @@ class DatetimeOperations(object):
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -963,12 +973,13 @@ class DatetimeOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_local_positive_offset_lowercase_max_date_time.metadata["url"])
+        _url = self.get_local_positive_offset_lowercase_max_date_time.metadata["url"]
 
         request = build_get_local_positive_offset_lowercase_max_date_time_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1003,12 +1014,13 @@ class DatetimeOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_local_positive_offset_uppercase_max_date_time.metadata["url"])
+        _url = self.get_local_positive_offset_uppercase_max_date_time.metadata["url"]
 
         request = build_get_local_positive_offset_uppercase_max_date_time_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1050,7 +1062,7 @@ class DatetimeOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(datetime_body, "iso-8601")
-        _url = self._client.format_url(self.put_local_negative_offset_max_date_time.metadata["url"])
+        _url = self.put_local_negative_offset_max_date_time.metadata["url"]
 
         request = build_put_local_negative_offset_max_date_time_request(
             content_type=content_type,
@@ -1058,6 +1070,7 @@ class DatetimeOperations(object):
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1088,12 +1101,13 @@ class DatetimeOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_local_negative_offset_uppercase_max_date_time.metadata["url"])
+        _url = self.get_local_negative_offset_uppercase_max_date_time.metadata["url"]
 
         request = build_get_local_negative_offset_uppercase_max_date_time_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1128,12 +1142,13 @@ class DatetimeOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_local_negative_offset_lowercase_max_date_time.metadata["url"])
+        _url = self.get_local_negative_offset_lowercase_max_date_time.metadata["url"]
 
         request = build_get_local_negative_offset_lowercase_max_date_time_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1175,7 +1190,7 @@ class DatetimeOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(datetime_body, "iso-8601")
-        _url = self._client.format_url(self.put_utc_min_date_time.metadata["url"])
+        _url = self.put_utc_min_date_time.metadata["url"]
 
         request = build_put_utc_min_date_time_request(
             content_type=content_type,
@@ -1183,6 +1198,7 @@ class DatetimeOperations(object):
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1213,12 +1229,13 @@ class DatetimeOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_utc_min_date_time.metadata["url"])
+        _url = self.get_utc_min_date_time.metadata["url"]
 
         request = build_get_utc_min_date_time_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1260,7 +1277,7 @@ class DatetimeOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(datetime_body, "iso-8601")
-        _url = self._client.format_url(self.put_local_positive_offset_min_date_time.metadata["url"])
+        _url = self.put_local_positive_offset_min_date_time.metadata["url"]
 
         request = build_put_local_positive_offset_min_date_time_request(
             content_type=content_type,
@@ -1268,6 +1285,7 @@ class DatetimeOperations(object):
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1298,12 +1316,13 @@ class DatetimeOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_local_positive_offset_min_date_time.metadata["url"])
+        _url = self.get_local_positive_offset_min_date_time.metadata["url"]
 
         request = build_get_local_positive_offset_min_date_time_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1345,7 +1364,7 @@ class DatetimeOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(datetime_body, "iso-8601")
-        _url = self._client.format_url(self.put_local_negative_offset_min_date_time.metadata["url"])
+        _url = self.put_local_negative_offset_min_date_time.metadata["url"]
 
         request = build_put_local_negative_offset_min_date_time_request(
             content_type=content_type,
@@ -1353,6 +1372,7 @@ class DatetimeOperations(object):
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1383,12 +1403,13 @@ class DatetimeOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_local_negative_offset_min_date_time.metadata["url"])
+        _url = self.get_local_negative_offset_min_date_time.metadata["url"]
 
         request = build_get_local_negative_offset_min_date_time_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1423,12 +1444,13 @@ class DatetimeOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_local_no_offset_min_date_time.metadata["url"])
+        _url = self.get_local_no_offset_min_date_time.metadata["url"]
 
         request = build_get_local_no_offset_min_date_time_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

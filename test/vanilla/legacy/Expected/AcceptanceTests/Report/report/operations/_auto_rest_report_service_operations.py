@@ -114,13 +114,14 @@ class AutoRestReportServiceOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_report.metadata["url"])
+        _url = self.get_report.metadata["url"]
 
         request = build_get_report_request(
             qualifier=qualifier,
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -161,13 +162,14 @@ class AutoRestReportServiceOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_optional_report.metadata["url"])
+        _url = self.get_optional_report.metadata["url"]
 
         request = build_get_optional_report_request(
             qualifier=qualifier,
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

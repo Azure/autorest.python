@@ -421,12 +421,13 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.head300.metadata["url"])
+        _url = self.head300.metadata["url"]
 
         request = build_head300_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -461,12 +462,13 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get300.metadata["url"])
+        _url = self.get300.metadata["url"]
 
         request = build_get300_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -506,12 +508,13 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.head301.metadata["url"])
+        _url = self.head301.metadata["url"]
 
         request = build_head301_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -546,12 +549,13 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get301.metadata["url"])
+        _url = self.get301.metadata["url"]
 
         request = build_get301_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -597,7 +601,7 @@ class HttpRedirectsOperations(object):
             json = self._serialize.body(boolean_value, "bool")
         else:
             json = None
-        _url = self._client.format_url(self.put301.metadata["url"])
+        _url = self.put301.metadata["url"]
 
         request = build_put301_request(
             content_type=content_type,
@@ -605,6 +609,7 @@ class HttpRedirectsOperations(object):
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -638,12 +643,13 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.head302.metadata["url"])
+        _url = self.head302.metadata["url"]
 
         request = build_head302_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -678,12 +684,13 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get302.metadata["url"])
+        _url = self.get302.metadata["url"]
 
         request = build_get302_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -729,7 +736,7 @@ class HttpRedirectsOperations(object):
             json = self._serialize.body(boolean_value, "bool")
         else:
             json = None
-        _url = self._client.format_url(self.patch302.metadata["url"])
+        _url = self.patch302.metadata["url"]
 
         request = build_patch302_request(
             content_type=content_type,
@@ -737,6 +744,7 @@ class HttpRedirectsOperations(object):
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -781,7 +789,7 @@ class HttpRedirectsOperations(object):
             json = self._serialize.body(boolean_value, "bool")
         else:
             json = None
-        _url = self._client.format_url(self.post303.metadata["url"])
+        _url = self.post303.metadata["url"]
 
         request = build_post303_request(
             content_type=content_type,
@@ -789,6 +797,7 @@ class HttpRedirectsOperations(object):
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -823,12 +832,13 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.head307.metadata["url"])
+        _url = self.head307.metadata["url"]
 
         request = build_head307_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -863,12 +873,13 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get307.metadata["url"])
+        _url = self.get307.metadata["url"]
 
         request = build_get307_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -903,12 +914,13 @@ class HttpRedirectsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.options307.metadata["url"])
+        _url = self.options307.metadata["url"]
 
         request = build_options307_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -953,7 +965,7 @@ class HttpRedirectsOperations(object):
             json = self._serialize.body(boolean_value, "bool")
         else:
             json = None
-        _url = self._client.format_url(self.put307.metadata["url"])
+        _url = self.put307.metadata["url"]
 
         request = build_put307_request(
             content_type=content_type,
@@ -961,6 +973,7 @@ class HttpRedirectsOperations(object):
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1005,7 +1018,7 @@ class HttpRedirectsOperations(object):
             json = self._serialize.body(boolean_value, "bool")
         else:
             json = None
-        _url = self._client.format_url(self.patch307.metadata["url"])
+        _url = self.patch307.metadata["url"]
 
         request = build_patch307_request(
             content_type=content_type,
@@ -1013,6 +1026,7 @@ class HttpRedirectsOperations(object):
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1057,7 +1071,7 @@ class HttpRedirectsOperations(object):
             json = self._serialize.body(boolean_value, "bool")
         else:
             json = None
-        _url = self._client.format_url(self.post307.metadata["url"])
+        _url = self.post307.metadata["url"]
 
         request = build_post307_request(
             content_type=content_type,
@@ -1065,6 +1079,7 @@ class HttpRedirectsOperations(object):
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1109,7 +1124,7 @@ class HttpRedirectsOperations(object):
             json = self._serialize.body(boolean_value, "bool")
         else:
             json = None
-        _url = self._client.format_url(self.delete307.metadata["url"])
+        _url = self.delete307.metadata["url"]
 
         request = build_delete307_request(
             content_type=content_type,
@@ -1117,6 +1132,7 @@ class HttpRedirectsOperations(object):
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

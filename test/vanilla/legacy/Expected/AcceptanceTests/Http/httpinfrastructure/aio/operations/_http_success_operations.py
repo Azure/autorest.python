@@ -84,12 +84,13 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.head200.metadata["url"])
+        _url = self.head200.metadata["url"]
 
         request = build_head200_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -117,12 +118,13 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get200.metadata["url"])
+        _url = self.get200.metadata["url"]
 
         request = build_get200_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -154,12 +156,13 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.options200.metadata["url"])
+        _url = self.options200.metadata["url"]
 
         request = build_options200_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -199,7 +202,7 @@ class HttpSuccessOperations:
             json = self._serialize.body(boolean_value, "bool")
         else:
             json = None
-        _url = self._client.format_url(self.put200.metadata["url"])
+        _url = self.put200.metadata["url"]
 
         request = build_put200_request(
             content_type=content_type,
@@ -207,6 +210,7 @@ class HttpSuccessOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -242,7 +246,7 @@ class HttpSuccessOperations:
             json = self._serialize.body(boolean_value, "bool")
         else:
             json = None
-        _url = self._client.format_url(self.patch200.metadata["url"])
+        _url = self.patch200.metadata["url"]
 
         request = build_patch200_request(
             content_type=content_type,
@@ -250,6 +254,7 @@ class HttpSuccessOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -285,7 +290,7 @@ class HttpSuccessOperations:
             json = self._serialize.body(boolean_value, "bool")
         else:
             json = None
-        _url = self._client.format_url(self.post200.metadata["url"])
+        _url = self.post200.metadata["url"]
 
         request = build_post200_request(
             content_type=content_type,
@@ -293,6 +298,7 @@ class HttpSuccessOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -328,7 +334,7 @@ class HttpSuccessOperations:
             json = self._serialize.body(boolean_value, "bool")
         else:
             json = None
-        _url = self._client.format_url(self.delete200.metadata["url"])
+        _url = self.delete200.metadata["url"]
 
         request = build_delete200_request(
             content_type=content_type,
@@ -336,6 +342,7 @@ class HttpSuccessOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -371,7 +378,7 @@ class HttpSuccessOperations:
             json = self._serialize.body(boolean_value, "bool")
         else:
             json = None
-        _url = self._client.format_url(self.put201.metadata["url"])
+        _url = self.put201.metadata["url"]
 
         request = build_put201_request(
             content_type=content_type,
@@ -379,6 +386,7 @@ class HttpSuccessOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -414,7 +422,7 @@ class HttpSuccessOperations:
             json = self._serialize.body(boolean_value, "bool")
         else:
             json = None
-        _url = self._client.format_url(self.post201.metadata["url"])
+        _url = self.post201.metadata["url"]
 
         request = build_post201_request(
             content_type=content_type,
@@ -422,6 +430,7 @@ class HttpSuccessOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -457,7 +466,7 @@ class HttpSuccessOperations:
             json = self._serialize.body(boolean_value, "bool")
         else:
             json = None
-        _url = self._client.format_url(self.put202.metadata["url"])
+        _url = self.put202.metadata["url"]
 
         request = build_put202_request(
             content_type=content_type,
@@ -465,6 +474,7 @@ class HttpSuccessOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -500,7 +510,7 @@ class HttpSuccessOperations:
             json = self._serialize.body(boolean_value, "bool")
         else:
             json = None
-        _url = self._client.format_url(self.patch202.metadata["url"])
+        _url = self.patch202.metadata["url"]
 
         request = build_patch202_request(
             content_type=content_type,
@@ -508,6 +518,7 @@ class HttpSuccessOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -543,7 +554,7 @@ class HttpSuccessOperations:
             json = self._serialize.body(boolean_value, "bool")
         else:
             json = None
-        _url = self._client.format_url(self.post202.metadata["url"])
+        _url = self.post202.metadata["url"]
 
         request = build_post202_request(
             content_type=content_type,
@@ -551,6 +562,7 @@ class HttpSuccessOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -586,7 +598,7 @@ class HttpSuccessOperations:
             json = self._serialize.body(boolean_value, "bool")
         else:
             json = None
-        _url = self._client.format_url(self.delete202.metadata["url"])
+        _url = self.delete202.metadata["url"]
 
         request = build_delete202_request(
             content_type=content_type,
@@ -594,6 +606,7 @@ class HttpSuccessOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -621,12 +634,13 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.head204.metadata["url"])
+        _url = self.head204.metadata["url"]
 
         request = build_head204_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -662,7 +676,7 @@ class HttpSuccessOperations:
             json = self._serialize.body(boolean_value, "bool")
         else:
             json = None
-        _url = self._client.format_url(self.put204.metadata["url"])
+        _url = self.put204.metadata["url"]
 
         request = build_put204_request(
             content_type=content_type,
@@ -670,6 +684,7 @@ class HttpSuccessOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -705,7 +720,7 @@ class HttpSuccessOperations:
             json = self._serialize.body(boolean_value, "bool")
         else:
             json = None
-        _url = self._client.format_url(self.patch204.metadata["url"])
+        _url = self.patch204.metadata["url"]
 
         request = build_patch204_request(
             content_type=content_type,
@@ -713,6 +728,7 @@ class HttpSuccessOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -748,7 +764,7 @@ class HttpSuccessOperations:
             json = self._serialize.body(boolean_value, "bool")
         else:
             json = None
-        _url = self._client.format_url(self.post204.metadata["url"])
+        _url = self.post204.metadata["url"]
 
         request = build_post204_request(
             content_type=content_type,
@@ -756,6 +772,7 @@ class HttpSuccessOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -791,7 +808,7 @@ class HttpSuccessOperations:
             json = self._serialize.body(boolean_value, "bool")
         else:
             json = None
-        _url = self._client.format_url(self.delete204.metadata["url"])
+        _url = self.delete204.metadata["url"]
 
         request = build_delete204_request(
             content_type=content_type,
@@ -799,6 +816,7 @@ class HttpSuccessOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -826,12 +844,13 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.head404.metadata["url"])
+        _url = self.head404.metadata["url"]
 
         request = build_head404_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

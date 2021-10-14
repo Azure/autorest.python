@@ -62,8 +62,10 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.head200.metadata["url"]
+
         request = build_http_success_head200_request(
-            template_url=self.head200.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -92,8 +94,10 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.head204.metadata["url"]
+
         request = build_http_success_head204_request(
-            template_url=self.head204.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -122,8 +126,10 @@ class HttpSuccessOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.head404.metadata["url"]
+
         request = build_http_success_head404_request(
-            template_url=self.head404.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 

@@ -163,11 +163,12 @@ class IntOperations(object):
             json = input
         else:
             json = None
+        _url = self.put.metadata["url"]
 
         request = build_int_put_request(
             content_type=content_type,
             json=json,
-            template_url=self.put.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -211,8 +212,10 @@ class IntOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get.metadata["url"]
+
         request = build_int_get_request(
-            template_url=self.get.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -279,11 +282,12 @@ class FloatOperations(object):
             json = input
         else:
             json = None
+        _url = self.put.metadata["url"]
 
         request = build_float_put_request(
             content_type=content_type,
             json=json,
-            template_url=self.put.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -327,8 +331,10 @@ class FloatOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get.metadata["url"]
+
         request = build_float_get_request(
-            template_url=self.get.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 

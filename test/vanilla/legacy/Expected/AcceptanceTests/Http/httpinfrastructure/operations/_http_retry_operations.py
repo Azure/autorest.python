@@ -277,12 +277,13 @@ class HttpRetryOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.head408.metadata["url"])
+        _url = self.head408.metadata["url"]
 
         request = build_head408_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -323,7 +324,7 @@ class HttpRetryOperations(object):
             json = self._serialize.body(boolean_value, "bool")
         else:
             json = None
-        _url = self._client.format_url(self.put500.metadata["url"])
+        _url = self.put500.metadata["url"]
 
         request = build_put500_request(
             content_type=content_type,
@@ -331,6 +332,7 @@ class HttpRetryOperations(object):
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -371,7 +373,7 @@ class HttpRetryOperations(object):
             json = self._serialize.body(boolean_value, "bool")
         else:
             json = None
-        _url = self._client.format_url(self.patch500.metadata["url"])
+        _url = self.patch500.metadata["url"]
 
         request = build_patch500_request(
             content_type=content_type,
@@ -379,6 +381,7 @@ class HttpRetryOperations(object):
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -409,12 +412,13 @@ class HttpRetryOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get502.metadata["url"])
+        _url = self.get502.metadata["url"]
 
         request = build_get502_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -445,12 +449,13 @@ class HttpRetryOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.options502.metadata["url"])
+        _url = self.options502.metadata["url"]
 
         request = build_options502_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -495,7 +500,7 @@ class HttpRetryOperations(object):
             json = self._serialize.body(boolean_value, "bool")
         else:
             json = None
-        _url = self._client.format_url(self.post503.metadata["url"])
+        _url = self.post503.metadata["url"]
 
         request = build_post503_request(
             content_type=content_type,
@@ -503,6 +508,7 @@ class HttpRetryOperations(object):
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -543,7 +549,7 @@ class HttpRetryOperations(object):
             json = self._serialize.body(boolean_value, "bool")
         else:
             json = None
-        _url = self._client.format_url(self.delete503.metadata["url"])
+        _url = self.delete503.metadata["url"]
 
         request = build_delete503_request(
             content_type=content_type,
@@ -551,6 +557,7 @@ class HttpRetryOperations(object):
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -591,7 +598,7 @@ class HttpRetryOperations(object):
             json = self._serialize.body(boolean_value, "bool")
         else:
             json = None
-        _url = self._client.format_url(self.put504.metadata["url"])
+        _url = self.put504.metadata["url"]
 
         request = build_put504_request(
             content_type=content_type,
@@ -599,6 +606,7 @@ class HttpRetryOperations(object):
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -639,7 +647,7 @@ class HttpRetryOperations(object):
             json = self._serialize.body(boolean_value, "bool")
         else:
             json = None
-        _url = self._client.format_url(self.patch504.metadata["url"])
+        _url = self.patch504.metadata["url"]
 
         request = build_patch504_request(
             content_type=content_type,
@@ -647,6 +655,7 @@ class HttpRetryOperations(object):
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

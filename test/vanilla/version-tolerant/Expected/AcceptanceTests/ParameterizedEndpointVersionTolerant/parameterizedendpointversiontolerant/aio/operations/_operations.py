@@ -40,13 +40,14 @@ class ParmaterizedEndpointClientOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_request(
-            template_url=self.get.metadata["url"],
-        )
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        _url = self._client.format_url(self.get.metadata["url"], **path_format_arguments)
+
+        request = build_get_request(
+            template_url=_url,
+        )
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

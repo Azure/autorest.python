@@ -150,8 +150,10 @@ class DurationOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get_null.metadata["url"]
+
         request = build_duration_get_null_request(
-            template_url=self.get_null.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -196,11 +198,12 @@ class DurationOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = duration_body
+        _url = self.put_positive_duration.metadata["url"]
 
         request = build_duration_put_positive_duration_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_positive_duration.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -231,8 +234,10 @@ class DurationOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get_positive_duration.metadata["url"]
+
         request = build_duration_get_positive_duration_request(
-            template_url=self.get_positive_duration.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -270,8 +275,10 @@ class DurationOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get_invalid.metadata["url"]
+
         request = build_duration_get_invalid_request(
-            template_url=self.get_invalid.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 

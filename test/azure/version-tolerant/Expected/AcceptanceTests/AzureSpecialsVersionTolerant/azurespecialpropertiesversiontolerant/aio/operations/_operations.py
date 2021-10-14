@@ -90,8 +90,10 @@ class XMsClientRequestIdOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get.metadata["url"]
+
         request = build_xms_client_request_id_get_request(
-            template_url=self.get.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -123,9 +125,11 @@ class XMsClientRequestIdOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.param_get.metadata["url"]
+
         request = build_xms_client_request_id_param_get_request(
             x_ms_client_request_id=x_ms_client_request_id,
-            template_url=self.param_get.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -173,9 +177,11 @@ class SubscriptionInCredentialsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.post_method_global_valid.metadata["url"]
+
         request = build_subscription_in_credentials_post_method_global_valid_request(
             subscription_id=self._config.subscription_id,
-            template_url=self.post_method_global_valid.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -204,9 +210,11 @@ class SubscriptionInCredentialsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.post_method_global_null.metadata["url"]
+
         request = build_subscription_in_credentials_post_method_global_null_request(
             subscription_id=self._config.subscription_id,
-            template_url=self.post_method_global_null.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -235,9 +243,11 @@ class SubscriptionInCredentialsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.post_method_global_not_provided_valid.metadata["url"]
+
         request = build_subscription_in_credentials_post_method_global_not_provided_valid_request(
             subscription_id=self._config.subscription_id,
-            template_url=self.post_method_global_not_provided_valid.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -266,9 +276,11 @@ class SubscriptionInCredentialsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.post_path_global_valid.metadata["url"]
+
         request = build_subscription_in_credentials_post_path_global_valid_request(
             subscription_id=self._config.subscription_id,
-            template_url=self.post_path_global_valid.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -297,9 +309,11 @@ class SubscriptionInCredentialsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.post_swagger_global_valid.metadata["url"]
+
         request = build_subscription_in_credentials_post_swagger_global_valid_request(
             subscription_id=self._config.subscription_id,
-            template_url=self.post_swagger_global_valid.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -350,9 +364,11 @@ class SubscriptionInMethodOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.post_method_local_valid.metadata["url"]
+
         request = build_subscription_in_method_post_method_local_valid_request(
             subscription_id=subscription_id,
-            template_url=self.post_method_local_valid.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -384,9 +400,11 @@ class SubscriptionInMethodOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.post_method_local_null.metadata["url"]
+
         request = build_subscription_in_method_post_method_local_null_request(
             subscription_id=subscription_id,
-            template_url=self.post_method_local_null.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -417,9 +435,11 @@ class SubscriptionInMethodOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.post_path_local_valid.metadata["url"]
+
         request = build_subscription_in_method_post_path_local_valid_request(
             subscription_id=subscription_id,
-            template_url=self.post_path_local_valid.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -451,9 +471,11 @@ class SubscriptionInMethodOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.post_swagger_local_valid.metadata["url"]
+
         request = build_subscription_in_method_post_swagger_local_valid_request(
             subscription_id=subscription_id,
-            template_url=self.post_swagger_local_valid.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -500,8 +522,10 @@ class ApiVersionDefaultOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get_method_global_valid.metadata["url"]
+
         request = build_api_version_default_get_method_global_valid_request(
-            template_url=self.get_method_global_valid.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -529,8 +553,10 @@ class ApiVersionDefaultOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get_method_global_not_provided_valid.metadata["url"]
+
         request = build_api_version_default_get_method_global_not_provided_valid_request(
-            template_url=self.get_method_global_not_provided_valid.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -558,8 +584,10 @@ class ApiVersionDefaultOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get_path_global_valid.metadata["url"]
+
         request = build_api_version_default_get_path_global_valid_request(
-            template_url=self.get_path_global_valid.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -587,8 +615,10 @@ class ApiVersionDefaultOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get_swagger_global_valid.metadata["url"]
+
         request = build_api_version_default_get_swagger_global_valid_request(
-            template_url=self.get_swagger_global_valid.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -635,8 +665,10 @@ class ApiVersionLocalOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get_method_local_valid.metadata["url"]
+
         request = build_api_version_local_get_method_local_valid_request(
-            template_url=self.get_method_local_valid.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -667,9 +699,11 @@ class ApiVersionLocalOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get_method_local_null.metadata["url"]
+
         request = build_api_version_local_get_method_local_null_request(
             api_version=api_version,
-            template_url=self.get_method_local_null.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -697,8 +731,10 @@ class ApiVersionLocalOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get_path_local_valid.metadata["url"]
+
         request = build_api_version_local_get_path_local_valid_request(
-            template_url=self.get_path_local_valid.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -726,8 +762,10 @@ class ApiVersionLocalOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get_swagger_local_valid.metadata["url"]
+
         request = build_api_version_local_get_swagger_local_valid_request(
-            template_url=self.get_swagger_local_valid.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -776,9 +814,11 @@ class SkipUrlEncodingOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get_method_path_valid.metadata["url"]
+
         request = build_skip_url_encoding_get_method_path_valid_request(
             unencoded_path_param=unencoded_path_param,
-            template_url=self.get_method_path_valid.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -808,9 +848,11 @@ class SkipUrlEncodingOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get_path_valid.metadata["url"]
+
         request = build_skip_url_encoding_get_path_valid_request(
             unencoded_path_param=unencoded_path_param,
-            template_url=self.get_path_valid.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -838,8 +880,10 @@ class SkipUrlEncodingOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get_swagger_path_valid.metadata["url"]
+
         request = build_skip_url_encoding_get_swagger_path_valid_request(
-            template_url=self.get_swagger_path_valid.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -869,9 +913,11 @@ class SkipUrlEncodingOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get_method_query_valid.metadata["url"]
+
         request = build_skip_url_encoding_get_method_query_valid_request(
             q1=q1,
-            template_url=self.get_method_query_valid.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -901,9 +947,11 @@ class SkipUrlEncodingOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get_method_query_null.metadata["url"]
+
         request = build_skip_url_encoding_get_method_query_null_request(
             q1=q1,
-            template_url=self.get_method_query_null.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -933,9 +981,11 @@ class SkipUrlEncodingOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get_path_query_valid.metadata["url"]
+
         request = build_skip_url_encoding_get_path_query_valid_request(
             q1=q1,
-            template_url=self.get_path_query_valid.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -963,8 +1013,10 @@ class SkipUrlEncodingOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get_swagger_query_valid.metadata["url"]
+
         request = build_skip_url_encoding_get_swagger_query_valid_request(
-            template_url=self.get_swagger_query_valid.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -1019,11 +1071,13 @@ class OdataOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get_with_filter.metadata["url"]
+
         request = build_odata_get_with_filter_request(
             filter=filter,
             top=top,
             orderby=orderby,
-            template_url=self.get_with_filter.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -1072,9 +1126,11 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.custom_named_request_id.metadata["url"]
+
         request = build_header_custom_named_request_id_request(
             foo_client_request_id=foo_client_request_id,
-            template_url=self.custom_named_request_id.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -1108,9 +1164,11 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.custom_named_request_id_param_grouping.metadata["url"]
+
         request = build_header_custom_named_request_id_param_grouping_request(
             foo_client_request_id=foo_client_request_id,
-            template_url=self.custom_named_request_id_param_grouping.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -1143,9 +1201,11 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.custom_named_request_id_head.metadata["url"]
+
         request = build_header_custom_named_request_id_head_request(
             foo_client_request_id=foo_client_request_id,
-            template_url=self.custom_named_request_id_head.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 

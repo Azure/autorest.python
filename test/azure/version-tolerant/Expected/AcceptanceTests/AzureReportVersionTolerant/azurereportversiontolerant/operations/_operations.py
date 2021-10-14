@@ -90,9 +90,11 @@ class AutoRestReportServiceForAzureOperationsMixin(object):
 
         qualifier = kwargs.pop("qualifier", None)  # type: Optional[str]
 
+        _url = self.get_report.metadata["url"]
+
         request = build_get_report_request(
             qualifier=qualifier,
-            template_url=self.get_report.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 

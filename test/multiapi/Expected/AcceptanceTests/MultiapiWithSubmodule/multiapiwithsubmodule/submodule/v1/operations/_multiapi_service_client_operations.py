@@ -175,7 +175,7 @@ class MultiapiServiceClientOperationsMixin(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        _url = self._client.format_url(self.test_one.metadata['url'])
+        _url = self.test_one.metadata['url']
 
         request = build_test_one_request(
             id=id,
@@ -183,6 +183,7 @@ class MultiapiServiceClientOperationsMixin(object):
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -216,7 +217,7 @@ class MultiapiServiceClientOperationsMixin(object):
             json = self._serialize.body(product, 'Product')
         else:
             json = None
-        _url = self._client.format_url(self._test_lro_initial.metadata['url'])
+        _url = self._test_lro_initial.metadata['url']
 
         request = build_test_lro_request_initial(
             content_type=content_type,
@@ -224,6 +225,7 @@ class MultiapiServiceClientOperationsMixin(object):
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -325,7 +327,7 @@ class MultiapiServiceClientOperationsMixin(object):
         if test_lro_and_paging_options is not None:
             _maxresults = test_lro_and_paging_options.maxresults
             _timeout = test_lro_and_paging_options.timeout
-        _url = self._client.format_url(self._test_lro_and_paging_initial.metadata['url'])
+        _url = self._test_lro_and_paging_initial.metadata['url']
 
         request = build_test_lro_and_paging_request_initial(
             client_request_id=client_request_id,
@@ -334,6 +336,7 @@ class MultiapiServiceClientOperationsMixin(object):
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -394,7 +397,7 @@ class MultiapiServiceClientOperationsMixin(object):
                 if test_lro_and_paging_options is not None:
                     _maxresults = test_lro_and_paging_options.maxresults
                     _timeout = test_lro_and_paging_options.timeout
-                _url = self._client.format_url(self.begin_test_lro_and_paging.metadata['url'])
+                _url = self.begin_test_lro_and_paging.metadata['url']
                 
                 request = build_test_lro_and_paging_request_initial(
                     client_request_id=client_request_id,
@@ -403,6 +406,7 @@ class MultiapiServiceClientOperationsMixin(object):
                     template_url=_url,
                 )
                 request = _convert_request(request)
+                request.url = self._client.format_url(request.url)
 
             else:
                 _maxresults = None
@@ -410,7 +414,7 @@ class MultiapiServiceClientOperationsMixin(object):
                 if test_lro_and_paging_options is not None:
                     _maxresults = test_lro_and_paging_options.maxresults
                     _timeout = test_lro_and_paging_options.timeout
-                _url = self._client.format_url(next_link)
+                _url = next_link
                 
                 request = build_test_lro_and_paging_request_initial(
                     client_request_id=client_request_id,
@@ -419,6 +423,7 @@ class MultiapiServiceClientOperationsMixin(object):
                     template_url=_url,
                 )
                 request = _convert_request(request)
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
@@ -507,13 +512,14 @@ class MultiapiServiceClientOperationsMixin(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        _url = self._client.format_url(self.test_different_calls.metadata['url'])
+        _url = self.test_different_calls.metadata['url']
 
         request = build_test_different_calls_request(
             greeting_in_english=greeting_in_english,
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

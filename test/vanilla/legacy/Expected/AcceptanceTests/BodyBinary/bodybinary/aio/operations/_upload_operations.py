@@ -64,7 +64,7 @@ class UploadOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         content = file_param
-        _url = self._client.format_url(self.file.metadata["url"])
+        _url = self.file.metadata["url"]
 
         request = build_file_request(
             content_type=content_type,
@@ -72,6 +72,7 @@ class UploadOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -103,7 +104,7 @@ class UploadOperations:
         content_type = kwargs.pop("content_type", "application/octet-stream")  # type: Optional[str]
 
         content = file_param
-        _url = self._client.format_url(self.binary.metadata["url"])
+        _url = self.binary.metadata["url"]
 
         request = build_binary_request(
             content_type=content_type,
@@ -111,6 +112,7 @@ class UploadOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

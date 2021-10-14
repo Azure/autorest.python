@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import List
+from typing import Callable, List, Optional
 from ..models import ParameterStyle, ListSchema, Parameter
 
 
@@ -26,7 +26,10 @@ def serialize_method(
     return "\n".join(lines)
 
 def build_serialize_data_call(
-    parameter: Parameter, function_name: str, serializer_name: str
+    parameter: Parameter,
+    origin_name: str,
+    function_name: str,
+    serializer_name: str,
 ) -> str:
 
     optional_parameters = []
@@ -58,8 +61,6 @@ def build_serialize_data_call(
     if serialization_constraints:
         optional_parameters += serialization_constraints
 
-    origin_name = parameter.full_serialized_name
-
     parameters = [
         f'"{origin_name.lstrip("_")}"',
         "q" if parameter.explode else origin_name,
@@ -75,13 +76,19 @@ def build_serialize_data_call(
     return serialize_line
 
 def serialize_path(
-    parameters: List[Parameter], serializer_name: str
+    parameters: List[Parameter],
+    serializer_name: str,
+    get_full_serialized_name: Optional[Callable[[Parameter], str]] = None,
 ) -> List[str]:
+    if not get_full_serialized_name:
+        def _callback(param: Parameter) -> str:
+            return param.serialized_name
+        get_full_serialized_name = _callback
     retval = ["path_format_arguments = {"]
     retval.extend([
         "    \"{}\": {},".format(
             path_parameter.rest_api_name,
-            build_serialize_data_call(path_parameter, "url", serializer_name)
+            build_serialize_data_call(path_parameter, get_full_serialized_name(path_parameter), "url", serializer_name)
         )
         for path_parameter in parameters
     ])

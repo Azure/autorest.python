@@ -94,7 +94,7 @@ class ExplicitOperations:
         content_type = kwargs.pop("content_type", "application/octet-stream")  # type: Optional[str]
 
         content = body_parameter
-        _url = self._client.format_url(self.put_optional_binary_body.metadata["url"])
+        _url = self.put_optional_binary_body.metadata["url"]
 
         request = build_put_optional_binary_body_request(
             content_type=content_type,
@@ -102,6 +102,7 @@ class ExplicitOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -134,7 +135,7 @@ class ExplicitOperations:
         content_type = kwargs.pop("content_type", "application/octet-stream")  # type: Optional[str]
 
         content = body_parameter
-        _url = self._client.format_url(self.put_required_binary_body.metadata["url"])
+        _url = self.put_required_binary_body.metadata["url"]
 
         request = build_put_required_binary_body_request(
             content_type=content_type,
@@ -142,6 +143,7 @@ class ExplicitOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -175,7 +177,7 @@ class ExplicitOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(body_parameter, "int")
-        _url = self._client.format_url(self.post_required_integer_parameter.metadata["url"])
+        _url = self.post_required_integer_parameter.metadata["url"]
 
         request = build_post_required_integer_parameter_request(
             content_type=content_type,
@@ -183,6 +185,7 @@ class ExplicitOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -218,7 +221,7 @@ class ExplicitOperations:
             json = self._serialize.body(body_parameter, "int")
         else:
             json = None
-        _url = self._client.format_url(self.post_optional_integer_parameter.metadata["url"])
+        _url = self.post_optional_integer_parameter.metadata["url"]
 
         request = build_post_optional_integer_parameter_request(
             content_type=content_type,
@@ -226,6 +229,7 @@ class ExplicitOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -260,7 +264,7 @@ class ExplicitOperations:
 
         _body_parameter = _models.IntWrapper(value=value)
         json = self._serialize.body(_body_parameter, "IntWrapper")
-        _url = self._client.format_url(self.post_required_integer_property.metadata["url"])
+        _url = self.post_required_integer_property.metadata["url"]
 
         request = build_post_required_integer_property_request(
             content_type=content_type,
@@ -268,6 +272,7 @@ class ExplicitOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -304,7 +309,7 @@ class ExplicitOperations:
             json = self._serialize.body(_body_parameter, "IntOptionalWrapper")
         else:
             json = None
-        _url = self._client.format_url(self.post_optional_integer_property.metadata["url"])
+        _url = self.post_optional_integer_property.metadata["url"]
 
         request = build_post_optional_integer_property_request(
             content_type=content_type,
@@ -312,6 +317,7 @@ class ExplicitOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -342,13 +348,14 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.post_required_integer_header.metadata["url"])
+        _url = self.post_required_integer_header.metadata["url"]
 
         request = build_post_required_integer_header_request(
             header_parameter=header_parameter,
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -378,13 +385,14 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.post_optional_integer_header.metadata["url"])
+        _url = self.post_optional_integer_header.metadata["url"]
 
         request = build_post_optional_integer_header_request(
             header_parameter=header_parameter,
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -418,7 +426,7 @@ class ExplicitOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(body_parameter, "str")
-        _url = self._client.format_url(self.post_required_string_parameter.metadata["url"])
+        _url = self.post_required_string_parameter.metadata["url"]
 
         request = build_post_required_string_parameter_request(
             content_type=content_type,
@@ -426,6 +434,7 @@ class ExplicitOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -461,7 +470,7 @@ class ExplicitOperations:
             json = self._serialize.body(body_parameter, "str")
         else:
             json = None
-        _url = self._client.format_url(self.post_optional_string_parameter.metadata["url"])
+        _url = self.post_optional_string_parameter.metadata["url"]
 
         request = build_post_optional_string_parameter_request(
             content_type=content_type,
@@ -469,6 +478,7 @@ class ExplicitOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -503,7 +513,7 @@ class ExplicitOperations:
 
         _body_parameter = _models.StringWrapper(value=value)
         json = self._serialize.body(_body_parameter, "StringWrapper")
-        _url = self._client.format_url(self.post_required_string_property.metadata["url"])
+        _url = self.post_required_string_property.metadata["url"]
 
         request = build_post_required_string_property_request(
             content_type=content_type,
@@ -511,6 +521,7 @@ class ExplicitOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -547,7 +558,7 @@ class ExplicitOperations:
             json = self._serialize.body(_body_parameter, "StringOptionalWrapper")
         else:
             json = None
-        _url = self._client.format_url(self.post_optional_string_property.metadata["url"])
+        _url = self.post_optional_string_property.metadata["url"]
 
         request = build_post_optional_string_property_request(
             content_type=content_type,
@@ -555,6 +566,7 @@ class ExplicitOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -585,13 +597,14 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.post_required_string_header.metadata["url"])
+        _url = self.post_required_string_header.metadata["url"]
 
         request = build_post_required_string_header_request(
             header_parameter=header_parameter,
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -621,13 +634,14 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.post_optional_string_header.metadata["url"])
+        _url = self.post_optional_string_header.metadata["url"]
 
         request = build_post_optional_string_header_request(
             body_parameter=body_parameter,
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -661,7 +675,7 @@ class ExplicitOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(body_parameter, "Product")
-        _url = self._client.format_url(self.post_required_class_parameter.metadata["url"])
+        _url = self.post_required_class_parameter.metadata["url"]
 
         request = build_post_required_class_parameter_request(
             content_type=content_type,
@@ -669,6 +683,7 @@ class ExplicitOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -706,7 +721,7 @@ class ExplicitOperations:
             json = self._serialize.body(body_parameter, "Product")
         else:
             json = None
-        _url = self._client.format_url(self.post_optional_class_parameter.metadata["url"])
+        _url = self.post_optional_class_parameter.metadata["url"]
 
         request = build_post_optional_class_parameter_request(
             content_type=content_type,
@@ -714,6 +729,7 @@ class ExplicitOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -748,7 +764,7 @@ class ExplicitOperations:
 
         _body_parameter = _models.ClassWrapper(value=value)
         json = self._serialize.body(_body_parameter, "ClassWrapper")
-        _url = self._client.format_url(self.post_required_class_property.metadata["url"])
+        _url = self.post_required_class_property.metadata["url"]
 
         request = build_post_required_class_property_request(
             content_type=content_type,
@@ -756,6 +772,7 @@ class ExplicitOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -792,7 +809,7 @@ class ExplicitOperations:
             json = self._serialize.body(_body_parameter, "ClassOptionalWrapper")
         else:
             json = None
-        _url = self._client.format_url(self.post_optional_class_property.metadata["url"])
+        _url = self.post_optional_class_property.metadata["url"]
 
         request = build_post_optional_class_property_request(
             content_type=content_type,
@@ -800,6 +817,7 @@ class ExplicitOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -833,7 +851,7 @@ class ExplicitOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(body_parameter, "[str]")
-        _url = self._client.format_url(self.post_required_array_parameter.metadata["url"])
+        _url = self.post_required_array_parameter.metadata["url"]
 
         request = build_post_required_array_parameter_request(
             content_type=content_type,
@@ -841,6 +859,7 @@ class ExplicitOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -876,7 +895,7 @@ class ExplicitOperations:
             json = self._serialize.body(body_parameter, "[str]")
         else:
             json = None
-        _url = self._client.format_url(self.post_optional_array_parameter.metadata["url"])
+        _url = self.post_optional_array_parameter.metadata["url"]
 
         request = build_post_optional_array_parameter_request(
             content_type=content_type,
@@ -884,6 +903,7 @@ class ExplicitOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -918,7 +938,7 @@ class ExplicitOperations:
 
         _body_parameter = _models.ArrayWrapper(value=value)
         json = self._serialize.body(_body_parameter, "ArrayWrapper")
-        _url = self._client.format_url(self.post_required_array_property.metadata["url"])
+        _url = self.post_required_array_property.metadata["url"]
 
         request = build_post_required_array_property_request(
             content_type=content_type,
@@ -926,6 +946,7 @@ class ExplicitOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -962,7 +983,7 @@ class ExplicitOperations:
             json = self._serialize.body(_body_parameter, "ArrayOptionalWrapper")
         else:
             json = None
-        _url = self._client.format_url(self.post_optional_array_property.metadata["url"])
+        _url = self.post_optional_array_property.metadata["url"]
 
         request = build_post_optional_array_property_request(
             content_type=content_type,
@@ -970,6 +991,7 @@ class ExplicitOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1000,13 +1022,14 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.post_required_array_header.metadata["url"])
+        _url = self.post_required_array_header.metadata["url"]
 
         request = build_post_required_array_header_request(
             header_parameter=header_parameter,
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1036,13 +1059,14 @@ class ExplicitOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.post_optional_array_header.metadata["url"])
+        _url = self.post_optional_array_header.metadata["url"]
 
         request = build_post_optional_array_header_request(
             header_parameter=header_parameter,
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

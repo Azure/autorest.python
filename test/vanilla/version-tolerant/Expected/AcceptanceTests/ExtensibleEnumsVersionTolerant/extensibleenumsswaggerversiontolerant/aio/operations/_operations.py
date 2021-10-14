@@ -69,9 +69,11 @@ class PetOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get_by_pet_id.metadata["url"]
+
         request = build_pet_get_by_pet_id_request(
             pet_id=pet_id,
-            template_url=self.get_by_pet_id.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -131,11 +133,12 @@ class PetOperations:
             json = pet_param
         else:
             json = None
+        _url = self.add_pet.metadata["url"]
 
         request = build_pet_add_pet_request(
             content_type=content_type,
             json=json,
-            template_url=self.add_pet.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 

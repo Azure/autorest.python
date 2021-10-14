@@ -97,12 +97,13 @@ class StorageAccountsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = account_name
+        _url = self.check_name_availability.metadata["url"]
 
         request = build_storage_accounts_check_name_availability_request(
             subscription_id=self._config.subscription_id,
             content_type=content_type,
             json=json,
-            template_url=self.check_name_availability.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -135,6 +136,7 @@ class StorageAccountsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = parameters
+        _url = self._create_initial.metadata["url"]
 
         request = build_storage_accounts_create_request_initial(
             resource_group_name=resource_group_name,
@@ -142,7 +144,7 @@ class StorageAccountsOperations:
             subscription_id=self._config.subscription_id,
             content_type=content_type,
             json=json,
-            template_url=self._create_initial.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -321,11 +323,13 @@ class StorageAccountsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.delete.metadata["url"]
+
         request = build_storage_accounts_delete_request(
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
-            template_url=self.delete.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -411,11 +415,13 @@ class StorageAccountsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.get_properties.metadata["url"]
+
         request = build_storage_accounts_get_properties_request(
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
-            template_url=self.get_properties.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -536,6 +542,7 @@ class StorageAccountsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = parameters
+        _url = self.update.metadata["url"]
 
         request = build_storage_accounts_update_request(
             resource_group_name=resource_group_name,
@@ -543,7 +550,7 @@ class StorageAccountsOperations:
             subscription_id=self._config.subscription_id,
             content_type=content_type,
             json=json,
-            template_url=self.update.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -591,11 +598,13 @@ class StorageAccountsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.list_keys.metadata["url"]
+
         request = build_storage_accounts_list_keys_request(
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
-            template_url=self.list_keys.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -688,18 +697,20 @@ class StorageAccountsOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
+                _url = self.list.metadata["url"]
 
                 request = build_storage_accounts_list_request(
                     subscription_id=self._config.subscription_id,
-                    template_url=self.list.metadata["url"],
+                    template_url=_url,
                 )
                 request.url = self._client.format_url(request.url)
 
             else:
+                _url = next_link
 
                 request = build_storage_accounts_list_request(
                     subscription_id=self._config.subscription_id,
-                    template_url=next_link,
+                    template_url=_url,
                 )
                 request.url = self._client.format_url(request.url)
                 request.method = "GET"
@@ -800,20 +811,22 @@ class StorageAccountsOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
+                _url = self.list_by_resource_group.metadata["url"]
 
                 request = build_storage_accounts_list_by_resource_group_request(
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
-                    template_url=self.list_by_resource_group.metadata["url"],
+                    template_url=_url,
                 )
                 request.url = self._client.format_url(request.url)
 
             else:
+                _url = next_link
 
                 request = build_storage_accounts_list_by_resource_group_request(
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
-                    template_url=next_link,
+                    template_url=_url,
                 )
                 request.url = self._client.format_url(request.url)
                 request.method = "GET"
@@ -881,6 +894,7 @@ class StorageAccountsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = regenerate_key
+        _url = self.regenerate_key.metadata["url"]
 
         request = build_storage_accounts_regenerate_key_request(
             resource_group_name=resource_group_name,
@@ -888,7 +902,7 @@ class StorageAccountsOperations:
             subscription_id=self._config.subscription_id,
             content_type=content_type,
             json=json,
-            template_url=self.regenerate_key.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 
@@ -960,9 +974,11 @@ class UsageOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self.list.metadata["url"]
+
         request = build_usage_list_request(
             subscription_id=self._config.subscription_id,
-            template_url=self.list.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 

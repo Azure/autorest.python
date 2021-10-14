@@ -106,11 +106,13 @@ class ParamsOperations(object):
         parameter2 = kwargs.pop("parameter2")  # type: str
         parameter3 = kwargs.pop("parameter3")  # type: str
 
+        _url = self.get_required.metadata["url"]
+
         request = build_params_get_required_request(
             parameter1=parameter1,
             parameter2=parameter2,
             parameter3=parameter3,
-            template_url=self.get_required.metadata["url"],
+            template_url=_url,
         )
         request.url = self._client.format_url(request.url)
 

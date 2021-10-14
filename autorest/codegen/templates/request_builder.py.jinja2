@@ -15,7 +15,7 @@
     # Construct URL
     url = kwargs.pop("template_url", {{ keywords.escape_str(request_builder.url) }})
 {% if request_builder.parameters.path %}
-    {{ op_tools.serialize(request_builder_serializer.serialize_path(request_builder)) | indent }}
+    {{ op_tools.serialize(request_builder_serializer.serialize_path(request_builder.parameters.path)) | indent }}
     url = _format_url_section(url, **path_format_arguments)
 {% endif %}
 

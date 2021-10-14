@@ -71,12 +71,13 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_valid.metadata["url"])
+        _url = self.get_valid.metadata["url"]
 
         request = build_get_valid_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -114,7 +115,7 @@ class DictionaryOperations:
 
         _complex_body = _models.DictionaryWrapper(default_program=default_program)
         json = self._serialize.body(_complex_body, "DictionaryWrapper")
-        _url = self._client.format_url(self.put_valid.metadata["url"])
+        _url = self.put_valid.metadata["url"]
 
         request = build_put_valid_request(
             content_type=content_type,
@@ -122,6 +123,7 @@ class DictionaryOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -149,12 +151,13 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_empty.metadata["url"])
+        _url = self.get_empty.metadata["url"]
 
         request = build_get_empty_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -192,7 +195,7 @@ class DictionaryOperations:
 
         _complex_body = _models.DictionaryWrapper(default_program=default_program)
         json = self._serialize.body(_complex_body, "DictionaryWrapper")
-        _url = self._client.format_url(self.put_empty.metadata["url"])
+        _url = self.put_empty.metadata["url"]
 
         request = build_put_empty_request(
             content_type=content_type,
@@ -200,6 +203,7 @@ class DictionaryOperations:
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -227,12 +231,13 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_null.metadata["url"])
+        _url = self.get_null.metadata["url"]
 
         request = build_get_null_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -264,12 +269,13 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_not_provided.metadata["url"])
+        _url = self.get_not_provided.metadata["url"]
 
         request = build_get_not_provided_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

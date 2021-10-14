@@ -359,12 +359,13 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_null.metadata["url"])
+        _url = self.get_null.metadata["url"]
 
         request = build_get_null_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -409,7 +410,7 @@ class StringOperations(object):
             json = self._serialize.body(string_body, "str")
         else:
             json = None
-        _url = self._client.format_url(self.put_null.metadata["url"])
+        _url = self.put_null.metadata["url"]
 
         request = build_put_null_request(
             content_type=content_type,
@@ -417,6 +418,7 @@ class StringOperations(object):
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -447,12 +449,13 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_empty.metadata["url"])
+        _url = self.get_empty.metadata["url"]
 
         request = build_get_empty_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -489,13 +492,14 @@ class StringOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        _url = self._client.format_url(self.put_empty.metadata["url"])
+        _url = self.put_empty.metadata["url"]
 
         request = build_put_empty_request(
             content_type=content_type,
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -526,12 +530,13 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_mbcs.metadata["url"])
+        _url = self.get_mbcs.metadata["url"]
 
         request = build_get_mbcs_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -568,13 +573,14 @@ class StringOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        _url = self._client.format_url(self.put_mbcs.metadata["url"])
+        _url = self.put_mbcs.metadata["url"]
 
         request = build_put_mbcs_request(
             content_type=content_type,
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -607,12 +613,13 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_whitespace.metadata["url"])
+        _url = self.get_whitespace.metadata["url"]
 
         request = build_get_whitespace_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -651,13 +658,14 @@ class StringOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        _url = self._client.format_url(self.put_whitespace.metadata["url"])
+        _url = self.put_whitespace.metadata["url"]
 
         request = build_put_whitespace_request(
             content_type=content_type,
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -688,12 +696,13 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_not_provided.metadata["url"])
+        _url = self.get_not_provided.metadata["url"]
 
         request = build_get_not_provided_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -728,12 +737,13 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_base64_encoded.metadata["url"])
+        _url = self.get_base64_encoded.metadata["url"]
 
         request = build_get_base64_encoded_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -768,12 +778,13 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_base64_url_encoded.metadata["url"])
+        _url = self.get_base64_url_encoded.metadata["url"]
 
         request = build_get_base64_url_encoded_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -815,7 +826,7 @@ class StringOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(string_body, "base64")
-        _url = self._client.format_url(self.put_base64_url_encoded.metadata["url"])
+        _url = self.put_base64_url_encoded.metadata["url"]
 
         request = build_put_base64_url_encoded_request(
             content_type=content_type,
@@ -823,6 +834,7 @@ class StringOperations(object):
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -853,12 +865,13 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_null_base64_url_encoded.metadata["url"])
+        _url = self.get_null_base64_url_encoded.metadata["url"]
 
         request = build_get_null_base64_url_encoded_request(
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

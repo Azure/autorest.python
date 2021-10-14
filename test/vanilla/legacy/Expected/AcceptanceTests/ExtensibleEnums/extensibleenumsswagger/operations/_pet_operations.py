@@ -127,13 +127,14 @@ class PetOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_by_pet_id.metadata["url"])
+        _url = self.get_by_pet_id.metadata["url"]
 
         request = build_get_by_pet_id_request(
             pet_id=pet_id,
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -177,7 +178,7 @@ class PetOperations(object):
             json = self._serialize.body(pet_param, "Pet")
         else:
             json = None
-        _url = self._client.format_url(self.add_pet.metadata["url"])
+        _url = self.add_pet.metadata["url"]
 
         request = build_add_pet_request(
             content_type=content_type,
@@ -185,6 +186,7 @@ class PetOperations(object):
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

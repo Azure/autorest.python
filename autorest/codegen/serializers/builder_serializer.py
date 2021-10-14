@@ -8,7 +8,7 @@ from itertools import groupby
 import json
 from collections import defaultdict
 from abc import abstractmethod, ABC
-from typing import Any, List, TypeVar, Dict, Union, Optional, cast
+from typing import Any, Callable, List, TypeVar, Dict, Union, Optional, cast
 from ..models import (
     Operation,
     CodeModel,
@@ -395,13 +395,23 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
     def serializer_name(self) -> str:
         ...
 
+    @property
+    @abstractmethod
+    def get_parameter_full_serialized_name(self) -> Callable[[Parameter], str]:
+        ...
+
     def _serialize_parameter(
         self, parameter: Parameter, function_name: str
     ) -> List[str]:
         set_parameter = "{}_parameters['{}'] = {}".format(
             function_name,
             parameter.rest_api_name,
-            utils.build_serialize_data_call(parameter, function_name, self.serializer_name)
+            utils.build_serialize_data_call(
+                parameter,
+                self.get_parameter_full_serialized_name(parameter),
+                function_name,
+                self.serializer_name,
+            )
         )
         if parameter.required:
             retval = [set_parameter]
@@ -423,8 +433,8 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
     def pop_kwargs_from_signature(self, builder: BuilderType) -> List[str]:
         return utils.pop_kwargs_from_signature(self._get_kwargs_to_pop(builder))
 
-    def serialize_path(self, builder: BuilderType) -> List[str]:
-        return utils.serialize_path(builder.parameters.path, self.serializer_name)
+    def serialize_path(self, parameters: List[Parameter]) -> List[str]:
+        return utils.serialize_path(parameters, self.serializer_name, self.get_parameter_full_serialized_name)
 
     @property
     def _function_definition(self) -> str:
@@ -447,6 +457,12 @@ class _RequestBuilderBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=
     @property
     def serializer_name(self) -> str:
         return "_SERIALIZER"
+
+    @property
+    def get_parameter_full_serialized_name(self) -> Callable[[Parameter], str]:
+        def _callback(param):
+            return param.serialized_name
+        return _callback
 
     def want_example_template(self, builder: BuilderType) -> bool:
         if self.code_model.options["builders_visibility"] != "public":
@@ -592,6 +608,15 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
     @property
     def serializer_name(self) -> str:
         return "self._serialize"
+
+    @property
+    def get_parameter_full_serialized_name(self) -> Callable[[Parameter], str]:
+        def _callback(param):
+            origin_name = param.serialized_name
+            if param.implementation == "Client":
+                origin_name = f"self._config.{param.serialized_name}"
+            return origin_name
+        return _callback
 
     def _response_docstring_type_wrapper(self, builder: BuilderType) -> List[str]:  # pylint: disable=unused-argument, no-self-use
         return []
@@ -739,11 +764,10 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
 
         return retval
 
-    def _call_request_builder_helper(
+    def _handle_body_before_calling_request_builder(
         self,
         builder: BuilderType,
         request_builder: RequestBuilder,
-        template_url: Optional[str] = None,
     ) -> List[str]:
         retval = []
         if len(builder.body_kwargs_to_pass_to_request_builder) > 1:
@@ -766,16 +790,31 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
             retval.extend(_serialize_flattened_body(builder))
         if builder.parameters.has_body and not builder.parameters.body[0].constant:
             retval.extend(self._serialize_body_parameters(builder))
+        return retval
+
+    def _call_request_builder_helper(
+        self,
+        builder: BuilderType,
+        request_builder: RequestBuilder,
+        template_url: Optional[str] = None,
+    ) -> List[str]:
+        retval = []
+        retval.extend(self._handle_body_before_calling_request_builder(
+            builder, request_builder
+        ))
         template_url = template_url or f"self.{builder.name}.metadata['url']"
 
         if builder.parameters.path:
-            retval.extend(self.serialize_path(builder))
-        retval.append(
-            "_url = self._client.format_url({}{})".format(
-                template_url,
-                ", **path_format_arguments" if builder.parameters.path else ""
+            path_params = builder.parameters.path + request_builder.parameters.path
+            for param in path_params:
+                if param.constant:
+                    retval.append(_declare_constant(param))
+            retval.extend(self.serialize_path(path_params))
+            retval.append(
+                f"_url = self._client.format_url({template_url}, **path_format_arguments)"
             )
-        )
+        else:
+            retval.append(f"_url = {template_url}")
         if self.code_model.options["builders_visibility"] == "embedded":
             request_path_name = request_builder.name
         else:
@@ -801,6 +840,10 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
             if "files" in builder.body_kwargs_to_pass_to_request_builder:
                 pass_files = ", files"
             retval.append(f"request = _convert_request(request{pass_files})")
+        if not builder.parameters.path:
+            retval.append(
+                f"request.url = self._client.format_url(request.url)"
+            )
         return retval
 
     def call_request_builder(self, builder: BuilderType) -> List[str]:
@@ -1048,7 +1091,7 @@ class _PagingOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disab
             retval.append("")
             retval.extend([
                 f"        {line}"
-                for line in self.serialize_path(builder)
+                for line in self.serialize_path(builder.parameters.path)
             ])
         if not builder.next_request_builder:
             retval.append('        request.method = "GET"')
@@ -1232,7 +1275,7 @@ class _LROOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=
         path_format_arguments_str = ""
         if builder.parameters.path:
             path_format_arguments_str = ", path_format_arguments=path_format_arguments"
-            retval.extend(self.serialize_path(builder))
+            retval.extend(self.serialize_path(builder.parameters.path))
             retval.append("")
         retval.append(
             f"if polling is True: polling_method = {self._default_polling_method(builder)}" +

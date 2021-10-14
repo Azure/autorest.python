@@ -165,13 +165,14 @@ class PetOperations(object):
         }
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.get_pet_by_id.metadata["url"])
+        _url = self.get_pet_by_id.metadata["url"]
 
         request = build_get_pet_by_id_request(
             pet_id=pet_id,
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -218,13 +219,14 @@ class PetOperations(object):
         }
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.do_something.metadata["url"])
+        _url = self.do_something.metadata["url"]
 
         request = build_do_something_request(
             what_action=what_action,
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -272,13 +274,14 @@ class PetOperations(object):
         }
         error_map.update(kwargs.pop("error_map", {}))
 
-        _url = self._client.format_url(self.has_models_param.metadata["url"])
+        _url = self.has_models_param.metadata["url"]
 
         request = build_has_models_param_request(
             models=models,
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

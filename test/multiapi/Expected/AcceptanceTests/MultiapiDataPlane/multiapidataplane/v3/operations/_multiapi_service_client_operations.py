@@ -107,20 +107,22 @@ class MultiapiServiceClientOperationsMixin(object):
         error_map.update(kwargs.pop('error_map', {}))
         def prepare_request(next_link=None):
             if not next_link:
-                _url = self._client.format_url(self.test_paging.metadata['url'])
+                _url = self.test_paging.metadata['url']
                 
                 request = build_test_paging_request(
                     template_url=_url,
                 )
                 request = _convert_request(request)
+                request.url = self._client.format_url(request.url)
 
             else:
-                _url = self._client.format_url(next_link)
+                _url = next_link
                 
                 request = build_test_paging_request(
                     template_url=_url,
                 )
                 request = _convert_request(request)
+                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 
@@ -177,7 +179,7 @@ class MultiapiServiceClientOperationsMixin(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        _url = self._client.format_url(self.test_different_calls.metadata['url'])
+        _url = self.test_different_calls.metadata['url']
 
         request = build_test_different_calls_request(
             greeting_in_english=greeting_in_english,
@@ -186,6 +188,7 @@ class MultiapiServiceClientOperationsMixin(object):
             template_url=_url,
         )
         request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
