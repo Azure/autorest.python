@@ -123,6 +123,16 @@ class RequestBuilderParameterList(ParameterList):
         return kwargs_to_pop
 
     @property
+    def constant(self) -> List[Parameter]:
+        """Return the constants of this parameter list.
+
+        This excludes the constant from flatening on purpose, since technically they are not
+        constant from this set of parameters, they are constants on the models and hence they do
+        not have impact on any generation at this level
+        """
+        return [c for c in super().constant if c.implementation == self.implementation]
+
+    @property
     def method(self) -> List[Parameter]:
         """The list of parameter used in method signature. Includes both positional and kwargs
         """
@@ -133,7 +143,7 @@ class RequestBuilderParameterList(ParameterList):
         # Also allow client parameters if they're going to be used in the request body.
         # i.e., path parameter, query parameter, header.
         parameters = self.get_from_predicate(
-            lambda parameter: parameter.implementation == self.implementation or parameter.in_method_code
+            lambda parameter: parameter.in_method_code
         )
         seen_content_type = False
 

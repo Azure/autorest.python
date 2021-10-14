@@ -378,12 +378,13 @@ def build_put_model_as_string_required_one_value_default_request(
 
 
 def build_put_client_constants_request(
+    path_constant="path",  # type: str
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    header_constant = True
-    query_constant = 100
-    path_constant = "path"
+    header_constant = kwargs.pop('header_constant', True)  # type: bool
+    query_constant = kwargs.pop('query_constant', 100)  # type: int
+
     # Construct URL
     url = kwargs.pop("template_url", '/constants/clientConstants/{path-constant}')
     path_format_arguments = {
@@ -1129,6 +1130,9 @@ class ContantsOperations(object):
         _url = self.put_client_constants.metadata["url"]
 
         request = build_put_client_constants_request(
+            path_constant=self._config.path_constant,
+            header_constant=self._config.header_constant,
+            query_constant=self._config.query_constant,
             template_url=_url,
         )
         request = _convert_request(request)
