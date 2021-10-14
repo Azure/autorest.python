@@ -16,7 +16,7 @@ class RequestBuilderParameter(ParameterOnlyPathAndBodyPositional):
     @property
     def in_method_signature(self) -> bool:
         return not(
-            self.constant
+            (self.constant and self.implementation != "Client")
             # If i'm not in the method code, no point in being in signature
             or not self.in_method_code
             # If I'm a flattened property of a body, don't want me, want the body param
