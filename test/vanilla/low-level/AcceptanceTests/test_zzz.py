@@ -64,6 +64,7 @@ class TestAcceptance(object):
             "animalNotFoundError": 1,
             "linkNotFoundError": 1,
             "putEnumReferencedConstant": 1,  # can't do constants on body
+            "LLCRequiredToOptional": 1,
         }
 
         print("Coverage:")
