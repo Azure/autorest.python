@@ -65,6 +65,13 @@ jobs:
       - script: |
           pytest test/unittests
         displayName: 'Unit tests'
+      - script: |
+          inv regenerate
+        displayName: 'Regenerate Code'
+      - script: |
+          git add -A  # 'add' first so 'diff' includes untracked files
+          git diff --staged -w
+        displayName: 'Diff regeneration'
 
       - task: UsePythonVersion@0
         displayName: 'Use Python $(PythonVersion)'
