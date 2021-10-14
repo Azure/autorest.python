@@ -94,23 +94,6 @@ def _serialize_files_body(builder: BuilderType) -> List[str]:
     retval.append("}")
     return retval
 
-def _serialize_parameter(
-    parameter: Parameter, function_name: str,
-) -> List[str]:
-    set_parameter = "{}_parameters['{}'] = {}".format(
-        function_name,
-        parameter.rest_api_name,
-        utils.build_serialize_data_call(parameter, function_name)
-    )
-    if parameter.required:
-        retval = [set_parameter]
-    else:
-        retval = [
-            f"if {parameter.full_serialized_name} is not None:",
-            f"    {set_parameter}"
-        ]
-    return retval
-
 def _declare_constant(constant: Parameter) -> str:
     return f"{constant.serialized_name} = {constant.constant_declaration}"
 
@@ -407,6 +390,28 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
         template.extend(f"{self._json_example_param_name(builder)} = {json_template}".splitlines())
         return template
 
+    @property
+    @abstractmethod
+    def serializer_name(self) -> str:
+        ...
+
+    def _serialize_parameter(
+        self, parameter: Parameter, function_name: str
+    ) -> List[str]:
+        set_parameter = "{}_parameters['{}'] = {}".format(
+            function_name,
+            parameter.rest_api_name,
+            utils.build_serialize_data_call(parameter, function_name, self.serializer_name)
+        )
+        if parameter.required:
+            retval = [set_parameter]
+        else:
+            retval = [
+                f"if {parameter.full_serialized_name} is not None:",
+                f"    {set_parameter}"
+            ]
+        return retval
+
     def _get_json_response_template(self, builder: BuilderType) -> List[str]:
         template = []
         for response_body, status_codes in self._get_json_response_template_to_status_codes(builder).items():
@@ -418,9 +423,8 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
     def pop_kwargs_from_signature(self, builder: BuilderType) -> List[str]:
         return utils.pop_kwargs_from_signature(self._get_kwargs_to_pop(builder))
 
-    @staticmethod
-    def serialize_path(builder: BuilderType) -> List[str]:
-        return utils.serialize_path(builder.parameters.path)
+    def serialize_path(self, builder: BuilderType) -> List[str]:
+        return utils.serialize_path(builder.parameters.path, self.serializer_name)
 
     @property
     def _function_definition(self) -> str:
@@ -439,6 +443,10 @@ class _RequestBuilderBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=
             "",
         ]
         return retval
+
+    @property
+    def serializer_name(self) -> str:
+        return "_SERIALIZER"
 
     def want_example_template(self, builder: BuilderType) -> bool:
         if self.code_model.options["builders_visibility"] != "public":
@@ -498,25 +506,23 @@ class _RequestBuilderBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=
         retval.append(")")
         return retval
 
-    @staticmethod
-    def serialize_headers(builder: BuilderType) -> List[str]:
+    def serialize_headers(self, builder: BuilderType) -> List[str]:
         retval = ["# Construct headers"]
         retval.append(_pop_parameters_kwarg("header", "headers"))
         for parameter in builder.parameters.headers:
-            retval.extend(_serialize_parameter(
+            retval.extend(self._serialize_parameter(
                 parameter,
-                function_name="header"
+                function_name="header",
             ))
         return retval
 
-    @staticmethod
-    def serialize_query(builder: BuilderType) -> List[str]:
+    def serialize_query(self, builder: BuilderType) -> List[str]:
         retval = ["# Construct parameters"]
         retval.append(_pop_parameters_kwarg("query", "params"))
         for parameter in builder.parameters.query:
-            retval.extend(_serialize_parameter(
+            retval.extend(self._serialize_parameter(
                 parameter,
-                function_name="query"
+                function_name="query",
             ))
         return retval
 
@@ -582,6 +588,10 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
     @property
     def _is_in_class(self) -> bool:
         return True
+
+    @property
+    def serializer_name(self) -> str:
+        return "self._serialize"
 
     def _response_docstring_type_wrapper(self, builder: BuilderType) -> List[str]:  # pylint: disable=unused-argument, no-self-use
         return []

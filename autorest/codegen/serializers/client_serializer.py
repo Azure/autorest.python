@@ -170,4 +170,4 @@ class ClientSerializer:
         return retval
 
     def serialize_path(self) -> List[str]:
-        return utils.serialize_path(self.code_model.global_parameters.path)
+        return utils.serialize_path(self.code_model.global_parameters.path, "self._serialize")
