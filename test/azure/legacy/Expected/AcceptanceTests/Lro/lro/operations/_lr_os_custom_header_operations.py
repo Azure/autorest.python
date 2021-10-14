@@ -172,14 +172,14 @@ class LROsCustomHeaderOperations(object):
             json = self._serialize.body(product, "Product")
         else:
             json = None
+        _url = self._client.format_url(self._put_async_retry_succeeded_initial.metadata["url"])
 
         request = build_put_async_retry_succeeded_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._put_async_retry_succeeded_initial.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -289,14 +289,14 @@ class LROsCustomHeaderOperations(object):
             json = self._serialize.body(product, "Product")
         else:
             json = None
+        _url = self._client.format_url(self._put201_creating_succeeded200_initial.metadata["url"])
 
         request = build_put201_creating_succeeded200_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._put201_creating_succeeded200_initial.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -396,14 +396,14 @@ class LROsCustomHeaderOperations(object):
             json = self._serialize.body(product, "Product")
         else:
             json = None
+        _url = self._client.format_url(self._post202_retry200_initial.metadata["url"])
 
         request = build_post202_retry200_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._post202_retry200_initial.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -495,14 +495,14 @@ class LROsCustomHeaderOperations(object):
             json = self._serialize.body(product, "Product")
         else:
             json = None
+        _url = self._client.format_url(self._post_async_retry_succeeded_initial.metadata["url"])
 
         request = build_post_async_retry_succeeded_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._post_async_retry_succeeded_initial.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

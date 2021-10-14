@@ -71,12 +71,13 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self._client.format_url(self.custom_named_request_id.metadata["url"])
+
         request = build_custom_named_request_id_request(
             foo_client_request_id=foo_client_request_id,
-            template_url=self.custom_named_request_id.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -118,13 +119,13 @@ class HeaderOperations:
         _foo_client_request_id = None
         if header_custom_named_request_id_param_grouping_parameters is not None:
             _foo_client_request_id = header_custom_named_request_id_param_grouping_parameters.foo_client_request_id
+        _url = self._client.format_url(self.custom_named_request_id_param_grouping.metadata["url"])
 
         request = build_custom_named_request_id_param_grouping_request(
             foo_client_request_id=_foo_client_request_id,
-            template_url=self.custom_named_request_id_param_grouping.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -157,12 +158,13 @@ class HeaderOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self._client.format_url(self.custom_named_request_id_head.metadata["url"])
+
         request = build_custom_named_request_id_head_request(
             foo_client_request_id=foo_client_request_id,
-            template_url=self.custom_named_request_id_head.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

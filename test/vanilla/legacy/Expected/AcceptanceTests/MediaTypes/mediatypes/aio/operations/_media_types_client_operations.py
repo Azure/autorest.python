@@ -68,15 +68,15 @@ class MediaTypesClientOperationsMixin:
                 "The content_type '{}' is not one of the allowed values: "
                 "['application/pdf', 'image/jpeg', 'image/png', 'image/tiff', 'application/json']".format(content_type)
             )
+        _url = self._client.format_url(self.analyze_body.metadata["url"])
 
         request = build_analyze_body_request(
             content_type=content_type,
             json=json,
             content=content,
-            template_url=self.analyze_body.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -131,15 +131,15 @@ class MediaTypesClientOperationsMixin:
                 "The content_type '{}' is not one of the allowed values: "
                 "['application/pdf', 'image/jpeg', 'image/png', 'image/tiff', 'application/json']".format(content_type)
             )
+        _url = self._client.format_url(self.analyze_body_no_accept_header.metadata["url"])
 
         request = build_analyze_body_no_accept_header_request(
             content_type=content_type,
             json=json,
             content=content,
-            template_url=self.analyze_body_no_accept_header.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -174,14 +174,14 @@ class MediaTypesClientOperationsMixin:
             content = self._serialize.body(input, "str")
         else:
             content = None
+        _url = self._client.format_url(self.content_type_with_encoding.metadata["url"])
 
         request = build_content_type_with_encoding_request(
             content_type=content_type,
             content=content,
-            template_url=self.content_type_with_encoding.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

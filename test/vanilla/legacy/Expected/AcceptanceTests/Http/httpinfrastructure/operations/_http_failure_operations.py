@@ -133,11 +133,12 @@ class HttpFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self._client.format_url(self.get_empty_error.metadata["url"])
+
         request = build_get_empty_error_request(
-            template_url=self.get_empty_error.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -172,11 +173,12 @@ class HttpFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self._client.format_url(self.get_no_model_error.metadata["url"])
+
         request = build_get_no_model_error_request(
-            template_url=self.get_no_model_error.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -210,11 +212,12 @@ class HttpFailureOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self._client.format_url(self.get_no_model_empty.metadata["url"])
+
         request = build_get_no_model_empty_request(
-            template_url=self.get_no_model_empty.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

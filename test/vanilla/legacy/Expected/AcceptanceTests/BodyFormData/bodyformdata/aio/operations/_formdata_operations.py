@@ -81,15 +81,15 @@ class FormdataOperations:
             "fileContent": file_content,
             "fileName": file_name,
         }
+        _url = self._client.format_url(self.upload_file.metadata["url"])
 
         request = build_upload_file_request(
             content_type=content_type,
             files=files,
             data=data,
-            template_url=self.upload_file.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request, files)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)
         response = pipeline_response.http_response
@@ -126,14 +126,14 @@ class FormdataOperations:
         content_type = kwargs.pop("content_type", "application/octet-stream")  # type: Optional[str]
 
         content = file_content
+        _url = self._client.format_url(self.upload_file_via_body.metadata["url"])
 
         request = build_upload_file_via_body_request(
             content_type=content_type,
             content=content,
-            template_url=self.upload_file_via_body.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)
         response = pipeline_response.http_response
@@ -175,15 +175,15 @@ class FormdataOperations:
         files = {
             "fileContent": file_content,
         }
+        _url = self._client.format_url(self.upload_files.metadata["url"])
 
         request = build_upload_files_request(
             content_type=content_type,
             files=files,
             data=data,
-            template_url=self.upload_files.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request, files)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)
         response = pipeline_response.http_response

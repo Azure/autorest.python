@@ -75,14 +75,14 @@ class LRORetrysOperations:
             json = self._serialize.body(product, "Product")
         else:
             json = None
+        _url = self._client.format_url(self._put201_creating_succeeded200_initial.metadata["url"])
 
         request = build_put201_creating_succeeded200_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._put201_creating_succeeded200_initial.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -176,14 +176,14 @@ class LRORetrysOperations:
             json = self._serialize.body(product, "Product")
         else:
             json = None
+        _url = self._client.format_url(self._put_async_relative_retry_succeeded_initial.metadata["url"])
 
         request = build_put_async_relative_retry_succeeded_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._put_async_relative_retry_succeeded_initial.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -279,11 +279,12 @@ class LRORetrysOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self._client.format_url(self._delete_provisioning202_accepted200_succeeded_initial.metadata["url"])
+
         request = build_delete_provisioning202_accepted200_succeeded_request_initial(
-            template_url=self._delete_provisioning202_accepted200_succeeded_initial.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -370,11 +371,12 @@ class LRORetrysOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self._client.format_url(self._delete202_retry200_initial.metadata["url"])
+
         request = build_delete202_retry200_request_initial(
-            template_url=self._delete202_retry200_initial.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -444,11 +446,12 @@ class LRORetrysOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self._client.format_url(self._delete_async_relative_retry_succeeded_initial.metadata["url"])
+
         request = build_delete_async_relative_retry_succeeded_request_initial(
-            template_url=self._delete_async_relative_retry_succeeded_initial.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -527,14 +530,14 @@ class LRORetrysOperations:
             json = self._serialize.body(product, "Product")
         else:
             json = None
+        _url = self._client.format_url(self._post202_retry200_initial.metadata["url"])
 
         request = build_post202_retry200_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._post202_retry200_initial.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -619,14 +622,14 @@ class LRORetrysOperations:
             json = self._serialize.body(product, "Product")
         else:
             json = None
+        _url = self._client.format_url(self._post_async_relative_retry_succeeded_initial.metadata["url"])
 
         request = build_post_async_relative_retry_succeeded_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._post_async_relative_retry_succeeded_initial.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

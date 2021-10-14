@@ -63,12 +63,12 @@ class OperationGroupOneOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        
+        _url = self._client.format_url(self.test_two.metadata['url'])
+
         request = build_test_two_request(
-            template_url=self.test_two.metadata['url'],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

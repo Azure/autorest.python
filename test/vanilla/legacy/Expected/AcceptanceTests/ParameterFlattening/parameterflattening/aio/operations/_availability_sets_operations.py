@@ -74,16 +74,16 @@ class AvailabilitySetsOperations:
 
         _tags = _models.AvailabilitySetUpdateParameters(tags=tags)
         json = self._serialize.body(_tags, "AvailabilitySetUpdateParameters")
+        _url = self._client.format_url(self.update.metadata["url"])
 
         request = build_update_request(
             resource_group_name=resource_group_name,
             avset=avset,
             content_type=content_type,
             json=json,
-            template_url=self.update.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

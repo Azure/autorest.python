@@ -76,14 +76,14 @@ class PetsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(create_parameters, "PetAPTrue")
+        _url = self._client.format_url(self.create_ap_true.metadata["url"])
 
         request = build_create_ap_true_request(
             content_type=content_type,
             json=json,
-            template_url=self.create_ap_true.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -120,14 +120,14 @@ class PetsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(create_parameters, "CatAPTrue")
+        _url = self._client.format_url(self.create_cat_ap_true.metadata["url"])
 
         request = build_create_cat_ap_true_request(
             content_type=content_type,
             json=json,
-            template_url=self.create_cat_ap_true.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -164,14 +164,14 @@ class PetsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(create_parameters, "PetAPObject")
+        _url = self._client.format_url(self.create_ap_object.metadata["url"])
 
         request = build_create_ap_object_request(
             content_type=content_type,
             json=json,
-            template_url=self.create_ap_object.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -208,14 +208,14 @@ class PetsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(create_parameters, "PetAPString")
+        _url = self._client.format_url(self.create_ap_string.metadata["url"])
 
         request = build_create_ap_string_request(
             content_type=content_type,
             json=json,
-            template_url=self.create_ap_string.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -254,14 +254,14 @@ class PetsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(create_parameters, "PetAPInProperties")
+        _url = self._client.format_url(self.create_ap_in_properties.metadata["url"])
 
         request = build_create_ap_in_properties_request(
             content_type=content_type,
             json=json,
-            template_url=self.create_ap_in_properties.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -300,14 +300,14 @@ class PetsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(create_parameters, "PetAPInPropertiesWithAPString")
+        _url = self._client.format_url(self.create_ap_in_properties_with_ap_string.metadata["url"])
 
         request = build_create_ap_in_properties_with_ap_string_request(
             content_type=content_type,
             json=json,
-            template_url=self.create_ap_in_properties_with_ap_string.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

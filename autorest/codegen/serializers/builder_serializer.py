@@ -756,6 +756,16 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
             retval.extend(_serialize_flattened_body(builder))
         if builder.parameters.has_body and not builder.parameters.body[0].constant:
             retval.extend(self._serialize_body_parameters(builder))
+        template_url = template_url or f"self.{builder.name}.metadata['url']"
+
+        if builder.parameters.path:
+            retval.extend(self.serialize_path(builder))
+        retval.append(
+            "_url = self._client.format_url({}{})".format(
+                template_url,
+                ", **path_format_arguments" if builder.parameters.path else ""
+            )
+        )
         if self.code_model.options["builders_visibility"] == "embedded":
             request_path_name = request_builder.name
         else:
@@ -773,21 +783,14 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         if request_builder.parameters.has_body:
             for kwarg in builder.body_kwargs_to_pass_to_request_builder:
                 retval.append(f"    {kwarg}={kwarg},")
-        template_url = template_url or f"self.{builder.name}.metadata['url']"
-        retval.append(f"    template_url={template_url},")
+
+        retval.append(f"    template_url=_url,")
         retval.append(f")")
         if not self.code_model.options["version_tolerant"]:
             pass_files = ""
             if "files" in builder.body_kwargs_to_pass_to_request_builder:
                 pass_files = ", files"
             retval.append(f"request = _convert_request(request{pass_files})")
-        if builder.parameters.path:
-            retval.extend(self.serialize_path(builder))
-        retval.append(
-            "request.url = self._client.format_url(request.url{})".format(
-                ", **path_format_arguments" if builder.parameters.path else ""
-            )
-        )
         return retval
 
     def call_request_builder(self, builder: BuilderType) -> List[str]:

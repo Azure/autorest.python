@@ -82,15 +82,15 @@ class OperationGroupTwoOperations:
                 "The content_type '{}' is not one of the allowed values: "
                 "['application/pdf', 'image/jpeg', 'image/png', 'image/tiff', 'application/json']".format(content_type)
             )
+        _url = self._client.format_url(self.test_four.metadata['url'])
 
         request = build_test_four_request(
             content_type=content_type,
             json=json,
             content=content,
-            template_url=self.test_four.metadata['url'],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -124,12 +124,12 @@ class OperationGroupTwoOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        
+        _url = self._client.format_url(self.test_five.metadata['url'])
+
         request = build_test_five_request(
-            template_url=self.test_five.metadata['url'],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

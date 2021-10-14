@@ -95,14 +95,14 @@ class PollingPagingExampleOperationsMixin(object):
             json = self._serialize.body(product, 'Product')
         else:
             json = None
+        _url = self._client.format_url(self._basic_polling_initial.metadata['url'])
 
         request = build_basic_polling_request_initial(
             content_type=content_type,
             json=json,
-            template_url=self._basic_polling_initial.metadata['url'],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -206,20 +206,20 @@ class PollingPagingExampleOperationsMixin(object):
         error_map.update(kwargs.pop('error_map', {}))
         def prepare_request(next_link=None):
             if not next_link:
+                _url = self._client.format_url(self.basic_paging.metadata['url'])
                 
                 request = build_basic_paging_request(
-                    template_url=self.basic_paging.metadata['url'],
+                    template_url=_url,
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)
 
             else:
+                _url = self._client.format_url(next_link)
                 
                 request = build_basic_paging_request(
-                    template_url=next_link,
+                    template_url=_url,
                 )
                 request = _convert_request(request)
-                request.url = self._client.format_url(request.url)
                 request.method = "GET"
             return request
 

@@ -89,6 +89,7 @@ class ParameterGroupingOperations:
             _path = parameter_grouping_post_required_parameters.path
             _body = parameter_grouping_post_required_parameters.body
         json = self._serialize.body(_body, "int")
+        _url = self._client.format_url(self.post_required.metadata["url"])
 
         request = build_post_required_request(
             path=_path,
@@ -96,10 +97,9 @@ class ParameterGroupingOperations:
             custom_header=_custom_header,
             query=_query,
             json=json,
-            template_url=self.post_required.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -139,14 +139,14 @@ class ParameterGroupingOperations:
         if parameter_grouping_post_optional_parameters is not None:
             _custom_header = parameter_grouping_post_optional_parameters.custom_header
             _query = parameter_grouping_post_optional_parameters.query
+        _url = self._client.format_url(self.post_optional.metadata["url"])
 
         request = build_post_optional_request(
             custom_header=_custom_header,
             query=_query,
-            template_url=self.post_optional.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -188,14 +188,14 @@ class ParameterGroupingOperations:
         if parameter_grouping_post_reserved_words_parameters is not None:
             _from_parameter = parameter_grouping_post_reserved_words_parameters.from_property
             _accept_parameter = parameter_grouping_post_reserved_words_parameters.accept
+        _url = self._client.format_url(self.post_reserved_words.metadata["url"])
 
         request = build_post_reserved_words_request(
             from_parameter=_from_parameter,
             accept_parameter=_accept_parameter,
-            template_url=self.post_reserved_words.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -245,16 +245,16 @@ class ParameterGroupingOperations:
         if parameter_grouping_post_multi_param_groups_second_param_group is not None:
             _header_two = parameter_grouping_post_multi_param_groups_second_param_group.header_two
             _query_two = parameter_grouping_post_multi_param_groups_second_param_group.query_two
+        _url = self._client.format_url(self.post_multi_param_groups.metadata["url"])
 
         request = build_post_multi_param_groups_request(
             header_one=_header_one,
             query_one=_query_one,
             header_two=_header_two,
             query_two=_query_two,
-            template_url=self.post_multi_param_groups.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -291,14 +291,14 @@ class ParameterGroupingOperations:
         if first_parameter_group is not None:
             _header_one = first_parameter_group.header_one
             _query_one = first_parameter_group.query_one
+        _url = self._client.format_url(self.post_shared_parameter_group_object.metadata["url"])
 
         request = build_post_shared_parameter_group_object_request(
             header_one=_header_one,
             query_one=_query_one,
-            template_url=self.post_shared_parameter_group_object.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

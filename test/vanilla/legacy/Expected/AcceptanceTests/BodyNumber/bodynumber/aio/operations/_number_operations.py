@@ -89,11 +89,12 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self._client.format_url(self.get_null.metadata["url"])
+
         request = build_get_null_request(
-            template_url=self.get_null.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -125,11 +126,12 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self._client.format_url(self.get_invalid_float.metadata["url"])
+
         request = build_get_invalid_float_request(
-            template_url=self.get_invalid_float.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -161,11 +163,12 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self._client.format_url(self.get_invalid_double.metadata["url"])
+
         request = build_get_invalid_double_request(
-            template_url=self.get_invalid_double.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -197,11 +200,12 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self._client.format_url(self.get_invalid_decimal.metadata["url"])
+
         request = build_get_invalid_decimal_request(
-            template_url=self.get_invalid_decimal.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -238,14 +242,14 @@ class NumberOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(number_body, "float")
+        _url = self._client.format_url(self.put_big_float.metadata["url"])
 
         request = build_put_big_float_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_big_float.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -273,11 +277,12 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self._client.format_url(self.get_big_float.metadata["url"])
+
         request = build_get_big_float_request(
-            template_url=self.get_big_float.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -314,14 +319,14 @@ class NumberOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(number_body, "float")
+        _url = self._client.format_url(self.put_big_double.metadata["url"])
 
         request = build_put_big_double_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_big_double.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -349,11 +354,12 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self._client.format_url(self.get_big_double.metadata["url"])
+
         request = build_get_big_double_request(
-            template_url=self.get_big_double.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -387,12 +393,13 @@ class NumberOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
+        _url = self._client.format_url(self.put_big_double_positive_decimal.metadata["url"])
+
         request = build_put_big_double_positive_decimal_request(
             content_type=content_type,
-            template_url=self.put_big_double_positive_decimal.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -420,11 +427,12 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self._client.format_url(self.get_big_double_positive_decimal.metadata["url"])
+
         request = build_get_big_double_positive_decimal_request(
-            template_url=self.get_big_double_positive_decimal.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -458,12 +466,13 @@ class NumberOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
+        _url = self._client.format_url(self.put_big_double_negative_decimal.metadata["url"])
+
         request = build_put_big_double_negative_decimal_request(
             content_type=content_type,
-            template_url=self.put_big_double_negative_decimal.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -491,11 +500,12 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self._client.format_url(self.get_big_double_negative_decimal.metadata["url"])
+
         request = build_get_big_double_negative_decimal_request(
-            template_url=self.get_big_double_negative_decimal.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -532,14 +542,14 @@ class NumberOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(number_body, "float")
+        _url = self._client.format_url(self.put_big_decimal.metadata["url"])
 
         request = build_put_big_decimal_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_big_decimal.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -567,11 +577,12 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self._client.format_url(self.get_big_decimal.metadata["url"])
+
         request = build_get_big_decimal_request(
-            template_url=self.get_big_decimal.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -605,12 +616,13 @@ class NumberOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
+        _url = self._client.format_url(self.put_big_decimal_positive_decimal.metadata["url"])
+
         request = build_put_big_decimal_positive_decimal_request(
             content_type=content_type,
-            template_url=self.put_big_decimal_positive_decimal.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -638,11 +650,12 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self._client.format_url(self.get_big_decimal_positive_decimal.metadata["url"])
+
         request = build_get_big_decimal_positive_decimal_request(
-            template_url=self.get_big_decimal_positive_decimal.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -676,12 +689,13 @@ class NumberOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
+        _url = self._client.format_url(self.put_big_decimal_negative_decimal.metadata["url"])
+
         request = build_put_big_decimal_negative_decimal_request(
             content_type=content_type,
-            template_url=self.put_big_decimal_negative_decimal.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -709,11 +723,12 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self._client.format_url(self.get_big_decimal_negative_decimal.metadata["url"])
+
         request = build_get_big_decimal_negative_decimal_request(
-            template_url=self.get_big_decimal_negative_decimal.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -750,14 +765,14 @@ class NumberOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(number_body, "float")
+        _url = self._client.format_url(self.put_small_float.metadata["url"])
 
         request = build_put_small_float_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_small_float.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -785,11 +800,12 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self._client.format_url(self.get_small_float.metadata["url"])
+
         request = build_get_small_float_request(
-            template_url=self.get_small_float.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -826,14 +842,14 @@ class NumberOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(number_body, "float")
+        _url = self._client.format_url(self.put_small_double.metadata["url"])
 
         request = build_put_small_double_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_small_double.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -861,11 +877,12 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self._client.format_url(self.get_small_double.metadata["url"])
+
         request = build_get_small_double_request(
-            template_url=self.get_small_double.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -902,14 +919,14 @@ class NumberOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(number_body, "float")
+        _url = self._client.format_url(self.put_small_decimal.metadata["url"])
 
         request = build_put_small_decimal_request(
             content_type=content_type,
             json=json,
-            template_url=self.put_small_decimal.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -937,11 +954,12 @@ class NumberOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self._client.format_url(self.get_small_decimal.metadata["url"])
+
         request = build_get_small_decimal_request(
-            template_url=self.get_small_decimal.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

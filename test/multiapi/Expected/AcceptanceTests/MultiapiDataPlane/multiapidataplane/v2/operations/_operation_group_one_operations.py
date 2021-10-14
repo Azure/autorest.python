@@ -135,14 +135,14 @@ class OperationGroupOneOperations(object):
             json = self._serialize.body(parameter_one, 'ModelTwo')
         else:
             json = None
+        _url = self._client.format_url(self.test_two.metadata['url'])
 
         request = build_test_two_request(
             content_type=content_type,
             json=json,
-            template_url=self.test_two.metadata['url'],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -181,12 +181,12 @@ class OperationGroupOneOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        
+        _url = self._client.format_url(self.test_three.metadata['url'])
+
         request = build_test_three_request(
-            template_url=self.test_three.metadata['url'],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

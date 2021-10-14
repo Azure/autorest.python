@@ -65,13 +65,13 @@ class OperationGroupTwoOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        
+        _url = self._client.format_url(self.test_four.metadata['url'])
+
         request = build_test_four_request(
             parameter_one=parameter_one,
-            template_url=self.test_four.metadata['url'],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

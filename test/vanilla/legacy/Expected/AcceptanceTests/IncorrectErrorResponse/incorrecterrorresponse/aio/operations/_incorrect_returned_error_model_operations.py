@@ -44,11 +44,12 @@ class IncorrectReturnedErrorModelOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        _url = self._client.format_url(self.get_incorrect_error_from_server.metadata["url"])
+
         request = build_get_incorrect_error_from_server_request(
-            template_url=self.get_incorrect_error_from_server.metadata["url"],
+            template_url=_url,
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

@@ -74,13 +74,6 @@ class PathsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_empty_request(
-            key_name=key_name,
-            subscription_id=self._config.subscription_id,
-            key_version=key_version,
-            template_url=self.get_empty.metadata["url"],
-        )
-        request = _convert_request(request)
         path_format_arguments = {
             "vault": self._serialize.url("vault", vault, "str", skip_quote=True),
             "secret": self._serialize.url("secret", secret, "str", skip_quote=True),
@@ -88,7 +81,15 @@ class PathsOperations:
                 "self._config.dns_suffix", self._config.dns_suffix, "str", skip_quote=True
             ),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        _url = self._client.format_url(self.get_empty.metadata["url"], **path_format_arguments)
+
+        request = build_get_empty_request(
+            key_name=key_name,
+            subscription_id=self._config.subscription_id,
+            key_version=key_version,
+            template_url=_url,
+        )
+        request = _convert_request(request)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
