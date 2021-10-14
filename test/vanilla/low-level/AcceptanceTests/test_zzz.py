@@ -64,7 +64,6 @@ class TestAcceptance(object):
             "animalNotFoundError": 1,
             "linkNotFoundError": 1,
             "putEnumReferencedConstant": 1,  # can't do constants on body
-            "LLCRequiredToOptional": 1,
         }
 
         print("Coverage:")
@@ -86,6 +85,9 @@ class TestAcceptance(object):
                 missing_features_or_bugs[name] = 1; # https://github.com/Azure/azure-sdk-for-python/pull/9322
             if "Multiapi" in name:
                 # multiapi is in a separate test folder
+                missing_features_or_bugs[name] = 1
+            if "LLC" in name:
+                # llc is in  a separate folder
                 missing_features_or_bugs[name] = 1
         print("Optional coverage:")
         self._print_report(optional_report, not_supported, missing_features_or_bugs)
