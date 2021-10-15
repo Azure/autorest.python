@@ -49,6 +49,7 @@ _VANILLA_SWAGGER_MAPPINGS = {
     'BodyFile': 'body-file.json',
     'Constants': 'constants.json',
     'BodyFormData': 'body-formdata.json',
+    'BodyFormUrlEncodedData': 'body-formdata-urlencoded.json',
     'BodyInteger': 'body-integer.json',
     'BodyNumber': 'body-number.json',
     'BodyString': 'body-string.json',
