@@ -10,7 +10,6 @@ from collections import defaultdict
 from abc import abstractmethod, ABC
 from typing import Any, List, TypeVar, Dict, Union, Optional, cast
 
-from autorest.codegen.models import parameter
 from ..models import (
     Operation,
     CodeModel,
@@ -105,8 +104,8 @@ def _serialize_files_and_data_body(builder: BuilderType, param_name: str) -> Lis
         if constant.is_multipart:
             retval.append(_declare_constant(constant))
     retval.append(f"{param_name} = {{")
-    for parameter in builder.parameters.body:
-        retval.append(f'    "{parameter.rest_api_name}": {parameter.serialized_name},')
+    for param in builder.parameters.body:
+        retval.append(f'    "{param.rest_api_name}": {param.serialized_name},')
     retval.append("}")
     return retval
 
@@ -313,14 +312,14 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
 
     def param_description(self, builder: Union[RequestBuilder, Operation]) -> List[str]:  # pylint: disable=no-self-use
         description_list: List[str] = []
-        for parameter in [m for m in builder.parameters.method if not m.is_hidden]:
+        for param in [m for m in builder.parameters.method if not m.is_hidden]:
             description_list.extend(
-                f":{parameter.description_keyword} { parameter.serialized_name }: { parameter.description }".replace(
+                f":{param.description_keyword} { param.serialized_name }: { param.description }".replace(
                     "\n", "\n "
                 ).split("\n")
             )
             description_list.append(
-                f":{parameter.docstring_type_keyword} { parameter.serialized_name }: { parameter.docstring_type }"
+                f":{param.docstring_type_keyword} { param.serialized_name }: { param.docstring_type }"
             )
         try:
             request_builder: RequestBuilder = cast(Operation, builder).request_builder
@@ -418,18 +417,18 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
         ...
 
     def _serialize_parameter(
-        self, parameter: Parameter, function_name: str
+        self, param: Parameter, function_name: str
     ) -> List[str]:
         set_parameter = "{}_parameters['{}'] = {}".format(
             function_name,
-            parameter.rest_api_name,
-            utils.build_serialize_data_call(parameter, function_name, self.serializer_name)
+            param.rest_api_name,
+            utils.build_serialize_data_call(param, function_name, self.serializer_name)
         )
-        if parameter.required:
+        if param.required:
             retval = [set_parameter]
         else:
             retval = [
-                f"if {parameter.full_serialized_name} is not None:",
+                f"if {param.full_serialized_name} is not None:",
                 f"    {set_parameter}"
             ]
         return retval
