@@ -56,7 +56,6 @@ class TestAcceptance(object):
             'putDateTimeMaxUtc7MS': 1, # Python doesn't support 7 digits ms datetime
             'FormdataStreamUploadFile': 1, # Form data not supported yet
             'StreamUploadFile': 1, # Form data not supported yet
-            "UpdatePetWithForm": 1,  # autorest core change needed to do this hasn't been merged yet
         }
         for name in optional_report:
             if "Options" in name:

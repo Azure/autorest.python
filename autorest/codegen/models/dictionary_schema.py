@@ -67,9 +67,9 @@ class DictionarySchema(BaseSchema):
             f'"{"str"}"' : self.element_type.get_json_template_representation(**kwargs)
         }
 
-    def get_files_template_representation(self, **kwargs: Any) -> Any:
+    def get_files_and_data_template_representation(self, **kwargs: Any) -> Any:
         return {
-            f'"{"str"}"' : self.element_type.get_files_template_representation(**kwargs)
+            f'"{"str"}"' : self.element_type.get_files_and_data_template_representation(**kwargs)
         }
 
     @classmethod

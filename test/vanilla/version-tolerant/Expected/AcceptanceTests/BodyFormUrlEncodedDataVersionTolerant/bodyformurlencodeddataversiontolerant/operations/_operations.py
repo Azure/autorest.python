@@ -84,11 +84,7 @@ class FormdataurlencodedOperations(object):
     def update_pet_with_form(
         self,
         pet_id,  # type: int
-        pet_type,  # type: str
-        pet_food,  # type: str
-        pet_age,  # type: int
-        name=None,  # type: Optional[str]
-        status=None,  # type: Optional[str]
+        data,  # type: Dict[str, Any]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -98,29 +94,33 @@ class FormdataurlencodedOperations(object):
 
         :param pet_id: ID of pet that needs to be updated.
         :type pet_id: int
-        :param pet_type: Can take a value of dog, or cat, or fish. Possible values are: "dog", "cat",
-         and "fish".
-        :type pet_type: str
-        :param pet_food: Can take a value of meat, or fish, or plant. Possible values are: "meat",
-         "fish", and "plant".
-        :type pet_food: str
-        :param pet_age: How many years is it old?.
-        :type pet_age: int
-        :param name: Updated name of the pet.
-        :type name: str
-        :param status: Updated status of the pet.
-        :type status: str
+        :param data: Form-encoded input for data. See the template in our example to find the input
+         shape.
+        :type data: dict[str, any]
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                pet_type = "str"  # Optional.
+
+                # form-encoded input template you can fill out and use as your `data` input.
+                files = {
+                    name: "str",  # Optional. Updated name of the pet.
+                    pet_age: 0,  # How many years is it old?.
+                    pet_food: "str",  # Can take a value of meat, or fish, or plant. Possible values are: "meat", "fish", and "plant".
+                    pet_type: "str",  # Can take a value of dog, or cat, or fish. Possible values are: "dog", "cat", and "fish".
+                    status: "str"  # Optional. Updated status of the pet.
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/x-www-form-urlencoded")  # type: Optional[str]
-
-        content = pet_type
 
         request = build_formdataurlencoded_update_pet_with_form_request(
             pet_id=pet_id,

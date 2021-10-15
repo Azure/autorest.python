@@ -103,14 +103,14 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         self._created_json_template_representation = False
         return representation
 
-    def get_files_template_representation(self, **kwargs: Any) -> Any:
+    def get_files_and_data_template_representation(self, **kwargs: Any) -> Any:
         object_schema_names = kwargs.get("object_schema_names", [])
         object_schema_names.append(self.name)  # do tis to avoid circular
         kwargs["object_schema_names"] = object_schema_names
         return {
             "{}".format(
                 prop.original_swagger_name
-            ): prop.get_files_template_representation(**kwargs)
+            ): prop.get_files_and_data_template_representation(**kwargs)
             for prop in self.properties
         }
 

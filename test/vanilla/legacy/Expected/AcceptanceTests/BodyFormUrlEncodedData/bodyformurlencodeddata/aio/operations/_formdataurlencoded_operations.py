@@ -89,7 +89,14 @@ class FormdataurlencodedOperations:
 
         content_type = kwargs.pop("content_type", "application/x-www-form-urlencoded")  # type: Optional[str]
 
-        content = self._serialize.body(pet_type, "str")
+        # Construct form data
+        data = {
+            "pet_type": pet_type,
+            "pet_food": pet_food,
+            "pet_age": pet_age,
+            "name": name,
+            "status": status,
+        }
 
         request = build_update_pet_with_form_request(
             pet_id=pet_id,

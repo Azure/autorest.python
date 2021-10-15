@@ -21,6 +21,7 @@ azure-core==1.19.0
 -e ./Expected/AcceptanceTests/BodyDurationVersionTolerant
 -e ./Expected/AcceptanceTests/BodyFileVersionTolerant
 -e ./Expected/AcceptanceTests/BodyFormDataVersionTolerant
+-e ./Expected/AcceptanceTests/BodyFormUrlEncodedDataVersionTolerant
 -e ./Expected/AcceptanceTests/BodyIntegerVersionTolerant
 -e ./Expected/AcceptanceTests/BodyNumberVersionTolerant
 -e ./Expected/AcceptanceTests/BodyStringVersionTolerant
