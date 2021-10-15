@@ -631,6 +631,9 @@ class ContantsOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_contants_put_client_constants_request(
+            path_constant=self._config.path_constant,
+            header_constant=self._config.header_constant,
+            query_constant=self._config.query_constant,
             template_url=self.put_client_constants.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
