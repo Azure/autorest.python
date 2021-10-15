@@ -64,6 +64,9 @@ class TestAcceptance(object):
             if "Multiapi" in name:
                 # multiapi is in a separate test folder
                 missing_features_or_bugs[name] = 1
+            if "LLC" in name:
+                # multiapi is in a separate test folder
+                missing_features_or_bugs[name] = 1
         print("Optional coverage:")
         self._print_report(optional_report, not_supported, missing_features_or_bugs)
 
