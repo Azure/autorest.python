@@ -101,7 +101,7 @@ def _serialize_files_and_data_body(builder: BuilderType, param_name: str) -> Lis
     # we have to construct our form data before passing to the request as well
     retval.append("# Construct form data")
     for constant in builder.parameters.constant:
-        if constant.is_multipart:
+        if constant.is_multipart or constant.is_data_input:
             retval.append(_declare_constant(constant))
     retval.append(f"{param_name} = {{")
     for param in builder.parameters.body:

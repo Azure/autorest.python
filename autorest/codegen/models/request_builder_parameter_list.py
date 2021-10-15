@@ -42,10 +42,6 @@ class RequestBuilderParameterList(ParameterList):
         except StopIteration:
             pass
         else:
-            if body_method_param.constant:
-                # we don't add body kwargs for constant bodies
-                body_method_param.serialized_name = "json"
-                return
             if body_method_param.is_multipart:
                 file_kwarg = copy(body_method_param)
                 self._change_body_param_name(file_kwarg, "files")
@@ -74,6 +70,10 @@ class RequestBuilderParameterList(ParameterList):
                 )
                 data_kwarg.is_data_input = False
                 body_kwargs_added.append(data_kwarg)
+            if body_method_param.constant:
+                # we don't add body kwargs for constant bodies
+                body_method_param.serialized_name = "json"
+                return
             if (
                 any(sr for sr in schema_requests if not sr.is_stream_request) and
                 any([ct for ct in self.content_types if "json" in ct])
