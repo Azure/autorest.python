@@ -60,7 +60,7 @@ class RequestBuilderParameterList(ParameterList):
                 )
                 file_kwarg.is_multipart = False
                 body_kwargs_added.append(file_kwarg)
-            if body_method_param.is_partial_body:
+            if body_method_param.is_data_input:
                 data_kwarg = copy(body_method_param)
                 self._change_body_param_name(data_kwarg, "data")
                 data_kwarg.schema = DictionarySchema(
@@ -72,7 +72,7 @@ class RequestBuilderParameterList(ParameterList):
                     "Pass in dictionary that contains form data to include in the body of the request. " +
                     data_kwarg.description
                 )
-                data_kwarg.is_partial_body = False
+                data_kwarg.is_data_input = False
                 body_kwargs_added.append(data_kwarg)
             if (
                 any(sr for sr in schema_requests if not sr.is_stream_request) and
@@ -95,7 +95,7 @@ class RequestBuilderParameterList(ParameterList):
                 "a byte iterator, or stream input). " +
                 content_kwarg.description
             )
-            content_kwarg.is_partial_body = False
+            content_kwarg.is_data_input = False
             content_kwarg.is_multipart = False
             body_kwargs_added.append(content_kwarg)
             if len(body_kwargs_added) == 1:

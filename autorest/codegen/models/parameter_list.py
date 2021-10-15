@@ -146,8 +146,8 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
         return self.get_from_predicate(lambda parameter: parameter.is_multipart)
 
     @property
-    def partial_bodies(self) -> List[Parameter]:
-        return self.get_from_predicate(lambda parameter: parameter.is_partial_body)
+    def data_inputs(self) -> List[Parameter]:
+        return self.get_from_predicate(lambda parameter: parameter.is_data_input)
 
     @property
     def content_types(self) -> List[str]:
@@ -298,7 +298,7 @@ class ParameterOnlyPathAndBodyPositionalList(ParameterList):
     def method(self) -> List[Parameter]:
         method_params = super().method
         files_params = [p for p in method_params if p.is_multipart]
-        data_params = [p for p in method_params if p.is_partial_body]
+        data_params = [p for p in method_params if p.is_data_input]
         if not (files_params or data_params):
             return method_params
 
@@ -318,7 +318,7 @@ class ParameterOnlyPathAndBodyPositionalList(ParameterList):
                 description="Form-encoded input for data. See the template in our example to find the input shape."
             )
             file_and_data_params.append(data_param)
-        method_params = [p for p in method_params if not p.is_multipart and not p.is_partial_body]
+        method_params = [p for p in method_params if not p.is_multipart and not p.is_data_input]
         positional = [p for p in method_params if p.is_positional]
         keyword_only = [p for p in method_params if p.is_keyword_only]
         kwargs = self._filter_out_multiple_content_type(

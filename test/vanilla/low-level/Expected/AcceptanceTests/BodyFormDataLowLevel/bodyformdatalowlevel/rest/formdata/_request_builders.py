@@ -30,9 +30,6 @@ def build_upload_file_request(
     :keyword files: Multipart input for files. See the template in our example to find the input
      shape. File to upload.
     :paramtype files: dict[str, any]
-    :keyword data: Pass in dictionary that contains form data to include in the body of the
-     request. File to upload.
-    :paramtype data: dict[str, any]
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). File to upload.
     :paramtype content: any
@@ -46,20 +43,8 @@ def build_upload_file_request(
 
             # multipart input template you can fill out and use as your `files` input.
             files = {
-                data: {
-                    "str": {}  # Optional. Pass in dictionary that contains form data to include in the body of the request. File to upload.
-                },
                 file_content: b'bytes',  # File to upload.
                 file_name: "str"  # File name to upload. Name has to be spelled exactly as written here.
-            }
-
-            # form-encoded input template you can fill out and use as your `data` input.
-            data = {
-                file_content: b'bytes',  # File to upload.
-                file_name: "str",  # File name to upload. Name has to be spelled exactly as written here.
-                files: {
-                    "str": {}  # Optional. Multipart input for files. See the template in our example to find the input shape. File to upload.
-                }
             }
     """
 
@@ -133,9 +118,6 @@ def build_upload_files_request(
     :keyword files: Multipart input for files. See the template in our example to find the input
      shape. Files to upload.
     :paramtype files: dict[str, any]
-    :keyword data: Pass in dictionary that contains form data to include in the body of the
-     request. Files to upload.
-    :paramtype data: dict[str, any]
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Files to upload.
     :paramtype content: any
@@ -149,22 +131,9 @@ def build_upload_files_request(
 
             # multipart input template you can fill out and use as your `files` input.
             files = {
-                data: {
-                    "str": {}  # Optional. Pass in dictionary that contains form data to include in the body of the request. Files to upload.
-                },
                 file_content: [
                     b'bytes'  # Files to upload.
                 ]
-            }
-
-            # form-encoded input template you can fill out and use as your `data` input.
-            data = {
-                file_content: [
-                    b'bytes'  # Files to upload.
-                ],
-                files: {
-                    "str": {}  # Optional. Multipart input for files. See the template in our example to find the input shape. Files to upload.
-                }
             }
     """
 

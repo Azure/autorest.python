@@ -77,12 +77,12 @@ def _get_files_example_template(builder: BuilderType) -> List[str]:
     )
 
 def _get_data_example_template(builder: BuilderType) -> List[str]:
-    partial_body_params = builder.parameters.partial_bodies
-    if partial_body_params:
+    data_inputs = builder.parameters.data_inputs
+    if data_inputs:
         retval = [
             "# form-encoded input template you can fill out and use as your `data` input."
         ]
-        retval.extend(f"data = {_serialize_files_or_data_dict(partial_body_params)}".splitlines())
+        retval.extend(f"data = {_serialize_files_or_data_dict(data_inputs)}".splitlines())
         return retval
     raise ValueError(
         "You're trying to get a template for your form-encoded params, but you don't have form-encoded params"
@@ -685,7 +685,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         if self.code_model.options['models_mode']:
             return False
         if builder.parameters.has_body:
-            if builder.parameters.multipart or builder.parameters.partial_bodies:
+            if builder.parameters.multipart or builder.parameters.data_inputs:
                 return True
             body_params = builder.parameters.body
             return any([b for b in body_params if isinstance(b.schema, (DictionarySchema, ListSchema, ObjectSchema))])
@@ -697,14 +697,14 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
     def _has_json_example_template(self, builder: BuilderType) -> bool:
         return (
             builder.parameters.has_body and
-            not (builder.parameters.multipart or builder.parameters.partial_bodies)
+            not (builder.parameters.multipart or builder.parameters.data_inputs)
         )
 
     def _has_files_example_template(self, builder: BuilderType) -> bool:
         return bool(builder.parameters.multipart)
 
     def _has_data_example_template(self, builder: BuilderType) -> bool:
-        return bool(builder.parameters.partial_bodies)
+        return bool(builder.parameters.data_inputs)
 
     def _serialize_body_call(
         self, builder: BuilderType, send_xml: bool, ser_ctxt: Optional[str], ser_ctxt_name: str
@@ -790,7 +790,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         if builder.parameters.is_flattened:
             # unflatten before passing to request builder as well
             retval.extend(_serialize_flattened_body(builder))
-        if request_builder.multipart or request_builder.parameters.partial_bodies:
+        if request_builder.multipart or request_builder.parameters.data_inputs:
             param_name = "files" if request_builder.multipart else "data"
             if not self.code_model.options["version_tolerant"]:
                 retval.extend(_serialize_files_and_data_body(builder, param_name))
