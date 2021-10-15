@@ -9,6 +9,8 @@ import json
 from collections import defaultdict
 from abc import abstractmethod, ABC
 from typing import Any, List, TypeVar, Dict, Union, Optional, cast
+
+from autorest.codegen.models import parameter
 from ..models import (
     Operation,
     CodeModel,
@@ -81,7 +83,7 @@ def _get_data_example_template(builder: BuilderType) -> List[str]:
         retval = [
             "# form-encoded input template you can fill out and use as your `data` input."
         ]
-        retval.extend(f"files = {_serialize_files_or_data_dict(partial_body_params)}".splitlines())
+        retval.extend(f"data = {_serialize_files_or_data_dict(partial_body_params)}".splitlines())
         return retval
     raise ValueError(
         "You're trying to get a template for your form-encoded params, but you don't have form-encoded params"
@@ -694,7 +696,10 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         return builder.parameters.body[0].serialized_name
 
     def _has_json_example_template(self, builder: BuilderType) -> bool:
-        return builder.parameters.has_body and not builder.parameters.body[0].is_multipart
+        return (
+            builder.parameters.has_body and
+            not (builder.parameters.multipart or builder.parameters.partial_bodies)
+        )
 
     def _has_files_example_template(self, builder: BuilderType) -> bool:
         return bool(builder.parameters.multipart)

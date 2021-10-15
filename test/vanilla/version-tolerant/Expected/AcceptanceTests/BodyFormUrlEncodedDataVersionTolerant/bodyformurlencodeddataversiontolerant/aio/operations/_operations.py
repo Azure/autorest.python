@@ -63,11 +63,8 @@ class FormdataurlencodedOperations:
         Example:
             .. code-block:: python
 
-                # JSON input template you can fill out and use as your body input.
-                pet_type = "str"  # Optional.
-
                 # form-encoded input template you can fill out and use as your `data` input.
-                files = {
+                data = {
                     name: "str",  # Optional. Updated name of the pet.
                     pet_age: 0,  # How many years is it old?.
                     pet_food: "str",  # Can take a value of meat, or fish, or plant. Possible values are: "meat", "fish", and "plant".
