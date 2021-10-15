@@ -34,7 +34,7 @@ class AutoRestHeadTestService:
     """
 
     def __init__(self, credential: AzureKeyCredential, base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
-        self._config = AutoRestHeadTestServiceConfiguration(credential, **kwargs)
+        self._config = AutoRestHeadTestServiceConfiguration(credential=credential, **kwargs)
         self._client = AsyncARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {}  # type: Dict[str, Any]

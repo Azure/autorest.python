@@ -39,7 +39,7 @@ class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        self._config = AutoRestValidationTestConfiguration(subscription_id, **kwargs)
+        self._config = AutoRestValidationTestConfiguration(subscription_id=subscription_id, **kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
