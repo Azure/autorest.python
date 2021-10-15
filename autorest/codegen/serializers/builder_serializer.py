@@ -787,15 +787,16 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         if builder.parameters.grouped:
             # request builders don't allow grouped parameters, so we group them before making the call
             retval.extend(_serialize_grouped_body(builder))
+
+        if builder.parameters.is_flattened:
+            # unflatten before passing to request builder as well
+            retval.extend(_serialize_flattened_body(builder))
         if request_builder.multipart or request_builder.parameters.partial_bodies:
             param_name = "files" if request_builder.multipart else "data"
             if not self.code_model.options["version_tolerant"]:
                 retval.extend(_serialize_files_and_data_body(builder, param_name))
         elif builder.parameters.has_body and not builder.parameters.body[0].constant:
             retval.extend(self._serialize_body_parameters(builder))
-        if builder.parameters.is_flattened:
-            # unflatten before passing to request builder as well
-            retval.extend(_serialize_flattened_body(builder))
 
         if self.code_model.options["builders_visibility"] == "embedded":
             request_path_name = request_builder.name

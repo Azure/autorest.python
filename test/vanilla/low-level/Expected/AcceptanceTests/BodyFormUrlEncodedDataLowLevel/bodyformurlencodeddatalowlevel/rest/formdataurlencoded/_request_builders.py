@@ -50,10 +50,6 @@ def build_update_pet_with_form_request(
 
             # form-encoded input template you can fill out and use as your `data` input.
             data = {
-                content: {},  # Optional. Pass in binary content you want in the body of the request (typically bytes, a byte iterator, or stream input). Can take a value of dog, or cat, or fish.
-                data: {
-                    "str": {}  # Optional. Pass in dictionary that contains form data to include in the body of the request. Can take a value of dog, or cat, or fish.
-                },
                 name: "str",  # Optional. Updated name of the pet.
                 pet_age: 0,  # How many years is it old?.
                 pet_food: "str",  # Can take a value of meat, or fish, or plant. Possible values are: "meat", "fish", and "plant".

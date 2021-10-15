@@ -126,6 +126,7 @@ class FormdataOperations(object):
     def upload_file(
         self,
         files,  # type: Dict[str, Any]
+        data,  # type: Dict[str, Any]
         **kwargs  # type: Any
     ):
         # type: (...) -> IO
@@ -134,6 +135,9 @@ class FormdataOperations(object):
         :param files: Multipart input for files. See the template in our example to find the input
          shape.
         :type files: dict[str, any]
+        :param data: Form-encoded input for data. See the template in our example to find the input
+         shape.
+        :type data: dict[str, any]
         :return: IO
         :rtype: IO
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -146,6 +150,12 @@ class FormdataOperations(object):
                     file_content: b'bytes',  # File to upload.
                     file_name: "str"  # File name to upload. Name has to be spelled exactly as written here.
                 }
+
+                # form-encoded input template you can fill out and use as your `data` input.
+                data = {
+                    file_content: b'bytes',  # File to upload.
+                    file_name: "str"  # File name to upload. Name has to be spelled exactly as written here.
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[IO]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -154,7 +164,6 @@ class FormdataOperations(object):
         content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
         data = None
-        # Construct form data
 
         request = build_formdata_upload_file_request(
             content_type=content_type,
@@ -230,6 +239,7 @@ class FormdataOperations(object):
     def upload_files(
         self,
         files,  # type: Dict[str, Any]
+        data,  # type: Dict[str, Any]
         **kwargs  # type: Any
     ):
         # type: (...) -> IO
@@ -238,6 +248,9 @@ class FormdataOperations(object):
         :param files: Multipart input for files. See the template in our example to find the input
          shape.
         :type files: dict[str, any]
+        :param data: Form-encoded input for data. See the template in our example to find the input
+         shape.
+        :type data: dict[str, any]
         :return: IO
         :rtype: IO
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -251,6 +264,13 @@ class FormdataOperations(object):
                         b'bytes'  # Files to upload.
                     ]
                 }
+
+                # form-encoded input template you can fill out and use as your `data` input.
+                data = {
+                    file_content: [
+                        b'bytes'  # Files to upload.
+                    ]
+                }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[IO]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -259,7 +279,6 @@ class FormdataOperations(object):
         content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
         data = None
-        # Construct form data
 
         request = build_formdata_upload_files_request(
             content_type=content_type,

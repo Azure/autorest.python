@@ -46,10 +46,15 @@ def build_upload_file_request(
 
             # multipart input template you can fill out and use as your `files` input.
             files = {
-                content: {},  # Optional. Pass in binary content you want in the body of the request (typically bytes, a byte iterator, or stream input). File to upload.
                 data: {
                     "str": {}  # Optional. Pass in dictionary that contains form data to include in the body of the request. File to upload.
                 },
+                file_content: b'bytes',  # File to upload.
+                file_name: "str"  # File name to upload. Name has to be spelled exactly as written here.
+            }
+
+            # form-encoded input template you can fill out and use as your `data` input.
+            data = {
                 file_content: b'bytes',  # File to upload.
                 file_name: "str",  # File name to upload. Name has to be spelled exactly as written here.
                 files: {
@@ -144,10 +149,16 @@ def build_upload_files_request(
 
             # multipart input template you can fill out and use as your `files` input.
             files = {
-                content: {},  # Optional. Pass in binary content you want in the body of the request (typically bytes, a byte iterator, or stream input). Files to upload.
                 data: {
                     "str": {}  # Optional. Pass in dictionary that contains form data to include in the body of the request. Files to upload.
                 },
+                file_content: [
+                    b'bytes'  # Files to upload.
+                ]
+            }
+
+            # form-encoded input template you can fill out and use as your `data` input.
+            data = {
                 file_content: [
                     b'bytes'  # Files to upload.
                 ],
