@@ -58,6 +58,7 @@ class RequestBuilderParameterList(ParameterList):
                     "Multipart input for files. See the template in our example to find the input shape. " +
                     file_kwarg.description
                 )
+                file_kwarg.is_multipart = False
                 body_kwargs_added.append(file_kwarg)
             if body_method_param.is_partial_body:
                 data_kwarg = copy(body_method_param)
@@ -71,6 +72,7 @@ class RequestBuilderParameterList(ParameterList):
                     "Pass in dictionary that contains form data to include in the body of the request. " +
                     data_kwarg.description
                 )
+                data_kwarg.is_partial_body = False
                 body_kwargs_added.append(data_kwarg)
             if (
                 any(sr for sr in schema_requests if not sr.is_stream_request) and
@@ -93,6 +95,8 @@ class RequestBuilderParameterList(ParameterList):
                 "a byte iterator, or stream input). " +
                 content_kwarg.description
             )
+            content_kwarg.is_partial_body = False
+            content_kwarg.is_multipart = False
             body_kwargs_added.append(content_kwarg)
             if len(body_kwargs_added) == 1:
                 body_kwargs_added[0].required = body_method_param.required
