@@ -146,8 +146,8 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
         return self.get_from_predicate(lambda parameter: parameter.is_multipart)
 
     @property
-    def has_partial_body(self) -> bool:
-        return any(self.get_from_predicate(lambda parameter: parameter.is_partial_body))
+    def data_inputs(self) -> List[Parameter]:
+        return self.get_from_predicate(lambda parameter: parameter.is_data_input)
 
     @property
     def content_types(self) -> List[str]:
@@ -278,32 +278,53 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
     def is_flattened(self) -> bool:
         return cast(bool, self.get_from_predicate(lambda parameter: parameter.flattened))
 
+def _create_files_or_data_param(
+    params: List[Parameter], serialized_name: str, description: str
+) -> Parameter:
+    param = copy(params[0])
+    param.serialized_name = serialized_name
+    param.schema = DictionarySchema(
+        namespace="",
+        yaml_data={},
+        element_type=AnySchema(namespace="", yaml_data={}),
+    )
+    param.description = description
+    return param
+
 class ParameterOnlyPathAndBodyPositionalList(ParameterList):
-    # use this to change the files parameter in the method
+    # use this to change the files and data parameter in the method
 
     @property
     def method(self) -> List[Parameter]:
         method_params = super().method
         files_params = [p for p in method_params if p.is_multipart]
-        if not files_params:
+        data_params = [p for p in method_params if p.is_data_input]
+        if not (files_params or data_params):
             return method_params
-        files_param = copy(files_params[0])
-        files_param.serialized_name = "files"
-        files_param.schema = DictionarySchema(
-            namespace="",
-            yaml_data={},
-            element_type=AnySchema(namespace="", yaml_data={}),
-        )
-        files_param.description = (
-            "Multipart input for files. See the template in our example to find the input shape."
-        )
-        method_params = [p for p in method_params if not p.is_multipart]
+
+        # update files param
+        file_and_data_params = []
+        if files_params:
+            files_param = _create_files_or_data_param(
+                files_params,
+                serialized_name="files",
+                description="Multipart input for files. See the template in our example to find the input shape."
+            )
+            file_and_data_params.append(files_param)
+        if data_params:
+            data_param = _create_files_or_data_param(
+                data_params,
+                serialized_name="data",
+                description="Form-encoded input for data. See the template in our example to find the input shape."
+            )
+            file_and_data_params.append(data_param)
+        method_params = [p for p in method_params if not p.is_multipart and not p.is_data_input]
         positional = [p for p in method_params if p.is_positional]
         keyword_only = [p for p in method_params if p.is_keyword_only]
         kwargs = self._filter_out_multiple_content_type(
             [p for p in method_params if p.is_kwarg]
         )
-        return positional + [files_param] + keyword_only + kwargs
+        return positional + file_and_data_params + keyword_only + kwargs
 
 def get_parameter_list(code_model):
     if code_model.options["only_path_and_body_params_positional"]:

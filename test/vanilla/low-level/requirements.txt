@@ -20,6 +20,7 @@ azure-core==1.19.0
 -e ./Expected/AcceptanceTests/BodyDurationLowLevel
 -e ./Expected/AcceptanceTests/BodyFileLowLevel
 -e ./Expected/AcceptanceTests/BodyFormDataLowLevel
+-e ./Expected/AcceptanceTests/BodyFormUrlEncodedDataLowLevel
 -e ./Expected/AcceptanceTests/BodyIntegerLowLevel
 -e ./Expected/AcceptanceTests/BodyNumberLowLevel
 -e ./Expected/AcceptanceTests/BodyStringLowLevel

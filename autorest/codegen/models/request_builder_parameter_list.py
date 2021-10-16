@@ -42,10 +42,6 @@ class RequestBuilderParameterList(ParameterList):
         except StopIteration:
             pass
         else:
-            if body_method_param.constant:
-                # we don't add body kwargs for constant bodies
-                body_method_param.serialized_name = "json"
-                return
             if body_method_param.is_multipart:
                 file_kwarg = copy(body_method_param)
                 self._change_body_param_name(file_kwarg, "files")
@@ -58,8 +54,9 @@ class RequestBuilderParameterList(ParameterList):
                     "Multipart input for files. See the template in our example to find the input shape. " +
                     file_kwarg.description
                 )
+                file_kwarg.is_multipart = False
                 body_kwargs_added.append(file_kwarg)
-            if body_method_param.is_partial_body:
+            if body_method_param.is_data_input:
                 data_kwarg = copy(body_method_param)
                 self._change_body_param_name(data_kwarg, "data")
                 data_kwarg.schema = DictionarySchema(
@@ -71,7 +68,12 @@ class RequestBuilderParameterList(ParameterList):
                     "Pass in dictionary that contains form data to include in the body of the request. " +
                     data_kwarg.description
                 )
+                data_kwarg.is_data_input = False
                 body_kwargs_added.append(data_kwarg)
+            if body_method_param.constant:
+                # we don't add body kwargs for constant bodies
+                body_method_param.serialized_name = "json"
+                return
             if (
                 any(sr for sr in schema_requests if not sr.is_stream_request) and
                 any([ct for ct in self.content_types if "json" in ct])
@@ -93,6 +95,8 @@ class RequestBuilderParameterList(ParameterList):
                 "a byte iterator, or stream input). " +
                 content_kwarg.description
             )
+            content_kwarg.is_data_input = False
+            content_kwarg.is_multipart = False
             body_kwargs_added.append(content_kwarg)
             if len(body_kwargs_added) == 1:
                 body_kwargs_added[0].required = body_method_param.required

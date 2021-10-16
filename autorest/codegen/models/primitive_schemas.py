@@ -81,7 +81,7 @@ class PrimitiveSchema(BaseSchema):
     def default_template_representation_declaration(self) -> str:
         return self.get_declaration(self.docstring_type)
 
-    def get_files_template_representation(self, **kwargs: Any) -> Any:
+    def get_files_and_data_template_representation(self, **kwargs: Any) -> Any:
         """Template of what the files input should look like
         """
         return self._add_optional_and_default_value_template_representation(

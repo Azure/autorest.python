@@ -59,13 +59,15 @@ class TestAcceptance(object):
             'putDateTimeMaxUtc7MS': 1, # Python doesn't support 7 digits ms datetime
             'FormdataStreamUploadFile': 1, # Form data not supported yet
             'StreamUploadFile': 1, # Form data not supported yet
-            "UpdatePetWithForm": 1,  # autorest core change needed to do this hasn't been merged yet
         }
         for name in optional_report:
             if "Options" in name:
                 missing_features_or_bugs[name] = 1; # https://github.com/Azure/azure-sdk-for-python/pull/9322
             if "Multiapi" in name:
                 # multiapi is in a separate test folder
+                missing_features_or_bugs[name] = 1
+            if "LLC" in name:
+                # llc is in a separate test folder
                 missing_features_or_bugs[name] = 1
         print("Optional coverage:")
         self._print_report(optional_report, not_supported, missing_features_or_bugs)
