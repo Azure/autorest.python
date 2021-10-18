@@ -137,6 +137,6 @@ class BaseSchema(BaseModel, ABC):
         ...
 
     @abstractmethod
-    def get_files_template_representation(self, **kwargs: Any) -> Any:
+    def get_files_and_data_template_representation(self, **kwargs: Any) -> Any:
         """Template of what this schema would look like as files input"""
         ...

@@ -9,6 +9,7 @@ import json
 from collections import defaultdict
 from abc import abstractmethod, ABC
 from typing import Any, List, TypeVar, Dict, Union, Optional, cast
+
 from ..models import (
     Operation,
     CodeModel,
@@ -52,10 +53,10 @@ def _json_dumps_template(template_representation: Any) -> Any:
     # only for template use, since it wraps everything in strings
     return _improve_json_string(json.dumps(template_representation, sort_keys=True, indent=4))
 
-def _serialize_files_dict(multipart_parameters: List[Parameter]) -> str:
+def _serialize_files_or_data_dict(multipart_parameters: List[Parameter]) -> str:
     # only for template use
     template = {
-        param.serialized_name: param.schema.get_files_template_representation(
+        param.serialized_name: param.schema.get_files_and_data_template_representation(
             optional=not param.required,
             description=param.description,
         )
@@ -69,10 +70,22 @@ def _get_files_example_template(builder: BuilderType) -> List[str]:
         retval = [
             "# multipart input template you can fill out and use as your `files` input.",
         ]
-        retval.extend(f"files = {_serialize_files_dict(multipart_params)}".splitlines())
+        retval.extend(f"files = {_serialize_files_or_data_dict(multipart_params)}".splitlines())
         return retval
     raise ValueError(
         "You're trying to get a template for your multipart params, but you don't have multipart params"
+    )
+
+def _get_data_example_template(builder: BuilderType) -> List[str]:
+    data_inputs = builder.parameters.data_inputs
+    if data_inputs:
+        retval = [
+            "# form-encoded input template you can fill out and use as your `data` input."
+        ]
+        retval.extend(f"data = {_serialize_files_or_data_dict(data_inputs)}".splitlines())
+        return retval
+    raise ValueError(
+        "You're trying to get a template for your form-encoded params, but you don't have form-encoded params"
     )
 
 def _content_type_error_check(builder: BuilderType) -> List[str]:
@@ -83,14 +96,16 @@ def _content_type_error_check(builder: BuilderType) -> List[str]:
     retval.append("    )")
     return retval
 
-def _serialize_files_body(builder: BuilderType) -> List[str]:
+def _serialize_files_and_data_body(builder: BuilderType, param_name: str) -> List[str]:
     retval: List[str] = []
+    # we have to construct our form data before passing to the request as well
+    retval.append("# Construct form data")
     for constant in builder.parameters.constant:
-        if constant.is_multipart:
+        if constant.is_multipart or constant.is_data_input:
             retval.append(_declare_constant(constant))
-    retval.append("files = {")
-    for parameter in builder.parameters.body:
-        retval.append(f'    "{parameter.rest_api_name}": {parameter.serialized_name},')
+    retval.append(f"{param_name} = {{")
+    for param in builder.parameters.body:
+        retval.append(f'    "{param.rest_api_name}": {param.serialized_name},')
     retval.append("}")
     return retval
 
@@ -236,6 +251,9 @@ class _BuilderSerializerProtocol(ABC):
     @abstractmethod
     def _has_files_example_template(self, builder: BuilderType) -> bool:
         ...
+    @abstractmethod
+    def _has_data_example_template(self, builder: BuilderType) -> bool:
+        ...
 
     @abstractmethod
     def _json_example_param_name(self, builder: BuilderType) -> str:
@@ -294,14 +312,14 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
 
     def param_description(self, builder: Union[RequestBuilder, Operation]) -> List[str]:  # pylint: disable=no-self-use
         description_list: List[str] = []
-        for parameter in [m for m in builder.parameters.method if not m.is_hidden]:
+        for param in [m for m in builder.parameters.method if not m.is_hidden]:
             description_list.extend(
-                f":{parameter.description_keyword} { parameter.serialized_name }: { parameter.description }".replace(
+                f":{param.description_keyword} { param.serialized_name }: { param.description }".replace(
                     "\n", "\n "
                 ).split("\n")
             )
             description_list.append(
-                f":{parameter.docstring_type_keyword} { parameter.serialized_name }: { parameter.docstring_type }"
+                f":{param.docstring_type_keyword} { param.serialized_name }: { param.docstring_type }"
             )
         try:
             request_builder: RequestBuilder = cast(Operation, builder).request_builder
@@ -344,6 +362,9 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
         if self._has_files_example_template(builder):
             template.append("")
             template += _get_files_example_template(builder)
+        if self._has_data_example_template(builder):
+            template.append("")
+            template += _get_data_example_template(builder)
         if self._get_json_response_template_to_status_codes(builder):
             template.append("")
             template += self._get_json_response_template(builder)
@@ -396,18 +417,18 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
         ...
 
     def _serialize_parameter(
-        self, parameter: Parameter, function_name: str
+        self, param: Parameter, function_name: str
     ) -> List[str]:
         set_parameter = "{}_parameters['{}'] = {}".format(
             function_name,
-            parameter.rest_api_name,
-            utils.build_serialize_data_call(parameter, function_name, self.serializer_name)
+            param.rest_api_name,
+            utils.build_serialize_data_call(param, function_name, self.serializer_name)
         )
-        if parameter.required:
+        if param.required:
             retval = [set_parameter]
         else:
             retval = [
-                f"if {parameter.full_serialized_name} is not None:",
+                f"if {param.full_serialized_name} is not None:",
                 f"    {set_parameter}"
             ]
         return retval
@@ -453,7 +474,7 @@ class _RequestBuilderBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=
             return False  # if we're not exposing rest layer, don't need to generate
         if builder.parameters.has_body:
             body_kwargs = set(builder.parameters.body_kwarg_names.keys())
-            return bool(body_kwargs.intersection({"json", "files"}))
+            return bool(body_kwargs.intersection({"json", "files", "data"}))
         return bool(self._get_json_response_template_to_status_codes(builder))
 
     @property
@@ -484,6 +505,9 @@ class _RequestBuilderBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=
 
     def _has_files_example_template(self, builder: BuilderType) -> bool:
         return "files" in builder.parameters.body_kwarg_names
+
+    def _has_data_example_template(self, builder: BuilderType) -> bool:
+        return "data" in builder.parameters.body_kwarg_names
 
     @abstractmethod
     def _body_params_to_pass_to_request_creation(self, builder: BuilderType) -> List[str]:
@@ -661,7 +685,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         if self.code_model.options['models_mode']:
             return False
         if builder.parameters.has_body:
-            if builder.parameters.body[0].is_multipart:
+            if builder.parameters.multipart or builder.parameters.data_inputs:
                 return True
             body_params = builder.parameters.body
             return any([b for b in body_params if isinstance(b.schema, (DictionarySchema, ListSchema, ObjectSchema))])
@@ -671,10 +695,16 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         return builder.parameters.body[0].serialized_name
 
     def _has_json_example_template(self, builder: BuilderType) -> bool:
-        return builder.parameters.has_body and not builder.parameters.body[0].is_multipart
+        return (
+            builder.parameters.has_body and
+            not (builder.parameters.multipart or builder.parameters.data_inputs)
+        )
 
     def _has_files_example_template(self, builder: BuilderType) -> bool:
         return bool(builder.parameters.multipart)
+
+    def _has_data_example_template(self, builder: BuilderType) -> bool:
+        return bool(builder.parameters.data_inputs)
 
     def _serialize_body_call(
         self, builder: BuilderType, send_xml: bool, ser_ctxt: Optional[str], ser_ctxt_name: str
@@ -756,16 +786,17 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         if builder.parameters.grouped:
             # request builders don't allow grouped parameters, so we group them before making the call
             retval.extend(_serialize_grouped_body(builder))
-        if request_builder.multipart:
-            # we have to construct our form data before passing to the request as well
-            retval.append("# Construct form data")
-            if not self.code_model.options["version_tolerant"]:
-                retval.extend(_serialize_files_body(builder))
+
         if builder.parameters.is_flattened:
             # unflatten before passing to request builder as well
             retval.extend(_serialize_flattened_body(builder))
-        if builder.parameters.has_body and not builder.parameters.body[0].constant:
+        if request_builder.multipart or request_builder.parameters.data_inputs:
+            param_name = "files" if request_builder.multipart else "data"
+            if not self.code_model.options["version_tolerant"]:
+                retval.extend(_serialize_files_and_data_body(builder, param_name))
+        elif builder.parameters.has_body and not builder.parameters.body[0].constant:
             retval.extend(self._serialize_body_parameters(builder))
+
         if self.code_model.options["builders_visibility"] == "embedded":
             request_path_name = request_builder.name
         else:

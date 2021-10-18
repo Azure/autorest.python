@@ -30,7 +30,7 @@ class RequestBuilderParameter(ParameterOnlyPathAndBodyPositional):
         if self.is_body:
             if self.is_multipart:
                 return "files"
-            if self.is_partial_body:
+            if self.is_data_input:
                 return "data"
             return "json"
         name = self.yaml_data["language"]["python"]["name"]

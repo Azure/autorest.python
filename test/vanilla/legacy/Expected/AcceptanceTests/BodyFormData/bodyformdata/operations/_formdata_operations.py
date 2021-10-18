@@ -154,8 +154,6 @@ class FormdataOperations(object):
 
         content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
-        files = None
-        data = None
         # Construct form data
         files = {
             "fileContent": file_content,
@@ -165,7 +163,6 @@ class FormdataOperations(object):
         request = build_upload_file_request(
             content_type=content_type,
             files=files,
-            data=data,
             template_url=self.upload_file.metadata["url"],
         )
         request = _convert_request(request, files)
@@ -259,8 +256,6 @@ class FormdataOperations(object):
 
         content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
-        files = None
-        data = None
         # Construct form data
         files = {
             "fileContent": file_content,
@@ -269,7 +264,6 @@ class FormdataOperations(object):
         request = build_upload_files_request(
             content_type=content_type,
             files=files,
-            data=data,
             template_url=self.upload_files.metadata["url"],
         )
         request = _convert_request(request, files)

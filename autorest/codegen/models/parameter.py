@@ -88,8 +88,9 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         self.has_multiple_media_types: bool = False
         self.multiple_media_types_type_annot: Optional[str] = None
         self.multiple_media_types_docstring_type: Optional[str] = None
-        self.is_partial_body = yaml_data.get("isPartialBody", False)
         self._keyword_only = keyword_only
+        self.is_multipart = yaml_data.get("language", {}).get("python", {}).get("multipart", False)
+        self.is_data_input = yaml_data.get("isPartialBody", False) and not self.is_multipart
 
     def __hash__(self) -> int:
         return hash(self.serialized_name)
@@ -122,10 +123,6 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
             if not isinstance(self.schema, ConstantSchema):
                 return False
         return self.required
-
-    @property
-    def is_multipart(self) -> bool:
-        return self.yaml_data["language"]["python"].get("multipart", False)
 
     @property
     def constant_declaration(self) -> str:
