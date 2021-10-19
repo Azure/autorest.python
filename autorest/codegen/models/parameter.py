@@ -49,6 +49,7 @@ class ParameterStyle(Enum):
 class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too-many-public-methods
     def __init__(
         self,
+        code_model,
         yaml_data: Dict[str, Any],
         schema: BaseSchema,
         rest_api_name: str,
@@ -70,6 +71,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         keyword_only: bool = False,
     ) -> None:
         super().__init__(yaml_data)
+        self.code_model = code_model
         self.schema = schema
         self.rest_api_name = rest_api_name
         self.serialized_name = serialized_name
@@ -289,9 +291,10 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         return self.in_method_signature and not (self.is_keyword_only or self.is_kwarg)
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any]) -> "Parameter":
+    def from_yaml(cls, yaml_data: Dict[str, Any], *, code_model) -> "Parameter":
         http_protocol = yaml_data["protocol"].get("http", {"in": ParameterLocation.Other})
         return cls(
+            code_model=code_model,
             yaml_data=yaml_data,
             schema=yaml_data.get("schema", None),  # FIXME replace by operation model
             # See also https://github.com/Azure/autorest.modelerfour/issues/80

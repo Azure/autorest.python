@@ -21,10 +21,10 @@ _REQUEST_BUILDER_BODY_NAMES = ["files", "json", "content", "data"]
 
 class RequestBuilderParameterList(ParameterList):
     def __init__(
-        self, parameters: Optional[List[RequestBuilderParameter]] = None
+        self, code_model, parameters: Optional[List[RequestBuilderParameter]] = None
     ) -> None:
         super(RequestBuilderParameterList, self).__init__(
-            parameters  # type: ignore
+            code_model, parameters  # type: ignore
         )
         self.body_kwarg_names: OrderedSet[str] = {}
         self.parameters: List[RequestBuilderParameter] = parameters or []  # type: ignore

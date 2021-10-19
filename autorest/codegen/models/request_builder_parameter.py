@@ -66,11 +66,12 @@ class RequestBuilderParameter(ParameterOnlyPathAndBodyPositional):
         return self.serialized_name
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any]) -> "RequestBuilderParameter":
+    def from_yaml(cls, yaml_data: Dict[str, Any], *, code_model) -> "RequestBuilderParameter":
         http_protocol = yaml_data["protocol"].get("http", {"in": ParameterLocation.Other})
         name = yaml_data["language"]["python"]["name"]
         location = ParameterLocation(http_protocol["in"])
         return cls(
+            code_model=code_model,
             yaml_data=yaml_data,
             schema=yaml_data.get("schema", None),  # FIXME replace by operation model
             # See also https://github.com/Azure/autorest.modelerfour/issues/80

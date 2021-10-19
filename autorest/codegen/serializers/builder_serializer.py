@@ -1094,7 +1094,7 @@ class _PagingOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disab
         retval.append("    if cls:")
         retval.append("        list_of_elem = cls(list_of_elem)")
 
-        next_link_name = builder.next_link_name(self.code_model)
+        next_link_name = builder.next_link_name
         if not next_link_name:
             next_link_property = "None"
         elif self.code_model.options["models_mode"]:

@@ -6,41 +6,52 @@
 
 import pytest
 from autorest.codegen.models import (
-    Operation, LROOperation, PagingOperation, SchemaResponse, ParameterList
+    Operation, LROOperation, PagingOperation, SchemaResponse, ParameterList, CodeModel
 )
 
+@pytest.fixture
+def code_model():
+    return CodeModel(
+        options={
+            "show_send_request": True,
+            "builders_visibility": "embedded",
+        }
+    )
 
 @pytest.fixture
-def operation():
+def operation(code_model):
     return Operation(
+        code_model,
         yaml_data={},
         name="optional_return_type_test",
         description="Operation to test optional return types",
         api_versions=set(["2020-05-01"]),
-        parameters=ParameterList(),
-        multiple_media_type_parameters=ParameterList(),
+        parameters=ParameterList(code_model),
+        multiple_media_type_parameters=ParameterList(code_model),
     )
 
 @pytest.fixture
-def lro_operation():
+def lro_operation(code_model):
     return LROOperation(
+        code_model,
         yaml_data={},
         name="lro_optional_return_type_test",
         description="LRO Operation to test optional return types",
         api_versions=set(["2020-05-01"]),
-        parameters=ParameterList(),
-        multiple_media_type_parameters=ParameterList(),
+        parameters=ParameterList(code_model),
+        multiple_media_type_parameters=ParameterList(code_model),
     )
 
 @pytest.fixture
-def paging_operation():
+def paging_operation(code_model):
     return PagingOperation(
+        code_model,
         yaml_data={"extensions": {"x-ms-pageable": {}}},
         name="paging_optional_return_type_test",
         description="Paging Operation to test optional return types",
         api_versions=set(["2020-05-01"]),
-        parameters=ParameterList(),
-        multiple_media_type_parameters=ParameterList(),
+        parameters=ParameterList(code_model),
+        multiple_media_type_parameters=ParameterList(code_model),
     )
 
 def test_success_with_body_and_fail_no_body(operation):

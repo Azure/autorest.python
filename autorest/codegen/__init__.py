@@ -125,7 +125,8 @@ class CodeGenerator(Plugin):
 
         # Global parameters
         code_model.global_parameters = GlobalParameterList(
-            [Parameter.from_yaml(param) for param in yaml_data.get("globalParameters", [])],
+            code_model,
+            [Parameter.from_yaml(param, code_model=code_model) for param in yaml_data.get("globalParameters", [])],
         )
         code_model.global_parameters.code_model = code_model
 

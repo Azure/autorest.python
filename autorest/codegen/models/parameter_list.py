@@ -27,8 +27,9 @@ def _method_signature_helper(positional: List[str], keyword_only: Optional[List[
 
 class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
     def __init__(
-        self, parameters: Optional[List[Parameter]] = None
+        self, code_model, parameters: Optional[List[Parameter]] = None
     ) -> None:
+        self.code_model = code_model
         self.parameters = parameters or []
         self._json_body: Optional[BaseSchema] = None
         self._content_types: Optional[List[str]] = None
@@ -367,6 +368,7 @@ class GlobalParameterList(ParameterList):
     def add_host(self, host_value: Optional[str]) -> None:
         # only adds if we don't have a parameterized host
         host_param = Parameter(
+            self.code_model,
             yaml_data={},
             schema=StringSchema(namespace="", yaml_data={"type": "str"}),
             rest_api_name=self.host_variable_name,
@@ -384,6 +386,7 @@ class GlobalParameterList(ParameterList):
 
     def add_credential_global_parameter(self) -> None:
         credential_parameter = Parameter(
+            self.code_model,
             yaml_data={},
             schema=self.code_model.credential_schema_policy.credential,
             serialized_name="credential",
