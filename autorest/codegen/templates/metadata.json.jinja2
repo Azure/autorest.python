@@ -42,7 +42,7 @@
             {{ gp.serialized_name | tojson }}: {{ gp.constant_declaration | tojson }}{{ "," if not loop.last else "" }}
             {% endfor %}
         },
-        "call": {{ code_model.global_parameters.config_method | map(attribute="serialized_name") | join(', ') | tojson }},
+        "call": {{ make_call(code_model.global_parameters.config_method | map(attribute="serialized_name")) | tojson }},
         "service_client_specific": {
             "sync": {
                 "api_version": {
@@ -149,7 +149,7 @@
                     "signature": {{ (operation_serializer.method_signature_and_response_type_annotation(operation) + "\n") | tojson }},
                     "doc": {{ op_tools.description(operation, operation_serializer).rstrip("\n") | tojson }}
                 },
-                "call": {{ operation.parameters.method | rejectattr("is_kwarg") | map(attribute="serialized_name") | rejectattr("is_kwarg") | join(', ') | tojson }}
+                "call": {{ make_call(operation.parameters.method | rejectattr("is_kwarg") | map(attribute="serialized_name")) | tojson }}
             }{{ "," if not loop.last else "" }}
             {% endfor %}
         }

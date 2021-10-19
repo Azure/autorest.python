@@ -46,4 +46,4 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin(object):
         mixin_instance._serialize = Serializer(self._models_dict(api_version))
         mixin_instance._serialize.client_side_validation = False
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
-        return await mixin_instance.test(id, api_version, **kwargs)
+        return await mixin_instance.test(id=id, api_version=api_version, **kwargs)

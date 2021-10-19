@@ -32,7 +32,7 @@
         },
         "constant": {
         },
-        "call": "credential",
+        "call": "credential=credential",
         "service_client_specific": {
             "sync": {
                 "api_version": {
@@ -114,7 +114,7 @@
                     "signature": "async def test_different_calls(\n    self,\n    greeting_in_english: str,\n    greeting_in_chinese: Optional[str] = None,\n    greeting_in_french: Optional[str] = None,\n    *,\n    api_version: str = \"3.0.0\",\n    **kwargs: Any\n) -\u003e None:\n",
                     "doc": "\"\"\"Has added parameters across the API versions.\n\n:param greeting_in_english: pass in \u0027hello\u0027 to pass test.\n:type greeting_in_english: str\n:param greeting_in_chinese: pass in \u0027nihao\u0027 to pass test.\n:type greeting_in_chinese: str\n:param greeting_in_french: pass in \u0027bonjour\u0027 to pass test.\n:type greeting_in_french: str\n:keyword api_version: Api Version. The default value is \"3.0.0\".\n:paramtype api_version: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: None, or the result of cls(response)\n:rtype: None\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
                 },
-                "call": "greeting_in_english, greeting_in_chinese, greeting_in_french, api_version"
+                "call": "greeting_in_english=greeting_in_english, greeting_in_chinese=greeting_in_chinese, greeting_in_french=greeting_in_french, api_version=api_version"
             }
         }
     }
