@@ -14,6 +14,7 @@ from .base_schema import BaseSchema
 from .constant_schema import ConstantSchema
 from .object_schema import ObjectSchema
 from .property import Property
+from .primitive_schemas import IOSchema
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -109,6 +110,16 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
     @description.setter
     def description(self, val: str):
         self._description = val
+
+    @property
+    def is_json_parameter(self) -> bool:
+        if self.is_multipart or self.is_data_input:
+            return False
+        if isinstance(self.schema, IOSchema):
+            return False
+        if self.style == ParameterStyle.xml:
+            return False
+        return True
 
     @property
     def constant(self) -> bool:
