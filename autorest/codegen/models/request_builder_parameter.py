@@ -5,6 +5,7 @@
 # --------------------------------------------------------------------------
 from typing import Any, Dict, Optional
 from .parameter import ParameterOnlyPathAndBodyPositional, ParameterLocation, ParameterStyle
+from .primitive_schemas import IOSchema
 
 def _make_public(name):
     if name[0] == "_":
@@ -16,8 +17,8 @@ class RequestBuilderParameter(ParameterOnlyPathAndBodyPositional):
     @property
     def in_method_signature(self) -> bool:
         return not(
-            # if i'm a client constant, stil wnat to be pased into request builder signature
-            (self.constant and self.implementation != "Client")
+            # don't put accept in method signature
+            self.rest_api_name == "Accept"
             # If i'm not in the method code, no point in being in signature
             or not self.in_method_code
             # If I'm a flattened property of a body, don't want me, want the body param
@@ -32,7 +33,8 @@ class RequestBuilderParameter(ParameterOnlyPathAndBodyPositional):
                 return "files"
             if self.is_data_input:
                 return "data"
-            return "json"
+            if not self.constant:
+                return "json"
         name = self.yaml_data["language"]["python"]["name"]
         if self.implementation == "Client" and self.in_method_code:
             # for these, we're passing the client params to the request builder.
@@ -46,12 +48,6 @@ class RequestBuilderParameter(ParameterOnlyPathAndBodyPositional):
             # don't want any base url path formatting arguments
             return False
         return super(RequestBuilderParameter, self).in_method_code
-
-    @property
-    def default_value(self) -> Optional[Any]:
-        if self.location == ParameterLocation.Body:
-            return None
-        return super(RequestBuilderParameter, self).default_value
 
     @property
     def default_value_declaration(self) -> Optional[str]:

@@ -100,17 +100,11 @@ def _serialize_files_and_data_body(builder: BuilderType, param_name: str) -> Lis
     retval: List[str] = []
     # we have to construct our form data before passing to the request as well
     retval.append("# Construct form data")
-    for constant in builder.parameters.constant:
-        if constant.is_multipart or constant.is_data_input:
-            retval.append(_declare_constant(constant))
     retval.append(f"{param_name} = {{")
     for param in builder.parameters.body:
         retval.append(f'    "{param.rest_api_name}": {param.serialized_name},')
     retval.append("}")
     return retval
-
-def _declare_constant(constant: Parameter) -> str:
-    return f"{constant.serialized_name} = {constant.constant_declaration}"
 
 def _pop_parameters_kwarg(
     function_name: str,
@@ -120,9 +114,6 @@ def _pop_parameters_kwarg(
 
 def _serialize_grouped_body(builder: BuilderType) -> List[str]:
     retval: List[str] = []
-    for constant in builder.parameters.constant:
-        if constant.grouped_by:
-            retval.append(_declare_constant(constant))
     for grouped_parameter in builder.parameters.grouped:
         retval.append(f"{grouped_parameter.serialized_name} = None")
     for grouper_name, grouped_parameters in groupby(
@@ -138,10 +129,6 @@ def _serialize_grouped_body(builder: BuilderType) -> List[str]:
 
 def _serialize_flattened_body(builder: BuilderType) -> List[str]:
     retval: List[str] = []
-    for constant in builder.parameters.constant:
-        if constant.original_parameter:
-            # if the constant is part of the flattened object
-            retval.append(_declare_constant(constant))
     if not builder.parameters.is_flattened:
         raise ValueError(
             "This method can't be called if the operation doesn't need parameter flattening"
@@ -269,10 +256,6 @@ class _BuilderSerializerProtocol(ABC):
 
     @abstractmethod
     def _get_kwargs_to_pop(self, builder: BuilderType) -> List[Parameter]:
-        ...
-
-    @abstractmethod
-    def pop_kwargs_from_signature(self, builder: BuilderType) -> List[str]:
         ...
 
 class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abstract-method
@@ -807,13 +790,17 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         retval.append("")
         retval.append(f"request = {request_path_name}(")
         for parameter in request_builder.parameters.method:
-            if parameter.is_body:
+            if (
+                parameter.is_body and
+                not parameter.constant and
+                parameter.serialized_name not in builder.body_kwargs_to_pass_to_request_builder
+            ):
                 continue
             high_level_name = cast(RequestBuilderParameter, parameter).name_in_high_level_operation
             retval.append(f"    {parameter.serialized_name}={high_level_name},")
-        if request_builder.parameters.has_body:
-            for kwarg in builder.body_kwargs_to_pass_to_request_builder:
-                retval.append(f"    {kwarg}={kwarg},")
+        # if request_builder.parameters.has_body:
+        #     for kwarg in builder.body_kwargs_to_pass_to_request_builder:
+        #         retval.append(f"    {kwarg}={kwarg},")
         template_url = template_url or f"self.{builder.name}.metadata['url']"
         retval.append(f"    template_url={template_url},")
         retval.append(f")")
@@ -1249,14 +1236,11 @@ class _LROOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=
         return retval
 
     def return_lro_poller(self, builder: BuilderType) -> List[str]:
+        retval = []
         lro_options_str = (
             ", lro_options={'final-state-via': '" + builder.lro_options['final-state-via'] + "'}"
             if builder.lro_options else ""
         )
-        retval = [
-            _declare_constant(p)
-            for p in builder.parameters.path if p.constant
-        ]
         path_format_arguments_str = ""
         if builder.parameters.path:
             path_format_arguments_str = ", path_format_arguments=path_format_arguments"

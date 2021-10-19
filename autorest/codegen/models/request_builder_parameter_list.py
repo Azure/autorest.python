@@ -123,7 +123,7 @@ class RequestBuilderParameterList(ParameterList):
         # we don't want to pop the body kwargs in py2.7. We send them straight to HttpRequest
         kwargs_to_pop = self.kwargs
         if not is_python_3_file:
-            kwargs_to_pop += [k for k in self.keyword_only if not k.is_body]
+            kwargs_to_pop += [k for k in self.keyword_only if not (k.is_body and not k.constant)]
         return kwargs_to_pop
 
     @property
