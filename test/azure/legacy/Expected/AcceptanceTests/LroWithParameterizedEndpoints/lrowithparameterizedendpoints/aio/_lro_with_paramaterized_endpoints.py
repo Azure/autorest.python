@@ -30,7 +30,7 @@ class LROWithParamaterizedEndpoints(LROWithParamaterizedEndpointsOperationsMixin
 
     def __init__(self, host: str = "host", **kwargs: Any) -> None:
         _base_url = "http://{accountName}{host}"
-        self._config = LROWithParamaterizedEndpointsConfiguration(host, **kwargs)
+        self._config = LROWithParamaterizedEndpointsConfiguration(host=host, **kwargs)
         self._client = AsyncPipelineClient(base_url=_base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}

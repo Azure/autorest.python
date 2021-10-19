@@ -42,7 +42,7 @@ class AutoRestPagingTestService:
         endpoint: str = "http://localhost:3000",
         **kwargs: Any
     ) -> None:
-        self._config = AutoRestPagingTestServiceConfiguration(credential, **kwargs)
+        self._config = AutoRestPagingTestServiceConfiguration(credential=credential, **kwargs)
         self._client = AsyncARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()

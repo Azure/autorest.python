@@ -44,7 +44,9 @@ class MicrosoftAzureTestUrl:
         endpoint: str = "http://localhost:3000",
         **kwargs: Any
     ) -> None:
-        self._config = MicrosoftAzureTestUrlConfiguration(subscription_id, credential, **kwargs)
+        self._config = MicrosoftAzureTestUrlConfiguration(
+            subscription_id=subscription_id, credential=credential, **kwargs
+        )
         self._client = AsyncARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()

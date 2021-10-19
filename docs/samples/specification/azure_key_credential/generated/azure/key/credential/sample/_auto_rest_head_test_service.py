@@ -40,7 +40,7 @@ class AutoRestHeadTestService(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        self._config = AutoRestHeadTestServiceConfiguration(credential, **kwargs)
+        self._config = AutoRestHeadTestServiceConfiguration(credential=credential, **kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {}  # type: Dict[str, Any]

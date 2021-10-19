@@ -69,7 +69,9 @@ class AutoRestAzureSpecialParametersTestClient:
         base_url: str = "http://localhost:3000",
         **kwargs: Any
     ) -> None:
-        self._config = AutoRestAzureSpecialParametersTestClientConfiguration(credential, subscription_id, **kwargs)
+        self._config = AutoRestAzureSpecialParametersTestClientConfiguration(
+            credential=credential, subscription_id=subscription_id, **kwargs
+        )
         self._client = AsyncARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}

@@ -41,7 +41,7 @@ class AutoRestHeadExceptionTestService(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        self._config = AutoRestHeadExceptionTestServiceConfiguration(credential, **kwargs)
+        self._config = AutoRestHeadExceptionTestServiceConfiguration(credential=credential, **kwargs)
         self._client = ARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {}  # type: Dict[str, Any]
