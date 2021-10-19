@@ -75,7 +75,7 @@ class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOpera
             base_url = '{Endpoint}/multiapiCustomBaseUrl/v2'
         else:
             raise ValueError("API version {} is not available".format(api_version))
-        self._config = MultiapiCustomBaseUrlServiceClientConfiguration(credential, endpoint, **kwargs)
+        self._config = MultiapiCustomBaseUrlServiceClientConfiguration(credential=credential, endpoint=endpoint, **kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
         super(MultiapiCustomBaseUrlServiceClient, self).__init__(
             api_version=api_version,

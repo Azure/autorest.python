@@ -74,7 +74,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
         profile=KnownProfiles.default, # type: KnownProfiles
         **kwargs  # type: Any
     ):
-        self._config = MultiapiServiceClientConfiguration(credential, **kwargs)
+        self._config = MultiapiServiceClientConfiguration(credential=credential, **kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
         super(MultiapiServiceClient, self).__init__(
             api_version=api_version,
