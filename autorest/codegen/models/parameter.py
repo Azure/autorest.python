@@ -164,6 +164,8 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         return not(
             # don't put accept in signature
             self.rest_api_name == "Accept"
+            # if i'm multiapi, don't add constants
+            or (self.code_model.options["multiapi"] and self.constant)
             # If i'm not in the method code, no point in being in signature
             or not self.in_method_code
             # If I'm grouped, my grouper will be on signature, not me
@@ -280,6 +282,8 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
     @property
     def is_keyword_only(self) -> bool:
         # this means in async mode, I am documented like def hello(positional_1, *, me!)
+        if self.code_model.options["multiapi"]:
+            return self._keyword_only
         return self._keyword_only or (self.constant and self.rest_api_name != "Accept")
 
     @property

@@ -96,8 +96,6 @@ class MultiapiServiceClientOperationsMixin(object):
         greeting_in_english: str,
         greeting_in_chinese: Optional[str] = None,
         greeting_in_french: Optional[str] = None,
-        *,
-        api_version: str = "3.0.0",
         **kwargs: Any
     ) -> None:
         """Has added parameters across the API versions.
@@ -108,9 +106,6 @@ class MultiapiServiceClientOperationsMixin(object):
         :type greeting_in_chinese: str
         :param greeting_in_french: pass in 'bonjour' to pass test.
         :type greeting_in_french: str
-        :keyword api_version: Api Version. The default value is "3.0.0". Note that overriding this
-         default value may result in unsupported behavior.
-        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -131,14 +126,12 @@ class MultiapiServiceClientOperationsMixin(object):
         mixin_instance._serialize = Serializer(self._models_dict(api_version))
         mixin_instance._serialize.client_side_validation = False
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
-        return await mixin_instance.test_different_calls(greeting_in_english, greeting_in_chinese, greeting_in_french, api_version, **kwargs)
+        return await mixin_instance.test_different_calls(greeting_in_english, greeting_in_chinese, greeting_in_french, **kwargs)
 
     async def test_one(
         self,
         id: int,
         message: Optional[str] = None,
-        *,
-        api_version: str = "1.0.0",
         **kwargs: Any
     ) -> None:
         """TestOne should be in an FirstVersionOperationsMixin.
@@ -147,9 +140,6 @@ class MultiapiServiceClientOperationsMixin(object):
         :type id: int
         :param message: An optional string parameter.
         :type message: str
-        :keyword api_version: Api Version. The default value is "1.0.0". Note that overriding this
-         default value may result in unsupported behavior.
-        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -168,7 +158,7 @@ class MultiapiServiceClientOperationsMixin(object):
         mixin_instance._serialize = Serializer(self._models_dict(api_version))
         mixin_instance._serialize.client_side_validation = False
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
-        return await mixin_instance.test_one(id, message, api_version, **kwargs)
+        return await mixin_instance.test_one(id, message, **kwargs)
 
     def test_paging(
         self,

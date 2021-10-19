@@ -29,8 +29,6 @@ class MultiapiServiceClientOperationsMixin:
         self,
         id: int,
         message: Optional[str] = None,
-        *,
-        api_version: str = "2.0.0",
         **kwargs: Any
     ) -> "_models.ModelTwo":
         """TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo.
@@ -39,9 +37,6 @@ class MultiapiServiceClientOperationsMixin:
         :type id: int
         :param message: An optional string parameter.
         :type message: str
-        :keyword api_version: Api Version. The default value is "2.0.0". Note that overriding this
-         default value may result in unsupported behavior.
-        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ModelTwo, or the result of cls(response)
         :rtype: ~multiapidataplane.v2.models.ModelTwo
@@ -57,7 +52,6 @@ class MultiapiServiceClientOperationsMixin:
         request = build_test_one_request(
             id=id,
             message=message,
-            api_version=api_version,
             template_url=self.test_one.metadata['url'],
         )
         request = _convert_request(request)
@@ -86,8 +80,6 @@ class MultiapiServiceClientOperationsMixin:
         self,
         greeting_in_english: str,
         greeting_in_chinese: Optional[str] = None,
-        *,
-        api_version: str = "2.0.0",
         **kwargs: Any
     ) -> None:
         """Has added parameters across the API versions.
@@ -96,9 +88,6 @@ class MultiapiServiceClientOperationsMixin:
         :type greeting_in_english: str
         :param greeting_in_chinese: pass in 'nihao' to pass test.
         :type greeting_in_chinese: str
-        :keyword api_version: Api Version. The default value is "2.0.0". Note that overriding this
-         default value may result in unsupported behavior.
-        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -113,7 +102,6 @@ class MultiapiServiceClientOperationsMixin:
         
         request = build_test_different_calls_request(
             greeting_in_english=greeting_in_english,
-            api_version=api_version,
             greeting_in_chinese=greeting_in_chinese,
             template_url=self.test_different_calls.metadata['url'],
         )

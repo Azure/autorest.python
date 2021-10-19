@@ -49,17 +49,12 @@ class OperationGroupOneOperations:
     async def test_two(
         self,
         parameter_one: Optional["_models.ModelThree"] = None,
-        *,
-        api_version: str = "3.0.0",
         **kwargs: Any
     ) -> "_models.ModelThree":
         """TestTwo should be in OperationGroupOneOperations. Takes in ModelThree and ouputs ModelThree.
 
         :param parameter_one: A ModelThree parameter.
         :type parameter_one: ~multiapicredentialdefaultpolicy.v3.models.ModelThree
-        :keyword api_version: Api Version. The default value is "3.0.0". Note that overriding this
-         default value may result in unsupported behavior.
-        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ModelThree, or the result of cls(response)
         :rtype: ~multiapicredentialdefaultpolicy.v3.models.ModelThree
@@ -81,7 +76,6 @@ class OperationGroupOneOperations:
         request = build_test_two_request(
             content_type=content_type,
             json=json,
-            api_version=api_version,
             template_url=self.test_two.metadata['url'],
         )
         request = _convert_request(request)

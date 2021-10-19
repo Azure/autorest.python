@@ -34,8 +34,8 @@ def build_test_request(
 ):
     # type: (...) -> HttpRequest
     id = kwargs.pop('id')  # type: int
-    api_version = kwargs.pop('api_version', "2.0.0")  # type: str
 
+    api_version = "2.0.0"
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/test')
@@ -72,9 +72,6 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin(object):
 
         :param id: An int parameter. Put in 2 to pass.
         :type id: int
-        :keyword api_version: Api Version. The default value is "2.0.0". Note that overriding this
-         default value may result in unsupported behavior.
-        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -86,12 +83,9 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        api_version = kwargs.pop('api_version', "2.0.0")  # type: str
-
         
         request = build_test_request(
             id=id,
-            api_version=api_version,
             template_url=self.test.metadata['url'],
         )
         request = _convert_request(request)

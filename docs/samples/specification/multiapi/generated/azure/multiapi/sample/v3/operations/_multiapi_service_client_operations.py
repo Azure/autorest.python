@@ -56,10 +56,10 @@ def build_test_different_calls_request(
 ):
     # type: (...) -> HttpRequest
     greeting_in_english = kwargs.pop('greeting_in_english')  # type: str
-    api_version = kwargs.pop('api_version', "3.0.0")  # type: str
     greeting_in_chinese = kwargs.pop('greeting_in_chinese', None)  # type: Optional[str]
     greeting_in_french = kwargs.pop('greeting_in_french', None)  # type: Optional[str]
 
+    api_version = "3.0.0"
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/multiapi/testDifferentCalls')
@@ -167,9 +167,6 @@ class MultiapiServiceClientOperationsMixin(object):
         :type greeting_in_chinese: str
         :param greeting_in_french: pass in 'bonjour' to pass test.
         :type greeting_in_french: str
-        :keyword api_version: Api Version. The default value is "3.0.0". Note that overriding this
-         default value may result in unsupported behavior.
-        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -181,12 +178,9 @@ class MultiapiServiceClientOperationsMixin(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        api_version = kwargs.pop('api_version', "3.0.0")  # type: str
-
         
         request = build_test_different_calls_request(
             greeting_in_english=greeting_in_english,
-            api_version=api_version,
             greeting_in_chinese=greeting_in_chinese,
             greeting_in_french=greeting_in_french,
             template_url=self.test_different_calls.metadata['url'],

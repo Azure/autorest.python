@@ -34,8 +34,7 @@ def build_test_two_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    api_version = kwargs.pop('api_version', "0.0.0")  # type: str
-
+    api_version = "0.0.0"
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/multiapi/one/testTwoEndpoint')
@@ -87,9 +86,6 @@ class OperationGroupOneOperations(object):
         # type: (...) -> None
         """TestTwo should be in OperationGroupOneOperations.
 
-        :keyword api_version: Api Version. The default value is "0.0.0". Note that overriding this
-         default value may result in unsupported behavior.
-        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -101,11 +97,8 @@ class OperationGroupOneOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        api_version = kwargs.pop('api_version', "0.0.0")  # type: str
-
         
         request = build_test_two_request(
-            api_version=api_version,
             template_url=self.test_two.metadata['url'],
         )
         request = _convert_request(request)

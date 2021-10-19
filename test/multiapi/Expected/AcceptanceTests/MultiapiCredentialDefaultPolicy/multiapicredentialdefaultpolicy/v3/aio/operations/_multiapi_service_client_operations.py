@@ -95,8 +95,6 @@ class MultiapiServiceClientOperationsMixin:
         greeting_in_english: str,
         greeting_in_chinese: Optional[str] = None,
         greeting_in_french: Optional[str] = None,
-        *,
-        api_version: str = "3.0.0",
         **kwargs: Any
     ) -> None:
         """Has added parameters across the API versions.
@@ -107,9 +105,6 @@ class MultiapiServiceClientOperationsMixin:
         :type greeting_in_chinese: str
         :param greeting_in_french: pass in 'bonjour' to pass test.
         :type greeting_in_french: str
-        :keyword api_version: Api Version. The default value is "3.0.0". Note that overriding this
-         default value may result in unsupported behavior.
-        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -124,7 +119,6 @@ class MultiapiServiceClientOperationsMixin:
         
         request = build_test_different_calls_request(
             greeting_in_english=greeting_in_english,
-            api_version=api_version,
             greeting_in_chinese=greeting_in_chinese,
             greeting_in_french=greeting_in_french,
             template_url=self.test_different_calls.metadata['url'],

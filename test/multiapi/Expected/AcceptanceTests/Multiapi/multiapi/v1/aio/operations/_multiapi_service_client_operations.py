@@ -34,8 +34,6 @@ class MultiapiServiceClientOperationsMixin:
         self,
         id: int,
         message: Optional[str] = None,
-        *,
-        api_version: str = "1.0.0",
         **kwargs: Any
     ) -> None:
         """TestOne should be in an FirstVersionOperationsMixin.
@@ -44,9 +42,6 @@ class MultiapiServiceClientOperationsMixin:
         :type id: int
         :param message: An optional string parameter.
         :type message: str
-        :keyword api_version: Api Version. The default value is "1.0.0". Note that overriding this
-         default value may result in unsupported behavior.
-        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -62,7 +57,6 @@ class MultiapiServiceClientOperationsMixin:
         request = build_test_one_request(
             id=id,
             message=message,
-            api_version=api_version,
             template_url=self.test_one.metadata['url'],
         )
         request = _convert_request(request)
@@ -369,17 +363,12 @@ class MultiapiServiceClientOperationsMixin:
     async def test_different_calls(
         self,
         greeting_in_english: str,
-        *,
-        api_version: str = "1.0.0",
         **kwargs: Any
     ) -> None:
         """Has added parameters across the API versions.
 
         :param greeting_in_english: pass in 'hello' to pass test.
         :type greeting_in_english: str
-        :keyword api_version: Api Version. The default value is "1.0.0". Note that overriding this
-         default value may result in unsupported behavior.
-        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -394,7 +383,6 @@ class MultiapiServiceClientOperationsMixin:
         
         request = build_test_different_calls_request(
             greeting_in_english=greeting_in_english,
-            api_version=api_version,
             template_url=self.test_different_calls.metadata['url'],
         )
         request = _convert_request(request)

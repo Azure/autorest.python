@@ -29,9 +29,6 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin(object):
 
         :param id: An int parameter. Put in 2 to pass.
         :type id: int
-        :keyword api_version: Api Version. The default value is "2.0.0". Note that overriding this
-         default value may result in unsupported behavior.
-        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -50,4 +47,4 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin(object):
         mixin_instance._serialize = Serializer(self._models_dict(api_version))
         mixin_instance._serialize.client_side_validation = False
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
-        return mixin_instance.test(id, api_version, **kwargs)
+        return mixin_instance.test(id, **kwargs)
