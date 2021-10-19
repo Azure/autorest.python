@@ -132,12 +132,6 @@ class RequestBuilderParameterList(ParameterList):
         return kwargs_to_pop
 
     @property
-    def constant(self) -> List[Parameter]:
-        """Only care about constants of this implementation in request builders.
-        """
-        return [c for c in super().constant if c.implementation == self.implementation]
-
-    @property
     def method(self) -> List[Parameter]:
         """The list of parameter used in method signature. Includes both positional and kwargs
         """
