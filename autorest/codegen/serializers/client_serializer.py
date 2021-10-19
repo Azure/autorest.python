@@ -63,7 +63,7 @@ class ClientSerializer:
     def initialize_config(self) -> str:
         config_name = f"{self.code_model.class_name}Configuration"
         config_call = ", ".join(
-            [p.serialized_name for p in self.code_model.service_client.parameters.config_method
+            [f"{p.serialized_name}={p.serialized_name}" for p in self.code_model.service_client.parameters.config_method
         ] + ["**kwargs"])
         return f"self._config = {config_name}({config_call})"
 

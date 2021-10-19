@@ -28,7 +28,7 @@ class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
     """
 
     def __init__(self, subscription_id: str, base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
-        self._config = AutoRestValidationTestConfiguration(subscription_id, **kwargs)
+        self._config = AutoRestValidationTestConfiguration(subscription_id=subscription_id, **kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}

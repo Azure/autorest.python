@@ -41,7 +41,7 @@ class MultiapiServiceClient(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        self._config = MultiapiServiceClientConfiguration(credential, **kwargs)
+        self._config = MultiapiServiceClientConfiguration(credential=credential, **kwargs)
         self._client = ARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
