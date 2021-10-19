@@ -37,7 +37,7 @@ class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOpera
         **kwargs: Any
     ) -> None:
         _base_url = '{Endpoint}/multiapiCustomBaseUrl/v2'
-        self._config = MultiapiCustomBaseUrlServiceClientConfiguration(credential, endpoint, **kwargs)
+        self._config = MultiapiCustomBaseUrlServiceClientConfiguration(credential=credential, endpoint=endpoint, **kwargs)
         self._client = AsyncPipelineClient(base_url=_base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}

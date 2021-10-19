@@ -35,7 +35,9 @@ class AutoRestParameterizedCustomHostTestClient:
 
     def __init__(self, subscription_id: str, dns_suffix: str = "host", **kwargs: Any) -> None:
         _endpoint = "{vault}{secret}{dnsSuffix}"
-        self._config = AutoRestParameterizedCustomHostTestClientConfiguration(subscription_id, dns_suffix, **kwargs)
+        self._config = AutoRestParameterizedCustomHostTestClientConfiguration(
+            subscription_id=subscription_id, dns_suffix=dns_suffix, **kwargs
+        )
         self._client = AsyncPipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()

@@ -42,7 +42,9 @@ class MicrosoftAzureTestUrl(object):
         # type: (...) -> None
         endpoint = kwargs.pop("endpoint", "http://localhost:3000")  # type: str
 
-        self._config = MicrosoftAzureTestUrlConfiguration(subscription_id, credential, **kwargs)
+        self._config = MicrosoftAzureTestUrlConfiguration(
+            subscription_id=subscription_id, credential=credential, **kwargs
+        )
         self._client = ARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()

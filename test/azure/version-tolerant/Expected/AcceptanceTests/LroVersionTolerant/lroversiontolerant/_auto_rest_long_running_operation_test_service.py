@@ -50,7 +50,7 @@ class AutoRestLongRunningOperationTestService(object):
         # type: (...) -> None
         endpoint = kwargs.pop("endpoint", "http://localhost:3000")  # type: str
 
-        self._config = AutoRestLongRunningOperationTestServiceConfiguration(credential, **kwargs)
+        self._config = AutoRestLongRunningOperationTestServiceConfiguration(credential=credential, **kwargs)
         self._client = ARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()

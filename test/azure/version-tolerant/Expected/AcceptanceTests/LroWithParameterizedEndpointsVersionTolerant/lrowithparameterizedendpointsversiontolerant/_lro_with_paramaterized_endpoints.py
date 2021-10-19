@@ -39,7 +39,7 @@ class LROWithParamaterizedEndpoints(LROWithParamaterizedEndpointsOperationsMixin
     ):
         # type: (...) -> None
         _endpoint = "http://{accountName}{host}"
-        self._config = LROWithParamaterizedEndpointsConfiguration(host, **kwargs)
+        self._config = LROWithParamaterizedEndpointsConfiguration(host=host, **kwargs)
         self._client = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()

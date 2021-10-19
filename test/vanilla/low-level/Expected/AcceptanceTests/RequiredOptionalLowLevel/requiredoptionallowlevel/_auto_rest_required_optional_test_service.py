@@ -45,7 +45,10 @@ class AutoRestRequiredOptionalTestService(object):
         endpoint = kwargs.pop("endpoint", "http://localhost:3000")  # type: str
 
         self._config = AutoRestRequiredOptionalTestServiceConfiguration(
-            required_global_path, required_global_query, optional_global_query, **kwargs
+            required_global_path=required_global_path,
+            required_global_query=required_global_query,
+            optional_global_query=optional_global_query,
+            **kwargs
         )
         self._client = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
