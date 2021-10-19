@@ -153,7 +153,8 @@ class BasicOperations:
 
         :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}.
         :type complex_body: Any
-        :keyword api_version: Api Version. The default value is "2016-02-29".
+        :keyword api_version: Api Version. The default value is "2016-02-29". Note that overriding this
+         default value may result in unsupported behavior.
         :paramtype api_version: str
         :return: None
         :rtype: None

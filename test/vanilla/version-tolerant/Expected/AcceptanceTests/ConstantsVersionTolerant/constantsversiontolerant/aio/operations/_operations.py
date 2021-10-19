@@ -283,7 +283,8 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: The default value is "value1".
+        :keyword input: The default value is "value1". Note that overriding this default value may
+         result in unsupported behavior.
         :paramtype input: str
         :return: None
         :rtype: None
@@ -317,7 +318,8 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: The default value is "value1".
+        :keyword input: The default value is "value1". Note that overriding this default value may
+         result in unsupported behavior.
         :paramtype input: str
         :return: None
         :rtype: None

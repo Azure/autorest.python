@@ -98,7 +98,8 @@ class BoolOperations:
     async def put_true(self, *, bool_body: bool = True, **kwargs: Any) -> None:
         """Set Boolean value true.
 
-        :keyword bool_body: The default value is True.
+        :keyword bool_body: The default value is True. Note that overriding this default value may
+         result in unsupported behavior.
         :paramtype bool_body: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -172,7 +173,8 @@ class BoolOperations:
     async def put_false(self, *, bool_body: bool = False, **kwargs: Any) -> None:
         """Set Boolean value false.
 
-        :keyword bool_body: The default value is False.
+        :keyword bool_body: The default value is False. Note that overriding this default value may
+         result in unsupported behavior.
         :paramtype bool_body: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

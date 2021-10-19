@@ -1932,7 +1932,8 @@ class XmlOperations(object):
         # type: (...) -> Any
         """Lists containers in a storage account.
 
-        :keyword comp: The default value is "list".
+        :keyword comp: The default value is "list". Note that overriding this default value may result
+         in unsupported behavior.
         :paramtype comp: str
         :return: JSON object
         :rtype: Any
@@ -2004,9 +2005,11 @@ class XmlOperations(object):
         # type: (...) -> Any
         """Gets storage service properties.
 
-        :keyword comp: The default value is "properties".
+        :keyword comp: The default value is "properties". Note that overriding this default value may
+         result in unsupported behavior.
         :paramtype comp: str
-        :keyword restype: The default value is "service".
+        :keyword restype: The default value is "service". Note that overriding this default value may
+         result in unsupported behavior.
         :paramtype restype: str
         :return: JSON object
         :rtype: Any
@@ -2105,9 +2108,11 @@ class XmlOperations(object):
 
         :param properties:
         :type properties: Any
-        :keyword comp: The default value is "properties".
+        :keyword comp: The default value is "properties". Note that overriding this default value may
+         result in unsupported behavior.
         :paramtype comp: str
-        :keyword restype: The default value is "service".
+        :keyword restype: The default value is "service". Note that overriding this default value may
+         result in unsupported behavior.
         :paramtype restype: str
         :return: None
         :rtype: None
@@ -2200,9 +2205,11 @@ class XmlOperations(object):
         # type: (...) -> List[Any]
         """Gets storage ACLs for a container.
 
-        :keyword comp: The default value is "acl".
+        :keyword comp: The default value is "acl". Note that overriding this default value may result
+         in unsupported behavior.
         :paramtype comp: str
-        :keyword restype: The default value is "container".
+        :keyword restype: The default value is "container". Note that overriding this default value may
+         result in unsupported behavior.
         :paramtype restype: str
         :return: list of JSON object
         :rtype: list[Any]
@@ -2267,9 +2274,11 @@ class XmlOperations(object):
 
         :param properties:
         :type properties: list[Any]
-        :keyword comp: The default value is "acl".
+        :keyword comp: The default value is "acl". Note that overriding this default value may result
+         in unsupported behavior.
         :paramtype comp: str
-        :keyword restype: The default value is "container".
+        :keyword restype: The default value is "container". Note that overriding this default value may
+         result in unsupported behavior.
         :paramtype restype: str
         :return: None
         :rtype: None
@@ -2329,9 +2338,11 @@ class XmlOperations(object):
         # type: (...) -> Any
         """Lists blobs in a storage container.
 
-        :keyword comp: The default value is "list".
+        :keyword comp: The default value is "list". Note that overriding this default value may result
+         in unsupported behavior.
         :paramtype comp: str
-        :keyword restype: The default value is "container".
+        :keyword restype: The default value is "container". Note that overriding this default value may
+         result in unsupported behavior.
         :paramtype restype: str
         :return: JSON object
         :rtype: Any

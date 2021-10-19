@@ -50,11 +50,11 @@ def build_update_pet_with_form_request(
 
             # form-encoded input template you can fill out and use as your `data` input.
             data = {
-                name: "str",  # Optional. Updated name of the pet.
-                pet_age: 0,  # How many years is it old?.
+                name: "str",  # Optional. Updated name of the pet. 
+                pet_age: 0,  # How many years is it old?. 
                 pet_food: "str",  # Can take a value of meat, or fish, or plant. Possible values are: "meat", "fish", and "plant".
                 pet_type: "str",  # Can take a value of dog, or cat, or fish. Possible values are: "dog", "cat", and "fish".
-                status: "str"  # Optional. Updated status of the pet.
+                status: "str"  # Optional. Updated status of the pet. 
             }
     """
 

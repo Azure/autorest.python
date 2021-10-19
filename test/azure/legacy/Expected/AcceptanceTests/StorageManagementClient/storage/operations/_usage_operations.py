@@ -98,7 +98,8 @@ class UsageOperations(object):
         # type: (...) -> "_models.UsageListResult"
         """Gets the current usage count and the limit for the resources under the subscription.
 
-        :keyword api_version: Api Version. The default value is "2015-05-01-preview".
+        :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
+         overriding this default value may result in unsupported behavior.
         :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: UsageListResult, or the result of cls(response)

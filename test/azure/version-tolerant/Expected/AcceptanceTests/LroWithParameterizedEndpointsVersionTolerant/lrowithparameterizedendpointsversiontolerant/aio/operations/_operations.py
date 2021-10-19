@@ -189,7 +189,7 @@ class LROWithParamaterizedEndpointsOperationsMixin:
         :param account_name: Account Name. Pass in 'local' to pass test.
         :type account_name: str
         :param constant_parameter: Next link for the list operation. The default value is
-         "iAmConstant".
+         "iAmConstant". Note that overriding this default value may result in unsupported behavior.
         :type constant_parameter: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncLROBasePolling. Pass in False

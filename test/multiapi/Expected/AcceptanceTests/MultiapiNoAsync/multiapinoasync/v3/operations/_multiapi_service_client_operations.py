@@ -167,7 +167,8 @@ class MultiapiServiceClientOperationsMixin(object):
         :type greeting_in_chinese: str
         :param greeting_in_french: pass in 'bonjour' to pass test.
         :type greeting_in_french: str
-        :keyword api_version: Api Version. The default value is "3.0.0".
+        :keyword api_version: Api Version. The default value is "3.0.0". Note that overriding this
+         default value may result in unsupported behavior.
         :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

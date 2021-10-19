@@ -408,7 +408,7 @@ class EnumOperations(object):
         :param field1: Sample string.
         :type field1: str
         :keyword color_constant: Referenced Color Constant Description. The default value is
-         "green-color".
+         "green-color". Note that overriding this default value may result in unsupported behavior.
         :paramtype color_constant: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

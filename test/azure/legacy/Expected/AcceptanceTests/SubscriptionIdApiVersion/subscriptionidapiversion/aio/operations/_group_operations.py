@@ -60,7 +60,8 @@ class GroupOperations:
 
         :param resource_group_name: Resource Group name 'testgroup101'.
         :type resource_group_name: str
-        :keyword api_version: Api Version. The default value is "2014-04-01-preview".
+        :keyword api_version: Api Version. The default value is "2014-04-01-preview". Note that
+         overriding this default value may result in unsupported behavior.
         :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: SampleResourceGroup, or the result of cls(response)

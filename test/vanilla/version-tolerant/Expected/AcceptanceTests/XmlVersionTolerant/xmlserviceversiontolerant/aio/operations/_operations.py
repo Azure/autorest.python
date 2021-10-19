@@ -1114,7 +1114,8 @@ class XmlOperations:
     async def list_containers(self, *, comp: str = "list", **kwargs: Any) -> Any:
         """Lists containers in a storage account.
 
-        :keyword comp: The default value is "list".
+        :keyword comp: The default value is "list". Note that overriding this default value may result
+         in unsupported behavior.
         :paramtype comp: str
         :return: JSON object
         :rtype: Any
@@ -1181,9 +1182,11 @@ class XmlOperations:
     async def get_service_properties(self, *, comp: str = "properties", restype: str = "service", **kwargs: Any) -> Any:
         """Gets storage service properties.
 
-        :keyword comp: The default value is "properties".
+        :keyword comp: The default value is "properties". Note that overriding this default value may
+         result in unsupported behavior.
         :paramtype comp: str
-        :keyword restype: The default value is "service".
+        :keyword restype: The default value is "service". Note that overriding this default value may
+         result in unsupported behavior.
         :paramtype restype: str
         :return: JSON object
         :rtype: Any
@@ -1276,9 +1279,11 @@ class XmlOperations:
 
         :param properties:
         :type properties: Any
-        :keyword comp: The default value is "properties".
+        :keyword comp: The default value is "properties". Note that overriding this default value may
+         result in unsupported behavior.
         :paramtype comp: str
-        :keyword restype: The default value is "service".
+        :keyword restype: The default value is "service". Note that overriding this default value may
+         result in unsupported behavior.
         :paramtype restype: str
         :return: None
         :rtype: None
@@ -1366,9 +1371,11 @@ class XmlOperations:
     async def get_acls(self, *, comp: str = "acl", restype: str = "container", **kwargs: Any) -> List[Any]:
         """Gets storage ACLs for a container.
 
-        :keyword comp: The default value is "acl".
+        :keyword comp: The default value is "acl". Note that overriding this default value may result
+         in unsupported behavior.
         :paramtype comp: str
-        :keyword restype: The default value is "container".
+        :keyword restype: The default value is "container". Note that overriding this default value may
+         result in unsupported behavior.
         :paramtype restype: str
         :return: list of JSON object
         :rtype: list[Any]
@@ -1427,9 +1434,11 @@ class XmlOperations:
 
         :param properties:
         :type properties: list[Any]
-        :keyword comp: The default value is "acl".
+        :keyword comp: The default value is "acl". Note that overriding this default value may result
+         in unsupported behavior.
         :paramtype comp: str
-        :keyword restype: The default value is "container".
+        :keyword restype: The default value is "container". Note that overriding this default value may
+         result in unsupported behavior.
         :paramtype restype: str
         :return: None
         :rtype: None
@@ -1484,9 +1493,11 @@ class XmlOperations:
     async def list_blobs(self, *, comp: str = "list", restype: str = "container", **kwargs: Any) -> Any:
         """Lists blobs in a storage container.
 
-        :keyword comp: The default value is "list".
+        :keyword comp: The default value is "list". Note that overriding this default value may result
+         in unsupported behavior.
         :paramtype comp: str
-        :keyword restype: The default value is "container".
+        :keyword restype: The default value is "container". Note that overriding this default value may
+         result in unsupported behavior.
         :paramtype restype: str
         :return: JSON object
         :rtype: Any

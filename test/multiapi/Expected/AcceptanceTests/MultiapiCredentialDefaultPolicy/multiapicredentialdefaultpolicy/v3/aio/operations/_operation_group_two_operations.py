@@ -57,7 +57,8 @@ class OperationGroupTwoOperations:
 
         :param input: Input parameter.
         :type input: IO or ~multiapicredentialdefaultpolicy.v3.models.SourcePath
-        :keyword api_version: Api Version. The default value is "3.0.0".
+        :keyword api_version: Api Version. The default value is "3.0.0". Note that overriding this
+         default value may result in unsupported behavior.
         :paramtype api_version: str
         :keyword str content_type: Media type of the body sent to the API. Default value is
          "application/json". Allowed values are: "application/pdf", "image/jpeg", "image/png",
@@ -121,7 +122,8 @@ class OperationGroupTwoOperations:
     ) -> None:
         """TestFive should be in OperationGroupTwoOperations.
 
-        :keyword api_version: Api Version. The default value is "3.0.0".
+        :keyword api_version: Api Version. The default value is "3.0.0". Note that overriding this
+         default value may result in unsupported behavior.
         :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

@@ -767,7 +767,8 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get true Boolean value on path.
 
-        :keyword bool_path: true boolean value. The default value is True.
+        :keyword bool_path: true boolean value. The default value is True. Note that overriding this
+         default value may result in unsupported behavior.
         :paramtype bool_path: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -807,7 +808,8 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get false Boolean value on path.
 
-        :keyword bool_path: false boolean value. The default value is False.
+        :keyword bool_path: false boolean value. The default value is False. Note that overriding this
+         default value may result in unsupported behavior.
         :paramtype bool_path: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -847,7 +849,8 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get '1000000' integer value.
 
-        :keyword int_path: '1000000' integer value. The default value is 1000000.
+        :keyword int_path: '1000000' integer value. The default value is 1000000. Note that overriding
+         this default value may result in unsupported behavior.
         :paramtype int_path: int
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -887,7 +890,8 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get '-1000000' integer value.
 
-        :keyword int_path: '-1000000' integer value. The default value is -1000000.
+        :keyword int_path: '-1000000' integer value. The default value is -1000000. Note that
+         overriding this default value may result in unsupported behavior.
         :paramtype int_path: int
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -927,7 +931,8 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get '10000000000' 64 bit integer value.
 
-        :keyword long_path: '10000000000' 64 bit integer value. The default value is 10000000000.
+        :keyword long_path: '10000000000' 64 bit integer value. The default value is 10000000000. Note
+         that overriding this default value may result in unsupported behavior.
         :paramtype long_path: long
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -968,6 +973,7 @@ class PathsOperations(object):
         """Get '-10000000000' 64 bit integer value.
 
         :keyword long_path: '-10000000000' 64 bit integer value. The default value is -10000000000.
+         Note that overriding this default value may result in unsupported behavior.
         :paramtype long_path: long
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1007,7 +1013,8 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get '1.034E+20' numeric value.
 
-        :keyword float_path: '1.034E+20'numeric value. The default value is 103400000000000000000.
+        :keyword float_path: '1.034E+20'numeric value. The default value is 103400000000000000000. Note
+         that overriding this default value may result in unsupported behavior.
         :paramtype float_path: float
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1047,7 +1054,8 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get '-1.034E-20' numeric value.
 
-        :keyword float_path: '-1.034E-20'numeric value. The default value is -1.034e-20.
+        :keyword float_path: '-1.034E-20'numeric value. The default value is -1.034e-20. Note that
+         overriding this default value may result in unsupported behavior.
         :paramtype float_path: float
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1087,7 +1095,8 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get '9999999.999' numeric value.
 
-        :keyword double_path: '9999999.999'numeric value. The default value is 9999999.999.
+        :keyword double_path: '9999999.999'numeric value. The default value is 9999999.999. Note that
+         overriding this default value may result in unsupported behavior.
         :paramtype double_path: float
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1127,7 +1136,8 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get '-9999999.999' numeric value.
 
-        :keyword double_path: '-9999999.999'numeric value. The default value is -9999999.999.
+        :keyword double_path: '-9999999.999'numeric value. The default value is -9999999.999. Note that
+         overriding this default value may result in unsupported behavior.
         :paramtype double_path: float
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1168,6 +1178,7 @@ class PathsOperations(object):
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
         :keyword string_path: '啊齄丂狛狜隣郎隣兀﨩'multi-byte string value. The default value is "啊齄丂狛狜隣郎隣兀﨩".
+         Note that overriding this default value may result in unsupported behavior.
         :paramtype string_path: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1208,7 +1219,8 @@ class PathsOperations(object):
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
         :keyword string_path: 'begin!*'();:@ &=+$,/?#[]end' url encoded string value. The default value
-         is "begin!*'();:@ &=+$,/?#[]end".
+         is "begin!*'();:@ &=+$,/?#[]end". Note that overriding this default value may result in
+         unsupported behavior.
         :paramtype string_path: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1251,7 +1263,8 @@ class PathsOperations(object):
         https://tools.ietf.org/html/rfc3986#appendix-A 'path' accept any 'pchar' not encoded.
 
         :keyword string_path: 'begin!*'();:@&=+$,end' url encoded string value. The default value is
-         "begin!*'();:@&=+$,end".
+         "begin!*'();:@&=+$,end". Note that overriding this default value may result in unsupported
+         behavior.
         :paramtype string_path: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1291,7 +1304,8 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get ''.
 
-        :keyword string_path: '' string value. The default value is "".
+        :keyword string_path: '' string value. The default value is "". Note that overriding this
+         default value may result in unsupported behavior.
         :paramtype string_path: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1492,6 +1506,7 @@ class PathsOperations(object):
         """Get '' as byte array.
 
         :keyword byte_path: '' as byte array. The default value is bytearray("", encoding="utf-8").
+         Note that overriding this default value may result in unsupported behavior.
         :paramtype byte_path: bytearray
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1571,7 +1586,8 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get '2012-01-01' as date.
 
-        :keyword date_path: '2012-01-01' as date. The default value is "2012-01-01".
+        :keyword date_path: '2012-01-01' as date. The default value is "2012-01-01". Note that
+         overriding this default value may result in unsupported behavior.
         :paramtype date_path: ~datetime.date
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1653,7 +1669,8 @@ class PathsOperations(object):
         """Get '2012-01-01T01:01:01Z' as date-time.
 
         :keyword date_time_path: '2012-01-01T01:01:01Z' as date-time. The default value is
-         "2012-01-01T01:01:01Z".
+         "2012-01-01T01:01:01Z". Note that overriding this default value may result in unsupported
+         behavior.
         :paramtype date_time_path: ~datetime.datetime
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

@@ -27,13 +27,16 @@ class AutoRestSwaggerConstantService:
     :ivar contants: ContantsOperations operations
     :vartype contants: constantsversiontolerant.aio.operations.ContantsOperations
     :keyword header_constant: Constant header property on the client that is a required parameter
-     for operation 'constants_putClientConstants'. The default value is True.
+     for operation 'constants_putClientConstants'. The default value is True. Note that overriding
+     this default value may result in unsupported behavior.
     :paramtype header_constant: bool
     :keyword query_constant: Constant query property on the client that is a required parameter for
-     operation 'constants_putClientConstants'. The default value is 100.
+     operation 'constants_putClientConstants'. The default value is 100. Note that overriding this
+     default value may result in unsupported behavior.
     :paramtype query_constant: int
     :keyword path_constant: Constant path property on the client that is a required parameter for
-     operation 'constants_putClientConstants'. The default value is "path".
+     operation 'constants_putClientConstants'. The default value is "path". Note that overriding
+     this default value may result in unsupported behavior.
     :paramtype path_constant: str
     :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
     :paramtype endpoint: str

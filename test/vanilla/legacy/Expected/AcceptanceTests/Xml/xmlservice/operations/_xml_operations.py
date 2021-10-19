@@ -1689,7 +1689,8 @@ class XmlOperations(object):
         # type: (...) -> "_models.ListContainersResponse"
         """Lists containers in a storage account.
 
-        :keyword comp: The default value is "list".
+        :keyword comp: The default value is "list". Note that overriding this default value may result
+         in unsupported behavior.
         :paramtype comp: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ListContainersResponse, or the result of cls(response)
@@ -1732,9 +1733,11 @@ class XmlOperations(object):
         # type: (...) -> "_models.StorageServiceProperties"
         """Gets storage service properties.
 
-        :keyword comp: The default value is "properties".
+        :keyword comp: The default value is "properties". Note that overriding this default value may
+         result in unsupported behavior.
         :paramtype comp: str
-        :keyword restype: The default value is "service".
+        :keyword restype: The default value is "service". Note that overriding this default value may
+         result in unsupported behavior.
         :paramtype restype: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageServiceProperties, or the result of cls(response)
@@ -1783,9 +1786,11 @@ class XmlOperations(object):
 
         :param properties:
         :type properties: ~xmlservice.models.StorageServiceProperties
-        :keyword comp: The default value is "properties".
+        :keyword comp: The default value is "properties". Note that overriding this default value may
+         result in unsupported behavior.
         :paramtype comp: str
-        :keyword restype: The default value is "service".
+        :keyword restype: The default value is "service". Note that overriding this default value may
+         result in unsupported behavior.
         :paramtype restype: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1831,9 +1836,11 @@ class XmlOperations(object):
         # type: (...) -> List["_models.SignedIdentifier"]
         """Gets storage ACLs for a container.
 
-        :keyword comp: The default value is "acl".
+        :keyword comp: The default value is "acl". Note that overriding this default value may result
+         in unsupported behavior.
         :paramtype comp: str
-        :keyword restype: The default value is "container".
+        :keyword restype: The default value is "container". Note that overriding this default value may
+         result in unsupported behavior.
         :paramtype restype: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list of SignedIdentifier, or the result of cls(response)
@@ -1882,9 +1889,11 @@ class XmlOperations(object):
 
         :param properties:
         :type properties: list[~xmlservice.models.SignedIdentifier]
-        :keyword comp: The default value is "acl".
+        :keyword comp: The default value is "acl". Note that overriding this default value may result
+         in unsupported behavior.
         :paramtype comp: str
-        :keyword restype: The default value is "container".
+        :keyword restype: The default value is "container". Note that overriding this default value may
+         result in unsupported behavior.
         :paramtype restype: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1933,9 +1942,11 @@ class XmlOperations(object):
         # type: (...) -> "_models.ListBlobsResponse"
         """Lists blobs in a storage container.
 
-        :keyword comp: The default value is "list".
+        :keyword comp: The default value is "list". Note that overriding this default value may result
+         in unsupported behavior.
         :paramtype comp: str
-        :keyword restype: The default value is "container".
+        :keyword restype: The default value is "container". Note that overriding this default value may
+         result in unsupported behavior.
         :paramtype restype: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ListBlobsResponse, or the result of cls(response)

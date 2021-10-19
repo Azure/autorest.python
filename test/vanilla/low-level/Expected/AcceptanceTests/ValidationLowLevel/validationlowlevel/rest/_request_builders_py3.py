@@ -29,7 +29,8 @@ def build_validation_of_method_parameters_request(
     :type resource_group_name: str
     :param id: Required int multiple of 10 from 100 to 1000.
     :type id: int
-    :keyword api_version: Api Version. The default value is "1.0.0".
+    :keyword api_version: Api Version. The default value is "1.0.0". Note that overriding this
+     default value may result in unsupported behavior.
     :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -111,7 +112,8 @@ def build_validation_of_body_request(
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).
     :paramtype content: any
-    :keyword api_version: Api Version. The default value is "1.0.0".
+    :keyword api_version: Api Version. The default value is "1.0.0". Note that overriding this
+     default value may result in unsupported behavior.
     :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -198,7 +200,8 @@ def build_get_with_constant_in_path_request(constant_param: str = "constant", **
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param constant_param: The default value is "constant".
+    :param constant_param: The default value is "constant". Note that overriding this default value
+     may result in unsupported behavior.
     :type constant_param: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -225,7 +228,8 @@ def build_post_with_constant_in_body_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param constant_param: The default value is "constant".
+    :param constant_param: The default value is "constant". Note that overriding this default value
+     may result in unsupported behavior.
     :type constant_param: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.

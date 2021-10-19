@@ -91,7 +91,8 @@ class OperationGroupTwoOperations(object):
 
         :param parameter_one: A boolean parameter.
         :type parameter_one: bool
-        :keyword api_version: Api Version. The default value is "2.0.0".
+        :keyword api_version: Api Version. The default value is "2.0.0". Note that overriding this
+         default value may result in unsupported behavior.
         :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

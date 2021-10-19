@@ -176,7 +176,8 @@ class AutoRestValidationTestOperationsMixin(object):
         :type resource_group_name: str
         :param id: Required int multiple of 10 from 100 to 1000.
         :type id: int
-        :keyword api_version: Api Version. The default value is "1.0.0".
+        :keyword api_version: Api Version. The default value is "1.0.0". Note that overriding this
+         default value may result in unsupported behavior.
         :paramtype api_version: str
         :return: JSON object
         :rtype: Any
@@ -256,7 +257,8 @@ class AutoRestValidationTestOperationsMixin(object):
         :type id: int
         :param body:
         :type body: Any
-        :keyword api_version: Api Version. The default value is "1.0.0".
+        :keyword api_version: Api Version. The default value is "1.0.0". Note that overriding this
+         default value may result in unsupported behavior.
         :paramtype api_version: str
         :return: JSON object
         :rtype: Any
@@ -356,7 +358,8 @@ class AutoRestValidationTestOperationsMixin(object):
         # type: (...) -> None
         """get_with_constant_in_path.
 
-        :param constant_param: The default value is "constant".
+        :param constant_param: The default value is "constant". Note that overriding this default value
+         may result in unsupported behavior.
         :type constant_param: str
         :return: None
         :rtype: None
@@ -394,7 +397,8 @@ class AutoRestValidationTestOperationsMixin(object):
         # type: (...) -> Any
         """post_with_constant_in_body.
 
-        :param constant_param: The default value is "constant".
+        :param constant_param: The default value is "constant". Note that overriding this default value
+         may result in unsupported behavior.
         :type constant_param: str
         :param body:
         :type body: Any

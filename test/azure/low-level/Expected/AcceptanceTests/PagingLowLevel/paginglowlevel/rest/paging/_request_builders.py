@@ -287,7 +287,8 @@ def build_get_with_query_params_request(
      pass test.
     :paramtype required_query_parameter: int
     :keyword query_constant: A constant. Must be True and will be passed as a query parameter to
-     nextOperationWithQueryParams. The default value is True.
+     nextOperationWithQueryParams. The default value is True. Note that overriding this default
+     value may result in unsupported behavior.
     :paramtype query_constant: bool
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -345,7 +346,8 @@ def build_next_operation_with_query_params_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword query_constant: A constant. Must be True. The default value is True.
+    :keyword query_constant: A constant. Must be True. The default value is True. Note that
+     overriding this default value may result in unsupported behavior.
     :paramtype query_constant: bool
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

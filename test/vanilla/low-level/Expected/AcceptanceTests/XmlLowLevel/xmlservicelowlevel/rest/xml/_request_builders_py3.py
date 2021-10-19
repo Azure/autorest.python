@@ -683,7 +683,8 @@ def build_list_containers_request(*, comp: str = "list", **kwargs: Any) -> HttpR
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword comp: The default value is "list".
+    :keyword comp: The default value is "list". Note that overriding this default value may result
+     in unsupported behavior.
     :paramtype comp: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -742,9 +743,11 @@ def build_get_service_properties_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword comp: The default value is "properties".
+    :keyword comp: The default value is "properties". Note that overriding this default value may
+     result in unsupported behavior.
     :paramtype comp: str
-    :keyword restype: The default value is "service".
+    :keyword restype: The default value is "service". Note that overriding this default value may
+     result in unsupported behavior.
     :paramtype restype: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -828,9 +831,11 @@ def build_put_service_properties_request(
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).
     :paramtype content: any
-    :keyword comp: The default value is "properties".
+    :keyword comp: The default value is "properties". Note that overriding this default value may
+     result in unsupported behavior.
     :paramtype comp: str
-    :keyword restype: The default value is "service".
+    :keyword restype: The default value is "service". Note that overriding this default value may
+     result in unsupported behavior.
     :paramtype restype: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -864,9 +869,11 @@ def build_get_acls_request(*, comp: str = "acl", restype: str = "container", **k
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword comp: The default value is "acl".
+    :keyword comp: The default value is "acl". Note that overriding this default value may result
+     in unsupported behavior.
     :paramtype comp: str
-    :keyword restype: The default value is "container".
+    :keyword restype: The default value is "container". Note that overriding this default value may
+     result in unsupported behavior.
     :paramtype restype: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -916,9 +923,11 @@ def build_put_acls_request(
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).
     :paramtype content: any
-    :keyword comp: The default value is "acl".
+    :keyword comp: The default value is "acl". Note that overriding this default value may result
+     in unsupported behavior.
     :paramtype comp: str
-    :keyword restype: The default value is "container".
+    :keyword restype: The default value is "container". Note that overriding this default value may
+     result in unsupported behavior.
     :paramtype restype: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -952,9 +961,11 @@ def build_list_blobs_request(*, comp: str = "list", restype: str = "container", 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword comp: The default value is "list".
+    :keyword comp: The default value is "list". Note that overriding this default value may result
+     in unsupported behavior.
     :paramtype comp: str
-    :keyword restype: The default value is "container".
+    :keyword restype: The default value is "container". Note that overriding this default value may
+     result in unsupported behavior.
     :paramtype restype: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

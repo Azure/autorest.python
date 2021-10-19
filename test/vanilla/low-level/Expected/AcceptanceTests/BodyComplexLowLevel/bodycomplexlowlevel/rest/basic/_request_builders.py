@@ -74,7 +74,8 @@ def build_put_valid_request(
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put {id: 2, name: 'abc', color: 'Magenta'}.
     :paramtype content: any
-    :keyword api_version: Api Version. The default value is "2016-02-29".
+    :keyword api_version: Api Version. The default value is "2016-02-29". Note that overriding this
+     default value may result in unsupported behavior.
     :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

@@ -364,7 +364,8 @@ class NumberOperations:
     async def put_big_double_positive_decimal(self, number_body: float = 99999999.99, **kwargs: Any) -> None:
         """Put big double value 99999999.99.
 
-        :param number_body: The default value is 99999999.99.
+        :param number_body: The default value is 99999999.99. Note that overriding this default value
+         may result in unsupported behavior.
         :type number_body: float
         :return: None
         :rtype: None
@@ -435,7 +436,8 @@ class NumberOperations:
     async def put_big_double_negative_decimal(self, number_body: float = -99999999.99, **kwargs: Any) -> None:
         """Put big double value -99999999.99.
 
-        :param number_body: The default value is -99999999.99.
+        :param number_body: The default value is -99999999.99. Note that overriding this default value
+         may result in unsupported behavior.
         :type number_body: float
         :return: None
         :rtype: None
@@ -579,7 +581,8 @@ class NumberOperations:
     async def put_big_decimal_positive_decimal(self, number_body: float = 99999999.99, **kwargs: Any) -> None:
         """Put big decimal value 99999999.99.
 
-        :param number_body: The default value is 99999999.99.
+        :param number_body: The default value is 99999999.99. Note that overriding this default value
+         may result in unsupported behavior.
         :type number_body: float
         :return: None
         :rtype: None
@@ -650,7 +653,8 @@ class NumberOperations:
     async def put_big_decimal_negative_decimal(self, number_body: float = -99999999.99, **kwargs: Any) -> None:
         """Put big decimal value -99999999.99.
 
-        :param number_body: The default value is -99999999.99.
+        :param number_body: The default value is -99999999.99. Note that overriding this default value
+         may result in unsupported behavior.
         :type number_body: float
         :return: None
         :rtype: None

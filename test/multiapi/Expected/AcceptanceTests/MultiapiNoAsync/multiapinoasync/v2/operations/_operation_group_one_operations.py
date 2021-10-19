@@ -120,7 +120,8 @@ class OperationGroupOneOperations(object):
 
         :param parameter_one: A ModelTwo parameter.
         :type parameter_one: ~multiapinoasync.v2.models.ModelTwo
-        :keyword api_version: Api Version. The default value is "2.0.0".
+        :keyword api_version: Api Version. The default value is "2.0.0". Note that overriding this
+         default value may result in unsupported behavior.
         :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ModelTwo, or the result of cls(response)
@@ -176,7 +177,8 @@ class OperationGroupOneOperations(object):
         # type: (...) -> None
         """TestThree should be in OperationGroupOneOperations. Takes in ModelTwo.
 
-        :keyword api_version: Api Version. The default value is "2.0.0".
+        :keyword api_version: Api Version. The default value is "2.0.0". Note that overriding this
+         default value may result in unsupported behavior.
         :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

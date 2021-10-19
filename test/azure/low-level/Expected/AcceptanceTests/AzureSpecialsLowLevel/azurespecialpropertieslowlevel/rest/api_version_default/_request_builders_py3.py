@@ -21,7 +21,8 @@ def build_get_method_global_valid_request(*, api_version: str = "2015-07-01-prev
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword api_version: Api Version. The default value is "2015-07-01-preview".
+    :keyword api_version: Api Version. The default value is "2015-07-01-preview". Note that
+     overriding this default value may result in unsupported behavior.
     :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -52,7 +53,8 @@ def build_get_method_global_not_provided_valid_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword api_version: Api Version. The default value is "2015-07-01-preview".
+    :keyword api_version: Api Version. The default value is "2015-07-01-preview". Note that
+     overriding this default value may result in unsupported behavior.
     :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -83,7 +85,8 @@ def build_get_path_global_valid_request(*, api_version: str = "2015-07-01-previe
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword api_version: Api Version. The default value is "2015-07-01-preview".
+    :keyword api_version: Api Version. The default value is "2015-07-01-preview". Note that
+     overriding this default value may result in unsupported behavior.
     :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -112,7 +115,8 @@ def build_get_swagger_global_valid_request(*, api_version: str = "2015-07-01-pre
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword api_version: Api Version. The default value is "2015-07-01-preview".
+    :keyword api_version: Api Version. The default value is "2015-07-01-preview". Note that
+     overriding this default value may result in unsupported behavior.
     :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

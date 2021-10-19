@@ -40,7 +40,8 @@ class MultiapiServiceClientOperationsMixin:
         :type id: int
         :param message: An optional string parameter.
         :type message: str
-        :keyword api_version: Api Version. The default value is "2.0.0".
+        :keyword api_version: Api Version. The default value is "2.0.0". Note that overriding this
+         default value may result in unsupported behavior.
         :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ModelTwo, or the result of cls(response)
@@ -96,7 +97,8 @@ class MultiapiServiceClientOperationsMixin:
         :type greeting_in_english: str
         :param greeting_in_chinese: pass in 'nihao' to pass test.
         :type greeting_in_chinese: str
-        :keyword api_version: Api Version. The default value is "2.0.0".
+        :keyword api_version: Api Version. The default value is "2.0.0". Note that overriding this
+         default value may result in unsupported behavior.
         :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

@@ -600,7 +600,8 @@ class StringOperations(object):
         # type: (...) -> None
         """Set string value empty ''.
 
-        :param string_body: string body. The default value is "".
+        :param string_body: string body. The default value is "". Note that overriding this default
+         value may result in unsupported behavior.
         :type string_body: str
         :return: None
         :rtype: None
@@ -680,7 +681,8 @@ class StringOperations(object):
         """Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
         :param string_body: string body. The default value is
-         "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€".
+         "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€". Note that overriding
+         this default value may result in unsupported behavior.
         :type string_body: str
         :return: None
         :rtype: None
@@ -764,7 +766,8 @@ class StringOperations(object):
         of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
 
         :param string_body: string body. The default value is "    Now is the time for all good men to
-         come to the aid of their country    ".
+         come to the aid of their country    ". Note that overriding this default value may result in
+         unsupported behavior.
         :type string_body: str
         :return: None
         :rtype: None

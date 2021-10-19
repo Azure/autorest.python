@@ -229,7 +229,8 @@ class SubscriptionInCredentialsOperations:
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
         '1234-5678-9012-3456' to succeed.
 
-        :keyword api_version: Api Version. The default value is "2015-07-01-preview".
+        :keyword api_version: Api Version. The default value is "2015-07-01-preview". Note that
+         overriding this default value may result in unsupported behavior.
         :paramtype api_version: str
         :return: None
         :rtype: None
@@ -497,7 +498,8 @@ class ApiVersionDefaultOperations:
     async def get_method_global_valid(self, *, api_version: str = "2015-07-01-preview", **kwargs: Any) -> None:
         """GET method with api-version modeled in global settings.
 
-        :keyword api_version: Api Version. The default value is "2015-07-01-preview".
+        :keyword api_version: Api Version. The default value is "2015-07-01-preview". Note that
+         overriding this default value may result in unsupported behavior.
         :paramtype api_version: str
         :return: None
         :rtype: None
@@ -531,7 +533,8 @@ class ApiVersionDefaultOperations:
     ) -> None:
         """GET method with api-version modeled in global settings.
 
-        :keyword api_version: Api Version. The default value is "2015-07-01-preview".
+        :keyword api_version: Api Version. The default value is "2015-07-01-preview". Note that
+         overriding this default value may result in unsupported behavior.
         :paramtype api_version: str
         :return: None
         :rtype: None
@@ -563,7 +566,8 @@ class ApiVersionDefaultOperations:
     async def get_path_global_valid(self, *, api_version: str = "2015-07-01-preview", **kwargs: Any) -> None:
         """GET method with api-version modeled in global settings.
 
-        :keyword api_version: Api Version. The default value is "2015-07-01-preview".
+        :keyword api_version: Api Version. The default value is "2015-07-01-preview". Note that
+         overriding this default value may result in unsupported behavior.
         :paramtype api_version: str
         :return: None
         :rtype: None
@@ -595,7 +599,8 @@ class ApiVersionDefaultOperations:
     async def get_swagger_global_valid(self, *, api_version: str = "2015-07-01-preview", **kwargs: Any) -> None:
         """GET method with api-version modeled in global settings.
 
-        :keyword api_version: Api Version. The default value is "2015-07-01-preview".
+        :keyword api_version: Api Version. The default value is "2015-07-01-preview". Note that
+         overriding this default value may result in unsupported behavior.
         :paramtype api_version: str
         :return: None
         :rtype: None
@@ -647,7 +652,7 @@ class ApiVersionLocalOperations:
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
         :keyword api_version: This should appear as a method parameter, use value '2.0'. The default
-         value is "2.0".
+         value is "2.0". Note that overriding this default value may result in unsupported behavior.
         :paramtype api_version: str
         :return: None
         :rtype: None
@@ -713,7 +718,7 @@ class ApiVersionLocalOperations:
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
         :keyword api_version: This should appear as a method parameter, use value '2.0'. The default
-         value is "2.0".
+         value is "2.0". Note that overriding this default value may result in unsupported behavior.
         :paramtype api_version: str
         :return: None
         :rtype: None
@@ -746,7 +751,8 @@ class ApiVersionLocalOperations:
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
         :keyword api_version: The api version, which appears in the query, the value is always '2.0'.
-         The default value is "2.0".
+         The default value is "2.0". Note that overriding this default value may result in unsupported
+         behavior.
         :paramtype api_version: str
         :return: None
         :rtype: None
@@ -862,7 +868,8 @@ class SkipUrlEncodingOperations:
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
         :param unencoded_path_param: An unencoded path parameter with value 'path1/path2/path3'. The
-         default value is "path1/path2/path3".
+         default value is "path1/path2/path3". Note that overriding this default value may result in
+         unsupported behavior.
         :type unencoded_path_param: str
         :return: None
         :rtype: None
@@ -991,7 +998,8 @@ class SkipUrlEncodingOperations:
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
         :keyword q1: An unencoded query parameter with value 'value1&q2=value2&q3=value3'. The default
-         value is "value1&q2=value2&q3=value3".
+         value is "value1&q2=value2&q3=value3". Note that overriding this default value may result in
+         unsupported behavior.
         :paramtype q1: str
         :return: None
         :rtype: None

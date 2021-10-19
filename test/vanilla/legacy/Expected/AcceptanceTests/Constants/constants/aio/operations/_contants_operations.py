@@ -309,7 +309,8 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: The default value is "value1".
+        :keyword input: The default value is "value1". Note that overriding this default value may
+         result in unsupported behavior.
         :paramtype input: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -345,7 +346,8 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: The default value is "value1".
+        :keyword input: The default value is "value1". Note that overriding this default value may
+         result in unsupported behavior.
         :paramtype input: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
