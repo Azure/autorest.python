@@ -73,7 +73,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
         profile: KnownProfiles = KnownProfiles.default,
         **kwargs  # type: Any
     ) -> None:
-        self._config = MultiapiServiceClientConfiguration(credential=credential, **kwargs)
+        self._config = MultiapiServiceClientConfiguration(credential, **kwargs)
         self._client = AsyncARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
         super(MultiapiServiceClient, self).__init__(
             api_version=api_version,
