@@ -21,7 +21,6 @@ from ..models import (
     TypingSection,
     ImportType,
     GlobalParameterList,
-    Parameter,
 )
 from .builder_serializer import get_operation_serializer
 
