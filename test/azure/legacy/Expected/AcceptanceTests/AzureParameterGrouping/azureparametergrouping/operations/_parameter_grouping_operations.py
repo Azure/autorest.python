@@ -264,9 +264,9 @@ class ParameterGroupingOperations(object):
         request = build_post_required_request(
             path=_path,
             content_type=content_type,
+            json=json,
             custom_header=_custom_header,
             query=_query,
-            json=json,
             template_url=self.post_required.metadata["url"],
         )
         request = _convert_request(request)

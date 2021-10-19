@@ -80,9 +80,9 @@ class ParameterGroupingOperations:
         request = build_parameter_grouping_post_required_request(
             path=path,
             content_type=content_type,
+            json=json,
             custom_header=custom_header,
             query=query,
-            json=json,
             template_url=self.post_required.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

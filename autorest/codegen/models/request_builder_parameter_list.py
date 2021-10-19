@@ -8,7 +8,7 @@ from typing import List, Optional, TypeVar, Dict
 from .request_builder_parameter import RequestBuilderParameter
 from .parameter_list import ParameterList
 from .parameter import ParameterLocation, Parameter
-from .primitive_schemas import IOSchema, AnySchema
+from .primitive_schemas import AnySchema
 from .dictionary_schema import DictionarySchema
 from .base_schema import BaseSchema
 from .schema_request import SchemaRequest
@@ -111,7 +111,7 @@ class RequestBuilderParameterList(ParameterList):
             try:
                 json_param = next(
                     b for b in self.body if b.serialized_name not in _REQUEST_BUILDER_BODY_NAMES and
-                    not isinstance(b.schema, IOSchema)
+                    b.is_json_parameter
                 )
                 self._json_body = json_param.schema
                 return self._json_body
