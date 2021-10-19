@@ -50,7 +50,7 @@ class MultiapiServiceClientOperationsMixin(object):
         mixin_instance._serialize = Serializer(self._models_dict(api_version))
         mixin_instance._serialize.client_side_validation = False
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
-        return await mixin_instance.begin_test_lro(product=product, **kwargs)
+        return await mixin_instance.begin_test_lro(product, **kwargs)
 
     async def begin_test_lro_and_paging(
         self,
@@ -90,7 +90,7 @@ class MultiapiServiceClientOperationsMixin(object):
         mixin_instance._serialize = Serializer(self._models_dict(api_version))
         mixin_instance._serialize.client_side_validation = False
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
-        return await mixin_instance.begin_test_lro_and_paging(client_request_id=client_request_id, test_lro_and_paging_options=test_lro_and_paging_options, **kwargs)
+        return await mixin_instance.begin_test_lro_and_paging(client_request_id, test_lro_and_paging_options, **kwargs)
 
     async def test_different_calls(
         self,
@@ -127,7 +127,7 @@ class MultiapiServiceClientOperationsMixin(object):
         mixin_instance._serialize = Serializer(self._models_dict(api_version))
         mixin_instance._serialize.client_side_validation = False
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
-        return await mixin_instance.test_different_calls(greeting_in_english=greeting_in_english, greeting_in_chinese=greeting_in_chinese, greeting_in_french=greeting_in_french, **kwargs)
+        return await mixin_instance.test_different_calls(greeting_in_english, greeting_in_chinese, greeting_in_french, **kwargs)
 
     async def test_one(
         self,
@@ -159,7 +159,7 @@ class MultiapiServiceClientOperationsMixin(object):
         mixin_instance._serialize = Serializer(self._models_dict(api_version))
         mixin_instance._serialize.client_side_validation = False
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
-        return await mixin_instance.test_one(id=id, message=message, **kwargs)
+        return await mixin_instance.test_one(id, message, **kwargs)
 
     def test_paging(
         self,
