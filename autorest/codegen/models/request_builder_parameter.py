@@ -5,7 +5,6 @@
 # --------------------------------------------------------------------------
 from typing import Any, Dict, Optional
 from .parameter import ParameterOnlyPathAndBodyPositional, ParameterLocation, ParameterStyle
-from .primitive_schemas import IOSchema
 
 def _make_public(name):
     if name[0] == "_":
