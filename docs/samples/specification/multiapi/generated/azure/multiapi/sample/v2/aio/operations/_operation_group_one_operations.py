@@ -57,7 +57,7 @@ class OperationGroupOneOperations:
 
         :param parameter_one: A ModelTwo parameter.
         :type parameter_one: ~azure.multiapi.sample.v2.models.ModelTwo
-        :keyword api_version: Api Version.
+        :keyword api_version: Api Version. The default value is "2.0.0".
         :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ModelTwo, or the result of cls(response)
@@ -113,7 +113,7 @@ class OperationGroupOneOperations:
     ) -> None:
         """TestThree should be in OperationGroupOneOperations. Takes in ModelTwo.
 
-        :keyword api_version: Api Version.
+        :keyword api_version: Api Version. The default value is "2.0.0".
         :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

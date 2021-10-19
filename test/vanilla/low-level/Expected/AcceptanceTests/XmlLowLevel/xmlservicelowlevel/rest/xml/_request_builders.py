@@ -858,7 +858,7 @@ def build_list_containers_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword comp:
+    :keyword comp: The default value is "list".
     :paramtype comp: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -926,9 +926,9 @@ def build_get_service_properties_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword comp:
+    :keyword comp: The default value is "properties".
     :paramtype comp: str
-    :keyword restype:
+    :keyword restype: The default value is "service".
     :paramtype restype: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -1022,9 +1022,9 @@ def build_put_service_properties_request(
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).
     :paramtype content: any
-    :keyword comp:
+    :keyword comp: The default value is "properties".
     :paramtype comp: str
-    :keyword restype:
+    :keyword restype: The default value is "service".
     :paramtype restype: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -1067,9 +1067,9 @@ def build_get_acls_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword comp:
+    :keyword comp: The default value is "acl".
     :paramtype comp: str
-    :keyword restype:
+    :keyword restype: The default value is "container".
     :paramtype restype: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -1129,9 +1129,9 @@ def build_put_acls_request(
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).
     :paramtype content: any
-    :keyword comp:
+    :keyword comp: The default value is "acl".
     :paramtype comp: str
-    :keyword restype:
+    :keyword restype: The default value is "container".
     :paramtype restype: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -1174,9 +1174,9 @@ def build_list_blobs_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword comp:
+    :keyword comp: The default value is "list".
     :paramtype comp: str
-    :keyword restype:
+    :keyword restype: The default value is "container".
     :paramtype restype: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

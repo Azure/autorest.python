@@ -96,7 +96,7 @@ def build_post_method_global_not_provided_valid_request(
     :param subscription_id: The subscription id, which appears in the path, always modeled in
      credentials. The value is always '1234-5678-9012-3456'.
     :type subscription_id: str
-    :keyword api_version: Api Version.
+    :keyword api_version: Api Version. The default value is "2015-07-01-preview".
     :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

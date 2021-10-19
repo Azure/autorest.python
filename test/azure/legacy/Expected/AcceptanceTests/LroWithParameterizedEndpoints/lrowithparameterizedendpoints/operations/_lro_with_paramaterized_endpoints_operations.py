@@ -250,7 +250,8 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
 
         :param account_name: Account Name. Pass in 'local' to pass test.
         :type account_name: str
-        :keyword constant_parameter: Next link for the list operation.
+        :keyword constant_parameter: Next link for the list operation. The default value is
+         "iAmConstant".
         :paramtype constant_parameter: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.

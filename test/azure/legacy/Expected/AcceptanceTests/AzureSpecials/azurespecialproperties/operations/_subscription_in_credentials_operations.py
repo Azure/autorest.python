@@ -277,7 +277,7 @@ class SubscriptionInCredentialsOperations(object):
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
         '1234-5678-9012-3456' to succeed.
 
-        :keyword api_version: Api Version.
+        :keyword api_version: Api Version. The default value is "2015-07-01-preview".
         :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

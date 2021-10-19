@@ -99,10 +99,9 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
     @property
     def description(self):
         try:
-            if self._description and self.schema.extra_description_information:
-                return f"{self._description} {self.schema.extra_description_information}"
+            space = " " if self._description else ""
             if self.schema.extra_description_information:
-                return self.schema.extra_description_information
+                return f"{self._description}{space}{self.schema.extra_description_information}"
         except AttributeError:
             pass
         return self._description

@@ -177,7 +177,7 @@ class AutoRestValidationTestOperationsMixin(object):
         :type resource_group_name: str
         :param id: Required int multiple of 10 from 100 to 1000.
         :type id: int
-        :keyword api_version: Api Version.
+        :keyword api_version: Api Version. The default value is "1.0.0".
         :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Product, or the result of cls(response)
@@ -234,7 +234,7 @@ class AutoRestValidationTestOperationsMixin(object):
         :type id: int
         :param body:
         :type body: ~validation.models.Product
-        :keyword api_version: Api Version.
+        :keyword api_version: Api Version. The default value is "1.0.0".
         :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Product, or the result of cls(response)
@@ -289,7 +289,7 @@ class AutoRestValidationTestOperationsMixin(object):
         # type: (...) -> None
         """get_with_constant_in_path.
 
-        :keyword constant_param:
+        :keyword constant_param: The default value is "constant".
         :paramtype constant_param: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -332,7 +332,7 @@ class AutoRestValidationTestOperationsMixin(object):
 
         :param body:
         :type body: ~validation.models.Product
-        :keyword constant_param:
+        :keyword constant_param: The default value is "constant".
         :paramtype constant_param: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Product, or the result of cls(response)

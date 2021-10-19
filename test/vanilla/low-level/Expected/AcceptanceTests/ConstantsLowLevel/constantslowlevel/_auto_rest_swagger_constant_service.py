@@ -25,13 +25,13 @@ class AutoRestSwaggerConstantService(object):
     """Test Infrastructure for AutoRest Swagger Constant.
 
     :keyword header_constant: Constant header property on the client that is a required parameter
-     for operation 'constants_putClientConstants'.
+     for operation 'constants_putClientConstants'. The default value is True.
     :paramtype header_constant: bool
     :keyword query_constant: Constant query property on the client that is a required parameter for
-     operation 'constants_putClientConstants'.
+     operation 'constants_putClientConstants'. The default value is 100.
     :paramtype query_constant: int
     :keyword path_constant: Constant path property on the client that is a required parameter for
-     operation 'constants_putClientConstants'.
+     operation 'constants_putClientConstants'. The default value is "path".
     :paramtype path_constant: str
     :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
     :paramtype endpoint: str

@@ -237,7 +237,7 @@ class BasicOperations(object):
 
         :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}.
         :type complex_body: ~bodycomplex.models.Basic
-        :keyword api_version: Api Version.
+        :keyword api_version: Api Version. The default value is "2016-02-29".
         :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

@@ -92,7 +92,7 @@ class BoolOperations:
     async def put_true(self, bool_body: bool = True, **kwargs: Any) -> None:
         """Set Boolean value true.
 
-        :param bool_body:
+        :param bool_body: The default value is True.
         :type bool_body: bool
         :return: None
         :rtype: None
@@ -163,7 +163,7 @@ class BoolOperations:
     async def put_false(self, bool_body: bool = False, **kwargs: Any) -> None:
         """Set Boolean value false.
 
-        :param bool_body:
+        :param bool_body: The default value is False.
         :type bool_body: bool
         :return: None
         :rtype: None

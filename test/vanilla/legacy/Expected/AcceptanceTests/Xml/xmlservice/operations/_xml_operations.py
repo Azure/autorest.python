@@ -1689,7 +1689,7 @@ class XmlOperations(object):
         # type: (...) -> "_models.ListContainersResponse"
         """Lists containers in a storage account.
 
-        :keyword comp:
+        :keyword comp: The default value is "list".
         :paramtype comp: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ListContainersResponse, or the result of cls(response)
@@ -1732,9 +1732,9 @@ class XmlOperations(object):
         # type: (...) -> "_models.StorageServiceProperties"
         """Gets storage service properties.
 
-        :keyword comp:
+        :keyword comp: The default value is "properties".
         :paramtype comp: str
-        :keyword restype:
+        :keyword restype: The default value is "service".
         :paramtype restype: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageServiceProperties, or the result of cls(response)
@@ -1783,9 +1783,9 @@ class XmlOperations(object):
 
         :param properties:
         :type properties: ~xmlservice.models.StorageServiceProperties
-        :keyword comp:
+        :keyword comp: The default value is "properties".
         :paramtype comp: str
-        :keyword restype:
+        :keyword restype: The default value is "service".
         :paramtype restype: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1831,9 +1831,9 @@ class XmlOperations(object):
         # type: (...) -> List["_models.SignedIdentifier"]
         """Gets storage ACLs for a container.
 
-        :keyword comp:
+        :keyword comp: The default value is "acl".
         :paramtype comp: str
-        :keyword restype:
+        :keyword restype: The default value is "container".
         :paramtype restype: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list of SignedIdentifier, or the result of cls(response)
@@ -1882,9 +1882,9 @@ class XmlOperations(object):
 
         :param properties:
         :type properties: list[~xmlservice.models.SignedIdentifier]
-        :keyword comp:
+        :keyword comp: The default value is "acl".
         :paramtype comp: str
-        :keyword restype:
+        :keyword restype: The default value is "container".
         :paramtype restype: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1933,9 +1933,9 @@ class XmlOperations(object):
         # type: (...) -> "_models.ListBlobsResponse"
         """Lists blobs in a storage container.
 
-        :keyword comp:
+        :keyword comp: The default value is "list".
         :paramtype comp: str
-        :keyword restype:
+        :keyword restype: The default value is "container".
         :paramtype restype: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ListBlobsResponse, or the result of cls(response)

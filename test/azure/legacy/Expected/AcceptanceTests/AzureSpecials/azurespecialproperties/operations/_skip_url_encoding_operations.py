@@ -332,7 +332,8 @@ class SkipUrlEncodingOperations(object):
         # type: (...) -> None
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
-        :keyword unencoded_path_param: An unencoded path parameter with value 'path1/path2/path3'.
+        :keyword unencoded_path_param: An unencoded path parameter with value 'path1/path2/path3'. The
+         default value is "path1/path2/path3".
         :paramtype unencoded_path_param: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -492,7 +493,8 @@ class SkipUrlEncodingOperations(object):
         # type: (...) -> None
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
-        :keyword q1: An unencoded query parameter with value 'value1&q2=value2&q3=value3'.
+        :keyword q1: An unencoded query parameter with value 'value1&q2=value2&q3=value3'. The default
+         value is "value1&q2=value2&q3=value3".
         :paramtype q1: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

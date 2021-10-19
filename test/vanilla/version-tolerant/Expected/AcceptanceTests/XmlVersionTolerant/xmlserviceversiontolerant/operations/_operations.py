@@ -1932,7 +1932,7 @@ class XmlOperations(object):
         # type: (...) -> Any
         """Lists containers in a storage account.
 
-        :keyword comp:
+        :keyword comp: The default value is "list".
         :paramtype comp: str
         :return: JSON object
         :rtype: Any
@@ -2004,9 +2004,9 @@ class XmlOperations(object):
         # type: (...) -> Any
         """Gets storage service properties.
 
-        :keyword comp:
+        :keyword comp: The default value is "properties".
         :paramtype comp: str
-        :keyword restype:
+        :keyword restype: The default value is "service".
         :paramtype restype: str
         :return: JSON object
         :rtype: Any
@@ -2105,9 +2105,9 @@ class XmlOperations(object):
 
         :param properties:
         :type properties: Any
-        :keyword comp:
+        :keyword comp: The default value is "properties".
         :paramtype comp: str
-        :keyword restype:
+        :keyword restype: The default value is "service".
         :paramtype restype: str
         :return: None
         :rtype: None
@@ -2200,9 +2200,9 @@ class XmlOperations(object):
         # type: (...) -> List[Any]
         """Gets storage ACLs for a container.
 
-        :keyword comp:
+        :keyword comp: The default value is "acl".
         :paramtype comp: str
-        :keyword restype:
+        :keyword restype: The default value is "container".
         :paramtype restype: str
         :return: list of JSON object
         :rtype: list[Any]
@@ -2267,9 +2267,9 @@ class XmlOperations(object):
 
         :param properties:
         :type properties: list[Any]
-        :keyword comp:
+        :keyword comp: The default value is "acl".
         :paramtype comp: str
-        :keyword restype:
+        :keyword restype: The default value is "container".
         :paramtype restype: str
         :return: None
         :rtype: None
@@ -2329,9 +2329,9 @@ class XmlOperations(object):
         # type: (...) -> Any
         """Lists blobs in a storage container.
 
-        :keyword comp:
+        :keyword comp: The default value is "list".
         :paramtype comp: str
-        :keyword restype:
+        :keyword restype: The default value is "container".
         :paramtype restype: str
         :return: JSON object
         :rtype: Any

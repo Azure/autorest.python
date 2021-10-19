@@ -443,7 +443,7 @@ class PagingOperations:
          pass test.
         :paramtype required_query_parameter: int
         :keyword query_constant: A constant. Must be True and will be passed as a query parameter to
-         nextOperationWithQueryParams.
+         nextOperationWithQueryParams. The default value is True.
         :paramtype query_constant: bool
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]

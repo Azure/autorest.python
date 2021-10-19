@@ -181,7 +181,7 @@ class StringOperations:
     async def put_empty(self, string_body: str = "", **kwargs: Any) -> None:
         """Set string value empty ''.
 
-        :param string_body: string body.
+        :param string_body: string body. The default value is "".
         :type string_body: str
         :return: None
         :rtype: None
@@ -254,7 +254,8 @@ class StringOperations:
     ) -> None:
         """Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
-        :param string_body: string body.
+        :param string_body: string body. The default value is
+         "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€".
         :type string_body: str
         :return: None
         :rtype: None
@@ -333,7 +334,8 @@ class StringOperations:
         ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid
         of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
 
-        :param string_body: string body.
+        :param string_body: string body. The default value is "    Now is the time for all good men to
+         come to the aid of their country    ".
         :type string_body: str
         :return: None
         :rtype: None

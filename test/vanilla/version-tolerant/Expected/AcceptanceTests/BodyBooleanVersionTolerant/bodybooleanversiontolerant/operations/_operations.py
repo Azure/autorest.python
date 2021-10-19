@@ -230,7 +230,7 @@ class BoolOperations(object):
         # type: (...) -> None
         """Set Boolean value true.
 
-        :param bool_body:
+        :param bool_body: The default value is True.
         :type bool_body: bool
         :return: None
         :rtype: None
@@ -309,7 +309,7 @@ class BoolOperations(object):
         # type: (...) -> None
         """Set Boolean value false.
 
-        :param bool_body:
+        :param bool_body: The default value is False.
         :type bool_body: bool
         :return: None
         :rtype: None

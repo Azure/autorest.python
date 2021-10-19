@@ -61,7 +61,8 @@ def build_poll_with_constant_parameterized_endpoints_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param constant_parameter: Next link for the list operation.
+    :param constant_parameter: Next link for the list operation. The default value is
+     "iAmConstant".
     :type constant_parameter: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

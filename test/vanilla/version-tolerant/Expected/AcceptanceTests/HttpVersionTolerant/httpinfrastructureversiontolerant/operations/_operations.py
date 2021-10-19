@@ -2645,7 +2645,7 @@ class HttpSuccessOperations(object):
         # type: (...) -> None
         """Put boolean value true returning 200 success.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2690,7 +2690,7 @@ class HttpSuccessOperations(object):
         # type: (...) -> None
         """Patch true Boolean value in request returning 200.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2735,7 +2735,7 @@ class HttpSuccessOperations(object):
         # type: (...) -> None
         """Post bollean value true in request that returns a 200.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2780,7 +2780,7 @@ class HttpSuccessOperations(object):
         # type: (...) -> None
         """Delete simple boolean value true returns 200.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2825,7 +2825,7 @@ class HttpSuccessOperations(object):
         # type: (...) -> None
         """Put true Boolean value in request returns 201.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2870,7 +2870,7 @@ class HttpSuccessOperations(object):
         # type: (...) -> None
         """Post true Boolean value in request returns 201 (Created).
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2915,7 +2915,7 @@ class HttpSuccessOperations(object):
         # type: (...) -> None
         """Put true Boolean value in request returns 202 (Accepted).
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2960,7 +2960,7 @@ class HttpSuccessOperations(object):
         # type: (...) -> None
         """Patch true Boolean value in request returns 202.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3005,7 +3005,7 @@ class HttpSuccessOperations(object):
         # type: (...) -> None
         """Post true Boolean value in request returns 202 (Accepted).
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3050,7 +3050,7 @@ class HttpSuccessOperations(object):
         # type: (...) -> None
         """Delete true Boolean value in request returns 202 (accepted).
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3127,7 +3127,7 @@ class HttpSuccessOperations(object):
         # type: (...) -> None
         """Put true Boolean value in request returns 204 (no content).
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3172,7 +3172,7 @@ class HttpSuccessOperations(object):
         # type: (...) -> None
         """Patch true Boolean value in request returns 204 (no content).
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3217,7 +3217,7 @@ class HttpSuccessOperations(object):
         # type: (...) -> None
         """Post true Boolean value in request returns 204 (no content).
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3262,7 +3262,7 @@ class HttpSuccessOperations(object):
         # type: (...) -> None
         """Delete true Boolean value in request returns 204 (no content).
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3519,7 +3519,7 @@ class HttpRedirectsOperations(object):
         """Put true Boolean value in request returns 301.  This request should not be automatically
         redirected, but should return the received 301 to the caller for evaluation.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3640,7 +3640,7 @@ class HttpRedirectsOperations(object):
         """Patch true Boolean value in request returns 302.  This request should not be automatically
         redirected, but should return the received 302 to the caller for evaluation.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3689,7 +3689,7 @@ class HttpRedirectsOperations(object):
         """Post true Boolean value in request returns 303.  This request should be automatically
         redirected usign a get, ultimately returning a 200 status code.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3846,7 +3846,7 @@ class HttpRedirectsOperations(object):
         # type: (...) -> None
         """Put redirected with 307, resulting in a 200 after redirect.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3895,7 +3895,7 @@ class HttpRedirectsOperations(object):
         # type: (...) -> None
         """Patch redirected with 307, resulting in a 200 after redirect.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3944,7 +3944,7 @@ class HttpRedirectsOperations(object):
         # type: (...) -> None
         """Post redirected with 307, resulting in a 200 after redirect.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3993,7 +3993,7 @@ class HttpRedirectsOperations(object):
         # type: (...) -> None
         """Delete redirected with 307, resulting in a 200 after redirect.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -4157,7 +4157,7 @@ class HttpClientFailureOperations(object):
         # type: (...) -> None
         """Return 400 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -4202,7 +4202,7 @@ class HttpClientFailureOperations(object):
         # type: (...) -> None
         """Return 400 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -4247,7 +4247,7 @@ class HttpClientFailureOperations(object):
         # type: (...) -> None
         """Return 400 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -4292,7 +4292,7 @@ class HttpClientFailureOperations(object):
         # type: (...) -> None
         """Return 400 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -4465,7 +4465,7 @@ class HttpClientFailureOperations(object):
         # type: (...) -> None
         """Return 404 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -4510,7 +4510,7 @@ class HttpClientFailureOperations(object):
         # type: (...) -> None
         """Return 405 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -4555,7 +4555,7 @@ class HttpClientFailureOperations(object):
         # type: (...) -> None
         """Return 406 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -4600,7 +4600,7 @@ class HttpClientFailureOperations(object):
         # type: (...) -> None
         """Return 407 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -4645,7 +4645,7 @@ class HttpClientFailureOperations(object):
         # type: (...) -> None
         """Return 409 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -4818,7 +4818,7 @@ class HttpClientFailureOperations(object):
         # type: (...) -> None
         """Return 413 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -4863,7 +4863,7 @@ class HttpClientFailureOperations(object):
         # type: (...) -> None
         """Return 414 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -4908,7 +4908,7 @@ class HttpClientFailureOperations(object):
         # type: (...) -> None
         """Return 415 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -4985,7 +4985,7 @@ class HttpClientFailureOperations(object):
         # type: (...) -> None
         """Return 417 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -5145,7 +5145,7 @@ class HttpServerFailureOperations(object):
         # type: (...) -> None
         """Return 505 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -5190,7 +5190,7 @@ class HttpServerFailureOperations(object):
         # type: (...) -> None
         """Return 505 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -5286,7 +5286,7 @@ class HttpRetryOperations(object):
         # type: (...) -> None
         """Return 500 status code, then 200 after retry.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -5331,7 +5331,7 @@ class HttpRetryOperations(object):
         # type: (...) -> None
         """Return 500 status code, then 200 after retry.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -5447,7 +5447,7 @@ class HttpRetryOperations(object):
         # type: (...) -> None
         """Return 503 status code, then 200 after retry.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -5492,7 +5492,7 @@ class HttpRetryOperations(object):
         # type: (...) -> None
         """Return 503 status code, then 200 after retry.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -5537,7 +5537,7 @@ class HttpRetryOperations(object):
         # type: (...) -> None
         """Return 504 status code, then 200 after retry.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -5582,7 +5582,7 @@ class HttpRetryOperations(object):
         # type: (...) -> None
         """Return 504 status code, then 200 after retry.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None

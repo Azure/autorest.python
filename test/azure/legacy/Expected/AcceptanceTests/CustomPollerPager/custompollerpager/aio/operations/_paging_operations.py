@@ -395,7 +395,7 @@ class PagingOperations:
          test.
         :type required_query_parameter: int
         :keyword query_constant: A constant. Must be True and will be passed as a query parameter to
-         nextOperationWithQueryParams.
+         nextOperationWithQueryParams. The default value is True.
         :paramtype query_constant: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either ProductResult or the result of cls(response)

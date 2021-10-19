@@ -516,7 +516,7 @@ class ContantsOperations(object):
 
         Puts constants to the testserver.
 
-        :keyword input:
+        :keyword input: The default value is "value1".
         :paramtype input: str
         :return: None
         :rtype: None
@@ -555,7 +555,7 @@ class ContantsOperations(object):
 
         Puts constants to the testserver.
 
-        :keyword input:
+        :keyword input: The default value is "value1".
         :paramtype input: str
         :return: None
         :rtype: None
@@ -672,7 +672,7 @@ class ContantsOperations(object):
 
         Puts constants to the testserver.
 
-        :keyword input:
+        :keyword input: The default value is "value1".
         :paramtype input: str
         :return: None
         :rtype: None
@@ -711,7 +711,7 @@ class ContantsOperations(object):
 
         Puts constants to the testserver.
 
-        :keyword input:
+        :keyword input: The default value is "value1".
         :paramtype input: str
         :return: None
         :rtype: None

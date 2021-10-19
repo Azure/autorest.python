@@ -41,7 +41,7 @@ def build_check_name_availability_request(
      resource group. Storage account names must be between 3 and 24 characters in length and use
      numbers and lower-case letters only.
     :paramtype content: any
-    :keyword api_version: Api Version.
+    :keyword api_version: Api Version. The default value is "2015-05-01-preview".
     :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -126,7 +126,7 @@ def build_create_request(
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). The parameters to provide for the created account.
     :paramtype content: any
-    :keyword api_version: Api Version.
+    :keyword api_version: Api Version. The default value is "2015-05-01-preview".
     :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -251,7 +251,7 @@ def build_delete_request(
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
      subscription. The subscription ID forms part of the URI for every service call.
     :type subscription_id: str
-    :keyword api_version: Api Version.
+    :keyword api_version: Api Version. The default value is "2015-05-01-preview".
     :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -303,7 +303,7 @@ def build_get_properties_request(
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
      subscription. The subscription ID forms part of the URI for every service call.
     :type subscription_id: str
-    :keyword api_version: Api Version.
+    :keyword api_version: Api Version. The default value is "2015-05-01-preview".
     :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -424,7 +424,7 @@ def build_update_request(
      a byte iterator, or stream input). The parameters to update on the account. Note that only one
      property can be changed at a time using this API.
     :paramtype content: any
-    :keyword api_version: Api Version.
+    :keyword api_version: Api Version. The default value is "2015-05-01-preview".
     :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -557,7 +557,7 @@ def build_list_keys_request(
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
      subscription. The subscription ID forms part of the URI for every service call.
     :type subscription_id: str
-    :keyword api_version: Api Version.
+    :keyword api_version: Api Version. The default value is "2015-05-01-preview".
     :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -609,7 +609,7 @@ def build_list_request(subscription_id: str, *, api_version: str = "2015-05-01-p
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
      subscription. The subscription ID forms part of the URI for every service call.
     :type subscription_id: str
-    :keyword api_version: Api Version.
+    :keyword api_version: Api Version. The default value is "2015-05-01-preview".
     :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -706,7 +706,7 @@ def build_list_by_resource_group_request(
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
      subscription. The subscription ID forms part of the URI for every service call.
     :type subscription_id: str
-    :keyword api_version: Api Version.
+    :keyword api_version: Api Version. The default value is "2015-05-01-preview".
     :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -823,7 +823,7 @@ def build_regenerate_key_request(
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Specifies name of the key which should be regenerated.
     :paramtype content: any
-    :keyword api_version: Api Version.
+    :keyword api_version: Api Version. The default value is "2015-05-01-preview".
     :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

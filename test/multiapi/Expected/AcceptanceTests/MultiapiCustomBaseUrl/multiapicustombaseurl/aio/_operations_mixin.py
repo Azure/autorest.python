@@ -26,7 +26,7 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin(object):
 
         :param id: An int parameter. Put in 2 to pass.
         :type id: int
-        :keyword api_version: Api Version.
+        :keyword api_version: Api Version. The default value is "2.0.0".
         :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

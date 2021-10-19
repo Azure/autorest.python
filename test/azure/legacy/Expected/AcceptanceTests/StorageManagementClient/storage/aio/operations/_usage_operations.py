@@ -56,7 +56,7 @@ class UsageOperations:
     async def list(self, *, api_version: str = "2015-05-01-preview", **kwargs: Any) -> "_models.UsageListResult":
         """Gets the current usage count and the limit for the resources under the subscription.
 
-        :keyword api_version: Api Version.
+        :keyword api_version: Api Version. The default value is "2015-05-01-preview".
         :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: UsageListResult, or the result of cls(response)

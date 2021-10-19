@@ -61,7 +61,7 @@ class ApiVersionDefaultOperations:
     async def get_method_global_valid(self, *, api_version: str = "2015-07-01-preview", **kwargs: Any) -> None:
         """GET method with api-version modeled in global settings.
 
-        :keyword api_version: Api Version.
+        :keyword api_version: Api Version. The default value is "2015-07-01-preview".
         :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -98,7 +98,7 @@ class ApiVersionDefaultOperations:
     ) -> None:
         """GET method with api-version modeled in global settings.
 
-        :keyword api_version: Api Version.
+        :keyword api_version: Api Version. The default value is "2015-07-01-preview".
         :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -133,7 +133,7 @@ class ApiVersionDefaultOperations:
     async def get_path_global_valid(self, *, api_version: str = "2015-07-01-preview", **kwargs: Any) -> None:
         """GET method with api-version modeled in global settings.
 
-        :keyword api_version: Api Version.
+        :keyword api_version: Api Version. The default value is "2015-07-01-preview".
         :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -168,7 +168,7 @@ class ApiVersionDefaultOperations:
     async def get_swagger_global_valid(self, *, api_version: str = "2015-07-01-preview", **kwargs: Any) -> None:
         """GET method with api-version modeled in global settings.
 
-        :keyword api_version: Api Version.
+        :keyword api_version: Api Version. The default value is "2015-07-01-preview".
         :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

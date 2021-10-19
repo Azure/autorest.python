@@ -1114,7 +1114,7 @@ class XmlOperations:
     async def list_containers(self, *, comp: str = "list", **kwargs: Any) -> Any:
         """Lists containers in a storage account.
 
-        :keyword comp:
+        :keyword comp: The default value is "list".
         :paramtype comp: str
         :return: JSON object
         :rtype: Any
@@ -1181,9 +1181,9 @@ class XmlOperations:
     async def get_service_properties(self, *, comp: str = "properties", restype: str = "service", **kwargs: Any) -> Any:
         """Gets storage service properties.
 
-        :keyword comp:
+        :keyword comp: The default value is "properties".
         :paramtype comp: str
-        :keyword restype:
+        :keyword restype: The default value is "service".
         :paramtype restype: str
         :return: JSON object
         :rtype: Any
@@ -1276,9 +1276,9 @@ class XmlOperations:
 
         :param properties:
         :type properties: Any
-        :keyword comp:
+        :keyword comp: The default value is "properties".
         :paramtype comp: str
-        :keyword restype:
+        :keyword restype: The default value is "service".
         :paramtype restype: str
         :return: None
         :rtype: None
@@ -1366,9 +1366,9 @@ class XmlOperations:
     async def get_acls(self, *, comp: str = "acl", restype: str = "container", **kwargs: Any) -> List[Any]:
         """Gets storage ACLs for a container.
 
-        :keyword comp:
+        :keyword comp: The default value is "acl".
         :paramtype comp: str
-        :keyword restype:
+        :keyword restype: The default value is "container".
         :paramtype restype: str
         :return: list of JSON object
         :rtype: list[Any]
@@ -1427,9 +1427,9 @@ class XmlOperations:
 
         :param properties:
         :type properties: list[Any]
-        :keyword comp:
+        :keyword comp: The default value is "acl".
         :paramtype comp: str
-        :keyword restype:
+        :keyword restype: The default value is "container".
         :paramtype restype: str
         :return: None
         :rtype: None
@@ -1484,9 +1484,9 @@ class XmlOperations:
     async def list_blobs(self, *, comp: str = "list", restype: str = "container", **kwargs: Any) -> Any:
         """Lists blobs in a storage container.
 
-        :keyword comp:
+        :keyword comp: The default value is "list".
         :paramtype comp: str
-        :keyword restype:
+        :keyword restype: The default value is "container".
         :paramtype restype: str
         :return: JSON object
         :rtype: Any

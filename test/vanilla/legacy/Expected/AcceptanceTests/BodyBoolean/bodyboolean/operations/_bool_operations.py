@@ -235,7 +235,7 @@ class BoolOperations(object):
         # type: (...) -> None
         """Set Boolean value true.
 
-        :keyword bool_body:
+        :keyword bool_body: The default value is True.
         :paramtype bool_body: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -316,7 +316,7 @@ class BoolOperations(object):
         # type: (...) -> None
         """Set Boolean value false.
 
-        :keyword bool_body:
+        :keyword bool_body: The default value is False.
         :paramtype bool_body: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

@@ -120,7 +120,7 @@ class OperationGroupTwoOperations(object):
 
         :param input: Input parameter.
         :type input: IO or ~multiapinoasync.v3.models.SourcePath
-        :keyword api_version: Api Version.
+        :keyword api_version: Api Version. The default value is "3.0.0".
         :paramtype api_version: str
         :keyword str content_type: Media type of the body sent to the API. Default value is
          "application/json". Allowed values are: "application/pdf", "image/jpeg", "image/png",
@@ -184,7 +184,7 @@ class OperationGroupTwoOperations(object):
         # type: (...) -> None
         """TestFive should be in OperationGroupTwoOperations.
 
-        :keyword api_version: Api Version.
+        :keyword api_version: Api Version. The default value is "3.0.0".
         :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

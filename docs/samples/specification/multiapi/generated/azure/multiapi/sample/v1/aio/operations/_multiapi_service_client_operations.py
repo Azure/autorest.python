@@ -44,7 +44,7 @@ class MultiapiServiceClientOperationsMixin:
         :type id: int
         :param message: An optional string parameter.
         :type message: str
-        :keyword api_version: Api Version.
+        :keyword api_version: Api Version. The default value is "1.0.0".
         :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -376,7 +376,7 @@ class MultiapiServiceClientOperationsMixin:
 
         :param greeting_in_english: pass in 'hello' to pass test.
         :type greeting_in_english: str
-        :keyword api_version: Api Version.
+        :keyword api_version: Api Version. The default value is "1.0.0".
         :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

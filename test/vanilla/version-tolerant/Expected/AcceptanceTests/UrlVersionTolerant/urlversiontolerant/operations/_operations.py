@@ -1904,7 +1904,7 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get true Boolean value on path.
 
-        :param bool_path: true boolean value.
+        :param bool_path: true boolean value. The default value is True.
         :type bool_path: bool
         :return: None
         :rtype: None
@@ -1941,7 +1941,7 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get false Boolean value on path.
 
-        :param bool_path: false boolean value.
+        :param bool_path: false boolean value. The default value is False.
         :type bool_path: bool
         :return: None
         :rtype: None
@@ -1978,7 +1978,7 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get '1000000' integer value.
 
-        :param int_path: '1000000' integer value.
+        :param int_path: '1000000' integer value. The default value is 1000000.
         :type int_path: int
         :return: None
         :rtype: None
@@ -2015,7 +2015,7 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get '-1000000' integer value.
 
-        :param int_path: '-1000000' integer value.
+        :param int_path: '-1000000' integer value. The default value is -1000000.
         :type int_path: int
         :return: None
         :rtype: None
@@ -2052,7 +2052,7 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get '10000000000' 64 bit integer value.
 
-        :param long_path: '10000000000' 64 bit integer value.
+        :param long_path: '10000000000' 64 bit integer value. The default value is 10000000000.
         :type long_path: long
         :return: None
         :rtype: None
@@ -2089,7 +2089,7 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get '-10000000000' 64 bit integer value.
 
-        :param long_path: '-10000000000' 64 bit integer value.
+        :param long_path: '-10000000000' 64 bit integer value. The default value is -10000000000.
         :type long_path: long
         :return: None
         :rtype: None
@@ -2126,7 +2126,7 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get '1.034E+20' numeric value.
 
-        :param float_path: '1.034E+20'numeric value.
+        :param float_path: '1.034E+20'numeric value. The default value is 103400000000000000000.
         :type float_path: float
         :return: None
         :rtype: None
@@ -2163,7 +2163,7 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get '-1.034E-20' numeric value.
 
-        :param float_path: '-1.034E-20'numeric value.
+        :param float_path: '-1.034E-20'numeric value. The default value is -1.034e-20.
         :type float_path: float
         :return: None
         :rtype: None
@@ -2200,7 +2200,7 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get '9999999.999' numeric value.
 
-        :param double_path: '9999999.999'numeric value.
+        :param double_path: '9999999.999'numeric value. The default value is 9999999.999.
         :type double_path: float
         :return: None
         :rtype: None
@@ -2237,7 +2237,7 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get '-9999999.999' numeric value.
 
-        :param double_path: '-9999999.999'numeric value.
+        :param double_path: '-9999999.999'numeric value. The default value is -9999999.999.
         :type double_path: float
         :return: None
         :rtype: None
@@ -2274,7 +2274,7 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
-        :param string_path: '啊齄丂狛狜隣郎隣兀﨩'multi-byte string value.
+        :param string_path: '啊齄丂狛狜隣郎隣兀﨩'multi-byte string value. The default value is "啊齄丂狛狜隣郎隣兀﨩".
         :type string_path: str
         :return: None
         :rtype: None
@@ -2311,7 +2311,8 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
-        :param string_path: 'begin!*'();:@ &=+$,/?#[]end' url encoded string value.
+        :param string_path: 'begin!*'();:@ &=+$,/?#[]end' url encoded string value. The default value
+         is "begin!*'();:@ &=+$,/?#[]end".
         :type string_path: str
         :return: None
         :rtype: None
@@ -2350,7 +2351,8 @@ class PathsOperations(object):
 
         https://tools.ietf.org/html/rfc3986#appendix-A 'path' accept any 'pchar' not encoded.
 
-        :param string_path: 'begin!*'();:@&=+$,end' url encoded string value.
+        :param string_path: 'begin!*'();:@&=+$,end' url encoded string value. The default value is
+         "begin!*'();:@&=+$,end".
         :type string_path: str
         :return: None
         :rtype: None
@@ -2387,7 +2389,7 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get ''.
 
-        :param string_path: '' string value.
+        :param string_path: '' string value. The default value is "".
         :type string_path: str
         :return: None
         :rtype: None
@@ -2574,7 +2576,7 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get '' as byte array.
 
-        :param byte_path: '' as byte array.
+        :param byte_path: '' as byte array. The default value is bytearray("", encoding="utf-8").
         :type byte_path: bytearray
         :return: None
         :rtype: None
@@ -2648,7 +2650,7 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get '2012-01-01' as date.
 
-        :param date_path: '2012-01-01' as date.
+        :param date_path: '2012-01-01' as date. The default value is "2012-01-01".
         :type date_path: ~datetime.date
         :return: None
         :rtype: None
@@ -2723,7 +2725,8 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get '2012-01-01T01:01:01Z' as date-time.
 
-        :param date_time_path: '2012-01-01T01:01:01Z' as date-time.
+        :param date_time_path: '2012-01-01T01:01:01Z' as date-time. The default value is
+         "2012-01-01T01:01:01Z".
         :type date_time_path: ~datetime.datetime
         :return: None
         :rtype: None
@@ -2927,7 +2930,7 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get true Boolean value on path.
 
-        :keyword bool_query: true boolean value.
+        :keyword bool_query: true boolean value. The default value is True.
         :paramtype bool_query: bool
         :return: None
         :rtype: None
@@ -2964,7 +2967,7 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get false Boolean value on path.
 
-        :keyword bool_query: false boolean value.
+        :keyword bool_query: false boolean value. The default value is False.
         :paramtype bool_query: bool
         :return: None
         :rtype: None
@@ -3038,7 +3041,7 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get '1000000' integer value.
 
-        :keyword int_query: '1000000' integer value.
+        :keyword int_query: '1000000' integer value. The default value is 1000000.
         :paramtype int_query: int
         :return: None
         :rtype: None
@@ -3075,7 +3078,7 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get '-1000000' integer value.
 
-        :keyword int_query: '-1000000' integer value.
+        :keyword int_query: '-1000000' integer value. The default value is -1000000.
         :paramtype int_query: int
         :return: None
         :rtype: None
@@ -3149,7 +3152,7 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get '10000000000' 64 bit integer value.
 
-        :keyword long_query: '10000000000' 64 bit integer value.
+        :keyword long_query: '10000000000' 64 bit integer value. The default value is 10000000000.
         :paramtype long_query: long
         :return: None
         :rtype: None
@@ -3186,7 +3189,7 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get '-10000000000' 64 bit integer value.
 
-        :keyword long_query: '-10000000000' 64 bit integer value.
+        :keyword long_query: '-10000000000' 64 bit integer value. The default value is -10000000000.
         :paramtype long_query: long
         :return: None
         :rtype: None
@@ -3260,7 +3263,7 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get '1.034E+20' numeric value.
 
-        :keyword float_query: '1.034E+20'numeric value.
+        :keyword float_query: '1.034E+20'numeric value. The default value is 103400000000000000000.
         :paramtype float_query: float
         :return: None
         :rtype: None
@@ -3297,7 +3300,7 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get '-1.034E-20' numeric value.
 
-        :keyword float_query: '-1.034E-20'numeric value.
+        :keyword float_query: '-1.034E-20'numeric value. The default value is -1.034e-20.
         :paramtype float_query: float
         :return: None
         :rtype: None
@@ -3371,7 +3374,7 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get '9999999.999' numeric value.
 
-        :keyword double_query: '9999999.999'numeric value.
+        :keyword double_query: '9999999.999'numeric value. The default value is 9999999.999.
         :paramtype double_query: float
         :return: None
         :rtype: None
@@ -3408,7 +3411,7 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get '-9999999.999' numeric value.
 
-        :keyword double_query: '-9999999.999'numeric value.
+        :keyword double_query: '-9999999.999'numeric value. The default value is -9999999.999.
         :paramtype double_query: float
         :return: None
         :rtype: None
@@ -3482,7 +3485,7 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
-        :keyword string_query: '啊齄丂狛狜隣郎隣兀﨩'multi-byte string value.
+        :keyword string_query: '啊齄丂狛狜隣郎隣兀﨩'multi-byte string value. The default value is "啊齄丂狛狜隣郎隣兀﨩".
         :paramtype string_query: str
         :return: None
         :rtype: None
@@ -3519,7 +3522,8 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
-        :keyword string_query: 'begin!*'();:@ &=+$,/?#[]end' url encoded string value.
+        :keyword string_query: 'begin!*'();:@ &=+$,/?#[]end' url encoded string value. The default
+         value is "begin!*'();:@ &=+$,/?#[]end".
         :paramtype string_query: str
         :return: None
         :rtype: None
@@ -3556,7 +3560,7 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get ''.
 
-        :keyword string_query: '' string value.
+        :keyword string_query: '' string value. The default value is "".
         :paramtype string_query: str
         :return: None
         :rtype: None
@@ -3743,7 +3747,7 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get '' as byte array.
 
-        :keyword byte_query: '' as byte array.
+        :keyword byte_query: '' as byte array. The default value is bytearray("", encoding="utf-8").
         :paramtype byte_query: bytearray
         :return: None
         :rtype: None
@@ -3817,7 +3821,7 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get '2012-01-01' as date.
 
-        :keyword date_query: '2012-01-01' as date.
+        :keyword date_query: '2012-01-01' as date. The default value is "2012-01-01".
         :paramtype date_query: ~datetime.date
         :return: None
         :rtype: None
@@ -3891,7 +3895,8 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get '2012-01-01T01:01:01Z' as date-time.
 
-        :keyword date_time_query: '2012-01-01T01:01:01Z' as date-time.
+        :keyword date_time_query: '2012-01-01T01:01:01Z' as date-time. The default value is
+         "2012-01-01T01:01:01Z".
         :paramtype date_time_query: ~datetime.datetime
         :return: None
         :rtype: None

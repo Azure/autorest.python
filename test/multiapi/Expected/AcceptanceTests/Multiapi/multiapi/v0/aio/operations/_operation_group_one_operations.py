@@ -54,7 +54,7 @@ class OperationGroupOneOperations:
     ) -> None:
         """TestTwo should be in OperationGroupOneOperations.
 
-        :keyword api_version: Api Version.
+        :keyword api_version: Api Version. The default value is "0.0.0".
         :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

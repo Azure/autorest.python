@@ -24,11 +24,11 @@ class AutoRestSwaggerConstantServiceConfiguration(Configuration):
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
-    :keyword header_constant: Constant header property on the client that is a required parameter for operation 'constants_putClientConstants'.
+    :keyword header_constant: Constant header property on the client that is a required parameter for operation 'constants_putClientConstants'. The default value is True.
     :paramtype header_constant: bool
-    :keyword query_constant: Constant query property on the client that is a required parameter for operation 'constants_putClientConstants'.
+    :keyword query_constant: Constant query property on the client that is a required parameter for operation 'constants_putClientConstants'. The default value is 100.
     :paramtype query_constant: int
-    :keyword path_constant: Constant path property on the client that is a required parameter for operation 'constants_putClientConstants'.
+    :keyword path_constant: Constant path property on the client that is a required parameter for operation 'constants_putClientConstants'. The default value is "path".
     :paramtype path_constant: str
     """
 

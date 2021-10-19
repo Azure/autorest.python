@@ -30,7 +30,7 @@ def build_get_boolean_true_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword bool_query: true boolean value.
+    :keyword bool_query: true boolean value. The default value is True.
     :paramtype bool_query: bool
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -70,7 +70,7 @@ def build_get_boolean_false_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword bool_query: false boolean value.
+    :keyword bool_query: false boolean value. The default value is False.
     :paramtype bool_query: bool
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -151,7 +151,7 @@ def build_get_int_one_million_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword int_query: '1000000' integer value.
+    :keyword int_query: '1000000' integer value. The default value is 1000000.
     :paramtype int_query: int
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -191,7 +191,7 @@ def build_get_int_negative_one_million_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword int_query: '-1000000' integer value.
+    :keyword int_query: '-1000000' integer value. The default value is -1000000.
     :paramtype int_query: int
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -272,7 +272,7 @@ def build_get_ten_billion_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword long_query: '10000000000' 64 bit integer value.
+    :keyword long_query: '10000000000' 64 bit integer value. The default value is 10000000000.
     :paramtype long_query: long
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -312,7 +312,7 @@ def build_get_negative_ten_billion_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword long_query: '-10000000000' 64 bit integer value.
+    :keyword long_query: '-10000000000' 64 bit integer value. The default value is -10000000000.
     :paramtype long_query: long
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -393,7 +393,7 @@ def build_float_scientific_positive_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword float_query: '1.034E+20'numeric value.
+    :keyword float_query: '1.034E+20'numeric value. The default value is 103400000000000000000.
     :paramtype float_query: float
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -433,7 +433,7 @@ def build_float_scientific_negative_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword float_query: '-1.034E-20'numeric value.
+    :keyword float_query: '-1.034E-20'numeric value. The default value is -1.034e-20.
     :paramtype float_query: float
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -514,7 +514,7 @@ def build_double_decimal_positive_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword double_query: '9999999.999'numeric value.
+    :keyword double_query: '9999999.999'numeric value. The default value is 9999999.999.
     :paramtype double_query: float
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -554,7 +554,7 @@ def build_double_decimal_negative_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword double_query: '-9999999.999'numeric value.
+    :keyword double_query: '-9999999.999'numeric value. The default value is -9999999.999.
     :paramtype double_query: float
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -635,7 +635,7 @@ def build_string_unicode_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword string_query: '啊齄丂狛狜隣郎隣兀﨩'multi-byte string value.
+    :keyword string_query: '啊齄丂狛狜隣郎隣兀﨩'multi-byte string value. The default value is "啊齄丂狛狜隣郎隣兀﨩".
     :paramtype string_query: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -675,7 +675,8 @@ def build_string_url_encoded_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword string_query: 'begin!*'();:@ &=+$,/?#[]end' url encoded string value.
+    :keyword string_query: 'begin!*'();:@ &=+$,/?#[]end' url encoded string value. The default
+     value is "begin!*'();:@ &=+$,/?#[]end".
     :paramtype string_query: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -715,7 +716,7 @@ def build_string_empty_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword string_query: '' string value.
+    :keyword string_query: '' string value. The default value is "".
     :paramtype string_query: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -921,7 +922,7 @@ def build_byte_empty_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword byte_query: '' as byte array.
+    :keyword byte_query: '' as byte array. The default value is bytearray("", encoding="utf-8").
     :paramtype byte_query: bytearray
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -1002,7 +1003,7 @@ def build_date_valid_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword date_query: '2012-01-01' as date.
+    :keyword date_query: '2012-01-01' as date. The default value is "2012-01-01".
     :paramtype date_query: ~datetime.date
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -1083,7 +1084,8 @@ def build_date_time_valid_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword date_time_query: '2012-01-01T01:01:01Z' as date-time.
+    :keyword date_time_query: '2012-01-01T01:01:01Z' as date-time. The default value is
+     "2012-01-01T01:01:01Z".
     :paramtype date_time_query: ~datetime.datetime
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

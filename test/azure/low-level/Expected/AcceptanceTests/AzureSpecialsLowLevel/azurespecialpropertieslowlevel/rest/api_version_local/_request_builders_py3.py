@@ -21,7 +21,8 @@ def build_get_method_local_valid_request(*, api_version: str = "2.0", **kwargs: 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword api_version: This should appear as a method parameter, use value '2.0'.
+    :keyword api_version: This should appear as a method parameter, use value '2.0'. The default
+     value is "2.0".
     :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -81,7 +82,8 @@ def build_get_path_local_valid_request(*, api_version: str = "2.0", **kwargs: An
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword api_version: This should appear as a method parameter, use value '2.0'.
+    :keyword api_version: This should appear as a method parameter, use value '2.0'. The default
+     value is "2.0".
     :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -111,6 +113,7 @@ def build_get_swagger_local_valid_request(*, api_version: str = "2.0", **kwargs:
     into your code flow.
 
     :keyword api_version: The api version, which appears in the query, the value is always '2.0'.
+     The default value is "2.0".
     :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

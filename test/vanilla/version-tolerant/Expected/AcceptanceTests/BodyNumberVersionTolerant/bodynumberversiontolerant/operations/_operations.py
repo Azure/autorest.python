@@ -905,7 +905,7 @@ class NumberOperations(object):
         # type: (...) -> None
         """Put big double value 99999999.99.
 
-        :param number_body:
+        :param number_body: The default value is 99999999.99.
         :type number_body: float
         :return: None
         :rtype: None
@@ -984,7 +984,7 @@ class NumberOperations(object):
         # type: (...) -> None
         """Put big double value -99999999.99.
 
-        :param number_body:
+        :param number_body: The default value is -99999999.99.
         :type number_body: float
         :return: None
         :rtype: None
@@ -1144,7 +1144,7 @@ class NumberOperations(object):
         # type: (...) -> None
         """Put big decimal value 99999999.99.
 
-        :param number_body:
+        :param number_body: The default value is 99999999.99.
         :type number_body: float
         :return: None
         :rtype: None
@@ -1223,7 +1223,7 @@ class NumberOperations(object):
         # type: (...) -> None
         """Put big decimal value -99999999.99.
 
-        :param number_body:
+        :param number_body: The default value is -99999999.99.
         :type number_body: float
         :return: None
         :rtype: None

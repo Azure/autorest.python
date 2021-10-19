@@ -105,7 +105,7 @@ def build_put_no_model_as_string_no_required_one_value_no_default_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword input:
+    :keyword input: The default value is "value1".
     :paramtype input: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -142,7 +142,7 @@ def build_put_no_model_as_string_no_required_one_value_default_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword input:
+    :keyword input: The default value is "value1".
     :paramtype input: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -251,7 +251,7 @@ def build_put_no_model_as_string_required_one_value_no_default_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword input:
+    :keyword input: The default value is "value1".
     :paramtype input: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -287,7 +287,7 @@ def build_put_no_model_as_string_required_one_value_default_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword input:
+    :keyword input: The default value is "value1".
     :paramtype input: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -616,13 +616,13 @@ def build_put_client_constants_request(
     into your code flow.
 
     :param path_constant: Constant path property on the client that is a required parameter for
-     operation 'constants_putClientConstants'.
+     operation 'constants_putClientConstants'. The default value is "path".
     :type path_constant: str
     :keyword header_constant: Constant header property on the client that is a required parameter
-     for operation 'constants_putClientConstants'.
+     for operation 'constants_putClientConstants'. The default value is True.
     :paramtype header_constant: bool
     :keyword query_constant: Constant query property on the client that is a required parameter for
-     operation 'constants_putClientConstants'.
+     operation 'constants_putClientConstants'. The default value is 100.
     :paramtype query_constant: int
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

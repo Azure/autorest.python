@@ -31,7 +31,7 @@ def build_get_boolean_true_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param bool_path: true boolean value.
+    :param bool_path: true boolean value. The default value is True.
     :type bool_path: bool
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -70,7 +70,7 @@ def build_get_boolean_false_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param bool_path: false boolean value.
+    :param bool_path: false boolean value. The default value is False.
     :type bool_path: bool
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -109,7 +109,7 @@ def build_get_int_one_million_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param int_path: '1000000' integer value.
+    :param int_path: '1000000' integer value. The default value is 1000000.
     :type int_path: int
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -148,7 +148,7 @@ def build_get_int_negative_one_million_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param int_path: '-1000000' integer value.
+    :param int_path: '-1000000' integer value. The default value is -1000000.
     :type int_path: int
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -187,7 +187,7 @@ def build_get_ten_billion_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param long_path: '10000000000' 64 bit integer value.
+    :param long_path: '10000000000' 64 bit integer value. The default value is 10000000000.
     :type long_path: long
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -226,7 +226,7 @@ def build_get_negative_ten_billion_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param long_path: '-10000000000' 64 bit integer value.
+    :param long_path: '-10000000000' 64 bit integer value. The default value is -10000000000.
     :type long_path: long
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -265,7 +265,7 @@ def build_float_scientific_positive_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param float_path: '1.034E+20'numeric value.
+    :param float_path: '1.034E+20'numeric value. The default value is 103400000000000000000.
     :type float_path: float
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -304,7 +304,7 @@ def build_float_scientific_negative_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param float_path: '-1.034E-20'numeric value.
+    :param float_path: '-1.034E-20'numeric value. The default value is -1.034e-20.
     :type float_path: float
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -343,7 +343,7 @@ def build_double_decimal_positive_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param double_path: '9999999.999'numeric value.
+    :param double_path: '9999999.999'numeric value. The default value is 9999999.999.
     :type double_path: float
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -382,7 +382,7 @@ def build_double_decimal_negative_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param double_path: '-9999999.999'numeric value.
+    :param double_path: '-9999999.999'numeric value. The default value is -9999999.999.
     :type double_path: float
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -421,7 +421,7 @@ def build_string_unicode_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param string_path: '啊齄丂狛狜隣郎隣兀﨩'multi-byte string value.
+    :param string_path: '啊齄丂狛狜隣郎隣兀﨩'multi-byte string value. The default value is "啊齄丂狛狜隣郎隣兀﨩".
     :type string_path: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -460,7 +460,8 @@ def build_string_url_encoded_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param string_path: 'begin!*'();:@ &=+$,/?#[]end' url encoded string value.
+    :param string_path: 'begin!*'();:@ &=+$,/?#[]end' url encoded string value. The default value
+     is "begin!*'();:@ &=+$,/?#[]end".
     :type string_path: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -501,7 +502,8 @@ def build_string_url_non_encoded_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param string_path: 'begin!*'();:@&=+$,end' url encoded string value.
+    :param string_path: 'begin!*'();:@&=+$,end' url encoded string value. The default value is
+     "begin!*'();:@&=+$,end".
     :type string_path: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -540,7 +542,7 @@ def build_string_empty_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param string_path: '' string value.
+    :param string_path: '' string value. The default value is "".
     :type string_path: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -737,7 +739,7 @@ def build_byte_empty_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param byte_path: '' as byte array.
+    :param byte_path: '' as byte array. The default value is bytearray("", encoding="utf-8").
     :type byte_path: bytearray
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -815,7 +817,7 @@ def build_date_valid_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param date_path: '2012-01-01' as date.
+    :param date_path: '2012-01-01' as date. The default value is "2012-01-01".
     :type date_path: ~datetime.date
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -894,7 +896,8 @@ def build_date_time_valid_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param date_time_path: '2012-01-01T01:01:01Z' as date-time.
+    :param date_time_path: '2012-01-01T01:01:01Z' as date-time. The default value is
+     "2012-01-01T01:01:01Z".
     :type date_time_path: ~datetime.datetime
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

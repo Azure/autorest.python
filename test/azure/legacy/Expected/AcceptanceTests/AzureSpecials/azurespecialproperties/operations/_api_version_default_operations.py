@@ -173,7 +173,7 @@ class ApiVersionDefaultOperations(object):
         # type: (...) -> None
         """GET method with api-version modeled in global settings.
 
-        :keyword api_version: Api Version.
+        :keyword api_version: Api Version. The default value is "2015-07-01-preview".
         :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -213,7 +213,7 @@ class ApiVersionDefaultOperations(object):
         # type: (...) -> None
         """GET method with api-version modeled in global settings.
 
-        :keyword api_version: Api Version.
+        :keyword api_version: Api Version. The default value is "2015-07-01-preview".
         :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -253,7 +253,7 @@ class ApiVersionDefaultOperations(object):
         # type: (...) -> None
         """GET method with api-version modeled in global settings.
 
-        :keyword api_version: Api Version.
+        :keyword api_version: Api Version. The default value is "2015-07-01-preview".
         :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -293,7 +293,7 @@ class ApiVersionDefaultOperations(object):
         # type: (...) -> None
         """GET method with api-version modeled in global settings.
 
-        :keyword api_version: Api Version.
+        :keyword api_version: Api Version. The default value is "2015-07-01-preview".
         :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

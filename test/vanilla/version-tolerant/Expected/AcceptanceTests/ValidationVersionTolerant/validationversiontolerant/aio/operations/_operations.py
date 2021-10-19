@@ -43,7 +43,7 @@ class AutoRestValidationTestOperationsMixin:
         :type resource_group_name: str
         :param id: Required int multiple of 10 from 100 to 1000.
         :type id: int
-        :keyword api_version: Api Version.
+        :keyword api_version: Api Version. The default value is "1.0.0".
         :paramtype api_version: str
         :return: JSON object
         :rtype: Any
@@ -116,7 +116,7 @@ class AutoRestValidationTestOperationsMixin:
         :type id: int
         :param body:
         :type body: Any
-        :keyword api_version: Api Version.
+        :keyword api_version: Api Version. The default value is "1.0.0".
         :paramtype api_version: str
         :return: JSON object
         :rtype: Any
@@ -210,7 +210,7 @@ class AutoRestValidationTestOperationsMixin:
     async def get_with_constant_in_path(self, constant_param: str = "constant", **kwargs: Any) -> None:
         """get_with_constant_in_path.
 
-        :param constant_param:
+        :param constant_param: The default value is "constant".
         :type constant_param: str
         :return: None
         :rtype: None
@@ -244,7 +244,7 @@ class AutoRestValidationTestOperationsMixin:
     ) -> Any:
         """post_with_constant_in_body.
 
-        :param constant_param:
+        :param constant_param: The default value is "constant".
         :type constant_param: str
         :param body:
         :type body: Any

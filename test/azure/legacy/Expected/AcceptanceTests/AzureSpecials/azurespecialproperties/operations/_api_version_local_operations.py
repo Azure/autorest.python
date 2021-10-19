@@ -174,7 +174,8 @@ class ApiVersionLocalOperations(object):
         # type: (...) -> None
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
-        :keyword api_version: This should appear as a method parameter, use value '2.0'.
+        :keyword api_version: This should appear as a method parameter, use value '2.0'. The default
+         value is "2.0".
         :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -255,7 +256,8 @@ class ApiVersionLocalOperations(object):
         # type: (...) -> None
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
-        :keyword api_version: This should appear as a method parameter, use value '2.0'.
+        :keyword api_version: This should appear as a method parameter, use value '2.0'. The default
+         value is "2.0".
         :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -296,6 +298,7 @@ class ApiVersionLocalOperations(object):
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
         :keyword api_version: The api version, which appears in the query, the value is always '2.0'.
+         The default value is "2.0".
         :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

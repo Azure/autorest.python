@@ -235,7 +235,7 @@ def build_put_big_double_positive_decimal_request(*, json: float = 99999999.99, 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json:
+    :keyword json: The default value is 99999999.99.
     :paramtype json: float
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -287,7 +287,7 @@ def build_put_big_double_negative_decimal_request(*, json: float = -99999999.99,
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json:
+    :keyword json: The default value is -99999999.99.
     :paramtype json: float
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -401,7 +401,7 @@ def build_put_big_decimal_positive_decimal_request(*, json: float = 99999999.99,
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json:
+    :keyword json: The default value is 99999999.99.
     :paramtype json: float
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -453,7 +453,7 @@ def build_put_big_decimal_negative_decimal_request(*, json: float = -99999999.99
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json:
+    :keyword json: The default value is -99999999.99.
     :paramtype json: float
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
