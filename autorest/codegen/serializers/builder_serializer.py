@@ -807,13 +807,13 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         retval.append("")
         retval.append(f"request = {request_path_name}(")
         for parameter in request_builder.parameters.method:
-            if parameter.is_body:
+            if (
+                parameter.is_body and
+                parameter.serialized_name not in builder.body_kwargs_to_pass_to_request_builder
+            ):
                 continue
             high_level_name = cast(RequestBuilderParameter, parameter).name_in_high_level_operation
             retval.append(f"    {parameter.serialized_name}={high_level_name},")
-        if request_builder.parameters.has_body:
-            for kwarg in builder.body_kwargs_to_pass_to_request_builder:
-                retval.append(f"    {kwarg}={kwarg},")
         template_url = template_url or f"self.{builder.name}.metadata['url']"
         retval.append(f"    template_url={template_url},")
         retval.append(f")")
