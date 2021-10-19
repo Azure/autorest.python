@@ -36,12 +36,14 @@ def build_get_true_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_true_request(**kwargs: Any) -> HttpRequest:
+def build_put_true_request(*, json: bool = True, **kwargs: Any) -> HttpRequest:
     """Set Boolean value true.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword json:
+    :paramtype json: bool
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -50,7 +52,6 @@ def build_put_true_request(**kwargs: Any) -> HttpRequest:
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
-    json = True
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", "/bool/true")
@@ -87,12 +88,14 @@ def build_get_false_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_false_request(**kwargs: Any) -> HttpRequest:
+def build_put_false_request(*, json: bool = False, **kwargs: Any) -> HttpRequest:
     """Set Boolean value false.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword json:
+    :paramtype json: bool
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -101,7 +104,6 @@ def build_put_false_request(**kwargs: Any) -> HttpRequest:
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
-    json = False
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", "/bool/false")

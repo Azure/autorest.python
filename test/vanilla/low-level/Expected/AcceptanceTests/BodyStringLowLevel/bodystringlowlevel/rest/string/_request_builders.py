@@ -136,6 +136,8 @@ def build_put_empty_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword json: string body.
+    :paramtype json: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -143,8 +145,8 @@ def build_put_empty_request(
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    json = kwargs.pop('json', "")  # type: str
 
-    json = ""
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/string/empty')
@@ -204,6 +206,8 @@ def build_put_mbcs_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword json: string body.
+    :paramtype json: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -211,8 +215,8 @@ def build_put_mbcs_request(
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    json = kwargs.pop('json', "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€")  # type: str
 
-    json = "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/string/mbcs')
@@ -276,6 +280,8 @@ def build_put_whitespace_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword json: string body.
+    :paramtype json: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -283,8 +289,8 @@ def build_put_whitespace_request(
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    json = kwargs.pop('json', "    Now is the time for all good men to come to the aid of their country    ")  # type: str
 
-    json = "    Now is the time for all good men to come to the aid of their country    "
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/string/whitespace')

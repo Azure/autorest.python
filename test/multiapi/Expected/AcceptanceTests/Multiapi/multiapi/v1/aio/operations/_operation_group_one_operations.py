@@ -48,10 +48,14 @@ class OperationGroupOneOperations:
     @distributed_trace_async
     async def test_two(
         self,
+        *,
+        api_version: str = "1.0.0",
         **kwargs: Any
     ) -> None:
         """TestTwo should be in OperationGroupOneOperations.
 
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -65,6 +69,7 @@ class OperationGroupOneOperations:
 
         
         request = build_test_two_request(
+            api_version=api_version,
             template_url=self.test_two.metadata['url'],
         )
         request = _convert_request(request)

@@ -29,13 +29,16 @@ def build_get_method_local_valid_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword api_version: This should appear as a method parameter, use value '2.0'.
+    :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    api_version = "2.0"
+    api_version = kwargs.pop('api_version', "2.0")  # type: str
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/azurespecials/apiVersion/method/string/none/query/local/2.0')
@@ -108,13 +111,16 @@ def build_get_path_local_valid_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword api_version: This should appear as a method parameter, use value '2.0'.
+    :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    api_version = "2.0"
+    api_version = kwargs.pop('api_version', "2.0")  # type: str
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/azurespecials/apiVersion/path/string/none/query/local/2.0')
@@ -145,13 +151,16 @@ def build_get_swagger_local_valid_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword api_version: The api version, which appears in the query, the value is always '2.0'.
+    :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    api_version = "2.0"
+    api_version = kwargs.pop('api_version', "2.0")  # type: str
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/azurespecials/apiVersion/swagger/string/none/query/local/2.0')

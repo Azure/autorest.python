@@ -35,8 +35,8 @@ def build_test_two_request(
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    api_version = kwargs.pop('api_version', "2.0.0")  # type: str
 
-    api_version = "2.0.0"
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/multiapi/one/testTwoEndpoint')
@@ -64,7 +64,8 @@ def build_test_three_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    api_version = "2.0.0"
+    api_version = kwargs.pop('api_version', "2.0.0")  # type: str
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/multiapi/one/testThreeEndpoint')
@@ -119,6 +120,8 @@ class OperationGroupOneOperations(object):
 
         :param parameter_one: A ModelTwo parameter.
         :type parameter_one: ~azure.multiapi.sample.v2.models.ModelTwo
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ModelTwo, or the result of cls(response)
         :rtype: ~azure.multiapi.sample.v2.models.ModelTwo
@@ -131,6 +134,7 @@ class OperationGroupOneOperations(object):
         error_map.update(kwargs.pop('error_map', {}))
 
         content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
+        api_version = kwargs.pop('api_version', "2.0.0")  # type: str
 
         if parameter_one is not None:
             json = self._serialize.body(parameter_one, 'ModelTwo')
@@ -140,6 +144,7 @@ class OperationGroupOneOperations(object):
         request = build_test_two_request(
             content_type=content_type,
             json=json,
+            api_version=api_version,
             template_url=self.test_two.metadata['url'],
         )
         request = _convert_request(request)
@@ -171,6 +176,8 @@ class OperationGroupOneOperations(object):
         # type: (...) -> None
         """TestThree should be in OperationGroupOneOperations. Takes in ModelTwo.
 
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -182,8 +189,11 @@ class OperationGroupOneOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
+        api_version = kwargs.pop('api_version', "2.0.0")  # type: str
+
         
         request = build_test_three_request(
+            api_version=api_version,
             template_url=self.test_three.metadata['url'],
         )
         request = _convert_request(request)

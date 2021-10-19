@@ -68,7 +68,11 @@ class StorageAccountsOperations:
 
     @distributed_trace_async
     async def check_name_availability(
-        self, account_name: "_models.StorageAccountCheckNameAvailabilityParameters", **kwargs: Any
+        self,
+        account_name: "_models.StorageAccountCheckNameAvailabilityParameters",
+        *,
+        api_version: str = "2015-05-01-preview",
+        **kwargs: Any
     ) -> "_models.CheckNameAvailabilityResult":
         """Checks that account name is valid and is not in use.
 
@@ -76,6 +80,8 @@ class StorageAccountsOperations:
          Storage account names must be between 3 and 24 characters in length and use numbers and
          lower-case letters only.
         :type account_name: ~storage.models.StorageAccountCheckNameAvailabilityParameters
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: CheckNameAvailabilityResult, or the result of cls(response)
         :rtype: ~storage.models.CheckNameAvailabilityResult
@@ -93,6 +99,7 @@ class StorageAccountsOperations:
             subscription_id=self._config.subscription_id,
             content_type=content_type,
             json=json,
+            api_version=api_version,
             template_url=self.check_name_availability.metadata["url"],
         )
         request = _convert_request(request)
@@ -119,6 +126,8 @@ class StorageAccountsOperations:
         resource_group_name: str,
         account_name: str,
         parameters: "_models.StorageAccountCreateParameters",
+        *,
+        api_version: str = "2015-05-01-preview",
         **kwargs: Any
     ) -> Optional["_models.StorageAccount"]:
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional["_models.StorageAccount"]]
@@ -135,6 +144,7 @@ class StorageAccountsOperations:
             subscription_id=self._config.subscription_id,
             content_type=content_type,
             json=json,
+            api_version=api_version,
             template_url=self._create_initial.metadata["url"],
         )
         request = _convert_request(request)
@@ -164,6 +174,8 @@ class StorageAccountsOperations:
         resource_group_name: str,
         account_name: str,
         parameters: "_models.StorageAccountCreateParameters",
+        *,
+        api_version: str = "2015-05-01-preview",
         **kwargs: Any
     ) -> AsyncLROPoller["_models.StorageAccount"]:
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts
@@ -179,6 +191,8 @@ class StorageAccountsOperations:
         :type account_name: str
         :param parameters: The parameters to provide for the created account.
         :type parameters: ~storage.models.StorageAccountCreateParameters
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -202,6 +216,7 @@ class StorageAccountsOperations:
                 resource_group_name=resource_group_name,
                 account_name=account_name,
                 parameters=parameters,
+                api_version=api_version,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
                 **kwargs
@@ -234,7 +249,9 @@ class StorageAccountsOperations:
     begin_create.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"}  # type: ignore
 
     @distributed_trace_async
-    async def delete(self, resource_group_name: str, account_name: str, **kwargs: Any) -> None:
+    async def delete(
+        self, resource_group_name: str, account_name: str, *, api_version: str = "2015-05-01-preview", **kwargs: Any
+    ) -> None:
         """Deletes a storage account in Microsoft Azure.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
@@ -243,6 +260,8 @@ class StorageAccountsOperations:
          Storage account names must be between 3 and 24 characters in length and use numbers and
          lower-case letters only.
         :type account_name: str
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -256,6 +275,7 @@ class StorageAccountsOperations:
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
+            api_version=api_version,
             template_url=self.delete.metadata["url"],
         )
         request = _convert_request(request)
@@ -275,7 +295,7 @@ class StorageAccountsOperations:
 
     @distributed_trace_async
     async def get_properties(
-        self, resource_group_name: str, account_name: str, **kwargs: Any
+        self, resource_group_name: str, account_name: str, *, api_version: str = "2015-05-01-preview", **kwargs: Any
     ) -> "_models.StorageAccount":
         """Returns the properties for the specified storage account including but not limited to name,
         account type, location, and account status. The ListKeys operation should be used to retrieve
@@ -287,6 +307,8 @@ class StorageAccountsOperations:
          Storage account names must be between 3 and 24 characters in length and use numbers and
          lower-case letters only.
         :type account_name: str
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccount, or the result of cls(response)
         :rtype: ~storage.models.StorageAccount
@@ -300,6 +322,7 @@ class StorageAccountsOperations:
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
+            api_version=api_version,
             template_url=self.get_properties.metadata["url"],
         )
         request = _convert_request(request)
@@ -327,6 +350,8 @@ class StorageAccountsOperations:
         resource_group_name: str,
         account_name: str,
         parameters: "_models.StorageAccountUpdateParameters",
+        *,
+        api_version: str = "2015-05-01-preview",
         **kwargs: Any
     ) -> "_models.StorageAccount":
         """Updates the account type or tags for a storage account. It can also be used to add a custom
@@ -346,6 +371,8 @@ class StorageAccountsOperations:
         :param parameters: The parameters to update on the account. Note that only one property can be
          changed at a time using this API.
         :type parameters: ~storage.models.StorageAccountUpdateParameters
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccount, or the result of cls(response)
         :rtype: ~storage.models.StorageAccount
@@ -365,6 +392,7 @@ class StorageAccountsOperations:
             subscription_id=self._config.subscription_id,
             content_type=content_type,
             json=json,
+            api_version=api_version,
             template_url=self.update.metadata["url"],
         )
         request = _convert_request(request)
@@ -388,7 +416,7 @@ class StorageAccountsOperations:
 
     @distributed_trace_async
     async def list_keys(
-        self, resource_group_name: str, account_name: str, **kwargs: Any
+        self, resource_group_name: str, account_name: str, *, api_version: str = "2015-05-01-preview", **kwargs: Any
     ) -> "_models.StorageAccountKeys":
         """Lists the access keys for the specified storage account.
 
@@ -396,6 +424,8 @@ class StorageAccountsOperations:
         :type resource_group_name: str
         :param account_name: The name of the storage account.
         :type account_name: str
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccountKeys, or the result of cls(response)
         :rtype: ~storage.models.StorageAccountKeys
@@ -409,6 +439,7 @@ class StorageAccountsOperations:
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
+            api_version=api_version,
             template_url=self.list_keys.metadata["url"],
         )
         request = _convert_request(request)
@@ -431,10 +462,14 @@ class StorageAccountsOperations:
     list_keys.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys"}  # type: ignore
 
     @distributed_trace
-    def list(self, **kwargs: Any) -> AsyncIterable["_models.StorageAccountListResult"]:
+    def list(
+        self, *, api_version: str = "2015-05-01-preview", **kwargs: Any
+    ) -> AsyncIterable["_models.StorageAccountListResult"]:
         """Lists all the storage accounts available under the subscription. Note that storage keys are not
         returned; use the ListKeys operation for this.
 
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either StorageAccountListResult or the result of
          cls(response)
@@ -450,6 +485,7 @@ class StorageAccountsOperations:
 
                 request = build_list_request(
                     subscription_id=self._config.subscription_id,
+                    api_version=api_version,
                     template_url=self.list.metadata["url"],
                 )
                 request = _convert_request(request)
@@ -459,6 +495,7 @@ class StorageAccountsOperations:
 
                 request = build_list_request(
                     subscription_id=self._config.subscription_id,
+                    api_version=api_version,
                     template_url=next_link,
                 )
                 request = _convert_request(request)
@@ -491,13 +528,15 @@ class StorageAccountsOperations:
 
     @distributed_trace
     def list_by_resource_group(
-        self, resource_group_name: str, **kwargs: Any
+        self, resource_group_name: str, *, api_version: str = "2015-05-01-preview", **kwargs: Any
     ) -> AsyncIterable["_models.StorageAccountListResult"]:
         """Lists all the storage accounts available under the given resource group. Note that storage keys
         are not returned; use the ListKeys operation for this.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either StorageAccountListResult or the result of
          cls(response)
@@ -514,6 +553,7 @@ class StorageAccountsOperations:
                 request = build_list_by_resource_group_request(
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
+                    api_version=api_version,
                     template_url=self.list_by_resource_group.metadata["url"],
                 )
                 request = _convert_request(request)
@@ -524,6 +564,7 @@ class StorageAccountsOperations:
                 request = build_list_by_resource_group_request(
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
+                    api_version=api_version,
                     template_url=next_link,
                 )
                 request = _convert_request(request)
@@ -560,6 +601,8 @@ class StorageAccountsOperations:
         resource_group_name: str,
         account_name: str,
         key_name: Optional[Union[str, "_models.KeyName"]] = None,
+        *,
+        api_version: str = "2015-05-01-preview",
         **kwargs: Any
     ) -> "_models.StorageAccountKeys":
         """Regenerates the access keys for the specified storage account.
@@ -572,6 +615,8 @@ class StorageAccountsOperations:
         :type account_name: str
         :param key_name:
         :type key_name: str or ~storage.models.KeyName
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccountKeys, or the result of cls(response)
         :rtype: ~storage.models.StorageAccountKeys
@@ -592,6 +637,7 @@ class StorageAccountsOperations:
             subscription_id=self._config.subscription_id,
             content_type=content_type,
             json=json,
+            api_version=api_version,
             template_url=self.regenerate_key.metadata["url"],
         )
         request = _convert_request(request)

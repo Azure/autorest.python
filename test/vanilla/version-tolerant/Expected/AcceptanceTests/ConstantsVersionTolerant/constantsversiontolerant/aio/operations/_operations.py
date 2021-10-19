@@ -276,11 +276,15 @@ class ContantsOperations:
     put_no_model_as_string_required_two_value_default.metadata = {"url": "/constants/putNoModelAsStringRequiredTwoValueDefault"}  # type: ignore
 
     @distributed_trace_async
-    async def put_no_model_as_string_required_one_value_no_default(self, **kwargs: Any) -> None:
+    async def put_no_model_as_string_required_one_value_no_default(
+        self, *, input: str = "value1", **kwargs: Any
+    ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
 
+        :keyword input:
+        :paramtype input: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -290,6 +294,7 @@ class ContantsOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_contants_put_no_model_as_string_required_one_value_no_default_request(
+            input=input,
             template_url=self.put_no_model_as_string_required_one_value_no_default.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -307,11 +312,13 @@ class ContantsOperations:
     put_no_model_as_string_required_one_value_no_default.metadata = {"url": "/constants/putNoModelAsStringRequiredOneValueNoDefault"}  # type: ignore
 
     @distributed_trace_async
-    async def put_no_model_as_string_required_one_value_default(self, **kwargs: Any) -> None:
+    async def put_no_model_as_string_required_one_value_default(self, *, input: str = "value1", **kwargs: Any) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
 
+        :keyword input:
+        :paramtype input: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -321,6 +328,7 @@ class ContantsOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_contants_put_no_model_as_string_required_one_value_default_request(
+            input=input,
             template_url=self.put_no_model_as_string_required_one_value_default.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

@@ -477,7 +477,8 @@ def build_list_containers_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    comp = "list"
+    comp = kwargs.pop('comp', "list")  # type: str
+
     accept = "application/xml"
     # Construct URL
     url = kwargs.pop("template_url", '/xml/')
@@ -503,8 +504,9 @@ def build_get_service_properties_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    comp = "properties"
-    restype = "service"
+    comp = kwargs.pop('comp', "properties")  # type: str
+    restype = kwargs.pop('restype', "service")  # type: str
+
     accept = "application/xml"
     # Construct URL
     url = kwargs.pop("template_url", '/xml/')
@@ -532,9 +534,9 @@ def build_put_service_properties_request(
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    comp = kwargs.pop('comp', "properties")  # type: str
+    restype = kwargs.pop('restype', "service")  # type: str
 
-    comp = "properties"
-    restype = "service"
     # Construct URL
     url = kwargs.pop("template_url", '/xml/')
 
@@ -561,8 +563,9 @@ def build_get_acls_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    comp = "acl"
-    restype = "container"
+    comp = kwargs.pop('comp', "acl")  # type: str
+    restype = kwargs.pop('restype', "container")  # type: str
+
     accept = "application/xml"
     # Construct URL
     url = kwargs.pop("template_url", '/xml/mycontainer')
@@ -590,9 +593,9 @@ def build_put_acls_request(
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    comp = kwargs.pop('comp', "acl")  # type: str
+    restype = kwargs.pop('restype', "container")  # type: str
 
-    comp = "acl"
-    restype = "container"
     # Construct URL
     url = kwargs.pop("template_url", '/xml/mycontainer')
 
@@ -619,8 +622,9 @@ def build_list_blobs_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    comp = "list"
-    restype = "container"
+    comp = kwargs.pop('comp', "list")  # type: str
+    restype = kwargs.pop('restype', "container")  # type: str
+
     accept = "application/xml"
     # Construct URL
     url = kwargs.pop("template_url", '/xml/mycontainer')
@@ -1685,6 +1689,8 @@ class XmlOperations(object):
         # type: (...) -> "_models.ListContainersResponse"
         """Lists containers in a storage account.
 
+        :keyword comp:
+        :paramtype comp: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ListContainersResponse, or the result of cls(response)
         :rtype: ~xmlservice.models.ListContainersResponse
@@ -1694,7 +1700,10 @@ class XmlOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        comp = kwargs.pop("comp", "list")  # type: str
+
         request = build_list_containers_request(
+            comp=comp,
             template_url=self.list_containers.metadata["url"],
         )
         request = _convert_request(request)
@@ -1723,6 +1732,10 @@ class XmlOperations(object):
         # type: (...) -> "_models.StorageServiceProperties"
         """Gets storage service properties.
 
+        :keyword comp:
+        :paramtype comp: str
+        :keyword restype:
+        :paramtype restype: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageServiceProperties, or the result of cls(response)
         :rtype: ~xmlservice.models.StorageServiceProperties
@@ -1732,7 +1745,12 @@ class XmlOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        comp = kwargs.pop("comp", "properties")  # type: str
+        restype = kwargs.pop("restype", "service")  # type: str
+
         request = build_get_service_properties_request(
+            comp=comp,
+            restype=restype,
             template_url=self.get_service_properties.metadata["url"],
         )
         request = _convert_request(request)
@@ -1765,6 +1783,10 @@ class XmlOperations(object):
 
         :param properties:
         :type properties: ~xmlservice.models.StorageServiceProperties
+        :keyword comp:
+        :paramtype comp: str
+        :keyword restype:
+        :paramtype restype: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -1775,12 +1797,16 @@ class XmlOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+        comp = kwargs.pop("comp", "properties")  # type: str
+        restype = kwargs.pop("restype", "service")  # type: str
 
         content = self._serialize.body(properties, "StorageServiceProperties", is_xml=True)
 
         request = build_put_service_properties_request(
             content_type=content_type,
             content=content,
+            comp=comp,
+            restype=restype,
             template_url=self.put_service_properties.metadata["url"],
         )
         request = _convert_request(request)
@@ -1805,6 +1831,10 @@ class XmlOperations(object):
         # type: (...) -> List["_models.SignedIdentifier"]
         """Gets storage ACLs for a container.
 
+        :keyword comp:
+        :paramtype comp: str
+        :keyword restype:
+        :paramtype restype: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list of SignedIdentifier, or the result of cls(response)
         :rtype: list[~xmlservice.models.SignedIdentifier]
@@ -1814,7 +1844,12 @@ class XmlOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        comp = kwargs.pop("comp", "acl")  # type: str
+        restype = kwargs.pop("restype", "container")  # type: str
+
         request = build_get_acls_request(
+            comp=comp,
+            restype=restype,
             template_url=self.get_acls.metadata["url"],
         )
         request = _convert_request(request)
@@ -1847,6 +1882,10 @@ class XmlOperations(object):
 
         :param properties:
         :type properties: list[~xmlservice.models.SignedIdentifier]
+        :keyword comp:
+        :paramtype comp: str
+        :keyword restype:
+        :paramtype restype: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -1857,6 +1896,8 @@ class XmlOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+        comp = kwargs.pop("comp", "acl")  # type: str
+        restype = kwargs.pop("restype", "container")  # type: str
 
         serialization_ctxt = {"xml": {"name": "SignedIdentifiers", "wrapped": True, "itemsName": "SignedIdentifier"}}
         content = self._serialize.body(
@@ -1866,6 +1907,8 @@ class XmlOperations(object):
         request = build_put_acls_request(
             content_type=content_type,
             content=content,
+            comp=comp,
+            restype=restype,
             template_url=self.put_acls.metadata["url"],
         )
         request = _convert_request(request)
@@ -1890,6 +1933,10 @@ class XmlOperations(object):
         # type: (...) -> "_models.ListBlobsResponse"
         """Lists blobs in a storage container.
 
+        :keyword comp:
+        :paramtype comp: str
+        :keyword restype:
+        :paramtype restype: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ListBlobsResponse, or the result of cls(response)
         :rtype: ~xmlservice.models.ListBlobsResponse
@@ -1899,7 +1946,12 @@ class XmlOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        comp = kwargs.pop("comp", "list")  # type: str
+        restype = kwargs.pop("restype", "container")  # type: str
+
         request = build_list_blobs_request(
+            comp=comp,
+            restype=restype,
             template_url=self.list_blobs.metadata["url"],
         )
         request = _convert_request(request)

@@ -104,8 +104,8 @@ def build_put_empty_request(
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    json = kwargs.pop('json', "")  # type: str
 
-    json = ""
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/string/empty')
@@ -150,8 +150,8 @@ def build_put_mbcs_request(
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    json = kwargs.pop('json', "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€")  # type: str
 
-    json = "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/string/mbcs')
@@ -196,8 +196,8 @@ def build_put_whitespace_request(
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    json = kwargs.pop('json', "    Now is the time for all good men to come to the aid of their country    ")  # type: str
 
-    json = "    Now is the time for all good men to come to the aid of their country    "
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/string/whitespace')
@@ -476,6 +476,8 @@ class StringOperations(object):
         # type: (...) -> None
         """Set string value empty ''.
 
+        :keyword string_body: string body.
+        :paramtype string_body: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -486,9 +488,11 @@ class StringOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        string_body = kwargs.pop("string_body", "")  # type: str
 
         request = build_put_empty_request(
             content_type=content_type,
+            json=string_body,
             template_url=self.put_empty.metadata["url"],
         )
         request = _convert_request(request)
@@ -553,6 +557,8 @@ class StringOperations(object):
         # type: (...) -> None
         """Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
+        :keyword string_body: string body.
+        :paramtype string_body: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -563,9 +569,13 @@ class StringOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        string_body = kwargs.pop(
+            "string_body", "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
+        )  # type: str
 
         request = build_put_mbcs_request(
             content_type=content_type,
+            json=string_body,
             template_url=self.put_mbcs.metadata["url"],
         )
         request = _convert_request(request)
@@ -634,6 +644,8 @@ class StringOperations(object):
         ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid
         of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
 
+        :keyword string_body: string body.
+        :paramtype string_body: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -644,9 +656,13 @@ class StringOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        string_body = kwargs.pop(
+            "string_body", "    Now is the time for all good men to come to the aid of their country    "
+        )  # type: str
 
         request = build_put_whitespace_request(
             content_type=content_type,
+            json=string_body,
             template_url=self.put_whitespace.metadata["url"],
         )
         request = _convert_request(request)

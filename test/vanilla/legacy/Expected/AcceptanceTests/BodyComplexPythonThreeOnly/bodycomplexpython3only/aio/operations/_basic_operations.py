@@ -95,11 +95,13 @@ class BasicOperations:
     get_valid.metadata = {"url": "/complex/basic/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def put_valid(self, complex_body: "_models.Basic", **kwargs: Any) -> None:
+    async def put_valid(self, complex_body: "_models.Basic", *, api_version: str = "2016-02-29", **kwargs: Any) -> None:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
         :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}.
         :type complex_body: ~bodycomplexpython3only.models.Basic
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -116,6 +118,7 @@ class BasicOperations:
         request = build_put_valid_request(
             content_type=content_type,
             json=json,
+            api_version=api_version,
             template_url=self.put_valid.metadata["url"],
         )
         request = _convert_request(request)

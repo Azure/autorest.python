@@ -37,7 +37,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class AutoRestValidationTestOperationsMixin:
     @distributed_trace_async
     async def validation_of_method_parameters(
-        self, resource_group_name: str, id: int, **kwargs: Any
+        self, resource_group_name: str, id: int, *, api_version: str = "1.0.0", **kwargs: Any
     ) -> "_models.Product":
         """Validates input parameters on the method. See swagger for details.
 
@@ -45,6 +45,8 @@ class AutoRestValidationTestOperationsMixin:
         :type resource_group_name: str
         :param id: Required int multiple of 10 from 100 to 1000.
         :type id: int
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Product, or the result of cls(response)
         :rtype: ~validation.models.Product
@@ -58,6 +60,7 @@ class AutoRestValidationTestOperationsMixin:
             subscription_id=self._config.subscription_id,
             resource_group_name=resource_group_name,
             id=id,
+            api_version=api_version,
             template_url=self.validation_of_method_parameters.metadata["url"],
         )
         request = _convert_request(request)
@@ -82,7 +85,13 @@ class AutoRestValidationTestOperationsMixin:
 
     @distributed_trace_async
     async def validation_of_body(
-        self, resource_group_name: str, id: int, body: Optional["_models.Product"] = None, **kwargs: Any
+        self,
+        resource_group_name: str,
+        id: int,
+        body: Optional["_models.Product"] = None,
+        *,
+        api_version: str = "1.0.0",
+        **kwargs: Any
     ) -> "_models.Product":
         """Validates body parameters on the method. See swagger for details.
 
@@ -92,6 +101,8 @@ class AutoRestValidationTestOperationsMixin:
         :type id: int
         :param body:
         :type body: ~validation.models.Product
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Product, or the result of cls(response)
         :rtype: ~validation.models.Product
@@ -114,6 +125,7 @@ class AutoRestValidationTestOperationsMixin:
             id=id,
             content_type=content_type,
             json=json,
+            api_version=api_version,
             template_url=self.validation_of_body.metadata["url"],
         )
         request = _convert_request(request)
@@ -137,9 +149,11 @@ class AutoRestValidationTestOperationsMixin:
     validation_of_body.metadata = {"url": "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"}  # type: ignore
 
     @distributed_trace_async
-    async def get_with_constant_in_path(self, **kwargs: Any) -> None:
+    async def get_with_constant_in_path(self, *, constant_param: str = "constant", **kwargs: Any) -> None:
         """get_with_constant_in_path.
 
+        :keyword constant_param:
+        :paramtype constant_param: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -150,6 +164,7 @@ class AutoRestValidationTestOperationsMixin:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_get_with_constant_in_path_request(
+            constant_param=constant_param,
             template_url=self.get_with_constant_in_path.metadata["url"],
         )
         request = _convert_request(request)
@@ -169,12 +184,14 @@ class AutoRestValidationTestOperationsMixin:
 
     @distributed_trace_async
     async def post_with_constant_in_body(
-        self, body: Optional["_models.Product"] = None, **kwargs: Any
+        self, body: Optional["_models.Product"] = None, *, constant_param: str = "constant", **kwargs: Any
     ) -> "_models.Product":
         """post_with_constant_in_body.
 
         :param body:
         :type body: ~validation.models.Product
+        :keyword constant_param:
+        :paramtype constant_param: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Product, or the result of cls(response)
         :rtype: ~validation.models.Product
@@ -192,6 +209,7 @@ class AutoRestValidationTestOperationsMixin:
             json = None
 
         request = build_post_with_constant_in_body_request(
+            constant_param=constant_param,
             content_type=content_type,
             json=json,
             template_url=self.post_with_constant_in_body.metadata["url"],

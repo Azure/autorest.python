@@ -40,7 +40,8 @@ def build_get_method_local_valid_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    api_version = "2.0"
+    api_version = kwargs.pop('api_version', "2.0")  # type: str
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/azurespecials/apiVersion/method/string/none/query/local/2.0')
@@ -94,7 +95,8 @@ def build_get_path_local_valid_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    api_version = "2.0"
+    api_version = kwargs.pop('api_version', "2.0")  # type: str
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/azurespecials/apiVersion/path/string/none/query/local/2.0')
@@ -120,7 +122,8 @@ def build_get_swagger_local_valid_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    api_version = "2.0"
+    api_version = kwargs.pop('api_version', "2.0")  # type: str
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/azurespecials/apiVersion/swagger/string/none/query/local/2.0')
@@ -171,6 +174,8 @@ class ApiVersionLocalOperations(object):
         # type: (...) -> None
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
+        :keyword api_version: This should appear as a method parameter, use value '2.0'.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -180,7 +185,10 @@ class ApiVersionLocalOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        api_version = kwargs.pop("api_version", "2.0")  # type: str
+
         request = build_get_method_local_valid_request(
+            api_version=api_version,
             template_url=self.get_method_local_valid.metadata["url"],
         )
         request = _convert_request(request)
@@ -247,6 +255,8 @@ class ApiVersionLocalOperations(object):
         # type: (...) -> None
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
+        :keyword api_version: This should appear as a method parameter, use value '2.0'.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -256,7 +266,10 @@ class ApiVersionLocalOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        api_version = kwargs.pop("api_version", "2.0")  # type: str
+
         request = build_get_path_local_valid_request(
+            api_version=api_version,
             template_url=self.get_path_local_valid.metadata["url"],
         )
         request = _convert_request(request)
@@ -282,6 +295,8 @@ class ApiVersionLocalOperations(object):
         # type: (...) -> None
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
+        :keyword api_version: The api version, which appears in the query, the value is always '2.0'.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -291,7 +306,10 @@ class ApiVersionLocalOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        api_version = kwargs.pop("api_version", "2.0")  # type: str
+
         request = build_get_swagger_local_valid_request(
+            api_version=api_version,
             template_url=self.get_swagger_local_valid.metadata["url"],
         )
         request = _convert_request(request)

@@ -49,12 +49,16 @@ class OperationGroupTwoOperations:
     async def test_four(
         self,
         parameter_one: bool,
+        *,
+        api_version: str = "2.0.0",
         **kwargs: Any
     ) -> None:
         """TestFour should be in OperationGroupTwoOperations.
 
         :param parameter_one: A boolean parameter.
         :type parameter_one: bool
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -69,6 +73,7 @@ class OperationGroupTwoOperations:
         
         request = build_test_four_request(
             parameter_one=parameter_one,
+            api_version=api_version,
             template_url=self.test_four.metadata['url'],
         )
         request = _convert_request(request)

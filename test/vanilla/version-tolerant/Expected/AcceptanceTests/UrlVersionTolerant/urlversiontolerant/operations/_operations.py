@@ -36,10 +36,10 @@ _SERIALIZER = Serializer()
 # fmt: off
 
 def build_paths_get_boolean_true_request(
+    bool_path=True,  # type: bool
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    bool_path = True
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paths/bool/true/{boolPath}')
@@ -62,10 +62,10 @@ def build_paths_get_boolean_true_request(
 
 
 def build_paths_get_boolean_false_request(
+    bool_path=False,  # type: bool
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    bool_path = False
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paths/bool/false/{boolPath}')
@@ -88,10 +88,10 @@ def build_paths_get_boolean_false_request(
 
 
 def build_paths_get_int_one_million_request(
+    int_path=1000000,  # type: int
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    int_path = 1000000
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paths/int/1000000/{intPath}')
@@ -114,10 +114,10 @@ def build_paths_get_int_one_million_request(
 
 
 def build_paths_get_int_negative_one_million_request(
+    int_path=-1000000,  # type: int
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    int_path = -1000000
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paths/int/-1000000/{intPath}')
@@ -140,10 +140,10 @@ def build_paths_get_int_negative_one_million_request(
 
 
 def build_paths_get_ten_billion_request(
+    long_path=10000000000,  # type: int
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    long_path = 10000000000
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paths/long/10000000000/{longPath}')
@@ -166,10 +166,10 @@ def build_paths_get_ten_billion_request(
 
 
 def build_paths_get_negative_ten_billion_request(
+    long_path=-10000000000,  # type: int
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    long_path = -10000000000
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paths/long/-10000000000/{longPath}')
@@ -192,10 +192,10 @@ def build_paths_get_negative_ten_billion_request(
 
 
 def build_paths_float_scientific_positive_request(
+    float_path=103400000000000000000,  # type: float
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    float_path = 103400000000000000000
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paths/float/1.034E+20/{floatPath}')
@@ -218,10 +218,10 @@ def build_paths_float_scientific_positive_request(
 
 
 def build_paths_float_scientific_negative_request(
+    float_path=-1.034e-20,  # type: float
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    float_path = -1.034e-20
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paths/float/-1.034E-20/{floatPath}')
@@ -244,10 +244,10 @@ def build_paths_float_scientific_negative_request(
 
 
 def build_paths_double_decimal_positive_request(
+    double_path=9999999.999,  # type: float
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    double_path = 9999999.999
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paths/double/9999999.999/{doublePath}')
@@ -270,10 +270,10 @@ def build_paths_double_decimal_positive_request(
 
 
 def build_paths_double_decimal_negative_request(
+    double_path=-9999999.999,  # type: float
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    double_path = -9999999.999
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paths/double/-9999999.999/{doublePath}')
@@ -296,10 +296,10 @@ def build_paths_double_decimal_negative_request(
 
 
 def build_paths_string_unicode_request(
+    string_path="啊齄丂狛狜隣郎隣兀﨩",  # type: str
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    string_path = "啊齄丂狛狜隣郎隣兀﨩"
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paths/string/unicode/{stringPath}')
@@ -322,10 +322,10 @@ def build_paths_string_unicode_request(
 
 
 def build_paths_string_url_encoded_request(
+    string_path="begin!*'();:@ &=+$,/?#[]end",  # type: str
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    string_path = "begin!*'();:@ &=+$,/?#[]end"
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}')
@@ -348,10 +348,10 @@ def build_paths_string_url_encoded_request(
 
 
 def build_paths_string_url_non_encoded_request(
+    string_path="begin!*'();:@&=+$,end",  # type: str
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    string_path = "begin!*'();:@&=+$,end"
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paths/string/begin!*\'();:@&=+$,end/{stringPath}')
@@ -374,10 +374,10 @@ def build_paths_string_url_non_encoded_request(
 
 
 def build_paths_string_empty_request(
+    string_path="",  # type: str
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    string_path = ""
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paths/string/empty/{stringPath}')
@@ -504,10 +504,10 @@ def build_paths_byte_multi_byte_request(
 
 
 def build_paths_byte_empty_request(
+    byte_path=bytearray("", encoding="utf-8"),  # type: bytearray
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    byte_path = bytearray("", encoding="utf-8")
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paths/byte/empty/{bytePath}')
@@ -556,10 +556,10 @@ def build_paths_byte_null_request(
 
 
 def build_paths_date_valid_request(
+    date_path="2012-01-01",  # type: datetime.date
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    date_path = "2012-01-01"
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paths/date/2012-01-01/{datePath}')
@@ -608,10 +608,10 @@ def build_paths_date_null_request(
 
 
 def build_paths_date_time_valid_request(
+    date_time_path="2012-01-01T01:01:01Z",  # type: datetime.datetime
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    date_time_path = "2012-01-01T01:01:01Z"
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}')
@@ -741,7 +741,8 @@ def build_queries_get_boolean_true_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    bool_query = True
+    bool_query = kwargs.pop('bool_query', True)  # type: bool
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/queries/bool/true')
@@ -767,7 +768,8 @@ def build_queries_get_boolean_false_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    bool_query = False
+    bool_query = kwargs.pop('bool_query', False)  # type: bool
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/queries/bool/false')
@@ -821,7 +823,8 @@ def build_queries_get_int_one_million_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    int_query = 1000000
+    int_query = kwargs.pop('int_query', 1000000)  # type: int
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/queries/int/1000000')
@@ -847,7 +850,8 @@ def build_queries_get_int_negative_one_million_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    int_query = -1000000
+    int_query = kwargs.pop('int_query', -1000000)  # type: int
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/queries/int/-1000000')
@@ -901,7 +905,8 @@ def build_queries_get_ten_billion_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    long_query = 10000000000
+    long_query = kwargs.pop('long_query', 10000000000)  # type: int
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/queries/long/10000000000')
@@ -927,7 +932,8 @@ def build_queries_get_negative_ten_billion_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    long_query = -10000000000
+    long_query = kwargs.pop('long_query', -10000000000)  # type: int
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/queries/long/-10000000000')
@@ -981,7 +987,8 @@ def build_queries_float_scientific_positive_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    float_query = 103400000000000000000
+    float_query = kwargs.pop('float_query', 103400000000000000000)  # type: float
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/queries/float/1.034E+20')
@@ -1007,7 +1014,8 @@ def build_queries_float_scientific_negative_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    float_query = -1.034e-20
+    float_query = kwargs.pop('float_query', -1.034e-20)  # type: float
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/queries/float/-1.034E-20')
@@ -1061,7 +1069,8 @@ def build_queries_double_decimal_positive_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    double_query = 9999999.999
+    double_query = kwargs.pop('double_query', 9999999.999)  # type: float
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/queries/double/9999999.999')
@@ -1087,7 +1096,8 @@ def build_queries_double_decimal_negative_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    double_query = -9999999.999
+    double_query = kwargs.pop('double_query', -9999999.999)  # type: float
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/queries/double/-9999999.999')
@@ -1141,7 +1151,8 @@ def build_queries_string_unicode_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    string_query = "啊齄丂狛狜隣郎隣兀﨩"
+    string_query = kwargs.pop('string_query', "啊齄丂狛狜隣郎隣兀﨩")  # type: str
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/queries/string/unicode/')
@@ -1167,7 +1178,8 @@ def build_queries_string_url_encoded_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    string_query = "begin!*'();:@ &=+$,/?#[]end"
+    string_query = kwargs.pop('string_query', "begin!*'();:@ &=+$,/?#[]end")  # type: str
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend')
@@ -1193,7 +1205,8 @@ def build_queries_string_empty_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    string_query = ""
+    string_query = kwargs.pop('string_query', "")  # type: str
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/queries/string/empty')
@@ -1331,7 +1344,8 @@ def build_queries_byte_empty_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    byte_query = bytearray("", encoding="utf-8")
+    byte_query = kwargs.pop('byte_query', bytearray("", encoding="utf-8"))  # type: bytearray
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/queries/byte/empty')
@@ -1385,7 +1399,8 @@ def build_queries_date_valid_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    date_query = "2012-01-01"
+    date_query = kwargs.pop('date_query', "2012-01-01")  # type: datetime.date
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/queries/date/2012-01-01')
@@ -1439,7 +1454,8 @@ def build_queries_date_time_valid_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    date_time_query = "2012-01-01T01:01:01Z"
+    date_time_query = kwargs.pop('date_time_query', "2012-01-01T01:01:01Z")  # type: datetime.datetime
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/queries/datetime/2012-01-01T01%3A01%3A01Z')
@@ -1881,11 +1897,15 @@ class PathsOperations(object):
 
     @distributed_trace
     def get_boolean_true(
-        self, **kwargs  # type: Any
+        self,
+        bool_path=True,  # type: bool
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get true Boolean value on path.
 
+        :param bool_path: true boolean value.
+        :type bool_path: bool
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1895,6 +1915,7 @@ class PathsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_paths_get_boolean_true_request(
+            bool_path=bool_path,
             template_url=self.get_boolean_true.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1913,11 +1934,15 @@ class PathsOperations(object):
 
     @distributed_trace
     def get_boolean_false(
-        self, **kwargs  # type: Any
+        self,
+        bool_path=False,  # type: bool
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get false Boolean value on path.
 
+        :param bool_path: false boolean value.
+        :type bool_path: bool
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1927,6 +1952,7 @@ class PathsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_paths_get_boolean_false_request(
+            bool_path=bool_path,
             template_url=self.get_boolean_false.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1945,11 +1971,15 @@ class PathsOperations(object):
 
     @distributed_trace
     def get_int_one_million(
-        self, **kwargs  # type: Any
+        self,
+        int_path=1000000,  # type: int
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '1000000' integer value.
 
+        :param int_path: '1000000' integer value.
+        :type int_path: int
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1959,6 +1989,7 @@ class PathsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_paths_get_int_one_million_request(
+            int_path=int_path,
             template_url=self.get_int_one_million.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1977,11 +2008,15 @@ class PathsOperations(object):
 
     @distributed_trace
     def get_int_negative_one_million(
-        self, **kwargs  # type: Any
+        self,
+        int_path=-1000000,  # type: int
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '-1000000' integer value.
 
+        :param int_path: '-1000000' integer value.
+        :type int_path: int
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1991,6 +2026,7 @@ class PathsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_paths_get_int_negative_one_million_request(
+            int_path=int_path,
             template_url=self.get_int_negative_one_million.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -2009,11 +2045,15 @@ class PathsOperations(object):
 
     @distributed_trace
     def get_ten_billion(
-        self, **kwargs  # type: Any
+        self,
+        long_path=10000000000,  # type: int
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '10000000000' 64 bit integer value.
 
+        :param long_path: '10000000000' 64 bit integer value.
+        :type long_path: long
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2023,6 +2063,7 @@ class PathsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_paths_get_ten_billion_request(
+            long_path=long_path,
             template_url=self.get_ten_billion.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -2041,11 +2082,15 @@ class PathsOperations(object):
 
     @distributed_trace
     def get_negative_ten_billion(
-        self, **kwargs  # type: Any
+        self,
+        long_path=-10000000000,  # type: int
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '-10000000000' 64 bit integer value.
 
+        :param long_path: '-10000000000' 64 bit integer value.
+        :type long_path: long
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2055,6 +2100,7 @@ class PathsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_paths_get_negative_ten_billion_request(
+            long_path=long_path,
             template_url=self.get_negative_ten_billion.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -2073,11 +2119,15 @@ class PathsOperations(object):
 
     @distributed_trace
     def float_scientific_positive(
-        self, **kwargs  # type: Any
+        self,
+        float_path=103400000000000000000,  # type: float
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '1.034E+20' numeric value.
 
+        :param float_path: '1.034E+20'numeric value.
+        :type float_path: float
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2087,6 +2137,7 @@ class PathsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_paths_float_scientific_positive_request(
+            float_path=float_path,
             template_url=self.float_scientific_positive.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -2105,11 +2156,15 @@ class PathsOperations(object):
 
     @distributed_trace
     def float_scientific_negative(
-        self, **kwargs  # type: Any
+        self,
+        float_path=-1.034e-20,  # type: float
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '-1.034E-20' numeric value.
 
+        :param float_path: '-1.034E-20'numeric value.
+        :type float_path: float
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2119,6 +2174,7 @@ class PathsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_paths_float_scientific_negative_request(
+            float_path=float_path,
             template_url=self.float_scientific_negative.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -2137,11 +2193,15 @@ class PathsOperations(object):
 
     @distributed_trace
     def double_decimal_positive(
-        self, **kwargs  # type: Any
+        self,
+        double_path=9999999.999,  # type: float
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '9999999.999' numeric value.
 
+        :param double_path: '9999999.999'numeric value.
+        :type double_path: float
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2151,6 +2211,7 @@ class PathsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_paths_double_decimal_positive_request(
+            double_path=double_path,
             template_url=self.double_decimal_positive.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -2169,11 +2230,15 @@ class PathsOperations(object):
 
     @distributed_trace
     def double_decimal_negative(
-        self, **kwargs  # type: Any
+        self,
+        double_path=-9999999.999,  # type: float
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '-9999999.999' numeric value.
 
+        :param double_path: '-9999999.999'numeric value.
+        :type double_path: float
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2183,6 +2248,7 @@ class PathsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_paths_double_decimal_negative_request(
+            double_path=double_path,
             template_url=self.double_decimal_negative.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -2201,11 +2267,15 @@ class PathsOperations(object):
 
     @distributed_trace
     def string_unicode(
-        self, **kwargs  # type: Any
+        self,
+        string_path="啊齄丂狛狜隣郎隣兀﨩",  # type: str
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
+        :param string_path: '啊齄丂狛狜隣郎隣兀﨩'multi-byte string value.
+        :type string_path: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2215,6 +2285,7 @@ class PathsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_paths_string_unicode_request(
+            string_path=string_path,
             template_url=self.string_unicode.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -2233,11 +2304,15 @@ class PathsOperations(object):
 
     @distributed_trace
     def string_url_encoded(
-        self, **kwargs  # type: Any
+        self,
+        string_path="begin!*'();:@ &=+$,/?#[]end",  # type: str
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
+        :param string_path: 'begin!*'();:@ &=+$,/?#[]end' url encoded string value.
+        :type string_path: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2247,6 +2322,7 @@ class PathsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_paths_string_url_encoded_request(
+            string_path=string_path,
             template_url=self.string_url_encoded.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -2265,13 +2341,17 @@ class PathsOperations(object):
 
     @distributed_trace
     def string_url_non_encoded(
-        self, **kwargs  # type: Any
+        self,
+        string_path="begin!*'();:@&=+$,end",  # type: str
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get 'begin!*'();:@&=+$,end.
 
         https://tools.ietf.org/html/rfc3986#appendix-A 'path' accept any 'pchar' not encoded.
 
+        :param string_path: 'begin!*'();:@&=+$,end' url encoded string value.
+        :type string_path: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2281,6 +2361,7 @@ class PathsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_paths_string_url_non_encoded_request(
+            string_path=string_path,
             template_url=self.string_url_non_encoded.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -2299,11 +2380,15 @@ class PathsOperations(object):
 
     @distributed_trace
     def string_empty(
-        self, **kwargs  # type: Any
+        self,
+        string_path="",  # type: str
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get ''.
 
+        :param string_path: '' string value.
+        :type string_path: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2313,6 +2398,7 @@ class PathsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_paths_string_empty_request(
+            string_path=string_path,
             template_url=self.string_empty.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -2481,11 +2567,15 @@ class PathsOperations(object):
 
     @distributed_trace
     def byte_empty(
-        self, **kwargs  # type: Any
+        self,
+        byte_path=bytearray("", encoding="utf-8"),  # type: bytearray
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '' as byte array.
 
+        :param byte_path: '' as byte array.
+        :type byte_path: bytearray
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2495,6 +2585,7 @@ class PathsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_paths_byte_empty_request(
+            byte_path=byte_path,
             template_url=self.byte_empty.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -2550,11 +2641,15 @@ class PathsOperations(object):
 
     @distributed_trace
     def date_valid(
-        self, **kwargs  # type: Any
+        self,
+        date_path="2012-01-01",  # type: datetime.date
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '2012-01-01' as date.
 
+        :param date_path: '2012-01-01' as date.
+        :type date_path: ~datetime.date
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2564,6 +2659,7 @@ class PathsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_paths_date_valid_request(
+            date_path=date_path,
             template_url=self.date_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -2620,11 +2716,15 @@ class PathsOperations(object):
 
     @distributed_trace
     def date_time_valid(
-        self, **kwargs  # type: Any
+        self,
+        date_time_path="2012-01-01T01:01:01Z",  # type: datetime.datetime
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '2012-01-01T01:01:01Z' as date-time.
 
+        :param date_time_path: '2012-01-01T01:01:01Z' as date-time.
+        :type date_time_path: ~datetime.datetime
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2634,6 +2734,7 @@ class PathsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_paths_date_time_valid_request(
+            date_time_path=date_time_path,
             template_url=self.date_time_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -2826,6 +2927,8 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get true Boolean value on path.
 
+        :keyword bool_query: true boolean value.
+        :paramtype bool_query: bool
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2834,7 +2937,10 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        bool_query = kwargs.pop("bool_query", True)  # type: bool
+
         request = build_queries_get_boolean_true_request(
+            bool_query=bool_query,
             template_url=self.get_boolean_true.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -2858,6 +2964,8 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get false Boolean value on path.
 
+        :keyword bool_query: false boolean value.
+        :paramtype bool_query: bool
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2866,7 +2974,10 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        bool_query = kwargs.pop("bool_query", False)  # type: bool
+
         request = build_queries_get_boolean_false_request(
+            bool_query=bool_query,
             template_url=self.get_boolean_false.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -2927,6 +3038,8 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get '1000000' integer value.
 
+        :keyword int_query: '1000000' integer value.
+        :paramtype int_query: int
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2935,7 +3048,10 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        int_query = kwargs.pop("int_query", 1000000)  # type: int
+
         request = build_queries_get_int_one_million_request(
+            int_query=int_query,
             template_url=self.get_int_one_million.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -2959,6 +3075,8 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get '-1000000' integer value.
 
+        :keyword int_query: '-1000000' integer value.
+        :paramtype int_query: int
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2967,7 +3085,10 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        int_query = kwargs.pop("int_query", -1000000)  # type: int
+
         request = build_queries_get_int_negative_one_million_request(
+            int_query=int_query,
             template_url=self.get_int_negative_one_million.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -3028,6 +3149,8 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get '10000000000' 64 bit integer value.
 
+        :keyword long_query: '10000000000' 64 bit integer value.
+        :paramtype long_query: long
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -3036,7 +3159,10 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        long_query = kwargs.pop("long_query", 10000000000)  # type: int
+
         request = build_queries_get_ten_billion_request(
+            long_query=long_query,
             template_url=self.get_ten_billion.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -3060,6 +3186,8 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get '-10000000000' 64 bit integer value.
 
+        :keyword long_query: '-10000000000' 64 bit integer value.
+        :paramtype long_query: long
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -3068,7 +3196,10 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        long_query = kwargs.pop("long_query", -10000000000)  # type: int
+
         request = build_queries_get_negative_ten_billion_request(
+            long_query=long_query,
             template_url=self.get_negative_ten_billion.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -3129,6 +3260,8 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get '1.034E+20' numeric value.
 
+        :keyword float_query: '1.034E+20'numeric value.
+        :paramtype float_query: float
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -3137,7 +3270,10 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        float_query = kwargs.pop("float_query", 103400000000000000000)  # type: float
+
         request = build_queries_float_scientific_positive_request(
+            float_query=float_query,
             template_url=self.float_scientific_positive.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -3161,6 +3297,8 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get '-1.034E-20' numeric value.
 
+        :keyword float_query: '-1.034E-20'numeric value.
+        :paramtype float_query: float
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -3169,7 +3307,10 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        float_query = kwargs.pop("float_query", -1.034e-20)  # type: float
+
         request = build_queries_float_scientific_negative_request(
+            float_query=float_query,
             template_url=self.float_scientific_negative.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -3230,6 +3371,8 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get '9999999.999' numeric value.
 
+        :keyword double_query: '9999999.999'numeric value.
+        :paramtype double_query: float
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -3238,7 +3381,10 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        double_query = kwargs.pop("double_query", 9999999.999)  # type: float
+
         request = build_queries_double_decimal_positive_request(
+            double_query=double_query,
             template_url=self.double_decimal_positive.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -3262,6 +3408,8 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get '-9999999.999' numeric value.
 
+        :keyword double_query: '-9999999.999'numeric value.
+        :paramtype double_query: float
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -3270,7 +3418,10 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        double_query = kwargs.pop("double_query", -9999999.999)  # type: float
+
         request = build_queries_double_decimal_negative_request(
+            double_query=double_query,
             template_url=self.double_decimal_negative.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -3331,6 +3482,8 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
+        :keyword string_query: '啊齄丂狛狜隣郎隣兀﨩'multi-byte string value.
+        :paramtype string_query: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -3339,7 +3492,10 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        string_query = kwargs.pop("string_query", "啊齄丂狛狜隣郎隣兀﨩")  # type: str
+
         request = build_queries_string_unicode_request(
+            string_query=string_query,
             template_url=self.string_unicode.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -3363,6 +3519,8 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
+        :keyword string_query: 'begin!*'();:@ &=+$,/?#[]end' url encoded string value.
+        :paramtype string_query: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -3371,7 +3529,10 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        string_query = kwargs.pop("string_query", "begin!*'();:@ &=+$,/?#[]end")  # type: str
+
         request = build_queries_string_url_encoded_request(
+            string_query=string_query,
             template_url=self.string_url_encoded.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -3395,6 +3556,8 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get ''.
 
+        :keyword string_query: '' string value.
+        :paramtype string_query: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -3403,7 +3566,10 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        string_query = kwargs.pop("string_query", "")  # type: str
+
         request = build_queries_string_empty_request(
+            string_query=string_query,
             template_url=self.string_empty.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -3577,6 +3743,8 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get '' as byte array.
 
+        :keyword byte_query: '' as byte array.
+        :paramtype byte_query: bytearray
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -3585,7 +3753,10 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        byte_query = kwargs.pop("byte_query", bytearray("", encoding="utf-8"))  # type: bytearray
+
         request = build_queries_byte_empty_request(
+            byte_query=byte_query,
             template_url=self.byte_empty.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -3646,6 +3817,8 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get '2012-01-01' as date.
 
+        :keyword date_query: '2012-01-01' as date.
+        :paramtype date_query: ~datetime.date
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -3654,7 +3827,10 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        date_query = kwargs.pop("date_query", "2012-01-01")  # type: datetime.date
+
         request = build_queries_date_valid_request(
+            date_query=date_query,
             template_url=self.date_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -3715,6 +3891,8 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get '2012-01-01T01:01:01Z' as date-time.
 
+        :keyword date_time_query: '2012-01-01T01:01:01Z' as date-time.
+        :paramtype date_time_query: ~datetime.datetime
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -3723,7 +3901,10 @@ class QueriesOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        date_time_query = kwargs.pop("date_time_query", "2012-01-01T01:01:01Z")  # type: datetime.datetime
+
         request = build_queries_date_time_valid_request(
+            date_time_query=date_time_query,
             template_url=self.date_time_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

@@ -229,12 +229,14 @@ def build_get_big_double_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_big_double_positive_decimal_request(**kwargs: Any) -> HttpRequest:
+def build_put_big_double_positive_decimal_request(*, json: float = 99999999.99, **kwargs: Any) -> HttpRequest:
     """Put big double value 99999999.99.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword json:
+    :paramtype json: float
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -243,7 +245,6 @@ def build_put_big_double_positive_decimal_request(**kwargs: Any) -> HttpRequest:
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
-    json = 99999999.99
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", "/number/big/double/99999999.99")
@@ -280,12 +281,14 @@ def build_get_big_double_positive_decimal_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_big_double_negative_decimal_request(**kwargs: Any) -> HttpRequest:
+def build_put_big_double_negative_decimal_request(*, json: float = -99999999.99, **kwargs: Any) -> HttpRequest:
     """Put big double value -99999999.99.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword json:
+    :paramtype json: float
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -294,7 +297,6 @@ def build_put_big_double_negative_decimal_request(**kwargs: Any) -> HttpRequest:
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
-    json = -99999999.99
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", "/number/big/double/-99999999.99")
@@ -393,12 +395,14 @@ def build_get_big_decimal_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_big_decimal_positive_decimal_request(**kwargs: Any) -> HttpRequest:
+def build_put_big_decimal_positive_decimal_request(*, json: float = 99999999.99, **kwargs: Any) -> HttpRequest:
     """Put big decimal value 99999999.99.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword json:
+    :paramtype json: float
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -407,7 +411,6 @@ def build_put_big_decimal_positive_decimal_request(**kwargs: Any) -> HttpRequest
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
-    json = 99999999.99
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", "/number/big/decimal/99999999.99")
@@ -444,12 +447,14 @@ def build_get_big_decimal_positive_decimal_request(**kwargs: Any) -> HttpRequest
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_big_decimal_negative_decimal_request(**kwargs: Any) -> HttpRequest:
+def build_put_big_decimal_negative_decimal_request(*, json: float = -99999999.99, **kwargs: Any) -> HttpRequest:
     """Put big decimal value -99999999.99.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword json:
+    :paramtype json: float
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -458,7 +463,6 @@ def build_put_big_decimal_negative_decimal_request(**kwargs: Any) -> HttpRequest
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
-    json = -99999999.99
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", "/number/big/decimal/-99999999.99")

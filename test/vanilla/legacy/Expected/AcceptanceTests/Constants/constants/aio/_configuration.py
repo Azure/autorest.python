@@ -19,11 +19,29 @@ class AutoRestSwaggerConstantServiceConfiguration(Configuration):
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
+
+    :keyword header_constant: Constant header property on the client that is a required parameter for operation 'constants_putClientConstants'.
+    :paramtype header_constant: bool
+    :keyword query_constant: Constant query property on the client that is a required parameter for operation 'constants_putClientConstants'.
+    :paramtype query_constant: int
+    :keyword path_constant: Constant path property on the client that is a required parameter for operation 'constants_putClientConstants'.
+    :paramtype path_constant: str
     """
 
-    def __init__(self, **kwargs: Any) -> None:
+    def __init__(
+        self, *, header_constant: bool = True, query_constant: int = 100, path_constant: str = "path", **kwargs: Any
+    ) -> None:
+        if header_constant is None:
+            raise ValueError("Parameter 'header_constant' must not be None.")
+        if query_constant is None:
+            raise ValueError("Parameter 'query_constant' must not be None.")
+        if path_constant is None:
+            raise ValueError("Parameter 'path_constant' must not be None.")
         super(AutoRestSwaggerConstantServiceConfiguration, self).__init__(**kwargs)
 
+        self.header_constant = header_constant
+        self.query_constant = query_constant
+        self.path_constant = path_constant
         self.header_constant = True
         self.query_constant = 100
         self.path_constant = "path"

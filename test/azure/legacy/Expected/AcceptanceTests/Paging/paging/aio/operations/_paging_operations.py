@@ -379,7 +379,7 @@ class PagingOperations:
 
     @distributed_trace
     def get_with_query_params(
-        self, required_query_parameter: int, **kwargs: Any
+        self, required_query_parameter: int, *, query_constant: bool = True, **kwargs: Any
     ) -> AsyncIterable["_models.ProductResult"]:
         """A paging operation that includes a next operation. It has a different query parameter from it's
         next operation nextOperationWithQueryParams. Returns a ProductResult.
@@ -387,6 +387,9 @@ class PagingOperations:
         :param required_query_parameter: A required integer query parameter. Put in value '100' to pass
          test.
         :type required_query_parameter: int
+        :keyword query_constant: A constant. Must be True and will be passed as a query parameter to
+         nextOperationWithQueryParams.
+        :paramtype query_constant: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either ProductResult or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResult]
@@ -401,6 +404,7 @@ class PagingOperations:
 
                 request = build_get_with_query_params_request(
                     required_query_parameter=required_query_parameter,
+                    query_constant=query_constant,
                     template_url=self.get_with_query_params.metadata["url"],
                 )
                 request = _convert_request(request)
@@ -409,6 +413,7 @@ class PagingOperations:
             else:
 
                 request = build_next_operation_with_query_params_request(
+                    query_constant=query_constant,
                     template_url="/paging/multiple/nextOperationWithQueryParams",
                 )
                 request = _convert_request(request)

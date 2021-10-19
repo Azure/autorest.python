@@ -49,12 +49,16 @@ class OperationGroupTwoOperations:
     async def test_four(
         self,
         input: Optional[Union[IO, "_models.SourcePath"]] = None,
+        *,
+        api_version: str = "3.0.0",
         **kwargs: Any
     ) -> None:
         """TestFour should be in OperationGroupTwoOperations.
 
         :param input: Input parameter.
         :type input: IO or ~azure.multiapi.sample.v3.models.SourcePath
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :keyword str content_type: Media type of the body sent to the API. Default value is
          "application/json". Allowed values are: "application/pdf", "image/jpeg", "image/png",
          "image/tiff", "application/json."
@@ -88,6 +92,7 @@ class OperationGroupTwoOperations:
             content_type=content_type,
             json=json,
             content=content,
+            api_version=api_version,
             template_url=self.test_four.metadata['url'],
         )
         request = _convert_request(request)
@@ -110,10 +115,14 @@ class OperationGroupTwoOperations:
     @distributed_trace_async
     async def test_five(
         self,
+        *,
+        api_version: str = "3.0.0",
         **kwargs: Any
     ) -> None:
         """TestFive should be in OperationGroupTwoOperations.
 
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -127,6 +136,7 @@ class OperationGroupTwoOperations:
 
         
         request = build_test_five_request(
+            api_version=api_version,
             template_url=self.test_five.metadata['url'],
         )
         request = _convert_request(request)

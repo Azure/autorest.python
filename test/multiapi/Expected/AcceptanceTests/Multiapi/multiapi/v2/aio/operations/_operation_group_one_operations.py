@@ -49,12 +49,16 @@ class OperationGroupOneOperations:
     async def test_two(
         self,
         parameter_one: Optional["_models.ModelTwo"] = None,
+        *,
+        api_version: str = "2.0.0",
         **kwargs: Any
     ) -> "_models.ModelTwo":
         """TestTwo should be in OperationGroupOneOperations. Takes in ModelTwo and ouputs ModelTwo.
 
         :param parameter_one: A ModelTwo parameter.
         :type parameter_one: ~multiapi.v2.models.ModelTwo
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ModelTwo, or the result of cls(response)
         :rtype: ~multiapi.v2.models.ModelTwo
@@ -76,6 +80,7 @@ class OperationGroupOneOperations:
         request = build_test_two_request(
             content_type=content_type,
             json=json,
+            api_version=api_version,
             template_url=self.test_two.metadata['url'],
         )
         request = _convert_request(request)
@@ -102,10 +107,14 @@ class OperationGroupOneOperations:
     @distributed_trace_async
     async def test_three(
         self,
+        *,
+        api_version: str = "2.0.0",
         **kwargs: Any
     ) -> None:
         """TestThree should be in OperationGroupOneOperations. Takes in ModelTwo.
 
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -119,6 +128,7 @@ class OperationGroupOneOperations:
 
         
         request = build_test_three_request(
+            api_version=api_version,
             template_url=self.test_three.metadata['url'],
         )
         request = _convert_request(request)

@@ -47,11 +47,15 @@ class GroupOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_sample_resource_group(self, resource_group_name: str, **kwargs: Any) -> Any:
+    async def get_sample_resource_group(
+        self, resource_group_name: str, *, api_version: str = "2014-04-01-preview", **kwargs: Any
+    ) -> Any:
         """Provides a resouce group with name 'testgroup101' and location 'West US'.
 
         :param resource_group_name: Resource Group name 'testgroup101'.
         :type resource_group_name: str
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :return: JSON object
         :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -72,6 +76,7 @@ class GroupOperations:
         request = build_group_get_sample_resource_group_request(
             subscription_id=self._config.subscription_id,
             resource_group_name=resource_group_name,
+            api_version=api_version,
             template_url=self.get_sample_resource_group.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

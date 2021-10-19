@@ -149,8 +149,8 @@ def build_paging_get_with_query_params_request(
 ):
     # type: (...) -> HttpRequest
     required_query_parameter = kwargs.pop('required_query_parameter')  # type: int
+    query_constant = kwargs.pop('query_constant', True)  # type: bool
 
-    query_constant = True
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paging/multiple/getWithQueryParams')
@@ -177,7 +177,8 @@ def build_paging_next_operation_with_query_params_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    query_constant = True
+    query_constant = kwargs.pop('query_constant', True)  # type: bool
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paging/multiple/nextOperationWithQueryParams')
@@ -974,6 +975,9 @@ class PagingOperations(object):
         :keyword required_query_parameter: A required integer query parameter. Put in value '100' to
          pass test.
         :paramtype required_query_parameter: int
+        :keyword query_constant: A constant. Must be True and will be passed as a query parameter to
+         nextOperationWithQueryParams.
+        :paramtype query_constant: bool
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -995,6 +999,7 @@ class PagingOperations(object):
                 }
         """
         required_query_parameter = kwargs.pop('required_query_parameter')  # type: int
+        query_constant = kwargs.pop('query_constant', True)  # type: bool
 
         cls = kwargs.pop('cls', None)  # type: ClsType[Any]
         error_map = {
@@ -1006,6 +1011,7 @@ class PagingOperations(object):
                 
                 request = build_paging_get_with_query_params_request(
                     required_query_parameter=required_query_parameter,
+                    query_constant=query_constant,
                     template_url=self.get_with_query_params.metadata['url'],
                 )
                 request.url = self._client.format_url(request.url)
@@ -1013,6 +1019,7 @@ class PagingOperations(object):
             else:
                 
                 request = build_paging_next_operation_with_query_params_request(
+                    query_constant=query_constant,
                     template_url='/paging/multiple/nextOperationWithQueryParams',
                 )
                 request.url = self._client.format_url(request.url)

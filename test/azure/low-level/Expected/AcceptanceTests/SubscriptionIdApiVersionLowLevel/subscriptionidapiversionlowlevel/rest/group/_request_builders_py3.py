@@ -16,7 +16,7 @@ _SERIALIZER = Serializer()
 
 
 def build_get_sample_resource_group_request(
-    subscription_id: str, resource_group_name: str, **kwargs: Any
+    subscription_id: str, resource_group_name: str, *, api_version: str = "2014-04-01-preview", **kwargs: Any
 ) -> HttpRequest:
     """Provides a resouce group with name 'testgroup101' and location 'West US'.
 
@@ -27,6 +27,8 @@ def build_get_sample_resource_group_request(
     :type subscription_id: str
     :param resource_group_name: Resource Group name 'testgroup101'.
     :type resource_group_name: str
+    :keyword api_version: Api Version.
+    :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -42,7 +44,6 @@ def build_get_sample_resource_group_request(
             }
     """
 
-    api_version = "2014-04-01-preview"
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}")

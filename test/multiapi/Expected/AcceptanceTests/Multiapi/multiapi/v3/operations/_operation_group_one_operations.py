@@ -35,8 +35,8 @@ def build_test_two_request(
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    api_version = kwargs.pop('api_version', "3.0.0")  # type: str
 
-    api_version = "3.0.0"
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/multiapi/one/testTwoEndpoint')
@@ -93,6 +93,8 @@ class OperationGroupOneOperations(object):
 
         :param parameter_one: A ModelThree parameter.
         :type parameter_one: ~multiapi.v3.models.ModelThree
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ModelThree, or the result of cls(response)
         :rtype: ~multiapi.v3.models.ModelThree
@@ -105,6 +107,7 @@ class OperationGroupOneOperations(object):
         error_map.update(kwargs.pop('error_map', {}))
 
         content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
+        api_version = kwargs.pop('api_version', "3.0.0")  # type: str
 
         if parameter_one is not None:
             json = self._serialize.body(parameter_one, 'ModelThree')
@@ -114,6 +117,7 @@ class OperationGroupOneOperations(object):
         request = build_test_two_request(
             content_type=content_type,
             json=json,
+            api_version=api_version,
             template_url=self.test_two.metadata['url'],
         )
         request = _convert_request(request)

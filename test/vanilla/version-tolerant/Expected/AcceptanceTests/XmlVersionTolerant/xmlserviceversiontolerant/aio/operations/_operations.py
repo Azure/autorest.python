@@ -1111,9 +1111,11 @@ class XmlOperations:
     put_empty_child_element.metadata = {"url": "/xml/empty-child-element"}  # type: ignore
 
     @distributed_trace_async
-    async def list_containers(self, **kwargs: Any) -> Any:
+    async def list_containers(self, *, comp: str = "list", **kwargs: Any) -> Any:
         """Lists containers in a storage account.
 
+        :keyword comp:
+        :paramtype comp: str
         :return: JSON object
         :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1151,6 +1153,7 @@ class XmlOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_xml_list_containers_request(
+            comp=comp,
             template_url=self.list_containers.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1175,9 +1178,13 @@ class XmlOperations:
     list_containers.metadata = {"url": "/xml/"}  # type: ignore
 
     @distributed_trace_async
-    async def get_service_properties(self, **kwargs: Any) -> Any:
+    async def get_service_properties(self, *, comp: str = "properties", restype: str = "service", **kwargs: Any) -> Any:
         """Gets storage service properties.
 
+        :keyword comp:
+        :paramtype comp: str
+        :keyword restype:
+        :paramtype restype: str
         :return: JSON object
         :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1236,6 +1243,8 @@ class XmlOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_xml_get_service_properties_request(
+            comp=comp,
+            restype=restype,
             template_url=self.get_service_properties.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1260,11 +1269,17 @@ class XmlOperations:
     get_service_properties.metadata = {"url": "/xml/"}  # type: ignore
 
     @distributed_trace_async
-    async def put_service_properties(self, properties: Any, **kwargs: Any) -> None:
+    async def put_service_properties(
+        self, properties: Any, *, comp: str = "properties", restype: str = "service", **kwargs: Any
+    ) -> None:
         """Puts storage service properties.
 
         :param properties:
         :type properties: Any
+        :keyword comp:
+        :paramtype comp: str
+        :keyword restype:
+        :paramtype restype: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1329,6 +1344,8 @@ class XmlOperations:
         request = build_xml_put_service_properties_request(
             content_type=content_type,
             content=content,
+            comp=comp,
+            restype=restype,
             template_url=self.put_service_properties.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1346,9 +1363,13 @@ class XmlOperations:
     put_service_properties.metadata = {"url": "/xml/"}  # type: ignore
 
     @distributed_trace_async
-    async def get_acls(self, **kwargs: Any) -> List[Any]:
+    async def get_acls(self, *, comp: str = "acl", restype: str = "container", **kwargs: Any) -> List[Any]:
         """Gets storage ACLs for a container.
 
+        :keyword comp:
+        :paramtype comp: str
+        :keyword restype:
+        :paramtype restype: str
         :return: list of JSON object
         :rtype: list[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1373,6 +1394,8 @@ class XmlOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_xml_get_acls_request(
+            comp=comp,
+            restype=restype,
             template_url=self.get_acls.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1397,11 +1420,17 @@ class XmlOperations:
     get_acls.metadata = {"url": "/xml/mycontainer"}  # type: ignore
 
     @distributed_trace_async
-    async def put_acls(self, properties: List[Any], **kwargs: Any) -> None:
+    async def put_acls(
+        self, properties: List[Any], *, comp: str = "acl", restype: str = "container", **kwargs: Any
+    ) -> None:
         """Puts storage ACLs for a container.
 
         :param properties:
         :type properties: list[Any]
+        :keyword comp:
+        :paramtype comp: str
+        :keyword restype:
+        :paramtype restype: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1433,6 +1462,8 @@ class XmlOperations:
         request = build_xml_put_acls_request(
             content_type=content_type,
             content=content,
+            comp=comp,
+            restype=restype,
             template_url=self.put_acls.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1450,9 +1481,13 @@ class XmlOperations:
     put_acls.metadata = {"url": "/xml/mycontainer"}  # type: ignore
 
     @distributed_trace_async
-    async def list_blobs(self, **kwargs: Any) -> Any:
+    async def list_blobs(self, *, comp: str = "list", restype: str = "container", **kwargs: Any) -> Any:
         """Lists blobs in a storage container.
 
+        :keyword comp:
+        :paramtype comp: str
+        :keyword restype:
+        :paramtype restype: str
         :return: JSON object
         :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1523,6 +1558,8 @@ class XmlOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_xml_list_blobs_request(
+            comp=comp,
+            restype=restype,
             template_url=self.list_blobs.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

@@ -58,10 +58,10 @@ def build_poll_with_parameterized_endpoints_request_initial(
 
 
 def build_poll_with_constant_parameterized_endpoints_request_initial(
+    constant_parameter="iAmConstant",  # type: str
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    constant_parameter = "iAmConstant"
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/lroConstantParameterizedEndpoints/{constantParameter}')
@@ -201,6 +201,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
     def _poll_with_constant_parameterized_endpoints_initial(
         self,
         account_name,  # type: str
+        constant_parameter="iAmConstant",  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> Optional[str]
@@ -209,6 +210,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_poll_with_constant_parameterized_endpoints_request_initial(
+            constant_parameter=constant_parameter,
             template_url=self._poll_with_constant_parameterized_endpoints_initial.metadata["url"],
         )
         path_format_arguments = {
@@ -246,6 +248,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
     def begin_poll_with_constant_parameterized_endpoints(
         self,
         account_name,  # type: str
+        constant_parameter="iAmConstant",  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> LROPoller[str]
@@ -253,6 +256,8 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
 
         :param account_name: Account Name. Pass in 'local' to pass test.
         :type account_name: str
+        :param constant_parameter: Next link for the list operation.
+        :type constant_parameter: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be LROBasePolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -270,7 +275,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = self._poll_with_constant_parameterized_endpoints_initial(
-                account_name=account_name, cls=lambda x, y, z: x, **kwargs
+                account_name=account_name, constant_parameter=constant_parameter, cls=lambda x, y, z: x, **kwargs
             )
         kwargs.pop("error_map", None)
 

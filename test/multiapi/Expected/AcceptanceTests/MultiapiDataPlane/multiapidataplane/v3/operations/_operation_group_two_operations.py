@@ -34,8 +34,8 @@ def build_test_four_request(
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop('content_type', None)  # type: Optional[Union[str, "_models.ContentType"]]
+    api_version = kwargs.pop('api_version', "3.0.0")  # type: str
 
-    api_version = "3.0.0"
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/multiapi/two/testFourEndpoint')
@@ -63,7 +63,8 @@ def build_test_five_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    api_version = "3.0.0"
+    api_version = kwargs.pop('api_version', "3.0.0")  # type: str
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/multiapi/two/testFiveEndpoint')
@@ -118,6 +119,8 @@ class OperationGroupTwoOperations(object):
 
         :param input: Input parameter.
         :type input: IO or ~multiapidataplane.v3.models.SourcePath
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :keyword str content_type: Media type of the body sent to the API. Default value is
          "application/json". Allowed values are: "application/pdf", "image/jpeg", "image/png",
          "image/tiff", "application/json."
@@ -133,6 +136,7 @@ class OperationGroupTwoOperations(object):
         error_map.update(kwargs.pop('error_map', {}))
 
         content_type = kwargs.pop('content_type', "application/json")  # type: Optional[Union[str, "_models.ContentType"]]
+        api_version = kwargs.pop('api_version', "3.0.0")  # type: str
 
         json = None
         content = None
@@ -151,6 +155,7 @@ class OperationGroupTwoOperations(object):
             content_type=content_type,
             json=json,
             content=content,
+            api_version=api_version,
             template_url=self.test_four.metadata['url'],
         )
         request = _convert_request(request)
@@ -178,6 +183,8 @@ class OperationGroupTwoOperations(object):
         # type: (...) -> None
         """TestFive should be in OperationGroupTwoOperations.
 
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -189,8 +196,11 @@ class OperationGroupTwoOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
+        api_version = kwargs.pop('api_version', "3.0.0")  # type: str
+
         
         request = build_test_five_request(
+            api_version=api_version,
             template_url=self.test_five.metadata['url'],
         )
         request = _convert_request(request)

@@ -16,19 +16,20 @@ from ..._vendor import _format_url_section
 _SERIALIZER = Serializer()
 
 
-def build_get_boolean_true_request(**kwargs: Any) -> HttpRequest:
+def build_get_boolean_true_request(bool_path: bool = True, **kwargs: Any) -> HttpRequest:
     """Get true Boolean value on path.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :param bool_path: true boolean value.
+    :type bool_path: bool
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    bool_path = True
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", "/paths/bool/true/{boolPath}")
@@ -45,19 +46,20 @@ def build_get_boolean_true_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_get_boolean_false_request(**kwargs: Any) -> HttpRequest:
+def build_get_boolean_false_request(bool_path: bool = False, **kwargs: Any) -> HttpRequest:
     """Get false Boolean value on path.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :param bool_path: false boolean value.
+    :type bool_path: bool
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    bool_path = False
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", "/paths/bool/false/{boolPath}")
@@ -74,19 +76,20 @@ def build_get_boolean_false_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_get_int_one_million_request(**kwargs: Any) -> HttpRequest:
+def build_get_int_one_million_request(int_path: int = 1000000, **kwargs: Any) -> HttpRequest:
     """Get '1000000' integer value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :param int_path: '1000000' integer value.
+    :type int_path: int
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    int_path = 1000000
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", "/paths/int/1000000/{intPath}")
@@ -103,19 +106,20 @@ def build_get_int_one_million_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_get_int_negative_one_million_request(**kwargs: Any) -> HttpRequest:
+def build_get_int_negative_one_million_request(int_path: int = -1000000, **kwargs: Any) -> HttpRequest:
     """Get '-1000000' integer value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :param int_path: '-1000000' integer value.
+    :type int_path: int
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    int_path = -1000000
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", "/paths/int/-1000000/{intPath}")
@@ -132,19 +136,20 @@ def build_get_int_negative_one_million_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_get_ten_billion_request(**kwargs: Any) -> HttpRequest:
+def build_get_ten_billion_request(long_path: int = 10000000000, **kwargs: Any) -> HttpRequest:
     """Get '10000000000' 64 bit integer value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :param long_path: '10000000000' 64 bit integer value.
+    :type long_path: long
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    long_path = 10000000000
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", "/paths/long/10000000000/{longPath}")
@@ -161,19 +166,20 @@ def build_get_ten_billion_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_get_negative_ten_billion_request(**kwargs: Any) -> HttpRequest:
+def build_get_negative_ten_billion_request(long_path: int = -10000000000, **kwargs: Any) -> HttpRequest:
     """Get '-10000000000' 64 bit integer value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :param long_path: '-10000000000' 64 bit integer value.
+    :type long_path: long
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    long_path = -10000000000
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", "/paths/long/-10000000000/{longPath}")
@@ -190,19 +196,20 @@ def build_get_negative_ten_billion_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_float_scientific_positive_request(**kwargs: Any) -> HttpRequest:
+def build_float_scientific_positive_request(float_path: float = 103400000000000000000, **kwargs: Any) -> HttpRequest:
     """Get '1.034E+20' numeric value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :param float_path: '1.034E+20'numeric value.
+    :type float_path: float
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    float_path = 103400000000000000000
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", "/paths/float/1.034E+20/{floatPath}")
@@ -219,19 +226,20 @@ def build_float_scientific_positive_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_float_scientific_negative_request(**kwargs: Any) -> HttpRequest:
+def build_float_scientific_negative_request(float_path: float = -1.034e-20, **kwargs: Any) -> HttpRequest:
     """Get '-1.034E-20' numeric value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :param float_path: '-1.034E-20'numeric value.
+    :type float_path: float
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    float_path = -1.034e-20
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", "/paths/float/-1.034E-20/{floatPath}")
@@ -248,19 +256,20 @@ def build_float_scientific_negative_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_double_decimal_positive_request(**kwargs: Any) -> HttpRequest:
+def build_double_decimal_positive_request(double_path: float = 9999999.999, **kwargs: Any) -> HttpRequest:
     """Get '9999999.999' numeric value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :param double_path: '9999999.999'numeric value.
+    :type double_path: float
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    double_path = 9999999.999
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", "/paths/double/9999999.999/{doublePath}")
@@ -277,19 +286,20 @@ def build_double_decimal_positive_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_double_decimal_negative_request(**kwargs: Any) -> HttpRequest:
+def build_double_decimal_negative_request(double_path: float = -9999999.999, **kwargs: Any) -> HttpRequest:
     """Get '-9999999.999' numeric value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :param double_path: '-9999999.999'numeric value.
+    :type double_path: float
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    double_path = -9999999.999
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", "/paths/double/-9999999.999/{doublePath}")
@@ -306,19 +316,20 @@ def build_double_decimal_negative_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_string_unicode_request(**kwargs: Any) -> HttpRequest:
+def build_string_unicode_request(string_path: str = "啊齄丂狛狜隣郎隣兀﨩", **kwargs: Any) -> HttpRequest:
     """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :param string_path: '啊齄丂狛狜隣郎隣兀﨩'multi-byte string value.
+    :type string_path: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    string_path = "啊齄丂狛狜隣郎隣兀﨩"
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", "/paths/string/unicode/{stringPath}")
@@ -335,19 +346,20 @@ def build_string_unicode_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_string_url_encoded_request(**kwargs: Any) -> HttpRequest:
+def build_string_url_encoded_request(string_path: str = "begin!*'();:@ &=+$,/?#[]end", **kwargs: Any) -> HttpRequest:
     """Get 'begin!*'();:@ &=+$,/?#[]end.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :param string_path: 'begin!*'();:@ &=+$,/?#[]end' url encoded string value.
+    :type string_path: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    string_path = "begin!*'();:@ &=+$,/?#[]end"
     accept = "application/json"
     # Construct URL
     url = kwargs.pop(
@@ -366,7 +378,7 @@ def build_string_url_encoded_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_string_url_non_encoded_request(**kwargs: Any) -> HttpRequest:
+def build_string_url_non_encoded_request(string_path: str = "begin!*'();:@&=+$,end", **kwargs: Any) -> HttpRequest:
     """Get 'begin!*'();:@&=+$,end.
 
     https://tools.ietf.org/html/rfc3986#appendix-A 'path' accept any 'pchar' not encoded.
@@ -374,13 +386,14 @@ def build_string_url_non_encoded_request(**kwargs: Any) -> HttpRequest:
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :param string_path: 'begin!*'();:@&=+$,end' url encoded string value.
+    :type string_path: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    string_path = "begin!*'();:@&=+$,end"
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", "/paths/string/begin!*'();:@&=+$,end/{stringPath}")
@@ -397,19 +410,20 @@ def build_string_url_non_encoded_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_string_empty_request(**kwargs: Any) -> HttpRequest:
+def build_string_empty_request(string_path: str = "", **kwargs: Any) -> HttpRequest:
     """Get ''.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :param string_path: '' string value.
+    :type string_path: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    string_path = ""
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", "/paths/string/empty/{stringPath}")
@@ -548,19 +562,20 @@ def build_byte_multi_byte_request(byte_path: bytearray, **kwargs: Any) -> HttpRe
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_byte_empty_request(**kwargs: Any) -> HttpRequest:
+def build_byte_empty_request(byte_path: bytearray = bytearray("", encoding="utf-8"), **kwargs: Any) -> HttpRequest:
     """Get '' as byte array.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :param byte_path: '' as byte array.
+    :type byte_path: bytearray
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    byte_path = bytearray("", encoding="utf-8")
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", "/paths/byte/empty/{bytePath}")
@@ -607,19 +622,20 @@ def build_byte_null_request(byte_path: bytearray, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_date_valid_request(**kwargs: Any) -> HttpRequest:
+def build_date_valid_request(date_path: datetime.date = "2012-01-01", **kwargs: Any) -> HttpRequest:
     """Get '2012-01-01' as date.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :param date_path: '2012-01-01' as date.
+    :type date_path: ~datetime.date
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    date_path = "2012-01-01"
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", "/paths/date/2012-01-01/{datePath}")
@@ -667,19 +683,22 @@ def build_date_null_request(date_path: datetime.date, **kwargs: Any) -> HttpRequ
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_date_time_valid_request(**kwargs: Any) -> HttpRequest:
+def build_date_time_valid_request(
+    date_time_path: datetime.datetime = "2012-01-01T01:01:01Z", **kwargs: Any
+) -> HttpRequest:
     """Get '2012-01-01T01:01:01Z' as date-time.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :param date_time_path: '2012-01-01T01:01:01Z' as date-time.
+    :type date_time_path: ~datetime.datetime
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    date_time_path = "2012-01-01T01:01:01Z"
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", "/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}")

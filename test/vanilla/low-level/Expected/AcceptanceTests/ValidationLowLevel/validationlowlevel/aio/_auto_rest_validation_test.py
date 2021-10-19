@@ -44,7 +44,7 @@ class AutoRestValidationTest:
         Use these helper methods to create the request you pass to this method.
 
         >>> from validationlowlevel.rest import build_validation_of_method_parameters_request
-        >>> request = build_validation_of_method_parameters_request(subscription_id, resource_group_name, id, **kwargs)
+        >>> request = build_validation_of_method_parameters_request(subscription_id, resource_group_name, id, api_version=api_version, **kwargs)
         <HttpRequest [GET], url: '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>

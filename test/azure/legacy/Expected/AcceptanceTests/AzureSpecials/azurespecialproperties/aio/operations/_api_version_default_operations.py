@@ -58,9 +58,11 @@ class ApiVersionDefaultOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_method_global_valid(self, **kwargs: Any) -> None:
+    async def get_method_global_valid(self, *, api_version: str = "2015-07-01-preview", **kwargs: Any) -> None:
         """GET method with api-version modeled in global settings.
 
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -71,6 +73,7 @@ class ApiVersionDefaultOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_get_method_global_valid_request(
+            api_version=api_version,
             template_url=self.get_method_global_valid.metadata["url"],
         )
         request = _convert_request(request)
@@ -90,9 +93,13 @@ class ApiVersionDefaultOperations:
     get_method_global_valid.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview"}  # type: ignore
 
     @distributed_trace_async
-    async def get_method_global_not_provided_valid(self, **kwargs: Any) -> None:
+    async def get_method_global_not_provided_valid(
+        self, *, api_version: str = "2015-07-01-preview", **kwargs: Any
+    ) -> None:
         """GET method with api-version modeled in global settings.
 
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -103,6 +110,7 @@ class ApiVersionDefaultOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_get_method_global_not_provided_valid_request(
+            api_version=api_version,
             template_url=self.get_method_global_not_provided_valid.metadata["url"],
         )
         request = _convert_request(request)
@@ -122,9 +130,11 @@ class ApiVersionDefaultOperations:
     get_method_global_not_provided_valid.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview"}  # type: ignore
 
     @distributed_trace_async
-    async def get_path_global_valid(self, **kwargs: Any) -> None:
+    async def get_path_global_valid(self, *, api_version: str = "2015-07-01-preview", **kwargs: Any) -> None:
         """GET method with api-version modeled in global settings.
 
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -135,6 +145,7 @@ class ApiVersionDefaultOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_get_path_global_valid_request(
+            api_version=api_version,
             template_url=self.get_path_global_valid.metadata["url"],
         )
         request = _convert_request(request)
@@ -154,9 +165,11 @@ class ApiVersionDefaultOperations:
     get_path_global_valid.metadata = {"url": "/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview"}  # type: ignore
 
     @distributed_trace_async
-    async def get_swagger_global_valid(self, **kwargs: Any) -> None:
+    async def get_swagger_global_valid(self, *, api_version: str = "2015-07-01-preview", **kwargs: Any) -> None:
         """GET method with api-version modeled in global settings.
 
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -167,6 +180,7 @@ class ApiVersionDefaultOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_get_swagger_global_valid_request(
+            api_version=api_version,
             template_url=self.get_swagger_global_valid.metadata["url"],
         )
         request = _convert_request(request)

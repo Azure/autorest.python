@@ -53,9 +53,11 @@ class UsageOperations:
         self._config = config
 
     @distributed_trace_async
-    async def list(self, **kwargs: Any) -> "_models.UsageListResult":
+    async def list(self, *, api_version: str = "2015-05-01-preview", **kwargs: Any) -> "_models.UsageListResult":
         """Gets the current usage count and the limit for the resources under the subscription.
 
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: UsageListResult, or the result of cls(response)
         :rtype: ~storage.models.UsageListResult
@@ -67,6 +69,7 @@ class UsageOperations:
 
         request = build_list_request(
             subscription_id=self._config.subscription_id,
+            api_version=api_version,
             template_url=self.list.metadata["url"],
         )
         request = _convert_request(request)

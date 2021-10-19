@@ -127,10 +127,14 @@ class SubscriptionInCredentialsOperations:
     post_method_global_null.metadata = {"url": "/azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}"}  # type: ignore
 
     @distributed_trace_async
-    async def post_method_global_not_provided_valid(self, **kwargs: Any) -> None:
+    async def post_method_global_not_provided_valid(
+        self, *, api_version: str = "2015-07-01-preview", **kwargs: Any
+    ) -> None:
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
         '1234-5678-9012-3456' to succeed.
 
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -142,6 +146,7 @@ class SubscriptionInCredentialsOperations:
 
         request = build_post_method_global_not_provided_valid_request(
             subscription_id=self._config.subscription_id,
+            api_version=api_version,
             template_url=self.post_method_global_not_provided_valid.metadata["url"],
         )
         request = _convert_request(request)

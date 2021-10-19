@@ -75,19 +75,20 @@ def build_get_path_valid_request(unencoded_path_param: str, **kwargs: Any) -> Ht
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_get_swagger_path_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get_swagger_path_valid_request(unencoded_path_param: str = "path1/path2/path3", **kwargs: Any) -> HttpRequest:
     """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :param unencoded_path_param: An unencoded path parameter with value 'path1/path2/path3'.
+    :type unencoded_path_param: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    unencoded_path_param = "path1/path2/path3"
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", "/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}")
@@ -192,19 +193,20 @@ def build_get_path_query_valid_request(*, q1: str, **kwargs: Any) -> HttpRequest
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
-def build_get_swagger_query_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get_swagger_query_valid_request(*, q1: str = "value1&q2=value2&q3=value3", **kwargs: Any) -> HttpRequest:
     """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword q1: An unencoded query parameter with value 'value1&q2=value2&q3=value3'.
+    :paramtype q1: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    q1 = "value1&q2=value2&q3=value3"
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", "/azurespecials/skipUrlEncoding/swagger/query/valid")

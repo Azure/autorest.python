@@ -63,7 +63,7 @@ class MicrosoftAzureTestUrl(object):
         Use these helper methods to create the request you pass to this method.
 
         >>> from subscriptionidapiversionlowlevel.rest import group
-        >>> request = group.build_get_sample_resource_group_request(subscription_id, resource_group_name, **kwargs)
+        >>> request = group.build_get_sample_resource_group_request(subscription_id, resource_group_name, api_version=api_version, **kwargs)
         <HttpRequest [GET], url: '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>

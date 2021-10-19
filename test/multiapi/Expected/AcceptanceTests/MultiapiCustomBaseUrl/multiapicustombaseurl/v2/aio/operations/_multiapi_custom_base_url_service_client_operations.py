@@ -28,6 +28,8 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin:
     async def test(
         self,
         id: int,
+        *,
+        api_version: str = "2.0.0",
         **kwargs: Any
     ) -> None:
         """Should be a mixin operation. Put in 2 for the required parameter and have the correct api
@@ -35,6 +37,8 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin:
 
         :param id: An int parameter. Put in 2 to pass.
         :type id: int
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -49,6 +53,7 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin:
         
         request = build_test_request(
             id=id,
+            api_version=api_version,
             template_url=self.test.metadata['url'],
         )
         request = _convert_request(request)

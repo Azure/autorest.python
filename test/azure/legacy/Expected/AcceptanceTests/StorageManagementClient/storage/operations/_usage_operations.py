@@ -41,7 +41,8 @@ def build_list_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    api_version = "2015-05-01-preview"
+    api_version = kwargs.pop('api_version', "2015-05-01-preview")  # type: str
+
     accept = "application/json, text/json"
     # Construct URL
     url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages')
@@ -97,6 +98,8 @@ class UsageOperations(object):
         # type: (...) -> "_models.UsageListResult"
         """Gets the current usage count and the limit for the resources under the subscription.
 
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: UsageListResult, or the result of cls(response)
         :rtype: ~storage.models.UsageListResult
@@ -106,8 +109,11 @@ class UsageOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+
         request = build_list_request(
             subscription_id=self._config.subscription_id,
+            api_version=api_version,
             template_url=self.list.metadata["url"],
         )
         request = _convert_request(request)

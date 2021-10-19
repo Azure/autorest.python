@@ -57,8 +57,8 @@ def build_bool_put_true_request(
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    json = kwargs.pop('json', True)  # type: bool
 
-    json = True
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/bool/true')
@@ -103,8 +103,8 @@ def build_bool_put_false_request(
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    json = kwargs.pop('json', False)  # type: bool
 
-    json = False
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/bool/false')
@@ -223,11 +223,15 @@ class BoolOperations(object):
 
     @distributed_trace
     def put_true(
-        self, **kwargs  # type: Any
+        self,
+        bool_body=True,  # type: bool
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Set Boolean value true.
 
+        :param bool_body:
+        :type bool_body: bool
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -240,6 +244,7 @@ class BoolOperations(object):
 
         request = build_bool_put_true_request(
             content_type=content_type,
+            json=bool_body,
             template_url=self.put_true.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -297,11 +302,15 @@ class BoolOperations(object):
 
     @distributed_trace
     def put_false(
-        self, **kwargs  # type: Any
+        self,
+        bool_body=False,  # type: bool
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Set Boolean value false.
 
+        :param bool_body:
+        :type bool_body: bool
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -314,6 +323,7 @@ class BoolOperations(object):
 
         request = build_bool_put_false_request(
             content_type=content_type,
+            json=bool_body,
             template_url=self.put_false.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

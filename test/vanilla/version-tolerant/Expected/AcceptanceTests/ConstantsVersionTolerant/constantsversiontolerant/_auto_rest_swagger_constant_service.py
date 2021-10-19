@@ -27,6 +27,15 @@ class AutoRestSwaggerConstantService(object):
 
     :ivar contants: ContantsOperations operations
     :vartype contants: constantsversiontolerant.operations.ContantsOperations
+    :keyword header_constant: Constant header property on the client that is a required parameter
+     for operation 'constants_putClientConstants'.
+    :paramtype header_constant: bool
+    :keyword query_constant: Constant query property on the client that is a required parameter for
+     operation 'constants_putClientConstants'.
+    :paramtype query_constant: int
+    :keyword path_constant: Constant path property on the client that is a required parameter for
+     operation 'constants_putClientConstants'.
+    :paramtype path_constant: str
     :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
     :paramtype endpoint: str
     """
@@ -35,9 +44,14 @@ class AutoRestSwaggerConstantService(object):
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
+        header_constant = kwargs.pop("header_constant", True)  # type: bool
+        query_constant = kwargs.pop("query_constant", 100)  # type: int
+        path_constant = kwargs.pop("path_constant", "path")  # type: str
         endpoint = kwargs.pop("endpoint", "http://localhost:3000")  # type: str
 
-        self._config = AutoRestSwaggerConstantServiceConfiguration(**kwargs)
+        self._config = AutoRestSwaggerConstantServiceConfiguration(
+            header_constant=header_constant, query_constant=query_constant, path_constant=path_constant, **kwargs
+        )
         self._client = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()

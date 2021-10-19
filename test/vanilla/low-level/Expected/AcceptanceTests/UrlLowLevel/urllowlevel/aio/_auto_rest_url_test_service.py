@@ -55,7 +55,7 @@ class AutoRestUrlTestService:
         Use these helper methods to create the request you pass to this method.
 
         >>> from urllowlevel.rest import paths
-        >>> request = paths.build_get_boolean_true_request(**kwargs)
+        >>> request = paths.build_get_boolean_true_request(bool_path, **kwargs)
         <HttpRequest [GET], url: '/paths/bool/true/{boolPath}'>
         >>> response = await client.send_request(request)
         <AsyncHttpResponse: 200 OK>

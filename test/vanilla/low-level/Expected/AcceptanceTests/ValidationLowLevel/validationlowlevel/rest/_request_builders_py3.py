@@ -16,7 +16,7 @@ _SERIALIZER = Serializer()
 
 
 def build_validation_of_method_parameters_request(
-    subscription_id: str, resource_group_name: str, id: int, **kwargs: Any
+    subscription_id: str, resource_group_name: str, id: int, *, api_version: str = "1.0.0", **kwargs: Any
 ) -> HttpRequest:
     """Validates input parameters on the method. See swagger for details.
 
@@ -29,6 +29,8 @@ def build_validation_of_method_parameters_request(
     :type resource_group_name: str
     :param id: Required int multiple of 10 from 100 to 1000.
     :type id: int
+    :keyword api_version: Api Version.
+    :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -58,7 +60,6 @@ def build_validation_of_method_parameters_request(
             }
     """
 
-    api_version = "1.0.0"
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", "/fakepath/{subscriptionId}/{resourceGroupName}/{id}")
@@ -84,7 +85,14 @@ def build_validation_of_method_parameters_request(
 
 
 def build_validation_of_body_request(
-    subscription_id: str, resource_group_name: str, id: int, *, json: Any = None, content: Any = None, **kwargs: Any
+    subscription_id: str,
+    resource_group_name: str,
+    id: int,
+    *,
+    json: Any = None,
+    content: Any = None,
+    api_version: str = "1.0.0",
+    **kwargs: Any
 ) -> HttpRequest:
     """Validates body parameters on the method. See swagger for details.
 
@@ -103,6 +111,8 @@ def build_validation_of_body_request(
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).
     :paramtype content: any
+    :keyword api_version: Api Version.
+    :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -154,7 +164,6 @@ def build_validation_of_body_request(
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
-    api_version = "1.0.0"
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", "/fakepath/{subscriptionId}/{resourceGroupName}/{id}")
@@ -183,19 +192,20 @@ def build_validation_of_body_request(
     )
 
 
-def build_get_with_constant_in_path_request(**kwargs: Any) -> HttpRequest:
+def build_get_with_constant_in_path_request(constant_param: str = "constant", **kwargs: Any) -> HttpRequest:
     """get_with_constant_in_path.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :param constant_param:
+    :type constant_param: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    constant_param = "constant"
     # Construct URL
     url = kwargs.pop("template_url", "/validation/constantsInPath/{constantParam}/value")
     path_format_arguments = {
@@ -207,12 +217,16 @@ def build_get_with_constant_in_path_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, **kwargs)
 
 
-def build_post_with_constant_in_body_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_post_with_constant_in_body_request(
+    constant_param: str = "constant", *, json: Any = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
     """post_with_constant_in_body.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :param constant_param:
+    :type constant_param: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
     :paramtype json: any
@@ -270,7 +284,6 @@ def build_post_with_constant_in_body_request(*, json: Any = None, content: Any =
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
-    constant_param = "constant"
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", "/validation/constantsInPath/{constantParam}/value")

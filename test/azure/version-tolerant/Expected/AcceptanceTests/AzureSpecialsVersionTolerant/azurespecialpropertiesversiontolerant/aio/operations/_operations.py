@@ -223,10 +223,14 @@ class SubscriptionInCredentialsOperations:
     post_method_global_null.metadata = {"url": "/azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}"}  # type: ignore
 
     @distributed_trace_async
-    async def post_method_global_not_provided_valid(self, **kwargs: Any) -> None:
+    async def post_method_global_not_provided_valid(
+        self, *, api_version: str = "2015-07-01-preview", **kwargs: Any
+    ) -> None:
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
         '1234-5678-9012-3456' to succeed.
 
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -237,6 +241,7 @@ class SubscriptionInCredentialsOperations:
 
         request = build_subscription_in_credentials_post_method_global_not_provided_valid_request(
             subscription_id=self._config.subscription_id,
+            api_version=api_version,
             template_url=self.post_method_global_not_provided_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -489,9 +494,11 @@ class ApiVersionDefaultOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_method_global_valid(self, **kwargs: Any) -> None:
+    async def get_method_global_valid(self, *, api_version: str = "2015-07-01-preview", **kwargs: Any) -> None:
         """GET method with api-version modeled in global settings.
 
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -501,6 +508,7 @@ class ApiVersionDefaultOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_api_version_default_get_method_global_valid_request(
+            api_version=api_version,
             template_url=self.get_method_global_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -518,9 +526,13 @@ class ApiVersionDefaultOperations:
     get_method_global_valid.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview"}  # type: ignore
 
     @distributed_trace_async
-    async def get_method_global_not_provided_valid(self, **kwargs: Any) -> None:
+    async def get_method_global_not_provided_valid(
+        self, *, api_version: str = "2015-07-01-preview", **kwargs: Any
+    ) -> None:
         """GET method with api-version modeled in global settings.
 
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -530,6 +542,7 @@ class ApiVersionDefaultOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_api_version_default_get_method_global_not_provided_valid_request(
+            api_version=api_version,
             template_url=self.get_method_global_not_provided_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -547,9 +560,11 @@ class ApiVersionDefaultOperations:
     get_method_global_not_provided_valid.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview"}  # type: ignore
 
     @distributed_trace_async
-    async def get_path_global_valid(self, **kwargs: Any) -> None:
+    async def get_path_global_valid(self, *, api_version: str = "2015-07-01-preview", **kwargs: Any) -> None:
         """GET method with api-version modeled in global settings.
 
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -559,6 +574,7 @@ class ApiVersionDefaultOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_api_version_default_get_path_global_valid_request(
+            api_version=api_version,
             template_url=self.get_path_global_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -576,9 +592,11 @@ class ApiVersionDefaultOperations:
     get_path_global_valid.metadata = {"url": "/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview"}  # type: ignore
 
     @distributed_trace_async
-    async def get_swagger_global_valid(self, **kwargs: Any) -> None:
+    async def get_swagger_global_valid(self, *, api_version: str = "2015-07-01-preview", **kwargs: Any) -> None:
         """GET method with api-version modeled in global settings.
 
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -588,6 +606,7 @@ class ApiVersionDefaultOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_api_version_default_get_swagger_global_valid_request(
+            api_version=api_version,
             template_url=self.get_swagger_global_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -624,9 +643,11 @@ class ApiVersionLocalOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_method_local_valid(self, **kwargs: Any) -> None:
+    async def get_method_local_valid(self, *, api_version: str = "2.0", **kwargs: Any) -> None:
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
+        :keyword api_version: This should appear as a method parameter, use value '2.0'.
+        :paramtype api_version: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -636,6 +657,7 @@ class ApiVersionLocalOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_api_version_local_get_method_local_valid_request(
+            api_version=api_version,
             template_url=self.get_method_local_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -686,9 +708,11 @@ class ApiVersionLocalOperations:
     get_method_local_null.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/local/null"}  # type: ignore
 
     @distributed_trace_async
-    async def get_path_local_valid(self, **kwargs: Any) -> None:
+    async def get_path_local_valid(self, *, api_version: str = "2.0", **kwargs: Any) -> None:
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
+        :keyword api_version: This should appear as a method parameter, use value '2.0'.
+        :paramtype api_version: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -698,6 +722,7 @@ class ApiVersionLocalOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_api_version_local_get_path_local_valid_request(
+            api_version=api_version,
             template_url=self.get_path_local_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -715,9 +740,11 @@ class ApiVersionLocalOperations:
     get_path_local_valid.metadata = {"url": "/azurespecials/apiVersion/path/string/none/query/local/2.0"}  # type: ignore
 
     @distributed_trace_async
-    async def get_swagger_local_valid(self, **kwargs: Any) -> None:
+    async def get_swagger_local_valid(self, *, api_version: str = "2.0", **kwargs: Any) -> None:
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
+        :keyword api_version: The api version, which appears in the query, the value is always '2.0'.
+        :paramtype api_version: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -727,6 +754,7 @@ class ApiVersionLocalOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_api_version_local_get_swagger_local_valid_request(
+            api_version=api_version,
             template_url=self.get_swagger_local_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -827,9 +855,11 @@ class SkipUrlEncodingOperations:
     get_path_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}"}  # type: ignore
 
     @distributed_trace_async
-    async def get_swagger_path_valid(self, **kwargs: Any) -> None:
+    async def get_swagger_path_valid(self, unencoded_path_param: str = "path1/path2/path3", **kwargs: Any) -> None:
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
+        :param unencoded_path_param: An unencoded path parameter with value 'path1/path2/path3'.
+        :type unencoded_path_param: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -839,6 +869,7 @@ class SkipUrlEncodingOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_skip_url_encoding_get_swagger_path_valid_request(
+            unencoded_path_param=unencoded_path_param,
             template_url=self.get_swagger_path_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -952,9 +983,11 @@ class SkipUrlEncodingOperations:
     get_path_query_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/path/query/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_swagger_query_valid(self, **kwargs: Any) -> None:
+    async def get_swagger_query_valid(self, *, q1: str = "value1&q2=value2&q3=value3", **kwargs: Any) -> None:
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
+        :keyword q1: An unencoded query parameter with value 'value1&q2=value2&q3=value3'.
+        :paramtype q1: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -964,6 +997,7 @@ class SkipUrlEncodingOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_skip_url_encoding_get_swagger_query_valid_request(
+            q1=q1,
             template_url=self.get_swagger_query_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

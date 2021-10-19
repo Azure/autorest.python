@@ -89,9 +89,11 @@ class BoolOperations:
     get_true.metadata = {"url": "/bool/true"}  # type: ignore
 
     @distributed_trace_async
-    async def put_true(self, **kwargs: Any) -> None:
+    async def put_true(self, bool_body: bool = True, **kwargs: Any) -> None:
         """Set Boolean value true.
 
+        :param bool_body:
+        :type bool_body: bool
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -104,6 +106,7 @@ class BoolOperations:
 
         request = build_bool_put_true_request(
             content_type=content_type,
+            json=bool_body,
             template_url=self.put_true.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -157,9 +160,11 @@ class BoolOperations:
     get_false.metadata = {"url": "/bool/false"}  # type: ignore
 
     @distributed_trace_async
-    async def put_false(self, **kwargs: Any) -> None:
+    async def put_false(self, bool_body: bool = False, **kwargs: Any) -> None:
         """Set Boolean value false.
 
+        :param bool_body:
+        :type bool_body: bool
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -172,6 +177,7 @@ class BoolOperations:
 
         request = build_bool_put_false_request(
             content_type=content_type,
+            json=bool_body,
             template_url=self.put_false.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

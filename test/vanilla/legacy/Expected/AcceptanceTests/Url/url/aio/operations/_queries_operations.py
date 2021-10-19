@@ -89,9 +89,11 @@ class QueriesOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_boolean_true(self, **kwargs: Any) -> None:
+    async def get_boolean_true(self, *, bool_query: bool = True, **kwargs: Any) -> None:
         """Get true Boolean value on path.
 
+        :keyword bool_query: true boolean value.
+        :paramtype bool_query: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -102,6 +104,7 @@ class QueriesOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_get_boolean_true_request(
+            bool_query=bool_query,
             template_url=self.get_boolean_true.metadata["url"],
         )
         request = _convert_request(request)
@@ -121,9 +124,11 @@ class QueriesOperations:
     get_boolean_true.metadata = {"url": "/queries/bool/true"}  # type: ignore
 
     @distributed_trace_async
-    async def get_boolean_false(self, **kwargs: Any) -> None:
+    async def get_boolean_false(self, *, bool_query: bool = False, **kwargs: Any) -> None:
         """Get false Boolean value on path.
 
+        :keyword bool_query: false boolean value.
+        :paramtype bool_query: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -134,6 +139,7 @@ class QueriesOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_get_boolean_false_request(
+            bool_query=bool_query,
             template_url=self.get_boolean_false.metadata["url"],
         )
         request = _convert_request(request)
@@ -188,9 +194,11 @@ class QueriesOperations:
     get_boolean_null.metadata = {"url": "/queries/bool/null"}  # type: ignore
 
     @distributed_trace_async
-    async def get_int_one_million(self, **kwargs: Any) -> None:
+    async def get_int_one_million(self, *, int_query: int = 1000000, **kwargs: Any) -> None:
         """Get '1000000' integer value.
 
+        :keyword int_query: '1000000' integer value.
+        :paramtype int_query: int
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -201,6 +209,7 @@ class QueriesOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_get_int_one_million_request(
+            int_query=int_query,
             template_url=self.get_int_one_million.metadata["url"],
         )
         request = _convert_request(request)
@@ -220,9 +229,11 @@ class QueriesOperations:
     get_int_one_million.metadata = {"url": "/queries/int/1000000"}  # type: ignore
 
     @distributed_trace_async
-    async def get_int_negative_one_million(self, **kwargs: Any) -> None:
+    async def get_int_negative_one_million(self, *, int_query: int = -1000000, **kwargs: Any) -> None:
         """Get '-1000000' integer value.
 
+        :keyword int_query: '-1000000' integer value.
+        :paramtype int_query: int
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -233,6 +244,7 @@ class QueriesOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_get_int_negative_one_million_request(
+            int_query=int_query,
             template_url=self.get_int_negative_one_million.metadata["url"],
         )
         request = _convert_request(request)
@@ -287,9 +299,11 @@ class QueriesOperations:
     get_int_null.metadata = {"url": "/queries/int/null"}  # type: ignore
 
     @distributed_trace_async
-    async def get_ten_billion(self, **kwargs: Any) -> None:
+    async def get_ten_billion(self, *, long_query: int = 10000000000, **kwargs: Any) -> None:
         """Get '10000000000' 64 bit integer value.
 
+        :keyword long_query: '10000000000' 64 bit integer value.
+        :paramtype long_query: long
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -300,6 +314,7 @@ class QueriesOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_get_ten_billion_request(
+            long_query=long_query,
             template_url=self.get_ten_billion.metadata["url"],
         )
         request = _convert_request(request)
@@ -319,9 +334,11 @@ class QueriesOperations:
     get_ten_billion.metadata = {"url": "/queries/long/10000000000"}  # type: ignore
 
     @distributed_trace_async
-    async def get_negative_ten_billion(self, **kwargs: Any) -> None:
+    async def get_negative_ten_billion(self, *, long_query: int = -10000000000, **kwargs: Any) -> None:
         """Get '-10000000000' 64 bit integer value.
 
+        :keyword long_query: '-10000000000' 64 bit integer value.
+        :paramtype long_query: long
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -332,6 +349,7 @@ class QueriesOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_get_negative_ten_billion_request(
+            long_query=long_query,
             template_url=self.get_negative_ten_billion.metadata["url"],
         )
         request = _convert_request(request)
@@ -386,9 +404,11 @@ class QueriesOperations:
     get_long_null.metadata = {"url": "/queries/long/null"}  # type: ignore
 
     @distributed_trace_async
-    async def float_scientific_positive(self, **kwargs: Any) -> None:
+    async def float_scientific_positive(self, *, float_query: float = 103400000000000000000, **kwargs: Any) -> None:
         """Get '1.034E+20' numeric value.
 
+        :keyword float_query: '1.034E+20'numeric value.
+        :paramtype float_query: float
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -399,6 +419,7 @@ class QueriesOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_float_scientific_positive_request(
+            float_query=float_query,
             template_url=self.float_scientific_positive.metadata["url"],
         )
         request = _convert_request(request)
@@ -418,9 +439,11 @@ class QueriesOperations:
     float_scientific_positive.metadata = {"url": "/queries/float/1.034E+20"}  # type: ignore
 
     @distributed_trace_async
-    async def float_scientific_negative(self, **kwargs: Any) -> None:
+    async def float_scientific_negative(self, *, float_query: float = -1.034e-20, **kwargs: Any) -> None:
         """Get '-1.034E-20' numeric value.
 
+        :keyword float_query: '-1.034E-20'numeric value.
+        :paramtype float_query: float
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -431,6 +454,7 @@ class QueriesOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_float_scientific_negative_request(
+            float_query=float_query,
             template_url=self.float_scientific_negative.metadata["url"],
         )
         request = _convert_request(request)
@@ -485,9 +509,11 @@ class QueriesOperations:
     float_null.metadata = {"url": "/queries/float/null"}  # type: ignore
 
     @distributed_trace_async
-    async def double_decimal_positive(self, **kwargs: Any) -> None:
+    async def double_decimal_positive(self, *, double_query: float = 9999999.999, **kwargs: Any) -> None:
         """Get '9999999.999' numeric value.
 
+        :keyword double_query: '9999999.999'numeric value.
+        :paramtype double_query: float
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -498,6 +524,7 @@ class QueriesOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_double_decimal_positive_request(
+            double_query=double_query,
             template_url=self.double_decimal_positive.metadata["url"],
         )
         request = _convert_request(request)
@@ -517,9 +544,11 @@ class QueriesOperations:
     double_decimal_positive.metadata = {"url": "/queries/double/9999999.999"}  # type: ignore
 
     @distributed_trace_async
-    async def double_decimal_negative(self, **kwargs: Any) -> None:
+    async def double_decimal_negative(self, *, double_query: float = -9999999.999, **kwargs: Any) -> None:
         """Get '-9999999.999' numeric value.
 
+        :keyword double_query: '-9999999.999'numeric value.
+        :paramtype double_query: float
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -530,6 +559,7 @@ class QueriesOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_double_decimal_negative_request(
+            double_query=double_query,
             template_url=self.double_decimal_negative.metadata["url"],
         )
         request = _convert_request(request)
@@ -584,9 +614,11 @@ class QueriesOperations:
     double_null.metadata = {"url": "/queries/double/null"}  # type: ignore
 
     @distributed_trace_async
-    async def string_unicode(self, **kwargs: Any) -> None:
+    async def string_unicode(self, *, string_query: str = "啊齄丂狛狜隣郎隣兀﨩", **kwargs: Any) -> None:
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
+        :keyword string_query: '啊齄丂狛狜隣郎隣兀﨩'multi-byte string value.
+        :paramtype string_query: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -597,6 +629,7 @@ class QueriesOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_string_unicode_request(
+            string_query=string_query,
             template_url=self.string_unicode.metadata["url"],
         )
         request = _convert_request(request)
@@ -616,9 +649,11 @@ class QueriesOperations:
     string_unicode.metadata = {"url": "/queries/string/unicode/"}  # type: ignore
 
     @distributed_trace_async
-    async def string_url_encoded(self, **kwargs: Any) -> None:
+    async def string_url_encoded(self, *, string_query: str = "begin!*'();:@ &=+$,/?#[]end", **kwargs: Any) -> None:
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
+        :keyword string_query: 'begin!*'();:@ &=+$,/?#[]end' url encoded string value.
+        :paramtype string_query: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -629,6 +664,7 @@ class QueriesOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_string_url_encoded_request(
+            string_query=string_query,
             template_url=self.string_url_encoded.metadata["url"],
         )
         request = _convert_request(request)
@@ -648,9 +684,11 @@ class QueriesOperations:
     string_url_encoded.metadata = {"url": "/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend"}  # type: ignore
 
     @distributed_trace_async
-    async def string_empty(self, **kwargs: Any) -> None:
+    async def string_empty(self, *, string_query: str = "", **kwargs: Any) -> None:
         """Get ''.
 
+        :keyword string_query: '' string value.
+        :paramtype string_query: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -661,6 +699,7 @@ class QueriesOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_string_empty_request(
+            string_query=string_query,
             template_url=self.string_empty.metadata["url"],
         )
         request = _convert_request(request)
@@ -820,9 +859,11 @@ class QueriesOperations:
     byte_multi_byte.metadata = {"url": "/queries/byte/multibyte"}  # type: ignore
 
     @distributed_trace_async
-    async def byte_empty(self, **kwargs: Any) -> None:
+    async def byte_empty(self, *, byte_query: bytearray = bytearray("", encoding="utf-8"), **kwargs: Any) -> None:
         """Get '' as byte array.
 
+        :keyword byte_query: '' as byte array.
+        :paramtype byte_query: bytearray
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -833,6 +874,7 @@ class QueriesOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_byte_empty_request(
+            byte_query=byte_query,
             template_url=self.byte_empty.metadata["url"],
         )
         request = _convert_request(request)
@@ -887,9 +929,11 @@ class QueriesOperations:
     byte_null.metadata = {"url": "/queries/byte/null"}  # type: ignore
 
     @distributed_trace_async
-    async def date_valid(self, **kwargs: Any) -> None:
+    async def date_valid(self, *, date_query: datetime.date = "2012-01-01", **kwargs: Any) -> None:
         """Get '2012-01-01' as date.
 
+        :keyword date_query: '2012-01-01' as date.
+        :paramtype date_query: ~datetime.date
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -900,6 +944,7 @@ class QueriesOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_date_valid_request(
+            date_query=date_query,
             template_url=self.date_valid.metadata["url"],
         )
         request = _convert_request(request)
@@ -954,9 +999,13 @@ class QueriesOperations:
     date_null.metadata = {"url": "/queries/date/null"}  # type: ignore
 
     @distributed_trace_async
-    async def date_time_valid(self, **kwargs: Any) -> None:
+    async def date_time_valid(
+        self, *, date_time_query: datetime.datetime = "2012-01-01T01:01:01Z", **kwargs: Any
+    ) -> None:
         """Get '2012-01-01T01:01:01Z' as date-time.
 
+        :keyword date_time_query: '2012-01-01T01:01:01Z' as date-time.
+        :paramtype date_time_query: ~datetime.datetime
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -967,6 +1016,7 @@ class QueriesOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_date_time_valid_request(
+            date_time_query=date_time_query,
             template_url=self.date_time_valid.metadata["url"],
         )
         request = _convert_request(request)

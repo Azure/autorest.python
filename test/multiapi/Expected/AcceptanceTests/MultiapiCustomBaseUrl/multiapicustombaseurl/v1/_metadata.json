@@ -93,14 +93,14 @@
             "test" : {
                 "sync": {
                     "signature": "def test(\n    self,\n    id,  # type: int\n    **kwargs  # type: Any\n):\n    # type: (...) -\u003e None\n",
-                    "doc": "\"\"\"Should be a mixin operation. Put in 1 for the required parameter and have the correct api\nversion of 1.0.0 to pass.\n\n:param id: An int parameter. Put in 1 to pass.\n:type id: int\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: None, or the result of cls(response)\n:rtype: None\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
+                    "doc": "\"\"\"Should be a mixin operation. Put in 1 for the required parameter and have the correct api\nversion of 1.0.0 to pass.\n\n:param id: An int parameter. Put in 1 to pass.\n:type id: int\n:keyword api_version: Api Version.\n:paramtype api_version: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: None, or the result of cls(response)\n:rtype: None\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
                 },
                 "async": {
                     "coroutine": true,
-                    "signature": "async def test(\n    self,\n    id: int,\n    **kwargs: Any\n) -\u003e None:\n",
-                    "doc": "\"\"\"Should be a mixin operation. Put in 1 for the required parameter and have the correct api\nversion of 1.0.0 to pass.\n\n:param id: An int parameter. Put in 1 to pass.\n:type id: int\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: None, or the result of cls(response)\n:rtype: None\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
+                    "signature": "async def test(\n    self,\n    id: int,\n    *,\n    api_version: str = \"1.0.0\",\n    **kwargs: Any\n) -\u003e None:\n",
+                    "doc": "\"\"\"Should be a mixin operation. Put in 1 for the required parameter and have the correct api\nversion of 1.0.0 to pass.\n\n:param id: An int parameter. Put in 1 to pass.\n:type id: int\n:keyword api_version: Api Version.\n:paramtype api_version: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: None, or the result of cls(response)\n:rtype: None\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
                 },
-                "call": "id"
+                "call": "id, api_version"
             }
         }
     }

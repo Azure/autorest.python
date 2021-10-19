@@ -36,8 +36,8 @@ def build_test_one_request(
     # type: (...) -> HttpRequest
     id = kwargs.pop('id')  # type: int
     message = kwargs.pop('message', None)  # type: Optional[str]
+    api_version = kwargs.pop('api_version', "2.0.0")  # type: str
 
-    api_version = "2.0.0"
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/multiapi/testOneEndpoint')
@@ -67,9 +67,9 @@ def build_test_different_calls_request(
 ):
     # type: (...) -> HttpRequest
     greeting_in_english = kwargs.pop('greeting_in_english')  # type: str
+    api_version = kwargs.pop('api_version', "2.0.0")  # type: str
     greeting_in_chinese = kwargs.pop('greeting_in_chinese', None)  # type: Optional[str]
 
-    api_version = "2.0.0"
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/multiapi/testDifferentCalls')
@@ -110,6 +110,8 @@ class MultiapiServiceClientOperationsMixin(object):
         :type id: int
         :param message: An optional string parameter.
         :type message: str
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ModelTwo, or the result of cls(response)
         :rtype: ~multiapinoasync.v2.models.ModelTwo
@@ -121,10 +123,13 @@ class MultiapiServiceClientOperationsMixin(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
+        api_version = kwargs.pop('api_version', "2.0.0")  # type: str
+
         
         request = build_test_one_request(
             id=id,
             message=message,
+            api_version=api_version,
             template_url=self.test_one.metadata['url'],
         )
         request = _convert_request(request)
@@ -162,6 +167,8 @@ class MultiapiServiceClientOperationsMixin(object):
         :type greeting_in_english: str
         :param greeting_in_chinese: pass in 'nihao' to pass test.
         :type greeting_in_chinese: str
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -173,9 +180,12 @@ class MultiapiServiceClientOperationsMixin(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
+        api_version = kwargs.pop('api_version', "2.0.0")  # type: str
+
         
         request = build_test_different_calls_request(
             greeting_in_english=greeting_in_english,
+            api_version=api_version,
             greeting_in_chinese=greeting_in_chinese,
             template_url=self.test_different_calls.metadata['url'],
         )

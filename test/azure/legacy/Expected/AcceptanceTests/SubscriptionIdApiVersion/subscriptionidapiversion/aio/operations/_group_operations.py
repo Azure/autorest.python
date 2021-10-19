@@ -53,11 +53,15 @@ class GroupOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_sample_resource_group(self, resource_group_name: str, **kwargs: Any) -> "_models.SampleResourceGroup":
+    async def get_sample_resource_group(
+        self, resource_group_name: str, *, api_version: str = "2014-04-01-preview", **kwargs: Any
+    ) -> "_models.SampleResourceGroup":
         """Provides a resouce group with name 'testgroup101' and location 'West US'.
 
         :param resource_group_name: Resource Group name 'testgroup101'.
         :type resource_group_name: str
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: SampleResourceGroup, or the result of cls(response)
         :rtype: ~subscriptionidapiversion.models.SampleResourceGroup
@@ -70,6 +74,7 @@ class GroupOperations:
         request = build_get_sample_resource_group_request(
             subscription_id=self._config.subscription_id,
             resource_group_name=resource_group_name,
+            api_version=api_version,
             template_url=self.get_sample_resource_group.metadata["url"],
         )
         request = _convert_request(request)

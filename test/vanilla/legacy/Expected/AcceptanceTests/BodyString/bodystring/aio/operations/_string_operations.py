@@ -181,9 +181,11 @@ class StringOperations:
     get_empty.metadata = {"url": "/string/empty"}  # type: ignore
 
     @distributed_trace_async
-    async def put_empty(self, **kwargs: Any) -> None:
+    async def put_empty(self, *, string_body: str = "", **kwargs: Any) -> None:
         """Set string value empty ''.
 
+        :keyword string_body: string body.
+        :paramtype string_body: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -197,6 +199,7 @@ class StringOperations:
 
         request = build_put_empty_request(
             content_type=content_type,
+            json=string_body,
             template_url=self.put_empty.metadata["url"],
         )
         request = _convert_request(request)
@@ -252,9 +255,16 @@ class StringOperations:
     get_mbcs.metadata = {"url": "/string/mbcs"}  # type: ignore
 
     @distributed_trace_async
-    async def put_mbcs(self, **kwargs: Any) -> None:
+    async def put_mbcs(
+        self,
+        *,
+        string_body: str = "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€",
+        **kwargs: Any
+    ) -> None:
         """Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
+        :keyword string_body: string body.
+        :paramtype string_body: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -268,6 +278,7 @@ class StringOperations:
 
         request = build_put_mbcs_request(
             content_type=content_type,
+            json=string_body,
             template_url=self.put_mbcs.metadata["url"],
         )
         request = _convert_request(request)
@@ -325,11 +336,18 @@ class StringOperations:
     get_whitespace.metadata = {"url": "/string/whitespace"}  # type: ignore
 
     @distributed_trace_async
-    async def put_whitespace(self, **kwargs: Any) -> None:
+    async def put_whitespace(
+        self,
+        *,
+        string_body: str = "    Now is the time for all good men to come to the aid of their country    ",
+        **kwargs: Any
+    ) -> None:
         """Set String value with leading and trailing whitespace
         ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid
         of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
 
+        :keyword string_body: string body.
+        :paramtype string_body: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -343,6 +361,7 @@ class StringOperations:
 
         request = build_put_whitespace_request(
             content_type=content_type,
+            json=string_body,
             template_url=self.put_whitespace.metadata["url"],
         )
         request = _convert_request(request)

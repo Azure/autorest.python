@@ -131,9 +131,11 @@ class SkipUrlEncodingOperations:
     get_path_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}"}  # type: ignore
 
     @distributed_trace_async
-    async def get_swagger_path_valid(self, **kwargs: Any) -> None:
+    async def get_swagger_path_valid(self, *, unencoded_path_param: str = "path1/path2/path3", **kwargs: Any) -> None:
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
+        :keyword unencoded_path_param: An unencoded path parameter with value 'path1/path2/path3'.
+        :paramtype unencoded_path_param: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -144,6 +146,7 @@ class SkipUrlEncodingOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_get_swagger_path_valid_request(
+            unencoded_path_param=unencoded_path_param,
             template_url=self.get_swagger_path_valid.metadata["url"],
         )
         request = _convert_request(request)
@@ -268,9 +271,11 @@ class SkipUrlEncodingOperations:
     get_path_query_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/path/query/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_swagger_query_valid(self, **kwargs: Any) -> None:
+    async def get_swagger_query_valid(self, *, q1: str = "value1&q2=value2&q3=value3", **kwargs: Any) -> None:
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
+        :keyword q1: An unencoded query parameter with value 'value1&q2=value2&q3=value3'.
+        :paramtype q1: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -281,6 +286,7 @@ class SkipUrlEncodingOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_get_swagger_query_valid_request(
+            q1=q1,
             template_url=self.get_swagger_query_valid.metadata["url"],
         )
         request = _convert_request(request)

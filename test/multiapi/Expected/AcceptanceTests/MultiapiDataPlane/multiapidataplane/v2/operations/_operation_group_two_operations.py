@@ -34,8 +34,8 @@ def build_test_four_request(
 ):
     # type: (...) -> HttpRequest
     parameter_one = kwargs.pop('parameter_one')  # type: bool
+    api_version = kwargs.pop('api_version', "2.0.0")  # type: str
 
-    api_version = "2.0.0"
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/multiapi/two/testFourEndpoint')
@@ -91,6 +91,8 @@ class OperationGroupTwoOperations(object):
 
         :param parameter_one: A boolean parameter.
         :type parameter_one: bool
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -102,9 +104,12 @@ class OperationGroupTwoOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
+        api_version = kwargs.pop('api_version', "2.0.0")  # type: str
+
         
         request = build_test_four_request(
             parameter_one=parameter_one,
+            api_version=api_version,
             template_url=self.test_four.metadata['url'],
         )
         request = _convert_request(request)

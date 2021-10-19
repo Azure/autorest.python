@@ -34,13 +34,17 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class AutoRestValidationTestOperationsMixin:
     @distributed_trace_async
-    async def validation_of_method_parameters(self, resource_group_name: str, id: int, **kwargs: Any) -> Any:
+    async def validation_of_method_parameters(
+        self, resource_group_name: str, id: int, *, api_version: str = "1.0.0", **kwargs: Any
+    ) -> Any:
         """Validates input parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
         :type resource_group_name: str
         :param id: Required int multiple of 10 from 100 to 1000.
         :type id: int
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :return: JSON object
         :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -76,6 +80,7 @@ class AutoRestValidationTestOperationsMixin:
             subscription_id=self._config.subscription_id,
             resource_group_name=resource_group_name,
             id=id,
+            api_version=api_version,
             template_url=self.validation_of_method_parameters.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -100,7 +105,9 @@ class AutoRestValidationTestOperationsMixin:
     validation_of_method_parameters.metadata = {"url": "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"}  # type: ignore
 
     @distributed_trace_async
-    async def validation_of_body(self, resource_group_name: str, id: int, body: Any = None, **kwargs: Any) -> Any:
+    async def validation_of_body(
+        self, resource_group_name: str, id: int, body: Any = None, *, api_version: str = "1.0.0", **kwargs: Any
+    ) -> Any:
         """Validates body parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
@@ -109,6 +116,8 @@ class AutoRestValidationTestOperationsMixin:
         :type id: int
         :param body:
         :type body: Any
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :return: JSON object
         :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -173,6 +182,7 @@ class AutoRestValidationTestOperationsMixin:
             id=id,
             content_type=content_type,
             json=json,
+            api_version=api_version,
             template_url=self.validation_of_body.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -197,9 +207,11 @@ class AutoRestValidationTestOperationsMixin:
     validation_of_body.metadata = {"url": "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"}  # type: ignore
 
     @distributed_trace_async
-    async def get_with_constant_in_path(self, **kwargs: Any) -> None:
+    async def get_with_constant_in_path(self, constant_param: str = "constant", **kwargs: Any) -> None:
         """get_with_constant_in_path.
 
+        :param constant_param:
+        :type constant_param: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -209,6 +221,7 @@ class AutoRestValidationTestOperationsMixin:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_get_with_constant_in_path_request(
+            constant_param=constant_param,
             template_url=self.get_with_constant_in_path.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -226,9 +239,13 @@ class AutoRestValidationTestOperationsMixin:
     get_with_constant_in_path.metadata = {"url": "/validation/constantsInPath/{constantParam}/value"}  # type: ignore
 
     @distributed_trace_async
-    async def post_with_constant_in_body(self, body: Any = None, **kwargs: Any) -> Any:
+    async def post_with_constant_in_body(
+        self, constant_param: str = "constant", body: Any = None, **kwargs: Any
+    ) -> Any:
         """post_with_constant_in_body.
 
+        :param constant_param:
+        :type constant_param: str
         :param body:
         :type body: Any
         :return: JSON object
@@ -290,6 +307,7 @@ class AutoRestValidationTestOperationsMixin:
             json = None
 
         request = build_post_with_constant_in_body_request(
+            constant_param=constant_param,
             content_type=content_type,
             json=json,
             template_url=self.post_with_constant_in_body.metadata["url"],

@@ -46,7 +46,9 @@ def build_get_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_valid_request(
+    *, json: Any = None, content: Any = None, api_version: str = "2016-02-29", **kwargs: Any
+) -> HttpRequest:
     """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -58,6 +60,8 @@ def build_put_valid_request(*, json: Any = None, content: Any = None, **kwargs: 
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put {id: 2, name: 'abc', color: 'Magenta'}.
     :paramtype content: any
+    :keyword api_version: Api Version.
+    :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -76,7 +80,6 @@ def build_put_valid_request(*, json: Any = None, content: Any = None, **kwargs: 
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
-    api_version = "2016-02-29"
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", "/complex/basic/valid")

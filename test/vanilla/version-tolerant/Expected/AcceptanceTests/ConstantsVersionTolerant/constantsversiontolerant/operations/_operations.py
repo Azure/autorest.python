@@ -168,7 +168,8 @@ def build_contants_put_no_model_as_string_required_one_value_no_default_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    input = "value1"
+    input = kwargs.pop('input', "value1")  # type: str
+
     # Construct URL
     url = kwargs.pop("template_url", '/constants/putNoModelAsStringRequiredOneValueNoDefault')
 
@@ -188,7 +189,8 @@ def build_contants_put_no_model_as_string_required_one_value_default_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    input = "value1"
+    input = kwargs.pop('input', "value1")  # type: str
+
     # Construct URL
     url = kwargs.pop("template_url", '/constants/putNoModelAsStringRequiredOneValueDefault')
 
@@ -670,6 +672,8 @@ class ContantsOperations(object):
 
         Puts constants to the testserver.
 
+        :keyword input:
+        :paramtype input: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -678,7 +682,10 @@ class ContantsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        input = kwargs.pop("input", "value1")  # type: str
+
         request = build_contants_put_no_model_as_string_required_one_value_no_default_request(
+            input=input,
             template_url=self.put_no_model_as_string_required_one_value_no_default.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -704,6 +711,8 @@ class ContantsOperations(object):
 
         Puts constants to the testserver.
 
+        :keyword input:
+        :paramtype input: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -712,7 +721,10 @@ class ContantsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        input = kwargs.pop("input", "value1")  # type: str
+
         request = build_contants_put_no_model_as_string_required_one_value_default_request(
+            input=input,
             template_url=self.put_no_model_as_string_required_one_value_default.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

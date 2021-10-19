@@ -63,13 +63,17 @@ class StorageAccountsOperations:
         self._config = config
 
     @distributed_trace_async
-    async def check_name_availability(self, account_name: Any, **kwargs: Any) -> Any:
+    async def check_name_availability(
+        self, account_name: Any, *, api_version: str = "2015-05-01-preview", **kwargs: Any
+    ) -> Any:
         """Checks that account name is valid and is not in use.
 
         :param account_name: The name of the storage account within the specified resource group.
          Storage account names must be between 3 and 24 characters in length and use numbers and
          lower-case letters only.
         :type account_name: Any
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :return: JSON object
         :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -102,6 +106,7 @@ class StorageAccountsOperations:
             subscription_id=self._config.subscription_id,
             content_type=content_type,
             json=json,
+            api_version=api_version,
             template_url=self.check_name_availability.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -126,7 +131,13 @@ class StorageAccountsOperations:
     check_name_availability.metadata = {"url": "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability"}  # type: ignore
 
     async def _create_initial(
-        self, resource_group_name: str, account_name: str, parameters: Any, **kwargs: Any
+        self,
+        resource_group_name: str,
+        account_name: str,
+        parameters: Any,
+        *,
+        api_version: str = "2015-05-01-preview",
+        **kwargs: Any
     ) -> Optional[Any]:
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Any]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -142,6 +153,7 @@ class StorageAccountsOperations:
             subscription_id=self._config.subscription_id,
             content_type=content_type,
             json=json,
+            api_version=api_version,
             template_url=self._create_initial.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -169,7 +181,13 @@ class StorageAccountsOperations:
 
     @distributed_trace_async
     async def begin_create(
-        self, resource_group_name: str, account_name: str, parameters: Any, **kwargs: Any
+        self,
+        resource_group_name: str,
+        account_name: str,
+        parameters: Any,
+        *,
+        api_version: str = "2015-05-01-preview",
+        **kwargs: Any
     ) -> AsyncLROPoller[Any]:
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts
         cannot be updated with this API and should instead use the Update Storage Account API. If an
@@ -184,6 +202,8 @@ class StorageAccountsOperations:
         :type account_name: str
         :param parameters: The parameters to provide for the created account.
         :type parameters: Any
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -269,6 +289,7 @@ class StorageAccountsOperations:
                 resource_group_name=resource_group_name,
                 account_name=account_name,
                 parameters=parameters,
+                api_version=api_version,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
                 **kwargs
@@ -304,7 +325,9 @@ class StorageAccountsOperations:
     begin_create.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"}  # type: ignore
 
     @distributed_trace_async
-    async def delete(self, resource_group_name: str, account_name: str, **kwargs: Any) -> None:
+    async def delete(
+        self, resource_group_name: str, account_name: str, *, api_version: str = "2015-05-01-preview", **kwargs: Any
+    ) -> None:
         """Deletes a storage account in Microsoft Azure.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
@@ -313,6 +336,8 @@ class StorageAccountsOperations:
          Storage account names must be between 3 and 24 characters in length and use numbers and
          lower-case letters only.
         :type account_name: str
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -325,6 +350,7 @@ class StorageAccountsOperations:
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
+            api_version=api_version,
             template_url=self.delete.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -342,7 +368,9 @@ class StorageAccountsOperations:
     delete.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"}  # type: ignore
 
     @distributed_trace_async
-    async def get_properties(self, resource_group_name: str, account_name: str, **kwargs: Any) -> Any:
+    async def get_properties(
+        self, resource_group_name: str, account_name: str, *, api_version: str = "2015-05-01-preview", **kwargs: Any
+    ) -> Any:
         """Returns the properties for the specified storage account including but not limited to name,
         account type, location, and account status. The ListKeys operation should be used to retrieve
         storage keys.
@@ -353,6 +381,8 @@ class StorageAccountsOperations:
          Storage account names must be between 3 and 24 characters in length and use numbers and
          lower-case letters only.
         :type account_name: str
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :return: JSON object
         :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -415,6 +445,7 @@ class StorageAccountsOperations:
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
+            api_version=api_version,
             template_url=self.get_properties.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -439,7 +470,15 @@ class StorageAccountsOperations:
     get_properties.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"}  # type: ignore
 
     @distributed_trace_async
-    async def update(self, resource_group_name: str, account_name: str, parameters: Any, **kwargs: Any) -> Any:
+    async def update(
+        self,
+        resource_group_name: str,
+        account_name: str,
+        parameters: Any,
+        *,
+        api_version: str = "2015-05-01-preview",
+        **kwargs: Any
+    ) -> Any:
         """Updates the account type or tags for a storage account. It can also be used to add a custom
         domain (note that custom domains cannot be added via the Create operation). Only one custom
         domain is supported per storage account. This API can only be used to update one of tags,
@@ -457,6 +496,8 @@ class StorageAccountsOperations:
         :param parameters: The parameters to update on the account. Note that only one property can be
          changed at a time using this API.
         :type parameters: Any
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :return: JSON object
         :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -543,6 +584,7 @@ class StorageAccountsOperations:
             subscription_id=self._config.subscription_id,
             content_type=content_type,
             json=json,
+            api_version=api_version,
             template_url=self.update.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -567,13 +609,17 @@ class StorageAccountsOperations:
     update.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"}  # type: ignore
 
     @distributed_trace_async
-    async def list_keys(self, resource_group_name: str, account_name: str, **kwargs: Any) -> Any:
+    async def list_keys(
+        self, resource_group_name: str, account_name: str, *, api_version: str = "2015-05-01-preview", **kwargs: Any
+    ) -> Any:
         """Lists the access keys for the specified storage account.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
         :param account_name: The name of the storage account.
         :type account_name: str
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :return: JSON object
         :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -595,6 +641,7 @@ class StorageAccountsOperations:
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
+            api_version=api_version,
             template_url=self.list_keys.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -619,10 +666,12 @@ class StorageAccountsOperations:
     list_keys.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys"}  # type: ignore
 
     @distributed_trace
-    def list(self, **kwargs: Any) -> AsyncIterable[Any]:
+    def list(self, *, api_version: str = "2015-05-01-preview", **kwargs: Any) -> AsyncIterable[Any]:
         """Lists all the storage accounts available under the subscription. Note that storage keys are not
         returned; use the ListKeys operation for this.
 
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -691,6 +740,7 @@ class StorageAccountsOperations:
 
                 request = build_storage_accounts_list_request(
                     subscription_id=self._config.subscription_id,
+                    api_version=api_version,
                     template_url=self.list.metadata["url"],
                 )
                 request.url = self._client.format_url(request.url)
@@ -699,6 +749,7 @@ class StorageAccountsOperations:
 
                 request = build_storage_accounts_list_request(
                     subscription_id=self._config.subscription_id,
+                    api_version=api_version,
                     template_url=next_link,
                 )
                 request.url = self._client.format_url(request.url)
@@ -729,12 +780,16 @@ class StorageAccountsOperations:
     list.metadata = {"url": "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts"}  # type: ignore
 
     @distributed_trace
-    def list_by_resource_group(self, resource_group_name: str, **kwargs: Any) -> AsyncIterable[Any]:
+    def list_by_resource_group(
+        self, resource_group_name: str, *, api_version: str = "2015-05-01-preview", **kwargs: Any
+    ) -> AsyncIterable[Any]:
         """Lists all the storage accounts available under the given resource group. Note that storage keys
         are not returned; use the ListKeys operation for this.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -804,6 +859,7 @@ class StorageAccountsOperations:
                 request = build_storage_accounts_list_by_resource_group_request(
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
+                    api_version=api_version,
                     template_url=self.list_by_resource_group.metadata["url"],
                 )
                 request.url = self._client.format_url(request.url)
@@ -813,6 +869,7 @@ class StorageAccountsOperations:
                 request = build_storage_accounts_list_by_resource_group_request(
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
+                    api_version=api_version,
                     template_url=next_link,
                 )
                 request.url = self._client.format_url(request.url)
@@ -844,7 +901,13 @@ class StorageAccountsOperations:
 
     @distributed_trace_async
     async def regenerate_key(
-        self, resource_group_name: str, account_name: str, regenerate_key: Any, **kwargs: Any
+        self,
+        resource_group_name: str,
+        account_name: str,
+        regenerate_key: Any,
+        *,
+        api_version: str = "2015-05-01-preview",
+        **kwargs: Any
     ) -> Any:
         """Regenerates the access keys for the specified storage account.
 
@@ -856,6 +919,8 @@ class StorageAccountsOperations:
         :type account_name: str
         :param regenerate_key: Specifies name of the key which should be regenerated.
         :type regenerate_key: Any
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :return: JSON object
         :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -888,6 +953,7 @@ class StorageAccountsOperations:
             subscription_id=self._config.subscription_id,
             content_type=content_type,
             json=json,
+            api_version=api_version,
             template_url=self.regenerate_key.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -931,9 +997,11 @@ class UsageOperations:
         self._config = config
 
     @distributed_trace_async
-    async def list(self, **kwargs: Any) -> Any:
+    async def list(self, *, api_version: str = "2015-05-01-preview", **kwargs: Any) -> Any:
         """Gets the current usage count and the limit for the resources under the subscription.
 
+        :keyword api_version: Api Version.
+        :paramtype api_version: str
         :return: JSON object
         :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -962,6 +1030,7 @@ class UsageOperations:
 
         request = build_usage_list_request(
             subscription_id=self._config.subscription_id,
+            api_version=api_version,
             template_url=self.list.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

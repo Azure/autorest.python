@@ -23,12 +23,31 @@ if TYPE_CHECKING:
 class AutoRestSwaggerConstantService:
     """Test Infrastructure for AutoRest Swagger Constant.
 
+    :keyword header_constant: Constant header property on the client that is a required parameter
+     for operation 'constants_putClientConstants'.
+    :paramtype header_constant: bool
+    :keyword query_constant: Constant query property on the client that is a required parameter for
+     operation 'constants_putClientConstants'.
+    :paramtype query_constant: int
+    :keyword path_constant: Constant path property on the client that is a required parameter for
+     operation 'constants_putClientConstants'.
+    :paramtype path_constant: str
     :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
     :paramtype endpoint: str
     """
 
-    def __init__(self, *, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
-        self._config = AutoRestSwaggerConstantServiceConfiguration(**kwargs)
+    def __init__(
+        self,
+        *,
+        header_constant: bool = True,
+        query_constant: int = 100,
+        path_constant: str = "path",
+        endpoint: str = "http://localhost:3000",
+        **kwargs: Any
+    ) -> None:
+        self._config = AutoRestSwaggerConstantServiceConfiguration(
+            header_constant=header_constant, query_constant=query_constant, path_constant=path_constant, **kwargs
+        )
         self._client = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
