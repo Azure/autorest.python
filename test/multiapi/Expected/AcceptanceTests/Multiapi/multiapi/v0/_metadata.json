@@ -32,7 +32,7 @@
         },
         "constant": {
         },
-        "call": "credential",
+        "call": "credential=credential",
         "service_client_specific": {
             "sync": {
                 "api_version": {

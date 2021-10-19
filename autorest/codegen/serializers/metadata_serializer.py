@@ -8,6 +8,7 @@ import copy
 import json
 from typing import List, Optional, Set, Tuple, Dict, Union
 from jinja2 import Environment
+
 from .general_serializer import config_imports
 from ..models import (
     CodeModel,
@@ -158,6 +159,10 @@ class MetadataSerializer:
         )
 
         template = self.env.get_template("metadata.json.jinja2")
+        def _make_call(parameters: List[str]) -> str:
+            return ", ".join(
+                [f"{p}={p}" for p in parameters
+            ])
 
         # setting to true, because for multiapi we always generate with a version file with version 0.1.0
         self.code_model.options["package_version"] = "0.1.0"
@@ -190,4 +195,5 @@ class MetadataSerializer:
             get_sync_operation_serializer=functools.partial(
                 get_operation_serializer, code_model=self.code_model, async_mode=False, is_python_3_file=False
             ),
+            make_call=_make_call
         )
