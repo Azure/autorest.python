@@ -1,4 +1,5 @@
 {% import 'keywords.jinja2' as keywords with context %}
+{% import 'operation_tools.jinja2' as op_tools %}
 {% set version_import = ".._version" if async_mode else "._version" %}
 {% macro method_signature() %}
 def __init__(
@@ -34,6 +35,9 @@ class {{ code_model.class_name }}Configuration(Configuration):
     {{ method_signature()|indent }}
     {% if not async_mode %}
         # type: (...) -> None
+    {% endif %}
+    {% if code_model.service_client.parameters.config_kwargs_to_pop(async_mode) %}
+        {{ op_tools.serialize(serializer.pop_kwargs_from_signature(async_mode)) | indent(8) }}
     {% endif %}
 {% for parameter in code_model.global_parameters.config_method|selectattr('required') %}
         if {{ parameter.serialized_name }} is None:

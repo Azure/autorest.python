@@ -6,7 +6,7 @@
 from jinja2 import Environment
 from .import_serializer import FileImportSerializer, TypingSection
 from ..models import FileImport, ImportType, CodeModel, TokenCredentialSchema, ParameterList
-from .client_serializer import ClientSerializer
+from .client_serializer import ClientSerializer, ConfigSerializer
 
 def config_imports(code_model, global_parameters: ParameterList, async_mode: bool) -> FileImport:
     file_import = FileImport()
@@ -107,7 +107,8 @@ class GeneralSerializer:
                     self.code_model, self.code_model.global_parameters, self.async_mode
                 ), is_python_3_file=self.async_mode
             ),
-            sdk_moniker=sdk_moniker
+            serializer=ConfigSerializer(self.code_model),
+            sdk_moniker=sdk_moniker,
         )
 
     def serialize_version_file(self) -> str:

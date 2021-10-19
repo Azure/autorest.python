@@ -171,3 +171,11 @@ class ClientSerializer:
 
     def serialize_path(self) -> List[str]:
         return utils.serialize_path(self.code_model.global_parameters.path, "self._serialize")
+
+class ConfigSerializer:
+
+    def __init__(self, code_model: CodeModel) -> None:
+        self.code_model = code_model
+
+    def pop_kwargs_from_signature(self, async_mode: bool) -> List[str]:
+        return utils.pop_kwargs_from_signature(self.code_model.global_parameters.config_kwargs_to_pop(async_mode))

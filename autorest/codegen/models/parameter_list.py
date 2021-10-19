@@ -425,6 +425,10 @@ class GlobalParameterList(ParameterList):
             return True
         return serialized_name != self.host_variable_name
 
+    def config_kwargs_to_pop(self, is_python_3_file: bool) -> List[Parameter]:
+        current_kwargs_to_pop = super().kwargs_to_pop(is_python_3_file)
+        return [k for k in current_kwargs_to_pop if self._param_is_in_config_method(k.serialized_name)]
+
     @property
     def config_method(self) -> List[Parameter]:
         return [p for p in self.method if self._param_is_in_config_method(p.serialized_name)]
@@ -440,12 +444,14 @@ class GlobalParameterList(ParameterList):
             if self._param_is_in_config_method(p.serialized_name)
         ]
         keyword_only_params = [p for p in self.keyword_only if self._param_is_in_config_method(p.serialized_name)]
-        keyword_only_method_signature = (
-            ["*,"] +
-            [
-                p.method_signature(is_python_3_file) for p in keyword_only_params
-            ]
-        ) if keyword_only_params else []
+        keyword_only_method_signature = []
+        if is_python_3_file:
+            keyword_only_method_signature = (
+                ["*,"] +
+                [
+                    p.method_signature(is_python_3_file) for p in keyword_only_params
+                ]
+            ) if keyword_only_params else []
         return _method_signature_helper(
             positional=positional,
             keyword_only=keyword_only_method_signature,
