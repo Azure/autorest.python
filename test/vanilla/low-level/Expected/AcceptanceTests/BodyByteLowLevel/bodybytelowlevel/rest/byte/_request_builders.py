@@ -12,7 +12,7 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any, Dict, Optional
 
 _SERIALIZER = Serializer()
 
@@ -38,8 +38,9 @@ def build_get_null_request(
     url = kwargs.pop("template_url", '/byte/null')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -69,8 +70,9 @@ def build_get_empty_request(
     url = kwargs.pop("template_url", '/byte/empty')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -100,8 +102,9 @@ def build_get_non_ascii_request(
     url = kwargs.pop("template_url", '/byte/nonAscii')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -147,10 +150,11 @@ def build_put_non_ascii_request(
     url = kwargs.pop("template_url", '/byte/nonAscii')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="PUT",
@@ -180,8 +184,9 @@ def build_get_invalid_request(
     url = kwargs.pop("template_url", '/byte/invalid')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",

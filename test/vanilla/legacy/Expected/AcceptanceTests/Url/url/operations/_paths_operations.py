@@ -51,8 +51,9 @@ def build_get_boolean_true_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -77,8 +78,9 @@ def build_get_boolean_false_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -103,8 +105,9 @@ def build_get_int_one_million_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -129,8 +132,9 @@ def build_get_int_negative_one_million_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -155,8 +159,9 @@ def build_get_ten_billion_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -181,8 +186,9 @@ def build_get_negative_ten_billion_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -207,8 +213,9 @@ def build_float_scientific_positive_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -233,8 +240,9 @@ def build_float_scientific_negative_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -259,8 +267,9 @@ def build_double_decimal_positive_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -285,8 +294,9 @@ def build_double_decimal_negative_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -311,8 +321,9 @@ def build_string_unicode_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -337,8 +348,9 @@ def build_string_url_encoded_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -363,8 +375,9 @@ def build_string_url_non_encoded_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -389,8 +402,9 @@ def build_string_empty_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -415,8 +429,9 @@ def build_string_null_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -441,8 +456,9 @@ def build_enum_valid_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -467,8 +483,9 @@ def build_enum_null_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -493,8 +510,9 @@ def build_byte_multi_byte_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -519,8 +537,9 @@ def build_byte_empty_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -545,8 +564,9 @@ def build_byte_null_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -571,8 +591,9 @@ def build_date_valid_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -597,8 +618,9 @@ def build_date_null_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -623,8 +645,9 @@ def build_date_time_valid_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -649,8 +672,9 @@ def build_date_time_null_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -675,8 +699,9 @@ def build_base64_url_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -701,8 +726,9 @@ def build_array_csv_in_path_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -727,8 +753,9 @@ def build_unix_time_url_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",

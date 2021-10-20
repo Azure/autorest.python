@@ -14,7 +14,7 @@ from ..._vendor import _format_url_section
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any, Dict, Optional
 
 _SERIALIZER = Serializer()
 
@@ -50,17 +50,19 @@ def build_get_with_filter_request(
     url = kwargs.pop("template_url", '/azurespecials/odata/filter')
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters = {}  # type: Dict[str, Any]
     if filter is not None:
         query_parameters['$filter'] = _SERIALIZER.query("filter", filter, 'str')
     if top is not None:
         query_parameters['$top'] = _SERIALIZER.query("top", top, 'int')
     if orderby is not None:
         query_parameters['$orderby'] = _SERIALIZER.query("orderby", orderby, 'str')
+    query_parameters.update(kwargs.pop("params", {}))
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",

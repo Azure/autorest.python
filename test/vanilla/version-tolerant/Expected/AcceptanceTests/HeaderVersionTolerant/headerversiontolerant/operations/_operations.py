@@ -44,9 +44,10 @@ def build_header_param_existing_key_request(
     url = kwargs.pop("template_url", '/header/param/existingkey')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['User-Agent'] = _SERIALIZER.header("user_agent_parameter", user_agent_parameter, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="POST",
@@ -65,8 +66,9 @@ def build_header_response_existing_key_request(
     url = kwargs.pop("template_url", '/header/response/existingkey')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="POST",
@@ -87,9 +89,10 @@ def build_header_param_protected_key_request(
     url = kwargs.pop("template_url", '/header/param/protectedkey')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="POST",
@@ -108,8 +111,9 @@ def build_header_response_protected_key_request(
     url = kwargs.pop("template_url", '/header/response/protectedkey')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="POST",
@@ -131,10 +135,11 @@ def build_header_param_integer_request(
     url = kwargs.pop("template_url", '/header/param/prim/integer')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
     header_parameters['value'] = _SERIALIZER.header("value", value, 'int')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="POST",
@@ -155,9 +160,10 @@ def build_header_response_integer_request(
     url = kwargs.pop("template_url", '/header/response/prim/integer')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="POST",
@@ -179,10 +185,11 @@ def build_header_param_long_request(
     url = kwargs.pop("template_url", '/header/param/prim/long')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
     header_parameters['value'] = _SERIALIZER.header("value", value, 'long')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="POST",
@@ -203,9 +210,10 @@ def build_header_response_long_request(
     url = kwargs.pop("template_url", '/header/response/prim/long')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="POST",
@@ -227,10 +235,11 @@ def build_header_param_float_request(
     url = kwargs.pop("template_url", '/header/param/prim/float')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
     header_parameters['value'] = _SERIALIZER.header("value", value, 'float')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="POST",
@@ -251,9 +260,10 @@ def build_header_response_float_request(
     url = kwargs.pop("template_url", '/header/response/prim/float')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="POST",
@@ -275,10 +285,11 @@ def build_header_param_double_request(
     url = kwargs.pop("template_url", '/header/param/prim/double')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
     header_parameters['value'] = _SERIALIZER.header("value", value, 'float')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="POST",
@@ -299,9 +310,10 @@ def build_header_response_double_request(
     url = kwargs.pop("template_url", '/header/response/prim/double')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="POST",
@@ -323,10 +335,11 @@ def build_header_param_bool_request(
     url = kwargs.pop("template_url", '/header/param/prim/bool')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
     header_parameters['value'] = _SERIALIZER.header("value", value, 'bool')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="POST",
@@ -347,9 +360,10 @@ def build_header_response_bool_request(
     url = kwargs.pop("template_url", '/header/response/prim/bool')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="POST",
@@ -371,11 +385,12 @@ def build_header_param_string_request(
     url = kwargs.pop("template_url", '/header/param/prim/string')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
     if value is not None:
         header_parameters['value'] = _SERIALIZER.header("value", value, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="POST",
@@ -396,9 +411,10 @@ def build_header_response_string_request(
     url = kwargs.pop("template_url", '/header/response/prim/string')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="POST",
@@ -420,10 +436,11 @@ def build_header_param_date_request(
     url = kwargs.pop("template_url", '/header/param/prim/date')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
     header_parameters['value'] = _SERIALIZER.header("value", value, 'date')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="POST",
@@ -444,9 +461,10 @@ def build_header_response_date_request(
     url = kwargs.pop("template_url", '/header/response/prim/date')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="POST",
@@ -468,10 +486,11 @@ def build_header_param_datetime_request(
     url = kwargs.pop("template_url", '/header/param/prim/datetime')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
     header_parameters['value'] = _SERIALIZER.header("value", value, 'iso-8601')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="POST",
@@ -492,9 +511,10 @@ def build_header_response_datetime_request(
     url = kwargs.pop("template_url", '/header/response/prim/datetime')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="POST",
@@ -516,11 +536,12 @@ def build_header_param_datetime_rfc1123_request(
     url = kwargs.pop("template_url", '/header/param/prim/datetimerfc1123')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
     if value is not None:
         header_parameters['value'] = _SERIALIZER.header("value", value, 'rfc-1123')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="POST",
@@ -541,9 +562,10 @@ def build_header_response_datetime_rfc1123_request(
     url = kwargs.pop("template_url", '/header/response/prim/datetimerfc1123')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="POST",
@@ -565,10 +587,11 @@ def build_header_param_duration_request(
     url = kwargs.pop("template_url", '/header/param/prim/duration')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
     header_parameters['value'] = _SERIALIZER.header("value", value, 'duration')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="POST",
@@ -589,9 +612,10 @@ def build_header_response_duration_request(
     url = kwargs.pop("template_url", '/header/response/prim/duration')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="POST",
@@ -613,10 +637,11 @@ def build_header_param_byte_request(
     url = kwargs.pop("template_url", '/header/param/prim/byte')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
     header_parameters['value'] = _SERIALIZER.header("value", value, 'bytearray')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="POST",
@@ -637,9 +662,10 @@ def build_header_response_byte_request(
     url = kwargs.pop("template_url", '/header/response/prim/byte')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="POST",
@@ -661,11 +687,12 @@ def build_header_param_enum_request(
     url = kwargs.pop("template_url", '/header/param/prim/enum')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
     if value is not None:
         header_parameters['value'] = _SERIALIZER.header("value", value, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="POST",
@@ -686,9 +713,10 @@ def build_header_response_enum_request(
     url = kwargs.pop("template_url", '/header/response/prim/enum')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="POST",
@@ -707,8 +735,9 @@ def build_header_custom_request_id_request(
     url = kwargs.pop("template_url", '/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="POST",

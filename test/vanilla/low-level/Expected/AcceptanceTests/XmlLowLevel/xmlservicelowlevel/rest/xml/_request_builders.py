@@ -12,7 +12,7 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, List, Optional
+    from typing import Any, Dict, List, Optional
 
 _SERIALIZER = Serializer()
 
@@ -49,8 +49,9 @@ def build_get_complex_type_ref_no_meta_request(
     url = kwargs.pop("template_url", '/xml/complex-type-ref-no-meta')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -84,9 +85,10 @@ def build_put_complex_type_ref_no_meta_request(
     url = kwargs.pop("template_url", '/xml/complex-type-ref-no-meta')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="PUT",
@@ -127,8 +129,9 @@ def build_get_complex_type_ref_with_meta_request(
     url = kwargs.pop("template_url", '/xml/complex-type-ref-with-meta')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -162,9 +165,10 @@ def build_put_complex_type_ref_with_meta_request(
     url = kwargs.pop("template_url", '/xml/complex-type-ref-with-meta')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="PUT",
@@ -213,8 +217,9 @@ def build_get_simple_request(
     url = kwargs.pop("template_url", '/xml/simple')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -249,10 +254,11 @@ def build_put_simple_request(
     url = kwargs.pop("template_url", '/xml/simple')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="PUT",
@@ -295,8 +301,9 @@ def build_get_wrapped_lists_request(
     url = kwargs.pop("template_url", '/xml/wrapped-lists')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -331,10 +338,11 @@ def build_put_wrapped_lists_request(
     url = kwargs.pop("template_url", '/xml/wrapped-lists')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="PUT",
@@ -408,8 +416,9 @@ def build_get_empty_list_request(
     url = kwargs.pop("template_url", '/xml/empty-list')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -443,9 +452,10 @@ def build_put_empty_list_request(
     url = kwargs.pop("template_url", '/xml/empty-list')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="PUT",
@@ -488,8 +498,9 @@ def build_get_empty_wrapped_lists_request(
     url = kwargs.pop("template_url", '/xml/empty-wrapped-lists')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -523,9 +534,10 @@ def build_put_empty_wrapped_lists_request(
     url = kwargs.pop("template_url", '/xml/empty-wrapped-lists')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="PUT",
@@ -567,8 +579,9 @@ def build_get_root_list_request(
     url = kwargs.pop("template_url", '/xml/root-list')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -602,9 +615,10 @@ def build_put_root_list_request(
     url = kwargs.pop("template_url", '/xml/root-list')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="PUT",
@@ -646,8 +660,9 @@ def build_get_root_list_single_item_request(
     url = kwargs.pop("template_url", '/xml/root-list-single-item')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -681,9 +696,10 @@ def build_put_root_list_single_item_request(
     url = kwargs.pop("template_url", '/xml/root-list-single-item')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="PUT",
@@ -725,8 +741,9 @@ def build_get_empty_root_list_request(
     url = kwargs.pop("template_url", '/xml/empty-root-list')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -760,9 +777,10 @@ def build_put_empty_root_list_request(
     url = kwargs.pop("template_url", '/xml/empty-root-list')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="PUT",
@@ -802,8 +820,9 @@ def build_get_empty_child_element_request(
     url = kwargs.pop("template_url", '/xml/empty-child-element')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -837,9 +856,10 @@ def build_put_empty_child_element_request(
     url = kwargs.pop("template_url", '/xml/empty-child-element')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="PUT",
@@ -898,12 +918,14 @@ def build_list_containers_request(
     url = kwargs.pop("template_url", '/xml/')
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters = {}  # type: Dict[str, Any]
     query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
+    query_parameters.update(kwargs.pop("params", {}))
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -985,13 +1007,15 @@ def build_get_service_properties_request(
     url = kwargs.pop("template_url", '/xml/')
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters = {}  # type: Dict[str, Any]
     query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
     query_parameters['restype'] = _SERIALIZER.query("restype", restype, 'str')
+    query_parameters.update(kwargs.pop("params", {}))
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -1028,14 +1052,16 @@ def build_put_service_properties_request(
     url = kwargs.pop("template_url", '/xml/')
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters = {}  # type: Dict[str, Any]
     query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
     query_parameters['restype'] = _SERIALIZER.query("restype", restype, 'str')
+    query_parameters.update(kwargs.pop("params", {}))
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="PUT",
@@ -1083,13 +1109,15 @@ def build_get_acls_request(
     url = kwargs.pop("template_url", '/xml/mycontainer')
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters = {}  # type: Dict[str, Any]
     query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
     query_parameters['restype'] = _SERIALIZER.query("restype", restype, 'str')
+    query_parameters.update(kwargs.pop("params", {}))
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -1126,14 +1154,16 @@ def build_put_acls_request(
     url = kwargs.pop("template_url", '/xml/mycontainer')
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters = {}  # type: Dict[str, Any]
     query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
     query_parameters['restype'] = _SERIALIZER.query("restype", restype, 'str')
+    query_parameters.update(kwargs.pop("params", {}))
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="PUT",
@@ -1227,13 +1257,15 @@ def build_list_blobs_request(
     url = kwargs.pop("template_url", '/xml/mycontainer')
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters = {}  # type: Dict[str, Any]
     query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
     query_parameters['restype'] = _SERIALIZER.query("restype", restype, 'str')
+    query_parameters.update(kwargs.pop("params", {}))
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -1280,9 +1312,10 @@ def build_json_input_request(
     url = kwargs.pop("template_url", '/xml/jsoninput')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="PUT",
@@ -1320,8 +1353,9 @@ def build_json_output_request(
     url = kwargs.pop("template_url", '/xml/jsonoutput')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -1361,8 +1395,9 @@ def build_get_xms_text_request(
     url = kwargs.pop("template_url", '/xml/x-ms-text')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -1400,8 +1435,9 @@ def build_get_bytes_request(
     url = kwargs.pop("template_url", '/xml/bytes')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -1436,10 +1472,11 @@ def build_put_binary_request(
     url = kwargs.pop("template_url", '/xml/bytes')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="PUT",
@@ -1477,8 +1514,9 @@ def build_get_uri_request(
     url = kwargs.pop("template_url", '/xml/url')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="GET",
@@ -1513,10 +1551,11 @@ def build_put_uri_request(
     url = kwargs.pop("template_url", '/xml/url')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="PUT",

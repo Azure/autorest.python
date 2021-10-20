@@ -34,8 +34,9 @@ def build_basic_get_valid_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/complex/basic/valid")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -49,14 +50,16 @@ def build_basic_put_valid_request(*, json: Any = None, content: Any = None, **kw
     url = kwargs.pop("template_url", "/complex/basic/valid")
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters = {}  # type: Dict[str, Any]
     query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    query_parameters.update(kwargs.pop("params", {}))
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="PUT", url=url, params=query_parameters, headers=header_parameters, json=json, content=content, **kwargs
@@ -69,8 +72,9 @@ def build_basic_get_invalid_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/complex/basic/invalid")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -81,8 +85,9 @@ def build_basic_get_empty_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/complex/basic/empty")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -93,8 +98,9 @@ def build_basic_get_null_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/complex/basic/null")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -105,8 +111,9 @@ def build_basic_get_not_provided_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/complex/basic/notprovided")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -117,8 +124,9 @@ def build_primitive_get_int_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/complex/primitive/integer")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -131,10 +139,11 @@ def build_primitive_put_int_request(*, json: Any = None, content: Any = None, **
     url = kwargs.pop("template_url", "/complex/primitive/integer")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -145,8 +154,9 @@ def build_primitive_get_long_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/complex/primitive/long")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -159,10 +169,11 @@ def build_primitive_put_long_request(*, json: Any = None, content: Any = None, *
     url = kwargs.pop("template_url", "/complex/primitive/long")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -173,8 +184,9 @@ def build_primitive_get_float_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/complex/primitive/float")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -187,10 +199,11 @@ def build_primitive_put_float_request(*, json: Any = None, content: Any = None, 
     url = kwargs.pop("template_url", "/complex/primitive/float")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -201,8 +214,9 @@ def build_primitive_get_double_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/complex/primitive/double")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -215,10 +229,11 @@ def build_primitive_put_double_request(*, json: Any = None, content: Any = None,
     url = kwargs.pop("template_url", "/complex/primitive/double")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -229,8 +244,9 @@ def build_primitive_get_bool_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/complex/primitive/bool")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -243,10 +259,11 @@ def build_primitive_put_bool_request(*, json: Any = None, content: Any = None, *
     url = kwargs.pop("template_url", "/complex/primitive/bool")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -257,8 +274,9 @@ def build_primitive_get_string_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/complex/primitive/string")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -271,10 +289,11 @@ def build_primitive_put_string_request(*, json: Any = None, content: Any = None,
     url = kwargs.pop("template_url", "/complex/primitive/string")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -285,8 +304,9 @@ def build_primitive_get_date_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/complex/primitive/date")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -299,10 +319,11 @@ def build_primitive_put_date_request(*, json: Any = None, content: Any = None, *
     url = kwargs.pop("template_url", "/complex/primitive/date")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -313,8 +334,9 @@ def build_primitive_get_date_time_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/complex/primitive/datetime")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -327,10 +349,11 @@ def build_primitive_put_date_time_request(*, json: Any = None, content: Any = No
     url = kwargs.pop("template_url", "/complex/primitive/datetime")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -341,8 +364,9 @@ def build_primitive_get_date_time_rfc1123_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/complex/primitive/datetimerfc1123")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -357,10 +381,11 @@ def build_primitive_put_date_time_rfc1123_request(
     url = kwargs.pop("template_url", "/complex/primitive/datetimerfc1123")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -371,8 +396,9 @@ def build_primitive_get_duration_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/complex/primitive/duration")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -385,10 +411,11 @@ def build_primitive_put_duration_request(*, json: Any = None, content: Any = Non
     url = kwargs.pop("template_url", "/complex/primitive/duration")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -399,8 +426,9 @@ def build_primitive_get_byte_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/complex/primitive/byte")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -413,10 +441,11 @@ def build_primitive_put_byte_request(*, json: Any = None, content: Any = None, *
     url = kwargs.pop("template_url", "/complex/primitive/byte")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -427,8 +456,9 @@ def build_array_get_valid_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/complex/array/valid")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -441,10 +471,11 @@ def build_array_put_valid_request(*, json: Any = None, content: Any = None, **kw
     url = kwargs.pop("template_url", "/complex/array/valid")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -455,8 +486,9 @@ def build_array_get_empty_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/complex/array/empty")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -469,10 +501,11 @@ def build_array_put_empty_request(*, json: Any = None, content: Any = None, **kw
     url = kwargs.pop("template_url", "/complex/array/empty")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -483,8 +516,9 @@ def build_array_get_not_provided_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/complex/array/notprovided")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -495,8 +529,9 @@ def build_dictionary_get_valid_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/complex/dictionary/typed/valid")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -509,10 +544,11 @@ def build_dictionary_put_valid_request(*, json: Any = None, content: Any = None,
     url = kwargs.pop("template_url", "/complex/dictionary/typed/valid")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -523,8 +559,9 @@ def build_dictionary_get_empty_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/complex/dictionary/typed/empty")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -537,10 +574,11 @@ def build_dictionary_put_empty_request(*, json: Any = None, content: Any = None,
     url = kwargs.pop("template_url", "/complex/dictionary/typed/empty")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -551,8 +589,9 @@ def build_dictionary_get_null_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/complex/dictionary/typed/null")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -563,8 +602,9 @@ def build_dictionary_get_not_provided_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/complex/dictionary/typed/notprovided")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -575,8 +615,9 @@ def build_inheritance_get_valid_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/complex/inheritance/valid")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -589,10 +630,11 @@ def build_inheritance_put_valid_request(*, json: Any = None, content: Any = None
     url = kwargs.pop("template_url", "/complex/inheritance/valid")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -603,8 +645,9 @@ def build_polymorphism_get_valid_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/complex/polymorphism/valid")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -617,10 +660,11 @@ def build_polymorphism_put_valid_request(*, json: Any = None, content: Any = Non
     url = kwargs.pop("template_url", "/complex/polymorphism/valid")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -631,8 +675,9 @@ def build_polymorphism_get_dot_syntax_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/complex/polymorphism/dotsyntax")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -643,8 +688,9 @@ def build_polymorphism_get_composed_with_discriminator_request(**kwargs: Any) ->
     url = kwargs.pop("template_url", "/complex/polymorphism/composedWithDiscriminator")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -655,8 +701,9 @@ def build_polymorphism_get_composed_without_discriminator_request(**kwargs: Any)
     url = kwargs.pop("template_url", "/complex/polymorphism/composedWithoutDiscriminator")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -667,8 +714,9 @@ def build_polymorphism_get_complicated_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/complex/polymorphism/complicated")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -681,10 +729,11 @@ def build_polymorphism_put_complicated_request(*, json: Any = None, content: Any
     url = kwargs.pop("template_url", "/complex/polymorphism/complicated")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -699,10 +748,11 @@ def build_polymorphism_put_missing_discriminator_request(
     url = kwargs.pop("template_url", "/complex/polymorphism/missingdiscriminator")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -717,10 +767,11 @@ def build_polymorphism_put_valid_missing_required_request(
     url = kwargs.pop("template_url", "/complex/polymorphism/missingrequired/invalid")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -731,8 +782,9 @@ def build_polymorphicrecursive_get_valid_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/complex/polymorphicrecursive/valid")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -747,10 +799,11 @@ def build_polymorphicrecursive_put_valid_request(
     url = kwargs.pop("template_url", "/complex/polymorphicrecursive/valid")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -761,8 +814,9 @@ def build_readonlyproperty_get_valid_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/complex/readonlyproperty/valid")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -775,10 +829,11 @@ def build_readonlyproperty_put_valid_request(*, json: Any = None, content: Any =
     url = kwargs.pop("template_url", "/complex/readonlyproperty/valid")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -789,8 +844,9 @@ def build_flattencomplex_get_valid_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/complex/flatten/valid")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 

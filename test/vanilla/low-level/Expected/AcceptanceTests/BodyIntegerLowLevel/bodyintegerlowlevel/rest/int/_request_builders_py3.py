@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import Any, Optional
+from typing import Any, Dict, Optional
 
 from azure.core.rest import HttpRequest
 from msrest import Serializer
@@ -31,8 +31,9 @@ def build_get_null_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/int/null")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -54,8 +55,9 @@ def build_get_invalid_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/int/invalid")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -77,8 +79,9 @@ def build_get_overflow_int32_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/int/overflowint32")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -100,8 +103,9 @@ def build_get_underflow_int32_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/int/underflowint32")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -123,8 +127,9 @@ def build_get_overflow_int64_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/int/overflowint64")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -146,8 +151,9 @@ def build_get_underflow_int64_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/int/underflowint64")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -183,10 +189,11 @@ def build_put_max32_request(*, json: Any = None, content: Any = None, **kwargs: 
     url = kwargs.pop("template_url", "/int/max/32")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -222,10 +229,11 @@ def build_put_max64_request(*, json: Any = None, content: Any = None, **kwargs: 
     url = kwargs.pop("template_url", "/int/max/64")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -261,10 +269,11 @@ def build_put_min32_request(*, json: Any = None, content: Any = None, **kwargs: 
     url = kwargs.pop("template_url", "/int/min/32")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -300,10 +309,11 @@ def build_put_min64_request(*, json: Any = None, content: Any = None, **kwargs: 
     url = kwargs.pop("template_url", "/int/min/64")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -325,8 +335,9 @@ def build_get_unix_time_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/int/unixtime")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -362,10 +373,11 @@ def build_put_unix_time_date_request(*, json: Any = None, content: Any = None, *
     url = kwargs.pop("template_url", "/int/unixtime")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -387,8 +399,9 @@ def build_get_invalid_unix_time_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/int/invalidunixtime")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -410,7 +423,8 @@ def build_get_null_unix_time_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/int/nullunixtime")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)

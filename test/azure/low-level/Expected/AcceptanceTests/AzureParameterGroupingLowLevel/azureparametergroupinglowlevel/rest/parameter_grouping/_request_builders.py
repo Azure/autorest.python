@@ -14,7 +14,7 @@ from ..._vendor import _format_url_section
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any, Dict, Optional
 
 _SERIALIZER = Serializer()
 
@@ -68,17 +68,19 @@ def build_post_required_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters = {}  # type: Dict[str, Any]
     if query is not None:
         query_parameters['query'] = _SERIALIZER.query("query", query, 'int')
+    query_parameters.update(kwargs.pop("params", {}))
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if custom_header is not None:
         header_parameters['customHeader'] = _SERIALIZER.header("custom_header", custom_header, 'str')
     if content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="POST",
@@ -116,15 +118,17 @@ def build_post_optional_request(
     url = kwargs.pop("template_url", '/parameterGrouping/postOptional')
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters = {}  # type: Dict[str, Any]
     if query is not None:
         query_parameters['query'] = _SERIALIZER.query("query", query, 'int')
+    query_parameters.update(kwargs.pop("params", {}))
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if custom_header is not None:
         header_parameters['customHeader'] = _SERIALIZER.header("custom_header", custom_header, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="POST",
@@ -162,15 +166,17 @@ def build_post_reserved_words_request(
     url = kwargs.pop("template_url", '/parameterGrouping/postReservedWords')
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters = {}  # type: Dict[str, Any]
     if from_parameter is not None:
         query_parameters['from'] = _SERIALIZER.query("from_parameter", from_parameter, 'str')
     if accept_parameter is not None:
         query_parameters['accept'] = _SERIALIZER.query("accept_parameter", accept_parameter, 'str')
+    query_parameters.update(kwargs.pop("params", {}))
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="POST",
@@ -214,19 +220,21 @@ def build_post_multi_param_groups_request(
     url = kwargs.pop("template_url", '/parameterGrouping/postMultipleParameterGroups')
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters = {}  # type: Dict[str, Any]
     if query_one is not None:
         query_parameters['query-one'] = _SERIALIZER.query("query_one", query_one, 'int')
     if query_two is not None:
         query_parameters['query-two'] = _SERIALIZER.query("query_two", query_two, 'int')
+    query_parameters.update(kwargs.pop("params", {}))
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if header_one is not None:
         header_parameters['header-one'] = _SERIALIZER.header("header_one", header_one, 'str')
     if header_two is not None:
         header_parameters['header-two'] = _SERIALIZER.header("header_two", header_two, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="POST",
@@ -264,15 +272,17 @@ def build_post_shared_parameter_group_object_request(
     url = kwargs.pop("template_url", '/parameterGrouping/sharedParameterGroupObject')
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters = {}  # type: Dict[str, Any]
     if query_one is not None:
         query_parameters['query-one'] = _SERIALIZER.query("query_one", query_one, 'int')
+    query_parameters.update(kwargs.pop("params", {}))
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters = {}  # type: Dict[str, Any]
     if header_one is not None:
         header_parameters['header-one'] = _SERIALIZER.header("header_one", header_one, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters.update(kwargs.pop("headers", {}))
 
     return HttpRequest(
         method="POST",
