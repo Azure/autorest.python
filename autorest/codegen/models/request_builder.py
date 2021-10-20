@@ -77,6 +77,9 @@ class RequestBuilder(BaseBuilder):
             "typing", "Any", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
         )
         file_import.add_from_import("msrest", "Serializer", ImportType.AZURECORE)
+        if self.parameters.headers or self.parameters.query:
+            file_import.add_from_import("typing", "Dict", ImportType.STDLIB, TypingSection.CONDITIONAL)
+            file_import.add_from_import("typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL)
         return file_import
 
     @classmethod

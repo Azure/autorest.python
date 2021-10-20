@@ -112,11 +112,11 @@ def _serialize_files_and_data_body(builder: BuilderType, param_name: str) -> Lis
 def _declare_constant(constant: Parameter) -> str:
     return f"{constant.serialized_name} = {constant.constant_declaration}"
 
-def _pop_parameters_kwarg(
-    function_name: str,
-    kwarg_name: str,
-) -> str:
-    return f'{function_name}_parameters = kwargs.pop("{kwarg_name}", {{}})  # type: Dict[str, Any]'
+def _pop_parameters_kwarg(param_name: str) -> str:
+    return f'{param_name}_parameters = {{}}  # type: Dict[str, Any]'
+
+def _update_with_users_input(param_name: str, kwarg_name: str) -> str:
+    return f'{param_name}_parameters.update(kwargs.pop("{kwarg_name}", {{}}))'
 
 def _serialize_grouped_body(builder: BuilderType) -> List[str]:
     retval: List[str] = []
@@ -532,22 +532,24 @@ class _RequestBuilderBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=
 
     def serialize_headers(self, builder: BuilderType) -> List[str]:
         retval = ["# Construct headers"]
-        retval.append(_pop_parameters_kwarg("header", "headers"))
+        retval.append(_pop_parameters_kwarg("header"))
         for parameter in builder.parameters.headers:
             retval.extend(self._serialize_parameter(
                 parameter,
                 function_name="header",
             ))
+        retval.append(_update_with_users_input("header", "headers"))
         return retval
 
     def serialize_query(self, builder: BuilderType) -> List[str]:
         retval = ["# Construct parameters"]
-        retval.append(_pop_parameters_kwarg("query", "params"))
+        retval.append(_pop_parameters_kwarg("query"))
         for parameter in builder.parameters.query:
             retval.extend(self._serialize_parameter(
                 parameter,
                 function_name="query",
             ))
+        retval.append(_update_with_users_input("query", "params"))
         return retval
 
 class RequestBuilderGenericSerializer(_RequestBuilderBaseSerializer):
