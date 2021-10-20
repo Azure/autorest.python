@@ -23,9 +23,9 @@ class MultiapiCustomBaseUrlServiceClientConfiguration(Configuration):
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
-    :param credential: Credential needed for the client to connect to Azure. 
+    :param credential: Credential needed for the client to connect to Azure.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
-    :param endpoint: Pass in https://localhost:3000. 
+    :param endpoint: Pass in https://localhost:3000.
     :type endpoint: str
     """
 
