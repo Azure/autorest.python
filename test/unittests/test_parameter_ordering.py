@@ -14,6 +14,7 @@ def get_code_model():
     options = {
         "show_send_request": True,
         "builders_visibility": "embedded",
+        "multiapi": False,
     }
     return CodeModel(options)
 
