@@ -44,8 +44,8 @@ def build_check_name_availability_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
     api_version = kwargs.pop('api_version', "2015-05-01-preview")  # type: str
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json, text/json"
     # Construct URL
@@ -82,8 +82,8 @@ def build_create_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
     api_version = kwargs.pop('api_version', "2015-05-01-preview")  # type: str
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json, text/json"
     # Construct URL
@@ -190,8 +190,8 @@ def build_update_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
     api_version = kwargs.pop('api_version', "2015-05-01-preview")  # type: str
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json, text/json"
     # Construct URL
@@ -335,8 +335,8 @@ def build_regenerate_key_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
     api_version = kwargs.pop('api_version', "2015-05-01-preview")  # type: str
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json, text/json"
     # Construct URL
@@ -415,16 +415,16 @@ class StorageAccountsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
         api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(account_name, "StorageAccountCheckNameAvailabilityParameters")
 
         request = build_check_name_availability_request(
             subscription_id=self._config.subscription_id,
+            api_version=api_version,
             content_type=content_type,
             json=json,
-            api_version=api_version,
             template_url=self.check_name_availability.metadata["url"],
         )
         request = _convert_request(request)
@@ -458,8 +458,8 @@ class StorageAccountsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
         api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(parameters, "StorageAccountCreateParameters")
 
@@ -467,9 +467,9 @@ class StorageAccountsOperations(object):
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
+            api_version=api_version,
             content_type=content_type,
             json=json,
-            api_version=api_version,
             template_url=self._create_initial.metadata["url"],
         )
         request = _convert_request(request)
@@ -531,8 +531,8 @@ class StorageAccountsOperations(object):
         :rtype: ~azure.core.polling.LROPoller[~storage.models.StorageAccount]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
         api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
         polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.PollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccount"]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -722,8 +722,8 @@ class StorageAccountsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
         api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(parameters, "StorageAccountUpdateParameters")
 
@@ -731,9 +731,9 @@ class StorageAccountsOperations(object):
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
+            api_version=api_version,
             content_type=content_type,
             json=json,
-            api_version=api_version,
             template_url=self.update.metadata["url"],
         )
         request = _convert_request(request)
@@ -984,8 +984,8 @@ class StorageAccountsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
         api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         _regenerate_key = _models.StorageAccountRegenerateKeyParameters(key_name=key_name)
         json = self._serialize.body(_regenerate_key, "StorageAccountRegenerateKeyParameters")
@@ -994,9 +994,9 @@ class StorageAccountsOperations(object):
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
+            api_version=api_version,
             content_type=content_type,
             json=json,
-            api_version=api_version,
             template_url=self.regenerate_key.metadata["url"],
         )
         request = _convert_request(request)

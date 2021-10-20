@@ -99,7 +99,6 @@ def build_get_path_valid_request(
 
 
 def build_get_swagger_path_valid_request(
-    unencoded_path_param="path1/path2/path3",  # type: str
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -108,15 +107,17 @@ def build_get_swagger_path_valid_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param unencoded_path_param: An unencoded path parameter with value 'path1/path2/path3'. The
+    :keyword unencoded_path_param: An unencoded path parameter with value 'path1/path2/path3'. The
      default value is "path1/path2/path3". Note that overriding this default value may result in
      unsupported behavior.
-    :type unencoded_path_param: str
+    :paramtype unencoded_path_param: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    unencoded_path_param = kwargs.pop('unencoded_path_param', "path1/path2/path3")  # type: str
 
     accept = "application/json"
     # Construct URL

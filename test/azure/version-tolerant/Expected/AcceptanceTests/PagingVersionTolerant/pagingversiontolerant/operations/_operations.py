@@ -152,8 +152,8 @@ def build_paging_get_with_query_params_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    required_query_parameter = kwargs.pop('required_query_parameter')  # type: int
     query_constant = kwargs.pop('query_constant', True)  # type: bool
+    required_query_parameter = kwargs.pop('required_query_parameter')  # type: int
 
     accept = "application/json"
     # Construct URL
@@ -982,8 +982,8 @@ class PagingOperations(object):
                     ]
                 }
         """
-        required_query_parameter = kwargs.pop("required_query_parameter")  # type: int
         query_constant = kwargs.pop("query_constant", True)  # type: bool
+        required_query_parameter = kwargs.pop("required_query_parameter")  # type: int
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -993,8 +993,8 @@ class PagingOperations(object):
             if not next_link:
 
                 request = build_paging_get_with_query_params_request(
-                    required_query_parameter=required_query_parameter,
                     query_constant=query_constant,
+                    required_query_parameter=required_query_parameter,
                     template_url=self.get_with_query_params.metadata["url"],
                 )
                 request.url = self._client.format_url(request.url)

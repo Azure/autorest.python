@@ -58,10 +58,11 @@ def build_poll_with_parameterized_endpoints_request_initial(
 
 
 def build_poll_with_constant_parameterized_endpoints_request_initial(
-    constant_parameter="iAmConstant",  # type: str
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    constant_parameter = kwargs.pop('constant_parameter', "iAmConstant")  # type: str
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/lroConstantParameterizedEndpoints/{constantParameter}')
@@ -201,13 +202,14 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
     def _poll_with_constant_parameterized_endpoints_initial(
         self,
         account_name,  # type: str
-        constant_parameter="iAmConstant",  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        constant_parameter = kwargs.pop("constant_parameter", "iAmConstant")  # type: str
 
         request = build_poll_with_constant_parameterized_endpoints_request_initial(
             constant_parameter=constant_parameter,
@@ -248,7 +250,6 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
     def begin_poll_with_constant_parameterized_endpoints(
         self,
         account_name,  # type: str
-        constant_parameter="iAmConstant",  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> LROPoller[str]
@@ -256,9 +257,9 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
 
         :param account_name: Account Name. Pass in 'local' to pass test.
         :type account_name: str
-        :param constant_parameter: Next link for the list operation. The default value is
+        :keyword constant_parameter: Next link for the list operation. The default value is
          "iAmConstant". Note that overriding this default value may result in unsupported behavior.
-        :type constant_parameter: str
+        :paramtype constant_parameter: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be LROBasePolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -270,6 +271,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
         :rtype: ~azure.core.polling.LROPoller[str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        constant_parameter = kwargs.pop("constant_parameter", "iAmConstant")  # type: str
         polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.PollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)

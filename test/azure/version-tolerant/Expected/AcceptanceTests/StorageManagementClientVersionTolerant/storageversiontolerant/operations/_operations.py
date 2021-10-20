@@ -44,8 +44,8 @@ def build_storage_accounts_check_name_availability_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
     api_version = kwargs.pop('api_version', "2015-05-01-preview")  # type: str
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json, text/json"
     # Construct URL
@@ -82,8 +82,8 @@ def build_storage_accounts_create_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
     api_version = kwargs.pop('api_version', "2015-05-01-preview")  # type: str
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json, text/json"
     # Construct URL
@@ -190,8 +190,8 @@ def build_storage_accounts_update_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
     api_version = kwargs.pop('api_version', "2015-05-01-preview")  # type: str
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json, text/json"
     # Construct URL
@@ -335,8 +335,8 @@ def build_storage_accounts_regenerate_key_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
     api_version = kwargs.pop('api_version', "2015-05-01-preview")  # type: str
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json, text/json"
     # Construct URL
@@ -459,16 +459,16 @@ class StorageAccountsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
         api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = account_name
 
         request = build_storage_accounts_check_name_availability_request(
             subscription_id=self._config.subscription_id,
+            api_version=api_version,
             content_type=content_type,
             json=json,
-            api_version=api_version,
             template_url=self.check_name_availability.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -504,8 +504,8 @@ class StorageAccountsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
         api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = parameters
 
@@ -513,9 +513,9 @@ class StorageAccountsOperations(object):
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
+            api_version=api_version,
             content_type=content_type,
             json=json,
-            api_version=api_version,
             template_url=self._create_initial.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -641,8 +641,8 @@ class StorageAccountsOperations(object):
                     "type": "str"  # Optional. Resource type.
                 }
         """
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
         api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
         polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.PollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -951,8 +951,8 @@ class StorageAccountsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
         api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = parameters
 
@@ -960,9 +960,9 @@ class StorageAccountsOperations(object):
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
+            api_version=api_version,
             content_type=content_type,
             json=json,
-            api_version=api_version,
             template_url=self.update.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1340,8 +1340,8 @@ class StorageAccountsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
         api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = regenerate_key
 
@@ -1349,9 +1349,9 @@ class StorageAccountsOperations(object):
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
+            api_version=api_version,
             content_type=content_type,
             json=json,
-            api_version=api_version,
             template_url=self.regenerate_key.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

@@ -39,15 +39,11 @@ class AutoRestSwaggerConstantService:
     :paramtype path_constant: str
     """
 
-    def __init__(
-        self,
-        base_url: str = "http://localhost:3000",
-        *,
-        header_constant: bool = True,
-        query_constant: int = 100,
-        path_constant: str = "path",
-        **kwargs: Any
-    ) -> None:
+    def __init__(self, base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
+        header_constant = kwargs.pop("header_constant", True)  # type: bool
+        query_constant = kwargs.pop("query_constant", 100)  # type: int
+        path_constant = kwargs.pop("path_constant", "path")  # type: str
+
         self._config = AutoRestSwaggerConstantServiceConfiguration(
             header_constant=header_constant, query_constant=query_constant, path_constant=path_constant, **kwargs
         )

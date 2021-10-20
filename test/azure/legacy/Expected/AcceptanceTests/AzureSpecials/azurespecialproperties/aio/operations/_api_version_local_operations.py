@@ -58,7 +58,7 @@ class ApiVersionLocalOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_method_local_valid(self, *, api_version: str = "2.0", **kwargs: Any) -> None:
+    async def get_method_local_valid(self, **kwargs: Any) -> None:
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
         :keyword api_version: This should appear as a method parameter, use value '2.0'. The default
@@ -72,6 +72,8 @@ class ApiVersionLocalOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        api_version = kwargs.pop("api_version", "2.0")  # type: str
 
         request = build_get_method_local_valid_request(
             api_version=api_version,
@@ -130,7 +132,7 @@ class ApiVersionLocalOperations:
     get_method_local_null.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/local/null"}  # type: ignore
 
     @distributed_trace_async
-    async def get_path_local_valid(self, *, api_version: str = "2.0", **kwargs: Any) -> None:
+    async def get_path_local_valid(self, **kwargs: Any) -> None:
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
         :keyword api_version: This should appear as a method parameter, use value '2.0'. The default
@@ -144,6 +146,8 @@ class ApiVersionLocalOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        api_version = kwargs.pop("api_version", "2.0")  # type: str
 
         request = build_get_path_local_valid_request(
             api_version=api_version,
@@ -166,7 +170,7 @@ class ApiVersionLocalOperations:
     get_path_local_valid.metadata = {"url": "/azurespecials/apiVersion/path/string/none/query/local/2.0"}  # type: ignore
 
     @distributed_trace_async
-    async def get_swagger_local_valid(self, *, api_version: str = "2.0", **kwargs: Any) -> None:
+    async def get_swagger_local_valid(self, **kwargs: Any) -> None:
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
         :keyword api_version: The api version, which appears in the query, the value is always '2.0'.
@@ -181,6 +185,8 @@ class ApiVersionLocalOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        api_version = kwargs.pop("api_version", "2.0")  # type: str
 
         request = build_get_swagger_local_valid_request(
             api_version=api_version,

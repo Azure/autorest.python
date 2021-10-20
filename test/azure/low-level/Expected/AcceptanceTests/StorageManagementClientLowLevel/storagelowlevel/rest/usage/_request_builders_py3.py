@@ -15,7 +15,7 @@ from ..._vendor import _format_url_section
 _SERIALIZER = Serializer()
 
 
-def build_list_request(subscription_id: str, *, api_version: str = "2015-05-01-preview", **kwargs: Any) -> HttpRequest:
+def build_list_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
     """Gets the current usage count and the limit for the resources under the subscription.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -50,6 +50,8 @@ def build_list_request(subscription_id: str, *, api_version: str = "2015-05-01-p
                 ]
             }
     """
+
+    api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
 
     accept = "application/json, text/json"
     # Construct URL

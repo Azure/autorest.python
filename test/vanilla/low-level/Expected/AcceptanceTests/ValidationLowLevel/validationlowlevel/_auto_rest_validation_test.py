@@ -57,7 +57,7 @@ class AutoRestValidationTest(object):
         Use these helper methods to create the request you pass to this method.
 
         >>> from validationlowlevel.rest import build_validation_of_method_parameters_request
-        >>> request = build_validation_of_method_parameters_request(subscription_id, resource_group_name, id, api_version=api_version, **kwargs)
+        >>> request = build_validation_of_method_parameters_request(subscription_id, resource_group_name, id, **kwargs)
         <HttpRequest [GET], url: '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>

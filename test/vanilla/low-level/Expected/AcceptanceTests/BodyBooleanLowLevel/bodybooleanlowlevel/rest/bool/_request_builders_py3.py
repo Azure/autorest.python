@@ -36,7 +36,7 @@ def build_get_true_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_true_request(*, json: bool = True, **kwargs: Any) -> HttpRequest:
+def build_put_true_request(**kwargs: Any) -> HttpRequest:
     """Set Boolean value true.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -52,6 +52,7 @@ def build_put_true_request(*, json: bool = True, **kwargs: Any) -> HttpRequest:
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    json = kwargs.pop("json", True)  # type: bool
 
     accept = "application/json"
     # Construct URL
@@ -89,7 +90,7 @@ def build_get_false_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_false_request(*, json: bool = False, **kwargs: Any) -> HttpRequest:
+def build_put_false_request(**kwargs: Any) -> HttpRequest:
     """Set Boolean value false.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -105,6 +106,7 @@ def build_put_false_request(*, json: bool = False, **kwargs: Any) -> HttpRequest
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    json = kwargs.pop("json", False)  # type: bool
 
     accept = "application/json"
     # Construct URL

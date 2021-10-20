@@ -56,8 +56,8 @@ def build_basic_put_valid_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
     api_version = kwargs.pop('api_version', "2016-02-29")  # type: str
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
@@ -1329,15 +1329,15 @@ class BasicOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
         api_version = kwargs.pop("api_version", "2016-02-29")  # type: str
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = complex_body
 
         request = build_basic_put_valid_request(
+            api_version=api_version,
             content_type=content_type,
             json=json,
-            api_version=api_version,
             template_url=self.put_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

@@ -15,7 +15,7 @@ from ..._vendor import _format_url_section
 _SERIALIZER = Serializer()
 
 
-def build_get_method_global_valid_request(*, api_version: str = "2015-07-01-preview", **kwargs: Any) -> HttpRequest:
+def build_get_method_global_valid_request(**kwargs: Any) -> HttpRequest:
     """GET method with api-version modeled in global settings.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -29,6 +29,8 @@ def build_get_method_global_valid_request(*, api_version: str = "2015-07-01-prev
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    api_version = kwargs.pop("api_version", "2015-07-01-preview")  # type: str
 
     accept = "application/json"
     # Construct URL
@@ -45,9 +47,7 @@ def build_get_method_global_valid_request(*, api_version: str = "2015-07-01-prev
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
-def build_get_method_global_not_provided_valid_request(
-    *, api_version: str = "2015-07-01-preview", **kwargs: Any
-) -> HttpRequest:
+def build_get_method_global_not_provided_valid_request(**kwargs: Any) -> HttpRequest:
     """GET method with api-version modeled in global settings.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -61,6 +61,8 @@ def build_get_method_global_not_provided_valid_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    api_version = kwargs.pop("api_version", "2015-07-01-preview")  # type: str
 
     accept = "application/json"
     # Construct URL
@@ -79,7 +81,7 @@ def build_get_method_global_not_provided_valid_request(
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
-def build_get_path_global_valid_request(*, api_version: str = "2015-07-01-preview", **kwargs: Any) -> HttpRequest:
+def build_get_path_global_valid_request(**kwargs: Any) -> HttpRequest:
     """GET method with api-version modeled in global settings.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -93,6 +95,8 @@ def build_get_path_global_valid_request(*, api_version: str = "2015-07-01-previe
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    api_version = kwargs.pop("api_version", "2015-07-01-preview")  # type: str
 
     accept = "application/json"
     # Construct URL
@@ -109,7 +113,7 @@ def build_get_path_global_valid_request(*, api_version: str = "2015-07-01-previe
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
-def build_get_swagger_global_valid_request(*, api_version: str = "2015-07-01-preview", **kwargs: Any) -> HttpRequest:
+def build_get_swagger_global_valid_request(**kwargs: Any) -> HttpRequest:
     """GET method with api-version modeled in global settings.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -123,6 +127,8 @@ def build_get_swagger_global_valid_request(*, api_version: str = "2015-07-01-pre
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    api_version = kwargs.pop("api_version", "2015-07-01-preview")  # type: str
 
     accept = "application/json"
     # Construct URL

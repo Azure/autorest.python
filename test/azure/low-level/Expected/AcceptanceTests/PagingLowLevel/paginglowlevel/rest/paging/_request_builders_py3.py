@@ -230,22 +230,20 @@ def build_get_multiple_pages_request(
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_get_with_query_params_request(
-    *, required_query_parameter: int, query_constant: bool = True, **kwargs: Any
-) -> HttpRequest:
+def build_get_with_query_params_request(*, required_query_parameter: int, **kwargs: Any) -> HttpRequest:
     """A paging operation that includes a next operation. It has a different query parameter from it's
     next operation nextOperationWithQueryParams. Returns a ProductResult.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword required_query_parameter: A required integer query parameter. Put in value '100' to
-     pass test.
-    :paramtype required_query_parameter: int
     :keyword query_constant: A constant. Must be True and will be passed as a query parameter to
      nextOperationWithQueryParams. The default value is True. Note that overriding this default
      value may result in unsupported behavior.
     :paramtype query_constant: bool
+    :keyword required_query_parameter: A required integer query parameter. Put in value '100' to
+     pass test.
+    :paramtype required_query_parameter: int
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -268,6 +266,8 @@ def build_get_with_query_params_request(
             }
     """
 
+    query_constant = kwargs.pop("query_constant", True)  # type: bool
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", "/paging/multiple/getWithQueryParams")
@@ -286,7 +286,7 @@ def build_get_with_query_params_request(
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
-def build_next_operation_with_query_params_request(*, query_constant: bool = True, **kwargs: Any) -> HttpRequest:
+def build_next_operation_with_query_params_request(**kwargs: Any) -> HttpRequest:
     """Next operation for getWithQueryParams. Pass in next=True to pass test. Returns a ProductResult.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -316,6 +316,8 @@ def build_next_operation_with_query_params_request(*, query_constant: bool = Tru
                 ]
             }
     """
+
+    query_constant = kwargs.pop("query_constant", True)  # type: bool
 
     accept = "application/json"
     # Construct URL

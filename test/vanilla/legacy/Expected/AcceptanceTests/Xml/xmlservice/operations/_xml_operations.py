@@ -533,9 +533,9 @@ def build_put_service_properties_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
     comp = kwargs.pop('comp', "properties")  # type: str
     restype = kwargs.pop('restype', "service")  # type: str
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     # Construct URL
     url = kwargs.pop("template_url", '/xml/')
@@ -592,9 +592,9 @@ def build_put_acls_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
     comp = kwargs.pop('comp', "acl")  # type: str
     restype = kwargs.pop('restype', "container")  # type: str
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     # Construct URL
     url = kwargs.pop("template_url", '/xml/mycontainer')
@@ -1801,17 +1801,17 @@ class XmlOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
         comp = kwargs.pop("comp", "properties")  # type: str
         restype = kwargs.pop("restype", "service")  # type: str
+        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
         content = self._serialize.body(properties, "StorageServiceProperties", is_xml=True)
 
         request = build_put_service_properties_request(
-            content_type=content_type,
-            content=content,
             comp=comp,
             restype=restype,
+            content_type=content_type,
+            content=content,
             template_url=self.put_service_properties.metadata["url"],
         )
         request = _convert_request(request)
@@ -1904,9 +1904,9 @@ class XmlOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
         comp = kwargs.pop("comp", "acl")  # type: str
         restype = kwargs.pop("restype", "container")  # type: str
+        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
         serialization_ctxt = {"xml": {"name": "SignedIdentifiers", "wrapped": True, "itemsName": "SignedIdentifier"}}
         content = self._serialize.body(
@@ -1914,10 +1914,10 @@ class XmlOperations(object):
         )
 
         request = build_put_acls_request(
-            content_type=content_type,
-            content=content,
             comp=comp,
             restype=restype,
+            content_type=content_type,
+            content=content,
             template_url=self.put_acls.metadata["url"],
         )
         request = _convert_request(request)

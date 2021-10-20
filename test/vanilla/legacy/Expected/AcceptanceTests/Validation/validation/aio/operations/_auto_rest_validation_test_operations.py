@@ -37,7 +37,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class AutoRestValidationTestOperationsMixin:
     @distributed_trace_async
     async def validation_of_method_parameters(
-        self, resource_group_name: str, id: int, *, api_version: str = "1.0.0", **kwargs: Any
+        self, resource_group_name: str, id: int, **kwargs: Any
     ) -> "_models.Product":
         """Validates input parameters on the method. See swagger for details.
 
@@ -56,6 +56,8 @@ class AutoRestValidationTestOperationsMixin:
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        api_version = kwargs.pop("api_version", "1.0.0")  # type: str
 
         request = build_validation_of_method_parameters_request(
             subscription_id=self._config.subscription_id,
@@ -86,13 +88,7 @@ class AutoRestValidationTestOperationsMixin:
 
     @distributed_trace_async
     async def validation_of_body(
-        self,
-        resource_group_name: str,
-        id: int,
-        body: Optional["_models.Product"] = None,
-        *,
-        api_version: str = "1.0.0",
-        **kwargs: Any
+        self, resource_group_name: str, id: int, body: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         """Validates body parameters on the method. See swagger for details.
 
@@ -114,6 +110,7 @@ class AutoRestValidationTestOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        api_version = kwargs.pop("api_version", "1.0.0")  # type: str
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body is not None:
@@ -125,9 +122,9 @@ class AutoRestValidationTestOperationsMixin:
             subscription_id=self._config.subscription_id,
             resource_group_name=resource_group_name,
             id=id,
+            api_version=api_version,
             content_type=content_type,
             json=json,
-            api_version=api_version,
             template_url=self.validation_of_body.metadata["url"],
         )
         request = _convert_request(request)
@@ -151,7 +148,7 @@ class AutoRestValidationTestOperationsMixin:
     validation_of_body.metadata = {"url": "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"}  # type: ignore
 
     @distributed_trace_async
-    async def get_with_constant_in_path(self, *, constant_param: str = "constant", **kwargs: Any) -> None:
+    async def get_with_constant_in_path(self, **kwargs: Any) -> None:
         """get_with_constant_in_path.
 
         :keyword constant_param: The default value is "constant". Note that overriding this default
@@ -165,6 +162,8 @@ class AutoRestValidationTestOperationsMixin:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        constant_param = kwargs.pop("constant_param", "constant")  # type: str
 
         request = build_get_with_constant_in_path_request(
             constant_param=constant_param,
@@ -187,7 +186,7 @@ class AutoRestValidationTestOperationsMixin:
 
     @distributed_trace_async
     async def post_with_constant_in_body(
-        self, body: Optional["_models.Product"] = None, *, constant_param: str = "constant", **kwargs: Any
+        self, body: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         """post_with_constant_in_body.
 
@@ -205,6 +204,7 @@ class AutoRestValidationTestOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        constant_param = kwargs.pop("constant_param", "constant")  # type: str
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body is not None:

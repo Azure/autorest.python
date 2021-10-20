@@ -58,7 +58,7 @@ class ApiVersionDefaultOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_method_global_valid(self, *, api_version: str = "2015-07-01-preview", **kwargs: Any) -> None:
+    async def get_method_global_valid(self, **kwargs: Any) -> None:
         """GET method with api-version modeled in global settings.
 
         :keyword api_version: Api Version. The default value is "2015-07-01-preview". Note that
@@ -72,6 +72,8 @@ class ApiVersionDefaultOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        api_version = kwargs.pop("api_version", "2015-07-01-preview")  # type: str
 
         request = build_get_method_global_valid_request(
             api_version=api_version,
@@ -94,9 +96,7 @@ class ApiVersionDefaultOperations:
     get_method_global_valid.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview"}  # type: ignore
 
     @distributed_trace_async
-    async def get_method_global_not_provided_valid(
-        self, *, api_version: str = "2015-07-01-preview", **kwargs: Any
-    ) -> None:
+    async def get_method_global_not_provided_valid(self, **kwargs: Any) -> None:
         """GET method with api-version modeled in global settings.
 
         :keyword api_version: Api Version. The default value is "2015-07-01-preview". Note that
@@ -110,6 +110,8 @@ class ApiVersionDefaultOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        api_version = kwargs.pop("api_version", "2015-07-01-preview")  # type: str
 
         request = build_get_method_global_not_provided_valid_request(
             api_version=api_version,
@@ -132,7 +134,7 @@ class ApiVersionDefaultOperations:
     get_method_global_not_provided_valid.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview"}  # type: ignore
 
     @distributed_trace_async
-    async def get_path_global_valid(self, *, api_version: str = "2015-07-01-preview", **kwargs: Any) -> None:
+    async def get_path_global_valid(self, **kwargs: Any) -> None:
         """GET method with api-version modeled in global settings.
 
         :keyword api_version: Api Version. The default value is "2015-07-01-preview". Note that
@@ -146,6 +148,8 @@ class ApiVersionDefaultOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        api_version = kwargs.pop("api_version", "2015-07-01-preview")  # type: str
 
         request = build_get_path_global_valid_request(
             api_version=api_version,
@@ -168,7 +172,7 @@ class ApiVersionDefaultOperations:
     get_path_global_valid.metadata = {"url": "/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview"}  # type: ignore
 
     @distributed_trace_async
-    async def get_swagger_global_valid(self, *, api_version: str = "2015-07-01-preview", **kwargs: Any) -> None:
+    async def get_swagger_global_valid(self, **kwargs: Any) -> None:
         """GET method with api-version modeled in global settings.
 
         :keyword api_version: Api Version. The default value is "2015-07-01-preview". Note that
@@ -182,6 +186,8 @@ class ApiVersionDefaultOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        api_version = kwargs.pop("api_version", "2015-07-01-preview")  # type: str
 
         request = build_get_swagger_global_valid_request(
             api_version=api_version,

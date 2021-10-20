@@ -131,7 +131,7 @@ class SkipUrlEncodingOperations:
     get_path_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}"}  # type: ignore
 
     @distributed_trace_async
-    async def get_swagger_path_valid(self, *, unencoded_path_param: str = "path1/path2/path3", **kwargs: Any) -> None:
+    async def get_swagger_path_valid(self, **kwargs: Any) -> None:
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
         :keyword unencoded_path_param: An unencoded path parameter with value 'path1/path2/path3'. The
@@ -146,6 +146,8 @@ class SkipUrlEncodingOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        unencoded_path_param = kwargs.pop("unencoded_path_param", "path1/path2/path3")  # type: str
 
         request = build_get_swagger_path_valid_request(
             unencoded_path_param=unencoded_path_param,
@@ -273,7 +275,7 @@ class SkipUrlEncodingOperations:
     get_path_query_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/path/query/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_swagger_query_valid(self, *, q1: str = "value1&q2=value2&q3=value3", **kwargs: Any) -> None:
+    async def get_swagger_query_valid(self, **kwargs: Any) -> None:
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
         :keyword q1: An unencoded query parameter with value 'value1&q2=value2&q3=value3'. The default
@@ -288,6 +290,8 @@ class SkipUrlEncodingOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        q1 = kwargs.pop("q1", "value1&q2=value2&q3=value3")  # type: str
 
         request = build_get_swagger_query_valid_request(
             q1=q1,

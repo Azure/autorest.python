@@ -68,11 +68,7 @@ class StorageAccountsOperations:
 
     @distributed_trace_async
     async def check_name_availability(
-        self,
-        account_name: "_models.StorageAccountCheckNameAvailabilityParameters",
-        *,
-        api_version: str = "2015-05-01-preview",
-        **kwargs: Any
+        self, account_name: "_models.StorageAccountCheckNameAvailabilityParameters", **kwargs: Any
     ) -> "_models.CheckNameAvailabilityResult":
         """Checks that account name is valid and is not in use.
 
@@ -92,15 +88,16 @@ class StorageAccountsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(account_name, "StorageAccountCheckNameAvailabilityParameters")
 
         request = build_check_name_availability_request(
             subscription_id=self._config.subscription_id,
+            api_version=api_version,
             content_type=content_type,
             json=json,
-            api_version=api_version,
             template_url=self.check_name_availability.metadata["url"],
         )
         request = _convert_request(request)
@@ -127,14 +124,13 @@ class StorageAccountsOperations:
         resource_group_name: str,
         account_name: str,
         parameters: "_models.StorageAccountCreateParameters",
-        *,
-        api_version: str = "2015-05-01-preview",
         **kwargs: Any
     ) -> Optional["_models.StorageAccount"]:
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional["_models.StorageAccount"]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(parameters, "StorageAccountCreateParameters")
@@ -143,9 +139,9 @@ class StorageAccountsOperations:
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
+            api_version=api_version,
             content_type=content_type,
             json=json,
-            api_version=api_version,
             template_url=self._create_initial.metadata["url"],
         )
         request = _convert_request(request)
@@ -175,8 +171,6 @@ class StorageAccountsOperations:
         resource_group_name: str,
         account_name: str,
         parameters: "_models.StorageAccountCreateParameters",
-        *,
-        api_version: str = "2015-05-01-preview",
         **kwargs: Any
     ) -> AsyncLROPoller["_models.StorageAccount"]:
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts
@@ -208,6 +202,7 @@ class StorageAccountsOperations:
         :rtype: ~azure.core.polling.AsyncLROPoller[~storage.models.StorageAccount]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
         polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccount"]
@@ -251,9 +246,7 @@ class StorageAccountsOperations:
     begin_create.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"}  # type: ignore
 
     @distributed_trace_async
-    async def delete(
-        self, resource_group_name: str, account_name: str, *, api_version: str = "2015-05-01-preview", **kwargs: Any
-    ) -> None:
+    async def delete(self, resource_group_name: str, account_name: str, **kwargs: Any) -> None:
         """Deletes a storage account in Microsoft Azure.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
@@ -273,6 +266,8 @@ class StorageAccountsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
 
         request = build_delete_request(
             resource_group_name=resource_group_name,
@@ -298,7 +293,7 @@ class StorageAccountsOperations:
 
     @distributed_trace_async
     async def get_properties(
-        self, resource_group_name: str, account_name: str, *, api_version: str = "2015-05-01-preview", **kwargs: Any
+        self, resource_group_name: str, account_name: str, **kwargs: Any
     ) -> "_models.StorageAccount":
         """Returns the properties for the specified storage account including but not limited to name,
         account type, location, and account status. The ListKeys operation should be used to retrieve
@@ -321,6 +316,8 @@ class StorageAccountsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccount"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
 
         request = build_get_properties_request(
             resource_group_name=resource_group_name,
@@ -354,8 +351,6 @@ class StorageAccountsOperations:
         resource_group_name: str,
         account_name: str,
         parameters: "_models.StorageAccountUpdateParameters",
-        *,
-        api_version: str = "2015-05-01-preview",
         **kwargs: Any
     ) -> "_models.StorageAccount":
         """Updates the account type or tags for a storage account. It can also be used to add a custom
@@ -387,6 +382,7 @@ class StorageAccountsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(parameters, "StorageAccountUpdateParameters")
@@ -395,9 +391,9 @@ class StorageAccountsOperations:
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
+            api_version=api_version,
             content_type=content_type,
             json=json,
-            api_version=api_version,
             template_url=self.update.metadata["url"],
         )
         request = _convert_request(request)
@@ -421,7 +417,7 @@ class StorageAccountsOperations:
 
     @distributed_trace_async
     async def list_keys(
-        self, resource_group_name: str, account_name: str, *, api_version: str = "2015-05-01-preview", **kwargs: Any
+        self, resource_group_name: str, account_name: str, **kwargs: Any
     ) -> "_models.StorageAccountKeys":
         """Lists the access keys for the specified storage account.
 
@@ -440,6 +436,8 @@ class StorageAccountsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccountKeys"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
 
         request = build_list_keys_request(
             resource_group_name=resource_group_name,
@@ -468,9 +466,7 @@ class StorageAccountsOperations:
     list_keys.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys"}  # type: ignore
 
     @distributed_trace
-    def list(
-        self, *, api_version: str = "2015-05-01-preview", **kwargs: Any
-    ) -> AsyncIterable["_models.StorageAccountListResult"]:
+    def list(self, **kwargs: Any) -> AsyncIterable["_models.StorageAccountListResult"]:
         """Lists all the storage accounts available under the subscription. Note that storage keys are not
         returned; use the ListKeys operation for this.
 
@@ -483,6 +479,8 @@ class StorageAccountsOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~storage.models.StorageAccountListResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccountListResult"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -535,7 +533,7 @@ class StorageAccountsOperations:
 
     @distributed_trace
     def list_by_resource_group(
-        self, resource_group_name: str, *, api_version: str = "2015-05-01-preview", **kwargs: Any
+        self, resource_group_name: str, **kwargs: Any
     ) -> AsyncIterable["_models.StorageAccountListResult"]:
         """Lists all the storage accounts available under the given resource group. Note that storage keys
         are not returned; use the ListKeys operation for this.
@@ -551,6 +549,8 @@ class StorageAccountsOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~storage.models.StorageAccountListResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccountListResult"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -609,8 +609,6 @@ class StorageAccountsOperations:
         resource_group_name: str,
         account_name: str,
         key_name: Optional[Union[str, "_models.KeyName"]] = None,
-        *,
-        api_version: str = "2015-05-01-preview",
         **kwargs: Any
     ) -> "_models.StorageAccountKeys":
         """Regenerates the access keys for the specified storage account.
@@ -635,6 +633,7 @@ class StorageAccountsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         _regenerate_key = _models.StorageAccountRegenerateKeyParameters(key_name=key_name)
@@ -644,9 +643,9 @@ class StorageAccountsOperations:
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
+            api_version=api_version,
             content_type=content_type,
             json=json,
-            api_version=api_version,
             template_url=self.regenerate_key.metadata["url"],
         )
         request = _convert_request(request)

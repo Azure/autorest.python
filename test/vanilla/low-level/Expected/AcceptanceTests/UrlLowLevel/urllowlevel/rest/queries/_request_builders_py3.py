@@ -16,7 +16,7 @@ from ..._vendor import _format_url_section
 _SERIALIZER = Serializer()
 
 
-def build_get_boolean_true_request(*, bool_query: bool = True, **kwargs: Any) -> HttpRequest:
+def build_get_boolean_true_request(**kwargs: Any) -> HttpRequest:
     """Get true Boolean value on path.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -30,6 +30,8 @@ def build_get_boolean_true_request(*, bool_query: bool = True, **kwargs: Any) ->
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    bool_query = kwargs.pop("bool_query", True)  # type: bool
 
     accept = "application/json"
     # Construct URL
@@ -46,7 +48,7 @@ def build_get_boolean_true_request(*, bool_query: bool = True, **kwargs: Any) ->
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
-def build_get_boolean_false_request(*, bool_query: bool = False, **kwargs: Any) -> HttpRequest:
+def build_get_boolean_false_request(**kwargs: Any) -> HttpRequest:
     """Get false Boolean value on path.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -60,6 +62,8 @@ def build_get_boolean_false_request(*, bool_query: bool = False, **kwargs: Any) 
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    bool_query = kwargs.pop("bool_query", False)  # type: bool
 
     accept = "application/json"
     # Construct URL
@@ -106,7 +110,7 @@ def build_get_boolean_null_request(*, bool_query: Optional[bool] = None, **kwarg
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
-def build_get_int_one_million_request(*, int_query: int = 1000000, **kwargs: Any) -> HttpRequest:
+def build_get_int_one_million_request(**kwargs: Any) -> HttpRequest:
     """Get '1000000' integer value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -120,6 +124,8 @@ def build_get_int_one_million_request(*, int_query: int = 1000000, **kwargs: Any
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    int_query = kwargs.pop("int_query", 1000000)  # type: int
 
     accept = "application/json"
     # Construct URL
@@ -136,7 +142,7 @@ def build_get_int_one_million_request(*, int_query: int = 1000000, **kwargs: Any
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
-def build_get_int_negative_one_million_request(*, int_query: int = -1000000, **kwargs: Any) -> HttpRequest:
+def build_get_int_negative_one_million_request(**kwargs: Any) -> HttpRequest:
     """Get '-1000000' integer value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -150,6 +156,8 @@ def build_get_int_negative_one_million_request(*, int_query: int = -1000000, **k
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    int_query = kwargs.pop("int_query", -1000000)  # type: int
 
     accept = "application/json"
     # Construct URL
@@ -196,7 +204,7 @@ def build_get_int_null_request(*, int_query: Optional[int] = None, **kwargs: Any
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
-def build_get_ten_billion_request(*, long_query: int = 10000000000, **kwargs: Any) -> HttpRequest:
+def build_get_ten_billion_request(**kwargs: Any) -> HttpRequest:
     """Get '10000000000' 64 bit integer value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -210,6 +218,8 @@ def build_get_ten_billion_request(*, long_query: int = 10000000000, **kwargs: An
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    long_query = kwargs.pop("long_query", 10000000000)  # type: int
 
     accept = "application/json"
     # Construct URL
@@ -226,7 +236,7 @@ def build_get_ten_billion_request(*, long_query: int = 10000000000, **kwargs: An
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
-def build_get_negative_ten_billion_request(*, long_query: int = -10000000000, **kwargs: Any) -> HttpRequest:
+def build_get_negative_ten_billion_request(**kwargs: Any) -> HttpRequest:
     """Get '-10000000000' 64 bit integer value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -240,6 +250,8 @@ def build_get_negative_ten_billion_request(*, long_query: int = -10000000000, **
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    long_query = kwargs.pop("long_query", -10000000000)  # type: int
 
     accept = "application/json"
     # Construct URL
@@ -286,9 +298,7 @@ def build_get_long_null_request(*, long_query: Optional[int] = None, **kwargs: A
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
-def build_float_scientific_positive_request(
-    *, float_query: float = 103400000000000000000, **kwargs: Any
-) -> HttpRequest:
+def build_float_scientific_positive_request(**kwargs: Any) -> HttpRequest:
     """Get '1.034E+20' numeric value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -302,6 +312,8 @@ def build_float_scientific_positive_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    float_query = kwargs.pop("float_query", 103400000000000000000)  # type: float
 
     accept = "application/json"
     # Construct URL
@@ -318,7 +330,7 @@ def build_float_scientific_positive_request(
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
-def build_float_scientific_negative_request(*, float_query: float = -1.034e-20, **kwargs: Any) -> HttpRequest:
+def build_float_scientific_negative_request(**kwargs: Any) -> HttpRequest:
     """Get '-1.034E-20' numeric value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -332,6 +344,8 @@ def build_float_scientific_negative_request(*, float_query: float = -1.034e-20, 
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    float_query = kwargs.pop("float_query", -1.034e-20)  # type: float
 
     accept = "application/json"
     # Construct URL
@@ -378,7 +392,7 @@ def build_float_null_request(*, float_query: Optional[float] = None, **kwargs: A
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
-def build_double_decimal_positive_request(*, double_query: float = 9999999.999, **kwargs: Any) -> HttpRequest:
+def build_double_decimal_positive_request(**kwargs: Any) -> HttpRequest:
     """Get '9999999.999' numeric value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -392,6 +406,8 @@ def build_double_decimal_positive_request(*, double_query: float = 9999999.999, 
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    double_query = kwargs.pop("double_query", 9999999.999)  # type: float
 
     accept = "application/json"
     # Construct URL
@@ -408,7 +424,7 @@ def build_double_decimal_positive_request(*, double_query: float = 9999999.999, 
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
-def build_double_decimal_negative_request(*, double_query: float = -9999999.999, **kwargs: Any) -> HttpRequest:
+def build_double_decimal_negative_request(**kwargs: Any) -> HttpRequest:
     """Get '-9999999.999' numeric value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -422,6 +438,8 @@ def build_double_decimal_negative_request(*, double_query: float = -9999999.999,
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    double_query = kwargs.pop("double_query", -9999999.999)  # type: float
 
     accept = "application/json"
     # Construct URL
@@ -468,7 +486,7 @@ def build_double_null_request(*, double_query: Optional[float] = None, **kwargs:
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
-def build_string_unicode_request(*, string_query: str = "啊齄丂狛狜隣郎隣兀﨩", **kwargs: Any) -> HttpRequest:
+def build_string_unicode_request(**kwargs: Any) -> HttpRequest:
     """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -482,6 +500,8 @@ def build_string_unicode_request(*, string_query: str = "啊齄丂狛狜隣郎�
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    string_query = kwargs.pop("string_query", "啊齄丂狛狜隣郎隣兀﨩")  # type: str
 
     accept = "application/json"
     # Construct URL
@@ -498,9 +518,7 @@ def build_string_unicode_request(*, string_query: str = "啊齄丂狛狜隣郎�
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
-def build_string_url_encoded_request(
-    *, string_query: str = "begin!*'();:@ &=+$,/?#[]end", **kwargs: Any
-) -> HttpRequest:
+def build_string_url_encoded_request(**kwargs: Any) -> HttpRequest:
     """Get 'begin!*'();:@ &=+$,/?#[]end.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -515,6 +533,8 @@ def build_string_url_encoded_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    string_query = kwargs.pop("string_query", "begin!*'();:@ &=+$,/?#[]end")  # type: str
 
     accept = "application/json"
     # Construct URL
@@ -533,7 +553,7 @@ def build_string_url_encoded_request(
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
-def build_string_empty_request(*, string_query: str = "", **kwargs: Any) -> HttpRequest:
+def build_string_empty_request(**kwargs: Any) -> HttpRequest:
     """Get ''.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -547,6 +567,8 @@ def build_string_empty_request(*, string_query: str = "", **kwargs: Any) -> Http
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    string_query = kwargs.pop("string_query", "")  # type: str
 
     accept = "application/json"
     # Construct URL
@@ -685,7 +707,7 @@ def build_byte_multi_byte_request(*, byte_query: Optional[bytearray] = None, **k
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
-def build_byte_empty_request(*, byte_query: bytearray = bytearray("", encoding="utf-8"), **kwargs: Any) -> HttpRequest:
+def build_byte_empty_request(**kwargs: Any) -> HttpRequest:
     """Get '' as byte array.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -699,6 +721,8 @@ def build_byte_empty_request(*, byte_query: bytearray = bytearray("", encoding="
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    byte_query = kwargs.pop("byte_query", bytearray("", encoding="utf-8"))  # type: bytearray
 
     accept = "application/json"
     # Construct URL
@@ -745,7 +769,7 @@ def build_byte_null_request(*, byte_query: Optional[bytearray] = None, **kwargs:
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
-def build_date_valid_request(*, date_query: datetime.date = "2012-01-01", **kwargs: Any) -> HttpRequest:
+def build_date_valid_request(**kwargs: Any) -> HttpRequest:
     """Get '2012-01-01' as date.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -759,6 +783,8 @@ def build_date_valid_request(*, date_query: datetime.date = "2012-01-01", **kwar
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    date_query = kwargs.pop("date_query", "2012-01-01")  # type: datetime.date
 
     accept = "application/json"
     # Construct URL
@@ -805,9 +831,7 @@ def build_date_null_request(*, date_query: Optional[datetime.date] = None, **kwa
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
-def build_date_time_valid_request(
-    *, date_time_query: datetime.datetime = "2012-01-01T01:01:01Z", **kwargs: Any
-) -> HttpRequest:
+def build_date_time_valid_request(**kwargs: Any) -> HttpRequest:
     """Get '2012-01-01T01:01:01Z' as date-time.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -822,6 +846,8 @@ def build_date_time_valid_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    date_time_query = kwargs.pop("date_time_query", "2012-01-01T01:01:01Z")  # type: datetime.datetime
 
     accept = "application/json"
     # Construct URL

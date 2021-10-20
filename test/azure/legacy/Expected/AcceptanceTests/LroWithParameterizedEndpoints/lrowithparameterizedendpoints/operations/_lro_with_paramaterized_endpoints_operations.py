@@ -58,10 +58,11 @@ def build_poll_with_parameterized_endpoints_request_initial(
 
 
 def build_poll_with_constant_parameterized_endpoints_request_initial(
-    constant_parameter="iAmConstant",  # type: str
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    constant_parameter = kwargs.pop('constant_parameter', "iAmConstant")  # type: str
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/lroConstantParameterizedEndpoints/{constantParameter}')

@@ -37,10 +37,11 @@ _SERIALIZER = Serializer()
 # fmt: off
 
 def build_get_boolean_true_request(
-    bool_path=True,  # type: bool
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    bool_path = kwargs.pop('bool_path', True)  # type: bool
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paths/bool/true/{boolPath}')
@@ -63,10 +64,11 @@ def build_get_boolean_true_request(
 
 
 def build_get_boolean_false_request(
-    bool_path=False,  # type: bool
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    bool_path = kwargs.pop('bool_path', False)  # type: bool
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paths/bool/false/{boolPath}')
@@ -89,10 +91,11 @@ def build_get_boolean_false_request(
 
 
 def build_get_int_one_million_request(
-    int_path=1000000,  # type: int
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    int_path = kwargs.pop('int_path', 1000000)  # type: int
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paths/int/1000000/{intPath}')
@@ -115,10 +118,11 @@ def build_get_int_one_million_request(
 
 
 def build_get_int_negative_one_million_request(
-    int_path=-1000000,  # type: int
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    int_path = kwargs.pop('int_path', -1000000)  # type: int
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paths/int/-1000000/{intPath}')
@@ -141,10 +145,11 @@ def build_get_int_negative_one_million_request(
 
 
 def build_get_ten_billion_request(
-    long_path=10000000000,  # type: int
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    long_path = kwargs.pop('long_path', 10000000000)  # type: int
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paths/long/10000000000/{longPath}')
@@ -167,10 +172,11 @@ def build_get_ten_billion_request(
 
 
 def build_get_negative_ten_billion_request(
-    long_path=-10000000000,  # type: int
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    long_path = kwargs.pop('long_path', -10000000000)  # type: int
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paths/long/-10000000000/{longPath}')
@@ -193,10 +199,11 @@ def build_get_negative_ten_billion_request(
 
 
 def build_float_scientific_positive_request(
-    float_path=103400000000000000000,  # type: float
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    float_path = kwargs.pop('float_path', 103400000000000000000)  # type: float
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paths/float/1.034E+20/{floatPath}')
@@ -219,10 +226,11 @@ def build_float_scientific_positive_request(
 
 
 def build_float_scientific_negative_request(
-    float_path=-1.034e-20,  # type: float
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    float_path = kwargs.pop('float_path', -1.034e-20)  # type: float
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paths/float/-1.034E-20/{floatPath}')
@@ -245,10 +253,11 @@ def build_float_scientific_negative_request(
 
 
 def build_double_decimal_positive_request(
-    double_path=9999999.999,  # type: float
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    double_path = kwargs.pop('double_path', 9999999.999)  # type: float
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paths/double/9999999.999/{doublePath}')
@@ -271,10 +280,11 @@ def build_double_decimal_positive_request(
 
 
 def build_double_decimal_negative_request(
-    double_path=-9999999.999,  # type: float
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    double_path = kwargs.pop('double_path', -9999999.999)  # type: float
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paths/double/-9999999.999/{doublePath}')
@@ -297,10 +307,11 @@ def build_double_decimal_negative_request(
 
 
 def build_string_unicode_request(
-    string_path="啊齄丂狛狜隣郎隣兀﨩",  # type: str
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    string_path = kwargs.pop('string_path', "啊齄丂狛狜隣郎隣兀﨩")  # type: str
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paths/string/unicode/{stringPath}')
@@ -323,10 +334,11 @@ def build_string_unicode_request(
 
 
 def build_string_url_encoded_request(
-    string_path="begin!*'();:@ &=+$,/?#[]end",  # type: str
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    string_path = kwargs.pop('string_path', "begin!*'();:@ &=+$,/?#[]end")  # type: str
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}')
@@ -349,10 +361,11 @@ def build_string_url_encoded_request(
 
 
 def build_string_url_non_encoded_request(
-    string_path="begin!*'();:@&=+$,end",  # type: str
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    string_path = kwargs.pop('string_path', "begin!*'();:@&=+$,end")  # type: str
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paths/string/begin!*\'();:@&=+$,end/{stringPath}')
@@ -375,10 +388,11 @@ def build_string_url_non_encoded_request(
 
 
 def build_string_empty_request(
-    string_path="",  # type: str
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    string_path = kwargs.pop('string_path', "")  # type: str
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paths/string/empty/{stringPath}')
@@ -505,10 +519,11 @@ def build_byte_multi_byte_request(
 
 
 def build_byte_empty_request(
-    byte_path=bytearray("", encoding="utf-8"),  # type: bytearray
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    byte_path = kwargs.pop('byte_path', bytearray("", encoding="utf-8"))  # type: bytearray
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paths/byte/empty/{bytePath}')
@@ -557,10 +572,11 @@ def build_byte_null_request(
 
 
 def build_date_valid_request(
-    date_path="2012-01-01",  # type: datetime.date
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    date_path = kwargs.pop('date_path', "2012-01-01")  # type: datetime.date
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paths/date/2012-01-01/{datePath}')
@@ -609,10 +625,11 @@ def build_date_null_request(
 
 
 def build_date_time_valid_request(
-    date_time_path="2012-01-01T01:01:01Z",  # type: datetime.datetime
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    date_time_path = kwargs.pop('date_time_path', "2012-01-01T01:01:01Z")  # type: datetime.datetime
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}')

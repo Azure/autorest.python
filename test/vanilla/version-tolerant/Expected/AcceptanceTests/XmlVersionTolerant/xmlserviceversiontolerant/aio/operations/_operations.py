@@ -1111,7 +1111,7 @@ class XmlOperations:
     put_empty_child_element.metadata = {"url": "/xml/empty-child-element"}  # type: ignore
 
     @distributed_trace_async
-    async def list_containers(self, *, comp: str = "list", **kwargs: Any) -> Any:
+    async def list_containers(self, **kwargs: Any) -> Any:
         """Lists containers in a storage account.
 
         :keyword comp: The default value is "list". Note that overriding this default value may result
@@ -1153,6 +1153,8 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        comp = kwargs.pop("comp", "list")  # type: str
+
         request = build_xml_list_containers_request(
             comp=comp,
             template_url=self.list_containers.metadata["url"],
@@ -1179,7 +1181,7 @@ class XmlOperations:
     list_containers.metadata = {"url": "/xml/"}  # type: ignore
 
     @distributed_trace_async
-    async def get_service_properties(self, *, comp: str = "properties", restype: str = "service", **kwargs: Any) -> Any:
+    async def get_service_properties(self, **kwargs: Any) -> Any:
         """Gets storage service properties.
 
         :keyword comp: The default value is "properties". Note that overriding this default value may
@@ -1245,6 +1247,9 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        comp = kwargs.pop("comp", "properties")  # type: str
+        restype = kwargs.pop("restype", "service")  # type: str
+
         request = build_xml_get_service_properties_request(
             comp=comp,
             restype=restype,
@@ -1272,9 +1277,7 @@ class XmlOperations:
     get_service_properties.metadata = {"url": "/xml/"}  # type: ignore
 
     @distributed_trace_async
-    async def put_service_properties(
-        self, properties: Any, *, comp: str = "properties", restype: str = "service", **kwargs: Any
-    ) -> None:
+    async def put_service_properties(self, properties: Any, **kwargs: Any) -> None:
         """Puts storage service properties.
 
         :param properties:
@@ -1342,15 +1345,17 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        comp = kwargs.pop("comp", "properties")  # type: str
+        restype = kwargs.pop("restype", "service")  # type: str
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
         content = properties
 
         request = build_xml_put_service_properties_request(
-            content_type=content_type,
-            content=content,
             comp=comp,
             restype=restype,
+            content_type=content_type,
+            content=content,
             template_url=self.put_service_properties.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1368,7 +1373,7 @@ class XmlOperations:
     put_service_properties.metadata = {"url": "/xml/"}  # type: ignore
 
     @distributed_trace_async
-    async def get_acls(self, *, comp: str = "acl", restype: str = "container", **kwargs: Any) -> List[Any]:
+    async def get_acls(self, **kwargs: Any) -> List[Any]:
         """Gets storage ACLs for a container.
 
         :keyword comp: The default value is "acl". Note that overriding this default value may result
@@ -1400,6 +1405,9 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        comp = kwargs.pop("comp", "acl")  # type: str
+        restype = kwargs.pop("restype", "container")  # type: str
+
         request = build_xml_get_acls_request(
             comp=comp,
             restype=restype,
@@ -1427,9 +1435,7 @@ class XmlOperations:
     get_acls.metadata = {"url": "/xml/mycontainer"}  # type: ignore
 
     @distributed_trace_async
-    async def put_acls(
-        self, properties: List[Any], *, comp: str = "acl", restype: str = "container", **kwargs: Any
-    ) -> None:
+    async def put_acls(self, properties: List[Any], **kwargs: Any) -> None:
         """Puts storage ACLs for a container.
 
         :param properties:
@@ -1463,16 +1469,18 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        comp = kwargs.pop("comp", "acl")  # type: str
+        restype = kwargs.pop("restype", "container")  # type: str
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
         serialization_ctxt = {"xml": {"name": "SignedIdentifiers", "wrapped": True, "itemsName": "SignedIdentifier"}}
         content = properties
 
         request = build_xml_put_acls_request(
-            content_type=content_type,
-            content=content,
             comp=comp,
             restype=restype,
+            content_type=content_type,
+            content=content,
             template_url=self.put_acls.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1490,7 +1498,7 @@ class XmlOperations:
     put_acls.metadata = {"url": "/xml/mycontainer"}  # type: ignore
 
     @distributed_trace_async
-    async def list_blobs(self, *, comp: str = "list", restype: str = "container", **kwargs: Any) -> Any:
+    async def list_blobs(self, **kwargs: Any) -> Any:
         """Lists blobs in a storage container.
 
         :keyword comp: The default value is "list". Note that overriding this default value may result
@@ -1567,6 +1575,9 @@ class XmlOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        comp = kwargs.pop("comp", "list")  # type: str
+        restype = kwargs.pop("restype", "container")  # type: str
 
         request = build_xml_list_blobs_request(
             comp=comp,

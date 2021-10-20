@@ -89,7 +89,7 @@ class QueriesOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_boolean_true(self, *, bool_query: bool = True, **kwargs: Any) -> None:
+    async def get_boolean_true(self, **kwargs: Any) -> None:
         """Get true Boolean value on path.
 
         :keyword bool_query: true boolean value. The default value is True. Note that overriding this
@@ -103,6 +103,8 @@ class QueriesOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        bool_query = kwargs.pop("bool_query", True)  # type: bool
 
         request = build_get_boolean_true_request(
             bool_query=bool_query,
@@ -125,7 +127,7 @@ class QueriesOperations:
     get_boolean_true.metadata = {"url": "/queries/bool/true"}  # type: ignore
 
     @distributed_trace_async
-    async def get_boolean_false(self, *, bool_query: bool = False, **kwargs: Any) -> None:
+    async def get_boolean_false(self, **kwargs: Any) -> None:
         """Get false Boolean value on path.
 
         :keyword bool_query: false boolean value. The default value is False. Note that overriding this
@@ -139,6 +141,8 @@ class QueriesOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        bool_query = kwargs.pop("bool_query", False)  # type: bool
 
         request = build_get_boolean_false_request(
             bool_query=bool_query,
@@ -196,7 +200,7 @@ class QueriesOperations:
     get_boolean_null.metadata = {"url": "/queries/bool/null"}  # type: ignore
 
     @distributed_trace_async
-    async def get_int_one_million(self, *, int_query: int = 1000000, **kwargs: Any) -> None:
+    async def get_int_one_million(self, **kwargs: Any) -> None:
         """Get '1000000' integer value.
 
         :keyword int_query: '1000000' integer value. The default value is 1000000. Note that overriding
@@ -210,6 +214,8 @@ class QueriesOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        int_query = kwargs.pop("int_query", 1000000)  # type: int
 
         request = build_get_int_one_million_request(
             int_query=int_query,
@@ -232,7 +238,7 @@ class QueriesOperations:
     get_int_one_million.metadata = {"url": "/queries/int/1000000"}  # type: ignore
 
     @distributed_trace_async
-    async def get_int_negative_one_million(self, *, int_query: int = -1000000, **kwargs: Any) -> None:
+    async def get_int_negative_one_million(self, **kwargs: Any) -> None:
         """Get '-1000000' integer value.
 
         :keyword int_query: '-1000000' integer value. The default value is -1000000. Note that
@@ -246,6 +252,8 @@ class QueriesOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        int_query = kwargs.pop("int_query", -1000000)  # type: int
 
         request = build_get_int_negative_one_million_request(
             int_query=int_query,
@@ -303,7 +311,7 @@ class QueriesOperations:
     get_int_null.metadata = {"url": "/queries/int/null"}  # type: ignore
 
     @distributed_trace_async
-    async def get_ten_billion(self, *, long_query: int = 10000000000, **kwargs: Any) -> None:
+    async def get_ten_billion(self, **kwargs: Any) -> None:
         """Get '10000000000' 64 bit integer value.
 
         :keyword long_query: '10000000000' 64 bit integer value. The default value is 10000000000. Note
@@ -317,6 +325,8 @@ class QueriesOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        long_query = kwargs.pop("long_query", 10000000000)  # type: int
 
         request = build_get_ten_billion_request(
             long_query=long_query,
@@ -339,7 +349,7 @@ class QueriesOperations:
     get_ten_billion.metadata = {"url": "/queries/long/10000000000"}  # type: ignore
 
     @distributed_trace_async
-    async def get_negative_ten_billion(self, *, long_query: int = -10000000000, **kwargs: Any) -> None:
+    async def get_negative_ten_billion(self, **kwargs: Any) -> None:
         """Get '-10000000000' 64 bit integer value.
 
         :keyword long_query: '-10000000000' 64 bit integer value. The default value is -10000000000.
@@ -353,6 +363,8 @@ class QueriesOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        long_query = kwargs.pop("long_query", -10000000000)  # type: int
 
         request = build_get_negative_ten_billion_request(
             long_query=long_query,
@@ -410,7 +422,7 @@ class QueriesOperations:
     get_long_null.metadata = {"url": "/queries/long/null"}  # type: ignore
 
     @distributed_trace_async
-    async def float_scientific_positive(self, *, float_query: float = 103400000000000000000, **kwargs: Any) -> None:
+    async def float_scientific_positive(self, **kwargs: Any) -> None:
         """Get '1.034E+20' numeric value.
 
         :keyword float_query: '1.034E+20'numeric value. The default value is 103400000000000000000.
@@ -424,6 +436,8 @@ class QueriesOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        float_query = kwargs.pop("float_query", 103400000000000000000)  # type: float
 
         request = build_float_scientific_positive_request(
             float_query=float_query,
@@ -446,7 +460,7 @@ class QueriesOperations:
     float_scientific_positive.metadata = {"url": "/queries/float/1.034E+20"}  # type: ignore
 
     @distributed_trace_async
-    async def float_scientific_negative(self, *, float_query: float = -1.034e-20, **kwargs: Any) -> None:
+    async def float_scientific_negative(self, **kwargs: Any) -> None:
         """Get '-1.034E-20' numeric value.
 
         :keyword float_query: '-1.034E-20'numeric value. The default value is -1.034e-20. Note that
@@ -460,6 +474,8 @@ class QueriesOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        float_query = kwargs.pop("float_query", -1.034e-20)  # type: float
 
         request = build_float_scientific_negative_request(
             float_query=float_query,
@@ -517,7 +533,7 @@ class QueriesOperations:
     float_null.metadata = {"url": "/queries/float/null"}  # type: ignore
 
     @distributed_trace_async
-    async def double_decimal_positive(self, *, double_query: float = 9999999.999, **kwargs: Any) -> None:
+    async def double_decimal_positive(self, **kwargs: Any) -> None:
         """Get '9999999.999' numeric value.
 
         :keyword double_query: '9999999.999'numeric value. The default value is 9999999.999. Note that
@@ -531,6 +547,8 @@ class QueriesOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        double_query = kwargs.pop("double_query", 9999999.999)  # type: float
 
         request = build_double_decimal_positive_request(
             double_query=double_query,
@@ -553,7 +571,7 @@ class QueriesOperations:
     double_decimal_positive.metadata = {"url": "/queries/double/9999999.999"}  # type: ignore
 
     @distributed_trace_async
-    async def double_decimal_negative(self, *, double_query: float = -9999999.999, **kwargs: Any) -> None:
+    async def double_decimal_negative(self, **kwargs: Any) -> None:
         """Get '-9999999.999' numeric value.
 
         :keyword double_query: '-9999999.999'numeric value. The default value is -9999999.999. Note
@@ -567,6 +585,8 @@ class QueriesOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        double_query = kwargs.pop("double_query", -9999999.999)  # type: float
 
         request = build_double_decimal_negative_request(
             double_query=double_query,
@@ -624,7 +644,7 @@ class QueriesOperations:
     double_null.metadata = {"url": "/queries/double/null"}  # type: ignore
 
     @distributed_trace_async
-    async def string_unicode(self, *, string_query: str = "啊齄丂狛狜隣郎隣兀﨩", **kwargs: Any) -> None:
+    async def string_unicode(self, **kwargs: Any) -> None:
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
         :keyword string_query: '啊齄丂狛狜隣郎隣兀﨩'multi-byte string value. The default value is "啊齄丂狛狜隣郎隣兀﨩".
@@ -638,6 +658,8 @@ class QueriesOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        string_query = kwargs.pop("string_query", "啊齄丂狛狜隣郎隣兀﨩")  # type: str
 
         request = build_string_unicode_request(
             string_query=string_query,
@@ -660,7 +682,7 @@ class QueriesOperations:
     string_unicode.metadata = {"url": "/queries/string/unicode/"}  # type: ignore
 
     @distributed_trace_async
-    async def string_url_encoded(self, *, string_query: str = "begin!*'();:@ &=+$,/?#[]end", **kwargs: Any) -> None:
+    async def string_url_encoded(self, **kwargs: Any) -> None:
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
         :keyword string_query: 'begin!*'();:@ &=+$,/?#[]end' url encoded string value. The default
@@ -675,6 +697,8 @@ class QueriesOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        string_query = kwargs.pop("string_query", "begin!*'();:@ &=+$,/?#[]end")  # type: str
 
         request = build_string_url_encoded_request(
             string_query=string_query,
@@ -697,7 +721,7 @@ class QueriesOperations:
     string_url_encoded.metadata = {"url": "/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend"}  # type: ignore
 
     @distributed_trace_async
-    async def string_empty(self, *, string_query: str = "", **kwargs: Any) -> None:
+    async def string_empty(self, **kwargs: Any) -> None:
         """Get ''.
 
         :keyword string_query: '' string value. The default value is "". Note that overriding this
@@ -711,6 +735,8 @@ class QueriesOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        string_query = kwargs.pop("string_query", "")  # type: str
 
         request = build_string_empty_request(
             string_query=string_query,
@@ -873,7 +899,7 @@ class QueriesOperations:
     byte_multi_byte.metadata = {"url": "/queries/byte/multibyte"}  # type: ignore
 
     @distributed_trace_async
-    async def byte_empty(self, *, byte_query: bytearray = bytearray("", encoding="utf-8"), **kwargs: Any) -> None:
+    async def byte_empty(self, **kwargs: Any) -> None:
         """Get '' as byte array.
 
         :keyword byte_query: '' as byte array. The default value is bytearray("", encoding="utf-8").
@@ -887,6 +913,8 @@ class QueriesOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        byte_query = kwargs.pop("byte_query", bytearray("", encoding="utf-8"))  # type: bytearray
 
         request = build_byte_empty_request(
             byte_query=byte_query,
@@ -944,7 +972,7 @@ class QueriesOperations:
     byte_null.metadata = {"url": "/queries/byte/null"}  # type: ignore
 
     @distributed_trace_async
-    async def date_valid(self, *, date_query: datetime.date = "2012-01-01", **kwargs: Any) -> None:
+    async def date_valid(self, **kwargs: Any) -> None:
         """Get '2012-01-01' as date.
 
         :keyword date_query: '2012-01-01' as date. The default value is "2012-01-01". Note that
@@ -958,6 +986,8 @@ class QueriesOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        date_query = kwargs.pop("date_query", "2012-01-01")  # type: datetime.date
 
         request = build_date_valid_request(
             date_query=date_query,
@@ -1015,9 +1045,7 @@ class QueriesOperations:
     date_null.metadata = {"url": "/queries/date/null"}  # type: ignore
 
     @distributed_trace_async
-    async def date_time_valid(
-        self, *, date_time_query: datetime.datetime = "2012-01-01T01:01:01Z", **kwargs: Any
-    ) -> None:
+    async def date_time_valid(self, **kwargs: Any) -> None:
         """Get '2012-01-01T01:01:01Z' as date-time.
 
         :keyword date_time_query: '2012-01-01T01:01:01Z' as date-time. The default value is
@@ -1032,6 +1060,8 @@ class QueriesOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        date_time_query = kwargs.pop("date_time_query", "2012-01-01T01:01:01Z")  # type: datetime.datetime
 
         request = build_date_time_valid_request(
             date_time_query=date_time_query,

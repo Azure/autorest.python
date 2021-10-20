@@ -373,7 +373,7 @@ class NumberOperations:
     get_big_double.metadata = {"url": "/number/big/double/2.5976931e+101"}  # type: ignore
 
     @distributed_trace_async
-    async def put_big_double_positive_decimal(self, *, number_body: float = 99999999.99, **kwargs: Any) -> None:
+    async def put_big_double_positive_decimal(self, **kwargs: Any) -> None:
         """Put big double value 99999999.99.
 
         :keyword number_body: The default value is 99999999.99. Note that overriding this default value
@@ -389,6 +389,7 @@ class NumberOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        number_body = kwargs.pop("number_body", 99999999.99)  # type: float
 
         request = build_put_big_double_positive_decimal_request(
             content_type=content_type,
@@ -448,7 +449,7 @@ class NumberOperations:
     get_big_double_positive_decimal.metadata = {"url": "/number/big/double/99999999.99"}  # type: ignore
 
     @distributed_trace_async
-    async def put_big_double_negative_decimal(self, *, number_body: float = -99999999.99, **kwargs: Any) -> None:
+    async def put_big_double_negative_decimal(self, **kwargs: Any) -> None:
         """Put big double value -99999999.99.
 
         :keyword number_body: The default value is -99999999.99. Note that overriding this default
@@ -464,6 +465,7 @@ class NumberOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        number_body = kwargs.pop("number_body", -99999999.99)  # type: float
 
         request = build_put_big_double_negative_decimal_request(
             content_type=content_type,
@@ -599,7 +601,7 @@ class NumberOperations:
     get_big_decimal.metadata = {"url": "/number/big/decimal/2.5976931e+101"}  # type: ignore
 
     @distributed_trace_async
-    async def put_big_decimal_positive_decimal(self, *, number_body: float = 99999999.99, **kwargs: Any) -> None:
+    async def put_big_decimal_positive_decimal(self, **kwargs: Any) -> None:
         """Put big decimal value 99999999.99.
 
         :keyword number_body: The default value is 99999999.99. Note that overriding this default value
@@ -615,6 +617,7 @@ class NumberOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        number_body = kwargs.pop("number_body", 99999999.99)  # type: float
 
         request = build_put_big_decimal_positive_decimal_request(
             content_type=content_type,
@@ -674,7 +677,7 @@ class NumberOperations:
     get_big_decimal_positive_decimal.metadata = {"url": "/number/big/decimal/99999999.99"}  # type: ignore
 
     @distributed_trace_async
-    async def put_big_decimal_negative_decimal(self, *, number_body: float = -99999999.99, **kwargs: Any) -> None:
+    async def put_big_decimal_negative_decimal(self, **kwargs: Any) -> None:
         """Put big decimal value -99999999.99.
 
         :keyword number_body: The default value is -99999999.99. Note that overriding this default
@@ -690,6 +693,7 @@ class NumberOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        number_body = kwargs.pop("number_body", -99999999.99)  # type: float
 
         request = build_put_big_decimal_negative_decimal_request(
             content_type=content_type,

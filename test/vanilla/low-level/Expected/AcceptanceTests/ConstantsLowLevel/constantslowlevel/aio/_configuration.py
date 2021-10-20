@@ -28,9 +28,11 @@ class AutoRestSwaggerConstantServiceConfiguration(Configuration):
     :paramtype path_constant: str
     """
 
-    def __init__(
-        self, *, header_constant: bool = True, query_constant: int = 100, path_constant: str = "path", **kwargs: Any
-    ) -> None:
+    def __init__(self, **kwargs: Any) -> None:
+        header_constant = kwargs.pop("header_constant", True)  # type: bool
+        query_constant = kwargs.pop("query_constant", 100)  # type: int
+        path_constant = kwargs.pop("path_constant", "path")  # type: str
+
         if header_constant is None:
             raise ValueError("Parameter 'header_constant' must not be None.")
         if query_constant is None:

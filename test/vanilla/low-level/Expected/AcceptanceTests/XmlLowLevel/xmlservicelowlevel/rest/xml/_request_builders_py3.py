@@ -677,7 +677,7 @@ def build_put_empty_child_element_request(*, content: Any, **kwargs: Any) -> Htt
     return HttpRequest(method="PUT", url=url, headers=header_parameters, content=content, **kwargs)
 
 
-def build_list_containers_request(*, comp: str = "list", **kwargs: Any) -> HttpRequest:
+def build_list_containers_request(**kwargs: Any) -> HttpRequest:
     """Lists containers in a storage account.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -720,6 +720,8 @@ def build_list_containers_request(*, comp: str = "list", **kwargs: Any) -> HttpR
             }
     """
 
+    comp = kwargs.pop("comp", "list")  # type: str
+
     accept = "application/xml"
     # Construct URL
     url = kwargs.pop("template_url", "/xml/")
@@ -735,9 +737,7 @@ def build_list_containers_request(*, comp: str = "list", **kwargs: Any) -> HttpR
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
-def build_get_service_properties_request(
-    *, comp: str = "properties", restype: str = "service", **kwargs: Any
-) -> HttpRequest:
+def build_get_service_properties_request(**kwargs: Any) -> HttpRequest:
     """Gets storage service properties.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -804,6 +804,9 @@ def build_get_service_properties_request(
             }
     """
 
+    comp = kwargs.pop("comp", "properties")  # type: str
+    restype = kwargs.pop("restype", "service")  # type: str
+
     accept = "application/xml"
     # Construct URL
     url = kwargs.pop("template_url", "/xml/")
@@ -820,29 +823,29 @@ def build_get_service_properties_request(
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
-def build_put_service_properties_request(
-    *, content: Any, comp: str = "properties", restype: str = "service", **kwargs: Any
-) -> HttpRequest:
+def build_put_service_properties_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     """Puts storage service properties.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input).
-    :paramtype content: any
     :keyword comp: The default value is "properties". Note that overriding this default value may
      result in unsupported behavior.
     :paramtype comp: str
     :keyword restype: The default value is "service". Note that overriding this default value may
      result in unsupported behavior.
     :paramtype restype: str
+    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
+     a byte iterator, or stream input).
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
+    comp = kwargs.pop("comp", "properties")  # type: str
+    restype = kwargs.pop("restype", "service")  # type: str
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
@@ -863,7 +866,7 @@ def build_put_service_properties_request(
     )
 
 
-def build_get_acls_request(*, comp: str = "acl", restype: str = "container", **kwargs: Any) -> HttpRequest:
+def build_get_acls_request(**kwargs: Any) -> HttpRequest:
     """Gets storage ACLs for a container.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -896,6 +899,9 @@ def build_get_acls_request(*, comp: str = "acl", restype: str = "container", **k
             ]
     """
 
+    comp = kwargs.pop("comp", "acl")  # type: str
+    restype = kwargs.pop("restype", "container")  # type: str
+
     accept = "application/xml"
     # Construct URL
     url = kwargs.pop("template_url", "/xml/mycontainer")
@@ -912,29 +918,29 @@ def build_get_acls_request(*, comp: str = "acl", restype: str = "container", **k
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
-def build_put_acls_request(
-    *, content: Any, comp: str = "acl", restype: str = "container", **kwargs: Any
-) -> HttpRequest:
+def build_put_acls_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     """Puts storage ACLs for a container.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input).
-    :paramtype content: any
     :keyword comp: The default value is "acl". Note that overriding this default value may result
      in unsupported behavior.
     :paramtype comp: str
     :keyword restype: The default value is "container". Note that overriding this default value may
      result in unsupported behavior.
     :paramtype restype: str
+    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
+     a byte iterator, or stream input).
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
+    comp = kwargs.pop("comp", "acl")  # type: str
+    restype = kwargs.pop("restype", "container")  # type: str
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
@@ -955,7 +961,7 @@ def build_put_acls_request(
     )
 
 
-def build_list_blobs_request(*, comp: str = "list", restype: str = "container", **kwargs: Any) -> HttpRequest:
+def build_list_blobs_request(**kwargs: Any) -> HttpRequest:
     """Lists blobs in a storage container.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -1033,6 +1039,9 @@ def build_list_blobs_request(*, comp: str = "list", restype: str = "container", 
                 "ServiceEndpoint": "str"  # Optional.
             }
     """
+
+    comp = kwargs.pop("comp", "list")  # type: str
+    restype = kwargs.pop("restype", "container")  # type: str
 
     accept = "application/xml"
     # Construct URL

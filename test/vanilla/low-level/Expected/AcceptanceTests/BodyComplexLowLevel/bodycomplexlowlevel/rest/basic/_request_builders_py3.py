@@ -46,23 +46,21 @@ def build_get_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_valid_request(
-    *, json: Any = None, content: Any = None, api_version: str = "2016-02-29", **kwargs: Any
-) -> HttpRequest:
+def build_put_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword api_version: Api Version. The default value is "2016-02-29". Note that overriding this
+     default value may result in unsupported behavior.
+    :paramtype api_version: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Please put {id: 2, name: 'abc', color: 'Magenta'}.
     :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put {id: 2, name: 'abc', color: 'Magenta'}.
     :paramtype content: any
-    :keyword api_version: Api Version. The default value is "2016-02-29". Note that overriding this
-     default value may result in unsupported behavior.
-    :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -79,6 +77,7 @@ def build_put_valid_request(
             }
     """
 
+    api_version = kwargs.pop("api_version", "2016-02-29")  # type: str
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"

@@ -148,8 +148,8 @@ def build_get_with_query_params_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    required_query_parameter = kwargs.pop('required_query_parameter')  # type: int
     query_constant = kwargs.pop('query_constant', True)  # type: bool
+    required_query_parameter = kwargs.pop('required_query_parameter')  # type: int
 
     accept = "application/json"
     # Construct URL
@@ -941,8 +941,8 @@ class PagingOperations(object):
             if not next_link:
                 
                 request = build_get_with_query_params_request(
-                    required_query_parameter=required_query_parameter,
                     query_constant=query_constant,
+                    required_query_parameter=required_query_parameter,
                     template_url=self.get_with_query_params.metadata['url'],
                 )
                 request = _convert_request(request)

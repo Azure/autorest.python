@@ -84,9 +84,7 @@ def build_post_method_global_null_request(subscription_id: str, **kwargs: Any) -
     return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
 
 
-def build_post_method_global_not_provided_valid_request(
-    subscription_id: str, *, api_version: str = "2015-07-01-preview", **kwargs: Any
-) -> HttpRequest:
+def build_post_method_global_not_provided_valid_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
     """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
     '1234-5678-9012-3456' to succeed.
 
@@ -104,6 +102,8 @@ def build_post_method_global_not_provided_valid_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    api_version = kwargs.pop("api_version", "2015-07-01-preview")  # type: str
 
     accept = "application/json"
     # Construct URL

@@ -277,14 +277,14 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
     @property
     def is_kwarg(self) -> bool:
         # this means "am I in **kwargs?"
-        return self.rest_api_name == "Content-Type"
+        if self.code_model.options["multiapi"]:
+            return self.rest_api_name == "Content-Type"
+        return self.rest_api_name == "Content-Type" or (self.constant and self.rest_api_name != "Accept")
 
     @property
     def is_keyword_only(self) -> bool:
         # this means in async mode, I am documented like def hello(positional_1, *, me!)
-        if self.code_model.options["multiapi"]:
-            return self._keyword_only
-        return self._keyword_only or (self.constant and self.rest_api_name != "Accept")
+        return self._keyword_only
 
     @property
     def is_hidden(self) -> bool:

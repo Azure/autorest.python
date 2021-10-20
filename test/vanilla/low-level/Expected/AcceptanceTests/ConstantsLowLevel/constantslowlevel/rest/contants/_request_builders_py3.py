@@ -185,9 +185,7 @@ def build_put_no_model_as_string_required_two_value_default_request(
     return HttpRequest(method="PUT", url=url, params=query_parameters, **kwargs)
 
 
-def build_put_no_model_as_string_required_one_value_no_default_request(
-    *, input: str = "value1", **kwargs: Any
-) -> HttpRequest:
+def build_put_no_model_as_string_required_one_value_no_default_request(**kwargs: Any) -> HttpRequest:
     """Puts constants to the testserver.
 
     Puts constants to the testserver.
@@ -203,6 +201,8 @@ def build_put_no_model_as_string_required_one_value_no_default_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    input = kwargs.pop("input", "value1")  # type: str
 
     # Construct URL
     url = kwargs.pop("template_url", "/constants/putNoModelAsStringRequiredOneValueNoDefault")
@@ -214,9 +214,7 @@ def build_put_no_model_as_string_required_one_value_no_default_request(
     return HttpRequest(method="PUT", url=url, params=query_parameters, **kwargs)
 
 
-def build_put_no_model_as_string_required_one_value_default_request(
-    *, input: str = "value1", **kwargs: Any
-) -> HttpRequest:
+def build_put_no_model_as_string_required_one_value_default_request(**kwargs: Any) -> HttpRequest:
     """Puts constants to the testserver.
 
     Puts constants to the testserver.
@@ -232,6 +230,8 @@ def build_put_no_model_as_string_required_one_value_default_request(
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    input = kwargs.pop("input", "value1")  # type: str
 
     # Construct URL
     url = kwargs.pop("template_url", "/constants/putNoModelAsStringRequiredOneValueDefault")
@@ -467,19 +467,13 @@ def build_put_model_as_string_required_one_value_default_request(
     return HttpRequest(method="PUT", url=url, params=query_parameters, **kwargs)
 
 
-def build_put_client_constants_request(
-    path_constant: str = "path", *, header_constant: bool = True, query_constant: int = 100, **kwargs: Any
-) -> HttpRequest:
+def build_put_client_constants_request(**kwargs: Any) -> HttpRequest:
     """Pass constants from the client to this function. Will pass in constant path, query, and header
     parameters.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param path_constant: Constant path property on the client that is a required parameter for
-     operation 'constants_putClientConstants'. The default value is "path". Note that overriding
-     this default value may result in unsupported behavior.
-    :type path_constant: str
     :keyword header_constant: Constant header property on the client that is a required parameter
      for operation 'constants_putClientConstants'. The default value is True. Note that overriding
      this default value may result in unsupported behavior.
@@ -488,11 +482,19 @@ def build_put_client_constants_request(
      operation 'constants_putClientConstants'. The default value is 100. Note that overriding this
      default value may result in unsupported behavior.
     :paramtype query_constant: int
+    :keyword path_constant: Constant path property on the client that is a required parameter for
+     operation 'constants_putClientConstants'. The default value is "path". Note that overriding
+     this default value may result in unsupported behavior.
+    :paramtype path_constant: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    header_constant = kwargs.pop("header_constant", True)  # type: bool
+    query_constant = kwargs.pop("query_constant", 100)  # type: int
+    path_constant = kwargs.pop("path_constant", "path")  # type: str
 
     # Construct URL
     url = kwargs.pop("template_url", "/constants/clientConstants/{path-constant}")

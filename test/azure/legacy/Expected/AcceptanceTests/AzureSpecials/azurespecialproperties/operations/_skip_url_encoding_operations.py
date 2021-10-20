@@ -89,10 +89,11 @@ def build_get_path_valid_request(
 
 
 def build_get_swagger_path_valid_request(
-    unencoded_path_param="path1/path2/path3",  # type: str
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    unencoded_path_param = kwargs.pop('unencoded_path_param', "path1/path2/path3")  # type: str
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}')

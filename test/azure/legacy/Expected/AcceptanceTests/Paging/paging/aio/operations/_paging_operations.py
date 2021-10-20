@@ -379,7 +379,7 @@ class PagingOperations:
 
     @distributed_trace
     def get_with_query_params(
-        self, required_query_parameter: int, *, query_constant: bool = True, **kwargs: Any
+        self, required_query_parameter: int, **kwargs: Any
     ) -> AsyncIterable["_models.ProductResult"]:
         """A paging operation that includes a next operation. It has a different query parameter from it's
         next operation nextOperationWithQueryParams. Returns a ProductResult.
@@ -396,6 +396,8 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        query_constant = kwargs.pop("query_constant", True)  # type: bool
+
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResult"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -404,8 +406,8 @@ class PagingOperations:
             if not next_link:
 
                 request = build_get_with_query_params_request(
-                    required_query_parameter=required_query_parameter,
                     query_constant=query_constant,
+                    required_query_parameter=required_query_parameter,
                     template_url=self.get_with_query_params.metadata["url"],
                 )
                 request = _convert_request(request)

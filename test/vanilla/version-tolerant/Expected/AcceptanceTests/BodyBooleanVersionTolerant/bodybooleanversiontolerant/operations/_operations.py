@@ -223,16 +223,14 @@ class BoolOperations(object):
 
     @distributed_trace
     def put_true(
-        self,
-        bool_body=True,  # type: bool
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Set Boolean value true.
 
-        :param bool_body: The default value is True. Note that overriding this default value may result
-         in unsupported behavior.
-        :type bool_body: bool
+        :keyword bool_body: The default value is True. Note that overriding this default value may
+         result in unsupported behavior.
+        :paramtype bool_body: bool
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -242,6 +240,7 @@ class BoolOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        bool_body = kwargs.pop("bool_body", True)  # type: bool
 
         request = build_bool_put_true_request(
             content_type=content_type,
@@ -303,16 +302,14 @@ class BoolOperations(object):
 
     @distributed_trace
     def put_false(
-        self,
-        bool_body=False,  # type: bool
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Set Boolean value false.
 
-        :param bool_body: The default value is False. Note that overriding this default value may
+        :keyword bool_body: The default value is False. Note that overriding this default value may
          result in unsupported behavior.
-        :type bool_body: bool
+        :paramtype bool_body: bool
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -322,6 +319,7 @@ class BoolOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        bool_body = kwargs.pop("bool_body", False)  # type: bool
 
         request = build_bool_put_false_request(
             content_type=content_type,

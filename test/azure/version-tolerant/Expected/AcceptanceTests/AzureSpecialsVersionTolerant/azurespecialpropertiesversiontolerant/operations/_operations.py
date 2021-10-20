@@ -583,10 +583,11 @@ def build_skip_url_encoding_get_path_valid_request(
 
 
 def build_skip_url_encoding_get_swagger_path_valid_request(
-    unencoded_path_param="path1/path2/path3",  # type: str
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    unencoded_path_param = kwargs.pop('unencoded_path_param', "path1/path2/path3")  # type: str
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}')
@@ -1717,17 +1718,15 @@ class SkipUrlEncodingOperations(object):
 
     @distributed_trace
     def get_swagger_path_valid(
-        self,
-        unencoded_path_param="path1/path2/path3",  # type: str
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
-        :param unencoded_path_param: An unencoded path parameter with value 'path1/path2/path3'. The
+        :keyword unencoded_path_param: An unencoded path parameter with value 'path1/path2/path3'. The
          default value is "path1/path2/path3". Note that overriding this default value may result in
          unsupported behavior.
-        :type unencoded_path_param: str
+        :paramtype unencoded_path_param: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1735,6 +1734,8 @@ class SkipUrlEncodingOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        unencoded_path_param = kwargs.pop("unencoded_path_param", "path1/path2/path3")  # type: str
 
         request = build_skip_url_encoding_get_swagger_path_valid_request(
             unencoded_path_param=unencoded_path_param,

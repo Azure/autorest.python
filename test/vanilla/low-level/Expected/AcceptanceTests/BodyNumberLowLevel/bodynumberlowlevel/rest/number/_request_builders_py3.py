@@ -229,7 +229,7 @@ def build_get_big_double_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_big_double_positive_decimal_request(*, json: float = 99999999.99, **kwargs: Any) -> HttpRequest:
+def build_put_big_double_positive_decimal_request(**kwargs: Any) -> HttpRequest:
     """Put big double value 99999999.99.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -245,6 +245,7 @@ def build_put_big_double_positive_decimal_request(*, json: float = 99999999.99, 
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    json = kwargs.pop("json", 99999999.99)  # type: float
 
     accept = "application/json"
     # Construct URL
@@ -282,7 +283,7 @@ def build_get_big_double_positive_decimal_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_big_double_negative_decimal_request(*, json: float = -99999999.99, **kwargs: Any) -> HttpRequest:
+def build_put_big_double_negative_decimal_request(**kwargs: Any) -> HttpRequest:
     """Put big double value -99999999.99.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -298,6 +299,7 @@ def build_put_big_double_negative_decimal_request(*, json: float = -99999999.99,
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    json = kwargs.pop("json", -99999999.99)  # type: float
 
     accept = "application/json"
     # Construct URL
@@ -397,7 +399,7 @@ def build_get_big_decimal_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_big_decimal_positive_decimal_request(*, json: float = 99999999.99, **kwargs: Any) -> HttpRequest:
+def build_put_big_decimal_positive_decimal_request(**kwargs: Any) -> HttpRequest:
     """Put big decimal value 99999999.99.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -413,6 +415,7 @@ def build_put_big_decimal_positive_decimal_request(*, json: float = 99999999.99,
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    json = kwargs.pop("json", 99999999.99)  # type: float
 
     accept = "application/json"
     # Construct URL
@@ -450,7 +453,7 @@ def build_get_big_decimal_positive_decimal_request(**kwargs: Any) -> HttpRequest
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_big_decimal_negative_decimal_request(*, json: float = -99999999.99, **kwargs: Any) -> HttpRequest:
+def build_put_big_decimal_negative_decimal_request(**kwargs: Any) -> HttpRequest:
     """Put big decimal value -99999999.99.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -466,6 +469,7 @@ def build_put_big_decimal_negative_decimal_request(*, json: float = -99999999.99
     """
 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    json = kwargs.pop("json", -99999999.99)  # type: float
 
     accept = "application/json"
     # Construct URL

@@ -16,7 +16,7 @@ _SERIALIZER = Serializer()
 
 
 def build_get_sample_resource_group_request(
-    subscription_id: str, resource_group_name: str, *, api_version: str = "2014-04-01-preview", **kwargs: Any
+    subscription_id: str, resource_group_name: str, **kwargs: Any
 ) -> HttpRequest:
     """Provides a resouce group with name 'testgroup101' and location 'West US'.
 
@@ -44,6 +44,8 @@ def build_get_sample_resource_group_request(
                 "name": "str"  # Optional. resource group name 'testgroup101'.
             }
     """
+
+    api_version = kwargs.pop("api_version", "2014-04-01-preview")  # type: str
 
     accept = "application/json"
     # Construct URL

@@ -15,7 +15,7 @@ from ..._vendor import _format_url_section
 _SERIALIZER = Serializer()
 
 
-def build_get_method_local_valid_request(*, api_version: str = "2.0", **kwargs: Any) -> HttpRequest:
+def build_get_method_local_valid_request(**kwargs: Any) -> HttpRequest:
     """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -29,6 +29,8 @@ def build_get_method_local_valid_request(*, api_version: str = "2.0", **kwargs: 
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    api_version = kwargs.pop("api_version", "2.0")  # type: str
 
     accept = "application/json"
     # Construct URL
@@ -76,7 +78,7 @@ def build_get_method_local_null_request(*, api_version: Optional[str] = None, **
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
-def build_get_path_local_valid_request(*, api_version: str = "2.0", **kwargs: Any) -> HttpRequest:
+def build_get_path_local_valid_request(**kwargs: Any) -> HttpRequest:
     """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -90,6 +92,8 @@ def build_get_path_local_valid_request(*, api_version: str = "2.0", **kwargs: An
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    api_version = kwargs.pop("api_version", "2.0")  # type: str
 
     accept = "application/json"
     # Construct URL
@@ -106,7 +110,7 @@ def build_get_path_local_valid_request(*, api_version: str = "2.0", **kwargs: An
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
-def build_get_swagger_local_valid_request(*, api_version: str = "2.0", **kwargs: Any) -> HttpRequest:
+def build_get_swagger_local_valid_request(**kwargs: Any) -> HttpRequest:
     """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -121,6 +125,8 @@ def build_get_swagger_local_valid_request(*, api_version: str = "2.0", **kwargs:
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    api_version = kwargs.pop("api_version", "2.0")  # type: str
 
     accept = "application/json"
     # Construct URL

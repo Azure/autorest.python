@@ -607,7 +607,6 @@ def build_put_model_as_string_required_one_value_default_request(
 
 
 def build_put_client_constants_request(
-    path_constant="path",  # type: str
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -617,10 +616,6 @@ def build_put_client_constants_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param path_constant: Constant path property on the client that is a required parameter for
-     operation 'constants_putClientConstants'. The default value is "path". Note that overriding
-     this default value may result in unsupported behavior.
-    :type path_constant: str
     :keyword header_constant: Constant header property on the client that is a required parameter
      for operation 'constants_putClientConstants'. The default value is True. Note that overriding
      this default value may result in unsupported behavior.
@@ -629,6 +624,10 @@ def build_put_client_constants_request(
      operation 'constants_putClientConstants'. The default value is 100. Note that overriding this
      default value may result in unsupported behavior.
     :paramtype query_constant: int
+    :keyword path_constant: Constant path property on the client that is a required parameter for
+     operation 'constants_putClientConstants'. The default value is "path". Note that overriding
+     this default value may result in unsupported behavior.
+    :paramtype path_constant: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -637,6 +636,7 @@ def build_put_client_constants_request(
 
     header_constant = kwargs.pop('header_constant', True)  # type: bool
     query_constant = kwargs.pop('query_constant', 100)  # type: int
+    path_constant = kwargs.pop('path_constant', "path")  # type: str
 
     # Construct URL
     url = kwargs.pop("template_url", '/constants/clientConstants/{path-constant}')

@@ -16,20 +16,22 @@ from ..._vendor import _format_url_section
 _SERIALIZER = Serializer()
 
 
-def build_get_boolean_true_request(bool_path: bool = True, **kwargs: Any) -> HttpRequest:
+def build_get_boolean_true_request(**kwargs: Any) -> HttpRequest:
     """Get true Boolean value on path.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param bool_path: true boolean value. The default value is True. Note that overriding this
+    :keyword bool_path: true boolean value. The default value is True. Note that overriding this
      default value may result in unsupported behavior.
-    :type bool_path: bool
+    :paramtype bool_path: bool
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    bool_path = kwargs.pop("bool_path", True)  # type: bool
 
     accept = "application/json"
     # Construct URL
@@ -47,20 +49,22 @@ def build_get_boolean_true_request(bool_path: bool = True, **kwargs: Any) -> Htt
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_get_boolean_false_request(bool_path: bool = False, **kwargs: Any) -> HttpRequest:
+def build_get_boolean_false_request(**kwargs: Any) -> HttpRequest:
     """Get false Boolean value on path.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param bool_path: false boolean value. The default value is False. Note that overriding this
+    :keyword bool_path: false boolean value. The default value is False. Note that overriding this
      default value may result in unsupported behavior.
-    :type bool_path: bool
+    :paramtype bool_path: bool
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    bool_path = kwargs.pop("bool_path", False)  # type: bool
 
     accept = "application/json"
     # Construct URL
@@ -78,20 +82,22 @@ def build_get_boolean_false_request(bool_path: bool = False, **kwargs: Any) -> H
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_get_int_one_million_request(int_path: int = 1000000, **kwargs: Any) -> HttpRequest:
+def build_get_int_one_million_request(**kwargs: Any) -> HttpRequest:
     """Get '1000000' integer value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param int_path: '1000000' integer value. The default value is 1000000. Note that overriding
+    :keyword int_path: '1000000' integer value. The default value is 1000000. Note that overriding
      this default value may result in unsupported behavior.
-    :type int_path: int
+    :paramtype int_path: int
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    int_path = kwargs.pop("int_path", 1000000)  # type: int
 
     accept = "application/json"
     # Construct URL
@@ -109,20 +115,22 @@ def build_get_int_one_million_request(int_path: int = 1000000, **kwargs: Any) ->
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_get_int_negative_one_million_request(int_path: int = -1000000, **kwargs: Any) -> HttpRequest:
+def build_get_int_negative_one_million_request(**kwargs: Any) -> HttpRequest:
     """Get '-1000000' integer value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param int_path: '-1000000' integer value. The default value is -1000000. Note that overriding
-     this default value may result in unsupported behavior.
-    :type int_path: int
+    :keyword int_path: '-1000000' integer value. The default value is -1000000. Note that
+     overriding this default value may result in unsupported behavior.
+    :paramtype int_path: int
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    int_path = kwargs.pop("int_path", -1000000)  # type: int
 
     accept = "application/json"
     # Construct URL
@@ -140,20 +148,22 @@ def build_get_int_negative_one_million_request(int_path: int = -1000000, **kwarg
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_get_ten_billion_request(long_path: int = 10000000000, **kwargs: Any) -> HttpRequest:
+def build_get_ten_billion_request(**kwargs: Any) -> HttpRequest:
     """Get '10000000000' 64 bit integer value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param long_path: '10000000000' 64 bit integer value. The default value is 10000000000. Note
+    :keyword long_path: '10000000000' 64 bit integer value. The default value is 10000000000. Note
      that overriding this default value may result in unsupported behavior.
-    :type long_path: long
+    :paramtype long_path: long
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    long_path = kwargs.pop("long_path", 10000000000)  # type: int
 
     accept = "application/json"
     # Construct URL
@@ -171,20 +181,22 @@ def build_get_ten_billion_request(long_path: int = 10000000000, **kwargs: Any) -
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_get_negative_ten_billion_request(long_path: int = -10000000000, **kwargs: Any) -> HttpRequest:
+def build_get_negative_ten_billion_request(**kwargs: Any) -> HttpRequest:
     """Get '-10000000000' 64 bit integer value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param long_path: '-10000000000' 64 bit integer value. The default value is -10000000000. Note
-     that overriding this default value may result in unsupported behavior.
-    :type long_path: long
+    :keyword long_path: '-10000000000' 64 bit integer value. The default value is -10000000000.
+     Note that overriding this default value may result in unsupported behavior.
+    :paramtype long_path: long
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    long_path = kwargs.pop("long_path", -10000000000)  # type: int
 
     accept = "application/json"
     # Construct URL
@@ -202,20 +214,22 @@ def build_get_negative_ten_billion_request(long_path: int = -10000000000, **kwar
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_float_scientific_positive_request(float_path: float = 103400000000000000000, **kwargs: Any) -> HttpRequest:
+def build_float_scientific_positive_request(**kwargs: Any) -> HttpRequest:
     """Get '1.034E+20' numeric value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param float_path: '1.034E+20'numeric value. The default value is 103400000000000000000. Note
+    :keyword float_path: '1.034E+20'numeric value. The default value is 103400000000000000000. Note
      that overriding this default value may result in unsupported behavior.
-    :type float_path: float
+    :paramtype float_path: float
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    float_path = kwargs.pop("float_path", 103400000000000000000)  # type: float
 
     accept = "application/json"
     # Construct URL
@@ -233,20 +247,22 @@ def build_float_scientific_positive_request(float_path: float = 1034000000000000
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_float_scientific_negative_request(float_path: float = -1.034e-20, **kwargs: Any) -> HttpRequest:
+def build_float_scientific_negative_request(**kwargs: Any) -> HttpRequest:
     """Get '-1.034E-20' numeric value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param float_path: '-1.034E-20'numeric value. The default value is -1.034e-20. Note that
+    :keyword float_path: '-1.034E-20'numeric value. The default value is -1.034e-20. Note that
      overriding this default value may result in unsupported behavior.
-    :type float_path: float
+    :paramtype float_path: float
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    float_path = kwargs.pop("float_path", -1.034e-20)  # type: float
 
     accept = "application/json"
     # Construct URL
@@ -264,20 +280,22 @@ def build_float_scientific_negative_request(float_path: float = -1.034e-20, **kw
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_double_decimal_positive_request(double_path: float = 9999999.999, **kwargs: Any) -> HttpRequest:
+def build_double_decimal_positive_request(**kwargs: Any) -> HttpRequest:
     """Get '9999999.999' numeric value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param double_path: '9999999.999'numeric value. The default value is 9999999.999. Note that
+    :keyword double_path: '9999999.999'numeric value. The default value is 9999999.999. Note that
      overriding this default value may result in unsupported behavior.
-    :type double_path: float
+    :paramtype double_path: float
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    double_path = kwargs.pop("double_path", 9999999.999)  # type: float
 
     accept = "application/json"
     # Construct URL
@@ -295,20 +313,22 @@ def build_double_decimal_positive_request(double_path: float = 9999999.999, **kw
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_double_decimal_negative_request(double_path: float = -9999999.999, **kwargs: Any) -> HttpRequest:
+def build_double_decimal_negative_request(**kwargs: Any) -> HttpRequest:
     """Get '-9999999.999' numeric value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param double_path: '-9999999.999'numeric value. The default value is -9999999.999. Note that
+    :keyword double_path: '-9999999.999'numeric value. The default value is -9999999.999. Note that
      overriding this default value may result in unsupported behavior.
-    :type double_path: float
+    :paramtype double_path: float
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    double_path = kwargs.pop("double_path", -9999999.999)  # type: float
 
     accept = "application/json"
     # Construct URL
@@ -326,20 +346,22 @@ def build_double_decimal_negative_request(double_path: float = -9999999.999, **k
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_string_unicode_request(string_path: str = "啊齄丂狛狜隣郎隣兀﨩", **kwargs: Any) -> HttpRequest:
+def build_string_unicode_request(**kwargs: Any) -> HttpRequest:
     """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param string_path: '啊齄丂狛狜隣郎隣兀﨩'multi-byte string value. The default value is "啊齄丂狛狜隣郎隣兀﨩".
+    :keyword string_path: '啊齄丂狛狜隣郎隣兀﨩'multi-byte string value. The default value is "啊齄丂狛狜隣郎隣兀﨩".
      Note that overriding this default value may result in unsupported behavior.
-    :type string_path: str
+    :paramtype string_path: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    string_path = kwargs.pop("string_path", "啊齄丂狛狜隣郎隣兀﨩")  # type: str
 
     accept = "application/json"
     # Construct URL
@@ -357,21 +379,23 @@ def build_string_unicode_request(string_path: str = "啊齄丂狛狜隣郎隣兀
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_string_url_encoded_request(string_path: str = "begin!*'();:@ &=+$,/?#[]end", **kwargs: Any) -> HttpRequest:
+def build_string_url_encoded_request(**kwargs: Any) -> HttpRequest:
     """Get 'begin!*'();:@ &=+$,/?#[]end.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param string_path: 'begin!*'();:@ &=+$,/?#[]end' url encoded string value. The default value
+    :keyword string_path: 'begin!*'();:@ &=+$,/?#[]end' url encoded string value. The default value
      is "begin!*'();:@ &=+$,/?#[]end". Note that overriding this default value may result in
      unsupported behavior.
-    :type string_path: str
+    :paramtype string_path: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    string_path = kwargs.pop("string_path", "begin!*'();:@ &=+$,/?#[]end")  # type: str
 
     accept = "application/json"
     # Construct URL
@@ -391,7 +415,7 @@ def build_string_url_encoded_request(string_path: str = "begin!*'();:@ &=+$,/?#[
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_string_url_non_encoded_request(string_path: str = "begin!*'();:@&=+$,end", **kwargs: Any) -> HttpRequest:
+def build_string_url_non_encoded_request(**kwargs: Any) -> HttpRequest:
     """Get 'begin!*'();:@&=+$,end.
 
     https://tools.ietf.org/html/rfc3986#appendix-A 'path' accept any 'pchar' not encoded.
@@ -399,15 +423,17 @@ def build_string_url_non_encoded_request(string_path: str = "begin!*'();:@&=+$,e
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param string_path: 'begin!*'();:@&=+$,end' url encoded string value. The default value is
+    :keyword string_path: 'begin!*'();:@&=+$,end' url encoded string value. The default value is
      "begin!*'();:@&=+$,end". Note that overriding this default value may result in unsupported
      behavior.
-    :type string_path: str
+    :paramtype string_path: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    string_path = kwargs.pop("string_path", "begin!*'();:@&=+$,end")  # type: str
 
     accept = "application/json"
     # Construct URL
@@ -425,20 +451,22 @@ def build_string_url_non_encoded_request(string_path: str = "begin!*'();:@&=+$,e
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_string_empty_request(string_path: str = "", **kwargs: Any) -> HttpRequest:
+def build_string_empty_request(**kwargs: Any) -> HttpRequest:
     """Get ''.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param string_path: '' string value. The default value is "". Note that overriding this default
-     value may result in unsupported behavior.
-    :type string_path: str
+    :keyword string_path: '' string value. The default value is "". Note that overriding this
+     default value may result in unsupported behavior.
+    :paramtype string_path: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    string_path = kwargs.pop("string_path", "")  # type: str
 
     accept = "application/json"
     # Construct URL
@@ -578,20 +606,22 @@ def build_byte_multi_byte_request(byte_path: bytearray, **kwargs: Any) -> HttpRe
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_byte_empty_request(byte_path: bytearray = bytearray("", encoding="utf-8"), **kwargs: Any) -> HttpRequest:
+def build_byte_empty_request(**kwargs: Any) -> HttpRequest:
     """Get '' as byte array.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param byte_path: '' as byte array. The default value is bytearray("", encoding="utf-8"). Note
-     that overriding this default value may result in unsupported behavior.
-    :type byte_path: bytearray
+    :keyword byte_path: '' as byte array. The default value is bytearray("", encoding="utf-8").
+     Note that overriding this default value may result in unsupported behavior.
+    :paramtype byte_path: bytearray
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    byte_path = kwargs.pop("byte_path", bytearray("", encoding="utf-8"))  # type: bytearray
 
     accept = "application/json"
     # Construct URL
@@ -639,20 +669,22 @@ def build_byte_null_request(byte_path: bytearray, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_date_valid_request(date_path: datetime.date = "2012-01-01", **kwargs: Any) -> HttpRequest:
+def build_date_valid_request(**kwargs: Any) -> HttpRequest:
     """Get '2012-01-01' as date.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param date_path: '2012-01-01' as date. The default value is "2012-01-01". Note that overriding
-     this default value may result in unsupported behavior.
-    :type date_path: ~datetime.date
+    :keyword date_path: '2012-01-01' as date. The default value is "2012-01-01". Note that
+     overriding this default value may result in unsupported behavior.
+    :paramtype date_path: ~datetime.date
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    date_path = kwargs.pop("date_path", "2012-01-01")  # type: datetime.date
 
     accept = "application/json"
     # Construct URL
@@ -701,23 +733,23 @@ def build_date_null_request(date_path: datetime.date, **kwargs: Any) -> HttpRequ
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_date_time_valid_request(
-    date_time_path: datetime.datetime = "2012-01-01T01:01:01Z", **kwargs: Any
-) -> HttpRequest:
+def build_date_time_valid_request(**kwargs: Any) -> HttpRequest:
     """Get '2012-01-01T01:01:01Z' as date-time.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param date_time_path: '2012-01-01T01:01:01Z' as date-time. The default value is
+    :keyword date_time_path: '2012-01-01T01:01:01Z' as date-time. The default value is
      "2012-01-01T01:01:01Z". Note that overriding this default value may result in unsupported
      behavior.
-    :type date_time_path: ~datetime.datetime
+    :paramtype date_time_path: ~datetime.datetime
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
+
+    date_time_path = kwargs.pop("date_time_path", "2012-01-01T01:01:01Z")  # type: datetime.datetime
 
     accept = "application/json"
     # Construct URL

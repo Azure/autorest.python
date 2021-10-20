@@ -24,6 +24,8 @@ if TYPE_CHECKING:
 class AutoRestSwaggerConstantService(object):
     """Test Infrastructure for AutoRest Swagger Constant.
 
+    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
+    :paramtype endpoint: str
     :keyword header_constant: Constant header property on the client that is a required parameter
      for operation 'constants_putClientConstants'. The default value is True. Note that overriding
      this default value may result in unsupported behavior.
@@ -36,8 +38,6 @@ class AutoRestSwaggerConstantService(object):
      operation 'constants_putClientConstants'. The default value is "path". Note that overriding
      this default value may result in unsupported behavior.
     :paramtype path_constant: str
-    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
-    :paramtype endpoint: str
     """
 
     def __init__(

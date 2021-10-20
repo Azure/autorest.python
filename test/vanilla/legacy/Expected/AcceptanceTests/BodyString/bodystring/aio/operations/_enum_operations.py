@@ -247,9 +247,7 @@ class EnumOperations:
     get_referenced_constant.metadata = {"url": "/string/enum/ReferencedConstant"}  # type: ignore
 
     @distributed_trace_async
-    async def put_referenced_constant(
-        self, field1: Optional[str] = None, *, color_constant: str = "green-color", **kwargs: Any
-    ) -> None:
+    async def put_referenced_constant(self, field1: Optional[str] = None, **kwargs: Any) -> None:
         """Sends value 'green-color' from a constant.
 
         :param field1: Sample string.
@@ -267,6 +265,7 @@ class EnumOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        color_constant = kwargs.pop("color_constant", "green-color")  # type: str
 
         _enum_string_body = _models.RefColorConstant(color_constant=color_constant, field1=field1)
         json = self._serialize.body(_enum_string_body, "RefColorConstant")

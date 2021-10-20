@@ -867,7 +867,7 @@ class XmlOperations:
     put_empty_child_element.metadata = {"url": "/xml/empty-child-element"}  # type: ignore
 
     @distributed_trace_async
-    async def list_containers(self, *, comp: str = "list", **kwargs: Any) -> "_models.ListContainersResponse":
+    async def list_containers(self, **kwargs: Any) -> "_models.ListContainersResponse":
         """Lists containers in a storage account.
 
         :keyword comp: The default value is "list". Note that overriding this default value may result
@@ -881,6 +881,8 @@ class XmlOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.ListContainersResponse"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        comp = kwargs.pop("comp", "list")  # type: str
 
         request = build_list_containers_request(
             comp=comp,
@@ -906,9 +908,7 @@ class XmlOperations:
     list_containers.metadata = {"url": "/xml/"}  # type: ignore
 
     @distributed_trace_async
-    async def get_service_properties(
-        self, *, comp: str = "properties", restype: str = "service", **kwargs: Any
-    ) -> "_models.StorageServiceProperties":
+    async def get_service_properties(self, **kwargs: Any) -> "_models.StorageServiceProperties":
         """Gets storage service properties.
 
         :keyword comp: The default value is "properties". Note that overriding this default value may
@@ -925,6 +925,9 @@ class XmlOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageServiceProperties"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        comp = kwargs.pop("comp", "properties")  # type: str
+        restype = kwargs.pop("restype", "service")  # type: str
 
         request = build_get_service_properties_request(
             comp=comp,
@@ -951,14 +954,7 @@ class XmlOperations:
     get_service_properties.metadata = {"url": "/xml/"}  # type: ignore
 
     @distributed_trace_async
-    async def put_service_properties(
-        self,
-        properties: "_models.StorageServiceProperties",
-        *,
-        comp: str = "properties",
-        restype: str = "service",
-        **kwargs: Any
-    ) -> None:
+    async def put_service_properties(self, properties: "_models.StorageServiceProperties", **kwargs: Any) -> None:
         """Puts storage service properties.
 
         :param properties:
@@ -978,15 +974,17 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        comp = kwargs.pop("comp", "properties")  # type: str
+        restype = kwargs.pop("restype", "service")  # type: str
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
         content = self._serialize.body(properties, "StorageServiceProperties", is_xml=True)
 
         request = build_put_service_properties_request(
-            content_type=content_type,
-            content=content,
             comp=comp,
             restype=restype,
+            content_type=content_type,
+            content=content,
             template_url=self.put_service_properties.metadata["url"],
         )
         request = _convert_request(request)
@@ -1005,9 +1003,7 @@ class XmlOperations:
     put_service_properties.metadata = {"url": "/xml/"}  # type: ignore
 
     @distributed_trace_async
-    async def get_acls(
-        self, *, comp: str = "acl", restype: str = "container", **kwargs: Any
-    ) -> List["_models.SignedIdentifier"]:
+    async def get_acls(self, **kwargs: Any) -> List["_models.SignedIdentifier"]:
         """Gets storage ACLs for a container.
 
         :keyword comp: The default value is "acl". Note that overriding this default value may result
@@ -1024,6 +1020,9 @@ class XmlOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[List["_models.SignedIdentifier"]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        comp = kwargs.pop("comp", "acl")  # type: str
+        restype = kwargs.pop("restype", "container")  # type: str
 
         request = build_get_acls_request(
             comp=comp,
@@ -1050,14 +1049,7 @@ class XmlOperations:
     get_acls.metadata = {"url": "/xml/mycontainer"}  # type: ignore
 
     @distributed_trace_async
-    async def put_acls(
-        self,
-        properties: List["_models.SignedIdentifier"],
-        *,
-        comp: str = "acl",
-        restype: str = "container",
-        **kwargs: Any
-    ) -> None:
+    async def put_acls(self, properties: List["_models.SignedIdentifier"], **kwargs: Any) -> None:
         """Puts storage ACLs for a container.
 
         :param properties:
@@ -1077,6 +1069,8 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        comp = kwargs.pop("comp", "acl")  # type: str
+        restype = kwargs.pop("restype", "container")  # type: str
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
         serialization_ctxt = {"xml": {"name": "SignedIdentifiers", "wrapped": True, "itemsName": "SignedIdentifier"}}
@@ -1085,10 +1079,10 @@ class XmlOperations:
         )
 
         request = build_put_acls_request(
-            content_type=content_type,
-            content=content,
             comp=comp,
             restype=restype,
+            content_type=content_type,
+            content=content,
             template_url=self.put_acls.metadata["url"],
         )
         request = _convert_request(request)
@@ -1107,9 +1101,7 @@ class XmlOperations:
     put_acls.metadata = {"url": "/xml/mycontainer"}  # type: ignore
 
     @distributed_trace_async
-    async def list_blobs(
-        self, *, comp: str = "list", restype: str = "container", **kwargs: Any
-    ) -> "_models.ListBlobsResponse":
+    async def list_blobs(self, **kwargs: Any) -> "_models.ListBlobsResponse":
         """Lists blobs in a storage container.
 
         :keyword comp: The default value is "list". Note that overriding this default value may result
@@ -1126,6 +1118,9 @@ class XmlOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.ListBlobsResponse"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        comp = kwargs.pop("comp", "list")  # type: str
+        restype = kwargs.pop("restype", "container")  # type: str
 
         request = build_list_blobs_request(
             comp=comp,

@@ -1022,24 +1022,24 @@ def build_put_service_properties_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input).
-    :paramtype content: any
     :keyword comp: The default value is "properties". Note that overriding this default value may
      result in unsupported behavior.
     :paramtype comp: str
     :keyword restype: The default value is "service". Note that overriding this default value may
      result in unsupported behavior.
     :paramtype restype: str
+    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
+     a byte iterator, or stream input).
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
     comp = kwargs.pop('comp', "properties")  # type: str
     restype = kwargs.pop('restype', "service")  # type: str
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     # Construct URL
     url = kwargs.pop("template_url", '/xml/')
@@ -1133,24 +1133,24 @@ def build_put_acls_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input).
-    :paramtype content: any
     :keyword comp: The default value is "acl". Note that overriding this default value may result
      in unsupported behavior.
     :paramtype comp: str
     :keyword restype: The default value is "container". Note that overriding this default value may
      result in unsupported behavior.
     :paramtype restype: str
+    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
+     a byte iterator, or stream input).
+    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
     comp = kwargs.pop('comp', "acl")  # type: str
     restype = kwargs.pop('restype', "container")  # type: str
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     # Construct URL
     url = kwargs.pop("template_url", '/xml/mycontainer')

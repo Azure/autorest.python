@@ -16,12 +16,7 @@ _SERIALIZER = Serializer()
 
 
 def build_check_name_availability_request(
-    subscription_id: str,
-    *,
-    json: Any = None,
-    content: Any = None,
-    api_version: str = "2015-05-01-preview",
-    **kwargs: Any
+    subscription_id: str, *, json: Any = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Checks that account name is valid and is not in use.
 
@@ -31,6 +26,9 @@ def build_check_name_availability_request(
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
      subscription. The subscription ID forms part of the URI for every service call.
     :type subscription_id: str
+    :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
+     overriding this default value may result in unsupported behavior.
+    :paramtype api_version: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. The name of the storage account within the specified
      resource group. Storage account names must be between 3 and 24 characters in length and use
@@ -41,9 +39,6 @@ def build_check_name_availability_request(
      resource group. Storage account names must be between 3 and 24 characters in length and use
      numbers and lower-case letters only.
     :paramtype content: any
-    :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
-     overriding this default value may result in unsupported behavior.
-    :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -66,6 +61,7 @@ def build_check_name_availability_request(
             }
     """
 
+    api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json, text/json"
@@ -101,7 +97,6 @@ def build_create_request(
     *,
     json: Any = None,
     content: Any = None,
-    api_version: str = "2015-05-01-preview",
     **kwargs: Any
 ) -> HttpRequest:
     """Asynchronously creates a new storage account with the specified parameters. Existing accounts
@@ -121,15 +116,15 @@ def build_create_request(
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
      subscription. The subscription ID forms part of the URI for every service call.
     :type subscription_id: str
+    :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
+     overriding this default value may result in unsupported behavior.
+    :paramtype api_version: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. The parameters to provide for the created account.
     :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). The parameters to provide for the created account.
     :paramtype content: any
-    :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
-     overriding this default value may result in unsupported behavior.
-    :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -200,6 +195,7 @@ def build_create_request(
             }
     """
 
+    api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json, text/json"
@@ -232,12 +228,7 @@ def build_create_request(
 
 
 def build_delete_request(
-    resource_group_name: str,
-    account_name: str,
-    subscription_id: str,
-    *,
-    api_version: str = "2015-05-01-preview",
-    **kwargs: Any
+    resource_group_name: str, account_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     """Deletes a storage account in Microsoft Azure.
 
@@ -262,6 +253,8 @@ def build_delete_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
+    api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+
     # Construct URL
     url = kwargs.pop(
         "template_url",
@@ -283,12 +276,7 @@ def build_delete_request(
 
 
 def build_get_properties_request(
-    resource_group_name: str,
-    account_name: str,
-    subscription_id: str,
-    *,
-    api_version: str = "2015-05-01-preview",
-    **kwargs: Any
+    resource_group_name: str, account_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     """Returns the properties for the specified storage account including but not limited to name,
     account type, location, and account status. The ListKeys operation should be used to retrieve
@@ -365,6 +353,8 @@ def build_get_properties_request(
             }
     """
 
+    api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+
     accept = "application/json, text/json"
     # Construct URL
     url = kwargs.pop(
@@ -397,7 +387,6 @@ def build_update_request(
     *,
     json: Any = None,
     content: Any = None,
-    api_version: str = "2015-05-01-preview",
     **kwargs: Any
 ) -> HttpRequest:
     """Updates the account type or tags for a storage account. It can also be used to add a custom
@@ -420,6 +409,9 @@ def build_update_request(
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
      subscription. The subscription ID forms part of the URI for every service call.
     :type subscription_id: str
+    :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
+     overriding this default value may result in unsupported behavior.
+    :paramtype api_version: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. The parameters to update on the account. Note that only
      one property can be changed at a time using this API.
@@ -428,9 +420,6 @@ def build_update_request(
      a byte iterator, or stream input). The parameters to update on the account. Note that only one
      property can be changed at a time using this API.
     :paramtype content: any
-    :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
-     overriding this default value may result in unsupported behavior.
-    :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -505,6 +494,7 @@ def build_update_request(
             }
     """
 
+    api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json, text/json"
@@ -543,12 +533,7 @@ def build_update_request(
 
 
 def build_list_keys_request(
-    resource_group_name: str,
-    account_name: str,
-    subscription_id: str,
-    *,
-    api_version: str = "2015-05-01-preview",
-    **kwargs: Any
+    resource_group_name: str, account_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     """Lists the access keys for the specified storage account.
 
@@ -580,6 +565,8 @@ def build_list_keys_request(
             }
     """
 
+    api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+
     accept = "application/json, text/json"
     # Construct URL
     url = kwargs.pop(
@@ -605,7 +592,7 @@ def build_list_keys_request(
     return HttpRequest(method="POST", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
-def build_list_request(subscription_id: str, *, api_version: str = "2015-05-01-preview", **kwargs: Any) -> HttpRequest:
+def build_list_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
     """Lists all the storage accounts available under the subscription. Note that storage keys are not
     returned; use the ListKeys operation for this.
 
@@ -679,6 +666,8 @@ def build_list_request(subscription_id: str, *, api_version: str = "2015-05-01-p
             }
     """
 
+    api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+
     accept = "application/json, text/json"
     # Construct URL
     url = kwargs.pop("template_url", "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts")
@@ -699,9 +688,7 @@ def build_list_request(subscription_id: str, *, api_version: str = "2015-05-01-p
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
-def build_list_by_resource_group_request(
-    resource_group_name: str, subscription_id: str, *, api_version: str = "2015-05-01-preview", **kwargs: Any
-) -> HttpRequest:
+def build_list_by_resource_group_request(resource_group_name: str, subscription_id: str, **kwargs: Any) -> HttpRequest:
     """Lists all the storage accounts available under the given resource group. Note that storage keys
     are not returned; use the ListKeys operation for this.
 
@@ -777,6 +764,8 @@ def build_list_by_resource_group_request(
             }
     """
 
+    api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+
     accept = "application/json, text/json"
     # Construct URL
     url = kwargs.pop(
@@ -808,7 +797,6 @@ def build_regenerate_key_request(
     *,
     json: Any = None,
     content: Any = None,
-    api_version: str = "2015-05-01-preview",
     **kwargs: Any
 ) -> HttpRequest:
     """Regenerates the access keys for the specified storage account.
@@ -825,15 +813,15 @@ def build_regenerate_key_request(
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
      subscription. The subscription ID forms part of the URI for every service call.
     :type subscription_id: str
+    :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
+     overriding this default value may result in unsupported behavior.
+    :paramtype api_version: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Specifies name of the key which should be regenerated.
     :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Specifies name of the key which should be regenerated.
     :paramtype content: any
-    :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
-     overriding this default value may result in unsupported behavior.
-    :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -854,6 +842,7 @@ def build_regenerate_key_request(
             }
     """
 
+    api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json, text/json"

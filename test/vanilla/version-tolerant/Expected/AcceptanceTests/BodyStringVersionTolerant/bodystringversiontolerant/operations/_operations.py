@@ -593,16 +593,14 @@ class StringOperations(object):
 
     @distributed_trace
     def put_empty(
-        self,
-        string_body="",  # type: str
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Set string value empty ''.
 
-        :param string_body: string body. The default value is "". Note that overriding this default
+        :keyword string_body: string body. The default value is "". Note that overriding this default
          value may result in unsupported behavior.
-        :type string_body: str
+        :paramtype string_body: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -612,6 +610,7 @@ class StringOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        string_body = kwargs.pop("string_body", "")  # type: str
 
         request = build_string_put_empty_request(
             content_type=content_type,
@@ -673,17 +672,15 @@ class StringOperations(object):
 
     @distributed_trace
     def put_mbcs(
-        self,
-        string_body="啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€",  # type: str
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
-        :param string_body: string body. The default value is
+        :keyword string_body: string body. The default value is
          "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€". Note that overriding
          this default value may result in unsupported behavior.
-        :type string_body: str
+        :paramtype string_body: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -693,6 +690,9 @@ class StringOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        string_body = kwargs.pop(
+            "string_body", "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
+        )  # type: str
 
         request = build_string_put_mbcs_request(
             content_type=content_type,
@@ -756,19 +756,17 @@ class StringOperations(object):
 
     @distributed_trace
     def put_whitespace(
-        self,
-        string_body="    Now is the time for all good men to come to the aid of their country    ",  # type: str
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Set String value with leading and trailing whitespace
         ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid
         of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
 
-        :param string_body: string body. The default value is "    Now is the time for all good men to
-         come to the aid of their country    ". Note that overriding this default value may result in
+        :keyword string_body: string body. The default value is "    Now is the time for all good men
+         to come to the aid of their country    ". Note that overriding this default value may result in
          unsupported behavior.
-        :type string_body: str
+        :paramtype string_body: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -778,6 +776,9 @@ class StringOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        string_body = kwargs.pop(
+            "string_body", "    Now is the time for all good men to come to the aid of their country    "
+        )  # type: str
 
         request = build_string_put_whitespace_request(
             content_type=content_type,
