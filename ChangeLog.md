@@ -1,5 +1,19 @@
 # Change Log
 
+### 2021-xx-xx - 5.9.4
+
+| Library | Min Version
+| --------------- | -------
+|`@autorest/core` |  `3.6.2`
+|`@autorest/modelerfour` | `4.19.1`
+|`azure-core` dep of generated code | `1.19.0`
+|`msrest` dep of generated code | `0.6.21`
+|`azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`
+
+**Bug Fixes**
+
+- Fix overriding some entries in user input from kwargs `headers` and `params`  #1069
+
 ### 2021-10-15 - 5.9.3
 
 | Library | Min Version
