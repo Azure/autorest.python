@@ -42,12 +42,12 @@ def build_test_two_request(
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -97,11 +97,13 @@ class OperationGroupOneOperations(object):
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         
         request = build_test_two_request(
             template_url=self.test_two.metadata['url'],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)

@@ -51,7 +51,7 @@ def build_implicit_get_required_path_request(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -75,12 +75,12 @@ def build_implicit_put_optional_query_request(
     query_parameters = {}  # type: Dict[str, Any]
     if query_parameter is not None:
         query_parameters['queryParameter'] = _SERIALIZER.query("query_parameter", query_parameter, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="PUT",
@@ -106,7 +106,7 @@ def build_implicit_put_optional_header_request(
     if query_parameter is not None:
         header_parameters['queryParameter'] = _SERIALIZER.header("query_parameter", query_parameter, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="PUT",
@@ -131,7 +131,7 @@ def build_implicit_put_optional_body_request(
     if content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="PUT",
@@ -156,7 +156,7 @@ def build_implicit_put_optional_binary_body_request(
     if content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="PUT",
@@ -183,7 +183,7 @@ def build_implicit_get_required_global_path_request(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -206,12 +206,12 @@ def build_implicit_get_required_global_query_request(
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     query_parameters['required-global-query'] = _SERIALIZER.query("required_global_query", required_global_query, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -236,12 +236,12 @@ def build_implicit_get_optional_global_query_request(
     query_parameters = {}  # type: Dict[str, Any]
     if optional_global_query is not None:
         query_parameters['optional-global-query'] = _SERIALIZER.query("optional_global_query", optional_global_query, 'int')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -267,7 +267,7 @@ def build_explicit_put_optional_binary_body_request(
     if content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="PUT",
@@ -292,7 +292,7 @@ def build_explicit_put_required_binary_body_request(
     if content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="PUT",
@@ -317,7 +317,7 @@ def build_explicit_post_required_integer_parameter_request(
     if content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="POST",
@@ -342,7 +342,7 @@ def build_explicit_post_optional_integer_parameter_request(
     if content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="POST",
@@ -367,7 +367,7 @@ def build_explicit_post_required_integer_property_request(
     if content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="POST",
@@ -392,7 +392,7 @@ def build_explicit_post_optional_integer_property_request(
     if content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="POST",
@@ -416,7 +416,7 @@ def build_explicit_post_required_integer_header_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['headerParameter'] = _SERIALIZER.header("header_parameter", header_parameter, 'int')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="POST",
@@ -441,7 +441,7 @@ def build_explicit_post_optional_integer_header_request(
     if header_parameter is not None:
         header_parameters['headerParameter'] = _SERIALIZER.header("header_parameter", header_parameter, 'int')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="POST",
@@ -466,7 +466,7 @@ def build_explicit_post_required_string_parameter_request(
     if content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="POST",
@@ -491,7 +491,7 @@ def build_explicit_post_optional_string_parameter_request(
     if content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="POST",
@@ -516,7 +516,7 @@ def build_explicit_post_required_string_property_request(
     if content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="POST",
@@ -541,7 +541,7 @@ def build_explicit_post_optional_string_property_request(
     if content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="POST",
@@ -565,7 +565,7 @@ def build_explicit_post_required_string_header_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['headerParameter'] = _SERIALIZER.header("header_parameter", header_parameter, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="POST",
@@ -590,7 +590,7 @@ def build_explicit_post_optional_string_header_request(
     if body_parameter is not None:
         header_parameters['bodyParameter'] = _SERIALIZER.header("body_parameter", body_parameter, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="POST",
@@ -615,7 +615,7 @@ def build_explicit_post_required_class_parameter_request(
     if content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="POST",
@@ -640,7 +640,7 @@ def build_explicit_post_optional_class_parameter_request(
     if content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="POST",
@@ -665,7 +665,7 @@ def build_explicit_post_required_class_property_request(
     if content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="POST",
@@ -690,7 +690,7 @@ def build_explicit_post_optional_class_property_request(
     if content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="POST",
@@ -715,7 +715,7 @@ def build_explicit_post_required_array_parameter_request(
     if content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="POST",
@@ -740,7 +740,7 @@ def build_explicit_post_optional_array_parameter_request(
     if content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="POST",
@@ -765,7 +765,7 @@ def build_explicit_post_required_array_property_request(
     if content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="POST",
@@ -790,7 +790,7 @@ def build_explicit_post_optional_array_property_request(
     if content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="POST",
@@ -814,7 +814,7 @@ def build_explicit_post_required_array_header_request(
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['headerParameter'] = _SERIALIZER.header("header_parameter", header_parameter, '[str]', div=',')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="POST",
@@ -839,7 +839,7 @@ def build_explicit_post_optional_array_header_request(
     if header_parameter is not None:
         header_parameters['headerParameter'] = _SERIALIZER.header("header_parameter", header_parameter, '[str]', div=',')
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="POST",
@@ -884,11 +884,13 @@ class ImplicitOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_implicit_get_required_path_request(
             path_parameter=path_parameter,
             template_url=self.get_required_path.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -919,13 +921,15 @@ class ImplicitOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         query_parameter = kwargs.pop("query_parameter", None)  # type: Optional[str]
 
         request = build_implicit_put_optional_query_request(
             query_parameter=query_parameter,
             template_url=self.put_optional_query.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -956,13 +960,15 @@ class ImplicitOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         query_parameter = kwargs.pop("query_parameter", None)  # type: Optional[str]
 
         request = build_implicit_put_optional_header_request(
             query_parameter=query_parameter,
             template_url=self.put_optional_header.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -995,7 +1001,7 @@ class ImplicitOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
@@ -1008,6 +1014,8 @@ class ImplicitOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.put_optional_body.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -1040,7 +1048,7 @@ class ImplicitOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         content_type = kwargs.pop("content_type", "application/octet-stream")  # type: Optional[str]
 
@@ -1050,6 +1058,8 @@ class ImplicitOperations(object):
             content_type=content_type,
             content=content,
             template_url=self.put_optional_binary_body.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -1078,11 +1088,13 @@ class ImplicitOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_implicit_get_required_global_path_request(
             required_global_path=self._config.required_global_path,
             template_url=self.get_required_global_path.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -1111,11 +1123,13 @@ class ImplicitOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_implicit_get_required_global_query_request(
             required_global_query=self._config.required_global_query,
             template_url=self.get_required_global_query.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -1144,11 +1158,13 @@ class ImplicitOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_implicit_get_optional_global_query_request(
             optional_global_query=self._config.optional_global_query,
             template_url=self.get_optional_global_query.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -1200,7 +1216,7 @@ class ExplicitOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         content_type = kwargs.pop("content_type", "application/octet-stream")  # type: Optional[str]
 
@@ -1210,6 +1226,8 @@ class ExplicitOperations(object):
             content_type=content_type,
             content=content,
             template_url=self.put_optional_binary_body.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -1242,7 +1260,7 @@ class ExplicitOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         content_type = kwargs.pop("content_type", "application/octet-stream")  # type: Optional[str]
 
@@ -1252,6 +1270,8 @@ class ExplicitOperations(object):
             content_type=content_type,
             content=content,
             template_url=self.put_required_binary_body.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -1285,7 +1305,7 @@ class ExplicitOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
@@ -1295,6 +1315,8 @@ class ExplicitOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post_required_integer_parameter.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -1327,7 +1349,7 @@ class ExplicitOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
@@ -1340,6 +1362,8 @@ class ExplicitOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post_optional_integer_parameter.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -1381,7 +1405,7 @@ class ExplicitOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
@@ -1391,6 +1415,8 @@ class ExplicitOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post_required_integer_property.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -1431,7 +1457,7 @@ class ExplicitOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
@@ -1444,6 +1470,8 @@ class ExplicitOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post_optional_integer_property.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -1475,13 +1503,15 @@ class ExplicitOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         header_parameter = kwargs.pop("header_parameter")  # type: int
 
         request = build_explicit_post_required_integer_header_request(
             header_parameter=header_parameter,
             template_url=self.post_required_integer_header.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -1512,13 +1542,15 @@ class ExplicitOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         header_parameter = kwargs.pop("header_parameter", None)  # type: Optional[int]
 
         request = build_explicit_post_optional_integer_header_request(
             header_parameter=header_parameter,
             template_url=self.post_optional_integer_header.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -1552,7 +1584,7 @@ class ExplicitOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
@@ -1562,6 +1594,8 @@ class ExplicitOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post_required_string_parameter.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -1594,7 +1628,7 @@ class ExplicitOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
@@ -1607,6 +1641,8 @@ class ExplicitOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post_optional_string_parameter.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -1648,7 +1684,7 @@ class ExplicitOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
@@ -1658,6 +1694,8 @@ class ExplicitOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post_required_string_property.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -1698,7 +1736,7 @@ class ExplicitOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
@@ -1711,6 +1749,8 @@ class ExplicitOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post_optional_string_property.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -1742,13 +1782,15 @@ class ExplicitOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         header_parameter = kwargs.pop("header_parameter")  # type: str
 
         request = build_explicit_post_required_string_header_request(
             header_parameter=header_parameter,
             template_url=self.post_required_string_header.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -1779,13 +1821,15 @@ class ExplicitOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         body_parameter = kwargs.pop("body_parameter", None)  # type: Optional[str]
 
         request = build_explicit_post_optional_string_header_request(
             body_parameter=body_parameter,
             template_url=self.post_optional_string_header.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -1828,7 +1872,7 @@ class ExplicitOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
@@ -1838,6 +1882,8 @@ class ExplicitOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post_required_class_parameter.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -1879,7 +1925,7 @@ class ExplicitOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
@@ -1892,6 +1938,8 @@ class ExplicitOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post_optional_class_parameter.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -1936,7 +1984,7 @@ class ExplicitOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
@@ -1946,6 +1994,8 @@ class ExplicitOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post_required_class_property.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -1989,7 +2039,7 @@ class ExplicitOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
@@ -2002,6 +2052,8 @@ class ExplicitOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post_optional_class_property.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -2043,7 +2095,7 @@ class ExplicitOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
@@ -2053,6 +2105,8 @@ class ExplicitOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post_required_array_parameter.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -2093,7 +2147,7 @@ class ExplicitOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
@@ -2106,6 +2160,8 @@ class ExplicitOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post_optional_array_parameter.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -2149,7 +2205,7 @@ class ExplicitOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
@@ -2159,6 +2215,8 @@ class ExplicitOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post_required_array_property.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -2201,7 +2259,7 @@ class ExplicitOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
@@ -2214,6 +2272,8 @@ class ExplicitOperations(object):
             content_type=content_type,
             json=json,
             template_url=self.post_optional_array_property.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -2245,13 +2305,15 @@ class ExplicitOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         header_parameter = kwargs.pop("header_parameter")  # type: List[str]
 
         request = build_explicit_post_required_array_header_request(
             header_parameter=header_parameter,
             template_url=self.post_required_array_header.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -2282,13 +2344,15 @@ class ExplicitOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         header_parameter = kwargs.pop("header_parameter", None)  # type: Optional[List[str]]
 
         request = build_explicit_post_optional_array_header_request(
             header_parameter=header_parameter,
             template_url=self.post_optional_array_header.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 

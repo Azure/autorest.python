@@ -59,7 +59,7 @@ def build_create_ap_true_request(*, json: Any = None, content: Any = None, **kwa
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -112,7 +112,7 @@ def build_create_cat_ap_true_request(*, json: Any = None, content: Any = None, *
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -163,7 +163,7 @@ def build_create_ap_object_request(*, json: Any = None, content: Any = None, **k
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -214,7 +214,7 @@ def build_create_ap_string_request(*, json: Any = None, content: Any = None, **k
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -265,7 +265,7 @@ def build_create_ap_in_properties_request(*, json: Any = None, content: Any = No
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -326,6 +326,6 @@ def build_create_ap_in_properties_with_ap_string_request(
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)

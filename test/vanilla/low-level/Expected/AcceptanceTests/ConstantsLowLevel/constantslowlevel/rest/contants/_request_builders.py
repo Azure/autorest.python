@@ -48,7 +48,7 @@ def build_put_no_model_as_string_no_required_two_value_no_default_request(
     query_parameters = {}  # type: Dict[str, Any]
     if input is not None:
         query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     return HttpRequest(
         method="PUT",
@@ -86,7 +86,7 @@ def build_put_no_model_as_string_no_required_two_value_default_request(
     query_parameters = {}  # type: Dict[str, Any]
     if input is not None:
         query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     return HttpRequest(
         method="PUT",
@@ -124,7 +124,7 @@ def build_put_no_model_as_string_no_required_one_value_no_default_request(
     query_parameters = {}  # type: Dict[str, Any]
     if input is not None:
         query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     return HttpRequest(
         method="PUT",
@@ -162,7 +162,7 @@ def build_put_no_model_as_string_no_required_one_value_default_request(
     query_parameters = {}  # type: Dict[str, Any]
     if input is not None:
         query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     return HttpRequest(
         method="PUT",
@@ -199,7 +199,7 @@ def build_put_no_model_as_string_required_two_value_no_default_request(
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     return HttpRequest(
         method="PUT",
@@ -236,7 +236,7 @@ def build_put_no_model_as_string_required_two_value_default_request(
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     return HttpRequest(
         method="PUT",
@@ -270,7 +270,7 @@ def build_put_no_model_as_string_required_one_value_no_default_request(
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     return HttpRequest(
         method="PUT",
@@ -304,7 +304,7 @@ def build_put_no_model_as_string_required_one_value_default_request(
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     return HttpRequest(
         method="PUT",
@@ -342,7 +342,7 @@ def build_put_model_as_string_no_required_two_value_no_default_request(
     query_parameters = {}  # type: Dict[str, Any]
     if input is not None:
         query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     return HttpRequest(
         method="PUT",
@@ -380,7 +380,7 @@ def build_put_model_as_string_no_required_two_value_default_request(
     query_parameters = {}  # type: Dict[str, Any]
     if input is not None:
         query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     return HttpRequest(
         method="PUT",
@@ -418,7 +418,7 @@ def build_put_model_as_string_no_required_one_value_no_default_request(
     query_parameters = {}  # type: Dict[str, Any]
     if input is not None:
         query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     return HttpRequest(
         method="PUT",
@@ -456,7 +456,7 @@ def build_put_model_as_string_no_required_one_value_default_request(
     query_parameters = {}  # type: Dict[str, Any]
     if input is not None:
         query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     return HttpRequest(
         method="PUT",
@@ -493,7 +493,7 @@ def build_put_model_as_string_required_two_value_no_default_request(
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     return HttpRequest(
         method="PUT",
@@ -530,7 +530,7 @@ def build_put_model_as_string_required_two_value_default_request(
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     return HttpRequest(
         method="PUT",
@@ -567,7 +567,7 @@ def build_put_model_as_string_required_one_value_no_default_request(
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     return HttpRequest(
         method="PUT",
@@ -604,7 +604,7 @@ def build_put_model_as_string_required_one_value_default_request(
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     return HttpRequest(
         method="PUT",
@@ -644,12 +644,12 @@ def build_put_client_constants_request(
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     query_parameters['query-constant'] = _SERIALIZER.query("query_constant", query_constant, 'int')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['header-constant'] = _SERIALIZER.header("header_constant", header_constant, 'bool')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="PUT",

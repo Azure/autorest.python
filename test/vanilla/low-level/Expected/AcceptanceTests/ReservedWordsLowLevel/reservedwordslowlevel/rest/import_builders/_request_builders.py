@@ -44,12 +44,12 @@ def build_operation_one_request(
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     query_parameters['parameter1'] = _SERIALIZER.query("parameter1", parameter1, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="PUT",

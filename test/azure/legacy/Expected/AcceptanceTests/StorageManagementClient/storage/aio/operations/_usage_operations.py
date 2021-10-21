@@ -63,11 +63,13 @@ class UsageOperations:
         """
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.UsageListResult"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_list_request(
             subscription_id=self._config.subscription_id,
             template_url=self.list.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)

@@ -59,7 +59,7 @@ def build_get_pet_by_id_request(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -107,7 +107,7 @@ def build_do_something_request(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="POST",
@@ -146,12 +146,12 @@ def build_has_models_param_request(
     query_parameters = {}  # type: Dict[str, Any]
     if models is not None:
         query_parameters['models'] = _SERIALIZER.query("models", models, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="POST",

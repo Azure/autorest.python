@@ -71,7 +71,7 @@ class ParameterGroupingOperations:
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
@@ -84,6 +84,8 @@ class ParameterGroupingOperations:
             custom_header=custom_header,
             query=query,
             template_url=self.post_required.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -115,12 +117,14 @@ class ParameterGroupingOperations:
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_parameter_grouping_post_optional_request(
             custom_header=custom_header,
             query=query,
             template_url=self.post_optional.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -152,12 +156,14 @@ class ParameterGroupingOperations:
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_parameter_grouping_post_reserved_words_request(
             from_parameter=from_parameter,
             accept_parameter=accept_parameter,
             template_url=self.post_reserved_words.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -199,7 +205,7 @@ class ParameterGroupingOperations:
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_parameter_grouping_post_multi_param_groups_request(
             header_one=header_one,
@@ -207,6 +213,8 @@ class ParameterGroupingOperations:
             header_two=header_two,
             query_two=query_two,
             template_url=self.post_multi_param_groups.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -238,12 +246,14 @@ class ParameterGroupingOperations:
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_parameter_grouping_post_shared_parameter_group_object_request(
             header_one=header_one,
             query_one=query_one,
             template_url=self.post_shared_parameter_group_object.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 

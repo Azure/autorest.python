@@ -37,7 +37,7 @@ class PollingPagingExampleOperationsMixin:
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
@@ -50,6 +50,8 @@ class PollingPagingExampleOperationsMixin:
             content_type=content_type,
             json=json,
             template_url=self._basic_polling_initial.metadata['url'],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -152,12 +154,14 @@ class PollingPagingExampleOperationsMixin:
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop('error_map', {}) or {})
         def prepare_request(next_link=None):
             if not next_link:
                 
                 request = build_basic_paging_request(
                     template_url=self.basic_paging.metadata['url'],
+                    headers=kwargs.pop("headers", {}),
+                    params=kwargs.pop("params", {}),
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -166,6 +170,8 @@ class PollingPagingExampleOperationsMixin:
                 
                 request = build_basic_paging_request(
                     template_url=next_link,
+                    headers=kwargs.pop("headers", {}),
+                    params=kwargs.pop("params", {}),
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)

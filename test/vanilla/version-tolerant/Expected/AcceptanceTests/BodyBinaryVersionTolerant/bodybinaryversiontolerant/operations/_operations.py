@@ -45,7 +45,7 @@ def build_upload_file_request(
     header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="POST",
@@ -68,7 +68,7 @@ def build_upload_binary_request(
     header_parameters = {}  # type: Dict[str, Any]
     if content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="PUT",
@@ -113,7 +113,7 @@ class UploadOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
@@ -123,6 +123,8 @@ class UploadOperations(object):
             content_type=content_type,
             content=content,
             template_url=self.file.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -155,7 +157,7 @@ class UploadOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         content_type = kwargs.pop("content_type", "application/octet-stream")  # type: Optional[str]
 
@@ -165,6 +167,8 @@ class UploadOperations(object):
             content_type=content_type,
             content=content,
             template_url=self.binary.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 

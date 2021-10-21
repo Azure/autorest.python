@@ -48,12 +48,12 @@ def build_get_boolean_true_request(
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     query_parameters['boolQuery'] = _SERIALIZER.query("bool_query", bool_query, 'bool')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -76,12 +76,12 @@ def build_get_boolean_false_request(
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     query_parameters['boolQuery'] = _SERIALIZER.query("bool_query", bool_query, 'bool')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -106,12 +106,12 @@ def build_get_boolean_null_request(
     query_parameters = {}  # type: Dict[str, Any]
     if bool_query is not None:
         query_parameters['boolQuery'] = _SERIALIZER.query("bool_query", bool_query, 'bool')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -134,12 +134,12 @@ def build_get_int_one_million_request(
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     query_parameters['intQuery'] = _SERIALIZER.query("int_query", int_query, 'int')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -162,12 +162,12 @@ def build_get_int_negative_one_million_request(
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     query_parameters['intQuery'] = _SERIALIZER.query("int_query", int_query, 'int')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -192,12 +192,12 @@ def build_get_int_null_request(
     query_parameters = {}  # type: Dict[str, Any]
     if int_query is not None:
         query_parameters['intQuery'] = _SERIALIZER.query("int_query", int_query, 'int')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -220,12 +220,12 @@ def build_get_ten_billion_request(
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     query_parameters['longQuery'] = _SERIALIZER.query("long_query", long_query, 'long')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -248,12 +248,12 @@ def build_get_negative_ten_billion_request(
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     query_parameters['longQuery'] = _SERIALIZER.query("long_query", long_query, 'long')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -278,12 +278,12 @@ def build_get_long_null_request(
     query_parameters = {}  # type: Dict[str, Any]
     if long_query is not None:
         query_parameters['longQuery'] = _SERIALIZER.query("long_query", long_query, 'long')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -306,12 +306,12 @@ def build_float_scientific_positive_request(
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     query_parameters['floatQuery'] = _SERIALIZER.query("float_query", float_query, 'float')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -334,12 +334,12 @@ def build_float_scientific_negative_request(
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     query_parameters['floatQuery'] = _SERIALIZER.query("float_query", float_query, 'float')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -364,12 +364,12 @@ def build_float_null_request(
     query_parameters = {}  # type: Dict[str, Any]
     if float_query is not None:
         query_parameters['floatQuery'] = _SERIALIZER.query("float_query", float_query, 'float')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -392,12 +392,12 @@ def build_double_decimal_positive_request(
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     query_parameters['doubleQuery'] = _SERIALIZER.query("double_query", double_query, 'float')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -420,12 +420,12 @@ def build_double_decimal_negative_request(
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     query_parameters['doubleQuery'] = _SERIALIZER.query("double_query", double_query, 'float')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -450,12 +450,12 @@ def build_double_null_request(
     query_parameters = {}  # type: Dict[str, Any]
     if double_query is not None:
         query_parameters['doubleQuery'] = _SERIALIZER.query("double_query", double_query, 'float')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -478,12 +478,12 @@ def build_string_unicode_request(
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     query_parameters['stringQuery'] = _SERIALIZER.query("string_query", string_query, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -506,12 +506,12 @@ def build_string_url_encoded_request(
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     query_parameters['stringQuery'] = _SERIALIZER.query("string_query", string_query, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -534,12 +534,12 @@ def build_string_empty_request(
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     query_parameters['stringQuery'] = _SERIALIZER.query("string_query", string_query, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -564,12 +564,12 @@ def build_string_null_request(
     query_parameters = {}  # type: Dict[str, Any]
     if string_query is not None:
         query_parameters['stringQuery'] = _SERIALIZER.query("string_query", string_query, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -594,12 +594,12 @@ def build_enum_valid_request(
     query_parameters = {}  # type: Dict[str, Any]
     if enum_query is not None:
         query_parameters['enumQuery'] = _SERIALIZER.query("enum_query", enum_query, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -624,12 +624,12 @@ def build_enum_null_request(
     query_parameters = {}  # type: Dict[str, Any]
     if enum_query is not None:
         query_parameters['enumQuery'] = _SERIALIZER.query("enum_query", enum_query, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -654,12 +654,12 @@ def build_byte_multi_byte_request(
     query_parameters = {}  # type: Dict[str, Any]
     if byte_query is not None:
         query_parameters['byteQuery'] = _SERIALIZER.query("byte_query", byte_query, 'bytearray')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -682,12 +682,12 @@ def build_byte_empty_request(
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     query_parameters['byteQuery'] = _SERIALIZER.query("byte_query", byte_query, 'bytearray')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -712,12 +712,12 @@ def build_byte_null_request(
     query_parameters = {}  # type: Dict[str, Any]
     if byte_query is not None:
         query_parameters['byteQuery'] = _SERIALIZER.query("byte_query", byte_query, 'bytearray')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -740,12 +740,12 @@ def build_date_valid_request(
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     query_parameters['dateQuery'] = _SERIALIZER.query("date_query", date_query, 'date')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -770,12 +770,12 @@ def build_date_null_request(
     query_parameters = {}  # type: Dict[str, Any]
     if date_query is not None:
         query_parameters['dateQuery'] = _SERIALIZER.query("date_query", date_query, 'date')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -798,12 +798,12 @@ def build_date_time_valid_request(
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     query_parameters['dateTimeQuery'] = _SERIALIZER.query("date_time_query", date_time_query, 'iso-8601')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -828,12 +828,12 @@ def build_date_time_null_request(
     query_parameters = {}  # type: Dict[str, Any]
     if date_time_query is not None:
         query_parameters['dateTimeQuery'] = _SERIALIZER.query("date_time_query", date_time_query, 'iso-8601')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -858,12 +858,12 @@ def build_array_string_csv_valid_request(
     query_parameters = {}  # type: Dict[str, Any]
     if array_query is not None:
         query_parameters['arrayQuery'] = _SERIALIZER.query("array_query", array_query, '[str]', div=',')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -888,12 +888,12 @@ def build_array_string_csv_null_request(
     query_parameters = {}  # type: Dict[str, Any]
     if array_query is not None:
         query_parameters['arrayQuery'] = _SERIALIZER.query("array_query", array_query, '[str]', div=',')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -918,12 +918,12 @@ def build_array_string_csv_empty_request(
     query_parameters = {}  # type: Dict[str, Any]
     if array_query is not None:
         query_parameters['arrayQuery'] = _SERIALIZER.query("array_query", array_query, '[str]', div=',')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -948,12 +948,12 @@ def build_array_string_no_collection_format_empty_request(
     query_parameters = {}  # type: Dict[str, Any]
     if array_query is not None:
         query_parameters['arrayQuery'] = _SERIALIZER.query("array_query", array_query, '[str]', div=',')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -978,12 +978,12 @@ def build_array_string_ssv_valid_request(
     query_parameters = {}  # type: Dict[str, Any]
     if array_query is not None:
         query_parameters['arrayQuery'] = _SERIALIZER.query("array_query", array_query, '[str]', div=' ')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -1008,12 +1008,12 @@ def build_array_string_tsv_valid_request(
     query_parameters = {}  # type: Dict[str, Any]
     if array_query is not None:
         query_parameters['arrayQuery'] = _SERIALIZER.query("array_query", array_query, '[str]', div='	')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -1038,12 +1038,12 @@ def build_array_string_pipes_valid_request(
     query_parameters = {}  # type: Dict[str, Any]
     if array_query is not None:
         query_parameters['arrayQuery'] = _SERIALIZER.query("array_query", array_query, '[str]', div='|')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -1090,10 +1090,12 @@ class QueriesOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_get_boolean_true_request(
             template_url=self.get_boolean_true.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1125,10 +1127,12 @@ class QueriesOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_get_boolean_false_request(
             template_url=self.get_boolean_false.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1164,11 +1168,13 @@ class QueriesOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_get_boolean_null_request(
             bool_query=bool_query,
             template_url=self.get_boolean_null.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1200,10 +1206,12 @@ class QueriesOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_get_int_one_million_request(
             template_url=self.get_int_one_million.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1235,10 +1243,12 @@ class QueriesOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_get_int_negative_one_million_request(
             template_url=self.get_int_negative_one_million.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1274,11 +1284,13 @@ class QueriesOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_get_int_null_request(
             int_query=int_query,
             template_url=self.get_int_null.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1310,10 +1322,12 @@ class QueriesOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_get_ten_billion_request(
             template_url=self.get_ten_billion.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1345,10 +1359,12 @@ class QueriesOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_get_negative_ten_billion_request(
             template_url=self.get_negative_ten_billion.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1384,11 +1400,13 @@ class QueriesOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_get_long_null_request(
             long_query=long_query,
             template_url=self.get_long_null.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1420,10 +1438,12 @@ class QueriesOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_float_scientific_positive_request(
             template_url=self.float_scientific_positive.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1455,10 +1475,12 @@ class QueriesOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_float_scientific_negative_request(
             template_url=self.float_scientific_negative.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1494,11 +1516,13 @@ class QueriesOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_float_null_request(
             float_query=float_query,
             template_url=self.float_null.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1530,10 +1554,12 @@ class QueriesOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_double_decimal_positive_request(
             template_url=self.double_decimal_positive.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1565,10 +1591,12 @@ class QueriesOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_double_decimal_negative_request(
             template_url=self.double_decimal_negative.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1604,11 +1632,13 @@ class QueriesOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_double_null_request(
             double_query=double_query,
             template_url=self.double_null.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1640,10 +1670,12 @@ class QueriesOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_string_unicode_request(
             template_url=self.string_unicode.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1675,10 +1707,12 @@ class QueriesOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_string_url_encoded_request(
             template_url=self.string_url_encoded.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1710,10 +1744,12 @@ class QueriesOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_string_empty_request(
             template_url=self.string_empty.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1749,11 +1785,13 @@ class QueriesOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_string_null_request(
             string_query=string_query,
             template_url=self.string_null.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1789,11 +1827,13 @@ class QueriesOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_enum_valid_request(
             enum_query=enum_query,
             template_url=self.enum_valid.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1829,11 +1869,13 @@ class QueriesOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_enum_null_request(
             enum_query=enum_query,
             template_url=self.enum_null.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1869,11 +1911,13 @@ class QueriesOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_byte_multi_byte_request(
             byte_query=byte_query,
             template_url=self.byte_multi_byte.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1905,10 +1949,12 @@ class QueriesOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_byte_empty_request(
             template_url=self.byte_empty.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1944,11 +1990,13 @@ class QueriesOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_byte_null_request(
             byte_query=byte_query,
             template_url=self.byte_null.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1980,10 +2028,12 @@ class QueriesOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_date_valid_request(
             template_url=self.date_valid.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -2019,11 +2069,13 @@ class QueriesOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_date_null_request(
             date_query=date_query,
             template_url=self.date_null.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -2055,10 +2107,12 @@ class QueriesOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_date_time_valid_request(
             template_url=self.date_time_valid.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -2094,11 +2148,13 @@ class QueriesOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_date_time_null_request(
             date_time_query=date_time_query,
             template_url=self.date_time_null.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -2136,11 +2192,13 @@ class QueriesOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_array_string_csv_valid_request(
             array_query=array_query,
             template_url=self.array_string_csv_valid.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -2176,11 +2234,13 @@ class QueriesOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_array_string_csv_null_request(
             array_query=array_query,
             template_url=self.array_string_csv_null.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -2216,11 +2276,13 @@ class QueriesOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_array_string_csv_empty_request(
             array_query=array_query,
             template_url=self.array_string_csv_empty.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -2257,11 +2319,13 @@ class QueriesOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_array_string_no_collection_format_empty_request(
             array_query=array_query,
             template_url=self.array_string_no_collection_format_empty.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -2299,11 +2363,13 @@ class QueriesOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_array_string_ssv_valid_request(
             array_query=array_query,
             template_url=self.array_string_ssv_valid.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -2341,11 +2407,13 @@ class QueriesOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_array_string_tsv_valid_request(
             array_query=array_query,
             template_url=self.array_string_tsv_valid.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -2383,11 +2451,13 @@ class QueriesOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_array_string_pipes_valid_request(
             array_query=array_query,
             template_url=self.array_string_pipes_valid.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)

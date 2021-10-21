@@ -47,7 +47,7 @@ def build_get_pages_partial_url_request(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -68,7 +68,7 @@ def build_get_pages_partial_url_operation_request(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -95,7 +95,7 @@ def build_get_pages_partial_url_operation_next_request(
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -146,13 +146,15 @@ class PagingOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResult"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         def prepare_request(next_link=None):
             if not next_link:
 
                 request = build_get_pages_partial_url_request(
                     template_url=self.get_pages_partial_url.metadata["url"],
+                    headers=kwargs.pop("headers", {}),
+                    params=kwargs.pop("params", {}),
                 )
                 request = _convert_request(request)
                 path_format_arguments = {
@@ -165,6 +167,8 @@ class PagingOperations(object):
 
                 request = build_get_pages_partial_url_request(
                     template_url=next_link,
+                    headers=kwargs.pop("headers", {}),
+                    params=kwargs.pop("params", {}),
                 )
                 request = _convert_request(request)
                 path_format_arguments = {
@@ -221,13 +225,15 @@ class PagingOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResult"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         def prepare_request(next_link=None):
             if not next_link:
 
                 request = build_get_pages_partial_url_operation_request(
                     template_url=self.get_pages_partial_url_operation.metadata["url"],
+                    headers=kwargs.pop("headers", {}),
+                    params=kwargs.pop("params", {}),
                 )
                 request = _convert_request(request)
                 path_format_arguments = {
@@ -241,6 +247,8 @@ class PagingOperations(object):
                 request = build_get_pages_partial_url_operation_next_request(
                     next_link=next_link,
                     template_url="/paging/customurl/{nextLink}",
+                    headers=kwargs.pop("headers", {}),
+                    params=kwargs.pop("params", {}),
                 )
                 request = _convert_request(request)
                 path_format_arguments = {

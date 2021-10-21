@@ -47,7 +47,7 @@ def build_contants_put_no_model_as_string_no_required_two_value_no_default_reque
     query_parameters = {}  # type: Dict[str, Any]
     if input is not None:
         query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     return HttpRequest(
         method="PUT",
@@ -70,7 +70,7 @@ def build_contants_put_no_model_as_string_no_required_two_value_default_request(
     query_parameters = {}  # type: Dict[str, Any]
     if input is not None:
         query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     return HttpRequest(
         method="PUT",
@@ -93,7 +93,7 @@ def build_contants_put_no_model_as_string_no_required_one_value_no_default_reque
     query_parameters = {}  # type: Dict[str, Any]
     if input is not None:
         query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     return HttpRequest(
         method="PUT",
@@ -116,7 +116,7 @@ def build_contants_put_no_model_as_string_no_required_one_value_default_request(
     query_parameters = {}  # type: Dict[str, Any]
     if input is not None:
         query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     return HttpRequest(
         method="PUT",
@@ -138,7 +138,7 @@ def build_contants_put_no_model_as_string_required_two_value_no_default_request(
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     return HttpRequest(
         method="PUT",
@@ -160,7 +160,7 @@ def build_contants_put_no_model_as_string_required_two_value_default_request(
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     return HttpRequest(
         method="PUT",
@@ -181,7 +181,7 @@ def build_contants_put_no_model_as_string_required_one_value_no_default_request(
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     return HttpRequest(
         method="PUT",
@@ -202,7 +202,7 @@ def build_contants_put_no_model_as_string_required_one_value_default_request(
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     return HttpRequest(
         method="PUT",
@@ -225,7 +225,7 @@ def build_contants_put_model_as_string_no_required_two_value_no_default_request(
     query_parameters = {}  # type: Dict[str, Any]
     if input is not None:
         query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     return HttpRequest(
         method="PUT",
@@ -248,7 +248,7 @@ def build_contants_put_model_as_string_no_required_two_value_default_request(
     query_parameters = {}  # type: Dict[str, Any]
     if input is not None:
         query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     return HttpRequest(
         method="PUT",
@@ -271,7 +271,7 @@ def build_contants_put_model_as_string_no_required_one_value_no_default_request(
     query_parameters = {}  # type: Dict[str, Any]
     if input is not None:
         query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     return HttpRequest(
         method="PUT",
@@ -294,7 +294,7 @@ def build_contants_put_model_as_string_no_required_one_value_default_request(
     query_parameters = {}  # type: Dict[str, Any]
     if input is not None:
         query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     return HttpRequest(
         method="PUT",
@@ -316,7 +316,7 @@ def build_contants_put_model_as_string_required_two_value_no_default_request(
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     return HttpRequest(
         method="PUT",
@@ -338,7 +338,7 @@ def build_contants_put_model_as_string_required_two_value_default_request(
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     return HttpRequest(
         method="PUT",
@@ -360,7 +360,7 @@ def build_contants_put_model_as_string_required_one_value_no_default_request(
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     return HttpRequest(
         method="PUT",
@@ -382,7 +382,7 @@ def build_contants_put_model_as_string_required_one_value_default_request(
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     return HttpRequest(
         method="PUT",
@@ -410,12 +410,12 @@ def build_contants_put_client_constants_request(
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     query_parameters['query-constant'] = _SERIALIZER.query("query_constant", query_constant, 'int')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['header-constant'] = _SERIALIZER.header("header_constant", header_constant, 'bool')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="PUT",
@@ -461,13 +461,15 @@ class ContantsOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         input = kwargs.pop("input", None)  # type: Optional[str]
 
         request = build_contants_put_no_model_as_string_no_required_two_value_no_default_request(
             input=input,
             template_url=self.put_no_model_as_string_no_required_two_value_no_default.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -500,13 +502,15 @@ class ContantsOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         input = kwargs.pop("input", "value1")  # type: Optional[str]
 
         request = build_contants_put_no_model_as_string_no_required_two_value_default_request(
             input=input,
             template_url=self.put_no_model_as_string_no_required_two_value_default.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -539,13 +543,15 @@ class ContantsOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         input = kwargs.pop("input", "value1")  # type: Optional[str]
 
         request = build_contants_put_no_model_as_string_no_required_one_value_no_default_request(
             input=input,
             template_url=self.put_no_model_as_string_no_required_one_value_no_default.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -578,13 +584,15 @@ class ContantsOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         input = kwargs.pop("input", "value1")  # type: Optional[str]
 
         request = build_contants_put_no_model_as_string_no_required_one_value_default_request(
             input=input,
             template_url=self.put_no_model_as_string_no_required_one_value_default.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -617,13 +625,15 @@ class ContantsOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         input = kwargs.pop("input")  # type: str
 
         request = build_contants_put_no_model_as_string_required_two_value_no_default_request(
             input=input,
             template_url=self.put_no_model_as_string_required_two_value_no_default.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -656,13 +666,15 @@ class ContantsOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         input = kwargs.pop("input", "value1")  # type: str
 
         request = build_contants_put_no_model_as_string_required_two_value_default_request(
             input=input,
             template_url=self.put_no_model_as_string_required_two_value_default.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -693,10 +705,12 @@ class ContantsOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_contants_put_no_model_as_string_required_one_value_no_default_request(
             template_url=self.put_no_model_as_string_required_one_value_no_default.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -727,10 +741,12 @@ class ContantsOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_contants_put_no_model_as_string_required_one_value_default_request(
             template_url=self.put_no_model_as_string_required_one_value_default.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -763,13 +779,15 @@ class ContantsOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         input = kwargs.pop("input", None)  # type: Optional[str]
 
         request = build_contants_put_model_as_string_no_required_two_value_no_default_request(
             input=input,
             template_url=self.put_model_as_string_no_required_two_value_no_default.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -802,13 +820,15 @@ class ContantsOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         input = kwargs.pop("input", "value1")  # type: Optional[str]
 
         request = build_contants_put_model_as_string_no_required_two_value_default_request(
             input=input,
             template_url=self.put_model_as_string_no_required_two_value_default.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -841,13 +861,15 @@ class ContantsOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         input = kwargs.pop("input", None)  # type: Optional[str]
 
         request = build_contants_put_model_as_string_no_required_one_value_no_default_request(
             input=input,
             template_url=self.put_model_as_string_no_required_one_value_no_default.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -880,13 +902,15 @@ class ContantsOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         input = kwargs.pop("input", "value1")  # type: Optional[str]
 
         request = build_contants_put_model_as_string_no_required_one_value_default_request(
             input=input,
             template_url=self.put_model_as_string_no_required_one_value_default.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -919,13 +943,15 @@ class ContantsOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         input = kwargs.pop("input")  # type: str
 
         request = build_contants_put_model_as_string_required_two_value_no_default_request(
             input=input,
             template_url=self.put_model_as_string_required_two_value_no_default.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -958,13 +984,15 @@ class ContantsOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         input = kwargs.pop("input", "value1")  # type: str
 
         request = build_contants_put_model_as_string_required_two_value_default_request(
             input=input,
             template_url=self.put_model_as_string_required_two_value_default.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -997,13 +1025,15 @@ class ContantsOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         input = kwargs.pop("input")  # type: str
 
         request = build_contants_put_model_as_string_required_one_value_no_default_request(
             input=input,
             template_url=self.put_model_as_string_required_one_value_no_default.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -1036,13 +1066,15 @@ class ContantsOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         input = kwargs.pop("input", "value1")  # type: str
 
         request = build_contants_put_model_as_string_required_one_value_default_request(
             input=input,
             template_url=self.put_model_as_string_required_one_value_default.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
@@ -1072,10 +1104,12 @@ class ContantsOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_contants_put_client_constants_request(
             template_url=self.put_client_constants.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 

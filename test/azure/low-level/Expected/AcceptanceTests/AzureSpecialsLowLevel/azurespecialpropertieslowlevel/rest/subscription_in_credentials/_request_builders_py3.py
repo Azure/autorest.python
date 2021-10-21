@@ -46,7 +46,7 @@ def build_post_method_global_valid_request(subscription_id: str, **kwargs: Any) 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
 
@@ -81,7 +81,7 @@ def build_post_method_global_null_request(subscription_id: str, **kwargs: Any) -
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
 
@@ -118,12 +118,12 @@ def build_post_method_global_not_provided_valid_request(subscription_id: str, **
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(method="POST", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
@@ -159,7 +159,7 @@ def build_post_path_global_valid_request(subscription_id: str, **kwargs: Any) ->
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
 
@@ -195,6 +195,6 @@ def build_post_swagger_global_valid_request(subscription_id: str, **kwargs: Any)
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)

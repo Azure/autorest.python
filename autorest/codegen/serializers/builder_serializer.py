@@ -116,7 +116,7 @@ def _pop_parameters_kwarg(param_name: str) -> str:
     return f'{param_name}_parameters = {{}}  # type: Dict[str, Any]'
 
 def _update_with_users_input(param_name: str, kwarg_name: str) -> str:
-    return f'{param_name}_parameters.update(kwargs.pop("{kwarg_name}", {{}}))'
+    return f'{param_name}_parameters.update(kwargs.pop("{kwarg_name}", {{}}) or {{}})'
 
 def _serialize_grouped_body(builder: BuilderType) -> List[str]:
     retval: List[str] = []
@@ -818,6 +818,8 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
             retval.append(f"    {parameter.serialized_name}={high_level_name},")
         template_url = template_url or f"self.{builder.name}.metadata['url']"
         retval.append(f"    template_url={template_url},")
+        retval.append('    headers=kwargs.pop("headers", {}),')
+        retval.append('    params=kwargs.pop("params", {}),')
         retval.append(f")")
         if not self.code_model.options["version_tolerant"]:
             pass_files = ""
@@ -970,7 +972,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         else:
             retval.append("    401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError")
         retval.append("}")
-        retval.append("error_map.update(kwargs.pop('error_map', {}))")
+        retval.append("error_map.update(kwargs.pop('error_map', {}) or {})")
         return retval
 
     @staticmethod

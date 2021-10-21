@@ -56,12 +56,12 @@ def build_paths_get_empty_request(
     query_parameters = {}  # type: Dict[str, Any]
     if key_version is not None:
         query_parameters['keyVersion'] = _SERIALIZER.query("key_version", key_version, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -115,7 +115,7 @@ class PathsOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         key_version = kwargs.pop("key_version", "v1")  # type: Optional[str]
 
@@ -124,6 +124,8 @@ class PathsOperations(object):
             subscription_id=self._config.subscription_id,
             key_version=key_version,
             template_url=self.get_empty.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         path_format_arguments = {
             "vault": self._serialize.url("vault", vault, "str", skip_quote=True),

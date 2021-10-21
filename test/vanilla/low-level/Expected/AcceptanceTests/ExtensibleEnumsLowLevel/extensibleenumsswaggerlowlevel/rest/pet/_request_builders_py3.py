@@ -51,7 +51,7 @@ def build_get_by_pet_id_request(pet_id: str, **kwargs: Any) -> HttpRequest:
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -102,6 +102,6 @@ def build_add_pet_request(*, json: Any = None, content: Any = None, **kwargs: An
     if content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)

@@ -39,7 +39,7 @@ def build_custom_named_request_id_request(*, foo_client_request_id: str, **kwarg
         "foo_client_request_id", foo_client_request_id, "str"
     )
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
 
@@ -69,7 +69,7 @@ def build_custom_named_request_id_param_grouping_request(*, foo_client_request_i
         "foo_client_request_id", foo_client_request_id, "str"
     )
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
 
@@ -98,6 +98,6 @@ def build_custom_named_request_id_head_request(*, foo_client_request_id: str, **
         "foo_client_request_id", foo_client_request_id, "str"
     )
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(method="HEAD", url=url, headers=header_parameters, **kwargs)

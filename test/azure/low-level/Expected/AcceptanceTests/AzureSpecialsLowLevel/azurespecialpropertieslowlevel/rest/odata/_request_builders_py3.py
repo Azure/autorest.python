@@ -47,11 +47,11 @@ def build_get_with_filter_request(
         query_parameters["$top"] = _SERIALIZER.query("top", top, "int")
     if orderby is not None:
         query_parameters["$orderby"] = _SERIALIZER.query("orderby", orderby, "str")
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)

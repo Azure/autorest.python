@@ -51,13 +51,15 @@ class MultiapiServiceClientOperationsMixin:
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         
         request = build_test_one_request(
             id=id,
             message=message,
             template_url=self.test_one.metadata['url'],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -85,7 +87,7 @@ class MultiapiServiceClientOperationsMixin:
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
@@ -98,6 +100,8 @@ class MultiapiServiceClientOperationsMixin:
             content_type=content_type,
             json=json,
             template_url=self._test_lro_initial.metadata['url'],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -194,7 +198,7 @@ class MultiapiServiceClientOperationsMixin:
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _maxresults = None
         _timeout = None
@@ -207,6 +211,8 @@ class MultiapiServiceClientOperationsMixin:
             maxresults=_maxresults,
             timeout=_timeout,
             template_url=self._test_lro_and_paging_initial.metadata['url'],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -261,7 +267,7 @@ class MultiapiServiceClientOperationsMixin:
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop('error_map', {}) or {})
         def prepare_request(next_link=None):
             if not next_link:
                 _maxresults = None
@@ -275,6 +281,8 @@ class MultiapiServiceClientOperationsMixin:
                     maxresults=_maxresults,
                     timeout=_timeout,
                     template_url=self.begin_test_lro_and_paging.metadata['url'],
+                    headers=kwargs.pop("headers", {}),
+                    params=kwargs.pop("params", {}),
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -291,6 +299,8 @@ class MultiapiServiceClientOperationsMixin:
                     maxresults=_maxresults,
                     timeout=_timeout,
                     template_url=next_link,
+                    headers=kwargs.pop("headers", {}),
+                    params=kwargs.pop("params", {}),
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -379,12 +389,14 @@ class MultiapiServiceClientOperationsMixin:
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         
         request = build_test_different_calls_request(
             greeting_in_english=greeting_in_english,
             template_url=self.test_different_calls.metadata['url'],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)

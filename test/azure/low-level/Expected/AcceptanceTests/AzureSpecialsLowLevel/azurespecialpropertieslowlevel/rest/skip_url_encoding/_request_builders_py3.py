@@ -41,7 +41,7 @@ def build_get_method_path_valid_request(unencoded_path_param: str, **kwargs: Any
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -72,7 +72,7 @@ def build_get_path_valid_request(unencoded_path_param: str, **kwargs: Any) -> Ht
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -102,7 +102,7 @@ def build_get_swagger_path_valid_request(**kwargs: Any) -> HttpRequest:
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -128,12 +128,12 @@ def build_get_method_query_valid_request(*, q1: str, **kwargs: Any) -> HttpReque
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     query_parameters["q1"] = _SERIALIZER.query("q1", q1, "str", skip_quote=True)
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
@@ -160,12 +160,12 @@ def build_get_method_query_null_request(*, q1: Optional[str] = None, **kwargs: A
     query_parameters = {}  # type: Dict[str, Any]
     if q1 is not None:
         query_parameters["q1"] = _SERIALIZER.query("q1", q1, "str", skip_quote=True)
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
@@ -191,12 +191,12 @@ def build_get_path_query_valid_request(*, q1: str, **kwargs: Any) -> HttpRequest
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     query_parameters["q1"] = _SERIALIZER.query("q1", q1, "str", skip_quote=True)
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
@@ -221,11 +221,11 @@ def build_get_swagger_query_valid_request(**kwargs: Any) -> HttpRequest:
     # Construct parameters
     query_parameters = {}  # type: Dict[str, Any]
     query_parameters["q1"] = _SERIALIZER.query("q1", q1, "str", skip_quote=True)
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)

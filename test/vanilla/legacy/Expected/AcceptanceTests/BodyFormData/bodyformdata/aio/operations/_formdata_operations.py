@@ -70,7 +70,7 @@ class FormdataOperations:
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[IO]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
@@ -84,6 +84,8 @@ class FormdataOperations:
             content_type=content_type,
             files=files,
             template_url=self.upload_file.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request, files)
         request.url = self._client.format_url(request.url)
@@ -118,7 +120,7 @@ class FormdataOperations:
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[IO]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         content_type = kwargs.pop("content_type", "application/octet-stream")  # type: Optional[str]
 
@@ -128,6 +130,8 @@ class FormdataOperations:
             content_type=content_type,
             content=content,
             template_url=self.upload_file_via_body.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -162,7 +166,7 @@ class FormdataOperations:
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[IO]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
@@ -175,6 +179,8 @@ class FormdataOperations:
             content_type=content_type,
             files=files,
             template_url=self.upload_files.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request = _convert_request(request, files)
         request.url = self._client.format_url(request.url)

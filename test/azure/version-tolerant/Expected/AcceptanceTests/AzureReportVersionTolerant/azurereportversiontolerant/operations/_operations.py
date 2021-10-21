@@ -46,12 +46,12 @@ def build_get_report_request(
     query_parameters = {}  # type: Dict[str, Any]
     if qualifier is not None:
         query_parameters['qualifier'] = _SERIALIZER.query("qualifier", qualifier, 'str')
-    query_parameters.update(kwargs.pop("params", {}))
+    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
     header_parameters = {}  # type: Dict[str, Any]
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}))
+    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="GET",
@@ -88,13 +88,15 @@ class AutoRestReportServiceForAzureOperationsMixin(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         qualifier = kwargs.pop("qualifier", None)  # type: Optional[str]
 
         request = build_get_report_request(
             qualifier=qualifier,
             template_url=self.get_report.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
         )
         request.url = self._client.format_url(request.url)
 
