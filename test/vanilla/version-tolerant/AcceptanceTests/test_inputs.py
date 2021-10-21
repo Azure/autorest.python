@@ -43,6 +43,10 @@ def test_header_input():
         client.basic.get_empty(headers={"Accept": "my/content-type"})
     assert str(ex.value) == "Passed!"
 
+def test_header_none_input():
+    with AutoRestComplexTestService() as client:
+        client.basic.get_empty(headers=None)
+
 def test_query_input():
     def get_query(pipeline_request):
         assert urlparse(pipeline_request.http_request.url).query == "foo=bar"
@@ -51,3 +55,7 @@ def test_query_input():
     with pytest.raises(ValueError) as ex:
         client.basic.get_empty(params={"foo": "bar"})
     assert str(ex.value) == "Passed!"
+
+def test_params_none_input():
+    with AutoRestComplexTestService() as client:
+        client.basic.get_empty(params=None)

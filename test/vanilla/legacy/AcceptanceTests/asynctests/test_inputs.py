@@ -46,6 +46,11 @@ async def test_header_input():
     await client.close()
 
 @pytest.mark.asyncio
+async def test_header_none_input():
+    async with AutoRestComplexTestService() as client:
+        await client.basic.get_empty(headers=None)
+
+@pytest.mark.asyncio
 async def test_query_input():
     def get_query(pipeline_request):
         assert urlparse(pipeline_request.http_request.url).query == "foo=bar"
@@ -55,3 +60,8 @@ async def test_query_input():
         await client.basic.get_empty(params={"foo": "bar"})
     assert str(ex.value) == "Passed!"
     await client.close()
+
+@pytest.mark.asyncio
+async def test_query_none_input():
+    async with AutoRestComplexTestService() as client:
+        await client.basic.get_empty(params=None)

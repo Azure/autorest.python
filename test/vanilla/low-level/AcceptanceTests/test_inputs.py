@@ -34,6 +34,14 @@ def test_header_input():
     request = basic.build_get_empty_request(headers={"Accept": "my/content-type"})
     assert request.headers == {"Accept": "my/content-type"}
 
+def test_header_none_input():
+    # just check we can build a request with empty headers
+    basic.build_get_empty_request(headers=None)
+
 def test_query_input():
     request = basic.build_get_empty_request(params={"foo": "bar"})
     assert urlparse(request.url).query == "foo=bar"
+
+def test_query_none_input():
+    # just check we can build a request with empty params
+    basic.build_get_empty_request(params=None)
