@@ -39,5 +39,20 @@ def send_request(client, base_send_request):
     return _send_request
 
 def test_put_client_constants(client, send_request):
+    client.contants.put_client_constants()
+    assert client._config.header_constant == True
+    assert client._config.query_constant == 100
+    assert client._config.path_constant == "path"
+
     request = contants.build_put_client_constants_request()
     send_request(request)
+
+def test_put_client_constants_override():
+    with AutoRestSwaggerConstantService(
+        header_constant=False,
+        query_constant=0,
+        path_constant="new_path"
+    ) as client:
+        assert client._config.header_constant == False
+        assert client._config.query_constant == 0
+        assert client._config.path_constant == "new_path"
