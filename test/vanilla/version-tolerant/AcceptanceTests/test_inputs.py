@@ -36,6 +36,18 @@ def get_client(callback):
 
 def test_header_input():
     def get_headers(pipeline_request):
+        assert len(pipeline_request.http_request.headers) == 2
+        assert pipeline_request.http_request.headers["hello"] == "world!"
+        assert pipeline_request.http_request.headers["accept"] == "application/json"
+        raise ValueError("Passed!")
+    client = get_client(callback=get_headers)
+    with pytest.raises(ValueError) as ex:
+        client.basic.get_empty(headers={"hello": "world!"})
+    assert str(ex.value) == "Passed!"
+
+def test_header_input_override():
+    def get_headers(pipeline_request):
+        assert len(pipeline_request.http_request.headers) == 1
         assert pipeline_request.http_request.headers["Accept"] == "my/content-type"
         raise ValueError("Passed!")
     client = get_client(callback=get_headers)
@@ -49,6 +61,7 @@ def test_header_none_input():
 
 def test_header_case_insensitive():
     def get_headers(pipeline_request):
+        assert len(pipeline_request.htp_request.headers) == 1
         assert pipeline_request.http_request.headers["Accept"] == "my/content-type"
         raise ValueError("Passed!")
 
@@ -68,7 +81,19 @@ def test_query_input():
         client.basic.get_empty(params={"foo": "bar"})
     assert str(ex.value) == "Passed!"
 
-def test_params_none_input():
+def test_query_input_override():
+    def get_query(pipeline_request):
+        assert urlparse(pipeline_request.http_request.url).query == "api-version=2021-10-01"
+        raise ValueError("Passed!")
+
+    client = get_client(callback=get_query)
+    with pytest.raises(ValueError) as ex:
+        # the default value is "2016-02-29"
+        client.basic.put_valid(params={"api-version": "2021-10-01"})
+
+    assert str(ex.value) == "Passed!"
+
+def test_query_none_input():
     with AutoRestComplexTestService() as client:
         client.basic.get_empty(params=None)
 

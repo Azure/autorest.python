@@ -30,6 +30,12 @@ except ImportError:
     from urllib.parse import urlparse
 
 def test_header_input():
+    request = basic.build_get_empty_request(headers={"hello": "world!"})
+    assert len(request.headers) == 2
+    assert request.headers["Accept"] == "application/json"
+    assert request.headers["hello"] == "world!"
+
+def test_header_input_override():
     request = basic.build_get_empty_request(headers={"Accept": "my/content-type"})
     assert request.headers == {"Accept": "my/content-type"}
 
@@ -46,6 +52,11 @@ def test_header_case_insensitive():
 def test_query_input():
     request = basic.build_get_empty_request(params={"foo": "bar"})
     assert urlparse(request.url).query == "foo=bar"
+
+def test_query_input_override():
+    request = basic.build_put_valid_request(params={"api-version": "2021-10-01"})
+
+    assert urlparse(request.url).query == "api-version=2021-10-01"
 
 def test_query_none_input():
     # just check we can build a request with empty params
