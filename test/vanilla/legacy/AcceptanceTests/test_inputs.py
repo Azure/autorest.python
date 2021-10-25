@@ -47,6 +47,18 @@ def test_header_none_input():
     with AutoRestComplexTestService() as client:
         client.basic.get_empty(headers=None)
 
+def test_header_case_insensitive():
+    def get_headers(pipeline_request):
+        assert pipeline_request.http_request.headers["Accept"] == "my/content-type"
+        raise ValueError("Passed!")
+
+    client = get_client(callback=get_headers)
+    accept_keys = ["accept", "Accept", "ACCEPT", "aCCePT"]
+    for accept_key in accept_keys:
+        with pytest.raises(ValueError) as ex:
+            client.basic.get_empty(headers={accept_key: "my/content-type"})
+        assert str(ex.value) == "Passed!"
+
 def test_query_input():
     def get_query(pipeline_request):
         assert urlparse(pipeline_request.http_request.url).query == "foo=bar"
@@ -59,3 +71,15 @@ def test_query_input():
 def test_query_none_input():
     with AutoRestComplexTestService() as client:
         client.basic.get_empty(params=None)
+
+def test_query_case_insensitive():
+    def get_query(pipeline_request):
+        assert urlparse(pipeline_request.http_request.url).query == "foo=bar"
+        raise ValueError("Passed!")
+
+    client = get_client(callback=get_query)
+    query_keys = ["foo", "Foo", "FOO", "fOo"]
+    for query_key in query_keys:
+        with pytest.raises(ValueError) as ex:
+            client.basic.get_empty(params={query_key: "bar"})
+        assert str(ex.value) == "Passed!"

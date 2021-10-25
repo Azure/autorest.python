@@ -23,7 +23,6 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-import pytest
 from bodycomplexlowlevel.rest import basic
 try:
     from urlparse import urlparse  # type: ignore
@@ -38,6 +37,12 @@ def test_header_none_input():
     # just check we can build a request with empty headers
     basic.build_get_empty_request(headers=None)
 
+def test_header_case_insensitive():
+    accept_keys = ["accept", "Accept", "ACCEPT", "aCCePT"]
+    for accept_key in accept_keys:
+        request = basic.build_get_empty_request(headers={accept_key: "my/content-type"})
+        assert request.headers == {"Accept": "my/content-type"}
+
 def test_query_input():
     request = basic.build_get_empty_request(params={"foo": "bar"})
     assert urlparse(request.url).query == "foo=bar"
@@ -45,3 +50,9 @@ def test_query_input():
 def test_query_none_input():
     # just check we can build a request with empty params
     basic.build_get_empty_request(params=None)
+
+def test_query_case_insensitive():
+    query_keys = ["foo", "Foo", "FOO", "fOo"]
+    for query_key in query_keys:
+        request = basic.build_get_empty_request(params={query_key: "bar"})
+        assert urlparse(request.url).query == "foo=bar"
