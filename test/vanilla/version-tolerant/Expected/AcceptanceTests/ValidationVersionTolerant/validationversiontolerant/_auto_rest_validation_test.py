@@ -40,12 +40,9 @@ class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        api_version = kwargs.pop("api_version", "1.0.0")  # type: str
         endpoint = kwargs.pop("endpoint", "http://localhost:3000")  # type: str
 
-        self._config = AutoRestValidationTestConfiguration(
-            subscription_id=subscription_id, api_version=api_version, **kwargs
-        )
+        self._config = AutoRestValidationTestConfiguration(subscription_id=subscription_id, **kwargs)
         self._client = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()

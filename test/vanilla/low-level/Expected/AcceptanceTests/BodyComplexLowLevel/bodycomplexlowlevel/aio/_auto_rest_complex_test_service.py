@@ -31,9 +31,7 @@ class AutoRestComplexTestService:
     """
 
     def __init__(self, *, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
-        api_version = kwargs.pop("api_version", "2016-02-29")  # type: str
-
-        self._config = AutoRestComplexTestServiceConfiguration(api_version=api_version, **kwargs)
+        self._config = AutoRestComplexTestServiceConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()

@@ -45,10 +45,8 @@ class AutoRestAzureSpecialParametersTestClient:
         endpoint: str = "http://localhost:3000",
         **kwargs: Any
     ) -> None:
-        api_version = kwargs.pop("api_version", "2015-07-01-preview")  # type: str
-
         self._config = AutoRestAzureSpecialParametersTestClientConfiguration(
-            subscription_id=subscription_id, credential=credential, api_version=api_version, **kwargs
+            subscription_id=subscription_id, credential=credential, **kwargs
         )
         self._client = AsyncARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 

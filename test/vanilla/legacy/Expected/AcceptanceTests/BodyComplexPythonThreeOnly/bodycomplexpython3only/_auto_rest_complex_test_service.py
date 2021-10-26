@@ -67,9 +67,7 @@ class AutoRestComplexTestService(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        api_version = kwargs.pop("api_version", "2016-02-29")  # type: str
-
-        self._config = AutoRestComplexTestServiceConfiguration(api_version=api_version, **kwargs)
+        self._config = AutoRestComplexTestServiceConfiguration(**kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}

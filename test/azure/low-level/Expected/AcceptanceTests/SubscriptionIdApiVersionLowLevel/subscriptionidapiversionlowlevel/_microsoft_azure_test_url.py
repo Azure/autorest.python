@@ -43,11 +43,10 @@ class MicrosoftAzureTestUrl(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        api_version = kwargs.pop("api_version", "2014-04-01-preview")  # type: str
         endpoint = kwargs.pop("endpoint", "http://localhost:3000")  # type: str
 
         self._config = MicrosoftAzureTestUrlConfiguration(
-            subscription_id=subscription_id, credential=credential, api_version=api_version, **kwargs
+            subscription_id=subscription_id, credential=credential, **kwargs
         )
         self._client = ARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 

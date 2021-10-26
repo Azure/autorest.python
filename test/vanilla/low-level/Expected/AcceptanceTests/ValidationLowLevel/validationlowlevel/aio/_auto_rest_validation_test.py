@@ -33,11 +33,7 @@ class AutoRestValidationTest:
     """
 
     def __init__(self, subscription_id: str, *, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
-        api_version = kwargs.pop("api_version", "1.0.0")  # type: str
-
-        self._config = AutoRestValidationTestConfiguration(
-            subscription_id=subscription_id, api_version=api_version, **kwargs
-        )
+        self._config = AutoRestValidationTestConfiguration(subscription_id=subscription_id, **kwargs)
         self._client = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()

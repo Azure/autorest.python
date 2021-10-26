@@ -51,11 +51,10 @@ class StorageManagementClient(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
         endpoint = kwargs.pop("endpoint", "https://management.azure.com")  # type: str
 
         self._config = StorageManagementClientConfiguration(
-            subscription_id=subscription_id, credential=credential, api_version=api_version, **kwargs
+            subscription_id=subscription_id, credential=credential, **kwargs
         )
         self._client = ARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 

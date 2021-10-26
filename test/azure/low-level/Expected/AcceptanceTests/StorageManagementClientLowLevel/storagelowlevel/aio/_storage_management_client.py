@@ -45,10 +45,8 @@ class StorageManagementClient:
         endpoint: str = "https://management.azure.com",
         **kwargs: Any
     ) -> None:
-        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
-
         self._config = StorageManagementClientConfiguration(
-            subscription_id=subscription_id, credential=credential, api_version=api_version, **kwargs
+            subscription_id=subscription_id, credential=credential, **kwargs
         )
         self._client = AsyncARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 

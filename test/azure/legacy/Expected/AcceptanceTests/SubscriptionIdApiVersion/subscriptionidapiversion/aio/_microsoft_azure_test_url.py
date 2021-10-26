@@ -45,10 +45,8 @@ class MicrosoftAzureTestUrl:
         base_url: str = "http://localhost:3000",
         **kwargs: Any
     ) -> None:
-        api_version = kwargs.pop("api_version", "2014-04-01-preview")  # type: str
-
         self._config = MicrosoftAzureTestUrlConfiguration(
-            credential=credential, subscription_id=subscription_id, api_version=api_version, **kwargs
+            credential=credential, subscription_id=subscription_id, **kwargs
         )
         self._client = AsyncARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 

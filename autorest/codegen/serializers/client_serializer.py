@@ -63,8 +63,13 @@ class ClientSerializer:
     def initialize_config(self) -> str:
         config_name = f"{self.code_model.class_name}Configuration"
         config_call = ", ".join(
-            [f"{p.serialized_name}={p.serialized_name}" for p in self.code_model.service_client.parameters.config_method
-        ] + ["**kwargs"])
+            [
+                f"{p.serialized_name}={p.serialized_name}"
+                for p in self.code_model.service_client.parameters.config_method
+                if not p.is_kwarg
+            ] + [
+                "**kwargs"
+            ])
         return f"self._config = {config_name}({config_call})"
 
     def initialize_pipeline_client(self, async_mode: bool) -> str:
@@ -186,4 +191,3 @@ class ConfigSerializer:
             for p in self.code_model.global_parameters.constant
             if p not in self.code_model.global_parameters.method
         ]
-

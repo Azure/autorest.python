@@ -47,14 +47,9 @@ class AutoRestSwaggerConstantService(object):
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
-        header_constant = kwargs.pop("header_constant", True)  # type: bool
-        query_constant = kwargs.pop("query_constant", 100)  # type: int
-        path_constant = kwargs.pop("path_constant", "path")  # type: str
         endpoint = kwargs.pop("endpoint", "http://localhost:3000")  # type: str
 
-        self._config = AutoRestSwaggerConstantServiceConfiguration(
-            header_constant=header_constant, query_constant=query_constant, path_constant=path_constant, **kwargs
-        )
+        self._config = AutoRestSwaggerConstantServiceConfiguration(**kwargs)
         self._client = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
