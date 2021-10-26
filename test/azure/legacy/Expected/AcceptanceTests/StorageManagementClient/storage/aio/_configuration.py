@@ -34,6 +34,7 @@ class StorageManagementClientConfiguration(Configuration):
     """
 
     def __init__(self, credential: "AsyncTokenCredential", subscription_id: str, **kwargs: Any) -> None:
+        super(StorageManagementClientConfiguration, self).__init__(**kwargs)
         api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
 
         if credential is None:
@@ -42,7 +43,6 @@ class StorageManagementClientConfiguration(Configuration):
             raise ValueError("Parameter 'subscription_id' must not be None.")
         if api_version is None:
             raise ValueError("Parameter 'api_version' must not be None.")
-        super(StorageManagementClientConfiguration, self).__init__(**kwargs)
 
         self.credential = credential
         self.subscription_id = subscription_id

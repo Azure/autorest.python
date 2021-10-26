@@ -35,11 +35,11 @@ class MultiapiCustomBaseUrlServiceClientConfiguration(Configuration):
         endpoint: str,
         **kwargs: Any
     ) -> None:
+        super(MultiapiCustomBaseUrlServiceClientConfiguration, self).__init__(**kwargs)
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
         if endpoint is None:
             raise ValueError("Parameter 'endpoint' must not be None.")
-        super(MultiapiCustomBaseUrlServiceClientConfiguration, self).__init__(**kwargs)
 
         self.credential = credential
         self.endpoint = endpoint

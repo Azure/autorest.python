@@ -34,6 +34,7 @@ class MicrosoftAzureTestUrlConfiguration(Configuration):
     """
 
     def __init__(self, subscription_id: str, credential: "AsyncTokenCredential", **kwargs: Any) -> None:
+        super(MicrosoftAzureTestUrlConfiguration, self).__init__(**kwargs)
         api_version = kwargs.pop("api_version", "2014-04-01-preview")  # type: str
 
         if subscription_id is None:
@@ -42,7 +43,6 @@ class MicrosoftAzureTestUrlConfiguration(Configuration):
             raise ValueError("Parameter 'credential' must not be None.")
         if api_version is None:
             raise ValueError("Parameter 'api_version' must not be None.")
-        super(MicrosoftAzureTestUrlConfiguration, self).__init__(**kwargs)
 
         self.subscription_id = subscription_id
         self.credential = credential

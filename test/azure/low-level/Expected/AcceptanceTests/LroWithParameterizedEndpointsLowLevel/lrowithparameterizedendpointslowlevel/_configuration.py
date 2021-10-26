@@ -34,9 +34,9 @@ class LROWithParamaterizedEndpointsConfiguration(Configuration):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
+        super(LROWithParamaterizedEndpointsConfiguration, self).__init__(**kwargs)
         if host is None:
             raise ValueError("Parameter 'host' must not be None.")
-        super(LROWithParamaterizedEndpointsConfiguration, self).__init__(**kwargs)
 
         self.host = host
         kwargs.setdefault("sdk_moniker", "lrowithparamaterizedendpoints/{}".format(VERSION))

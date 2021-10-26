@@ -27,13 +27,13 @@ class AutoRestValidationTestConfiguration(Configuration):
     """
 
     def __init__(self, subscription_id: str, **kwargs: Any) -> None:
+        super(AutoRestValidationTestConfiguration, self).__init__(**kwargs)
         api_version = kwargs.pop("api_version", "1.0.0")  # type: str
 
         if subscription_id is None:
             raise ValueError("Parameter 'subscription_id' must not be None.")
         if api_version is None:
             raise ValueError("Parameter 'api_version' must not be None.")
-        super(AutoRestValidationTestConfiguration, self).__init__(**kwargs)
 
         self.subscription_id = subscription_id
         self.api_version = api_version
