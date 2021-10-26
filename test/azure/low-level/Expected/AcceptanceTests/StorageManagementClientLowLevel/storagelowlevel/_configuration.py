@@ -49,8 +49,6 @@ class StorageManagementClientConfiguration(Configuration):
             raise ValueError("Parameter 'subscription_id' must not be None.")
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
-        if api_version is None:
-            raise ValueError("Parameter 'api_version' must not be None.")
 
         self.subscription_id = subscription_id
         self.credential = credential

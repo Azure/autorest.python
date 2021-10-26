@@ -35,9 +35,6 @@ class AutoRestComplexTestServiceConfiguration(Configuration):
         super(AutoRestComplexTestServiceConfiguration, self).__init__(**kwargs)
         api_version = kwargs.pop("api_version", "2016-02-29")  # type: str
 
-        if api_version is None:
-            raise ValueError("Parameter 'api_version' must not be None.")
-
         self.api_version = api_version
         kwargs.setdefault("sdk_moniker", "autorestcomplextestservice/{}".format(VERSION))
         self._configure(**kwargs)

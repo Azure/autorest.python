@@ -34,13 +34,6 @@ class AutoRestSwaggerConstantServiceConfiguration(Configuration):
         query_constant = kwargs.pop("query_constant", 100)  # type: int
         path_constant = kwargs.pop("path_constant", "path")  # type: str
 
-        if header_constant is None:
-            raise ValueError("Parameter 'header_constant' must not be None.")
-        if query_constant is None:
-            raise ValueError("Parameter 'query_constant' must not be None.")
-        if path_constant is None:
-            raise ValueError("Parameter 'path_constant' must not be None.")
-
         self.header_constant = header_constant
         self.query_constant = query_constant
         self.path_constant = path_constant

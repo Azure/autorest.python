@@ -191,3 +191,11 @@ class ConfigSerializer:
             for p in self.code_model.global_parameters.constant
             if p not in self.code_model.global_parameters.method
         ]
+
+    def check_required_parameters(self) -> List[str]:
+        return [
+            f'if {p.serialized_name} is None:\n'
+            f'    raise ValueError("Parameter \'{p.serialized_name}\' must not be None.")'
+            for p in self.code_model.global_parameters.config_method
+            if p.required and not p.constant
+        ]

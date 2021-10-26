@@ -40,10 +40,9 @@ class {{ code_model.class_name }}Configuration(Configuration):
     {% if code_model.service_client.parameters.config_kwargs_to_pop(async_mode) %}
         {{ op_tools.serialize(serializer.pop_kwargs_from_signature(async_mode)) | indent(8) }}
     {% endif %}
-{% for parameter in code_model.global_parameters.config_method|selectattr('required') %}
-        if {{ parameter.serialized_name }} is None:
-            raise ValueError("Parameter '{{ parameter.serialized_name }}' must not be None.")
-{% endfor %}
+{% if serializer.check_required_parameters() %}
+        {{ op_tools.serialize(serializer.check_required_parameters()) | indent(8) -}}
+{% endif %}
 
 {% for parameter in code_model.global_parameters.config_method %}
         self.{{ parameter.serialized_name }} = {{ parameter.serialized_name }}

@@ -41,8 +41,6 @@ class AutoRestValidationTestConfiguration(Configuration):
 
         if subscription_id is None:
             raise ValueError("Parameter 'subscription_id' must not be None.")
-        if api_version is None:
-            raise ValueError("Parameter 'api_version' must not be None.")
 
         self.subscription_id = subscription_id
         self.api_version = api_version
