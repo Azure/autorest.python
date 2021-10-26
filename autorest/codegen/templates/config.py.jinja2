@@ -48,10 +48,8 @@ class {{ code_model.class_name }}Configuration(Configuration):
 {% for parameter in code_model.global_parameters.config_method %}
         self.{{ parameter.serialized_name }} = {{ parameter.serialized_name }}
 {% endfor %}
-{% if code_model.global_parameters.constant %}
-    {% for constant_parameter in code_model.global_parameters.constant %}
-        self.{{ constant_parameter.serialized_name }} = {{ constant_parameter.constant_declaration }}
-    {% endfor %}
+{% if serializer.set_constants() %}
+        {{ op_tools.serialize(serializer.set_constants()) | indent(8) -}}
 {% endif %}
 {% if code_model.options['credential'] and code_model.credential_schema_policy.credential_scopes is defined %}
         self.credential_scopes = kwargs.pop('credential_scopes', {{ code_model.credential_schema_policy.credential_scopes }})

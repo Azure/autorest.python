@@ -51,10 +51,15 @@ class AutoRestComplexTestService:
     :vartype flattencomplex: bodycomplex.aio.operations.FlattencomplexOperations
     :param base_url: Service URL. Default value is 'http://localhost:3000'.
     :type base_url: str
+    :keyword api_version: Api Version. The default value is "2016-02-29". Note that overriding this
+     default value may result in unsupported behavior.
+    :paramtype api_version: str
     """
 
     def __init__(self, base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
-        self._config = AutoRestComplexTestServiceConfiguration(**kwargs)
+        api_version = kwargs.pop("api_version", "2016-02-29")  # type: str
+
+        self._config = AutoRestComplexTestServiceConfiguration(api_version=api_version, **kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}

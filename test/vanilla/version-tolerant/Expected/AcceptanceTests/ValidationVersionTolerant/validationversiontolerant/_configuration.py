@@ -26,6 +26,8 @@ class AutoRestValidationTestConfiguration(Configuration):
 
     :param subscription_id: Subscription ID.
     :type subscription_id: str
+    :keyword api_version: Api Version. The default value is "1.0.0". Note that overriding this default value may result in unsupported behavior.
+    :paramtype api_version: str
     """
 
     def __init__(
@@ -34,12 +36,16 @@ class AutoRestValidationTestConfiguration(Configuration):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
+        api_version = kwargs.pop("api_version", "1.0.0")  # type: str
+
         if subscription_id is None:
             raise ValueError("Parameter 'subscription_id' must not be None.")
+        if api_version is None:
+            raise ValueError("Parameter 'api_version' must not be None.")
         super(AutoRestValidationTestConfiguration, self).__init__(**kwargs)
 
         self.subscription_id = subscription_id
-        self.api_version = "1.0.0"
+        self.api_version = api_version
         kwargs.setdefault("sdk_moniker", "autorestvalidationtest/{}".format(VERSION))
         self._configure(**kwargs)
 

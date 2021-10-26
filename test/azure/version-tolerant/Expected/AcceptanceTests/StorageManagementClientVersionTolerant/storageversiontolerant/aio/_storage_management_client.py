@@ -37,6 +37,9 @@ class StorageManagementClient:
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :keyword endpoint: Service URL. Default value is 'https://management.azure.com'.
     :paramtype endpoint: str
+    :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
+     overriding this default value may result in unsupported behavior.
+    :paramtype api_version: str
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
      Retry-After header is present.
     """
@@ -49,8 +52,10 @@ class StorageManagementClient:
         endpoint: str = "https://management.azure.com",
         **kwargs: Any
     ) -> None:
+        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+
         self._config = StorageManagementClientConfiguration(
-            subscription_id=subscription_id, credential=credential, **kwargs
+            subscription_id=subscription_id, credential=credential, api_version=api_version, **kwargs
         )
         self._client = AsyncARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 

@@ -34,6 +34,9 @@ class MicrosoftAzureTestUrl(object):
     :type credential: ~azure.core.credentials.TokenCredential
     :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
     :paramtype endpoint: str
+    :keyword api_version: Api Version. The default value is "2014-04-01-preview". Note that
+     overriding this default value may result in unsupported behavior.
+    :paramtype api_version: str
     """
 
     def __init__(
@@ -43,10 +46,11 @@ class MicrosoftAzureTestUrl(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
+        api_version = kwargs.pop("api_version", "2014-04-01-preview")  # type: str
         endpoint = kwargs.pop("endpoint", "http://localhost:3000")  # type: str
 
         self._config = MicrosoftAzureTestUrlConfiguration(
-            subscription_id=subscription_id, credential=credential, **kwargs
+            subscription_id=subscription_id, credential=credential, api_version=api_version, **kwargs
         )
         self._client = ARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 

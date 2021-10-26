@@ -44,9 +44,6 @@ class AutoRestSwaggerConstantServiceConfiguration(Configuration):
         self.header_constant = header_constant
         self.query_constant = query_constant
         self.path_constant = path_constant
-        self.header_constant = True
-        self.query_constant = 100
-        self.path_constant = "path"
         kwargs.setdefault("sdk_moniker", "autorestswaggerconstantservice/{}".format(VERSION))
         self._configure(**kwargs)
 

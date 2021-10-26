@@ -179,3 +179,11 @@ class ConfigSerializer:
 
     def pop_kwargs_from_signature(self, async_mode: bool) -> List[str]:
         return utils.pop_kwargs_from_signature(self.code_model.global_parameters.config_kwargs_to_pop(async_mode))
+
+    def set_constants(self) -> List[str]:
+        return [
+            f"self.{p.serialized_name} = {p.constant_declaration}"
+            for p in self.code_model.global_parameters.constant
+            if p not in self.code_model.global_parameters.method
+        ]
+

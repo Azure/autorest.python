@@ -56,15 +56,19 @@ class AutoRestComplexTestService(object):
     :vartype flattencomplex: bodycomplexversiontolerant.operations.FlattencomplexOperations
     :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
     :paramtype endpoint: str
+    :keyword api_version: Api Version. The default value is "2016-02-29". Note that overriding this
+     default value may result in unsupported behavior.
+    :paramtype api_version: str
     """
 
     def __init__(
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
+        api_version = kwargs.pop("api_version", "2016-02-29")  # type: str
         endpoint = kwargs.pop("endpoint", "http://localhost:3000")  # type: str
 
-        self._config = AutoRestComplexTestServiceConfiguration(**kwargs)
+        self._config = AutoRestComplexTestServiceConfiguration(api_version=api_version, **kwargs)
         self._client = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()

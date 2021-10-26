@@ -23,15 +23,22 @@ class AutoRestComplexTestServiceConfiguration(Configuration):
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
+
+    :keyword api_version: Api Version. The default value is "2016-02-29". Note that overriding this default value may result in unsupported behavior.
+    :paramtype api_version: str
     """
 
     def __init__(
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
+        api_version = kwargs.pop("api_version", "2016-02-29")  # type: str
+
+        if api_version is None:
+            raise ValueError("Parameter 'api_version' must not be None.")
         super(AutoRestComplexTestServiceConfiguration, self).__init__(**kwargs)
 
-        self.api_version = "2016-02-29"
+        self.api_version = api_version
         kwargs.setdefault("sdk_moniker", "bodycomplexpython3only/{}".format(VERSION))
         self._configure(**kwargs)
 

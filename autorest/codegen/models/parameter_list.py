@@ -339,6 +339,23 @@ class GlobalParameterList(ParameterList):
         return "Client"
 
     @property
+    def method(self) -> List[Parameter]:
+        """The list of parameter used in method signature.
+        """
+        # Client level should not be on Method, etc.
+        positional = [p for p in self.parameters if p.is_positional]
+        keyword_only = [p for p in self.parameters if p.is_keyword_only]
+        kwargs = self._filter_out_multiple_content_type(
+            [p for p in self.parameters if p.is_kwarg]
+        )
+        def _sort(params):
+            return sorted(params, key=lambda x: not x.default_value and x.required, reverse=True)
+        signature_parameters = (
+            _sort(positional) + _sort(keyword_only) + _sort(kwargs)
+        )
+        return signature_parameters
+
+    @property
     def code_model(self):
         try:
             return self._code_model
