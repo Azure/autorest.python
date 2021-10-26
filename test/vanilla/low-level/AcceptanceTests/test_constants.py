@@ -39,7 +39,6 @@ def send_request(client, base_send_request):
     return _send_request
 
 def test_put_client_constants(client, send_request):
-    client.contants.put_client_constants()
     assert client._config.header_constant == True
     assert client._config.query_constant == 100
     assert client._config.path_constant == "path"
