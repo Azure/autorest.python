@@ -25,6 +25,11 @@ __all__ = [
     "JinjaSerializer",
 ]
 
+def _get_operations_path(code_model: CodeModel, namespace: Path, filename: str) -> Path:
+    if code_model.has_operations_folder:
+        return namespace / Path("operations") / Path(filename)
+    return namespace / Path(filename)
+
 
 class JinjaSerializer:
     def __init__(self, autorestapi: AutorestAPI) -> None:
@@ -150,6 +155,7 @@ class JinjaSerializer:
         filename: str
     ) -> None:
         # write sync operation group and operation files
+
         if not code_model.options['python_3_only'] and not code_model.options["add_python_3_operation_files"]:
             operation_group_serializer = OperationGroupSerializer(
                 code_model=code_model,
@@ -159,7 +165,7 @@ class JinjaSerializer:
                 is_python_3_file=False,
             )
             self._autorestapi.write_file(
-                namespace_path / Path(f"operations") / Path(f"{filename}.py"),
+                _get_operations_path(code_model, namespace_path, f"{filename}.py"),
                 operation_group_serializer.serialize(),
             )
 
@@ -173,12 +179,7 @@ class JinjaSerializer:
                 is_python_3_file=True,
             )
             self._autorestapi.write_file(
-                (
-                    namespace_path
-                    / Path("aio")
-                    / Path(f"operations")
-                    / Path(f"{filename}.py")
-                ),
+                _get_operations_path(code_model, namespace_path / Path("aio"), f"{filename}.py"),
                 operation_group_async_serializer.serialize(),
             )
 
@@ -192,7 +193,7 @@ class JinjaSerializer:
                 is_python_3_file=True,
             )
             self._autorestapi.write_file(
-                namespace_path / Path(f"operations") / Path(f"{filename}_py3.py"),
+                _get_operations_path(code_model, namespace_path, f"{filename}_py3.py"),
                 operation_group_serializer.serialize(),
             )
 
@@ -200,13 +201,14 @@ class JinjaSerializer:
         self, code_model: CodeModel, env: Environment, namespace_path: Path
     ) -> None:
         # write sync operations init file
-        operations_init_serializer = OperationsInitSerializer(code_model=code_model, env=env, async_mode=False)
-        self._autorestapi.write_file(
-            namespace_path / Path(f"operations") / Path("__init__.py"), operations_init_serializer.serialize()
-        )
+        if code_model.has_operations_folder:
+            operations_init_serializer = OperationsInitSerializer(code_model=code_model, env=env, async_mode=False)
+            self._autorestapi.write_file(
+                namespace_path / Path(f"operations") / Path("__init__.py"), operations_init_serializer.serialize()
+            )
 
         # write async operations init file
-        if not code_model.options["no_async"]:
+        if not code_model.options["no_async"] and code_model.has_operations_folder:
             operations_async_init_serializer = OperationsInitSerializer(code_model=code_model, env=env, async_mode=True)
             self._autorestapi.write_file(
                 namespace_path / Path("aio") / Path(f"operations") / Path("__init__.py"),

@@ -14,7 +14,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from msrest import Deserializer, Serializer
 
 from ._configuration import MediaTypesClientConfiguration
-from .operations._operations import MediaTypesClientOperationsMixin
+from ._operations import MediaTypesClientOperationsMixin
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports

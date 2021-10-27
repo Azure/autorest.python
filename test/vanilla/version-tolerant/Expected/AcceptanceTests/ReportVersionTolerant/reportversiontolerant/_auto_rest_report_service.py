@@ -13,7 +13,7 @@ from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
 
 from ._configuration import AutoRestReportServiceConfiguration
-from .operations._operations import AutoRestReportServiceOperationsMixin
+from ._operations import AutoRestReportServiceOperationsMixin
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports

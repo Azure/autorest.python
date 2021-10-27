@@ -21,40 +21,28 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ...operations._operations import build_get_optional_report_request, build_get_report_request
+from .._operations import build_get_request, build_put_request
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class AutoRestReportServiceOperationsMixin:
+class ObjectTypeClientOperationsMixin:
     @distributed_trace_async
-    async def get_report(self, *, qualifier: Optional[str] = None, **kwargs: Any) -> Dict[str, int]:
-        """Get test coverage report.
+    async def get(self, **kwargs: Any) -> Any:
+        """Basic get that returns an object. Returns object { 'message': 'An object was successfully
+        returned' }.
 
-        :keyword qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5'
-         in for Python). The only effect is, that generators that run all tests several times, can
-         distinguish the generated reports.
-        :paramtype qualifier: str
-        :return: dict mapping str to int
-        :rtype: dict[str, int]
+        :return: any
+        :rtype: any
         :raises: ~azure.core.exceptions.HttpResponseError
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response.json() == {
-                    "str": 0  # Optional.
-                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_report_request(
-            qualifier=qualifier,
-            template_url=self.get_report.metadata["url"],
+        request = build_get_request(
+            template_url=self.get.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -75,35 +63,31 @@ class AutoRestReportServiceOperationsMixin:
 
         return deserialized
 
-    get_report.metadata = {"url": "/report"}  # type: ignore
+    get.metadata = {"url": "/objectType/get"}  # type: ignore
 
     @distributed_trace_async
-    async def get_optional_report(self, *, qualifier: Optional[str] = None, **kwargs: Any) -> Dict[str, int]:
-        """Get optional test coverage report.
+    async def put(self, put_object: Any, **kwargs: Any) -> None:
+        """Basic put that puts an object. Pass in {'foo': 'bar'} to get a 200 and anything else to get an
+        object error.
 
-        :keyword qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5'
-         in for Python). The only effect is, that generators that run all tests several times, can
-         distinguish the generated reports.
-        :paramtype qualifier: str
-        :return: dict mapping str to int
-        :rtype: dict[str, int]
+        :param put_object: Pass in {'foo': 'bar'} for a 200, anything else for an object error.
+        :type put_object: any
+        :return: None
+        :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response.json() == {
-                    "str": 0  # Optional.
-                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_optional_report_request(
-            qualifier=qualifier,
-            template_url=self.get_optional_report.metadata["url"],
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
+        json = put_object
+
+        request = build_put_request(
+            content_type=content_type,
+            json=json,
+            template_url=self.put.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -114,14 +98,7 @@ class AutoRestReportServiceOperationsMixin:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
-
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, None, {})
 
-        return deserialized
-
-    get_optional_report.metadata = {"url": "/report/optional"}  # type: ignore
+    put.metadata = {"url": "/objectType/put"}  # type: ignore

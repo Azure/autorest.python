@@ -21,42 +21,32 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ...operations._operations import build_get_report_request
+from .._operations import build_get_request
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class AutoRestReportServiceForAzureOperationsMixin:
+class ParmaterizedEndpointClientOperationsMixin:
     @distributed_trace_async
-    async def get_report(self, *, qualifier: Optional[str] = None, **kwargs: Any) -> Dict[str, int]:
-        """Get test coverage report.
+    async def get(self, **kwargs: Any) -> None:
+        """Basic get to make sure base url formatting of 'endpoint' works.
 
-        :keyword qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5'
-         in for Python). The only effect is, that generators that run all tests several times, can
-         distinguish the generated reports.
-        :paramtype qualifier: str
-        :return: dict mapping str to int
-        :rtype: dict[str, int]
+        :return: None
+        :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response.json() == {
-                    "str": 0  # Optional.
-                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_report_request(
-            qualifier=qualifier,
-            template_url=self.get_report.metadata["url"],
+        request = build_get_request(
+            template_url=self.get.metadata["url"],
         )
-        request.url = self._client.format_url(request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        request.url = self._client.format_url(request.url, **path_format_arguments)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -65,14 +55,7 @@ class AutoRestReportServiceForAzureOperationsMixin:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
-
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, None, {})
 
-        return deserialized
-
-    get_report.metadata = {"url": "/report/azure"}  # type: ignore
+    get.metadata = {"url": "/parameterizedEndpoint/get"}  # type: ignore

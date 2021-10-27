@@ -21,16 +21,17 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ...operations._operations import build_get_request
+from .._operations import build_get_incorrect_error_from_server_request
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ParmaterizedEndpointClientOperationsMixin:
+class IncorrectReturnedErrorModelOperationsMixin:
     @distributed_trace_async
-    async def get(self, **kwargs: Any) -> None:
-        """Basic get to make sure base url formatting of 'endpoint' works.
+    async def get_incorrect_error_from_server(self, **kwargs: Any) -> None:
+        """Get an error response from the server that is not as described in our Error object. Want to
+        swallow the deserialization error and still return an HttpResponseError to the users.
 
         :return: None
         :rtype: None
@@ -40,13 +41,10 @@ class ParmaterizedEndpointClientOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_request(
-            template_url=self.get.metadata["url"],
+        request = build_get_incorrect_error_from_server_request(
+            template_url=self.get_incorrect_error_from_server.metadata["url"],
         )
-        path_format_arguments = {
-            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
-        }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -58,4 +56,4 @@ class ParmaterizedEndpointClientOperationsMixin:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get.metadata = {"url": "/parameterizedEndpoint/get"}  # type: ignore
+    get_incorrect_error_from_server.metadata = {"url": "/incorrectError"}  # type: ignore

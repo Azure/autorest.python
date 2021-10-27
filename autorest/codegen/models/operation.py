@@ -215,7 +215,9 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
 
         if code_model.options["builders_visibility"] != "embedded":
             builder_group_name = self.request_builder.builder_group_name
-            rest_import_path = "..." if async_mode else ".."
+            rest_import_path = ".." if async_mode else "."
+            if code_model.has_operations_folder:
+                rest_import_path += "."
             if builder_group_name:
                 file_import.add_from_import(
                     f"{rest_import_path}{code_model.rest_layer_name}",
@@ -233,7 +235,9 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         if code_model.options["builders_visibility"] == "embedded" and not async_mode:
             file_import.merge(self.request_builder.imports(code_model))
         if code_model.need_request_converter:
-            relative_path = "..." if async_mode else ".."
+            relative_path = ".." if async_mode else "."
+            if code_model.has_operations_folder:
+                relative_path += "."
             file_import.add_from_import(
                 f"{relative_path}_vendor", "_convert_request", ImportType.LOCAL
             )

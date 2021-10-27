@@ -13,7 +13,7 @@ from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
 
 from ._configuration import ParmaterizedEndpointClientConfiguration
-from .operations._operations import ParmaterizedEndpointClientOperationsMixin
+from ._operations import ParmaterizedEndpointClientOperationsMixin
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports

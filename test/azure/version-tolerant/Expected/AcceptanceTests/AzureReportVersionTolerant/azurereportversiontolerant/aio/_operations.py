@@ -21,28 +21,40 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ...operations._operations import build_get_incorrect_error_from_server_request
+from .._operations import build_get_report_request
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class IncorrectReturnedErrorModelOperationsMixin:
+class AutoRestReportServiceForAzureOperationsMixin:
     @distributed_trace_async
-    async def get_incorrect_error_from_server(self, **kwargs: Any) -> None:
-        """Get an error response from the server that is not as described in our Error object. Want to
-        swallow the deserialization error and still return an HttpResponseError to the users.
+    async def get_report(self, *, qualifier: Optional[str] = None, **kwargs: Any) -> Dict[str, int]:
+        """Get test coverage report.
 
-        :return: None
-        :rtype: None
+        :keyword qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5'
+         in for Python). The only effect is, that generators that run all tests several times, can
+         distinguish the generated reports.
+        :paramtype qualifier: str
+        :return: dict mapping str to int
+        :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "str": 0  # Optional.
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_incorrect_error_from_server_request(
-            template_url=self.get_incorrect_error_from_server.metadata["url"],
+        request = build_get_report_request(
+            qualifier=qualifier,
+            template_url=self.get_report.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -53,7 +65,14 @@ class IncorrectReturnedErrorModelOperationsMixin:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if cls:
-            return cls(pipeline_response, None, {})
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
-    get_incorrect_error_from_server.metadata = {"url": "/incorrectError"}  # type: ignore
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+
+    get_report.metadata = {"url": "/report/azure"}  # type: ignore

@@ -74,7 +74,9 @@ class Client:
         file_import.add_from_import("azure.core.rest", "HttpRequest", ImportType.AZURECORE, TypingSection.CONDITIONAL)
         for og in self.code_model.operation_groups:
             if og.is_empty_operation_group and self.code_model.options["version_tolerant"]:
-                file_import.add_from_import(f".operations.{og.filename}", og.class_name, ImportType.LOCAL)
+                prefix = "operations." if self.code_model.has_operations_folder else ""
+                suffix = "_py3" if self.code_model.options["python_3_only"] and not async_mode else ""
+                file_import.add_from_import(f".{prefix}{og.filename}{suffix}", og.class_name, ImportType.LOCAL)
             else:
                 file_import.add_from_import(".operations", og.class_name, ImportType.LOCAL)
 

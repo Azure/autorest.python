@@ -14,7 +14,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from msrest import Deserializer, Serializer
 
 from ._configuration import LROWithParamaterizedEndpointsConfiguration
-from .operations._operations import LROWithParamaterizedEndpointsOperationsMixin
+from ._operations import LROWithParamaterizedEndpointsOperationsMixin
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
