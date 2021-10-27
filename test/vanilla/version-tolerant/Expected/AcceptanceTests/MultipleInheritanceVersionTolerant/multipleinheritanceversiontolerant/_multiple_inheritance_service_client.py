@@ -13,7 +13,7 @@ from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
 
 from ._configuration import MultipleInheritanceServiceClientConfiguration
-from .operations import MultipleInheritanceServiceClientOperationsMixin
+from .operations._operations import MultipleInheritanceServiceClientOperationsMixin
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports

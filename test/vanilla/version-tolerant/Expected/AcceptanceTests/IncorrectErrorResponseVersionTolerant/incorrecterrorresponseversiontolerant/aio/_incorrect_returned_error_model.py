@@ -14,7 +14,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from msrest import Deserializer, Serializer
 
 from ._configuration import IncorrectReturnedErrorModelConfiguration
-from .operations import IncorrectReturnedErrorModelOperationsMixin
+from .operations._operations import IncorrectReturnedErrorModelOperationsMixin
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports

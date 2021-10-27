@@ -14,7 +14,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from msrest import Deserializer, Serializer
 
 from ._configuration import AutoRestValidationTestConfiguration
-from .operations import AutoRestValidationTestOperationsMixin
+from .operations._operations import AutoRestValidationTestOperationsMixin
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
