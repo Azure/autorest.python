@@ -15,6 +15,10 @@ from ..._vendor import _format_url_section
 _SERIALIZER = Serializer()
 
 
+def _param_not_set(param_dict, rest_api_name_lower):
+    return not any(k for k in param_dict if k.lower() == rest_api_name_lower)
+
+
 def build_get_pages_partial_url_request(**kwargs: Any) -> HttpRequest:
     """A paging operation that combines custom url, paging and partial URL and expect to concat after
     host.
@@ -49,9 +53,9 @@ def build_get_pages_partial_url_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/paging/customurl/partialnextlink")
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -89,9 +93,9 @@ def build_get_pages_partial_url_operation_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/paging/customurl/partialnextlinkop")
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
@@ -136,8 +140,8 @@ def build_get_pages_partial_url_operation_next_request(next_link: str, **kwargs:
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)

@@ -99,7 +99,7 @@ async def test_query_input_override():
     client = get_client(callback=get_query)
     with pytest.raises(ValueError) as ex:
         # the default value is "2016-02-29"
-        await client.basic.put_valid(params={"api-version": "2021-10-01"})
+        await client.basic.put_valid({}, params={"api-version": "2021-10-01"})
 
     assert str(ex.value) == "Passed!"
     await client.close()
@@ -112,7 +112,7 @@ async def test_query_none_input():
 @pytest.mark.asyncio
 async def test_query_case_insensitive():
     def get_query(pipeline_request):
-        assert urlparse(pipeline_request.http_request.url).query == "foo=bar"
+        assert urlparse(pipeline_request.http_request.url).query.lower() == "foo=bar"
         raise ValueError("Passed!")
 
     client = get_client(callback=get_query)

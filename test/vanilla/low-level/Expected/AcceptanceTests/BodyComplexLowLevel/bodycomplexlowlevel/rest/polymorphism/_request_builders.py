@@ -16,6 +16,11 @@ if TYPE_CHECKING:
 
 _SERIALIZER = Serializer()
 
+
+def _param_not_set(param_dict, rest_api_name_lower):
+    return not any(k for k in param_dict if k.lower() == rest_api_name_lower)
+
+
 # fmt: off
 
 def build_get_valid_request(
@@ -51,9 +56,9 @@ def build_get_valid_request(
     url = kwargs.pop("template_url", '/complex/polymorphism/valid')
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
@@ -170,11 +175,11 @@ def build_put_valid_request(
     url = kwargs.pop("template_url", '/complex/polymorphism/valid')
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    if content_type is not None:
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
@@ -213,9 +218,9 @@ def build_get_dot_syntax_request(
     url = kwargs.pop("template_url", '/complex/polymorphism/dotsyntax')
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
@@ -278,9 +283,9 @@ def build_get_composed_with_discriminator_request(
     url = kwargs.pop("template_url", '/complex/polymorphism/composedWithDiscriminator')
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
@@ -343,9 +348,9 @@ def build_get_composed_without_discriminator_request(
     url = kwargs.pop("template_url", '/complex/polymorphism/composedWithoutDiscriminator')
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
@@ -398,9 +403,9 @@ def build_get_complicated_request(
     url = kwargs.pop("template_url", '/complex/polymorphism/complicated')
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
@@ -463,11 +468,11 @@ def build_put_complicated_request(
     url = kwargs.pop("template_url", '/complex/polymorphism/complicated')
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    if content_type is not None:
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
@@ -548,11 +553,11 @@ def build_put_missing_discriminator_request(
     url = kwargs.pop("template_url", '/complex/polymorphism/missingdiscriminator')
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    if content_type is not None:
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
@@ -658,11 +663,11 @@ def build_put_valid_missing_required_request(
     url = kwargs.pop("template_url", '/complex/polymorphism/missingrequired/invalid')
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    if content_type is not None:
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",

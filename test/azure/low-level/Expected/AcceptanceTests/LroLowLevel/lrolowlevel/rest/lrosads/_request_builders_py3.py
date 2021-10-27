@@ -13,6 +13,10 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
+def _param_not_set(param_dict, rest_api_name_lower):
+    return not any(k for k in param_dict if k.lower() == rest_api_name_lower)
+
+
 def build_put_non_retry400_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Long running put request, service returns a 400 to the initial request.
 
@@ -71,11 +75,11 @@ def build_put_non_retry400_request(*, json: Any = None, content: Any = None, **k
     url = kwargs.pop("template_url", "/lro/nonretryerror/put/400")
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    if content_type is not None:
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -139,11 +143,11 @@ def build_put_non_retry201_creating400_request(*, json: Any = None, content: Any
     url = kwargs.pop("template_url", "/lro/nonretryerror/put/201/creating/400")
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    if content_type is not None:
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -209,11 +213,11 @@ def build_put_non_retry201_creating400_invalid_json_request(
     url = kwargs.pop("template_url", "/lro/nonretryerror/put/201/creating/400/invalidjson")
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    if content_type is not None:
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -277,11 +281,11 @@ def build_put_async_relative_retry400_request(*, json: Any = None, content: Any 
     url = kwargs.pop("template_url", "/lro/nonretryerror/putasync/retry/400")
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    if content_type is not None:
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -303,9 +307,9 @@ def build_delete_non_retry400_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/lro/nonretryerror/delete/400")
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
@@ -327,9 +331,9 @@ def build_delete202_non_retry400_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/lro/nonretryerror/delete/202/retry/400")
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
@@ -352,9 +356,9 @@ def build_delete_async_relative_retry400_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/lro/nonretryerror/deleteasync/retry/400")
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
@@ -402,11 +406,11 @@ def build_post_non_retry400_request(*, json: Any = None, content: Any = None, **
     url = kwargs.pop("template_url", "/lro/nonretryerror/post/400")
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    if content_type is not None:
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -454,11 +458,11 @@ def build_post202_non_retry400_request(*, json: Any = None, content: Any = None,
     url = kwargs.pop("template_url", "/lro/nonretryerror/post/202/retry/400")
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    if content_type is not None:
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -507,11 +511,11 @@ def build_post_async_relative_retry400_request(*, json: Any = None, content: Any
     url = kwargs.pop("template_url", "/lro/nonretryerror/postasync/retry/400")
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    if content_type is not None:
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -576,11 +580,11 @@ def build_put_error201_no_provisioning_state_payload_request(
     url = kwargs.pop("template_url", "/lro/error/put/201/noprovisioningstatepayload")
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    if content_type is not None:
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -647,11 +651,11 @@ def build_put_async_relative_retry_no_status_request(
     url = kwargs.pop("template_url", "/lro/error/putasync/retry/nostatus")
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    if content_type is not None:
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -718,11 +722,11 @@ def build_put_async_relative_retry_no_status_payload_request(
     url = kwargs.pop("template_url", "/lro/error/putasync/retry/nostatuspayload")
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    if content_type is not None:
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -744,9 +748,9 @@ def build_delete204_succeeded_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/lro/error/delete/204/nolocation")
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
@@ -769,9 +773,9 @@ def build_delete_async_relative_retry_no_status_request(**kwargs: Any) -> HttpRe
     url = kwargs.pop("template_url", "/lro/error/deleteasync/retry/nostatus")
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
@@ -820,11 +824,11 @@ def build_post202_no_location_request(*, json: Any = None, content: Any = None, 
     url = kwargs.pop("template_url", "/lro/error/post/202/nolocation")
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    if content_type is not None:
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -876,11 +880,11 @@ def build_post_async_relative_retry_no_payload_request(
     url = kwargs.pop("template_url", "/lro/error/postasync/retry/nopayload")
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    if content_type is not None:
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -944,11 +948,11 @@ def build_put200_invalid_json_request(*, json: Any = None, content: Any = None, 
     url = kwargs.pop("template_url", "/lro/error/put/200/invalidjson")
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    if content_type is not None:
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -1015,11 +1019,11 @@ def build_put_async_relative_retry_invalid_header_request(
     url = kwargs.pop("template_url", "/lro/error/putasync/retry/invalidheader")
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    if content_type is not None:
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -1086,11 +1090,11 @@ def build_put_async_relative_retry_invalid_json_polling_request(
     url = kwargs.pop("template_url", "/lro/error/putasync/retry/invalidjsonpolling")
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    if content_type is not None:
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -1113,9 +1117,9 @@ def build_delete202_retry_invalid_header_request(**kwargs: Any) -> HttpRequest:
     url = kwargs.pop("template_url", "/lro/error/delete/202/retry/invalidheader")
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
@@ -1138,9 +1142,9 @@ def build_delete_async_relative_retry_invalid_header_request(**kwargs: Any) -> H
     url = kwargs.pop("template_url", "/lro/error/deleteasync/retry/invalidheader")
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
@@ -1163,9 +1167,9 @@ def build_delete_async_relative_retry_invalid_json_polling_request(**kwargs: Any
     url = kwargs.pop("template_url", "/lro/error/deleteasync/retry/invalidjsonpolling")
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
@@ -1214,11 +1218,11 @@ def build_post202_retry_invalid_header_request(*, json: Any = None, content: Any
     url = kwargs.pop("template_url", "/lro/error/post/202/retry/invalidheader")
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    if content_type is not None:
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -1270,11 +1274,11 @@ def build_post_async_relative_retry_invalid_header_request(
     url = kwargs.pop("template_url", "/lro/error/postasync/retry/invalidheader")
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    if content_type is not None:
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
@@ -1326,10 +1330,10 @@ def build_post_async_relative_retry_invalid_json_polling_request(
     url = kwargs.pop("template_url", "/lro/error/postasync/retry/invalidjsonpolling")
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    if content_type is not None:
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)

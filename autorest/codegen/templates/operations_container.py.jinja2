@@ -1,3 +1,4 @@
+{% import 'operation_tools.jinja2' as op_tools %}
 {% set object_base_class = "" if async_mode else "(object)" %}
 {% set operations_description = "async operations" if async_mode else "operations" %}
 {% set return_none_type_annotation = " -> None" if async_mode else "" %}
@@ -10,7 +11,7 @@
 {{ "    " if not is_python_3_file }}ClsType = Optional[Callable[[PipelineResponse[HttpRequest, {{ "Async" if async_mode else "" }}HttpResponse], T, Dict[str, Any]], Any]]
 
 {% if code_model.options["builders_visibility"] == "embedded" and not async_mode %}
-_SERIALIZER = Serializer()
+{{ op_tools.request_builder_setup() }}
 {% if not is_python_3_file %}
 # fmt: off
 {% endif %}

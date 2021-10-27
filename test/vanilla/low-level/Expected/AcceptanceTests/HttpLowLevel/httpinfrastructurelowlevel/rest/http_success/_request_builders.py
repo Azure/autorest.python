@@ -16,6 +16,11 @@ if TYPE_CHECKING:
 
 _SERIALIZER = Serializer()
 
+
+def _param_not_set(param_dict, rest_api_name_lower):
+    return not any(k for k in param_dict if k.lower() == rest_api_name_lower)
+
+
 # fmt: off
 
 def build_head200_request(
@@ -38,9 +43,9 @@ def build_head200_request(
     url = kwargs.pop("template_url", '/http/success/200')
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="HEAD",
@@ -70,9 +75,9 @@ def build_get200_request(
     url = kwargs.pop("template_url", '/http/success/200')
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
@@ -102,9 +107,9 @@ def build_options200_request(
     url = kwargs.pop("template_url", '/http/success/200')
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="OPTIONS",
@@ -148,11 +153,11 @@ def build_put200_request(
     url = kwargs.pop("template_url", '/http/success/200')
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    if content_type is not None:
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
@@ -196,11 +201,11 @@ def build_patch200_request(
     url = kwargs.pop("template_url", '/http/success/200')
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    if content_type is not None:
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PATCH",
@@ -244,11 +249,11 @@ def build_post200_request(
     url = kwargs.pop("template_url", '/http/success/200')
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    if content_type is not None:
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
@@ -292,11 +297,11 @@ def build_delete200_request(
     url = kwargs.pop("template_url", '/http/success/200')
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    if content_type is not None:
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="DELETE",
@@ -340,11 +345,11 @@ def build_put201_request(
     url = kwargs.pop("template_url", '/http/success/201')
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    if content_type is not None:
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
@@ -388,11 +393,11 @@ def build_post201_request(
     url = kwargs.pop("template_url", '/http/success/201')
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    if content_type is not None:
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
@@ -436,11 +441,11 @@ def build_put202_request(
     url = kwargs.pop("template_url", '/http/success/202')
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    if content_type is not None:
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
@@ -484,11 +489,11 @@ def build_patch202_request(
     url = kwargs.pop("template_url", '/http/success/202')
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    if content_type is not None:
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PATCH",
@@ -532,11 +537,11 @@ def build_post202_request(
     url = kwargs.pop("template_url", '/http/success/202')
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    if content_type is not None:
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
@@ -580,11 +585,11 @@ def build_delete202_request(
     url = kwargs.pop("template_url", '/http/success/202')
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    if content_type is not None:
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="DELETE",
@@ -614,9 +619,9 @@ def build_head204_request(
     url = kwargs.pop("template_url", '/http/success/204')
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="HEAD",
@@ -660,11 +665,11 @@ def build_put204_request(
     url = kwargs.pop("template_url", '/http/success/204')
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    if content_type is not None:
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
@@ -708,11 +713,11 @@ def build_patch204_request(
     url = kwargs.pop("template_url", '/http/success/204')
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    if content_type is not None:
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PATCH",
@@ -756,11 +761,11 @@ def build_post204_request(
     url = kwargs.pop("template_url", '/http/success/204')
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    if content_type is not None:
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
@@ -804,11 +809,11 @@ def build_delete204_request(
     url = kwargs.pop("template_url", '/http/success/204')
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    if content_type is not None:
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="DELETE",
@@ -838,9 +843,9 @@ def build_head404_request(
     url = kwargs.pop("template_url", '/http/success/404')
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="HEAD",

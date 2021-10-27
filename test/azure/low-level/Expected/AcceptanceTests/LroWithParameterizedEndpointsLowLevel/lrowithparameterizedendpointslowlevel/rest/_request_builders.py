@@ -18,6 +18,11 @@ if TYPE_CHECKING:
 
 _SERIALIZER = Serializer()
 
+
+def _param_not_set(param_dict, rest_api_name_lower):
+    return not any(k for k in param_dict if k.lower() == rest_api_name_lower)
+
+
 # fmt: off
 
 def build_poll_with_parameterized_endpoints_request(
@@ -40,9 +45,9 @@ def build_poll_with_parameterized_endpoints_request(
     url = kwargs.pop("template_url", '/lroParameterizedEndpoints')
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
@@ -78,9 +83,9 @@ def build_poll_with_constant_parameterized_endpoints_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",

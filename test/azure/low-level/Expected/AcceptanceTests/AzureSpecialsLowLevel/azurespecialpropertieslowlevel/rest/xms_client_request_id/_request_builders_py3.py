@@ -15,6 +15,10 @@ from ..._vendor import _format_url_section
 _SERIALIZER = Serializer()
 
 
+def _param_not_set(param_dict, rest_api_name_lower):
+    return not any(k for k in param_dict if k.lower() == rest_api_name_lower)
+
+
 def build_get_request(**kwargs: Any) -> HttpRequest:
     """Get method that overwrites x-ms-client-request header with value
     9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
@@ -55,11 +59,12 @@ def build_param_get_request(*, x_ms_client_request_id: str, **kwargs: Any) -> Ht
     url = kwargs.pop("template_url", "/azurespecials/overwrite/x-ms-client-request-id/via-param/method/")
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["x-ms-client-request-id"] = _SERIALIZER.header(
-        "x_ms_client_request_id", x_ms_client_request_id, "str"
-    )
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "x-ms-client-request-id"):
+        header_parameters["x-ms-client-request-id"] = _SERIALIZER.header(
+            "x_ms_client_request_id", x_ms_client_request_id, "str"
+        )
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)

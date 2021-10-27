@@ -30,6 +30,12 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
+
+
+def _param_not_set(param_dict, rest_api_name_lower):
+    return not any(k for k in param_dict if k.lower() == rest_api_name_lower)
+
+
 # fmt: off
 
 def build_upload_file_request(
@@ -42,10 +48,9 @@ def build_upload_file_request(
     url = kwargs.pop("template_url", '/binary/file')
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    if content_type is not None:
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="POST",
@@ -65,10 +70,9 @@ def build_upload_binary_request(
     url = kwargs.pop("template_url", '/binary/octet')
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    if content_type is not None:
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
         header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(
         method="PUT",

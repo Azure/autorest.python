@@ -18,6 +18,11 @@ if TYPE_CHECKING:
 
 _SERIALIZER = Serializer()
 
+
+def _param_not_set(param_dict, rest_api_name_lower):
+    return not any(k for k in param_dict if k.lower() == rest_api_name_lower)
+
+
 # fmt: off
 
 def build_get_method_local_valid_request(
@@ -41,14 +46,14 @@ def build_get_method_local_valid_request(
     url = kwargs.pop("template_url", '/azurespecials/apiVersion/method/string/none/query/local/2.0')
 
     # Construct parameters
-    query_parameters = {}  # type: Dict[str, Any]
-    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
-    query_parameters.update(kwargs.pop("params", {}) or {})
+    query_parameters = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(query_parameters, "api-version"):
+        query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
@@ -84,15 +89,14 @@ def build_get_method_local_null_request(
     url = kwargs.pop("template_url", '/azurespecials/apiVersion/method/string/none/query/local/null')
 
     # Construct parameters
-    query_parameters = {}  # type: Dict[str, Any]
-    if api_version is not None:
+    query_parameters = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(query_parameters, "api-version") and api_version is not None:
         query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
-    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
@@ -124,14 +128,14 @@ def build_get_path_local_valid_request(
     url = kwargs.pop("template_url", '/azurespecials/apiVersion/path/string/none/query/local/2.0')
 
     # Construct parameters
-    query_parameters = {}  # type: Dict[str, Any]
-    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
-    query_parameters.update(kwargs.pop("params", {}) or {})
+    query_parameters = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(query_parameters, "api-version"):
+        query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
@@ -163,14 +167,14 @@ def build_get_swagger_local_valid_request(
     url = kwargs.pop("template_url", '/azurespecials/apiVersion/swagger/string/none/query/local/2.0')
 
     # Construct parameters
-    query_parameters = {}  # type: Dict[str, Any]
-    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
-    query_parameters.update(kwargs.pop("params", {}) or {})
+    query_parameters = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(query_parameters, "api-version"):
+        query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",

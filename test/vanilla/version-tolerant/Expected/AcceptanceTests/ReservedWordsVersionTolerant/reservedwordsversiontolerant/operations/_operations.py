@@ -30,6 +30,12 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
+
+
+def _param_not_set(param_dict, rest_api_name_lower):
+    return not any(k for k in param_dict if k.lower() == rest_api_name_lower)
+
+
 # fmt: off
 
 def build_import_builders_operation_one_request(
@@ -43,14 +49,14 @@ def build_import_builders_operation_one_request(
     url = kwargs.pop("template_url", '/reservedWords/operationGroup/import')
 
     # Construct parameters
-    query_parameters = {}  # type: Dict[str, Any]
-    query_parameters['parameter1'] = _SERIALIZER.query("parameter1", parameter1, 'str')
-    query_parameters.update(kwargs.pop("params", {}) or {})
+    query_parameters = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(query_parameters, "parameter1"):
+        query_parameters['parameter1'] = _SERIALIZER.query("parameter1", parameter1, 'str')
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",

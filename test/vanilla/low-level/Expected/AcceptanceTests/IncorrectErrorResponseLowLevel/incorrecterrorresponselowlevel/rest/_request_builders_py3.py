@@ -13,6 +13,10 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
+def _param_not_set(param_dict, rest_api_name_lower):
+    return not any(k for k in param_dict if k.lower() == rest_api_name_lower)
+
+
 def build_get_incorrect_error_from_server_request(**kwargs: Any) -> HttpRequest:
     """Get an error response from the server that is not as described in our Error object. Want to
     swallow the deserialization error and still return an HttpResponseError to the users.

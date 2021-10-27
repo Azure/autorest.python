@@ -15,6 +15,10 @@ from ..._vendor import _format_url_section
 _SERIALIZER = Serializer()
 
 
+def _param_not_set(param_dict, rest_api_name_lower):
+    return not any(k for k in param_dict if k.lower() == rest_api_name_lower)
+
+
 def build_custom_named_request_id_request(*, foo_client_request_id: str, **kwargs: Any) -> HttpRequest:
     """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.
 
@@ -34,12 +38,13 @@ def build_custom_named_request_id_request(*, foo_client_request_id: str, **kwarg
     url = kwargs.pop("template_url", "/azurespecials/customNamedRequestId")
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["foo-client-request-id"] = _SERIALIZER.header(
-        "foo_client_request_id", foo_client_request_id, "str"
-    )
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "foo-client-request-id"):
+        header_parameters["foo-client-request-id"] = _SERIALIZER.header(
+            "foo_client_request_id", foo_client_request_id, "str"
+        )
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
 
@@ -64,12 +69,13 @@ def build_custom_named_request_id_param_grouping_request(*, foo_client_request_i
     url = kwargs.pop("template_url", "/azurespecials/customNamedRequestIdParamGrouping")
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["foo-client-request-id"] = _SERIALIZER.header(
-        "foo_client_request_id", foo_client_request_id, "str"
-    )
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "foo-client-request-id"):
+        header_parameters["foo-client-request-id"] = _SERIALIZER.header(
+            "foo_client_request_id", foo_client_request_id, "str"
+        )
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
 
@@ -93,11 +99,12 @@ def build_custom_named_request_id_head_request(*, foo_client_request_id: str, **
     url = kwargs.pop("template_url", "/azurespecials/customNamedRequestIdHead")
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["foo-client-request-id"] = _SERIALIZER.header(
-        "foo_client_request_id", foo_client_request_id, "str"
-    )
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "foo-client-request-id"):
+        header_parameters["foo-client-request-id"] = _SERIALIZER.header(
+            "foo_client_request_id", foo_client_request_id, "str"
+        )
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="HEAD", url=url, headers=header_parameters, **kwargs)

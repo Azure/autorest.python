@@ -15,6 +15,10 @@ from ..._vendor import _format_url_section
 _SERIALIZER = Serializer()
 
 
+def _param_not_set(param_dict, rest_api_name_lower):
+    return not any(k for k in param_dict if k.lower() == rest_api_name_lower)
+
+
 def build_get_sample_resource_group_request(
     subscription_id: str, resource_group_name: str, **kwargs: Any
 ) -> HttpRequest:
@@ -54,13 +58,13 @@ def build_get_sample_resource_group_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
-    query_parameters = {}  # type: Dict[str, Any]
-    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
-    query_parameters.update(kwargs.pop("params", {}) or {})
+    query_parameters = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(query_parameters, "api-version"):
+        query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)

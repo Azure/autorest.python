@@ -13,6 +13,10 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
+def _param_not_set(param_dict, rest_api_name_lower):
+    return not any(k for k in param_dict if k.lower() == rest_api_name_lower)
+
+
 def build_get_request(**kwargs: Any) -> HttpRequest:
     """Basic get to make sure base url formatting of 'endpoint' works.
 

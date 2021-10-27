@@ -13,6 +13,10 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
+def _param_not_set(param_dict, rest_api_name_lower):
+    return not any(k for k in param_dict if k.lower() == rest_api_name_lower)
+
+
 def build_get_report_request(*, qualifier: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Get test coverage report.
 
@@ -42,15 +46,14 @@ def build_get_report_request(*, qualifier: Optional[str] = None, **kwargs: Any) 
     url = kwargs.pop("template_url", "/report")
 
     # Construct parameters
-    query_parameters = {}  # type: Dict[str, Any]
-    if qualifier is not None:
+    query_parameters = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(query_parameters, "qualifier") and qualifier is not None:
         query_parameters["qualifier"] = _SERIALIZER.query("qualifier", qualifier, "str")
-    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
@@ -84,14 +87,13 @@ def build_get_optional_report_request(*, qualifier: Optional[str] = None, **kwar
     url = kwargs.pop("template_url", "/report/optional")
 
     # Construct parameters
-    query_parameters = {}  # type: Dict[str, Any]
-    if qualifier is not None:
+    query_parameters = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(query_parameters, "qualifier") and qualifier is not None:
         query_parameters["qualifier"] = _SERIALIZER.query("qualifier", qualifier, "str")
-    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)

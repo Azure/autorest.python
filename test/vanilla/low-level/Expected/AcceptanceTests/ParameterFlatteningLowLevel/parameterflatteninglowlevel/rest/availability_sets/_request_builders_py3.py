@@ -15,6 +15,10 @@ from ..._vendor import _format_url_section
 _SERIALIZER = Serializer()
 
 
+def _param_not_set(param_dict, rest_api_name_lower):
+    return not any(k for k in param_dict if k.lower() == rest_api_name_lower)
+
+
 def build_update_request(
     resource_group_name: str, avset: str, *, json: Any = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
@@ -61,9 +65,8 @@ def build_update_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    if content_type is not None:
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters.update(kwargs.pop("headers", {}) or {})
 
     return HttpRequest(method="PATCH", url=url, headers=header_parameters, json=json, content=content, **kwargs)

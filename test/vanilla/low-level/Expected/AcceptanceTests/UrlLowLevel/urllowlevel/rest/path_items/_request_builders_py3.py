@@ -16,6 +16,10 @@ from ..._vendor import _format_url_section
 _SERIALIZER = Serializer()
 
 
+def _param_not_set(param_dict, rest_api_name_lower):
+    return not any(k for k in param_dict if k.lower() == rest_api_name_lower)
+
+
 def build_get_all_with_values_request(
     path_item_string_path: str,
     global_string_path: str,
@@ -67,21 +71,20 @@ def build_get_all_with_values_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
-    query_parameters = {}  # type: Dict[str, Any]
-    if path_item_string_query is not None:
+    query_parameters = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(query_parameters, "pathitemstringquery") and path_item_string_query is not None:
         query_parameters["pathItemStringQuery"] = _SERIALIZER.query(
             "path_item_string_query", path_item_string_query, "str"
         )
-    if global_string_query is not None:
+    if _param_not_set(query_parameters, "globalstringquery") and global_string_query is not None:
         query_parameters["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
-    if local_string_query is not None:
+    if _param_not_set(query_parameters, "localstringquery") and local_string_query is not None:
         query_parameters["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
-    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
@@ -137,21 +140,20 @@ def build_get_global_query_null_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
-    query_parameters = {}  # type: Dict[str, Any]
-    if path_item_string_query is not None:
+    query_parameters = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(query_parameters, "pathitemstringquery") and path_item_string_query is not None:
         query_parameters["pathItemStringQuery"] = _SERIALIZER.query(
             "path_item_string_query", path_item_string_query, "str"
         )
-    if global_string_query is not None:
+    if _param_not_set(query_parameters, "globalstringquery") and global_string_query is not None:
         query_parameters["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
-    if local_string_query is not None:
+    if _param_not_set(query_parameters, "localstringquery") and local_string_query is not None:
         query_parameters["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
-    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
@@ -207,21 +209,20 @@ def build_get_global_and_local_query_null_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
-    query_parameters = {}  # type: Dict[str, Any]
-    if path_item_string_query is not None:
+    query_parameters = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(query_parameters, "pathitemstringquery") and path_item_string_query is not None:
         query_parameters["pathItemStringQuery"] = _SERIALIZER.query(
             "path_item_string_query", path_item_string_query, "str"
         )
-    if global_string_query is not None:
+    if _param_not_set(query_parameters, "globalstringquery") and global_string_query is not None:
         query_parameters["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
-    if local_string_query is not None:
+    if _param_not_set(query_parameters, "localstringquery") and local_string_query is not None:
         query_parameters["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
-    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
@@ -276,20 +277,19 @@ def build_get_local_path_item_query_null_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
-    query_parameters = {}  # type: Dict[str, Any]
-    if path_item_string_query is not None:
+    query_parameters = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(query_parameters, "pathitemstringquery") and path_item_string_query is not None:
         query_parameters["pathItemStringQuery"] = _SERIALIZER.query(
             "path_item_string_query", path_item_string_query, "str"
         )
-    if global_string_query is not None:
+    if _param_not_set(query_parameters, "globalstringquery") and global_string_query is not None:
         query_parameters["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
-    if local_string_query is not None:
+    if _param_not_set(query_parameters, "localstringquery") and local_string_query is not None:
         query_parameters["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
-    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)

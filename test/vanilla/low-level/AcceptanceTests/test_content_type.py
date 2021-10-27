@@ -88,7 +88,7 @@ def test_content_type_in_headers_no_content_type_kwarg():
 
 def test_content_type_in_headers_content_type_kwarg():
     request = build_analyze_body_request(content="", headers={"Content-Type": "application/exotic"}, content_type="application/pdf")
-    assert request.headers["Content-Type"] == "application/pdf"
+    assert request.headers["Content-Type"] == "application/exotic"
 
 def test_stream_unread_until_send_request():
     class FakeStream:

@@ -61,7 +61,7 @@ def test_header_none_input():
 
 def test_header_case_insensitive():
     def get_headers(pipeline_request):
-        assert len(pipeline_request.htp_request.headers) == 1
+        assert len(pipeline_request.http_request.headers) == 1
         assert pipeline_request.http_request.headers["Accept"] == "my/content-type"
         raise ValueError("Passed!")
 
@@ -89,7 +89,7 @@ def test_query_input_override():
     client = get_client(callback=get_query)
     with pytest.raises(ValueError) as ex:
         # the default value is "2016-02-29"
-        client.basic.put_valid(params={"api-version": "2021-10-01"})
+        client.basic.put_valid({}, params={"api-version": "2021-10-01"})
 
     assert str(ex.value) == "Passed!"
 
@@ -99,7 +99,7 @@ def test_query_none_input():
 
 def test_query_case_insensitive():
     def get_query(pipeline_request):
-        assert urlparse(pipeline_request.http_request.url).query == "foo=bar"
+        assert urlparse(pipeline_request.http_request.url).query.lower() == "foo=bar"
         raise ValueError("Passed!")
 
     client = get_client(callback=get_query)

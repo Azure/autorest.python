@@ -12,9 +12,14 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, Optional
+    from typing import Any, Dict
 
 _SERIALIZER = Serializer()
+
+
+def _param_not_set(param_dict, rest_api_name_lower):
+    return not any(k for k in param_dict if k.lower() == rest_api_name_lower)
+
 
 # fmt: off
 
@@ -27,84 +32,44 @@ def build_get_required_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword parameter: I am a required parameter.
-    :paramtype parameter: str
+    :keyword parameter1: I am a required parameter.
+    :paramtype parameter1: str
+    :keyword parameter2: I am a required parameter.
+    :paramtype parameter2: str
+    :keyword parameter3: I am a required parameter and I'm last in Swagger.
+    :paramtype parameter3: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    parameter = kwargs.pop('parameter')  # type: str
+    parameter1 = kwargs.pop('parameter1')  # type: str
+    parameter2 = kwargs.pop('parameter2')  # type: str
+    parameter3 = kwargs.pop('parameter3')  # type: str
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/servicedriven/parameters')
+    url = kwargs.pop("template_url", '/llc/parameters')
 
     # Construct parameters
-    query_parameters = {}  # type: Dict[str, Any]
-    query_parameters['parameter'] = _SERIALIZER.query("parameter", parameter, 'str')
-    query_parameters.update(kwargs.pop("params", {}) or {})
+    query_parameters = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(query_parameters, "parameter1"):
+        query_parameters['parameter1'] = _SERIALIZER.query("parameter1", parameter1, 'str')
+    if _param_not_set(query_parameters, "parameter2"):
+        query_parameters['parameter2'] = _SERIALIZER.query("parameter2", parameter2, 'str')
+    if _param_not_set(query_parameters, "parameter3"):
+        query_parameters['parameter3'] = _SERIALIZER.query("parameter3", parameter3, 'str')
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
         params=query_parameters,
-        headers=header_parameters,
-        **kwargs
-    )
-
-
-def build_post_parameters_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    """POST a JSON.
-
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
-
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. I am a body parameter. My only valid JSON entry is { url:
-     "http://example.org/myimage.jpeg" }.
-    :paramtype json: any
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). I am a body parameter. My only valid JSON entry is { url:
-     "http://example.org/myimage.jpeg" }.
-    :paramtype content: any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
-     incorporate this response into your code flow.
-    :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your body input.
-            json = {}  # Optional.
-    """
-
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
-
-    accept = "application/json"
-    # Construct URL
-    url = kwargs.pop("template_url", '/servicedriven/parameters')
-
-    # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
-
-    return HttpRequest(
-        method="POST",
-        url=url,
         headers=header_parameters,
         **kwargs
     )

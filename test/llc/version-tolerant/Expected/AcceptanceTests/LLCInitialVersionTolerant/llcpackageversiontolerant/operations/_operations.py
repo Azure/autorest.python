@@ -30,57 +30,44 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
+
+
+def _param_not_set(param_dict, rest_api_name_lower):
+    return not any(k for k in param_dict if k.lower() == rest_api_name_lower)
+
+
 # fmt: off
 
 def build_params_get_required_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    parameter = kwargs.pop('parameter')  # type: str
+    parameter1 = kwargs.pop('parameter1')  # type: str
+    parameter2 = kwargs.pop('parameter2')  # type: str
+    parameter3 = kwargs.pop('parameter3')  # type: str
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/servicedriven/parameters')
+    url = kwargs.pop("template_url", '/llc/parameters')
 
     # Construct parameters
-    query_parameters = {}  # type: Dict[str, Any]
-    query_parameters['parameter'] = _SERIALIZER.query("parameter", parameter, 'str')
-    query_parameters.update(kwargs.pop("params", {}) or {})
+    query_parameters = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(query_parameters, "parameter1"):
+        query_parameters['parameter1'] = _SERIALIZER.query("parameter1", parameter1, 'str')
+    if _param_not_set(query_parameters, "parameter2"):
+        query_parameters['parameter2'] = _SERIALIZER.query("parameter2", parameter2, 'str')
+    if _param_not_set(query_parameters, "parameter3"):
+        query_parameters['parameter3'] = _SERIALIZER.query("parameter3", parameter3, 'str')
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
         params=query_parameters,
-        headers=header_parameters,
-        **kwargs
-    )
-
-
-def build_params_post_parameters_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
-
-    accept = "application/json"
-    # Construct URL
-    url = kwargs.pop("template_url", '/servicedriven/parameters')
-
-    # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
-
-    return HttpRequest(
-        method="POST",
-        url=url,
         headers=header_parameters,
         **kwargs
     )
@@ -111,8 +98,12 @@ class ParamsOperations(object):
         # type: (...) -> Any
         """Get true Boolean value on path.
 
-        :keyword parameter: I am a required parameter.
-        :paramtype parameter: str
+        :keyword parameter1: I am a required parameter.
+        :paramtype parameter1: str
+        :keyword parameter2: I am a required parameter.
+        :paramtype parameter2: str
+        :keyword parameter3: I am a required parameter and I'm last in Swagger.
+        :paramtype parameter3: str
         :return: any
         :rtype: any
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -121,10 +112,14 @@ class ParamsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        parameter = kwargs.pop("parameter")  # type: str
+        parameter1 = kwargs.pop("parameter1")  # type: str
+        parameter2 = kwargs.pop("parameter2")  # type: str
+        parameter3 = kwargs.pop("parameter3")  # type: str
 
         request = build_params_get_required_request(
-            parameter=parameter,
+            parameter1=parameter1,
+            parameter2=parameter2,
+            parameter3=parameter3,
             template_url=self.get_required.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -148,56 +143,4 @@ class ParamsOperations(object):
 
         return deserialized
 
-    get_required.metadata = {"url": "/servicedriven/parameters"}  # type: ignore
-
-    @distributed_trace
-    def post_parameters(
-        self,
-        parameter,  # type: Any
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> Any
-        """POST a JSON.
-
-        :param parameter: I am a body parameter. My only valid JSON entry is { url:
-         "http://example.org/myimage.jpeg" }.
-        :type parameter: any
-        :return: any
-        :rtype: any
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
-
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-
-        json = parameter
-
-        request = build_params_post_parameters_request(
-            content_type=content_type,
-            json=json,
-            template_url=self.post_parameters.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
-        )
-        request.url = self._client.format_url(request.url)
-
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
-
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
-
-        if cls:
-            return cls(pipeline_response, deserialized, {})
-
-        return deserialized
-
-    post_parameters.metadata = {"url": "/servicedriven/parameters"}  # type: ignore
+    get_required.metadata = {"url": "/llc/parameters"}  # type: ignore

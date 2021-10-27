@@ -66,4 +66,4 @@ def test_query_case_insensitive():
     query_keys = ["foo", "Foo", "FOO", "fOo"]
     for query_key in query_keys:
         request = basic.build_get_empty_request(params={query_key: "bar"})
-        assert urlparse(request.url).query == "foo=bar"
+        assert urlparse(request.url).query.lower() == "foo=bar"

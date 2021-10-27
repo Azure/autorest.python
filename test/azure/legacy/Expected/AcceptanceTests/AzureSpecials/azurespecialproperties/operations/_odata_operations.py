@@ -34,6 +34,12 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
+
+
+def _param_not_set(param_dict, rest_api_name_lower):
+    return not any(k for k in param_dict if k.lower() == rest_api_name_lower)
+
+
 # fmt: off
 
 def build_get_with_filter_request(
@@ -49,19 +55,18 @@ def build_get_with_filter_request(
     url = kwargs.pop("template_url", '/azurespecials/odata/filter')
 
     # Construct parameters
-    query_parameters = {}  # type: Dict[str, Any]
-    if filter is not None:
+    query_parameters = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(query_parameters, "$filter") and filter is not None:
         query_parameters['$filter'] = _SERIALIZER.query("filter", filter, 'str')
-    if top is not None:
+    if _param_not_set(query_parameters, "$top") and top is not None:
         query_parameters['$top'] = _SERIALIZER.query("top", top, 'int')
-    if orderby is not None:
+    if _param_not_set(query_parameters, "$orderby") and orderby is not None:
         query_parameters['$orderby'] = _SERIALIZER.query("orderby", orderby, 'str')
-    query_parameters.update(kwargs.pop("params", {}) or {})
 
     # Construct headers
-    header_parameters = {}  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-    header_parameters.update(kwargs.pop("headers", {}) or {})
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",

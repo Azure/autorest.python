@@ -1,8 +1,9 @@
+{% import 'operation_tools.jinja2' as op_tools %}
 # coding=utf-8
 {{ code_model.options['license_header'] }}
 {{ imports }}
 
-_SERIALIZER = Serializer()
+{{ op_tools.request_builder_setup() }}
 
 {% if not is_python_3_file %}
 # fmt: off
