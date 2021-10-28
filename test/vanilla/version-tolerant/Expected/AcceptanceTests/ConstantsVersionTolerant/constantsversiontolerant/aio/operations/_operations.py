@@ -143,7 +143,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input:
+        :keyword input: The default value is "value1".
         :paramtype input: str
         :return: None
         :rtype: None
@@ -179,7 +179,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input:
+        :keyword input: The default value is "value1".
         :paramtype input: str
         :return: None
         :rtype: None
@@ -281,6 +281,9 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
+        :keyword input: The default value is "value1". Note that overriding this default value may
+         result in unsupported behavior.
+        :paramtype input: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -289,7 +292,10 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        input = kwargs.pop("input", "value1")  # type: str
+
         request = build_contants_put_no_model_as_string_required_one_value_no_default_request(
+            input=input,
             template_url=self.put_no_model_as_string_required_one_value_no_default.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -312,6 +318,9 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
+        :keyword input: The default value is "value1". Note that overriding this default value may
+         result in unsupported behavior.
+        :paramtype input: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -320,7 +329,10 @@ class ContantsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        input = kwargs.pop("input", "value1")  # type: str
+
         request = build_contants_put_no_model_as_string_required_one_value_default_request(
+            input=input,
             template_url=self.put_no_model_as_string_required_one_value_default.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -631,6 +643,9 @@ class ContantsOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_contants_put_client_constants_request(
+            header_constant=self._config.header_constant,
+            query_constant=self._config.query_constant,
+            path_constant=self._config.path_constant,
             template_url=self.put_client_constants.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

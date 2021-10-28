@@ -61,6 +61,9 @@ class AutoRestAzureSpecialParametersTestClient(object):
     :type subscription_id: str
     :param base_url: Service URL. Default value is 'http://localhost:3000'.
     :type base_url: str
+    :keyword api_version: Api Version. The default value is "2015-07-01-preview". Note that
+     overriding this default value may result in unsupported behavior.
+    :paramtype api_version: str
     """
 
     def __init__(

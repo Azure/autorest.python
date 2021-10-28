@@ -612,3 +612,8 @@ def test_polymorphism_get_and_put_missing_discriminator(send_request, send_reque
     dot_salmon = send_request_json_response(request)
     assert dot_salmon['fish.type'] == "DotSalmon"
     assert dot_salmon['location'] == "sweden"
+
+def test_pass_in_api_version(client):
+    assert client._config.api_version == "2016-02-29"
+    with AutoRestComplexTestService(api_version="2021-10-01") as client:
+        assert client._config.api_version == "2021-10-01"

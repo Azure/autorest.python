@@ -19,6 +19,7 @@ OrderedSet = Dict[T, None]
 class RequestBuilder(BaseBuilder):
     def __init__(
         self,
+        code_model,
         yaml_data: Dict[str, Any],
         name: str,
         url: str,
@@ -31,6 +32,7 @@ class RequestBuilder(BaseBuilder):
         responses: Optional[List[SchemaResponse]] = None,
     ):
         super().__init__(
+            code_model=code_model,
             yaml_data=yaml_data,
             name=name,
             description=description,
@@ -56,7 +58,7 @@ class RequestBuilder(BaseBuilder):
     def builder_group_name(self) -> str:
         return self.yaml_data["language"]["python"]["builderGroupName"]
 
-    def imports(self, code_model) -> FileImport:
+    def imports(self) -> FileImport:
         file_import = FileImport()
         for parameter in self.parameters:
             file_import.merge(parameter.imports())
@@ -68,9 +70,9 @@ class RequestBuilder(BaseBuilder):
         )
         if self.parameters.path:
             relative_path = "."
-            if not code_model.options["builders_visibility"] == "embedded" and self.operation_group_name:
+            if not self.code_model.options["builders_visibility"] == "embedded" and self.operation_group_name:
                 relative_path = ".."
-            if code_model.has_operations_folder:
+            if self.code_model.has_operations_folder:
                 relative_path += "."
             file_import.add_from_import(
                 f"{relative_path}_vendor", "_format_url_section", ImportType.LOCAL
@@ -100,14 +102,15 @@ class RequestBuilder(BaseBuilder):
         first_request = yaml_data["requests"][0]
 
         parameters, multiple_media_type_parameters = (
-            create_parameters(yaml_data, RequestBuilderParameter.from_yaml)
+            create_parameters(yaml_data, code_model, RequestBuilderParameter.from_yaml)
         )
-        parameter_list = RequestBuilderParameterList(parameters + multiple_media_type_parameters)
+        parameter_list = RequestBuilderParameterList(code_model, parameters + multiple_media_type_parameters)
 
-        schema_requests = [SchemaRequest.from_yaml(yaml) for yaml in yaml_data["requests"]]
+        schema_requests = [SchemaRequest.from_yaml(yaml, code_model=code_model) for yaml in yaml_data["requests"]]
         parameter_list.add_body_kwargs(schema_requests)
 
         request_builder_class = cls(
+            code_model=code_model,
             yaml_data=yaml_data,
             name=name,
             url=first_request["protocol"]["http"]["path"],

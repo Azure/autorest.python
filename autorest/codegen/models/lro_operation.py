@@ -18,6 +18,7 @@ _LOGGER = logging.getLogger(__name__)
 class LROOperation(Operation):
     def __init__(
         self,
+        code_model,
         yaml_data: Dict[str, Any],
         name: str,
         description: str,
@@ -31,6 +32,7 @@ class LROOperation(Operation):
         want_tracing: bool = True
     ) -> None:
         super(LROOperation, self).__init__(
+            code_model,
             yaml_data,
             name,
             description,
@@ -78,6 +80,7 @@ class LROOperation(Operation):
     @property
     def initial_operation(self) -> Operation:
         operation = Operation(
+            self.code_model,
             yaml_data={},
             name=self.name[5:] + "_initial",
             description="",
@@ -129,15 +132,15 @@ class LROOperation(Operation):
     def get_base_polling_method(self, async_mode: bool) -> str:
         return self.get_base_polling_method_path(async_mode).split(".")[-1]
 
-    def imports_for_multiapi(self, code_model, async_mode: bool) -> FileImport:
-        file_import = super().imports_for_multiapi(code_model, async_mode)
+    def imports_for_multiapi(self, async_mode: bool) -> FileImport:
+        file_import = super().imports_for_multiapi(async_mode)
         poller_import_path = ".".join(self.get_poller_path(async_mode).split(".")[:-1])
         poller = self.get_poller(async_mode)
         file_import.add_from_import(poller_import_path, poller, ImportType.AZURECORE, TypingSection.CONDITIONAL)
         return file_import
 
-    def imports(self, code_model, async_mode: bool) -> FileImport:
-        file_import = super().imports(code_model, async_mode)
+    def imports(self, async_mode: bool) -> FileImport:
+        file_import = super().imports(async_mode)
         file_import.add_from_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
 
         poller_import_path = ".".join(self.get_poller_path(async_mode).split(".")[:-1])
@@ -145,9 +148,9 @@ class LROOperation(Operation):
         file_import.add_from_import(poller_import_path, poller, ImportType.AZURECORE)
 
         default_polling_method_import_path = ".".join(
-            self.get_default_polling_method_path(async_mode, code_model.options['azure_arm']).split(".")[:-1]
+            self.get_default_polling_method_path(async_mode, self.code_model.options['azure_arm']).split(".")[:-1]
         )
-        default_polling_method = self.get_default_polling_method(async_mode, code_model.options['azure_arm'])
+        default_polling_method = self.get_default_polling_method(async_mode, self.code_model.options['azure_arm'])
         file_import.add_from_import(default_polling_method_import_path, default_polling_method, ImportType.AZURECORE)
 
         default_no_polling_method_import_path = ".".join(
@@ -166,6 +169,6 @@ class LROOperation(Operation):
 
         if async_mode:
             file_import.add_from_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
-        if self.lro_response and self.lro_response.has_body and not code_model.options["models_mode"]:
+        if self.lro_response and self.lro_response.has_body and not self.code_model.options["models_mode"]:
             file_import.add_from_import("json", "loads", import_type=ImportType.STDLIB, alias="_loads")
         return file_import

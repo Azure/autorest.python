@@ -44,9 +44,9 @@ def build_check_name_availability_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    api_version = kwargs.pop('api_version', "2015-05-01-preview")  # type: str
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
-    api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
     # Construct URL
     url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability')
@@ -82,9 +82,9 @@ def build_create_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    api_version = kwargs.pop('api_version', "2015-05-01-preview")  # type: str
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
-    api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
     # Construct URL
     url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}')
@@ -122,7 +122,8 @@ def build_delete_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    api_version = "2015-05-01-preview"
+    api_version = kwargs.pop('api_version', "2015-05-01-preview")  # type: str
+
     # Construct URL
     url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}')
     path_format_arguments = {
@@ -152,7 +153,8 @@ def build_get_properties_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    api_version = "2015-05-01-preview"
+    api_version = kwargs.pop('api_version', "2015-05-01-preview")  # type: str
+
     accept = "application/json, text/json"
     # Construct URL
     url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}')
@@ -188,9 +190,9 @@ def build_update_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    api_version = kwargs.pop('api_version', "2015-05-01-preview")  # type: str
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
-    api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
     # Construct URL
     url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}')
@@ -228,7 +230,8 @@ def build_list_keys_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    api_version = "2015-05-01-preview"
+    api_version = kwargs.pop('api_version', "2015-05-01-preview")  # type: str
+
     accept = "application/json, text/json"
     # Construct URL
     url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys')
@@ -262,7 +265,8 @@ def build_list_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    api_version = "2015-05-01-preview"
+    api_version = kwargs.pop('api_version', "2015-05-01-preview")  # type: str
+
     accept = "application/json, text/json"
     # Construct URL
     url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts')
@@ -295,7 +299,8 @@ def build_list_by_resource_group_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    api_version = "2015-05-01-preview"
+    api_version = kwargs.pop('api_version', "2015-05-01-preview")  # type: str
+
     accept = "application/json, text/json"
     # Construct URL
     url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts')
@@ -330,9 +335,9 @@ def build_regenerate_key_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    api_version = kwargs.pop('api_version', "2015-05-01-preview")  # type: str
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
-    api_version = "2015-05-01-preview"
     accept = "application/json, text/json"
     # Construct URL
     url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/regenerateKey')
@@ -398,6 +403,9 @@ class StorageAccountsOperations(object):
          Storage account names must be between 3 and 24 characters in length and use numbers and
          lower-case letters only.
         :type account_name: ~storage.models.StorageAccountCheckNameAvailabilityParameters
+        :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
+         overriding this default value may result in unsupported behavior.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: CheckNameAvailabilityResult, or the result of cls(response)
         :rtype: ~storage.models.CheckNameAvailabilityResult
@@ -407,12 +415,14 @@ class StorageAccountsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(account_name, "StorageAccountCheckNameAvailabilityParameters")
 
         request = build_check_name_availability_request(
             subscription_id=self._config.subscription_id,
+            api_version=api_version,
             content_type=content_type,
             json=json,
             template_url=self.check_name_availability.metadata["url"],
@@ -448,6 +458,7 @@ class StorageAccountsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(parameters, "StorageAccountCreateParameters")
@@ -456,6 +467,7 @@ class StorageAccountsOperations(object):
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
+            api_version=api_version,
             content_type=content_type,
             json=json,
             template_url=self._create_initial.metadata["url"],
@@ -503,6 +515,9 @@ class StorageAccountsOperations(object):
         :type account_name: str
         :param parameters: The parameters to provide for the created account.
         :type parameters: ~storage.models.StorageAccountCreateParameters
+        :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
+         overriding this default value may result in unsupported behavior.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
@@ -516,6 +531,7 @@ class StorageAccountsOperations(object):
         :rtype: ~azure.core.polling.LROPoller[~storage.models.StorageAccount]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
         polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.PollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccount"]
@@ -526,6 +542,7 @@ class StorageAccountsOperations(object):
                 resource_group_name=resource_group_name,
                 account_name=account_name,
                 parameters=parameters,
+                api_version=api_version,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
                 **kwargs
@@ -573,6 +590,9 @@ class StorageAccountsOperations(object):
          Storage account names must be between 3 and 24 characters in length and use numbers and
          lower-case letters only.
         :type account_name: str
+        :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
+         overriding this default value may result in unsupported behavior.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -582,10 +602,13 @@ class StorageAccountsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+
         request = build_delete_request(
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
+            api_version=api_version,
             template_url=self.delete.metadata["url"],
         )
         request = _convert_request(request)
@@ -621,6 +644,9 @@ class StorageAccountsOperations(object):
          Storage account names must be between 3 and 24 characters in length and use numbers and
          lower-case letters only.
         :type account_name: str
+        :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
+         overriding this default value may result in unsupported behavior.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccount, or the result of cls(response)
         :rtype: ~storage.models.StorageAccount
@@ -630,10 +656,13 @@ class StorageAccountsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+
         request = build_get_properties_request(
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
+            api_version=api_version,
             template_url=self.get_properties.metadata["url"],
         )
         request = _convert_request(request)
@@ -681,6 +710,9 @@ class StorageAccountsOperations(object):
         :param parameters: The parameters to update on the account. Note that only one property can be
          changed at a time using this API.
         :type parameters: ~storage.models.StorageAccountUpdateParameters
+        :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
+         overriding this default value may result in unsupported behavior.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccount, or the result of cls(response)
         :rtype: ~storage.models.StorageAccount
@@ -690,6 +722,7 @@ class StorageAccountsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = self._serialize.body(parameters, "StorageAccountUpdateParameters")
@@ -698,6 +731,7 @@ class StorageAccountsOperations(object):
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
+            api_version=api_version,
             content_type=content_type,
             json=json,
             template_url=self.update.metadata["url"],
@@ -735,6 +769,9 @@ class StorageAccountsOperations(object):
         :type resource_group_name: str
         :param account_name: The name of the storage account.
         :type account_name: str
+        :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
+         overriding this default value may result in unsupported behavior.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccountKeys, or the result of cls(response)
         :rtype: ~storage.models.StorageAccountKeys
@@ -744,10 +781,13 @@ class StorageAccountsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+
         request = build_list_keys_request(
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
+            api_version=api_version,
             template_url=self.list_keys.metadata["url"],
         )
         request = _convert_request(request)
@@ -777,12 +817,17 @@ class StorageAccountsOperations(object):
         """Lists all the storage accounts available under the subscription. Note that storage keys are not
         returned; use the ListKeys operation for this.
 
+        :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
+         overriding this default value may result in unsupported behavior.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either StorageAccountListResult or the result of
          cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~storage.models.StorageAccountListResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccountListResult"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -792,6 +837,7 @@ class StorageAccountsOperations(object):
 
                 request = build_list_request(
                     subscription_id=self._config.subscription_id,
+                    api_version=api_version,
                     template_url=self.list.metadata["url"],
                 )
                 request = _convert_request(request)
@@ -801,6 +847,7 @@ class StorageAccountsOperations(object):
 
                 request = build_list_request(
                     subscription_id=self._config.subscription_id,
+                    api_version=api_version,
                     template_url=next_link,
                 )
                 request = _convert_request(request)
@@ -843,12 +890,17 @@ class StorageAccountsOperations(object):
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
+        :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
+         overriding this default value may result in unsupported behavior.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either StorageAccountListResult or the result of
          cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~storage.models.StorageAccountListResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccountListResult"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -859,6 +911,7 @@ class StorageAccountsOperations(object):
                 request = build_list_by_resource_group_request(
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
+                    api_version=api_version,
                     template_url=self.list_by_resource_group.metadata["url"],
                 )
                 request = _convert_request(request)
@@ -869,6 +922,7 @@ class StorageAccountsOperations(object):
                 request = build_list_by_resource_group_request(
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
+                    api_version=api_version,
                     template_url=next_link,
                 )
                 request = _convert_request(request)
@@ -918,6 +972,9 @@ class StorageAccountsOperations(object):
         :type account_name: str
         :param key_name:
         :type key_name: str or ~storage.models.KeyName
+        :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
+         overriding this default value may result in unsupported behavior.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccountKeys, or the result of cls(response)
         :rtype: ~storage.models.StorageAccountKeys
@@ -927,6 +984,7 @@ class StorageAccountsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         _regenerate_key = _models.StorageAccountRegenerateKeyParameters(key_name=key_name)
@@ -936,6 +994,7 @@ class StorageAccountsOperations(object):
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
+            api_version=api_version,
             content_type=content_type,
             json=json,
             template_url=self.regenerate_key.metadata["url"],

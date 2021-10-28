@@ -24,6 +24,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
 
     def __init__(
         self,
+        code_model,
         yaml_data: Dict[str, Any],
         name: str,
         description: str,
@@ -37,6 +38,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         want_tracing: bool = True,
     ) -> None:
         super().__init__(
+            code_model=code_model,
             yaml_data=yaml_data,
             name=name,
             description=description,
@@ -160,7 +162,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             excp.status_codes for excp in self.status_code_exceptions
         ]))
 
-    def _imports_shared(self, code_model, async_mode: bool) -> FileImport: # pylint: disable=unused-argument
+    def _imports_shared(self, async_mode: bool) -> FileImport: # pylint: disable=unused-argument
         file_import = FileImport()
         file_import.add_from_import("typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL)
         for param in self.parameters.method:
@@ -170,7 +172,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             file_import.merge(param.imports())
 
         for response in self.responses:
-            file_import.merge(response.imports(code_model))
+            file_import.merge(response.imports(self.code_model))
             if response.has_body:
                 file_import.merge(cast(BaseSchema, response.schema).imports())
 
@@ -182,15 +184,15 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         return file_import
 
 
-    def imports_for_multiapi(self, code_model, async_mode: bool) -> FileImport:  # pylint: disable=unused-argument
-        return self._imports_shared(code_model, async_mode)
+    def imports_for_multiapi(self, async_mode: bool) -> FileImport:  # pylint: disable=unused-argument
+        return self._imports_shared(async_mode)
 
-    def imports(self, code_model, async_mode: bool) -> FileImport:
-        file_import = self._imports_shared(code_model, async_mode)
+    def imports(self, async_mode: bool) -> FileImport:
+        file_import = self._imports_shared(async_mode)
 
         # Exceptions
         file_import.add_from_import("azure.core.exceptions", "map_error", ImportType.AZURECORE)
-        if code_model.options["azure_arm"]:
+        if self.code_model.options["azure_arm"]:
             file_import.add_from_import("azure.mgmt.core.exceptions", "ARMErrorFormat", ImportType.AZURECORE)
         file_import.add_from_import("azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE)
 
@@ -213,14 +215,14 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         if True:  # pylint: disable=using-constant-test
             file_import.add_import("warnings", ImportType.STDLIB)
 
-        if code_model.options["builders_visibility"] != "embedded":
+        if self.code_model.options["builders_visibility"] != "embedded":
             builder_group_name = self.request_builder.builder_group_name
             rest_import_path = ".." if async_mode else "."
-            if code_model.has_operations_folder:
+            if self.code_model.has_operations_folder:
                 rest_import_path += "."
             if builder_group_name:
                 file_import.add_from_import(
-                    f"{rest_import_path}{code_model.rest_layer_name}",
+                    f"{rest_import_path}{self.code_model.rest_layer_name}",
                     name_import=builder_group_name,
                     import_type=ImportType.LOCAL,
                     alias=f"rest_{builder_group_name}"
@@ -228,15 +230,15 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             else:
                 file_import.add_from_import(
                     rest_import_path,
-                    code_model.rest_layer_name,
+                    self.code_model.rest_layer_name,
                     import_type=ImportType.LOCAL,
                     alias="rest"
                 )
-        if code_model.options["builders_visibility"] == "embedded" and not async_mode:
-            file_import.merge(self.request_builder.imports(code_model))
-        if code_model.need_request_converter:
+        if self.code_model.options["builders_visibility"] == "embedded" and not async_mode:
+            file_import.merge(self.request_builder.imports())
+        if self.code_model.need_request_converter:
             relative_path = ".." if async_mode else "."
-            if code_model.has_operations_folder:
+            if self.code_model.has_operations_folder:
                 relative_path += "."
             file_import.add_from_import(
                 f"{relative_path}_vendor", "_convert_request", ImportType.LOCAL
@@ -274,15 +276,16 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
 
         parameter_creator = get_parameter(code_model).from_yaml
         parameter_list_creator = get_parameter_list(code_model)
-        parameters, multiple_media_type_parameters = create_parameters(yaml_data, parameter_creator)
+        parameters, multiple_media_type_parameters = create_parameters(yaml_data, code_model, parameter_creator)
 
         return cls(
+            code_model=code_model,
             yaml_data=yaml_data,
             name=name,
             description=yaml_data["language"]["python"]["description"],
             api_versions=set(value_dict["version"] for value_dict in yaml_data["apiVersions"]),
-            parameters=parameter_list_creator(parameters),
-            multiple_media_type_parameters=parameter_list_creator(multiple_media_type_parameters),
+            parameters=parameter_list_creator(code_model, parameters),
+            multiple_media_type_parameters=parameter_list_creator(code_model, multiple_media_type_parameters),
             summary=yaml_data["language"]["python"].get("summary"),
             responses=[SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("responses", [])],
             # Exception with no schema means default exception, we don't store them

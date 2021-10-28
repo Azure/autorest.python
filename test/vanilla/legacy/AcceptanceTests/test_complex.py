@@ -479,3 +479,8 @@ class TestComplex(object):
 
         from bodycomplex.operations._polymorphicrecursive_operations import PolymorphicrecursiveOperations as PolymorphicrecursiveOperationsPy2
         assert PolymorphicrecursiveOperations == PolymorphicrecursiveOperationsPy2
+
+    def test_pass_in_api_version(self, client):
+        assert client._config.api_version == "2016-02-29"
+        with AutoRestComplexTestService(base_url="http://localhost:3000", api_version="2021-10-01") as client:
+            assert client._config.api_version == "2021-10-01"

@@ -29,13 +29,17 @@ def build_get_method_global_valid_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword api_version: Api Version. The default value is "2015-07-01-preview". Note that
+     overriding this default value may result in unsupported behavior.
+    :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    api_version = "2015-07-01-preview"
+    api_version = kwargs.pop('api_version', "2015-07-01-preview")  # type: str
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview')
@@ -66,13 +70,17 @@ def build_get_method_global_not_provided_valid_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword api_version: Api Version. The default value is "2015-07-01-preview". Note that
+     overriding this default value may result in unsupported behavior.
+    :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    api_version = "2015-07-01-preview"
+    api_version = kwargs.pop('api_version', "2015-07-01-preview")  # type: str
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview')
@@ -103,13 +111,17 @@ def build_get_path_global_valid_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword api_version: Api Version. The default value is "2015-07-01-preview". Note that
+     overriding this default value may result in unsupported behavior.
+    :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    api_version = "2015-07-01-preview"
+    api_version = kwargs.pop('api_version', "2015-07-01-preview")  # type: str
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview')
@@ -140,13 +152,17 @@ def build_get_swagger_global_valid_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword api_version: Api Version. The default value is "2015-07-01-preview". Note that
+     overriding this default value may result in unsupported behavior.
+    :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    api_version = "2015-07-01-preview"
+    api_version = kwargs.pop('api_version', "2015-07-01-preview")  # type: str
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/azurespecials/apiVersion/swagger/string/none/query/global/2015-07-01-preview')

@@ -16,7 +16,10 @@ class RequestBuilderParameter(ParameterOnlyPathAndBodyPositional):
     @property
     def in_method_signature(self) -> bool:
         return not(
-            self.constant
+            # don't put accept in method signature
+            self.rest_api_name == "Accept"
+            # if i'm multiapi, don't add constants
+            or (self.code_model.options["multiapi"] and self.constant)
             # If i'm not in the method code, no point in being in signature
             or not self.in_method_code
             # If I'm a flattened property of a body, don't want me, want the body param
@@ -26,7 +29,11 @@ class RequestBuilderParameter(ParameterOnlyPathAndBodyPositional):
 
     @property
     def name_in_high_level_operation(self) -> str:
-        if self.is_body:
+        if self.is_multipart:
+            return "files"
+        if self.is_data_input:
+            return "data"
+        if self.is_body and not self.constant:
             return self.serialized_name
         name = self.yaml_data["language"]["python"]["name"]
         if self.implementation == "Client" and self.in_method_code:
@@ -41,12 +48,6 @@ class RequestBuilderParameter(ParameterOnlyPathAndBodyPositional):
             # don't want any base url path formatting arguments
             return False
         return super(RequestBuilderParameter, self).in_method_code
-
-    @property
-    def default_value(self) -> Optional[Any]:
-        if self.location == ParameterLocation.Body:
-            return None
-        return super(RequestBuilderParameter, self).default_value
 
     @property
     def default_value_declaration(self) -> Optional[str]:
@@ -67,11 +68,12 @@ class RequestBuilderParameter(ParameterOnlyPathAndBodyPositional):
         return self.serialized_name
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any]) -> "RequestBuilderParameter":
+    def from_yaml(cls, yaml_data: Dict[str, Any], *, code_model) -> "RequestBuilderParameter":
         http_protocol = yaml_data["protocol"].get("http", {"in": ParameterLocation.Other})
         name = yaml_data["language"]["python"]["name"]
         location = ParameterLocation(http_protocol["in"])
         return cls(
+            code_model=code_model,
             yaml_data=yaml_data,
             schema=yaml_data.get("schema", None),  # FIXME replace by operation model
             # See also https://github.com/Azure/autorest.modelerfour/issues/80

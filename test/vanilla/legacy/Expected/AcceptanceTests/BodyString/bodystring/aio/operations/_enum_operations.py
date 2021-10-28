@@ -252,6 +252,9 @@ class EnumOperations:
 
         :param field1: Sample string.
         :type field1: str
+        :keyword color_constant: Referenced Color Constant Description. The default value is
+         "green-color". Note that overriding this default value may result in unsupported behavior.
+        :paramtype color_constant: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -262,8 +265,8 @@ class EnumOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        color_constant = kwargs.pop("color_constant", "green-color")  # type: str
 
-        color_constant = "green-color"
         _enum_string_body = _models.RefColorConstant(color_constant=color_constant, field1=field1)
         json = self._serialize.body(_enum_string_body, "RefColorConstant")
 

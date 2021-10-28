@@ -49,6 +49,7 @@ class ParameterStyle(Enum):
 class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too-many-public-methods
     def __init__(
         self,
+        code_model,
         yaml_data: Dict[str, Any],
         schema: BaseSchema,
         rest_api_name: str,
@@ -70,6 +71,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         keyword_only: bool = False,
     ) -> None:
         super().__init__(yaml_data)
+        self.code_model = code_model
         self.schema = schema
         self.rest_api_name = rest_api_name
         self.serialized_name = serialized_name
@@ -99,10 +101,14 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
     @property
     def description(self):
         try:
-            if self._description and self.schema.extra_description_information:
-                return f"{self._description} {self.schema.extra_description_information}"
+            description = self._description
             if self.schema.extra_description_information:
-                return self.schema.extra_description_information
+                if description:
+                    description += " "
+                description += f"{self.schema.extra_description_information}"
+            if self.constant:
+                description += " Note that overriding this default value may result in unsupported behavior."
+            return description
         except AttributeError:
             pass
         return self._description
@@ -156,8 +162,10 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
     @property
     def in_method_signature(self) -> bool:
         return not(
-            # If I only have one value, I can't be set, so no point being in signature
-            self.constant
+            # don't put accept in signature
+            self.rest_api_name == "Accept"
+            # if i'm multiapi, don't add constants
+            or (self.code_model.options["multiapi"] and self.constant)
             # If i'm not in the method code, no point in being in signature
             or not self.in_method_code
             # If I'm grouped, my grouper will be on signature, not me
@@ -269,7 +277,9 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
     @property
     def is_kwarg(self) -> bool:
         # this means "am I in **kwargs?"
-        return self.rest_api_name == "Content-Type"
+        if self.code_model.options["multiapi"]:
+            return self.rest_api_name == "Content-Type"
+        return self.rest_api_name == "Content-Type" or (self.constant and self.rest_api_name != "Accept")
 
     @property
     def is_keyword_only(self) -> bool:
@@ -285,9 +295,10 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         return self.in_method_signature and not (self.is_keyword_only or self.is_kwarg)
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any]) -> "Parameter":
+    def from_yaml(cls, yaml_data: Dict[str, Any], *, code_model) -> "Parameter":
         http_protocol = yaml_data["protocol"].get("http", {"in": ParameterLocation.Other})
         return cls(
+            code_model=code_model,
             yaml_data=yaml_data,
             schema=yaml_data.get("schema", None),  # FIXME replace by operation model
             # See also https://github.com/Azure/autorest.modelerfour/issues/80
