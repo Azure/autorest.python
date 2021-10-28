@@ -26,14 +26,14 @@ class SchemaResponse(BaseModel):
         self,
         yaml_data: Dict[str, Any],
         schema: Optional[BaseSchema],
-        media_types: List[str],
+        content_types: List[str],
         status_codes: List[Union[str, int]],
         headers: List[HeaderResponse],
         binary: bool,
     ) -> None:
         super().__init__(yaml_data)
         self.schema = schema
-        self.media_types = media_types
+        self.content_types = content_types
         self.status_codes = status_codes
         self.headers = headers
         self.binary = binary
@@ -94,7 +94,7 @@ class SchemaResponse(BaseModel):
 
     @property
     def is_xml(self) -> bool:
-        return any(["xml" in ct for ct in self.media_types])
+        return any(["xml" in ct for ct in self.content_types])
 
     def imports(self, code_model) -> FileImport:
         file_import = FileImport()
@@ -108,7 +108,7 @@ class SchemaResponse(BaseModel):
         return cls(
             yaml_data=yaml_data,
             schema=yaml_data.get("schema", None),  # FIXME replace by operation model
-            media_types=yaml_data["protocol"]["http"].get("mediaTypes", []),
+            content_types=yaml_data["protocol"]["http"].get("mediaTypes", []),
             status_codes=[
                 int(code) if code != "default" else "default" for code in yaml_data["protocol"]["http"]["statusCodes"]
             ],

@@ -38,12 +38,12 @@ class RequestBuilder(BaseBuilder):
             description=description,
             parameters=parameters,
             responses=responses,
+            schema_requests=schema_requests,
             summary=summary,
         )
         self.url = url
         self.method = method
         self.multipart = multipart
-        self.schema_requests = schema_requests
 
     @property
     def is_stream(self) -> bool:
@@ -99,12 +99,12 @@ class RequestBuilder(BaseBuilder):
 
         first_request = yaml_data["requests"][0]
 
-        parameters, multiple_media_type_parameters = (
+        parameters, multiple_content_type_parameters = (
             create_parameters(yaml_data, code_model, RequestBuilderParameter.from_yaml)
         )
-        parameter_list = RequestBuilderParameterList(code_model, parameters + multiple_media_type_parameters)
 
         schema_requests = [SchemaRequest.from_yaml(yaml, code_model=code_model) for yaml in yaml_data["requests"]]
+        parameter_list = RequestBuilderParameterList(code_model, parameters + multiple_content_type_parameters)
         parameter_list.add_body_kwargs(schema_requests)
 
         request_builder_class = cls(
@@ -121,4 +121,5 @@ class RequestBuilder(BaseBuilder):
             summary=yaml_data["language"]["python"].get("summary"),
         )
         code_model.request_builder_ids[id(yaml_data)] = request_builder_class
+        request_builder_class.parameters.default_content_type = request_builder_class.default_content_type
         return request_builder_class

@@ -316,7 +316,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             for operation in operation_group.operations:
                 for obj in chain(
                     operation.parameters,
-                    operation.multiple_media_type_parameters or [],
+                    operation.multiple_content_type_parameters or [],
                     operation.responses,
                     operation.exceptions,
                     chain.from_iterable(response.headers for response in operation.responses),
@@ -337,11 +337,11 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         for parameter in self.global_parameters:
             self._populate_schema(parameter)
 
-    def generate_single_parameter_from_multiple_media_types_operation(self) -> None:
+    def generate_single_parameter_from_multiple_content_types_operation(self) -> None:
         for operation_group in self.operation_groups:
             for operation in operation_group.operations:
-                if operation.multiple_media_type_parameters:
-                    operation.convert_multiple_media_type_parameters()
+                if operation.multiple_content_type_parameters:
+                    operation.convert_multiple_content_type_parameters()
 
     @property
     def need_vendored_code(self) -> bool:

@@ -92,7 +92,7 @@ def _content_type_error_check(builder: BuilderType) -> List[str]:
     retval = ["else:"]
     retval.append("    raise ValueError(")
     retval.append("        \"The content_type '{}' is not one of the allowed values: \"")
-    retval.append(f'        "{builder.parameters.content_types}".format(content_type)')
+    retval.append(f'        "{builder.content_types}".format(content_type)')
     retval.append("    )")
     return retval
 
@@ -151,8 +151,8 @@ def _serialize_flattened_body(builder: BuilderType) -> List[str]:
 def _content_type_docstring(builder: BuilderType) -> str:
     content_type_str = (
         ":keyword str content_type: Media type of the body sent to the API. " +
-        f'Default value is "{builder.parameters.default_content_type}". ' +
-        'Allowed values are: "{}."'.format('", "'.join(builder.parameters.content_types))
+        f'Default value is "{builder.default_content_type}". ' +
+        'Allowed values are: "{}."'.format('", "'.join(builder.content_types))
     )
     return content_type_str
 
@@ -704,7 +704,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
 
     def _serialize_body(self, builder: BuilderType) -> List[str]:
         retval = []
-        send_xml = bool(builder.parameters.has_body and any(["xml" in ct for ct in builder.parameters.content_types]))
+        send_xml = bool(builder.parameters.has_body and any(["xml" in ct for ct in builder.content_types]))
         ser_ctxt_name = "serialization_ctxt"
         ser_ctxt = builder.parameters.body[0].xml_serialization_ctxt if send_xml else None
         if ser_ctxt:
@@ -745,7 +745,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
             for idx, schema_request in enumerate(builder.request_builder.schema_requests):
                 if_statement = "if" if idx == 0 else "elif"
                 retval.append(
-                    f'{if_statement} content_type.split(";")[0] in {schema_request.pre_semicolon_media_types}:'
+                    f'{if_statement} content_type.split(";")[0] in {schema_request.pre_semicolon_content_types}:'
                 )
                 retval.extend(["    " + line for line in self._set_body_content_kwarg(builder, schema_request)])
             retval.extend(_content_type_error_check(builder))
@@ -842,7 +842,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
             if self.code_model.options["models_mode"]:
                 retval.append(f"deserialized = self._deserialize('{response.serialization_type}', pipeline_response)")
             else:
-                is_xml = any(["xml" in ct for ct in response.media_types])
+                is_xml = any(["xml" in ct for ct in response.content_types])
                 deserialized_value = ""
                 deserialized_value = "ET.fromstring(response.text())" if is_xml else "response.json()"
                 retval.append(f"if response.content:")

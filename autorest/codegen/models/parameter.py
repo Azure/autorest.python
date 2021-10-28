@@ -69,6 +69,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         original_parameter: Optional["Parameter"] = None,
         client_default_value: Optional[Any] = None,
         keyword_only: bool = False,
+        content_types: Optional[List[str]] = None,
     ) -> None:
         super().__init__(yaml_data)
         self.code_model = code_model
@@ -88,12 +89,13 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         self.grouped_by = grouped_by
         self.original_parameter = original_parameter
         self.client_default_value = client_default_value
-        self.has_multiple_media_types: bool = False
-        self.multiple_media_types_type_annot: Optional[str] = None
-        self.multiple_media_types_docstring_type: Optional[str] = None
+        self.has_multiple_content_types: bool = False
+        self.multiple_content_types_type_annot: Optional[str] = None
+        self.multiple_content_types_docstring_type: Optional[str] = None
         self._keyword_only = keyword_only
         self.is_multipart = yaml_data.get("language", {}).get("python", {}).get("multipart", False)
         self.is_data_input = yaml_data.get("isPartialBody", False) and not self.is_multipart
+        self.content_types = content_types
 
     def __hash__(self) -> int:
         return hash(self.serialized_name)
@@ -202,14 +204,14 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         return self._implementation
 
     def _default_value(self) -> Tuple[Optional[Any], str, str]:
-        type_annot = self.multiple_media_types_type_annot or self.schema.operation_type_annotation
+        type_annot = self.multiple_content_types_type_annot or self.schema.operation_type_annotation
         if not self.required and not type_annot == "Any":
             type_annot = f"Optional[{type_annot}]"
 
         if self.client_default_value is not None:
             return self.client_default_value, self.schema.get_declaration(self.client_default_value), type_annot
 
-        if self.multiple_media_types_type_annot:
+        if self.multiple_content_types_type_annot:
             # means this parameter has multiple media types. We force default value to be None.
             default_value = None
             default_value_declaration = "None"
@@ -256,7 +258,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
 
     @property
     def docstring_type(self) -> str:
-        return self.multiple_media_types_docstring_type or self.schema.docstring_type
+        return self.multiple_content_types_docstring_type or self.schema.docstring_type
 
     @property
     def has_default_value(self):
@@ -299,7 +301,13 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         return self.in_method_signature and not (self.is_keyword_only or self.is_kwarg)
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], *, code_model) -> "Parameter":
+    def from_yaml(
+        cls,
+        yaml_data: Dict[str, Any],
+        *,
+        code_model,
+        content_types: Optional[List[str]] = None
+    ) -> "Parameter":
         http_protocol = yaml_data["protocol"].get("http", {"in": ParameterLocation.Other})
         return cls(
             code_model=code_model,
@@ -323,13 +331,14 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
             original_parameter=yaml_data.get("originalParameter", None),
             flattened=yaml_data.get("flattened", False),
             client_default_value=yaml_data.get("clientDefaultValue"),
+            content_types=content_types
         )
 
     def imports(self) -> FileImport:
         file_import = self.schema.imports()
         if not self.required:
             file_import.add_from_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
-        if self.has_multiple_media_types:
+        if self.has_multiple_content_types:
             file_import.add_from_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
         return file_import
 

@@ -30,7 +30,7 @@ def _is_json(schema_requests: List[SchemaRequest], body_method_param: Parameter)
     content_types = set(
         m
         for request in schema_requests
-        for m in request.media_types
+        for m in request.content_types
     )
     return any(c for c in content_types if re.compile(r'^(application|text)/([0-9a-z+.]+\+)?json$').match(c))
 
