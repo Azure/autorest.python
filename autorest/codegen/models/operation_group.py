@@ -53,7 +53,7 @@ class OperationGroup(BaseModel):
     def imports_for_multiapi(self, async_mode: bool) -> FileImport:
         file_import = FileImport()
         for operation in self.operations:
-            file_import.merge(operation.imports_for_multiapi(self.code_model, async_mode))
+            file_import.merge(operation.imports_for_multiapi(async_mode))
         return file_import
 
     def imports(self, async_mode: bool, has_schemas: bool) -> FileImport:
@@ -62,7 +62,7 @@ class OperationGroup(BaseModel):
         file_import.add_from_import("azure.core.exceptions", "ResourceNotFoundError", ImportType.AZURECORE)
         file_import.add_from_import("azure.core.exceptions", "ResourceExistsError", ImportType.AZURECORE)
         for operation in self.operations:
-            file_import.merge(operation.imports(self.code_model, async_mode))
+            file_import.merge(operation.imports(async_mode))
         if self.code_model.options["tracing"]:
             if async_mode:
                 file_import.add_from_import(

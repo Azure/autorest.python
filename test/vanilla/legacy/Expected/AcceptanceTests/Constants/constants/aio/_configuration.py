@@ -19,14 +19,24 @@ class AutoRestSwaggerConstantServiceConfiguration(Configuration):
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
+
+    :keyword header_constant: Constant header property on the client that is a required parameter for operation 'constants_putClientConstants'. The default value is True. Note that overriding this default value may result in unsupported behavior.
+    :paramtype header_constant: bool
+    :keyword query_constant: Constant query property on the client that is a required parameter for operation 'constants_putClientConstants'. The default value is 100. Note that overriding this default value may result in unsupported behavior.
+    :paramtype query_constant: int
+    :keyword path_constant: Constant path property on the client that is a required parameter for operation 'constants_putClientConstants'. The default value is "path". Note that overriding this default value may result in unsupported behavior.
+    :paramtype path_constant: str
     """
 
     def __init__(self, **kwargs: Any) -> None:
         super(AutoRestSwaggerConstantServiceConfiguration, self).__init__(**kwargs)
+        header_constant = kwargs.pop("header_constant", True)  # type: bool
+        query_constant = kwargs.pop("query_constant", 100)  # type: int
+        path_constant = kwargs.pop("path_constant", "path")  # type: str
 
-        self.header_constant = True
-        self.query_constant = 100
-        self.path_constant = "path"
+        self.header_constant = header_constant
+        self.query_constant = query_constant
+        self.path_constant = path_constant
         kwargs.setdefault("sdk_moniker", "autorestswaggerconstantservice/{}".format(VERSION))
         self._configure(**kwargs)
 

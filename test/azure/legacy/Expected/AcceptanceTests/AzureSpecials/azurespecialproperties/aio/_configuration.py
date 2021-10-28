@@ -29,18 +29,22 @@ class AutoRestAzureSpecialParametersTestClientConfiguration(Configuration):
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param subscription_id: The subscription id, which appears in the path, always modeled in credentials. The value is always '1234-5678-9012-3456'.
     :type subscription_id: str
+    :keyword api_version: Api Version. The default value is "2015-07-01-preview". Note that overriding this default value may result in unsupported behavior.
+    :paramtype api_version: str
     """
 
     def __init__(self, credential: "AsyncTokenCredential", subscription_id: str, **kwargs: Any) -> None:
+        super(AutoRestAzureSpecialParametersTestClientConfiguration, self).__init__(**kwargs)
+        api_version = kwargs.pop("api_version", "2015-07-01-preview")  # type: str
+
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
         if subscription_id is None:
             raise ValueError("Parameter 'subscription_id' must not be None.")
-        super(AutoRestAzureSpecialParametersTestClientConfiguration, self).__init__(**kwargs)
 
         self.credential = credential
         self.subscription_id = subscription_id
-        self.api_version = "2015-07-01-preview"
+        self.api_version = api_version
         self.credential_scopes = kwargs.pop("credential_scopes", ["https://management.azure.com/.default"])
         kwargs.setdefault("sdk_moniker", "autorestazurespecialparameterstestclient/{}".format(VERSION))
         self._configure(**kwargs)

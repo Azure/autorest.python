@@ -19,12 +19,16 @@ class AutoRestComplexTestServiceConfiguration(Configuration):
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
+
+    :keyword api_version: Api Version. The default value is "2016-02-29". Note that overriding this default value may result in unsupported behavior.
+    :paramtype api_version: str
     """
 
     def __init__(self, **kwargs: Any) -> None:
         super(AutoRestComplexTestServiceConfiguration, self).__init__(**kwargs)
+        api_version = kwargs.pop("api_version", "2016-02-29")  # type: str
 
-        self.api_version = "2016-02-29"
+        self.api_version = api_version
         kwargs.setdefault("sdk_moniker", "autorestcomplextestservice/{}".format(VERSION))
         self._configure(**kwargs)
 

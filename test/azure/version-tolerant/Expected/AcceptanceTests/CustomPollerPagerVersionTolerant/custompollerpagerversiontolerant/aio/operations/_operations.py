@@ -466,6 +466,10 @@ class PagingOperations:
         :keyword required_query_parameter: A required integer query parameter. Put in value '100' to
          pass test.
         :paramtype required_query_parameter: int
+        :keyword query_constant: A constant. Must be True and will be passed as a query parameter to
+         nextOperationWithQueryParams. The default value is True. Note that overriding this default
+         value may result in unsupported behavior.
+        :paramtype query_constant: bool
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -486,6 +490,8 @@ class PagingOperations:
                     ]
                 }
         """
+        query_constant = kwargs.pop('query_constant', True)  # type: bool
+
         cls = kwargs.pop('cls', None)  # type: ClsType[Any]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
@@ -495,6 +501,7 @@ class PagingOperations:
             if not next_link:
                 
                 request = build_paging_get_with_query_params_request(
+                    query_constant=query_constant,
                     required_query_parameter=required_query_parameter,
                     template_url=self.get_with_query_params.metadata['url'],
                     headers=kwargs.pop("headers", {}),
@@ -505,6 +512,7 @@ class PagingOperations:
             else:
                 
                 request = build_paging_next_operation_with_query_params_request(
+                    query_constant=query_constant,
                     template_url='/paging/multiple/nextOperationWithQueryParams',
                     headers=kwargs.pop("headers", {}),
                     params=kwargs.pop("params", {}),

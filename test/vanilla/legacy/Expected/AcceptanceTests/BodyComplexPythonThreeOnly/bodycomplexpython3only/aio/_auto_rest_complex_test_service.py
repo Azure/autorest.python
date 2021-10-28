@@ -52,6 +52,9 @@ class AutoRestComplexTestService:
     :vartype flattencomplex: bodycomplexpython3only.aio.operations.FlattencomplexOperations
     :param base_url: Service URL. Default value is 'http://localhost:3000'.
     :type base_url: str
+    :keyword api_version: Api Version. The default value is "2016-02-29". Note that overriding this
+     default value may result in unsupported behavior.
+    :paramtype api_version: str
     """
 
     def __init__(self, base_url: str = "http://localhost:3000", **kwargs: Any) -> None:

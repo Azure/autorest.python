@@ -401,7 +401,7 @@ class HttpSuccessOperations:
     async def put200(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Put boolean value true returning 200 success.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -443,7 +443,7 @@ class HttpSuccessOperations:
     async def patch200(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Patch true Boolean value in request returning 200.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -485,7 +485,7 @@ class HttpSuccessOperations:
     async def post200(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Post bollean value true in request that returns a 200.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -527,7 +527,7 @@ class HttpSuccessOperations:
     async def delete200(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Delete simple boolean value true returns 200.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -569,7 +569,7 @@ class HttpSuccessOperations:
     async def put201(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Put true Boolean value in request returns 201.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -611,7 +611,7 @@ class HttpSuccessOperations:
     async def post201(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Post true Boolean value in request returns 201 (Created).
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -653,7 +653,7 @@ class HttpSuccessOperations:
     async def put202(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Put true Boolean value in request returns 202 (Accepted).
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -695,7 +695,7 @@ class HttpSuccessOperations:
     async def patch202(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Patch true Boolean value in request returns 202.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -737,7 +737,7 @@ class HttpSuccessOperations:
     async def post202(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Post true Boolean value in request returns 202 (Accepted).
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -779,7 +779,7 @@ class HttpSuccessOperations:
     async def delete202(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Delete true Boolean value in request returns 202 (accepted).
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -852,7 +852,7 @@ class HttpSuccessOperations:
     async def put204(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Put true Boolean value in request returns 204 (no content).
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -894,7 +894,7 @@ class HttpSuccessOperations:
     async def patch204(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Patch true Boolean value in request returns 204 (no content).
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -936,7 +936,7 @@ class HttpSuccessOperations:
     async def post204(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Post true Boolean value in request returns 204 (no content).
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -978,7 +978,7 @@ class HttpSuccessOperations:
     async def delete204(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Delete true Boolean value in request returns 204 (no content).
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -1227,7 +1227,7 @@ class HttpRedirectsOperations:
         """Put true Boolean value in request returns 301.  This request should not be automatically
         redirected, but should return the received 301 to the caller for evaluation.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -1343,7 +1343,7 @@ class HttpRedirectsOperations:
         """Patch true Boolean value in request returns 302.  This request should not be automatically
         redirected, but should return the received 302 to the caller for evaluation.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -1389,7 +1389,7 @@ class HttpRedirectsOperations:
         """Post true Boolean value in request returns 303.  This request should be automatically
         redirected usign a get, ultimately returning a 200 status code.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -1540,7 +1540,7 @@ class HttpRedirectsOperations:
     async def put307(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Put redirected with 307, resulting in a 200 after redirect.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -1586,7 +1586,7 @@ class HttpRedirectsOperations:
     async def patch307(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Patch redirected with 307, resulting in a 200 after redirect.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -1632,7 +1632,7 @@ class HttpRedirectsOperations:
     async def post307(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Post redirected with 307, resulting in a 200 after redirect.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -1678,7 +1678,7 @@ class HttpRedirectsOperations:
     async def delete307(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Delete redirected with 307, resulting in a 200 after redirect.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -1836,7 +1836,7 @@ class HttpClientFailureOperations:
     async def put400(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -1878,7 +1878,7 @@ class HttpClientFailureOperations:
     async def patch400(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -1920,7 +1920,7 @@ class HttpClientFailureOperations:
     async def post400(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -1962,7 +1962,7 @@ class HttpClientFailureOperations:
     async def delete400(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2128,7 +2128,7 @@ class HttpClientFailureOperations:
     async def put404(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 404 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2170,7 +2170,7 @@ class HttpClientFailureOperations:
     async def patch405(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 405 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2212,7 +2212,7 @@ class HttpClientFailureOperations:
     async def post406(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 406 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2254,7 +2254,7 @@ class HttpClientFailureOperations:
     async def delete407(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 407 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2296,7 +2296,7 @@ class HttpClientFailureOperations:
     async def put409(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 409 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2462,7 +2462,7 @@ class HttpClientFailureOperations:
     async def put413(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 413 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2504,7 +2504,7 @@ class HttpClientFailureOperations:
     async def patch414(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 414 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2546,7 +2546,7 @@ class HttpClientFailureOperations:
     async def post415(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 415 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2619,7 +2619,7 @@ class HttpClientFailureOperations:
     async def delete417(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 417 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2773,7 +2773,7 @@ class HttpServerFailureOperations:
     async def post505(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 505 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2815,7 +2815,7 @@ class HttpServerFailureOperations:
     async def delete505(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 505 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2907,7 +2907,7 @@ class HttpRetryOperations:
     async def put500(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 500 status code, then 200 after retry.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2949,7 +2949,7 @@ class HttpRetryOperations:
     async def patch500(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 500 status code, then 200 after retry.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3060,7 +3060,7 @@ class HttpRetryOperations:
     async def post503(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 503 status code, then 200 after retry.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3102,7 +3102,7 @@ class HttpRetryOperations:
     async def delete503(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 503 status code, then 200 after retry.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3144,7 +3144,7 @@ class HttpRetryOperations:
     async def put504(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 504 status code, then 200 after retry.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3186,7 +3186,7 @@ class HttpRetryOperations:
     async def patch504(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 504 status code, then 200 after retry.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :return: None
         :rtype: None

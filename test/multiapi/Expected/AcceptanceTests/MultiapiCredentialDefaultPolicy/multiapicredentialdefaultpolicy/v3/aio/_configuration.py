@@ -30,9 +30,9 @@ class MultiapiServiceClientConfiguration(Configuration):
         credential: AzureKeyCredential,
         **kwargs: Any
     ) -> None:
+        super(MultiapiServiceClientConfiguration, self).__init__(**kwargs)
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
-        super(MultiapiServiceClientConfiguration, self).__init__(**kwargs)
 
         self.credential = credential
         self.api_version = "3.0.0"

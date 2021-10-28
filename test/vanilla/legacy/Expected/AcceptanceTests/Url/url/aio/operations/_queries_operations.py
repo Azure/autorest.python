@@ -92,6 +92,9 @@ class QueriesOperations:
     async def get_boolean_true(self, **kwargs: Any) -> None:
         """Get true Boolean value on path.
 
+        :keyword bool_query: true boolean value. The default value is True. Note that overriding this
+         default value may result in unsupported behavior.
+        :paramtype bool_query: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -101,7 +104,10 @@ class QueriesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        bool_query = kwargs.pop("bool_query", True)  # type: bool
+
         request = build_get_boolean_true_request(
+            bool_query=bool_query,
             template_url=self.get_boolean_true.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -126,6 +132,9 @@ class QueriesOperations:
     async def get_boolean_false(self, **kwargs: Any) -> None:
         """Get false Boolean value on path.
 
+        :keyword bool_query: false boolean value. The default value is False. Note that overriding this
+         default value may result in unsupported behavior.
+        :paramtype bool_query: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -135,7 +144,10 @@ class QueriesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        bool_query = kwargs.pop("bool_query", False)  # type: bool
+
         request = build_get_boolean_false_request(
+            bool_query=bool_query,
             template_url=self.get_boolean_false.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -197,6 +209,9 @@ class QueriesOperations:
     async def get_int_one_million(self, **kwargs: Any) -> None:
         """Get '1000000' integer value.
 
+        :keyword int_query: '1000000' integer value. The default value is 1000000. Note that overriding
+         this default value may result in unsupported behavior.
+        :paramtype int_query: int
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -206,7 +221,10 @@ class QueriesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        int_query = kwargs.pop("int_query", 1000000)  # type: int
+
         request = build_get_int_one_million_request(
+            int_query=int_query,
             template_url=self.get_int_one_million.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -231,6 +249,9 @@ class QueriesOperations:
     async def get_int_negative_one_million(self, **kwargs: Any) -> None:
         """Get '-1000000' integer value.
 
+        :keyword int_query: '-1000000' integer value. The default value is -1000000. Note that
+         overriding this default value may result in unsupported behavior.
+        :paramtype int_query: int
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -240,7 +261,10 @@ class QueriesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        int_query = kwargs.pop("int_query", -1000000)  # type: int
+
         request = build_get_int_negative_one_million_request(
+            int_query=int_query,
             template_url=self.get_int_negative_one_million.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -302,6 +326,9 @@ class QueriesOperations:
     async def get_ten_billion(self, **kwargs: Any) -> None:
         """Get '10000000000' 64 bit integer value.
 
+        :keyword long_query: '10000000000' 64 bit integer value. The default value is 10000000000. Note
+         that overriding this default value may result in unsupported behavior.
+        :paramtype long_query: long
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -311,7 +338,10 @@ class QueriesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        long_query = kwargs.pop("long_query", 10000000000)  # type: int
+
         request = build_get_ten_billion_request(
+            long_query=long_query,
             template_url=self.get_ten_billion.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -336,6 +366,9 @@ class QueriesOperations:
     async def get_negative_ten_billion(self, **kwargs: Any) -> None:
         """Get '-10000000000' 64 bit integer value.
 
+        :keyword long_query: '-10000000000' 64 bit integer value. The default value is -10000000000.
+         Note that overriding this default value may result in unsupported behavior.
+        :paramtype long_query: long
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -345,7 +378,10 @@ class QueriesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        long_query = kwargs.pop("long_query", -10000000000)  # type: int
+
         request = build_get_negative_ten_billion_request(
+            long_query=long_query,
             template_url=self.get_negative_ten_billion.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -407,6 +443,9 @@ class QueriesOperations:
     async def float_scientific_positive(self, **kwargs: Any) -> None:
         """Get '1.034E+20' numeric value.
 
+        :keyword float_query: '1.034E+20'numeric value. The default value is 103400000000000000000.
+         Note that overriding this default value may result in unsupported behavior.
+        :paramtype float_query: float
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -416,7 +455,10 @@ class QueriesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        float_query = kwargs.pop("float_query", 103400000000000000000)  # type: float
+
         request = build_float_scientific_positive_request(
+            float_query=float_query,
             template_url=self.float_scientific_positive.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -441,6 +483,9 @@ class QueriesOperations:
     async def float_scientific_negative(self, **kwargs: Any) -> None:
         """Get '-1.034E-20' numeric value.
 
+        :keyword float_query: '-1.034E-20'numeric value. The default value is -1.034e-20. Note that
+         overriding this default value may result in unsupported behavior.
+        :paramtype float_query: float
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -450,7 +495,10 @@ class QueriesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        float_query = kwargs.pop("float_query", -1.034e-20)  # type: float
+
         request = build_float_scientific_negative_request(
+            float_query=float_query,
             template_url=self.float_scientific_negative.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -512,6 +560,9 @@ class QueriesOperations:
     async def double_decimal_positive(self, **kwargs: Any) -> None:
         """Get '9999999.999' numeric value.
 
+        :keyword double_query: '9999999.999'numeric value. The default value is 9999999.999. Note that
+         overriding this default value may result in unsupported behavior.
+        :paramtype double_query: float
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -521,7 +572,10 @@ class QueriesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        double_query = kwargs.pop("double_query", 9999999.999)  # type: float
+
         request = build_double_decimal_positive_request(
+            double_query=double_query,
             template_url=self.double_decimal_positive.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -546,6 +600,9 @@ class QueriesOperations:
     async def double_decimal_negative(self, **kwargs: Any) -> None:
         """Get '-9999999.999' numeric value.
 
+        :keyword double_query: '-9999999.999'numeric value. The default value is -9999999.999. Note
+         that overriding this default value may result in unsupported behavior.
+        :paramtype double_query: float
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -555,7 +612,10 @@ class QueriesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        double_query = kwargs.pop("double_query", -9999999.999)  # type: float
+
         request = build_double_decimal_negative_request(
+            double_query=double_query,
             template_url=self.double_decimal_negative.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -617,6 +677,9 @@ class QueriesOperations:
     async def string_unicode(self, **kwargs: Any) -> None:
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
+        :keyword string_query: '啊齄丂狛狜隣郎隣兀﨩'multi-byte string value. The default value is "啊齄丂狛狜隣郎隣兀﨩".
+         Note that overriding this default value may result in unsupported behavior.
+        :paramtype string_query: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -626,7 +689,10 @@ class QueriesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        string_query = kwargs.pop("string_query", "啊齄丂狛狜隣郎隣兀﨩")  # type: str
+
         request = build_string_unicode_request(
+            string_query=string_query,
             template_url=self.string_unicode.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -651,6 +717,10 @@ class QueriesOperations:
     async def string_url_encoded(self, **kwargs: Any) -> None:
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
+        :keyword string_query: 'begin!*'();:@ &=+$,/?#[]end' url encoded string value. The default
+         value is "begin!*'();:@ &=+$,/?#[]end". Note that overriding this default value may result in
+         unsupported behavior.
+        :paramtype string_query: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -660,7 +730,10 @@ class QueriesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        string_query = kwargs.pop("string_query", "begin!*'();:@ &=+$,/?#[]end")  # type: str
+
         request = build_string_url_encoded_request(
+            string_query=string_query,
             template_url=self.string_url_encoded.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -685,6 +758,9 @@ class QueriesOperations:
     async def string_empty(self, **kwargs: Any) -> None:
         """Get ''.
 
+        :keyword string_query: '' string value. The default value is "". Note that overriding this
+         default value may result in unsupported behavior.
+        :paramtype string_query: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -694,7 +770,10 @@ class QueriesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        string_query = kwargs.pop("string_query", "")  # type: str
+
         request = build_string_empty_request(
+            string_query=string_query,
             template_url=self.string_empty.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -867,6 +946,9 @@ class QueriesOperations:
     async def byte_empty(self, **kwargs: Any) -> None:
         """Get '' as byte array.
 
+        :keyword byte_query: '' as byte array. The default value is bytearray("", encoding="utf-8").
+         Note that overriding this default value may result in unsupported behavior.
+        :paramtype byte_query: bytearray
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -876,7 +958,10 @@ class QueriesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        byte_query = kwargs.pop("byte_query", bytearray("", encoding="utf-8"))  # type: bytearray
+
         request = build_byte_empty_request(
+            byte_query=byte_query,
             template_url=self.byte_empty.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -938,6 +1023,9 @@ class QueriesOperations:
     async def date_valid(self, **kwargs: Any) -> None:
         """Get '2012-01-01' as date.
 
+        :keyword date_query: '2012-01-01' as date. The default value is "2012-01-01". Note that
+         overriding this default value may result in unsupported behavior.
+        :paramtype date_query: ~datetime.date
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -947,7 +1035,10 @@ class QueriesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        date_query = kwargs.pop("date_query", "2012-01-01")  # type: datetime.date
+
         request = build_date_valid_request(
+            date_query=date_query,
             template_url=self.date_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1009,6 +1100,10 @@ class QueriesOperations:
     async def date_time_valid(self, **kwargs: Any) -> None:
         """Get '2012-01-01T01:01:01Z' as date-time.
 
+        :keyword date_time_query: '2012-01-01T01:01:01Z' as date-time. The default value is
+         "2012-01-01T01:01:01Z". Note that overriding this default value may result in unsupported
+         behavior.
+        :paramtype date_time_query: ~datetime.datetime
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -1018,7 +1113,10 @@ class QueriesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        date_time_query = kwargs.pop("date_time_query", "2012-01-01T01:01:01Z")  # type: datetime.datetime
+
         request = build_date_time_valid_request(
+            date_time_query=date_time_query,
             template_url=self.date_time_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),

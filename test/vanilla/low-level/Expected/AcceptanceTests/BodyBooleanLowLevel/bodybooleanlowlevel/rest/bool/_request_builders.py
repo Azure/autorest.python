@@ -64,6 +64,9 @@ def build_put_true_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword json: The default value is True. Note that overriding this default value may result in
+     unsupported behavior.
+    :paramtype json: bool
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -71,8 +74,8 @@ def build_put_true_request(
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    json = kwargs.pop('json', True)  # type: bool
 
-    json = True
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/bool/true')
@@ -134,6 +137,9 @@ def build_put_false_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword json: The default value is False. Note that overriding this default value may result
+     in unsupported behavior.
+    :paramtype json: bool
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -141,8 +147,8 @@ def build_put_false_request(
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    json = kwargs.pop('json', False)  # type: bool
 
-    json = False
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/bool/false')

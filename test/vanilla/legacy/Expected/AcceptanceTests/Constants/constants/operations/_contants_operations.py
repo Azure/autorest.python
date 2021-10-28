@@ -177,7 +177,8 @@ def build_put_no_model_as_string_required_one_value_no_default_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    input = "value1"
+    input = kwargs.pop('input', "value1")  # type: str
+
     # Construct URL
     url = kwargs.pop("template_url", '/constants/putNoModelAsStringRequiredOneValueNoDefault')
 
@@ -198,7 +199,8 @@ def build_put_no_model_as_string_required_one_value_default_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    input = "value1"
+    input = kwargs.pop('input', "value1")  # type: str
+
     # Construct URL
     url = kwargs.pop("template_url", '/constants/putNoModelAsStringRequiredOneValueDefault')
 
@@ -395,9 +397,10 @@ def build_put_client_constants_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    header_constant = True
-    query_constant = 100
-    path_constant = "path"
+    header_constant = kwargs.pop('header_constant', True)  # type: bool
+    query_constant = kwargs.pop('query_constant', 100)  # type: int
+    path_constant = kwargs.pop('path_constant', "path")  # type: str
+
     # Construct URL
     url = kwargs.pop("template_url", '/constants/clientConstants/{path-constant}')
     path_format_arguments = {
@@ -544,7 +547,7 @@ class ContantsOperations(object):
 
         Puts constants to the testserver.
 
-        :param input:
+        :param input: The default value is "value1".
         :type input: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -587,7 +590,7 @@ class ContantsOperations(object):
 
         Puts constants to the testserver.
 
-        :param input:
+        :param input: The default value is "value1".
         :type input: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -714,6 +717,9 @@ class ContantsOperations(object):
 
         Puts constants to the testserver.
 
+        :keyword input: The default value is "value1". Note that overriding this default value may
+         result in unsupported behavior.
+        :paramtype input: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -723,7 +729,10 @@ class ContantsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        input = kwargs.pop("input", "value1")  # type: str
+
         request = build_put_no_model_as_string_required_one_value_no_default_request(
+            input=input,
             template_url=self.put_no_model_as_string_required_one_value_no_default.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -752,6 +761,9 @@ class ContantsOperations(object):
 
         Puts constants to the testserver.
 
+        :keyword input: The default value is "value1". Note that overriding this default value may
+         result in unsupported behavior.
+        :paramtype input: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -761,7 +773,10 @@ class ContantsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        input = kwargs.pop("input", "value1")  # type: str
+
         request = build_put_no_model_as_string_required_one_value_default_request(
+            input=input,
             template_url=self.put_no_model_as_string_required_one_value_default.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1143,6 +1158,9 @@ class ContantsOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_put_client_constants_request(
+            header_constant=self._config.header_constant,
+            query_constant=self._config.query_constant,
+            path_constant=self._config.path_constant,
             template_url=self.put_client_constants.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),

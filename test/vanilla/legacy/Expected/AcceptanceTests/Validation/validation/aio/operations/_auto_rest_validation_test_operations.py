@@ -45,6 +45,9 @@ class AutoRestValidationTestOperationsMixin:
         :type resource_group_name: str
         :param id: Required int multiple of 10 from 100 to 1000.
         :type id: int
+        :keyword api_version: Api Version. The default value is "1.0.0". Note that overriding this
+         default value may result in unsupported behavior.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Product, or the result of cls(response)
         :rtype: ~validation.models.Product
@@ -54,10 +57,13 @@ class AutoRestValidationTestOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        api_version = kwargs.pop("api_version", "1.0.0")  # type: str
+
         request = build_validation_of_method_parameters_request(
             subscription_id=self._config.subscription_id,
             resource_group_name=resource_group_name,
             id=id,
+            api_version=api_version,
             template_url=self.validation_of_method_parameters.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -94,6 +100,9 @@ class AutoRestValidationTestOperationsMixin:
         :type id: int
         :param body:
         :type body: ~validation.models.Product
+        :keyword api_version: Api Version. The default value is "1.0.0". Note that overriding this
+         default value may result in unsupported behavior.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Product, or the result of cls(response)
         :rtype: ~validation.models.Product
@@ -103,6 +112,7 @@ class AutoRestValidationTestOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        api_version = kwargs.pop("api_version", "1.0.0")  # type: str
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body is not None:
@@ -114,6 +124,7 @@ class AutoRestValidationTestOperationsMixin:
             subscription_id=self._config.subscription_id,
             resource_group_name=resource_group_name,
             id=id,
+            api_version=api_version,
             content_type=content_type,
             json=json,
             template_url=self.validation_of_body.metadata["url"],
@@ -144,6 +155,9 @@ class AutoRestValidationTestOperationsMixin:
     async def get_with_constant_in_path(self, **kwargs: Any) -> None:
         """get_with_constant_in_path.
 
+        :keyword constant_param: The default value is "constant". Note that overriding this default
+         value may result in unsupported behavior.
+        :paramtype constant_param: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -153,7 +167,10 @@ class AutoRestValidationTestOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        constant_param = kwargs.pop("constant_param", "constant")  # type: str
+
         request = build_get_with_constant_in_path_request(
+            constant_param=constant_param,
             template_url=self.get_with_constant_in_path.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -181,6 +198,9 @@ class AutoRestValidationTestOperationsMixin:
 
         :param body:
         :type body: ~validation.models.Product
+        :keyword constant_param: The default value is "constant". Note that overriding this default
+         value may result in unsupported behavior.
+        :paramtype constant_param: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Product, or the result of cls(response)
         :rtype: ~validation.models.Product
@@ -190,6 +210,7 @@ class AutoRestValidationTestOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        constant_param = kwargs.pop("constant_param", "constant")  # type: str
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body is not None:
@@ -198,6 +219,7 @@ class AutoRestValidationTestOperationsMixin:
             json = None
 
         request = build_post_with_constant_in_body_request(
+            constant_param=constant_param,
             content_type=content_type,
             json=json,
             template_url=self.post_with_constant_in_body.metadata["url"],

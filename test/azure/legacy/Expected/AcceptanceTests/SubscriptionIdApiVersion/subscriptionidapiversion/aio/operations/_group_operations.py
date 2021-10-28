@@ -58,6 +58,9 @@ class GroupOperations:
 
         :param resource_group_name: Resource Group name 'testgroup101'.
         :type resource_group_name: str
+        :keyword api_version: Api Version. The default value is "2014-04-01-preview". Note that
+         overriding this default value may result in unsupported behavior.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: SampleResourceGroup, or the result of cls(response)
         :rtype: ~subscriptionidapiversion.models.SampleResourceGroup
@@ -67,9 +70,12 @@ class GroupOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        api_version = kwargs.pop("api_version", "2014-04-01-preview")  # type: str
+
         request = build_get_sample_resource_group_request(
             subscription_id=self._config.subscription_id,
             resource_group_name=resource_group_name,
+            api_version=api_version,
             template_url=self.get_sample_resource_group.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),

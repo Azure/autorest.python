@@ -46,9 +46,9 @@ def build_basic_get_valid_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_basic_put_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    api_version = kwargs.pop("api_version", "2016-02-29")  # type: str
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
-    api_version = "2016-02-29"
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", "/complex/basic/valid")
@@ -927,6 +927,9 @@ class BasicOperations(object):
 
         :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}.
         :type complex_body: Any
+        :keyword api_version: Api Version. The default value is "2016-02-29". Note that overriding this
+         default value may result in unsupported behavior.
+        :paramtype api_version: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -945,11 +948,13 @@ class BasicOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        api_version = kwargs.pop("api_version", "2016-02-29")  # type: str
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         json = complex_body
 
         request = build_basic_put_valid_request(
+            api_version=api_version,
             content_type=content_type,
             json=json,
             template_url=self.put_valid.metadata["url"],

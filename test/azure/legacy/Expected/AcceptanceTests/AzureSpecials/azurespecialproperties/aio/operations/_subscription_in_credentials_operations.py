@@ -135,6 +135,9 @@ class SubscriptionInCredentialsOperations:
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
         '1234-5678-9012-3456' to succeed.
 
+        :keyword api_version: Api Version. The default value is "2015-07-01-preview". Note that
+         overriding this default value may result in unsupported behavior.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -144,8 +147,11 @@ class SubscriptionInCredentialsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        api_version = kwargs.pop("api_version", "2015-07-01-preview")  # type: str
+
         request = build_post_method_global_not_provided_valid_request(
             subscription_id=self._config.subscription_id,
+            api_version=api_version,
             template_url=self.post_method_global_not_provided_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),

@@ -110,7 +110,7 @@ def build_put_no_model_as_string_no_required_one_value_no_default_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword input:
+    :keyword input: The default value is "value1".
     :paramtype input: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -147,7 +147,7 @@ def build_put_no_model_as_string_no_required_one_value_default_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword input:
+    :keyword input: The default value is "value1".
     :paramtype input: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -258,13 +258,17 @@ def build_put_no_model_as_string_required_one_value_no_default_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword input: The default value is "value1". Note that overriding this default value may
+     result in unsupported behavior.
+    :paramtype input: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    input = "value1"
+    input = kwargs.pop('input', "value1")  # type: str
+
     # Construct URL
     url = kwargs.pop("template_url", '/constants/putNoModelAsStringRequiredOneValueNoDefault')
 
@@ -292,13 +296,17 @@ def build_put_no_model_as_string_required_one_value_default_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword input: The default value is "value1". Note that overriding this default value may
+     result in unsupported behavior.
+    :paramtype input: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    input = "value1"
+    input = kwargs.pop('input', "value1")  # type: str
+
     # Construct URL
     url = kwargs.pop("template_url", '/constants/putNoModelAsStringRequiredOneValueDefault')
 
@@ -621,15 +629,28 @@ def build_put_client_constants_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword header_constant: Constant header property on the client that is a required parameter
+     for operation 'constants_putClientConstants'. The default value is True. Note that overriding
+     this default value may result in unsupported behavior.
+    :paramtype header_constant: bool
+    :keyword query_constant: Constant query property on the client that is a required parameter for
+     operation 'constants_putClientConstants'. The default value is 100. Note that overriding this
+     default value may result in unsupported behavior.
+    :paramtype query_constant: int
+    :keyword path_constant: Constant path property on the client that is a required parameter for
+     operation 'constants_putClientConstants'. The default value is "path". Note that overriding
+     this default value may result in unsupported behavior.
+    :paramtype path_constant: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    header_constant = True
-    query_constant = 100
-    path_constant = "path"
+    header_constant = kwargs.pop('header_constant', True)  # type: bool
+    query_constant = kwargs.pop('query_constant', 100)  # type: int
+    path_constant = kwargs.pop('path_constant', "path")  # type: str
+
     # Construct URL
     url = kwargs.pop("template_url", '/constants/clientConstants/{path-constant}')
     path_format_arguments = {

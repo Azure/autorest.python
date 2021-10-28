@@ -25,9 +25,9 @@ class ParmaterizedEndpointClientConfiguration(Configuration):
     """
 
     def __init__(self, endpoint: str, **kwargs: Any) -> None:
+        super(ParmaterizedEndpointClientConfiguration, self).__init__(**kwargs)
         if endpoint is None:
             raise ValueError("Parameter 'endpoint' must not be None.")
-        super(ParmaterizedEndpointClientConfiguration, self).__init__(**kwargs)
 
         self.endpoint = endpoint
         kwargs.setdefault("sdk_moniker", "parmaterizedendpointclient/{}".format(VERSION))

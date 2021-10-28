@@ -912,6 +912,9 @@ class XmlOperations:
     async def list_containers(self, **kwargs: Any) -> "_models.ListContainersResponse":
         """Lists containers in a storage account.
 
+        :keyword comp: The default value is "list". Note that overriding this default value may result
+         in unsupported behavior.
+        :paramtype comp: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ListContainersResponse, or the result of cls(response)
         :rtype: ~xmlservice.models.ListContainersResponse
@@ -921,7 +924,10 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        comp = kwargs.pop("comp", "list")  # type: str
+
         request = build_list_containers_request(
+            comp=comp,
             template_url=self.list_containers.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -949,6 +955,12 @@ class XmlOperations:
     async def get_service_properties(self, **kwargs: Any) -> "_models.StorageServiceProperties":
         """Gets storage service properties.
 
+        :keyword comp: The default value is "properties". Note that overriding this default value may
+         result in unsupported behavior.
+        :paramtype comp: str
+        :keyword restype: The default value is "service". Note that overriding this default value may
+         result in unsupported behavior.
+        :paramtype restype: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageServiceProperties, or the result of cls(response)
         :rtype: ~xmlservice.models.StorageServiceProperties
@@ -958,7 +970,12 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        comp = kwargs.pop("comp", "properties")  # type: str
+        restype = kwargs.pop("restype", "service")  # type: str
+
         request = build_get_service_properties_request(
+            comp=comp,
+            restype=restype,
             template_url=self.get_service_properties.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -988,6 +1005,12 @@ class XmlOperations:
 
         :param properties:
         :type properties: ~xmlservice.models.StorageServiceProperties
+        :keyword comp: The default value is "properties". Note that overriding this default value may
+         result in unsupported behavior.
+        :paramtype comp: str
+        :keyword restype: The default value is "service". Note that overriding this default value may
+         result in unsupported behavior.
+        :paramtype restype: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -997,11 +1020,15 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        comp = kwargs.pop("comp", "properties")  # type: str
+        restype = kwargs.pop("restype", "service")  # type: str
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
         content = self._serialize.body(properties, "StorageServiceProperties", is_xml=True)
 
         request = build_put_service_properties_request(
+            comp=comp,
+            restype=restype,
             content_type=content_type,
             content=content,
             template_url=self.put_service_properties.metadata["url"],
@@ -1027,6 +1054,12 @@ class XmlOperations:
     async def get_acls(self, **kwargs: Any) -> List["_models.SignedIdentifier"]:
         """Gets storage ACLs for a container.
 
+        :keyword comp: The default value is "acl". Note that overriding this default value may result
+         in unsupported behavior.
+        :paramtype comp: str
+        :keyword restype: The default value is "container". Note that overriding this default value may
+         result in unsupported behavior.
+        :paramtype restype: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list of SignedIdentifier, or the result of cls(response)
         :rtype: list[~xmlservice.models.SignedIdentifier]
@@ -1036,7 +1069,12 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        comp = kwargs.pop("comp", "acl")  # type: str
+        restype = kwargs.pop("restype", "container")  # type: str
+
         request = build_get_acls_request(
+            comp=comp,
+            restype=restype,
             template_url=self.get_acls.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1066,6 +1104,12 @@ class XmlOperations:
 
         :param properties:
         :type properties: list[~xmlservice.models.SignedIdentifier]
+        :keyword comp: The default value is "acl". Note that overriding this default value may result
+         in unsupported behavior.
+        :paramtype comp: str
+        :keyword restype: The default value is "container". Note that overriding this default value may
+         result in unsupported behavior.
+        :paramtype restype: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -1075,6 +1119,8 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        comp = kwargs.pop("comp", "acl")  # type: str
+        restype = kwargs.pop("restype", "container")  # type: str
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
         serialization_ctxt = {"xml": {"name": "SignedIdentifiers", "wrapped": True, "itemsName": "SignedIdentifier"}}
@@ -1083,6 +1129,8 @@ class XmlOperations:
         )
 
         request = build_put_acls_request(
+            comp=comp,
+            restype=restype,
             content_type=content_type,
             content=content,
             template_url=self.put_acls.metadata["url"],
@@ -1108,6 +1156,12 @@ class XmlOperations:
     async def list_blobs(self, **kwargs: Any) -> "_models.ListBlobsResponse":
         """Lists blobs in a storage container.
 
+        :keyword comp: The default value is "list". Note that overriding this default value may result
+         in unsupported behavior.
+        :paramtype comp: str
+        :keyword restype: The default value is "container". Note that overriding this default value may
+         result in unsupported behavior.
+        :paramtype restype: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ListBlobsResponse, or the result of cls(response)
         :rtype: ~xmlservice.models.ListBlobsResponse
@@ -1117,7 +1171,12 @@ class XmlOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        comp = kwargs.pop("comp", "list")  # type: str
+        restype = kwargs.pop("restype", "container")  # type: str
+
         request = build_list_blobs_request(
+            comp=comp,
+            restype=restype,
             template_url=self.list_blobs.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),

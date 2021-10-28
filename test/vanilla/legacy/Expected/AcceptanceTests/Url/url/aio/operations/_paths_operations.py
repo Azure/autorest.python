@@ -84,6 +84,9 @@ class PathsOperations:
     async def get_boolean_true(self, **kwargs: Any) -> None:
         """Get true Boolean value on path.
 
+        :keyword bool_path: true boolean value. The default value is True. Note that overriding this
+         default value may result in unsupported behavior.
+        :paramtype bool_path: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -93,7 +96,10 @@ class PathsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        bool_path = kwargs.pop("bool_path", True)  # type: bool
+
         request = build_get_boolean_true_request(
+            bool_path=bool_path,
             template_url=self.get_boolean_true.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -118,6 +124,9 @@ class PathsOperations:
     async def get_boolean_false(self, **kwargs: Any) -> None:
         """Get false Boolean value on path.
 
+        :keyword bool_path: false boolean value. The default value is False. Note that overriding this
+         default value may result in unsupported behavior.
+        :paramtype bool_path: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -127,7 +136,10 @@ class PathsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        bool_path = kwargs.pop("bool_path", False)  # type: bool
+
         request = build_get_boolean_false_request(
+            bool_path=bool_path,
             template_url=self.get_boolean_false.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -152,6 +164,9 @@ class PathsOperations:
     async def get_int_one_million(self, **kwargs: Any) -> None:
         """Get '1000000' integer value.
 
+        :keyword int_path: '1000000' integer value. The default value is 1000000. Note that overriding
+         this default value may result in unsupported behavior.
+        :paramtype int_path: int
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -161,7 +176,10 @@ class PathsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        int_path = kwargs.pop("int_path", 1000000)  # type: int
+
         request = build_get_int_one_million_request(
+            int_path=int_path,
             template_url=self.get_int_one_million.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -186,6 +204,9 @@ class PathsOperations:
     async def get_int_negative_one_million(self, **kwargs: Any) -> None:
         """Get '-1000000' integer value.
 
+        :keyword int_path: '-1000000' integer value. The default value is -1000000. Note that
+         overriding this default value may result in unsupported behavior.
+        :paramtype int_path: int
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -195,7 +216,10 @@ class PathsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        int_path = kwargs.pop("int_path", -1000000)  # type: int
+
         request = build_get_int_negative_one_million_request(
+            int_path=int_path,
             template_url=self.get_int_negative_one_million.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -220,6 +244,9 @@ class PathsOperations:
     async def get_ten_billion(self, **kwargs: Any) -> None:
         """Get '10000000000' 64 bit integer value.
 
+        :keyword long_path: '10000000000' 64 bit integer value. The default value is 10000000000. Note
+         that overriding this default value may result in unsupported behavior.
+        :paramtype long_path: long
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -229,7 +256,10 @@ class PathsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        long_path = kwargs.pop("long_path", 10000000000)  # type: int
+
         request = build_get_ten_billion_request(
+            long_path=long_path,
             template_url=self.get_ten_billion.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -254,6 +284,9 @@ class PathsOperations:
     async def get_negative_ten_billion(self, **kwargs: Any) -> None:
         """Get '-10000000000' 64 bit integer value.
 
+        :keyword long_path: '-10000000000' 64 bit integer value. The default value is -10000000000.
+         Note that overriding this default value may result in unsupported behavior.
+        :paramtype long_path: long
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -263,7 +296,10 @@ class PathsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        long_path = kwargs.pop("long_path", -10000000000)  # type: int
+
         request = build_get_negative_ten_billion_request(
+            long_path=long_path,
             template_url=self.get_negative_ten_billion.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -288,6 +324,9 @@ class PathsOperations:
     async def float_scientific_positive(self, **kwargs: Any) -> None:
         """Get '1.034E+20' numeric value.
 
+        :keyword float_path: '1.034E+20'numeric value. The default value is 103400000000000000000. Note
+         that overriding this default value may result in unsupported behavior.
+        :paramtype float_path: float
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -297,7 +336,10 @@ class PathsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        float_path = kwargs.pop("float_path", 103400000000000000000)  # type: float
+
         request = build_float_scientific_positive_request(
+            float_path=float_path,
             template_url=self.float_scientific_positive.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -322,6 +364,9 @@ class PathsOperations:
     async def float_scientific_negative(self, **kwargs: Any) -> None:
         """Get '-1.034E-20' numeric value.
 
+        :keyword float_path: '-1.034E-20'numeric value. The default value is -1.034e-20. Note that
+         overriding this default value may result in unsupported behavior.
+        :paramtype float_path: float
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -331,7 +376,10 @@ class PathsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        float_path = kwargs.pop("float_path", -1.034e-20)  # type: float
+
         request = build_float_scientific_negative_request(
+            float_path=float_path,
             template_url=self.float_scientific_negative.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -356,6 +404,9 @@ class PathsOperations:
     async def double_decimal_positive(self, **kwargs: Any) -> None:
         """Get '9999999.999' numeric value.
 
+        :keyword double_path: '9999999.999'numeric value. The default value is 9999999.999. Note that
+         overriding this default value may result in unsupported behavior.
+        :paramtype double_path: float
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -365,7 +416,10 @@ class PathsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        double_path = kwargs.pop("double_path", 9999999.999)  # type: float
+
         request = build_double_decimal_positive_request(
+            double_path=double_path,
             template_url=self.double_decimal_positive.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -390,6 +444,9 @@ class PathsOperations:
     async def double_decimal_negative(self, **kwargs: Any) -> None:
         """Get '-9999999.999' numeric value.
 
+        :keyword double_path: '-9999999.999'numeric value. The default value is -9999999.999. Note that
+         overriding this default value may result in unsupported behavior.
+        :paramtype double_path: float
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -399,7 +456,10 @@ class PathsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        double_path = kwargs.pop("double_path", -9999999.999)  # type: float
+
         request = build_double_decimal_negative_request(
+            double_path=double_path,
             template_url=self.double_decimal_negative.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -424,6 +484,9 @@ class PathsOperations:
     async def string_unicode(self, **kwargs: Any) -> None:
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
+        :keyword string_path: '啊齄丂狛狜隣郎隣兀﨩'multi-byte string value. The default value is "啊齄丂狛狜隣郎隣兀﨩".
+         Note that overriding this default value may result in unsupported behavior.
+        :paramtype string_path: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -433,7 +496,10 @@ class PathsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        string_path = kwargs.pop("string_path", "啊齄丂狛狜隣郎隣兀﨩")  # type: str
+
         request = build_string_unicode_request(
+            string_path=string_path,
             template_url=self.string_unicode.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -458,6 +524,10 @@ class PathsOperations:
     async def string_url_encoded(self, **kwargs: Any) -> None:
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
+        :keyword string_path: 'begin!*'();:@ &=+$,/?#[]end' url encoded string value. The default value
+         is "begin!*'();:@ &=+$,/?#[]end". Note that overriding this default value may result in
+         unsupported behavior.
+        :paramtype string_path: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -467,7 +537,10 @@ class PathsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        string_path = kwargs.pop("string_path", "begin!*'();:@ &=+$,/?#[]end")  # type: str
+
         request = build_string_url_encoded_request(
+            string_path=string_path,
             template_url=self.string_url_encoded.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -494,6 +567,10 @@ class PathsOperations:
 
         https://tools.ietf.org/html/rfc3986#appendix-A 'path' accept any 'pchar' not encoded.
 
+        :keyword string_path: 'begin!*'();:@&=+$,end' url encoded string value. The default value is
+         "begin!*'();:@&=+$,end". Note that overriding this default value may result in unsupported
+         behavior.
+        :paramtype string_path: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -503,7 +580,10 @@ class PathsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        string_path = kwargs.pop("string_path", "begin!*'();:@&=+$,end")  # type: str
+
         request = build_string_url_non_encoded_request(
+            string_path=string_path,
             template_url=self.string_url_non_encoded.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -528,6 +608,9 @@ class PathsOperations:
     async def string_empty(self, **kwargs: Any) -> None:
         """Get ''.
 
+        :keyword string_path: '' string value. The default value is "". Note that overriding this
+         default value may result in unsupported behavior.
+        :paramtype string_path: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -537,7 +620,10 @@ class PathsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        string_path = kwargs.pop("string_path", "")  # type: str
+
         request = build_string_empty_request(
+            string_path=string_path,
             template_url=self.string_empty.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -710,6 +796,9 @@ class PathsOperations:
     async def byte_empty(self, **kwargs: Any) -> None:
         """Get '' as byte array.
 
+        :keyword byte_path: '' as byte array. The default value is bytearray("", encoding="utf-8").
+         Note that overriding this default value may result in unsupported behavior.
+        :paramtype byte_path: bytearray
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -719,7 +808,10 @@ class PathsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        byte_path = kwargs.pop("byte_path", bytearray("", encoding="utf-8"))  # type: bytearray
+
         request = build_byte_empty_request(
+            byte_path=byte_path,
             template_url=self.byte_empty.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -781,6 +873,9 @@ class PathsOperations:
     async def date_valid(self, **kwargs: Any) -> None:
         """Get '2012-01-01' as date.
 
+        :keyword date_path: '2012-01-01' as date. The default value is "2012-01-01". Note that
+         overriding this default value may result in unsupported behavior.
+        :paramtype date_path: ~datetime.date
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -790,7 +885,10 @@ class PathsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        date_path = kwargs.pop("date_path", "2012-01-01")  # type: datetime.date
+
         request = build_date_valid_request(
+            date_path=date_path,
             template_url=self.date_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -853,6 +951,10 @@ class PathsOperations:
     async def date_time_valid(self, **kwargs: Any) -> None:
         """Get '2012-01-01T01:01:01Z' as date-time.
 
+        :keyword date_time_path: '2012-01-01T01:01:01Z' as date-time. The default value is
+         "2012-01-01T01:01:01Z". Note that overriding this default value may result in unsupported
+         behavior.
+        :paramtype date_time_path: ~datetime.datetime
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -862,7 +964,10 @@ class PathsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        date_time_path = kwargs.pop("date_time_path", "2012-01-01T01:01:01Z")  # type: datetime.datetime
+
         request = build_date_time_valid_request(
+            date_time_path=date_time_path,
             template_url=self.date_time_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),

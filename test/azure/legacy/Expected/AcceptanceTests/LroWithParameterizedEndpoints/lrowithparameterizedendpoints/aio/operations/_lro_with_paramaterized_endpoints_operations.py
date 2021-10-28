@@ -144,7 +144,10 @@ class LROWithParamaterizedEndpointsOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        constant_parameter = kwargs.pop("constant_parameter", "iAmConstant")  # type: str
+
         request = build_poll_with_constant_parameterized_endpoints_request_initial(
+            constant_parameter=constant_parameter,
             template_url=self._poll_with_constant_parameterized_endpoints_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -186,6 +189,9 @@ class LROWithParamaterizedEndpointsOperationsMixin:
 
         :param account_name: Account Name. Pass in 'local' to pass test.
         :type account_name: str
+        :keyword constant_parameter: Next link for the list operation. The default value is
+         "iAmConstant". Note that overriding this default value may result in unsupported behavior.
+        :paramtype constant_parameter: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncLROBasePolling. Pass in False
@@ -198,13 +204,14 @@ class LROWithParamaterizedEndpointsOperationsMixin:
         :rtype: ~azure.core.polling.AsyncLROPoller[str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        constant_parameter = kwargs.pop("constant_parameter", "iAmConstant")  # type: str
         polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._poll_with_constant_parameterized_endpoints_initial(
-                account_name=account_name, cls=lambda x, y, z: x, **kwargs
+                account_name=account_name, constant_parameter=constant_parameter, cls=lambda x, y, z: x, **kwargs
             )
         kwargs.pop("error_map", None)
 

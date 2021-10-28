@@ -64,8 +64,8 @@ def build_bool_put_true_request(
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    json = kwargs.pop('json', True)  # type: bool
 
-    json = True
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/bool/true')
@@ -112,8 +112,8 @@ def build_bool_put_false_request(
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    json = kwargs.pop('json', False)  # type: bool
 
-    json = False
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/bool/false')
@@ -242,6 +242,9 @@ class BoolOperations(object):
         # type: (...) -> None
         """Set Boolean value true.
 
+        :keyword bool_body: The default value is True. Note that overriding this default value may
+         result in unsupported behavior.
+        :paramtype bool_body: bool
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -251,9 +254,11 @@ class BoolOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        bool_body = kwargs.pop("bool_body", True)  # type: bool
 
         request = build_bool_put_true_request(
             content_type=content_type,
+            json=bool_body,
             template_url=self.put_true.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -320,6 +325,9 @@ class BoolOperations(object):
         # type: (...) -> None
         """Set Boolean value false.
 
+        :keyword bool_body: The default value is False. Note that overriding this default value may
+         result in unsupported behavior.
+        :paramtype bool_body: bool
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -329,9 +337,11 @@ class BoolOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        bool_body = kwargs.pop("bool_body", False)  # type: bool
 
         request = build_bool_put_false_request(
             content_type=content_type,
+            json=bool_body,
             template_url=self.put_false.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),

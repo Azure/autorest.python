@@ -61,6 +61,9 @@ class ApiVersionDefaultOperations:
     async def get_method_global_valid(self, **kwargs: Any) -> None:
         """GET method with api-version modeled in global settings.
 
+        :keyword api_version: Api Version. The default value is "2015-07-01-preview". Note that
+         overriding this default value may result in unsupported behavior.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -70,7 +73,10 @@ class ApiVersionDefaultOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        api_version = kwargs.pop("api_version", "2015-07-01-preview")  # type: str
+
         request = build_get_method_global_valid_request(
+            api_version=api_version,
             template_url=self.get_method_global_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -95,6 +101,9 @@ class ApiVersionDefaultOperations:
     async def get_method_global_not_provided_valid(self, **kwargs: Any) -> None:
         """GET method with api-version modeled in global settings.
 
+        :keyword api_version: Api Version. The default value is "2015-07-01-preview". Note that
+         overriding this default value may result in unsupported behavior.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -104,7 +113,10 @@ class ApiVersionDefaultOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        api_version = kwargs.pop("api_version", "2015-07-01-preview")  # type: str
+
         request = build_get_method_global_not_provided_valid_request(
+            api_version=api_version,
             template_url=self.get_method_global_not_provided_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -129,6 +141,9 @@ class ApiVersionDefaultOperations:
     async def get_path_global_valid(self, **kwargs: Any) -> None:
         """GET method with api-version modeled in global settings.
 
+        :keyword api_version: Api Version. The default value is "2015-07-01-preview". Note that
+         overriding this default value may result in unsupported behavior.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -138,7 +153,10 @@ class ApiVersionDefaultOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        api_version = kwargs.pop("api_version", "2015-07-01-preview")  # type: str
+
         request = build_get_path_global_valid_request(
+            api_version=api_version,
             template_url=self.get_path_global_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -163,6 +181,9 @@ class ApiVersionDefaultOperations:
     async def get_swagger_global_valid(self, **kwargs: Any) -> None:
         """GET method with api-version modeled in global settings.
 
+        :keyword api_version: Api Version. The default value is "2015-07-01-preview". Note that
+         overriding this default value may result in unsupported behavior.
+        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -172,7 +193,10 @@ class ApiVersionDefaultOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
+        api_version = kwargs.pop("api_version", "2015-07-01-preview")  # type: str
+
         request = build_get_swagger_global_valid_request(
+            api_version=api_version,
             template_url=self.get_swagger_global_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
