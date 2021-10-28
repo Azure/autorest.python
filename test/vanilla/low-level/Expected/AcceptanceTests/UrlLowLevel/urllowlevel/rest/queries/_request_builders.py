@@ -30,13 +30,17 @@ def build_get_boolean_true_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword bool_query: true boolean value. The default value is True. Note that overriding this
+     default value may result in unsupported behavior.
+    :paramtype bool_query: bool
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    bool_query = True
+    bool_query = kwargs.pop('bool_query', True)  # type: bool
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/queries/bool/true')
@@ -67,13 +71,17 @@ def build_get_boolean_false_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword bool_query: false boolean value. The default value is False. Note that overriding this
+     default value may result in unsupported behavior.
+    :paramtype bool_query: bool
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    bool_query = False
+    bool_query = kwargs.pop('bool_query', False)  # type: bool
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/queries/bool/false')
@@ -145,13 +153,17 @@ def build_get_int_one_million_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword int_query: '1000000' integer value. The default value is 1000000. Note that overriding
+     this default value may result in unsupported behavior.
+    :paramtype int_query: int
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    int_query = 1000000
+    int_query = kwargs.pop('int_query', 1000000)  # type: int
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/queries/int/1000000')
@@ -182,13 +194,17 @@ def build_get_int_negative_one_million_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword int_query: '-1000000' integer value. The default value is -1000000. Note that
+     overriding this default value may result in unsupported behavior.
+    :paramtype int_query: int
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    int_query = -1000000
+    int_query = kwargs.pop('int_query', -1000000)  # type: int
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/queries/int/-1000000')
@@ -260,13 +276,17 @@ def build_get_ten_billion_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword long_query: '10000000000' 64 bit integer value. The default value is 10000000000. Note
+     that overriding this default value may result in unsupported behavior.
+    :paramtype long_query: long
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    long_query = 10000000000
+    long_query = kwargs.pop('long_query', 10000000000)  # type: int
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/queries/long/10000000000')
@@ -297,13 +317,17 @@ def build_get_negative_ten_billion_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword long_query: '-10000000000' 64 bit integer value. The default value is -10000000000.
+     Note that overriding this default value may result in unsupported behavior.
+    :paramtype long_query: long
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    long_query = -10000000000
+    long_query = kwargs.pop('long_query', -10000000000)  # type: int
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/queries/long/-10000000000')
@@ -375,13 +399,17 @@ def build_float_scientific_positive_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword float_query: '1.034E+20'numeric value. The default value is 103400000000000000000.
+     Note that overriding this default value may result in unsupported behavior.
+    :paramtype float_query: float
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    float_query = 103400000000000000000
+    float_query = kwargs.pop('float_query', 103400000000000000000)  # type: float
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/queries/float/1.034E+20')
@@ -412,13 +440,17 @@ def build_float_scientific_negative_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword float_query: '-1.034E-20'numeric value. The default value is -1.034e-20. Note that
+     overriding this default value may result in unsupported behavior.
+    :paramtype float_query: float
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    float_query = -1.034e-20
+    float_query = kwargs.pop('float_query', -1.034e-20)  # type: float
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/queries/float/-1.034E-20')
@@ -490,13 +522,17 @@ def build_double_decimal_positive_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword double_query: '9999999.999'numeric value. The default value is 9999999.999. Note that
+     overriding this default value may result in unsupported behavior.
+    :paramtype double_query: float
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    double_query = 9999999.999
+    double_query = kwargs.pop('double_query', 9999999.999)  # type: float
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/queries/double/9999999.999')
@@ -527,13 +563,17 @@ def build_double_decimal_negative_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword double_query: '-9999999.999'numeric value. The default value is -9999999.999. Note
+     that overriding this default value may result in unsupported behavior.
+    :paramtype double_query: float
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    double_query = -9999999.999
+    double_query = kwargs.pop('double_query', -9999999.999)  # type: float
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/queries/double/-9999999.999')
@@ -605,13 +645,17 @@ def build_string_unicode_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword string_query: '啊齄丂狛狜隣郎隣兀﨩'multi-byte string value. The default value is "啊齄丂狛狜隣郎隣兀﨩".
+     Note that overriding this default value may result in unsupported behavior.
+    :paramtype string_query: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    string_query = "啊齄丂狛狜隣郎隣兀﨩"
+    string_query = kwargs.pop('string_query', "啊齄丂狛狜隣郎隣兀﨩")  # type: str
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/queries/string/unicode/')
@@ -642,13 +686,18 @@ def build_string_url_encoded_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword string_query: 'begin!*'();:@ &=+$,/?#[]end' url encoded string value. The default
+     value is "begin!*'();:@ &=+$,/?#[]end". Note that overriding this default value may result in
+     unsupported behavior.
+    :paramtype string_query: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    string_query = "begin!*'();:@ &=+$,/?#[]end"
+    string_query = kwargs.pop('string_query', "begin!*'();:@ &=+$,/?#[]end")  # type: str
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend')
@@ -679,13 +728,17 @@ def build_string_empty_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword string_query: '' string value. The default value is "". Note that overriding this
+     default value may result in unsupported behavior.
+    :paramtype string_query: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    string_query = ""
+    string_query = kwargs.pop('string_query', "")  # type: str
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/queries/string/empty')
@@ -882,13 +935,17 @@ def build_byte_empty_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword byte_query: '' as byte array. The default value is bytearray("", encoding="utf-8").
+     Note that overriding this default value may result in unsupported behavior.
+    :paramtype byte_query: bytearray
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    byte_query = bytearray("", encoding="utf-8")
+    byte_query = kwargs.pop('byte_query', bytearray("", encoding="utf-8"))  # type: bytearray
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/queries/byte/empty')
@@ -960,13 +1017,17 @@ def build_date_valid_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword date_query: '2012-01-01' as date. The default value is "2012-01-01". Note that
+     overriding this default value may result in unsupported behavior.
+    :paramtype date_query: ~datetime.date
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    date_query = "2012-01-01"
+    date_query = kwargs.pop('date_query', "2012-01-01")  # type: datetime.date
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/queries/date/2012-01-01')
@@ -1038,13 +1099,18 @@ def build_date_time_valid_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword date_time_query: '2012-01-01T01:01:01Z' as date-time. The default value is
+     "2012-01-01T01:01:01Z". Note that overriding this default value may result in unsupported
+     behavior.
+    :paramtype date_time_query: ~datetime.datetime
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    date_time_query = "2012-01-01T01:01:01Z"
+    date_time_query = kwargs.pop('date_time_query', "2012-01-01T01:01:01Z")  # type: datetime.datetime
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/queries/datetime/2012-01-01T01%3A01%3A01Z')

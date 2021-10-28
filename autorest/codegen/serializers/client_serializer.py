@@ -63,8 +63,13 @@ class ClientSerializer:
     def initialize_config(self) -> str:
         config_name = f"{self.code_model.class_name}Configuration"
         config_call = ", ".join(
-            [f"{p.serialized_name}={p.serialized_name}" for p in self.code_model.service_client.parameters.config_method
-        ] + ["**kwargs"])
+            [
+                f"{p.serialized_name}={p.serialized_name}"
+                for p in self.code_model.service_client.parameters.config_method
+                if not p.is_kwarg
+            ] + [
+                "**kwargs"
+            ])
         return f"self._config = {config_name}({config_call})"
 
     def initialize_pipeline_client(self, async_mode: bool) -> str:
@@ -179,3 +184,18 @@ class ConfigSerializer:
 
     def pop_kwargs_from_signature(self, async_mode: bool) -> List[str]:
         return utils.pop_kwargs_from_signature(self.code_model.global_parameters.config_kwargs_to_pop(async_mode))
+
+    def set_constants(self) -> List[str]:
+        return [
+            f"self.{p.serialized_name} = {p.constant_declaration}"
+            for p in self.code_model.global_parameters.constant
+            if p not in self.code_model.global_parameters.method
+        ]
+
+    def check_required_parameters(self) -> List[str]:
+        return [
+            f'if {p.serialized_name} is None:\n'
+            f'    raise ValueError("Parameter \'{p.serialized_name}\' must not be None.")'
+            for p in self.code_model.global_parameters.config_method
+            if p.required and not p.constant
+        ]

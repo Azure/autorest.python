@@ -19,6 +19,7 @@ _LOGGER = logging.getLogger(__name__)
 class PagingOperation(Operation):
     def __init__(
         self,
+        code_model,
         yaml_data: Dict[str, Any],
         name: str,
         description: str,
@@ -34,6 +35,7 @@ class PagingOperation(Operation):
         override_success_response_to_200: bool = False
     ) -> None:
         super(PagingOperation, self).__init__(
+            code_model,
             yaml_data,
             name,
             description,
@@ -89,11 +91,12 @@ class PagingOperation(Operation):
                 + f" {cast(ObjectSchema, response.schema).name} has no array called 'value'"
             )
 
-    def next_link_name(self, code_model) -> Optional[str]:
+    @property
+    def next_link_name(self) -> Optional[str]:
         if not self._next_link_name:
             # That's an ok scenario, it just means no next page possible
             return None
-        if code_model.options["models_mode"]:
+        if self.code_model.options["models_mode"]:
             return self._find_python_name(self._next_link_name, "nextLinkName")
         return self._next_link_name
 
@@ -116,18 +119,22 @@ class PagingOperation(Operation):
         next_request_builder = self.next_operation.request_builder
         return next_request_builder
 
-    def _imports_shared(self, code_model, async_mode: bool) -> FileImport:
-        file_import = super()._imports_shared(code_model, async_mode)
+    def _imports_shared(self, async_mode: bool) -> FileImport:
+        file_import = super()._imports_shared(async_mode)
         if async_mode:
             file_import.add_from_import("typing", "AsyncIterable", ImportType.STDLIB, TypingSection.CONDITIONAL)
         else:
             file_import.add_from_import("typing", "Iterable", ImportType.STDLIB, TypingSection.CONDITIONAL)
-        if self.next_request_builder and code_model.options["builders_visibility"] == "embedded" and not async_mode:
-            file_import.merge(self.next_request_builder.imports(code_model))
+        if (
+            self.next_request_builder and
+            self.code_model.options["builders_visibility"] == "embedded"
+            and not async_mode
+        ):
+            file_import.merge(self.next_request_builder.imports())
         return file_import
 
-    def imports_for_multiapi(self, code_model, async_mode: bool) -> FileImport:
-        file_import = super().imports_for_multiapi(code_model, async_mode)
+    def imports_for_multiapi(self, async_mode: bool) -> FileImport:
+        file_import = super().imports_for_multiapi(async_mode)
         pager_import_path = ".".join(self.get_pager_path(async_mode).split(".")[:-1])
         pager = self.get_pager(async_mode)
 
@@ -135,10 +142,8 @@ class PagingOperation(Operation):
 
         return file_import
 
-    def imports(self, code_model, async_mode: bool) -> FileImport:
-        file_import = super(PagingOperation, self).imports(
-            code_model, async_mode
-        )
+    def imports(self, async_mode: bool) -> FileImport:
+        file_import = super(PagingOperation, self).imports(async_mode)
 
         pager_import_path = ".".join(self.get_pager_path(async_mode).split(".")[:-1])
         pager = self.get_pager(async_mode)
@@ -148,11 +153,11 @@ class PagingOperation(Operation):
         if async_mode:
             file_import.add_from_import("azure.core.async_paging", "AsyncList", ImportType.AZURECORE)
 
-        if code_model.options["tracing"]:
+        if self.code_model.options["tracing"]:
             file_import.add_from_import(
                 "azure.core.tracing.decorator", "distributed_trace", ImportType.AZURECORE,
             )
-        if not code_model.options["models_mode"]:
+        if not self.code_model.options["models_mode"]:
             file_import.add_from_import("json", "loads", ImportType.STDLIB, alias="_loads")
 
         return file_import

@@ -28,6 +28,9 @@ class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
     :type subscription_id: str
     :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
     :paramtype endpoint: str
+    :keyword api_version: Api Version. The default value is "1.0.0". Note that overriding this
+     default value may result in unsupported behavior.
+    :paramtype api_version: str
     """
 
     def __init__(self, subscription_id: str, *, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:

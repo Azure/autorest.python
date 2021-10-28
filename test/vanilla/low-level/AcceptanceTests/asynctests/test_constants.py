@@ -40,5 +40,20 @@ def send_request(client, base_send_request):
 
 @pytest.mark.asyncio
 async def test_put_client_constants(client, send_request):
+    assert client._config.header_constant == True
+    assert client._config.query_constant == 100
+    assert client._config.path_constant == "path"
+
     request = contants.build_put_client_constants_request()
     await send_request(request)
+
+@pytest.mark.asyncio
+async def test_put_client_constants_override():
+    async with AutoRestSwaggerConstantService(
+        header_constant=False,
+        query_constant=0,
+        path_constant="new_path"
+    ) as client:
+        assert client._config.header_constant == False
+        assert client._config.query_constant == 0
+        assert client._config.path_constant == "new_path"

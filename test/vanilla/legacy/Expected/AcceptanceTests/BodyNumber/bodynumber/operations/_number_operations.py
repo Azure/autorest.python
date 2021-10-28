@@ -208,8 +208,8 @@ def build_put_big_double_positive_decimal_request(
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    json = kwargs.pop('json', 99999999.99)  # type: float
 
-    json = 99999999.99
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/number/big/double/99999999.99')
@@ -254,8 +254,8 @@ def build_put_big_double_negative_decimal_request(
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    json = kwargs.pop('json', -99999999.99)  # type: float
 
-    json = -99999999.99
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/number/big/double/-99999999.99')
@@ -344,8 +344,8 @@ def build_put_big_decimal_positive_decimal_request(
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    json = kwargs.pop('json', 99999999.99)  # type: float
 
-    json = 99999999.99
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/number/big/decimal/99999999.99')
@@ -390,8 +390,8 @@ def build_put_big_decimal_negative_decimal_request(
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    json = kwargs.pop('json', -99999999.99)  # type: float
 
-    json = -99999999.99
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/number/big/decimal/-99999999.99')
@@ -916,6 +916,9 @@ class NumberOperations(object):
         # type: (...) -> None
         """Put big double value 99999999.99.
 
+        :keyword number_body: The default value is 99999999.99. Note that overriding this default value
+         may result in unsupported behavior.
+        :paramtype number_body: float
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -926,9 +929,11 @@ class NumberOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        number_body = kwargs.pop("number_body", 99999999.99)  # type: float
 
         request = build_put_big_double_positive_decimal_request(
             content_type=content_type,
+            json=number_body,
             template_url=self.put_big_double_positive_decimal.metadata["url"],
         )
         request = _convert_request(request)
@@ -993,6 +998,9 @@ class NumberOperations(object):
         # type: (...) -> None
         """Put big double value -99999999.99.
 
+        :keyword number_body: The default value is -99999999.99. Note that overriding this default
+         value may result in unsupported behavior.
+        :paramtype number_body: float
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -1003,9 +1011,11 @@ class NumberOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        number_body = kwargs.pop("number_body", -99999999.99)  # type: float
 
         request = build_put_big_double_negative_decimal_request(
             content_type=content_type,
+            json=number_body,
             template_url=self.put_big_double_negative_decimal.metadata["url"],
         )
         request = _convert_request(request)
@@ -1154,6 +1164,9 @@ class NumberOperations(object):
         # type: (...) -> None
         """Put big decimal value 99999999.99.
 
+        :keyword number_body: The default value is 99999999.99. Note that overriding this default value
+         may result in unsupported behavior.
+        :paramtype number_body: float
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -1164,9 +1177,11 @@ class NumberOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        number_body = kwargs.pop("number_body", 99999999.99)  # type: float
 
         request = build_put_big_decimal_positive_decimal_request(
             content_type=content_type,
+            json=number_body,
             template_url=self.put_big_decimal_positive_decimal.metadata["url"],
         )
         request = _convert_request(request)
@@ -1231,6 +1246,9 @@ class NumberOperations(object):
         # type: (...) -> None
         """Put big decimal value -99999999.99.
 
+        :keyword number_body: The default value is -99999999.99. Note that overriding this default
+         value may result in unsupported behavior.
+        :paramtype number_body: float
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -1241,9 +1259,11 @@ class NumberOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        number_body = kwargs.pop("number_body", -99999999.99)  # type: float
 
         request = build_put_big_decimal_negative_decimal_request(
             content_type=content_type,
+            json=number_body,
             template_url=self.put_big_decimal_negative_decimal.metadata["url"],
         )
         request = _convert_request(request)

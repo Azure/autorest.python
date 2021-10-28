@@ -36,22 +36,19 @@ class {{ code_model.class_name }}Configuration(Configuration):
     {% if not async_mode %}
         # type: (...) -> None
     {% endif %}
+        super({{ code_model.class_name }}Configuration, self).__init__(**kwargs)
     {% if code_model.service_client.parameters.config_kwargs_to_pop(async_mode) %}
         {{ op_tools.serialize(serializer.pop_kwargs_from_signature(async_mode)) | indent(8) }}
     {% endif %}
-{% for parameter in code_model.global_parameters.config_method|selectattr('required') %}
-        if {{ parameter.serialized_name }} is None:
-            raise ValueError("Parameter '{{ parameter.serialized_name }}' must not be None.")
-{% endfor %}
-        super({{ code_model.class_name }}Configuration, self).__init__(**kwargs)
+{% if serializer.check_required_parameters() %}
+        {{ op_tools.serialize(serializer.check_required_parameters()) | indent(8) -}}
+{% endif %}
 
 {% for parameter in code_model.global_parameters.config_method %}
         self.{{ parameter.serialized_name }} = {{ parameter.serialized_name }}
 {% endfor %}
-{% if code_model.global_parameters.constant %}
-    {% for constant_parameter in code_model.global_parameters.constant %}
-        self.{{ constant_parameter.serialized_name }} = {{ constant_parameter.constant_declaration }}
-    {% endfor %}
+{% if serializer.set_constants() %}
+        {{ op_tools.serialize(serializer.set_constants()) | indent(8) -}}
 {% endif %}
 {% if code_model.options['credential'] and code_model.credential_schema_policy.credential_scopes is defined %}
         self.credential_scopes = kwargs.pop('credential_scopes', {{ code_model.credential_schema_policy.credential_scopes }})

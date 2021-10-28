@@ -41,7 +41,8 @@ def build_validation_of_method_parameters_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    api_version = "1.0.0"
+    api_version = kwargs.pop('api_version', "1.0.0")  # type: str
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/fakepath/{subscriptionId}/{resourceGroupName}/{id}')
@@ -77,9 +78,9 @@ def build_validation_of_body_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    api_version = kwargs.pop('api_version', "1.0.0")  # type: str
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
-    api_version = "1.0.0"
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/fakepath/{subscriptionId}/{resourceGroupName}/{id}')
@@ -114,7 +115,8 @@ def build_get_with_constant_in_path_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    constant_param = "constant"
+    constant_param = kwargs.pop('constant_param', "constant")  # type: str
+
     # Construct URL
     url = kwargs.pop("template_url", '/validation/constantsInPath/{constantParam}/value')
     path_format_arguments = {
@@ -134,9 +136,9 @@ def build_post_with_constant_in_body_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    constant_param = kwargs.pop('constant_param', "constant")  # type: str
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
-    constant_param = "constant"
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/validation/constantsInPath/{constantParam}/value')
@@ -175,6 +177,9 @@ class AutoRestValidationTestOperationsMixin(object):
         :type resource_group_name: str
         :param id: Required int multiple of 10 from 100 to 1000.
         :type id: int
+        :keyword api_version: Api Version. The default value is "1.0.0". Note that overriding this
+         default value may result in unsupported behavior.
+        :paramtype api_version: str
         :return: JSON object
         :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -206,10 +211,13 @@ class AutoRestValidationTestOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        api_version = kwargs.pop("api_version", "1.0.0")  # type: str
+
         request = build_validation_of_method_parameters_request(
             subscription_id=self._config.subscription_id,
             resource_group_name=resource_group_name,
             id=id,
+            api_version=api_version,
             template_url=self.validation_of_method_parameters.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -250,6 +258,9 @@ class AutoRestValidationTestOperationsMixin(object):
         :type id: int
         :param body:
         :type body: Any
+        :keyword api_version: Api Version. The default value is "1.0.0". Note that overriding this
+         default value may result in unsupported behavior.
+        :paramtype api_version: str
         :return: JSON object
         :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -301,6 +312,7 @@ class AutoRestValidationTestOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        api_version = kwargs.pop("api_version", "1.0.0")  # type: str
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body is not None:
@@ -312,6 +324,7 @@ class AutoRestValidationTestOperationsMixin(object):
             subscription_id=self._config.subscription_id,
             resource_group_name=resource_group_name,
             id=id,
+            api_version=api_version,
             content_type=content_type,
             json=json,
             template_url=self.validation_of_body.metadata["url"],
@@ -344,6 +357,9 @@ class AutoRestValidationTestOperationsMixin(object):
         # type: (...) -> None
         """get_with_constant_in_path.
 
+        :keyword constant_param: The default value is "constant". Note that overriding this default
+         value may result in unsupported behavior.
+        :paramtype constant_param: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -352,7 +368,10 @@ class AutoRestValidationTestOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        constant_param = kwargs.pop("constant_param", "constant")  # type: str
+
         request = build_get_with_constant_in_path_request(
+            constant_param=constant_param,
             template_url=self.get_with_constant_in_path.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -380,6 +399,9 @@ class AutoRestValidationTestOperationsMixin(object):
 
         :param body:
         :type body: Any
+        :keyword constant_param: The default value is "constant". Note that overriding this default
+         value may result in unsupported behavior.
+        :paramtype constant_param: str
         :return: JSON object
         :rtype: Any
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -431,6 +453,7 @@ class AutoRestValidationTestOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        constant_param = kwargs.pop("constant_param", "constant")  # type: str
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body is not None:
@@ -439,6 +462,7 @@ class AutoRestValidationTestOperationsMixin(object):
             json = None
 
         request = build_post_with_constant_in_body_request(
+            constant_param=constant_param,
             content_type=content_type,
             json=json,
             template_url=self.post_with_constant_in_body.metadata["url"],

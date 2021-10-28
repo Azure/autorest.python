@@ -152,9 +152,9 @@ def build_get_with_query_params_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    query_constant = kwargs.pop('query_constant', True)  # type: bool
     required_query_parameter = kwargs.pop('required_query_parameter')  # type: int
 
-    query_constant = True
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paging/multiple/getWithQueryParams')
@@ -181,7 +181,8 @@ def build_next_operation_with_query_params_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    query_constant = True
+    query_constant = kwargs.pop('query_constant', True)  # type: bool
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paging/multiple/nextOperationWithQueryParams')
@@ -904,11 +905,17 @@ class PagingOperations(object):
         :param required_query_parameter: A required integer query parameter. Put in value '100' to pass
          test.
         :type required_query_parameter: int
+        :keyword query_constant: A constant. Must be True and will be passed as a query parameter to
+         nextOperationWithQueryParams. The default value is True. Note that overriding this default
+         value may result in unsupported behavior.
+        :paramtype query_constant: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either ProductResult or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        query_constant = kwargs.pop("query_constant", True)  # type: bool
+
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResult"]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -917,6 +924,7 @@ class PagingOperations(object):
             if not next_link:
 
                 request = build_get_with_query_params_request(
+                    query_constant=query_constant,
                     required_query_parameter=required_query_parameter,
                     template_url=self.get_with_query_params.metadata["url"],
                 )
@@ -926,6 +934,7 @@ class PagingOperations(object):
             else:
 
                 request = build_next_operation_with_query_params_request(
+                    query_constant=query_constant,
                     template_url="/paging/multiple/nextOperationWithQueryParams",
                 )
                 request = _convert_request(request)

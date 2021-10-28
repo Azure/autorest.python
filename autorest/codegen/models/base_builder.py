@@ -13,15 +13,15 @@ if TYPE_CHECKING:
 
 _M4_HEADER_PARAMETERS = ["content_type", "accept"]
 
-def create_parameters(yaml_data: Dict[str, Any], parameter_creator: Callable):
+def create_parameters(yaml_data: Dict[str, Any], code_model, parameter_creator: Callable):
     multiple_requests = len(yaml_data["requests"]) > 1
 
     multiple_media_type_parameters = []
-    parameters = [parameter_creator(yaml) for yaml in yaml_data.get("parameters", [])]
+    parameters = [parameter_creator(yaml, code_model=code_model) for yaml in yaml_data.get("parameters", [])]
 
     for request in yaml_data["requests"]:
         for yaml in request.get("parameters", []):
-            parameter = parameter_creator(yaml)
+            parameter = parameter_creator(yaml, code_model=code_model)
             name = yaml["language"]["python"]["name"]
             if name in _M4_HEADER_PARAMETERS:
                 parameters.append(parameter)
@@ -60,6 +60,7 @@ class BaseBuilder(BaseModel):
 
     def __init__(
         self,
+        code_model,
         yaml_data: Dict[str, Any],
         name: str,
         description: str,
@@ -68,6 +69,7 @@ class BaseBuilder(BaseModel):
         summary: Optional[str] = None,
     ) -> None:
         super().__init__(yaml_data=yaml_data)
+        self.code_model = code_model
         self.name = name
         self.description = description
         self.parameters = parameters

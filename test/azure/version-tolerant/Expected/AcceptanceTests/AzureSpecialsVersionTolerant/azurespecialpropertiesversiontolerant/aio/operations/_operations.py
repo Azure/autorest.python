@@ -227,6 +227,9 @@ class SubscriptionInCredentialsOperations:
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
         '1234-5678-9012-3456' to succeed.
 
+        :keyword api_version: Api Version. The default value is "2015-07-01-preview". Note that
+         overriding this default value may result in unsupported behavior.
+        :paramtype api_version: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -235,8 +238,11 @@ class SubscriptionInCredentialsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        api_version = kwargs.pop("api_version", "2015-07-01-preview")  # type: str
+
         request = build_subscription_in_credentials_post_method_global_not_provided_valid_request(
             subscription_id=self._config.subscription_id,
+            api_version=api_version,
             template_url=self.post_method_global_not_provided_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -492,6 +498,9 @@ class ApiVersionDefaultOperations:
     async def get_method_global_valid(self, **kwargs: Any) -> None:
         """GET method with api-version modeled in global settings.
 
+        :keyword api_version: Api Version. The default value is "2015-07-01-preview". Note that
+         overriding this default value may result in unsupported behavior.
+        :paramtype api_version: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -500,7 +509,10 @@ class ApiVersionDefaultOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        api_version = kwargs.pop("api_version", "2015-07-01-preview")  # type: str
+
         request = build_api_version_default_get_method_global_valid_request(
+            api_version=api_version,
             template_url=self.get_method_global_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -521,6 +533,9 @@ class ApiVersionDefaultOperations:
     async def get_method_global_not_provided_valid(self, **kwargs: Any) -> None:
         """GET method with api-version modeled in global settings.
 
+        :keyword api_version: Api Version. The default value is "2015-07-01-preview". Note that
+         overriding this default value may result in unsupported behavior.
+        :paramtype api_version: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -529,7 +544,10 @@ class ApiVersionDefaultOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        api_version = kwargs.pop("api_version", "2015-07-01-preview")  # type: str
+
         request = build_api_version_default_get_method_global_not_provided_valid_request(
+            api_version=api_version,
             template_url=self.get_method_global_not_provided_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -550,6 +568,9 @@ class ApiVersionDefaultOperations:
     async def get_path_global_valid(self, **kwargs: Any) -> None:
         """GET method with api-version modeled in global settings.
 
+        :keyword api_version: Api Version. The default value is "2015-07-01-preview". Note that
+         overriding this default value may result in unsupported behavior.
+        :paramtype api_version: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -558,7 +579,10 @@ class ApiVersionDefaultOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        api_version = kwargs.pop("api_version", "2015-07-01-preview")  # type: str
+
         request = build_api_version_default_get_path_global_valid_request(
+            api_version=api_version,
             template_url=self.get_path_global_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -579,6 +603,9 @@ class ApiVersionDefaultOperations:
     async def get_swagger_global_valid(self, **kwargs: Any) -> None:
         """GET method with api-version modeled in global settings.
 
+        :keyword api_version: Api Version. The default value is "2015-07-01-preview". Note that
+         overriding this default value may result in unsupported behavior.
+        :paramtype api_version: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -587,7 +614,10 @@ class ApiVersionDefaultOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        api_version = kwargs.pop("api_version", "2015-07-01-preview")  # type: str
+
         request = build_api_version_default_get_swagger_global_valid_request(
+            api_version=api_version,
             template_url=self.get_swagger_global_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -627,6 +657,9 @@ class ApiVersionLocalOperations:
     async def get_method_local_valid(self, **kwargs: Any) -> None:
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
+        :keyword api_version: This should appear as a method parameter, use value '2.0'. The default
+         value is "2.0". Note that overriding this default value may result in unsupported behavior.
+        :paramtype api_version: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -635,7 +668,10 @@ class ApiVersionLocalOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        api_version = kwargs.pop("api_version", "2.0")  # type: str
+
         request = build_api_version_local_get_method_local_valid_request(
+            api_version=api_version,
             template_url=self.get_method_local_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -689,6 +725,9 @@ class ApiVersionLocalOperations:
     async def get_path_local_valid(self, **kwargs: Any) -> None:
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
+        :keyword api_version: This should appear as a method parameter, use value '2.0'. The default
+         value is "2.0". Note that overriding this default value may result in unsupported behavior.
+        :paramtype api_version: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -697,7 +736,10 @@ class ApiVersionLocalOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        api_version = kwargs.pop("api_version", "2.0")  # type: str
+
         request = build_api_version_local_get_path_local_valid_request(
+            api_version=api_version,
             template_url=self.get_path_local_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -718,6 +760,10 @@ class ApiVersionLocalOperations:
     async def get_swagger_local_valid(self, **kwargs: Any) -> None:
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
+        :keyword api_version: The api version, which appears in the query, the value is always '2.0'.
+         The default value is "2.0". Note that overriding this default value may result in unsupported
+         behavior.
+        :paramtype api_version: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -726,7 +772,10 @@ class ApiVersionLocalOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        api_version = kwargs.pop("api_version", "2.0")  # type: str
+
         request = build_api_version_local_get_swagger_local_valid_request(
+            api_version=api_version,
             template_url=self.get_swagger_local_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -830,6 +879,10 @@ class SkipUrlEncodingOperations:
     async def get_swagger_path_valid(self, **kwargs: Any) -> None:
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
+        :keyword unencoded_path_param: An unencoded path parameter with value 'path1/path2/path3'. The
+         default value is "path1/path2/path3". Note that overriding this default value may result in
+         unsupported behavior.
+        :paramtype unencoded_path_param: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -838,7 +891,10 @@ class SkipUrlEncodingOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        unencoded_path_param = kwargs.pop("unencoded_path_param", "path1/path2/path3")  # type: str
+
         request = build_skip_url_encoding_get_swagger_path_valid_request(
+            unencoded_path_param=unencoded_path_param,
             template_url=self.get_swagger_path_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -955,6 +1011,10 @@ class SkipUrlEncodingOperations:
     async def get_swagger_query_valid(self, **kwargs: Any) -> None:
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
+        :keyword q1: An unencoded query parameter with value 'value1&q2=value2&q3=value3'. The default
+         value is "value1&q2=value2&q3=value3". Note that overriding this default value may result in
+         unsupported behavior.
+        :paramtype q1: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -963,7 +1023,10 @@ class SkipUrlEncodingOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
+        q1 = kwargs.pop("q1", "value1&q2=value2&q3=value3")  # type: str
+
         request = build_skip_url_encoding_get_swagger_query_valid_request(
+            q1=q1,
             template_url=self.get_swagger_query_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

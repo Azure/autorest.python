@@ -41,17 +41,17 @@ class SchemaRequest(BaseModel):
         return self.yaml_data["protocol"]["http"].get("binary", False)
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any]) -> "SchemaRequest":
+    def from_yaml(cls, yaml_data: Dict[str, Any], *, code_model) -> "SchemaRequest":
 
         parameters: Optional[List[Parameter]] = [
-            Parameter.from_yaml(yaml)
+            Parameter.from_yaml(yaml, code_model=code_model)
             for yaml in yaml_data.get("parameters", [])
         ]
 
         return cls(
             yaml_data=yaml_data,
             media_types=yaml_data["protocol"]["http"].get("mediaTypes", []),
-            parameters=ParameterList(parameters)
+            parameters=ParameterList(code_model, parameters)
         )
 
     def __repr__(self) -> str:

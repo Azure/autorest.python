@@ -178,7 +178,7 @@ class HttpClientFailureOperations:
     async def put400(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -221,7 +221,7 @@ class HttpClientFailureOperations:
     async def patch400(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -264,7 +264,7 @@ class HttpClientFailureOperations:
     async def post400(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -307,7 +307,7 @@ class HttpClientFailureOperations:
     async def delete400(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -478,7 +478,7 @@ class HttpClientFailureOperations:
     async def put404(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 404 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -521,7 +521,7 @@ class HttpClientFailureOperations:
     async def patch405(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 405 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -564,7 +564,7 @@ class HttpClientFailureOperations:
     async def post406(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 406 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -607,7 +607,7 @@ class HttpClientFailureOperations:
     async def delete407(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 407 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -650,7 +650,7 @@ class HttpClientFailureOperations:
     async def put409(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 409 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -821,7 +821,7 @@ class HttpClientFailureOperations:
     async def put413(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 413 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -864,7 +864,7 @@ class HttpClientFailureOperations:
     async def patch414(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 414 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -907,7 +907,7 @@ class HttpClientFailureOperations:
     async def post415(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 415 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -982,7 +982,7 @@ class HttpClientFailureOperations:
     async def delete417(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 417 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true.
+        :param boolean_value: Simple boolean value true. The default value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
