@@ -152,6 +152,10 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         raise ValueError("Trying to get a declaration for a schema that doesn't exist")
 
     @property
+    def serialization_formats(self) -> List[str]:
+        return self.yaml_data.get('serializationFormats', [])
+
+    @property
     def xml_serialization_ctxt(self) -> str:
         return self.schema.xml_serialization_ctxt() or ""
 

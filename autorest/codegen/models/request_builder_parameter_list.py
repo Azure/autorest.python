@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+import re
 from copy import copy
 from typing import List, Optional, TypeVar, Dict
 from .request_builder_parameter import RequestBuilderParameter
@@ -17,6 +18,21 @@ T = TypeVar('T')
 OrderedSet = Dict[T, None]
 
 _REQUEST_BUILDER_BODY_NAMES = ["files", "json", "content", "data"]
+
+def _is_json(schema_requests: List[SchemaRequest], body_method_param: Parameter) -> bool:
+    if 'json' in body_method_param.serialization_formats:
+        return True
+    if any(
+        sr for sr in schema_requests
+        if sr.yaml_data.get("protocol", {}).get('http', {}).get('knownMediaType') == "json"
+    ):
+        return True
+    content_types = set(
+        m
+        for request in schema_requests
+        for m in request.media_types
+    )
+    return any(c for c in content_types if re.compile(r'^(application|text)/([0-9a-z+.]+\+)?json$').match(c))
 
 
 class RequestBuilderParameterList(ParameterList):
@@ -43,6 +59,7 @@ class RequestBuilderParameterList(ParameterList):
             pass
         else:
             serialized_name: str = ""
+
             if body_method_param.is_multipart:
                 serialized_name = "files"
                 file_kwarg = copy(body_method_param)
@@ -73,16 +90,8 @@ class RequestBuilderParameterList(ParameterList):
                 )
                 data_kwarg.is_data_input = False
                 body_kwargs_added.append(data_kwarg)
-            if body_method_param.constant:
-                # we don't add body kwargs for constant bodies
-                if not serialized_name:
-                    serialized_name = "json" if body_method_param.is_json_parameter else "content"
-                body_method_param.serialized_name = serialized_name
-                return
-            if (
-                any(sr for sr in schema_requests if not sr.is_stream_request) and
-                any([ct for ct in self.content_types if "json" in ct])
-            ):
+            if _is_json(schema_requests, body_method_param):
+                serialized_name = "json"
                 json_kwarg = copy(body_method_param)
                 self._change_body_param_name(json_kwarg, "json")
                 json_kwarg.description = (
@@ -92,6 +101,11 @@ class RequestBuilderParameterList(ParameterList):
                 )
                 json_kwarg.schema = AnySchema(namespace="", yaml_data={})
                 body_kwargs_added.append(json_kwarg)
+            if body_method_param.constant:
+                # we don't add body kwargs for constant bodies
+                serialized_name = serialized_name or "content"
+                body_method_param.serialized_name = serialized_name
+                return
             content_kwarg = copy(body_method_param)
             self._change_body_param_name(content_kwarg, "content")
             content_kwarg.schema = AnySchema(namespace="", yaml_data={})
