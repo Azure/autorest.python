@@ -35,7 +35,7 @@ async def client():
 
 @pytest.mark.asyncio
 async def test_upload_file(client):
-    await client.upload.file(json.dumps({"more": "cowbell"}))
+    await client.upload.file(b'{"more": "cowbell"}')
 
 @pytest.mark.asyncio
 async def test_upload_binary(client):

@@ -61,11 +61,11 @@ class UploadOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        content = file_param
+        json = file_param
 
         request = build_upload_file_request(
             content_type=content_type,
-            content=content,
+            json=json,
             template_url=self.file.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

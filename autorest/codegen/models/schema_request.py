@@ -21,19 +21,6 @@ class SchemaRequest(BaseModel):
         self.parameters = parameters
 
     @property
-    def pre_semicolon_content_types(self) -> List[str]:
-        """Splits on semicolon of media types and returns the first half.
-        I.e. ["text/plain; encoding=UTF-8"] -> ["text/plain"]
-        """
-        return [content_type.split(";")[0] for content_type in self.content_types]
-
-    @property
-    def body_parameter_has_schema(self) -> bool:
-        """Tell if that request has a parameter that defines a body.
-        """
-        return any([p for p in self.parameters if hasattr(p, 'schema') and p.schema])
-
-    @property
     def is_stream_request(self) -> bool:
         """Is the request expected to be streamable, like a download."""
         if self.yaml_data['protocol']['http'].get('knownMediaType'):
@@ -55,4 +42,4 @@ class SchemaRequest(BaseModel):
         )
 
     def __repr__(self) -> str:
-        return f"<{self.__class__.__name__} {self.medicontent_typesa_types}>"
+        return f"<{self.__class__.__name__} {self.content_types}>"

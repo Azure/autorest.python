@@ -18,29 +18,22 @@ T = TypeVar('T')
 OrderedSet = Dict[T, None]
 
 _REQUEST_BUILDER_BODY_NAMES = ["files", "json", "content", "data"]
+_JSON_REGEXP = re.compile(r'^(application|text)/([0-9a-z+.]+\+)?json$')
 
-def _is_json(schema_requests: List[SchemaRequest], body_method_param: Parameter) -> bool:
-    if 'json' in body_method_param.serialization_formats:
-        return True
-    if any(
-        sr for sr in schema_requests
-        if sr.yaml_data.get("protocol", {}).get('http', {}).get('knownMediaType') == "json"
-    ):
-        return True
-    content_types = set(
-        m
-        for request in schema_requests
-        for m in request.content_types
-    )
-    return any(c for c in content_types if re.compile(r'^(application|text)/([0-9a-z+.]+\+)?json$').match(c))
-
+def _update_content_types(content_types_to_assign: List[str], param: Parameter):
+    return [
+        c for c in content_types_to_assign if c not in param.content_types
+    ]
 
 class RequestBuilderParameterList(ParameterList):
     def __init__(
-        self, code_model, parameters: Optional[List[RequestBuilderParameter]] = None
+        self,
+        code_model,
+        parameters: Optional[List[RequestBuilderParameter]] = None,
+        schema_requests: Optional[List[SchemaRequest]] = None,
     ) -> None:
         super(RequestBuilderParameterList, self).__init__(
-            code_model, parameters  # type: ignore
+            code_model, parameters, schema_requests  # type: ignore
         )
         self.body_kwarg_names: OrderedSet[str] = {}
         self.parameters: List[RequestBuilderParameter] = parameters or []  # type: ignore
@@ -49,7 +42,23 @@ class RequestBuilderParameterList(ParameterList):
         self.body_kwarg_names[name] = None
         parameter.serialized_name = name
 
-    def add_body_kwargs(self, schema_requests: List[SchemaRequest]) -> None:
+    def _is_json(self, body_method_param: Parameter) -> bool:
+        if 'json' in body_method_param.serialization_formats:
+            return True
+        if any(
+            sr for sr in self.schema_requests
+            if sr.yaml_data.get("protocol", {}).get('http', {}).get('knownMediaType') == "json"
+        ):
+            return True
+        return any(c for c in self.content_types if _JSON_REGEXP.match(c))
+
+    @property
+    def body_kwargs_to_get(self) -> List[Parameter]:
+        if not self.body_kwarg_names:
+            return []
+        return [b for b in self.body if b.content_types]
+
+    def add_body_kwargs(self) -> None: # pylint: disable=too-many-statements
         try:
             body_kwargs_added = []
             body_method_param = next(
@@ -60,6 +69,7 @@ class RequestBuilderParameterList(ParameterList):
         else:
             serialized_name: str = ""
 
+            content_types_to_assign = copy(self.content_types)
             if body_method_param.is_multipart:
                 serialized_name = "files"
                 file_kwarg = copy(body_method_param)
@@ -74,6 +84,11 @@ class RequestBuilderParameterList(ParameterList):
                     file_kwarg.description
                 )
                 file_kwarg.is_multipart = False
+                file_kwarg.content_types = [
+                    c for c in content_types_to_assign
+                    if c == "multipart/form-data"
+                ]
+                content_types_to_assign = _update_content_types(content_types_to_assign, file_kwarg)
                 body_kwargs_added.append(file_kwarg)
             if body_method_param.is_data_input:
                 serialized_name = "data"
@@ -89,8 +104,21 @@ class RequestBuilderParameterList(ParameterList):
                     data_kwarg.description
                 )
                 data_kwarg.is_data_input = False
+                data_kwarg.content_types = [
+                    c for c in content_types_to_assign
+                    if c == "application/x-www-form-urlencoded"
+                ]
+                content_types_to_assign = _update_content_types(content_types_to_assign, data_kwarg)
                 body_kwargs_added.append(data_kwarg)
-            if _is_json(schema_requests, body_method_param):
+            if body_method_param.constant:
+                # we don't add body kwargs for constant bodies
+                if not serialized_name and self._is_json(body_method_param):
+                    serialized_name = "json"
+                else:
+                    serialized_name = "content"
+                body_method_param.serialized_name = serialized_name
+                return
+            if self._is_json(body_method_param):
                 serialized_name = "json"
                 json_kwarg = copy(body_method_param)
                 self._change_body_param_name(json_kwarg, "json")
@@ -100,12 +128,13 @@ class RequestBuilderParameterList(ParameterList):
                     json_kwarg.description
                 )
                 json_kwarg.schema = AnySchema(namespace="", yaml_data={})
+                json_kwarg.content_types = [
+                    c for c in content_types_to_assign
+                    if _JSON_REGEXP.match(c)
+                ]
+                content_types_to_assign = _update_content_types(content_types_to_assign, json_kwarg)
                 body_kwargs_added.append(json_kwarg)
-            if body_method_param.constant:
-                # we don't add body kwargs for constant bodies
-                serialized_name = serialized_name or "content"
-                body_method_param.serialized_name = serialized_name
-                return
+
             content_kwarg = copy(body_method_param)
             self._change_body_param_name(content_kwarg, "content")
             content_kwarg.schema = AnySchema(namespace="", yaml_data={})
@@ -116,6 +145,7 @@ class RequestBuilderParameterList(ParameterList):
             )
             content_kwarg.is_data_input = False
             content_kwarg.is_multipart = False
+            content_kwarg.content_types = content_types_to_assign
             body_kwargs_added.append(content_kwarg)
             if len(body_kwargs_added) == 1:
                 body_kwargs_added[0].required = body_method_param.required

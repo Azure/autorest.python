@@ -14,7 +14,6 @@ from .base_schema import BaseSchema
 from .constant_schema import ConstantSchema
 from .object_schema import ObjectSchema
 from .property import Property
-from .primitive_schemas import IOSchema
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -95,7 +94,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         self._keyword_only = keyword_only
         self.is_multipart = yaml_data.get("language", {}).get("python", {}).get("multipart", False)
         self.is_data_input = yaml_data.get("isPartialBody", False) and not self.is_multipart
-        self.content_types = content_types
+        self.content_types = content_types or []
 
     def __hash__(self) -> int:
         return hash(self.serialized_name)
@@ -122,8 +121,6 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
     @property
     def is_json_parameter(self) -> bool:
         if self.is_multipart or self.is_data_input:
-            return False
-        if isinstance(self.schema, IOSchema):
             return False
         if self.style == ParameterStyle.xml:
             return False
@@ -164,6 +161,13 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
     @property
     def is_body(self) -> bool:
         return self.location == ParameterLocation.Body
+
+    @property
+    def pre_semicolon_content_types(self) -> List[str]:
+        """Splits on semicolon of media types and returns the first half.
+        I.e. ["text/plain; encoding=UTF-8"] -> ["text/plain"]
+        """
+        return [content_type.split(";")[0] for content_type in self.content_types]
 
     @property
     def in_method_signature(self) -> bool:

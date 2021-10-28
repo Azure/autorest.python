@@ -82,28 +82,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
 
     @property
     def body_kwargs_to_pass_to_request_builder(self) -> List[str]:
-        kwargs = []
-        if not self.parameters.has_body:
-            return []
-        body_kwarg_names = self.request_builder.parameters.body_kwarg_names
-        for kwarg in body_kwarg_names:
-            if kwarg == "content":
-                if self.request_builder.is_stream:
-                    kwargs.append("content")
-            else:
-                kwargs.append(kwarg)
-        if not kwargs and not self.parameters.body[0].constant:
-            kwargs.append("content")
-        return kwargs
-
-    @property
-    def serialized_body_kwarg(self) -> str:
-        # body serialization can be passed to either "json" or "content"
-        if "json" in self.body_kwargs_to_pass_to_request_builder:
-            return "json"
-        if not self.request_builder.is_stream:
-            return "content"
-        raise ValueError("You should not be trying to serialize this body")
+        return [p.serialized_name for p in self.request_builder.body_kwargs_to_get]
 
     @property
     def has_optional_return_type(self) -> bool:
@@ -256,12 +235,15 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             # get an optional param with object first. These params are the top choice
             # bc they have more info about how to serialize the body
             chosen_parameter = next(
-                p for p in self.multiple_content_type_parameters if not p.required and isinstance(p.schema, ObjectSchema)
+                p for p in self.multiple_content_type_parameters
+                if not p.required and isinstance(p.schema, ObjectSchema)
             )
         except StopIteration:  # pylint: disable=broad-except
             # otherwise, we get the first optional param, if that exists. If not, we just grab the first one
             optional_parameters = [p for p in self.multiple_content_type_parameters if not p.required]
-            chosen_parameter = optional_parameters[0] if optional_parameters else self.multiple_content_type_parameters[0]
+            chosen_parameter = (
+                optional_parameters[0] if optional_parameters else self.multiple_content_type_parameters[0]
+            )
         if not chosen_parameter:
             raise ValueError("You are missing a parameter that has multiple media types")
         chosen_parameter.multiple_content_types_type_annot = f"Union[{type_annot}]"
@@ -276,21 +258,23 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         parameter_creator = get_parameter(code_model).from_yaml
         parameter_list_creator = get_parameter_list(code_model)
         schema_requests = [SchemaRequest.from_yaml(yaml, code_model=code_model) for yaml in yaml_data["requests"]]
-        parameters, multiple_content_type_parameters = create_parameters(yaml_data, code_model, parameter_creator)
+        parameters, multiple_content_type_parameters = create_parameters(
+            yaml_data, code_model, parameter_creator
+        )
 
-        operation_cls = cls(
+        return cls(
             code_model=code_model,
             yaml_data=yaml_data,
             name=name,
             description=yaml_data["language"]["python"]["description"],
             api_versions=set(value_dict["version"] for value_dict in yaml_data["apiVersions"]),
-            parameters=parameter_list_creator(code_model, parameters),
-            multiple_content_type_parameters=parameter_list_creator(code_model, multiple_content_type_parameters),
+            parameters=parameter_list_creator(code_model, parameters, schema_requests),
+            multiple_content_type_parameters=parameter_list_creator(
+                code_model, multiple_content_type_parameters, schema_requests
+            ),
             schema_requests=schema_requests,
             summary=yaml_data["language"]["python"].get("summary"),
             responses=[SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("responses", [])],
             # Exception with no schema means default exception, we don't store them
             exceptions=[SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("exceptions", []) if "schema" in yaml],
         )
-        operation_cls.parameters.default_content_type = operation_cls.default_content_type
-        return operation_cls

@@ -6,14 +6,15 @@
 from collections.abc import MutableSequence
 from copy import copy
 import logging
-from typing import cast, List, Callable, Optional, TypeVar, Dict
+from typing import cast, List, Callable, Optional, TypeVar, Dict, TYPE_CHECKING
 
 from .parameter import Parameter, ParameterLocation
-from .constant_schema import ConstantSchema
 from .base_schema import BaseSchema
-from .enum_schema import EnumSchema
 from .dictionary_schema import DictionarySchema
 from .primitive_schemas import AnySchema, StringSchema
+
+if TYPE_CHECKING:
+    from .schema_request import SchemaRequest
 
 T = TypeVar('T')
 OrderedSet = Dict[T, None]
@@ -30,11 +31,12 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
         self,
         code_model,
         parameters: Optional[List[Parameter]] = None,
+        schema_requests: Optional[List["SchemaRequest"]] = None,
     ) -> None:
         self.code_model = code_model
+        self.schema_requests = schema_requests or []
         self.parameters = parameters or []
         self._json_body: Optional[BaseSchema] = None
-        self.default_content_type: str = ""
 
     # MutableSequence
 
@@ -65,6 +67,30 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
 
     def get_from_location(self, location: ParameterLocation) -> List[Parameter]:
         return self.get_from_predicate(lambda parameter: parameter.location == location)
+
+    @property
+    def content_types(self) -> List[str]:
+        ordered_set = {
+            m: None
+            for request in self.schema_requests
+            for m in request.content_types
+        }
+        return list(ordered_set.keys())
+
+    @property
+    def default_content_type(self) -> str:
+        json_content_types = [c for c in self.content_types if "json" in c]
+        if json_content_types:
+            if "application/json" in json_content_types:
+                return "application/json"
+            return json_content_types[0]
+
+        xml_content_types = [c for c in self.content_types if "xml" in c]
+        if xml_content_types:
+            if "application/xml" in xml_content_types:
+                return "application/xml"
+            return xml_content_types[0]
+        return self.content_types[0]
 
     @property
     def json_body(self) -> BaseSchema:
