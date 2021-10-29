@@ -725,7 +725,11 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
 
     def _serialize_body(self, builder: BuilderType, body_param: Parameter, body_kwarg: str) -> List[str]:
         retval = []
-        send_xml = bool(builder.parameters.has_body and any(["xml" in ct for ct in builder.parameters.content_types]))
+        send_xml = bool(
+            builder.parameters.has_body and
+            any(["xml" in ct for ct in builder.parameters.content_types]) and
+            not isinstance(body_param.schema, IOSchema)
+        )
         ser_ctxt_name = "serialization_ctxt"
         ser_ctxt = builder.parameters.body[0].xml_serialization_ctxt if send_xml else None
         if ser_ctxt:
