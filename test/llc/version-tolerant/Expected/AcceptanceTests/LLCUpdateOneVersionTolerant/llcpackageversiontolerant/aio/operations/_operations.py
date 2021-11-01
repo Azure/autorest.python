@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import functools
-from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+from typing import Any, Callable, Dict, Generic, IO, Optional, TypeVar, Union
 import warnings
 
 from azure.core.exceptions import (
@@ -21,7 +21,12 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ...operations._operations import build_params_get_required_request
+from ...operations._operations import (
+    build_params_delete_parameters_request,
+    build_params_get_new_operation_request,
+    build_params_get_required_request,
+    build_params_post_parameters_request,
+)
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -46,17 +51,13 @@ class ParamsOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_required(
-        self, *, parameter3: str, parameter1: str = "DefaultValue", parameter2: Optional[str] = None, **kwargs: Any
-    ) -> Any:
+    async def get_required(self, *, parameter: str, new_parameter: Optional[str] = None, **kwargs: Any) -> Any:
         """Get true Boolean value on path.
 
-        :keyword parameter3: I am a required parameter and I'm last in Swagger.
-        :paramtype parameter3: str
-        :keyword parameter1: I am a required parameter with a client default value.
-        :paramtype parameter1: str
-        :keyword parameter2: I was a required parameter, but now I'm optional.
-        :paramtype parameter2: str
+        :keyword parameter: I am a required parameter.
+        :paramtype parameter: str
+        :keyword new_parameter: I'm a new input optional parameter.
+        :paramtype new_parameter: str
         :return: any
         :rtype: any
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -66,9 +67,8 @@ class ParamsOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_params_get_required_request(
-            parameter3=parameter3,
-            parameter1=parameter1,
-            parameter2=parameter2,
+            parameter=parameter,
+            new_parameter=new_parameter,
             template_url=self.get_required.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -90,4 +90,127 @@ class ParamsOperations:
 
         return deserialized
 
-    get_required.metadata = {"url": "/llc/parameters"}  # type: ignore
+    get_required.metadata = {"url": "/servicedriven/parameters"}  # type: ignore
+
+    @distributed_trace_async
+    async def post_parameters(self, parameter: Union[IO, Any], **kwargs: Any) -> Any:
+        """POST a JSON or a JPEG.
+
+        :param parameter: I am a body parameter with a new content type. My only valid JSON entry is {
+         url: "http://example.org/myimage.jpeg" }.
+        :type parameter: IO or Any
+        :keyword str content_type: Media type of the body sent to the API. Default value is
+         "application/json". Allowed values are: "image/jpeg", "application/json."
+        :return: any
+        :rtype: any
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
+        json = None
+        content = None
+        if content_type.split(";")[0] in ["image/jpeg"]:
+            content = parameter
+        elif content_type.split(";")[0] in ["application/json"]:
+            json = parameter
+        else:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['image/jpeg', 'application/json']".format(content_type)
+            )
+
+        request = build_params_post_parameters_request(
+            content_type=content_type,
+            json=json,
+            content=content,
+            template_url=self.post_parameters.metadata["url"],
+        )
+        request.url = self._client.format_url(request.url)
+
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+
+    post_parameters.metadata = {"url": "/servicedriven/parameters"}  # type: ignore
+
+    @distributed_trace_async
+    async def delete_parameters(self, **kwargs: Any) -> None:
+        """Delete something.
+
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = build_params_delete_parameters_request(
+            template_url=self.delete_parameters.metadata["url"],
+        )
+        request.url = self._client.format_url(request.url)
+
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+    delete_parameters.metadata = {"url": "/servicedriven/parameters"}  # type: ignore
+
+    @distributed_trace_async
+    async def get_new_operation(self, **kwargs: Any) -> Any:
+        """I'm a new operation.
+
+        :return: any
+        :rtype: any
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = build_params_get_new_operation_request(
+            template_url=self.get_new_operation.metadata["url"],
+        )
+        request.url = self._client.format_url(request.url)
+
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+
+    get_new_operation.metadata = {"url": "/servicedriven/newpath"}  # type: ignore

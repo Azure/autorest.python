@@ -53,8 +53,8 @@ class LLCClient(object):
         Use these helper methods to create the request you pass to this method.
 
         >>> from llcpackagelowlevel.rest import params
-        >>> request = params.build_get_required_request(parameter3=parameter3, parameter1=parameter1, parameter2=parameter2, **kwargs)
-        <HttpRequest [GET], url: '/llc/parameters'>
+        >>> request = params.build_get_required_request(parameter=parameter, new_parameter=new_parameter, **kwargs)
+        <HttpRequest [GET], url: '/servicedriven/parameters'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
 
