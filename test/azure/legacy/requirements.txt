@@ -1,4 +1,4 @@
-aiohttp;python_full_version>="3.5.2"
+aiohttp==3.8.0a7;python_full_version>="3.5.2"
 requests==2.18.4
 pytest
 pytest-cov
