@@ -24,7 +24,8 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ...operations._operations import (
     build_analyze_body_no_accept_header_request,
     build_analyze_body_request,
-    build_binary_body_with_multiple_content_types_request,
+    build_binary_body_with_three_content_types_request,
+    build_binary_body_with_two_content_types_request,
     build_content_type_with_encoding_request,
     build_put_text_and_json_body_request,
 )
@@ -207,8 +208,70 @@ class MediaTypesClientOperationsMixin:
     content_type_with_encoding.metadata = {"url": "/mediatypes/contentTypeWithEncoding"}  # type: ignore
 
     @distributed_trace_async
-    async def binary_body_with_multiple_content_types(self, message: Union[IO, str], **kwargs: Any) -> str:
-        """Binary body with three content types. They should be grouped by body type.
+    async def binary_body_with_two_content_types(self, message: IO, **kwargs: Any) -> str:
+        """Binary body with two content types.
+
+        :param message: The payload body.
+        :type message: IO
+        :return: str
+        :rtype: str
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[str]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
+        json = None
+        content = None
+        if content_type.split(";")[0] in ["application/json"]:
+            json = message
+        elif content_type.split(";")[0] in ["application/octet-stream"]:
+            content = message
+        else:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json', 'application/octet-stream']".format(content_type)
+            )
+
+        request = build_binary_body_with_two_content_types_request(
+            content_type=content_type,
+            json=json,
+            content=content,
+            template_url=self.binary_body_with_two_content_types.metadata["url"],
+        )
+        request.url = self._client.format_url(request.url)
+
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200, 200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if response.status_code == 200:
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
+
+        if response.status_code == 200:
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+
+    binary_body_with_two_content_types.metadata = {"url": "/mediatypes/binaryBodyTwoContentTypes"}  # type: ignore
+
+    @distributed_trace_async
+    async def binary_body_with_three_content_types(self, message: Union[IO, str], **kwargs: Any) -> str:
+        """Binary body with three content types.
 
         :param message: The payload body.
         :type message: IO or str
@@ -237,11 +300,11 @@ class MediaTypesClientOperationsMixin:
                 "['application/json', 'application/octet-stream', 'text/plain']".format(content_type)
             )
 
-        request = build_binary_body_with_multiple_content_types_request(
+        request = build_binary_body_with_three_content_types_request(
             content_type=content_type,
             json=json,
             content=content,
-            template_url=self.binary_body_with_multiple_content_types.metadata["url"],
+            template_url=self.binary_body_with_three_content_types.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -269,7 +332,7 @@ class MediaTypesClientOperationsMixin:
 
         return deserialized
 
-    binary_body_with_multiple_content_types.metadata = {"url": "/mediatypes/binaryBody"}  # type: ignore
+    binary_body_with_three_content_types.metadata = {"url": "/mediatypes/binaryBodyThreeContentTypes"}  # type: ignore
 
     @distributed_trace_async
     async def put_text_and_json_body(self, message: Union[str, str], **kwargs: Any) -> str:
