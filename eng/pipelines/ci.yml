@@ -69,14 +69,12 @@ jobs:
 
       - script: |
           cd $(TestFolder)/llc/low-level
-          tox -e initial-ci
-          tox -e update-ci
+          tox -e ci
         displayName: 'Execute low level update "llc" Tests - Python $(PythonVersion)'
 
       - script: |
           cd $(TestFolder)/llc/version-tolerant
-          tox -e initial-ci
-          tox -e update-ci
+          tox -e ci
         displayName: 'Execute version-tolerant update "llc" Tests - Python $(PythonVersion)'
 
       - script: |
