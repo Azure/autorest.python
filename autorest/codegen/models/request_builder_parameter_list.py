@@ -58,20 +58,35 @@ class RequestBuilderParameterList(ParameterList):
             return []
         return [b for b in self.body if b.content_types]
 
-    def add_body_kwargs(self) -> None: # pylint: disable=too-many-statements
+    def _update_constant_params(self):
+        # we don't currently have a fully constant data or files input
+        # so we don't need to modify the body kwarg
+        constant_bodies = [
+            p for p in self.parameters
+            if p.location == ParameterLocation.Body
+            and p.constant
+            and not p.is_data_input
+            and not p.is_multipart
+        ]
+        for constant_body in constant_bodies:
+            if self._is_json(constant_body):
+                constant_body.serialized_name = "json"
+            else:
+                constant_body.serialized_name = "content"
+
+    def add_body_kwargs(self) -> None:
+        self._update_constant_params()
         try:
             body_kwargs_added = []
             body_method_param = next(
-                p for p in self.parameters if p.location == ParameterLocation.Body
+                p for p in self.parameters
+                if p.location == ParameterLocation.Body and not p.constant
             )
         except StopIteration:
             pass
         else:
-            serialized_name: str = ""
-
             content_types_to_assign = copy(self.content_types)
             if body_method_param.is_multipart:
-                serialized_name = "files"
                 file_kwarg = copy(body_method_param)
                 self._change_body_param_name(file_kwarg, "files")
                 file_kwarg.schema = DictionarySchema(
@@ -91,7 +106,6 @@ class RequestBuilderParameterList(ParameterList):
                 content_types_to_assign = _update_content_types(content_types_to_assign, file_kwarg)
                 body_kwargs_added.append(file_kwarg)
             if body_method_param.is_data_input:
-                serialized_name = "data"
                 data_kwarg = copy(body_method_param)
                 self._change_body_param_name(data_kwarg, "data")
                 data_kwarg.schema = DictionarySchema(
@@ -110,16 +124,7 @@ class RequestBuilderParameterList(ParameterList):
                 ]
                 content_types_to_assign = _update_content_types(content_types_to_assign, data_kwarg)
                 body_kwargs_added.append(data_kwarg)
-            if body_method_param.constant:
-                # we don't add body kwargs for constant bodies
-                if not serialized_name and self._is_json(body_method_param):
-                    serialized_name = "json"
-                else:
-                    serialized_name = "content"
-                body_method_param.serialized_name = serialized_name
-                return
             if self._is_json(body_method_param):
-                serialized_name = "json"
                 json_kwarg = copy(body_method_param)
                 self._change_body_param_name(json_kwarg, "json")
                 json_kwarg.description = (

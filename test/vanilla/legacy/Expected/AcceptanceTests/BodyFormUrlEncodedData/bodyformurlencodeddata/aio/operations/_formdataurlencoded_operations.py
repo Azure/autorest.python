@@ -155,7 +155,7 @@ class FormdataurlencodedOperations:
 
         request = build_partial_constant_body_request(
             content_type=content_type,
-            content=data,
+            data=data,
             template_url=self.partial_constant_body.metadata["url"],
         )
         request = _convert_request(request)

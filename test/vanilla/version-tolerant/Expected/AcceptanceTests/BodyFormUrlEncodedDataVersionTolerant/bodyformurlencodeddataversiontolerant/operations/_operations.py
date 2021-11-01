@@ -67,7 +67,6 @@ def build_formdataurlencoded_partial_constant_body_request(
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
-    content = kwargs.pop('content', "access_token")  # type: str
 
     # Construct URL
     url = kwargs.pop("template_url", '/formsdataurlencoded/partialConstantBody')
@@ -196,7 +195,7 @@ class FormdataurlencodedOperations(object):
 
         request = build_formdataurlencoded_partial_constant_body_request(
             content_type=content_type,
-            content=data,
+            data=data,
             template_url=self.partial_constant_body.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
