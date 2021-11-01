@@ -8,9 +8,12 @@
 
 try:
     from ._request_builders_py3 import build_update_pet_with_form_request
+    from ._request_builders_py3 import build_partial_constant_body_request
 except (SyntaxError, ImportError):
     from ._request_builders import build_update_pet_with_form_request  # type: ignore
+    from ._request_builders import build_partial_constant_body_request  # type: ignore
 
 __all__ = [
     "build_update_pet_with_form_request",
+    "build_partial_constant_body_request",
 ]

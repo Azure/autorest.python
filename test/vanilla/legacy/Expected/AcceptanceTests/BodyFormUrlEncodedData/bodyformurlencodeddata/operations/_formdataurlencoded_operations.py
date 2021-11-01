@@ -62,6 +62,29 @@ def build_update_pet_with_form_request(
         **kwargs
     )
 
+
+def build_partial_constant_body_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    content = kwargs.pop('content', "access_token")  # type: str
+
+    # Construct URL
+    url = kwargs.pop("template_url", '/formsdataurlencoded/partialConstantBody')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
 # fmt: on
 class FormdataurlencodedOperations(object):
     """FormdataurlencodedOperations operations.
@@ -153,3 +176,60 @@ class FormdataurlencodedOperations(object):
             return cls(pipeline_response, None, {})
 
     update_pet_with_form.metadata = {"url": "/formsdataurlencoded/pet/add/{petId}"}  # type: ignore
+
+    @distributed_trace
+    def partial_constant_body(
+        self,
+        service,  # type: str
+        access_token,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Test a partially constant formdata body.
+
+        :param service: Indicates the name of your Azure container registry.
+        :type service: str
+        :param access_token: AAD access token, mandatory when grant_type is access_token_refresh_token
+         or access_token.
+        :type access_token: str
+        :keyword grant_type: Constant part of a formdata body. The default value is "access_token".
+         Note that overriding this default value may result in unsupported behavior.
+        :paramtype grant_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        content_type = kwargs.pop("content_type", "application/x-www-form-urlencoded")  # type: Optional[str]
+        grant_type = kwargs.pop("grant_type", "access_token")  # type: str
+
+        # Construct form data
+        data = {
+            "grant_type": grant_type,
+            "service": service,
+            "access_token": access_token,
+        }
+
+        request = build_partial_constant_body_request(
+            content_type=content_type,
+            content=data,
+            template_url=self.partial_constant_body.metadata["url"],
+        )
+        request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
+
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+    partial_constant_body.metadata = {"url": "/formsdataurlencoded/partialConstantBody"}  # type: ignore

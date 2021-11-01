@@ -67,3 +67,42 @@ def build_update_pet_with_form_request(
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, data=data, content=content, **kwargs)
+
+
+def build_partial_constant_body_request(**kwargs: Any) -> HttpRequest:
+    """Test a partially constant formdata body.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content: Constant part of a formdata body. The default value is "access_token". Note
+     that overriding this default value may result in unsupported behavior.
+    :paramtype content: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # form-encoded input template you can fill out and use as your `data` input.
+            data = {
+                access_token: "str",  # AAD access token, mandatory when grant_type is access_token_refresh_token or access_token.
+                content: "access_token",  # Default value is "access_token". Constant part of a formdata body. The default value is "access_token". Note that overriding this default value may result in unsupported behavior.
+                service: "str"  # Indicates the name of your Azure container registry.
+            }
+    """
+
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content = kwargs.pop("content", "access_token")  # type: str
+
+    # Construct URL
+    url = kwargs.pop("template_url", "/formsdataurlencoded/partialConstantBody")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="POST", url=url, headers=header_parameters, data=data, **kwargs)
