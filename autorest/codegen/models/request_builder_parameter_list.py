@@ -21,10 +21,10 @@ _REQUEST_BUILDER_BODY_NAMES = ["files", "json", "content", "data"]
 
 class RequestBuilderParameterList(ParameterList):
     def __init__(
-        self, parameters: Optional[List[RequestBuilderParameter]] = None
+        self, code_model, parameters: Optional[List[RequestBuilderParameter]] = None
     ) -> None:
         super(RequestBuilderParameterList, self).__init__(
-            parameters  # type: ignore
+            code_model, parameters  # type: ignore
         )
         self.body_kwarg_names: OrderedSet[str] = {}
         self.parameters: List[RequestBuilderParameter] = parameters or []  # type: ignore
@@ -42,7 +42,9 @@ class RequestBuilderParameterList(ParameterList):
         except StopIteration:
             pass
         else:
+            serialized_name: str = ""
             if body_method_param.is_multipart:
+                serialized_name = "files"
                 file_kwarg = copy(body_method_param)
                 self._change_body_param_name(file_kwarg, "files")
                 file_kwarg.schema = DictionarySchema(
@@ -57,6 +59,7 @@ class RequestBuilderParameterList(ParameterList):
                 file_kwarg.is_multipart = False
                 body_kwargs_added.append(file_kwarg)
             if body_method_param.is_data_input:
+                serialized_name = "data"
                 data_kwarg = copy(body_method_param)
                 self._change_body_param_name(data_kwarg, "data")
                 data_kwarg.schema = DictionarySchema(
@@ -72,7 +75,9 @@ class RequestBuilderParameterList(ParameterList):
                 body_kwargs_added.append(data_kwarg)
             if body_method_param.constant:
                 # we don't add body kwargs for constant bodies
-                body_method_param.serialized_name = "json"
+                if not serialized_name:
+                    serialized_name = "json" if body_method_param.is_json_parameter else "content"
+                body_method_param.serialized_name = serialized_name
                 return
             if (
                 any(sr for sr in schema_requests if not sr.is_stream_request) and
@@ -123,7 +128,7 @@ class RequestBuilderParameterList(ParameterList):
         # we don't want to pop the body kwargs in py2.7. We send them straight to HttpRequest
         kwargs_to_pop = self.kwargs
         if not is_python_3_file:
-            kwargs_to_pop += [k for k in self.keyword_only if not k.is_body]
+            kwargs_to_pop += [k for k in self.keyword_only if not (k.is_body and not k.constant)]
         return kwargs_to_pop
 
     @property

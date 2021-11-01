@@ -107,13 +107,18 @@ def build_get_swagger_path_valid_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword unencoded_path_param: An unencoded path parameter with value 'path1/path2/path3'. The
+     default value is "path1/path2/path3". Note that overriding this default value may result in
+     unsupported behavior.
+    :paramtype unencoded_path_param: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    unencoded_path_param = "path1/path2/path3"
+    unencoded_path_param = kwargs.pop('unencoded_path_param', "path1/path2/path3")  # type: str
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}')
@@ -265,13 +270,18 @@ def build_get_swagger_query_valid_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword q1: An unencoded query parameter with value 'value1&q2=value2&q3=value3'. The default
+     value is "value1&q2=value2&q3=value3". Note that overriding this default value may result in
+     unsupported behavior.
+    :paramtype q1: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    q1 = "value1&q2=value2&q3=value3"
+    q1 = kwargs.pop('q1', "value1&q2=value2&q3=value3")  # type: str
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/azurespecials/skipUrlEncoding/swagger/query/valid')

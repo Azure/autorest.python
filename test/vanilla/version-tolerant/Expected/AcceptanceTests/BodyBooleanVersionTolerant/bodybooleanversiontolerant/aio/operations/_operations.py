@@ -92,6 +92,9 @@ class BoolOperations:
     async def put_true(self, **kwargs: Any) -> None:
         """Set Boolean value true.
 
+        :keyword bool_body: The default value is True. Note that overriding this default value may
+         result in unsupported behavior.
+        :paramtype bool_body: bool
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -101,9 +104,11 @@ class BoolOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        bool_body = kwargs.pop("bool_body", True)  # type: bool
 
         request = build_bool_put_true_request(
             content_type=content_type,
+            json=bool_body,
             template_url=self.put_true.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -160,6 +165,9 @@ class BoolOperations:
     async def put_false(self, **kwargs: Any) -> None:
         """Set Boolean value false.
 
+        :keyword bool_body: The default value is False. Note that overriding this default value may
+         result in unsupported behavior.
+        :paramtype bool_body: bool
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -169,9 +177,11 @@ class BoolOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        bool_body = kwargs.pop("bool_body", False)  # type: bool
 
         request = build_bool_put_false_request(
             content_type=content_type,
+            json=bool_body,
             template_url=self.put_false.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

@@ -27,8 +27,9 @@ def _method_signature_helper(positional: List[str], keyword_only: Optional[List[
 
 class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
     def __init__(
-        self, parameters: Optional[List[Parameter]] = None
+        self, code_model, parameters: Optional[List[Parameter]] = None
     ) -> None:
+        self.code_model = code_model
         self.parameters = parameters or []
         self._json_body: Optional[BaseSchema] = None
         self._content_types: Optional[List[str]] = None
@@ -338,6 +339,23 @@ class GlobalParameterList(ParameterList):
         return "Client"
 
     @property
+    def method(self) -> List[Parameter]:
+        """The list of parameter used in method signature.
+        """
+        # Client level should not be on Method, etc.
+        positional = [p for p in self.parameters if p.is_positional]
+        keyword_only = [p for p in self.parameters if p.is_keyword_only]
+        kwargs = self._filter_out_multiple_content_type(
+            [p for p in self.parameters if p.is_kwarg]
+        )
+        def _sort(params):
+            return sorted(params, key=lambda x: not x.default_value and x.required, reverse=True)
+        signature_parameters = (
+            _sort(positional) + _sort(keyword_only) + _sort(kwargs)
+        )
+        return signature_parameters
+
+    @property
     def code_model(self):
         try:
             return self._code_model
@@ -367,6 +385,7 @@ class GlobalParameterList(ParameterList):
     def add_host(self, host_value: Optional[str]) -> None:
         # only adds if we don't have a parameterized host
         host_param = Parameter(
+            self.code_model,
             yaml_data={},
             schema=StringSchema(namespace="", yaml_data={"type": "str"}),
             rest_api_name=self.host_variable_name,
@@ -384,6 +403,7 @@ class GlobalParameterList(ParameterList):
 
     def add_credential_global_parameter(self) -> None:
         credential_parameter = Parameter(
+            self.code_model,
             yaml_data={},
             schema=self.code_model.credential_schema_policy.credential,
             serialized_name="credential",
@@ -424,6 +444,12 @@ class GlobalParameterList(ParameterList):
         if self.code_model.service_client.has_parameterized_host:
             return True
         return serialized_name != self.host_variable_name
+
+    def kwargs_to_pop(self, is_python_3_file: bool) -> List[Parameter]:
+        return [
+            k for k in super().kwargs_to_pop(is_python_3_file)
+            if not self._param_is_in_config_method(k.serialized_name)
+        ]
 
     def config_kwargs_to_pop(self, is_python_3_file: bool) -> List[Parameter]:
         current_kwargs_to_pop = super().kwargs_to_pop(is_python_3_file)

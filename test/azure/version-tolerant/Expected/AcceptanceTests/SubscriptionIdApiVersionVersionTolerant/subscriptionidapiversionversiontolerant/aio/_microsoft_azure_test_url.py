@@ -34,6 +34,9 @@ class MicrosoftAzureTestUrl:
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
     :paramtype endpoint: str
+    :keyword api_version: Api Version. The default value is "2014-04-01-preview". Note that
+     overriding this default value may result in unsupported behavior.
+    :paramtype api_version: str
     """
 
     def __init__(

@@ -37,9 +37,9 @@ class AutoRestHeadTestServiceConfiguration(Configuration):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
+        super(AutoRestHeadTestServiceConfiguration, self).__init__(**kwargs)
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
-        super(AutoRestHeadTestServiceConfiguration, self).__init__(**kwargs)
 
         self.credential = credential
         kwargs.setdefault("sdk_moniker", "autorestheadtestservice/{}".format(VERSION))

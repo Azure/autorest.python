@@ -5,10 +5,18 @@
 # --------------------------------------------------------------------------
 
 import pytest
-from autorest.codegen.models import Parameter, AnySchema
+from autorest.codegen.models import Parameter, AnySchema, CodeModel
 from autorest.codegen.models.primitive_schemas import StringSchema
 from autorest.codegen.models.parameter_list import ParameterList
 from autorest.codegen.models.parameter import ParameterLocation
+
+def get_code_model():
+    options = {
+        "show_send_request": True,
+        "builders_visibility": "embedded",
+        "multiapi": False,
+    }
+    return CodeModel(options)
 
 def get_parameter(name, required, default_value=None, schema=None):
     if not schema:
@@ -16,7 +24,9 @@ def get_parameter(name, required, default_value=None, schema=None):
             namespace="parameterordering",
             yaml_data={}
         )
+
     return Parameter(
+        get_code_model(),
         schema=schema,
         yaml_data={},
         rest_api_name=name,
@@ -47,7 +57,7 @@ def test_sort_parameters_with_default_value_from_schema():
 
     parameter_list = [parameter_with_default_schema_value_required, required_parameter]
 
-    assert [required_parameter, parameter_with_default_schema_value_required] == ParameterList(parameter_list).method
+    assert [required_parameter, parameter_with_default_schema_value_required] == ParameterList(get_code_model(), parameter_list).method
 
 def test_sort_required_parameters():
     required_default_value_parameter = get_parameter(
@@ -62,13 +72,13 @@ def test_sort_required_parameters():
 
     parameter_list = [required_parameter, required_default_value_parameter]
 
-    assert [required_parameter, required_default_value_parameter] == ParameterList(parameter_list).method
+    assert [required_parameter, required_default_value_parameter] == ParameterList(get_code_model(), parameter_list).method
 
     # switch around ordering to confirm
 
     parameter_list = [required_default_value_parameter, required_parameter]
 
-    assert [required_parameter, required_default_value_parameter] == ParameterList(parameter_list).method
+    assert [required_parameter, required_default_value_parameter] == ParameterList(get_code_model(), parameter_list).method
 
 def test_sort_required_and_non_required_parameters():
     required_parameter = get_parameter(
@@ -83,4 +93,4 @@ def test_sort_required_and_non_required_parameters():
 
     parameter_list = [optional_parameter, required_parameter]
 
-    assert [required_parameter, optional_parameter] == ParameterList(parameter_list).method
+    assert [required_parameter, optional_parameter] == ParameterList(get_code_model(), parameter_list).method

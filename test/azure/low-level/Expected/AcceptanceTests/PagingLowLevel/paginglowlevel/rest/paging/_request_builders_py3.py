@@ -237,6 +237,10 @@ def build_get_with_query_params_request(*, required_query_parameter: int, **kwar
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword query_constant: A constant. Must be True and will be passed as a query parameter to
+     nextOperationWithQueryParams. The default value is True. Note that overriding this default
+     value may result in unsupported behavior.
+    :paramtype query_constant: bool
     :keyword required_query_parameter: A required integer query parameter. Put in value '100' to
      pass test.
     :paramtype required_query_parameter: int
@@ -262,7 +266,8 @@ def build_get_with_query_params_request(*, required_query_parameter: int, **kwar
             }
     """
 
-    query_constant = True
+    query_constant = kwargs.pop("query_constant", True)  # type: bool
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", "/paging/multiple/getWithQueryParams")
@@ -287,6 +292,9 @@ def build_next_operation_with_query_params_request(**kwargs: Any) -> HttpRequest
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword query_constant: A constant. Must be True. The default value is True. Note that
+     overriding this default value may result in unsupported behavior.
+    :paramtype query_constant: bool
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -309,7 +317,8 @@ def build_next_operation_with_query_params_request(**kwargs: Any) -> HttpRequest
             }
     """
 
-    query_constant = True
+    query_constant = kwargs.pop("query_constant", True)  # type: bool
+
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", "/paging/multiple/nextOperationWithQueryParams")

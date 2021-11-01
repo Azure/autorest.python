@@ -181,6 +181,9 @@ class StringOperations:
     async def put_empty(self, **kwargs: Any) -> None:
         """Set string value empty ''.
 
+        :keyword string_body: string body. The default value is "". Note that overriding this default
+         value may result in unsupported behavior.
+        :paramtype string_body: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -190,9 +193,11 @@ class StringOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        string_body = kwargs.pop("string_body", "")  # type: str
 
         request = build_string_put_empty_request(
             content_type=content_type,
+            json=string_body,
             template_url=self.put_empty.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -249,6 +254,10 @@ class StringOperations:
     async def put_mbcs(self, **kwargs: Any) -> None:
         """Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
+        :keyword string_body: string body. The default value is
+         "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€". Note that overriding
+         this default value may result in unsupported behavior.
+        :paramtype string_body: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -258,9 +267,13 @@ class StringOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        string_body = kwargs.pop(
+            "string_body", "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
+        )  # type: str
 
         request = build_string_put_mbcs_request(
             content_type=content_type,
+            json=string_body,
             template_url=self.put_mbcs.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -321,6 +334,10 @@ class StringOperations:
         ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid
         of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
 
+        :keyword string_body: string body. The default value is "    Now is the time for all good men
+         to come to the aid of their country    ". Note that overriding this default value may result in
+         unsupported behavior.
+        :paramtype string_body: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -330,9 +347,13 @@ class StringOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        string_body = kwargs.pop(
+            "string_body", "    Now is the time for all good men to come to the aid of their country    "
+        )  # type: str
 
         request = build_string_put_whitespace_request(
             content_type=content_type,
+            json=string_body,
             template_url=self.put_whitespace.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

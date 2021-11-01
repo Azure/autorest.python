@@ -34,9 +34,9 @@ class AutoRestParameterizedHostTestClientConfiguration(Configuration):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
+        super(AutoRestParameterizedHostTestClientConfiguration, self).__init__(**kwargs)
         if host is None:
             raise ValueError("Parameter 'host' must not be None.")
-        super(AutoRestParameterizedHostTestClientConfiguration, self).__init__(**kwargs)
 
         self.host = host
         kwargs.setdefault("sdk_moniker", "autorestparameterizedhosttestclient/{}".format(VERSION))
