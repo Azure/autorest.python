@@ -69,3 +69,11 @@ class TestMediaTypes(object):
     async def test_json_no_accept_header(self, client):
         json_input = json.loads('{"source":"foo"}')
         await client.analyze_body_no_accept_header(input=json_input)
+
+    @pytest.mark.asyncio
+    async def test_binary_body_two_content_types(self, client):
+        json_input = {"hello":"world"}
+        await client.binary_body_with_two_content_types(json_input, content_type="application/json")
+
+        content = b"hello, world"
+        await client.binary_body_with_two_content_types(content, content_type="application/octet-stream")
