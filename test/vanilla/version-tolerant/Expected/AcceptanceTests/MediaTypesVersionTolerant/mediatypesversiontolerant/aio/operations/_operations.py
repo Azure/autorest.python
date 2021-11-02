@@ -209,7 +209,8 @@ class MediaTypesClientOperationsMixin:
 
     @distributed_trace_async
     async def binary_body_with_two_content_types(self, message: IO, **kwargs: Any) -> str:
-        """Binary body with two content types.
+        """Binary body with two content types. Pass in of {'hello': 'world'} for the application/json
+        content type, and a byte stream of 'hello, world!' for application/octet-stream.
 
         :param message: The payload body.
         :type message: IO
@@ -246,21 +247,14 @@ class MediaTypesClientOperationsMixin:
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
-        if response.status_code not in [200, 200]:
+        if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
-
-        if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -271,7 +265,9 @@ class MediaTypesClientOperationsMixin:
 
     @distributed_trace_async
     async def binary_body_with_three_content_types(self, message: Union[IO, str], **kwargs: Any) -> str:
-        """Binary body with three content types.
+        """Binary body with three content types. Pass in string 'hello, world' with content type
+        'text/plain', {'hello': world'} with content type 'application/json' and a byte string for
+        'application/octet-stream'.
 
         :param message: The payload body.
         :type message: IO or str
@@ -311,21 +307,14 @@ class MediaTypesClientOperationsMixin:
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
-        if response.status_code not in [200, 200]:
+        if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
-
-        if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})

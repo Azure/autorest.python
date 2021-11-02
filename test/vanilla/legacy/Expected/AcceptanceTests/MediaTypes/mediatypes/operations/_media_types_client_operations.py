@@ -105,15 +105,39 @@ def build_content_type_with_encoding_request(
     )
 
 
-def build_binary_body_with_multiple_content_types_request(
+def build_binary_body_with_two_content_types_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop('content_type', None)  # type: Optional[Union[str, "_models.ContentType1"]]
 
-    accept = "text/plain, application/json, text/json"
+    accept = "text/plain"
     # Construct URL
-    url = kwargs.pop("template_url", '/mediatypes/binaryBody')
+    url = kwargs.pop("template_url", '/mediatypes/binaryBodyTwoContentTypes')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_binary_body_with_three_content_types_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop('content_type', None)  # type: Optional[Union[str, "_models.ContentType1"]]
+
+    accept = "text/plain"
+    # Construct URL
+    url = kwargs.pop("template_url", '/mediatypes/binaryBodyThreeContentTypes')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -330,13 +354,75 @@ class MediaTypesClientOperationsMixin(object):
     content_type_with_encoding.metadata = {"url": "/mediatypes/contentTypeWithEncoding"}  # type: ignore
 
     @distributed_trace
-    def binary_body_with_multiple_content_types(
+    def binary_body_with_two_content_types(
+        self,
+        message,  # type: IO
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> str
+        """Binary body with two content types. Pass in of {'hello': 'world'} for the application/json
+        content type, and a byte stream of 'hello, world!' for application/octet-stream.
+
+        :param message: The payload body.
+        :type message: IO
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: str, or the result of cls(response)
+        :rtype: str
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[str]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        content_type = kwargs.pop("content_type", None)  # type: Optional[Union[str, "_models.ContentType1"]]
+
+        json = None
+        content = None
+        if content_type.split(";")[0] in ["application/json"]:
+            json = message
+        elif content_type.split(";")[0] in ["application/octet-stream"]:
+            content = message
+        else:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json', 'application/octet-stream']".format(content_type)
+            )
+
+        request = build_binary_body_with_two_content_types_request(
+            content_type=content_type,
+            json=json,
+            content=content,
+            template_url=self.binary_body_with_two_content_types.metadata["url"],
+        )
+        request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
+
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        deserialized = self._deserialize("str", pipeline_response)
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+
+    binary_body_with_two_content_types.metadata = {"url": "/mediatypes/binaryBodyTwoContentTypes"}  # type: ignore
+
+    @distributed_trace
+    def binary_body_with_three_content_types(
         self,
         message,  # type: Union[IO, str]
         **kwargs  # type: Any
     ):
         # type: (...) -> str
-        """Binary body with three content types. They should be grouped by body type.
+        """Binary body with three content types. Pass in string 'hello, world' with content type
+        'text/plain', {'hello': world'} with content type 'application/json' and a byte string for
+        'application/octet-stream'.
 
         :param message: The payload body.
         :type message: IO or str
@@ -366,11 +452,11 @@ class MediaTypesClientOperationsMixin(object):
                 "['application/json', 'application/octet-stream', 'text/plain']".format(content_type)
             )
 
-        request = build_binary_body_with_multiple_content_types_request(
+        request = build_binary_body_with_three_content_types_request(
             content_type=content_type,
             json=json,
             content=content,
-            template_url=self.binary_body_with_multiple_content_types.metadata["url"],
+            template_url=self.binary_body_with_three_content_types.metadata["url"],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -378,22 +464,18 @@ class MediaTypesClientOperationsMixin(object):
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
-        if response.status_code not in [200, 200]:
+        if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.status_code == 200:
-            deserialized = self._deserialize("str", pipeline_response)
-
-        if response.status_code == 200:
-            deserialized = self._deserialize("str", pipeline_response)
+        deserialized = self._deserialize("str", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    binary_body_with_multiple_content_types.metadata = {"url": "/mediatypes/binaryBody"}  # type: ignore
+    binary_body_with_three_content_types.metadata = {"url": "/mediatypes/binaryBodyThreeContentTypes"}  # type: ignore
 
     @distributed_trace
     def put_text_and_json_body(

@@ -78,8 +78,8 @@ _VANILLA_SWAGGER_MAPPINGS = {
 }
 
 _LLC_SWAGGER_MAPPINGS = {
-    'LLCInitial': 'llc_initial.json',
-    'LLCUpdateOne': 'llc_update1.json'
+    'LLCServiceDrivenInitial': 'llc_initial.json',
+    'LLCServiceDrivenUpdateOne': 'llc_update1.json'
 }
 
 _AZURE_SWAGGER_MAPPINGS = {
@@ -117,8 +117,11 @@ _OVERWRITE_DEFAULT_NAMESPACE = {
     'AzureSpecials': 'azurespecialproperties',
     'StorageManagementClient': 'storage',
     'CustomUrlPaging': 'custombaseurlpaging',
-    'LLCInitial': 'llcpackage',
-    'LLCUpdateOne': 'llcpackage'
+}
+
+_OVERRIDE_PACKAGE_NAME = {
+    "LLCServiceDrivenInitial": "llcservicedriveninitial",
+    "LLCServiceDrivenUpdateOne": "llcservicedrivenupdateone",
 }
 
 _PACKAGES_WITH_CLIENT_SIDE_VALIDATION = [
@@ -198,6 +201,9 @@ def _build_command_line(
     override_flags: Optional[Dict[str, Any]] = None,
     **kwargs,
 ) -> str:
+    if _OVERRIDE_PACKAGE_NAME.get(package_name):
+        override_flags = override_flags or {}
+        override_flags.update({"package-name": _OVERRIDE_PACKAGE_NAME[package_name]})
     flags = _build_flags(package_name, swagger_name, debug, swagger_group, override_flags, **kwargs)
     flag_strings = [
         f"--{flag}={value}" for flag, value in flags.items()
