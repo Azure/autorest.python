@@ -620,7 +620,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
     def _response_type_annotation(self, builder: BuilderType, modify_if_head_as_boolean: bool = True) -> str:
         if (
             modify_if_head_as_boolean
-            and builder.request_builder.method == "head"
+            and builder.request_builder.method.lower() == "head"
             and self.code_model.options["head_as_boolean"]
         ):
             return "bool"
@@ -643,7 +643,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
 
     def response_docstring(self, builder: BuilderType) -> List[str]:
         responses_with_body = [r for r in builder.responses if r.has_body]
-        if builder.request_builder.method == "head" and self.code_model.options["head_as_boolean"]:
+        if builder.request_builder.method.lower() == "head" and self.code_model.options["head_as_boolean"]:
             response_docstring_text = "bool"
             rtype = "bool"
         elif responses_with_body:

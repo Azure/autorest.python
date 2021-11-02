@@ -2073,13 +2073,13 @@ class HeaderOperations(object):
     def custom_named_request_id_head(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> bool
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.
 
         :keyword foo_client_request_id: The fooRequestId.
         :paramtype foo_client_request_id: str
-        :return: None
-        :rtype: None
+        :return: bool
+        :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
