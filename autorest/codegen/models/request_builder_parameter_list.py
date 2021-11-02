@@ -8,7 +8,7 @@ from copy import copy
 from typing import List, Optional, TypeVar, Dict
 from .request_builder_parameter import RequestBuilderParameter
 from .parameter_list import ParameterList
-from .parameter import ParameterLocation, Parameter
+from .parameter import ParameterLocation, Parameter, ParameterStyle
 from .primitive_schemas import AnySchema
 from .dictionary_schema import DictionarySchema
 from .base_schema import BaseSchema
@@ -45,6 +45,12 @@ class RequestBuilderParameterList(ParameterList):
     def _is_json(self, body_method_param: Parameter) -> bool:
         if 'json' in body_method_param.serialization_formats:
             return True
+        if not any(
+            flag for flag in ["version_tolerant", "low_level_client"]
+            if self.code_model.options.get(flag)
+        ):
+            if body_method_param.style == ParameterStyle.binary:
+                return False
         if any(
             sr for sr in self.schema_requests
             if sr.yaml_data.get("protocol", {}).get('http', {}).get('knownMediaType') == "json"
