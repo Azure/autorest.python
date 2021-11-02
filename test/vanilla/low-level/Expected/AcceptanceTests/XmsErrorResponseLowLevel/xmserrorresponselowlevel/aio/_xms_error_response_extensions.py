@@ -23,11 +23,11 @@ if TYPE_CHECKING:
 class XMSErrorResponseExtensions:
     """XMS Error Response Extensions.
 
-    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
+    :keyword endpoint: Service URL. Default value is 'http://localhost'.
     :paramtype endpoint: str
     """
 
-    def __init__(self, *, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
+    def __init__(self, *, endpoint: str = "http://localhost", **kwargs: Any) -> None:
         self._config = XMSErrorResponseExtensionsConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
