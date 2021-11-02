@@ -184,7 +184,8 @@ class FormdataurlencodedOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Test a partially constant formdata body.
+        """Test a partially constant formdata body. Pass in { grant_type: 'access_token', access_token:
+        'foo', service: 'bar' } to pass the test.
 
         :param service: Indicates the name of your Azure container registry.
         :type service: str

@@ -103,7 +103,8 @@ class FormdataurlencodedOperations:
 
     @distributed_trace_async
     async def partial_constant_body(self, data: Dict[str, Any], **kwargs: Any) -> None:
-        """Test a partially constant formdata body.
+        """Test a partially constant formdata body. Pass in { grant_type: 'access_token', access_token:
+        'foo', service: 'bar' } to pass the test.
 
         :param data: Form-encoded input for data. See the template in our example to find the input
          shape.

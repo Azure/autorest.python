@@ -168,7 +168,8 @@ class FormdataurlencodedOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Test a partially constant formdata body.
+        """Test a partially constant formdata body. Pass in { grant_type: 'access_token', access_token:
+        'foo', service: 'bar' } to pass the test.
 
         :param data: Form-encoded input for data. See the template in our example to find the input
          shape.
