@@ -217,21 +217,10 @@ class MediaTypesClientOperationsMixin:
 
         content_type = kwargs.pop("content_type", None)  # type: Optional[Union[str, "_models.ContentType1"]]
 
-        json = None
-        content = None
-        if content_type.split(";")[0] in ["application/json"]:
-            json = message
-        elif content_type.split(";")[0] in ["application/octet-stream"]:
-            content = message
-        else:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json', 'application/octet-stream']".format(content_type)
-            )
+        content = message
 
         request = build_binary_body_with_two_content_types_request(
             content_type=content_type,
-            json=json,
             content=content,
             template_url=self.binary_body_with_two_content_types.metadata["url"],
         )
@@ -276,21 +265,10 @@ class MediaTypesClientOperationsMixin:
 
         content_type = kwargs.pop("content_type", "text/plain")  # type: Optional[Union[str, "_models.ContentType1"]]
 
-        json = None
-        content = None
-        if content_type.split(";")[0] in ["application/json"]:
-            json = message
-        elif content_type.split(";")[0] in ["application/octet-stream", "text/plain"]:
-            content = message
-        else:
-            raise ValueError(
-                "The content_type '{}' is not one of the allowed values: "
-                "['application/json', 'application/octet-stream', 'text/plain']".format(content_type)
-            )
+        content = message
 
         request = build_binary_body_with_three_content_types_request(
             content_type=content_type,
-            json=json,
             content=content,
             template_url=self.binary_body_with_three_content_types.metadata["url"],
         )

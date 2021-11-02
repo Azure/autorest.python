@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 import re
 from copy import copy
-from typing import List, Optional, TypeVar, Dict
+from typing import List, Optional, Tuple, TypeVar, Dict
 from .request_builder_parameter import RequestBuilderParameter
 from .parameter_list import ParameterList
 from .parameter import ParameterLocation, Parameter, ParameterStyle
@@ -24,6 +24,9 @@ def _update_content_types(content_types_to_assign: List[str], param: Parameter):
     return [
         c for c in content_types_to_assign if c not in param.content_types
     ]
+
+def _kwarg_not_added(body_method_params, serialized_name: str) -> bool:
+    return not any(b for b in body_method_params if b.serialized_name == serialized_name)
 
 class RequestBuilderParameterList(ParameterList):
     def __init__(
@@ -80,90 +83,125 @@ class RequestBuilderParameterList(ParameterList):
             else:
                 constant_body.serialized_name = "content"
 
+    def _add_files_kwarg(
+        self, content_types_to_assign, body_method_param
+    ) -> Tuple[List[str], RequestBuilderParameter]:
+        file_kwarg = copy(body_method_param)
+        self._change_body_param_name(file_kwarg, "files")
+        file_kwarg.schema = DictionarySchema(
+            namespace="",
+            yaml_data={},
+            element_type=AnySchema(namespace="", yaml_data={}),
+        )
+        file_kwarg.description = (
+            "Multipart input for files. See the template in our example to find the input shape. " +
+            file_kwarg.description
+        )
+        file_kwarg.is_multipart = False
+        file_kwarg.content_types = [
+            c for c in content_types_to_assign
+            if c == "multipart/form-data"
+        ]
+        content_types_to_assign = _update_content_types(content_types_to_assign, file_kwarg)
+        return content_types_to_assign, file_kwarg
+
+    def _add_data_kwarg(
+        self, content_types_to_assign, body_method_param
+    ) -> Tuple[List[str], RequestBuilderParameter]:
+        data_kwarg = copy(body_method_param)
+        self._change_body_param_name(data_kwarg, "data")
+        data_kwarg.schema = DictionarySchema(
+            namespace="",
+            yaml_data={},
+            element_type=AnySchema(namespace="", yaml_data={}),
+        )
+        data_kwarg.description = (
+            "Pass in dictionary that contains form data to include in the body of the request. " +
+            data_kwarg.description
+        )
+        data_kwarg.is_data_input = False
+        data_kwarg.content_types = [
+            c for c in content_types_to_assign
+            if c == "application/x-www-form-urlencoded"
+        ]
+        content_types_to_assign = _update_content_types(content_types_to_assign, data_kwarg)
+        return content_types_to_assign, data_kwarg
+
+    def _add_json_kwarg(
+        self, content_types_to_assign, body_method_param
+    ) -> Tuple[List[str], RequestBuilderParameter]:
+        json_kwarg = copy(body_method_param)
+        self._change_body_param_name(json_kwarg, "json")
+        json_kwarg.description = (
+            "Pass in a JSON-serializable object (usually a dictionary). "
+            "See the template in our example to find the input shape. " +
+            json_kwarg.description
+        )
+        json_kwarg.schema = AnySchema(namespace="", yaml_data={})
+        json_kwarg.content_types = [
+            c for c in content_types_to_assign
+            if _JSON_REGEXP.match(c)
+        ]
+        content_types_to_assign = _update_content_types(content_types_to_assign, json_kwarg)
+        return content_types_to_assign, json_kwarg
+
+    def _add_content_kwarg(
+        self, content_types_to_assign, body_method_param
+    ) -> RequestBuilderParameter:
+        content_kwarg = copy(body_method_param)
+        self._change_body_param_name(content_kwarg, "content")
+        content_kwarg.schema = AnySchema(namespace="", yaml_data={})
+        content_kwarg.description = (
+            "Pass in binary content you want in the body of the request (typically bytes, "
+            "a byte iterator, or stream input). " +
+            content_kwarg.description
+        )
+        content_kwarg.is_data_input = False
+        content_kwarg.is_multipart = False
+        content_kwarg.content_types = content_types_to_assign
+        return content_kwarg
+
     def add_body_kwargs(self) -> None:
         self._update_constant_params()
-        try:
-            body_kwargs_added = []
-            body_method_param = next(
-                p for p in self.parameters
-                if p.location == ParameterLocation.Body and not p.constant
-            )
-        except StopIteration:
-            pass
-        else:
-            content_types_to_assign = copy(self.content_types)
-            if body_method_param.is_multipart:
-                file_kwarg = copy(body_method_param)
-                self._change_body_param_name(file_kwarg, "files")
-                file_kwarg.schema = DictionarySchema(
-                    namespace="",
-                    yaml_data={},
-                    element_type=AnySchema(namespace="", yaml_data={}),
+        body_kwargs_added: List[RequestBuilderParameter] = []
+        body_method_params = [
+            p for p in self.parameters
+            if p.location == ParameterLocation.Body and not p.constant
+        ]
+        if not body_method_params:
+            return
+        content_types_to_assign = copy(self.content_types)
+        for body_method_param in body_method_params:
+            if body_method_param.is_multipart and _kwarg_not_added(body_kwargs_added, "files"):
+                content_types_to_assign, file_kwarg = self._add_files_kwarg(
+                    content_types_to_assign, body_method_param
                 )
-                file_kwarg.description = (
-                    "Multipart input for files. See the template in our example to find the input shape. " +
-                    file_kwarg.description
-                )
-                file_kwarg.is_multipart = False
-                file_kwarg.content_types = [
-                    c for c in content_types_to_assign
-                    if c == "multipart/form-data"
-                ]
-                content_types_to_assign = _update_content_types(content_types_to_assign, file_kwarg)
                 body_kwargs_added.append(file_kwarg)
-            if body_method_param.is_data_input:
-                data_kwarg = copy(body_method_param)
-                self._change_body_param_name(data_kwarg, "data")
-                data_kwarg.schema = DictionarySchema(
-                    namespace="",
-                    yaml_data={},
-                    element_type=AnySchema(namespace="", yaml_data={}),
+
+            elif body_method_param.is_data_input and _kwarg_not_added(body_kwargs_added, "data"):
+                content_types_to_assign, data_kwarg = self._add_data_kwarg(
+                    content_types_to_assign, body_method_param
                 )
-                data_kwarg.description = (
-                    "Pass in dictionary that contains form data to include in the body of the request. " +
-                    data_kwarg.description
-                )
-                data_kwarg.is_data_input = False
-                data_kwarg.content_types = [
-                    c for c in content_types_to_assign
-                    if c == "application/x-www-form-urlencoded"
-                ]
-                content_types_to_assign = _update_content_types(content_types_to_assign, data_kwarg)
                 body_kwargs_added.append(data_kwarg)
-            if self._is_json(body_method_param):
-                json_kwarg = copy(body_method_param)
-                self._change_body_param_name(json_kwarg, "json")
-                json_kwarg.description = (
-                    "Pass in a JSON-serializable object (usually a dictionary). "
-                    "See the template in our example to find the input shape. " +
-                    json_kwarg.description
+            elif self._is_json(body_method_param) and _kwarg_not_added(body_kwargs_added, "json"):
+                content_types_to_assign, json_kwarg = self._add_json_kwarg(
+                    content_types_to_assign, body_method_param
                 )
-                json_kwarg.schema = AnySchema(namespace="", yaml_data={})
-                json_kwarg.content_types = [
-                    c for c in content_types_to_assign
-                    if _JSON_REGEXP.match(c)
-                ]
-                content_types_to_assign = _update_content_types(content_types_to_assign, json_kwarg)
                 body_kwargs_added.append(json_kwarg)
 
-            content_kwarg = copy(body_method_param)
-            self._change_body_param_name(content_kwarg, "content")
-            content_kwarg.schema = AnySchema(namespace="", yaml_data={})
-            content_kwarg.description = (
-                "Pass in binary content you want in the body of the request (typically bytes, "
-                "a byte iterator, or stream input). " +
-                content_kwarg.description
+        first_body_param = body_method_params[0]
+        if _kwarg_not_added(body_kwargs_added, "content"):
+            # we always add a content kwarg so users can pass in input by stream
+            content_kwarg = self._add_content_kwarg(
+                content_types_to_assign, first_body_param
             )
-            content_kwarg.is_data_input = False
-            content_kwarg.is_multipart = False
-            content_kwarg.content_types = content_types_to_assign
             body_kwargs_added.append(content_kwarg)
-            if len(body_kwargs_added) == 1:
-                body_kwargs_added[0].required = body_method_param.required
-            else:
-                for kwarg in body_kwargs_added:
-                    kwarg.required = False
-            self.parameters = body_kwargs_added + self.parameters
+        if len(body_kwargs_added) == 1:
+            body_kwargs_added[0].required = first_body_param.required
+        else:
+            for kwarg in body_kwargs_added:
+                kwarg.required = False
+        self.parameters = body_kwargs_added + self.parameters
 
     @property
     def json_body(self) -> BaseSchema:
