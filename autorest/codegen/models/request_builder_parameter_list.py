@@ -9,7 +9,7 @@ from typing import List, Optional, Tuple, TypeVar, Dict
 from .request_builder_parameter import RequestBuilderParameter
 from .parameter_list import ParameterList
 from .parameter import ParameterLocation, Parameter, ParameterStyle
-from .primitive_schemas import AnySchema
+from .primitive_schemas import AnySchema, JSONSchema
 from .dictionary_schema import DictionarySchema
 from .base_schema import BaseSchema
 from .schema_request import SchemaRequest
@@ -137,7 +137,7 @@ class RequestBuilderParameterList(ParameterList):
             "See the template in our example to find the input shape. " +
             json_kwarg.description
         )
-        json_kwarg.schema = AnySchema(namespace="", yaml_data={})
+        json_kwarg.schema = JSONSchema(namespace="", yaml_data={})
         json_kwarg.content_types = [
             c for c in content_types_to_assign
             if _JSON_REGEXP.match(c)

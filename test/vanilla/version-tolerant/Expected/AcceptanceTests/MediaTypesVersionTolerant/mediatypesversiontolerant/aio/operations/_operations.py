@@ -31,16 +31,17 @@ from ...operations._operations import (
 )
 
 T = TypeVar("T")
+JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
 class MediaTypesClientOperationsMixin:
     @distributed_trace_async
-    async def analyze_body(self, input: Optional[Union[IO, Any]] = None, **kwargs: Any) -> str:
+    async def analyze_body(self, input: Optional[Union[IO, JSONType]] = None, **kwargs: Any) -> str:
         """Analyze body, that could be different media types.
 
         :param input: Input parameter.
-        :type input: IO or Any
+        :type input: IO or JSONType
         :keyword str content_type: Media type of the body sent to the API. Default value is
          "application/json". Allowed values are: "application/pdf", "image/jpeg", "image/png",
          "image/tiff", "application/json."
@@ -103,12 +104,12 @@ class MediaTypesClientOperationsMixin:
     analyze_body.metadata = {"url": "/mediatypes/analyze"}  # type: ignore
 
     @distributed_trace_async
-    async def analyze_body_no_accept_header(self, input: Optional[Union[IO, Any]] = None, **kwargs: Any) -> None:
+    async def analyze_body_no_accept_header(self, input: Optional[Union[IO, JSONType]] = None, **kwargs: Any) -> None:
         """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
         type.
 
         :param input: Input parameter.
-        :type input: IO or Any
+        :type input: IO or JSONType
         :keyword str content_type: Media type of the body sent to the API. Default value is
          "application/json". Allowed values are: "application/pdf", "image/jpeg", "image/png",
          "image/tiff", "application/json."

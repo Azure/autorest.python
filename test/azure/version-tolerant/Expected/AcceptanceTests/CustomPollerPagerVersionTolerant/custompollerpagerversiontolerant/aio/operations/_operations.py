@@ -24,6 +24,7 @@ from custompollerpagerdefinitions.aio import AsyncCustomPager, AsyncCustomPoller
 
 from ...operations._operations import build_paging_first_response_empty_request, build_paging_get_multiple_pages_failure_request, build_paging_get_multiple_pages_failure_uri_request, build_paging_get_multiple_pages_fragment_next_link_request, build_paging_get_multiple_pages_fragment_with_grouping_next_link_request, build_paging_get_multiple_pages_lro_request_initial, build_paging_get_multiple_pages_request, build_paging_get_multiple_pages_retry_first_request, build_paging_get_multiple_pages_retry_second_request, build_paging_get_multiple_pages_with_offset_request, build_paging_get_no_item_name_pages_request, build_paging_get_null_next_link_name_pages_request, build_paging_get_odata_multiple_pages_request, build_paging_get_paging_model_with_item_name_with_xms_client_name_request, build_paging_get_single_pages_failure_request, build_paging_get_single_pages_request, build_paging_get_with_query_params_request, build_paging_next_fragment_request, build_paging_next_fragment_with_grouping_request, build_paging_next_operation_with_query_params_request
 T = TypeVar('T')
+JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 class PagingOperations:
@@ -48,11 +49,11 @@ class PagingOperations:
     def get_no_item_name_pages(
         self,
         **kwargs: Any
-    ) -> AsyncIterable[Any]:
+    ) -> AsyncIterable[JSONType]:
         """A paging operation that must return result of the default 'value' node.
 
         :return: An iterator like instance of JSON object
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -71,7 +72,7 @@ class PagingOperations:
                     ]
                 }
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Any]
+        cls = kwargs.pop('cls', None)  # type: ClsType[JSONType]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -122,11 +123,11 @@ class PagingOperations:
     def get_null_next_link_name_pages(
         self,
         **kwargs: Any
-    ) -> AsyncIterable[Any]:
+    ) -> AsyncIterable[JSONType]:
         """A paging operation that must ignore any kind of nextLink, and stop after page 1.
 
         :return: An iterator like instance of JSON object
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -145,7 +146,7 @@ class PagingOperations:
                     ]
                 }
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Any]
+        cls = kwargs.pop('cls', None)  # type: ClsType[JSONType]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -196,11 +197,11 @@ class PagingOperations:
     def get_single_pages(
         self,
         **kwargs: Any
-    ) -> AsyncIterable[Any]:
+    ) -> AsyncIterable[JSONType]:
         """A paging operation that finishes on the first call without a nextlink.
 
         :return: An iterator like instance of JSON object
-        :rtype: ~custompollerpagerdefinitions.aio.AsyncCustomPager[Any]
+        :rtype: ~custompollerpagerdefinitions.aio.AsyncCustomPager[JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -219,7 +220,7 @@ class PagingOperations:
                     ]
                 }
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Any]
+        cls = kwargs.pop('cls', None)  # type: ClsType[JSONType]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -270,12 +271,12 @@ class PagingOperations:
     def first_response_empty(
         self,
         **kwargs: Any
-    ) -> AsyncIterable[Any]:
+    ) -> AsyncIterable[JSONType]:
         """A paging operation whose first response's items list is empty, but still returns a next link.
         Second (and final) call, will give you an items list of 1.
 
         :return: An iterator like instance of JSON object
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -294,7 +295,7 @@ class PagingOperations:
                     ]
                 }
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Any]
+        cls = kwargs.pop('cls', None)  # type: ClsType[JSONType]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -349,7 +350,7 @@ class PagingOperations:
         maxresults: Optional[int] = None,
         timeout: Optional[int] = 30,
         **kwargs: Any
-    ) -> AsyncIterable[Any]:
+    ) -> AsyncIterable[JSONType]:
         """A paging operation that includes a nextLink that has 10 pages.
 
         :keyword client_request_id:
@@ -360,7 +361,7 @@ class PagingOperations:
          seconds. The default is 30 seconds.
         :paramtype timeout: int
         :return: An iterator like instance of JSON object
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -379,7 +380,7 @@ class PagingOperations:
                     ]
                 }
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Any]
+        cls = kwargs.pop('cls', None)  # type: ClsType[JSONType]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -438,7 +439,7 @@ class PagingOperations:
         *,
         required_query_parameter: int,
         **kwargs: Any
-    ) -> AsyncIterable[Any]:
+    ) -> AsyncIterable[JSONType]:
         """A paging operation that includes a next operation. It has a different query parameter from it's
         next operation nextOperationWithQueryParams. Returns a ProductResult.
 
@@ -450,7 +451,7 @@ class PagingOperations:
          value may result in unsupported behavior.
         :paramtype query_constant: bool
         :return: An iterator like instance of JSON object
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -471,7 +472,7 @@ class PagingOperations:
         """
         query_constant = kwargs.pop('query_constant', True)  # type: bool
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[Any]
+        cls = kwargs.pop('cls', None)  # type: ClsType[JSONType]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -529,7 +530,7 @@ class PagingOperations:
         maxresults: Optional[int] = None,
         timeout: Optional[int] = 30,
         **kwargs: Any
-    ) -> AsyncIterable[Any]:
+    ) -> AsyncIterable[JSONType]:
         """A paging operation that includes a nextLink in odata format that has 10 pages.
 
         :keyword client_request_id:
@@ -540,7 +541,7 @@ class PagingOperations:
          seconds. The default is 30 seconds.
         :paramtype timeout: int
         :return: An iterator like instance of JSON object
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -559,7 +560,7 @@ class PagingOperations:
                     ]
                 }
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Any]
+        cls = kwargs.pop('cls', None)  # type: ClsType[JSONType]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -621,7 +622,7 @@ class PagingOperations:
         maxresults: Optional[int] = None,
         timeout: Optional[int] = 30,
         **kwargs: Any
-    ) -> AsyncIterable[Any]:
+    ) -> AsyncIterable[JSONType]:
         """A paging operation that includes a nextLink that has 10 pages.
 
         :param offset: Offset of return value.
@@ -634,7 +635,7 @@ class PagingOperations:
          seconds. The default is 30 seconds.
         :paramtype timeout: int
         :return: An iterator like instance of JSON object
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -653,7 +654,7 @@ class PagingOperations:
                     ]
                 }
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Any]
+        cls = kwargs.pop('cls', None)  # type: ClsType[JSONType]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -712,12 +713,12 @@ class PagingOperations:
     def get_multiple_pages_retry_first(
         self,
         **kwargs: Any
-    ) -> AsyncIterable[Any]:
+    ) -> AsyncIterable[JSONType]:
         """A paging operation that fails on the first call with 500 and then retries and then get a
         response including a nextLink that has 10 pages.
 
         :return: An iterator like instance of JSON object
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -736,7 +737,7 @@ class PagingOperations:
                     ]
                 }
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Any]
+        cls = kwargs.pop('cls', None)  # type: ClsType[JSONType]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -787,12 +788,12 @@ class PagingOperations:
     def get_multiple_pages_retry_second(
         self,
         **kwargs: Any
-    ) -> AsyncIterable[Any]:
+    ) -> AsyncIterable[JSONType]:
         """A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails
         first with 500. The client should retry and finish all 10 pages eventually.
 
         :return: An iterator like instance of JSON object
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -811,7 +812,7 @@ class PagingOperations:
                     ]
                 }
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Any]
+        cls = kwargs.pop('cls', None)  # type: ClsType[JSONType]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -862,11 +863,11 @@ class PagingOperations:
     def get_single_pages_failure(
         self,
         **kwargs: Any
-    ) -> AsyncIterable[Any]:
+    ) -> AsyncIterable[JSONType]:
         """A paging operation that receives a 400 on the first call.
 
         :return: An iterator like instance of JSON object
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -885,7 +886,7 @@ class PagingOperations:
                     ]
                 }
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Any]
+        cls = kwargs.pop('cls', None)  # type: ClsType[JSONType]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -936,11 +937,11 @@ class PagingOperations:
     def get_multiple_pages_failure(
         self,
         **kwargs: Any
-    ) -> AsyncIterable[Any]:
+    ) -> AsyncIterable[JSONType]:
         """A paging operation that receives a 400 on the second call.
 
         :return: An iterator like instance of JSON object
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -959,7 +960,7 @@ class PagingOperations:
                     ]
                 }
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Any]
+        cls = kwargs.pop('cls', None)  # type: ClsType[JSONType]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -1010,11 +1011,11 @@ class PagingOperations:
     def get_multiple_pages_failure_uri(
         self,
         **kwargs: Any
-    ) -> AsyncIterable[Any]:
+    ) -> AsyncIterable[JSONType]:
         """A paging operation that receives an invalid nextLink.
 
         :return: An iterator like instance of JSON object
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1033,7 +1034,7 @@ class PagingOperations:
                     ]
                 }
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Any]
+        cls = kwargs.pop('cls', None)  # type: ClsType[JSONType]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -1087,7 +1088,7 @@ class PagingOperations:
         *,
         api_version: str,
         **kwargs: Any
-    ) -> AsyncIterable[Any]:
+    ) -> AsyncIterable[JSONType]:
         """A paging operation that doesn't return a full URL, just a fragment.
 
         :param tenant: Sets the tenant to use.
@@ -1095,7 +1096,7 @@ class PagingOperations:
         :keyword api_version: Sets the api version to use.
         :paramtype api_version: str
         :return: An iterator like instance of JSON object
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1114,7 +1115,7 @@ class PagingOperations:
                     ]
                 }
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Any]
+        cls = kwargs.pop('cls', None)  # type: ClsType[JSONType]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -1173,7 +1174,7 @@ class PagingOperations:
         *,
         api_version: str,
         **kwargs: Any
-    ) -> AsyncIterable[Any]:
+    ) -> AsyncIterable[JSONType]:
         """A paging operation that doesn't return a full URL, just a fragment with parameters grouped.
 
         :param tenant: Sets the tenant to use.
@@ -1181,7 +1182,7 @@ class PagingOperations:
         :keyword api_version: Sets the api version to use.
         :paramtype api_version: str
         :return: An iterator like instance of JSON object
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1200,7 +1201,7 @@ class PagingOperations:
                     ]
                 }
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Any]
+        cls = kwargs.pop('cls', None)  # type: ClsType[JSONType]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -1259,8 +1260,8 @@ class PagingOperations:
         maxresults: Optional[int] = None,
         timeout: Optional[int] = 30,
         **kwargs: Any
-    ) -> Any:
-        cls = kwargs.pop('cls', None)  # type: ClsType[Any]
+    ) -> JSONType:
+        cls = kwargs.pop('cls', None)  # type: ClsType[JSONType]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -1303,7 +1304,7 @@ class PagingOperations:
         maxresults: Optional[int] = None,
         timeout: Optional[int] = 30,
         **kwargs: Any
-    ) -> AsyncCustomPoller[AsyncItemPaged[Any]]:
+    ) -> AsyncCustomPoller[AsyncItemPaged[JSONType]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
         :keyword client_request_id:
@@ -1322,11 +1323,11 @@ class PagingOperations:
          Retry-After header is present.
         :return: An instance of AsyncCustomPoller that returns an iterator like instance of JSON object
         :rtype:
-         ~custompollerpagerdefinitions.aio.AsyncCustomPoller[~azure.core.async_paging.AsyncItemPaged[Any]]
+         ~custompollerpagerdefinitions.aio.AsyncCustomPoller[~azure.core.async_paging.AsyncItemPaged[JSONType]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        cls = kwargs.pop('cls', None)  # type: ClsType[Any]
+        cls = kwargs.pop('cls', None)  # type: ClsType[JSONType]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -1375,7 +1376,7 @@ class PagingOperations:
 
 
         polling = kwargs.pop('polling', True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
-        cls = kwargs.pop('cls', None)  # type: ClsType[Any]
+        cls = kwargs.pop('cls', None)  # type: ClsType[JSONType]
         lro_delay = kwargs.pop(
             'polling_interval',
             self._config.polling_interval
@@ -1422,12 +1423,12 @@ class PagingOperations:
     def get_paging_model_with_item_name_with_xms_client_name(
         self,
         **kwargs: Any
-    ) -> AsyncIterable[Any]:
+    ) -> AsyncIterable[JSONType]:
         """A paging operation that returns a paging model whose item name is is overriden by
         x-ms-client-name 'indexes'.
 
         :return: An iterator like instance of JSON object
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1446,7 +1447,7 @@ class PagingOperations:
                     ]
                 }
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[Any]
+        cls = kwargs.pop('cls', None)  # type: ClsType[JSONType]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }

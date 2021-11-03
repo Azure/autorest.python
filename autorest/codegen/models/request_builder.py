@@ -84,6 +84,11 @@ class RequestBuilder(BaseBuilder):
             "typing", "Any", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
         )
         file_import.add_from_import("msrest", "Serializer", ImportType.AZURECORE)
+        if self.parameters.has_body and (
+            self.code_model.options["builders_visibility"] != "embedded" or
+            self.code_model.options["add_python_3_operation_files"]
+        ):
+            file_import.define_mypy_type("JSONType", "Any")
         return file_import
 
     @classmethod

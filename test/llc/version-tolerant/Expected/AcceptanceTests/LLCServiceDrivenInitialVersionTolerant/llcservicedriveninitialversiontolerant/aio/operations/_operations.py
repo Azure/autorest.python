@@ -24,6 +24,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ...operations._operations import build_params_get_required_request, build_params_post_parameters_request
 
 T = TypeVar("T")
+JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
@@ -85,12 +86,12 @@ class ParamsOperations:
     get_required.metadata = {"url": "/servicedriven/parameters"}  # type: ignore
 
     @distributed_trace_async
-    async def post_parameters(self, parameter: Any, **kwargs: Any) -> Any:
+    async def post_parameters(self, parameter: JSONType, **kwargs: Any) -> Any:
         """POST a JSON.
 
         :param parameter: I am a body parameter. My only valid JSON entry is { url:
          "http://example.org/myimage.jpeg" }.
-        :type parameter: Any
+        :type parameter: JSONType
         :return: any
         :rtype: any
         :raises: ~azure.core.exceptions.HttpResponseError

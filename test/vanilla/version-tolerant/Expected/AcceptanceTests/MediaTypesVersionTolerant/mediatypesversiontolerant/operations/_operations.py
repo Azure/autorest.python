@@ -27,6 +27,7 @@ if TYPE_CHECKING:
     from typing import Any, Callable, Dict, Generic, IO, Optional, TypeVar, Union
 
     T = TypeVar("T")
+    JSONType = Any
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -178,14 +179,14 @@ class MediaTypesClientOperationsMixin(object):
     @distributed_trace
     def analyze_body(
         self,
-        input=None,  # type: Optional[Union[IO, Any]]
+        input=None,  # type: Optional[Union[IO, JSONType]]
         **kwargs  # type: Any
     ):
         # type: (...) -> str
         """Analyze body, that could be different media types.
 
         :param input: Input parameter.
-        :type input: IO or Any
+        :type input: IO or JSONType
         :keyword str content_type: Media type of the body sent to the API. Default value is
          "application/json". Allowed values are: "application/pdf", "image/jpeg", "image/png",
          "image/tiff", "application/json."
@@ -250,7 +251,7 @@ class MediaTypesClientOperationsMixin(object):
     @distributed_trace
     def analyze_body_no_accept_header(
         self,
-        input=None,  # type: Optional[Union[IO, Any]]
+        input=None,  # type: Optional[Union[IO, JSONType]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -258,7 +259,7 @@ class MediaTypesClientOperationsMixin(object):
         type.
 
         :param input: Input parameter.
-        :type input: IO or Any
+        :type input: IO or JSONType
         :keyword str content_type: Media type of the body sent to the API. Default value is
          "application/json". Allowed values are: "application/pdf", "image/jpeg", "image/png",
          "image/tiff", "application/json."

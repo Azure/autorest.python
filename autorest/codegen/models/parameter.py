@@ -209,7 +209,8 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
 
     def _default_value(self) -> Tuple[Optional[Any], str, str]:
         type_annot = self.multiple_content_types_type_annot or self.schema.operation_type_annotation
-        if not self.required and not type_annot == "Any":
+        any_types = ["Any", "JSONType"]
+        if not self.required and type_annot not in any_types:
             type_annot = f"Optional[{type_annot}]"
 
         if self.client_default_value is not None:

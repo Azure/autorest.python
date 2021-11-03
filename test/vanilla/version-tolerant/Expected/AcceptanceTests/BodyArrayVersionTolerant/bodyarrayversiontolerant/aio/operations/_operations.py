@@ -95,6 +95,7 @@ from ...operations._operations import (
 )
 
 T = TypeVar("T")
+JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
@@ -2385,11 +2386,11 @@ class ArrayOperations:
     get_base64_url.metadata = {"url": "/array/prim/base64url/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_complex_null(self, **kwargs: Any) -> List[Any]:
+    async def get_complex_null(self, **kwargs: Any) -> List[JSONType]:
         """Get array of complex type null value.
 
         :return: list of JSON object
-        :rtype: list[Any]
+        :rtype: list[JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2403,7 +2404,7 @@ class ArrayOperations:
                     }
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[Any]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -2432,11 +2433,11 @@ class ArrayOperations:
     get_complex_null.metadata = {"url": "/array/complex/null"}  # type: ignore
 
     @distributed_trace_async
-    async def get_complex_empty(self, **kwargs: Any) -> List[Any]:
+    async def get_complex_empty(self, **kwargs: Any) -> List[JSONType]:
         """Get empty array of complex type [].
 
         :return: list of JSON object
-        :rtype: list[Any]
+        :rtype: list[JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2450,7 +2451,7 @@ class ArrayOperations:
                     }
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[Any]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -2479,12 +2480,12 @@ class ArrayOperations:
     get_complex_empty.metadata = {"url": "/array/complex/empty"}  # type: ignore
 
     @distributed_trace_async
-    async def get_complex_item_null(self, **kwargs: Any) -> List[Any]:
+    async def get_complex_item_null(self, **kwargs: Any) -> List[JSONType]:
         """Get array of complex type with null item [{'integer': 1 'string': '2'}, null, {'integer': 5,
         'string': '6'}].
 
         :return: list of JSON object
-        :rtype: list[Any]
+        :rtype: list[JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2498,7 +2499,7 @@ class ArrayOperations:
                     }
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[Any]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -2527,12 +2528,12 @@ class ArrayOperations:
     get_complex_item_null.metadata = {"url": "/array/complex/itemnull"}  # type: ignore
 
     @distributed_trace_async
-    async def get_complex_item_empty(self, **kwargs: Any) -> List[Any]:
+    async def get_complex_item_empty(self, **kwargs: Any) -> List[JSONType]:
         """Get array of complex type with empty item [{'integer': 1 'string': '2'}, {}, {'integer': 5,
         'string': '6'}].
 
         :return: list of JSON object
-        :rtype: list[Any]
+        :rtype: list[JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2546,7 +2547,7 @@ class ArrayOperations:
                     }
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[Any]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -2575,12 +2576,12 @@ class ArrayOperations:
     get_complex_item_empty.metadata = {"url": "/array/complex/itemempty"}  # type: ignore
 
     @distributed_trace_async
-    async def get_complex_valid(self, **kwargs: Any) -> List[Any]:
+    async def get_complex_valid(self, **kwargs: Any) -> List[JSONType]:
         """Get array of complex type with [{'integer': 1 'string': '2'}, {'integer': 3, 'string': '4'},
         {'integer': 5, 'string': '6'}].
 
         :return: list of JSON object
-        :rtype: list[Any]
+        :rtype: list[JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2594,7 +2595,7 @@ class ArrayOperations:
                     }
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[Any]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -2623,12 +2624,12 @@ class ArrayOperations:
     get_complex_valid.metadata = {"url": "/array/complex/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def put_complex_valid(self, array_body: List[Any], **kwargs: Any) -> None:
+    async def put_complex_valid(self, array_body: List[JSONType], **kwargs: Any) -> None:
         """Put an array of complex type with values [{'integer': 1 'string': '2'}, {'integer': 3,
         'string': '4'}, {'integer': 5, 'string': '6'}].
 
         :param array_body:
-        :type array_body: list[Any]
+        :type array_body: list[JSONType]
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError

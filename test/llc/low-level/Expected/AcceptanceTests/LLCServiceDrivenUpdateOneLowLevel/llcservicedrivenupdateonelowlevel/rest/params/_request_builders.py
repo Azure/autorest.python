@@ -12,7 +12,10 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, IO, Optional, Union
+    from typing import Any, IO, Optional, TypeVar, Union
+
+    T = TypeVar("T")
+    JSONType = Any
 
 _SERIALIZER = Serializer()
 
@@ -75,7 +78,7 @@ def build_post_parameters_request(
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. I am a body parameter with a new content type. My only
      valid JSON entry is { url: "http://example.org/myimage.jpeg" }.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). I am a body parameter with a new content type. My only valid
      JSON entry is { url: "http://example.org/myimage.jpeg" }.
