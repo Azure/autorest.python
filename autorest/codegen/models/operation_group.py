@@ -90,7 +90,12 @@ class OperationGroup(BaseModel):
                     request_builder.name,
                     import_type=ImportType.LOCAL
                 )
-
+        type_value = "Optional[Callable[[PipelineResponse[HttpRequest, {}HttpResponse], T, Dict[str, Any]], Any]]"
+        file_import.define_mypy_type(
+            "ClsType",
+            type_value.format(""),
+            type_value.format("Async")
+        )
         return file_import
 
 
