@@ -24,7 +24,7 @@ if TYPE_CHECKING:
 class XMSErrorResponseExtensions(object):
     """XMS Error Response Extensions.
 
-    :keyword endpoint: Service URL. Default value is 'http://localhost'.
+    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
     :paramtype endpoint: str
     """
 
@@ -32,7 +32,7 @@ class XMSErrorResponseExtensions(object):
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
-        endpoint = kwargs.pop("endpoint", "http://localhost")  # type: str
+        endpoint = kwargs.pop("endpoint", "http://localhost:3000")  # type: str
 
         self._config = XMSErrorResponseExtensionsConfiguration(**kwargs)
         self._client = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
