@@ -11,6 +11,7 @@ from .schema_response import SchemaResponse
 from .request_builder import RequestBuilder
 from .imports import ImportType, FileImport, TypingSection
 from .object_schema import ObjectSchema
+from .schema_request import SchemaRequest
 from .parameter_list import ParameterList
 
 _LOGGER = logging.getLogger(__name__)
@@ -25,7 +26,8 @@ class PagingOperation(Operation):
         description: str,
         api_versions: Set[str],
         parameters: ParameterList,
-        multiple_media_type_parameters: ParameterList,
+        multiple_content_type_parameters: ParameterList,
+        schema_requests: List[SchemaRequest],
         summary: Optional[str] = None,
         responses: Optional[List[SchemaResponse]] = None,
         exceptions: Optional[List[SchemaResponse]] = None,
@@ -41,7 +43,8 @@ class PagingOperation(Operation):
             description,
             api_versions,
             parameters,
-            multiple_media_type_parameters,
+            multiple_content_type_parameters,
+            schema_requests,
             summary,
             responses,
             exceptions,

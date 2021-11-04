@@ -29,6 +29,7 @@ if TYPE_CHECKING:
     from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 
     T = TypeVar("T")
+    JSONType = Any
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -87,7 +88,7 @@ class AvailabilitySetsOperations(object):
         self,
         resource_group_name,  # type: str
         avset,  # type: str
-        tags,  # type: Any
+        tags,  # type: JSONType
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -98,7 +99,7 @@ class AvailabilitySetsOperations(object):
         :param avset: The name of the storage availability set.
         :type avset: str
         :param tags: The tags.
-        :type tags: Any
+        :type tags: JSONType
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError

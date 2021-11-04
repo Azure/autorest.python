@@ -71,3 +71,13 @@ async def test_pdf_no_accept_header(send_request):
 async def test_json_no_accept_header(send_request):
     request = build_analyze_body_no_accept_header_request(json={"source":"foo"})
     await send_request(request)
+
+@pytest.mark.asyncio
+async def test_binary_body_two_content_types(send_request):
+    json_input = {"hello":"world"}
+    request = build_binary_body_with_two_content_types_request(json=json_input, content_type="application/json")
+    await send_request(request)
+
+    content = b"hello, world"
+    request = build_binary_body_with_two_content_types_request(content=content, content_type="application/octet-stream")
+    await send_request(request)

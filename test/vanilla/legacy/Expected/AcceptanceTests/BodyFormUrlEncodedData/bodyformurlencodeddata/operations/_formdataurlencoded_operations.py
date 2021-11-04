@@ -68,7 +68,6 @@ def build_partial_constant_body_request(
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
-    data = kwargs.pop('data', "access_token")  # type: str
 
     # Construct URL
     url = kwargs.pop("template_url", '/formsdataurlencoded/partialConstantBody')

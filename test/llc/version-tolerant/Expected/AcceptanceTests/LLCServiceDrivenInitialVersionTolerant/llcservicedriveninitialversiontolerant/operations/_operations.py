@@ -27,6 +27,7 @@ if TYPE_CHECKING:
     from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 
     T = TypeVar("T")
+    JSONType = Any
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -148,7 +149,7 @@ class ParamsOperations(object):
     @distributed_trace
     def post_parameters(
         self,
-        parameter,  # type: Any
+        parameter,  # type: JSONType
         **kwargs  # type: Any
     ):
         # type: (...) -> Any
@@ -156,7 +157,7 @@ class ParamsOperations(object):
 
         :param parameter: I am a body parameter. My only valid JSON entry is { url:
          "http://example.org/myimage.jpeg" }.
-        :type parameter: Any
+        :type parameter: JSONType
         :return: any
         :rtype: any
         :raises: ~azure.core.exceptions.HttpResponseError

@@ -11,6 +11,7 @@ from .parameter_list import ParameterList
 from .schema_response import SchemaResponse
 from .imports import ImportType, TypingSection
 from .base_schema import BaseSchema
+from .schema_request import SchemaRequest
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -24,7 +25,8 @@ class LROOperation(Operation):
         description: str,
         api_versions: Set[str],
         parameters: ParameterList,
-        multiple_media_type_parameters: ParameterList,
+        multiple_content_type_parameters: ParameterList,
+        schema_requests: List[SchemaRequest],
         summary: Optional[str] = None,
         responses: Optional[List[SchemaResponse]] = None,
         exceptions: Optional[List[SchemaResponse]] = None,
@@ -38,7 +40,8 @@ class LROOperation(Operation):
             description,
             api_versions,
             parameters,
-            multiple_media_type_parameters,
+            multiple_content_type_parameters,
+            schema_requests,
             summary,
             responses,
             exceptions,
@@ -86,7 +89,8 @@ class LROOperation(Operation):
             description="",
             api_versions=self.api_versions,
             parameters=self.parameters,
-            multiple_media_type_parameters=self.multiple_media_type_parameters,
+            schema_requests=self.schema_requests,
+            multiple_content_type_parameters=self.multiple_content_type_parameters,
             summary=self.summary,
             responses=self.responses,
             want_description_docstring=False,

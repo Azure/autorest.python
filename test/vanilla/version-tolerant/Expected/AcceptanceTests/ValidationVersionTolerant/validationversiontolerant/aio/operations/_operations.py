@@ -29,12 +29,13 @@ from ...operations._operations import (
 )
 
 T = TypeVar("T")
+JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
 class AutoRestValidationTestOperationsMixin:
     @distributed_trace_async
-    async def validation_of_method_parameters(self, resource_group_name: str, id: int, **kwargs: Any) -> Any:
+    async def validation_of_method_parameters(self, resource_group_name: str, id: int, **kwargs: Any) -> JSONType:
         """Validates input parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
@@ -45,7 +46,7 @@ class AutoRestValidationTestOperationsMixin:
          default value may result in unsupported behavior.
         :paramtype api_version: str
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -71,7 +72,7 @@ class AutoRestValidationTestOperationsMixin:
                     "image": "str"  # Optional. Image URL representing the product.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -106,7 +107,9 @@ class AutoRestValidationTestOperationsMixin:
     validation_of_method_parameters.metadata = {"url": "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"}  # type: ignore
 
     @distributed_trace_async
-    async def validation_of_body(self, resource_group_name: str, id: int, body: Any = None, **kwargs: Any) -> Any:
+    async def validation_of_body(
+        self, resource_group_name: str, id: int, body: JSONType = None, **kwargs: Any
+    ) -> JSONType:
         """Validates body parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
@@ -114,12 +117,12 @@ class AutoRestValidationTestOperationsMixin:
         :param id: Required int multiple of 10 from 100 to 1000.
         :type id: int
         :param body:
-        :type body: Any
+        :type body: JSONType
         :keyword api_version: Api Version. The default value is "1.0.0". Note that overriding this
          default value may result in unsupported behavior.
         :paramtype api_version: str
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -165,7 +168,7 @@ class AutoRestValidationTestOperationsMixin:
                     "image": "str"  # Optional. Image URL representing the product.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -243,16 +246,16 @@ class AutoRestValidationTestOperationsMixin:
     get_with_constant_in_path.metadata = {"url": "/validation/constantsInPath/{constantParam}/value"}  # type: ignore
 
     @distributed_trace_async
-    async def post_with_constant_in_body(self, body: Any = None, **kwargs: Any) -> Any:
+    async def post_with_constant_in_body(self, body: JSONType = None, **kwargs: Any) -> JSONType:
         """post_with_constant_in_body.
 
         :param body:
-        :type body: Any
+        :type body: JSONType
         :keyword constant_param: The default value is "constant". Note that overriding this default
          value may result in unsupported behavior.
         :paramtype constant_param: str
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -298,7 +301,7 @@ class AutoRestValidationTestOperationsMixin:
                     "image": "str"  # Optional. Image URL representing the product.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 

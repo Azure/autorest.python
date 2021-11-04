@@ -51,3 +51,14 @@ async def test_update_pet_with_form(send_request):
         }
     )
     await send_request(request)
+
+@pytest.mark.asyncio
+async def test_partial_constant_body(send_request):
+    request = formdataurlencoded.build_partial_constant_body_request(
+        data={
+            "access_token": "foo",
+            "grant_type": "access_token",
+            "service": "bar"
+        }
+    )
+    await send_request(request)

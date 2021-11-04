@@ -27,6 +27,7 @@ if TYPE_CHECKING:
     from typing import Any, Callable, Dict, Generic, IO, Optional, TypeVar, Union
 
     T = TypeVar("T")
+    JSONType = Any
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -178,14 +179,14 @@ class MediaTypesClientOperationsMixin(object):
     @distributed_trace
     def analyze_body(
         self,
-        input=None,  # type: Optional[Union[IO, Any]]
+        input=None,  # type: Optional[Union[IO, JSONType]]
         **kwargs  # type: Any
     ):
         # type: (...) -> str
         """Analyze body, that could be different media types.
 
         :param input: Input parameter.
-        :type input: IO or Any
+        :type input: IO or JSONType
         :keyword str content_type: Media type of the body sent to the API. Default value is
          "application/json". Allowed values are: "application/pdf", "image/jpeg", "image/png",
          "image/tiff", "application/json."
@@ -209,11 +210,11 @@ class MediaTypesClientOperationsMixin(object):
 
         json = None
         content = None
-        if content_type.split(";")[0] in ["application/pdf", "image/jpeg", "image/png", "image/tiff"]:
-            content = input
-        elif content_type.split(";")[0] in ["application/json"]:
+        if content_type.split(";")[0] in ["application/json"]:
             if input is not None:
                 json = input
+        elif content_type.split(";")[0] in ["application/pdf", "image/jpeg", "image/png", "image/tiff"]:
+            content = input
         else:
             raise ValueError(
                 "The content_type '{}' is not one of the allowed values: "
@@ -250,7 +251,7 @@ class MediaTypesClientOperationsMixin(object):
     @distributed_trace
     def analyze_body_no_accept_header(
         self,
-        input=None,  # type: Optional[Union[IO, Any]]
+        input=None,  # type: Optional[Union[IO, JSONType]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -258,7 +259,7 @@ class MediaTypesClientOperationsMixin(object):
         type.
 
         :param input: Input parameter.
-        :type input: IO or Any
+        :type input: IO or JSONType
         :keyword str content_type: Media type of the body sent to the API. Default value is
          "application/json". Allowed values are: "application/pdf", "image/jpeg", "image/png",
          "image/tiff", "application/json."
@@ -282,11 +283,11 @@ class MediaTypesClientOperationsMixin(object):
 
         json = None
         content = None
-        if content_type.split(";")[0] in ["application/pdf", "image/jpeg", "image/png", "image/tiff"]:
-            content = input
-        elif content_type.split(";")[0] in ["application/json"]:
+        if content_type.split(";")[0] in ["application/json"]:
             if input is not None:
                 json = input
+        elif content_type.split(";")[0] in ["application/pdf", "image/jpeg", "image/png", "image/tiff"]:
+            content = input
         else:
             raise ValueError(
                 "The content_type '{}' is not one of the allowed values: "
@@ -334,10 +335,7 @@ class MediaTypesClientOperationsMixin(object):
 
         content_type = kwargs.pop("content_type", "text/plain")  # type: Optional[str]
 
-        if input is not None:
-            content = input
-        else:
-            content = None
+        content = input
 
         request = build_content_type_with_encoding_request(
             content_type=content_type,
@@ -368,7 +366,7 @@ class MediaTypesClientOperationsMixin(object):
     @distributed_trace
     def binary_body_with_two_content_types(
         self,
-        message,  # type: IO
+        message,  # type: Union[IO, JSONType]
         **kwargs  # type: Any
     ):
         # type: (...) -> str
@@ -376,7 +374,7 @@ class MediaTypesClientOperationsMixin(object):
         content type, and a byte stream of 'hello, world!' for application/octet-stream.
 
         :param message: The payload body.
-        :type message: IO
+        :type message: IO or JSONType
         :return: str
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -387,10 +385,21 @@ class MediaTypesClientOperationsMixin(object):
 
         content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
-        content = message
+        json = None
+        content = None
+        if content_type.split(";")[0] in ["application/json"]:
+            json = message
+        elif content_type.split(";")[0] in ["application/octet-stream"]:
+            content = message
+        else:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json', 'application/octet-stream']".format(content_type)
+            )
 
         request = build_binary_body_with_two_content_types_request(
             content_type=content_type,
+            json=json,
             content=content,
             template_url=self.binary_body_with_two_content_types.metadata["url"],
         )
@@ -443,10 +452,10 @@ class MediaTypesClientOperationsMixin(object):
 
         json = None
         content = None
-        if content_type.split(";")[0] in ["application/json", "application/octet-stream"]:
-            content = message
-        elif content_type.split(";")[0] in ["text/plain"]:
+        if content_type.split(";")[0] in ["application/json"]:
             json = message
+        elif content_type.split(";")[0] in ["application/octet-stream", "text/plain"]:
+            content = message
         else:
             raise ValueError(
                 "The content_type '{}' is not one of the allowed values: "
@@ -503,10 +512,12 @@ class MediaTypesClientOperationsMixin(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        if content_type.split(";")[0] in ["text/plain"]:
+        json = None
+        content = None
+        if content_type.split(";")[0] in ["application/json"]:
             json = message
-        elif content_type.split(";")[0] in ["application/json"]:
-            json = message
+        elif content_type.split(";")[0] in ["text/plain"]:
+            content = message
         else:
             raise ValueError(
                 "The content_type '{}' is not one of the allowed values: "
@@ -516,6 +527,7 @@ class MediaTypesClientOperationsMixin(object):
         request = build_put_text_and_json_body_request(
             content_type=content_type,
             json=json,
+            content=content,
             template_url=self.put_text_and_json_body.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

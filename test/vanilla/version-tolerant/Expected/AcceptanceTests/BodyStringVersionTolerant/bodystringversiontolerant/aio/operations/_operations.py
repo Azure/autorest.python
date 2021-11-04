@@ -44,6 +44,7 @@ from ...operations._operations import (
 )
 
 T = TypeVar("T")
+JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
@@ -731,11 +732,11 @@ class EnumOperations:
     put_referenced.metadata = {"url": "/string/enum/Referenced"}  # type: ignore
 
     @distributed_trace_async
-    async def get_referenced_constant(self, **kwargs: Any) -> Any:
+    async def get_referenced_constant(self, **kwargs: Any) -> JSONType:
         """Get value 'green-color' from the constant.
 
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -747,7 +748,7 @@ class EnumOperations:
                     "field1": "str"  # Optional. Sample string.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -776,11 +777,11 @@ class EnumOperations:
     get_referenced_constant.metadata = {"url": "/string/enum/ReferencedConstant"}  # type: ignore
 
     @distributed_trace_async
-    async def put_referenced_constant(self, enum_string_body: Any, **kwargs: Any) -> None:
+    async def put_referenced_constant(self, enum_string_body: JSONType, **kwargs: Any) -> None:
         """Sends value 'green-color' from a constant.
 
         :param enum_string_body: enum string body.
-        :type enum_string_body: Any
+        :type enum_string_body: JSONType
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError

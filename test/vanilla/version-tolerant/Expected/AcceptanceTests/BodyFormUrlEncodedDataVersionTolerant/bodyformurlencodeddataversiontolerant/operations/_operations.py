@@ -29,6 +29,7 @@ if TYPE_CHECKING:
     from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 
     T = TypeVar("T")
+    JSONType = Any
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -67,7 +68,6 @@ def build_formdataurlencoded_partial_constant_body_request(
 ):
     # type: (...) -> HttpRequest
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
-    data = kwargs.pop('data', "access_token")  # type: str
 
     # Construct URL
     url = kwargs.pop("template_url", '/formsdataurlencoded/partialConstantBody')

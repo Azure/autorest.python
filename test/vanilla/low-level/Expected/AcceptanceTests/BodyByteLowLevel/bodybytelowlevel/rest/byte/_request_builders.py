@@ -12,7 +12,10 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any, Optional, TypeVar
+
+    T = TypeVar("T")
+    JSONType = Any
 
 _SERIALIZER = Serializer()
 
@@ -123,7 +126,7 @@ def build_put_non_ascii_request(
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA
      F9 F8 F7 F6).
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA
      F9 F8 F7 F6).

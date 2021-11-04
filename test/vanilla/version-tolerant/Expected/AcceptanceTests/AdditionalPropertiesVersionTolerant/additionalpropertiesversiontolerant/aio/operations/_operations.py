@@ -31,6 +31,7 @@ from ...operations._operations import (
 )
 
 T = TypeVar("T")
+JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
@@ -53,13 +54,13 @@ class PetsOperations:
         self._config = config
 
     @distributed_trace_async
-    async def create_ap_true(self, create_parameters: Any, **kwargs: Any) -> Any:
+    async def create_ap_true(self, create_parameters: JSONType, **kwargs: Any) -> JSONType:
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
-        :type create_parameters: Any
+        :type create_parameters: JSONType
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -79,7 +80,7 @@ class PetsOperations:
                     "status": bool  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -114,13 +115,13 @@ class PetsOperations:
     create_ap_true.metadata = {"url": "/additionalProperties/true"}  # type: ignore
 
     @distributed_trace_async
-    async def create_cat_ap_true(self, create_parameters: Any, **kwargs: Any) -> Any:
+    async def create_cat_ap_true(self, create_parameters: JSONType, **kwargs: Any) -> JSONType:
         """Create a CatAPTrue which contains more properties than what is defined.
 
         :param create_parameters:
-        :type create_parameters: Any
+        :type create_parameters: JSONType
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -142,7 +143,7 @@ class PetsOperations:
                     "status": bool  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -177,13 +178,13 @@ class PetsOperations:
     create_cat_ap_true.metadata = {"url": "/additionalProperties/true-subclass"}  # type: ignore
 
     @distributed_trace_async
-    async def create_ap_object(self, create_parameters: Any, **kwargs: Any) -> Any:
+    async def create_ap_object(self, create_parameters: JSONType, **kwargs: Any) -> JSONType:
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
-        :type create_parameters: Any
+        :type create_parameters: JSONType
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -203,7 +204,7 @@ class PetsOperations:
                     "status": bool  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -238,13 +239,13 @@ class PetsOperations:
     create_ap_object.metadata = {"url": "/additionalProperties/type/object"}  # type: ignore
 
     @distributed_trace_async
-    async def create_ap_string(self, create_parameters: Any, **kwargs: Any) -> Any:
+    async def create_ap_string(self, create_parameters: JSONType, **kwargs: Any) -> JSONType:
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
-        :type create_parameters: Any
+        :type create_parameters: JSONType
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -264,7 +265,7 @@ class PetsOperations:
                     "status": bool  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -299,13 +300,13 @@ class PetsOperations:
     create_ap_string.metadata = {"url": "/additionalProperties/type/string"}  # type: ignore
 
     @distributed_trace_async
-    async def create_ap_in_properties(self, create_parameters: Any, **kwargs: Any) -> Any:
+    async def create_ap_in_properties(self, create_parameters: JSONType, **kwargs: Any) -> JSONType:
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
-        :type create_parameters: Any
+        :type create_parameters: JSONType
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -325,7 +326,7 @@ class PetsOperations:
                     "status": bool  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -360,13 +361,13 @@ class PetsOperations:
     create_ap_in_properties.metadata = {"url": "/additionalProperties/in/properties"}  # type: ignore
 
     @distributed_trace_async
-    async def create_ap_in_properties_with_ap_string(self, create_parameters: Any, **kwargs: Any) -> Any:
+    async def create_ap_in_properties_with_ap_string(self, create_parameters: JSONType, **kwargs: Any) -> JSONType:
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
-        :type create_parameters: Any
+        :type create_parameters: JSONType
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -394,7 +395,7 @@ class PetsOperations:
                     "status": bool  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 

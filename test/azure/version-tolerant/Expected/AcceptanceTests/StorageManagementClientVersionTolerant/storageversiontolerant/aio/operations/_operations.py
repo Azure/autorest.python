@@ -41,6 +41,7 @@ from ...operations._operations import (
 )
 
 T = TypeVar("T")
+JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
@@ -63,18 +64,18 @@ class StorageAccountsOperations:
         self._config = config
 
     @distributed_trace_async
-    async def check_name_availability(self, account_name: Any, **kwargs: Any) -> Any:
+    async def check_name_availability(self, account_name: JSONType, **kwargs: Any) -> JSONType:
         """Checks that account name is valid and is not in use.
 
         :param account_name: The name of the storage account within the specified resource group.
          Storage account names must be between 3 and 24 characters in length and use numbers and
          lower-case letters only.
-        :type account_name: Any
+        :type account_name: JSONType
         :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
          overriding this default value may result in unsupported behavior.
         :paramtype api_version: str
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -93,7 +94,7 @@ class StorageAccountsOperations:
                     "reason": "str"  # Optional. Gets the reason that a storage account name could not be used. The Reason element is only returned if NameAvailable is false. Possible values include: "AccountNameInvalid", "AlreadyExists".
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -131,9 +132,9 @@ class StorageAccountsOperations:
     check_name_availability.metadata = {"url": "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability"}  # type: ignore
 
     async def _create_initial(
-        self, resource_group_name: str, account_name: str, parameters: Any, **kwargs: Any
-    ) -> Optional[Any]:
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Any]]
+        self, resource_group_name: str, account_name: str, parameters: JSONType, **kwargs: Any
+    ) -> Optional[JSONType]:
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -176,8 +177,8 @@ class StorageAccountsOperations:
 
     @distributed_trace_async
     async def begin_create(
-        self, resource_group_name: str, account_name: str, parameters: Any, **kwargs: Any
-    ) -> AsyncLROPoller[Any]:
+        self, resource_group_name: str, account_name: str, parameters: JSONType, **kwargs: Any
+    ) -> AsyncLROPoller[JSONType]:
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts
         cannot be updated with this API and should instead use the Update Storage Account API. If an
         account is already created and subsequent PUT request is issued with exact same set of
@@ -190,7 +191,7 @@ class StorageAccountsOperations:
          lower-case letters only.
         :type account_name: str
         :param parameters: The parameters to provide for the created account.
-        :type parameters: Any
+        :type parameters: JSONType
         :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
          overriding this default value may result in unsupported behavior.
         :paramtype api_version: str
@@ -202,7 +203,7 @@ class StorageAccountsOperations:
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[Any]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -272,7 +273,7 @@ class StorageAccountsOperations:
         api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
         polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
@@ -360,7 +361,7 @@ class StorageAccountsOperations:
     delete.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"}  # type: ignore
 
     @distributed_trace_async
-    async def get_properties(self, resource_group_name: str, account_name: str, **kwargs: Any) -> Any:
+    async def get_properties(self, resource_group_name: str, account_name: str, **kwargs: Any) -> JSONType:
         """Returns the properties for the specified storage account including but not limited to name,
         account type, location, and account status. The ListKeys operation should be used to retrieve
         storage keys.
@@ -375,7 +376,7 @@ class StorageAccountsOperations:
          overriding this default value may result in unsupported behavior.
         :paramtype api_version: str
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -428,7 +429,7 @@ class StorageAccountsOperations:
                     "type": "str"  # Optional. Resource type.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -463,7 +464,9 @@ class StorageAccountsOperations:
     get_properties.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"}  # type: ignore
 
     @distributed_trace_async
-    async def update(self, resource_group_name: str, account_name: str, parameters: Any, **kwargs: Any) -> Any:
+    async def update(
+        self, resource_group_name: str, account_name: str, parameters: JSONType, **kwargs: Any
+    ) -> JSONType:
         """Updates the account type or tags for a storage account. It can also be used to add a custom
         domain (note that custom domains cannot be added via the Create operation). Only one custom
         domain is supported per storage account. This API can only be used to update one of tags,
@@ -480,12 +483,12 @@ class StorageAccountsOperations:
         :type account_name: str
         :param parameters: The parameters to update on the account. Note that only one property can be
          changed at a time using this API.
-        :type parameters: Any
+        :type parameters: JSONType
         :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
          overriding this default value may result in unsupported behavior.
         :paramtype api_version: str
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -556,7 +559,7 @@ class StorageAccountsOperations:
                     "type": "str"  # Optional. Resource type.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -596,7 +599,7 @@ class StorageAccountsOperations:
     update.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"}  # type: ignore
 
     @distributed_trace_async
-    async def list_keys(self, resource_group_name: str, account_name: str, **kwargs: Any) -> Any:
+    async def list_keys(self, resource_group_name: str, account_name: str, **kwargs: Any) -> JSONType:
         """Lists the access keys for the specified storage account.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
@@ -607,7 +610,7 @@ class StorageAccountsOperations:
          overriding this default value may result in unsupported behavior.
         :paramtype api_version: str
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -619,7 +622,7 @@ class StorageAccountsOperations:
                     "key2": "str"  # Optional. Gets the value of key 2.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -654,7 +657,7 @@ class StorageAccountsOperations:
     list_keys.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys"}  # type: ignore
 
     @distributed_trace
-    def list(self, **kwargs: Any) -> AsyncIterable[Any]:
+    def list(self, **kwargs: Any) -> AsyncIterable[JSONType]:
         """Lists all the storage accounts available under the subscription. Note that storage keys are not
         returned; use the ListKeys operation for this.
 
@@ -662,7 +665,7 @@ class StorageAccountsOperations:
          overriding this default value may result in unsupported behavior.
         :paramtype api_version: str
         :return: An iterator like instance of JSON object
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -722,7 +725,7 @@ class StorageAccountsOperations:
         """
         api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -771,7 +774,7 @@ class StorageAccountsOperations:
     list.metadata = {"url": "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts"}  # type: ignore
 
     @distributed_trace
-    def list_by_resource_group(self, resource_group_name: str, **kwargs: Any) -> AsyncIterable[Any]:
+    def list_by_resource_group(self, resource_group_name: str, **kwargs: Any) -> AsyncIterable[JSONType]:
         """Lists all the storage accounts available under the given resource group. Note that storage keys
         are not returned; use the ListKeys operation for this.
 
@@ -781,7 +784,7 @@ class StorageAccountsOperations:
          overriding this default value may result in unsupported behavior.
         :paramtype api_version: str
         :return: An iterator like instance of JSON object
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -841,7 +844,7 @@ class StorageAccountsOperations:
         """
         api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -893,8 +896,8 @@ class StorageAccountsOperations:
 
     @distributed_trace_async
     async def regenerate_key(
-        self, resource_group_name: str, account_name: str, regenerate_key: Any, **kwargs: Any
-    ) -> Any:
+        self, resource_group_name: str, account_name: str, regenerate_key: JSONType, **kwargs: Any
+    ) -> JSONType:
         """Regenerates the access keys for the specified storage account.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
@@ -904,12 +907,12 @@ class StorageAccountsOperations:
          lower-case letters only.
         :type account_name: str
         :param regenerate_key: Specifies name of the key which should be regenerated.
-        :type regenerate_key: Any
+        :type regenerate_key: JSONType
         :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
          overriding this default value may result in unsupported behavior.
         :paramtype api_version: str
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -926,7 +929,7 @@ class StorageAccountsOperations:
                     "key2": "str"  # Optional. Gets the value of key 2.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -985,14 +988,14 @@ class UsageOperations:
         self._config = config
 
     @distributed_trace_async
-    async def list(self, **kwargs: Any) -> Any:
+    async def list(self, **kwargs: Any) -> JSONType:
         """Gets the current usage count and the limit for the resources under the subscription.
 
         :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
          overriding this default value may result in unsupported behavior.
         :paramtype api_version: str
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1013,7 +1016,7 @@ class UsageOperations:
                     ]
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 

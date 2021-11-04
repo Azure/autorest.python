@@ -24,9 +24,10 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, IO, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, IO, Optional, TypeVar, Union
 
     T = TypeVar("T")
+    JSONType = Any
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -97,14 +98,14 @@ class UploadOperations(object):
     @distributed_trace
     def file(
         self,
-        file_param,  # type: IO
+        file_param,  # type: Union[IO, JSONType]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Uploading json file.
 
         :param file_param: JSON file with payload { "more": "cowbell" }.
-        :type file_param: IO
+        :type file_param: IO or JSONType
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -115,11 +116,11 @@ class UploadOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        content = file_param
+        json = file_param
 
         request = build_upload_file_request(
             content_type=content_type,
-            content=content,
+            json=json,
             template_url=self.file.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

@@ -12,7 +12,10 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, IO, Optional, Union
+    from typing import Any, IO, Optional, TypeVar, Union
+
+    T = TypeVar("T")
+    JSONType = Any
 
 _SERIALIZER = Serializer()
 
@@ -29,7 +32,7 @@ def build_analyze_body_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Input parameter.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Input parameter.
     :paramtype content: any
@@ -45,9 +48,7 @@ def build_analyze_body_request(
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = {
-                "source": "str"  # Optional. File source path.
-            }
+            json = b'bytes'  # Optional.
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
@@ -82,7 +83,7 @@ def build_analyze_body_no_accept_header_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Input parameter.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Input parameter.
     :paramtype content: any
@@ -98,9 +99,7 @@ def build_analyze_body_no_accept_header_request(
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = {
-                "source": "str"  # Optional. File source path.
-            }
+            json = b'bytes'  # Optional.
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
@@ -169,6 +168,9 @@ def build_binary_body_with_two_content_types_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
+    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
+     our example to find the input shape. The payload body.
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). The payload body.
     :paramtype content: any
@@ -176,6 +178,12 @@ def build_binary_body_with_two_content_types_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # JSON input template you can fill out and use as your body input.
+            json = b'bytes'  # Optional.
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
@@ -211,7 +219,7 @@ def build_binary_body_with_three_content_types_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. The payload body.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). The payload body.
     :paramtype content: any
@@ -227,7 +235,7 @@ def build_binary_body_with_three_content_types_request(
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = "str"  # Optional.
+            json = b'bytes'  # Optional.
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
@@ -261,7 +269,7 @@ def build_put_text_and_json_body_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. The payload body.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). The payload body.
     :paramtype content: any

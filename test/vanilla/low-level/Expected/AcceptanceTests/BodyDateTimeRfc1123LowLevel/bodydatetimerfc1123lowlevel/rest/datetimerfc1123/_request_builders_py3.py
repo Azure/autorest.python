@@ -6,10 +6,13 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import Any, Optional
+from typing import Any, Optional, TypeVar
 
 from azure.core.rest import HttpRequest
 from msrest import Serializer
+
+T = TypeVar("T")
+JSONType = Any
 
 _SERIALIZER = Serializer()
 
@@ -106,7 +109,7 @@ def build_get_underflow_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_utc_max_date_time_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_utc_max_date_time_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put max datetime value Fri, 31 Dec 9999 23:59:59 GMT.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -114,7 +117,7 @@ def build_put_utc_max_date_time_request(*, json: Any = None, content: Any = None
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. datetime body.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). datetime body.
     :paramtype content: any
@@ -191,7 +194,7 @@ def build_get_utc_uppercase_max_date_time_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_utc_min_date_time_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_utc_min_date_time_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -199,7 +202,7 @@ def build_put_utc_min_date_time_request(*, json: Any = None, content: Any = None
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. datetime body.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). datetime body.
     :paramtype content: any

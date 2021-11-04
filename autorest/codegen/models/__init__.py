@@ -10,7 +10,7 @@ from .credential_schema import AzureKeyCredentialSchema, TokenCredentialSchema
 from .object_schema import ObjectSchema, get_object_schema, HiddenModelObjectSchema
 from .dictionary_schema import DictionarySchema
 from .list_schema import ListSchema
-from .primitive_schemas import get_primitive_schema, AnySchema, PrimitiveSchema
+from .primitive_schemas import get_primitive_schema, AnySchema, PrimitiveSchema, IOSchema
 from .enum_schema import EnumSchema, HiddenModelEnumSchema, get_enum_schema
 from .base_schema import BaseSchema
 from .constant_schema import ConstantSchema
@@ -62,6 +62,7 @@ __all__ = [
     "RequestBuilderParameter",
     "HiddenModelObjectSchema",
     "ParameterStyle",
+    "IOSchema",
 ]
 
 def _generate_as_object_schema(yaml_data: Dict[str, Any]) -> bool:

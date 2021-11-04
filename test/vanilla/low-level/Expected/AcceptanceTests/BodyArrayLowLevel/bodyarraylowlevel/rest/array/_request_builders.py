@@ -13,7 +13,10 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, List, Optional
+    from typing import Any, Dict, List, Optional, TypeVar
+
+    T = TypeVar("T")
+    JSONType = Any
 
 _SERIALIZER = Serializer()
 
@@ -147,7 +150,7 @@ def build_put_empty_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).
     :paramtype content: any
@@ -235,7 +238,7 @@ def build_put_boolean_tfft_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).
     :paramtype content: any
@@ -401,7 +404,7 @@ def build_put_integer_valid_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).
     :paramtype content: any
@@ -567,7 +570,7 @@ def build_put_long_valid_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).
     :paramtype content: any
@@ -733,7 +736,7 @@ def build_put_float_valid_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).
     :paramtype content: any
@@ -899,7 +902,7 @@ def build_put_double_valid_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).
     :paramtype content: any
@@ -1065,7 +1068,7 @@ def build_put_string_valid_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).
     :paramtype content: any
@@ -1153,7 +1156,7 @@ def build_put_enum_valid_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).
     :paramtype content: any
@@ -1241,7 +1244,7 @@ def build_put_string_enum_valid_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).
     :paramtype content: any
@@ -1409,7 +1412,7 @@ def build_put_uuid_valid_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).
     :paramtype content: any
@@ -1536,7 +1539,7 @@ def build_put_date_valid_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).
     :paramtype content: any
@@ -1704,7 +1707,7 @@ def build_put_date_time_valid_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).
     :paramtype content: any
@@ -1872,7 +1875,7 @@ def build_put_date_time_rfc1123_valid_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).
     :paramtype content: any
@@ -1960,7 +1963,7 @@ def build_put_duration_valid_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).
     :paramtype content: any
@@ -2050,7 +2053,7 @@ def build_put_byte_valid_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).
     :paramtype content: any
@@ -2392,7 +2395,7 @@ def build_put_complex_valid_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).
     :paramtype content: any
@@ -2649,7 +2652,7 @@ def build_put_array_valid_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).
     :paramtype content: any
@@ -2909,7 +2912,7 @@ def build_put_dictionary_valid_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).
     :paramtype content: any

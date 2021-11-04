@@ -11,6 +11,7 @@ from .request_builder_parameter_list import RequestBuilderParameterList
 from .schema_request import SchemaRequest
 from .schema_response import SchemaResponse
 from .imports import FileImport, ImportType, TypingSection
+from .parameter import Parameter
 
 
 T = TypeVar('T')
@@ -38,17 +39,21 @@ class RequestBuilder(BaseBuilder):
             description=description,
             parameters=parameters,
             responses=responses,
+            schema_requests=schema_requests,
             summary=summary,
         )
         self.url = url
         self.method = method
         self.multipart = multipart
-        self.schema_requests = schema_requests
 
     @property
     def is_stream(self) -> bool:
         """Is the request we're preparing a stream, like an upload."""
         return any(request.is_stream_request for request in self.schema_requests)
+
+    @property
+    def body_kwargs_to_get(self) -> List[Parameter]:
+        return self.parameters.body_kwargs_to_get
 
     @property
     def operation_group_name(self) -> str:
@@ -79,6 +84,11 @@ class RequestBuilder(BaseBuilder):
             "typing", "Any", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
         )
         file_import.add_from_import("msrest", "Serializer", ImportType.AZURECORE)
+        if self.parameters.has_body and (
+            self.code_model.options["builders_visibility"] != "embedded" or
+            self.code_model.options["add_python_3_operation_files"]
+        ):
+            file_import.define_mypy_type("JSONType", "Any")
         return file_import
 
     @classmethod
@@ -98,15 +108,13 @@ class RequestBuilder(BaseBuilder):
         name = "_".join([n for n in names if n])
 
         first_request = yaml_data["requests"][0]
-
-        parameters, multiple_media_type_parameters = (
+        schema_requests = [SchemaRequest.from_yaml(yaml, code_model=code_model) for yaml in yaml_data["requests"]]
+        parameters, multiple_content_type_parameters = (
             create_parameters(yaml_data, code_model, RequestBuilderParameter.from_yaml)
         )
-        parameter_list = RequestBuilderParameterList(code_model, parameters + multiple_media_type_parameters)
-
-        schema_requests = [SchemaRequest.from_yaml(yaml, code_model=code_model) for yaml in yaml_data["requests"]]
-        parameter_list.add_body_kwargs(schema_requests)
-
+        parameter_list = RequestBuilderParameterList(
+            code_model, parameters + multiple_content_type_parameters, schema_requests
+        )
         request_builder_class = cls(
             code_model=code_model,
             yaml_data=yaml_data,
@@ -121,4 +129,5 @@ class RequestBuilder(BaseBuilder):
             summary=yaml_data["language"]["python"].get("summary"),
         )
         code_model.request_builder_ids[id(yaml_data)] = request_builder_class
+        parameter_list.add_body_kwargs()
         return request_builder_class

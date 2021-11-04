@@ -224,15 +224,15 @@ class HiddenModelObjectSchema(ObjectSchema):
 
     @property
     def type_annotation(self) -> str:
-        return "Any"
+        return "JSONType"
 
     @property
     def operation_type_annotation(self) -> str:
-        return "Any"
+        return "JSONType"
 
     @property
     def docstring_type(self) -> str:
-        return "Any"
+        return "JSONType"
 
     @property
     def docstring_text(self) -> str:

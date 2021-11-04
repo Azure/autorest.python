@@ -29,6 +29,7 @@ from ...operations._operations import (
 )
 
 T = TypeVar("T")
+JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
@@ -93,12 +94,12 @@ class ParamsOperations:
     get_required.metadata = {"url": "/servicedriven/parameters"}  # type: ignore
 
     @distributed_trace_async
-    async def post_parameters(self, parameter: Union[IO, Any], **kwargs: Any) -> Any:
+    async def post_parameters(self, parameter: Union[IO, JSONType], **kwargs: Any) -> Any:
         """POST a JSON or a JPEG.
 
         :param parameter: I am a body parameter with a new content type. My only valid JSON entry is {
          url: "http://example.org/myimage.jpeg" }.
-        :type parameter: IO or Any
+        :type parameter: IO or JSONType
         :keyword str content_type: Media type of the body sent to the API. Default value is
          "application/json". Allowed values are: "image/jpeg", "application/json."
         :return: any
@@ -113,10 +114,10 @@ class ParamsOperations:
 
         json = None
         content = None
-        if content_type.split(";")[0] in ["image/jpeg"]:
-            content = parameter
-        elif content_type.split(";")[0] in ["application/json"]:
+        if content_type.split(";")[0] in ["application/json"]:
             json = parameter
+        elif content_type.split(";")[0] in ["image/jpeg"]:
+            content = parameter
         else:
             raise ValueError(
                 "The content_type '{}' is not one of the allowed values: "
