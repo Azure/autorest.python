@@ -22,6 +22,8 @@ class ContentType(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
     IMAGE_PNG = "image/png"
     #: Content Type 'image/tiff'.
     IMAGE_TIFF = "image/tiff"
+    #: Content Type 'application/json'.
+    APPLICATION_JSON = "application/json"
 
 
 class ContentType1(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
@@ -31,3 +33,5 @@ class ContentType1(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
     APPLICATION_JSON = "application/json"
     #: Content Type 'application/octet-stream'.
     APPLICATION_OCTET_STREAM = "application/octet-stream"
+    #: Content Type 'text/plain'.
+    TEXT_PLAIN = "text/plain"
