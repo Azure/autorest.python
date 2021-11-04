@@ -9,3 +9,10 @@
 from ._auto_rest_bool_test_service import AutoRestBoolTestService
 
 __all__ = ["AutoRestBoolTestService"]
+
+try:
+    from ._patch import patch_sdk  # type: ignore
+
+    patch_sdk()
+except ImportError:
+    pass

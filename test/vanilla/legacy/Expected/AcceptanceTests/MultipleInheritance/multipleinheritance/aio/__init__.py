@@ -9,3 +9,10 @@
 from ._multiple_inheritance_service_client import MultipleInheritanceServiceClient
 
 __all__ = ["MultipleInheritanceServiceClient"]
+
+try:
+    from ._patch import patch_sdk  # type: ignore
+
+    patch_sdk()
+except ImportError:
+    pass

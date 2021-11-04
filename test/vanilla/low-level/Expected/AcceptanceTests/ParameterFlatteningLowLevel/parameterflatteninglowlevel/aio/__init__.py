@@ -9,3 +9,10 @@
 from ._auto_rest_parameter_flattening import AutoRestParameterFlattening
 
 __all__ = ["AutoRestParameterFlattening"]
+
+try:
+    from ._patch import patch_sdk  # type: ignore
+
+    patch_sdk()
+except ImportError:
+    pass

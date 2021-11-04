@@ -12,7 +12,7 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, IO, Optional, Union
+    from typing import Any, Optional
 
 _SERIALIZER = Serializer()
 
@@ -27,28 +27,32 @@ def build_get_required_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword parameter: I am a required parameter.
-    :paramtype parameter: str
-    :keyword new_parameter: I'm a new input optional parameter.
-    :paramtype new_parameter: str
+    :keyword parameter3: I am a required parameter and I'm last in Swagger.
+    :paramtype parameter3: str
+    :keyword parameter1: I am a required parameter with a client default value.
+    :paramtype parameter1: str
+    :keyword parameter2: I was a required parameter, but now I'm optional.
+    :paramtype parameter2: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    parameter = kwargs.pop('parameter')  # type: str
-    new_parameter = kwargs.pop('new_parameter', None)  # type: Optional[str]
+    parameter3 = kwargs.pop('parameter3')  # type: str
+    parameter1 = kwargs.pop('parameter1', "DefaultValue")  # type: str
+    parameter2 = kwargs.pop('parameter2', None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/servicedriven/parameters')
+    url = kwargs.pop("template_url", '/llc/parameters')
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['parameter'] = _SERIALIZER.query("parameter", parameter, 'str')
-    if new_parameter is not None:
-        query_parameters['new_parameter'] = _SERIALIZER.query("new_parameter", new_parameter, 'str')
+    query_parameters['parameter1'] = _SERIALIZER.query("parameter1", parameter1, 'str')
+    if parameter2 is not None:
+        query_parameters['parameter2'] = _SERIALIZER.query("parameter2", parameter2, 'str')
+    query_parameters['parameter3'] = _SERIALIZER.query("parameter3", parameter3, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -58,115 +62,6 @@ def build_get_required_request(
         method="GET",
         url=url,
         params=query_parameters,
-        headers=header_parameters,
-        **kwargs
-    )
-
-
-def build_post_parameters_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    """POST a JSON or a JPEG.
-
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
-
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. I am a body parameter with a new content type. My only
-     valid JSON entry is { url: "http://example.org/myimage.jpeg" }.
-    :paramtype json: any
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). I am a body parameter with a new content type. My only valid
-     JSON entry is { url: "http://example.org/myimage.jpeg" }.
-    :paramtype content: any
-    :keyword str content_type: Media type of the body sent to the API. Default value is
-     "application/json". Allowed values are: "image/jpeg", "application/json."
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
-     incorporate this response into your code flow.
-    :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your body input.
-            json = {
-                "url": "str"  # Required. 
-            }
-    """
-
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
-
-    accept = "application/json"
-    # Construct URL
-    url = kwargs.pop("template_url", '/servicedriven/parameters')
-
-    # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
-
-
-def build_delete_parameters_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    """Delete something.
-
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
-
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
-     incorporate this response into your code flow.
-    :rtype: ~azure.core.rest.HttpRequest
-    """
-
-    # Construct URL
-    url = kwargs.pop("template_url", '/servicedriven/parameters')
-
-    return HttpRequest(
-        method="DELETE",
-        url=url,
-        **kwargs
-    )
-
-
-def build_get_new_operation_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    """I'm a new operation.
-
-    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
-    into your code flow.
-
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
-     incorporate this response into your code flow.
-    :rtype: ~azure.core.rest.HttpRequest
-    """
-
-    accept = "application/json"
-    # Construct URL
-    url = kwargs.pop("template_url", '/servicedriven/newpath')
-
-    # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-
-    return HttpRequest(
-        method="GET",
-        url=url,
         headers=header_parameters,
         **kwargs
     )

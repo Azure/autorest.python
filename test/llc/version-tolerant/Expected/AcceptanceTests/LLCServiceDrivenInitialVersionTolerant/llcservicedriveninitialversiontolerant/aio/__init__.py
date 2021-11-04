@@ -9,3 +9,10 @@
 from ._llc_client import LLCClient
 
 __all__ = ["LLCClient"]
+
+try:
+    from ._patch import patch_sdk  # type: ignore
+
+    patch_sdk()
+except ImportError:
+    pass

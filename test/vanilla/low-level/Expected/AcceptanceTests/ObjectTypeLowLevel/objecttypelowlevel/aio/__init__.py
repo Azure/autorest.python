@@ -9,3 +9,10 @@
 from ._object_type_client import ObjectTypeClient
 
 __all__ = ["ObjectTypeClient"]
+
+try:
+    from ._patch import patch_sdk  # type: ignore
+
+    patch_sdk()
+except ImportError:
+    pass
