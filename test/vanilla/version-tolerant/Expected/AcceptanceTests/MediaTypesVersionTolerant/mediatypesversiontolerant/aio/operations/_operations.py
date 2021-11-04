@@ -209,12 +209,12 @@ class MediaTypesClientOperationsMixin:
     content_type_with_encoding.metadata = {"url": "/mediatypes/contentTypeWithEncoding"}  # type: ignore
 
     @distributed_trace_async
-    async def binary_body_with_two_content_types(self, message: IO, **kwargs: Any) -> str:
+    async def binary_body_with_two_content_types(self, message: Union[IO, JSONType], **kwargs: Any) -> str:
         """Binary body with two content types. Pass in of {'hello': 'world'} for the application/json
         content type, and a byte stream of 'hello, world!' for application/octet-stream.
 
         :param message: The payload body.
-        :type message: IO
+        :type message: IO or JSONType
         :return: str
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError

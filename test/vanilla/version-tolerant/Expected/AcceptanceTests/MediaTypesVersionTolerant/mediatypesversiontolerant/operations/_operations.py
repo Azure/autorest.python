@@ -366,7 +366,7 @@ class MediaTypesClientOperationsMixin(object):
     @distributed_trace
     def binary_body_with_two_content_types(
         self,
-        message,  # type: IO
+        message,  # type: Union[IO, JSONType]
         **kwargs  # type: Any
     ):
         # type: (...) -> str
@@ -374,7 +374,7 @@ class MediaTypesClientOperationsMixin(object):
         content type, and a byte stream of 'hello, world!' for application/octet-stream.
 
         :param message: The payload body.
-        :type message: IO
+        :type message: IO or JSONType
         :return: str
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError

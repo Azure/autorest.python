@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import functools
-from typing import Any, Callable, Dict, Generic, IO, Optional, TypeVar
+from typing import Any, Callable, Dict, Generic, IO, Optional, TypeVar, Union
 import warnings
 
 from azure.core.exceptions import (
@@ -47,11 +47,11 @@ class UploadOperations:
         self._config = config
 
     @distributed_trace_async
-    async def file(self, file_param: IO, **kwargs: Any) -> None:
+    async def file(self, file_param: Union[IO, JSONType], **kwargs: Any) -> None:
         """Uploading json file.
 
         :param file_param: JSON file with payload { "more": "cowbell" }.
-        :type file_param: IO
+        :type file_param: IO or JSONType
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError

@@ -14,6 +14,7 @@ from .base_schema import BaseSchema
 from .constant_schema import ConstantSchema
 from .object_schema import ObjectSchema
 from .property import Property
+from .primitive_schemas import IOSchema
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -208,10 +209,18 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
             return "Method"
         return self._implementation
 
+    @property
+    def _is_io_json(self):
+        return any(
+            k for k in self.body_kwargs if k.serialized_name == "json"
+        ) and isinstance(self.schema, IOSchema)
+
     def _default_value(self) -> Tuple[Optional[Any], str, str]:
         type_annot = self.multiple_content_types_type_annot or self.schema.operation_type_annotation
+        if self._is_io_json:
+            type_annot = f"Union[{type_annot}, JSONType]"
         any_types = ["Any", "JSONType"]
-        if not self.required and type_annot not in any_types:
+        if not self.required and type_annot not in any_types and not self._is_io_json:
             type_annot = f"Optional[{type_annot}]"
 
         if self.client_default_value is not None:
@@ -264,7 +273,10 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
 
     @property
     def docstring_type(self) -> str:
-        return self.multiple_content_types_docstring_type or self.schema.docstring_type
+        retval = self.multiple_content_types_docstring_type or self.schema.docstring_type
+        if self._is_io_json:
+            retval += " or JSONType"
+        return retval
 
     @property
     def has_default_value(self):
@@ -344,8 +356,9 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         file_import = self.schema.imports()
         if not self.required:
             file_import.add_from_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
-        if self.has_multiple_content_types:
+        if self.has_multiple_content_types or self._is_io_json:
             file_import.add_from_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
+
         return file_import
 
 class ParameterOnlyPathAndBodyPositional(Parameter):
