@@ -72,7 +72,7 @@ class TestMediaTypes(object):
 
     @pytest.mark.asyncio
     async def test_binary_body_two_content_types(self, client):
-        json_input = {"hello":"world"}
+        json_input = json.dumps({"hello":"world"})
         await client.binary_body_with_two_content_types(json_input, content_type="application/json")
 
         content = b"hello, world"

@@ -63,7 +63,7 @@ class TestMediaTypes(object):
         client.analyze_body_no_accept_header(input=json_input)
 
     def test_binary_body_two_content_types(self, client):
-        json_input = {"hello":"world"}
+        json_input = json.dumps({"hello":"world"})
         client.binary_body_with_two_content_types(json_input, content_type="application/json")
 
         content = b"hello, world"
