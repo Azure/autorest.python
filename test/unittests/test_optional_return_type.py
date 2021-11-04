@@ -41,6 +41,7 @@ def lro_operation(code_model):
         api_versions=set(["2020-05-01"]),
         parameters=ParameterList(code_model),
         multiple_content_type_parameters=ParameterList(code_model),
+        schema_requests=[SchemaRequest({}, ["application/json"], ParameterList(code_model))]
     )
 
 @pytest.fixture
@@ -53,6 +54,7 @@ def paging_operation(code_model):
         api_versions=set(["2020-05-01"]),
         parameters=ParameterList(code_model),
         multiple_content_type_parameters=ParameterList(code_model),
+        schema_requests=[SchemaRequest({}, ["application/json"], ParameterList(code_model))]
     )
 
 def test_success_with_body_and_fail_no_body(operation):
