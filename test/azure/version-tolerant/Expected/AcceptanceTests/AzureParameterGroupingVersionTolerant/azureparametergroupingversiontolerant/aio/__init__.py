@@ -9,3 +9,10 @@
 from ._auto_rest_parameter_grouping_test_service import AutoRestParameterGroupingTestService
 
 __all__ = ["AutoRestParameterGroupingTestService"]
+
+try:
+    from ._patch import patch_sdk  # type: ignore
+
+    patch_sdk()
+except ImportError:
+    pass

@@ -18,7 +18,6 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ..._vendor import _convert_request
 from ...operations._http_success_operations import build_head200_request, build_head204_request, build_head404_request
-
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -44,12 +43,12 @@ class HttpSuccessOperations:
     async def head200(
         self,
         **kwargs: Any
-    ) -> None:
+    ) -> bool:
         """Return 200 status code if successful.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
-        :rtype: None
+        :return: bool, or the result of cls(response)
+        :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
@@ -83,12 +82,12 @@ class HttpSuccessOperations:
     async def head204(
         self,
         **kwargs: Any
-    ) -> None:
+    ) -> bool:
         """Return 204 status code if successful.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
-        :rtype: None
+        :return: bool, or the result of cls(response)
+        :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
@@ -122,12 +121,12 @@ class HttpSuccessOperations:
     async def head404(
         self,
         **kwargs: Any
-    ) -> None:
+    ) -> bool:
         """Return 404 status code if successful.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
-        :rtype: None
+        :return: bool, or the result of cls(response)
+        :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]

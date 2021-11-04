@@ -22,7 +22,6 @@ from .._vendor import _convert_request
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Generic, IO, Optional, TypeVar, Union
-
     T = TypeVar('T')
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -136,11 +135,11 @@ class OperationGroupTwoOperations(object):
 
         json = None
         content = None
-        if content_type.split(";")[0] in ['application/pdf', 'image/jpeg', 'image/png', 'image/tiff']:
-            content = input
-        elif content_type.split(";")[0] in ['application/json']:
+        if content_type.split(";")[0] in ['application/json']:
             if input is not None:
                 json = self._serialize.body(input, 'SourcePath')
+        elif content_type.split(";")[0] in ['application/pdf', 'image/jpeg', 'image/png', 'image/tiff']:
+            content = input
         else:
             raise ValueError(
                 "The content_type '{}' is not one of the allowed values: "

@@ -31,6 +31,7 @@ if TYPE_CHECKING:
     from typing import Any, Callable, Dict, Generic, Iterable, Optional, TypeVar
 
     T = TypeVar("T")
+    JSONType = Any
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -126,14 +127,14 @@ class PagingOperations(object):
         account_name,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable[Any]
+        # type: (...) -> Iterable[JSONType]
         """A paging operation that combines custom url, paging and partial URL and expect to concat after
         host.
 
         :param account_name: Account Name.
         :type account_name: str
         :return: An iterator like instance of JSON object
-        :rtype: ~azure.core.paging.ItemPaged[Any]
+        :rtype: ~azure.core.paging.ItemPaged[JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -152,7 +153,7 @@ class PagingOperations(object):
                     ]
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -215,13 +216,13 @@ class PagingOperations(object):
         account_name,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable[Any]
+        # type: (...) -> Iterable[JSONType]
         """A paging operation that combines custom url, paging and partial URL with next operation.
 
         :param account_name: Account Name.
         :type account_name: str
         :return: An iterator like instance of JSON object
-        :rtype: ~azure.core.paging.ItemPaged[Any]
+        :rtype: ~azure.core.paging.ItemPaged[JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -240,7 +241,7 @@ class PagingOperations(object):
                     ]
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 

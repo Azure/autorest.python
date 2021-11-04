@@ -27,6 +27,7 @@ if TYPE_CHECKING:
     from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar, Union
 
     T = TypeVar("T")
+    JSONType = Any
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -5641,11 +5642,11 @@ class MultipleResponsesOperations(object):
     def get200_model204_no_model_default_error200_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Optional[Any]
+        # type: (...) -> Optional[JSONType]
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :return: JSON object
-        :rtype: Any or None
+        :rtype: JSONType or None
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -5656,7 +5657,7 @@ class MultipleResponsesOperations(object):
                     "statusCode": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Any]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -5690,11 +5691,11 @@ class MultipleResponsesOperations(object):
     def get200_model204_no_model_default_error204_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Optional[Any]
+        # type: (...) -> Optional[JSONType]
         """Send a 204 response with no payload.
 
         :return: JSON object
-        :rtype: Any or None
+        :rtype: JSONType or None
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -5705,7 +5706,7 @@ class MultipleResponsesOperations(object):
                     "statusCode": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Any]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -5739,11 +5740,11 @@ class MultipleResponsesOperations(object):
     def get200_model204_no_model_default_error201_invalid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Optional[Any]
+        # type: (...) -> Optional[JSONType]
         """Send a 201 response with valid payload: {'statusCode': '201'}.
 
         :return: JSON object
-        :rtype: Any or None
+        :rtype: JSONType or None
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -5754,7 +5755,7 @@ class MultipleResponsesOperations(object):
                     "statusCode": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Any]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -5788,11 +5789,11 @@ class MultipleResponsesOperations(object):
     def get200_model204_no_model_default_error202_none(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Optional[Any]
+        # type: (...) -> Optional[JSONType]
         """Send a 202 response with no payload:.
 
         :return: JSON object
-        :rtype: Any or None
+        :rtype: JSONType or None
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -5803,7 +5804,7 @@ class MultipleResponsesOperations(object):
                     "statusCode": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Any]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -5837,11 +5838,11 @@ class MultipleResponsesOperations(object):
     def get200_model204_no_model_default_error400_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Optional[Any]
+        # type: (...) -> Optional[JSONType]
         """Send a 400 response with valid error payload: {'status': 400, 'message': 'client error'}.
 
         :return: JSON object
-        :rtype: Any or None
+        :rtype: JSONType or None
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -5852,7 +5853,7 @@ class MultipleResponsesOperations(object):
                     "statusCode": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Any]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -5886,11 +5887,11 @@ class MultipleResponsesOperations(object):
     def get200_model201_model_default_error200_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -5906,7 +5907,7 @@ class MultipleResponsesOperations(object):
                     "textStatusCode": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -5945,11 +5946,11 @@ class MultipleResponsesOperations(object):
     def get200_model201_model_default_error201_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Send a 201 response with valid payload: {'statusCode': '201', 'textStatusCode': 'Created'}.
 
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -5965,7 +5966,7 @@ class MultipleResponsesOperations(object):
                     "textStatusCode": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -6004,11 +6005,11 @@ class MultipleResponsesOperations(object):
     def get200_model201_model_default_error400_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
 
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -6024,7 +6025,7 @@ class MultipleResponsesOperations(object):
                     "textStatusCode": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -6063,11 +6064,11 @@ class MultipleResponsesOperations(object):
     def get200_model_a201_model_c404_model_d_default_error200_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -6086,7 +6087,7 @@ class MultipleResponsesOperations(object):
                     "httpStatusCode": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -6131,11 +6132,11 @@ class MultipleResponsesOperations(object):
     def get200_model_a201_model_c404_model_d_default_error201_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Send a 200 response with valid payload: {'httpCode': '201'}.
 
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -6154,7 +6155,7 @@ class MultipleResponsesOperations(object):
                     "httpStatusCode": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -6199,11 +6200,11 @@ class MultipleResponsesOperations(object):
     def get200_model_a201_model_c404_model_d_default_error404_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Send a 200 response with valid payload: {'httpStatusCode': '404'}.
 
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -6222,7 +6223,7 @@ class MultipleResponsesOperations(object):
                     "httpStatusCode": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -6267,11 +6268,11 @@ class MultipleResponsesOperations(object):
     def get200_model_a201_model_c404_model_d_default_error400_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
 
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -6290,7 +6291,7 @@ class MultipleResponsesOperations(object):
                     "httpStatusCode": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -6559,11 +6560,11 @@ class MultipleResponsesOperations(object):
     def get_default_model_a200_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -6574,7 +6575,7 @@ class MultipleResponsesOperations(object):
                     "statusCode": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -6606,11 +6607,11 @@ class MultipleResponsesOperations(object):
     def get_default_model_a200_none(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Send a 200 response with no payload.
 
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -6621,7 +6622,7 @@ class MultipleResponsesOperations(object):
                     "statusCode": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -6845,12 +6846,12 @@ class MultipleResponsesOperations(object):
     def get200_model_a200_none(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Send a 200 response with no payload, when a payload is expected - client should return a null
         object of thde type for model A.
 
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -6861,7 +6862,7 @@ class MultipleResponsesOperations(object):
                     "statusCode": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -6893,11 +6894,11 @@ class MultipleResponsesOperations(object):
     def get200_model_a200_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Send a 200 response with payload {'statusCode': '200'}.
 
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -6908,7 +6909,7 @@ class MultipleResponsesOperations(object):
                     "statusCode": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -6940,11 +6941,11 @@ class MultipleResponsesOperations(object):
     def get200_model_a200_invalid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Send a 200 response with invalid payload {'statusCodeInvalid': '200'}.
 
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -6955,7 +6956,7 @@ class MultipleResponsesOperations(object):
                     "statusCode": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -6987,11 +6988,11 @@ class MultipleResponsesOperations(object):
     def get200_model_a400_none(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Send a 400 response with no payload client should treat as an http error with no error model.
 
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -7002,7 +7003,7 @@ class MultipleResponsesOperations(object):
                     "statusCode": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -7034,11 +7035,11 @@ class MultipleResponsesOperations(object):
     def get200_model_a400_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Send a 200 response with payload {'statusCode': '400'}.
 
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -7049,7 +7050,7 @@ class MultipleResponsesOperations(object):
                     "statusCode": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -7081,11 +7082,11 @@ class MultipleResponsesOperations(object):
     def get200_model_a400_invalid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Send a 200 response with invalid payload {'statusCodeInvalid': '400'}.
 
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -7096,7 +7097,7 @@ class MultipleResponsesOperations(object):
                     "statusCode": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -7128,11 +7129,11 @@ class MultipleResponsesOperations(object):
     def get200_model_a202_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Send a 202 response with payload {'statusCode': '202'}.
 
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -7143,7 +7144,7 @@ class MultipleResponsesOperations(object):
                     "statusCode": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 

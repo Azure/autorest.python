@@ -9,3 +9,10 @@
 from ._auto_rest_report_service import AutoRestReportService
 
 __all__ = ["AutoRestReportService"]
+
+try:
+    from ._patch import patch_sdk  # type: ignore
+
+    patch_sdk()
+except ImportError:
+    pass

@@ -9,3 +9,10 @@
 from ._auto_rest_integer_test_service import AutoRestIntegerTestService
 
 __all__ = ["AutoRestIntegerTestService"]
+
+try:
+    from ._patch import patch_sdk  # type: ignore
+
+    patch_sdk()
+except ImportError:
+    pass

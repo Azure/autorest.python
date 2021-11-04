@@ -27,6 +27,7 @@ if TYPE_CHECKING:
     from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 
     T = TypeVar("T")
+    JSONType = Any
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -257,11 +258,11 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     def get_horse(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Get a horse with name 'Fred' and isAShowHorse true.
 
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -273,7 +274,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
                     "name": "str"  # Required.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -304,14 +305,14 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     @distributed_trace
     def put_horse(
         self,
-        horse,  # type: Any
+        horse,  # type: JSONType
         **kwargs  # type: Any
     ):
         # type: (...) -> str
         """Put a horse with name 'General' and isAShowHorse false.
 
         :param horse: Put a horse with name 'General' and isAShowHorse false.
-        :type horse: Any
+        :type horse: JSONType
         :return: str
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -363,11 +364,11 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     def get_pet(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Get a pet with name 'Peanut'.
 
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -378,7 +379,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
                     "name": "str"  # Required.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -409,14 +410,14 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     @distributed_trace
     def put_pet(
         self,
-        pet,  # type: Any
+        pet,  # type: JSONType
         **kwargs  # type: Any
     ):
         # type: (...) -> str
         """Put a pet with name 'Butter'.
 
         :param pet: Put a pet with name 'Butter'.
-        :type pet: Any
+        :type pet: JSONType
         :return: str
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -467,11 +468,11 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     def get_feline(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Get a feline where meows and hisses are true.
 
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -483,7 +484,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
                     "meows": bool  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -514,14 +515,14 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     @distributed_trace
     def put_feline(
         self,
-        feline,  # type: Any
+        feline,  # type: JSONType
         **kwargs  # type: Any
     ):
         # type: (...) -> str
         """Put a feline who hisses and doesn't meow.
 
         :param feline: Put a feline who hisses and doesn't meow.
-        :type feline: Any
+        :type feline: JSONType
         :return: str
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -573,11 +574,11 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     def get_cat(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Get a cat with name 'Whiskers' where likesMilk, meows, and hisses is true.
 
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -591,7 +592,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
                     "name": "str"  # Required.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -622,14 +623,14 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     @distributed_trace
     def put_cat(
         self,
-        cat,  # type: Any
+        cat,  # type: JSONType
         **kwargs  # type: Any
     ):
         # type: (...) -> str
         """Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
 
         :param cat: Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
-        :type cat: Any
+        :type cat: JSONType
         :return: str
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -683,12 +684,12 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     def get_kitten(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Get a kitten with name 'Gatito' where likesMilk and meows is true, and hisses and eatsMiceYet
         is false.
 
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -703,7 +704,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
                     "name": "str"  # Required.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -734,7 +735,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     @distributed_trace
     def put_kitten(
         self,
-        kitten,  # type: Any
+        kitten,  # type: JSONType
         **kwargs  # type: Any
     ):
         # type: (...) -> str
@@ -743,7 +744,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
 
         :param kitten: Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and
          eatsMiceYet is true.
-        :type kitten: Any
+        :type kitten: JSONType
         :return: str
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError

@@ -99,12 +99,12 @@ class HeadExceptionOperations(object):
     def head200(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> bool
         """Return 200 status code if successful.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
-        :rtype: None
+        :return: bool, or the result of cls(response)
+        :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -134,12 +134,12 @@ class HeadExceptionOperations(object):
     def head204(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> bool
         """Return 204 status code if successful.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
-        :rtype: None
+        :return: bool, or the result of cls(response)
+        :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -169,12 +169,12 @@ class HeadExceptionOperations(object):
     def head404(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> bool
         """Return 404 status code if successful.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
-        :rtype: None
+        :return: bool, or the result of cls(response)
+        :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]

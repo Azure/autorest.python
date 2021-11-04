@@ -34,7 +34,7 @@ def client():
 
 
 def test_upload_file(client):
-    client.upload.file(json.dumps({"more": "cowbell"}))
+    client.upload.file({"more": "cowbell"})
 
 def test_upload_binary(client):
     client.upload.binary(b"Hello, world!")

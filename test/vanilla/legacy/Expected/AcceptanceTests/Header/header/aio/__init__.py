@@ -9,3 +9,10 @@
 from ._auto_rest_swagger_bat_header_service import AutoRestSwaggerBATHeaderService
 
 __all__ = ["AutoRestSwaggerBATHeaderService"]
+
+try:
+    from ._patch import patch_sdk  # type: ignore
+
+    patch_sdk()
+except ImportError:
+    pass

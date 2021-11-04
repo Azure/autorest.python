@@ -24,6 +24,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from .._operations import build_get_request, build_put_request
 
 T = TypeVar("T")
+JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 

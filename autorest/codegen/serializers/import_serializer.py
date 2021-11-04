@@ -42,9 +42,10 @@ def _get_import_clauses(
 
 
 class FileImportSerializer:
-    def __init__(self, file_import: FileImport, is_python_3_file: bool) -> None:
+    def __init__(self, file_import: FileImport, is_python_3_file: bool, async_mode: bool = False) -> None:
         self._file_import = file_import
         self.is_python_3_file = is_python_3_file
+        self.async_mode = async_mode
 
     def _switch_typing_section_key(self, new_key: TypingSection):
         switched_dictionary = {}
@@ -70,6 +71,21 @@ class FileImportSerializer:
         ):
             self._file_import.add_from_import("typing", "TYPE_CHECKING", ImportType.STDLIB)
 
+    def _get_typing_definitions(self) -> str:
+        if not self._file_import.type_definitions:
+            return ""
+        spacing = "" if self.is_python_3_file else "    "
+        declarations: List[str] = [f"\n{spacing}T = TypeVar('T')"]
+        declarations.extend([
+            "{}{} = {}".format(
+                spacing,
+                type_name,
+                values[1] if self.async_mode else values[0]
+            )
+            for type_name, values in self._file_import.type_definitions.items()
+        ])
+        return "\n".join(declarations)
+
     def __str__(self) -> str:
         self._add_type_checking_import()
         regular_imports = ""
@@ -89,5 +105,4 @@ class FileImportSerializer:
         if typing_imports_dict:
             typing_imports += "\n\nif TYPE_CHECKING:\n    # pylint: disable=unused-import,ungrouped-imports\n    "
             typing_imports += "\n\n    ".join(_get_import_clauses(typing_imports_dict, "\n    "))
-
-        return regular_imports + typing_imports
+        return regular_imports + typing_imports + self._get_typing_definitions()

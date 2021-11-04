@@ -23,3 +23,5 @@ class ContentType(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
     IMAGE_PNG = "image/png"
     #: Content Type 'image/tiff'.
     IMAGE_TIFF = "image/tiff"
+    #: Content Type 'application/json'.
+    APPLICATION_JSON = "application/json"

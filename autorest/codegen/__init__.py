@@ -31,9 +31,9 @@ def _build_convenience_layer(yaml_data: Dict[str, Any], code_model: CodeModel) -
             code_model.sort_schemas()
 
     if code_model.options["show_operations"]:
-        code_model.link_operation_to_request_builder()
         code_model.add_schema_link_to_operation()
-        code_model.generate_single_parameter_from_multiple_media_types_operation()
+        code_model.generate_single_parameter_from_multiple_content_types_operation()
+        code_model.link_operation_to_request_builder()
         # LRO operation
         code_model.format_lro_operations()
         code_model.remove_next_operation()

@@ -53,7 +53,8 @@ class OperationGroupSerializer:
                 operation_group_temp.imports(
                     async_mode=self.async_mode,
                     has_schemas=bool(has_schemas)
-                ), is_python_3_file=self.is_python_3_file
+                ), is_python_3_file=self.is_python_3_file,
+                async_mode=self.async_mode
             ),
             async_mode=self.async_mode,
             is_python_3_file=self.is_python_3_file,

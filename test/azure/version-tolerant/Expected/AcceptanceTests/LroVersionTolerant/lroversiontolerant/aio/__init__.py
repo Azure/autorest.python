@@ -9,3 +9,10 @@
 from ._auto_rest_long_running_operation_test_service import AutoRestLongRunningOperationTestService
 
 __all__ = ["AutoRestLongRunningOperationTestService"]
+
+try:
+    from ._patch import patch_sdk  # type: ignore
+
+    patch_sdk()
+except ImportError:
+    pass

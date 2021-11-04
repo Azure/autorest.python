@@ -8,3 +8,9 @@
 
 from ._polling_paging_example import PollingPagingExample
 __all__ = ['PollingPagingExample']
+
+try:
+    from ._patch import patch_sdk  # type: ignore
+    patch_sdk()
+except ImportError:
+    pass
