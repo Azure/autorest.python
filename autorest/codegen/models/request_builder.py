@@ -74,11 +74,9 @@ class RequestBuilder(BaseBuilder):
             ImportType.AZURECORE,
         )
         if self.parameters.path:
-            relative_path = "."
+            relative_path = ".."
             if not self.code_model.options["builders_visibility"] == "embedded" and self.operation_group_name:
-                relative_path = ".."
-            if self.code_model.has_operations_folder:
-                relative_path += "."
+                relative_path = "..." if self.operation_group_name else ".."
             file_import.add_from_import(
                 f"{relative_path}_vendor", "_format_url_section", ImportType.LOCAL
             )
