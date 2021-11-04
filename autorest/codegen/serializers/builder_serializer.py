@@ -157,26 +157,6 @@ def _content_type_docstring(builder: BuilderType) -> str:
     )
     return content_type_str
 
-def _get_body_param_from_body_kwarg(builder: BuilderType, body_kwarg: str) -> Parameter:
-    # determine which of the body parameters returned from m4 corresponds to this body_kwarg
-    if not builder.multiple_content_type_parameters.has_body:
-        return builder.parameters.body[0]
-    if body_kwarg == "data":
-        return next(p for p in builder.multiple_content_type_parameters if p.is_data_input)
-    if body_kwarg == "files":
-        return next(p for p in builder.multiple_content_type_parameters if p.is_multipart)
-    if body_kwarg == "json":
-        # first check if there's any non-binary. In the case of multiple content types, there's
-        # usually one binary (for content), and one schema parameter (for json)
-        try:
-            return next(
-                p for p in builder.multiple_content_type_parameters
-                if not isinstance(p.schema, IOSchema)
-            )
-        except StopIteration:
-            return next(p for p in builder.multiple_content_type_parameters if p.is_json_parameter)
-    return builder.multiple_content_type_parameters[0]
-
 class _BuilderSerializerProtocol(ABC):
     @property
     @abstractmethod
@@ -771,16 +751,23 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         self, builder: BuilderType,
     ) -> List[str]:
         retval = []
-        body_groups = [
+        body_kwargs = [
             p for p in builder.request_builder.parameters.body
             if p.content_types
         ]
-        if len(body_groups) == 1:
-            retval.extend(self._set_body_content_kwarg(builder, builder.parameters.body[0], body_groups[0]))
+        builder_params = []
+        if builder.parameters.has_body:
+            builder_params += builder.parameters.body
+        if builder.multiple_content_type_parameters.has_body:
+            builder_params += builder.multiple_content_type_parameters.body
+        if len(body_kwargs) == 1:
+            retval.extend(self._set_body_content_kwarg(builder, builder.parameters.body[0], body_kwargs[0]))
         else:
-
-            for idx, body_kwarg in enumerate(body_groups):
-                body_param = _get_body_param_from_body_kwarg(builder, body_kwarg.serialized_name)
+            for idx, body_kwarg in enumerate(body_kwargs):
+                body_param = next(
+                    b for b in builder_params
+                    if body_kwarg in b.body_kwargs
+                )
                 if_statement = "if" if idx == 0 else "elif"
                 retval.append(
                     f'{if_statement} content_type.split(";")[0] in {body_kwarg.pre_semicolon_content_types}:'

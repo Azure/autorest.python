@@ -383,3 +383,4 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                 if isinstance(operation, LROOperation):
                     request_builder.name = request_builder.name + "_initial"
                 operation.request_builder = request_builder
+                operation.link_body_kwargs_to_body_params()

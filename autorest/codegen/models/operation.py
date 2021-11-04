@@ -10,12 +10,13 @@ from typing import cast, Dict, List, Any, Optional, Union, Set
 from .base_builder import BaseBuilder, create_parameters
 from .imports import FileImport, ImportType, TypingSection
 from .schema_response import SchemaResponse
-from .parameter import get_parameter
+from .parameter import Parameter, get_parameter
 from .parameter_list import ParameterList, get_parameter_list
 from .base_schema import BaseSchema
 from .object_schema import ObjectSchema
 from .request_builder import RequestBuilder
 from .schema_request import SchemaRequest
+from .primitive_schemas import IOSchema
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -227,6 +228,40 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         ):
             file_import.define_mypy_type("JSONType", "Any")
         return file_import
+
+    def _get_body_param_from_body_kwarg(self, body_kwarg: Parameter) -> Parameter:
+        # determine which of the body parameters returned from m4 corresponds to this body_kwarg
+        if not self.multiple_content_type_parameters.has_body:
+            return self.parameters.body[0]
+        if body_kwarg.serialized_name == "data":
+            return next(p for p in self.multiple_content_type_parameters.body if p.is_data_input)
+        if body_kwarg.serialized_name == "files":
+            return next(p for p in self.multiple_content_type_parameters.body if p.is_multipart)
+        if body_kwarg.serialized_name == "json":
+            # first check if there's any non-binary. In the case of multiple content types, there's
+            # usually one binary (for content), and one schema parameter (for json)
+            try:
+                return next(
+                    p for p in self.multiple_content_type_parameters.body
+                    if not isinstance(p.schema, IOSchema)
+                )
+            except StopIteration:
+                return next(p for p in self.multiple_content_type_parameters.body if p.is_json_parameter)
+        return self.multiple_content_type_parameters.body[0]
+
+    def link_body_kwargs_to_body_params(self) -> None:
+        if not self.parameters.has_body:
+            return
+        body_kwargs = [
+            p for p in self.request_builder.parameters.body
+            if p.content_types
+        ]
+        if len(body_kwargs) == 1:
+            self.parameters.body[0].body_kwargs = [body_kwargs[0]]
+            return
+        for body_kwarg in body_kwargs:
+            body_param = self._get_body_param_from_body_kwarg(body_kwarg)
+            body_param.body_kwargs.append(body_kwarg)
 
     def convert_multiple_content_type_parameters(self) -> None:
         type_annot = ", ".join([
