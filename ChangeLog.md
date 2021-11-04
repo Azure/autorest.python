@@ -16,6 +16,7 @@
 
 **Bug Fixes**
 
+- Fix documentation for HEAD calls that perform boolean checks on returned status codes in version tolerant code #1072
 - Fix body grouping by content types for binary bodies #1076
 - Fix default content type determination #1078
 
