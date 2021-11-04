@@ -9,3 +9,10 @@
 from ._media_types_client import MediaTypesClient
 
 __all__ = ["MediaTypesClient"]
+
+try:
+    from ._patch import patch_sdk  # type: ignore
+
+    patch_sdk()
+except ImportError:
+    pass

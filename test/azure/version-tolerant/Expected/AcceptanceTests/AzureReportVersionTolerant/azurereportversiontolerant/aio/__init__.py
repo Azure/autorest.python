@@ -9,3 +9,10 @@
 from ._auto_rest_report_service_for_azure import AutoRestReportServiceForAzure
 
 __all__ = ["AutoRestReportServiceForAzure"]
+
+try:
+    from ._patch import patch_sdk  # type: ignore
+
+    patch_sdk()
+except ImportError:
+    pass

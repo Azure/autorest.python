@@ -45,11 +45,8 @@ class JinjaSerializer:
         )
 
         # if there was a patch file before, we keep it
-        if self._autorestapi.read_file(namespace_path / "_patch.py"):
-            self._autorestapi.write_file(
-                namespace_path / Path("_patch.py"),
-                self._autorestapi.read_file(namespace_path / "_patch.py")
-            )
+        self._keep_patch_file(namespace_path / Path("_patch.py"))
+        self._keep_patch_file(namespace_path / Path("aio") / Path("_patch.py"))
 
         self._serialize_and_write_top_level_folder(code_model=code_model, env=env, namespace_path=namespace_path)
 
@@ -70,6 +67,12 @@ class JinjaSerializer:
 
         if code_model.options["models_mode"] and (code_model.schemas or code_model.enums):
             self._serialize_and_write_models_folder(code_model=code_model, env=env, namespace_path=namespace_path)
+
+
+
+    def _keep_patch_file(self, path_file: Path):
+        if self._autorestapi.read_file(path_file):
+            self._autorestapi.write_file(path_file, self._autorestapi.read_file(path_file))
 
 
     def _serialize_and_write_models_folder(self, code_model: CodeModel, env: Environment, namespace_path: Path) -> None:

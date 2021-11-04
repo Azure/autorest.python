@@ -9,3 +9,10 @@
 from ._incorrect_returned_error_model import IncorrectReturnedErrorModel
 
 __all__ = ["IncorrectReturnedErrorModel"]
+
+try:
+    from ._patch import patch_sdk  # type: ignore
+
+    patch_sdk()
+except ImportError:
+    pass

@@ -9,3 +9,10 @@
 from ._auto_rest_date_time_test_service import AutoRestDateTimeTestService
 
 __all__ = ["AutoRestDateTimeTestService"]
+
+try:
+    from ._patch import patch_sdk  # type: ignore
+
+    patch_sdk()
+except ImportError:
+    pass

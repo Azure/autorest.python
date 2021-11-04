@@ -9,3 +9,10 @@
 from ._body_forms_data_url_encoded import BodyFormsDataURLEncoded
 
 __all__ = ["BodyFormsDataURLEncoded"]
+
+try:
+    from ._patch import patch_sdk  # type: ignore
+
+    patch_sdk()
+except ImportError:
+    pass

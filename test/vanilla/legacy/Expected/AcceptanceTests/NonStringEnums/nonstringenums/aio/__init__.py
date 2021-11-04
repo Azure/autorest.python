@@ -9,3 +9,10 @@
 from ._non_string_enums_client import NonStringEnumsClient
 
 __all__ = ["NonStringEnumsClient"]
+
+try:
+    from ._patch import patch_sdk  # type: ignore
+
+    patch_sdk()
+except ImportError:
+    pass

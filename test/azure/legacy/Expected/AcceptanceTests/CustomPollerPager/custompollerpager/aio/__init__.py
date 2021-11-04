@@ -8,3 +8,9 @@
 
 from ._auto_rest_paging_test_service import AutoRestPagingTestService
 __all__ = ['AutoRestPagingTestService']
+
+try:
+    from ._patch import patch_sdk  # type: ignore
+    patch_sdk()
+except ImportError:
+    pass

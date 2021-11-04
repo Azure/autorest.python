@@ -9,3 +9,10 @@
 from ._auto_rest_swagger_ba_tdictionary_service import AutoRestSwaggerBATDictionaryService
 
 __all__ = ["AutoRestSwaggerBATDictionaryService"]
+
+try:
+    from ._patch import patch_sdk  # type: ignore
+
+    patch_sdk()
+except ImportError:
+    pass

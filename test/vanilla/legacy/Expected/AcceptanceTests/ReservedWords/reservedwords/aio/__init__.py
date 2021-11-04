@@ -9,3 +9,10 @@
 from ._reserved_words_client import ReservedWordsClient
 
 __all__ = ["ReservedWordsClient"]
+
+try:
+    from ._patch import patch_sdk  # type: ignore
+
+    patch_sdk()
+except ImportError:
+    pass
