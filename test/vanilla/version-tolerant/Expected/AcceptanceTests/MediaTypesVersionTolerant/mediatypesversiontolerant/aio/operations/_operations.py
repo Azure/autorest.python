@@ -24,7 +24,10 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ...operations._operations import (
     build_analyze_body_no_accept_header_request,
     build_analyze_body_request,
+    build_binary_body_with_three_content_types_request,
+    build_binary_body_with_two_content_types_request,
     build_content_type_with_encoding_request,
+    build_put_text_and_json_body_request,
 )
 
 T = TypeVar("T")
@@ -206,3 +209,162 @@ class MediaTypesClientOperationsMixin:
         return deserialized
 
     content_type_with_encoding.metadata = {"url": "/mediatypes/contentTypeWithEncoding"}  # type: ignore
+
+    @distributed_trace_async
+    async def binary_body_with_two_content_types(self, message: IO, **kwargs: Any) -> str:
+        """Binary body with two content types. Pass in of {'hello': 'world'} for the application/json
+        content type, and a byte stream of 'hello, world!' for application/octet-stream.
+
+        :param message: The payload body.
+        :type message: IO
+        :return: str
+        :rtype: str
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[str]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
+        content = message
+
+        request = build_binary_body_with_two_content_types_request(
+            content_type=content_type,
+            content=content,
+            template_url=self.binary_body_with_two_content_types.metadata["url"],
+        )
+        request.url = self._client.format_url(request.url)
+
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+
+    binary_body_with_two_content_types.metadata = {"url": "/mediatypes/binaryBodyTwoContentTypes"}  # type: ignore
+
+    @distributed_trace_async
+    async def binary_body_with_three_content_types(self, message: Union[IO, str], **kwargs: Any) -> str:
+        """Binary body with three content types. Pass in string 'hello, world' with content type
+        'text/plain', {'hello': world'} with content type 'application/json' and a byte string for
+        'application/octet-stream'.
+
+        :param message: The payload body.
+        :type message: IO or str
+        :keyword str content_type: Media type of the body sent to the API. Default value is
+         "application/json". Allowed values are: "application/json", "application/octet-stream",
+         "text/plain."
+        :return: str
+        :rtype: str
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[str]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        content_type = kwargs.pop("content_type", "text/plain")  # type: Optional[str]
+
+        json = None
+        content = None
+        if content_type.split(";")[0] in ["application/json", "application/octet-stream"]:
+            content = message
+        elif content_type.split(";")[0] in ["text/plain"]:
+            json = message
+        else:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['application/json', 'application/octet-stream', 'text/plain']".format(content_type)
+            )
+
+        request = build_binary_body_with_three_content_types_request(
+            content_type=content_type,
+            json=json,
+            content=content,
+            template_url=self.binary_body_with_three_content_types.metadata["url"],
+        )
+        request.url = self._client.format_url(request.url)
+
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+
+    binary_body_with_three_content_types.metadata = {"url": "/mediatypes/binaryBodyThreeContentTypes"}  # type: ignore
+
+    @distributed_trace_async
+    async def put_text_and_json_body(self, message: Union[str, str], **kwargs: Any) -> str:
+        """Body that's either text/plain or application/json.
+
+        :param message: The payload body.
+        :type message: str or str
+        :keyword str content_type: Media type of the body sent to the API. Default value is
+         "application/json". Allowed values are: "text/plain", "application/json."
+        :return: str
+        :rtype: str
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[str]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
+        if content_type.split(";")[0] in ["text/plain"]:
+            json = message
+        elif content_type.split(";")[0] in ["application/json"]:
+            json = message
+        else:
+            raise ValueError(
+                "The content_type '{}' is not one of the allowed values: "
+                "['text/plain', 'application/json']".format(content_type)
+            )
+
+        request = build_put_text_and_json_body_request(
+            content_type=content_type,
+            json=json,
+            template_url=self.put_text_and_json_body.metadata["url"],
+        )
+        request.url = self._client.format_url(request.url)
+
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+
+    put_text_and_json_body.metadata = {"url": "/mediatypes/textAndJson"}  # type: ignore

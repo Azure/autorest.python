@@ -80,3 +80,51 @@ class Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicatio
         self.pet_age = pet_age
         self.name = name
         self.status = status
+
+
+class PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApplicationXWwwFormUrlencodedSchema(
+    msrest.serialization.Model
+):
+    """PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApplicationXWwwFormUrlencodedSchema.
+
+    Variables are only populated by the server, and will be ignored when sending a request.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar grant_type: Constant part of a formdata body. Has constant value: "access_token".
+    :vartype grant_type: str
+    :ivar service: Required. Indicates the name of your Azure container registry.
+    :vartype service: str
+    :ivar aad_access_token: Required. AAD access token, mandatory when grant_type is
+     access_token_refresh_token or access_token.
+    :vartype aad_access_token: str
+    """
+
+    _validation = {
+        "grant_type": {"required": True, "constant": True},
+        "service": {"required": True},
+        "aad_access_token": {"required": True},
+    }
+
+    _attribute_map = {
+        "grant_type": {"key": "grant_type", "type": "str"},
+        "service": {"key": "service", "type": "str"},
+        "aad_access_token": {"key": "access_token", "type": "str"},
+    }
+
+    grant_type = "access_token"
+
+    def __init__(self, *, service: str, aad_access_token: str, **kwargs):
+        """
+        :keyword service: Required. Indicates the name of your Azure container registry.
+        :paramtype service: str
+        :keyword aad_access_token: Required. AAD access token, mandatory when grant_type is
+         access_token_refresh_token or access_token.
+        :paramtype aad_access_token: str
+        """
+        super(
+            PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApplicationXWwwFormUrlencodedSchema,
+            self,
+        ).__init__(**kwargs)
+        self.service = service
+        self.aad_access_token = aad_access_token

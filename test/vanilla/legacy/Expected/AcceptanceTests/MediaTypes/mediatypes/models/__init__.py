@@ -13,9 +13,11 @@ except (SyntaxError, ImportError):
 
 from ._media_types_client_enums import (
     ContentType,
+    ContentType1,
 )
 
 __all__ = [
     "SourcePath",
     "ContentType",
+    "ContentType1",
 ]
