@@ -1,19 +1,38 @@
 # Change Log
 
-### 2021-xx-xx - 5.10.1
+### 2021-xx-xx - 5.11.1
 
 | Library | Min Version
 | --------------- | -------
 |`@autorest/core` |  `3.6.2`
 |`@autorest/modelerfour` | `4.19.1`
-|`azure-core` dep of generated code | `1.19.1`
+|`azure-core` dep of generated code | `1.20.0`
 |`msrest` dep of generated code | `0.6.21`
 |`azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`
 
 **Bug Fixes**
 
-- Fix documentation for HEAD calls that perform boolean checks on returned status codes in version tolerant code #1072
 - Hide mixin operations for version tolerant generation  #1071
+
+### 2021-11-04 - 5.11.0
+
+| Library | Min Version
+| --------------- | -------
+|`@autorest/core` |  `3.6.2`
+|`@autorest/modelerfour` | `4.19.1`
+|`azure-core` dep of generated code | `1.20.0`
+|`msrest` dep of generated code | `0.6.21`
+|`azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`
+
+**New Features**
+
+- Add `_patch.py` support for `aio` folder #1070
+
+**Bug Fixes**
+
+- Fix documentation for HEAD calls that perform boolean checks on returned status codes in version tolerant code #1072
+- Fix body grouping by content types for binary bodies #1076
+- Fix default content type determination #1078
 
 ### 2021-11-01 - 5.10.0
 
