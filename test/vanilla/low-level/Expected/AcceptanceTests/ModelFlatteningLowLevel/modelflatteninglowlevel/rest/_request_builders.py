@@ -14,7 +14,10 @@ from .._vendor import _format_url_section
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, List, Optional
+    from typing import Any, Dict, List, Optional, TypeVar
+
+    T = TypeVar("T")
+    JSONType = Any
 
 _SERIALIZER = Serializer()
 
@@ -31,7 +34,7 @@ def build_put_array_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. External Resource as an Array to put.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). External Resource as an Array to put.
     :paramtype content: any
@@ -142,7 +145,7 @@ def build_put_wrapped_array_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. External Resource as an Array to put.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). External Resource as an Array to put.
     :paramtype content: any
@@ -237,7 +240,7 @@ def build_put_dictionary_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. External Resource as a Dictionary to put.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). External Resource as a Dictionary to put.
     :paramtype content: any
@@ -353,7 +356,7 @@ def build_put_resource_collection_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. External Resource as a ResourceCollection to put.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). External Resource as a ResourceCollection to put.
     :paramtype content: any
@@ -537,7 +540,7 @@ def build_put_simple_product_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Simple body product to put.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Simple body product to put.
     :paramtype content: any
@@ -609,7 +612,7 @@ def build_post_flattened_simple_product_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Simple body product to post.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Simple body product to post.
     :paramtype content: any
@@ -684,7 +687,7 @@ def build_put_simple_product_with_grouping_request(
     :type name: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Simple body product to put.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Simple body product to put.
     :paramtype content: any

@@ -10,11 +10,13 @@ from typing import cast, Dict, List, Any, Optional, Union, Set
 from .base_builder import BaseBuilder, create_parameters
 from .imports import FileImport, ImportType, TypingSection
 from .schema_response import SchemaResponse
-from .parameter import get_parameter
+from .parameter import Parameter, get_parameter
 from .parameter_list import ParameterList, get_parameter_list
 from .base_schema import BaseSchema
 from .object_schema import ObjectSchema
 from .request_builder import RequestBuilder
+from .schema_request import SchemaRequest
+from .primitive_schemas import IOSchema
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -30,7 +32,8 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         description: str,
         api_versions: Set[str],
         parameters: ParameterList,
-        multiple_media_type_parameters: ParameterList,
+        multiple_content_type_parameters: ParameterList,
+        schema_requests: List[SchemaRequest],
         summary: Optional[str] = None,
         responses: Optional[List[SchemaResponse]] = None,
         exceptions: Optional[List[SchemaResponse]] = None,
@@ -44,11 +47,12 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             description=description,
             parameters=parameters,
             responses=responses,
+            schema_requests=schema_requests,
             summary=summary,
         )
-        self.multiple_media_type_parameters = multiple_media_type_parameters
+        self.multiple_content_type_parameters = multiple_content_type_parameters
         self.api_versions = api_versions
-        self.multiple_media_type_parameters = multiple_media_type_parameters
+        self.multiple_content_type_parameters = multiple_content_type_parameters
         self.exceptions = exceptions or []
         self.want_description_docstring = want_description_docstring
         self.want_tracing = want_tracing
@@ -79,28 +83,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
 
     @property
     def body_kwargs_to_pass_to_request_builder(self) -> List[str]:
-        kwargs = []
-        if not self.parameters.has_body:
-            return []
-        body_kwarg_names = self.request_builder.parameters.body_kwarg_names
-        for kwarg in body_kwarg_names:
-            if kwarg == "content":
-                if self.request_builder.is_stream:
-                    kwargs.append("content")
-            else:
-                kwargs.append(kwarg)
-        if not kwargs and not self.parameters.body[0].constant:
-            kwargs.append("content")
-        return kwargs
-
-    @property
-    def serialized_body_kwarg(self) -> str:
-        # body serialization can be passed to either "json" or "content"
-        if "json" in self.body_kwargs_to_pass_to_request_builder:
-            return "json"
-        if not self.request_builder.is_stream:
-            return "content"
-        raise ValueError("You should not be trying to serialize this body")
+        return [p.serialized_name for p in self.request_builder.body_kwargs_to_get]
 
     @property
     def has_optional_return_type(self) -> bool:
@@ -168,7 +151,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         for param in self.parameters.method:
             file_import.merge(param.imports())
 
-        for param in self.multiple_media_type_parameters:
+        for param in self.multiple_content_type_parameters:
             file_import.merge(param.imports())
 
         for response in self.responses:
@@ -239,30 +222,72 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             file_import.add_from_import(
                 f"{relative_path}_vendor", "_convert_request", ImportType.LOCAL
             )
+        if self.code_model.options["version_tolerant"] and (
+            self.parameters.has_body or
+            any(r for r in self.responses if r.has_body)
+        ):
+            file_import.define_mypy_type("JSONType", "Any")
         return file_import
 
-    def convert_multiple_media_type_parameters(self) -> None:
+    def _get_body_param_from_body_kwarg(self, body_kwarg: Parameter) -> Parameter:
+        # determine which of the body parameters returned from m4 corresponds to this body_kwarg
+        if not self.multiple_content_type_parameters.has_body:
+            return self.parameters.body[0]
+        if body_kwarg.serialized_name == "data":
+            return next(p for p in self.multiple_content_type_parameters.body if p.is_data_input)
+        if body_kwarg.serialized_name == "files":
+            return next(p for p in self.multiple_content_type_parameters.body if p.is_multipart)
+        if body_kwarg.serialized_name == "json":
+            # first check if there's any non-binary. In the case of multiple content types, there's
+            # usually one binary (for content), and one schema parameter (for json)
+            try:
+                return next(
+                    p for p in self.multiple_content_type_parameters.body
+                    if not isinstance(p.schema, IOSchema)
+                )
+            except StopIteration:
+                return next(p for p in self.multiple_content_type_parameters.body if p.is_json_parameter)
+        return self.multiple_content_type_parameters.body[0]
+
+    def link_body_kwargs_to_body_params(self) -> None:
+        if not self.parameters.has_body:
+            return
+        body_kwargs = [
+            p for p in self.request_builder.parameters.body
+            if p.content_types
+        ]
+        if len(body_kwargs) == 1:
+            self.parameters.body[0].body_kwargs = [body_kwargs[0]]
+            return
+        for body_kwarg in body_kwargs:
+            body_param = self._get_body_param_from_body_kwarg(body_kwarg)
+            body_param.body_kwargs.append(body_kwarg)
+
+    def convert_multiple_content_type_parameters(self) -> None:
         type_annot = ", ".join([
             param.schema.operation_type_annotation
-            for param in self.multiple_media_type_parameters
+            for param in self.multiple_content_type_parameters
         ])
         docstring_type = " or ".join([
-            param.schema.docstring_type for param in self.multiple_media_type_parameters
+            param.schema.docstring_type for param in self.multiple_content_type_parameters
         ])
         try:
             # get an optional param with object first. These params are the top choice
             # bc they have more info about how to serialize the body
             chosen_parameter = next(
-                p for p in self.multiple_media_type_parameters if not p.required and isinstance(p.schema, ObjectSchema)
+                p for p in self.multiple_content_type_parameters
+                if not p.required and isinstance(p.schema, ObjectSchema)
             )
         except StopIteration:  # pylint: disable=broad-except
             # otherwise, we get the first optional param, if that exists. If not, we just grab the first one
-            optional_parameters = [p for p in self.multiple_media_type_parameters if not p.required]
-            chosen_parameter = optional_parameters[0] if optional_parameters else self.multiple_media_type_parameters[0]
+            optional_parameters = [p for p in self.multiple_content_type_parameters if not p.required]
+            chosen_parameter = (
+                optional_parameters[0] if optional_parameters else self.multiple_content_type_parameters[0]
+            )
         if not chosen_parameter:
             raise ValueError("You are missing a parameter that has multiple media types")
-        chosen_parameter.multiple_media_types_type_annot = f"Union[{type_annot}]"
-        chosen_parameter.multiple_media_types_docstring_type = docstring_type
+        chosen_parameter.multiple_content_types_type_annot = f"Union[{type_annot}]"
+        chosen_parameter.multiple_content_types_docstring_type = docstring_type
         self.parameters.append(chosen_parameter)
 
     @classmethod
@@ -272,7 +297,10 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
 
         parameter_creator = get_parameter(code_model).from_yaml
         parameter_list_creator = get_parameter_list(code_model)
-        parameters, multiple_media_type_parameters = create_parameters(yaml_data, code_model, parameter_creator)
+        schema_requests = [SchemaRequest.from_yaml(yaml, code_model=code_model) for yaml in yaml_data["requests"]]
+        parameters, multiple_content_type_parameters = create_parameters(
+            yaml_data, code_model, parameter_creator
+        )
 
         return cls(
             code_model=code_model,
@@ -280,8 +308,11 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             name=name,
             description=yaml_data["language"]["python"]["description"],
             api_versions=set(value_dict["version"] for value_dict in yaml_data["apiVersions"]),
-            parameters=parameter_list_creator(code_model, parameters),
-            multiple_media_type_parameters=parameter_list_creator(code_model, multiple_media_type_parameters),
+            parameters=parameter_list_creator(code_model, parameters, schema_requests),
+            multiple_content_type_parameters=parameter_list_creator(
+                code_model, multiple_content_type_parameters, schema_requests
+            ),
+            schema_requests=schema_requests,
             summary=yaml_data["language"]["python"].get("summary"),
             responses=[SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("responses", [])],
             # Exception with no schema means default exception, we don't store them

@@ -27,6 +27,7 @@ from .. import models as _models
 from .._vendor import _convert_request
 
 T = TypeVar("T")
+JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -44,7 +45,7 @@ def build_get_int_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_int_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_int_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
@@ -72,7 +73,7 @@ def build_get_long_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_long_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_long_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
@@ -100,7 +101,7 @@ def build_get_float_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_float_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_float_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
@@ -128,7 +129,7 @@ def build_get_double_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_double_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_double_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
@@ -156,7 +157,7 @@ def build_get_bool_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_bool_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_bool_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
@@ -184,7 +185,7 @@ def build_get_string_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_string_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_string_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
@@ -212,7 +213,7 @@ def build_get_date_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_date_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_date_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
@@ -240,7 +241,7 @@ def build_get_date_time_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_date_time_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_date_time_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
@@ -268,7 +269,7 @@ def build_get_date_time_rfc1123_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_date_time_rfc1123_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_date_time_rfc1123_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
@@ -296,7 +297,7 @@ def build_get_duration_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_duration_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_duration_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
@@ -324,7 +325,7 @@ def build_get_byte_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_byte_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_byte_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"

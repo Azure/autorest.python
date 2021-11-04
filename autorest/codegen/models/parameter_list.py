@@ -6,14 +6,15 @@
 from collections.abc import MutableSequence
 from copy import copy
 import logging
-from typing import cast, List, Callable, Optional, TypeVar, Dict
+from typing import cast, List, Callable, Optional, TypeVar, Dict, TYPE_CHECKING
 
 from .parameter import Parameter, ParameterLocation
-from .constant_schema import ConstantSchema
 from .base_schema import BaseSchema
-from .enum_schema import EnumSchema
 from .dictionary_schema import DictionarySchema
 from .primitive_schemas import AnySchema, StringSchema
+
+if TYPE_CHECKING:
+    from .schema_request import SchemaRequest
 
 T = TypeVar('T')
 OrderedSet = Dict[T, None]
@@ -27,12 +28,15 @@ def _method_signature_helper(positional: List[str], keyword_only: Optional[List[
 
 class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
     def __init__(
-        self, code_model, parameters: Optional[List[Parameter]] = None
+        self,
+        code_model,
+        parameters: Optional[List[Parameter]] = None,
+        schema_requests: Optional[List["SchemaRequest"]] = None,
     ) -> None:
         self.code_model = code_model
+        self.schema_requests = schema_requests or []
         self.parameters = parameters or []
         self._json_body: Optional[BaseSchema] = None
-        self._content_types: Optional[List[str]] = None
 
     # MutableSequence
 
@@ -63,6 +67,30 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
 
     def get_from_location(self, location: ParameterLocation) -> List[Parameter]:
         return self.get_from_predicate(lambda parameter: parameter.location == location)
+
+    @property
+    def content_types(self) -> List[str]:
+        ordered_set = {
+            m: None
+            for request in self.schema_requests
+            for m in request.content_types
+        }
+        return list(ordered_set.keys())
+
+    @property
+    def default_content_type(self) -> str:
+        json_content_types = [c for c in self.content_types if "json" in c]
+        if json_content_types:
+            if "application/json" in json_content_types:
+                return "application/json"
+            return json_content_types[0]
+
+        xml_content_types = [c for c in self.content_types if "xml" in c]
+        if xml_content_types:
+            if "application/xml" in xml_content_types:
+                return "application/xml"
+            return xml_content_types[0]
+        return self.content_types[0]
 
     @property
     def json_body(self) -> BaseSchema:
@@ -149,46 +177,6 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
     @property
     def data_inputs(self) -> List[Parameter]:
         return self.get_from_predicate(lambda parameter: parameter.is_data_input)
-
-    @property
-    def content_types(self) -> List[str]:
-        if self._content_types is not None:
-            return self._content_types
-        content_type_params = self.get_from_predicate(
-            lambda parameter: parameter.serialized_name == "content_type"
-        )
-        content_types: OrderedSet[str] = {}
-        for param in content_type_params:
-            if isinstance(param.schema, dict):
-                if param.schema.get("value"):
-                    content_types[param.schema["value"]["value"]] = None
-                if param.schema.get("choices"):
-                    for choice in param.schema['choices']:
-                        content_types[choice['value']] = None
-            elif isinstance(param.schema, ConstantSchema) and param.schema.value:
-                content_types[param.schema.value] = None
-            elif isinstance(param.schema, EnumSchema):
-                # enums
-                content_types.update({v.value: None for v in param.schema.values})
-            if param.client_default_value:
-                content_types.update({param.client_default_value: None})
-        self._content_types = [k for k in content_types if k is not None]
-        return self._content_types
-
-    @property
-    def default_content_type(self) -> str:
-        json_content_types = [c for c in self.content_types if "json" in c]
-        if json_content_types:
-            if "application/json" in json_content_types:
-                return "application/json"
-            return json_content_types[0]
-
-        xml_content_types = [c for c in self.content_types if "xml" in c]
-        if xml_content_types:
-            if "application/xml" in xml_content_types:
-                return "application/xml"
-            return xml_content_types[0]
-        return self.content_types[0]
 
     def _filter_out_multiple_content_type(self, kwarg_params):
         """We don't want multiple content type kwargs in the method signature"""

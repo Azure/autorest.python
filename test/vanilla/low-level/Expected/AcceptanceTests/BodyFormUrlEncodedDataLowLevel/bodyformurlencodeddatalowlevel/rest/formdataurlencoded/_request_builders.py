@@ -14,7 +14,10 @@ from ..._vendor import _format_url_section
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, Optional
+    from typing import Any, Dict, Optional, TypeVar
+
+    T = TypeVar("T")
+    JSONType = Any
 
 _SERIALIZER = Serializer()
 
@@ -67,6 +70,56 @@ def build_update_pet_with_form_request(
     }
 
     url = _format_url_section(url, **path_format_arguments)
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    if content_type is not None:
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_partial_constant_body_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """Test a partially constant formdata body. Pass in { grant_type: 'access_token', access_token:
+    'foo', service: 'bar' } to pass the test.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword data: Pass in dictionary that contains form data to include in the body of the
+     request. Indicates the name of your Azure container registry.
+    :paramtype data: dict[str, any]
+    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
+     a byte iterator, or stream input). Indicates the name of your Azure container registry.
+    :paramtype content: any
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # form-encoded input template you can fill out and use as your `data` input.
+            data = {
+                access_token: "str",  # AAD access token, mandatory when grant_type is access_token_refresh_token or access_token.
+                grant_type: "access_token",  # Default value is "access_token". Constant part of a formdata body. The default value is "access_token". Note that overriding this default value may result in unsupported behavior.
+                service: "str"  # Indicates the name of your Azure container registry.
+            }
+    """
+
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+
+    # Construct URL
+    url = kwargs.pop("template_url", '/formsdataurlencoded/partialConstantBody')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

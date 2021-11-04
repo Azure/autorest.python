@@ -12,7 +12,10 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any, Optional, TypeVar
+
+    T = TypeVar("T")
+    JSONType = Any
 
 _SERIALIZER = Serializer()
 
@@ -71,7 +74,7 @@ def build_put_valid_request(
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Please put a dictionary with 5 key-value pairs:
      "txt":"notepad", "bmp":"mspaint", "xls":"excel", "exe":"", "":null.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put a dictionary with 5 key-value pairs:
      "txt":"notepad", "bmp":"mspaint", "xls":"excel", "exe":"", "":null.
@@ -164,7 +167,7 @@ def build_put_empty_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Please put an empty dictionary.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put an empty dictionary.
     :paramtype content: any

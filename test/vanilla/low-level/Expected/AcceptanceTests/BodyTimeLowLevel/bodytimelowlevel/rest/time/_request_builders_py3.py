@@ -6,10 +6,13 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import Any, Optional
+from typing import Any, Optional, TypeVar
 
 from azure.core.rest import HttpRequest
 from msrest import Serializer
+
+T = TypeVar("T")
+JSONType = Any
 
 _SERIALIZER = Serializer()
 
@@ -37,7 +40,7 @@ def build_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put time value "08:07:56".
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -45,7 +48,7 @@ def build_put_request(*, json: Any = None, content: Any = None, **kwargs: Any) -
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Put time value "08:07:56" in parameter to pass testserver.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Put time value "08:07:56" in parameter to pass testserver.
     :paramtype content: any

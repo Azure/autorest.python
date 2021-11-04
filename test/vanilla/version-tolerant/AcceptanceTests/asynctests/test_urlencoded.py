@@ -43,3 +43,11 @@ async def test_update_pet_with_form(client):
             "name": "Fido",
         }
     )
+
+@pytest.mark.asyncio
+async def test_partial_constant_body(client):
+    await client.formdataurlencoded.partial_constant_body({
+        "access_token": "foo",
+        "grant_type": "access_token",
+        "service": "bar"
+    })

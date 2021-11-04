@@ -6,10 +6,13 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import Any, Optional
+from typing import Any, Optional, TypeVar
 
 from azure.core.rest import HttpRequest
 from msrest import Serializer
+
+T = TypeVar("T")
+JSONType = Any
 
 _SERIALIZER = Serializer()
 
@@ -152,7 +155,7 @@ def build_get_underflow_int64_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_max32_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_max32_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put max int32 value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -160,7 +163,7 @@ def build_put_max32_request(*, json: Any = None, content: Any = None, **kwargs: 
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. int body.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). int body.
     :paramtype content: any
@@ -191,7 +194,7 @@ def build_put_max32_request(*, json: Any = None, content: Any = None, **kwargs: 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_put_max64_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_max64_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put max int64 value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -199,7 +202,7 @@ def build_put_max64_request(*, json: Any = None, content: Any = None, **kwargs: 
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. int body.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). int body.
     :paramtype content: any
@@ -230,7 +233,7 @@ def build_put_max64_request(*, json: Any = None, content: Any = None, **kwargs: 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_put_min32_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_min32_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put min int32 value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -238,7 +241,7 @@ def build_put_min32_request(*, json: Any = None, content: Any = None, **kwargs: 
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. int body.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). int body.
     :paramtype content: any
@@ -269,7 +272,7 @@ def build_put_min32_request(*, json: Any = None, content: Any = None, **kwargs: 
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_put_min64_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_min64_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put min int64 value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -277,7 +280,7 @@ def build_put_min64_request(*, json: Any = None, content: Any = None, **kwargs: 
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. int body.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). int body.
     :paramtype content: any
@@ -331,7 +334,7 @@ def build_get_unix_time_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_unix_time_date_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_unix_time_date_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put datetime encoded as Unix time.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -339,7 +342,7 @@ def build_put_unix_time_date_request(*, json: Any = None, content: Any = None, *
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. int body.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). int body.
     :paramtype content: any

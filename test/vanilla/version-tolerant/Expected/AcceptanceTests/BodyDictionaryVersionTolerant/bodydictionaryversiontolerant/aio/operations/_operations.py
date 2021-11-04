@@ -91,6 +91,7 @@ from ...operations._operations import (
 )
 
 T = TypeVar("T")
+JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
@@ -2201,11 +2202,11 @@ class DictionaryOperations:
     get_base64_url.metadata = {"url": "/dictionary/prim/base64url/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_complex_null(self, **kwargs: Any) -> Optional[Dict[str, Any]]:
+    async def get_complex_null(self, **kwargs: Any) -> Optional[Dict[str, JSONType]]:
         """Get dictionary of complex type null value.
 
         :return: dict mapping str to JSON object or None
-        :rtype: dict[str, Any] or None
+        :rtype: dict[str, JSONType] or None
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2219,7 +2220,7 @@ class DictionaryOperations:
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Dict[str, Any]]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Dict[str, JSONType]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -2248,11 +2249,11 @@ class DictionaryOperations:
     get_complex_null.metadata = {"url": "/dictionary/complex/null"}  # type: ignore
 
     @distributed_trace_async
-    async def get_complex_empty(self, **kwargs: Any) -> Dict[str, Any]:
+    async def get_complex_empty(self, **kwargs: Any) -> Dict[str, JSONType]:
         """Get empty dictionary of complex type {}.
 
         :return: dict mapping str to JSON object
-        :rtype: dict[str, Any]
+        :rtype: dict[str, JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2266,7 +2267,7 @@ class DictionaryOperations:
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Any]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -2295,12 +2296,12 @@ class DictionaryOperations:
     get_complex_empty.metadata = {"url": "/dictionary/complex/empty"}  # type: ignore
 
     @distributed_trace_async
-    async def get_complex_item_null(self, **kwargs: Any) -> Dict[str, Any]:
+    async def get_complex_item_null(self, **kwargs: Any) -> Dict[str, JSONType]:
         """Get dictionary of complex type with null item {"0": {"integer": 1, "string": "2"}, "1": null,
         "2": {"integer": 5, "string": "6"}}.
 
         :return: dict mapping str to JSON object
-        :rtype: dict[str, Any]
+        :rtype: dict[str, JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2314,7 +2315,7 @@ class DictionaryOperations:
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Any]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -2343,12 +2344,12 @@ class DictionaryOperations:
     get_complex_item_null.metadata = {"url": "/dictionary/complex/itemnull"}  # type: ignore
 
     @distributed_trace_async
-    async def get_complex_item_empty(self, **kwargs: Any) -> Dict[str, Any]:
+    async def get_complex_item_empty(self, **kwargs: Any) -> Dict[str, JSONType]:
         """Get dictionary of complex type with empty item {"0": {"integer": 1, "string": "2"}, "1:" {},
         "2": {"integer": 5, "string": "6"}}.
 
         :return: dict mapping str to JSON object
-        :rtype: dict[str, Any]
+        :rtype: dict[str, JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2362,7 +2363,7 @@ class DictionaryOperations:
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Any]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -2391,12 +2392,12 @@ class DictionaryOperations:
     get_complex_item_empty.metadata = {"url": "/dictionary/complex/itemempty"}  # type: ignore
 
     @distributed_trace_async
-    async def get_complex_valid(self, **kwargs: Any) -> Dict[str, Any]:
+    async def get_complex_valid(self, **kwargs: Any) -> Dict[str, JSONType]:
         """Get dictionary of complex type with {"0": {"integer": 1, "string": "2"}, "1": {"integer": 3,
         "string": "4"}, "2": {"integer": 5, "string": "6"}}.
 
         :return: dict mapping str to JSON object
-        :rtype: dict[str, Any]
+        :rtype: dict[str, JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2410,7 +2411,7 @@ class DictionaryOperations:
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Any]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -2439,12 +2440,12 @@ class DictionaryOperations:
     get_complex_valid.metadata = {"url": "/dictionary/complex/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def put_complex_valid(self, array_body: Dict[str, Any], **kwargs: Any) -> None:
+    async def put_complex_valid(self, array_body: Dict[str, JSONType], **kwargs: Any) -> None:
         """Put an dictionary of complex type with values {"0": {"integer": 1, "string": "2"}, "1":
         {"integer": 3, "string": "4"}, "2": {"integer": 5, "string": "6"}}.
 
         :param array_body:
-        :type array_body: dict[str, Any]
+        :type array_body: dict[str, JSONType]
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError

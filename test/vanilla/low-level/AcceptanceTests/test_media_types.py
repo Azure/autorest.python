@@ -24,8 +24,7 @@
 #
 # --------------------------------------------------------------------------
 from mediatypeslowlevel import MediaTypesClient
-from mediatypeslowlevel.rest import build_analyze_body_request, build_content_type_with_encoding_request, build_analyze_body_no_accept_header_request
-
+from mediatypeslowlevel.rest import *
 import pytest
 
 @pytest.fixture
@@ -63,4 +62,13 @@ def test_pdf_no_accept_header(send_request):
 
 def test_json_no_accept_header(send_request):
     request = build_analyze_body_no_accept_header_request(json={"source":"foo"})
+    send_request(request)
+
+def test_binary_body_two_content_types(send_request):
+    json_input = {"hello":"world"}
+    request = build_binary_body_with_two_content_types_request(json=json_input, content_type="application/json")
+    send_request(request)
+
+    content = b"hello, world"
+    request = build_binary_body_with_two_content_types_request(content=content, content_type="application/octet-stream")
     send_request(request)

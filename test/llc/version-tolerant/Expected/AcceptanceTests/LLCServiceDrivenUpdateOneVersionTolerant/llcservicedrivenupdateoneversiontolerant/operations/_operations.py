@@ -27,6 +27,7 @@ if TYPE_CHECKING:
     from typing import Any, Callable, Dict, Generic, IO, Optional, TypeVar, Union
 
     T = TypeVar("T")
+    JSONType = Any
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -189,7 +190,7 @@ class ParamsOperations(object):
     @distributed_trace
     def post_parameters(
         self,
-        parameter,  # type: Union[IO, Any]
+        parameter,  # type: Union[IO, JSONType]
         **kwargs  # type: Any
     ):
         # type: (...) -> Any
@@ -197,7 +198,7 @@ class ParamsOperations(object):
 
         :param parameter: I am a body parameter with a new content type. My only valid JSON entry is {
          url: "http://example.org/myimage.jpeg" }.
-        :type parameter: IO or Any
+        :type parameter: IO or JSONType
         :keyword str content_type: Media type of the body sent to the API. Default value is
          "application/json". Allowed values are: "image/jpeg", "application/json."
         :return: any
@@ -212,10 +213,10 @@ class ParamsOperations(object):
 
         json = None
         content = None
-        if content_type.split(";")[0] in ["image/jpeg"]:
-            content = parameter
-        elif content_type.split(";")[0] in ["application/json"]:
+        if content_type.split(";")[0] in ["application/json"]:
             json = parameter
+        elif content_type.split(";")[0] in ["image/jpeg"]:
+            content = parameter
         else:
             raise ValueError(
                 "The content_type '{}' is not one of the allowed values: "

@@ -95,3 +95,4 @@ class FileImport:
                 for package_name, module_list in package_list.items():
                     for module_name in module_list:
                         self._add_import(package_name, import_type, module_name, typing_section)
+        self.type_definitions.update(file_import.type_definitions)
