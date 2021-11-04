@@ -65,6 +65,14 @@ jobs:
       - script: |
           pytest test/unittests
         displayName: 'Unit tests'
+      - script: |
+          inv regenerate
+        displayName: 'Regenerate Code'
+      - script: |
+          git add -A  # 'add' first so 'diff' includes untracked files
+          git diff --staged -w
+        displayName: 'Diff regeneration'
+
 
       - task: UsePythonVersion@0
         displayName: 'Use Python $(PythonVersion)'
@@ -75,6 +83,39 @@ jobs:
           pip install pip==20.2
           pip install tox coverage
         displayName: "Install Env Specific Reqs in Target PyVersion $(PythonVersion)"
+
+      - script: |
+          cd $(TestFolder)/azure/legacy
+          tox -e ci
+        displayName: 'Execute legacy "azure" Tests - Python $(PythonVersion)'
+      - task: PublishTestResults@2
+        condition: always()
+        displayName: 'Publish legacy "azure" Test Results'
+        inputs:
+          testRunTitle: "$(OSName) Python $(PythonVersion) - legacy azure"
+          searchFolder: "$(TestFolder)/azure/legacy"
+
+      - script: |
+          cd $(TestFolder)/azure/low-level
+          tox -e ci
+        displayName: 'Execute low-level "azure" Tests - Python $(PythonVersion)'
+      - task: PublishTestResults@2
+        condition: always()
+        displayName: 'Publish low-level "azure" Test Results'
+        inputs:
+          testRunTitle: "$(OSName) Python $(PythonVersion) - low-level azure"
+          searchFolder: "$(TestFolder)/azure/low-level"
+
+      - script: |
+          cd $(TestFolder)/azure/version-tolerant
+          tox -e ci
+        displayName: 'Execute version-tolerant "azure" Tests - Python $(PythonVersion)'
+      - task: PublishTestResults@2
+        condition: always()
+        displayName: 'Publish version-tolerant "azure" Test Results'
+        inputs:
+          testRunTitle: "$(OSName) Python $(PythonVersion) - version-tolerant azure"
+          searchFolder: "$(TestFolder)/azure/version-tolerant"
 
       - script: |
           cd $(TestFolder)/vanilla/legacy
