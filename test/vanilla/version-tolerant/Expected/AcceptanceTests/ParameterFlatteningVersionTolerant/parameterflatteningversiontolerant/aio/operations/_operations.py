@@ -24,6 +24,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ...operations._operations import build_availability_sets_update_request
 
 T = TypeVar("T")
+JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
@@ -46,7 +47,7 @@ class AvailabilitySetsOperations:
         self._config = config
 
     @distributed_trace_async
-    async def update(self, resource_group_name: str, avset: str, tags: Any, **kwargs: Any) -> None:
+    async def update(self, resource_group_name: str, avset: str, tags: JSONType, **kwargs: Any) -> None:
         """Updates the tags for an availability set.
 
         :param resource_group_name: The name of the resource group.
@@ -54,7 +55,7 @@ class AvailabilitySetsOperations:
         :param avset: The name of the storage availability set.
         :type avset: str
         :param tags: The tags.
-        :type tags: Any
+        :type tags: JSONType
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError

@@ -29,6 +29,7 @@ if TYPE_CHECKING:
     from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 
     T = TypeVar("T")
+    JSONType = Any
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -147,13 +148,13 @@ class PetOperations(object):
         pet_id,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> Optional[Any]
+        # type: (...) -> Optional[JSONType]
         """Gets pets by id.
 
         :param pet_id: pet id.
         :type pet_id: str
         :return: JSON object
-        :rtype: Any or None
+        :rtype: JSONType or None
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -165,7 +166,7 @@ class PetOperations(object):
                     "name": "str"  # Optional. Gets the Pet by id.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Any]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
         error_map = {
             401: ClientAuthenticationError,
             409: ResourceExistsError,
@@ -210,13 +211,13 @@ class PetOperations(object):
         what_action,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Asks pet to do something.
 
         :param what_action: what action the pet should do.
         :type what_action: str
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -227,7 +228,7 @@ class PetOperations(object):
                     "actionResponse": "str"  # Optional. action feedback.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,

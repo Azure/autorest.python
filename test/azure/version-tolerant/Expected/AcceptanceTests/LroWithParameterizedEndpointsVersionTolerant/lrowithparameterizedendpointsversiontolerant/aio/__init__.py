@@ -9,3 +9,10 @@
 from ._lro_with_paramaterized_endpoints import LROWithParamaterizedEndpoints
 
 __all__ = ["LROWithParamaterizedEndpoints"]
+
+try:
+    from ._patch import patch_sdk  # type: ignore
+
+    patch_sdk()
+except ImportError:
+    pass

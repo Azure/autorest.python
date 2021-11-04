@@ -6,10 +6,13 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, TypeVar
 
 from azure.core.rest import HttpRequest
 from msrest import Serializer
+
+T = TypeVar("T")
+JSONType = Any
 
 _SERIALIZER = Serializer()
 
@@ -114,7 +117,7 @@ def build_get_underflow_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_utc_max_date_time_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_utc_max_date_time_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put max datetime value 9999-12-31T23:59:59.999Z.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -122,7 +125,7 @@ def build_put_utc_max_date_time_request(*, json: Any = None, content: Any = None
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. datetime body.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). datetime body.
     :paramtype content: any
@@ -154,7 +157,9 @@ def build_put_utc_max_date_time_request(*, json: Any = None, content: Any = None
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_put_utc_max_date_time7_digits_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_utc_max_date_time7_digits_request(
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
     """Put max datetime value 9999-12-31T23:59:59.9999999Z.
 
     This is against the recommendation that asks for 3 digits, but allow to test what happens in
@@ -165,7 +170,7 @@ def build_put_utc_max_date_time7_digits_request(*, json: Any = None, content: An
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. datetime body.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). datetime body.
     :paramtype content: any
@@ -273,7 +278,7 @@ def build_get_utc_uppercase_max_date_time7_digits_request(**kwargs: Any) -> Http
 
 
 def build_put_local_positive_offset_max_date_time_request(
-    *, json: Any = None, content: Any = None, **kwargs: Any
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Put max datetime value with positive numoffset 9999-12-31t23:59:59.999+14:00.
 
@@ -282,7 +287,7 @@ def build_put_local_positive_offset_max_date_time_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. datetime body.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). datetime body.
     :paramtype content: any
@@ -363,7 +368,7 @@ def build_get_local_positive_offset_uppercase_max_date_time_request(**kwargs: An
 
 
 def build_put_local_negative_offset_max_date_time_request(
-    *, json: Any = None, content: Any = None, **kwargs: Any
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Put max datetime value with positive numoffset 9999-12-31t23:59:59.999-14:00.
 
@@ -372,7 +377,7 @@ def build_put_local_negative_offset_max_date_time_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. datetime body.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). datetime body.
     :paramtype content: any
@@ -452,7 +457,7 @@ def build_get_local_negative_offset_lowercase_max_date_time_request(**kwargs: An
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_utc_min_date_time_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_utc_min_date_time_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put min datetime value 0001-01-01T00:00:00Z.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -460,7 +465,7 @@ def build_put_utc_min_date_time_request(*, json: Any = None, content: Any = None
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. datetime body.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). datetime body.
     :paramtype content: any
@@ -517,7 +522,7 @@ def build_get_utc_min_date_time_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_put_local_positive_offset_min_date_time_request(
-    *, json: Any = None, content: Any = None, **kwargs: Any
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Put min datetime value 0001-01-01T00:00:00+14:00.
 
@@ -526,7 +531,7 @@ def build_put_local_positive_offset_min_date_time_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. datetime body.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). datetime body.
     :paramtype content: any
@@ -583,7 +588,7 @@ def build_get_local_positive_offset_min_date_time_request(**kwargs: Any) -> Http
 
 
 def build_put_local_negative_offset_min_date_time_request(
-    *, json: Any = None, content: Any = None, **kwargs: Any
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Put min datetime value 0001-01-01T00:00:00-14:00.
 
@@ -592,7 +597,7 @@ def build_put_local_negative_offset_min_date_time_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. datetime body.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). datetime body.
     :paramtype content: any

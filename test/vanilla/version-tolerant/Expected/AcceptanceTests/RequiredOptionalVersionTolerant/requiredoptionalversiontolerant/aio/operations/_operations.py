@@ -57,6 +57,7 @@ from ...operations._operations import (
 )
 
 T = TypeVar("T")
+JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
@@ -537,12 +538,12 @@ class ExplicitOperations:
     post_optional_integer_parameter.metadata = {"url": "/reqopt/optional/integer/parameter"}  # type: ignore
 
     @distributed_trace_async
-    async def post_required_integer_property(self, body_parameter: Any, **kwargs: Any) -> None:
+    async def post_required_integer_property(self, body_parameter: JSONType, **kwargs: Any) -> None:
         """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the
         client library should throw before the request is sent.
 
         :param body_parameter:
-        :type body_parameter: Any
+        :type body_parameter: JSONType
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -585,11 +586,11 @@ class ExplicitOperations:
     post_required_integer_property.metadata = {"url": "/reqopt/requied/integer/property"}  # type: ignore
 
     @distributed_trace_async
-    async def post_optional_integer_property(self, body_parameter: Any = None, **kwargs: Any) -> None:
+    async def post_optional_integer_property(self, body_parameter: JSONType = None, **kwargs: Any) -> None:
         """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
 
         :param body_parameter:
-        :type body_parameter: Any
+        :type body_parameter: JSONType
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -786,12 +787,12 @@ class ExplicitOperations:
     post_optional_string_parameter.metadata = {"url": "/reqopt/optional/string/parameter"}  # type: ignore
 
     @distributed_trace_async
-    async def post_required_string_property(self, body_parameter: Any, **kwargs: Any) -> None:
+    async def post_required_string_property(self, body_parameter: JSONType, **kwargs: Any) -> None:
         """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the
         client library should throw before the request is sent.
 
         :param body_parameter:
-        :type body_parameter: Any
+        :type body_parameter: JSONType
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -834,11 +835,11 @@ class ExplicitOperations:
     post_required_string_property.metadata = {"url": "/reqopt/requied/string/property"}  # type: ignore
 
     @distributed_trace_async
-    async def post_optional_string_property(self, body_parameter: Any = None, **kwargs: Any) -> None:
+    async def post_optional_string_property(self, body_parameter: JSONType = None, **kwargs: Any) -> None:
         """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
 
         :param body_parameter:
-        :type body_parameter: Any
+        :type body_parameter: JSONType
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -953,12 +954,12 @@ class ExplicitOperations:
     post_optional_string_header.metadata = {"url": "/reqopt/optional/string/header"}  # type: ignore
 
     @distributed_trace_async
-    async def post_required_class_parameter(self, body_parameter: Any, **kwargs: Any) -> None:
+    async def post_required_class_parameter(self, body_parameter: JSONType, **kwargs: Any) -> None:
         """Test explicitly required complex object. Please put null and the client library should throw
         before the request is sent.
 
         :param body_parameter:
-        :type body_parameter: Any
+        :type body_parameter: JSONType
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1002,11 +1003,11 @@ class ExplicitOperations:
     post_required_class_parameter.metadata = {"url": "/reqopt/requied/class/parameter"}  # type: ignore
 
     @distributed_trace_async
-    async def post_optional_class_parameter(self, body_parameter: Any = None, **kwargs: Any) -> None:
+    async def post_optional_class_parameter(self, body_parameter: JSONType = None, **kwargs: Any) -> None:
         """Test explicitly optional complex object. Please put null.
 
         :param body_parameter:
-        :type body_parameter: Any
+        :type body_parameter: JSONType
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1053,12 +1054,12 @@ class ExplicitOperations:
     post_optional_class_parameter.metadata = {"url": "/reqopt/optional/class/parameter"}  # type: ignore
 
     @distributed_trace_async
-    async def post_required_class_property(self, body_parameter: Any, **kwargs: Any) -> None:
+    async def post_required_class_property(self, body_parameter: JSONType, **kwargs: Any) -> None:
         """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null
         and the client library should throw before the request is sent.
 
         :param body_parameter:
-        :type body_parameter: Any
+        :type body_parameter: JSONType
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1104,11 +1105,11 @@ class ExplicitOperations:
     post_required_class_property.metadata = {"url": "/reqopt/requied/class/property"}  # type: ignore
 
     @distributed_trace_async
-    async def post_optional_class_property(self, body_parameter: Any = None, **kwargs: Any) -> None:
+    async def post_optional_class_property(self, body_parameter: JSONType = None, **kwargs: Any) -> None:
         """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
 
         :param body_parameter:
-        :type body_parameter: Any
+        :type body_parameter: JSONType
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1255,12 +1256,12 @@ class ExplicitOperations:
     post_optional_array_parameter.metadata = {"url": "/reqopt/optional/array/parameter"}  # type: ignore
 
     @distributed_trace_async
-    async def post_required_array_property(self, body_parameter: Any, **kwargs: Any) -> None:
+    async def post_required_array_property(self, body_parameter: JSONType, **kwargs: Any) -> None:
         """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the
         client library should throw before the request is sent.
 
         :param body_parameter:
-        :type body_parameter: Any
+        :type body_parameter: JSONType
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1305,11 +1306,11 @@ class ExplicitOperations:
     post_required_array_property.metadata = {"url": "/reqopt/requied/array/property"}  # type: ignore
 
     @distributed_trace_async
-    async def post_optional_array_property(self, body_parameter: Any = None, **kwargs: Any) -> None:
+    async def post_optional_array_property(self, body_parameter: JSONType = None, **kwargs: Any) -> None:
         """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
 
         :param body_parameter:
-        :type body_parameter: Any
+        :type body_parameter: JSONType
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError

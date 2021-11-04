@@ -51,11 +51,11 @@ class HttpSuccessOperations:
         self._config = config
 
     @distributed_trace_async
-    async def head200(self, **kwargs: Any) -> None:
+    async def head200(self, **kwargs: Any) -> bool:
         """Return 200 status code if successful.
 
-        :return: None
-        :rtype: None
+        :return: bool
+        :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -83,11 +83,11 @@ class HttpSuccessOperations:
     head200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace_async
-    async def head204(self, **kwargs: Any) -> None:
+    async def head204(self, **kwargs: Any) -> bool:
         """Return 204 status code if successful.
 
-        :return: None
-        :rtype: None
+        :return: bool
+        :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -115,11 +115,11 @@ class HttpSuccessOperations:
     head204.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace_async
-    async def head404(self, **kwargs: Any) -> None:
+    async def head404(self, **kwargs: Any) -> bool:
         """Return 404 status code if successful.
 
-        :return: None
-        :rtype: None
+        :return: bool
+        :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]

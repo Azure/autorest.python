@@ -18,7 +18,6 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ... import models as _models
 from ..._vendor import _convert_request
 from ...operations._operation_group_two_operations import build_test_five_request, build_test_four_request
-
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -72,11 +71,11 @@ class OperationGroupTwoOperations:
 
         json = None
         content = None
-        if content_type.split(";")[0] in ['application/pdf', 'image/jpeg', 'image/png', 'image/tiff']:
-            content = input
-        elif content_type.split(";")[0] in ['application/json']:
+        if content_type.split(";")[0] in ['application/json']:
             if input is not None:
                 json = self._serialize.body(input, 'SourcePath')
+        elif content_type.split(";")[0] in ['application/pdf', 'image/jpeg', 'image/png', 'image/tiff']:
+            content = input
         else:
             raise ValueError(
                 "The content_type '{}' is not one of the allowed values: "

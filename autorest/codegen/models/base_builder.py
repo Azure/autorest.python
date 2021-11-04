@@ -6,6 +6,7 @@
 from typing import Any, Callable, Dict, List, Optional, Union, TYPE_CHECKING
 from .base_model import BaseModel
 from .schema_response import SchemaResponse
+from .schema_request import SchemaRequest
 
 if TYPE_CHECKING:
     from . import ParameterListType
@@ -13,11 +14,16 @@ if TYPE_CHECKING:
 
 _M4_HEADER_PARAMETERS = ["content_type", "accept"]
 
-def create_parameters(yaml_data: Dict[str, Any], code_model, parameter_creator: Callable):
+def create_parameters(
+    yaml_data: Dict[str, Any], code_model, parameter_creator: Callable
+):
     multiple_requests = len(yaml_data["requests"]) > 1
 
-    multiple_media_type_parameters = []
-    parameters = [parameter_creator(yaml, code_model=code_model) for yaml in yaml_data.get("parameters", [])]
+    multiple_content_type_parameters = []
+    parameters = [
+        parameter_creator(yaml, code_model=code_model)
+        for yaml in yaml_data.get("parameters", [])
+    ]
 
     for request in yaml_data["requests"]:
         for yaml in request.get("parameters", []):
@@ -26,14 +32,14 @@ def create_parameters(yaml_data: Dict[str, Any], code_model, parameter_creator: 
             if name in _M4_HEADER_PARAMETERS:
                 parameters.append(parameter)
             elif multiple_requests:
-                parameter.has_multiple_media_types = True
-                multiple_media_type_parameters.append(parameter)
+                parameter.has_multiple_content_types = True
+                multiple_content_type_parameters.append(parameter)
             else:
                 parameters.append(parameter)
 
-    if multiple_media_type_parameters:
+    if multiple_content_type_parameters:
         body_parameters_name_set = set(
-            p.serialized_name for p in multiple_media_type_parameters
+            p.serialized_name for p in multiple_content_type_parameters
         )
         if len(body_parameters_name_set) > 1:
             raise ValueError(
@@ -53,7 +59,7 @@ def create_parameters(yaml_data: Dict[str, Any], code_model, parameter_creator: 
         if parameter_original_id in parameters_index:
             parameter.original_parameter = parameters_index[parameter_original_id]
 
-    return parameters, multiple_media_type_parameters
+    return parameters, multiple_content_type_parameters
 
 class BaseBuilder(BaseModel):
     """Base class for Operations and Request Builders"""
@@ -65,6 +71,7 @@ class BaseBuilder(BaseModel):
         name: str,
         description: str,
         parameters: "ParameterListType",
+        schema_requests: List[SchemaRequest],
         responses: Optional[List[SchemaResponse]] = None,
         summary: Optional[str] = None,
     ) -> None:
@@ -75,6 +82,7 @@ class BaseBuilder(BaseModel):
         self.parameters = parameters
         self.responses = responses or []
         self.summary = summary
+        self.schema_requests = schema_requests
 
     @property
     def default_content_type_declaration(self) -> str:

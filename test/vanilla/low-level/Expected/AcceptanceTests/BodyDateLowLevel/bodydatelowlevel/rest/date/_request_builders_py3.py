@@ -6,10 +6,13 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, TypeVar
 
 from azure.core.rest import HttpRequest
 from msrest import Serializer
+
+T = TypeVar("T")
+JSONType = Any
 
 _SERIALIZER = Serializer()
 
@@ -114,7 +117,7 @@ def build_get_underflow_date_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_max_date_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_max_date_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put max date value 9999-12-31.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -122,7 +125,7 @@ def build_put_max_date_request(*, json: Any = None, content: Any = None, **kwarg
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. date body.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). date body.
     :paramtype content: any
@@ -178,7 +181,7 @@ def build_get_max_date_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_min_date_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_min_date_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put min date value 0000-01-01.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -186,7 +189,7 @@ def build_put_min_date_request(*, json: Any = None, content: Any = None, **kwarg
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. date body.
-    :paramtype json: any
+    :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). date body.
     :paramtype content: any

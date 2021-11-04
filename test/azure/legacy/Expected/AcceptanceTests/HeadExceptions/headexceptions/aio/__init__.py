@@ -9,3 +9,10 @@
 from ._auto_rest_head_exception_test_service import AutoRestHeadExceptionTestService
 
 __all__ = ["AutoRestHeadExceptionTestService"]
+
+try:
+    from ._patch import patch_sdk  # type: ignore
+
+    patch_sdk()
+except ImportError:
+    pass

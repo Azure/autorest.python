@@ -9,3 +9,10 @@
 from ._auto_rest_parameterized_host_test_client import AutoRestParameterizedHostTestClient
 
 __all__ = ["AutoRestParameterizedHostTestClient"]
+
+try:
+    from ._patch import patch_sdk  # type: ignore
+
+    patch_sdk()
+except ImportError:
+    pass

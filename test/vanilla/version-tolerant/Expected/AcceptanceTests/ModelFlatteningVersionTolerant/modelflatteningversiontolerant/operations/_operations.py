@@ -29,6 +29,7 @@ if TYPE_CHECKING:
     from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar
 
     T = TypeVar("T")
+    JSONType = Any
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -309,14 +310,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     @distributed_trace
     def put_array(
         self,
-        resource_array=None,  # type: Optional[List[Any]]
+        resource_array=None,  # type: Optional[List[JSONType]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put External Resource as an Array.
 
         :param resource_array: External Resource as an Array to put.
-        :type resource_array: list[Any]
+        :type resource_array: list[JSONType]
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -373,11 +374,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     def get_array(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> List[Any]
+        # type: (...) -> List[JSONType]
         """Get External Resource as an Array.
 
         :return: list of JSON object
-        :rtype: list[Any]
+        :rtype: list[JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -402,7 +403,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
                     }
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[Any]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -435,7 +436,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     @distributed_trace
     def put_wrapped_array(
         self,
-        resource_array=None,  # type: Optional[List[Any]]
+        resource_array=None,  # type: Optional[List[JSONType]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -443,7 +444,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         is not removed if it's referenced in an array.
 
         :param resource_array: External Resource as an Array to put.
-        :type resource_array: list[Any]
+        :type resource_array: list[JSONType]
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -494,12 +495,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     def get_wrapped_array(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> List[Any]
+        # type: (...) -> List[JSONType]
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
 
         :return: list of JSON object
-        :rtype: list[Any]
+        :rtype: list[JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -514,7 +515,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
                     }
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[Any]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -547,14 +548,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     @distributed_trace
     def put_dictionary(
         self,
-        resource_dictionary=None,  # type: Optional[Dict[str, Any]]
+        resource_dictionary=None,  # type: Optional[Dict[str, JSONType]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put External Resource as a Dictionary.
 
         :param resource_dictionary: External Resource as a Dictionary to put.
-        :type resource_dictionary: dict[str, Any]
+        :type resource_dictionary: dict[str, JSONType]
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -617,11 +618,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     def get_dictionary(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, Any]
+        # type: (...) -> Dict[str, JSONType]
         """Get External Resource as a Dictionary.
 
         :return: dict mapping str to JSON object
-        :rtype: dict[str, Any]
+        :rtype: dict[str, JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -646,7 +647,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Any]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -679,14 +680,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     @distributed_trace
     def put_resource_collection(
         self,
-        resource_complex_object=None,  # type: Any
+        resource_complex_object=None,  # type: JSONType
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put External Resource as a ResourceCollection.
 
         :param resource_complex_object: External Resource as a ResourceCollection to put.
-        :type resource_complex_object: Any
+        :type resource_complex_object: JSONType
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -783,11 +784,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     def get_resource_collection(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Get External Resource as a ResourceCollection.
 
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -846,7 +847,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -879,16 +880,16 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     @distributed_trace
     def put_simple_product(
         self,
-        simple_body_product=None,  # type: Any
+        simple_body_product=None,  # type: JSONType
         **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Put Simple Product with client flattening true on the model.
 
         :param simple_body_product: Simple body product to put.
-        :type simple_body_product: Any
+        :type simple_body_product: JSONType
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -922,7 +923,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -964,16 +965,16 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     @distributed_trace
     def post_flattened_simple_product(
         self,
-        simple_body_product=None,  # type: Any
+        simple_body_product=None,  # type: JSONType
         **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Put Flattened Simple Product with client flattening true on the parameter.
 
         :param simple_body_product: Simple body product to post.
-        :type simple_body_product: Any
+        :type simple_body_product: JSONType
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1007,7 +1008,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -1050,18 +1051,18 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     def put_simple_product_with_grouping(
         self,
         name,  # type: str
-        simple_body_product=None,  # type: Any
+        simple_body_product=None,  # type: JSONType
         **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Put Simple Product with client flattening true on the model.
 
         :param name: Product name with value 'groupproduct'.
         :type name: str
         :param simple_body_product: Simple body product to put.
-        :type simple_body_product: Any
+        :type simple_body_product: JSONType
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1095,7 +1096,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 

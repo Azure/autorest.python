@@ -41,3 +41,6 @@ def test_update_pet_with_form(client):
         pet_age=42,
         name="Fido",
     )
+
+def test_partial_constant_body(client):
+    client.formdataurlencoded.partial_constant_body(access_token="foo", service="bar")

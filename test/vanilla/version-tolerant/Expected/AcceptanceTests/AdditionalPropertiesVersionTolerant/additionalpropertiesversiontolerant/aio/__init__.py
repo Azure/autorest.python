@@ -9,3 +9,10 @@
 from ._additional_properties_client import AdditionalPropertiesClient
 
 __all__ = ["AdditionalPropertiesClient"]
+
+try:
+    from ._patch import patch_sdk  # type: ignore
+
+    patch_sdk()
+except ImportError:
+    pass

@@ -9,3 +9,10 @@
 from ._auto_rest_validation_test import AutoRestValidationTest
 
 __all__ = ["AutoRestValidationTest"]
+
+try:
+    from ._patch import patch_sdk  # type: ignore
+
+    patch_sdk()
+except ImportError:
+    pass

@@ -29,6 +29,7 @@ if TYPE_CHECKING:
     from typing import Any, Callable, Dict, Generic, IO, List, Optional, TypeVar
 
     T = TypeVar("T")
+    JSONType = Any
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -1389,7 +1390,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_integer_property(
         self,
-        body_parameter,  # type: Any
+        body_parameter,  # type: JSONType
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1397,7 +1398,7 @@ class ExplicitOperations(object):
         client library should throw before the request is sent.
 
         :param body_parameter:
-        :type body_parameter: Any
+        :type body_parameter: JSONType
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1442,14 +1443,14 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_integer_property(
         self,
-        body_parameter=None,  # type: Any
+        body_parameter=None,  # type: JSONType
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
 
         :param body_parameter:
-        :type body_parameter: Any
+        :type body_parameter: JSONType
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1668,7 +1669,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_string_property(
         self,
-        body_parameter,  # type: Any
+        body_parameter,  # type: JSONType
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1676,7 +1677,7 @@ class ExplicitOperations(object):
         client library should throw before the request is sent.
 
         :param body_parameter:
-        :type body_parameter: Any
+        :type body_parameter: JSONType
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1721,14 +1722,14 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_string_property(
         self,
-        body_parameter=None,  # type: Any
+        body_parameter=None,  # type: JSONType
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
 
         :param body_parameter:
-        :type body_parameter: Any
+        :type body_parameter: JSONType
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1855,7 +1856,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_class_parameter(
         self,
-        body_parameter,  # type: Any
+        body_parameter,  # type: JSONType
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1863,7 +1864,7 @@ class ExplicitOperations(object):
         before the request is sent.
 
         :param body_parameter:
-        :type body_parameter: Any
+        :type body_parameter: JSONType
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1909,14 +1910,14 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_class_parameter(
         self,
-        body_parameter=None,  # type: Any
+        body_parameter=None,  # type: JSONType
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly optional complex object. Please put null.
 
         :param body_parameter:
-        :type body_parameter: Any
+        :type body_parameter: JSONType
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1965,7 +1966,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_class_property(
         self,
-        body_parameter,  # type: Any
+        body_parameter,  # type: JSONType
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1973,7 +1974,7 @@ class ExplicitOperations(object):
         and the client library should throw before the request is sent.
 
         :param body_parameter:
-        :type body_parameter: Any
+        :type body_parameter: JSONType
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2021,14 +2022,14 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_class_property(
         self,
-        body_parameter=None,  # type: Any
+        body_parameter=None,  # type: JSONType
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
 
         :param body_parameter:
-        :type body_parameter: Any
+        :type body_parameter: JSONType
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2187,7 +2188,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_array_property(
         self,
-        body_parameter,  # type: Any
+        body_parameter,  # type: JSONType
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -2195,7 +2196,7 @@ class ExplicitOperations(object):
         client library should throw before the request is sent.
 
         :param body_parameter:
-        :type body_parameter: Any
+        :type body_parameter: JSONType
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2242,14 +2243,14 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_array_property(
         self,
-        body_parameter=None,  # type: Any
+        body_parameter=None,  # type: JSONType
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
 
         :param body_parameter:
-        :type body_parameter: Any
+        :type body_parameter: JSONType
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError

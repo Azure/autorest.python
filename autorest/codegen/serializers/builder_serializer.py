@@ -21,12 +21,13 @@ from ..models import (
     DictionarySchema,
     ListSchema,
     BaseSchema,
-    SchemaRequest,
     Parameter,
     RequestBuilder,
     RequestBuilderParameter,
     EnumSchema,
     SchemaResponse,
+    IOSchema,
+    ParameterStyle,
 )
 from . import utils
 
@@ -619,7 +620,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
     def _response_type_annotation(self, builder: BuilderType, modify_if_head_as_boolean: bool = True) -> str:
         if (
             modify_if_head_as_boolean
-            and builder.request_builder.method == "head"
+            and builder.request_builder.method.lower() == "head"
             and self.code_model.options["head_as_boolean"]
         ):
             return "bool"
@@ -642,7 +643,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
 
     def response_docstring(self, builder: BuilderType) -> List[str]:
         responses_with_body = [r for r in builder.responses if r.has_body]
-        if builder.request_builder.method == "head" and self.code_model.options["head_as_boolean"]:
+        if builder.request_builder.method.lower() == "head" and self.code_model.options["head_as_boolean"]:
             response_docstring_text = "bool"
             rtype = "bool"
         elif responses_with_body:
@@ -689,28 +690,32 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         return bool(builder.parameters.data_inputs)
 
     def _serialize_body_call(
-        self, builder: BuilderType, send_xml: bool, ser_ctxt: Optional[str], ser_ctxt_name: str
+        self, builder: BuilderType, body_param: Parameter, send_xml: bool, ser_ctxt: Optional[str], ser_ctxt_name: str
     ) -> str:
-        body_param = builder.parameters.body[0]
         body_is_xml = ", is_xml=True" if send_xml else ""
         pass_ser_ctxt = f", {ser_ctxt_name}={ser_ctxt_name}" if ser_ctxt else ""
+        body_kwarg_to_pass = builder.body_kwargs_to_pass_to_request_builder[0]
         if self.code_model.options["models_mode"]:
             return (
-                f"{builder.serialized_body_kwarg} = self._serialize.body({body_param.serialized_name}, "
+                f"{body_kwarg_to_pass} = self._serialize.body({body_param.serialized_name}, "
                 f"'{ body_param.serialization_type }'{body_is_xml}{ pass_ser_ctxt })"
             )
-        return f"{builder.serialized_body_kwarg} = {body_param.serialized_name}"
+        return f"{body_kwarg_to_pass} = {body_param.serialized_name}"
 
-    def _serialize_body(self, builder: BuilderType) -> List[str]:
+    def _serialize_body(self, builder: BuilderType, body_param: Parameter, body_kwarg: str) -> List[str]:
         retval = []
-        send_xml = bool(builder.parameters.has_body and any(["xml" in ct for ct in builder.parameters.content_types]))
+        send_xml = bool(
+            builder.parameters.has_body and
+            any(["xml" in ct for ct in builder.parameters.content_types]) and
+            not isinstance(body_param.schema, IOSchema)
+        )
         ser_ctxt_name = "serialization_ctxt"
         ser_ctxt = builder.parameters.body[0].xml_serialization_ctxt if send_xml else None
         if ser_ctxt:
             retval.append(f'{ser_ctxt_name} = {{"xml": {{{ser_ctxt}}}}}')
-        body_param = builder.parameters.body[0]
         serialize_body_call = self._serialize_body_call(
             builder,
+            body_param,
             send_xml,
             ser_ctxt,
             ser_ctxt_name,
@@ -722,15 +727,22 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
             retval.append("    " + serialize_body_call)
             if len(builder.body_kwargs_to_pass_to_request_builder) == 1:
                 retval.append("else:")
-                retval.append(f"    {builder.serialized_body_kwarg} = None")
+                retval.append(f"    {body_kwarg} = None")
         return retval
 
-    def _set_body_content_kwarg(self, builder: BuilderType, schema_request: SchemaRequest):
-        retval = []
-        if schema_request.is_stream_request:
-            retval.append(f"content = {builder.parameters.body[0].serialized_name}")
-        elif schema_request.body_parameter_has_schema and not builder.request_builder.multipart:
-            retval.extend(self._serialize_body(builder))
+    def _set_body_content_kwarg(
+        self, builder: BuilderType, body_param: Parameter, body_kwarg: Parameter
+    ) -> List[str]:
+        retval: List[str] = []
+        if body_kwarg.serialized_name == "data" or body_kwarg.serialized_name == "files":
+            return retval
+        try:
+            if not body_param.style == ParameterStyle.binary:
+                retval.extend(self._serialize_body(builder, body_param, body_kwarg.serialized_name))
+                return retval
+        except AttributeError:
+            pass
+        retval.append(f"{body_kwarg.serialized_name} = {body_param.serialized_name}")
         return retval
 
 
@@ -738,15 +750,28 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         self, builder: BuilderType,
     ) -> List[str]:
         retval = []
-        if len(builder.request_builder.schema_requests) == 1:
-            retval.extend(self._set_body_content_kwarg(builder, builder.request_builder.schema_requests[0]))
+        body_kwargs = [
+            p for p in builder.request_builder.parameters.body
+            if p.content_types
+        ]
+        builder_params = []
+        if builder.parameters.has_body:
+            builder_params += builder.parameters.body
+        if builder.multiple_content_type_parameters.has_body:
+            builder_params += builder.multiple_content_type_parameters.body
+        if len(body_kwargs) == 1:
+            retval.extend(self._set_body_content_kwarg(builder, builder.parameters.body[0], body_kwargs[0]))
         else:
-            for idx, schema_request in enumerate(builder.request_builder.schema_requests):
+            for idx, body_kwarg in enumerate(body_kwargs):
+                body_param = next(
+                    b for b in builder_params
+                    if body_kwarg in b.body_kwargs
+                )
                 if_statement = "if" if idx == 0 else "elif"
                 retval.append(
-                    f'{if_statement} content_type.split(";")[0] in {schema_request.pre_semicolon_media_types}:'
+                    f'{if_statement} content_type.split(";")[0] in {body_kwarg.pre_semicolon_content_types}:'
                 )
-                retval.extend(["    " + line for line in self._set_body_content_kwarg(builder, schema_request)])
+                retval.extend(["    " + line for line in self._set_body_content_kwarg(builder, body_param, body_kwarg)])
             retval.extend(_content_type_error_check(builder))
 
         return retval
@@ -843,7 +868,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
             if self.code_model.options["models_mode"]:
                 retval.append(f"deserialized = self._deserialize('{response.serialization_type}', pipeline_response)")
             else:
-                is_xml = any(["xml" in ct for ct in response.media_types])
+                is_xml = any(["xml" in ct for ct in response.content_types])
                 deserialized_value = ""
                 deserialized_value = "ET.fromstring(response.text())" if is_xml else "response.json()"
                 retval.append(f"if response.content:")

@@ -9,3 +9,10 @@
 from ._parmaterized_endpoint_client import ParmaterizedEndpointClient
 
 __all__ = ["ParmaterizedEndpointClient"]
+
+try:
+    from ._patch import patch_sdk  # type: ignore
+
+    patch_sdk()
+except ImportError:
+    pass

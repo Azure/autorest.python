@@ -5,9 +5,6 @@
 {{ code_model.options['license_header'] }}
 {{ imports }}
 
-{{ "    " if not is_python_3_file }}T = TypeVar('T')
-{{ "    " if not is_python_3_file }}ClsType = Optional[Callable[[PipelineResponse[HttpRequest, {{ "Async" if async_mode else "" }}HttpResponse], T, Dict[str, Any]], Any]]
-
 {% if code_model.options["builders_visibility"] == "embedded" and not async_mode %}
 {{ op_tools.request_builder_setup() }}
 {% if not is_python_3_file %}

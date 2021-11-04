@@ -36,6 +36,8 @@ class FileImport:
             TypingSection,
             Dict[ImportType, Dict[str, Set[Optional[Union[str, Tuple[str, str]]]]]]
         ] = imports or dict()
+        # has sync and async type definitions
+        self.type_definitions: Dict[str, Tuple[str, str]] = {}
 
     def _add_import(
         self,
@@ -82,6 +84,10 @@ class FileImport:
         ]:
         return self._imports
 
+    def define_mypy_type(self, type_name: str, type_value: str, async_type_value: Optional[str] = None):
+        self._add_import("typing", ImportType.STDLIB, "TypeVar", TypingSection.CONDITIONAL)
+        self.type_definitions[type_name] = (type_value, async_type_value or type_value)
+
     def merge(self, file_import: "FileImport") -> None:
         """Merge the given file import format."""
         for typing_section, import_type_dict in file_import.imports.items():
@@ -89,3 +95,4 @@ class FileImport:
                 for package_name, module_list in package_list.items():
                     for module_name in module_list:
                         self._add_import(package_name, import_type, module_name, typing_section)
+        self.type_definitions.update(file_import.type_definitions)

@@ -35,16 +35,17 @@ from ...operations._operations import (
 )
 
 T = TypeVar("T")
+JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
 class MultipleInheritanceServiceClientOperationsMixin:
     @distributed_trace_async
-    async def get_horse(self, **kwargs: Any) -> Any:
+    async def get_horse(self, **kwargs: Any) -> JSONType:
         """Get a horse with name 'Fred' and isAShowHorse true.
 
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -56,7 +57,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
                     "name": "str"  # Required.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -87,11 +88,11 @@ class MultipleInheritanceServiceClientOperationsMixin:
     get_horse.metadata = {"url": "/multipleInheritance/horse"}  # type: ignore
 
     @distributed_trace_async
-    async def put_horse(self, horse: Any, **kwargs: Any) -> str:
+    async def put_horse(self, horse: JSONType, **kwargs: Any) -> str:
         """Put a horse with name 'General' and isAShowHorse false.
 
         :param horse: Put a horse with name 'General' and isAShowHorse false.
-        :type horse: Any
+        :type horse: JSONType
         :return: str
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -142,11 +143,11 @@ class MultipleInheritanceServiceClientOperationsMixin:
     put_horse.metadata = {"url": "/multipleInheritance/horse"}  # type: ignore
 
     @distributed_trace_async
-    async def get_pet(self, **kwargs: Any) -> Any:
+    async def get_pet(self, **kwargs: Any) -> JSONType:
         """Get a pet with name 'Peanut'.
 
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -157,7 +158,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
                     "name": "str"  # Required.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -188,11 +189,11 @@ class MultipleInheritanceServiceClientOperationsMixin:
     get_pet.metadata = {"url": "/multipleInheritance/pet"}  # type: ignore
 
     @distributed_trace_async
-    async def put_pet(self, pet: Any, **kwargs: Any) -> str:
+    async def put_pet(self, pet: JSONType, **kwargs: Any) -> str:
         """Put a pet with name 'Butter'.
 
         :param pet: Put a pet with name 'Butter'.
-        :type pet: Any
+        :type pet: JSONType
         :return: str
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -242,11 +243,11 @@ class MultipleInheritanceServiceClientOperationsMixin:
     put_pet.metadata = {"url": "/multipleInheritance/pet"}  # type: ignore
 
     @distributed_trace_async
-    async def get_feline(self, **kwargs: Any) -> Any:
+    async def get_feline(self, **kwargs: Any) -> JSONType:
         """Get a feline where meows and hisses are true.
 
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -258,7 +259,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
                     "meows": bool  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -289,11 +290,11 @@ class MultipleInheritanceServiceClientOperationsMixin:
     get_feline.metadata = {"url": "/multipleInheritance/feline"}  # type: ignore
 
     @distributed_trace_async
-    async def put_feline(self, feline: Any, **kwargs: Any) -> str:
+    async def put_feline(self, feline: JSONType, **kwargs: Any) -> str:
         """Put a feline who hisses and doesn't meow.
 
         :param feline: Put a feline who hisses and doesn't meow.
-        :type feline: Any
+        :type feline: JSONType
         :return: str
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -344,11 +345,11 @@ class MultipleInheritanceServiceClientOperationsMixin:
     put_feline.metadata = {"url": "/multipleInheritance/feline"}  # type: ignore
 
     @distributed_trace_async
-    async def get_cat(self, **kwargs: Any) -> Any:
+    async def get_cat(self, **kwargs: Any) -> JSONType:
         """Get a cat with name 'Whiskers' where likesMilk, meows, and hisses is true.
 
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -362,7 +363,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
                     "name": "str"  # Required.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -393,11 +394,11 @@ class MultipleInheritanceServiceClientOperationsMixin:
     get_cat.metadata = {"url": "/multipleInheritance/cat"}  # type: ignore
 
     @distributed_trace_async
-    async def put_cat(self, cat: Any, **kwargs: Any) -> str:
+    async def put_cat(self, cat: JSONType, **kwargs: Any) -> str:
         """Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
 
         :param cat: Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
-        :type cat: Any
+        :type cat: JSONType
         :return: str
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -450,12 +451,12 @@ class MultipleInheritanceServiceClientOperationsMixin:
     put_cat.metadata = {"url": "/multipleInheritance/cat"}  # type: ignore
 
     @distributed_trace_async
-    async def get_kitten(self, **kwargs: Any) -> Any:
+    async def get_kitten(self, **kwargs: Any) -> JSONType:
         """Get a kitten with name 'Gatito' where likesMilk and meows is true, and hisses and eatsMiceYet
         is false.
 
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -470,7 +471,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
                     "name": "str"  # Required.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -501,13 +502,13 @@ class MultipleInheritanceServiceClientOperationsMixin:
     get_kitten.metadata = {"url": "/multipleInheritance/kitten"}  # type: ignore
 
     @distributed_trace_async
-    async def put_kitten(self, kitten: Any, **kwargs: Any) -> str:
+    async def put_kitten(self, kitten: JSONType, **kwargs: Any) -> str:
         """Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is
         true.
 
         :param kitten: Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and
          eatsMiceYet is true.
-        :type kitten: Any
+        :type kitten: JSONType
         :return: str
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError

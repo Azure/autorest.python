@@ -28,6 +28,7 @@ if TYPE_CHECKING:
     from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar
 
     T = TypeVar("T")
+    JSONType = Any
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -3833,11 +3834,11 @@ class DictionaryOperations(object):
     def get_complex_null(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Optional[Dict[str, Any]]
+        # type: (...) -> Optional[Dict[str, JSONType]]
         """Get dictionary of complex type null value.
 
         :return: dict mapping str to JSON object or None
-        :rtype: dict[str, Any] or None
+        :rtype: dict[str, JSONType] or None
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -3851,7 +3852,7 @@ class DictionaryOperations(object):
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Dict[str, Any]]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Dict[str, JSONType]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -3885,11 +3886,11 @@ class DictionaryOperations(object):
     def get_complex_empty(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, Any]
+        # type: (...) -> Dict[str, JSONType]
         """Get empty dictionary of complex type {}.
 
         :return: dict mapping str to JSON object
-        :rtype: dict[str, Any]
+        :rtype: dict[str, JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -3903,7 +3904,7 @@ class DictionaryOperations(object):
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Any]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -3937,12 +3938,12 @@ class DictionaryOperations(object):
     def get_complex_item_null(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, Any]
+        # type: (...) -> Dict[str, JSONType]
         """Get dictionary of complex type with null item {"0": {"integer": 1, "string": "2"}, "1": null,
         "2": {"integer": 5, "string": "6"}}.
 
         :return: dict mapping str to JSON object
-        :rtype: dict[str, Any]
+        :rtype: dict[str, JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -3956,7 +3957,7 @@ class DictionaryOperations(object):
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Any]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -3990,12 +3991,12 @@ class DictionaryOperations(object):
     def get_complex_item_empty(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, Any]
+        # type: (...) -> Dict[str, JSONType]
         """Get dictionary of complex type with empty item {"0": {"integer": 1, "string": "2"}, "1:" {},
         "2": {"integer": 5, "string": "6"}}.
 
         :return: dict mapping str to JSON object
-        :rtype: dict[str, Any]
+        :rtype: dict[str, JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -4009,7 +4010,7 @@ class DictionaryOperations(object):
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Any]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -4043,12 +4044,12 @@ class DictionaryOperations(object):
     def get_complex_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, Any]
+        # type: (...) -> Dict[str, JSONType]
         """Get dictionary of complex type with {"0": {"integer": 1, "string": "2"}, "1": {"integer": 3,
         "string": "4"}, "2": {"integer": 5, "string": "6"}}.
 
         :return: dict mapping str to JSON object
-        :rtype: dict[str, Any]
+        :rtype: dict[str, JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -4062,7 +4063,7 @@ class DictionaryOperations(object):
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Any]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -4095,7 +4096,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def put_complex_valid(
         self,
-        array_body,  # type: Dict[str, Any]
+        array_body,  # type: Dict[str, JSONType]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -4103,7 +4104,7 @@ class DictionaryOperations(object):
         {"integer": 3, "string": "4"}, "2": {"integer": 5, "string": "6"}}.
 
         :param array_body:
-        :type array_body: dict[str, Any]
+        :type array_body: dict[str, JSONType]
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError

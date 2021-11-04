@@ -23,11 +23,11 @@ class XMSErrorResponseExtensions:
 
     :ivar pet: PetOperations operations
     :vartype pet: xmserrorresponse.aio.operations.PetOperations
-    :param base_url: Service URL. Default value is 'http://localhost'.
+    :param base_url: Service URL. Default value is 'http://localhost:3000'.
     :type base_url: str
     """
 
-    def __init__(self, base_url: str = "http://localhost", **kwargs: Any) -> None:
+    def __init__(self, base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
         self._config = XMSErrorResponseExtensionsConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 

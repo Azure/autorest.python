@@ -17,7 +17,6 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ..._vendor import _convert_request
 from ...operations._http_success_operations import build_head200_request, build_head204_request, build_head404_request
-
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 

@@ -29,6 +29,7 @@ if TYPE_CHECKING:
     from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 
     T = TypeVar("T")
+    JSONType = Any
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -54,6 +55,28 @@ def build_formdataurlencoded_update_pet_with_form_request(
     }
 
     url = _format_url_section(url, **path_format_arguments)
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_formdataurlencoded_partial_constant_body_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+
+    # Construct URL
+    url = kwargs.pop("template_url", '/formsdataurlencoded/partialConstantBody')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
@@ -146,3 +169,57 @@ class FormdataurlencodedOperations(object):
             return cls(pipeline_response, None, {})
 
     update_pet_with_form.metadata = {"url": "/formsdataurlencoded/pet/add/{petId}"}  # type: ignore
+
+    @distributed_trace
+    def partial_constant_body(
+        self,
+        data,  # type: Dict[str, Any]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        """Test a partially constant formdata body. Pass in { grant_type: 'access_token', access_token:
+        'foo', service: 'bar' } to pass the test.
+
+        :param data: Form-encoded input for data. See the template in our example to find the input
+         shape.
+        :type data: dict[str, any]
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # form-encoded input template you can fill out and use as your `data` input.
+                data = {
+                    access_token: "str",  # AAD access token, mandatory when grant_type is access_token_refresh_token or access_token.
+                    grant_type: "access_token",  # Default value is "access_token". Constant part of a formdata body. The default value is "access_token". Note that overriding this default value may result in unsupported behavior.
+                    service: "str"  # Indicates the name of your Azure container registry.
+                }
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        content_type = kwargs.pop("content_type", "application/x-www-form-urlencoded")  # type: Optional[str]
+
+        request = build_formdataurlencoded_partial_constant_body_request(
+            content_type=content_type,
+            data=data,
+            template_url=self.partial_constant_body.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
+        )
+        request.url = self._client.format_url(request.url)
+
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+    partial_constant_body.metadata = {"url": "/formsdataurlencoded/partialConstantBody"}  # type: ignore

@@ -31,6 +31,7 @@ from ...operations._operations import (
 )
 
 T = TypeVar("T")
+JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
@@ -53,14 +54,14 @@ class PagingOperations:
         self._config = config
 
     @distributed_trace
-    def get_pages_partial_url(self, account_name: str, **kwargs: Any) -> AsyncIterable[Any]:
+    def get_pages_partial_url(self, account_name: str, **kwargs: Any) -> AsyncIterable[JSONType]:
         """A paging operation that combines custom url, paging and partial URL and expect to concat after
         host.
 
         :param account_name: Account Name.
         :type account_name: str
         :return: An iterator like instance of JSON object
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -79,7 +80,7 @@ class PagingOperations:
                     ]
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -141,13 +142,13 @@ class PagingOperations:
     get_pages_partial_url.metadata = {"url": "/paging/customurl/partialnextlink"}  # type: ignore
 
     @distributed_trace
-    def get_pages_partial_url_operation(self, account_name: str, **kwargs: Any) -> AsyncIterable[Any]:
+    def get_pages_partial_url_operation(self, account_name: str, **kwargs: Any) -> AsyncIterable[JSONType]:
         """A paging operation that combines custom url, paging and partial URL with next operation.
 
         :param account_name: Account Name.
         :type account_name: str
         :return: An iterator like instance of JSON object
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[Any]
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -166,7 +167,7 @@ class PagingOperations:
                     ]
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 

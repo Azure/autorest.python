@@ -28,6 +28,7 @@ from ...operations._operations import (
 )
 
 T = TypeVar("T")
+JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
@@ -50,13 +51,13 @@ class PetOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_pet_by_id(self, pet_id: str, **kwargs: Any) -> Optional[Any]:
+    async def get_pet_by_id(self, pet_id: str, **kwargs: Any) -> Optional[JSONType]:
         """Gets pets by id.
 
         :param pet_id: pet id.
         :type pet_id: str
         :return: JSON object
-        :rtype: Any or None
+        :rtype: JSONType or None
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -68,7 +69,7 @@ class PetOperations:
                     "name": "str"  # Optional. Gets the Pet by id.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Any]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
         error_map = {
             401: ClientAuthenticationError,
             409: ResourceExistsError,
@@ -108,13 +109,13 @@ class PetOperations:
     get_pet_by_id.metadata = {"url": "/errorStatusCodes/Pets/{petId}/GetPet"}  # type: ignore
 
     @distributed_trace_async
-    async def do_something(self, what_action: str, **kwargs: Any) -> Any:
+    async def do_something(self, what_action: str, **kwargs: Any) -> JSONType:
         """Asks pet to do something.
 
         :param what_action: what action the pet should do.
         :type what_action: str
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -125,7 +126,7 @@ class PetOperations:
                     "actionResponse": "str"  # Optional. action feedback.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,

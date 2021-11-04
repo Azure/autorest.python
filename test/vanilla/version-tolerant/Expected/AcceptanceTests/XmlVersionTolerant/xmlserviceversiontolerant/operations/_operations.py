@@ -28,6 +28,7 @@ if TYPE_CHECKING:
     from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar
 
     T = TypeVar("T")
+    JSONType = Any
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -856,11 +857,11 @@ class XmlOperations(object):
     def get_complex_type_ref_no_meta(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Get a complex type that has a ref to a complex type with no XML node.
 
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -874,7 +875,7 @@ class XmlOperations(object):
                     "Something": "str"  # Optional. Something else (just to avoid flattening).
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -907,14 +908,14 @@ class XmlOperations(object):
     @distributed_trace
     def put_complex_type_ref_no_meta(
         self,
-        model,  # type: Any
+        model,  # type: JSONType
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Puts a complex type that has a ref to a complex type with no XML node.
 
         :param model:
-        :type model: Any
+        :type model: JSONType
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -963,11 +964,11 @@ class XmlOperations(object):
     def get_complex_type_ref_with_meta(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Get a complex type that has a ref to a complex type with XML node.
 
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -981,7 +982,7 @@ class XmlOperations(object):
                     "Something": "str"  # Optional. Something else (just to avoid flattening).
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -1014,14 +1015,14 @@ class XmlOperations(object):
     @distributed_trace
     def put_complex_type_ref_with_meta(
         self,
-        model,  # type: Any
+        model,  # type: JSONType
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Puts a complex type that has a ref to a complex type with XML node.
 
         :param model:
-        :type model: Any
+        :type model: JSONType
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1070,11 +1071,11 @@ class XmlOperations(object):
     def get_simple(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Get a simple XML document.
 
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1096,7 +1097,7 @@ class XmlOperations(object):
                     "title": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -1129,14 +1130,14 @@ class XmlOperations(object):
     @distributed_trace
     def put_simple(
         self,
-        slideshow,  # type: Any
+        slideshow,  # type: JSONType
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put a simple XML document.
 
         :param slideshow:
-        :type slideshow: Any
+        :type slideshow: JSONType
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1193,11 +1194,11 @@ class XmlOperations(object):
     def get_wrapped_lists(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Get an XML document with multiple wrapped lists.
 
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1213,7 +1214,7 @@ class XmlOperations(object):
                     ]
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -1246,14 +1247,14 @@ class XmlOperations(object):
     @distributed_trace
     def put_wrapped_lists(
         self,
-        wrapped_lists,  # type: Any
+        wrapped_lists,  # type: JSONType
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put an XML document with multiple wrapped lists.
 
         :param wrapped_lists:
-        :type wrapped_lists: Any
+        :type wrapped_lists: JSONType
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1341,11 +1342,11 @@ class XmlOperations(object):
     def get_empty_list(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Get an empty list.
 
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1367,7 +1368,7 @@ class XmlOperations(object):
                     "title": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -1400,14 +1401,14 @@ class XmlOperations(object):
     @distributed_trace
     def put_empty_list(
         self,
-        slideshow,  # type: Any
+        slideshow,  # type: JSONType
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Puts an empty list.
 
         :param slideshow:
-        :type slideshow: Any
+        :type slideshow: JSONType
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1464,11 +1465,11 @@ class XmlOperations(object):
     def get_empty_wrapped_lists(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Gets some empty wrapped lists.
 
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1484,7 +1485,7 @@ class XmlOperations(object):
                     ]
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -1517,14 +1518,14 @@ class XmlOperations(object):
     @distributed_trace
     def put_empty_wrapped_lists(
         self,
-        apple_barrel,  # type: Any
+        apple_barrel,  # type: JSONType
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Puts some empty wrapped lists.
 
         :param apple_barrel:
-        :type apple_barrel: Any
+        :type apple_barrel: JSONType
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1575,11 +1576,11 @@ class XmlOperations(object):
     def get_root_list(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> List[Any]
+        # type: (...) -> List[JSONType]
         """Gets a list as the root element.
 
         :return: list of JSON object
-        :rtype: list[Any]
+        :rtype: list[JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1594,7 +1595,7 @@ class XmlOperations(object):
                     }
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[Any]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -1627,14 +1628,14 @@ class XmlOperations(object):
     @distributed_trace
     def put_root_list(
         self,
-        bananas,  # type: List[Any]
+        bananas,  # type: List[JSONType]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Puts a list as the root element.
 
         :param bananas:
-        :type bananas: list[Any]
+        :type bananas: list[JSONType]
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1685,11 +1686,11 @@ class XmlOperations(object):
     def get_root_list_single_item(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> List[Any]
+        # type: (...) -> List[JSONType]
         """Gets a list with a single item.
 
         :return: list of JSON object
-        :rtype: list[Any]
+        :rtype: list[JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1704,7 +1705,7 @@ class XmlOperations(object):
                     }
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[Any]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -1737,14 +1738,14 @@ class XmlOperations(object):
     @distributed_trace
     def put_root_list_single_item(
         self,
-        bananas,  # type: List[Any]
+        bananas,  # type: List[JSONType]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Puts a list with a single item.
 
         :param bananas:
-        :type bananas: list[Any]
+        :type bananas: list[JSONType]
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1795,11 +1796,11 @@ class XmlOperations(object):
     def get_empty_root_list(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> List[Any]
+        # type: (...) -> List[JSONType]
         """Gets an empty list as the root element.
 
         :return: list of JSON object
-        :rtype: list[Any]
+        :rtype: list[JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1814,7 +1815,7 @@ class XmlOperations(object):
                     }
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[Any]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -1847,14 +1848,14 @@ class XmlOperations(object):
     @distributed_trace
     def put_empty_root_list(
         self,
-        bananas,  # type: List[Any]
+        bananas,  # type: List[JSONType]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Puts an empty list as the root element.
 
         :param bananas:
-        :type bananas: list[Any]
+        :type bananas: list[JSONType]
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1905,11 +1906,11 @@ class XmlOperations(object):
     def get_empty_child_element(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Gets an XML document with an empty child element.
 
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1922,7 +1923,7 @@ class XmlOperations(object):
                     "name": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -1955,14 +1956,14 @@ class XmlOperations(object):
     @distributed_trace
     def put_empty_child_element(
         self,
-        banana,  # type: Any
+        banana,  # type: JSONType
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Puts a value with an empty child element.
 
         :param banana:
-        :type banana: Any
+        :type banana: JSONType
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2010,14 +2011,14 @@ class XmlOperations(object):
     def list_containers(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Lists containers in a storage account.
 
         :keyword comp: The default value is "list". Note that overriding this default value may result
          in unsupported behavior.
         :paramtype comp: str
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2048,7 +2049,7 @@ class XmlOperations(object):
                     "ServiceEndpoint": "str"  # Required.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -2085,7 +2086,7 @@ class XmlOperations(object):
     def get_service_properties(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Gets storage service properties.
 
         :keyword comp: The default value is "properties". Note that overriding this default value may
@@ -2095,7 +2096,7 @@ class XmlOperations(object):
          result in unsupported behavior.
         :paramtype restype: str
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2147,7 +2148,7 @@ class XmlOperations(object):
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -2185,14 +2186,14 @@ class XmlOperations(object):
     @distributed_trace
     def put_service_properties(
         self,
-        properties,  # type: Any
+        properties,  # type: JSONType
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Puts storage service properties.
 
         :param properties:
-        :type properties: Any
+        :type properties: JSONType
         :keyword comp: The default value is "properties". Note that overriding this default value may
          result in unsupported behavior.
         :paramtype comp: str
@@ -2289,7 +2290,7 @@ class XmlOperations(object):
     def get_acls(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> List[Any]
+        # type: (...) -> List[JSONType]
         """Gets storage ACLs for a container.
 
         :keyword comp: The default value is "acl". Note that overriding this default value may result
@@ -2299,7 +2300,7 @@ class XmlOperations(object):
          result in unsupported behavior.
         :paramtype restype: str
         :return: list of JSON object
-        :rtype: list[Any]
+        :rtype: list[JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2317,7 +2318,7 @@ class XmlOperations(object):
                     }
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[Any]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -2355,14 +2356,14 @@ class XmlOperations(object):
     @distributed_trace
     def put_acls(
         self,
-        properties,  # type: List[Any]
+        properties,  # type: List[JSONType]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Puts storage ACLs for a container.
 
         :param properties:
-        :type properties: list[Any]
+        :type properties: list[JSONType]
         :keyword comp: The default value is "acl". Note that overriding this default value may result
          in unsupported behavior.
         :paramtype comp: str
@@ -2426,7 +2427,7 @@ class XmlOperations(object):
     def list_blobs(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Lists blobs in a storage container.
 
         :keyword comp: The default value is "list". Note that overriding this default value may result
@@ -2436,7 +2437,7 @@ class XmlOperations(object):
          result in unsupported behavior.
         :paramtype restype: str
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2500,7 +2501,7 @@ class XmlOperations(object):
                     "ServiceEndpoint": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -2538,7 +2539,7 @@ class XmlOperations(object):
     @distributed_trace
     def json_input(
         self,
-        properties,  # type: Any
+        properties,  # type: JSONType
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -2546,7 +2547,7 @@ class XmlOperations(object):
         number 42.
 
         :param properties:
-        :type properties: Any
+        :type properties: JSONType
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2592,11 +2593,11 @@ class XmlOperations(object):
     def json_output(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """A Swagger with XML that has one operation that returns JSON. ID number 42.
 
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2607,7 +2608,7 @@ class XmlOperations(object):
                     "id": 0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -2641,12 +2642,12 @@ class XmlOperations(object):
     def get_xms_text(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Get back an XML object with an x-ms-text property, which should translate to the returned
         object's 'language' property being 'english' and its 'content' property being 'I am text'.
 
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2658,7 +2659,7 @@ class XmlOperations(object):
                     "language": "str"  # Optional. Returned value should be 'english'.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -2692,11 +2693,11 @@ class XmlOperations(object):
     def get_bytes(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Get an XML document with binary property.
 
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2707,7 +2708,7 @@ class XmlOperations(object):
                     "Bytes": bytearray("bytearray", encoding="utf-8")  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -2740,14 +2741,14 @@ class XmlOperations(object):
     @distributed_trace
     def put_binary(
         self,
-        slideshow,  # type: Any
+        slideshow,  # type: JSONType
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put an XML document with binary property.
 
         :param slideshow:
-        :type slideshow: Any
+        :type slideshow: JSONType
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2793,11 +2794,11 @@ class XmlOperations(object):
     def get_uri(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Get an XML document with uri property.
 
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2808,7 +2809,7 @@ class XmlOperations(object):
                     "Url": str  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -2841,14 +2842,14 @@ class XmlOperations(object):
     @distributed_trace
     def put_uri(
         self,
-        model,  # type: Any
+        model,  # type: JSONType
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put an XML document with uri property.
 
         :param model:
-        :type model: Any
+        :type model: JSONType
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError

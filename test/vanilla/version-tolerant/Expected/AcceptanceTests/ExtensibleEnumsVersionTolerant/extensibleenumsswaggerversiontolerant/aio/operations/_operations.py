@@ -24,6 +24,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ...operations._operations import build_pet_add_pet_request, build_pet_get_by_pet_id_request
 
 T = TypeVar("T")
+JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
@@ -46,13 +47,13 @@ class PetOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_by_pet_id(self, pet_id: str, **kwargs: Any) -> Any:
+    async def get_by_pet_id(self, pet_id: str, **kwargs: Any) -> JSONType:
         """get pet by id.
 
         :param pet_id: Pet id.
         :type pet_id: str
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -65,7 +66,7 @@ class PetOperations:
                     "name": "str"  # Optional. name.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -97,13 +98,13 @@ class PetOperations:
     get_by_pet_id.metadata = {"url": "/extensibleenums/pet/{petId}"}  # type: ignore
 
     @distributed_trace_async
-    async def add_pet(self, pet_param: Any = None, **kwargs: Any) -> Any:
+    async def add_pet(self, pet_param: JSONType = None, **kwargs: Any) -> JSONType:
         """add pet.
 
         :param pet_param: pet param.
-        :type pet_param: Any
+        :type pet_param: JSONType
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -123,7 +124,7 @@ class PetOperations:
                     "name": "str"  # Optional. name.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 

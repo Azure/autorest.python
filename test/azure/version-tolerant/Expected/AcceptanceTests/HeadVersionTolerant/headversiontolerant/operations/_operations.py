@@ -103,11 +103,11 @@ class HttpSuccessOperations(object):
     def head200(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> bool
         """Return 200 status code if successful.
 
-        :return: None
-        :rtype: None
+        :return: bool
+        :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -138,11 +138,11 @@ class HttpSuccessOperations(object):
     def head204(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> bool
         """Return 204 status code if successful.
 
-        :return: None
-        :rtype: None
+        :return: bool
+        :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -173,11 +173,11 @@ class HttpSuccessOperations(object):
     def head404(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> bool
         """Return 404 status code if successful.
 
-        :return: None
-        :rtype: None
+        :return: bool
+        :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]

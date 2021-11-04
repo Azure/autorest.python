@@ -34,6 +34,7 @@ if TYPE_CHECKING:
     from typing import Any, Callable, Dict, Generic, Iterable, Optional, TypeVar, Union
 
     T = TypeVar("T")
+    JSONType = Any
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -447,21 +448,21 @@ class StorageAccountsOperations(object):
     @distributed_trace
     def check_name_availability(
         self,
-        account_name,  # type: Any
+        account_name,  # type: JSONType
         **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Checks that account name is valid and is not in use.
 
         :param account_name: The name of the storage account within the specified resource group.
          Storage account names must be between 3 and 24 characters in length and use numbers and
          lower-case letters only.
-        :type account_name: Any
+        :type account_name: JSONType
         :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
          overriding this default value may result in unsupported behavior.
         :paramtype api_version: str
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -480,7 +481,7 @@ class StorageAccountsOperations(object):
                     "reason": "str"  # Optional. Gets the reason that a storage account name could not be used. The Reason element is only returned if NameAvailable is false. Possible values include: "AccountNameInvalid", "AlreadyExists".
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -523,11 +524,11 @@ class StorageAccountsOperations(object):
         self,
         resource_group_name,  # type: str
         account_name,  # type: str
-        parameters,  # type: Any
+        parameters,  # type: JSONType
         **kwargs  # type: Any
     ):
-        # type: (...) -> Optional[Any]
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Any]]
+        # type: (...) -> Optional[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -575,10 +576,10 @@ class StorageAccountsOperations(object):
         self,
         resource_group_name,  # type: str
         account_name,  # type: str
-        parameters,  # type: Any
+        parameters,  # type: JSONType
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller[Any]
+        # type: (...) -> LROPoller[JSONType]
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts
         cannot be updated with this API and should instead use the Update Storage Account API. If an
         account is already created and subsequent PUT request is issued with exact same set of
@@ -591,7 +592,7 @@ class StorageAccountsOperations(object):
          lower-case letters only.
         :type account_name: str
         :param parameters: The parameters to provide for the created account.
-        :type parameters: Any
+        :type parameters: JSONType
         :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
          overriding this default value may result in unsupported behavior.
         :paramtype api_version: str
@@ -603,7 +604,7 @@ class StorageAccountsOperations(object):
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
-        :rtype: ~azure.core.polling.LROPoller[Any]
+        :rtype: ~azure.core.polling.LROPoller[JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -673,7 +674,7 @@ class StorageAccountsOperations(object):
         api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
         polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.PollingMethod]
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
@@ -775,7 +776,7 @@ class StorageAccountsOperations(object):
         account_name,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Returns the properties for the specified storage account including but not limited to name,
         account type, location, and account status. The ListKeys operation should be used to retrieve
         storage keys.
@@ -790,7 +791,7 @@ class StorageAccountsOperations(object):
          overriding this default value may result in unsupported behavior.
         :paramtype api_version: str
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -843,7 +844,7 @@ class StorageAccountsOperations(object):
                     "type": "str"  # Optional. Resource type.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -884,10 +885,10 @@ class StorageAccountsOperations(object):
         self,
         resource_group_name,  # type: str
         account_name,  # type: str
-        parameters,  # type: Any
+        parameters,  # type: JSONType
         **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Updates the account type or tags for a storage account. It can also be used to add a custom
         domain (note that custom domains cannot be added via the Create operation). Only one custom
         domain is supported per storage account. This API can only be used to update one of tags,
@@ -904,12 +905,12 @@ class StorageAccountsOperations(object):
         :type account_name: str
         :param parameters: The parameters to update on the account. Note that only one property can be
          changed at a time using this API.
-        :type parameters: Any
+        :type parameters: JSONType
         :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
          overriding this default value may result in unsupported behavior.
         :paramtype api_version: str
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -980,7 +981,7 @@ class StorageAccountsOperations(object):
                     "type": "str"  # Optional. Resource type.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -1028,7 +1029,7 @@ class StorageAccountsOperations(object):
         account_name,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Lists the access keys for the specified storage account.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
@@ -1039,7 +1040,7 @@ class StorageAccountsOperations(object):
          overriding this default value may result in unsupported behavior.
         :paramtype api_version: str
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1051,7 +1052,7 @@ class StorageAccountsOperations(object):
                     "key2": "str"  # Optional. Gets the value of key 2.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -1091,7 +1092,7 @@ class StorageAccountsOperations(object):
     def list(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable[Any]
+        # type: (...) -> Iterable[JSONType]
         """Lists all the storage accounts available under the subscription. Note that storage keys are not
         returned; use the ListKeys operation for this.
 
@@ -1099,7 +1100,7 @@ class StorageAccountsOperations(object):
          overriding this default value may result in unsupported behavior.
         :paramtype api_version: str
         :return: An iterator like instance of JSON object
-        :rtype: ~azure.core.paging.ItemPaged[Any]
+        :rtype: ~azure.core.paging.ItemPaged[JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1159,7 +1160,7 @@ class StorageAccountsOperations(object):
         """
         api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -1217,7 +1218,7 @@ class StorageAccountsOperations(object):
         resource_group_name,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable[Any]
+        # type: (...) -> Iterable[JSONType]
         """Lists all the storage accounts available under the given resource group. Note that storage keys
         are not returned; use the ListKeys operation for this.
 
@@ -1227,7 +1228,7 @@ class StorageAccountsOperations(object):
          overriding this default value may result in unsupported behavior.
         :paramtype api_version: str
         :return: An iterator like instance of JSON object
-        :rtype: ~azure.core.paging.ItemPaged[Any]
+        :rtype: ~azure.core.paging.ItemPaged[JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1287,7 +1288,7 @@ class StorageAccountsOperations(object):
         """
         api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -1346,10 +1347,10 @@ class StorageAccountsOperations(object):
         self,
         resource_group_name,  # type: str
         account_name,  # type: str
-        regenerate_key,  # type: Any
+        regenerate_key,  # type: JSONType
         **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Regenerates the access keys for the specified storage account.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
@@ -1359,12 +1360,12 @@ class StorageAccountsOperations(object):
          lower-case letters only.
         :type account_name: str
         :param regenerate_key: Specifies name of the key which should be regenerated.
-        :type regenerate_key: Any
+        :type regenerate_key: JSONType
         :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
          overriding this default value may result in unsupported behavior.
         :paramtype api_version: str
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1381,7 +1382,7 @@ class StorageAccountsOperations(object):
                     "key2": "str"  # Optional. Gets the value of key 2.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -1445,14 +1446,14 @@ class UsageOperations(object):
     def list(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Any
+        # type: (...) -> JSONType
         """Gets the current usage count and the limit for the resources under the subscription.
 
         :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
          overriding this default value may result in unsupported behavior.
         :paramtype api_version: str
         :return: JSON object
-        :rtype: Any
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1473,7 +1474,7 @@ class UsageOperations(object):
                     ]
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
