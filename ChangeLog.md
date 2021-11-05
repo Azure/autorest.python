@@ -1,5 +1,19 @@
 # Change Log
 
+### 2021-xx-xx - 5.11.1
+
+| Library | Min Version
+| --------------- | -------
+|`@autorest/core` |  `3.6.2`
+|`@autorest/modelerfour` | `4.19.1`
+|`azure-core` dep of generated code | `1.20.0`
+|`msrest` dep of generated code | `0.6.21`
+|`azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`
+
+**Bug Fixes**
+
+- Hide mixin operations for version tolerant generation  #1071
+
 ### 2021-11-04 - 5.11.0
 
 | Library | Min Version

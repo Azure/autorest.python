@@ -14,7 +14,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from msrest import Deserializer, Serializer
 
 from ._configuration import AutoRestReportServiceForAzureConfiguration
-from .operations import AutoRestReportServiceForAzureOperationsMixin
+from ._operations import AutoRestReportServiceForAzureOperationsMixin
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports

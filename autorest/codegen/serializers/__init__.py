@@ -162,7 +162,7 @@ class JinjaSerializer:
                 is_python_3_file=False,
             )
             self._autorestapi.write_file(
-                namespace_path / Path(f"operations") / Path(f"{filename}.py"),
+                namespace_path / Path(code_model.operations_folder_name) / Path(f"{filename}.py"),
                 operation_group_serializer.serialize(),
             )
 
@@ -179,7 +179,7 @@ class JinjaSerializer:
                 (
                     namespace_path
                     / Path("aio")
-                    / Path(f"operations")
+                    / Path(code_model.operations_folder_name)
                     / Path(f"{filename}.py")
                 ),
                 operation_group_async_serializer.serialize(),
@@ -195,7 +195,7 @@ class JinjaSerializer:
                 is_python_3_file=True,
             )
             self._autorestapi.write_file(
-                namespace_path / Path(f"operations") / Path(f"{filename}_py3.py"),
+                namespace_path / Path(code_model.operations_folder_name) / Path(f"{filename}_py3.py"),
                 operation_group_serializer.serialize(),
             )
 
@@ -205,14 +205,15 @@ class JinjaSerializer:
         # write sync operations init file
         operations_init_serializer = OperationsInitSerializer(code_model=code_model, env=env, async_mode=False)
         self._autorestapi.write_file(
-            namespace_path / Path(f"operations") / Path("__init__.py"), operations_init_serializer.serialize()
+            namespace_path / Path(code_model.operations_folder_name) / Path("__init__.py"),
+            operations_init_serializer.serialize(),
         )
 
         # write async operations init file
         if not code_model.options["no_async"]:
             operations_async_init_serializer = OperationsInitSerializer(code_model=code_model, env=env, async_mode=True)
             self._autorestapi.write_file(
-                namespace_path / Path("aio") / Path(f"operations") / Path("__init__.py"),
+                namespace_path / Path("aio") / Path(code_model.operations_folder_name) / Path("__init__.py"),
                 operations_async_init_serializer.serialize(),
             )
 

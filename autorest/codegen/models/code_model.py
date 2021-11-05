@@ -238,6 +238,15 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
 
         return properties
 
+    @property
+    def operations_folder_name(self) -> str:
+        name = "operations"
+        if self.options["version_tolerant"] and not any(
+            og for og in self.operation_groups if not og.is_empty_operation_group
+        ):
+            name = f"_{name}"
+        return name
+
     def _add_properties_from_inheritance(self) -> None:
         """Adds properties from base classes to schemas with parents.
 

@@ -73,7 +73,9 @@ class Client:
             )
         file_import.add_from_import("azure.core.rest", "HttpRequest", ImportType.AZURECORE, TypingSection.CONDITIONAL)
         for og in self.code_model.operation_groups:
-            file_import.add_from_import(".operations", og.class_name, ImportType.LOCAL)
+            file_import.add_from_import(
+                f".{self.code_model.operations_folder_name}", og.class_name, ImportType.LOCAL
+            )
 
         if self.code_model.sorted_schemas:
             path_to_models = ".." if async_mode else "."

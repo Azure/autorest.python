@@ -21,7 +21,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ...operations._operations import (
+from ..._operations._operations import (
     build_get_array_request,
     build_get_dictionary_request,
     build_get_resource_collection_request,
