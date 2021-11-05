@@ -72,7 +72,6 @@ class AutoRestComplexTestService(object):
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
-        self._serialize.client_side_validation = False
         self.basic = BasicOperations(self._client, self._config, self._serialize, self._deserialize)
         self.primitive = PrimitiveOperations(self._client, self._config, self._serialize, self._deserialize)
         self.array = ArrayOperations(self._client, self._config, self._serialize, self._deserialize)

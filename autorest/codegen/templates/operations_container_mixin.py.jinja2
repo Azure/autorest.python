@@ -1,3 +1,4 @@
+{% import 'operation_tools.jinja2' as op_tools %}
 {% set object_base_class = "" if async_mode else "(object)" %}
 {% set operation_group = operation_groups[0] %}
 # coding=utf-8
@@ -5,8 +6,8 @@
 {{ imports }}
 
 {% if code_model.options["builders_visibility"] == "embedded" and not async_mode %}
-_SERIALIZER = Serializer()
-{% if not is_python_3_file %}
+{{ op_tools.declare_serializer(code_model) }}
+{%- if not is_python_3_file %}
 # fmt: off
 {% endif %}
     {% for request_builder in code_model.rest.request_builders | selectattr("builder_group_name", "equalto", "") %}

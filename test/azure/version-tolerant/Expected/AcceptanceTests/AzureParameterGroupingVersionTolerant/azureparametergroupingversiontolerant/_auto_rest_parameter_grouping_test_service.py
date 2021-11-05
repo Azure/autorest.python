@@ -43,7 +43,6 @@ class AutoRestParameterGroupingTestService(object):
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
-        self._serialize.client_side_validation = False
         self.parameter_grouping = ParameterGroupingOperations(
             self._client, self._config, self._serialize, self._deserialize
         )

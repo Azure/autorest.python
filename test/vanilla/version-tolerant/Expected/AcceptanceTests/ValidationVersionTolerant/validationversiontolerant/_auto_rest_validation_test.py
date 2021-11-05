@@ -47,7 +47,6 @@ class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
-        self._serialize.client_side_validation = False
 
     def send_request(
         self,

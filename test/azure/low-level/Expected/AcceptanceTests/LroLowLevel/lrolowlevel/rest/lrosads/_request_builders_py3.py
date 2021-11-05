@@ -14,6 +14,7 @@ T = TypeVar("T")
 JSONType = Any
 
 _SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 
 def build_put_non_retry400_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:

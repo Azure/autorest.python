@@ -11,6 +11,7 @@ from azure.core.rest import HttpRequest
 from msrest import Serializer
 
 _SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 
 def build_array_string_multi_null_request(*, array_query: Optional[List[str]] = None, **kwargs: Any) -> HttpRequest:

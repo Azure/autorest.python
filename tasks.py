@@ -154,6 +154,7 @@ def _build_flags(
     namespace = kwargs.pop("namespace", _OVERWRITE_DEFAULT_NAMESPACE.get(package_name, package_name.lower()))
     low_level_client = kwargs.pop("low_level_client", False)
     version_tolerant = kwargs.pop("version_tolerant", False)
+    client_side_validation = package_name in _PACKAGES_WITH_CLIENT_SIDE_VALIDATION
     if low_level_client:
         package_name += "LowLevel"
         generation_section += "/low-level"
@@ -186,7 +187,7 @@ def _build_flags(
         "azure-arm": swagger_group == _SwaggerGroup.AZURE_ARM,
         "keep-version-file": True,
         "namespace": namespace,
-        "client-side-validation": package_name in _PACKAGES_WITH_CLIENT_SIDE_VALIDATION,
+        "client-side-validation": client_side_validation,
         "black": True,
     }
     if override_flags:

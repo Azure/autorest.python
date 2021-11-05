@@ -14,6 +14,7 @@ T = TypeVar("T")
 JSONType = Any
 
 _SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 
 def build_create_ap_true_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:

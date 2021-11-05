@@ -13,6 +13,7 @@ from msrest import Serializer
 from ..._vendor import _format_url_section
 
 _SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 
 def build_get_pet_by_id_request(pet_id: str, **kwargs: Any) -> HttpRequest:

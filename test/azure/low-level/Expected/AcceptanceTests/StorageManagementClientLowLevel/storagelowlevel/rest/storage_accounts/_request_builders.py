@@ -20,6 +20,7 @@ if TYPE_CHECKING:
     JSONType = Any
 
 _SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 # fmt: off
 

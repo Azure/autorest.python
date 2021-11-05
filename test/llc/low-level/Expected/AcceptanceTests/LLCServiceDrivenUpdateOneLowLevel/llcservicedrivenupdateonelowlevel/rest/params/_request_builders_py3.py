@@ -14,6 +14,7 @@ T = TypeVar("T")
 JSONType = Any
 
 _SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 
 def build_get_required_request(*, parameter: str, new_parameter: Optional[str] = None, **kwargs: Any) -> HttpRequest:
