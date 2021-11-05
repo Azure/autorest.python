@@ -26,7 +26,7 @@
 
 from async_generator import yield_, async_generator
 import pytest
-
+from msrest.exceptions import ValidationError
 from azure.core.exceptions import ServiceRequestError
 
 from custombaseurlversiontolerant.aio import AutoRestParameterizedHostTestClient
@@ -50,7 +50,7 @@ async def test_custom_base_uri_get_empty(client):
 
 @pytest.mark.asyncio
 async def test_custom_base_uri_get_none(client):
-    with pytest.raises(ValueError):
+    with pytest.raises(ValidationError):
         await client.paths.get_empty(None)
 
 @pytest.mark.asyncio
