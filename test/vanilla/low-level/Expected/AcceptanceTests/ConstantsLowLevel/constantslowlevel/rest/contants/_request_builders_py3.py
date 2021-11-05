@@ -13,6 +13,7 @@ from msrest import Serializer
 from ..._vendor import _format_url_section
 
 _SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 
 def build_put_no_model_as_string_no_required_two_value_no_default_request(

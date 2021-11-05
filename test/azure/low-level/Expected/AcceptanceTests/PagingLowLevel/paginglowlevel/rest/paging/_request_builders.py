@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from typing import Any, Optional
 
 _SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 # fmt: off
 

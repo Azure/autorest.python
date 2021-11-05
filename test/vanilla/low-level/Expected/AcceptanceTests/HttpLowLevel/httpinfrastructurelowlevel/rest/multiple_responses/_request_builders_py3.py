@@ -14,6 +14,7 @@ T = TypeVar("T")
 JSONType = Any
 
 _SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 
 def build_get200_model204_no_model_default_error200_valid_request(**kwargs: Any) -> HttpRequest:

@@ -11,6 +11,7 @@ from azure.core.rest import HttpRequest
 from msrest import Serializer
 
 _SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 
 def build_get_report_request(*, qualifier: Optional[str] = None, **kwargs: Any) -> HttpRequest:
