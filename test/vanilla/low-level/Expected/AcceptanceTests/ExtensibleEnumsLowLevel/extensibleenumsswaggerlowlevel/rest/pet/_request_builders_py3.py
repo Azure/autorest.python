@@ -16,6 +16,7 @@ T = TypeVar("T")
 JSONType = Any
 
 _SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 
 def build_get_by_pet_id_request(pet_id: str, **kwargs: Any) -> HttpRequest:

@@ -12,6 +12,7 @@ from azure.core.rest import HttpRequest
 from msrest import Serializer
 
 _SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 
 def build_param_existing_key_request(*, user_agent_parameter: str, **kwargs: Any) -> HttpRequest:

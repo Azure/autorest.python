@@ -27,7 +27,7 @@ from azure.core.exceptions import ServiceRequestError
 
 from custombaseurlversiontolerant import AutoRestParameterizedHostTestClient
 from custombaseurlmoreoptionsversiontolerant import AutoRestParameterizedCustomHostTestClient
-
+from msrest.exceptions import ValidationError
 import pytest
 
 @pytest.fixture
@@ -44,7 +44,7 @@ def test_get_empty_with_bad_string(client):
         client.paths.get_empty("bad")
 
 def test_get_empty_with_none(client):
-    with pytest.raises(ValueError):
+    with pytest.raises(ValidationError):
         client.paths.get_empty(None)
 
 def test_get_empty_from_bad_host():
