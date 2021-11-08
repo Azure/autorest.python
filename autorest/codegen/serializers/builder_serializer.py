@@ -101,7 +101,7 @@ def _serialize_files_and_data_body(builder: BuilderType, param_name: str) -> Lis
     retval: List[str] = []
     # we have to construct our form data before passing to the request as well
     retval.append("# Construct form data")
-    retval.append(f"{param_name} = {{")
+    retval.append(f"_{param_name} = {{")
     for param in builder.parameters.body:
         retval.append(f'    "{param.rest_api_name}": {param.serialized_name},')
     retval.append("}")
@@ -698,10 +698,10 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         body_kwarg_to_pass = builder.body_kwargs_to_pass_to_request_builder[0]
         if self.code_model.options["models_mode"]:
             return (
-                f"{body_kwarg_to_pass} = self._serialize.body({body_param.serialized_name}, "
+                f"_{body_kwarg_to_pass} = self._serialize.body({body_param.serialized_name}, "
                 f"'{ body_param.serialization_type }'{body_is_xml}{ pass_ser_ctxt })"
             )
-        return f"{body_kwarg_to_pass} = {body_param.serialized_name}"
+        return f"_{body_kwarg_to_pass} = {body_param.serialized_name}"
 
     def _serialize_body(self, builder: BuilderType, body_param: Parameter, body_kwarg: str) -> List[str]:
         retval = []
@@ -728,7 +728,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
             retval.append("    " + serialize_body_call)
             if len(builder.body_kwargs_to_pass_to_request_builder) == 1:
                 retval.append("else:")
-                retval.append(f"    {body_kwarg} = None")
+                retval.append(f"    _{body_kwarg} = None")
         return retval
 
     def _set_body_content_kwarg(
@@ -743,7 +743,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
                 return retval
         except AttributeError:
             pass
-        retval.append(f"{body_kwarg.serialized_name} = {body_param.serialized_name}")
+        retval.append(f"_{body_kwarg.serialized_name} = {body_param.serialized_name}")
         return retval
 
 

@@ -17,7 +17,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_operation_with_content_param_request(*, content: Any, content: IO, **kwargs: Any) -> HttpRequest:
+def build_operation_with_content_param_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     """Operation with body param called content. Pass in b'hello, world'.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -26,8 +26,6 @@ def build_operation_with_content_param_request(*, content: Any, content: IO, **k
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Pass in b'hello, world'.
     :paramtype content: any
-    :keyword content: Pass in b'hello, world'.
-    :paramtype content: IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -50,15 +48,13 @@ def build_operation_with_content_param_request(*, content: Any, content: IO, **k
 
 
 def build_operation_with_json_param_request(
-    *, json: Any, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Operation with body param called 'json'. Pass in {'hello': 'world'}.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Pass in {'hello': 'world'}.
-    :paramtype json: any
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Pass in {'hello': 'world'}.
     :paramtype json: JSONType
@@ -90,15 +86,13 @@ def build_operation_with_json_param_request(
 
 
 def build_operation_with_data_param_request(
-    *, data: str, data: Optional[Dict[str, Any]] = None, content: Any = None, **kwargs: Any
+    *, data: Optional[Dict[str, Any]] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Operation with urlencoded body param called 'data'.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword data: Pass in 'hello'.
-    :paramtype data: str
     :keyword data: Pass in dictionary that contains form data to include in the body of the
      request. Pass in 'hello'.
     :paramtype data: dict[str, any]
@@ -136,15 +130,13 @@ def build_operation_with_data_param_request(
 
 
 def build_operation_with_files_param_request(
-    *, files: IO, files: Optional[Dict[str, Any]] = None, content: Any = None, **kwargs: Any
+    *, files: Optional[Dict[str, Any]] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Operation with multipart body param called 'files'.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword files: Files to upload. Pass in list of input streams.
-    :paramtype files: IO
     :keyword files: Multipart input for files. See the template in our example to find the input
      shape. Files to upload. Pass in list of input streams.
     :paramtype files: dict[str, any]

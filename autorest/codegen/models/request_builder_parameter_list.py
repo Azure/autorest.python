@@ -44,6 +44,7 @@ class RequestBuilderParameterList(ParameterList):
     def _change_body_param_name(self, parameter: Parameter, name: str) -> None:
         self.body_kwarg_names[name] = None
         parameter.serialized_name = name
+        parameter.is_body_kwarg = True
 
     def _is_json(self, body_method_param: Parameter) -> bool:
         if 'json' in body_method_param.serialization_formats:
@@ -242,7 +243,7 @@ class RequestBuilderParameterList(ParameterList):
         for parameter in parameters:
             if (
                 parameter.location == ParameterLocation.Body and
-                parameter.serialized_name not in _REQUEST_BUILDER_BODY_NAMES
+                not parameter.is_body_kwarg
             ):
                 # we keep the original body param from the swagger for documentation purposes
                 # we don't want it in the method signature

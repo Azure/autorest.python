@@ -109,12 +109,11 @@ class ReservedWordsClientOperationsMixin:
 
         content_type = kwargs.pop("content_type", "application/octet-stream")  # type: Optional[str]
 
-        content = content
+        _content = content
 
         request = build_operation_with_content_param_request(
             content_type=content_type,
-            content=content,
-            content=content,
+            content=_content,
             template_url=self.operation_with_content_param.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -154,12 +153,11 @@ class ReservedWordsClientOperationsMixin:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = json
+        _json = json
 
         request = build_operation_with_json_param_request(
             content_type=content_type,
-            json=json,
-            json=json,
+            json=_json,
             template_url=self.operation_with_json_param.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -211,8 +209,7 @@ class ReservedWordsClientOperationsMixin:
 
         request = build_operation_with_data_param_request(
             content_type=content_type,
-            data=data,
-            data=data,
+            data=_data,
             template_url=self.operation_with_data_param.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -264,8 +261,7 @@ class ReservedWordsClientOperationsMixin:
 
         request = build_operation_with_files_param_request(
             content_type=content_type,
-            files=files,
-            files=files,
+            files=_files,
             template_url=self.operation_with_files_param.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

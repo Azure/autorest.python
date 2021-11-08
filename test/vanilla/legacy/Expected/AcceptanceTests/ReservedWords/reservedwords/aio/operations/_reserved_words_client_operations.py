@@ -52,12 +52,11 @@ class ReservedWordsClientOperationsMixin:
 
         content_type = kwargs.pop("content_type", "application/octet-stream")  # type: Optional[str]
 
-        content = content
+        _content = content
 
         request = build_operation_with_content_param_request(
             content_type=content_type,
-            content=content,
-            content=content,
+            content=_content,
             template_url=self.operation_with_content_param.metadata["url"],
         )
         request = _convert_request(request)
@@ -96,12 +95,11 @@ class ReservedWordsClientOperationsMixin:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(json, "object")
+        _json = self._serialize.body(json, "object")
 
         request = build_operation_with_json_param_request(
             content_type=content_type,
-            json=json,
-            json=json,
+            json=_json,
             template_url=self.operation_with_json_param.metadata["url"],
         )
         request = _convert_request(request)
@@ -143,15 +141,14 @@ class ReservedWordsClientOperationsMixin:
         content_type = kwargs.pop("content_type", "application/x-www-form-urlencoded")  # type: Optional[str]
 
         # Construct form data
-        data = {
+        _data = {
             "data": data,
             "world": world,
         }
 
         request = build_operation_with_data_param_request(
             content_type=content_type,
-            data=data,
-            data=data,
+            data=_data,
             template_url=self.operation_with_data_param.metadata["url"],
         )
         request = _convert_request(request)
@@ -193,15 +190,14 @@ class ReservedWordsClientOperationsMixin:
         content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
         # Construct form data
-        files = {
+        _files = {
             "files": files,
             "fileName": file_name,
         }
 
         request = build_operation_with_files_param_request(
             content_type=content_type,
-            files=files,
-            files=files,
+            files=_files,
             template_url=self.operation_with_files_param.metadata["url"],
         )
         request = _convert_request(request, files)

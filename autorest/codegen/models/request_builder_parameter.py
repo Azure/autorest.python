@@ -30,11 +30,11 @@ class RequestBuilderParameter(ParameterOnlyPathAndBodyPositional):
     @property
     def name_in_high_level_operation(self) -> str:
         if self.is_multipart:
-            return "files"
+            return "_files"
         if self.is_data_input:
-            return "data"
+            return "_data"
         if self.is_body and not self.constant:
-            return self.serialized_name
+            return f"_{self.serialized_name}"
         name = self.yaml_data["language"]["python"]["name"]
         if self.implementation == "Client" and self.in_method_code:
             # for these, we're passing the client params to the request builder.
