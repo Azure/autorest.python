@@ -7,7 +7,9 @@
 # --------------------------------------------------------------------------
 
 from ._operations import ImportOperations
+from ._operations import ReservedWordsClientOperationsMixin
 
 __all__ = [
     "ImportOperations",
+    "ReservedWordsClientOperationsMixin",
 ]

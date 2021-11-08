@@ -12,17 +12,18 @@ from typing import TYPE_CHECKING
 from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
 
+from . import models
 from ._configuration import ReservedWordsClientConfiguration
-from .operations import ImportOperations
+from .operations import ImportOperations, ReservedWordsClientOperationsMixin
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, Optional
+    from typing import Any, Optional
 
     from azure.core.rest import HttpRequest, HttpResponse
 
 
-class ReservedWordsClient(object):
+class ReservedWordsClient(ReservedWordsClientOperationsMixin):
     """Swagger that has operation groups etc. with reserved words.
 
     :ivar import_operations: ImportOperations operations
@@ -40,7 +41,7 @@ class ReservedWordsClient(object):
         self._config = ReservedWordsClientConfiguration(**kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
-        client_models = {}  # type: Dict[str, Any]
+        client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
