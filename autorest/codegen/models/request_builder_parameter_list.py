@@ -98,7 +98,6 @@ class RequestBuilderParameterList(ParameterList):
             "Multipart input for files. See the template in our example to find the input shape. " +
             file_kwarg.description
         )
-        file_kwarg.is_multipart = False
         file_kwarg.content_types = [
             c for c in content_types_to_assign
             if c == "multipart/form-data"
@@ -120,7 +119,6 @@ class RequestBuilderParameterList(ParameterList):
             "Pass in dictionary that contains form data to include in the body of the request. " +
             data_kwarg.description
         )
-        data_kwarg.is_data_input = False
         data_kwarg.content_types = [
             c for c in content_types_to_assign
             if c == "application/x-www-form-urlencoded"

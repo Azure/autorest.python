@@ -320,7 +320,7 @@ class ReservedWordsClientOperationsMixin(object):
             files=_files,
             template_url=self.operation_with_files_param.metadata["url"],
         )
-        request = _convert_request(request, files)
+        request = _convert_request(request, _files)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

@@ -29,10 +29,11 @@ class RequestBuilderParameter(ParameterOnlyPathAndBodyPositional):
 
     @property
     def name_in_high_level_operation(self) -> str:
+        template = "{}" if self.code_model.options["version_tolerant"] else "_{}"
         if self.is_multipart:
-            return "_files"
+            return template.format("files")
         if self.is_data_input:
-            return "_data"
+            return template.format("data")
         if self.is_body and not self.constant:
             return f"_{self.serialized_name}"
         name = self.yaml_data["language"]["python"]["name"]

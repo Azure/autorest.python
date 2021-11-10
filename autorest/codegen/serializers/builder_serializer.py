@@ -101,7 +101,7 @@ def _serialize_files_and_data_body(builder: BuilderType, param_name: str) -> Lis
     retval: List[str] = []
     # we have to construct our form data before passing to the request as well
     retval.append("# Construct form data")
-    retval.append(f"_{param_name} = {{")
+    retval.append(f"{param_name} = {{")
     for param in builder.parameters.body:
         retval.append(f'    "{param.rest_api_name}": {param.serialized_name},')
     retval.append("}")
@@ -485,7 +485,7 @@ class _RequestBuilderBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=
         return "json"
 
     def _has_json_example_template(self, builder: BuilderType) -> bool:
-        return "json" in builder.parameters.body_kwarg_names
+        return False
 
     def _has_files_example_template(self, builder: BuilderType) -> bool:
         return "files" in builder.parameters.body_kwarg_names
@@ -799,8 +799,8 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
             # unflatten before passing to request builder as well
             retval.extend(_serialize_flattened_body(builder))
         if request_builder.multipart or request_builder.parameters.data_inputs:
-            param_name = "files" if request_builder.multipart else "data"
             if not self.code_model.options["version_tolerant"]:
+                param_name = "_files" if request_builder.multipart else "_data"
                 retval.extend(_serialize_files_and_data_body(builder, param_name))
         elif builder.parameters.has_body and not builder.parameters.body[0].constant:
             retval.extend(self._serialize_body_parameters(builder))
@@ -829,7 +829,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         if not self.code_model.options["version_tolerant"]:
             pass_files = ""
             if "files" in builder.body_kwargs_to_pass_to_request_builder:
-                pass_files = ", files"
+                pass_files = ", _files"
             retval.append(f"request = _convert_request(request{pass_files})")
         if builder.parameters.path:
             retval.extend(self.serialize_path(builder))

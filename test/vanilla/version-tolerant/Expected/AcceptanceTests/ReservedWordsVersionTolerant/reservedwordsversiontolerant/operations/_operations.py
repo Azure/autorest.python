@@ -352,7 +352,7 @@ class ReservedWordsClientOperationsMixin(object):
 
         request = build_operation_with_data_param_request(
             content_type=content_type,
-            data=_data,
+            data=data,
             template_url=self.operation_with_data_param.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -409,7 +409,7 @@ class ReservedWordsClientOperationsMixin(object):
 
         request = build_operation_with_files_param_request(
             content_type=content_type,
-            files=_files,
+            files=files,
             template_url=self.operation_with_files_param.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
