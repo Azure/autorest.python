@@ -156,17 +156,17 @@ class FormdataOperations(object):
         content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
         # Construct form data
-        files = {
+        _files = {
             "fileContent": file_content,
             "fileName": file_name,
         }
 
         request = build_upload_file_request(
             content_type=content_type,
-            files=files,
+            files=_files,
             template_url=self.upload_file.metadata["url"],
         )
-        request = _convert_request(request, files)
+        request = _convert_request(request, _files)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=True, **kwargs)
@@ -208,11 +208,11 @@ class FormdataOperations(object):
 
         content_type = kwargs.pop("content_type", "application/octet-stream")  # type: Optional[str]
 
-        content = file_content
+        _content = file_content
 
         request = build_upload_file_via_body_request(
             content_type=content_type,
-            content=content,
+            content=_content,
             template_url=self.upload_file_via_body.metadata["url"],
         )
         request = _convert_request(request)
@@ -258,16 +258,16 @@ class FormdataOperations(object):
         content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
         # Construct form data
-        files = {
+        _files = {
             "fileContent": file_content,
         }
 
         request = build_upload_files_request(
             content_type=content_type,
-            files=files,
+            files=_files,
             template_url=self.upload_files.metadata["url"],
         )
-        request = _convert_request(request, files)
+        request = _convert_request(request, _files)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=True, **kwargs)

@@ -44,6 +44,7 @@ class RequestBuilderParameterList(ParameterList):
     def _change_body_param_name(self, parameter: Parameter, name: str) -> None:
         self.body_kwarg_names[name] = None
         parameter.serialized_name = name
+        parameter.is_body_kwarg = True
 
     def _is_json(self, body_method_param: Parameter) -> bool:
         if 'json' in body_method_param.serialization_formats:
@@ -97,7 +98,6 @@ class RequestBuilderParameterList(ParameterList):
             "Multipart input for files. See the template in our example to find the input shape. " +
             file_kwarg.description
         )
-        file_kwarg.is_multipart = False
         file_kwarg.content_types = [
             c for c in content_types_to_assign
             if c == "multipart/form-data"
@@ -119,7 +119,6 @@ class RequestBuilderParameterList(ParameterList):
             "Pass in dictionary that contains form data to include in the body of the request. " +
             data_kwarg.description
         )
-        data_kwarg.is_data_input = False
         data_kwarg.content_types = [
             c for c in content_types_to_assign
             if c == "application/x-www-form-urlencoded"
@@ -208,7 +207,7 @@ class RequestBuilderParameterList(ParameterList):
         if not self._json_body:
             try:
                 json_param = next(
-                    b for b in self.body if b.serialized_name not in _REQUEST_BUILDER_BODY_NAMES and
+                    b for b in self.body if not b.is_body_kwarg and
                     b.is_json_parameter
                 )
                 self._json_body = json_param.schema
@@ -240,9 +239,19 @@ class RequestBuilderParameterList(ParameterList):
         seen_content_type = False
 
         for parameter in parameters:
+
             if (
                 parameter.location == ParameterLocation.Body and
-                parameter.serialized_name not in _REQUEST_BUILDER_BODY_NAMES
+                (parameter.is_data_input or parameter.is_multipart) and
+                not parameter.is_body_kwarg
+            ):
+                # if i am a part of files or data, and i'm not the files or
+                # data kwarg, ignore me
+                continue
+            if (
+                parameter.location == ParameterLocation.Body and
+                not parameter.is_body_kwarg and
+                not parameter.constant
             ):
                 # we keep the original body param from the swagger for documentation purposes
                 # we don't want it in the method signature

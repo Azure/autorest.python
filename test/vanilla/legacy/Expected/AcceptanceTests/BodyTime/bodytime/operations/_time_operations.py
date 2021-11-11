@@ -164,11 +164,11 @@ class TimeOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(time_body, "time")
+        _json = self._serialize.body(time_body, "time")
 
         request = build_put_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put.metadata["url"],
         )
         request = _convert_request(request)

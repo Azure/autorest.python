@@ -83,11 +83,11 @@ class ObjectTypeClientOperationsMixin:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = put_object
+        _json = put_object
 
         request = build_put_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

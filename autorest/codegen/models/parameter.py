@@ -97,6 +97,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         self.is_data_input = yaml_data.get("isPartialBody", False) and not self.is_multipart
         self.content_types = content_types or []
         self.body_kwargs: List[Parameter] = []
+        self.is_body_kwarg = False
 
     def __hash__(self) -> int:
         return hash(self.serialized_name)

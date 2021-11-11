@@ -895,12 +895,12 @@ class BasicOperations(object):
         api_version = kwargs.pop("api_version", "2016-02-29")  # type: str
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = complex_body
+        _json = complex_body
 
         request = build_basic_put_valid_request(
             api_version=api_version,
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1190,11 +1190,11 @@ class PrimitiveOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = complex_body
+        _json = complex_body
 
         request = build_primitive_put_int_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_int.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1281,11 +1281,11 @@ class PrimitiveOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = complex_body
+        _json = complex_body
 
         request = build_primitive_put_long_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_long.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1372,11 +1372,11 @@ class PrimitiveOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = complex_body
+        _json = complex_body
 
         request = build_primitive_put_float_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_float.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1464,11 +1464,11 @@ class PrimitiveOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = complex_body
+        _json = complex_body
 
         request = build_primitive_put_double_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_double.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1555,11 +1555,11 @@ class PrimitiveOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = complex_body
+        _json = complex_body
 
         request = build_primitive_put_bool_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_bool.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1648,11 +1648,11 @@ class PrimitiveOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = complex_body
+        _json = complex_body
 
         request = build_primitive_put_string_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_string.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1739,11 +1739,11 @@ class PrimitiveOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = complex_body
+        _json = complex_body
 
         request = build_primitive_put_date_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_date.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1830,11 +1830,11 @@ class PrimitiveOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = complex_body
+        _json = complex_body
 
         request = build_primitive_put_date_time_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_date_time.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1922,11 +1922,11 @@ class PrimitiveOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = complex_body
+        _json = complex_body
 
         request = build_primitive_put_date_time_rfc1123_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_date_time_rfc1123.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -2011,11 +2011,11 @@ class PrimitiveOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = complex_body
+        _json = complex_body
 
         request = build_primitive_put_duration_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_duration.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -2100,11 +2100,11 @@ class PrimitiveOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = complex_body
+        _json = complex_body
 
         request = build_primitive_put_byte_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_byte.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -2213,11 +2213,11 @@ class ArrayOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = complex_body
+        _json = complex_body
 
         request = build_array_put_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -2306,11 +2306,11 @@ class ArrayOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = complex_body
+        _json = complex_body
 
         request = build_array_put_empty_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_empty.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -2465,11 +2465,11 @@ class DictionaryOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = complex_body
+        _json = complex_body
 
         request = build_dictionary_put_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -2558,11 +2558,11 @@ class DictionaryOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = complex_body
+        _json = complex_body
 
         request = build_dictionary_put_empty_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_empty.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -2780,11 +2780,11 @@ class InheritanceOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = complex_body
+        _json = complex_body
 
         request = build_inheritance_put_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -2932,11 +2932,11 @@ class PolymorphismOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = complex_body
+        _json = complex_body
 
         request = build_polymorphism_put_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -3236,11 +3236,11 @@ class PolymorphismOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = complex_body
+        _json = complex_body
 
         request = build_polymorphism_put_complicated_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_complicated.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -3316,11 +3316,11 @@ class PolymorphismOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = complex_body
+        _json = complex_body
 
         request = build_polymorphism_put_missing_discriminator_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_missing_discriminator.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -3402,11 +3402,11 @@ class PolymorphismOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = complex_body
+        _json = complex_body
 
         request = build_polymorphism_put_valid_missing_required_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_valid_missing_required.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -3574,11 +3574,11 @@ class PolymorphicrecursiveOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = complex_body
+        _json = complex_body
 
         request = build_polymorphicrecursive_put_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -3684,11 +3684,11 @@ class ReadonlypropertyOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = complex_body
+        _json = complex_body
 
         request = build_readonlyproperty_put_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

@@ -1,5 +1,19 @@
 # Change Log
 
+### 2021-11-xx - 5.11.3
+
+| Library | Min Version
+| --------------- | -------
+|`@autorest/core` |  `3.6.2`
+|`@autorest/modelerfour` | `4.19.1`
+|`azure-core` dep of generated code | `1.20.0`
+|`msrest` dep of generated code | `0.6.21`
+|`azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`
+
+**Bug Fixes**
+
+- Can now handle body params with names `json`, `content`, `data`, and `files` #1081
+
 ### 2021-11-05 - 5.11.2
 
 | Library | Min Version

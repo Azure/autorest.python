@@ -33,3 +33,18 @@ def client():
 
 def test_operation_group_import(client):
     client.import_operations.operation_one(parameter1="foo")
+
+def test_operation_with_content_param(client):
+    client.operation_with_content_param(b"hello, world")
+
+def test_operation_with_json_param(client):
+    client.operation_with_json_param({"hello": "world"})
+
+def test_operation_with_data_param(client):
+    client.operation_with_data_param({"data": "hello", "world": "world"})
+
+def test_operation_with_files_param(client):
+    client.operation_with_files_param(files = {
+        "file_name": "my.txt",
+        "files": b'bytes'
+    })

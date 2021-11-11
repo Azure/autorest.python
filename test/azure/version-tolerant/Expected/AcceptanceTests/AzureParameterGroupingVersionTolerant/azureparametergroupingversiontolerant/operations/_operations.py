@@ -253,12 +253,12 @@ class ParameterGroupingOperations(object):
         custom_header = kwargs.pop("custom_header", None)  # type: Optional[str]
         query = kwargs.pop("query", 30)  # type: Optional[int]
 
-        json = body
+        _json = body
 
         request = build_parameter_grouping_post_required_request(
             path=path,
             content_type=content_type,
-            json=json,
+            json=_json,
             custom_header=custom_header,
             query=query,
             template_url=self.post_required.metadata["url"],

@@ -90,11 +90,11 @@ class AnythingClientOperationsMixin:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = input
+        _json = input
 
         request = build_put_object_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_object.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -164,11 +164,11 @@ class AnythingClientOperationsMixin:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = input
+        _json = input
 
         request = build_put_string_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_string.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -238,11 +238,11 @@ class AnythingClientOperationsMixin:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = input
+        _json = input
 
         request = build_put_array_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_array.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

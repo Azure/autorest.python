@@ -25,6 +25,13 @@
 # --------------------------------------------------------------------------
 import pytest
 from reservedwordslowlevel import ReservedWordsClient
+from reservedwordslowlevel.rest import import_builders
+from reservedwordslowlevel.rest import (
+    build_operation_with_content_param_request,
+    build_operation_with_data_param_request,
+    build_operation_with_files_param_request,
+    build_operation_with_json_param_request,
+)
 
 @pytest.fixture
 def client():
@@ -38,6 +45,24 @@ def send_request(client, base_send_request):
     return _send_request
 
 def test_operation_group_import(send_request):
-    from reservedwordslowlevel.rest import import_builders
     request = import_builders.build_operation_one_request(parameter1="foo")
+    send_request(request)
+
+def test_operation_with_content_param(send_request):
+    request = build_operation_with_content_param_request(content=b"hello, world", headers={"Content-Type": "application/octet-stream"})
+    send_request(request)
+
+def test_operation_with_json_param(send_request):
+    request = build_operation_with_json_param_request(json={"hello": "world"})
+    send_request(request)
+
+def test_operation_with_data_param(send_request):
+    request = build_operation_with_data_param_request(data={"data": "hello", "world": "world"})
+    send_request(request)
+
+def test_operation_with_files_param(send_request):
+    request = build_operation_with_files_param_request(files={
+        "file_name": "my.txt",
+        "files": b'bytes'
+    })
     send_request(request)

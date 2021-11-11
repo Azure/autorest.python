@@ -1014,13 +1014,13 @@ class LROsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "Product")
+            _json = self._serialize.body(product, "Product")
         else:
-            json = None
+            _json = None
 
         request = build_put200_succeeded_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put200_succeeded_initial.metadata["url"],
         )
         request = _convert_request(request)
@@ -1117,13 +1117,13 @@ class LROsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "Product")
+            _json = self._serialize.body(product, "Product")
         else:
-            json = None
+            _json = None
 
         request = build_patch200_succeeded_ignore_headers_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._patch200_succeeded_ignore_headers_initial.metadata["url"],
         )
         request = _convert_request(request)
@@ -1228,13 +1228,13 @@ class LROsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "Product")
+            _json = self._serialize.body(product, "Product")
         else:
-            json = None
+            _json = None
 
         request = build_put201_succeeded_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put201_succeeded_initial.metadata["url"],
         )
         request = _convert_request(request)
@@ -1422,13 +1422,13 @@ class LROsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "Product")
+            _json = self._serialize.body(product, "Product")
         else:
-            json = None
+            _json = None
 
         request = build_put200_succeeded_no_state_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put200_succeeded_no_state_initial.metadata["url"],
         )
         request = _convert_request(request)
@@ -1523,13 +1523,13 @@ class LROsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "Product")
+            _json = self._serialize.body(product, "Product")
         else:
-            json = None
+            _json = None
 
         request = build_put202_retry200_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put202_retry200_initial.metadata["url"],
         )
         request = _convert_request(request)
@@ -1625,13 +1625,13 @@ class LROsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "Product")
+            _json = self._serialize.body(product, "Product")
         else:
-            json = None
+            _json = None
 
         request = build_put201_creating_succeeded200_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put201_creating_succeeded200_initial.metadata["url"],
         )
         request = _convert_request(request)
@@ -1731,13 +1731,13 @@ class LROsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "Product")
+            _json = self._serialize.body(product, "Product")
         else:
-            json = None
+            _json = None
 
         request = build_put200_updating_succeeded204_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put200_updating_succeeded204_initial.metadata["url"],
         )
         request = _convert_request(request)
@@ -1833,13 +1833,13 @@ class LROsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "Product")
+            _json = self._serialize.body(product, "Product")
         else:
-            json = None
+            _json = None
 
         request = build_put201_creating_failed200_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put201_creating_failed200_initial.metadata["url"],
         )
         request = _convert_request(request)
@@ -1939,13 +1939,13 @@ class LROsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "Product")
+            _json = self._serialize.body(product, "Product")
         else:
-            json = None
+            _json = None
 
         request = build_put200_acceptedcanceled200_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put200_acceptedcanceled200_initial.metadata["url"],
         )
         request = _convert_request(request)
@@ -2041,13 +2041,13 @@ class LROsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "Product")
+            _json = self._serialize.body(product, "Product")
         else:
-            json = None
+            _json = None
 
         request = build_put_no_header_in_retry_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put_no_header_in_retry_initial.metadata["url"],
         )
         request = _convert_request(request)
@@ -2148,13 +2148,13 @@ class LROsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "Product")
+            _json = self._serialize.body(product, "Product")
         else:
-            json = None
+            _json = None
 
         request = build_put_async_retry_succeeded_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put_async_retry_succeeded_initial.metadata["url"],
         )
         request = _convert_request(request)
@@ -2264,13 +2264,13 @@ class LROsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "Product")
+            _json = self._serialize.body(product, "Product")
         else:
-            json = None
+            _json = None
 
         request = build_put_async_no_retry_succeeded_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put_async_no_retry_succeeded_initial.metadata["url"],
         )
         request = _convert_request(request)
@@ -2378,13 +2378,13 @@ class LROsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "Product")
+            _json = self._serialize.body(product, "Product")
         else:
-            json = None
+            _json = None
 
         request = build_put_async_retry_failed_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put_async_retry_failed_initial.metadata["url"],
         )
         request = _convert_request(request)
@@ -2494,13 +2494,13 @@ class LROsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "Product")
+            _json = self._serialize.body(product, "Product")
         else:
-            json = None
+            _json = None
 
         request = build_put_async_no_retrycanceled_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put_async_no_retrycanceled_initial.metadata["url"],
         )
         request = _convert_request(request)
@@ -2608,13 +2608,13 @@ class LROsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "Product")
+            _json = self._serialize.body(product, "Product")
         else:
-            json = None
+            _json = None
 
         request = build_put_async_no_header_in_retry_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put_async_no_header_in_retry_initial.metadata["url"],
         )
         request = _convert_request(request)
@@ -2720,13 +2720,13 @@ class LROsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if sku is not None:
-            json = self._serialize.body(sku, "Sku")
+            _json = self._serialize.body(sku, "Sku")
         else:
-            json = None
+            _json = None
 
         request = build_put_non_resource_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put_non_resource_initial.metadata["url"],
         )
         request = _convert_request(request)
@@ -2820,13 +2820,13 @@ class LROsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if sku is not None:
-            json = self._serialize.body(sku, "Sku")
+            _json = self._serialize.body(sku, "Sku")
         else:
-            json = None
+            _json = None
 
         request = build_put_async_non_resource_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put_async_non_resource_initial.metadata["url"],
         )
         request = _convert_request(request)
@@ -2921,13 +2921,13 @@ class LROsOperations(object):
 
         _product = _models.SubProduct(provisioning_state=provisioning_state)
         if _product is not None:
-            json = self._serialize.body(_product, "SubProduct")
+            _json = self._serialize.body(_product, "SubProduct")
         else:
-            json = None
+            _json = None
 
         request = build_put_sub_resource_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put_sub_resource_initial.metadata["url"],
         )
         request = _convert_request(request)
@@ -3022,13 +3022,13 @@ class LROsOperations(object):
 
         _product = _models.SubProduct(provisioning_state=provisioning_state)
         if _product is not None:
-            json = self._serialize.body(_product, "SubProduct")
+            _json = self._serialize.body(_product, "SubProduct")
         else:
-            json = None
+            _json = None
 
         request = build_put_async_sub_resource_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put_async_sub_resource_initial.metadata["url"],
         )
         request = _convert_request(request)
@@ -4232,13 +4232,13 @@ class LROsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "Product")
+            _json = self._serialize.body(product, "Product")
         else:
-            json = None
+            _json = None
 
         request = build_post202_retry200_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._post202_retry200_initial.metadata["url"],
         )
         request = _convert_request(request)
@@ -4330,13 +4330,13 @@ class LROsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "Product")
+            _json = self._serialize.body(product, "Product")
         else:
-            json = None
+            _json = None
 
         request = build_post202_no_retry204_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._post202_no_retry204_initial.metadata["url"],
         )
         request = _convert_request(request)
@@ -4693,13 +4693,13 @@ class LROsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "Product")
+            _json = self._serialize.body(product, "Product")
         else:
-            json = None
+            _json = None
 
         request = build_post_async_retry_succeeded_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._post_async_retry_succeeded_initial.metadata["url"],
         )
         request = _convert_request(request)
@@ -4805,13 +4805,13 @@ class LROsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "Product")
+            _json = self._serialize.body(product, "Product")
         else:
-            json = None
+            _json = None
 
         request = build_post_async_no_retry_succeeded_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._post_async_no_retry_succeeded_initial.metadata["url"],
         )
         request = _convert_request(request)
@@ -4917,13 +4917,13 @@ class LROsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "Product")
+            _json = self._serialize.body(product, "Product")
         else:
-            json = None
+            _json = None
 
         request = build_post_async_retry_failed_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._post_async_retry_failed_initial.metadata["url"],
         )
         request = _convert_request(request)
@@ -5019,13 +5019,13 @@ class LROsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "Product")
+            _json = self._serialize.body(product, "Product")
         else:
-            json = None
+            _json = None
 
         request = build_post_async_retrycanceled_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._post_async_retrycanceled_initial.metadata["url"],
         )
         request = _convert_request(request)

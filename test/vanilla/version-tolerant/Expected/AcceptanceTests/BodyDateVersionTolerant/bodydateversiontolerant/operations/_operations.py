@@ -398,11 +398,11 @@ class DateOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = date_body
+        _json = date_body
 
         request = build_date_put_max_date_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_max_date.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -479,11 +479,11 @@ class DateOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = date_body
+        _json = date_body
 
         request = build_date_put_min_date_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_min_date.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

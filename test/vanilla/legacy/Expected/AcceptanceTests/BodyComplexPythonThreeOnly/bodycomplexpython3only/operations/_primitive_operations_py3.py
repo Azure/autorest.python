@@ -417,11 +417,11 @@ class PrimitiveOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(complex_body, "IntWrapper")
+        _json = self._serialize.body(complex_body, "IntWrapper")
 
         request = build_put_int_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_int.metadata["url"],
         )
         request = _convert_request(request)
@@ -493,11 +493,11 @@ class PrimitiveOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(complex_body, "LongWrapper")
+        _json = self._serialize.body(complex_body, "LongWrapper")
 
         request = build_put_long_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_long.metadata["url"],
         )
         request = _convert_request(request)
@@ -569,11 +569,11 @@ class PrimitiveOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(complex_body, "FloatWrapper")
+        _json = self._serialize.body(complex_body, "FloatWrapper")
 
         request = build_put_float_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_float.metadata["url"],
         )
         request = _convert_request(request)
@@ -646,11 +646,11 @@ class PrimitiveOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(complex_body, "DoubleWrapper")
+        _json = self._serialize.body(complex_body, "DoubleWrapper")
 
         request = build_put_double_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_double.metadata["url"],
         )
         request = _convert_request(request)
@@ -722,11 +722,11 @@ class PrimitiveOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(complex_body, "BooleanWrapper")
+        _json = self._serialize.body(complex_body, "BooleanWrapper")
 
         request = build_put_bool_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_bool.metadata["url"],
         )
         request = _convert_request(request)
@@ -798,11 +798,11 @@ class PrimitiveOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(complex_body, "StringWrapper")
+        _json = self._serialize.body(complex_body, "StringWrapper")
 
         request = build_put_string_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_string.metadata["url"],
         )
         request = _convert_request(request)
@@ -874,11 +874,11 @@ class PrimitiveOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(complex_body, "DateWrapper")
+        _json = self._serialize.body(complex_body, "DateWrapper")
 
         request = build_put_date_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_date.metadata["url"],
         )
         request = _convert_request(request)
@@ -950,11 +950,11 @@ class PrimitiveOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(complex_body, "DatetimeWrapper")
+        _json = self._serialize.body(complex_body, "DatetimeWrapper")
 
         request = build_put_date_time_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_date_time.metadata["url"],
         )
         request = _convert_request(request)
@@ -1027,11 +1027,11 @@ class PrimitiveOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(complex_body, "Datetimerfc1123Wrapper")
+        _json = self._serialize.body(complex_body, "Datetimerfc1123Wrapper")
 
         request = build_put_date_time_rfc1123_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_date_time_rfc1123.metadata["url"],
         )
         request = _convert_request(request)
@@ -1104,11 +1104,11 @@ class PrimitiveOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         _complex_body = _models.DurationWrapper(field=field)
-        json = self._serialize.body(_complex_body, "DurationWrapper")
+        _json = self._serialize.body(_complex_body, "DurationWrapper")
 
         request = build_put_duration_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_duration.metadata["url"],
         )
         request = _convert_request(request)
@@ -1181,11 +1181,11 @@ class PrimitiveOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         _complex_body = _models.ByteWrapper(field=field)
-        json = self._serialize.body(_complex_body, "ByteWrapper")
+        _json = self._serialize.body(_complex_body, "ByteWrapper")
 
         request = build_put_byte_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_byte.metadata["url"],
         )
         request = _convert_request(request)

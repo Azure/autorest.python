@@ -252,9 +252,9 @@ class AutoRestValidationTestOperationsMixin(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body is not None:
-            json = self._serialize.body(body, "Product")
+            _json = self._serialize.body(body, "Product")
         else:
-            json = None
+            _json = None
 
         request = build_validation_of_body_request(
             subscription_id=self._config.subscription_id,
@@ -262,7 +262,7 @@ class AutoRestValidationTestOperationsMixin(object):
             id=id,
             api_version=api_version,
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.validation_of_body.metadata["url"],
         )
         request = _convert_request(request)
@@ -352,14 +352,14 @@ class AutoRestValidationTestOperationsMixin(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body is not None:
-            json = self._serialize.body(body, "Product")
+            _json = self._serialize.body(body, "Product")
         else:
-            json = None
+            _json = None
 
         request = build_post_with_constant_in_body_request(
             constant_param=constant_param,
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.post_with_constant_in_body.metadata["url"],
         )
         request = _convert_request(request)

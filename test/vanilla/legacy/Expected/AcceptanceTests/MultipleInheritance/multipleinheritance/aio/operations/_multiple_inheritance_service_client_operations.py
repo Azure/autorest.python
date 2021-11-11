@@ -94,11 +94,11 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(horse, "Horse")
+        _json = self._serialize.body(horse, "Horse")
 
         request = build_put_horse_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_horse.metadata["url"],
         )
         request = _convert_request(request)
@@ -174,11 +174,11 @@ class MultipleInheritanceServiceClientOperationsMixin:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         _pet = _models.Pet(name=name)
-        json = self._serialize.body(_pet, "Pet")
+        _json = self._serialize.body(_pet, "Pet")
 
         request = build_put_pet_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_pet.metadata["url"],
         )
         request = _convert_request(request)
@@ -253,11 +253,11 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(feline, "Feline")
+        _json = self._serialize.body(feline, "Feline")
 
         request = build_put_feline_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_feline.metadata["url"],
         )
         request = _convert_request(request)
@@ -332,11 +332,11 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(cat, "Cat")
+        _json = self._serialize.body(cat, "Cat")
 
         request = build_put_cat_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_cat.metadata["url"],
         )
         request = _convert_request(request)
@@ -414,11 +414,11 @@ class MultipleInheritanceServiceClientOperationsMixin:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(kitten, "Kitten")
+        _json = self._serialize.body(kitten, "Kitten")
 
         request = build_put_kitten_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_kitten.metadata["url"],
         )
         request = _convert_request(request)

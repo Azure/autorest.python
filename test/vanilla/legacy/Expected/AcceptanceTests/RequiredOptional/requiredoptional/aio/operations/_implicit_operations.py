@@ -183,13 +183,13 @@ class ImplicitOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body_parameter is not None:
-            json = self._serialize.body(body_parameter, "str")
+            _json = self._serialize.body(body_parameter, "str")
         else:
-            json = None
+            _json = None
 
         request = build_put_optional_body_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_optional_body.metadata["url"],
         )
         request = _convert_request(request)
@@ -225,11 +225,11 @@ class ImplicitOperations:
 
         content_type = kwargs.pop("content_type", "application/octet-stream")  # type: Optional[str]
 
-        content = body_parameter
+        _content = body_parameter
 
         request = build_put_optional_binary_body_request(
             content_type=content_type,
-            content=content,
+            content=_content,
             template_url=self.put_optional_binary_body.metadata["url"],
         )
         request = _convert_request(request)
