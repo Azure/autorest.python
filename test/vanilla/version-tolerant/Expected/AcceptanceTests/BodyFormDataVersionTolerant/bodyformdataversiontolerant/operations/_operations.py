@@ -145,8 +145,8 @@ class FormdataOperations(object):
 
                 # multipart input template you can fill out and use as your `files` input.
                 files = {
-                    file_content: b'bytes',  # File to upload.
-                    file_name: "str"  # File name to upload. Name has to be spelled exactly as written here.
+                    "file_content": b'bytes',  # File to upload.
+                    "file_name": "str"  # File name to upload. Name has to be spelled exactly as written here.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[IO]
@@ -245,7 +245,7 @@ class FormdataOperations(object):
 
                 # multipart input template you can fill out and use as your `files` input.
                 files = {
-                    file_content: [
+                    "file_content": [
                         b'bytes'  # Files to upload.
                     ]
                 }

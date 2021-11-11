@@ -13,6 +13,7 @@
 **Bug Fixes**
 
 - Can now handle body params with names `json`, `content`, `data`, and `files` #1081
+- Improve generated templates for `data` and `files` input body params by adding quotes around the keys  #1082
 
 ### 2021-11-05 - 5.11.2
 

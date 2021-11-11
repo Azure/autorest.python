@@ -197,8 +197,8 @@ class ReservedWordsClientOperationsMixin:
 
                 # form-encoded input template you can fill out and use as your `data` input.
                 data = {
-                    data: "str",  # Pass in 'hello'.
-                    world: "str"  # Pass in 'world'.
+                    "data": "str",  # Pass in 'hello'.
+                    "world": "str"  # Pass in 'world'.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
@@ -249,8 +249,8 @@ class ReservedWordsClientOperationsMixin:
 
                 # multipart input template you can fill out and use as your `files` input.
                 files = {
-                    file_name: "str",  # File name to upload. Pass in 'my.txt'.
-                    files: b'bytes'  # Files to upload. Pass in list of input streams.
+                    "file_name": "str",  # File name to upload. Pass in 'my.txt'.
+                    "files": b'bytes'  # Files to upload. Pass in list of input streams.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
