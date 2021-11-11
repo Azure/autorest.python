@@ -261,7 +261,7 @@ def regenerate_vanilla_legacy(c, swagger_name=None, debug=False, **kwargs):
     return _prepare_mapping_and_regenerate(c, _VANILLA_SWAGGER_MAPPINGS, _SwaggerGroup.VANILLA, swagger_name, debug, **kwargs)
 
 @task
-def regenerate_llc_llc(c, swagger_name=None, debug=False, **kwargs):
+def regenerate_llc_low_level_client(c, swagger_name=None, debug=False, **kwargs):
     return _prepare_mapping_and_regenerate(
         c,
         _LLC_SWAGGER_MAPPINGS,
@@ -273,7 +273,7 @@ def regenerate_llc_llc(c, swagger_name=None, debug=False, **kwargs):
     )
 
 @task
-def regenerate_vanilla_llc(c, swagger_name=None, debug=False, **kwargs):
+def regenerate_vanilla_low_level_client(c, swagger_name=None, debug=False, **kwargs):
     return _prepare_mapping_and_regenerate(
         c,
         _VANILLA_SWAGGER_MAPPINGS,
@@ -313,7 +313,7 @@ def regenerate_azure_legacy(c, swagger_name=None, debug=False, **kwargs):
     return _prepare_mapping_and_regenerate(c, _AZURE_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE, swagger_name, debug, **kwargs)
 
 @task
-def regenerate_azure_llc(c, swagger_name=None, debug=False, **kwargs):
+def regenerate_azure_low_level_client(c, swagger_name=None, debug=False, **kwargs):
     return _prepare_mapping_and_regenerate(c, _AZURE_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE, swagger_name, debug, low_level_client=True, **kwargs)
 
 @task
@@ -325,7 +325,7 @@ def regenerate_azure_arm_legacy(c, swagger_name=None, debug=False, **kwargs):
     return _prepare_mapping_and_regenerate(c, _AZURE_ARM_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE_ARM, swagger_name, debug, **kwargs)
 
 @task
-def regenerate_azure_arm_llc(c, swagger_name=None, debug=False, **kwargs):
+def regenerate_azure_arm_low_level_client(c, swagger_name=None, debug=False, **kwargs):
     return _prepare_mapping_and_regenerate(c, _AZURE_ARM_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE_ARM, swagger_name, debug, low_level_client=True, **kwargs)
 
 @task
@@ -380,17 +380,17 @@ def regenerate(
     swagger_name=None,
     debug=False,
     version_tolerant=False,
-    llc=False,
+    low_level_client=False,
     legacy=False,
 ):
     args = [
         "version_tolerant" if version_tolerant else "",
-        "llc" if llc else "",
+        "low_level_client" if low_level_client else "",
         "legacy" if legacy else "",
     ]
     flag_to_func = {
         "legacy": regenerate_legacy,
-        "llc": regenerate_llc,
+        "low_level_client": regenerate_low_level_client,
         "version_tolerant": regenerate_version_tolerant,
     }
     gen_flags = [a for a in args if a in flag_to_func.keys()] or flag_to_func.keys()
@@ -398,11 +398,11 @@ def regenerate(
         flag_to_func[flag](c, swagger_name, debug)
 
 @task
-def regenerate_llc(c, swagger_name=None, debug=False):
-    regenerate_llc_llc(c, swagger_name, debug)
-    regenerate_vanilla_llc(c, swagger_name, debug)
-    regenerate_azure_llc(c, swagger_name, debug)
-    regenerate_azure_arm_llc(c, swagger_name, debug)
+def regenerate_low_level_client(c, swagger_name=None, debug=False):
+    regenerate_llc_low_level_client(c, swagger_name, debug)
+    regenerate_vanilla_low_level_client(c, swagger_name, debug)
+    regenerate_azure_low_level_client(c, swagger_name, debug)
+    regenerate_azure_arm_low_level_client(c, swagger_name, debug)
 
 @task
 def regenerate_version_tolerant(c, swagger_name=None, debug=False):
