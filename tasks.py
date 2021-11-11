@@ -375,10 +375,27 @@ def regenerate_legacy(c, swagger_name=None, debug=False):
         regenerate_python3_only(c, debug)
 
 @task
-def regenerate(c, swagger_name=None, debug=False):
-    regenerate_legacy(c, swagger_name, debug)
-    regenerate_llc(c, swagger_name, debug)
-    regenerate_version_tolerant(c, swagger_name, debug)
+def regenerate(
+    c,
+    swagger_name=None,
+    debug=False,
+    version_tolerant=False,
+    llc=False,
+    legacy=False,
+):
+    args = [
+        "version_tolerant" if version_tolerant else "",
+        "llc" if llc else "",
+        "legacy" if legacy else "",
+    ]
+    flag_to_func = {
+        "legacy": regenerate_legacy,
+        "llc": regenerate_llc,
+        "version_tolerant": regenerate_version_tolerant,
+    }
+    gen_flags = [a for a in args if a in flag_to_func.keys()] or flag_to_func.keys()
+    for flag in gen_flags:
+        flag_to_func[flag](c, swagger_name, debug)
 
 @task
 def regenerate_llc(c, swagger_name=None, debug=False):
