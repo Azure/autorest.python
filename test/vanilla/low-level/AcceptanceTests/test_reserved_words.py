@@ -49,7 +49,7 @@ def test_operation_group_import(send_request):
     send_request(request)
 
 def test_operation_with_content_param(send_request):
-    request = build_operation_with_content_param_request(content=b"hello, world")
+    request = build_operation_with_content_param_request(content=b"hello, world", headers={"Content-Type": "application/octet-stream"})
     send_request(request)
 
 def test_operation_with_json_param(send_request):

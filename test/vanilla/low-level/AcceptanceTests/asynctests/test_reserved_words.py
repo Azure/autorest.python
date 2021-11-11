@@ -52,7 +52,7 @@ async def test_operation_group_import(send_request):
 
 @pytest.mark.asyncio
 async def test_operation_with_content_param(send_request):
-    request = build_operation_with_content_param_request(content=b"hello, world")
+    request = build_operation_with_content_param_request(content=b"hello, world", headers={"Content-Type": "application/octet-stream"})
     await send_request(request)
 
 @pytest.mark.asyncio
