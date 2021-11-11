@@ -29,7 +29,7 @@ jobs:
           OSVmImage: "MMSUbuntu20.04"
           PythonVersion: "3.6"
           CoverageArg: ""
-        Linux_Python38:
+        Linux_Python310:
           OSName: "Linux"
           OSVmImage: "MMSUbuntu20.04"
           PythonVersion: "3.10"
