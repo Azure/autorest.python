@@ -329,13 +329,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if resource_array is not None:
-            json = resource_array
+            _json = resource_array
         else:
-            json = None
+            _json = None
 
         request = build_put_array_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_array.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -446,13 +446,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if resource_array is not None:
-            json = resource_array
+            _json = resource_array
         else:
-            json = None
+            _json = None
 
         request = build_put_wrapped_array_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_wrapped_array.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -565,13 +565,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if resource_dictionary is not None:
-            json = resource_dictionary
+            _json = resource_dictionary
         else:
-            json = None
+            _json = None
 
         request = build_put_dictionary_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_dictionary.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -727,13 +727,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if resource_complex_object is not None:
-            json = resource_complex_object
+            _json = resource_complex_object
         else:
-            json = None
+            _json = None
 
         request = build_put_resource_collection_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_resource_collection.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -898,13 +898,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if simple_body_product is not None:
-            json = simple_body_product
+            _json = simple_body_product
         else:
-            json = None
+            _json = None
 
         request = build_put_simple_product_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_simple_product.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -981,13 +981,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if simple_body_product is not None:
-            json = simple_body_product
+            _json = simple_body_product
         else:
-            json = None
+            _json = None
 
         request = build_post_flattened_simple_product_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.post_flattened_simple_product.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1067,14 +1067,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if simple_body_product is not None:
-            json = simple_body_product
+            _json = simple_body_product
         else:
-            json = None
+            _json = None
 
         request = build_put_simple_product_with_grouping_request(
             name=name,
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_simple_product_with_grouping.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

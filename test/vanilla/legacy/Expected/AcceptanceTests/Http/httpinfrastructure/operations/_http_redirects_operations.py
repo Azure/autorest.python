@@ -591,13 +591,13 @@ class HttpRedirectsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            _json = self._serialize.body(boolean_value, "bool")
         else:
-            json = None
+            _json = None
 
         request = build_put301_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put301.metadata["url"],
         )
         request = _convert_request(request)
@@ -721,13 +721,13 @@ class HttpRedirectsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            _json = self._serialize.body(boolean_value, "bool")
         else:
-            json = None
+            _json = None
 
         request = build_patch302_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.patch302.metadata["url"],
         )
         request = _convert_request(request)
@@ -773,13 +773,13 @@ class HttpRedirectsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            _json = self._serialize.body(boolean_value, "bool")
         else:
-            json = None
+            _json = None
 
         request = build_post303_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.post303.metadata["url"],
         )
         request = _convert_request(request)
@@ -942,13 +942,13 @@ class HttpRedirectsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            _json = self._serialize.body(boolean_value, "bool")
         else:
-            json = None
+            _json = None
 
         request = build_put307_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put307.metadata["url"],
         )
         request = _convert_request(request)
@@ -994,13 +994,13 @@ class HttpRedirectsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            _json = self._serialize.body(boolean_value, "bool")
         else:
-            json = None
+            _json = None
 
         request = build_patch307_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.patch307.metadata["url"],
         )
         request = _convert_request(request)
@@ -1046,13 +1046,13 @@ class HttpRedirectsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            _json = self._serialize.body(boolean_value, "bool")
         else:
-            json = None
+            _json = None
 
         request = build_post307_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.post307.metadata["url"],
         )
         request = _convert_request(request)
@@ -1098,13 +1098,13 @@ class HttpRedirectsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            _json = self._serialize.body(boolean_value, "bool")
         else:
-            json = None
+            _json = None
 
         request = build_delete307_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.delete307.metadata["url"],
         )
         request = _convert_request(request)

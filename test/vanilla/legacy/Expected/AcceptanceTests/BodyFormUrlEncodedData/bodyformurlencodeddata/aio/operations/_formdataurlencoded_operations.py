@@ -93,7 +93,7 @@ class FormdataurlencodedOperations:
         content_type = kwargs.pop("content_type", "application/x-www-form-urlencoded")  # type: Optional[str]
 
         # Construct form data
-        data = {
+        _data = {
             "pet_type": pet_type,
             "pet_food": pet_food,
             "pet_age": pet_age,
@@ -104,7 +104,7 @@ class FormdataurlencodedOperations:
         request = build_update_pet_with_form_request(
             pet_id=pet_id,
             content_type=content_type,
-            data=data,
+            data=_data,
             template_url=self.update_pet_with_form.metadata["url"],
         )
         request = _convert_request(request)
@@ -148,7 +148,7 @@ class FormdataurlencodedOperations:
         grant_type = kwargs.pop("grant_type", "access_token")  # type: str
 
         # Construct form data
-        data = {
+        _data = {
             "grant_type": grant_type,
             "service": service,
             "access_token": access_token,
@@ -156,7 +156,7 @@ class FormdataurlencodedOperations:
 
         request = build_partial_constant_body_request(
             content_type=content_type,
-            data=data,
+            data=_data,
             template_url=self.partial_constant_body.metadata["url"],
         )
         request = _convert_request(request)

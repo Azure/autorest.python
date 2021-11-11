@@ -162,13 +162,13 @@ class IntOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if input is not None:
-            json = input
+            _json = input
         else:
-            json = None
+            _json = None
 
         request = build_int_put_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -278,13 +278,13 @@ class FloatOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if input is not None:
-            json = input
+            _json = input
         else:
-            json = None
+            _json = None
 
         request = build_float_put_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

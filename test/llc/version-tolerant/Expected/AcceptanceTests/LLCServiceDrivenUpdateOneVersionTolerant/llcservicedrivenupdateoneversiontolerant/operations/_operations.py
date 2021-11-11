@@ -212,12 +212,12 @@ class ParamsOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = None
-        content = None
+        _json = None
+        _content = None
         if content_type.split(";")[0] in ["application/json"]:
-            json = parameter
+            _json = parameter
         elif content_type.split(";")[0] in ["image/jpeg"]:
-            content = parameter
+            _content = parameter
         else:
             raise ValueError(
                 "The content_type '{}' is not one of the allowed values: "
@@ -226,8 +226,8 @@ class ParamsOperations(object):
 
         request = build_params_post_parameters_request(
             content_type=content_type,
-            json=json,
-            content=content,
+            json=_json,
+            content=_content,
             template_url=self.post_parameters.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

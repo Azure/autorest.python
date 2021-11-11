@@ -333,11 +333,11 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = horse
+        _json = horse
 
         request = build_put_horse_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_horse.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -437,11 +437,11 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = pet
+        _json = pet
 
         request = build_put_pet_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_pet.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -543,11 +543,11 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = feline
+        _json = feline
 
         request = build_put_feline_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_feline.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -653,11 +653,11 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = cat
+        _json = cat
 
         request = build_put_cat_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_cat.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -768,11 +768,11 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = kitten
+        _json = kitten
 
         request = build_put_kitten_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_kitten.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

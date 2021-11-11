@@ -485,7 +485,7 @@ class _RequestBuilderBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=
         return "json"
 
     def _has_json_example_template(self, builder: BuilderType) -> bool:
-        return False
+        return "json" in builder.parameters.body_kwarg_names
 
     def _has_files_example_template(self, builder: BuilderType) -> bool:
         return "files" in builder.parameters.body_kwarg_names
@@ -790,7 +790,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
             if self.code_model.options["version_tolerant"]:
                 body_params_to_initialize = [p for p in body_params_to_initialize if p != "files"]
             for k in body_params_to_initialize:
-                retval.append(f"{k} = None")
+                retval.append(f"_{k} = None")
         if builder.parameters.grouped:
             # request builders don't allow grouped parameters, so we group them before making the call
             retval.extend(_serialize_grouped_body(builder))

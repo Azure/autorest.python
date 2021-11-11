@@ -207,7 +207,7 @@ class RequestBuilderParameterList(ParameterList):
         if not self._json_body:
             try:
                 json_param = next(
-                    b for b in self.body if b.serialized_name not in _REQUEST_BUILDER_BODY_NAMES and
+                    b for b in self.body if not b.is_body_kwarg and
                     b.is_json_parameter
                 )
                 self._json_body = json_param.schema
@@ -239,9 +239,19 @@ class RequestBuilderParameterList(ParameterList):
         seen_content_type = False
 
         for parameter in parameters:
+
             if (
                 parameter.location == ParameterLocation.Body and
+                (parameter.is_data_input or parameter.is_multipart) and
                 not parameter.is_body_kwarg
+            ):
+                # if i am a part of files or data, and i'm not the files or
+                # data kwarg, ignore me
+                continue
+            if (
+                parameter.location == ParameterLocation.Body and
+                not parameter.is_body_kwarg and
+                not parameter.constant
             ):
                 # we keep the original body param from the swagger for documentation purposes
                 # we don't want it in the method signature

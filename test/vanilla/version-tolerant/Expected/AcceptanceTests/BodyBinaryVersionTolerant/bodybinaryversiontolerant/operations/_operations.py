@@ -117,11 +117,11 @@ class UploadOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = file_param
+        _json = file_param
 
         request = build_upload_file_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.file.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -159,11 +159,11 @@ class UploadOperations(object):
 
         content_type = kwargs.pop("content_type", "application/octet-stream")  # type: Optional[str]
 
-        content = file_param
+        _content = file_param
 
         request = build_upload_binary_request(
             content_type=content_type,
-            content=content,
+            content=_content,
             template_url=self.binary.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

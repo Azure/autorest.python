@@ -698,11 +698,11 @@ class DatetimeOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = datetime_body
+        _json = datetime_body
 
         request = build_datetime_put_utc_max_date_time_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_utc_max_date_time.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -743,11 +743,11 @@ class DatetimeOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = datetime_body
+        _json = datetime_body
 
         request = build_datetime_put_utc_max_date_time7_digits_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_utc_max_date_time7_digits.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -905,11 +905,11 @@ class DatetimeOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = datetime_body
+        _json = datetime_body
 
         request = build_datetime_put_local_positive_offset_max_date_time_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_local_positive_offset_max_date_time.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1025,11 +1025,11 @@ class DatetimeOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = datetime_body
+        _json = datetime_body
 
         request = build_datetime_put_local_negative_offset_max_date_time_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_local_negative_offset_max_date_time.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1145,11 +1145,11 @@ class DatetimeOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = datetime_body
+        _json = datetime_body
 
         request = build_datetime_put_utc_min_date_time_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_utc_min_date_time.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1226,11 +1226,11 @@ class DatetimeOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = datetime_body
+        _json = datetime_body
 
         request = build_datetime_put_local_positive_offset_min_date_time_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_local_positive_offset_min_date_time.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1307,11 +1307,11 @@ class DatetimeOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = datetime_body
+        _json = datetime_body
 
         request = build_datetime_put_local_negative_offset_min_date_time_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_local_negative_offset_min_date_time.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

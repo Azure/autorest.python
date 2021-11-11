@@ -107,13 +107,13 @@ class OperationGroupOneOperations(object):
         content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
         if parameter_one is not None:
-            json = self._serialize.body(parameter_one, 'ModelThree')
+            _json = self._serialize.body(parameter_one, 'ModelThree')
         else:
-            json = None
+            _json = None
 
         request = build_test_two_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.test_two.metadata['url'],
         )
         request = _convert_request(request)

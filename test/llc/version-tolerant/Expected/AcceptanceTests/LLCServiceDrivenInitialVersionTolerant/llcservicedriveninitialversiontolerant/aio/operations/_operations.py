@@ -110,11 +110,11 @@ class ParamsOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = parameter
+        _json = parameter
 
         request = build_params_post_parameters_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.post_parameters.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

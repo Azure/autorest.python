@@ -757,11 +757,11 @@ class NumberOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = number_body
+        _json = number_body
 
         request = build_number_put_big_float_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_big_float.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -838,11 +838,11 @@ class NumberOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = number_body
+        _json = number_body
 
         request = build_number_put_big_double_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_big_double.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1077,11 +1077,11 @@ class NumberOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = number_body
+        _json = number_body
 
         request = build_number_put_big_decimal_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_big_decimal.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1316,11 +1316,11 @@ class NumberOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = number_body
+        _json = number_body
 
         request = build_number_put_small_float_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_small_float.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1397,11 +1397,11 @@ class NumberOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = number_body
+        _json = number_body
 
         request = build_number_put_small_double_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_small_double.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -1478,11 +1478,11 @@ class NumberOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = number_body
+        _json = number_body
 
         request = build_number_put_small_decimal_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_small_decimal.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

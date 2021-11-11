@@ -111,11 +111,11 @@ class ArrayOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         _complex_body = _models.ArrayWrapper(array=array)
-        json = self._serialize.body(_complex_body, "ArrayWrapper")
+        _json = self._serialize.body(_complex_body, "ArrayWrapper")
 
         request = build_put_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_valid.metadata["url"],
         )
         request = _convert_request(request)
@@ -188,11 +188,11 @@ class ArrayOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         _complex_body = _models.ArrayWrapper(array=array)
-        json = self._serialize.body(_complex_body, "ArrayWrapper")
+        _json = self._serialize.body(_complex_body, "ArrayWrapper")
 
         request = build_put_empty_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_empty.metadata["url"],
         )
         request = _convert_request(request)
