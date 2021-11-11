@@ -57,7 +57,7 @@ def _json_dumps_template(template_representation: Any) -> Any:
 def _serialize_files_or_data_dict(multipart_parameters: List[Parameter]) -> str:
     # only for template use
     template = {
-        param.serialized_name: param.schema.get_files_and_data_template_representation(
+        f'"{param.serialized_name}"': param.schema.get_files_and_data_template_representation(
             optional=not param.required,
             description=param.description,
         )
