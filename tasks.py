@@ -382,20 +382,52 @@ def regenerate(
     version_tolerant=False,
     low_level_client=False,
     legacy=False,
+    vanilla=False,
+    azure=False,
+    azure_arm=False,
+    llc=False
 ):
-    args = [
+    if legacy and llc:
+        raise ValueError("Can not specify legacy flag and llc flag at the same time.")
+    generators = [
         "version_tolerant" if version_tolerant else "",
         "low_level_client" if low_level_client else "",
         "legacy" if legacy else "",
     ]
-    flag_to_func = {
-        "legacy": regenerate_legacy,
-        "low_level_client": regenerate_low_level_client,
-        "version_tolerant": regenerate_version_tolerant,
-    }
-    gen_flags = [a for a in args if a in flag_to_func.keys()] or flag_to_func.keys()
-    for flag in gen_flags:
-        flag_to_func[flag](c, swagger_name, debug)
+    generators = [g for g in generators if g] or ["legacy", "low_level_client", "version_tolerant"]
+    folders = [
+        "vanilla" if vanilla else "",
+        "azure" if azure else "",
+        "azure_arm" if azure_arm else "",
+        "llc" if llc else "",
+    ]
+    folder_flags = [f for f in folders if f]
+    if not folder_flags:
+        mapping = {
+            "legacy": regenerate_legacy,
+            "low_level_client": regenerate_low_level_client,
+            "version_tolerant": regenerate_version_tolerant,
+        }
+        funcs = [mapping[g] for g in generators if g in mapping.keys()]
+    else:
+        mapping = {
+            ("legacy", "vanilla"): regenerate_vanilla_legacy,
+            ("legacy", "azure"): regenerate_azure_legacy,
+            ("legacy", "azure_arm"): regenerate_azure_arm_legacy,
+            ("version_tolerant", "vanilla"): regenerate_vanilla_version_tolerant,
+            ("version_tolerant", "azure"): regenerate_azure_version_tolerant,
+            ("version_tolerant", "azure_arm"): regenerate_azure_arm_version_tolerant,
+            ("version_tolerant", "llc"): regenerate_llc_version_tolerant,
+            ("low_level_client", "vanilla"): regenerate_vanilla_low_level_client,
+            ("low_level_client", "azure"): regenerate_azure_low_level_client,
+            ("low_level_client", "azure_arm"): regenerate_azure_arm_low_level_client,
+            ("low_level_client", "llc"): regenerate_llc_low_level_client,
+        }
+        funcs = [
+            v for k, v in mapping.items() if k in itertools.product(generators, folder_flags)
+        ]
+    for func in funcs:
+        func(c, swagger_name, debug)
 
 @task
 def regenerate_low_level_client(c, swagger_name=None, debug=False):
