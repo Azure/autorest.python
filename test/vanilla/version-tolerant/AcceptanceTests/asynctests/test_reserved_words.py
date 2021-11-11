@@ -34,3 +34,22 @@ async def client():
 @pytest.mark.asyncio
 async def test_operation_group_import(client):
     await client.import_operations.operation_one(parameter1="foo")
+
+@pytest.mark.asyncio
+async def test_operation_with_content_param(client):
+    await client.operation_with_content_param(b"hello, world")
+
+@pytest.mark.asyncio
+async def test_operation_with_json_param(client):
+    await client.operation_with_json_param({"hello": "world"})
+
+@pytest.mark.asyncio
+async def test_operation_with_data_param(client):
+    await client.operation_with_data_param({"data": "hello", "world": "world"})
+
+@pytest.mark.asyncio
+async def test_operation_with_files_param(client):
+    await client.operation_with_files_param(files = {
+        "file_name": "my.txt",
+        "files": b'bytes'
+    })

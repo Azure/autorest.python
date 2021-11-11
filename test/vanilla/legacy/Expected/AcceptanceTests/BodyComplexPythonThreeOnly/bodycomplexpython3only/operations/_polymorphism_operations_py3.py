@@ -268,11 +268,11 @@ class PolymorphismOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(complex_body, "Fish")
+        _json = self._serialize.body(complex_body, "Fish")
 
         request = build_put_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_valid.metadata["url"],
         )
         request = _convert_request(request)
@@ -458,11 +458,11 @@ class PolymorphismOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(complex_body, "Salmon")
+        _json = self._serialize.body(complex_body, "Salmon")
 
         request = build_put_complicated_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_complicated.metadata["url"],
         )
         request = _convert_request(request)
@@ -498,11 +498,11 @@ class PolymorphismOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(complex_body, "Salmon")
+        _json = self._serialize.body(complex_body, "Salmon")
 
         request = build_put_missing_discriminator_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_missing_discriminator.metadata["url"],
         )
         request = _convert_request(request)
@@ -569,11 +569,11 @@ class PolymorphismOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(complex_body, "Fish")
+        _json = self._serialize.body(complex_body, "Fish")
 
         request = build_put_valid_missing_required_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_valid_missing_required.metadata["url"],
         )
         request = _convert_request(request)

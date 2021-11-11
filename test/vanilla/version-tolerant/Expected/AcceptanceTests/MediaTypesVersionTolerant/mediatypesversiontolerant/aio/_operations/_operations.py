@@ -63,13 +63,13 @@ class MediaTypesClientOperationsMixin:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = None
-        content = None
+        _json = None
+        _content = None
         if content_type.split(";")[0] in ["application/json"]:
             if input is not None:
-                json = input
+                _json = input
         elif content_type.split(";")[0] in ["application/pdf", "image/jpeg", "image/png", "image/tiff"]:
-            content = input
+            _content = input
         else:
             raise ValueError(
                 "The content_type '{}' is not one of the allowed values: "
@@ -78,8 +78,8 @@ class MediaTypesClientOperationsMixin:
 
         request = build_analyze_body_request(
             content_type=content_type,
-            json=json,
-            content=content,
+            json=_json,
+            content=_content,
             template_url=self.analyze_body.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -131,13 +131,13 @@ class MediaTypesClientOperationsMixin:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = None
-        content = None
+        _json = None
+        _content = None
         if content_type.split(";")[0] in ["application/json"]:
             if input is not None:
-                json = input
+                _json = input
         elif content_type.split(";")[0] in ["application/pdf", "image/jpeg", "image/png", "image/tiff"]:
-            content = input
+            _content = input
         else:
             raise ValueError(
                 "The content_type '{}' is not one of the allowed values: "
@@ -146,8 +146,8 @@ class MediaTypesClientOperationsMixin:
 
         request = build_analyze_body_no_accept_header_request(
             content_type=content_type,
-            json=json,
-            content=content,
+            json=_json,
+            content=_content,
             template_url=self.analyze_body_no_accept_header.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -180,11 +180,11 @@ class MediaTypesClientOperationsMixin:
 
         content_type = kwargs.pop("content_type", "text/plain")  # type: Optional[str]
 
-        content = input
+        _content = input
 
         request = build_content_type_with_encoding_request(
             content_type=content_type,
-            content=content,
+            content=_content,
             template_url=self.content_type_with_encoding.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -225,12 +225,12 @@ class MediaTypesClientOperationsMixin:
 
         content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
-        json = None
-        content = None
+        _json = None
+        _content = None
         if content_type.split(";")[0] in ["application/json"]:
-            json = message
+            _json = message
         elif content_type.split(";")[0] in ["application/octet-stream"]:
-            content = message
+            _content = message
         else:
             raise ValueError(
                 "The content_type '{}' is not one of the allowed values: "
@@ -239,8 +239,8 @@ class MediaTypesClientOperationsMixin:
 
         request = build_binary_body_with_two_content_types_request(
             content_type=content_type,
-            json=json,
-            content=content,
+            json=_json,
+            content=_content,
             template_url=self.binary_body_with_two_content_types.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -285,12 +285,12 @@ class MediaTypesClientOperationsMixin:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = None
-        content = None
+        _json = None
+        _content = None
         if content_type.split(";")[0] in ["application/json"]:
-            json = message
+            _json = message
         elif content_type.split(";")[0] in ["application/octet-stream", "text/plain"]:
-            content = message
+            _content = message
         else:
             raise ValueError(
                 "The content_type '{}' is not one of the allowed values: "
@@ -299,8 +299,8 @@ class MediaTypesClientOperationsMixin:
 
         request = build_binary_body_with_three_content_types_request(
             content_type=content_type,
-            json=json,
-            content=content,
+            json=_json,
+            content=_content,
             template_url=self.binary_body_with_three_content_types.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
@@ -342,12 +342,12 @@ class MediaTypesClientOperationsMixin:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = None
-        content = None
+        _json = None
+        _content = None
         if content_type.split(";")[0] in ["application/json"]:
-            json = message
+            _json = message
         elif content_type.split(";")[0] in ["text/plain"]:
-            content = message
+            _content = message
         else:
             raise ValueError(
                 "The content_type '{}' is not one of the allowed values: "
@@ -356,8 +356,8 @@ class MediaTypesClientOperationsMixin:
 
         request = build_put_text_and_json_body_request(
             content_type=content_type,
-            json=json,
-            content=content,
+            json=_json,
+            content=_content,
             template_url=self.put_text_and_json_body.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

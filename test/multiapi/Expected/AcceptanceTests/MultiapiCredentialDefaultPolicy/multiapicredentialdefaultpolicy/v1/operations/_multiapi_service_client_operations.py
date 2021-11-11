@@ -213,13 +213,13 @@ class MultiapiServiceClientOperationsMixin(object):
         content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, 'Product')
+            _json = self._serialize.body(product, 'Product')
         else:
-            json = None
+            _json = None
 
         request = build_test_lro_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._test_lro_initial.metadata['url'],
         )
         request = _convert_request(request)

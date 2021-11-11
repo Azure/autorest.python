@@ -138,11 +138,11 @@ class XmlOperations:
 
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
-        content = self._serialize.body(model, "RootWithRefAndNoMeta", is_xml=True)
+        _content = self._serialize.body(model, "RootWithRefAndNoMeta", is_xml=True)
 
         request = build_put_complex_type_ref_no_meta_request(
             content_type=content_type,
-            content=content,
+            content=_content,
             template_url=self.put_complex_type_ref_no_meta.metadata["url"],
         )
         request = _convert_request(request)
@@ -212,11 +212,11 @@ class XmlOperations:
 
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
-        content = self._serialize.body(model, "RootWithRefAndMeta", is_xml=True)
+        _content = self._serialize.body(model, "RootWithRefAndMeta", is_xml=True)
 
         request = build_put_complex_type_ref_with_meta_request(
             content_type=content_type,
-            content=content,
+            content=_content,
             template_url=self.put_complex_type_ref_with_meta.metadata["url"],
         )
         request = _convert_request(request)
@@ -287,11 +287,11 @@ class XmlOperations:
 
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
-        content = self._serialize.body(slideshow, "Slideshow", is_xml=True)
+        _content = self._serialize.body(slideshow, "Slideshow", is_xml=True)
 
         request = build_put_simple_request(
             content_type=content_type,
-            content=content,
+            content=_content,
             template_url=self.put_simple.metadata["url"],
         )
         request = _convert_request(request)
@@ -362,11 +362,11 @@ class XmlOperations:
 
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
-        content = self._serialize.body(wrapped_lists, "AppleBarrel", is_xml=True)
+        _content = self._serialize.body(wrapped_lists, "AppleBarrel", is_xml=True)
 
         request = build_put_wrapped_lists_request(
             content_type=content_type,
-            content=content,
+            content=_content,
             template_url=self.put_wrapped_lists.metadata["url"],
         )
         request = _convert_request(request)
@@ -471,11 +471,11 @@ class XmlOperations:
 
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
-        content = self._serialize.body(slideshow, "Slideshow", is_xml=True)
+        _content = self._serialize.body(slideshow, "Slideshow", is_xml=True)
 
         request = build_put_empty_list_request(
             content_type=content_type,
-            content=content,
+            content=_content,
             template_url=self.put_empty_list.metadata["url"],
         )
         request = _convert_request(request)
@@ -545,11 +545,11 @@ class XmlOperations:
 
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
-        content = self._serialize.body(apple_barrel, "AppleBarrel", is_xml=True)
+        _content = self._serialize.body(apple_barrel, "AppleBarrel", is_xml=True)
 
         request = build_put_empty_wrapped_lists_request(
             content_type=content_type,
-            content=content,
+            content=_content,
             template_url=self.put_empty_wrapped_lists.metadata["url"],
         )
         request = _convert_request(request)
@@ -620,11 +620,11 @@ class XmlOperations:
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
-        content = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
+        _content = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
 
         request = build_put_root_list_request(
             content_type=content_type,
-            content=content,
+            content=_content,
             template_url=self.put_root_list.metadata["url"],
         )
         request = _convert_request(request)
@@ -695,11 +695,11 @@ class XmlOperations:
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
-        content = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
+        _content = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
 
         request = build_put_root_list_single_item_request(
             content_type=content_type,
-            content=content,
+            content=_content,
             template_url=self.put_root_list_single_item.metadata["url"],
         )
         request = _convert_request(request)
@@ -770,11 +770,11 @@ class XmlOperations:
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
-        content = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
+        _content = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
 
         request = build_put_empty_root_list_request(
             content_type=content_type,
-            content=content,
+            content=_content,
             template_url=self.put_empty_root_list.metadata["url"],
         )
         request = _convert_request(request)
@@ -844,11 +844,11 @@ class XmlOperations:
 
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
-        content = self._serialize.body(banana, "Banana", is_xml=True)
+        _content = self._serialize.body(banana, "Banana", is_xml=True)
 
         request = build_put_empty_child_element_request(
             content_type=content_type,
-            content=content,
+            content=_content,
             template_url=self.put_empty_child_element.metadata["url"],
         )
         request = _convert_request(request)
@@ -978,13 +978,13 @@ class XmlOperations:
         restype = kwargs.pop("restype", "service")  # type: str
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
-        content = self._serialize.body(properties, "StorageServiceProperties", is_xml=True)
+        _content = self._serialize.body(properties, "StorageServiceProperties", is_xml=True)
 
         request = build_put_service_properties_request(
             comp=comp,
             restype=restype,
             content_type=content_type,
-            content=content,
+            content=_content,
             template_url=self.put_service_properties.metadata["url"],
         )
         request = _convert_request(request)
@@ -1074,7 +1074,7 @@ class XmlOperations:
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
         serialization_ctxt = {"xml": {"name": "SignedIdentifiers", "wrapped": True, "itemsName": "SignedIdentifier"}}
-        content = self._serialize.body(
+        _content = self._serialize.body(
             properties, "[SignedIdentifier]", is_xml=True, serialization_ctxt=serialization_ctxt
         )
 
@@ -1082,7 +1082,7 @@ class XmlOperations:
             comp=comp,
             restype=restype,
             content_type=content_type,
-            content=content,
+            content=_content,
             template_url=self.put_acls.metadata["url"],
         )
         request = _convert_request(request)
@@ -1165,11 +1165,11 @@ class XmlOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         _properties = _models.JSONInput(id=id)
-        json = self._serialize.body(_properties, "JSONInput")
+        _json = self._serialize.body(_properties, "JSONInput")
 
         request = build_json_input_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.json_input.metadata["url"],
         )
         request = _convert_request(request)
@@ -1312,11 +1312,11 @@ class XmlOperations:
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
         _slideshow = _models.ModelWithByteProperty(bytes=bytes)
-        content = self._serialize.body(_slideshow, "ModelWithByteProperty", is_xml=True)
+        _content = self._serialize.body(_slideshow, "ModelWithByteProperty", is_xml=True)
 
         request = build_put_binary_request(
             content_type=content_type,
-            content=content,
+            content=_content,
             template_url=self.put_binary.metadata["url"],
         )
         request = _convert_request(request)
@@ -1389,11 +1389,11 @@ class XmlOperations:
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
         _model = _models.ModelWithUrlProperty(url=url)
-        content = self._serialize.body(_model, "ModelWithUrlProperty", is_xml=True)
+        _content = self._serialize.body(_model, "ModelWithUrlProperty", is_xml=True)
 
         request = build_put_uri_request(
             content_type=content_type,
-            content=content,
+            content=_content,
             template_url=self.put_uri.metadata["url"],
         )
         request = _convert_request(request)

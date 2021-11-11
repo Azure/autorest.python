@@ -13,7 +13,7 @@ from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
 
 from ._configuration import ReservedWordsClientConfiguration
-from .operations import ImportOperations
+from .operations import ImportOperations, ReservedWordsClientOperationsMixin
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -22,7 +22,7 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest, HttpResponse
 
 
-class ReservedWordsClient(object):
+class ReservedWordsClient(ReservedWordsClientOperationsMixin):
     """Swagger that has operation groups etc. with reserved words.
 
     :ivar import_operations: ImportOperations operations

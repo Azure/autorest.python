@@ -222,11 +222,11 @@ class DateOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(date_body, "date")
+        _json = self._serialize.body(date_body, "date")
 
         request = build_put_max_date_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_max_date.metadata["url"],
         )
         request = _convert_request(request)
@@ -298,11 +298,11 @@ class DateOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(date_body, "date")
+        _json = self._serialize.body(date_body, "date")
 
         request = build_put_min_date_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_min_date.metadata["url"],
         )
         request = _convert_request(request)

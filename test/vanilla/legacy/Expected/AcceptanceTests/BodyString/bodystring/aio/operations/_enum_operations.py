@@ -111,11 +111,11 @@ class EnumOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(string_body, "str")
+        _json = self._serialize.body(string_body, "str")
 
         request = build_put_not_expandable_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_not_expandable.metadata["url"],
         )
         request = _convert_request(request)
@@ -187,11 +187,11 @@ class EnumOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(enum_string_body, "str")
+        _json = self._serialize.body(enum_string_body, "str")
 
         request = build_put_referenced_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_referenced.metadata["url"],
         )
         request = _convert_request(request)
@@ -268,11 +268,11 @@ class EnumOperations:
         color_constant = kwargs.pop("color_constant", "green-color")  # type: str
 
         _enum_string_body = _models.RefColorConstant(color_constant=color_constant, field1=field1)
-        json = self._serialize.body(_enum_string_body, "RefColorConstant")
+        _json = self._serialize.body(_enum_string_body, "RefColorConstant")
 
         request = build_put_referenced_constant_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_referenced_constant.metadata["url"],
         )
         request = _convert_request(request)

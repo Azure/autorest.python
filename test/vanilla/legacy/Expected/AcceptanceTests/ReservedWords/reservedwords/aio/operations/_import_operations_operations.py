@@ -21,6 +21,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
+from ... import models as _models
 from ..._vendor import _convert_request
 from ...operations._import_operations_operations import build_operation_one_request
 
@@ -34,11 +35,15 @@ class ImportOperations:
     You should not instantiate this class directly. Instead, you should create a Client instance that
     instantiates it for you and attaches it as an attribute.
 
+    :ivar models: Alias to model classes used in this operation group.
+    :type models: ~reservedwords.models
     :param client: Client for service requests.
     :param config: Configuration of service client.
     :param serializer: An object model serializer.
     :param deserializer: An object model deserializer.
     """
+
+    models = _models
 
     def __init__(self, client, config, serializer, deserializer) -> None:
         self._client = client

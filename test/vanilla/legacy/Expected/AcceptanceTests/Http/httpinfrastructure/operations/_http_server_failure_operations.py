@@ -239,13 +239,13 @@ class HttpServerFailureOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            _json = self._serialize.body(boolean_value, "bool")
         else:
-            json = None
+            _json = None
 
         request = build_post505_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.post505.metadata["url"],
         )
         request = _convert_request(request)
@@ -287,13 +287,13 @@ class HttpServerFailureOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            _json = self._serialize.body(boolean_value, "bool")
         else:
-            json = None
+            _json = None
 
         request = build_delete505_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.delete505.metadata["url"],
         )
         request = _convert_request(request)

@@ -115,11 +115,11 @@ class FormdataOperations:
 
         content_type = kwargs.pop("content_type", "application/octet-stream")  # type: Optional[str]
 
-        content = file_content
+        _content = file_content
 
         request = build_formdata_upload_file_via_body_request(
             content_type=content_type,
-            content=content,
+            content=_content,
             template_url=self.upload_file_via_body.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

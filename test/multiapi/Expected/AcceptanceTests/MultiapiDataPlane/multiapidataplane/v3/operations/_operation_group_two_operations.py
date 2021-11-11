@@ -134,13 +134,13 @@ class OperationGroupTwoOperations(object):
 
         content_type = kwargs.pop('content_type', "application/json")  # type: Optional[Union[str, "_models.ContentType"]]
 
-        json = None
-        content = None
+        _json = None
+        _content = None
         if content_type.split(";")[0] in ['application/json']:
             if input is not None:
-                json = self._serialize.body(input, 'SourcePath')
+                _json = self._serialize.body(input, 'SourcePath')
         elif content_type.split(";")[0] in ['application/pdf', 'image/jpeg', 'image/png', 'image/tiff']:
-            content = input
+            _content = input
         else:
             raise ValueError(
                 "The content_type '{}' is not one of the allowed values: "
@@ -149,8 +149,8 @@ class OperationGroupTwoOperations(object):
 
         request = build_test_four_request(
             content_type=content_type,
-            json=json,
-            content=content,
+            json=_json,
+            content=_content,
             template_url=self.test_four.metadata['url'],
         )
         request = _convert_request(request)

@@ -121,13 +121,13 @@ class AvailabilitySetsOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = tags
+        _json = tags
 
         request = build_availability_sets_update_request(
             resource_group_name=resource_group_name,
             avset=avset,
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.update.metadata["url"],
         )
         request.url = self._client.format_url(request.url)

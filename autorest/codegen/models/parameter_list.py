@@ -172,11 +172,15 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
 
     @property
     def multipart(self) -> List[Parameter]:
-        return self.get_from_predicate(lambda parameter: parameter.is_multipart)
+        return self.get_from_predicate(
+            lambda parameter: parameter.is_multipart and not parameter.is_body_kwarg
+        )
 
     @property
     def data_inputs(self) -> List[Parameter]:
-        return self.get_from_predicate(lambda parameter: parameter.is_data_input)
+        return self.get_from_predicate(
+            lambda parameter: parameter.is_data_input and not parameter.is_body_kwarg
+        )
 
     def _filter_out_multiple_content_type(self, kwarg_params):
         """We don't want multiple content type kwargs in the method signature"""
