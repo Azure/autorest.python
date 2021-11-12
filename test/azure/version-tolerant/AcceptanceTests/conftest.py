@@ -63,12 +63,6 @@ def testserver():
     yield
     terminate_server_process(server)
 
-# Ignore collection of async tests for Python 2
-collect_ignore = []
-if sys.version_info < (3,5):
-    collect_ignore.append("asynctests")
-
-
 class CookiePolicy(SansIOHTTPPolicy):
     def __init__(self, *args, **kwargs):
         self._current_cookie = None

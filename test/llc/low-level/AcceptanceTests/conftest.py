@@ -60,8 +60,3 @@ def base_send_request():
         response.raise_for_status()
         return response
     return send_request
-
-# Ignore collection of async tests for Python 2
-collect_ignore = []
-if sys.version_info < (3,5):
-    collect_ignore.append("asynctests")
