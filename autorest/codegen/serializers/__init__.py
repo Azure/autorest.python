@@ -3,28 +3,30 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import List
+from typing import List, Optional
 from pathlib import Path
 from jinja2 import PackageLoader, Environment
 from autorest.codegen.models.operation_group import OperationGroup
 
 from ...jsonrpc import AutorestAPI
-from ..models import CodeModel
-from ..models.request_builder import RequestBuilder
+from ..models import (
+    CodeModel,
+    OperationGroup,
+    RequestBuilder,
+)
 from .enum_serializer import EnumSerializer
 from .general_serializer import GeneralSerializer
 from .model_generic_serializer import ModelGenericSerializer
 from .model_init_serializer import ModelInitSerializer
 from .model_python3_serializer import ModelPython3Serializer
 from .operations_init_serializer import OperationsInitSerializer
-from .operation_group_serializer import OperationGroupSerializer
+from .operation_groups_serializer import OperationGroupsSerializer
 from .metadata_serializer import MetadataSerializer
 from .rest_serializer import RestPython3Serializer, RestGenericSerializer, RestSerializer
 
 __all__ = [
     "JinjaSerializer",
 ]
-
 
 class JinjaSerializer:
     def __init__(self, autorestapi: AutorestAPI) -> None:
@@ -144,36 +146,49 @@ class JinjaSerializer:
             ).serialize_init()
         )
 
-    def _serialize_and_write_operations_folder_process(
+    def _serialize_and_write_operations_file(
         self,
         code_model: CodeModel,
         env: Environment,
         namespace_path: Path,
-        operation_groups: List[OperationGroup],
-        filename: str
+        operation_group: Optional[OperationGroup] = None
     ) -> None:
-        # write sync operation group and operation files
-        if not code_model.options['python_3_only'] and not code_model.options["add_python_3_operation_files"]:
-            operation_group_serializer = OperationGroupSerializer(
+        filename = operation_group.filename if operation_group else "_operations"
+        # write first sync file
+        operation_group_serializer = OperationGroupsSerializer(
+            code_model=code_model,
+            env=env,
+            async_mode=False,
+            is_python_3_file=code_model.options['python_3_only'],
+            operation_group=operation_group
+        )
+        self._autorestapi.write_file(
+            namespace_path / Path(code_model.operations_folder_name) / Path(f"{filename}.py"),
+            operation_group_serializer.serialize(),
+        )
+
+        if not code_model.options['python_3_only'] and code_model.options["add_python_3_operation_files"]:
+            # write typed second file if not python 3 only
+            operation_group_serializer = OperationGroupsSerializer(
                 code_model=code_model,
                 env=env,
-                operation_groups=operation_groups,
                 async_mode=False,
-                is_python_3_file=False,
+                is_python_3_file=True,
+
             )
             self._autorestapi.write_file(
-                namespace_path / Path(code_model.operations_folder_name) / Path(f"{filename}.py"),
+                namespace_path / Path(code_model.operations_folder_name) / Path(f"{filename}_py3.py"),
                 operation_group_serializer.serialize(),
             )
 
         if not code_model.options["no_async"]:
             # write async operation group and operation files
-            operation_group_async_serializer = OperationGroupSerializer(
+            operation_group_async_serializer = OperationGroupsSerializer(
                 code_model=code_model,
                 env=env,
-                operation_groups=operation_groups,
                 async_mode=True,
                 is_python_3_file=True,
+                operation_group=operation_group
             )
             self._autorestapi.write_file(
                 (
@@ -183,20 +198,6 @@ class JinjaSerializer:
                     / Path(f"{filename}.py")
                 ),
                 operation_group_async_serializer.serialize(),
-            )
-
-        if code_model.options["add_python_3_operation_files"]:
-            # write typed sync operation files
-            operation_group_serializer = OperationGroupSerializer(
-                code_model=code_model,
-                env=env,
-                operation_groups=operation_groups,
-                async_mode=False,
-                is_python_3_file=True,
-            )
-            self._autorestapi.write_file(
-                namespace_path / Path(code_model.operations_folder_name) / Path(f"{filename}_py3.py"),
-                operation_group_serializer.serialize(),
             )
 
     def _serialize_and_write_operations_folder(
@@ -217,24 +218,20 @@ class JinjaSerializer:
                 operations_async_init_serializer.serialize(),
             )
 
-        if not code_model.options["combine_operation_files"]:
-            for operation_group in code_model.operation_groups:
-                self._serialize_and_write_operations_folder_process(
-                    code_model=code_model,
-                    env=env,
-                    namespace_path=namespace_path,
-                    operation_groups=[operation_group],
-                    filename=operation_group.filename
-                )
-        else:
-            self._serialize_and_write_operations_folder_process(
+        if code_model.options["combine_operation_files"]:
+            self._serialize_and_write_operations_file(
                 code_model=code_model,
                 env=env,
                 namespace_path=namespace_path,
-                operation_groups=code_model.operation_groups,
-                filename="_operations"
             )
-
+        else:
+            for operation_group in code_model.operation_groups:
+                self._serialize_and_write_operations_file(
+                    code_model=code_model,
+                    env=env,
+                    namespace_path=namespace_path,
+                    operation_group=operation_group,
+                )
 
     def _serialize_and_write_version_file(
         self, code_model: CodeModel, namespace_path: Path, general_serializer: GeneralSerializer

@@ -29,7 +29,7 @@ from .rest import Rest
 
 _LOGGER = logging.getLogger(__name__)
 
-class CodeModel:  # pylint: disable=too-many-instance-attributes
+class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-public-methods
     """Holds all of the information we have parsed out of the yaml file. The CodeModel is what gets
     serialized by the serializers.
 
@@ -202,6 +202,10 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             operation_group.operations = [
                 operation for operation in operation_group.operations if operation not in next_operations
             ]
+
+    @property
+    def has_schemas(self):
+        return self.schemas or self.enums
 
     @property
     def default_authentication_policy(self) -> Type[CredentialSchemaPolicy]:

@@ -2,7 +2,6 @@
 {% set object_base_class = "" if async_mode else "(object)" %}
 {% set operations_description = "async operations" if async_mode else "operations" %}
 {% set return_none_type_annotation = " -> None" if async_mode else "" %}
-{% set operation_group = operation_groups[0] %}
 # coding=utf-8
 {{ code_model.options['license_header'] }}
 {{ imports }}
@@ -12,29 +11,16 @@
 {%- if not is_python_3_file %}
 # fmt: off
 {% endif %}
-{% if not code_model.options['combine_operation_files'] %}
+{% for operation_group in operation_groups %}
     {% for request_builder in code_model.rest.request_builders | selectattr("operation_group_name", "equalto", operation_group.name) %}
 
         {% include "request_builder.py.jinja2" %}
     {% endfor %}
-{% else %}
-    {% for request_builder in code_model.rest.request_builders %}
-
-        {% include "request_builder.py.jinja2" %}
-    {% endfor %}
-{% endif %}
+{% endfor %}
 {% if not is_python_3_file %}
 # fmt: on
 {% endif %}
 {% endif %}
-{% if not code_model.options['combine_operation_files'] %}
-    {% include "operations_class.py.jinja2" %}
-{% else %}
-    {% for operation_group in operation_groups %}
-        {% if operation_group.is_empty_operation_group %}
-            {% include "operations_class_mixin.py.jinja2" %}
-        {% else %}
-            {% include "operations_class.py.jinja2" %}
-        {% endif %}
-    {% endfor %}
-{% endif %}
+{% for operation_group in operation_groups %}
+    {% include "operation_group.py.jinja2" %}
+{% endfor %}
