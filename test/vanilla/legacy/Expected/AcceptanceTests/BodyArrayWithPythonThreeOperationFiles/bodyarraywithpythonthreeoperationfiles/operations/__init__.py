@@ -8,7 +8,6 @@
 
 try:
     from ._array_operations_py3 import ArrayOperations
-
 except (SyntaxError, ImportError):
     from ._array_operations import ArrayOperations
 
