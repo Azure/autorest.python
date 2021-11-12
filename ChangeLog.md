@@ -14,6 +14,7 @@
 
 - Can now handle body params with names `json`, `content`, `data`, and `files` #1081
 - Improve generated templates for `data` and `files` input body params by adding quotes around the keys  #1082
+- Using flag `--python3-only` will get you typed sync client and config files  #1085
 
 ### 2021-11-05 - 5.11.2
 

@@ -54,13 +54,14 @@ class GeneralSerializer:
         ):
             self._correct_credential_parameter()
 
+        python_3_only = self.code_model.options["python_3_only"]
         return template.render(
             code_model=self.code_model,
             async_mode=self.async_mode,
-            serializer=ClientSerializer(self.code_model),
+            serializer=ClientSerializer(self.code_model, is_python_3_file=python_3_only),
             imports=FileImportSerializer(
                 self.code_model.service_client.imports(self.async_mode),
-                is_python3_file=self.async_mode
+                is_python3_file=self.async_mode or python_3_only
             ),
         )
 
@@ -99,15 +100,20 @@ class GeneralSerializer:
             self._correct_credential_parameter()
 
         template = self.env.get_template("config.py.jinja2")
+        python_3_only = self.code_model.options["python_3_only"]
         return template.render(
             code_model=self.code_model,
             async_mode=self.async_mode,
             imports=FileImportSerializer(
                 config_imports(
                     self.code_model, self.code_model.global_parameters, self.async_mode
+<<<<<<< HEAD
                 ), is_python3_file=self.async_mode
+=======
+                ), is_python_3_file=self.async_mode or python_3_only
+>>>>>>> 9edd9076aadc165ecde4b26c85d1465405151987
             ),
-            serializer=ConfigSerializer(self.code_model),
+            serializer=ConfigSerializer(self.code_model, is_python_3_file=python_3_only),
             sdk_moniker=sdk_moniker,
         )
 
