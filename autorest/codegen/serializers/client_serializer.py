@@ -23,7 +23,7 @@ class ClientSerializer:
     def init_signature_and_response_type_annotation(self, async_mode: bool) -> str:
         init_signature = self._init_signature(async_mode)
         return utils.method_signature_and_response_type_annotation_template(
-            is_python_3_file=async_mode,
+            is_python3_file=async_mode,
             method_signature=init_signature,
             response_type_annotation="None",
         )
@@ -113,7 +113,7 @@ class ClientSerializer:
     def send_request_signature_and_response_type_annotation(self, async_mode: bool) -> str:
         send_request_signature = self._send_request_signature(async_mode)
         return utils.method_signature_and_response_type_annotation_template(
-            is_python_3_file=async_mode,
+            is_python3_file=async_mode,
             method_signature=send_request_signature,
             response_type_annotation="Awaitable[AsyncHttpResponse]" if async_mode else "HttpResponse",
         )

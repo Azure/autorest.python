@@ -55,7 +55,7 @@ class MultiAPISerializer(object):
         # serialize service client file
         imports = FileImportSerializer(
             code_model.service_client.imports(async_mode),
-            is_python_3_file=async_mode
+            is_python3_file=async_mode
         )
         self._autorestapi.write_file(
             _get_file_path(code_model.service_client.filename, async_mode),
@@ -65,7 +65,7 @@ class MultiAPISerializer(object):
         # serialize config file
         imports = FileImportSerializer(
             code_model.config.imports(async_mode),
-            is_python_3_file=async_mode
+            is_python3_file=async_mode
         )
         self._autorestapi.write_file(
             _get_file_path("_configuration", async_mode),
@@ -76,7 +76,7 @@ class MultiAPISerializer(object):
         if code_model.operation_mixin_group.mixin_operations:
             imports = FileImportSerializer(
                 code_model.operation_mixin_group.imports(async_mode),
-                is_python_3_file=async_mode
+                is_python3_file=async_mode
             )
             self._autorestapi.write_file(
                 _get_file_path("_operations_mixin", async_mode),

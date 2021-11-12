@@ -26,8 +26,8 @@ class OperationsInitSerializer:
         ]
 
     def operation_group_imports(self) -> List[str]:
-        typed_py3_files = self.code_model.options["add_python_3_operation_files"]
-        py3_only = self.code_model.options["python_3_only"]
+        typed_py3_files = self.code_model.options["add_python3_operation_files"]
+        py3_only = self.code_model.options["python3_only"]
         if typed_py3_files and not py3_only and not self.async_mode:
             retval: List[str] = ["try:"]
             retval.extend([

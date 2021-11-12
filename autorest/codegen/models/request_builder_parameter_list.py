@@ -216,10 +216,10 @@ class RequestBuilderParameterList(ParameterList):
                 raise ValueError("There is no JSON body in these parameters")
         return self._json_body
 
-    def kwargs_to_pop(self, is_python_3_file: bool) -> List[Parameter]:
+    def kwargs_to_pop(self, is_python3_file: bool) -> List[Parameter]:
         # we don't want to pop the body kwargs in py2.7. We send them straight to HttpRequest
         kwargs_to_pop = self.kwargs
-        if not is_python_3_file:
+        if not is_python3_file:
             kwargs_to_pop += [k for k in self.keyword_only if not (k.is_body and not k.constant)]
         return kwargs_to_pop
 

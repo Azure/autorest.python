@@ -218,24 +218,24 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
         return signature_parameters
 
 
-    def method_signature(self, is_python_3_file: bool) -> List[str]:
+    def method_signature(self, is_python3_file: bool) -> List[str]:
         return _method_signature_helper(
-            positional=self.method_signature_positional(is_python_3_file),
-            keyword_only=self.method_signature_keyword_only(is_python_3_file),
-            kwarg_params=self.method_signature_kwargs(is_python_3_file)
+            positional=self.method_signature_positional(is_python3_file),
+            keyword_only=self.method_signature_keyword_only(is_python3_file),
+            kwarg_params=self.method_signature_kwargs(is_python3_file)
         )
 
-    def method_signature_positional(self, is_python_3_file: bool) -> List[str]:
-        return [parameter.method_signature(is_python_3_file) for parameter in self.positional]
+    def method_signature_positional(self, is_python3_file: bool) -> List[str]:
+        return [parameter.method_signature(is_python3_file) for parameter in self.positional]
 
-    def method_signature_keyword_only(self, is_python_3_file: bool) -> List[str]:
-        if not (self.keyword_only and is_python_3_file):
+    def method_signature_keyword_only(self, is_python3_file: bool) -> List[str]:
+        if not (self.keyword_only and is_python3_file):
             return []
-        return ["*,"] + [parameter.method_signature(is_python_3_file) for parameter in self.keyword_only]
+        return ["*,"] + [parameter.method_signature(is_python3_file) for parameter in self.keyword_only]
 
     @staticmethod
-    def method_signature_kwargs(is_python_3_file: bool) -> List[str]:
-        return ["**kwargs: Any"] if is_python_3_file else ["**kwargs  # type: Any"]
+    def method_signature_kwargs(is_python3_file: bool) -> List[str]:
+        return ["**kwargs: Any"] if is_python3_file else ["**kwargs  # type: Any"]
 
     @property
     def positional(self) -> List[Parameter]:
@@ -249,9 +249,9 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
     def kwargs(self) -> List[Parameter]:
         return [p for p in self.method if p.is_kwarg]
 
-    def kwargs_to_pop(self, is_python_3_file: bool) -> List[Parameter]:
+    def kwargs_to_pop(self, is_python3_file: bool) -> List[Parameter]:
         kwargs_to_pop = self.kwargs
-        if not is_python_3_file:
+        if not is_python3_file:
             kwargs_to_pop += self.keyword_only
         return kwargs_to_pop
 
@@ -437,41 +437,41 @@ class GlobalParameterList(ParameterList):
             return True
         return serialized_name != self.host_variable_name
 
-    def kwargs_to_pop(self, is_python_3_file: bool) -> List[Parameter]:
+    def kwargs_to_pop(self, is_python3_file: bool) -> List[Parameter]:
         return [
-            k for k in super().kwargs_to_pop(is_python_3_file)
+            k for k in super().kwargs_to_pop(is_python3_file)
             if not self._param_is_in_config_method(k.serialized_name)
         ]
 
-    def config_kwargs_to_pop(self, is_python_3_file: bool) -> List[Parameter]:
-        current_kwargs_to_pop = super().kwargs_to_pop(is_python_3_file)
+    def config_kwargs_to_pop(self, is_python3_file: bool) -> List[Parameter]:
+        current_kwargs_to_pop = super().kwargs_to_pop(is_python3_file)
         return [k for k in current_kwargs_to_pop if self._param_is_in_config_method(k.serialized_name)]
 
     @property
     def config_method(self) -> List[Parameter]:
         return [p for p in self.method if self._param_is_in_config_method(p.serialized_name)]
 
-    def client_method_signature(self, is_python_3_file: bool) -> List[str]:
-        return self.method_signature(is_python_3_file)
+    def client_method_signature(self, is_python3_file: bool) -> List[str]:
+        return self.method_signature(is_python3_file)
 
-    def config_method_signature(self, is_python_3_file: bool) -> List[str]:
+    def config_method_signature(self, is_python3_file: bool) -> List[str]:
 
         positional = [
-            p.method_signature(is_python_3_file)
+            p.method_signature(is_python3_file)
             for p in self.positional
             if self._param_is_in_config_method(p.serialized_name)
         ]
         keyword_only_params = [p for p in self.keyword_only if self._param_is_in_config_method(p.serialized_name)]
         keyword_only_method_signature = []
-        if is_python_3_file:
+        if is_python3_file:
             keyword_only_method_signature = (
                 ["*,"] +
                 [
-                    p.method_signature(is_python_3_file) for p in keyword_only_params
+                    p.method_signature(is_python3_file) for p in keyword_only_params
                 ]
             ) if keyword_only_params else []
         return _method_signature_helper(
             positional=positional,
             keyword_only=keyword_only_method_signature,
-            kwarg_params=self.method_signature_kwargs(is_python_3_file)
+            kwarg_params=self.method_signature_kwargs(is_python3_file)
         )

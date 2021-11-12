@@ -7,7 +7,7 @@ from ._models_py3 import {{ schema }}
 {% endmacro %}
 
 {% if schemas %}
-    {% if code_model.options["python_3_only"] %}
+    {% if code_model.options["python3_only"] %}
 {{ iterate_models_py3() }}
     {% else %}
 try:

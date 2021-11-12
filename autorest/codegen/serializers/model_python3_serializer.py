@@ -14,7 +14,7 @@ class ModelPython3Serializer(ModelBaseSerializer):
 
     def __init__(self, code_model: CodeModel, env: Environment) -> None:
         super(ModelPython3Serializer, self).__init__(
-            code_model=code_model, env=env, is_python_3_file=True
+            code_model=code_model, env=env, is_python3_file=True
         )
 
     def init_line(self, model: ObjectSchema) -> List[str]:

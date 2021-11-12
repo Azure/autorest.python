@@ -85,7 +85,7 @@ class OperationGroup(BaseModel):
             else:
                 operation_group_builders = self.code_model.rest.request_builders
             for request_builder in operation_group_builders:
-                suffix = "_py3" if self.code_model.options["python_3_only"] else ""
+                suffix = "_py3" if self.code_model.options["python3_only"] else ""
                 file_import.add_from_import(
                     f"...{self.code_model.operations_folder_name}.{self.filename}{suffix}",
                     request_builder.name,

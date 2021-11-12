@@ -8,7 +8,7 @@
 
 {% if code_model.options["builders_visibility"] == "embedded" and not async_mode %}
 {{ op_tools.declare_serializer(code_model) }}
-{%- if not is_python_3_file %}
+{%- if not is_python3_file %}
 # fmt: off
 {% endif %}
 {% for operation_group in operation_groups %}
@@ -17,7 +17,7 @@
         {% include "request_builder.py.jinja2" %}
     {% endfor %}
 {% endfor %}
-{% if not is_python_3_file %}
+{% if not is_python3_file %}
 # fmt: on
 {% endif %}
 {% endif %}
