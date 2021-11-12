@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import functools
-from typing import TYPE_CHECKING
+from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
 from azure.core.exceptions import (
@@ -22,68 +22,45 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from msrest import Serializer
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
-
-    T = TypeVar("T")
-    JSONType = Any
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+T = TypeVar("T")
+JSONType = Any
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-# fmt: off
 
-def build_get_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+
+def build_get_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/objectType/get')
+    url = kwargs.pop("template_url", "/objectType/get")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_put_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/objectType/put')
+    url = kwargs.pop("template_url", "/objectType/put")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
-# fmt: on
+
 class ObjectTypeClientOperationsMixin(object):
     @distributed_trace
-    def get(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Any
+    def get(self, **kwargs: Any) -> Any:
         """Basic get that returns an object. Returns object { 'message': 'An object was successfully
         returned' }.
 
@@ -120,12 +97,7 @@ class ObjectTypeClientOperationsMixin(object):
     get.metadata = {"url": "/objectType/get"}  # type: ignore
 
     @distributed_trace
-    def put(
-        self,
-        put_object,  # type: Any
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put(self, put_object: Any, **kwargs: Any) -> None:
         """Basic put that puts an object. Pass in {'foo': 'bar'} to get a 200 and anything else to get an
         object error.
 

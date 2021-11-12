@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import functools
-from typing import TYPE_CHECKING
+from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
 from azure.core.exceptions import (
@@ -22,106 +22,70 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from msrest import Serializer
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
-
-    T = TypeVar("T")
-    JSONType = Any
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+T = TypeVar("T")
+JSONType = Any
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-# fmt: off
 
-def build_int_put_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+
+def build_int_put_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/nonStringEnums/int/put')
+    url = kwargs.pop("template_url", "/nonStringEnums/int/put")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_int_get_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_int_get_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/nonStringEnums/int/get')
+    url = kwargs.pop("template_url", "/nonStringEnums/int/get")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_float_put_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_float_put_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/nonStringEnums/float/put')
+    url = kwargs.pop("template_url", "/nonStringEnums/float/put")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_float_get_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_float_get_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/nonStringEnums/float/get')
+    url = kwargs.pop("template_url", "/nonStringEnums/float/get")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
-# fmt: on
+
 class IntOperations(object):
     """IntOperations operations.
 
@@ -141,12 +105,7 @@ class IntOperations(object):
         self._config = config
 
     @distributed_trace
-    def put(
-        self,
-        input=None,  # type: Optional[int]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> str
+    def put(self, input: Optional[int] = None, **kwargs: Any) -> str:
         """Put an int enum.
 
         :param input: Input int enum. Possible values are: 200, 403, 405, 406, and 429.
@@ -193,10 +152,7 @@ class IntOperations(object):
     put.metadata = {"url": "/nonStringEnums/int/put"}  # type: ignore
 
     @distributed_trace
-    def get(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> int
+    def get(self, **kwargs: Any) -> int:
         """Get an int enum.
 
         :return: int. Possible values are: 200, 403, 405, 406, and 429.
@@ -257,12 +213,7 @@ class FloatOperations(object):
         self._config = config
 
     @distributed_trace
-    def put(
-        self,
-        input=None,  # type: Optional[float]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> str
+    def put(self, input: Optional[float] = None, **kwargs: Any) -> str:
         """Put a float enum.
 
         :param input: Input float enum. Possible values are: 200.4, 403.4, 405.3, 406.2, and 429.1.
@@ -309,10 +260,7 @@ class FloatOperations(object):
     put.metadata = {"url": "/nonStringEnums/float/put"}  # type: ignore
 
     @distributed_trace
-    def get(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> float
+    def get(self, **kwargs: Any) -> float:
         """Get a float enum.
 
         :return: float. Possible values are: 200.4, 403.4, 405.3, 406.2, and 429.1.

@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import functools
-from typing import TYPE_CHECKING
+from typing import Any, Callable, Dict, Generic, IO, Optional, TypeVar, Union
 import warnings
 
 from azure.core.exceptions import (
@@ -22,106 +22,69 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from msrest import Serializer
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, IO, Optional, TypeVar, Union
-
-    T = TypeVar("T")
-    JSONType = Any
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+T = TypeVar("T")
+JSONType = Any
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-# fmt: off
+
 
 def build_params_get_required_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    parameter = kwargs.pop('parameter')  # type: str
-    new_parameter = kwargs.pop('new_parameter', None)  # type: Optional[str]
-
+    *, parameter: str, new_parameter: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/servicedriven/parameters')
+    url = kwargs.pop("template_url", "/servicedriven/parameters")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['parameter'] = _SERIALIZER.query("parameter", parameter, 'str')
+    query_parameters["parameter"] = _SERIALIZER.query("parameter", parameter, "str")
     if new_parameter is not None:
-        query_parameters['new_parameter'] = _SERIALIZER.query("new_parameter", new_parameter, 'str')
+        query_parameters["new_parameter"] = _SERIALIZER.query("new_parameter", new_parameter, "str")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
-def build_params_post_parameters_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_params_post_parameters_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/servicedriven/parameters')
+    url = kwargs.pop("template_url", "/servicedriven/parameters")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_params_delete_parameters_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_params_delete_parameters_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
-    url = kwargs.pop("template_url", '/servicedriven/parameters')
+    url = kwargs.pop("template_url", "/servicedriven/parameters")
 
-    return HttpRequest(
-        method="DELETE",
-        url=url,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=url, **kwargs)
 
 
-def build_params_get_new_operation_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_params_get_new_operation_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/servicedriven/newpath')
+    url = kwargs.pop("template_url", "/servicedriven/newpath")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
-# fmt: on
+
 class ParamsOperations(object):
     """ParamsOperations operations.
 
@@ -141,10 +104,7 @@ class ParamsOperations(object):
         self._config = config
 
     @distributed_trace
-    def get_required(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Any
+    def get_required(self, *, parameter: str, new_parameter: Optional[str] = None, **kwargs: Any) -> Any:
         """Get true Boolean value on path.
 
         :keyword parameter: I am a required parameter.
@@ -158,9 +118,6 @@ class ParamsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-
-        parameter = kwargs.pop("parameter")  # type: str
-        new_parameter = kwargs.pop("new_parameter", None)  # type: Optional[str]
 
         request = build_params_get_required_request(
             parameter=parameter,
@@ -189,12 +146,7 @@ class ParamsOperations(object):
     get_required.metadata = {"url": "/servicedriven/parameters"}  # type: ignore
 
     @distributed_trace
-    def post_parameters(
-        self,
-        parameter,  # type: Union[IO, JSONType]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> Any
+    def post_parameters(self, parameter: Union[IO, JSONType], **kwargs: Any) -> Any:
         """POST a JSON or a JPEG.
 
         :param parameter: I am a body parameter with a new content type. My only valid JSON entry is {
@@ -252,10 +204,7 @@ class ParamsOperations(object):
     post_parameters.metadata = {"url": "/servicedriven/parameters"}  # type: ignore
 
     @distributed_trace
-    def delete_parameters(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def delete_parameters(self, **kwargs: Any) -> None:
         """Delete something.
 
         :return: None
@@ -284,10 +233,7 @@ class ParamsOperations(object):
     delete_parameters.metadata = {"url": "/servicedriven/parameters"}  # type: ignore
 
     @distributed_trace
-    def get_new_operation(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Any
+    def get_new_operation(self, **kwargs: Any) -> Any:
         """I'm a new operation.
 
         :return: any

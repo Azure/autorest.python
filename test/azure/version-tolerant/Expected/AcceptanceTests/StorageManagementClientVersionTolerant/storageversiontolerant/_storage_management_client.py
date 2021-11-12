@@ -7,8 +7,9 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import TYPE_CHECKING
+from typing import Any, Optional, TYPE_CHECKING
 
+from azure.core.rest import HttpRequest, HttpResponse
 from azure.mgmt.core import ARMPipelineClient
 from msrest import Deserializer, Serializer
 
@@ -17,13 +18,12 @@ from .operations import StorageAccountsOperations, UsageOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, Optional
+    from typing import Dict
 
     from azure.core.credentials import TokenCredential
-    from azure.core.rest import HttpRequest, HttpResponse
 
 
-class StorageManagementClient(object):
+class StorageManagementClient:
     """StorageManagementClient.
 
     :ivar storage_accounts: StorageAccountsOperations operations
@@ -46,12 +46,12 @@ class StorageManagementClient(object):
 
     def __init__(
         self,
-        subscription_id,  # type: str
-        credential,  # type: "TokenCredential"
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
-        endpoint = kwargs.pop("endpoint", "https://management.azure.com")  # type: str
+        subscription_id: str,
+        credential: "TokenCredential",
+        *,
+        endpoint: str = "https://management.azure.com",
+        **kwargs: Any
+    ) -> None:
 
         self._config = StorageManagementClientConfiguration(
             subscription_id=subscription_id, credential=credential, **kwargs
@@ -69,9 +69,8 @@ class StorageManagementClient(object):
     def send_request(
         self,
         request,  # type: HttpRequest
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpResponse
+        **kwargs: Any
+    ) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

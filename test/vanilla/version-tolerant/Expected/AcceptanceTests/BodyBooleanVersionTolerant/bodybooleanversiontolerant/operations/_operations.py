@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import functools
-from typing import TYPE_CHECKING
+from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
 from azure.core.exceptions import (
@@ -22,150 +22,96 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from msrest import Serializer
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
-
-    T = TypeVar("T")
-    JSONType = Any
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+T = TypeVar("T")
+JSONType = Any
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-# fmt: off
 
-def build_bool_get_true_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+
+def build_bool_get_true_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/bool/true')
+    url = kwargs.pop("template_url", "/bool/true")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_bool_put_true_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
-    json = kwargs.pop('json', True)  # type: bool
+def build_bool_put_true_request(**kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    json = kwargs.pop("json", True)  # type: bool
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/bool/true')
+    url = kwargs.pop("template_url", "/bool/true")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        json=json,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, **kwargs)
 
 
-def build_bool_get_false_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_bool_get_false_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/bool/false')
+    url = kwargs.pop("template_url", "/bool/false")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_bool_put_false_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
-    json = kwargs.pop('json', False)  # type: bool
+def build_bool_put_false_request(**kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    json = kwargs.pop("json", False)  # type: bool
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/bool/false')
+    url = kwargs.pop("template_url", "/bool/false")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        json=json,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, **kwargs)
 
 
-def build_bool_get_null_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_bool_get_null_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/bool/null')
+    url = kwargs.pop("template_url", "/bool/null")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_bool_get_invalid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_bool_get_invalid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/bool/invalid')
+    url = kwargs.pop("template_url", "/bool/invalid")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
-# fmt: on
+
 class BoolOperations(object):
     """BoolOperations operations.
 
@@ -185,10 +131,7 @@ class BoolOperations(object):
         self._config = config
 
     @distributed_trace
-    def get_true(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> bool
+    def get_true(self, **kwargs: Any) -> bool:
         """Get true Boolean value.
 
         :return: bool
@@ -224,10 +167,7 @@ class BoolOperations(object):
     get_true.metadata = {"url": "/bool/true"}  # type: ignore
 
     @distributed_trace
-    def put_true(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_true(self, **kwargs: Any) -> None:
         """Set Boolean value true.
 
         :keyword bool_body: The default value is True. Note that overriding this default value may
@@ -264,10 +204,7 @@ class BoolOperations(object):
     put_true.metadata = {"url": "/bool/true"}  # type: ignore
 
     @distributed_trace
-    def get_false(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> bool
+    def get_false(self, **kwargs: Any) -> bool:
         """Get false Boolean value.
 
         :return: bool
@@ -303,10 +240,7 @@ class BoolOperations(object):
     get_false.metadata = {"url": "/bool/false"}  # type: ignore
 
     @distributed_trace
-    def put_false(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_false(self, **kwargs: Any) -> None:
         """Set Boolean value false.
 
         :keyword bool_body: The default value is False. Note that overriding this default value may
@@ -343,10 +277,7 @@ class BoolOperations(object):
     put_false.metadata = {"url": "/bool/false"}  # type: ignore
 
     @distributed_trace
-    def get_null(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Optional[bool]
+    def get_null(self, **kwargs: Any) -> Optional[bool]:
         """Get null Boolean value.
 
         :return: bool or None
@@ -382,10 +313,7 @@ class BoolOperations(object):
     get_null.metadata = {"url": "/bool/null"}  # type: ignore
 
     @distributed_trace
-    def get_invalid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> bool
+    def get_invalid(self, **kwargs: Any) -> bool:
         """Get invalid Boolean value.
 
         :return: bool

@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import functools
-from typing import TYPE_CHECKING
+from typing import Any, Callable, Dict, Generic, IO, Optional, TypeVar
 import warnings
 
 from azure.core.exceptions import (
@@ -22,78 +22,50 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from msrest import Serializer
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, IO, Optional, TypeVar
-
-    T = TypeVar("T")
-    JSONType = Any
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+T = TypeVar("T")
+JSONType = Any
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-# fmt: off
 
-def build_files_get_file_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+
+def build_files_get_file_request(**kwargs: Any) -> HttpRequest:
     accept = "image/png, application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/files/stream/nonempty')
+    url = kwargs.pop("template_url", "/files/stream/nonempty")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_files_get_file_large_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_files_get_file_large_request(**kwargs: Any) -> HttpRequest:
     accept = "image/png, application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/files/stream/verylarge')
+    url = kwargs.pop("template_url", "/files/stream/verylarge")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_files_get_empty_file_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_files_get_empty_file_request(**kwargs: Any) -> HttpRequest:
     accept = "image/png, application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/files/stream/empty')
+    url = kwargs.pop("template_url", "/files/stream/empty")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
-# fmt: on
+
 class FilesOperations(object):
     """FilesOperations operations.
 
@@ -113,10 +85,7 @@ class FilesOperations(object):
         self._config = config
 
     @distributed_trace
-    def get_file(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> IO
+    def get_file(self, **kwargs: Any) -> IO:
         """Get file.
 
         :return: IO
@@ -149,10 +118,7 @@ class FilesOperations(object):
     get_file.metadata = {"url": "/files/stream/nonempty"}  # type: ignore
 
     @distributed_trace
-    def get_file_large(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> IO
+    def get_file_large(self, **kwargs: Any) -> IO:
         """Get a large file.
 
         :return: IO
@@ -185,10 +151,7 @@ class FilesOperations(object):
     get_file_large.metadata = {"url": "/files/stream/verylarge"}  # type: ignore
 
     @distributed_trace
-    def get_empty_file(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> IO
+    def get_empty_file(self, **kwargs: Any) -> IO:
         """Get empty file.
 
         :return: IO

@@ -7,9 +7,10 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import TYPE_CHECKING
+from typing import Any, Optional, TYPE_CHECKING
 
 from azure.core import PipelineClient
+from azure.core.rest import HttpRequest, HttpResponse
 from msrest import Deserializer, Serializer
 
 from ._configuration import ParmaterizedEndpointClientConfiguration
@@ -17,9 +18,7 @@ from ._operations import ParmaterizedEndpointClientOperationsMixin
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, Optional
-
-    from azure.core.rest import HttpRequest, HttpResponse
+    from typing import Dict
 
 
 class ParmaterizedEndpointClient(ParmaterizedEndpointClientOperationsMixin):
@@ -29,12 +28,7 @@ class ParmaterizedEndpointClient(ParmaterizedEndpointClientOperationsMixin):
     :type endpoint: str
     """
 
-    def __init__(
-        self,
-        endpoint,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def __init__(self, endpoint: str, **kwargs: Any) -> None:
         _endpoint = "{endpoint}"
         self._config = ParmaterizedEndpointClientConfiguration(endpoint=endpoint, **kwargs)
         self._client = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
@@ -46,9 +40,8 @@ class ParmaterizedEndpointClient(ParmaterizedEndpointClientOperationsMixin):
     def send_request(
         self,
         request,  # type: HttpRequest
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpResponse
+        **kwargs: Any
+    ) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

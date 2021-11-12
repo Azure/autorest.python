@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 import functools
 from json import loads as _loads
-from typing import TYPE_CHECKING
+from typing import Any, Callable, Dict, Generic, Iterable, Optional, TypeVar, Union
 import warnings
 
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
@@ -23,22 +23,16 @@ from custompollerpagerdefinitions import CustomPager, CustomPoller
 from msrest import Serializer
 
 from .._vendor import _format_url_section
-
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Iterable, Optional, TypeVar, Union
-    T = TypeVar('T')
-    JSONType = Any
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+T = TypeVar('T')
+JSONType = Any
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-# fmt: off
 
 def build_paging_get_no_item_name_pages_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    **kwargs: Any
+) -> HttpRequest:
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paging/noitemname')
@@ -56,9 +50,8 @@ def build_paging_get_no_item_name_pages_request(
 
 
 def build_paging_get_null_next_link_name_pages_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    **kwargs: Any
+) -> HttpRequest:
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paging/nullnextlink')
@@ -76,9 +69,8 @@ def build_paging_get_null_next_link_name_pages_request(
 
 
 def build_paging_get_single_pages_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    **kwargs: Any
+) -> HttpRequest:
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paging/single')
@@ -96,9 +88,8 @@ def build_paging_get_single_pages_request(
 
 
 def build_paging_first_response_empty_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    **kwargs: Any
+) -> HttpRequest:
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paging/firstResponseEmpty/1')
@@ -116,13 +107,12 @@ def build_paging_first_response_empty_request(
 
 
 def build_paging_get_multiple_pages_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    client_request_id = kwargs.pop('client_request_id', None)  # type: Optional[str]
-    maxresults = kwargs.pop('maxresults', None)  # type: Optional[int]
-    timeout = kwargs.pop('timeout', 30)  # type: Optional[int]
-
+    *,
+    client_request_id: Optional[str] = None,
+    maxresults: Optional[int] = None,
+    timeout: Optional[int] = 30,
+    **kwargs: Any
+) -> HttpRequest:
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paging/multiple')
@@ -146,11 +136,11 @@ def build_paging_get_multiple_pages_request(
 
 
 def build_paging_get_with_query_params_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    *,
+    required_query_parameter: int,
+    **kwargs: Any
+) -> HttpRequest:
     query_constant = kwargs.pop('query_constant', True)  # type: bool
-    required_query_parameter = kwargs.pop('required_query_parameter')  # type: int
 
     accept = "application/json"
     # Construct URL
@@ -175,9 +165,8 @@ def build_paging_get_with_query_params_request(
 
 
 def build_paging_next_operation_with_query_params_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    **kwargs: Any
+) -> HttpRequest:
     query_constant = kwargs.pop('query_constant', True)  # type: bool
 
     accept = "application/json"
@@ -202,13 +191,12 @@ def build_paging_next_operation_with_query_params_request(
 
 
 def build_paging_get_odata_multiple_pages_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    client_request_id = kwargs.pop('client_request_id', None)  # type: Optional[str]
-    maxresults = kwargs.pop('maxresults', None)  # type: Optional[int]
-    timeout = kwargs.pop('timeout', 30)  # type: Optional[int]
-
+    *,
+    client_request_id: Optional[str] = None,
+    maxresults: Optional[int] = None,
+    timeout: Optional[int] = 30,
+    **kwargs: Any
+) -> HttpRequest:
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paging/multiple/odata')
@@ -232,14 +220,13 @@ def build_paging_get_odata_multiple_pages_request(
 
 
 def build_paging_get_multiple_pages_with_offset_request(
-    offset,  # type: int
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    client_request_id = kwargs.pop('client_request_id', None)  # type: Optional[str]
-    maxresults = kwargs.pop('maxresults', None)  # type: Optional[int]
-    timeout = kwargs.pop('timeout', 30)  # type: Optional[int]
-
+    offset: int,
+    *,
+    client_request_id: Optional[str] = None,
+    maxresults: Optional[int] = None,
+    timeout: Optional[int] = 30,
+    **kwargs: Any
+) -> HttpRequest:
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paging/multiple/withpath/{offset}')
@@ -268,9 +255,8 @@ def build_paging_get_multiple_pages_with_offset_request(
 
 
 def build_paging_get_multiple_pages_retry_first_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    **kwargs: Any
+) -> HttpRequest:
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paging/multiple/retryfirst')
@@ -288,9 +274,8 @@ def build_paging_get_multiple_pages_retry_first_request(
 
 
 def build_paging_get_multiple_pages_retry_second_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    **kwargs: Any
+) -> HttpRequest:
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paging/multiple/retrysecond')
@@ -308,9 +293,8 @@ def build_paging_get_multiple_pages_retry_second_request(
 
 
 def build_paging_get_single_pages_failure_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    **kwargs: Any
+) -> HttpRequest:
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paging/single/failure')
@@ -328,9 +312,8 @@ def build_paging_get_single_pages_failure_request(
 
 
 def build_paging_get_multiple_pages_failure_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    **kwargs: Any
+) -> HttpRequest:
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paging/multiple/failure')
@@ -348,9 +331,8 @@ def build_paging_get_multiple_pages_failure_request(
 
 
 def build_paging_get_multiple_pages_failure_uri_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    **kwargs: Any
+) -> HttpRequest:
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paging/multiple/failureuri')
@@ -368,12 +350,11 @@ def build_paging_get_multiple_pages_failure_uri_request(
 
 
 def build_paging_get_multiple_pages_fragment_next_link_request(
-    tenant,  # type: str
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    api_version = kwargs.pop('api_version')  # type: str
-
+    tenant: str,
+    *,
+    api_version: str,
+    **kwargs: Any
+) -> HttpRequest:
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paging/multiple/fragment/{tenant}')
@@ -401,12 +382,11 @@ def build_paging_get_multiple_pages_fragment_next_link_request(
 
 
 def build_paging_get_multiple_pages_fragment_with_grouping_next_link_request(
-    tenant,  # type: str
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    api_version = kwargs.pop('api_version')  # type: str
-
+    tenant: str,
+    *,
+    api_version: str,
+    **kwargs: Any
+) -> HttpRequest:
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paging/multiple/fragmentwithgrouping/{tenant}')
@@ -434,13 +414,12 @@ def build_paging_get_multiple_pages_fragment_with_grouping_next_link_request(
 
 
 def build_paging_get_multiple_pages_lro_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    client_request_id = kwargs.pop('client_request_id', None)  # type: Optional[str]
-    maxresults = kwargs.pop('maxresults', None)  # type: Optional[int]
-    timeout = kwargs.pop('timeout', 30)  # type: Optional[int]
-
+    *,
+    client_request_id: Optional[str] = None,
+    maxresults: Optional[int] = None,
+    timeout: Optional[int] = 30,
+    **kwargs: Any
+) -> HttpRequest:
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paging/multiple/lro')
@@ -464,13 +443,12 @@ def build_paging_get_multiple_pages_lro_request_initial(
 
 
 def build_paging_next_fragment_request(
-    tenant,  # type: str
-    next_link,  # type: str
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    api_version = kwargs.pop('api_version')  # type: str
-
+    tenant: str,
+    next_link: str,
+    *,
+    api_version: str,
+    **kwargs: Any
+) -> HttpRequest:
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paging/multiple/fragment/{tenant}/{nextLink}')
@@ -499,13 +477,12 @@ def build_paging_next_fragment_request(
 
 
 def build_paging_next_fragment_with_grouping_request(
-    tenant,  # type: str
-    next_link,  # type: str
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    api_version = kwargs.pop('api_version')  # type: str
-
+    tenant: str,
+    next_link: str,
+    *,
+    api_version: str,
+    **kwargs: Any
+) -> HttpRequest:
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}')
@@ -534,9 +511,8 @@ def build_paging_next_fragment_with_grouping_request(
 
 
 def build_paging_get_paging_model_with_item_name_with_xms_client_name_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    **kwargs: Any
+) -> HttpRequest:
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/paging/itemNameWithXMSClientName')
@@ -552,7 +528,6 @@ def build_paging_get_paging_model_with_item_name_with_xms_client_name_request(
         **kwargs
     )
 
-# fmt: on
 class PagingOperations(object):
     """PagingOperations operations.
 
@@ -574,9 +549,8 @@ class PagingOperations(object):
     @distributed_trace
     def get_no_item_name_pages(
         self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> Iterable[JSONType]
+        **kwargs: Any
+    ) -> Iterable[JSONType]:
         """A paging operation that must return result of the default 'value' node.
 
         :return: An iterator like instance of JSON object
@@ -649,9 +623,8 @@ class PagingOperations(object):
     @distributed_trace
     def get_null_next_link_name_pages(
         self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> Iterable[JSONType]
+        **kwargs: Any
+    ) -> Iterable[JSONType]:
         """A paging operation that must ignore any kind of nextLink, and stop after page 1.
 
         :return: An iterator like instance of JSON object
@@ -724,9 +697,8 @@ class PagingOperations(object):
     @distributed_trace
     def get_single_pages(
         self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> Iterable[JSONType]
+        **kwargs: Any
+    ) -> Iterable[JSONType]:
         """A paging operation that finishes on the first call without a nextlink.
 
         :return: An iterator like instance of JSON object
@@ -799,9 +771,8 @@ class PagingOperations(object):
     @distributed_trace
     def first_response_empty(
         self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> Iterable[JSONType]
+        **kwargs: Any
+    ) -> Iterable[JSONType]:
         """A paging operation whose first response's items list is empty, but still returns a next link.
         Second (and final) call, will give you an items list of 1.
 
@@ -875,9 +846,12 @@ class PagingOperations(object):
     @distributed_trace
     def get_multiple_pages(
         self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> Iterable[JSONType]
+        *,
+        client_request_id: Optional[str] = None,
+        maxresults: Optional[int] = None,
+        timeout: Optional[int] = 30,
+        **kwargs: Any
+    ) -> Iterable[JSONType]:
         """A paging operation that includes a nextLink that has 10 pages.
 
         :keyword client_request_id:
@@ -907,10 +881,7 @@ class PagingOperations(object):
                     ]
                 }
         """
-        client_request_id = kwargs.pop('client_request_id', None)  # type: Optional[str]
-        maxresults = kwargs.pop('maxresults', None)  # type: Optional[int]
-        timeout = kwargs.pop('timeout', 30)  # type: Optional[int]
-
+        
         cls = kwargs.pop('cls', None)  # type: ClsType[JSONType]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
@@ -967,9 +938,10 @@ class PagingOperations(object):
     @distributed_trace
     def get_with_query_params(
         self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> Iterable[JSONType]
+        *,
+        required_query_parameter: int,
+        **kwargs: Any
+    ) -> Iterable[JSONType]:
         """A paging operation that includes a next operation. It has a different query parameter from it's
         next operation nextOperationWithQueryParams. Returns a ProductResult.
 
@@ -1001,7 +973,6 @@ class PagingOperations(object):
                 }
         """
         query_constant = kwargs.pop('query_constant', True)  # type: bool
-        required_query_parameter = kwargs.pop('required_query_parameter')  # type: int
 
         cls = kwargs.pop('cls', None)  # type: ClsType[JSONType]
         error_map = {
@@ -1056,9 +1027,12 @@ class PagingOperations(object):
     @distributed_trace
     def get_odata_multiple_pages(
         self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> Iterable[JSONType]
+        *,
+        client_request_id: Optional[str] = None,
+        maxresults: Optional[int] = None,
+        timeout: Optional[int] = 30,
+        **kwargs: Any
+    ) -> Iterable[JSONType]:
         """A paging operation that includes a nextLink in odata format that has 10 pages.
 
         :keyword client_request_id:
@@ -1088,10 +1062,7 @@ class PagingOperations(object):
                     ]
                 }
         """
-        client_request_id = kwargs.pop('client_request_id', None)  # type: Optional[str]
-        maxresults = kwargs.pop('maxresults', None)  # type: Optional[int]
-        timeout = kwargs.pop('timeout', 30)  # type: Optional[int]
-
+        
         cls = kwargs.pop('cls', None)  # type: ClsType[JSONType]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
@@ -1148,10 +1119,13 @@ class PagingOperations(object):
     @distributed_trace
     def get_multiple_pages_with_offset(
         self,
-        offset,  # type: int
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> Iterable[JSONType]
+        offset: int,
+        *,
+        client_request_id: Optional[str] = None,
+        maxresults: Optional[int] = None,
+        timeout: Optional[int] = 30,
+        **kwargs: Any
+    ) -> Iterable[JSONType]:
         """A paging operation that includes a nextLink that has 10 pages.
 
         :param offset: Offset of return value.
@@ -1183,10 +1157,7 @@ class PagingOperations(object):
                     ]
                 }
         """
-        client_request_id = kwargs.pop('client_request_id', None)  # type: Optional[str]
-        maxresults = kwargs.pop('maxresults', None)  # type: Optional[int]
-        timeout = kwargs.pop('timeout', 30)  # type: Optional[int]
-
+        
         cls = kwargs.pop('cls', None)  # type: ClsType[JSONType]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
@@ -1245,9 +1216,8 @@ class PagingOperations(object):
     @distributed_trace
     def get_multiple_pages_retry_first(
         self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> Iterable[JSONType]
+        **kwargs: Any
+    ) -> Iterable[JSONType]:
         """A paging operation that fails on the first call with 500 and then retries and then get a
         response including a nextLink that has 10 pages.
 
@@ -1321,9 +1291,8 @@ class PagingOperations(object):
     @distributed_trace
     def get_multiple_pages_retry_second(
         self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> Iterable[JSONType]
+        **kwargs: Any
+    ) -> Iterable[JSONType]:
         """A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails
         first with 500. The client should retry and finish all 10 pages eventually.
 
@@ -1397,9 +1366,8 @@ class PagingOperations(object):
     @distributed_trace
     def get_single_pages_failure(
         self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> Iterable[JSONType]
+        **kwargs: Any
+    ) -> Iterable[JSONType]:
         """A paging operation that receives a 400 on the first call.
 
         :return: An iterator like instance of JSON object
@@ -1472,9 +1440,8 @@ class PagingOperations(object):
     @distributed_trace
     def get_multiple_pages_failure(
         self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> Iterable[JSONType]
+        **kwargs: Any
+    ) -> Iterable[JSONType]:
         """A paging operation that receives a 400 on the second call.
 
         :return: An iterator like instance of JSON object
@@ -1547,9 +1514,8 @@ class PagingOperations(object):
     @distributed_trace
     def get_multiple_pages_failure_uri(
         self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> Iterable[JSONType]
+        **kwargs: Any
+    ) -> Iterable[JSONType]:
         """A paging operation that receives an invalid nextLink.
 
         :return: An iterator like instance of JSON object
@@ -1622,10 +1588,11 @@ class PagingOperations(object):
     @distributed_trace
     def get_multiple_pages_fragment_next_link(
         self,
-        tenant,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> Iterable[JSONType]
+        tenant: str,
+        *,
+        api_version: str,
+        **kwargs: Any
+    ) -> Iterable[JSONType]:
         """A paging operation that doesn't return a full URL, just a fragment.
 
         :param tenant: Sets the tenant to use.
@@ -1652,8 +1619,7 @@ class PagingOperations(object):
                     ]
                 }
         """
-        api_version = kwargs.pop('api_version')  # type: str
-
+        
         cls = kwargs.pop('cls', None)  # type: ClsType[JSONType]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
@@ -1709,10 +1675,11 @@ class PagingOperations(object):
     @distributed_trace
     def get_multiple_pages_fragment_with_grouping_next_link(
         self,
-        tenant,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> Iterable[JSONType]
+        tenant: str,
+        *,
+        api_version: str,
+        **kwargs: Any
+    ) -> Iterable[JSONType]:
         """A paging operation that doesn't return a full URL, just a fragment with parameters grouped.
 
         :param tenant: Sets the tenant to use.
@@ -1739,8 +1706,7 @@ class PagingOperations(object):
                     ]
                 }
         """
-        api_version = kwargs.pop('api_version')  # type: str
-
+        
         cls = kwargs.pop('cls', None)  # type: ClsType[JSONType]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
@@ -1795,19 +1761,19 @@ class PagingOperations(object):
 
     def _get_multiple_pages_lro_initial(
         self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+        *,
+        client_request_id: Optional[str] = None,
+        maxresults: Optional[int] = None,
+        timeout: Optional[int] = 30,
+        **kwargs: Any
+    ) -> JSONType:
         cls = kwargs.pop('cls', None)  # type: ClsType[JSONType]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        client_request_id = kwargs.pop('client_request_id', None)  # type: Optional[str]
-        maxresults = kwargs.pop('maxresults', None)  # type: Optional[int]
-        timeout = kwargs.pop('timeout', 30)  # type: Optional[int]
-
+        
         
         request = build_paging_get_multiple_pages_lro_request_initial(
             client_request_id=client_request_id,
@@ -1840,9 +1806,12 @@ class PagingOperations(object):
     @distributed_trace
     def begin_get_multiple_pages_lro(
         self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> CustomPoller[ItemPaged[JSONType]]
+        *,
+        client_request_id: Optional[str] = None,
+        maxresults: Optional[int] = None,
+        timeout: Optional[int] = 30,
+        **kwargs: Any
+    ) -> CustomPoller[ItemPaged[JSONType]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
         :keyword client_request_id:
@@ -1864,10 +1833,7 @@ class PagingOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        client_request_id = kwargs.pop('client_request_id', None)  # type: Optional[str]
-        maxresults = kwargs.pop('maxresults', None)  # type: Optional[int]
-        timeout = kwargs.pop('timeout', 30)  # type: Optional[int]
-
+        
         cls = kwargs.pop('cls', None)  # type: ClsType[JSONType]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
@@ -1963,9 +1929,8 @@ class PagingOperations(object):
     @distributed_trace
     def get_paging_model_with_item_name_with_xms_client_name(
         self,
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> Iterable[JSONType]
+        **kwargs: Any
+    ) -> Iterable[JSONType]:
         """A paging operation that returns a paging model whose item name is is overriden by
         x-ms-client-name 'indexes'.
 

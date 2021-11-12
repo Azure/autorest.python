@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import functools
-from typing import TYPE_CHECKING
+from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
 from azure.core.exceptions import (
@@ -22,150 +22,95 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from msrest import Serializer
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
-
-    T = TypeVar("T")
-    JSONType = Any
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+T = TypeVar("T")
+JSONType = Any
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-# fmt: off
 
-def build_get_object_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+
+def build_get_object_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/anything/object')
+    url = kwargs.pop("template_url", "/anything/object")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_object_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_put_object_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/anything/object')
+    url = kwargs.pop("template_url", "/anything/object")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_get_string_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_string_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/anything/string')
+    url = kwargs.pop("template_url", "/anything/string")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_string_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_put_string_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/anything/string')
+    url = kwargs.pop("template_url", "/anything/string")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_get_array_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_array_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/anything/array')
+    url = kwargs.pop("template_url", "/anything/array")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_array_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_put_array_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/anything/array')
+    url = kwargs.pop("template_url", "/anything/array")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
-# fmt: on
+
 class AnythingClientOperationsMixin(object):
     @distributed_trace
-    def get_object(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Any
+    def get_object(self, **kwargs: Any) -> Any:
         """Basic get that returns an object as anything. Returns object { 'message': 'An object was
         successfully returned' }.
 
@@ -202,12 +147,7 @@ class AnythingClientOperationsMixin(object):
     get_object.metadata = {"url": "/anything/object"}  # type: ignore
 
     @distributed_trace
-    def put_object(
-        self,
-        input,  # type: Any
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_object(self, input: Any, **kwargs: Any) -> None:
         """Basic put that puts an object as anything. Pass in {'foo': 'bar'} to get a 200 and anything
         else to get an object error.
 
@@ -245,10 +185,7 @@ class AnythingClientOperationsMixin(object):
     put_object.metadata = {"url": "/anything/object"}  # type: ignore
 
     @distributed_trace
-    def get_string(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Any
+    def get_string(self, **kwargs: Any) -> Any:
         """Basic get that returns an string as anything. Returns string 'foo'.
 
         :return: any
@@ -284,12 +221,7 @@ class AnythingClientOperationsMixin(object):
     get_string.metadata = {"url": "/anything/string"}  # type: ignore
 
     @distributed_trace
-    def put_string(
-        self,
-        input,  # type: Any
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_string(self, input: Any, **kwargs: Any) -> None:
         """Basic put that puts an string as anything. Pass in 'anything' to get a 200 and anything else to
         get an object error.
 
@@ -327,10 +259,7 @@ class AnythingClientOperationsMixin(object):
     put_string.metadata = {"url": "/anything/string"}  # type: ignore
 
     @distributed_trace
-    def get_array(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Any
+    def get_array(self, **kwargs: Any) -> Any:
         """Basic get that returns an array as anything. Returns string ['foo', 'bar'].
 
         :return: any
@@ -366,12 +295,7 @@ class AnythingClientOperationsMixin(object):
     get_array.metadata = {"url": "/anything/array"}  # type: ignore
 
     @distributed_trace
-    def put_array(
-        self,
-        input,  # type: Any
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_array(self, input: Any, **kwargs: Any) -> None:
         """Basic put that puts an array as anything. Pass in ['foo', 'bar'] to get a 200 and anything else
         to get an object error.
 

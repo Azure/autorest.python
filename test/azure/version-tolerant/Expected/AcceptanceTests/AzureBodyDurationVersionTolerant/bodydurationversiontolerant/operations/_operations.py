@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 import datetime
 import functools
-from typing import TYPE_CHECKING
+from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
 from azure.core.exceptions import (
@@ -23,102 +23,68 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from msrest import Serializer
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
-
-    T = TypeVar("T")
-    JSONType = Any
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+T = TypeVar("T")
+JSONType = Any
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-# fmt: off
 
-def build_duration_get_null_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+
+def build_duration_get_null_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/duration/null')
+    url = kwargs.pop("template_url", "/duration/null")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
 def build_duration_put_positive_duration_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/duration/positiveduration')
+    url = kwargs.pop("template_url", "/duration/positiveduration")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_duration_get_positive_duration_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_duration_get_positive_duration_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/duration/positiveduration')
+    url = kwargs.pop("template_url", "/duration/positiveduration")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_duration_get_invalid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_duration_get_invalid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/duration/invalid')
+    url = kwargs.pop("template_url", "/duration/invalid")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
-# fmt: on
+
 class DurationOperations(object):
     """DurationOperations operations.
 
@@ -138,10 +104,7 @@ class DurationOperations(object):
         self._config = config
 
     @distributed_trace
-    def get_null(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Optional[datetime.timedelta]
+    def get_null(self, **kwargs: Any) -> Optional[datetime.timedelta]:
         """Get null duration value.
 
         :return: timedelta or None
@@ -177,12 +140,7 @@ class DurationOperations(object):
     get_null.metadata = {"url": "/duration/null"}  # type: ignore
 
     @distributed_trace
-    def put_positive_duration(
-        self,
-        duration_body,  # type: datetime.timedelta
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_positive_duration(self, duration_body: datetime.timedelta, **kwargs: Any) -> None:
         """Put a positive duration value.
 
         :param duration_body: duration body.
@@ -219,10 +177,7 @@ class DurationOperations(object):
     put_positive_duration.metadata = {"url": "/duration/positiveduration"}  # type: ignore
 
     @distributed_trace
-    def get_positive_duration(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> datetime.timedelta
+    def get_positive_duration(self, **kwargs: Any) -> datetime.timedelta:
         """Get a positive duration value.
 
         :return: timedelta
@@ -258,10 +213,7 @@ class DurationOperations(object):
     get_positive_duration.metadata = {"url": "/duration/positiveduration"}  # type: ignore
 
     @distributed_trace
-    def get_invalid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> datetime.timedelta
+    def get_invalid(self, **kwargs: Any) -> datetime.timedelta:
         """Get an invalid duration value.
 
         :return: timedelta

@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import functools
-from typing import TYPE_CHECKING
+from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
 from azure.core.exceptions import (
@@ -24,394 +24,253 @@ from msrest import Serializer
 
 from .._vendor import _format_url_section
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
-
-    T = TypeVar("T")
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+T = TypeVar("T")
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-# fmt: off
+
 
 def build_contants_put_no_model_as_string_no_required_two_value_no_default_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    input = kwargs.pop('input', None)  # type: Optional[str]
-
+    *, input: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     # Construct URL
-    url = kwargs.pop("template_url", '/constants/putNoModelAsStringNoRequiredTwoValueNoDefault')
+    url = kwargs.pop("template_url", "/constants/putNoModelAsStringNoRequiredTwoValueNoDefault")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if input is not None:
-        query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
+        query_parameters["input"] = _SERIALIZER.query("input", input, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        params=query_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, params=query_parameters, **kwargs)
 
 
 def build_contants_put_no_model_as_string_no_required_two_value_default_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    input = kwargs.pop('input', "value1")  # type: Optional[str]
-
+    *, input: Optional[str] = "value1", **kwargs: Any
+) -> HttpRequest:
     # Construct URL
-    url = kwargs.pop("template_url", '/constants/putNoModelAsStringNoRequiredTwoValueDefault')
+    url = kwargs.pop("template_url", "/constants/putNoModelAsStringNoRequiredTwoValueDefault")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if input is not None:
-        query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
+        query_parameters["input"] = _SERIALIZER.query("input", input, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        params=query_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, params=query_parameters, **kwargs)
 
 
 def build_contants_put_no_model_as_string_no_required_one_value_no_default_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    input = kwargs.pop('input', "value1")  # type: Optional[str]
-
+    *, input: Optional[str] = "value1", **kwargs: Any
+) -> HttpRequest:
     # Construct URL
-    url = kwargs.pop("template_url", '/constants/putNoModelAsStringNoRequiredOneValueNoDefault')
+    url = kwargs.pop("template_url", "/constants/putNoModelAsStringNoRequiredOneValueNoDefault")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if input is not None:
-        query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
+        query_parameters["input"] = _SERIALIZER.query("input", input, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        params=query_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, params=query_parameters, **kwargs)
 
 
 def build_contants_put_no_model_as_string_no_required_one_value_default_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    input = kwargs.pop('input', "value1")  # type: Optional[str]
-
+    *, input: Optional[str] = "value1", **kwargs: Any
+) -> HttpRequest:
     # Construct URL
-    url = kwargs.pop("template_url", '/constants/putNoModelAsStringNoRequiredOneValueDefault')
+    url = kwargs.pop("template_url", "/constants/putNoModelAsStringNoRequiredOneValueDefault")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if input is not None:
-        query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
+        query_parameters["input"] = _SERIALIZER.query("input", input, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        params=query_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, params=query_parameters, **kwargs)
 
 
 def build_contants_put_no_model_as_string_required_two_value_no_default_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    input = kwargs.pop('input')  # type: str
-
+    *, input: str, **kwargs: Any
+) -> HttpRequest:
     # Construct URL
-    url = kwargs.pop("template_url", '/constants/putNoModelAsStringRequiredTwoValueNoDefault')
+    url = kwargs.pop("template_url", "/constants/putNoModelAsStringRequiredTwoValueNoDefault")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
+    query_parameters["input"] = _SERIALIZER.query("input", input, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        params=query_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, params=query_parameters, **kwargs)
 
 
 def build_contants_put_no_model_as_string_required_two_value_default_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    input = kwargs.pop('input', "value1")  # type: str
-
+    *, input: str = "value1", **kwargs: Any
+) -> HttpRequest:
     # Construct URL
-    url = kwargs.pop("template_url", '/constants/putNoModelAsStringRequiredTwoValueDefault')
+    url = kwargs.pop("template_url", "/constants/putNoModelAsStringRequiredTwoValueDefault")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
+    query_parameters["input"] = _SERIALIZER.query("input", input, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        params=query_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, params=query_parameters, **kwargs)
 
 
-def build_contants_put_no_model_as_string_required_one_value_no_default_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    input = kwargs.pop('input', "value1")  # type: str
+def build_contants_put_no_model_as_string_required_one_value_no_default_request(**kwargs: Any) -> HttpRequest:
+    input = kwargs.pop("input", "value1")  # type: str
 
     # Construct URL
-    url = kwargs.pop("template_url", '/constants/putNoModelAsStringRequiredOneValueNoDefault')
+    url = kwargs.pop("template_url", "/constants/putNoModelAsStringRequiredOneValueNoDefault")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
+    query_parameters["input"] = _SERIALIZER.query("input", input, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        params=query_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, params=query_parameters, **kwargs)
 
 
-def build_contants_put_no_model_as_string_required_one_value_default_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    input = kwargs.pop('input', "value1")  # type: str
+def build_contants_put_no_model_as_string_required_one_value_default_request(**kwargs: Any) -> HttpRequest:
+    input = kwargs.pop("input", "value1")  # type: str
 
     # Construct URL
-    url = kwargs.pop("template_url", '/constants/putNoModelAsStringRequiredOneValueDefault')
+    url = kwargs.pop("template_url", "/constants/putNoModelAsStringRequiredOneValueDefault")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
+    query_parameters["input"] = _SERIALIZER.query("input", input, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        params=query_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, params=query_parameters, **kwargs)
 
 
 def build_contants_put_model_as_string_no_required_two_value_no_default_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    input = kwargs.pop('input', None)  # type: Optional[str]
-
+    *, input: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     # Construct URL
-    url = kwargs.pop("template_url", '/constants/putModelAsStringNoRequiredTwoValueNoDefault')
+    url = kwargs.pop("template_url", "/constants/putModelAsStringNoRequiredTwoValueNoDefault")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if input is not None:
-        query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
+        query_parameters["input"] = _SERIALIZER.query("input", input, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        params=query_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, params=query_parameters, **kwargs)
 
 
 def build_contants_put_model_as_string_no_required_two_value_default_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    input = kwargs.pop('input', "value1")  # type: Optional[str]
-
+    *, input: Optional[str] = "value1", **kwargs: Any
+) -> HttpRequest:
     # Construct URL
-    url = kwargs.pop("template_url", '/constants/putModelAsStringNoRequiredTwoValueDefault')
+    url = kwargs.pop("template_url", "/constants/putModelAsStringNoRequiredTwoValueDefault")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if input is not None:
-        query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
+        query_parameters["input"] = _SERIALIZER.query("input", input, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        params=query_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, params=query_parameters, **kwargs)
 
 
 def build_contants_put_model_as_string_no_required_one_value_no_default_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    input = kwargs.pop('input', None)  # type: Optional[str]
-
+    *, input: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     # Construct URL
-    url = kwargs.pop("template_url", '/constants/putModelAsStringNoRequiredOneValueNoDefault')
+    url = kwargs.pop("template_url", "/constants/putModelAsStringNoRequiredOneValueNoDefault")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if input is not None:
-        query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
+        query_parameters["input"] = _SERIALIZER.query("input", input, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        params=query_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, params=query_parameters, **kwargs)
 
 
 def build_contants_put_model_as_string_no_required_one_value_default_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    input = kwargs.pop('input', "value1")  # type: Optional[str]
-
+    *, input: Optional[str] = "value1", **kwargs: Any
+) -> HttpRequest:
     # Construct URL
-    url = kwargs.pop("template_url", '/constants/putModelAsStringNoRequiredOneValueDefault')
+    url = kwargs.pop("template_url", "/constants/putModelAsStringNoRequiredOneValueDefault")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if input is not None:
-        query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
+        query_parameters["input"] = _SERIALIZER.query("input", input, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        params=query_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, params=query_parameters, **kwargs)
 
 
 def build_contants_put_model_as_string_required_two_value_no_default_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    input = kwargs.pop('input')  # type: str
-
+    *, input: str, **kwargs: Any
+) -> HttpRequest:
     # Construct URL
-    url = kwargs.pop("template_url", '/constants/putModelAsStringRequiredTwoValueNoDefault')
+    url = kwargs.pop("template_url", "/constants/putModelAsStringRequiredTwoValueNoDefault")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
+    query_parameters["input"] = _SERIALIZER.query("input", input, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        params=query_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, params=query_parameters, **kwargs)
 
 
 def build_contants_put_model_as_string_required_two_value_default_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    input = kwargs.pop('input', "value1")  # type: str
-
+    *, input: str = "value1", **kwargs: Any
+) -> HttpRequest:
     # Construct URL
-    url = kwargs.pop("template_url", '/constants/putModelAsStringRequiredTwoValueDefault')
+    url = kwargs.pop("template_url", "/constants/putModelAsStringRequiredTwoValueDefault")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
+    query_parameters["input"] = _SERIALIZER.query("input", input, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        params=query_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, params=query_parameters, **kwargs)
 
 
 def build_contants_put_model_as_string_required_one_value_no_default_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    input = kwargs.pop('input')  # type: str
-
+    *, input: str, **kwargs: Any
+) -> HttpRequest:
     # Construct URL
-    url = kwargs.pop("template_url", '/constants/putModelAsStringRequiredOneValueNoDefault')
+    url = kwargs.pop("template_url", "/constants/putModelAsStringRequiredOneValueNoDefault")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
+    query_parameters["input"] = _SERIALIZER.query("input", input, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        params=query_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, params=query_parameters, **kwargs)
 
 
 def build_contants_put_model_as_string_required_one_value_default_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    input = kwargs.pop('input', "value1")  # type: str
-
+    *, input: str = "value1", **kwargs: Any
+) -> HttpRequest:
     # Construct URL
-    url = kwargs.pop("template_url", '/constants/putModelAsStringRequiredOneValueDefault')
+    url = kwargs.pop("template_url", "/constants/putModelAsStringRequiredOneValueDefault")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['input'] = _SERIALIZER.query("input", input, 'str')
+    query_parameters["input"] = _SERIALIZER.query("input", input, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        params=query_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, params=query_parameters, **kwargs)
 
 
-def build_contants_put_client_constants_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    header_constant = kwargs.pop('header_constant', True)  # type: bool
-    query_constant = kwargs.pop('query_constant', 100)  # type: int
-    path_constant = kwargs.pop('path_constant', "path")  # type: str
+def build_contants_put_client_constants_request(**kwargs: Any) -> HttpRequest:
+    header_constant = kwargs.pop("header_constant", True)  # type: bool
+    query_constant = kwargs.pop("query_constant", 100)  # type: int
+    path_constant = kwargs.pop("path_constant", "path")  # type: str
 
     # Construct URL
-    url = kwargs.pop("template_url", '/constants/clientConstants/{path-constant}')
+    url = kwargs.pop("template_url", "/constants/clientConstants/{path-constant}")
     path_format_arguments = {
-        "path-constant": _SERIALIZER.url("path_constant", path_constant, 'str'),
+        "path-constant": _SERIALIZER.url("path_constant", path_constant, "str"),
     }
 
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['query-constant'] = _SERIALIZER.query("query_constant", query_constant, 'int')
+    query_parameters["query-constant"] = _SERIALIZER.query("query_constant", query_constant, "int")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['header-constant'] = _SERIALIZER.header("header_constant", header_constant, 'bool')
+    header_parameters["header-constant"] = _SERIALIZER.header("header_constant", header_constant, "bool")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
-# fmt: on
+
 class ContantsOperations(object):
     """ContantsOperations operations.
 
@@ -432,9 +291,8 @@ class ContantsOperations(object):
 
     @distributed_trace
     def put_no_model_as_string_no_required_two_value_no_default(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        self, *, input: Optional[str] = None, **kwargs: Any
+    ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
@@ -448,8 +306,6 @@ class ContantsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-
-        input = kwargs.pop("input", None)  # type: Optional[str]
 
         request = build_contants_put_no_model_as_string_no_required_two_value_no_default_request(
             input=input,
@@ -471,9 +327,8 @@ class ContantsOperations(object):
 
     @distributed_trace
     def put_no_model_as_string_no_required_two_value_default(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        self, *, input: Optional[str] = "value1", **kwargs: Any
+    ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
@@ -487,8 +342,6 @@ class ContantsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-
-        input = kwargs.pop("input", "value1")  # type: Optional[str]
 
         request = build_contants_put_no_model_as_string_no_required_two_value_default_request(
             input=input,
@@ -510,9 +363,8 @@ class ContantsOperations(object):
 
     @distributed_trace
     def put_no_model_as_string_no_required_one_value_no_default(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        self, *, input: Optional[str] = "value1", **kwargs: Any
+    ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
@@ -526,8 +378,6 @@ class ContantsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-
-        input = kwargs.pop("input", "value1")  # type: Optional[str]
 
         request = build_contants_put_no_model_as_string_no_required_one_value_no_default_request(
             input=input,
@@ -549,9 +399,8 @@ class ContantsOperations(object):
 
     @distributed_trace
     def put_no_model_as_string_no_required_one_value_default(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        self, *, input: Optional[str] = "value1", **kwargs: Any
+    ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
@@ -565,8 +414,6 @@ class ContantsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-
-        input = kwargs.pop("input", "value1")  # type: Optional[str]
 
         request = build_contants_put_no_model_as_string_no_required_one_value_default_request(
             input=input,
@@ -587,10 +434,7 @@ class ContantsOperations(object):
     put_no_model_as_string_no_required_one_value_default.metadata = {"url": "/constants/putNoModelAsStringNoRequiredOneValueDefault"}  # type: ignore
 
     @distributed_trace
-    def put_no_model_as_string_required_two_value_no_default(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_no_model_as_string_required_two_value_no_default(self, *, input: str, **kwargs: Any) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
@@ -604,8 +448,6 @@ class ContantsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-
-        input = kwargs.pop("input")  # type: str
 
         request = build_contants_put_no_model_as_string_required_two_value_no_default_request(
             input=input,
@@ -626,10 +468,7 @@ class ContantsOperations(object):
     put_no_model_as_string_required_two_value_no_default.metadata = {"url": "/constants/putNoModelAsStringRequiredTwoValueNoDefault"}  # type: ignore
 
     @distributed_trace
-    def put_no_model_as_string_required_two_value_default(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_no_model_as_string_required_two_value_default(self, *, input: str = "value1", **kwargs: Any) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
@@ -643,8 +482,6 @@ class ContantsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-
-        input = kwargs.pop("input", "value1")  # type: str
 
         request = build_contants_put_no_model_as_string_required_two_value_default_request(
             input=input,
@@ -665,10 +502,7 @@ class ContantsOperations(object):
     put_no_model_as_string_required_two_value_default.metadata = {"url": "/constants/putNoModelAsStringRequiredTwoValueDefault"}  # type: ignore
 
     @distributed_trace
-    def put_no_model_as_string_required_one_value_no_default(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_no_model_as_string_required_one_value_no_default(self, **kwargs: Any) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
@@ -705,10 +539,7 @@ class ContantsOperations(object):
     put_no_model_as_string_required_one_value_no_default.metadata = {"url": "/constants/putNoModelAsStringRequiredOneValueNoDefault"}  # type: ignore
 
     @distributed_trace
-    def put_no_model_as_string_required_one_value_default(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_no_model_as_string_required_one_value_default(self, **kwargs: Any) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
@@ -746,9 +577,8 @@ class ContantsOperations(object):
 
     @distributed_trace
     def put_model_as_string_no_required_two_value_no_default(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        self, *, input: Optional[str] = None, **kwargs: Any
+    ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
@@ -762,8 +592,6 @@ class ContantsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-
-        input = kwargs.pop("input", None)  # type: Optional[str]
 
         request = build_contants_put_model_as_string_no_required_two_value_no_default_request(
             input=input,
@@ -785,9 +613,8 @@ class ContantsOperations(object):
 
     @distributed_trace
     def put_model_as_string_no_required_two_value_default(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        self, *, input: Optional[str] = "value1", **kwargs: Any
+    ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
@@ -801,8 +628,6 @@ class ContantsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-
-        input = kwargs.pop("input", "value1")  # type: Optional[str]
 
         request = build_contants_put_model_as_string_no_required_two_value_default_request(
             input=input,
@@ -824,9 +649,8 @@ class ContantsOperations(object):
 
     @distributed_trace
     def put_model_as_string_no_required_one_value_no_default(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        self, *, input: Optional[str] = None, **kwargs: Any
+    ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
@@ -840,8 +664,6 @@ class ContantsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-
-        input = kwargs.pop("input", None)  # type: Optional[str]
 
         request = build_contants_put_model_as_string_no_required_one_value_no_default_request(
             input=input,
@@ -863,9 +685,8 @@ class ContantsOperations(object):
 
     @distributed_trace
     def put_model_as_string_no_required_one_value_default(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        self, *, input: Optional[str] = "value1", **kwargs: Any
+    ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
@@ -879,8 +700,6 @@ class ContantsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-
-        input = kwargs.pop("input", "value1")  # type: Optional[str]
 
         request = build_contants_put_model_as_string_no_required_one_value_default_request(
             input=input,
@@ -901,10 +720,7 @@ class ContantsOperations(object):
     put_model_as_string_no_required_one_value_default.metadata = {"url": "/constants/putModelAsStringNoRequiredOneValueDefault"}  # type: ignore
 
     @distributed_trace
-    def put_model_as_string_required_two_value_no_default(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_model_as_string_required_two_value_no_default(self, *, input: str, **kwargs: Any) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
@@ -918,8 +734,6 @@ class ContantsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-
-        input = kwargs.pop("input")  # type: str
 
         request = build_contants_put_model_as_string_required_two_value_no_default_request(
             input=input,
@@ -940,10 +754,7 @@ class ContantsOperations(object):
     put_model_as_string_required_two_value_no_default.metadata = {"url": "/constants/putModelAsStringRequiredTwoValueNoDefault"}  # type: ignore
 
     @distributed_trace
-    def put_model_as_string_required_two_value_default(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_model_as_string_required_two_value_default(self, *, input: str = "value1", **kwargs: Any) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
@@ -957,8 +768,6 @@ class ContantsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-
-        input = kwargs.pop("input", "value1")  # type: str
 
         request = build_contants_put_model_as_string_required_two_value_default_request(
             input=input,
@@ -979,10 +788,7 @@ class ContantsOperations(object):
     put_model_as_string_required_two_value_default.metadata = {"url": "/constants/putModelAsStringRequiredTwoValueDefault"}  # type: ignore
 
     @distributed_trace
-    def put_model_as_string_required_one_value_no_default(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_model_as_string_required_one_value_no_default(self, *, input: str, **kwargs: Any) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
@@ -996,8 +802,6 @@ class ContantsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-
-        input = kwargs.pop("input")  # type: str
 
         request = build_contants_put_model_as_string_required_one_value_no_default_request(
             input=input,
@@ -1018,10 +822,7 @@ class ContantsOperations(object):
     put_model_as_string_required_one_value_no_default.metadata = {"url": "/constants/putModelAsStringRequiredOneValueNoDefault"}  # type: ignore
 
     @distributed_trace
-    def put_model_as_string_required_one_value_default(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_model_as_string_required_one_value_default(self, *, input: str = "value1", **kwargs: Any) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
@@ -1035,8 +836,6 @@ class ContantsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-
-        input = kwargs.pop("input", "value1")  # type: str
 
         request = build_contants_put_model_as_string_required_one_value_default_request(
             input=input,
@@ -1057,10 +856,7 @@ class ContantsOperations(object):
     put_model_as_string_required_one_value_default.metadata = {"url": "/constants/putModelAsStringRequiredOneValueDefault"}  # type: ignore
 
     @distributed_trace
-    def put_client_constants(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_client_constants(self, **kwargs: Any) -> None:
         """Pass constants from the client to this function. Will pass in constant path, query, and header
         parameters.
 

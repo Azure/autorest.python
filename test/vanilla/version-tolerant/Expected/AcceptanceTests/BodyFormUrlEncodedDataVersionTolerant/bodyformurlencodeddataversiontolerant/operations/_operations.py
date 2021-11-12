@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import functools
-from typing import TYPE_CHECKING
+from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
 from azure.core.exceptions import (
@@ -24,29 +24,23 @@ from msrest import Serializer
 
 from .._vendor import _format_url_section
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
-
-    T = TypeVar("T")
-    JSONType = Any
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+T = TypeVar("T")
+JSONType = Any
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-# fmt: off
+
 
 def build_formdataurlencoded_update_pet_with_form_request(
-    pet_id,  # type: int
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    pet_id: int, *, data: Optional[Dict[str, Any]] = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/formsdataurlencoded/pet/add/{petId}')
+    url = kwargs.pop("template_url", "/formsdataurlencoded/pet/add/{petId}")
     path_format_arguments = {
-        "petId": _SERIALIZER.url("pet_id", pet_id, 'int'),
+        "petId": _SERIALIZER.url("pet_id", pet_id, "int"),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -54,38 +48,27 @@ def build_formdataurlencoded_update_pet_with_form_request(
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, data=data, content=content, **kwargs)
 
 
 def build_formdataurlencoded_partial_constant_body_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, data: Optional[Dict[str, Any]] = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/formsdataurlencoded/partialConstantBody')
+    url = kwargs.pop("template_url", "/formsdataurlencoded/partialConstantBody")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, data=data, content=content, **kwargs)
 
-# fmt: on
+
 class FormdataurlencodedOperations(object):
     """FormdataurlencodedOperations operations.
 
@@ -105,13 +88,7 @@ class FormdataurlencodedOperations(object):
         self._config = config
 
     @distributed_trace
-    def update_pet_with_form(
-        self,
-        pet_id,  # type: int
-        data,  # type: Dict[str, Any]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def update_pet_with_form(self, pet_id: int, data: Dict[str, Any], **kwargs: Any) -> None:
         """Updates a pet in the store with form data.
 
         Updates a pet in the store with form data.
@@ -164,12 +141,7 @@ class FormdataurlencodedOperations(object):
     update_pet_with_form.metadata = {"url": "/formsdataurlencoded/pet/add/{petId}"}  # type: ignore
 
     @distributed_trace
-    def partial_constant_body(
-        self,
-        data,  # type: Dict[str, Any]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def partial_constant_body(self, data: Dict[str, Any], **kwargs: Any) -> None:
         """Test a partially constant formdata body. Pass in { grant_type: 'access_token', access_token:
         'foo', service: 'bar' } to pass the test.
 

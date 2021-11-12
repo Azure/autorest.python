@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import functools
-from typing import TYPE_CHECKING
+from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
 from azure.core.exceptions import (
@@ -22,436 +22,283 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from msrest import Serializer
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
-
-    T = TypeVar("T")
-    JSONType = Any
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+T = TypeVar("T")
+JSONType = Any
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-# fmt: off
 
-def build_string_get_null_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+
+def build_string_get_null_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/null')
+    url = kwargs.pop("template_url", "/string/null")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_string_put_null_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_string_put_null_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/null')
+    url = kwargs.pop("template_url", "/string/null")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_string_get_empty_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_string_get_empty_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/empty')
+    url = kwargs.pop("template_url", "/string/empty")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_string_put_empty_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
-    json = kwargs.pop('json', "")  # type: str
+def build_string_put_empty_request(**kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    json = kwargs.pop("json", "")  # type: str
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/empty')
+    url = kwargs.pop("template_url", "/string/empty")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        json=json,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, **kwargs)
 
 
-def build_string_get_mbcs_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_string_get_mbcs_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/mbcs')
+    url = kwargs.pop("template_url", "/string/mbcs")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_string_put_mbcs_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
-    json = kwargs.pop('json', "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€")  # type: str
+def build_string_put_mbcs_request(**kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    json = kwargs.pop("json", "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€")  # type: str
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/mbcs')
+    url = kwargs.pop("template_url", "/string/mbcs")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        json=json,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, **kwargs)
 
 
-def build_string_get_whitespace_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_string_get_whitespace_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/whitespace')
+    url = kwargs.pop("template_url", "/string/whitespace")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_string_put_whitespace_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
-    json = kwargs.pop('json', "    Now is the time for all good men to come to the aid of their country    ")  # type: str
+def build_string_put_whitespace_request(**kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    json = kwargs.pop(
+        "json", "    Now is the time for all good men to come to the aid of their country    "
+    )  # type: str
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/whitespace')
+    url = kwargs.pop("template_url", "/string/whitespace")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        json=json,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, **kwargs)
 
 
-def build_string_get_not_provided_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_string_get_not_provided_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/notProvided')
+    url = kwargs.pop("template_url", "/string/notProvided")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_string_get_base64_encoded_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_string_get_base64_encoded_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/base64Encoding')
+    url = kwargs.pop("template_url", "/string/base64Encoding")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_string_get_base64_url_encoded_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_string_get_base64_url_encoded_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/base64UrlEncoding')
+    url = kwargs.pop("template_url", "/string/base64UrlEncoding")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
 def build_string_put_base64_url_encoded_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/base64UrlEncoding')
+    url = kwargs.pop("template_url", "/string/base64UrlEncoding")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_string_get_null_base64_url_encoded_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_string_get_null_base64_url_encoded_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/nullBase64UrlEncoding')
+    url = kwargs.pop("template_url", "/string/nullBase64UrlEncoding")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_enum_get_not_expandable_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_enum_get_not_expandable_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/enum/notExpandable')
+    url = kwargs.pop("template_url", "/string/enum/notExpandable")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_enum_put_not_expandable_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_enum_put_not_expandable_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/enum/notExpandable')
+    url = kwargs.pop("template_url", "/string/enum/notExpandable")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_enum_get_referenced_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_enum_get_referenced_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/enum/Referenced')
+    url = kwargs.pop("template_url", "/string/enum/Referenced")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_enum_put_referenced_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_enum_put_referenced_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/enum/Referenced')
+    url = kwargs.pop("template_url", "/string/enum/Referenced")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_enum_get_referenced_constant_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_enum_get_referenced_constant_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/enum/ReferencedConstant')
+    url = kwargs.pop("template_url", "/string/enum/ReferencedConstant")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
 def build_enum_put_referenced_constant_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/enum/ReferencedConstant')
+    url = kwargs.pop("template_url", "/string/enum/ReferencedConstant")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
-# fmt: on
+
 class StringOperations(object):
     """StringOperations operations.
 
@@ -471,10 +318,7 @@ class StringOperations(object):
         self._config = config
 
     @distributed_trace
-    def get_null(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Optional[str]
+    def get_null(self, **kwargs: Any) -> Optional[str]:
         """Get null string value value.
 
         :return: str or None
@@ -510,12 +354,7 @@ class StringOperations(object):
     get_null.metadata = {"url": "/string/null"}  # type: ignore
 
     @distributed_trace
-    def put_null(
-        self,
-        string_body=None,  # type: Optional[str]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_null(self, string_body: Optional[str] = None, **kwargs: Any) -> None:
         """Set string value null.
 
         :param string_body: string body.
@@ -555,10 +394,7 @@ class StringOperations(object):
     put_null.metadata = {"url": "/string/null"}  # type: ignore
 
     @distributed_trace
-    def get_empty(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> str
+    def get_empty(self, **kwargs: Any) -> str:
         """Get empty string value value ''.
 
         :return: str
@@ -594,10 +430,7 @@ class StringOperations(object):
     get_empty.metadata = {"url": "/string/empty"}  # type: ignore
 
     @distributed_trace
-    def put_empty(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_empty(self, **kwargs: Any) -> None:
         """Set string value empty ''.
 
         :keyword string_body: string body. The default value is "". Note that overriding this default
@@ -634,10 +467,7 @@ class StringOperations(object):
     put_empty.metadata = {"url": "/string/empty"}  # type: ignore
 
     @distributed_trace
-    def get_mbcs(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> str
+    def get_mbcs(self, **kwargs: Any) -> str:
         """Get mbcs string value '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
         :return: str
@@ -673,10 +503,7 @@ class StringOperations(object):
     get_mbcs.metadata = {"url": "/string/mbcs"}  # type: ignore
 
     @distributed_trace
-    def put_mbcs(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_mbcs(self, **kwargs: Any) -> None:
         """Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
         :keyword string_body: string body. The default value is
@@ -716,10 +543,7 @@ class StringOperations(object):
     put_mbcs.metadata = {"url": "/string/mbcs"}  # type: ignore
 
     @distributed_trace
-    def get_whitespace(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> str
+    def get_whitespace(self, **kwargs: Any) -> str:
         """Get string value with leading and trailing whitespace
         ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid
         of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
@@ -757,10 +581,7 @@ class StringOperations(object):
     get_whitespace.metadata = {"url": "/string/whitespace"}  # type: ignore
 
     @distributed_trace
-    def put_whitespace(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_whitespace(self, **kwargs: Any) -> None:
         """Set String value with leading and trailing whitespace
         ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid
         of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
@@ -802,10 +623,7 @@ class StringOperations(object):
     put_whitespace.metadata = {"url": "/string/whitespace"}  # type: ignore
 
     @distributed_trace
-    def get_not_provided(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> str
+    def get_not_provided(self, **kwargs: Any) -> str:
         """Get String value when no string value is sent in response payload.
 
         :return: str
@@ -841,10 +659,7 @@ class StringOperations(object):
     get_not_provided.metadata = {"url": "/string/notProvided"}  # type: ignore
 
     @distributed_trace
-    def get_base64_encoded(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> bytearray
+    def get_base64_encoded(self, **kwargs: Any) -> bytearray:
         """Get value that is base64 encoded.
 
         :return: bytearray
@@ -880,10 +695,7 @@ class StringOperations(object):
     get_base64_encoded.metadata = {"url": "/string/base64Encoding"}  # type: ignore
 
     @distributed_trace
-    def get_base64_url_encoded(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> bytes
+    def get_base64_url_encoded(self, **kwargs: Any) -> bytes:
         """Get value that is base64url encoded.
 
         :return: bytes
@@ -919,12 +731,7 @@ class StringOperations(object):
     get_base64_url_encoded.metadata = {"url": "/string/base64UrlEncoding"}  # type: ignore
 
     @distributed_trace
-    def put_base64_url_encoded(
-        self,
-        string_body,  # type: bytes
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_base64_url_encoded(self, string_body: bytes, **kwargs: Any) -> None:
         """Put value that is base64url encoded.
 
         :param string_body: string body.
@@ -961,10 +768,7 @@ class StringOperations(object):
     put_base64_url_encoded.metadata = {"url": "/string/base64UrlEncoding"}  # type: ignore
 
     @distributed_trace
-    def get_null_base64_url_encoded(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Optional[bytes]
+    def get_null_base64_url_encoded(self, **kwargs: Any) -> Optional[bytes]:
         """Get null value that is expected to be base64url encoded.
 
         :return: bytes or None
@@ -1019,10 +823,7 @@ class EnumOperations(object):
         self._config = config
 
     @distributed_trace
-    def get_not_expandable(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> str
+    def get_not_expandable(self, **kwargs: Any) -> str:
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         :return: str. Possible values are: "red color", "green-color", and "blue_color".
@@ -1064,12 +865,7 @@ class EnumOperations(object):
     get_not_expandable.metadata = {"url": "/string/enum/notExpandable"}  # type: ignore
 
     @distributed_trace
-    def put_not_expandable(
-        self,
-        string_body,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_not_expandable(self, string_body: str, **kwargs: Any) -> None:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         :param string_body: string body. Possible values are: "red color", "green-color", and
@@ -1107,10 +903,7 @@ class EnumOperations(object):
     put_not_expandable.metadata = {"url": "/string/enum/notExpandable"}  # type: ignore
 
     @distributed_trace
-    def get_referenced(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> str
+    def get_referenced(self, **kwargs: Any) -> str:
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         :return: str. Possible values are: "red color", "green-color", and "blue_color".
@@ -1152,12 +945,7 @@ class EnumOperations(object):
     get_referenced.metadata = {"url": "/string/enum/Referenced"}  # type: ignore
 
     @distributed_trace
-    def put_referenced(
-        self,
-        enum_string_body,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_referenced(self, enum_string_body: str, **kwargs: Any) -> None:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         :param enum_string_body: enum string body. Possible values are: "red color", "green-color", and
@@ -1195,10 +983,7 @@ class EnumOperations(object):
     put_referenced.metadata = {"url": "/string/enum/Referenced"}  # type: ignore
 
     @distributed_trace
-    def get_referenced_constant(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def get_referenced_constant(self, **kwargs: Any) -> JSONType:
         """Get value 'green-color' from the constant.
 
         :return: JSON object
@@ -1243,12 +1028,7 @@ class EnumOperations(object):
     get_referenced_constant.metadata = {"url": "/string/enum/ReferencedConstant"}  # type: ignore
 
     @distributed_trace
-    def put_referenced_constant(
-        self,
-        enum_string_body,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_referenced_constant(self, enum_string_body: JSONType, **kwargs: Any) -> None:
         """Sends value 'green-color' from a constant.
 
         :param enum_string_body: enum string body.

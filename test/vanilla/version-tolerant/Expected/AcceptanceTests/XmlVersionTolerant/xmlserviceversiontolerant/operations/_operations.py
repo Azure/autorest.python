@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import functools
-from typing import TYPE_CHECKING
+from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar
 import warnings
 from xml.etree import ElementTree as ET
 
@@ -23,780 +23,503 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from msrest import Serializer
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar
-
-    T = TypeVar("T")
-    JSONType = Any
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+T = TypeVar("T")
+JSONType = Any
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-# fmt: off
 
-def build_xml_get_complex_type_ref_no_meta_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+
+def build_xml_get_complex_type_ref_no_meta_request(**kwargs: Any) -> HttpRequest:
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/complex-type-ref-no-meta')
+    url = kwargs.pop("template_url", "/xml/complex-type-ref-no-meta")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_xml_put_complex_type_ref_no_meta_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_xml_put_complex_type_ref_no_meta_request(*, content: Any, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/complex-type-ref-no-meta')
+    url = kwargs.pop("template_url", "/xml/complex-type-ref-no-meta")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, content=content, **kwargs)
 
 
-def build_xml_get_complex_type_ref_with_meta_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_xml_get_complex_type_ref_with_meta_request(**kwargs: Any) -> HttpRequest:
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/complex-type-ref-with-meta')
+    url = kwargs.pop("template_url", "/xml/complex-type-ref-with-meta")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_xml_put_complex_type_ref_with_meta_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_xml_put_complex_type_ref_with_meta_request(*, content: Any, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/complex-type-ref-with-meta')
+    url = kwargs.pop("template_url", "/xml/complex-type-ref-with-meta")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, content=content, **kwargs)
 
 
-def build_xml_get_simple_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_xml_get_simple_request(**kwargs: Any) -> HttpRequest:
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/simple')
+    url = kwargs.pop("template_url", "/xml/simple")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_xml_put_simple_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_xml_put_simple_request(*, content: Any, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/simple')
+    url = kwargs.pop("template_url", "/xml/simple")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, content=content, **kwargs)
 
 
-def build_xml_get_wrapped_lists_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_xml_get_wrapped_lists_request(**kwargs: Any) -> HttpRequest:
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/wrapped-lists')
+    url = kwargs.pop("template_url", "/xml/wrapped-lists")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_xml_put_wrapped_lists_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_xml_put_wrapped_lists_request(*, content: Any, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/wrapped-lists')
+    url = kwargs.pop("template_url", "/xml/wrapped-lists")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, content=content, **kwargs)
 
 
-def build_xml_get_headers_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_xml_get_headers_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/headers')
+    url = kwargs.pop("template_url", "/xml/headers")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, **kwargs)
 
 
-def build_xml_get_empty_list_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_xml_get_empty_list_request(**kwargs: Any) -> HttpRequest:
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/empty-list')
+    url = kwargs.pop("template_url", "/xml/empty-list")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_xml_put_empty_list_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_xml_put_empty_list_request(*, content: Any, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/empty-list')
+    url = kwargs.pop("template_url", "/xml/empty-list")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, content=content, **kwargs)
 
 
-def build_xml_get_empty_wrapped_lists_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_xml_get_empty_wrapped_lists_request(**kwargs: Any) -> HttpRequest:
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/empty-wrapped-lists')
+    url = kwargs.pop("template_url", "/xml/empty-wrapped-lists")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_xml_put_empty_wrapped_lists_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_xml_put_empty_wrapped_lists_request(*, content: Any, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/empty-wrapped-lists')
+    url = kwargs.pop("template_url", "/xml/empty-wrapped-lists")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, content=content, **kwargs)
 
 
-def build_xml_get_root_list_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_xml_get_root_list_request(**kwargs: Any) -> HttpRequest:
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/root-list')
+    url = kwargs.pop("template_url", "/xml/root-list")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_xml_put_root_list_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_xml_put_root_list_request(*, content: Any, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/root-list')
+    url = kwargs.pop("template_url", "/xml/root-list")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, content=content, **kwargs)
 
 
-def build_xml_get_root_list_single_item_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_xml_get_root_list_single_item_request(**kwargs: Any) -> HttpRequest:
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/root-list-single-item')
+    url = kwargs.pop("template_url", "/xml/root-list-single-item")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_xml_put_root_list_single_item_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_xml_put_root_list_single_item_request(*, content: Any, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/root-list-single-item')
+    url = kwargs.pop("template_url", "/xml/root-list-single-item")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, content=content, **kwargs)
 
 
-def build_xml_get_empty_root_list_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_xml_get_empty_root_list_request(**kwargs: Any) -> HttpRequest:
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/empty-root-list')
+    url = kwargs.pop("template_url", "/xml/empty-root-list")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_xml_put_empty_root_list_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_xml_put_empty_root_list_request(*, content: Any, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/empty-root-list')
+    url = kwargs.pop("template_url", "/xml/empty-root-list")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, content=content, **kwargs)
 
 
-def build_xml_get_empty_child_element_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_xml_get_empty_child_element_request(**kwargs: Any) -> HttpRequest:
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/empty-child-element')
+    url = kwargs.pop("template_url", "/xml/empty-child-element")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_xml_put_empty_child_element_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_xml_put_empty_child_element_request(*, content: Any, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/empty-child-element')
+    url = kwargs.pop("template_url", "/xml/empty-child-element")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, content=content, **kwargs)
 
 
-def build_xml_list_containers_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    comp = kwargs.pop('comp', "list")  # type: str
+def build_xml_list_containers_request(**kwargs: Any) -> HttpRequest:
+    comp = kwargs.pop("comp", "list")  # type: str
 
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/')
+    url = kwargs.pop("template_url", "/xml/")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
+    query_parameters["comp"] = _SERIALIZER.query("comp", comp, "str")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
-def build_xml_get_service_properties_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    comp = kwargs.pop('comp', "properties")  # type: str
-    restype = kwargs.pop('restype', "service")  # type: str
+def build_xml_get_service_properties_request(**kwargs: Any) -> HttpRequest:
+    comp = kwargs.pop("comp", "properties")  # type: str
+    restype = kwargs.pop("restype", "service")  # type: str
 
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/')
+    url = kwargs.pop("template_url", "/xml/")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
-    query_parameters['restype'] = _SERIALIZER.query("restype", restype, 'str')
+    query_parameters["comp"] = _SERIALIZER.query("comp", comp, "str")
+    query_parameters["restype"] = _SERIALIZER.query("restype", restype, "str")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
-def build_xml_put_service_properties_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    comp = kwargs.pop('comp', "properties")  # type: str
-    restype = kwargs.pop('restype', "service")  # type: str
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_xml_put_service_properties_request(*, content: Any, **kwargs: Any) -> HttpRequest:
+    comp = kwargs.pop("comp", "properties")  # type: str
+    restype = kwargs.pop("restype", "service")  # type: str
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/')
+    url = kwargs.pop("template_url", "/xml/")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
-    query_parameters['restype'] = _SERIALIZER.query("restype", restype, 'str')
+    query_parameters["comp"] = _SERIALIZER.query("comp", comp, "str")
+    query_parameters["restype"] = _SERIALIZER.query("restype", restype, "str")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     return HttpRequest(
-        method="PUT",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
-        **kwargs
+        method="PUT", url=url, params=query_parameters, headers=header_parameters, content=content, **kwargs
     )
 
 
-def build_xml_get_acls_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    comp = kwargs.pop('comp', "acl")  # type: str
-    restype = kwargs.pop('restype', "container")  # type: str
+def build_xml_get_acls_request(**kwargs: Any) -> HttpRequest:
+    comp = kwargs.pop("comp", "acl")  # type: str
+    restype = kwargs.pop("restype", "container")  # type: str
 
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/mycontainer')
+    url = kwargs.pop("template_url", "/xml/mycontainer")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
-    query_parameters['restype'] = _SERIALIZER.query("restype", restype, 'str')
+    query_parameters["comp"] = _SERIALIZER.query("comp", comp, "str")
+    query_parameters["restype"] = _SERIALIZER.query("restype", restype, "str")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
-def build_xml_put_acls_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    comp = kwargs.pop('comp', "acl")  # type: str
-    restype = kwargs.pop('restype', "container")  # type: str
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_xml_put_acls_request(*, content: Any, **kwargs: Any) -> HttpRequest:
+    comp = kwargs.pop("comp", "acl")  # type: str
+    restype = kwargs.pop("restype", "container")  # type: str
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/mycontainer')
+    url = kwargs.pop("template_url", "/xml/mycontainer")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
-    query_parameters['restype'] = _SERIALIZER.query("restype", restype, 'str')
+    query_parameters["comp"] = _SERIALIZER.query("comp", comp, "str")
+    query_parameters["restype"] = _SERIALIZER.query("restype", restype, "str")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     return HttpRequest(
-        method="PUT",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
-        **kwargs
+        method="PUT", url=url, params=query_parameters, headers=header_parameters, content=content, **kwargs
     )
 
 
-def build_xml_list_blobs_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    comp = kwargs.pop('comp', "list")  # type: str
-    restype = kwargs.pop('restype', "container")  # type: str
+def build_xml_list_blobs_request(**kwargs: Any) -> HttpRequest:
+    comp = kwargs.pop("comp", "list")  # type: str
+    restype = kwargs.pop("restype", "container")  # type: str
 
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/mycontainer')
+    url = kwargs.pop("template_url", "/xml/mycontainer")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
-    query_parameters['restype'] = _SERIALIZER.query("restype", restype, 'str')
+    query_parameters["comp"] = _SERIALIZER.query("comp", comp, "str")
+    query_parameters["restype"] = _SERIALIZER.query("restype", restype, "str")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
-def build_xml_json_input_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_xml_json_input_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/jsoninput')
+    url = kwargs.pop("template_url", "/xml/jsoninput")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_xml_json_output_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_xml_json_output_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/jsonoutput')
+    url = kwargs.pop("template_url", "/xml/jsonoutput")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_xml_get_xms_text_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_xml_get_xms_text_request(**kwargs: Any) -> HttpRequest:
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/x-ms-text')
+    url = kwargs.pop("template_url", "/xml/x-ms-text")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_xml_get_bytes_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_xml_get_bytes_request(**kwargs: Any) -> HttpRequest:
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/bytes')
+    url = kwargs.pop("template_url", "/xml/bytes")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_xml_put_binary_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_xml_put_binary_request(*, content: Any, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/bytes')
+    url = kwargs.pop("template_url", "/xml/bytes")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, content=content, **kwargs)
 
 
-def build_xml_get_uri_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_xml_get_uri_request(**kwargs: Any) -> HttpRequest:
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/url')
+    url = kwargs.pop("template_url", "/xml/url")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_xml_put_uri_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_xml_put_uri_request(*, content: Any, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/url')
+    url = kwargs.pop("template_url", "/xml/url")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, content=content, **kwargs)
 
-# fmt: on
+
 class XmlOperations(object):
     """XmlOperations operations.
 
@@ -816,10 +539,7 @@ class XmlOperations(object):
         self._config = config
 
     @distributed_trace
-    def get_complex_type_ref_no_meta(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def get_complex_type_ref_no_meta(self, **kwargs: Any) -> JSONType:
         """Get a complex type that has a ref to a complex type with no XML node.
 
         :return: JSON object
@@ -866,12 +586,7 @@ class XmlOperations(object):
     get_complex_type_ref_no_meta.metadata = {"url": "/xml/complex-type-ref-no-meta"}  # type: ignore
 
     @distributed_trace
-    def put_complex_type_ref_no_meta(
-        self,
-        model,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_complex_type_ref_no_meta(self, model: JSONType, **kwargs: Any) -> None:
         """Puts a complex type that has a ref to a complex type with no XML node.
 
         :param model:
@@ -919,10 +634,7 @@ class XmlOperations(object):
     put_complex_type_ref_no_meta.metadata = {"url": "/xml/complex-type-ref-no-meta"}  # type: ignore
 
     @distributed_trace
-    def get_complex_type_ref_with_meta(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def get_complex_type_ref_with_meta(self, **kwargs: Any) -> JSONType:
         """Get a complex type that has a ref to a complex type with XML node.
 
         :return: JSON object
@@ -969,12 +681,7 @@ class XmlOperations(object):
     get_complex_type_ref_with_meta.metadata = {"url": "/xml/complex-type-ref-with-meta"}  # type: ignore
 
     @distributed_trace
-    def put_complex_type_ref_with_meta(
-        self,
-        model,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_complex_type_ref_with_meta(self, model: JSONType, **kwargs: Any) -> None:
         """Puts a complex type that has a ref to a complex type with XML node.
 
         :param model:
@@ -1022,10 +729,7 @@ class XmlOperations(object):
     put_complex_type_ref_with_meta.metadata = {"url": "/xml/complex-type-ref-with-meta"}  # type: ignore
 
     @distributed_trace
-    def get_simple(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def get_simple(self, **kwargs: Any) -> JSONType:
         """Get a simple XML document.
 
         :return: JSON object
@@ -1080,12 +784,7 @@ class XmlOperations(object):
     get_simple.metadata = {"url": "/xml/simple"}  # type: ignore
 
     @distributed_trace
-    def put_simple(
-        self,
-        slideshow,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_simple(self, slideshow: JSONType, **kwargs: Any) -> None:
         """Put a simple XML document.
 
         :param slideshow:
@@ -1141,10 +840,7 @@ class XmlOperations(object):
     put_simple.metadata = {"url": "/xml/simple"}  # type: ignore
 
     @distributed_trace
-    def get_wrapped_lists(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def get_wrapped_lists(self, **kwargs: Any) -> JSONType:
         """Get an XML document with multiple wrapped lists.
 
         :return: JSON object
@@ -1193,12 +889,7 @@ class XmlOperations(object):
     get_wrapped_lists.metadata = {"url": "/xml/wrapped-lists"}  # type: ignore
 
     @distributed_trace
-    def put_wrapped_lists(
-        self,
-        wrapped_lists,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_wrapped_lists(self, wrapped_lists: JSONType, **kwargs: Any) -> None:
         """Put an XML document with multiple wrapped lists.
 
         :param wrapped_lists:
@@ -1248,10 +939,7 @@ class XmlOperations(object):
     put_wrapped_lists.metadata = {"url": "/xml/wrapped-lists"}  # type: ignore
 
     @distributed_trace
-    def get_headers(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def get_headers(self, **kwargs: Any) -> None:
         """Get strongly-typed response headers.
 
         :return: None
@@ -1283,10 +971,7 @@ class XmlOperations(object):
     get_headers.metadata = {"url": "/xml/headers"}  # type: ignore
 
     @distributed_trace
-    def get_empty_list(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def get_empty_list(self, **kwargs: Any) -> JSONType:
         """Get an empty list.
 
         :return: JSON object
@@ -1341,12 +1026,7 @@ class XmlOperations(object):
     get_empty_list.metadata = {"url": "/xml/empty-list"}  # type: ignore
 
     @distributed_trace
-    def put_empty_list(
-        self,
-        slideshow,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_empty_list(self, slideshow: JSONType, **kwargs: Any) -> None:
         """Puts an empty list.
 
         :param slideshow:
@@ -1402,10 +1082,7 @@ class XmlOperations(object):
     put_empty_list.metadata = {"url": "/xml/empty-list"}  # type: ignore
 
     @distributed_trace
-    def get_empty_wrapped_lists(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def get_empty_wrapped_lists(self, **kwargs: Any) -> JSONType:
         """Gets some empty wrapped lists.
 
         :return: JSON object
@@ -1454,12 +1131,7 @@ class XmlOperations(object):
     get_empty_wrapped_lists.metadata = {"url": "/xml/empty-wrapped-lists"}  # type: ignore
 
     @distributed_trace
-    def put_empty_wrapped_lists(
-        self,
-        apple_barrel,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_empty_wrapped_lists(self, apple_barrel: JSONType, **kwargs: Any) -> None:
         """Puts some empty wrapped lists.
 
         :param apple_barrel:
@@ -1509,10 +1181,7 @@ class XmlOperations(object):
     put_empty_wrapped_lists.metadata = {"url": "/xml/empty-wrapped-lists"}  # type: ignore
 
     @distributed_trace
-    def get_root_list(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> List[JSONType]
+    def get_root_list(self, **kwargs: Any) -> List[JSONType]:
         """Gets a list as the root element.
 
         :return: list of JSON object
@@ -1560,12 +1229,7 @@ class XmlOperations(object):
     get_root_list.metadata = {"url": "/xml/root-list"}  # type: ignore
 
     @distributed_trace
-    def put_root_list(
-        self,
-        bananas,  # type: List[JSONType]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_root_list(self, bananas: List[JSONType], **kwargs: Any) -> None:
         """Puts a list as the root element.
 
         :param bananas:
@@ -1615,10 +1279,7 @@ class XmlOperations(object):
     put_root_list.metadata = {"url": "/xml/root-list"}  # type: ignore
 
     @distributed_trace
-    def get_root_list_single_item(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> List[JSONType]
+    def get_root_list_single_item(self, **kwargs: Any) -> List[JSONType]:
         """Gets a list with a single item.
 
         :return: list of JSON object
@@ -1666,12 +1327,7 @@ class XmlOperations(object):
     get_root_list_single_item.metadata = {"url": "/xml/root-list-single-item"}  # type: ignore
 
     @distributed_trace
-    def put_root_list_single_item(
-        self,
-        bananas,  # type: List[JSONType]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_root_list_single_item(self, bananas: List[JSONType], **kwargs: Any) -> None:
         """Puts a list with a single item.
 
         :param bananas:
@@ -1721,10 +1377,7 @@ class XmlOperations(object):
     put_root_list_single_item.metadata = {"url": "/xml/root-list-single-item"}  # type: ignore
 
     @distributed_trace
-    def get_empty_root_list(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> List[JSONType]
+    def get_empty_root_list(self, **kwargs: Any) -> List[JSONType]:
         """Gets an empty list as the root element.
 
         :return: list of JSON object
@@ -1772,12 +1425,7 @@ class XmlOperations(object):
     get_empty_root_list.metadata = {"url": "/xml/empty-root-list"}  # type: ignore
 
     @distributed_trace
-    def put_empty_root_list(
-        self,
-        bananas,  # type: List[JSONType]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_empty_root_list(self, bananas: List[JSONType], **kwargs: Any) -> None:
         """Puts an empty list as the root element.
 
         :param bananas:
@@ -1827,10 +1475,7 @@ class XmlOperations(object):
     put_empty_root_list.metadata = {"url": "/xml/empty-root-list"}  # type: ignore
 
     @distributed_trace
-    def get_empty_child_element(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def get_empty_child_element(self, **kwargs: Any) -> JSONType:
         """Gets an XML document with an empty child element.
 
         :return: JSON object
@@ -1876,12 +1521,7 @@ class XmlOperations(object):
     get_empty_child_element.metadata = {"url": "/xml/empty-child-element"}  # type: ignore
 
     @distributed_trace
-    def put_empty_child_element(
-        self,
-        banana,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_empty_child_element(self, banana: JSONType, **kwargs: Any) -> None:
         """Puts a value with an empty child element.
 
         :param banana:
@@ -1928,10 +1568,7 @@ class XmlOperations(object):
     put_empty_child_element.metadata = {"url": "/xml/empty-child-element"}  # type: ignore
 
     @distributed_trace
-    def list_containers(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def list_containers(self, **kwargs: Any) -> JSONType:
         """Lists containers in a storage account.
 
         :keyword comp: The default value is "list". Note that overriding this default value may result
@@ -2001,10 +1638,7 @@ class XmlOperations(object):
     list_containers.metadata = {"url": "/xml/"}  # type: ignore
 
     @distributed_trace
-    def get_service_properties(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def get_service_properties(self, **kwargs: Any) -> JSONType:
         """Gets storage service properties.
 
         :keyword comp: The default value is "properties". Note that overriding this default value may
@@ -2100,12 +1734,7 @@ class XmlOperations(object):
     get_service_properties.metadata = {"url": "/xml/"}  # type: ignore
 
     @distributed_trace
-    def put_service_properties(
-        self,
-        properties,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_service_properties(self, properties: JSONType, **kwargs: Any) -> None:
         """Puts storage service properties.
 
         :param properties:
@@ -2201,10 +1830,7 @@ class XmlOperations(object):
     put_service_properties.metadata = {"url": "/xml/"}  # type: ignore
 
     @distributed_trace
-    def get_acls(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> List[JSONType]
+    def get_acls(self, **kwargs: Any) -> List[JSONType]:
         """Gets storage ACLs for a container.
 
         :keyword comp: The default value is "acl". Note that overriding this default value may result
@@ -2266,12 +1892,7 @@ class XmlOperations(object):
     get_acls.metadata = {"url": "/xml/mycontainer"}  # type: ignore
 
     @distributed_trace
-    def put_acls(
-        self,
-        properties,  # type: List[JSONType]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_acls(self, properties: List[JSONType], **kwargs: Any) -> None:
         """Puts storage ACLs for a container.
 
         :param properties:
@@ -2334,10 +1955,7 @@ class XmlOperations(object):
     put_acls.metadata = {"url": "/xml/mycontainer"}  # type: ignore
 
     @distributed_trace
-    def list_blobs(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def list_blobs(self, **kwargs: Any) -> JSONType:
         """Lists blobs in a storage container.
 
         :keyword comp: The default value is "list". Note that overriding this default value may result
@@ -2445,12 +2063,7 @@ class XmlOperations(object):
     list_blobs.metadata = {"url": "/xml/mycontainer"}  # type: ignore
 
     @distributed_trace
-    def json_input(
-        self,
-        properties,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def json_input(self, properties: JSONType, **kwargs: Any) -> None:
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
         number 42.
 
@@ -2496,10 +2109,7 @@ class XmlOperations(object):
     json_input.metadata = {"url": "/xml/jsoninput"}  # type: ignore
 
     @distributed_trace
-    def json_output(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def json_output(self, **kwargs: Any) -> JSONType:
         """A Swagger with XML that has one operation that returns JSON. ID number 42.
 
         :return: JSON object
@@ -2543,10 +2153,7 @@ class XmlOperations(object):
     json_output.metadata = {"url": "/xml/jsonoutput"}  # type: ignore
 
     @distributed_trace
-    def get_xms_text(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def get_xms_text(self, **kwargs: Any) -> JSONType:
         """Get back an XML object with an x-ms-text property, which should translate to the returned
         object's 'language' property being 'english' and its 'content' property being 'I am text'.
 
@@ -2592,10 +2199,7 @@ class XmlOperations(object):
     get_xms_text.metadata = {"url": "/xml/x-ms-text"}  # type: ignore
 
     @distributed_trace
-    def get_bytes(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def get_bytes(self, **kwargs: Any) -> JSONType:
         """Get an XML document with binary property.
 
         :return: JSON object
@@ -2639,12 +2243,7 @@ class XmlOperations(object):
     get_bytes.metadata = {"url": "/xml/bytes"}  # type: ignore
 
     @distributed_trace
-    def put_binary(
-        self,
-        slideshow,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_binary(self, slideshow: JSONType, **kwargs: Any) -> None:
         """Put an XML document with binary property.
 
         :param slideshow:
@@ -2689,10 +2288,7 @@ class XmlOperations(object):
     put_binary.metadata = {"url": "/xml/bytes"}  # type: ignore
 
     @distributed_trace
-    def get_uri(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def get_uri(self, **kwargs: Any) -> JSONType:
         """Get an XML document with uri property.
 
         :return: JSON object
@@ -2736,12 +2332,7 @@ class XmlOperations(object):
     get_uri.metadata = {"url": "/xml/url"}  # type: ignore
 
     @distributed_trace
-    def put_uri(
-        self,
-        model,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_uri(self, model: JSONType, **kwargs: Any) -> None:
         """Put an XML document with uri property.
 
         :param model:

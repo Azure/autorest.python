@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import functools
-from typing import TYPE_CHECKING
+from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
 from azure.core.exceptions import (
@@ -22,244 +22,157 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from msrest import Serializer
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
-
-    T = TypeVar("T")
-    JSONType = Any
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+T = TypeVar("T")
+JSONType = Any
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-# fmt: off
 
-def build_get_horse_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+
+def build_get_horse_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/multipleInheritance/horse')
+    url = kwargs.pop("template_url", "/multipleInheritance/horse")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_horse_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_put_horse_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/multipleInheritance/horse')
+    url = kwargs.pop("template_url", "/multipleInheritance/horse")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_get_pet_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_pet_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/multipleInheritance/pet')
+    url = kwargs.pop("template_url", "/multipleInheritance/pet")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_pet_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_put_pet_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/multipleInheritance/pet')
+    url = kwargs.pop("template_url", "/multipleInheritance/pet")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_get_feline_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_feline_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/multipleInheritance/feline')
+    url = kwargs.pop("template_url", "/multipleInheritance/feline")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_feline_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_put_feline_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/multipleInheritance/feline')
+    url = kwargs.pop("template_url", "/multipleInheritance/feline")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_get_cat_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_cat_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/multipleInheritance/cat')
+    url = kwargs.pop("template_url", "/multipleInheritance/cat")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_cat_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_put_cat_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/multipleInheritance/cat')
+    url = kwargs.pop("template_url", "/multipleInheritance/cat")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_get_kitten_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_get_kitten_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/multipleInheritance/kitten')
+    url = kwargs.pop("template_url", "/multipleInheritance/kitten")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_put_kitten_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_put_kitten_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/multipleInheritance/kitten')
+    url = kwargs.pop("template_url", "/multipleInheritance/kitten")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
-# fmt: on
+
 class MultipleInheritanceServiceClientOperationsMixin(object):
     @distributed_trace
-    def get_horse(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def get_horse(self, **kwargs: Any) -> JSONType:
         """Get a horse with name 'Fred' and isAShowHorse true.
 
         :return: JSON object
@@ -304,12 +217,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     get_horse.metadata = {"url": "/multipleInheritance/horse"}  # type: ignore
 
     @distributed_trace
-    def put_horse(
-        self,
-        horse,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> str
+    def put_horse(self, horse: JSONType, **kwargs: Any) -> str:
         """Put a horse with name 'General' and isAShowHorse false.
 
         :param horse: Put a horse with name 'General' and isAShowHorse false.
@@ -362,10 +270,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     put_horse.metadata = {"url": "/multipleInheritance/horse"}  # type: ignore
 
     @distributed_trace
-    def get_pet(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def get_pet(self, **kwargs: Any) -> JSONType:
         """Get a pet with name 'Peanut'.
 
         :return: JSON object
@@ -409,12 +314,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     get_pet.metadata = {"url": "/multipleInheritance/pet"}  # type: ignore
 
     @distributed_trace
-    def put_pet(
-        self,
-        pet,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> str
+    def put_pet(self, pet: JSONType, **kwargs: Any) -> str:
         """Put a pet with name 'Butter'.
 
         :param pet: Put a pet with name 'Butter'.
@@ -466,10 +366,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     put_pet.metadata = {"url": "/multipleInheritance/pet"}  # type: ignore
 
     @distributed_trace
-    def get_feline(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def get_feline(self, **kwargs: Any) -> JSONType:
         """Get a feline where meows and hisses are true.
 
         :return: JSON object
@@ -514,12 +411,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     get_feline.metadata = {"url": "/multipleInheritance/feline"}  # type: ignore
 
     @distributed_trace
-    def put_feline(
-        self,
-        feline,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> str
+    def put_feline(self, feline: JSONType, **kwargs: Any) -> str:
         """Put a feline who hisses and doesn't meow.
 
         :param feline: Put a feline who hisses and doesn't meow.
@@ -572,10 +464,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     put_feline.metadata = {"url": "/multipleInheritance/feline"}  # type: ignore
 
     @distributed_trace
-    def get_cat(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def get_cat(self, **kwargs: Any) -> JSONType:
         """Get a cat with name 'Whiskers' where likesMilk, meows, and hisses is true.
 
         :return: JSON object
@@ -622,12 +511,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     get_cat.metadata = {"url": "/multipleInheritance/cat"}  # type: ignore
 
     @distributed_trace
-    def put_cat(
-        self,
-        cat,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> str
+    def put_cat(self, cat: JSONType, **kwargs: Any) -> str:
         """Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
 
         :param cat: Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
@@ -682,10 +566,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     put_cat.metadata = {"url": "/multipleInheritance/cat"}  # type: ignore
 
     @distributed_trace
-    def get_kitten(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def get_kitten(self, **kwargs: Any) -> JSONType:
         """Get a kitten with name 'Gatito' where likesMilk and meows is true, and hisses and eatsMiceYet
         is false.
 
@@ -734,12 +615,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     get_kitten.metadata = {"url": "/multipleInheritance/kitten"}  # type: ignore
 
     @distributed_trace
-    def put_kitten(
-        self,
-        kitten,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> str
+    def put_kitten(self, kitten: JSONType, **kwargs: Any) -> str:
         """Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is
         true.
 

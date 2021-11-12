@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import functools
-from typing import TYPE_CHECKING
+from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
 from azure.core.exceptions import (
@@ -23,59 +23,34 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from msrest import Serializer
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
-
-    T = TypeVar("T")
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+T = TypeVar("T")
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-# fmt: off
 
-def build_head_exception_head200_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+
+def build_head_exception_head200_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/200')
+    url = kwargs.pop("template_url", "/http/success/200")
 
-    return HttpRequest(
-        method="HEAD",
-        url=url,
-        **kwargs
-    )
+    return HttpRequest(method="HEAD", url=url, **kwargs)
 
 
-def build_head_exception_head204_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_head_exception_head204_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/204')
+    url = kwargs.pop("template_url", "/http/success/204")
 
-    return HttpRequest(
-        method="HEAD",
-        url=url,
-        **kwargs
-    )
+    return HttpRequest(method="HEAD", url=url, **kwargs)
 
 
-def build_head_exception_head404_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_head_exception_head404_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/404')
+    url = kwargs.pop("template_url", "/http/success/404")
 
-    return HttpRequest(
-        method="HEAD",
-        url=url,
-        **kwargs
-    )
+    return HttpRequest(method="HEAD", url=url, **kwargs)
 
-# fmt: on
+
 class HeadExceptionOperations(object):
     """HeadExceptionOperations operations.
 
@@ -95,10 +70,7 @@ class HeadExceptionOperations(object):
         self._config = config
 
     @distributed_trace
-    def head200(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> bool
+    def head200(self, **kwargs: Any) -> bool:
         """Return 200 status code if successful.
 
         :return: bool
@@ -128,10 +100,7 @@ class HeadExceptionOperations(object):
     head200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace
-    def head204(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> bool
+    def head204(self, **kwargs: Any) -> bool:
         """Return 204 status code if successful.
 
         :return: bool
@@ -161,10 +130,7 @@ class HeadExceptionOperations(object):
     head204.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace
-    def head404(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> bool
+    def head404(self, **kwargs: Any) -> bool:
         """Return 404 status code if successful.
 
         :return: bool

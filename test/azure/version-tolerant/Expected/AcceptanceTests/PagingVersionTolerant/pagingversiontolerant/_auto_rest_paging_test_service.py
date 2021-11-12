@@ -7,9 +7,10 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import TYPE_CHECKING
+from typing import Any, Optional, TYPE_CHECKING
 
 from azure.core import PipelineClient
+from azure.core.rest import HttpRequest, HttpResponse
 from msrest import Deserializer, Serializer
 
 from ._configuration import AutoRestPagingTestServiceConfiguration
@@ -17,12 +18,10 @@ from .operations import PagingOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, Optional
-
-    from azure.core.rest import HttpRequest, HttpResponse
+    from typing import Dict
 
 
-class AutoRestPagingTestService(object):
+class AutoRestPagingTestService:
     """Long-running Operation for AutoRest.
 
     :ivar paging: PagingOperations operations
@@ -33,11 +32,7 @@ class AutoRestPagingTestService(object):
      Retry-After header is present.
     """
 
-    def __init__(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
-        endpoint = kwargs.pop("endpoint", "http://localhost:3000")  # type: str
+    def __init__(self, *, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
 
         self._config = AutoRestPagingTestServiceConfiguration(**kwargs)
         self._client = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
@@ -50,9 +45,8 @@ class AutoRestPagingTestService(object):
     def send_request(
         self,
         request,  # type: HttpRequest
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpResponse
+        **kwargs: Any
+    ) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

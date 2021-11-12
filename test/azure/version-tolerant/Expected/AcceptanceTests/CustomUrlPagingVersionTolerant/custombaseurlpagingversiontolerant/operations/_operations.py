@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 import functools
 from json import loads as _loads
-from typing import TYPE_CHECKING
+from typing import Any, Callable, Dict, Generic, Iterable, Optional, TypeVar
 import warnings
 
 from azure.core.exceptions import (
@@ -26,84 +26,55 @@ from msrest import Serializer
 
 from .._vendor import _format_url_section
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Iterable, Optional, TypeVar
-
-    T = TypeVar("T")
-    JSONType = Any
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+T = TypeVar("T")
+JSONType = Any
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-# fmt: off
 
-def build_paging_get_pages_partial_url_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+
+def build_paging_get_pages_partial_url_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/paging/customurl/partialnextlink')
+    url = kwargs.pop("template_url", "/paging/customurl/partialnextlink")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_paging_get_pages_partial_url_operation_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_paging_get_pages_partial_url_operation_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/paging/customurl/partialnextlinkop')
+    url = kwargs.pop("template_url", "/paging/customurl/partialnextlinkop")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_paging_get_pages_partial_url_operation_next_request(
-    next_link,  # type: str
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_paging_get_pages_partial_url_operation_next_request(next_link: str, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/paging/customurl/{nextLink}')
+    url = kwargs.pop("template_url", "/paging/customurl/{nextLink}")
     path_format_arguments = {
-        "nextLink": _SERIALIZER.url("next_link", next_link, 'str', skip_quote=True),
+        "nextLink": _SERIALIZER.url("next_link", next_link, "str", skip_quote=True),
     }
 
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
-# fmt: on
+
 class PagingOperations(object):
     """PagingOperations operations.
 
@@ -123,12 +94,7 @@ class PagingOperations(object):
         self._config = config
 
     @distributed_trace
-    def get_pages_partial_url(
-        self,
-        account_name,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> Iterable[JSONType]
+    def get_pages_partial_url(self, account_name: str, **kwargs: Any) -> Iterable[JSONType]:
         """A paging operation that combines custom url, paging and partial URL and expect to concat after
         host.
 
@@ -212,12 +178,7 @@ class PagingOperations(object):
     get_pages_partial_url.metadata = {"url": "/paging/customurl/partialnextlink"}  # type: ignore
 
     @distributed_trace
-    def get_pages_partial_url_operation(
-        self,
-        account_name,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> Iterable[JSONType]
+    def get_pages_partial_url_operation(self, account_name: str, **kwargs: Any) -> Iterable[JSONType]:
         """A paging operation that combines custom url, paging and partial URL with next operation.
 
         :param account_name: Account Name.
