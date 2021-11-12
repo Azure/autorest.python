@@ -13,7 +13,7 @@ class ModelGenericSerializer(ModelBaseSerializer):
 
     def __init__(self, code_model: CodeModel, env: Environment) -> None:
         super(ModelGenericSerializer, self).__init__(
-            code_model=code_model, env=env, is_python_3_file=False
+            code_model=code_model, env=env, is_python3_file=False
         )
 
     def init_line(self, model: ObjectSchema) -> List[str]:

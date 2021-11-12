@@ -60,7 +60,7 @@ def _validate_code_model_options(options: Dict[str, Any]) -> None:
             "to 'public' or 'hidden'."
         )
 
-    if not options["show_operations"] and options["add_python_3_operation_files"]:
+    if not options["show_operations"] and options["add_python3_operation_files"]:
         raise ValueError(
             "Can not add typed sync operation files if you are not showing operations. "
             "If you want typed synced operation files, you have to add flag "
@@ -256,7 +256,7 @@ class CodeGenerator(Plugin):
         version_tolerant = self._autorestapi.get_boolean_value("version-tolerant", False)
         show_operations = self._autorestapi.get_boolean_value("show-operations", not low_level_client)
         models_mode_default = "none" if low_level_client or version_tolerant else "msrest"
-        python_3_only = self._autorestapi.get_boolean_value("python3-only", False)
+        python3_only = self._autorestapi.get_boolean_value("python3-only", False)
 
         options: Dict[str, Any] = {
             "azure_arm": azure_arm,
@@ -282,13 +282,13 @@ class CodeGenerator(Plugin):
             "only_path_and_body_params_positional": self._autorestapi.get_boolean_value(
                 "only-path-and-body-params-positional", low_level_client or version_tolerant
             ),
-            "add_python_3_operation_files": self._autorestapi.get_boolean_value(
-                "add-python3-operation-files", python_3_only
+            "add_python3_operation_files": self._autorestapi.get_boolean_value(
+                "add-python3-operation-files", python3_only
             ),
             "version_tolerant": version_tolerant,
             "low_level_client": low_level_client,
             "combine_operation_files": self._autorestapi.get_boolean_value("combine-operation-files", version_tolerant),
-            "python_3_only": python_3_only,
+            "python3_only": python3_only,
         }
 
         if options["builders_visibility"] is None:

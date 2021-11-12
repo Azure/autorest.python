@@ -71,6 +71,7 @@ class NameConverter:
             operation_group_name = operation_group['language']['default']['name']
             if not operation_group_name:
                 operation_group['language']['python']['className'] = code_model_title + "OperationsMixin"
+                operation_group['language']['python']['name'] = ""
             elif operation_group_name == 'Operations':
                 operation_group['language']['python']['className'] = operation_group_name
             else:

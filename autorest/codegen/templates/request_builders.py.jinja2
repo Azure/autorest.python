@@ -4,7 +4,7 @@
 {{ imports }}
 
 {{ op_tools.declare_serializer(code_model) }}
-{% if not is_python_3_file %}
+{% if not is_python3_file %}
 # fmt: off
 {% endif %}
 {% for request_builder in request_builders %}

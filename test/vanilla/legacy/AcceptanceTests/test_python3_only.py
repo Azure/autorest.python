@@ -40,10 +40,6 @@ def test_models():
 @pytest.mark.skipif(sys.version_info < (3, 0), reason="This is python3 only")
 def test_operation_groups():
     from bodycomplexpython3only.operations import ArrayOperations
-    from bodycomplexpython3only.operations._array_operations_py3 import ArrayOperations as ArrayOperationsPy3
+    from bodycomplexpython3only.operations._array_operations import ArrayOperations as ArrayOperationsPy3
     assert ArrayOperations == ArrayOperationsPy3
     ArrayOperationsPy3(client=None, config=None, serializer=None, deserializer=None)
-
-    # shouldn't have py2 operations
-    with pytest.raises(ImportError):
-        from bodycomplexpython3only.operations._array_operations import ArrayOperations

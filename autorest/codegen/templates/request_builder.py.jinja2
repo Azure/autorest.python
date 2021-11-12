@@ -4,7 +4,7 @@
 {% if code_model.options["builders_visibility"] == "public" %}
     {{ op_tools.description(request_builder, request_builder_serializer) | indent }}
 {% endif %}
-{% if request_builder.parameters.kwargs_to_pop(is_python_3_file) %}
+{% if request_builder.parameters.kwargs_to_pop(is_python3_file) %}
     {{ op_tools.serialize(request_builder_serializer.pop_kwargs_from_signature(request_builder)) | indent }}
 {% endif %}
 {% if request_builder.parameters.constant|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code")|selectattr("in_method_signature", "equalto", False) %}

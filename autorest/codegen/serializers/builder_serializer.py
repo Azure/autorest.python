@@ -542,11 +542,11 @@ class RequestBuilderGenericSerializer(_RequestBuilderBaseSerializer):
     @staticmethod
     def _method_signature_and_response_type_annotation_template(method_signature: str, response_type_annotation: str):
         return utils.method_signature_and_response_type_annotation_template(
-            is_python_3_file=False, method_signature=method_signature, response_type_annotation=response_type_annotation
+            is_python3_file=False, method_signature=method_signature, response_type_annotation=response_type_annotation
         )
 
     def _get_kwargs_to_pop(self, builder: BuilderType):
-        return builder.parameters.kwargs_to_pop(is_python_3_file=False)
+        return builder.parameters.kwargs_to_pop(is_python3_file=False)
 
     def _body_params_to_pass_to_request_creation(self, builder: BuilderType) -> List[str]:
         if builder.parameters.has_body and not builder.parameters.body_kwarg_names:
@@ -564,11 +564,11 @@ class RequestBuilderPython3Serializer(_RequestBuilderBaseSerializer):
     @staticmethod
     def _method_signature_and_response_type_annotation_template(method_signature: str, response_type_annotation: str):
         return utils.method_signature_and_response_type_annotation_template(
-            is_python_3_file=True, method_signature=method_signature, response_type_annotation=response_type_annotation
+            is_python3_file=True, method_signature=method_signature, response_type_annotation=response_type_annotation
         )
 
     def _get_kwargs_to_pop(self, builder: BuilderType):
-        return builder.parameters.kwargs_to_pop(is_python_3_file=True)
+        return builder.parameters.kwargs_to_pop(is_python3_file=True)
 
     def _body_params_to_pass_to_request_creation(self, builder: BuilderType) -> List[str]:
         body_kwargs = list(builder.parameters.body_kwarg_names.keys())
@@ -1005,11 +1005,11 @@ class SyncOperationGenericSerializer(_SyncOperationBaseSerializer):
     @staticmethod
     def _method_signature_and_response_type_annotation_template(method_signature: str, response_type_annotation: str):
         return utils.method_signature_and_response_type_annotation_template(
-            is_python_3_file=False, method_signature=method_signature, response_type_annotation=response_type_annotation
+            is_python3_file=False, method_signature=method_signature, response_type_annotation=response_type_annotation
         )
 
     def _get_kwargs_to_pop(self, builder: BuilderType):
-        return builder.parameters.kwargs_to_pop(is_python_3_file=False)
+        return builder.parameters.kwargs_to_pop(is_python3_file=False)
 
 
 class SyncOperationPython3Serializer(_SyncOperationBaseSerializer):
@@ -1020,11 +1020,11 @@ class SyncOperationPython3Serializer(_SyncOperationBaseSerializer):
     @staticmethod
     def _method_signature_and_response_type_annotation_template(method_signature: str, response_type_annotation: str):
         return utils.method_signature_and_response_type_annotation_template(
-            is_python_3_file=True, method_signature=method_signature, response_type_annotation=response_type_annotation
+            is_python3_file=True, method_signature=method_signature, response_type_annotation=response_type_annotation
         )
 
     def _get_kwargs_to_pop(self, builder: BuilderType):
-        return builder.parameters.kwargs_to_pop(is_python_3_file=True)
+        return builder.parameters.kwargs_to_pop(is_python3_file=True)
 
 class AsyncOperationSerializer(SyncOperationPython3Serializer):
 
@@ -1445,14 +1445,14 @@ def get_operation_serializer(
     builder: BuilderType,
     code_model,
     async_mode: bool,
-    is_python_3_file: bool,
+    is_python3_file: bool,
 ) -> _OperationBaseSerializer:
     retcls = _OperationBaseSerializer
     if isinstance(builder, LROPagingOperation):
         retcls = (
             AsyncLROPagingOperationSerializer if async_mode
             else (
-                SyncLROPagingOperationPython3Serializer if is_python_3_file
+                SyncLROPagingOperationPython3Serializer if is_python3_file
                 else SyncLROPagingOperationGenericSerializer
             )
         )
@@ -1460,22 +1460,22 @@ def get_operation_serializer(
     if isinstance(builder, LROOperation):
         retcls = (
             AsyncLROOperationSerializer if async_mode
-            else (SyncLROOperationPython3Serializer if is_python_3_file else SyncLROOperationGenericSerializer)
+            else (SyncLROOperationPython3Serializer if is_python3_file else SyncLROOperationGenericSerializer)
         )
         return retcls(code_model)
     if isinstance(builder, PagingOperation):
         retcls = (
             AsyncPagingOperationSerializer if async_mode
-            else (SyncPagingOperationPython3Serializer if is_python_3_file else SyncPagingOperationGenericSerializer)
+            else (SyncPagingOperationPython3Serializer if is_python3_file else SyncPagingOperationGenericSerializer)
         )
         return retcls(code_model)
     retcls = (
         AsyncOperationSerializer if async_mode
-        else (SyncOperationPython3Serializer if is_python_3_file else SyncOperationGenericSerializer)
+        else (SyncOperationPython3Serializer if is_python3_file else SyncOperationGenericSerializer)
     )
     return retcls(code_model)
 
 
-def get_request_builder_serializer(code_model, is_python_3_file: bool) -> _RequestBuilderBaseSerializer:
-    retcls = RequestBuilderPython3Serializer if is_python_3_file else RequestBuilderGenericSerializer
+def get_request_builder_serializer(code_model, is_python3_file: bool) -> _RequestBuilderBaseSerializer:
+    retcls = RequestBuilderPython3Serializer if is_python3_file else RequestBuilderGenericSerializer
     return retcls(code_model)
