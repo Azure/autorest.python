@@ -14,16 +14,20 @@ variables:
   TestFolder: "$(Build.SourcesDirectory)/test/"
   AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: "$(Build.SourcesDirectory)/coverage/"
 
+
+
 parameters:
-  VerificationPackages: 
-  - name: azure-storage-blob
-    service: storage
-  - name: azure-storage-queue
-    service: storage
-  - name: azure-storage-file-datalake
-    service: storage
-  - name: azure-storage-file-share
-    service: storage
+  - name: VerificationPackages
+    type: object
+    default: 
+    - name: azure-storage-blob
+      service: storage
+    - name: azure-storage-queue
+      service: storage
+    - name: azure-storage-file-datalake
+      service: storage
+    - name: azure-storage-file-share
+      service: storage
 
 jobs:
   - job: "AutoRest_Python_CI"
