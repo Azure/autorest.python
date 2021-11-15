@@ -72,13 +72,13 @@ class LRORetrysOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "Product")
+            _json = self._serialize.body(product, "Product")
         else:
-            json = None
+            _json = None
 
         request = build_put201_creating_succeeded200_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put201_creating_succeeded200_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -175,13 +175,13 @@ class LRORetrysOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "Product")
+            _json = self._serialize.body(product, "Product")
         else:
-            json = None
+            _json = None
 
         request = build_put_async_relative_retry_succeeded_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put_async_relative_retry_succeeded_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -534,13 +534,13 @@ class LRORetrysOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "Product")
+            _json = self._serialize.body(product, "Product")
         else:
-            json = None
+            _json = None
 
         request = build_post202_retry200_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._post202_retry200_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -628,13 +628,13 @@ class LRORetrysOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, "Product")
+            _json = self._serialize.body(product, "Product")
         else:
-            json = None
+            _json = None
 
         request = build_post_async_relative_retry_succeeded_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._post_async_relative_retry_succeeded_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),

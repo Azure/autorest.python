@@ -27,10 +27,10 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 def _param_not_set(param_dict, rest_api_name_lower):
     return not any(k for k in param_dict if k.lower() == rest_api_name_lower)
-
 # fmt: off
 
 def build_test_two_request(
@@ -140,13 +140,13 @@ class OperationGroupOneOperations(object):
         content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
         if parameter_one is not None:
-            json = self._serialize.body(parameter_one, 'ModelTwo')
+            _json = self._serialize.body(parameter_one, 'ModelTwo')
         else:
-            json = None
+            _json = None
 
         request = build_test_two_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.test_two.metadata['url'],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),

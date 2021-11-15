@@ -42,9 +42,9 @@ def _get_import_clauses(
 
 
 class FileImportSerializer:
-    def __init__(self, file_import: FileImport, is_python_3_file: bool, async_mode: bool = False) -> None:
+    def __init__(self, file_import: FileImport, is_python3_file: bool, async_mode: bool = False) -> None:
         self._file_import = file_import
-        self.is_python_3_file = is_python_3_file
+        self.is_python3_file = is_python3_file
         self.async_mode = async_mode
 
     def _switch_typing_section_key(self, new_key: TypingSection):
@@ -67,14 +67,14 @@ class FileImportSerializer:
     def _add_type_checking_import(self):
         if (
             self._file_import.imports.get(TypingSection.TYPING) or
-            (not self.is_python_3_file and self._file_import.imports.get(TypingSection.CONDITIONAL))
+            (not self.is_python3_file and self._file_import.imports.get(TypingSection.CONDITIONAL))
         ):
             self._file_import.add_from_import("typing", "TYPE_CHECKING", ImportType.STDLIB)
 
     def _get_typing_definitions(self) -> str:
         if not self._file_import.type_definitions:
             return ""
-        spacing = "" if self.is_python_3_file else "    "
+        spacing = "" if self.is_python3_file else "    "
         declarations: List[str] = [f"\n{spacing}T = TypeVar('T')"]
         declarations.extend([
             "{}{} = {}".format(
@@ -90,7 +90,7 @@ class FileImportSerializer:
         self._add_type_checking_import()
         regular_imports = ""
         regular_imports_dict = self._get_imports_dict(
-            baseline_typing_section=TypingSection.REGULAR, add_conditional_typing=self.is_python_3_file
+            baseline_typing_section=TypingSection.REGULAR, add_conditional_typing=self.is_python3_file
         )
 
         if regular_imports_dict:
@@ -100,7 +100,7 @@ class FileImportSerializer:
 
         typing_imports = ""
         typing_imports_dict = self._get_imports_dict(
-            baseline_typing_section=TypingSection.TYPING, add_conditional_typing=not self.is_python_3_file
+            baseline_typing_section=TypingSection.TYPING, add_conditional_typing=not self.is_python3_file
         )
         if typing_imports_dict:
             typing_imports += "\n\nif TYPE_CHECKING:\n    # pylint: disable=unused-import,ungrouped-imports\n    "

@@ -91,13 +91,13 @@ class StorageAccountsOperations:
         api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(account_name, "StorageAccountCheckNameAvailabilityParameters")
+        _json = self._serialize.body(account_name, "StorageAccountCheckNameAvailabilityParameters")
 
         request = build_check_name_availability_request(
             subscription_id=self._config.subscription_id,
             api_version=api_version,
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.check_name_availability.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -135,7 +135,7 @@ class StorageAccountsOperations:
         api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(parameters, "StorageAccountCreateParameters")
+        _json = self._serialize.body(parameters, "StorageAccountCreateParameters")
 
         request = build_create_request_initial(
             resource_group_name=resource_group_name,
@@ -143,7 +143,7 @@ class StorageAccountsOperations:
             subscription_id=self._config.subscription_id,
             api_version=api_version,
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._create_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -393,7 +393,7 @@ class StorageAccountsOperations:
         api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(parameters, "StorageAccountUpdateParameters")
+        _json = self._serialize.body(parameters, "StorageAccountUpdateParameters")
 
         request = build_update_request(
             resource_group_name=resource_group_name,
@@ -401,7 +401,7 @@ class StorageAccountsOperations:
             subscription_id=self._config.subscription_id,
             api_version=api_version,
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.update.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -657,7 +657,7 @@ class StorageAccountsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         _regenerate_key = _models.StorageAccountRegenerateKeyParameters(key_name=key_name)
-        json = self._serialize.body(_regenerate_key, "StorageAccountRegenerateKeyParameters")
+        _json = self._serialize.body(_regenerate_key, "StorageAccountRegenerateKeyParameters")
 
         request = build_regenerate_key_request(
             resource_group_name=resource_group_name,
@@ -665,7 +665,7 @@ class StorageAccountsOperations:
             subscription_id=self._config.subscription_id,
             api_version=api_version,
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.regenerate_key.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),

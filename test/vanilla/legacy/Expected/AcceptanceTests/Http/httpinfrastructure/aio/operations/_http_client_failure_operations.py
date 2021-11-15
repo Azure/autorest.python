@@ -198,13 +198,13 @@ class HttpClientFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            _json = self._serialize.body(boolean_value, "bool")
         else:
-            json = None
+            _json = None
 
         request = build_put400_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put400.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -243,13 +243,13 @@ class HttpClientFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            _json = self._serialize.body(boolean_value, "bool")
         else:
-            json = None
+            _json = None
 
         request = build_patch400_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.patch400.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -288,13 +288,13 @@ class HttpClientFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            _json = self._serialize.body(boolean_value, "bool")
         else:
-            json = None
+            _json = None
 
         request = build_post400_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.post400.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -333,13 +333,13 @@ class HttpClientFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            _json = self._serialize.body(boolean_value, "bool")
         else:
-            json = None
+            _json = None
 
         request = build_delete400_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.delete400.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -514,13 +514,13 @@ class HttpClientFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            _json = self._serialize.body(boolean_value, "bool")
         else:
-            json = None
+            _json = None
 
         request = build_put404_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put404.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -559,13 +559,13 @@ class HttpClientFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            _json = self._serialize.body(boolean_value, "bool")
         else:
-            json = None
+            _json = None
 
         request = build_patch405_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.patch405.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -604,13 +604,13 @@ class HttpClientFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            _json = self._serialize.body(boolean_value, "bool")
         else:
-            json = None
+            _json = None
 
         request = build_post406_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.post406.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -649,13 +649,13 @@ class HttpClientFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            _json = self._serialize.body(boolean_value, "bool")
         else:
-            json = None
+            _json = None
 
         request = build_delete407_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.delete407.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -694,13 +694,13 @@ class HttpClientFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            _json = self._serialize.body(boolean_value, "bool")
         else:
-            json = None
+            _json = None
 
         request = build_put409_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put409.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -875,13 +875,13 @@ class HttpClientFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            _json = self._serialize.body(boolean_value, "bool")
         else:
-            json = None
+            _json = None
 
         request = build_put413_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put413.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -920,13 +920,13 @@ class HttpClientFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            _json = self._serialize.body(boolean_value, "bool")
         else:
-            json = None
+            _json = None
 
         request = build_patch414_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.patch414.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -965,13 +965,13 @@ class HttpClientFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            _json = self._serialize.body(boolean_value, "bool")
         else:
-            json = None
+            _json = None
 
         request = build_post415_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.post415.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1044,13 +1044,13 @@ class HttpClientFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = self._serialize.body(boolean_value, "bool")
+            _json = self._serialize.body(boolean_value, "bool")
         else:
-            json = None
+            _json = None
 
         request = build_delete417_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.delete417.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),

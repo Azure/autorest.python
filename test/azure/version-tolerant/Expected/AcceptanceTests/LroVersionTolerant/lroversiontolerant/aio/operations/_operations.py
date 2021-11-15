@@ -138,13 +138,13 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lros_put200_succeeded_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put200_succeeded_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -270,13 +270,13 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lros_patch200_succeeded_ignore_headers_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._patch200_succeeded_ignore_headers_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -412,13 +412,13 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lros_put201_succeeded_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put201_succeeded_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -654,13 +654,13 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lros_put200_succeeded_no_state_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put200_succeeded_no_state_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -786,13 +786,13 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lros_put202_retry200_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put202_retry200_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -917,13 +917,13 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lros_put201_creating_succeeded200_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put201_creating_succeeded200_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1057,13 +1057,13 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lros_put200_updating_succeeded204_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put200_updating_succeeded204_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1190,13 +1190,13 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lros_put201_creating_failed200_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put201_creating_failed200_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1330,13 +1330,13 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lros_put200_acceptedcanceled200_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put200_acceptedcanceled200_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1463,13 +1463,13 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lros_put_no_header_in_retry_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put_no_header_in_retry_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1599,13 +1599,13 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lros_put_async_retry_succeeded_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put_async_retry_succeeded_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1746,13 +1746,13 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lros_put_async_no_retry_succeeded_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put_async_no_retry_succeeded_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1891,13 +1891,13 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lros_put_async_retry_failed_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put_async_retry_failed_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -2036,13 +2036,13 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lros_put_async_no_retrycanceled_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put_async_no_retrycanceled_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -2181,13 +2181,13 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lros_put_async_no_header_in_retry_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put_async_no_header_in_retry_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -2324,13 +2324,13 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if sku is not None:
-            json = sku
+            _json = sku
         else:
-            json = None
+            _json = None
 
         request = build_lros_put_non_resource_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put_non_resource_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -2435,13 +2435,13 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if sku is not None:
-            json = sku
+            _json = sku
         else:
-            json = None
+            _json = None
 
         request = build_lros_put_async_non_resource_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put_async_non_resource_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -2546,13 +2546,13 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lros_put_sub_resource_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put_sub_resource_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -2663,13 +2663,13 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lros_put_async_sub_resource_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put_async_sub_resource_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -3961,13 +3961,13 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lros_post202_retry200_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._post202_retry200_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -4067,13 +4067,13 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lros_post202_no_retry204_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._post202_no_retry204_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -4515,13 +4515,13 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lros_post_async_retry_succeeded_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._post_async_retry_succeeded_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -4660,13 +4660,13 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lros_post_async_no_retry_succeeded_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._post_async_no_retry_succeeded_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -4803,13 +4803,13 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lros_post_async_retry_failed_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._post_async_retry_failed_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -4913,13 +4913,13 @@ class LROsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lros_post_async_retrycanceled_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._post_async_retrycanceled_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -5042,13 +5042,13 @@ class LRORetrysOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lro_retrys_put201_creating_succeeded200_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put201_creating_succeeded200_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -5182,13 +5182,13 @@ class LRORetrysOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lro_retrys_put_async_relative_retry_succeeded_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put_async_relative_retry_succeeded_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -5595,13 +5595,13 @@ class LRORetrysOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lro_retrys_post202_retry200_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._post202_retry200_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -5701,13 +5701,13 @@ class LRORetrysOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lro_retrys_post_async_relative_retry_succeeded_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._post_async_relative_retry_succeeded_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -5832,13 +5832,13 @@ class LROSADsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lrosads_put_non_retry400_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put_non_retry400_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -5968,13 +5968,13 @@ class LROSADsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lrosads_put_non_retry201_creating400_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put_non_retry201_creating400_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -6109,13 +6109,13 @@ class LROSADsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lrosads_put_non_retry201_creating400_invalid_json_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put_non_retry201_creating400_invalid_json_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -6248,13 +6248,13 @@ class LROSADsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lrosads_put_async_relative_retry400_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put_async_relative_retry400_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -6617,13 +6617,13 @@ class LROSADsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lrosads_post_non_retry400_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._post_non_retry400_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -6722,13 +6722,13 @@ class LROSADsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lrosads_post202_non_retry400_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._post202_non_retry400_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -6827,13 +6827,13 @@ class LROSADsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lrosads_post_async_relative_retry400_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._post_async_relative_retry400_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -6938,13 +6938,13 @@ class LROSADsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lrosads_put_error201_no_provisioning_state_payload_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put_error201_no_provisioning_state_payload_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -7076,13 +7076,13 @@ class LROSADsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lrosads_put_async_relative_retry_no_status_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put_async_relative_retry_no_status_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -7225,13 +7225,13 @@ class LROSADsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lrosads_put_async_relative_retry_no_status_payload_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put_async_relative_retry_no_status_payload_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -7518,13 +7518,13 @@ class LROSADsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lrosads_post202_no_location_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._post202_no_location_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -7624,13 +7624,13 @@ class LROSADsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lrosads_post_async_relative_retry_no_payload_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._post_async_relative_retry_no_payload_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -7736,13 +7736,13 @@ class LROSADsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lrosads_put200_invalid_json_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put200_invalid_json_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -7870,13 +7870,13 @@ class LROSADsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lrosads_put_async_relative_retry_invalid_header_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put_async_relative_retry_invalid_header_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -8019,13 +8019,13 @@ class LROSADsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lrosads_put_async_relative_retry_invalid_json_polling_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put_async_relative_retry_invalid_json_polling_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -8396,13 +8396,13 @@ class LROSADsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lrosads_post202_retry_invalid_header_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._post202_retry_invalid_header_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -8502,13 +8502,13 @@ class LROSADsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lrosads_post_async_relative_retry_invalid_header_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._post_async_relative_retry_invalid_header_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -8616,13 +8616,13 @@ class LROSADsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lrosads_post_async_relative_retry_invalid_json_polling_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._post_async_relative_retry_invalid_json_polling_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -8747,13 +8747,13 @@ class LROsCustomHeaderOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lr_os_custom_header_put_async_retry_succeeded_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put_async_retry_succeeded_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -8895,13 +8895,13 @@ class LROsCustomHeaderOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lr_os_custom_header_put201_creating_succeeded200_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._put201_creating_succeeded200_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -9036,13 +9036,13 @@ class LROsCustomHeaderOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lr_os_custom_header_post202_retry200_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._post202_retry200_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -9143,13 +9143,13 @@ class LROsCustomHeaderOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = product
+            _json = product
         else:
-            json = None
+            _json = None
 
         request = build_lr_os_custom_header_post_async_retry_succeeded_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._post_async_retry_succeeded_initial.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),

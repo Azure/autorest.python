@@ -158,11 +158,11 @@ class XmlOperations:
 
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
-        content = model
+        _content = model
 
         request = build_xml_put_complex_type_ref_no_meta_request(
             content_type=content_type,
-            content=content,
+            content=_content,
             template_url=self.put_complex_type_ref_no_meta.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -257,11 +257,11 @@ class XmlOperations:
 
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
-        content = model
+        _content = model
 
         request = build_xml_put_complex_type_ref_with_meta_request(
             content_type=content_type,
-            content=content,
+            content=_content,
             template_url=self.put_complex_type_ref_with_meta.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -372,11 +372,11 @@ class XmlOperations:
 
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
-        content = slideshow
+        _content = slideshow
 
         request = build_xml_put_simple_request(
             content_type=content_type,
-            content=content,
+            content=_content,
             template_url=self.put_simple.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -475,11 +475,11 @@ class XmlOperations:
 
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
-        content = wrapped_lists
+        _content = wrapped_lists
 
         request = build_xml_put_wrapped_lists_request(
             content_type=content_type,
-            content=content,
+            content=_content,
             template_url=self.put_wrapped_lists.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -624,11 +624,11 @@ class XmlOperations:
 
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
-        content = slideshow
+        _content = slideshow
 
         request = build_xml_put_empty_list_request(
             content_type=content_type,
-            content=content,
+            content=_content,
             template_url=self.put_empty_list.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -727,11 +727,11 @@ class XmlOperations:
 
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
-        content = apple_barrel
+        _content = apple_barrel
 
         request = build_xml_put_empty_wrapped_lists_request(
             content_type=content_type,
-            content=content,
+            content=_content,
             template_url=self.put_empty_wrapped_lists.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -829,11 +829,11 @@ class XmlOperations:
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
-        content = bananas
+        _content = bananas
 
         request = build_xml_put_root_list_request(
             content_type=content_type,
-            content=content,
+            content=_content,
             template_url=self.put_root_list.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -931,11 +931,11 @@ class XmlOperations:
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
-        content = bananas
+        _content = bananas
 
         request = build_xml_put_root_list_single_item_request(
             content_type=content_type,
-            content=content,
+            content=_content,
             template_url=self.put_root_list_single_item.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1033,11 +1033,11 @@ class XmlOperations:
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
-        content = bananas
+        _content = bananas
 
         request = build_xml_put_empty_root_list_request(
             content_type=content_type,
-            content=content,
+            content=_content,
             template_url=self.put_empty_root_list.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1130,11 +1130,11 @@ class XmlOperations:
 
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
-        content = banana
+        _content = banana
 
         request = build_xml_put_empty_child_element_request(
             content_type=content_type,
-            content=content,
+            content=_content,
             template_url=self.put_empty_child_element.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1396,13 +1396,13 @@ class XmlOperations:
         restype = kwargs.pop("restype", "service")  # type: str
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
-        content = properties
+        _content = properties
 
         request = build_xml_put_service_properties_request(
             comp=comp,
             restype=restype,
             content_type=content_type,
-            content=content,
+            content=_content,
             template_url=self.put_service_properties.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1525,13 +1525,13 @@ class XmlOperations:
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
         serialization_ctxt = {"xml": {"name": "SignedIdentifiers", "wrapped": True, "itemsName": "SignedIdentifier"}}
-        content = properties
+        _content = properties
 
         request = build_xml_put_acls_request(
             comp=comp,
             restype=restype,
             content_type=content_type,
-            content=content,
+            content=_content,
             template_url=self.put_acls.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1685,11 +1685,11 @@ class XmlOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = properties
+        _json = properties
 
         request = build_xml_json_input_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.json_input.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1872,11 +1872,11 @@ class XmlOperations:
 
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
-        content = slideshow
+        _content = slideshow
 
         request = build_xml_put_binary_request(
             content_type=content_type,
-            content=content,
+            content=_content,
             template_url=self.put_binary.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1965,11 +1965,11 @@ class XmlOperations:
 
         content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
 
-        content = model
+        _content = model
 
         request = build_xml_put_uri_request(
             content_type=content_type,
-            content=content,
+            content=_content,
             template_url=self.put_uri.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),

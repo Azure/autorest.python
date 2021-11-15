@@ -30,7 +30,7 @@ from azure.core.exceptions import ServiceRequestError
 
 from custombaseurlversiontolerant.aio import AutoRestParameterizedHostTestClient
 from custombaseurlmoreoptionsversiontolerant.aio import AutoRestParameterizedCustomHostTestClient
-
+from msrest.exceptions import ValidationError
 import pytest
 
 @pytest.fixture
@@ -51,7 +51,7 @@ async def test_get_empty_with_bad_string(client):
 
 @pytest.mark.asyncio
 async def test_get_empty_with_none(client):
-    with pytest.raises(ValueError):
+    with pytest.raises(ValidationError):
         await client.paths.get_empty(None)
 
 @pytest.mark.asyncio

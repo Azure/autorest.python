@@ -31,6 +31,7 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 
 def _param_not_set(param_dict, rest_api_name_lower):
@@ -187,11 +188,11 @@ class ParamsOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = parameter
+        _json = parameter
 
         request = build_params_post_parameters_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.post_parameters.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),

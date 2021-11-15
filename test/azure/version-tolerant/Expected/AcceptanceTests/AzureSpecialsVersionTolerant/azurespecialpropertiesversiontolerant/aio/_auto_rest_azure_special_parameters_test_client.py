@@ -84,7 +84,6 @@ class AutoRestAzureSpecialParametersTestClient:
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
-        self._serialize.client_side_validation = False
         self.xms_client_request_id = XMsClientRequestIdOperations(
             self._client, self._config, self._serialize, self._deserialize
         )

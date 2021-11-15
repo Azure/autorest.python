@@ -267,12 +267,12 @@ class BasicOperations(object):
         api_version = kwargs.pop("api_version", "2016-02-29")  # type: str
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(complex_body, "Basic")
+        _json = self._serialize.body(complex_body, "Basic")
 
         request = build_put_valid_request(
             api_version=api_version,
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),

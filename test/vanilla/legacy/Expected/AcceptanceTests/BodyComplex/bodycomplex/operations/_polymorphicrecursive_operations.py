@@ -224,11 +224,11 @@ class PolymorphicrecursiveOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(complex_body, "Fish")
+        _json = self._serialize.body(complex_body, "Fish")
 
         request = build_put_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),

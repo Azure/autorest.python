@@ -109,13 +109,13 @@ class PetOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if pet_param is not None:
-            json = self._serialize.body(pet_param, "Pet")
+            _json = self._serialize.body(pet_param, "Pet")
         else:
-            json = None
+            _json = None
 
         request = build_add_pet_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.add_pet.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),

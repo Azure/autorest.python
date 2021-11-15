@@ -34,6 +34,7 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 
 def _param_not_set(param_dict, rest_api_name_lower):
@@ -1730,11 +1731,11 @@ class ArrayOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(array_body, "[str]")
+        _json = self._serialize.body(array_body, "[str]")
 
         request = build_put_empty_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_empty.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1818,11 +1819,11 @@ class ArrayOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(array_body, "[bool]")
+        _json = self._serialize.body(array_body, "[bool]")
 
         request = build_put_boolean_tfft_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_boolean_tfft.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1988,11 +1989,11 @@ class ArrayOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(array_body, "[int]")
+        _json = self._serialize.body(array_body, "[int]")
 
         request = build_put_integer_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_integer_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -2158,11 +2159,11 @@ class ArrayOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(array_body, "[long]")
+        _json = self._serialize.body(array_body, "[long]")
 
         request = build_put_long_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_long_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -2328,11 +2329,11 @@ class ArrayOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(array_body, "[float]")
+        _json = self._serialize.body(array_body, "[float]")
 
         request = build_put_float_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_float_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -2498,11 +2499,11 @@ class ArrayOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(array_body, "[float]")
+        _json = self._serialize.body(array_body, "[float]")
 
         request = build_put_double_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_double_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -2668,11 +2669,11 @@ class ArrayOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(array_body, "[str]")
+        _json = self._serialize.body(array_body, "[str]")
 
         request = build_put_string_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_string_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -2756,11 +2757,11 @@ class ArrayOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(array_body, "[str]")
+        _json = self._serialize.body(array_body, "[str]")
 
         request = build_put_enum_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_enum_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -2844,11 +2845,11 @@ class ArrayOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(array_body, "[str]")
+        _json = self._serialize.body(array_body, "[str]")
 
         request = build_put_string_enum_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_string_enum_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -3016,11 +3017,11 @@ class ArrayOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(array_body, "[str]")
+        _json = self._serialize.body(array_body, "[str]")
 
         request = build_put_uuid_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_uuid_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -3145,11 +3146,11 @@ class ArrayOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(array_body, "[date]")
+        _json = self._serialize.body(array_body, "[date]")
 
         request = build_put_date_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_date_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -3317,11 +3318,11 @@ class ArrayOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(array_body, "[iso-8601]")
+        _json = self._serialize.body(array_body, "[iso-8601]")
 
         request = build_put_date_time_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_date_time_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -3489,11 +3490,11 @@ class ArrayOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(array_body, "[rfc-1123]")
+        _json = self._serialize.body(array_body, "[rfc-1123]")
 
         request = build_put_date_time_rfc1123_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_date_time_rfc1123_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -3577,11 +3578,11 @@ class ArrayOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(array_body, "[duration]")
+        _json = self._serialize.body(array_body, "[duration]")
 
         request = build_put_duration_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_duration_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -3667,11 +3668,11 @@ class ArrayOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(array_body, "[bytearray]")
+        _json = self._serialize.body(array_body, "[bytearray]")
 
         request = build_put_byte_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_byte_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -4006,11 +4007,11 @@ class ArrayOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(array_body, "[Product]")
+        _json = self._serialize.body(array_body, "[Product]")
 
         request = build_put_complex_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_complex_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -4258,11 +4259,11 @@ class ArrayOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(array_body, "[[str]]")
+        _json = self._serialize.body(array_body, "[[str]]")
 
         request = build_put_array_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_array_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -4514,11 +4515,11 @@ class ArrayOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(array_body, "[{str}]")
+        _json = self._serialize.body(array_body, "[{str}]")
 
         request = build_put_dictionary_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_dictionary_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),

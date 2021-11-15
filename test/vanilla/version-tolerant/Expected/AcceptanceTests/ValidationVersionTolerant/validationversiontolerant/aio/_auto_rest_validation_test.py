@@ -14,7 +14,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from msrest import Deserializer, Serializer
 
 from ._configuration import AutoRestValidationTestConfiguration
-from .operations import AutoRestValidationTestOperationsMixin
+from ._operations import AutoRestValidationTestOperationsMixin
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -39,7 +39,6 @@ class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
-        self._serialize.client_side_validation = False
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.

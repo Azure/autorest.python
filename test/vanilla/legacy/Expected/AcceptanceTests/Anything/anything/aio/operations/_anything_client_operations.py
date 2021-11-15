@@ -92,11 +92,11 @@ class AnythingClientOperationsMixin:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(input, "object")
+        _json = self._serialize.body(input, "object")
 
         request = build_put_object_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_object.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -171,11 +171,11 @@ class AnythingClientOperationsMixin:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(input, "object")
+        _json = self._serialize.body(input, "object")
 
         request = build_put_string_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_string.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -250,11 +250,11 @@ class AnythingClientOperationsMixin:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(input, "object")
+        _json = self._serialize.body(input, "object")
 
         request = build_put_array_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_array.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),

@@ -28,10 +28,10 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 def _param_not_set(param_dict, rest_api_name_lower):
     return not any(k for k in param_dict if k.lower() == rest_api_name_lower)
-
 # fmt: off
 
 def build_basic_polling_request_initial(
@@ -97,13 +97,13 @@ class PollingPagingExampleOperationsMixin(object):
         content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
         if product is not None:
-            json = self._serialize.body(product, 'Product')
+            _json = self._serialize.body(product, 'Product')
         else:
-            json = None
+            _json = None
 
         request = build_basic_polling_request_initial(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self._basic_polling_initial.metadata['url'],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),

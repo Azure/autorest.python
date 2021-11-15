@@ -14,6 +14,7 @@ T = TypeVar("T")
 JSONType = Any
 
 _SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 
 def _param_not_set(param_dict, rest_api_name_lower):
@@ -44,8 +45,8 @@ def build_upload_file_request(
 
             # multipart input template you can fill out and use as your `files` input.
             files = {
-                file_content: b'bytes',  # File to upload.
-                file_name: "str"  # File name to upload. Name has to be spelled exactly as written here.
+                "file_content": b'bytes',  # File to upload.
+                "file_name": "str"  # File name to upload. Name has to be spelled exactly as written here.
             }
     """
 
@@ -120,7 +121,7 @@ def build_upload_files_request(
 
             # multipart input template you can fill out and use as your `files` input.
             files = {
-                file_content: [
+                "file_content": [
                     b'bytes'  # Files to upload.
                 ]
             }

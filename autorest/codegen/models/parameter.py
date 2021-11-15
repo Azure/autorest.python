@@ -97,6 +97,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         self.is_data_input = yaml_data.get("isPartialBody", False) and not self.is_multipart
         self.content_types = content_types or []
         self.body_kwargs: List[Parameter] = []
+        self.is_body_kwarg = False
 
     def __hash__(self) -> int:
         return hash(self.serialized_name)
@@ -282,8 +283,8 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
     def has_default_value(self):
         return self.default_value is not None or not self.required
 
-    def method_signature(self, is_python_3_file: bool) -> str:
-        if is_python_3_file:
+    def method_signature(self, is_python3_file: bool) -> str:
+        if is_python3_file:
             if self.has_default_value:
                 return f"{self.serialized_name}: {self.type_annotation} = {self.default_value_declaration},"
             return f"{self.serialized_name}: {self.type_annotation},"

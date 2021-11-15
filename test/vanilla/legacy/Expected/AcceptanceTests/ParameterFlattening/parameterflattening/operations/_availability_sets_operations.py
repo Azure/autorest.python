@@ -33,6 +33,7 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 
 def _param_not_set(param_dict, rest_api_name_lower):
@@ -122,13 +123,13 @@ class AvailabilitySetsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         _tags = _models.AvailabilitySetUpdateParameters(tags=tags)
-        json = self._serialize.body(_tags, "AvailabilitySetUpdateParameters")
+        _json = self._serialize.body(_tags, "AvailabilitySetUpdateParameters")
 
         request = build_update_request(
             resource_group_name=resource_group_name,
             avset=avset,
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.update.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),

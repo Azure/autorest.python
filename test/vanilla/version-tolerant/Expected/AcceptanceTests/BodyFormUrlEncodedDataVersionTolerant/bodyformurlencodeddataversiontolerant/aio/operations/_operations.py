@@ -69,11 +69,11 @@ class FormdataurlencodedOperations:
 
                 # form-encoded input template you can fill out and use as your `data` input.
                 data = {
-                    name: "str",  # Optional. Updated name of the pet.
-                    pet_age: 0,  # How many years is it old?.
-                    pet_food: "str",  # Can take a value of meat, or fish, or plant. Possible values are: "meat", "fish", and "plant".
-                    pet_type: "str",  # Can take a value of dog, or cat, or fish. Possible values are: "dog", "cat", and "fish".
-                    status: "str"  # Optional. Updated status of the pet.
+                    "name": "str",  # Optional. Updated name of the pet.
+                    "pet_age": 0,  # How many years is it old?.
+                    "pet_food": "str",  # Can take a value of meat, or fish, or plant. Possible values are: "meat", "fish", and "plant".
+                    "pet_type": "str",  # Can take a value of dog, or cat, or fish. Possible values are: "dog", "cat", and "fish".
+                    "status": "str"  # Optional. Updated status of the pet.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -121,9 +121,9 @@ class FormdataurlencodedOperations:
 
                 # form-encoded input template you can fill out and use as your `data` input.
                 data = {
-                    access_token: "str",  # AAD access token, mandatory when grant_type is access_token_refresh_token or access_token.
-                    grant_type: "access_token",  # Default value is "access_token". Constant part of a formdata body. The default value is "access_token". Note that overriding this default value may result in unsupported behavior.
-                    service: "str"  # Indicates the name of your Azure container registry.
+                    "access_token": "str",  # AAD access token, mandatory when grant_type is access_token_refresh_token or access_token.
+                    "grant_type": "access_token",  # Default value is "access_token". Constant part of a formdata body. The default value is "access_token". Note that overriding this default value may result in unsupported behavior.
+                    "service": "str"  # Indicates the name of your Azure container registry.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]

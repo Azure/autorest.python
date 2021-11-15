@@ -12,9 +12,13 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict
+    from typing import Any, Dict, IO, Optional, TypeVar
+
+    T = TypeVar("T")
+    JSONType = Any
 
 _SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 
 def _param_not_set(param_dict, rest_api_name_lower):

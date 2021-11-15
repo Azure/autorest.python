@@ -75,11 +75,11 @@ class PetsOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(create_parameters, "PetAPTrue")
+        _json = self._serialize.body(create_parameters, "PetAPTrue")
 
         request = build_create_ap_true_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.create_ap_true.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -121,11 +121,11 @@ class PetsOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(create_parameters, "CatAPTrue")
+        _json = self._serialize.body(create_parameters, "CatAPTrue")
 
         request = build_create_cat_ap_true_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.create_cat_ap_true.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -167,11 +167,11 @@ class PetsOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(create_parameters, "PetAPObject")
+        _json = self._serialize.body(create_parameters, "PetAPObject")
 
         request = build_create_ap_object_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.create_ap_object.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -213,11 +213,11 @@ class PetsOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(create_parameters, "PetAPString")
+        _json = self._serialize.body(create_parameters, "PetAPString")
 
         request = build_create_ap_string_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.create_ap_string.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -261,11 +261,11 @@ class PetsOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(create_parameters, "PetAPInProperties")
+        _json = self._serialize.body(create_parameters, "PetAPInProperties")
 
         request = build_create_ap_in_properties_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.create_ap_in_properties.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -309,11 +309,11 @@ class PetsOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(create_parameters, "PetAPInPropertiesWithAPString")
+        _json = self._serialize.body(create_parameters, "PetAPInPropertiesWithAPString")
 
         request = build_create_ap_in_properties_with_ap_string_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.create_ap_in_properties_with_ap_string.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),

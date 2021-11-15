@@ -32,6 +32,7 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 
 def _param_not_set(param_dict, rest_api_name_lower):
@@ -152,11 +153,11 @@ class ObjectTypeClientOperationsMixin(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(put_object, "object")
+        _json = self._serialize.body(put_object, "object")
 
         request = build_put_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),

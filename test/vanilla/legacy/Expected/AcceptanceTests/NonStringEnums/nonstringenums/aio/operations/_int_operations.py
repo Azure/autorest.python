@@ -65,13 +65,13 @@ class IntOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if input is not None:
-            json = self._serialize.body(input, "int")
+            _json = self._serialize.body(input, "int")
         else:
-            json = None
+            _json = None
 
         request = build_put_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),

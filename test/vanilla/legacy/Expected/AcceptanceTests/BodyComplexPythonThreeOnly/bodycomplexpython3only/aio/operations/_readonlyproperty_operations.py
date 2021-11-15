@@ -23,7 +23,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
 from ..._vendor import _convert_request
-from ...operations._readonlyproperty_operations import build_get_valid_request, build_put_valid_request
+from ...operations._readonlyproperty_operations_py3 import build_get_valid_request, build_put_valid_request
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -107,11 +107,11 @@ class ReadonlypropertyOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         _complex_body = _models.ReadonlyObj(size=size)
-        json = self._serialize.body(_complex_body, "ReadonlyObj")
+        _json = self._serialize.body(_complex_body, "ReadonlyObj")
 
         request = build_put_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),

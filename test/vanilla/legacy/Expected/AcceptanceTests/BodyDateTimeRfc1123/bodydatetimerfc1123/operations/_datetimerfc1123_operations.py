@@ -34,6 +34,7 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 
 def _param_not_set(param_dict, rest_api_name_lower):
@@ -447,11 +448,11 @@ class Datetimerfc1123Operations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(datetime_body, "rfc-1123")
+        _json = self._serialize.body(datetime_body, "rfc-1123")
 
         request = build_put_utc_max_date_time_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_utc_max_date_time.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -576,11 +577,11 @@ class Datetimerfc1123Operations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(datetime_body, "rfc-1123")
+        _json = self._serialize.body(datetime_body, "rfc-1123")
 
         request = build_put_utc_min_date_time_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_utc_min_date_time.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),

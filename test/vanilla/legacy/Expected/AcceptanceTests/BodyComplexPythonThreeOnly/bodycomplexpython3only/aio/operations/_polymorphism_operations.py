@@ -23,7 +23,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
 from ..._vendor import _convert_request
-from ...operations._polymorphism_operations import (
+from ...operations._polymorphism_operations_py3 import (
     build_get_complicated_request,
     build_get_composed_with_discriminator_request,
     build_get_composed_without_discriminator_request,
@@ -148,11 +148,11 @@ class PolymorphismOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(complex_body, "Fish")
+        _json = self._serialize.body(complex_body, "Fish")
 
         request = build_put_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -348,11 +348,11 @@ class PolymorphismOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(complex_body, "Salmon")
+        _json = self._serialize.body(complex_body, "Salmon")
 
         request = build_put_complicated_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_complicated.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -390,11 +390,11 @@ class PolymorphismOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(complex_body, "Salmon")
+        _json = self._serialize.body(complex_body, "Salmon")
 
         request = build_put_missing_discriminator_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_missing_discriminator.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -463,11 +463,11 @@ class PolymorphismOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(complex_body, "Fish")
+        _json = self._serialize.body(complex_body, "Fish")
 
         request = build_put_valid_missing_required_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_valid_missing_required.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),

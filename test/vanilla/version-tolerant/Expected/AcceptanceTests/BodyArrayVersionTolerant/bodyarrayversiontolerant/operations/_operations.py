@@ -32,6 +32,7 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 
 def _param_not_set(param_dict, rest_api_name_lower):
@@ -1755,11 +1756,11 @@ class ArrayOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = array_body
+        _json = array_body
 
         request = build_array_put_empty_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_empty.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1856,11 +1857,11 @@ class ArrayOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = array_body
+        _json = array_body
 
         request = build_array_put_boolean_tfft_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_boolean_tfft.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -2055,11 +2056,11 @@ class ArrayOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = array_body
+        _json = array_body
 
         request = build_array_put_integer_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_integer_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -2254,11 +2255,11 @@ class ArrayOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = array_body
+        _json = array_body
 
         request = build_array_put_long_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_long_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -2453,11 +2454,11 @@ class ArrayOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = array_body
+        _json = array_body
 
         request = build_array_put_float_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_float_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -2652,11 +2653,11 @@ class ArrayOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = array_body
+        _json = array_body
 
         request = build_array_put_double_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_double_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -2851,11 +2852,11 @@ class ArrayOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = array_body
+        _json = array_body
 
         request = build_array_put_string_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_string_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -2952,11 +2953,11 @@ class ArrayOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = array_body
+        _json = array_body
 
         request = build_array_put_enum_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_enum_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -3053,11 +3054,11 @@ class ArrayOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = array_body
+        _json = array_body
 
         request = build_array_put_string_enum_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_string_enum_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -3254,11 +3255,11 @@ class ArrayOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = array_body
+        _json = array_body
 
         request = build_array_put_uuid_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_uuid_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -3404,11 +3405,11 @@ class ArrayOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = array_body
+        _json = array_body
 
         request = build_array_put_date_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_date_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -3605,11 +3606,11 @@ class ArrayOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = array_body
+        _json = array_body
 
         request = build_array_put_date_time_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_date_time_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -3806,11 +3807,11 @@ class ArrayOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = array_body
+        _json = array_body
 
         request = build_array_put_date_time_rfc1123_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_date_time_rfc1123_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -3907,11 +3908,11 @@ class ArrayOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = array_body
+        _json = array_body
 
         request = build_array_put_duration_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_duration_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -4010,11 +4011,11 @@ class ArrayOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = array_body
+        _json = array_body
 
         request = build_array_put_byte_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_byte_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -4428,11 +4429,11 @@ class ArrayOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = array_body
+        _json = array_body
 
         request = build_array_put_complex_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_complex_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -4737,11 +4738,11 @@ class ArrayOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = array_body
+        _json = array_body
 
         request = build_array_put_array_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_array_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -5050,11 +5051,11 @@ class ArrayOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = array_body
+        _json = array_body
 
         request = build_array_put_dictionary_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_dictionary_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),

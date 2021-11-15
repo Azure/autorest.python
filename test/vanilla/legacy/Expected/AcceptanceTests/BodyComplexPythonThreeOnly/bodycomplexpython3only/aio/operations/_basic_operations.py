@@ -23,7 +23,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
 from ..._vendor import _convert_request
-from ...operations._basic_operations import (
+from ...operations._basic_operations_py3 import (
     build_get_empty_request,
     build_get_invalid_request,
     build_get_not_provided_request,
@@ -117,12 +117,12 @@ class BasicOperations:
         api_version = kwargs.pop("api_version", "2016-02-29")  # type: str
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(complex_body, "Basic")
+        _json = self._serialize.body(complex_body, "Basic")
 
         request = build_put_valid_request(
             api_version=api_version,
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),

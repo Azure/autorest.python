@@ -33,6 +33,7 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 
 def _param_not_set(param_dict, rest_api_name_lower):
@@ -330,13 +331,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if resource_array is not None:
-            json = self._serialize.body(resource_array, "[Resource]")
+            _json = self._serialize.body(resource_array, "[Resource]")
         else:
-            json = None
+            _json = None
 
         request = build_put_array_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_array.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -422,13 +423,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if resource_array is not None:
-            json = self._serialize.body(resource_array, "[WrappedProduct]")
+            _json = self._serialize.body(resource_array, "[WrappedProduct]")
         else:
-            json = None
+            _json = None
 
         request = build_put_wrapped_array_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_wrapped_array.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -514,13 +515,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if resource_dictionary is not None:
-            json = self._serialize.body(resource_dictionary, "{FlattenedProduct}")
+            _json = self._serialize.body(resource_dictionary, "{FlattenedProduct}")
         else:
-            json = None
+            _json = None
 
         request = build_put_dictionary_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_dictionary.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -605,13 +606,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if resource_complex_object is not None:
-            json = self._serialize.body(resource_complex_object, "ResourceCollection")
+            _json = self._serialize.body(resource_complex_object, "ResourceCollection")
         else:
-            json = None
+            _json = None
 
         request = build_put_resource_collection_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_resource_collection.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -696,13 +697,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if simple_body_product is not None:
-            json = self._serialize.body(simple_body_product, "SimpleProduct")
+            _json = self._serialize.body(simple_body_product, "SimpleProduct")
         else:
-            json = None
+            _json = None
 
         request = build_put_simple_product_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_simple_product.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -775,13 +776,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             odata_value=odata_value,
         )
         if _simple_body_product is not None:
-            json = self._serialize.body(_simple_body_product, "SimpleProduct")
+            _json = self._serialize.body(_simple_body_product, "SimpleProduct")
         else:
-            json = None
+            _json = None
 
         request = build_post_flattened_simple_product_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.post_flattened_simple_product.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -854,14 +855,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             odata_value=_odata_value,
         )
         if _simple_body_product is not None:
-            json = self._serialize.body(_simple_body_product, "SimpleProduct")
+            _json = self._serialize.body(_simple_body_product, "SimpleProduct")
         else:
-            json = None
+            _json = None
 
         request = build_put_simple_product_with_grouping_request(
             name=_name,
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_simple_product_with_grouping.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),

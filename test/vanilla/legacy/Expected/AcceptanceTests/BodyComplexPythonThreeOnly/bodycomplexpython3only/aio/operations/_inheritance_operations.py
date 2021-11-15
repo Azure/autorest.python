@@ -23,7 +23,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
 from ..._vendor import _convert_request
-from ...operations._inheritance_operations import build_get_valid_request, build_put_valid_request
+from ...operations._inheritance_operations_py3 import build_get_valid_request, build_put_valid_request
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -108,11 +108,11 @@ class InheritanceOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(complex_body, "Siamese")
+        _json = self._serialize.body(complex_body, "Siamese")
 
         request = build_put_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),

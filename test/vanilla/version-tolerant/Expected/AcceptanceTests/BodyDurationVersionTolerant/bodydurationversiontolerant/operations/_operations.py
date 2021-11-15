@@ -32,6 +32,7 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 
 def _param_not_set(param_dict, rest_api_name_lower):
@@ -208,11 +209,11 @@ class DurationOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = duration_body
+        _json = duration_body
 
         request = build_duration_put_positive_duration_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_positive_duration.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),

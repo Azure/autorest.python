@@ -244,11 +244,11 @@ class DatetimeOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(datetime_body, "iso-8601")
+        _json = self._serialize.body(datetime_body, "iso-8601")
 
         request = build_put_utc_max_date_time_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_utc_max_date_time.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -289,11 +289,11 @@ class DatetimeOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(datetime_body, "iso-8601")
+        _json = self._serialize.body(datetime_body, "iso-8601")
 
         request = build_put_utc_max_date_time7_digits_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_utc_max_date_time7_digits.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -448,11 +448,11 @@ class DatetimeOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(datetime_body, "iso-8601")
+        _json = self._serialize.body(datetime_body, "iso-8601")
 
         request = build_put_local_positive_offset_max_date_time_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_local_positive_offset_max_date_time.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -566,11 +566,11 @@ class DatetimeOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(datetime_body, "iso-8601")
+        _json = self._serialize.body(datetime_body, "iso-8601")
 
         request = build_put_local_negative_offset_max_date_time_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_local_negative_offset_max_date_time.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -684,11 +684,11 @@ class DatetimeOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(datetime_body, "iso-8601")
+        _json = self._serialize.body(datetime_body, "iso-8601")
 
         request = build_put_utc_min_date_time_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_utc_min_date_time.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -764,11 +764,11 @@ class DatetimeOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(datetime_body, "iso-8601")
+        _json = self._serialize.body(datetime_body, "iso-8601")
 
         request = build_put_local_positive_offset_min_date_time_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_local_positive_offset_min_date_time.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -844,11 +844,11 @@ class DatetimeOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(datetime_body, "iso-8601")
+        _json = self._serialize.body(datetime_body, "iso-8601")
 
         request = build_put_local_negative_offset_min_date_time_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_local_negative_offset_min_date_time.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),

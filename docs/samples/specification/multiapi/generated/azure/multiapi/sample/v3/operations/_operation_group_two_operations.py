@@ -27,10 +27,10 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 def _param_not_set(param_dict, rest_api_name_lower):
     return not any(k for k in param_dict if k.lower() == rest_api_name_lower)
-
 # fmt: off
 
 def build_test_four_request(
@@ -142,13 +142,13 @@ class OperationGroupTwoOperations(object):
 
         content_type = kwargs.pop('content_type', "application/json")  # type: Optional[Union[str, "_models.ContentType"]]
 
-        json = None
-        content = None
+        _json = None
+        _content = None
         if content_type.split(";")[0] in ['application/json']:
             if input is not None:
-                json = self._serialize.body(input, 'SourcePath')
+                _json = self._serialize.body(input, 'SourcePath')
         elif content_type.split(";")[0] in ['application/pdf', 'image/jpeg', 'image/png', 'image/tiff']:
-            content = input
+            _content = input
         else:
             raise ValueError(
                 "The content_type '{}' is not one of the allowed values: "
@@ -157,8 +157,8 @@ class OperationGroupTwoOperations(object):
 
         request = build_test_four_request(
             content_type=content_type,
-            json=json,
-            content=content,
+            json=_json,
+            content=_content,
             template_url=self.test_four.metadata['url'],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),

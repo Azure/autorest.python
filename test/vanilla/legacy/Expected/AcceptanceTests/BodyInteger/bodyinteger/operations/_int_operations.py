@@ -34,6 +34,7 @@ if TYPE_CHECKING:
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 
 def _param_not_set(param_dict, rest_api_name_lower):
@@ -646,11 +647,11 @@ class IntOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(int_body, "int")
+        _json = self._serialize.body(int_body, "int")
 
         request = build_put_max32_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_max32.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -693,11 +694,11 @@ class IntOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(int_body, "long")
+        _json = self._serialize.body(int_body, "long")
 
         request = build_put_max64_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_max64.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -740,11 +741,11 @@ class IntOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(int_body, "int")
+        _json = self._serialize.body(int_body, "int")
 
         request = build_put_min32_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_min32.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -787,11 +788,11 @@ class IntOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(int_body, "long")
+        _json = self._serialize.body(int_body, "long")
 
         request = build_put_min64_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_min64.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -875,11 +876,11 @@ class IntOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = self._serialize.body(int_body, "unix-time")
+        _json = self._serialize.body(int_body, "unix-time")
 
         request = build_put_unix_time_date_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_unix_time_date.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),

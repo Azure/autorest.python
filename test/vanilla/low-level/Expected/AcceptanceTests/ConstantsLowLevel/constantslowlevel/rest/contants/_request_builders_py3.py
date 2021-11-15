@@ -13,6 +13,7 @@ from msrest import Serializer
 from ..._vendor import _format_url_section
 
 _SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 
 def _param_not_set(param_dict, rest_api_name_lower):

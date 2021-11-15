@@ -182,11 +182,11 @@ class ByteOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = byte_body
+        _json = byte_body
 
         request = build_byte_put_non_ascii_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_non_ascii.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),

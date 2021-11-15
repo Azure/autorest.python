@@ -24,13 +24,14 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, IO, Optional, TypeVar
 
     T = TypeVar("T")
     JSONType = Any
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 
 def _param_not_set(param_dict, rest_api_name_lower):
@@ -63,6 +64,106 @@ def build_import_builders_operation_one_request(
         method="PUT",
         url=url,
         params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_operation_with_content_param_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/reservedWords/operation/content')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_operation_with_json_param_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/reservedWords/operation/json')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_operation_with_data_param_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/reservedWords/operation/data')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_operation_with_files_param_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/reservedWords/operation/files')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    if _param_not_set(header_parameters, "content-type") and content_type is not None:
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    if _param_not_set(header_parameters, "accept"):
+        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="PUT",
+        url=url,
         headers=header_parameters,
         **kwargs
     )
@@ -131,3 +232,225 @@ class ImportOperations(object):
         return deserialized
 
     operation_one.metadata = {"url": "/reservedWords/operationGroup/import"}  # type: ignore
+
+
+class ReservedWordsClientOperationsMixin(object):
+    @distributed_trace
+    def operation_with_content_param(
+        self,
+        content,  # type: IO
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> Any
+        """Operation with body param called content. Pass in b'hello, world'.
+
+        :param content: Pass in b'hello, world'.
+        :type content: IO
+        :return: any
+        :rtype: any
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        content_type = kwargs.pop("content_type", "application/octet-stream")  # type: Optional[str]
+
+        _content = content
+
+        request = build_operation_with_content_param_request(
+            content_type=content_type,
+            content=_content,
+            template_url=self.operation_with_content_param.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
+        )
+        request.url = self._client.format_url(request.url)
+
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+
+    operation_with_content_param.metadata = {"url": "/reservedWords/operation/content"}  # type: ignore
+
+    @distributed_trace
+    def operation_with_json_param(
+        self,
+        json,  # type: Any
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> Any
+        """Operation with body param called 'json'. Pass in {'hello': 'world'}.
+
+        :param json: Pass in {'hello': 'world'}.
+        :type json: any
+        :return: any
+        :rtype: any
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
+        _json = json
+
+        request = build_operation_with_json_param_request(
+            content_type=content_type,
+            json=_json,
+            template_url=self.operation_with_json_param.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
+        )
+        request.url = self._client.format_url(request.url)
+
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+
+    operation_with_json_param.metadata = {"url": "/reservedWords/operation/json"}  # type: ignore
+
+    @distributed_trace
+    def operation_with_data_param(
+        self,
+        data,  # type: Dict[str, Any]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> Any
+        """Operation with urlencoded body param called 'data'.
+
+        :param data: Form-encoded input for data. See the template in our example to find the input
+         shape.
+        :type data: dict[str, any]
+        :return: any
+        :rtype: any
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # form-encoded input template you can fill out and use as your `data` input.
+                data = {
+                    "data": "str",  # Pass in 'hello'.
+                    "world": "str"  # Pass in 'world'.
+                }
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        content_type = kwargs.pop("content_type", "application/x-www-form-urlencoded")  # type: Optional[str]
+
+        request = build_operation_with_data_param_request(
+            content_type=content_type,
+            data=data,
+            template_url=self.operation_with_data_param.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
+        )
+        request.url = self._client.format_url(request.url)
+
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+
+    operation_with_data_param.metadata = {"url": "/reservedWords/operation/data"}  # type: ignore
+
+    @distributed_trace
+    def operation_with_files_param(
+        self,
+        files,  # type: Dict[str, Any]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> Any
+        """Operation with multipart body param called 'files'.
+
+        :param files: Multipart input for files. See the template in our example to find the input
+         shape.
+        :type files: dict[str, any]
+        :return: any
+        :rtype: any
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # multipart input template you can fill out and use as your `files` input.
+                files = {
+                    "file_name": "str",  # File name to upload. Pass in 'my.txt'.
+                    "files": b'bytes'  # Files to upload. Pass in list of input streams.
+                }
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+
+        request = build_operation_with_files_param_request(
+            content_type=content_type,
+            files=files,
+            template_url=self.operation_with_files_param.metadata["url"],
+            headers=kwargs.pop("headers", {}),
+            params=kwargs.pop("params", {}),
+        )
+        request.url = self._client.format_url(request.url)
+
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+
+    operation_with_files_param.metadata = {"url": "/reservedWords/operation/files"}  # type: ignore

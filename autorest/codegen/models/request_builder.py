@@ -89,7 +89,7 @@ class RequestBuilder(BaseBuilder):
             file_import.add_from_import("typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL)
         if self.parameters.has_body and (
             self.code_model.options["builders_visibility"] != "embedded" or
-            self.code_model.options["add_python_3_operation_files"]
+            self.code_model.options["add_python3_operation_files"]
         ):
             file_import.define_mypy_type("JSONType", "Any")
         return file_import

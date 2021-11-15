@@ -20,18 +20,6 @@ class _SwaggerGroup(Enum):
     AZURE_ARM = auto()
     LLC = auto()
 
-_SERVICE_TO_README_PATH = {
-    'azure-ai-textanalytics': 'test/services/azure-ai-textanalytics/README.md',
-    'azure-ai-formrecognizer': 'test/services/azure-ai-formrecognizer/README.md',
-    'azure-storage-blob': '../azure-sdk-for-python/sdk/storage/azure-storage-blob/swagger/README.md',
-    'azure-mgmt-storage': 'test/services/azure-mgmt-storage/README.md',
-    'azure-mgmt-network': 'test/services/azure-mgmt-network/README.md',
-    'azure-mgmt-resources#features': 'test/services/azure-mgmt-resources#features/README.md',
-    'azure-graphrbac': 'test/services/azure-graphrbac/README.md',
-    'azure-search': 'test/services/azure-search/README.md',
-    'azure-keyvault': 'test/services/azure-keyvault/README.md',
-}
-
 _VANILLA_SWAGGER_MAPPINGS = {
     'AdditionalProperties': 'additionalProperties.json',
     'Anything': 'any-type.json',
@@ -154,6 +142,7 @@ def _build_flags(
     namespace = kwargs.pop("namespace", _OVERWRITE_DEFAULT_NAMESPACE.get(package_name, package_name.lower()))
     low_level_client = kwargs.pop("low_level_client", False)
     version_tolerant = kwargs.pop("version_tolerant", False)
+    client_side_validation = package_name in _PACKAGES_WITH_CLIENT_SIDE_VALIDATION
     if low_level_client:
         package_name += "LowLevel"
         generation_section += "/low-level"
@@ -186,7 +175,7 @@ def _build_flags(
         "azure-arm": swagger_group == _SwaggerGroup.AZURE_ARM,
         "keep-version-file": True,
         "namespace": namespace,
-        "client-side-validation": package_name in _PACKAGES_WITH_CLIENT_SIDE_VALIDATION,
+        "client-side-validation": client_side_validation,
         "black": True,
     }
     if override_flags:
@@ -260,7 +249,7 @@ def regenerate_vanilla_legacy(c, swagger_name=None, debug=False, **kwargs):
     return _prepare_mapping_and_regenerate(c, _VANILLA_SWAGGER_MAPPINGS, _SwaggerGroup.VANILLA, swagger_name, debug, **kwargs)
 
 @task
-def regenerate_llc_llc(c, swagger_name=None, debug=False, **kwargs):
+def regenerate_llc_low_level_client(c, swagger_name=None, debug=False, **kwargs):
     return _prepare_mapping_and_regenerate(
         c,
         _LLC_SWAGGER_MAPPINGS,
@@ -272,7 +261,7 @@ def regenerate_llc_llc(c, swagger_name=None, debug=False, **kwargs):
     )
 
 @task
-def regenerate_vanilla_llc(c, swagger_name=None, debug=False, **kwargs):
+def regenerate_vanilla_low_level_client(c, swagger_name=None, debug=False, **kwargs):
     return _prepare_mapping_and_regenerate(
         c,
         _VANILLA_SWAGGER_MAPPINGS,
@@ -312,7 +301,7 @@ def regenerate_azure_legacy(c, swagger_name=None, debug=False, **kwargs):
     return _prepare_mapping_and_regenerate(c, _AZURE_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE, swagger_name, debug, **kwargs)
 
 @task
-def regenerate_azure_llc(c, swagger_name=None, debug=False, **kwargs):
+def regenerate_azure_low_level_client(c, swagger_name=None, debug=False, **kwargs):
     return _prepare_mapping_and_regenerate(c, _AZURE_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE, swagger_name, debug, low_level_client=True, **kwargs)
 
 @task
@@ -324,7 +313,7 @@ def regenerate_azure_arm_legacy(c, swagger_name=None, debug=False, **kwargs):
     return _prepare_mapping_and_regenerate(c, _AZURE_ARM_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE_ARM, swagger_name, debug, **kwargs)
 
 @task
-def regenerate_azure_arm_llc(c, swagger_name=None, debug=False, **kwargs):
+def regenerate_azure_arm_low_level_client(c, swagger_name=None, debug=False, **kwargs):
     return _prepare_mapping_and_regenerate(c, _AZURE_ARM_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE_ARM, swagger_name, debug, low_level_client=True, **kwargs)
 
 @task
@@ -374,17 +363,66 @@ def regenerate_legacy(c, swagger_name=None, debug=False):
         regenerate_python3_only(c, debug)
 
 @task
-def regenerate(c, swagger_name=None, debug=False):
-    regenerate_legacy(c, swagger_name, debug)
-    regenerate_llc(c, swagger_name, debug)
-    regenerate_version_tolerant(c, swagger_name, debug)
+def regenerate(
+    c,
+    swagger_name=None,
+    debug=False,
+    version_tolerant=False,
+    low_level_client=False,
+    legacy=False,
+    vanilla=False,
+    azure=False,
+    azure_arm=False,
+    llc=False
+):
+    if legacy and llc:
+        raise ValueError("Can not specify legacy flag and llc flag at the same time.")
+    generators = [
+        "version_tolerant" if version_tolerant else "",
+        "low_level_client" if low_level_client else "",
+        "legacy" if legacy else "",
+    ]
+    generators = [g for g in generators if g] or ["legacy", "low_level_client", "version_tolerant"]
+    folders = [
+        "vanilla" if vanilla else "",
+        "azure" if azure else "",
+        "azure_arm" if azure_arm else "",
+        "llc" if llc else "",
+    ]
+    folder_flags = [f for f in folders if f]
+    if not folder_flags:
+        mapping = {
+            "legacy": regenerate_legacy,
+            "low_level_client": regenerate_low_level_client,
+            "version_tolerant": regenerate_version_tolerant,
+        }
+        funcs = [mapping[g] for g in generators if g in mapping.keys()]
+    else:
+        mapping = {
+            ("legacy", "vanilla"): regenerate_vanilla_legacy,
+            ("legacy", "azure"): regenerate_azure_legacy,
+            ("legacy", "azure_arm"): regenerate_azure_arm_legacy,
+            ("version_tolerant", "vanilla"): regenerate_vanilla_version_tolerant,
+            ("version_tolerant", "azure"): regenerate_azure_version_tolerant,
+            ("version_tolerant", "azure_arm"): regenerate_azure_arm_version_tolerant,
+            ("version_tolerant", "llc"): regenerate_llc_version_tolerant,
+            ("low_level_client", "vanilla"): regenerate_vanilla_low_level_client,
+            ("low_level_client", "azure"): regenerate_azure_low_level_client,
+            ("low_level_client", "azure_arm"): regenerate_azure_arm_low_level_client,
+            ("low_level_client", "llc"): regenerate_llc_low_level_client,
+        }
+        funcs = [
+            v for k, v in mapping.items() if k in itertools.product(generators, folder_flags)
+        ]
+    for func in funcs:
+        func(c, swagger_name, debug)
 
 @task
-def regenerate_llc(c, swagger_name=None, debug=False):
-    regenerate_llc_llc(c, swagger_name, debug)
-    regenerate_vanilla_llc(c, swagger_name, debug)
-    regenerate_azure_llc(c, swagger_name, debug)
-    regenerate_azure_arm_llc(c, swagger_name, debug)
+def regenerate_low_level_client(c, swagger_name=None, debug=False):
+    regenerate_llc_low_level_client(c, swagger_name, debug)
+    regenerate_vanilla_low_level_client(c, swagger_name, debug)
+    regenerate_azure_low_level_client(c, swagger_name, debug)
+    regenerate_azure_arm_low_level_client(c, swagger_name, debug)
 
 @task
 def regenerate_version_tolerant(c, swagger_name=None, debug=False):

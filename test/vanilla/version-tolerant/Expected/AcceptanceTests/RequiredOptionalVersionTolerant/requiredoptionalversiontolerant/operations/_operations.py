@@ -1014,13 +1014,13 @@ class ImplicitOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body_parameter is not None:
-            json = body_parameter
+            _json = body_parameter
         else:
-            json = None
+            _json = None
 
         request = build_implicit_put_optional_body_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_optional_body.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1060,11 +1060,11 @@ class ImplicitOperations(object):
 
         content_type = kwargs.pop("content_type", "application/octet-stream")  # type: Optional[str]
 
-        content = body_parameter
+        _content = body_parameter
 
         request = build_implicit_put_optional_binary_body_request(
             content_type=content_type,
-            content=content,
+            content=_content,
             template_url=self.put_optional_binary_body.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1228,11 +1228,11 @@ class ExplicitOperations(object):
 
         content_type = kwargs.pop("content_type", "application/octet-stream")  # type: Optional[str]
 
-        content = body_parameter
+        _content = body_parameter
 
         request = build_explicit_put_optional_binary_body_request(
             content_type=content_type,
-            content=content,
+            content=_content,
             template_url=self.put_optional_binary_body.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1272,11 +1272,11 @@ class ExplicitOperations(object):
 
         content_type = kwargs.pop("content_type", "application/octet-stream")  # type: Optional[str]
 
-        content = body_parameter
+        _content = body_parameter
 
         request = build_explicit_put_required_binary_body_request(
             content_type=content_type,
-            content=content,
+            content=_content,
             template_url=self.put_required_binary_body.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1317,11 +1317,11 @@ class ExplicitOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = body_parameter
+        _json = body_parameter
 
         request = build_explicit_post_required_integer_parameter_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.post_required_integer_parameter.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1362,13 +1362,13 @@ class ExplicitOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body_parameter is not None:
-            json = body_parameter
+            _json = body_parameter
         else:
-            json = None
+            _json = None
 
         request = build_explicit_post_optional_integer_parameter_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.post_optional_integer_parameter.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1417,11 +1417,11 @@ class ExplicitOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = body_parameter
+        _json = body_parameter
 
         request = build_explicit_post_required_integer_property_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.post_required_integer_property.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1470,13 +1470,13 @@ class ExplicitOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body_parameter is not None:
-            json = body_parameter
+            _json = body_parameter
         else:
-            json = None
+            _json = None
 
         request = build_explicit_post_optional_integer_property_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.post_optional_integer_property.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1596,11 +1596,11 @@ class ExplicitOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = body_parameter
+        _json = body_parameter
 
         request = build_explicit_post_required_string_parameter_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.post_required_string_parameter.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1641,13 +1641,13 @@ class ExplicitOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body_parameter is not None:
-            json = body_parameter
+            _json = body_parameter
         else:
-            json = None
+            _json = None
 
         request = build_explicit_post_optional_string_parameter_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.post_optional_string_parameter.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1696,11 +1696,11 @@ class ExplicitOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = body_parameter
+        _json = body_parameter
 
         request = build_explicit_post_required_string_property_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.post_required_string_property.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1749,13 +1749,13 @@ class ExplicitOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body_parameter is not None:
-            json = body_parameter
+            _json = body_parameter
         else:
-            json = None
+            _json = None
 
         request = build_explicit_post_optional_string_property_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.post_optional_string_property.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1884,11 +1884,11 @@ class ExplicitOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = body_parameter
+        _json = body_parameter
 
         request = build_explicit_post_required_class_parameter_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.post_required_class_parameter.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1938,13 +1938,13 @@ class ExplicitOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body_parameter is not None:
-            json = body_parameter
+            _json = body_parameter
         else:
-            json = None
+            _json = None
 
         request = build_explicit_post_optional_class_parameter_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.post_optional_class_parameter.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1996,11 +1996,11 @@ class ExplicitOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = body_parameter
+        _json = body_parameter
 
         request = build_explicit_post_required_class_property_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.post_required_class_property.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -2052,13 +2052,13 @@ class ExplicitOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body_parameter is not None:
-            json = body_parameter
+            _json = body_parameter
         else:
-            json = None
+            _json = None
 
         request = build_explicit_post_optional_class_property_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.post_optional_class_property.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -2107,11 +2107,11 @@ class ExplicitOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = body_parameter
+        _json = body_parameter
 
         request = build_explicit_post_required_array_parameter_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.post_required_array_parameter.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -2160,13 +2160,13 @@ class ExplicitOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body_parameter is not None:
-            json = body_parameter
+            _json = body_parameter
         else:
-            json = None
+            _json = None
 
         request = build_explicit_post_optional_array_parameter_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.post_optional_array_parameter.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -2217,11 +2217,11 @@ class ExplicitOperations(object):
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = body_parameter
+        _json = body_parameter
 
         request = build_explicit_post_required_array_property_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.post_required_array_property.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -2272,13 +2272,13 @@ class ExplicitOperations(object):
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if body_parameter is not None:
-            json = body_parameter
+            _json = body_parameter
         else:
-            json = None
+            _json = None
 
         request = build_explicit_post_optional_array_property_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.post_optional_array_property.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),

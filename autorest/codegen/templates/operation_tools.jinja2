@@ -49,8 +49,11 @@ Example:
     {% endif %}
 {% endfor %}{% endmacro %}
 
-{% macro request_builder_setup() %}
+{% macro declare_serializer(code_model) %}
 _SERIALIZER = Serializer()
+    {% if not code_model.options["client_side_validation"] %}
+_SERIALIZER.client_side_validation = False
+    {% endif %}
 
 def _param_not_set(param_dict, rest_api_name_lower):
     return not any(k for k in param_dict if k.lower() == rest_api_name_lower)

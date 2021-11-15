@@ -121,13 +121,13 @@ class StringOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if string_body is not None:
-            json = string_body
+            _json = string_body
         else:
-            json = None
+            _json = None
 
         request = build_string_put_null_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_null.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -517,11 +517,11 @@ class StringOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = string_body
+        _json = string_body
 
         request = build_string_put_base64_url_encoded_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_base64_url_encoded.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -658,11 +658,11 @@ class EnumOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = string_body
+        _json = string_body
 
         request = build_enum_put_not_expandable_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_not_expandable.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -742,11 +742,11 @@ class EnumOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = enum_string_body
+        _json = enum_string_body
 
         request = build_enum_put_referenced_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_referenced.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -837,11 +837,11 @@ class EnumOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = enum_string_body
+        _json = enum_string_body
 
         request = build_enum_put_referenced_constant_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_referenced_constant.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),

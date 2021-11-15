@@ -415,13 +415,13 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_success_put200_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put200.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -457,13 +457,13 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_success_patch200_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.patch200.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -499,13 +499,13 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_success_post200_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.post200.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -541,13 +541,13 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_success_delete200_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.delete200.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -583,13 +583,13 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_success_put201_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put201.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -625,13 +625,13 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_success_post201_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.post201.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -667,13 +667,13 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_success_put202_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put202.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -709,13 +709,13 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_success_patch202_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.patch202.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -751,13 +751,13 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_success_post202_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.post202.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -793,13 +793,13 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_success_delete202_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.delete202.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -866,13 +866,13 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_success_put204_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put204.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -908,13 +908,13 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_success_patch204_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.patch204.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -950,13 +950,13 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_success_post204_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.post204.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -992,13 +992,13 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_success_delete204_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.delete204.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1241,13 +1241,13 @@ class HttpRedirectsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_redirects_put301_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put301.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1357,13 +1357,13 @@ class HttpRedirectsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_redirects_patch302_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.patch302.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1403,13 +1403,13 @@ class HttpRedirectsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_redirects_post303_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.post303.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1554,13 +1554,13 @@ class HttpRedirectsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_redirects_put307_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put307.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1600,13 +1600,13 @@ class HttpRedirectsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_redirects_patch307_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.patch307.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1646,13 +1646,13 @@ class HttpRedirectsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_redirects_post307_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.post307.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1692,13 +1692,13 @@ class HttpRedirectsOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_redirects_delete307_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.delete307.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1850,13 +1850,13 @@ class HttpClientFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_client_failure_put400_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put400.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1892,13 +1892,13 @@ class HttpClientFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_client_failure_patch400_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.patch400.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1934,13 +1934,13 @@ class HttpClientFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_client_failure_post400_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.post400.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -1976,13 +1976,13 @@ class HttpClientFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_client_failure_delete400_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.delete400.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -2142,13 +2142,13 @@ class HttpClientFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_client_failure_put404_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put404.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -2184,13 +2184,13 @@ class HttpClientFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_client_failure_patch405_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.patch405.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -2226,13 +2226,13 @@ class HttpClientFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_client_failure_post406_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.post406.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -2268,13 +2268,13 @@ class HttpClientFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_client_failure_delete407_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.delete407.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -2310,13 +2310,13 @@ class HttpClientFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_client_failure_put409_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put409.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -2476,13 +2476,13 @@ class HttpClientFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_client_failure_put413_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put413.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -2518,13 +2518,13 @@ class HttpClientFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_client_failure_patch414_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.patch414.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -2560,13 +2560,13 @@ class HttpClientFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_client_failure_post415_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.post415.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -2633,13 +2633,13 @@ class HttpClientFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_client_failure_delete417_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.delete417.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -2787,13 +2787,13 @@ class HttpServerFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_server_failure_post505_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.post505.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -2829,13 +2829,13 @@ class HttpServerFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_server_failure_delete505_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.delete505.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -2921,13 +2921,13 @@ class HttpRetryOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_retry_put500_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put500.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -2963,13 +2963,13 @@ class HttpRetryOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_retry_patch500_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.patch500.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -3074,13 +3074,13 @@ class HttpRetryOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_retry_post503_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.post503.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -3116,13 +3116,13 @@ class HttpRetryOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_retry_delete503_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.delete503.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -3158,13 +3158,13 @@ class HttpRetryOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_retry_put504_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put504.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -3200,13 +3200,13 @@ class HttpRetryOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         if boolean_value is not None:
-            json = boolean_value
+            _json = boolean_value
         else:
-            json = None
+            _json = None
 
         request = build_http_retry_patch504_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.patch504.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),

@@ -29,7 +29,7 @@ from .rest import Rest
 
 _LOGGER = logging.getLogger(__name__)
 
-class CodeModel:  # pylint: disable=too-many-instance-attributes
+class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-public-methods
     """Holds all of the information we have parsed out of the yaml file. The CodeModel is what gets
     serialized by the serializers.
 
@@ -204,6 +204,10 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             ]
 
     @property
+    def has_schemas(self):
+        return self.schemas or self.enums
+
+    @property
     def default_authentication_policy(self) -> Type[CredentialSchemaPolicy]:
         return ARMChallengeAuthenticationPolicy if self.options['azure_arm'] else BearerTokenCredentialPolicy
 
@@ -237,6 +241,15 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                 )
 
         return properties
+
+    @property
+    def operations_folder_name(self) -> str:
+        name = "operations"
+        if self.options["version_tolerant"] and not any(
+            og for og in self.operation_groups if not og.is_empty_operation_group
+        ):
+            name = f"_{name}"
+        return name
 
     def _add_properties_from_inheritance(self) -> None:
         """Adds properties from base classes to schemas with parents.

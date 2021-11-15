@@ -270,12 +270,12 @@ class ParameterGroupingOperations(object):
             _query = parameter_grouping_post_required_parameters.query
             _path = parameter_grouping_post_required_parameters.path
             _body = parameter_grouping_post_required_parameters.body
-        json = self._serialize.body(_body, "int")
+        _json = self._serialize.body(_body, "int")
 
         request = build_post_required_request(
             path=_path,
             content_type=content_type,
-            json=json,
+            json=_json,
             custom_header=_custom_header,
             query=_query,
             template_url=self.post_required.metadata["url"],

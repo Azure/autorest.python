@@ -56,7 +56,7 @@ class OperationGroup(BaseModel):
             file_import.merge(operation.imports_for_multiapi(async_mode))
         return file_import
 
-    def imports(self, async_mode: bool, has_schemas: bool) -> FileImport:
+    def imports(self, async_mode: bool) -> FileImport:
         file_import = FileImport()
         file_import.add_from_import("azure.core.exceptions", "ClientAuthenticationError", ImportType.AZURECORE)
         file_import.add_from_import("azure.core.exceptions", "ResourceNotFoundError", ImportType.AZURECORE)
@@ -73,7 +73,7 @@ class OperationGroup(BaseModel):
                     "azure.core.tracing.decorator", "distributed_trace", ImportType.AZURECORE,
                 )
         local_path = "..." if async_mode else ".."
-        if has_schemas and self.code_model.options["models_mode"]:
+        if self.code_model.has_schemas and self.code_model.options["models_mode"]:
             file_import.add_from_import(local_path, "models", ImportType.LOCAL, alias="_models")
         if self.code_model.options["builders_visibility"] == "embedded" and async_mode:
             if not self.code_model.options["combine_operation_files"]:
@@ -85,8 +85,9 @@ class OperationGroup(BaseModel):
             else:
                 operation_group_builders = self.code_model.rest.request_builders
             for request_builder in operation_group_builders:
+                suffix = "_py3" if self.code_model.options["python3_only"] else ""
                 file_import.add_from_import(
-                    f"...operations.{self.filename}",
+                    f"...{self.code_model.operations_folder_name}.{self.filename}{suffix}",
                     request_builder.name,
                     import_type=ImportType.LOCAL
                 )
@@ -101,14 +102,11 @@ class OperationGroup(BaseModel):
 
     @property
     def filename(self) -> str:
-        if self.code_model.options["combine_operation_files"]:
-            return "_operations"
-
         basename = self.name
         if self.is_empty_operation_group:
             basename = self.code_model.module_name
 
-        if basename == "operations":
+        if basename == "operations" or self.code_model.options["combine_operation_files"]:
             return f"_operations"
         return f"_{basename}_operations"
 

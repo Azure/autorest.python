@@ -1,6 +1,7 @@
 {
   "StreamUploadFile": 10,
   "UpdatePetWithForm": 2,
+  "UrlEncodedDataWithPartialConstantBody": 2,
   "getDecimalInvalid": 2,
   "getDecimalBig": 2,
   "getDecimalSmall": 2,

@@ -66,8 +66,8 @@ class FormdataOperations:
 
                 # multipart input template you can fill out and use as your `files` input.
                 files = {
-                    file_content: b'bytes',  # File to upload.
-                    file_name: "str"  # File name to upload. Name has to be spelled exactly as written here.
+                    "file_content": b'bytes',  # File to upload.
+                    "file_name": "str"  # File name to upload. Name has to be spelled exactly as written here.
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[IO]
@@ -117,11 +117,11 @@ class FormdataOperations:
 
         content_type = kwargs.pop("content_type", "application/octet-stream")  # type: Optional[str]
 
-        content = file_content
+        _content = file_content
 
         request = build_formdata_upload_file_via_body_request(
             content_type=content_type,
-            content=content,
+            content=_content,
             template_url=self.upload_file_via_body.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -160,7 +160,7 @@ class FormdataOperations:
 
                 # multipart input template you can fill out and use as your `files` input.
                 files = {
-                    file_content: [
+                    "file_content": [
                         b'bytes'  # Files to upload.
                     ]
                 }

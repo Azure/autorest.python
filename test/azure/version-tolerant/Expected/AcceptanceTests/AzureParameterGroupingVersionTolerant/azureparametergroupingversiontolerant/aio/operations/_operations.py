@@ -76,12 +76,12 @@ class ParameterGroupingOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = body
+        _json = body
 
         request = build_parameter_grouping_post_required_request(
             path=path,
             content_type=content_type,
-            json=json,
+            json=_json,
             custom_header=custom_header,
             query=query,
             template_url=self.post_required.metadata["url"],

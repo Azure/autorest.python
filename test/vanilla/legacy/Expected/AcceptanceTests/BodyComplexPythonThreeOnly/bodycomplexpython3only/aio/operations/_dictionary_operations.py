@@ -23,7 +23,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
 from ..._vendor import _convert_request
-from ...operations._dictionary_operations import (
+from ...operations._dictionary_operations_py3 import (
     build_get_empty_request,
     build_get_not_provided_request,
     build_get_null_request,
@@ -114,11 +114,11 @@ class DictionaryOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         _complex_body = _models.DictionaryWrapper(default_program=default_program)
-        json = self._serialize.body(_complex_body, "DictionaryWrapper")
+        _json = self._serialize.body(_complex_body, "DictionaryWrapper")
 
         request = build_put_valid_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_valid.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
@@ -195,11 +195,11 @@ class DictionaryOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         _complex_body = _models.DictionaryWrapper(default_program=default_program)
-        json = self._serialize.body(_complex_body, "DictionaryWrapper")
+        _json = self._serialize.body(_complex_body, "DictionaryWrapper")
 
         request = build_put_empty_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_empty.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),

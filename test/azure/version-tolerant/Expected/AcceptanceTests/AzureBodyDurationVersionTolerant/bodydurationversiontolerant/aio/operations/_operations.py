@@ -106,11 +106,11 @@ class DurationOperations:
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
-        json = duration_body
+        _json = duration_body
 
         request = build_duration_put_positive_duration_request(
             content_type=content_type,
-            json=json,
+            json=_json,
             template_url=self.put_positive_duration.metadata["url"],
             headers=kwargs.pop("headers", {}),
             params=kwargs.pop("params", {}),
