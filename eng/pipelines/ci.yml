@@ -14,6 +14,17 @@ variables:
   TestFolder: "$(Build.SourcesDirectory)/test/"
   AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: "$(Build.SourcesDirectory)/coverage/"
 
+parameters:
+  VerificationPackages: 
+  - name: azure-storage-blob
+    service: storage
+  - name: azure-storage-queue
+    service: storage
+  - name: azure-storage-file-datalake
+    service: storage
+  - name: azure-storage-file-share
+    service: storage
+
 jobs:
   - job: "AutoRest_Python_CI"
     displayName: "Run AutoRest CI Checks"
@@ -174,4 +185,25 @@ jobs:
       - script: |
           npm run coverage -- publish --repo=$(Build.Repository.Name) --ref=$(Build.SourceBranch) --githubToken=$(github-token) --azStorageAccount=$(storage-coverage-user) --azStorageAccessKey=$(storage-coverage-pass) --coverageDirectory=$(AUTOREST_TESTSERVER_COVERAGE_DIRECTORY)
         workingDirectory: node_modules/@microsoft.azure/autorest.testserver
-        displayName: "Publish coverage report to stroage account"
+        displayName: "Publish coverage report to storage account"
+
+      - ${{ if ne(variables['Build.Reason'], 'PullRequest') }}:
+        - script: |
+            git clone https://github.com/Azure/azure-sdk-for-python.git --depth=1 --branch main $(Build.SourcesDirectory)/regenerated/
+          displayName: 'Clone python repo'
+
+        - script: |
+            pip install tox-monorepo
+          displayName: 'Prepare environment'
+          workingDirectory: '$(Build.SourcesDirectory)/regenerated/'
+
+        - ${{ each package in parameters.VerificationPackages }}:
+          - script: |
+              autorest swagger/readme.md --use=$(Build.SourcesDirectory)
+            displayName: 'Regenerate target package ${{ package.name }}'
+            workingDirectory: '$(Build.SourcesDirectory)/regenerated/sdk/${{ package.service }}/${{ package.name }}'
+
+          - script: |
+              tox -e whl -c ../../../eng/tox/tox.ini
+            displayName: 'Run tests for ${{ package.name }}'
+            workingDirectory: '$(Build.SourcesDirectory)/regenerated/sdk/${{ package.service }}/${{ package.name }}'
