@@ -92,6 +92,7 @@ jobs:
 
               echo "${{ package.service }}"
               echo "${{ package.name }}"
+              echo "$(Build.SourcesDirectory)/regenerated/sdk/${{ package.service }}/${{ package.name }}"
 
               autorest swagger/readme.md --use=$(Build.SourcesDirectory)
             displayName: 'Regenerate target package ${{ package.name }}'
