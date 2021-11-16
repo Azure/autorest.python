@@ -14,6 +14,13 @@ variables:
   TestFolder: "$(Build.SourcesDirectory)/test/"
   AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: "$(Build.SourcesDirectory)/coverage/"
 
+parameters:
+  - name: VerificationPackages
+    type: object
+    default:
+    - name: azure-messaging-webpubsubservice
+      service: webpubsub
+
 jobs:
   - job: "AutoRest_Python_CI"
     displayName: "Run AutoRest CI Checks"
@@ -72,8 +79,6 @@ jobs:
           git add -A  # 'add' first so 'diff' includes untracked files
           git diff --staged -w
         displayName: 'Diff regeneration'
-
-
       - task: UsePythonVersion@0
         displayName: 'Use Python $(PythonVersion)'
         inputs:
@@ -83,7 +88,6 @@ jobs:
           pip install pip==20.2
           pip install tox coverage
         displayName: "Install Env Specific Reqs in Target PyVersion $(PythonVersion)"
-
       - script: |
           cd $(TestFolder)/azure/legacy
           tox -e ci
@@ -154,12 +158,10 @@ jobs:
           cd $(TestFolder)/llc/low-level
           tox -e ci
         displayName: 'Execute low level update "llc" Tests - Python $(PythonVersion)'
-
       - script: |
           cd $(TestFolder)/llc/version-tolerant
           tox -e ci
         displayName: 'Execute version-tolerant update "llc" Tests - Python $(PythonVersion)'
-
       - script: |
           cd $(TestFolder)/multiapi
           tox -e ci
@@ -174,4 +176,25 @@ jobs:
       - script: |
           npm run coverage -- publish --repo=$(Build.Repository.Name) --ref=$(Build.SourceBranch) --githubToken=$(github-token) --azStorageAccount=$(storage-coverage-user) --azStorageAccessKey=$(storage-coverage-pass) --coverageDirectory=$(AUTOREST_TESTSERVER_COVERAGE_DIRECTORY)
         workingDirectory: node_modules/@microsoft.azure/autorest.testserver
-        displayName: "Publish coverage report to stroage account"
+        displayName: "Publish coverage report to storage account"
+
+      - ${{ if ne(variables['Build.Reason'], 'PullRequest') }}:
+        - script: |
+            git clone https://github.com/Azure/azure-sdk-for-python.git --depth=1 --branch main $(Build.SourcesDirectory)/regenerated/
+          displayName: 'Clone python repo'
+
+        - script: |
+            pip install tox-monorepo
+          displayName: 'Prepare environment'
+          workingDirectory: '$(Build.SourcesDirectory)/regenerated/'
+
+        - ${{ each package in parameters.VerificationPackages }}:
+          - script: |
+              autorest ./swagger/README.md --use=$(Build.SourcesDirectory)
+            displayName: 'Regenerate target package ${{ package.name }}'
+            workingDirectory: '$(Build.SourcesDirectory)/regenerated/sdk/${{ package.service }}/${{ package.name }}'
+
+          - script: |
+              tox -e whl -c ../../../eng/tox/tox.ini
+            displayName: 'Run tests for ${{ package.name }}'
+            workingDirectory: '$(Build.SourcesDirectory)/regenerated/sdk/${{ package.service }}/${{ package.name }}'
