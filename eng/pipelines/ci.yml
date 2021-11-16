@@ -88,7 +88,7 @@ jobs:
 
         - ${{ each package in parameters.VerificationPackages }}:
           - script: |
-              autorest ./swagger/readme.md --use=$(Build.SourcesDirectory)
+              autorest ./swagger/README.md --use=$(Build.SourcesDirectory)
             displayName: 'Regenerate target package ${{ package.name }}'
             workingDirectory: '$(Build.SourcesDirectory)/regenerated/sdk/${{ package.service }}/${{ package.name }}'
 
