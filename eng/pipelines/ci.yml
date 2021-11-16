@@ -203,6 +203,11 @@ jobs:
 
         - ${{ each package in parameters.VerificationPackages }}:
           - script: |
+              pwd
+
+              echo "${{ package.service }}"
+              echo "${{ package.name }}"
+
               autorest swagger/readme.md --use=$(Build.SourcesDirectory)
             displayName: 'Regenerate target package ${{ package.name }}'
             workingDirectory: '$(Build.SourcesDirectory)/regenerated/sdk/${{ package.service }}/${{ package.name }}'
