@@ -68,7 +68,7 @@ def build_validation_of_method_parameters_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/fakepath/{subscriptionId}/{resourceGroupName}/{id}")
+    url = "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
         "resourceGroupName": _SERIALIZER.url(
@@ -173,7 +173,7 @@ def build_validation_of_body_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/fakepath/{subscriptionId}/{resourceGroupName}/{id}")
+    url = "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
         "resourceGroupName": _SERIALIZER.url(
@@ -217,7 +217,7 @@ def build_get_with_constant_in_path_request(**kwargs: Any) -> HttpRequest:
     constant_param = kwargs.pop("constant_param", "constant")  # type: str
 
     # Construct URL
-    url = kwargs.pop("template_url", "/validation/constantsInPath/{constantParam}/value")
+    url = "/validation/constantsInPath/{constantParam}/value"
     path_format_arguments = {
         "constantParam": _SERIALIZER.url("constant_param", constant_param, "str"),
     }
@@ -298,7 +298,7 @@ def build_post_with_constant_in_body_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/validation/constantsInPath/{constantParam}/value")
+    url = "/validation/constantsInPath/{constantParam}/value"
     path_format_arguments = {
         "constantParam": _SERIALIZER.url("constant_param", constant_param, "str"),
     }

@@ -44,7 +44,7 @@ def build_file_request(*, json: JSONType = None, content: Any = None, **kwargs: 
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", "/binary/file")
+    url = "/binary/file"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -72,7 +72,7 @@ def build_binary_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", "/binary/octet")
+    url = "/binary/octet"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

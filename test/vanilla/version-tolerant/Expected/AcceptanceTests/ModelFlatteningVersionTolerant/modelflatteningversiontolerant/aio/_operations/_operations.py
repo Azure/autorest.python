@@ -81,7 +81,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         request = build_put_array_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_array.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -131,9 +130,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_array_request(
-            template_url=self.get_array.metadata["url"],
-        )
+        request = build_get_array_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -190,7 +187,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         request = build_put_wrapped_array_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_wrapped_array.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -231,9 +227,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_wrapped_array_request(
-            template_url=self.get_wrapped_array.metadata["url"],
-        )
+        request = build_get_wrapped_array_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -301,7 +295,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         request = build_put_dictionary_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_dictionary.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -351,9 +344,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_dictionary_request(
-            template_url=self.get_dictionary.metadata["url"],
-        )
+        request = build_get_dictionary_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -455,7 +446,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         request = build_put_resource_collection_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_resource_collection.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -539,9 +529,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_resource_collection_request(
-            template_url=self.get_resource_collection.metadata["url"],
-        )
+        request = build_get_resource_collection_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -618,7 +606,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         request = build_put_simple_product_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_simple_product.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -696,7 +683,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         request = build_post_flattened_simple_product_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post_flattened_simple_product.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -779,7 +765,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             name=name,
             content_type=content_type,
             json=_json,
-            template_url=self.put_simple_product_with_grouping.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 

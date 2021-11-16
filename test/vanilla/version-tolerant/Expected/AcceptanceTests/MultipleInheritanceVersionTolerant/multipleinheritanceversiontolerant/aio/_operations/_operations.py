@@ -61,9 +61,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_horse_request(
-            template_url=self.get_horse.metadata["url"],
-        )
+        request = build_get_horse_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -115,7 +113,6 @@ class MultipleInheritanceServiceClientOperationsMixin:
         request = build_put_horse_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_horse.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -158,9 +155,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_pet_request(
-            template_url=self.get_pet.metadata["url"],
-        )
+        request = build_get_pet_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -211,7 +206,6 @@ class MultipleInheritanceServiceClientOperationsMixin:
         request = build_put_pet_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_pet.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -255,9 +249,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_feline_request(
-            template_url=self.get_feline.metadata["url"],
-        )
+        request = build_get_feline_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -309,7 +301,6 @@ class MultipleInheritanceServiceClientOperationsMixin:
         request = build_put_feline_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_feline.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -355,9 +346,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_cat_request(
-            template_url=self.get_cat.metadata["url"],
-        )
+        request = build_get_cat_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -411,7 +400,6 @@ class MultipleInheritanceServiceClientOperationsMixin:
         request = build_put_cat_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_cat.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -459,9 +447,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_kitten_request(
-            template_url=self.get_kitten.metadata["url"],
-        )
+        request = build_get_kitten_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -518,7 +504,6 @@ class MultipleInheritanceServiceClientOperationsMixin:
         request = build_put_kitten_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_kitten.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 

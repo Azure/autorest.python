@@ -31,7 +31,7 @@ def build_head408_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/http/retry/408")
+    url = "/http/retry/408"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -68,7 +68,7 @@ def build_put500_request(*, json: JSONType = None, content: Any = None, **kwargs
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/http/retry/500")
+    url = "/http/retry/500"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -107,7 +107,7 @@ def build_patch500_request(*, json: JSONType = None, content: Any = None, **kwar
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/http/retry/500")
+    url = "/http/retry/500"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -132,7 +132,7 @@ def build_get502_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/http/retry/502")
+    url = "/http/retry/502"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -155,7 +155,7 @@ def build_options502_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/http/retry/502")
+    url = "/http/retry/502"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -192,7 +192,7 @@ def build_post503_request(*, json: JSONType = None, content: Any = None, **kwarg
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/http/retry/503")
+    url = "/http/retry/503"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -231,7 +231,7 @@ def build_delete503_request(*, json: JSONType = None, content: Any = None, **kwa
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/http/retry/503")
+    url = "/http/retry/503"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -270,7 +270,7 @@ def build_put504_request(*, json: JSONType = None, content: Any = None, **kwargs
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/http/retry/504")
+    url = "/http/retry/504"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -309,7 +309,7 @@ def build_patch504_request(*, json: JSONType = None, content: Any = None, **kwar
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/http/retry/504")
+    url = "/http/retry/504"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

@@ -46,7 +46,7 @@ def build_parameter_grouping_post_required_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/parameterGrouping/postRequired/{path}')
+    url = '/parameterGrouping/postRequired/{path}'
     path_format_arguments = {
         "path": _SERIALIZER.url("path", path, 'str'),
     }
@@ -84,7 +84,7 @@ def build_parameter_grouping_post_optional_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/parameterGrouping/postOptional')
+    url = '/parameterGrouping/postOptional'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -115,7 +115,7 @@ def build_parameter_grouping_post_reserved_words_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/parameterGrouping/postReservedWords')
+    url = '/parameterGrouping/postReservedWords'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -148,7 +148,7 @@ def build_parameter_grouping_post_multi_param_groups_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/parameterGrouping/postMultipleParameterGroups')
+    url = '/parameterGrouping/postMultipleParameterGroups'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -183,7 +183,7 @@ def build_parameter_grouping_post_shared_parameter_group_object_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/parameterGrouping/sharedParameterGroupObject')
+    url = '/parameterGrouping/sharedParameterGroupObject'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -261,7 +261,6 @@ class ParameterGroupingOperations(object):
             json=_json,
             custom_header=custom_header,
             query=query,
-            template_url=self.post_required.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -302,7 +301,6 @@ class ParameterGroupingOperations(object):
         request = build_parameter_grouping_post_optional_request(
             custom_header=custom_header,
             query=query,
-            template_url=self.post_optional.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -343,7 +341,6 @@ class ParameterGroupingOperations(object):
         request = build_parameter_grouping_post_reserved_words_request(
             from_parameter=from_parameter,
             accept_parameter=accept_parameter,
-            template_url=self.post_reserved_words.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -392,7 +389,6 @@ class ParameterGroupingOperations(object):
             query_one=query_one,
             header_two=header_two,
             query_two=query_two,
-            template_url=self.post_multi_param_groups.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -433,7 +429,6 @@ class ParameterGroupingOperations(object):
         request = build_parameter_grouping_post_shared_parameter_group_object_request(
             header_one=header_one,
             query_one=query_one,
-            template_url=self.post_shared_parameter_group_object.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 

@@ -37,7 +37,7 @@ def build_put_optional_binary_body_request(*, content: Any = None, **kwargs: Any
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reqopt/explicit/optional/binary-body")
+    url = "/reqopt/explicit/optional/binary-body"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -67,7 +67,7 @@ def build_put_required_binary_body_request(*, content: Any, **kwargs: Any) -> Ht
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reqopt/explicit/required/binary-body")
+    url = "/reqopt/explicit/required/binary-body"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -109,7 +109,7 @@ def build_post_required_integer_parameter_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reqopt/requied/integer/parameter")
+    url = "/reqopt/requied/integer/parameter"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -150,7 +150,7 @@ def build_post_optional_integer_parameter_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reqopt/optional/integer/parameter")
+    url = "/reqopt/optional/integer/parameter"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -194,7 +194,7 @@ def build_post_required_integer_property_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reqopt/requied/integer/property")
+    url = "/reqopt/requied/integer/property"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -237,7 +237,7 @@ def build_post_optional_integer_property_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reqopt/optional/integer/property")
+    url = "/reqopt/optional/integer/property"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -265,7 +265,7 @@ def build_post_required_integer_header_request(*, header_parameter: int, **kwarg
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reqopt/requied/integer/header")
+    url = "/reqopt/requied/integer/header"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -291,7 +291,7 @@ def build_post_optional_integer_header_request(*, header_parameter: Optional[int
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reqopt/optional/integer/header")
+    url = "/reqopt/optional/integer/header"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -333,7 +333,7 @@ def build_post_required_string_parameter_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reqopt/requied/string/parameter")
+    url = "/reqopt/requied/string/parameter"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -374,7 +374,7 @@ def build_post_optional_string_parameter_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reqopt/optional/string/parameter")
+    url = "/reqopt/optional/string/parameter"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -418,7 +418,7 @@ def build_post_required_string_property_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reqopt/requied/string/property")
+    url = "/reqopt/requied/string/property"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -461,7 +461,7 @@ def build_post_optional_string_property_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reqopt/optional/string/property")
+    url = "/reqopt/optional/string/property"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -489,7 +489,7 @@ def build_post_required_string_header_request(*, header_parameter: str, **kwargs
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reqopt/requied/string/header")
+    url = "/reqopt/requied/string/header"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -515,7 +515,7 @@ def build_post_optional_string_header_request(*, body_parameter: Optional[str] =
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reqopt/optional/string/header")
+    url = "/reqopt/optional/string/header"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -560,7 +560,7 @@ def build_post_required_class_parameter_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reqopt/requied/class/parameter")
+    url = "/reqopt/requied/class/parameter"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -604,7 +604,7 @@ def build_post_optional_class_parameter_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reqopt/optional/class/parameter")
+    url = "/reqopt/optional/class/parameter"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -651,7 +651,7 @@ def build_post_required_class_property_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reqopt/requied/class/property")
+    url = "/reqopt/requied/class/property"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -697,7 +697,7 @@ def build_post_optional_class_property_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reqopt/optional/class/property")
+    url = "/reqopt/optional/class/property"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -741,7 +741,7 @@ def build_post_required_array_parameter_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reqopt/requied/array/parameter")
+    url = "/reqopt/requied/array/parameter"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -784,7 +784,7 @@ def build_post_optional_array_parameter_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reqopt/optional/array/parameter")
+    url = "/reqopt/optional/array/parameter"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -830,7 +830,7 @@ def build_post_required_array_property_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reqopt/requied/array/property")
+    url = "/reqopt/requied/array/property"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -875,7 +875,7 @@ def build_post_optional_array_property_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reqopt/optional/array/property")
+    url = "/reqopt/optional/array/property"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -903,7 +903,7 @@ def build_post_required_array_header_request(*, header_parameter: List[str], **k
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reqopt/requied/array/header")
+    url = "/reqopt/requied/array/header"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -931,7 +931,7 @@ def build_post_optional_array_header_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reqopt/optional/array/header")
+    url = "/reqopt/optional/array/header"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

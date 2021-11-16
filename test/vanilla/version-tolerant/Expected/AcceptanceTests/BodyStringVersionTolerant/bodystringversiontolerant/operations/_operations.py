@@ -40,7 +40,7 @@ def build_string_get_null_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/null')
+    url = '/string/null'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -62,7 +62,7 @@ def build_string_put_null_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/null')
+    url = '/string/null'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -84,7 +84,7 @@ def build_string_get_empty_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/empty')
+    url = '/string/empty'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -107,7 +107,7 @@ def build_string_put_empty_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/empty')
+    url = '/string/empty'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -130,7 +130,7 @@ def build_string_get_mbcs_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/mbcs')
+    url = '/string/mbcs'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -153,7 +153,7 @@ def build_string_put_mbcs_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/mbcs')
+    url = '/string/mbcs'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -176,7 +176,7 @@ def build_string_get_whitespace_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/whitespace')
+    url = '/string/whitespace'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -199,7 +199,7 @@ def build_string_put_whitespace_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/whitespace')
+    url = '/string/whitespace'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -222,7 +222,7 @@ def build_string_get_not_provided_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/notProvided')
+    url = '/string/notProvided'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -242,7 +242,7 @@ def build_string_get_base64_encoded_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/base64Encoding')
+    url = '/string/base64Encoding'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -262,7 +262,7 @@ def build_string_get_base64_url_encoded_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/base64UrlEncoding')
+    url = '/string/base64UrlEncoding'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -284,7 +284,7 @@ def build_string_put_base64_url_encoded_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/base64UrlEncoding')
+    url = '/string/base64UrlEncoding'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -306,7 +306,7 @@ def build_string_get_null_base64_url_encoded_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/nullBase64UrlEncoding')
+    url = '/string/nullBase64UrlEncoding'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -326,7 +326,7 @@ def build_enum_get_not_expandable_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/enum/notExpandable')
+    url = '/string/enum/notExpandable'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -348,7 +348,7 @@ def build_enum_put_not_expandable_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/enum/notExpandable')
+    url = '/string/enum/notExpandable'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -370,7 +370,7 @@ def build_enum_get_referenced_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/enum/Referenced')
+    url = '/string/enum/Referenced'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -392,7 +392,7 @@ def build_enum_put_referenced_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/enum/Referenced')
+    url = '/string/enum/Referenced'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -414,7 +414,7 @@ def build_enum_get_referenced_constant_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/enum/ReferencedConstant')
+    url = '/string/enum/ReferencedConstant'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -436,7 +436,7 @@ def build_enum_put_referenced_constant_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/enum/ReferencedConstant')
+    url = '/string/enum/ReferencedConstant'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -485,9 +485,7 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_string_get_null_request(
-            template_url=self.get_null.metadata["url"],
-        )
+        request = build_string_get_null_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -538,7 +536,6 @@ class StringOperations(object):
         request = build_string_put_null_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_null.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -569,9 +566,7 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_string_get_empty_request(
-            template_url=self.get_empty.metadata["url"],
-        )
+        request = build_string_get_empty_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -617,7 +612,6 @@ class StringOperations(object):
         request = build_string_put_empty_request(
             content_type=content_type,
             json=string_body,
-            template_url=self.put_empty.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -648,9 +642,7 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_string_get_mbcs_request(
-            template_url=self.get_mbcs.metadata["url"],
-        )
+        request = build_string_get_mbcs_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -699,7 +691,6 @@ class StringOperations(object):
         request = build_string_put_mbcs_request(
             content_type=content_type,
             json=string_body,
-            template_url=self.put_mbcs.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -732,9 +723,7 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_string_get_whitespace_request(
-            template_url=self.get_whitespace.metadata["url"],
-        )
+        request = build_string_get_whitespace_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -785,7 +774,6 @@ class StringOperations(object):
         request = build_string_put_whitespace_request(
             content_type=content_type,
             json=string_body,
-            template_url=self.put_whitespace.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -816,9 +804,7 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_string_get_not_provided_request(
-            template_url=self.get_not_provided.metadata["url"],
-        )
+        request = build_string_get_not_provided_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -855,9 +841,7 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_string_get_base64_encoded_request(
-            template_url=self.get_base64_encoded.metadata["url"],
-        )
+        request = build_string_get_base64_encoded_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -894,9 +878,7 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_string_get_base64_url_encoded_request(
-            template_url=self.get_base64_url_encoded.metadata["url"],
-        )
+        request = build_string_get_base64_url_encoded_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -944,7 +926,6 @@ class StringOperations(object):
         request = build_string_put_base64_url_encoded_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_base64_url_encoded.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -975,9 +956,7 @@ class StringOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_string_get_null_base64_url_encoded_request(
-            template_url=self.get_null_base64_url_encoded.metadata["url"],
-        )
+        request = build_string_get_null_base64_url_encoded_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1039,9 +1018,7 @@ class EnumOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_enum_get_not_expandable_request(
-            template_url=self.get_not_expandable.metadata["url"],
-        )
+        request = build_enum_get_not_expandable_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1090,7 +1067,6 @@ class EnumOperations(object):
         request = build_enum_put_not_expandable_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_not_expandable.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1127,9 +1103,7 @@ class EnumOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_enum_get_referenced_request(
-            template_url=self.get_referenced.metadata["url"],
-        )
+        request = build_enum_get_referenced_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1178,7 +1152,6 @@ class EnumOperations(object):
         request = build_enum_put_referenced_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_referenced.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1218,9 +1191,7 @@ class EnumOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_enum_get_referenced_constant_request(
-            template_url=self.get_referenced_constant.metadata["url"],
-        )
+        request = build_enum_get_referenced_constant_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1277,7 +1248,6 @@ class EnumOperations(object):
         request = build_enum_put_referenced_constant_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_referenced_constant.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 

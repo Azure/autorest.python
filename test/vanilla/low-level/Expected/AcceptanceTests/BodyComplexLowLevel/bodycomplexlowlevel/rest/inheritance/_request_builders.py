@@ -56,7 +56,7 @@ def build_get_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/inheritance/valid')
+    url = '/complex/inheritance/valid'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -117,7 +117,7 @@ def build_put_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/inheritance/valid')
+    url = '/complex/inheritance/valid'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

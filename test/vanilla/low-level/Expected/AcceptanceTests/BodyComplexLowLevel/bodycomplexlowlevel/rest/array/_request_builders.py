@@ -48,7 +48,7 @@ def build_get_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/array/valid')
+    url = '/complex/array/valid'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -99,7 +99,7 @@ def build_put_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/array/valid')
+    url = '/complex/array/valid'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -142,7 +142,7 @@ def build_get_empty_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/array/empty')
+    url = '/complex/array/empty'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -191,7 +191,7 @@ def build_put_empty_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/array/empty')
+    url = '/complex/array/empty'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -234,7 +234,7 @@ def build_get_not_provided_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/array/notprovided')
+    url = '/complex/array/notprovided'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

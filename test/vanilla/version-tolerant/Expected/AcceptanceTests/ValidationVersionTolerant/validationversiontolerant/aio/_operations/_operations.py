@@ -83,7 +83,6 @@ class AutoRestValidationTestOperationsMixin:
             resource_group_name=resource_group_name,
             id=id,
             api_version=api_version,
-            template_url=self.validation_of_method_parameters.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -187,7 +186,6 @@ class AutoRestValidationTestOperationsMixin:
             api_version=api_version,
             content_type=content_type,
             json=_json,
-            template_url=self.validation_of_body.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -229,7 +227,6 @@ class AutoRestValidationTestOperationsMixin:
 
         request = build_get_with_constant_in_path_request(
             constant_param=constant_param,
-            template_url=self.get_with_constant_in_path.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -317,7 +314,6 @@ class AutoRestValidationTestOperationsMixin:
             constant_param=constant_param,
             content_type=content_type,
             json=_json,
-            template_url=self.post_with_constant_in_body.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 

@@ -38,7 +38,7 @@ def build_get_request(
 ):
     # type: (...) -> HttpRequest
     # Construct URL
-    url = kwargs.pop("template_url", '/parameterizedEndpoint/get')
+    url = '/parameterizedEndpoint/get'
 
     return HttpRequest(
         method="GET",
@@ -63,9 +63,7 @@ class ParmaterizedEndpointClientOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_request(
-            template_url=self.get.metadata["url"],
-        )
+        request = build_get_request()
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
         }

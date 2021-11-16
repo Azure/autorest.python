@@ -28,6 +28,6 @@ def build_get_incorrect_error_from_server_request(**kwargs: Any) -> HttpRequest:
     """
 
     # Construct URL
-    url = kwargs.pop("template_url", "/incorrectError")
+    url = "/incorrectError"
 
     return HttpRequest(method="GET", url=url, **kwargs)
