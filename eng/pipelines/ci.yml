@@ -18,7 +18,7 @@ parameters:
   - name: VerificationPackages
     type: object
     default:
-    - name: azure-messaging-webpubsub
+    - name: azure-messaging-webpubsubservice
       service: webpubsub
 
 jobs:
