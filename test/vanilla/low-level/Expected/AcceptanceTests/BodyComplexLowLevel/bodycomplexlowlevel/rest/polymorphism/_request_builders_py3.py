@@ -43,7 +43,7 @@ def build_get_valid_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/polymorphism/valid")
+    url = "/complex/polymorphism/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -153,7 +153,7 @@ def build_put_valid_request(*, json: JSONType = None, content: Any = None, **kwa
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/polymorphism/valid")
+    url = "/complex/polymorphism/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -187,7 +187,7 @@ def build_get_dot_syntax_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/polymorphism/dotsyntax")
+    url = "/complex/polymorphism/dotsyntax"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -243,7 +243,7 @@ def build_get_composed_with_discriminator_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/polymorphism/composedWithDiscriminator")
+    url = "/complex/polymorphism/composedWithDiscriminator"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -299,7 +299,7 @@ def build_get_composed_without_discriminator_request(**kwargs: Any) -> HttpReque
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/polymorphism/composedWithoutDiscriminator")
+    url = "/complex/polymorphism/composedWithoutDiscriminator"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -345,7 +345,7 @@ def build_get_complicated_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/polymorphism/complicated")
+    url = "/complex/polymorphism/complicated"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -401,7 +401,7 @@ def build_put_complicated_request(*, json: JSONType = None, content: Any = None,
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/polymorphism/complicated")
+    url = "/complex/polymorphism/complicated"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -479,7 +479,7 @@ def build_put_missing_discriminator_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/polymorphism/missingdiscriminator")
+    url = "/complex/polymorphism/missingdiscriminator"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -582,7 +582,7 @@ def build_put_valid_missing_required_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/polymorphism/missingrequired/invalid")
+    url = "/complex/polymorphism/missingrequired/invalid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

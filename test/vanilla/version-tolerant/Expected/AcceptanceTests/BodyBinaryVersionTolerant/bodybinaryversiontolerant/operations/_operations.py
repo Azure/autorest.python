@@ -41,7 +41,7 @@ def build_upload_file_request(
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/binary/file')
+    url = '/binary/file'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -63,7 +63,7 @@ def build_upload_binary_request(
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/binary/octet')
+    url = '/binary/octet'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -122,7 +122,6 @@ class UploadOperations(object):
         request = build_upload_file_request(
             content_type=content_type,
             json=_json,
-            template_url=self.file.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -164,7 +163,6 @@ class UploadOperations(object):
         request = build_upload_binary_request(
             content_type=content_type,
             content=_content,
-            template_url=self.binary.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 

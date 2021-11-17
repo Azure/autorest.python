@@ -39,7 +39,7 @@ def build_head_exception_head200_request(
 ):
     # type: (...) -> HttpRequest
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/200')
+    url = '/http/success/200'
 
     return HttpRequest(
         method="HEAD",
@@ -53,7 +53,7 @@ def build_head_exception_head204_request(
 ):
     # type: (...) -> HttpRequest
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/204')
+    url = '/http/success/204'
 
     return HttpRequest(
         method="HEAD",
@@ -67,7 +67,7 @@ def build_head_exception_head404_request(
 ):
     # type: (...) -> HttpRequest
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/404')
+    url = '/http/success/404'
 
     return HttpRequest(
         method="HEAD",
@@ -109,9 +109,7 @@ class HeadExceptionOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_head_exception_head200_request(
-            template_url=self.head200.metadata["url"],
-        )
+        request = build_head_exception_head200_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -142,9 +140,7 @@ class HeadExceptionOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_head_exception_head204_request(
-            template_url=self.head204.metadata["url"],
-        )
+        request = build_head_exception_head204_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -175,9 +171,7 @@ class HeadExceptionOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_head_exception_head404_request(
-            template_url=self.head404.metadata["url"],
-        )
+        request = build_head_exception_head404_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

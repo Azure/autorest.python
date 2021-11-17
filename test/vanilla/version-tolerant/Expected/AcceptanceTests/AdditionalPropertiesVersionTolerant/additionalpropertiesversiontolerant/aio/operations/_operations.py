@@ -91,7 +91,6 @@ class PetsOperations:
         request = build_pets_create_ap_true_request(
             content_type=content_type,
             json=_json,
-            template_url=self.create_ap_true.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -154,7 +153,6 @@ class PetsOperations:
         request = build_pets_create_cat_ap_true_request(
             content_type=content_type,
             json=_json,
-            template_url=self.create_cat_ap_true.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -215,7 +213,6 @@ class PetsOperations:
         request = build_pets_create_ap_object_request(
             content_type=content_type,
             json=_json,
-            template_url=self.create_ap_object.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -276,7 +273,6 @@ class PetsOperations:
         request = build_pets_create_ap_string_request(
             content_type=content_type,
             json=_json,
-            template_url=self.create_ap_string.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -337,7 +333,6 @@ class PetsOperations:
         request = build_pets_create_ap_in_properties_request(
             content_type=content_type,
             json=_json,
-            template_url=self.create_ap_in_properties.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -406,7 +401,6 @@ class PetsOperations:
         request = build_pets_create_ap_in_properties_with_ap_string_request(
             content_type=content_type,
             json=_json,
-            template_url=self.create_ap_in_properties_with_ap_string.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 

@@ -83,7 +83,6 @@ class AvailabilitySetsOperations:
             avset=avset,
             content_type=content_type,
             json=_json,
-            template_url=self.update.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 

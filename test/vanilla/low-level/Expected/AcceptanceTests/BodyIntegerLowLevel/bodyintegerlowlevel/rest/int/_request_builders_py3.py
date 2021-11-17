@@ -32,7 +32,7 @@ def build_get_null_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/int/null")
+    url = "/int/null"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -55,7 +55,7 @@ def build_get_invalid_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/int/invalid")
+    url = "/int/invalid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -78,7 +78,7 @@ def build_get_overflow_int32_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/int/overflowint32")
+    url = "/int/overflowint32"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -101,7 +101,7 @@ def build_get_underflow_int32_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/int/underflowint32")
+    url = "/int/underflowint32"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -124,7 +124,7 @@ def build_get_overflow_int64_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/int/overflowint64")
+    url = "/int/overflowint64"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -147,7 +147,7 @@ def build_get_underflow_int64_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/int/underflowint64")
+    url = "/int/underflowint64"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -184,7 +184,7 @@ def build_put_max32_request(*, json: JSONType = None, content: Any = None, **kwa
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/int/max/32")
+    url = "/int/max/32"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -223,7 +223,7 @@ def build_put_max64_request(*, json: JSONType = None, content: Any = None, **kwa
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/int/max/64")
+    url = "/int/max/64"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -262,7 +262,7 @@ def build_put_min32_request(*, json: JSONType = None, content: Any = None, **kwa
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/int/min/32")
+    url = "/int/min/32"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -301,7 +301,7 @@ def build_put_min64_request(*, json: JSONType = None, content: Any = None, **kwa
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/int/min/64")
+    url = "/int/min/64"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -326,7 +326,7 @@ def build_get_unix_time_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/int/unixtime")
+    url = "/int/unixtime"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -363,7 +363,7 @@ def build_put_unix_time_date_request(*, json: JSONType = None, content: Any = No
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/int/unixtime")
+    url = "/int/unixtime"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -388,7 +388,7 @@ def build_get_invalid_unix_time_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/int/invalidunixtime")
+    url = "/int/invalidunixtime"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -411,7 +411,7 @@ def build_get_null_unix_time_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/int/nullunixtime")
+    url = "/int/nullunixtime"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

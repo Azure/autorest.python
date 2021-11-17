@@ -36,7 +36,7 @@ def build_operation_with_content_param_request(*, content: Any, **kwargs: Any) -
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reservedWords/operation/content")
+    url = "/reservedWords/operation/content"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -77,7 +77,7 @@ def build_operation_with_json_param_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reservedWords/operation/json")
+    url = "/reservedWords/operation/json"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -121,7 +121,7 @@ def build_operation_with_data_param_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reservedWords/operation/data")
+    url = "/reservedWords/operation/data"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -165,7 +165,7 @@ def build_operation_with_files_param_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reservedWords/operation/files")
+    url = "/reservedWords/operation/files"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

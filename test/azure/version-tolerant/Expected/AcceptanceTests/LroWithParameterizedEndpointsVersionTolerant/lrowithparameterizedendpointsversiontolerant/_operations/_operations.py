@@ -45,7 +45,7 @@ def build_poll_with_parameterized_endpoints_request_initial(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/lroParameterizedEndpoints')
+    url = '/lroParameterizedEndpoints'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -67,7 +67,7 @@ def build_poll_with_constant_parameterized_endpoints_request_initial(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/lroConstantParameterizedEndpoints/{constantParameter}')
+    url = '/lroConstantParameterizedEndpoints/{constantParameter}'
     path_format_arguments = {
         "constantParameter": _SERIALIZER.url("constant_parameter", constant_parameter, 'str', skip_quote=True),
     }
@@ -97,9 +97,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_poll_with_parameterized_endpoints_request_initial(
-            template_url=self._poll_with_parameterized_endpoints_initial.metadata["url"],
-        )
+        request = build_poll_with_parameterized_endpoints_request_initial()
         path_format_arguments = {
             "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
@@ -215,7 +213,6 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
 
         request = build_poll_with_constant_parameterized_endpoints_request_initial(
             constant_parameter=constant_parameter,
-            template_url=self._poll_with_constant_parameterized_endpoints_initial.metadata["url"],
         )
         path_format_arguments = {
             "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),

@@ -30,7 +30,7 @@ def build_array_string_multi_null_request(*, array_query: Optional[List[str]] = 
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/queries/array/multi/string/null")
+    url = "/queries/array/multi/string/null"
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -62,7 +62,7 @@ def build_array_string_multi_empty_request(*, array_query: Optional[List[str]] =
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/queries/array/multi/string/empty")
+    url = "/queries/array/multi/string/empty"
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -96,7 +96,7 @@ def build_array_string_multi_valid_request(*, array_query: Optional[List[str]] =
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/queries/array/multi/string/valid")
+    url = "/queries/array/multi/string/valid"
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]

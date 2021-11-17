@@ -54,10 +54,7 @@ def build_get_all_with_values_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop(
-        "template_url",
-        "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery",
-    )
+    url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery"
     path_format_arguments = {
         "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, "str"),
         "globalStringPath": _SERIALIZER.url("global_string_path", global_string_path, "str"),
@@ -122,10 +119,7 @@ def build_get_global_query_null_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop(
-        "template_url",
-        "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery",
-    )
+    url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery"
     path_format_arguments = {
         "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, "str"),
         "globalStringPath": _SERIALIZER.url("global_string_path", global_string_path, "str"),
@@ -190,10 +184,7 @@ def build_get_global_and_local_query_null_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop(
-        "template_url",
-        "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null",
-    )
+    url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null"
     path_format_arguments = {
         "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, "str"),
         "globalStringPath": _SERIALIZER.url("global_string_path", global_string_path, "str"),
@@ -257,10 +248,7 @@ def build_get_local_path_item_query_null_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop(
-        "template_url",
-        "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null",
-    )
+    url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null"
     path_format_arguments = {
         "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, "str"),
         "globalStringPath": _SERIALIZER.url("global_string_path", global_string_path, "str"),

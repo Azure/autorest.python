@@ -64,9 +64,7 @@ class ByteOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_byte_get_null_request(
-            template_url=self.get_null.metadata["url"],
-        )
+        request = build_byte_get_null_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -100,9 +98,7 @@ class ByteOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_byte_get_empty_request(
-            template_url=self.get_empty.metadata["url"],
-        )
+        request = build_byte_get_empty_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -136,9 +132,7 @@ class ByteOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_byte_get_non_ascii_request(
-            template_url=self.get_non_ascii.metadata["url"],
-        )
+        request = build_byte_get_non_ascii_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -181,7 +175,6 @@ class ByteOperations:
         request = build_byte_put_non_ascii_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_non_ascii.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -209,9 +202,7 @@ class ByteOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_byte_get_invalid_request(
-            template_url=self.get_invalid.metadata["url"],
-        )
+        request = build_byte_get_invalid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
