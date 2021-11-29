@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._vendor import _convert_request
+from ..._vendor import _convert_request, _get_from_dict
 from ...operations._formdataurlencoded_operations import (
     build_partial_constant_body_request,
     build_update_pet_with_form_request,
@@ -87,10 +87,15 @@ class FormdataurlencodedOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/x-www-form-urlencoded")  # type: Optional[str]
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/x-www-form-urlencoded"
+        )  # type: Optional[str]
 
         # Construct form data
         _data = {
@@ -106,8 +111,8 @@ class FormdataurlencodedOperations:
             content_type=content_type,
             data=_data,
             template_url=self.update_pet_with_form.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -143,10 +148,15 @@ class FormdataurlencodedOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/x-www-form-urlencoded")  # type: Optional[str]
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/x-www-form-urlencoded"
+        )  # type: Optional[str]
         grant_type = kwargs.pop("grant_type", "access_token")  # type: str
 
         # Construct form data
@@ -160,8 +170,8 @@ class FormdataurlencodedOperations:
             content_type=content_type,
             data=_data,
             template_url=self.partial_constant_body.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)

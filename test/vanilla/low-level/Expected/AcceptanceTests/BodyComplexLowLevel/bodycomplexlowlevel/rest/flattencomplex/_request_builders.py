@@ -10,6 +10,8 @@ from typing import TYPE_CHECKING
 from azure.core.rest import HttpRequest
 from msrest import Serializer
 
+from ..._vendor import _get_from_dict
+
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Dict, Optional, TypeVar
@@ -18,11 +20,6 @@ if TYPE_CHECKING:
     JSONType = Any
 
 _SERIALIZER = Serializer()
-
-
-def _param_not_set(param_dict, rest_api_name_lower):
-    return not any(k for k in param_dict if k.lower() == rest_api_name_lower)
-
 
 # fmt: off
 
@@ -53,18 +50,19 @@ def build_get_valid_request(
             }
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/complex/flatten/valid')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )

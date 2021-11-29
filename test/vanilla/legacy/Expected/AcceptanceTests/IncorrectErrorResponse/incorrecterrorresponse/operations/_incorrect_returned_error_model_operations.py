@@ -23,7 +23,7 @@ from azure.core.tracing.decorator import distributed_trace
 from msrest import Serializer
 
 from .. import models as _models
-from .._vendor import _convert_request
+from .._vendor import _convert_request, _get_from_dict
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -34,12 +34,6 @@ if TYPE_CHECKING:
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-
-
-def _param_not_set(param_dict, rest_api_name_lower):
-    return not any(k for k in param_dict if k.lower() == rest_api_name_lower)
-
-
 # fmt: off
 
 def build_get_incorrect_error_from_server_request(
@@ -71,13 +65,16 @@ class IncorrectReturnedErrorModelOperationsMixin(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_get_incorrect_error_from_server_request(
             template_url=self.get_incorrect_error_from_server.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)

@@ -10,6 +10,8 @@ from typing import TYPE_CHECKING
 from azure.core.rest import HttpRequest
 from msrest import Serializer
 
+from .._vendor import _get_from_dict
+
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Dict, Optional, TypeVar
@@ -19,11 +21,6 @@ if TYPE_CHECKING:
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-
-
-def _param_not_set(param_dict, rest_api_name_lower):
-    return not any(k for k in param_dict if k.lower() == rest_api_name_lower)
-
 
 # fmt: off
 
@@ -51,19 +48,20 @@ def build_get_horse_request(
             }
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/multipleInheritance/horse')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -98,23 +96,24 @@ def build_put_horse_request(
             }
     """
 
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/multipleInheritance/horse')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "content-type") and content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    if content_type is not None:
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -142,19 +141,20 @@ def build_get_pet_request(
             }
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/multipleInheritance/pet')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -188,23 +188,24 @@ def build_put_pet_request(
             }
     """
 
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/multipleInheritance/pet')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "content-type") and content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    if content_type is not None:
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -233,19 +234,20 @@ def build_get_feline_request(
             }
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/multipleInheritance/feline')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -280,23 +282,24 @@ def build_put_feline_request(
             }
     """
 
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/multipleInheritance/feline')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "content-type") and content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    if content_type is not None:
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -327,19 +330,20 @@ def build_get_cat_request(
             }
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/multipleInheritance/cat')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -378,23 +382,24 @@ def build_put_cat_request(
             }
     """
 
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/multipleInheritance/cat')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "content-type") and content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    if content_type is not None:
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -427,19 +432,20 @@ def build_get_kitten_request(
             }
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/multipleInheritance/kitten')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -480,22 +486,23 @@ def build_put_kitten_request(
             }
     """
 
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/multipleInheritance/kitten')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "content-type") and content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    if content_type is not None:
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )

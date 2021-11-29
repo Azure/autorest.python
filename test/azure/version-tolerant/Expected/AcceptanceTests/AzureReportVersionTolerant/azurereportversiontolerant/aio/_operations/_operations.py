@@ -22,6 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ..._operations._operations import build_get_report_request
+from ..._vendor import _get_from_dict
 
 T = TypeVar("T")
 JSONType = Any
@@ -50,14 +51,17 @@ class AutoRestReportServiceForAzureOperationsMixin:
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_get_report_request(
             qualifier=qualifier,
             template_url=self.get_report.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 

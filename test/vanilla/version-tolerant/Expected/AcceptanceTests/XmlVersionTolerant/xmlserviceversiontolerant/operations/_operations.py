@@ -23,6 +23,8 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from msrest import Serializer
 
+from .._vendor import _get_from_dict
+
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar
@@ -33,31 +35,26 @@ if TYPE_CHECKING:
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-
-
-def _param_not_set(param_dict, rest_api_name_lower):
-    return not any(k for k in param_dict if k.lower() == rest_api_name_lower)
-
-
 # fmt: off
 
 def build_xml_get_complex_type_ref_no_meta_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    accept = "application/xml"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/xml"
+
     # Construct URL
     url = kwargs.pop("template_url", '/xml/complex-type-ref-no-meta')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -66,20 +63,21 @@ def build_xml_put_complex_type_ref_no_meta_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
 
     # Construct URL
     url = kwargs.pop("template_url", '/xml/complex-type-ref-no-meta')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "content-type") and content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    if content_type is not None:
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -88,19 +86,20 @@ def build_xml_get_complex_type_ref_with_meta_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    accept = "application/xml"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/xml"
+
     # Construct URL
     url = kwargs.pop("template_url", '/xml/complex-type-ref-with-meta')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -109,20 +108,21 @@ def build_xml_put_complex_type_ref_with_meta_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
 
     # Construct URL
     url = kwargs.pop("template_url", '/xml/complex-type-ref-with-meta')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "content-type") and content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    if content_type is not None:
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -131,19 +131,20 @@ def build_xml_get_simple_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    accept = "application/xml"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/xml"
+
     # Construct URL
     url = kwargs.pop("template_url", '/xml/simple')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -152,23 +153,24 @@ def build_xml_put_simple_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/xml"
+    content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/xml"
+
     # Construct URL
     url = kwargs.pop("template_url", '/xml/simple')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "content-type") and content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    if content_type is not None:
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -177,19 +179,20 @@ def build_xml_get_wrapped_lists_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    accept = "application/xml"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/xml"
+
     # Construct URL
     url = kwargs.pop("template_url", '/xml/wrapped-lists')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -198,23 +201,24 @@ def build_xml_put_wrapped_lists_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/xml"
+    content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/xml"
+
     # Construct URL
     url = kwargs.pop("template_url", '/xml/wrapped-lists')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "content-type") and content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    if content_type is not None:
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -237,19 +241,20 @@ def build_xml_get_empty_list_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    accept = "application/xml"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/xml"
+
     # Construct URL
     url = kwargs.pop("template_url", '/xml/empty-list')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -258,20 +263,21 @@ def build_xml_put_empty_list_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
 
     # Construct URL
     url = kwargs.pop("template_url", '/xml/empty-list')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "content-type") and content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    if content_type is not None:
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -280,19 +286,20 @@ def build_xml_get_empty_wrapped_lists_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    accept = "application/xml"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/xml"
+
     # Construct URL
     url = kwargs.pop("template_url", '/xml/empty-wrapped-lists')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -301,20 +308,21 @@ def build_xml_put_empty_wrapped_lists_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
 
     # Construct URL
     url = kwargs.pop("template_url", '/xml/empty-wrapped-lists')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "content-type") and content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    if content_type is not None:
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -323,19 +331,20 @@ def build_xml_get_root_list_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    accept = "application/xml"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/xml"
+
     # Construct URL
     url = kwargs.pop("template_url", '/xml/root-list')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -344,20 +353,21 @@ def build_xml_put_root_list_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
 
     # Construct URL
     url = kwargs.pop("template_url", '/xml/root-list')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "content-type") and content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    if content_type is not None:
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -366,19 +376,20 @@ def build_xml_get_root_list_single_item_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    accept = "application/xml"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/xml"
+
     # Construct URL
     url = kwargs.pop("template_url", '/xml/root-list-single-item')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -387,20 +398,21 @@ def build_xml_put_root_list_single_item_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
 
     # Construct URL
     url = kwargs.pop("template_url", '/xml/root-list-single-item')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "content-type") and content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    if content_type is not None:
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -409,19 +421,20 @@ def build_xml_get_empty_root_list_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    accept = "application/xml"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/xml"
+
     # Construct URL
     url = kwargs.pop("template_url", '/xml/empty-root-list')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -430,20 +443,21 @@ def build_xml_put_empty_root_list_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
 
     # Construct URL
     url = kwargs.pop("template_url", '/xml/empty-root-list')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "content-type") and content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    if content_type is not None:
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -452,19 +466,20 @@ def build_xml_get_empty_child_element_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    accept = "application/xml"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/xml"
+
     # Construct URL
     url = kwargs.pop("template_url", '/xml/empty-child-element')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -473,20 +488,21 @@ def build_xml_put_empty_child_element_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
 
     # Construct URL
     url = kwargs.pop("template_url", '/xml/empty-child-element')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "content-type") and content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    if content_type is not None:
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -495,27 +511,27 @@ def build_xml_list_containers_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    comp = kwargs.pop('comp', "list")  # type: str
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/xml"
+    comp = kwargs.pop('comp', _get_from_dict(_params, 'comp') or "list")  # type: str
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/xml"
+
     # Construct URL
     url = kwargs.pop("template_url", '/xml/')
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(query_parameters, "comp"):
-        query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
+    _params['comp'] = _SERIALIZER.query("comp", comp, 'str')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        params=_params,
+        headers=_headers,
         **kwargs
     )
 
@@ -524,30 +540,29 @@ def build_xml_get_service_properties_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    comp = kwargs.pop('comp', "properties")  # type: str
-    restype = kwargs.pop('restype', "service")  # type: str
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/xml"
+    comp = kwargs.pop('comp', _get_from_dict(_params, 'comp') or "properties")  # type: str
+    restype = kwargs.pop('restype', _get_from_dict(_params, 'restype') or "service")  # type: str
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/xml"
+
     # Construct URL
     url = kwargs.pop("template_url", '/xml/')
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(query_parameters, "comp"):
-        query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
-    if _param_not_set(query_parameters, "restype"):
-        query_parameters['restype'] = _SERIALIZER.query("restype", restype, 'str')
+    _params['comp'] = _SERIALIZER.query("comp", comp, 'str')
+    _params['restype'] = _SERIALIZER.query("restype", restype, 'str')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        params=_params,
+        headers=_headers,
         **kwargs
     )
 
@@ -556,30 +571,29 @@ def build_xml_put_service_properties_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    comp = kwargs.pop('comp', "properties")  # type: str
-    restype = kwargs.pop('restype', "service")  # type: str
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+    comp = kwargs.pop('comp', _get_from_dict(_params, 'comp') or "properties")  # type: str
+    restype = kwargs.pop('restype', _get_from_dict(_params, 'restype') or "service")  # type: str
+    content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
 
     # Construct URL
     url = kwargs.pop("template_url", '/xml/')
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(query_parameters, "comp"):
-        query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
-    if _param_not_set(query_parameters, "restype"):
-        query_parameters['restype'] = _SERIALIZER.query("restype", restype, 'str')
+    _params['comp'] = _SERIALIZER.query("comp", comp, 'str')
+    _params['restype'] = _SERIALIZER.query("restype", restype, 'str')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "content-type") and content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    if content_type is not None:
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
         url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        params=_params,
+        headers=_headers,
         **kwargs
     )
 
@@ -588,30 +602,29 @@ def build_xml_get_acls_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    comp = kwargs.pop('comp', "acl")  # type: str
-    restype = kwargs.pop('restype', "container")  # type: str
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/xml"
+    comp = kwargs.pop('comp', _get_from_dict(_params, 'comp') or "acl")  # type: str
+    restype = kwargs.pop('restype', _get_from_dict(_params, 'restype') or "container")  # type: str
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/xml"
+
     # Construct URL
     url = kwargs.pop("template_url", '/xml/mycontainer')
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(query_parameters, "comp"):
-        query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
-    if _param_not_set(query_parameters, "restype"):
-        query_parameters['restype'] = _SERIALIZER.query("restype", restype, 'str')
+    _params['comp'] = _SERIALIZER.query("comp", comp, 'str')
+    _params['restype'] = _SERIALIZER.query("restype", restype, 'str')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        params=_params,
+        headers=_headers,
         **kwargs
     )
 
@@ -620,30 +633,29 @@ def build_xml_put_acls_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    comp = kwargs.pop('comp', "acl")  # type: str
-    restype = kwargs.pop('restype', "container")  # type: str
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+    comp = kwargs.pop('comp', _get_from_dict(_params, 'comp') or "acl")  # type: str
+    restype = kwargs.pop('restype', _get_from_dict(_params, 'restype') or "container")  # type: str
+    content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
 
     # Construct URL
     url = kwargs.pop("template_url", '/xml/mycontainer')
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(query_parameters, "comp"):
-        query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
-    if _param_not_set(query_parameters, "restype"):
-        query_parameters['restype'] = _SERIALIZER.query("restype", restype, 'str')
+    _params['comp'] = _SERIALIZER.query("comp", comp, 'str')
+    _params['restype'] = _SERIALIZER.query("restype", restype, 'str')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "content-type") and content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    if content_type is not None:
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
         url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        params=_params,
+        headers=_headers,
         **kwargs
     )
 
@@ -652,30 +664,29 @@ def build_xml_list_blobs_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    comp = kwargs.pop('comp', "list")  # type: str
-    restype = kwargs.pop('restype', "container")  # type: str
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/xml"
+    comp = kwargs.pop('comp', _get_from_dict(_params, 'comp') or "list")  # type: str
+    restype = kwargs.pop('restype', _get_from_dict(_params, 'restype') or "container")  # type: str
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/xml"
+
     # Construct URL
     url = kwargs.pop("template_url", '/xml/mycontainer')
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(query_parameters, "comp"):
-        query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
-    if _param_not_set(query_parameters, "restype"):
-        query_parameters['restype'] = _SERIALIZER.query("restype", restype, 'str')
+    _params['comp'] = _SERIALIZER.query("comp", comp, 'str')
+    _params['restype'] = _SERIALIZER.query("restype", restype, 'str')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        params=_params,
+        headers=_headers,
         **kwargs
     )
 
@@ -684,20 +695,21 @@ def build_xml_json_input_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
 
     # Construct URL
     url = kwargs.pop("template_url", '/xml/jsoninput')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "content-type") and content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    if content_type is not None:
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -706,19 +718,20 @@ def build_xml_json_output_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/xml/jsonoutput')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -727,19 +740,20 @@ def build_xml_get_xms_text_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    accept = "application/xml"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/xml"
+
     # Construct URL
     url = kwargs.pop("template_url", '/xml/x-ms-text')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -748,19 +762,20 @@ def build_xml_get_bytes_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    accept = "application/xml"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/xml"
+
     # Construct URL
     url = kwargs.pop("template_url", '/xml/bytes')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -769,23 +784,24 @@ def build_xml_put_binary_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/xml"
+    content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/xml"
+
     # Construct URL
     url = kwargs.pop("template_url", '/xml/bytes')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "content-type") and content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    if content_type is not None:
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -794,19 +810,20 @@ def build_xml_get_uri_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    accept = "application/xml"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/xml"
+
     # Construct URL
     url = kwargs.pop("template_url", '/xml/url')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -815,23 +832,24 @@ def build_xml_put_uri_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/xml"
+    content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/xml"
+
     # Construct URL
     url = kwargs.pop("template_url", '/xml/url')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "content-type") and content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    if content_type is not None:
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -877,13 +895,16 @@ class XmlOperations(object):
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_xml_get_complex_type_ref_no_meta_request(
             template_url=self.get_complex_type_ref_no_meta.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -933,10 +954,15 @@ class XmlOperations(object):
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/xml"
+        )  # type: Optional[str]
 
         _content = model
 
@@ -944,8 +970,8 @@ class XmlOperations(object):
             content_type=content_type,
             content=_content,
             template_url=self.put_complex_type_ref_no_meta.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -984,13 +1010,16 @@ class XmlOperations(object):
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_xml_get_complex_type_ref_with_meta_request(
             template_url=self.get_complex_type_ref_with_meta.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -1040,10 +1069,15 @@ class XmlOperations(object):
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/xml"
+        )  # type: Optional[str]
 
         _content = model
 
@@ -1051,8 +1085,8 @@ class XmlOperations(object):
             content_type=content_type,
             content=_content,
             template_url=self.put_complex_type_ref_with_meta.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -1099,13 +1133,16 @@ class XmlOperations(object):
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_xml_get_simple_request(
             template_url=self.get_simple.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -1163,10 +1200,15 @@ class XmlOperations(object):
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/xml"
+        )  # type: Optional[str]
 
         _content = slideshow
 
@@ -1174,8 +1216,8 @@ class XmlOperations(object):
             content_type=content_type,
             content=_content,
             template_url=self.put_simple.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -1216,13 +1258,16 @@ class XmlOperations(object):
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_xml_get_wrapped_lists_request(
             template_url=self.get_wrapped_lists.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -1274,10 +1319,15 @@ class XmlOperations(object):
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/xml"
+        )  # type: Optional[str]
 
         _content = wrapped_lists
 
@@ -1285,8 +1335,8 @@ class XmlOperations(object):
             content_type=content_type,
             content=_content,
             template_url=self.put_wrapped_lists.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -1314,13 +1364,16 @@ class XmlOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_xml_get_headers_request(
             template_url=self.get_headers.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -1370,13 +1423,16 @@ class XmlOperations(object):
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_xml_get_empty_list_request(
             template_url=self.get_empty_list.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -1434,10 +1490,15 @@ class XmlOperations(object):
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/xml"
+        )  # type: Optional[str]
 
         _content = slideshow
 
@@ -1445,8 +1506,8 @@ class XmlOperations(object):
             content_type=content_type,
             content=_content,
             template_url=self.put_empty_list.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -1487,13 +1548,16 @@ class XmlOperations(object):
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_xml_get_empty_wrapped_lists_request(
             template_url=self.get_empty_wrapped_lists.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -1545,10 +1609,15 @@ class XmlOperations(object):
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/xml"
+        )  # type: Optional[str]
 
         _content = apple_barrel
 
@@ -1556,8 +1625,8 @@ class XmlOperations(object):
             content_type=content_type,
             content=_content,
             template_url=self.put_empty_wrapped_lists.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -1597,13 +1666,16 @@ class XmlOperations(object):
                 ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_xml_get_root_list_request(
             template_url=self.get_root_list.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -1654,10 +1726,15 @@ class XmlOperations(object):
                 ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/xml"
+        )  # type: Optional[str]
 
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
         _content = bananas
@@ -1666,8 +1743,8 @@ class XmlOperations(object):
             content_type=content_type,
             content=_content,
             template_url=self.put_root_list.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -1707,13 +1784,16 @@ class XmlOperations(object):
                 ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_xml_get_root_list_single_item_request(
             template_url=self.get_root_list_single_item.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -1764,10 +1844,15 @@ class XmlOperations(object):
                 ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/xml"
+        )  # type: Optional[str]
 
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
         _content = bananas
@@ -1776,8 +1861,8 @@ class XmlOperations(object):
             content_type=content_type,
             content=_content,
             template_url=self.put_root_list_single_item.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -1817,13 +1902,16 @@ class XmlOperations(object):
                 ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_xml_get_empty_root_list_request(
             template_url=self.get_empty_root_list.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -1874,10 +1962,15 @@ class XmlOperations(object):
                 ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/xml"
+        )  # type: Optional[str]
 
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
         _content = bananas
@@ -1886,8 +1979,8 @@ class XmlOperations(object):
             content_type=content_type,
             content=_content,
             template_url=self.put_empty_root_list.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -1925,13 +2018,16 @@ class XmlOperations(object):
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_xml_get_empty_child_element_request(
             template_url=self.get_empty_child_element.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -1980,10 +2076,15 @@ class XmlOperations(object):
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/xml"
+        )  # type: Optional[str]
 
         _content = banana
 
@@ -1991,8 +2092,8 @@ class XmlOperations(object):
             content_type=content_type,
             content=_content,
             template_url=self.put_empty_child_element.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -2051,16 +2152,19 @@ class XmlOperations(object):
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        comp = kwargs.pop("comp", "list")  # type: str
+        comp = kwargs.pop("comp", _get_from_dict(_params, "comp") or "list")  # type: str
 
         request = build_xml_list_containers_request(
             comp=comp,
             template_url=self.list_containers.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -2150,18 +2254,21 @@ class XmlOperations(object):
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        comp = kwargs.pop("comp", "properties")  # type: str
-        restype = kwargs.pop("restype", "service")  # type: str
+        comp = kwargs.pop("comp", _get_from_dict(_params, "comp") or "properties")  # type: str
+        restype = kwargs.pop("restype", _get_from_dict(_params, "restype") or "service")  # type: str
 
         request = build_xml_get_service_properties_request(
             comp=comp,
             restype=restype,
             template_url=self.get_service_properties.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -2255,12 +2362,17 @@ class XmlOperations(object):
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        comp = kwargs.pop("comp", "properties")  # type: str
-        restype = kwargs.pop("restype", "service")  # type: str
-        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+        comp = kwargs.pop("comp", _get_from_dict(_params, "comp") or "properties")  # type: str
+        restype = kwargs.pop("restype", _get_from_dict(_params, "restype") or "service")  # type: str
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/xml"
+        )  # type: Optional[str]
 
         _content = properties
 
@@ -2270,8 +2382,8 @@ class XmlOperations(object):
             content_type=content_type,
             content=_content,
             template_url=self.put_service_properties.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -2320,18 +2432,21 @@ class XmlOperations(object):
                 ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        comp = kwargs.pop("comp", "acl")  # type: str
-        restype = kwargs.pop("restype", "container")  # type: str
+        comp = kwargs.pop("comp", _get_from_dict(_params, "comp") or "acl")  # type: str
+        restype = kwargs.pop("restype", _get_from_dict(_params, "restype") or "container")  # type: str
 
         request = build_xml_get_acls_request(
             comp=comp,
             restype=restype,
             template_url=self.get_acls.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -2391,12 +2506,17 @@ class XmlOperations(object):
                 ]
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        comp = kwargs.pop("comp", "acl")  # type: str
-        restype = kwargs.pop("restype", "container")  # type: str
-        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+        comp = kwargs.pop("comp", _get_from_dict(_params, "comp") or "acl")  # type: str
+        restype = kwargs.pop("restype", _get_from_dict(_params, "restype") or "container")  # type: str
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/xml"
+        )  # type: Optional[str]
 
         serialization_ctxt = {"xml": {"name": "SignedIdentifiers", "wrapped": True, "itemsName": "SignedIdentifier"}}
         _content = properties
@@ -2407,8 +2527,8 @@ class XmlOperations(object):
             content_type=content_type,
             content=_content,
             template_url=self.put_acls.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -2503,18 +2623,21 @@ class XmlOperations(object):
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        comp = kwargs.pop("comp", "list")  # type: str
-        restype = kwargs.pop("restype", "container")  # type: str
+        comp = kwargs.pop("comp", _get_from_dict(_params, "comp") or "list")  # type: str
+        restype = kwargs.pop("restype", _get_from_dict(_params, "restype") or "container")  # type: str
 
         request = build_xml_list_blobs_request(
             comp=comp,
             restype=restype,
             template_url=self.list_blobs.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -2562,10 +2685,15 @@ class XmlOperations(object):
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/json"
+        )  # type: Optional[str]
 
         _json = properties
 
@@ -2573,8 +2701,8 @@ class XmlOperations(object):
             content_type=content_type,
             json=_json,
             template_url=self.json_input.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -2610,13 +2738,16 @@ class XmlOperations(object):
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_xml_json_output_request(
             template_url=self.json_output.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -2661,13 +2792,16 @@ class XmlOperations(object):
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_xml_get_xms_text_request(
             template_url=self.get_xms_text.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -2710,13 +2844,16 @@ class XmlOperations(object):
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_xml_get_bytes_request(
             template_url=self.get_bytes.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -2763,10 +2900,15 @@ class XmlOperations(object):
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/xml"
+        )  # type: Optional[str]
 
         _content = slideshow
 
@@ -2774,8 +2916,8 @@ class XmlOperations(object):
             content_type=content_type,
             content=_content,
             template_url=self.put_binary.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -2811,13 +2953,16 @@ class XmlOperations(object):
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_xml_get_uri_request(
             template_url=self.get_uri.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -2864,10 +3009,15 @@ class XmlOperations(object):
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/xml"
+        )  # type: Optional[str]
 
         _content = model
 
@@ -2875,8 +3025,8 @@ class XmlOperations(object):
             content_type=content_type,
             content=_content,
             template_url=self.put_uri.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 

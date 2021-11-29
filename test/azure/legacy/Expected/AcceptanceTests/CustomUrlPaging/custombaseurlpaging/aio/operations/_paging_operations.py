@@ -24,7 +24,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._vendor import _convert_request
+from ..._vendor import _convert_request, _get_from_dict
 from ...operations._paging_operations import (
     build_get_pages_partial_url_operation_next_request,
     build_get_pages_partial_url_operation_request,
@@ -78,8 +78,8 @@ class PagingOperations:
 
                 request = build_get_pages_partial_url_request(
                     template_url=self.get_pages_partial_url.metadata["url"],
-                    headers=kwargs.pop("headers", {}),
-                    params=kwargs.pop("params", {}),
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 path_format_arguments = {
@@ -92,8 +92,8 @@ class PagingOperations:
 
                 request = build_get_pages_partial_url_request(
                     template_url=next_link,
-                    headers=kwargs.pop("headers", {}),
-                    params=kwargs.pop("params", {}),
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 path_format_arguments = {
@@ -154,8 +154,8 @@ class PagingOperations:
 
                 request = build_get_pages_partial_url_operation_request(
                     template_url=self.get_pages_partial_url_operation.metadata["url"],
-                    headers=kwargs.pop("headers", {}),
-                    params=kwargs.pop("params", {}),
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 path_format_arguments = {
@@ -169,8 +169,8 @@ class PagingOperations:
                 request = build_get_pages_partial_url_operation_next_request(
                     next_link=next_link,
                     template_url="/paging/customurl/{nextLink}",
-                    headers=kwargs.pop("headers", {}),
-                    params=kwargs.pop("params", {}),
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 path_format_arguments = {

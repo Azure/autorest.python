@@ -10,7 +10,7 @@ from typing import TYPE_CHECKING
 from azure.core.rest import HttpRequest
 from msrest import Serializer
 
-from ..._vendor import _format_url_section
+from ..._vendor import _format_url_section, _get_from_dict
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -21,11 +21,6 @@ if TYPE_CHECKING:
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-
-
-def _param_not_set(param_dict, rest_api_name_lower):
-    return not any(k for k in param_dict if k.lower() == rest_api_name_lower)
-
 
 # fmt: off
 
@@ -57,7 +52,10 @@ def build_get_by_pet_id_request(
             }
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/extensibleenums/pet/{petId}')
     path_format_arguments = {
@@ -67,14 +65,12 @@ def build_get_by_pet_id_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -117,22 +113,23 @@ def build_add_pet_request(
             }
     """
 
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/extensibleenums/pet/addPet')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "content-type") and content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    if content_type is not None:
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )

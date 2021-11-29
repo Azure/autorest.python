@@ -11,18 +11,13 @@ from typing import TYPE_CHECKING
 from azure.core.rest import HttpRequest
 from msrest import Serializer
 
-from ..._vendor import _format_url_section
+from ..._vendor import _format_url_section, _get_from_dict
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Dict, List, Optional
 
 _SERIALIZER = Serializer()
-
-
-def _param_not_set(param_dict, rest_api_name_lower):
-    return not any(k for k in param_dict if k.lower() == rest_api_name_lower)
-
 
 # fmt: off
 
@@ -44,9 +39,12 @@ def build_get_boolean_true_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
     bool_path = kwargs.pop('bool_path', True)  # type: bool
 
-    accept = "application/json"
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/paths/bool/true/{boolPath}')
     path_format_arguments = {
@@ -56,14 +54,12 @@ def build_get_boolean_true_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -86,9 +82,12 @@ def build_get_boolean_false_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
     bool_path = kwargs.pop('bool_path', False)  # type: bool
 
-    accept = "application/json"
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/paths/bool/false/{boolPath}')
     path_format_arguments = {
@@ -98,14 +97,12 @@ def build_get_boolean_false_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -128,9 +125,12 @@ def build_get_int_one_million_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
     int_path = kwargs.pop('int_path', 1000000)  # type: int
 
-    accept = "application/json"
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/paths/int/1000000/{intPath}')
     path_format_arguments = {
@@ -140,14 +140,12 @@ def build_get_int_one_million_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -170,9 +168,12 @@ def build_get_int_negative_one_million_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
     int_path = kwargs.pop('int_path', -1000000)  # type: int
 
-    accept = "application/json"
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/paths/int/-1000000/{intPath}')
     path_format_arguments = {
@@ -182,14 +183,12 @@ def build_get_int_negative_one_million_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -212,9 +211,12 @@ def build_get_ten_billion_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
     long_path = kwargs.pop('long_path', 10000000000)  # type: int
 
-    accept = "application/json"
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/paths/long/10000000000/{longPath}')
     path_format_arguments = {
@@ -224,14 +226,12 @@ def build_get_ten_billion_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -254,9 +254,12 @@ def build_get_negative_ten_billion_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
     long_path = kwargs.pop('long_path', -10000000000)  # type: int
 
-    accept = "application/json"
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/paths/long/-10000000000/{longPath}')
     path_format_arguments = {
@@ -266,14 +269,12 @@ def build_get_negative_ten_billion_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -296,9 +297,12 @@ def build_float_scientific_positive_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
     float_path = kwargs.pop('float_path', 103400000000000000000)  # type: float
 
-    accept = "application/json"
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/paths/float/1.034E+20/{floatPath}')
     path_format_arguments = {
@@ -308,14 +312,12 @@ def build_float_scientific_positive_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -338,9 +340,12 @@ def build_float_scientific_negative_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
     float_path = kwargs.pop('float_path', -1.034e-20)  # type: float
 
-    accept = "application/json"
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/paths/float/-1.034E-20/{floatPath}')
     path_format_arguments = {
@@ -350,14 +355,12 @@ def build_float_scientific_negative_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -380,9 +383,12 @@ def build_double_decimal_positive_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
     double_path = kwargs.pop('double_path', 9999999.999)  # type: float
 
-    accept = "application/json"
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/paths/double/9999999.999/{doublePath}')
     path_format_arguments = {
@@ -392,14 +398,12 @@ def build_double_decimal_positive_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -422,9 +426,12 @@ def build_double_decimal_negative_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
     double_path = kwargs.pop('double_path', -9999999.999)  # type: float
 
-    accept = "application/json"
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/paths/double/-9999999.999/{doublePath}')
     path_format_arguments = {
@@ -434,14 +441,12 @@ def build_double_decimal_negative_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -464,9 +469,12 @@ def build_string_unicode_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
     string_path = kwargs.pop('string_path', "啊齄丂狛狜隣郎隣兀﨩")  # type: str
 
-    accept = "application/json"
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/paths/string/unicode/{stringPath}')
     path_format_arguments = {
@@ -476,14 +484,12 @@ def build_string_unicode_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -507,9 +513,12 @@ def build_string_url_encoded_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
     string_path = kwargs.pop('string_path', "begin!*'();:@ &=+$,/?#[]end")  # type: str
 
-    accept = "application/json"
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}')
     path_format_arguments = {
@@ -519,14 +528,12 @@ def build_string_url_encoded_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -552,9 +559,12 @@ def build_string_url_non_encoded_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
     string_path = kwargs.pop('string_path', "begin!*'();:@&=+$,end")  # type: str
 
-    accept = "application/json"
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/paths/string/begin!*\'();:@&=+$,end/{stringPath}')
     path_format_arguments = {
@@ -564,14 +574,12 @@ def build_string_url_non_encoded_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -594,9 +602,12 @@ def build_string_empty_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
     string_path = kwargs.pop('string_path', "")  # type: str
 
-    accept = "application/json"
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/paths/string/empty/{stringPath}')
     path_format_arguments = {
@@ -606,14 +617,12 @@ def build_string_empty_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -636,7 +645,10 @@ def build_string_null_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/paths/string/null/{stringPath}')
     path_format_arguments = {
@@ -646,14 +658,12 @@ def build_string_null_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -677,7 +687,10 @@ def build_enum_valid_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/paths/enum/green%20color/{enumPath}')
     path_format_arguments = {
@@ -687,14 +700,12 @@ def build_enum_valid_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -718,7 +729,10 @@ def build_enum_null_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/paths/string/null/{enumPath}')
     path_format_arguments = {
@@ -728,14 +742,12 @@ def build_enum_null_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -758,7 +770,10 @@ def build_byte_multi_byte_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/paths/byte/multibyte/{bytePath}')
     path_format_arguments = {
@@ -768,14 +783,12 @@ def build_byte_multi_byte_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -798,9 +811,12 @@ def build_byte_empty_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
     byte_path = kwargs.pop('byte_path', bytearray("", encoding="utf-8"))  # type: bytearray
 
-    accept = "application/json"
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/paths/byte/empty/{bytePath}')
     path_format_arguments = {
@@ -810,14 +826,12 @@ def build_byte_empty_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -840,7 +854,10 @@ def build_byte_null_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/paths/byte/null/{bytePath}')
     path_format_arguments = {
@@ -850,14 +867,12 @@ def build_byte_null_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -880,9 +895,12 @@ def build_date_valid_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
     date_path = kwargs.pop('date_path', "2012-01-01")  # type: datetime.date
 
-    accept = "application/json"
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/paths/date/2012-01-01/{datePath}')
     path_format_arguments = {
@@ -892,14 +910,12 @@ def build_date_valid_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -923,7 +939,10 @@ def build_date_null_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/paths/date/null/{datePath}')
     path_format_arguments = {
@@ -933,14 +952,12 @@ def build_date_null_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -964,9 +981,12 @@ def build_date_time_valid_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
     date_time_path = kwargs.pop('date_time_path', "2012-01-01T01:01:01Z")  # type: datetime.datetime
 
-    accept = "application/json"
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}')
     path_format_arguments = {
@@ -976,14 +996,12 @@ def build_date_time_valid_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -1006,7 +1024,10 @@ def build_date_time_null_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/paths/datetime/null/{dateTimePath}')
     path_format_arguments = {
@@ -1016,14 +1037,12 @@ def build_date_time_null_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -1046,7 +1065,10 @@ def build_base64_url_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/paths/string/bG9yZW0/{base64UrlPath}')
     path_format_arguments = {
@@ -1056,14 +1078,12 @@ def build_base64_url_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -1088,7 +1108,10 @@ def build_array_csv_in_path_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}')
     path_format_arguments = {
@@ -1098,14 +1121,12 @@ def build_array_csv_in_path_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -1128,7 +1149,10 @@ def build_unix_time_url_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/paths/int/1460505600/{unixTimeUrlPath}')
     path_format_arguments = {
@@ -1138,13 +1162,11 @@ def build_unix_time_url_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )

@@ -72,6 +72,17 @@ def test_header_case_insensitive():
             client.basic.get_empty(headers={accept_key: "my/content-type"})
         assert str(ex.value) == "Passed!"
 
+def test_header_kwarg_and_header():
+    def get_headers(pipeline_request):
+        assert len(pipeline_request.http_request.headers) == 2
+        assert pipeline_request.http_request.headers["content-type"] == "my/json"
+        assert pipeline_request.http_request.headers["accept"] == "application/json"
+        raise ValueError("Passed!")
+    client = get_client(callback=get_headers)
+    with pytest.raises(ValueError) as ex:
+        client.basic.put_valid(None, headers={"content-type": "shouldn't/be-me"}, content_type="my/json")
+    assert str(ex.value) == "Passed!"
+
 def test_query_input():
     def get_query(pipeline_request):
         assert urlparse(pipeline_request.http_request.url).query == "foo=bar"
@@ -108,3 +119,15 @@ def test_query_case_insensitive():
         with pytest.raises(ValueError) as ex:
             client.basic.get_empty(params={query_key: "bar"})
         assert str(ex.value) == "Passed!"
+
+def test_query_kwarg_and_header():
+    def get_query(pipeline_request):
+        assert urlparse(pipeline_request.http_request.url).query == "api-version=2021-10-01"
+        raise ValueError("Passed!")
+
+    client = get_client(callback=get_query)
+    with pytest.raises(ValueError) as ex:
+        # the default value is "2016-02-29"
+        client.basic.put_valid(None, params={"api-version": "shouldn't-be-me"}, api_version="2021-10-01")
+
+    assert str(ex.value) == "Passed!"

@@ -19,7 +19,7 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 from msrest import Serializer
 
 from .. import models as _models
-from .._vendor import _convert_request
+from .._vendor import _convert_request, _get_from_dict
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -29,28 +29,26 @@ if TYPE_CHECKING:
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-
-def _param_not_set(param_dict, rest_api_name_lower):
-    return not any(k for k in param_dict if k.lower() == rest_api_name_lower)
 # fmt: off
 
 def build_test_paging_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/multiapi/paging')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -59,36 +57,35 @@ def build_test_different_calls_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    greeting_in_english = kwargs.pop('greeting_in_english')  # type: str
-    greeting_in_chinese = kwargs.pop('greeting_in_chinese', None)  # type: Optional[str]
-    greeting_in_french = kwargs.pop('greeting_in_french', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    api_version = "3.0.0"
-    accept = "application/json"
+    greeting_in_english = kwargs.pop('greeting_in_english')  # type: str
+    greeting_in_chinese = kwargs.pop('greeting_in_chinese', _get_from_dict(_headers, 'greetingInChinese') or None)  # type: Optional[str]
+    greeting_in_french = kwargs.pop('greeting_in_french', _get_from_dict(_headers, 'greetingInFrench') or None)  # type: Optional[str]
+
+    api_version = _get_from_dict(_params, 'api-version') or "3.0.0"
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/multiapi/testDifferentCalls')
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(query_parameters, "api-version"):
-        query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
+    _params['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "greetinginenglish"):
-        header_parameters['greetingInEnglish'] = _SERIALIZER.header("greeting_in_english", greeting_in_english, 'str')
-    if _param_not_set(header_parameters, "greetinginchinese") and greeting_in_chinese is not None:
-        header_parameters['greetingInChinese'] = _SERIALIZER.header("greeting_in_chinese", greeting_in_chinese, 'str')
-    if _param_not_set(header_parameters, "greetinginfrench") and greeting_in_french is not None:
-        header_parameters['greetingInFrench'] = _SERIALIZER.header("greeting_in_french", greeting_in_french, 'str')
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['greetingInEnglish'] = _SERIALIZER.header("greeting_in_english", greeting_in_english, 'str')
+    if greeting_in_chinese is not None:
+        _headers['greetingInChinese'] = _SERIALIZER.header("greeting_in_chinese", greeting_in_chinese, 'str')
+    if greeting_in_french is not None:
+        _headers['greetingInFrench'] = _SERIALIZER.header("greeting_in_french", greeting_in_french, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        params=_params,
+        headers=_headers,
         **kwargs
     )
 
@@ -118,8 +115,8 @@ class MultiapiServiceClientOperationsMixin(object):
                 
                 request = build_test_paging_request(
                     template_url=self.test_paging.metadata['url'],
-                    headers=kwargs.pop("headers", {}),
-                    params=kwargs.pop("params", {}),
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -128,8 +125,8 @@ class MultiapiServiceClientOperationsMixin(object):
                 
                 request = build_test_paging_request(
                     template_url=next_link,
-                    headers=kwargs.pop("headers", {}),
-                    params=kwargs.pop("params", {}),
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -184,6 +181,9 @@ class MultiapiServiceClientOperationsMixin(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
@@ -195,8 +195,8 @@ class MultiapiServiceClientOperationsMixin(object):
             greeting_in_chinese=greeting_in_chinese,
             greeting_in_french=greeting_in_french,
             template_url=self.test_different_calls.metadata['url'],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)

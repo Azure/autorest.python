@@ -10,16 +10,12 @@ from typing import Any, Dict, IO, List, Optional, TypeVar
 from azure.core.rest import HttpRequest
 from msrest import Serializer
 
-from ..._vendor import _format_url_section
+from ..._vendor import _format_url_section, _get_from_dict
 
 T = TypeVar("T")
 JSONType = Any
 
 _SERIALIZER = Serializer()
-
-
-def _param_not_set(param_dict, rest_api_name_lower):
-    return not any(k for k in param_dict if k.lower() == rest_api_name_lower)
 
 
 def build_get_required_path_request(path_parameter: str, **kwargs: Any) -> HttpRequest:
@@ -36,7 +32,10 @@ def build_get_required_path_request(path_parameter: str, **kwargs: Any) -> HttpR
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/implicit/required/path/{pathParameter}")
     path_format_arguments = {
@@ -46,11 +45,9 @@ def build_get_required_path_request(path_parameter: str, **kwargs: Any) -> HttpR
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=url, headers=_headers, **kwargs)
 
 
 def build_put_optional_query_request(*, query_parameter: Optional[str] = None, **kwargs: Any) -> HttpRequest:
@@ -67,21 +64,22 @@ def build_put_optional_query_request(*, query_parameter: Optional[str] = None, *
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/implicit/optional/query")
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(query_parameters, "queryparameter") and query_parameter is not None:
-        query_parameters["queryParameter"] = _SERIALIZER.query("query_parameter", query_parameter, "str")
+    if query_parameter is not None:
+        _params["queryParameter"] = _SERIALIZER.query("query_parameter", query_parameter, "str")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="PUT", url=url, params=_params, headers=_headers, **kwargs)
 
 
 def build_put_optional_header_request(*, query_parameter: Optional[str] = None, **kwargs: Any) -> HttpRequest:
@@ -98,18 +96,19 @@ def build_put_optional_header_request(*, query_parameter: Optional[str] = None, 
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/implicit/optional/header")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "queryparameter") and query_parameter is not None:
-        header_parameters["queryParameter"] = _SERIALIZER.header("query_parameter", query_parameter, "str")
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    if query_parameter is not None:
+        _headers["queryParameter"] = _SERIALIZER.header("query_parameter", query_parameter, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="PUT", url=url, headers=_headers, **kwargs)
 
 
 def build_put_optional_body_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
@@ -136,20 +135,21 @@ def build_put_optional_body_request(*, json: JSONType = None, content: Any = Non
             json = "str"  # Optional.
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop("content_type", _get_from_dict(_headers, "Content-Type") or None)  # type: Optional[str]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/implicit/optional/body")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "content-type") and content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=url, headers=_headers, json=json, content=content, **kwargs)
 
 
 def build_put_optional_binary_body_request(*, content: Any = None, **kwargs: Any) -> HttpRequest:
@@ -167,20 +167,21 @@ def build_put_optional_binary_body_request(*, content: Any = None, **kwargs: Any
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop("content_type", _get_from_dict(_headers, "Content-Type") or None)  # type: Optional[str]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/implicit/optional/binary-body")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "content-type") and content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=url, headers=_headers, content=content, **kwargs)
 
 
 def build_get_required_global_path_request(required_global_path: str, **kwargs: Any) -> HttpRequest:
@@ -197,7 +198,10 @@ def build_get_required_global_path_request(required_global_path: str, **kwargs: 
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/global/required/path/{required-global-path}")
     path_format_arguments = {
@@ -207,11 +211,9 @@ def build_get_required_global_path_request(required_global_path: str, **kwargs: 
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=url, headers=_headers, **kwargs)
 
 
 def build_get_required_global_query_request(*, required_global_query: str, **kwargs: Any) -> HttpRequest:
@@ -228,23 +230,21 @@ def build_get_required_global_query_request(*, required_global_query: str, **kwa
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/global/required/query")
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(query_parameters, "required-global-query"):
-        query_parameters["required-global-query"] = _SERIALIZER.query(
-            "required_global_query", required_global_query, "str"
-        )
+    _params["required-global-query"] = _SERIALIZER.query("required_global_query", required_global_query, "str")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=url, params=_params, headers=_headers, **kwargs)
 
 
 def build_get_optional_global_query_request(
@@ -263,20 +263,19 @@ def build_get_optional_global_query_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", "/reqopt/global/optional/query")
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(query_parameters, "optional-global-query") and optional_global_query is not None:
-        query_parameters["optional-global-query"] = _SERIALIZER.query(
-            "optional_global_query", optional_global_query, "int"
-        )
+    if optional_global_query is not None:
+        _params["optional-global-query"] = _SERIALIZER.query("optional_global_query", optional_global_query, "int")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=url, params=_params, headers=_headers, **kwargs)

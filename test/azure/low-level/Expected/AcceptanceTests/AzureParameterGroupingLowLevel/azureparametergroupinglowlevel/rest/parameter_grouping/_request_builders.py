@@ -10,7 +10,7 @@ from typing import TYPE_CHECKING
 from azure.core.rest import HttpRequest
 from msrest import Serializer
 
-from ..._vendor import _format_url_section
+from ..._vendor import _format_url_section, _get_from_dict
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -20,11 +20,6 @@ if TYPE_CHECKING:
     JSONType = Any
 
 _SERIALIZER = Serializer()
-
-
-def _param_not_set(param_dict, rest_api_name_lower):
-    return not any(k for k in param_dict if k.lower() == rest_api_name_lower)
-
 
 # fmt: off
 
@@ -62,11 +57,15 @@ def build_post_required_request(
             json = 0  # Optional.
     """
 
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
-    custom_header = kwargs.pop('custom_header', None)  # type: Optional[str]
-    query = kwargs.pop('query', 30)  # type: Optional[int]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
+    custom_header = kwargs.pop('custom_header', _get_from_dict(_headers, 'customHeader') or None)  # type: Optional[str]
+    query = kwargs.pop('query', _get_from_dict(_params, 'query') or 30)  # type: Optional[int]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/parameterGrouping/postRequired/{path}')
     path_format_arguments = {
@@ -76,24 +75,21 @@ def build_post_required_request(
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(query_parameters, "query") and query is not None:
-        query_parameters['query'] = _SERIALIZER.query("query", query, 'int')
+    if query is not None:
+        _params['query'] = _SERIALIZER.query("query", query, 'int')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "customheader") and custom_header is not None:
-        header_parameters['customHeader'] = _SERIALIZER.header("custom_header", custom_header, 'str')
-    if _param_not_set(header_parameters, "content-type") and content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    if custom_header is not None:
+        _headers['customHeader'] = _SERIALIZER.header("custom_header", custom_header, 'str')
+    if content_type is not None:
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        params=_params,
+        headers=_headers,
         **kwargs
     )
 
@@ -117,30 +113,31 @@ def build_post_optional_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    custom_header = kwargs.pop('custom_header', None)  # type: Optional[str]
-    query = kwargs.pop('query', 30)  # type: Optional[int]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    custom_header = kwargs.pop('custom_header', _get_from_dict(_headers, 'customHeader') or None)  # type: Optional[str]
+    query = kwargs.pop('query', _get_from_dict(_params, 'query') or 30)  # type: Optional[int]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/parameterGrouping/postOptional')
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(query_parameters, "query") and query is not None:
-        query_parameters['query'] = _SERIALIZER.query("query", query, 'int')
+    if query is not None:
+        _params['query'] = _SERIALIZER.query("query", query, 'int')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "customheader") and custom_header is not None:
-        header_parameters['customHeader'] = _SERIALIZER.header("custom_header", custom_header, 'str')
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    if custom_header is not None:
+        _headers['customHeader'] = _SERIALIZER.header("custom_header", custom_header, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        params=_params,
+        headers=_headers,
         **kwargs
     )
 
@@ -164,30 +161,31 @@ def build_post_reserved_words_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    from_parameter = kwargs.pop('from_parameter', None)  # type: Optional[str]
-    accept_parameter = kwargs.pop('accept_parameter', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    from_parameter = kwargs.pop('from_parameter', _get_from_dict(_params, 'from') or None)  # type: Optional[str]
+    accept_parameter = kwargs.pop('accept_parameter', _get_from_dict(_params, 'accept') or None)  # type: Optional[str]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/parameterGrouping/postReservedWords')
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(query_parameters, "from") and from_parameter is not None:
-        query_parameters['from'] = _SERIALIZER.query("from_parameter", from_parameter, 'str')
-    if _param_not_set(query_parameters, "accept") and accept_parameter is not None:
-        query_parameters['accept'] = _SERIALIZER.query("accept_parameter", accept_parameter, 'str')
+    if from_parameter is not None:
+        _params['from'] = _SERIALIZER.query("from_parameter", from_parameter, 'str')
+    if accept_parameter is not None:
+        _params['accept'] = _SERIALIZER.query("accept_parameter", accept_parameter, 'str')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        params=_params,
+        headers=_headers,
         **kwargs
     )
 
@@ -215,36 +213,37 @@ def build_post_multi_param_groups_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    header_one = kwargs.pop('header_one', None)  # type: Optional[str]
-    query_one = kwargs.pop('query_one', 30)  # type: Optional[int]
-    header_two = kwargs.pop('header_two', None)  # type: Optional[str]
-    query_two = kwargs.pop('query_two', 30)  # type: Optional[int]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    header_one = kwargs.pop('header_one', _get_from_dict(_headers, 'header-one') or None)  # type: Optional[str]
+    query_one = kwargs.pop('query_one', _get_from_dict(_params, 'query-one') or 30)  # type: Optional[int]
+    header_two = kwargs.pop('header_two', _get_from_dict(_headers, 'header-two') or None)  # type: Optional[str]
+    query_two = kwargs.pop('query_two', _get_from_dict(_params, 'query-two') or 30)  # type: Optional[int]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/parameterGrouping/postMultipleParameterGroups')
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(query_parameters, "query-one") and query_one is not None:
-        query_parameters['query-one'] = _SERIALIZER.query("query_one", query_one, 'int')
-    if _param_not_set(query_parameters, "query-two") and query_two is not None:
-        query_parameters['query-two'] = _SERIALIZER.query("query_two", query_two, 'int')
+    if query_one is not None:
+        _params['query-one'] = _SERIALIZER.query("query_one", query_one, 'int')
+    if query_two is not None:
+        _params['query-two'] = _SERIALIZER.query("query_two", query_two, 'int')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "header-one") and header_one is not None:
-        header_parameters['header-one'] = _SERIALIZER.header("header_one", header_one, 'str')
-    if _param_not_set(header_parameters, "header-two") and header_two is not None:
-        header_parameters['header-two'] = _SERIALIZER.header("header_two", header_two, 'str')
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    if header_one is not None:
+        _headers['header-one'] = _SERIALIZER.header("header_one", header_one, 'str')
+    if header_two is not None:
+        _headers['header-two'] = _SERIALIZER.header("header_two", header_two, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        params=_params,
+        headers=_headers,
         **kwargs
     )
 
@@ -268,29 +267,30 @@ def build_post_shared_parameter_group_object_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    header_one = kwargs.pop('header_one', None)  # type: Optional[str]
-    query_one = kwargs.pop('query_one', 30)  # type: Optional[int]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    header_one = kwargs.pop('header_one', _get_from_dict(_headers, 'header-one') or None)  # type: Optional[str]
+    query_one = kwargs.pop('query_one', _get_from_dict(_params, 'query-one') or 30)  # type: Optional[int]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/parameterGrouping/sharedParameterGroupObject')
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(query_parameters, "query-one") and query_one is not None:
-        query_parameters['query-one'] = _SERIALIZER.query("query_one", query_one, 'int')
+    if query_one is not None:
+        _params['query-one'] = _SERIALIZER.query("query_one", query_one, 'int')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "header-one") and header_one is not None:
-        header_parameters['header-one'] = _SERIALIZER.header("header_one", header_one, 'str')
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    if header_one is not None:
+        _headers['header-one'] = _SERIALIZER.header("header_one", header_one, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        params=_params,
+        headers=_headers,
         **kwargs
     )

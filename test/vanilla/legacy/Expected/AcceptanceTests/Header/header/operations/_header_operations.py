@@ -24,7 +24,7 @@ from azure.core.tracing.decorator import distributed_trace
 from msrest import Serializer
 
 from .. import models as _models
-from .._vendor import _convert_request
+from .._vendor import _convert_request, _get_from_dict
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -35,35 +35,29 @@ if TYPE_CHECKING:
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-
-
-def _param_not_set(param_dict, rest_api_name_lower):
-    return not any(k for k in param_dict if k.lower() == rest_api_name_lower)
-
-
 # fmt: off
 
 def build_param_existing_key_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
     user_agent_parameter = kwargs.pop('user_agent_parameter')  # type: str
 
-    accept = "application/json"
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/header/param/existingkey')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "user-agent"):
-        header_parameters['User-Agent'] = _SERIALIZER.header("user_agent_parameter", user_agent_parameter, 'str')
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['User-Agent'] = _SERIALIZER.header("user_agent_parameter", user_agent_parameter, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -72,19 +66,20 @@ def build_response_existing_key_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/header/response/existingkey')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -93,23 +88,23 @@ def build_param_protected_key_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
     content_type = kwargs.pop('content_type')  # type: str
 
-    accept = "application/json"
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/header/param/protectedkey')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "content-type"):
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -118,19 +113,20 @@ def build_response_protected_key_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/header/response/protectedkey')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -139,26 +135,25 @@ def build_param_integer_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value')  # type: int
 
-    accept = "application/json"
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/header/param/prim/integer')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "scenario"):
-        header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
-    if _param_not_set(header_parameters, "value"):
-        header_parameters['value'] = _SERIALIZER.header("value", value, 'int')
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    _headers['value'] = _SERIALIZER.header("value", value, 'int')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -167,23 +162,23 @@ def build_response_integer_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
     scenario = kwargs.pop('scenario')  # type: str
 
-    accept = "application/json"
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/header/response/prim/integer')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "scenario"):
-        header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -192,26 +187,25 @@ def build_param_long_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value')  # type: int
 
-    accept = "application/json"
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/header/param/prim/long')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "scenario"):
-        header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
-    if _param_not_set(header_parameters, "value"):
-        header_parameters['value'] = _SERIALIZER.header("value", value, 'long')
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    _headers['value'] = _SERIALIZER.header("value", value, 'long')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -220,23 +214,23 @@ def build_response_long_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
     scenario = kwargs.pop('scenario')  # type: str
 
-    accept = "application/json"
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/header/response/prim/long')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "scenario"):
-        header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -245,26 +239,25 @@ def build_param_float_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value')  # type: float
 
-    accept = "application/json"
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/header/param/prim/float')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "scenario"):
-        header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
-    if _param_not_set(header_parameters, "value"):
-        header_parameters['value'] = _SERIALIZER.header("value", value, 'float')
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    _headers['value'] = _SERIALIZER.header("value", value, 'float')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -273,23 +266,23 @@ def build_response_float_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
     scenario = kwargs.pop('scenario')  # type: str
 
-    accept = "application/json"
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/header/response/prim/float')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "scenario"):
-        header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -298,26 +291,25 @@ def build_param_double_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value')  # type: float
 
-    accept = "application/json"
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/header/param/prim/double')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "scenario"):
-        header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
-    if _param_not_set(header_parameters, "value"):
-        header_parameters['value'] = _SERIALIZER.header("value", value, 'float')
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    _headers['value'] = _SERIALIZER.header("value", value, 'float')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -326,23 +318,23 @@ def build_response_double_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
     scenario = kwargs.pop('scenario')  # type: str
 
-    accept = "application/json"
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/header/response/prim/double')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "scenario"):
-        header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -351,26 +343,25 @@ def build_param_bool_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value')  # type: bool
 
-    accept = "application/json"
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/header/param/prim/bool')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "scenario"):
-        header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
-    if _param_not_set(header_parameters, "value"):
-        header_parameters['value'] = _SERIALIZER.header("value", value, 'bool')
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    _headers['value'] = _SERIALIZER.header("value", value, 'bool')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -379,23 +370,23 @@ def build_response_bool_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
     scenario = kwargs.pop('scenario')  # type: str
 
-    accept = "application/json"
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/header/response/prim/bool')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "scenario"):
-        header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -404,26 +395,26 @@ def build_param_string_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    scenario = kwargs.pop('scenario')  # type: str
-    value = kwargs.pop('value', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    scenario = kwargs.pop('scenario')  # type: str
+    value = kwargs.pop('value', _get_from_dict(_headers, 'value') or None)  # type: Optional[str]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/header/param/prim/string')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "scenario"):
-        header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
-    if _param_not_set(header_parameters, "value") and value is not None:
-        header_parameters['value'] = _SERIALIZER.header("value", value, 'str')
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    if value is not None:
+        _headers['value'] = _SERIALIZER.header("value", value, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -432,23 +423,23 @@ def build_response_string_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
     scenario = kwargs.pop('scenario')  # type: str
 
-    accept = "application/json"
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/header/response/prim/string')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "scenario"):
-        header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -457,26 +448,25 @@ def build_param_date_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value')  # type: datetime.date
 
-    accept = "application/json"
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/header/param/prim/date')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "scenario"):
-        header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
-    if _param_not_set(header_parameters, "value"):
-        header_parameters['value'] = _SERIALIZER.header("value", value, 'date')
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    _headers['value'] = _SERIALIZER.header("value", value, 'date')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -485,23 +475,23 @@ def build_response_date_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
     scenario = kwargs.pop('scenario')  # type: str
 
-    accept = "application/json"
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/header/response/prim/date')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "scenario"):
-        header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -510,26 +500,25 @@ def build_param_datetime_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value')  # type: datetime.datetime
 
-    accept = "application/json"
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/header/param/prim/datetime')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "scenario"):
-        header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
-    if _param_not_set(header_parameters, "value"):
-        header_parameters['value'] = _SERIALIZER.header("value", value, 'iso-8601')
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    _headers['value'] = _SERIALIZER.header("value", value, 'iso-8601')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -538,23 +527,23 @@ def build_response_datetime_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
     scenario = kwargs.pop('scenario')  # type: str
 
-    accept = "application/json"
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/header/response/prim/datetime')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "scenario"):
-        header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -563,26 +552,26 @@ def build_param_datetime_rfc1123_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    scenario = kwargs.pop('scenario')  # type: str
-    value = kwargs.pop('value', None)  # type: Optional[datetime.datetime]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    scenario = kwargs.pop('scenario')  # type: str
+    value = kwargs.pop('value', _get_from_dict(_headers, 'value') or None)  # type: Optional[datetime.datetime]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/header/param/prim/datetimerfc1123')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "scenario"):
-        header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
-    if _param_not_set(header_parameters, "value") and value is not None:
-        header_parameters['value'] = _SERIALIZER.header("value", value, 'rfc-1123')
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    if value is not None:
+        _headers['value'] = _SERIALIZER.header("value", value, 'rfc-1123')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -591,23 +580,23 @@ def build_response_datetime_rfc1123_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
     scenario = kwargs.pop('scenario')  # type: str
 
-    accept = "application/json"
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/header/response/prim/datetimerfc1123')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "scenario"):
-        header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -616,26 +605,25 @@ def build_param_duration_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value')  # type: datetime.timedelta
 
-    accept = "application/json"
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/header/param/prim/duration')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "scenario"):
-        header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
-    if _param_not_set(header_parameters, "value"):
-        header_parameters['value'] = _SERIALIZER.header("value", value, 'duration')
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    _headers['value'] = _SERIALIZER.header("value", value, 'duration')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -644,23 +632,23 @@ def build_response_duration_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
     scenario = kwargs.pop('scenario')  # type: str
 
-    accept = "application/json"
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/header/response/prim/duration')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "scenario"):
-        header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -669,26 +657,25 @@ def build_param_byte_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value')  # type: bytearray
 
-    accept = "application/json"
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/header/param/prim/byte')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "scenario"):
-        header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
-    if _param_not_set(header_parameters, "value"):
-        header_parameters['value'] = _SERIALIZER.header("value", value, 'bytearray')
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    _headers['value'] = _SERIALIZER.header("value", value, 'bytearray')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -697,23 +684,23 @@ def build_response_byte_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
     scenario = kwargs.pop('scenario')  # type: str
 
-    accept = "application/json"
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/header/response/prim/byte')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "scenario"):
-        header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -722,26 +709,26 @@ def build_param_enum_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    scenario = kwargs.pop('scenario')  # type: str
-    value = kwargs.pop('value', None)  # type: Optional[Union[str, "_models.GreyscaleColors"]]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    scenario = kwargs.pop('scenario')  # type: str
+    value = kwargs.pop('value', _get_from_dict(_headers, 'value') or None)  # type: Optional[Union[str, "_models.GreyscaleColors"]]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/header/param/prim/enum')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "scenario"):
-        header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
-    if _param_not_set(header_parameters, "value") and value is not None:
-        header_parameters['value'] = _SERIALIZER.header("value", value, 'str')
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    if value is not None:
+        _headers['value'] = _SERIALIZER.header("value", value, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -750,23 +737,23 @@ def build_response_enum_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
     scenario = kwargs.pop('scenario')  # type: str
 
-    accept = "application/json"
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/header/response/prim/enum')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "scenario"):
-        header_parameters['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -775,19 +762,20 @@ def build_custom_request_id_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=url,
-        headers=header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -831,14 +819,17 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_param_existing_key_request(
             user_agent_parameter=user_agent_parameter,
             template_url=self.param_existing_key.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -869,13 +860,16 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_response_existing_key_request(
             template_url=self.response_existing_key.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -909,6 +903,9 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -917,8 +914,8 @@ class HeaderOperations(object):
         request = build_param_protected_key_request(
             content_type=content_type,
             template_url=self.param_protected_key.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -949,13 +946,16 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_response_protected_key_request(
             template_url=self.response_protected_key.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -997,6 +997,9 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -1004,8 +1007,8 @@ class HeaderOperations(object):
             scenario=scenario,
             value=value,
             template_url=self.param_integer.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1040,14 +1043,17 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_response_integer_request(
             scenario=scenario,
             template_url=self.response_integer.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1089,6 +1095,9 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -1096,8 +1105,8 @@ class HeaderOperations(object):
             scenario=scenario,
             value=value,
             template_url=self.param_long.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1132,14 +1141,17 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_response_long_request(
             scenario=scenario,
             template_url=self.response_long.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1181,6 +1193,9 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -1188,8 +1203,8 @@ class HeaderOperations(object):
             scenario=scenario,
             value=value,
             template_url=self.param_float.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1224,14 +1239,17 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_response_float_request(
             scenario=scenario,
             template_url=self.response_float.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1273,6 +1291,9 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -1280,8 +1301,8 @@ class HeaderOperations(object):
             scenario=scenario,
             value=value,
             template_url=self.param_double.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1316,14 +1337,17 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_response_double_request(
             scenario=scenario,
             template_url=self.response_double.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1365,6 +1389,9 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -1372,8 +1399,8 @@ class HeaderOperations(object):
             scenario=scenario,
             value=value,
             template_url=self.param_bool.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1408,14 +1435,17 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_response_bool_request(
             scenario=scenario,
             template_url=self.response_bool.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1459,6 +1489,9 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -1466,8 +1499,8 @@ class HeaderOperations(object):
             scenario=scenario,
             value=value,
             template_url=self.param_string.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1503,14 +1536,17 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_response_string_request(
             scenario=scenario,
             template_url=self.response_string.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1552,6 +1588,9 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -1559,8 +1598,8 @@ class HeaderOperations(object):
             scenario=scenario,
             value=value,
             template_url=self.param_date.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1595,14 +1634,17 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_response_date_request(
             scenario=scenario,
             template_url=self.response_date.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1645,6 +1687,9 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -1652,8 +1697,8 @@ class HeaderOperations(object):
             scenario=scenario,
             value=value,
             template_url=self.param_datetime.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1688,14 +1733,17 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_response_datetime_request(
             scenario=scenario,
             template_url=self.response_datetime.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1738,6 +1786,9 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -1745,8 +1796,8 @@ class HeaderOperations(object):
             scenario=scenario,
             value=value,
             template_url=self.param_datetime_rfc1123.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1782,14 +1833,17 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_response_datetime_rfc1123_request(
             scenario=scenario,
             template_url=self.response_datetime_rfc1123.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1830,6 +1884,9 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -1837,8 +1894,8 @@ class HeaderOperations(object):
             scenario=scenario,
             value=value,
             template_url=self.param_duration.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1873,14 +1930,17 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_response_duration_request(
             scenario=scenario,
             template_url=self.response_duration.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1921,6 +1981,9 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -1928,8 +1991,8 @@ class HeaderOperations(object):
             scenario=scenario,
             value=value,
             template_url=self.param_byte.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1964,14 +2027,17 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_response_byte_request(
             scenario=scenario,
             template_url=self.response_byte.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -2014,6 +2080,9 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -2021,8 +2090,8 @@ class HeaderOperations(object):
             scenario=scenario,
             value=value,
             template_url=self.param_enum.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -2058,14 +2127,17 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_response_enum_request(
             scenario=scenario,
             template_url=self.response_enum.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -2100,13 +2172,16 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_custom_request_id_request(
             template_url=self.custom_request_id.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)

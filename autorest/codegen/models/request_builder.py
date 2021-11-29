@@ -73,13 +73,16 @@ class RequestBuilder(BaseBuilder):
             "HttpRequest",
             ImportType.AZURECORE,
         )
+        relative_path = ".."
+        if not self.code_model.options["builders_visibility"] == "embedded" and self.operation_group_name:
+            relative_path = "..." if self.operation_group_name else ".."
         if self.parameters.path:
-            relative_path = ".."
-            if not self.code_model.options["builders_visibility"] == "embedded" and self.operation_group_name:
-                relative_path = "..." if self.operation_group_name else ".."
             file_import.add_from_import(
                 f"{relative_path}_vendor", "_format_url_section", ImportType.LOCAL
             )
+        file_import.add_from_import(
+            f"{relative_path}_vendor", "_get_from_dict", ImportType.LOCAL
+        )
         file_import.add_from_import(
             "typing", "Any", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
         )

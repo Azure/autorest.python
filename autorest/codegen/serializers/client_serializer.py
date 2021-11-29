@@ -32,9 +32,12 @@ class ClientSerializer:
         )
 
     def pop_kwargs_from_signature(self, async_mode: bool) -> List[str]:
-        return utils.pop_kwargs_from_signature(self.code_model.service_client.parameters.kwargs_to_pop(
-            async_mode or self.is_python3_file
-        ))
+        return utils.pop_kwargs_from_signature(
+            self.code_model.service_client.parameters.kwargs_to_pop(
+                async_mode or self.is_python3_file,
+            ),
+            check_kwarg_dict=False,
+        )
 
     def class_definition(self, async_mode) -> str:
         class_name = self.code_model.class_name
@@ -209,9 +212,12 @@ class ConfigSerializer:
         )
 
     def pop_kwargs_from_signature(self, async_mode: bool) -> List[str]:
-        return utils.pop_kwargs_from_signature(self.code_model.global_parameters.config_kwargs_to_pop(
-            async_mode or self.is_python3_file
-        ))
+        return utils.pop_kwargs_from_signature(
+            self.code_model.global_parameters.config_kwargs_to_pop(
+                async_mode or self.is_python3_file
+            ),
+            check_kwarg_dict=False,
+        )
 
     def set_constants(self) -> List[str]:
         return [

@@ -10,13 +10,9 @@ from typing import Any, Dict, Optional
 from azure.core.rest import HttpRequest
 from msrest import Serializer
 
-from ..._vendor import _format_url_section
+from ..._vendor import _format_url_section, _get_from_dict
 
 _SERIALIZER = Serializer()
-
-
-def _param_not_set(param_dict, rest_api_name_lower):
-    return not any(k for k in param_dict if k.lower() == rest_api_name_lower)
 
 
 def build_custom_named_request_id_request(*, foo_client_request_id: str, **kwargs: Any) -> HttpRequest:
@@ -33,20 +29,18 @@ def build_custom_named_request_id_request(*, foo_client_request_id: str, **kwarg
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", "/azurespecials/customNamedRequestId")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "foo-client-request-id"):
-        header_parameters["foo-client-request-id"] = _SERIALIZER.header(
-            "foo_client_request_id", foo_client_request_id, "str"
-        )
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["foo-client-request-id"] = _SERIALIZER.header("foo_client_request_id", foo_client_request_id, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=url, headers=_headers, **kwargs)
 
 
 def build_custom_named_request_id_param_grouping_request(*, foo_client_request_id: str, **kwargs: Any) -> HttpRequest:
@@ -64,20 +58,18 @@ def build_custom_named_request_id_param_grouping_request(*, foo_client_request_i
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", "/azurespecials/customNamedRequestIdParamGrouping")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "foo-client-request-id"):
-        header_parameters["foo-client-request-id"] = _SERIALIZER.header(
-            "foo_client_request_id", foo_client_request_id, "str"
-        )
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["foo-client-request-id"] = _SERIALIZER.header("foo_client_request_id", foo_client_request_id, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=url, headers=_headers, **kwargs)
 
 
 def build_custom_named_request_id_head_request(*, foo_client_request_id: str, **kwargs: Any) -> HttpRequest:
@@ -94,17 +86,15 @@ def build_custom_named_request_id_head_request(*, foo_client_request_id: str, **
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", "/azurespecials/customNamedRequestIdHead")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "foo-client-request-id"):
-        header_parameters["foo-client-request-id"] = _SERIALIZER.header(
-            "foo_client_request_id", foo_client_request_id, "str"
-        )
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["foo-client-request-id"] = _SERIALIZER.header("foo_client_request_id", foo_client_request_id, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="HEAD", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="HEAD", url=url, headers=_headers, **kwargs)

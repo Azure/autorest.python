@@ -10,14 +10,10 @@ from typing import Any, Dict, Optional
 from azure.core.rest import HttpRequest
 from msrest import Serializer
 
-from ..._vendor import _format_url_section
+from ..._vendor import _format_url_section, _get_from_dict
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-
-
-def _param_not_set(param_dict, rest_api_name_lower):
-    return not any(k for k in param_dict if k.lower() == rest_api_name_lower)
 
 
 def build_get_pet_by_id_request(pet_id: str, **kwargs: Any) -> HttpRequest:
@@ -43,7 +39,10 @@ def build_get_pet_by_id_request(pet_id: str, **kwargs: Any) -> HttpRequest:
             }
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", "/errorStatusCodes/Pets/{petId}/GetPet")
     path_format_arguments = {
@@ -53,11 +52,9 @@ def build_get_pet_by_id_request(pet_id: str, **kwargs: Any) -> HttpRequest:
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=url, headers=_headers, **kwargs)
 
 
 def build_do_something_request(what_action: str, **kwargs: Any) -> HttpRequest:
@@ -82,7 +79,10 @@ def build_do_something_request(what_action: str, **kwargs: Any) -> HttpRequest:
             }
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", "/errorStatusCodes/Pets/doSomething/{whatAction}")
     path_format_arguments = {
@@ -92,11 +92,9 @@ def build_do_something_request(what_action: str, **kwargs: Any) -> HttpRequest:
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=url, headers=_headers, **kwargs)
 
 
 def build_has_models_param_request(*, models: Optional[str] = "value1", **kwargs: Any) -> HttpRequest:
@@ -115,18 +113,19 @@ def build_has_models_param_request(*, models: Optional[str] = "value1", **kwargs
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", "/errorStatusCodes/Pets/hasModelsParam")
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(query_parameters, "models") and models is not None:
-        query_parameters["models"] = _SERIALIZER.query("models", models, "str")
+    if models is not None:
+        _params["models"] = _SERIALIZER.query("models", models, "str")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=url, params=_params, headers=_headers, **kwargs)

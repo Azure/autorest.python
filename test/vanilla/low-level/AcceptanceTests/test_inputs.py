@@ -49,6 +49,12 @@ def test_header_case_insensitive():
         request = basic.build_get_empty_request(headers={accept_key: "my/content-type"})
         assert request.headers == {"Accept": "my/content-type"}
 
+def test_header_kwarg_and_header():
+    request = basic.build_put_valid_request(json=None, headers={"content-type": "shouldn't/be-me"}, content_type="my/json")
+    assert len(request.headers) == 2
+    assert request.headers["content-type"] == "my/json"
+    assert request.headers["accept"] == "application/json"
+
 def test_query_input():
     request = basic.build_get_empty_request(params={"foo": "bar"})
     assert urlparse(request.url).query == "foo=bar"
@@ -67,3 +73,7 @@ def test_query_case_insensitive():
     for query_key in query_keys:
         request = basic.build_get_empty_request(params={query_key: "bar"})
         assert urlparse(request.url).query.lower() == "foo=bar"
+
+def test_query_kwarg_and_header():
+    request = basic.build_put_valid_request(params={"api-version": "shouldn't-be-me"}, api_version="2021-10-01")
+    assert urlparse(request.url).query == "api-version=2021-10-01"

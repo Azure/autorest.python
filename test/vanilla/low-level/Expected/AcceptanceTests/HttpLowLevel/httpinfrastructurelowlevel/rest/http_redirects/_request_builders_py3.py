@@ -10,15 +10,13 @@ from typing import Any, Dict, Optional, TypeVar
 from azure.core.rest import HttpRequest
 from msrest import Serializer
 
+from ..._vendor import _get_from_dict
+
 T = TypeVar("T")
 JSONType = Any
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-
-
-def _param_not_set(param_dict, rest_api_name_lower):
-    return not any(k for k in param_dict if k.lower() == rest_api_name_lower)
 
 
 def build_head300_request(**kwargs: Any) -> HttpRequest:
@@ -33,16 +31,17 @@ def build_head300_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/300")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="HEAD", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="HEAD", url=url, headers=_headers, **kwargs)
 
 
 def build_get300_request(**kwargs: Any) -> HttpRequest:
@@ -65,16 +64,17 @@ def build_get300_request(**kwargs: Any) -> HttpRequest:
             ]
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/300")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=url, headers=_headers, **kwargs)
 
 
 def build_head301_request(**kwargs: Any) -> HttpRequest:
@@ -89,16 +89,17 @@ def build_head301_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/301")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="HEAD", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="HEAD", url=url, headers=_headers, **kwargs)
 
 
 def build_get301_request(**kwargs: Any) -> HttpRequest:
@@ -113,16 +114,17 @@ def build_get301_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/301")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=url, headers=_headers, **kwargs)
 
 
 def build_put301_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
@@ -150,20 +152,21 @@ def build_put301_request(*, json: JSONType = None, content: Any = None, **kwargs
             json = True  # Optional. Default value is True.
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop("content_type", _get_from_dict(_headers, "Content-Type") or None)  # type: Optional[str]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/301")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "content-type") and content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=url, headers=_headers, json=json, content=content, **kwargs)
 
 
 def build_head302_request(**kwargs: Any) -> HttpRequest:
@@ -178,16 +181,17 @@ def build_head302_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/302")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="HEAD", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="HEAD", url=url, headers=_headers, **kwargs)
 
 
 def build_get302_request(**kwargs: Any) -> HttpRequest:
@@ -202,16 +206,17 @@ def build_get302_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/302")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=url, headers=_headers, **kwargs)
 
 
 def build_patch302_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
@@ -239,20 +244,21 @@ def build_patch302_request(*, json: JSONType = None, content: Any = None, **kwar
             json = True  # Optional. Default value is True.
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop("content_type", _get_from_dict(_headers, "Content-Type") or None)  # type: Optional[str]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/302")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "content-type") and content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PATCH", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="PATCH", url=url, headers=_headers, json=json, content=content, **kwargs)
 
 
 def build_post303_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
@@ -280,20 +286,21 @@ def build_post303_request(*, json: JSONType = None, content: Any = None, **kwarg
             json = True  # Optional. Default value is True.
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop("content_type", _get_from_dict(_headers, "Content-Type") or None)  # type: Optional[str]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/303")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "content-type") and content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=url, headers=_headers, json=json, content=content, **kwargs)
 
 
 def build_head307_request(**kwargs: Any) -> HttpRequest:
@@ -308,16 +315,17 @@ def build_head307_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/307")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="HEAD", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="HEAD", url=url, headers=_headers, **kwargs)
 
 
 def build_get307_request(**kwargs: Any) -> HttpRequest:
@@ -332,16 +340,17 @@ def build_get307_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/307")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=url, headers=_headers, **kwargs)
 
 
 def build_options307_request(**kwargs: Any) -> HttpRequest:
@@ -356,16 +365,17 @@ def build_options307_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/307")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="OPTIONS", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="OPTIONS", url=url, headers=_headers, **kwargs)
 
 
 def build_put307_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
@@ -392,20 +402,21 @@ def build_put307_request(*, json: JSONType = None, content: Any = None, **kwargs
             json = True  # Optional. Default value is True.
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop("content_type", _get_from_dict(_headers, "Content-Type") or None)  # type: Optional[str]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/307")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "content-type") and content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=url, headers=_headers, json=json, content=content, **kwargs)
 
 
 def build_patch307_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
@@ -432,20 +443,21 @@ def build_patch307_request(*, json: JSONType = None, content: Any = None, **kwar
             json = True  # Optional. Default value is True.
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop("content_type", _get_from_dict(_headers, "Content-Type") or None)  # type: Optional[str]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/307")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "content-type") and content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PATCH", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="PATCH", url=url, headers=_headers, json=json, content=content, **kwargs)
 
 
 def build_post307_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
@@ -472,20 +484,21 @@ def build_post307_request(*, json: JSONType = None, content: Any = None, **kwarg
             json = True  # Optional. Default value is True.
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop("content_type", _get_from_dict(_headers, "Content-Type") or None)  # type: Optional[str]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/307")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "content-type") and content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=url, headers=_headers, json=json, content=content, **kwargs)
 
 
 def build_delete307_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
@@ -512,17 +525,18 @@ def build_delete307_request(*, json: JSONType = None, content: Any = None, **kwa
             json = True  # Optional. Default value is True.
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop("content_type", _get_from_dict(_headers, "Content-Type") or None)  # type: Optional[str]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", "/http/redirect/307")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "content-type") and content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="DELETE", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="DELETE", url=url, headers=_headers, json=json, content=content, **kwargs)

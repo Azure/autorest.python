@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._vendor import _convert_request
+from ..._vendor import _convert_request, _get_from_dict
 from ...operations._media_types_client_operations import (
     build_analyze_body_no_accept_header_request,
     build_analyze_body_request,
@@ -52,11 +52,14 @@ class MediaTypesClientOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", "application/json"
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/json"
         )  # type: Optional[Union[str, "_models.ContentType"]]
 
         _json = None
@@ -77,8 +80,8 @@ class MediaTypesClientOperationsMixin:
             json=_json,
             content=_content,
             template_url=self.analyze_body.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -117,11 +120,14 @@ class MediaTypesClientOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", "application/json"
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/json"
         )  # type: Optional[Union[str, "_models.ContentType"]]
 
         _json = None
@@ -142,8 +148,8 @@ class MediaTypesClientOperationsMixin:
             json=_json,
             content=_content,
             template_url=self.analyze_body_no_accept_header.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -172,10 +178,15 @@ class MediaTypesClientOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "text/plain")  # type: Optional[str]
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "text/plain"
+        )  # type: Optional[str]
 
         _content = input
 
@@ -183,8 +194,8 @@ class MediaTypesClientOperationsMixin:
             content_type=content_type,
             content=_content,
             template_url=self.content_type_with_encoding.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -218,10 +229,15 @@ class MediaTypesClientOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", None)  # type: Optional[Union[str, "_models.ContentType1"]]
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or None
+        )  # type: Optional[Union[str, "_models.ContentType1"]]
 
         _content = message
 
@@ -229,8 +245,8 @@ class MediaTypesClientOperationsMixin:
             content_type=content_type,
             content=_content,
             template_url=self.binary_body_with_two_content_types.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -268,11 +284,14 @@ class MediaTypesClientOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", "application/json"
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/json"
         )  # type: Optional[Union[str, "_models.ContentType1"]]
 
         _content = message
@@ -281,8 +300,8 @@ class MediaTypesClientOperationsMixin:
             content_type=content_type,
             content=_content,
             template_url=self.binary_body_with_three_content_types.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -317,10 +336,15 @@ class MediaTypesClientOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/json"
+        )  # type: Optional[str]
 
         _json = None
         _content = None
@@ -339,8 +363,8 @@ class MediaTypesClientOperationsMixin:
             json=_json,
             content=_content,
             template_url=self.put_text_and_json_body.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)

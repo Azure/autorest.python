@@ -283,11 +283,10 @@ class JinjaSerializer:
                 general_serializer.serialize_service_client_file()
             )
 
-        if code_model.need_vendored_code:
-            self._autorestapi.write_file(
-                namespace_path / Path("_vendor.py"),
-                general_serializer.serialize_vendor_file()
-            )
+        self._autorestapi.write_file(
+            namespace_path / Path("_vendor.py"),
+            general_serializer.serialize_vendor_file()
+        )
 
         self._serialize_and_write_version_file(code_model, namespace_path, general_serializer)
 

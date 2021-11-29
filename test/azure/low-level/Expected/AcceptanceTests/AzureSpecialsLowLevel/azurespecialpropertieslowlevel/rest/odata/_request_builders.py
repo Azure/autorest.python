@@ -10,18 +10,13 @@ from typing import TYPE_CHECKING
 from azure.core.rest import HttpRequest
 from msrest import Serializer
 
-from ..._vendor import _format_url_section
+from ..._vendor import _format_url_section, _get_from_dict
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Dict, Optional
 
 _SERIALIZER = Serializer()
-
-
-def _param_not_set(param_dict, rest_api_name_lower):
-    return not any(k for k in param_dict if k.lower() == rest_api_name_lower)
-
 
 # fmt: off
 
@@ -46,32 +41,33 @@ def build_get_with_filter_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    filter = kwargs.pop('filter', None)  # type: Optional[str]
-    top = kwargs.pop('top', None)  # type: Optional[int]
-    orderby = kwargs.pop('orderby', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    filter = kwargs.pop('filter', _get_from_dict(_params, '$filter') or None)  # type: Optional[str]
+    top = kwargs.pop('top', _get_from_dict(_params, '$top') or None)  # type: Optional[int]
+    orderby = kwargs.pop('orderby', _get_from_dict(_params, '$orderby') or None)  # type: Optional[str]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/azurespecials/odata/filter')
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(query_parameters, "$filter") and filter is not None:
-        query_parameters['$filter'] = _SERIALIZER.query("filter", filter, 'str')
-    if _param_not_set(query_parameters, "$top") and top is not None:
-        query_parameters['$top'] = _SERIALIZER.query("top", top, 'int')
-    if _param_not_set(query_parameters, "$orderby") and orderby is not None:
-        query_parameters['$orderby'] = _SERIALIZER.query("orderby", orderby, 'str')
+    if filter is not None:
+        _params['$filter'] = _SERIALIZER.query("filter", filter, 'str')
+    if top is not None:
+        _params['$top'] = _SERIALIZER.query("top", top, 'int')
+    if orderby is not None:
+        _params['$orderby'] = _SERIALIZER.query("orderby", orderby, 'str')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        params=_params,
+        headers=_headers,
         **kwargs
     )

@@ -22,6 +22,8 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from msrest import Serializer
 
+from .._vendor import _get_from_dict
+
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Generic, Optional, TypeVar
@@ -32,39 +34,34 @@ if TYPE_CHECKING:
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-
-
-def _param_not_set(param_dict, rest_api_name_lower):
-    return not any(k for k in param_dict if k.lower() == rest_api_name_lower)
-
-
 # fmt: off
 
 def build_get_report_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    qualifier = kwargs.pop('qualifier', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    qualifier = kwargs.pop('qualifier', _get_from_dict(_params, 'qualifier') or None)  # type: Optional[str]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/report')
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(query_parameters, "qualifier") and qualifier is not None:
-        query_parameters['qualifier'] = _SERIALIZER.query("qualifier", qualifier, 'str')
+    if qualifier is not None:
+        _params['qualifier'] = _SERIALIZER.query("qualifier", qualifier, 'str')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        params=_params,
+        headers=_headers,
         **kwargs
     )
 
@@ -73,27 +70,28 @@ def build_get_optional_report_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    qualifier = kwargs.pop('qualifier', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    qualifier = kwargs.pop('qualifier', _get_from_dict(_params, 'qualifier') or None)  # type: Optional[str]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     url = kwargs.pop("template_url", '/report/optional')
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(query_parameters, "qualifier") and qualifier is not None:
-        query_parameters['qualifier'] = _SERIALIZER.query("qualifier", qualifier, 'str')
+    if qualifier is not None:
+        _params['qualifier'] = _SERIALIZER.query("qualifier", qualifier, 'str')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    if _param_not_set(header_parameters, "accept"):
-        header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        params=_params,
+        headers=_headers,
         **kwargs
     )
 
@@ -123,16 +121,19 @@ class AutoRestReportServiceOperationsMixin(object):
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        qualifier = kwargs.pop("qualifier", None)  # type: Optional[str]
+        qualifier = kwargs.pop("qualifier", _get_from_dict(_params, "qualifier") or None)  # type: Optional[str]
 
         request = build_get_report_request(
             qualifier=qualifier,
             template_url=self.get_report.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -179,16 +180,19 @@ class AutoRestReportServiceOperationsMixin(object):
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        qualifier = kwargs.pop("qualifier", None)  # type: Optional[str]
+        qualifier = kwargs.pop("qualifier", _get_from_dict(_params, "qualifier") or None)  # type: Optional[str]
 
         request = build_get_optional_report_request(
             qualifier=qualifier,
             template_url=self.get_optional_report.metadata["url"],
-            headers=kwargs.pop("headers", {}),
-            params=kwargs.pop("params", {}),
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
