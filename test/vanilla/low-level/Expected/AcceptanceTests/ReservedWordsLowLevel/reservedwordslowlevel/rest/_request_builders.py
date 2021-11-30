@@ -10,7 +10,6 @@ from typing import TYPE_CHECKING
 from azure.core.rest import HttpRequest
 from msrest import Serializer
 
-from ..._vendor import _get_from_dict
 from .._vendor import _get_from_dict
 
 if TYPE_CHECKING:

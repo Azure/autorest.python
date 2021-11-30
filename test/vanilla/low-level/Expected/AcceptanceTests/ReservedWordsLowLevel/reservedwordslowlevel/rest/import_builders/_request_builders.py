@@ -11,14 +11,10 @@ from azure.core.rest import HttpRequest
 from msrest import Serializer
 
 from ..._vendor import _get_from_dict
-from .._vendor import _get_from_dict
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, IO, Optional, TypeVar
-
-    T = TypeVar("T")
-    JSONType = Any
+    from typing import Any, Dict
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False

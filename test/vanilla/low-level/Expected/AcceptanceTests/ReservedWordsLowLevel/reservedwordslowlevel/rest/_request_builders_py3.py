@@ -10,7 +10,6 @@ from typing import Any, Dict, IO, Optional, TypeVar
 from azure.core.rest import HttpRequest
 from msrest import Serializer
 
-from ..._vendor import _get_from_dict
 from .._vendor import _get_from_dict
 
 T = TypeVar("T")
