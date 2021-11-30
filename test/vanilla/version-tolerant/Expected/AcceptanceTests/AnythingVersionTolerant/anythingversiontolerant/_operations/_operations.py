@@ -45,7 +45,7 @@ def build_get_object_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/anything/object')
+    url = '/anything/object'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -67,7 +67,7 @@ def build_put_object_request(
     content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/anything/object')
+    url = '/anything/object'
 
     # Construct headers
     if content_type is not None:
@@ -90,7 +90,7 @@ def build_get_string_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/anything/string')
+    url = '/anything/string'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -112,7 +112,7 @@ def build_put_string_request(
     content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/anything/string')
+    url = '/anything/string'
 
     # Construct headers
     if content_type is not None:
@@ -135,7 +135,7 @@ def build_get_array_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/anything/array')
+    url = '/anything/array'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -157,7 +157,7 @@ def build_put_array_request(
     content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/anything/array')
+    url = '/anything/array'
 
     # Construct headers
     if content_type is not None:
@@ -192,7 +192,6 @@ class AnythingClientOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_get_object_request(
-            template_url=self.get_object.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -249,7 +248,6 @@ class AnythingClientOperationsMixin(object):
         request = build_put_object_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_object.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -286,7 +284,6 @@ class AnythingClientOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_get_string_request(
-            template_url=self.get_string.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -343,7 +340,6 @@ class AnythingClientOperationsMixin(object):
         request = build_put_string_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_string.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -380,7 +376,6 @@ class AnythingClientOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_get_array_request(
-            template_url=self.get_array.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -437,7 +432,6 @@ class AnythingClientOperationsMixin(object):
         request = build_put_array_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_array.metadata["url"],
             headers=_headers,
             params=_params,
         )

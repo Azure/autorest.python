@@ -859,8 +859,9 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
                 continue
             high_level_name = cast(RequestBuilderParameter, parameter).name_in_high_level_operation
             retval.append(f"    {parameter.serialized_name}={high_level_name},")
-        template_url = template_url or f"self.{builder.name}.metadata['url']"
-        retval.append(f"    template_url={template_url},")
+        if not self.code_model.options["version_tolerant"]:
+            template_url = template_url or f"self.{builder.name}.metadata['url']"
+            retval.append(f"    template_url={template_url},")
         retval.append('    headers=_headers,')
         retval.append('    params=_params,')
         retval.append(f")")
@@ -871,8 +872,12 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
             retval.append(f"request = _convert_request(request{pass_files})")
         if builder.parameters.path:
             retval.extend(self.serialize_path(builder))
+        url_to_format = "request.url"
+        if self.code_model.options["version_tolerant"] and template_url:
+            url_to_format = template_url
         retval.append(
-            "request.url = self._client.format_url(request.url{})".format(
+            "request.url = self._client.format_url({}{})".format(
+                url_to_format,
                 ", **path_format_arguments" if builder.parameters.path else ""
             )
         )
@@ -1095,7 +1100,7 @@ class _PagingOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disab
     def call_next_link_request_builder(self, builder: BuilderType) -> List[str]:
         if builder.next_request_builder:
             request_builder = builder.next_request_builder
-            template_url = f"'{request_builder.url}'"
+            template_url = None if self.code_model.options["version_tolerant"] else f"'{request_builder.url}'"
         else:
             request_builder = builder.request_builder
             template_url = "next_link"

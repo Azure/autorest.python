@@ -58,7 +58,7 @@ def build_get_pages_partial_url_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/paging/customurl/partialnextlink')
+    url = '/paging/customurl/partialnextlink'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -107,7 +107,7 @@ def build_get_pages_partial_url_operation_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/paging/customurl/partialnextlinkop')
+    url = '/paging/customurl/partialnextlinkop'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -159,7 +159,7 @@ def build_get_pages_partial_url_operation_next_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/paging/customurl/{nextLink}')
+    url = '/paging/customurl/{nextLink}'
     path_format_arguments = {
         "nextLink": _SERIALIZER.url("next_link", next_link, 'str', skip_quote=True),
     }

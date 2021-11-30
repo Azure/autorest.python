@@ -67,7 +67,6 @@ class HttpSuccessOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_http_success_head200_request(
-            template_url=self.head200.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -102,7 +101,6 @@ class HttpSuccessOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_http_success_head204_request(
-            template_url=self.head204.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -137,7 +135,6 @@ class HttpSuccessOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_http_success_head404_request(
-            template_url=self.head404.metadata["url"],
             headers=_headers,
             params=_params,
         )

@@ -36,7 +36,7 @@ def build_head501_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/http/failure/server/501")
+    url = "/http/failure/server/501"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -61,7 +61,7 @@ def build_get501_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/http/failure/server/501")
+    url = "/http/failure/server/501"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -100,7 +100,7 @@ def build_post505_request(*, json: JSONType = None, content: Any = None, **kwarg
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/http/failure/server/505")
+    url = "/http/failure/server/505"
 
     # Construct headers
     if content_type is not None:
@@ -141,7 +141,7 @@ def build_delete505_request(*, json: JSONType = None, content: Any = None, **kwa
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/http/failure/server/505")
+    url = "/http/failure/server/505"
 
     # Construct headers
     if content_type is not None:

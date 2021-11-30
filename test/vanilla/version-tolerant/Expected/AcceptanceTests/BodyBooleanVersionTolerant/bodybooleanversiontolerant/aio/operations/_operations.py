@@ -70,7 +70,6 @@ class BoolOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_bool_get_true_request(
-            template_url=self.get_true.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -121,7 +120,6 @@ class BoolOperations:
         request = build_bool_put_true_request(
             content_type=content_type,
             json=bool_body,
-            template_url=self.put_true.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -155,7 +153,6 @@ class BoolOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_bool_get_false_request(
-            template_url=self.get_false.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -206,7 +203,6 @@ class BoolOperations:
         request = build_bool_put_false_request(
             content_type=content_type,
             json=bool_body,
-            template_url=self.put_false.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -240,7 +236,6 @@ class BoolOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_bool_get_null_request(
-            template_url=self.get_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -281,7 +276,6 @@ class BoolOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_bool_get_invalid_request(
-            template_url=self.get_invalid.metadata["url"],
             headers=_headers,
             params=_params,
         )

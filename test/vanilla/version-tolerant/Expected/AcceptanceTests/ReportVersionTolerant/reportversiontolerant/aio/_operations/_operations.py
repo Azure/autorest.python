@@ -59,7 +59,6 @@ class AutoRestReportServiceOperationsMixin:
 
         request = build_get_report_request(
             qualifier=qualifier,
-            template_url=self.get_report.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -113,7 +112,6 @@ class AutoRestReportServiceOperationsMixin:
 
         request = build_get_optional_report_request(
             qualifier=qualifier,
-            template_url=self.get_optional_report.metadata["url"],
             headers=_headers,
             params=_params,
         )

@@ -53,7 +53,7 @@ def build_get_horse_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/multipleInheritance/horse')
+    url = '/multipleInheritance/horse'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -103,7 +103,7 @@ def build_put_horse_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/multipleInheritance/horse')
+    url = '/multipleInheritance/horse'
 
     # Construct headers
     if content_type is not None:
@@ -146,7 +146,7 @@ def build_get_pet_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/multipleInheritance/pet')
+    url = '/multipleInheritance/pet'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -195,7 +195,7 @@ def build_put_pet_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/multipleInheritance/pet')
+    url = '/multipleInheritance/pet'
 
     # Construct headers
     if content_type is not None:
@@ -239,7 +239,7 @@ def build_get_feline_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/multipleInheritance/feline')
+    url = '/multipleInheritance/feline'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -289,7 +289,7 @@ def build_put_feline_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/multipleInheritance/feline')
+    url = '/multipleInheritance/feline'
 
     # Construct headers
     if content_type is not None:
@@ -335,7 +335,7 @@ def build_get_cat_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/multipleInheritance/cat')
+    url = '/multipleInheritance/cat'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -389,7 +389,7 @@ def build_put_cat_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/multipleInheritance/cat')
+    url = '/multipleInheritance/cat'
 
     # Construct headers
     if content_type is not None:
@@ -437,7 +437,7 @@ def build_get_kitten_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/multipleInheritance/kitten')
+    url = '/multipleInheritance/kitten'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -493,7 +493,7 @@ def build_put_kitten_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/multipleInheritance/kitten')
+    url = '/multipleInheritance/kitten'
 
     # Construct headers
     if content_type is not None:

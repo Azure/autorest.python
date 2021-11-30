@@ -49,7 +49,7 @@ def build_operation_with_content_param_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/reservedWords/operation/content')
+    url = '/reservedWords/operation/content'
 
     # Construct headers
     if content_type is not None:
@@ -98,7 +98,7 @@ def build_operation_with_json_param_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/reservedWords/operation/json')
+    url = '/reservedWords/operation/json'
 
     # Construct headers
     if content_type is not None:
@@ -150,7 +150,7 @@ def build_operation_with_data_param_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/reservedWords/operation/data')
+    url = '/reservedWords/operation/data'
 
     # Construct headers
     if content_type is not None:
@@ -202,7 +202,7 @@ def build_operation_with_files_param_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/reservedWords/operation/files')
+    url = '/reservedWords/operation/files'
 
     # Construct headers
     if content_type is not None:

@@ -45,7 +45,7 @@ def build_get_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/datetime/null')
+    url = '/datetime/null'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -78,7 +78,7 @@ def build_get_invalid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/datetime/invalid')
+    url = '/datetime/invalid'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -111,7 +111,7 @@ def build_get_overflow_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/datetime/overflow')
+    url = '/datetime/overflow'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -144,7 +144,7 @@ def build_get_underflow_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/datetime/underflow')
+    url = '/datetime/underflow'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -191,7 +191,7 @@ def build_put_utc_max_date_time_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/datetime/max/utc')
+    url = '/datetime/max/utc'
 
     # Construct headers
     if content_type is not None:
@@ -243,7 +243,7 @@ def build_put_utc_max_date_time7_digits_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/datetime/max/utc7ms')
+    url = '/datetime/max/utc7ms'
 
     # Construct headers
     if content_type is not None:
@@ -278,7 +278,7 @@ def build_get_utc_lowercase_max_date_time_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/datetime/max/utc/lowercase')
+    url = '/datetime/max/utc/lowercase'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -311,7 +311,7 @@ def build_get_utc_uppercase_max_date_time_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/datetime/max/utc/uppercase')
+    url = '/datetime/max/utc/uppercase'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -347,7 +347,7 @@ def build_get_utc_uppercase_max_date_time7_digits_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/datetime/max/utc7ms/uppercase')
+    url = '/datetime/max/utc7ms/uppercase'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -394,7 +394,7 @@ def build_put_local_positive_offset_max_date_time_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/datetime/max/localpositiveoffset')
+    url = '/datetime/max/localpositiveoffset'
 
     # Construct headers
     if content_type is not None:
@@ -429,7 +429,7 @@ def build_get_local_positive_offset_lowercase_max_date_time_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/datetime/max/localpositiveoffset/lowercase')
+    url = '/datetime/max/localpositiveoffset/lowercase'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -462,7 +462,7 @@ def build_get_local_positive_offset_uppercase_max_date_time_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/datetime/max/localpositiveoffset/uppercase')
+    url = '/datetime/max/localpositiveoffset/uppercase'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -509,7 +509,7 @@ def build_put_local_negative_offset_max_date_time_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/datetime/max/localnegativeoffset')
+    url = '/datetime/max/localnegativeoffset'
 
     # Construct headers
     if content_type is not None:
@@ -544,7 +544,7 @@ def build_get_local_negative_offset_uppercase_max_date_time_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/datetime/max/localnegativeoffset/uppercase')
+    url = '/datetime/max/localnegativeoffset/uppercase'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -577,7 +577,7 @@ def build_get_local_negative_offset_lowercase_max_date_time_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/datetime/max/localnegativeoffset/lowercase')
+    url = '/datetime/max/localnegativeoffset/lowercase'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -624,7 +624,7 @@ def build_put_utc_min_date_time_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/datetime/min/utc')
+    url = '/datetime/min/utc'
 
     # Construct headers
     if content_type is not None:
@@ -659,7 +659,7 @@ def build_get_utc_min_date_time_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/datetime/min/utc')
+    url = '/datetime/min/utc'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -706,7 +706,7 @@ def build_put_local_positive_offset_min_date_time_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/datetime/min/localpositiveoffset')
+    url = '/datetime/min/localpositiveoffset'
 
     # Construct headers
     if content_type is not None:
@@ -741,7 +741,7 @@ def build_get_local_positive_offset_min_date_time_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/datetime/min/localpositiveoffset')
+    url = '/datetime/min/localpositiveoffset'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -788,7 +788,7 @@ def build_put_local_negative_offset_min_date_time_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/datetime/min/localnegativeoffset')
+    url = '/datetime/min/localnegativeoffset'
 
     # Construct headers
     if content_type is not None:
@@ -823,7 +823,7 @@ def build_get_local_negative_offset_min_date_time_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/datetime/min/localnegativeoffset')
+    url = '/datetime/min/localnegativeoffset'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -856,7 +856,7 @@ def build_get_local_no_offset_min_date_time_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/datetime/min/localnooffset')
+    url = '/datetime/min/localnooffset'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')

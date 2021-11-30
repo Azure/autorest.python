@@ -14,7 +14,7 @@ from ..._vendor import _format_url_section, _get_from_dict
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, IO, List, Optional, TypeVar
+    from typing import Any, Dict, IO, Optional, TypeVar
 
     T = TypeVar("T")
     JSONType = Any
@@ -46,7 +46,7 @@ def build_get_required_path_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/reqopt/implicit/required/path/{pathParameter}')
+    url = '/reqopt/implicit/required/path/{pathParameter}'
     path_format_arguments = {
         "pathParameter": _SERIALIZER.url("path_parameter", path_parameter, 'str'),
     }
@@ -89,7 +89,7 @@ def build_put_optional_query_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/reqopt/implicit/optional/query')
+    url = '/reqopt/implicit/optional/query'
 
     # Construct parameters
     if query_parameter is not None:
@@ -131,7 +131,7 @@ def build_put_optional_header_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/reqopt/implicit/optional/header')
+    url = '/reqopt/implicit/optional/header'
 
     # Construct headers
     if query_parameter is not None:
@@ -180,7 +180,7 @@ def build_put_optional_body_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/reqopt/implicit/optional/body')
+    url = '/reqopt/implicit/optional/body'
 
     # Construct headers
     if content_type is not None:
@@ -220,7 +220,7 @@ def build_put_optional_binary_body_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/reqopt/implicit/optional/binary-body')
+    url = '/reqopt/implicit/optional/binary-body'
 
     # Construct headers
     if content_type is not None:
@@ -258,7 +258,7 @@ def build_get_required_global_path_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/reqopt/global/required/path/{required-global-path}')
+    url = '/reqopt/global/required/path/{required-global-path}'
     path_format_arguments = {
         "required-global-path": _SERIALIZER.url("required_global_path", required_global_path, 'str'),
     }
@@ -301,7 +301,7 @@ def build_get_required_global_query_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/reqopt/global/required/query')
+    url = '/reqopt/global/required/query'
 
     # Construct parameters
     _params['required-global-query'] = _SERIALIZER.query("required_global_query", required_global_query, 'str')
@@ -343,7 +343,7 @@ def build_get_optional_global_query_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/reqopt/global/optional/query')
+    url = '/reqopt/global/optional/query'
 
     # Construct parameters
     if optional_global_query is not None:

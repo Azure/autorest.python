@@ -10,11 +10,11 @@ from typing import TYPE_CHECKING
 from azure.core.rest import HttpRequest
 from msrest import Serializer
 
-from ..._vendor import _format_url_section, _get_from_dict
+from ..._vendor import _get_from_dict
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, Optional
+    from typing import Any, Dict
 
 _SERIALIZER = Serializer()
 
@@ -44,7 +44,7 @@ def build_custom_named_request_id_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/customNamedRequestId')
+    url = '/azurespecials/customNamedRequestId'
 
     # Construct headers
     _headers['foo-client-request-id'] = _SERIALIZER.header("foo_client_request_id", foo_client_request_id, 'str')
@@ -83,7 +83,7 @@ def build_custom_named_request_id_param_grouping_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/customNamedRequestIdParamGrouping')
+    url = '/azurespecials/customNamedRequestIdParamGrouping'
 
     # Construct headers
     _headers['foo-client-request-id'] = _SERIALIZER.header("foo_client_request_id", foo_client_request_id, 'str')
@@ -121,7 +121,7 @@ def build_custom_named_request_id_head_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/customNamedRequestIdHead')
+    url = '/azurespecials/customNamedRequestIdHead'
 
     # Construct headers
     _headers['foo-client-request-id'] = _SERIALIZER.header("foo_client_request_id", foo_client_request_id, 'str')

@@ -36,7 +36,7 @@ def build_get_true_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/bool/true")
+    url = "/bool/true"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -67,7 +67,7 @@ def build_put_true_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/bool/true")
+    url = "/bool/true"
 
     # Construct headers
     if content_type is not None:
@@ -94,7 +94,7 @@ def build_get_false_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/bool/false")
+    url = "/bool/false"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -125,7 +125,7 @@ def build_put_false_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/bool/false")
+    url = "/bool/false"
 
     # Construct headers
     if content_type is not None:
@@ -152,7 +152,7 @@ def build_get_null_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/bool/null")
+    url = "/bool/null"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -177,7 +177,7 @@ def build_get_invalid_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/bool/invalid")
+    url = "/bool/invalid"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")

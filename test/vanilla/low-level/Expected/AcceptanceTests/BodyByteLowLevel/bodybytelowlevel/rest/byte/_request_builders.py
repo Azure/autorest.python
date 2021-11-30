@@ -44,7 +44,7 @@ def build_get_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/byte/null')
+    url = '/byte/null'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -77,7 +77,7 @@ def build_get_empty_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/byte/empty')
+    url = '/byte/empty'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -110,7 +110,7 @@ def build_get_non_ascii_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/byte/nonAscii')
+    url = '/byte/nonAscii'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -159,7 +159,7 @@ def build_put_non_ascii_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/byte/nonAscii')
+    url = '/byte/nonAscii'
 
     # Construct headers
     if content_type is not None:
@@ -194,7 +194,7 @@ def build_get_invalid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/byte/invalid')
+    url = '/byte/invalid'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')

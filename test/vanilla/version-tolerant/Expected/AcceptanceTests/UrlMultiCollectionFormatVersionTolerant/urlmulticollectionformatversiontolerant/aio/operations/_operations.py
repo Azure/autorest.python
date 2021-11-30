@@ -69,7 +69,6 @@ class QueriesOperations:
 
         request = build_queries_array_string_multi_null_request(
             array_query=array_query,
-            template_url=self.array_string_multi_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -106,7 +105,6 @@ class QueriesOperations:
 
         request = build_queries_array_string_multi_empty_request(
             array_query=array_query,
-            template_url=self.array_string_multi_empty.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -145,7 +143,6 @@ class QueriesOperations:
 
         request = build_queries_array_string_multi_valid_request(
             array_query=array_query,
-            template_url=self.array_string_multi_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )

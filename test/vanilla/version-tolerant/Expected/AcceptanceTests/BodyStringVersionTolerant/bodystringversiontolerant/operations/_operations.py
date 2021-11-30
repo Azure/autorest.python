@@ -45,7 +45,7 @@ def build_string_get_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/string/null')
+    url = '/string/null'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -69,7 +69,7 @@ def build_string_put_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/string/null')
+    url = '/string/null'
 
     # Construct headers
     if content_type is not None:
@@ -93,7 +93,7 @@ def build_string_get_empty_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/string/empty')
+    url = '/string/empty'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -118,7 +118,7 @@ def build_string_put_empty_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/string/empty')
+    url = '/string/empty'
 
     # Construct headers
     if content_type is not None:
@@ -143,7 +143,7 @@ def build_string_get_mbcs_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/string/mbcs')
+    url = '/string/mbcs'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -168,7 +168,7 @@ def build_string_put_mbcs_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/string/mbcs')
+    url = '/string/mbcs'
 
     # Construct headers
     if content_type is not None:
@@ -193,7 +193,7 @@ def build_string_get_whitespace_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/string/whitespace')
+    url = '/string/whitespace'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -218,7 +218,7 @@ def build_string_put_whitespace_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/string/whitespace')
+    url = '/string/whitespace'
 
     # Construct headers
     if content_type is not None:
@@ -243,7 +243,7 @@ def build_string_get_not_provided_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/string/notProvided')
+    url = '/string/notProvided'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -265,7 +265,7 @@ def build_string_get_base64_encoded_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/string/base64Encoding')
+    url = '/string/base64Encoding'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -287,7 +287,7 @@ def build_string_get_base64_url_encoded_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/string/base64UrlEncoding')
+    url = '/string/base64UrlEncoding'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -311,7 +311,7 @@ def build_string_put_base64_url_encoded_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/string/base64UrlEncoding')
+    url = '/string/base64UrlEncoding'
 
     # Construct headers
     if content_type is not None:
@@ -335,7 +335,7 @@ def build_string_get_null_base64_url_encoded_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/string/nullBase64UrlEncoding')
+    url = '/string/nullBase64UrlEncoding'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -357,7 +357,7 @@ def build_enum_get_not_expandable_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/string/enum/notExpandable')
+    url = '/string/enum/notExpandable'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -381,7 +381,7 @@ def build_enum_put_not_expandable_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/string/enum/notExpandable')
+    url = '/string/enum/notExpandable'
 
     # Construct headers
     if content_type is not None:
@@ -405,7 +405,7 @@ def build_enum_get_referenced_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/string/enum/Referenced')
+    url = '/string/enum/Referenced'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -429,7 +429,7 @@ def build_enum_put_referenced_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/string/enum/Referenced')
+    url = '/string/enum/Referenced'
 
     # Construct headers
     if content_type is not None:
@@ -453,7 +453,7 @@ def build_enum_get_referenced_constant_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/string/enum/ReferencedConstant')
+    url = '/string/enum/ReferencedConstant'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -477,7 +477,7 @@ def build_enum_put_referenced_constant_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/string/enum/ReferencedConstant')
+    url = '/string/enum/ReferencedConstant'
 
     # Construct headers
     if content_type is not None:
@@ -529,7 +529,6 @@ class StringOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_string_get_null_request(
-            template_url=self.get_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -588,7 +587,6 @@ class StringOperations(object):
         request = build_string_put_null_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -625,7 +623,6 @@ class StringOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_string_get_empty_request(
-            template_url=self.get_empty.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -679,7 +676,6 @@ class StringOperations(object):
         request = build_string_put_empty_request(
             content_type=content_type,
             json=string_body,
-            template_url=self.put_empty.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -716,7 +712,6 @@ class StringOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_string_get_mbcs_request(
-            template_url=self.get_mbcs.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -773,7 +768,6 @@ class StringOperations(object):
         request = build_string_put_mbcs_request(
             content_type=content_type,
             json=string_body,
-            template_url=self.put_mbcs.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -812,7 +806,6 @@ class StringOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_string_get_whitespace_request(
-            template_url=self.get_whitespace.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -871,7 +864,6 @@ class StringOperations(object):
         request = build_string_put_whitespace_request(
             content_type=content_type,
             json=string_body,
-            template_url=self.put_whitespace.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -908,7 +900,6 @@ class StringOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_string_get_not_provided_request(
-            template_url=self.get_not_provided.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -952,7 +943,6 @@ class StringOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_string_get_base64_encoded_request(
-            template_url=self.get_base64_encoded.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -996,7 +986,6 @@ class StringOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_string_get_base64_url_encoded_request(
-            template_url=self.get_base64_url_encoded.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1052,7 +1041,6 @@ class StringOperations(object):
         request = build_string_put_base64_url_encoded_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_base64_url_encoded.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1089,7 +1077,6 @@ class StringOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_string_get_null_base64_url_encoded_request(
-            template_url=self.get_null_base64_url_encoded.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1158,7 +1145,6 @@ class EnumOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_enum_get_not_expandable_request(
-            template_url=self.get_not_expandable.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1215,7 +1201,6 @@ class EnumOperations(object):
         request = build_enum_put_not_expandable_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_not_expandable.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1258,7 +1243,6 @@ class EnumOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_enum_get_referenced_request(
-            template_url=self.get_referenced.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1315,7 +1299,6 @@ class EnumOperations(object):
         request = build_enum_put_referenced_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_referenced.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1361,7 +1344,6 @@ class EnumOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_enum_get_referenced_constant_request(
-            template_url=self.get_referenced_constant.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1426,7 +1408,6 @@ class EnumOperations(object):
         request = build_enum_put_referenced_constant_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_referenced_constant.metadata["url"],
             headers=_headers,
             params=_params,
         )

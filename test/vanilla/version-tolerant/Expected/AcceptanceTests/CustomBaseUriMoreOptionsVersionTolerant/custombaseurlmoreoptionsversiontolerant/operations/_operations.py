@@ -49,7 +49,7 @@ def build_paths_get_empty_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/customuri/{subscriptionId}/{keyName}')
+    url = '/customuri/{subscriptionId}/{keyName}'
     path_format_arguments = {
         "keyName": _SERIALIZER.url("key_name", key_name, 'str'),
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, 'str'),
@@ -127,7 +127,6 @@ class PathsOperations(object):
             key_name=key_name,
             subscription_id=self._config.subscription_id,
             key_version=key_version,
-            template_url=self.get_empty.metadata["url"],
             headers=_headers,
             params=_params,
         )

@@ -47,7 +47,7 @@ def build_analyze_body_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/mediatypes/analyze')
+    url = '/mediatypes/analyze'
 
     # Construct headers
     if content_type is not None:
@@ -71,7 +71,7 @@ def build_analyze_body_no_accept_header_request(
     content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/mediatypes/analyzeNoAccept')
+    url = '/mediatypes/analyzeNoAccept'
 
     # Construct headers
     if content_type is not None:
@@ -96,7 +96,7 @@ def build_content_type_with_encoding_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/mediatypes/contentTypeWithEncoding')
+    url = '/mediatypes/contentTypeWithEncoding'
 
     # Construct headers
     if content_type is not None:
@@ -122,7 +122,7 @@ def build_binary_body_with_two_content_types_request(
     accept = _get_from_dict(_headers, 'Accept') or "text/plain"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/mediatypes/binaryBodyTwoContentTypes')
+    url = '/mediatypes/binaryBodyTwoContentTypes'
 
     # Construct headers
     if content_type is not None:
@@ -148,7 +148,7 @@ def build_binary_body_with_three_content_types_request(
     accept = _get_from_dict(_headers, 'Accept') or "text/plain"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/mediatypes/binaryBodyThreeContentTypes')
+    url = '/mediatypes/binaryBodyThreeContentTypes'
 
     # Construct headers
     if content_type is not None:
@@ -174,7 +174,7 @@ def build_put_text_and_json_body_request(
     accept = _get_from_dict(_headers, 'Accept') or "text/plain"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/mediatypes/textAndJson')
+    url = '/mediatypes/textAndJson'
 
     # Construct headers
     if content_type is not None:
@@ -244,7 +244,6 @@ class MediaTypesClientOperationsMixin(object):
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.analyze_body.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -324,7 +323,6 @@ class MediaTypesClientOperationsMixin(object):
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.analyze_body_no_accept_header.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -373,7 +371,6 @@ class MediaTypesClientOperationsMixin(object):
         request = build_content_type_with_encoding_request(
             content_type=content_type,
             content=_content,
-            template_url=self.content_type_with_encoding.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -441,7 +438,6 @@ class MediaTypesClientOperationsMixin(object):
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.binary_body_with_two_content_types.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -513,7 +509,6 @@ class MediaTypesClientOperationsMixin(object):
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.binary_body_with_three_content_types.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -582,7 +577,6 @@ class MediaTypesClientOperationsMixin(object):
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_text_and_json_body.metadata["url"],
             headers=_headers,
             params=_params,
         )

@@ -85,7 +85,6 @@ class FormdataOperations:
         request = build_formdata_upload_file_request(
             content_type=content_type,
             files=files,
-            template_url=self.upload_file.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -133,7 +132,6 @@ class FormdataOperations:
         request = build_formdata_upload_file_via_body_request(
             content_type=content_type,
             content=_content,
-            template_url=self.upload_file_via_body.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -190,7 +188,6 @@ class FormdataOperations:
         request = build_formdata_upload_files_request(
             content_type=content_type,
             files=files,
-            template_url=self.upload_files.metadata["url"],
             headers=_headers,
             params=_params,
         )

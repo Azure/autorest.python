@@ -11,7 +11,7 @@ from typing import TYPE_CHECKING
 from azure.core.rest import HttpRequest
 from msrest import Serializer
 
-from ..._vendor import _format_url_section, _get_from_dict
+from ..._vendor import _get_from_dict
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -47,7 +47,7 @@ def build_get_boolean_true_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/bool/true')
+    url = '/queries/bool/true'
 
     # Construct parameters
     _params['boolQuery'] = _SERIALIZER.query("bool_query", bool_query, 'bool')
@@ -90,7 +90,7 @@ def build_get_boolean_false_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/bool/false')
+    url = '/queries/bool/false'
 
     # Construct parameters
     _params['boolQuery'] = _SERIALIZER.query("bool_query", bool_query, 'bool')
@@ -132,7 +132,7 @@ def build_get_boolean_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/bool/null')
+    url = '/queries/bool/null'
 
     # Construct parameters
     if bool_query is not None:
@@ -176,7 +176,7 @@ def build_get_int_one_million_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/int/1000000')
+    url = '/queries/int/1000000'
 
     # Construct parameters
     _params['intQuery'] = _SERIALIZER.query("int_query", int_query, 'int')
@@ -219,7 +219,7 @@ def build_get_int_negative_one_million_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/int/-1000000')
+    url = '/queries/int/-1000000'
 
     # Construct parameters
     _params['intQuery'] = _SERIALIZER.query("int_query", int_query, 'int')
@@ -261,7 +261,7 @@ def build_get_int_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/int/null')
+    url = '/queries/int/null'
 
     # Construct parameters
     if int_query is not None:
@@ -305,7 +305,7 @@ def build_get_ten_billion_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/long/10000000000')
+    url = '/queries/long/10000000000'
 
     # Construct parameters
     _params['longQuery'] = _SERIALIZER.query("long_query", long_query, 'long')
@@ -348,7 +348,7 @@ def build_get_negative_ten_billion_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/long/-10000000000')
+    url = '/queries/long/-10000000000'
 
     # Construct parameters
     _params['longQuery'] = _SERIALIZER.query("long_query", long_query, 'long')
@@ -390,7 +390,7 @@ def build_get_long_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/long/null')
+    url = '/queries/long/null'
 
     # Construct parameters
     if long_query is not None:
@@ -434,7 +434,7 @@ def build_float_scientific_positive_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/float/1.034E+20')
+    url = '/queries/float/1.034E+20'
 
     # Construct parameters
     _params['floatQuery'] = _SERIALIZER.query("float_query", float_query, 'float')
@@ -477,7 +477,7 @@ def build_float_scientific_negative_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/float/-1.034E-20')
+    url = '/queries/float/-1.034E-20'
 
     # Construct parameters
     _params['floatQuery'] = _SERIALIZER.query("float_query", float_query, 'float')
@@ -519,7 +519,7 @@ def build_float_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/float/null')
+    url = '/queries/float/null'
 
     # Construct parameters
     if float_query is not None:
@@ -563,7 +563,7 @@ def build_double_decimal_positive_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/double/9999999.999')
+    url = '/queries/double/9999999.999'
 
     # Construct parameters
     _params['doubleQuery'] = _SERIALIZER.query("double_query", double_query, 'float')
@@ -606,7 +606,7 @@ def build_double_decimal_negative_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/double/-9999999.999')
+    url = '/queries/double/-9999999.999'
 
     # Construct parameters
     _params['doubleQuery'] = _SERIALIZER.query("double_query", double_query, 'float')
@@ -648,7 +648,7 @@ def build_double_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/double/null')
+    url = '/queries/double/null'
 
     # Construct parameters
     if double_query is not None:
@@ -692,7 +692,7 @@ def build_string_unicode_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/string/unicode/')
+    url = '/queries/string/unicode/'
 
     # Construct parameters
     _params['stringQuery'] = _SERIALIZER.query("string_query", string_query, 'str')
@@ -736,7 +736,7 @@ def build_string_url_encoded_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend')
+    url = '/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend'
 
     # Construct parameters
     _params['stringQuery'] = _SERIALIZER.query("string_query", string_query, 'str')
@@ -779,7 +779,7 @@ def build_string_empty_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/string/empty')
+    url = '/queries/string/empty'
 
     # Construct parameters
     _params['stringQuery'] = _SERIALIZER.query("string_query", string_query, 'str')
@@ -821,7 +821,7 @@ def build_string_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/string/null')
+    url = '/queries/string/null'
 
     # Construct parameters
     if string_query is not None:
@@ -865,7 +865,7 @@ def build_enum_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/enum/green%20color')
+    url = '/queries/enum/green%20color'
 
     # Construct parameters
     if enum_query is not None:
@@ -909,7 +909,7 @@ def build_enum_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/enum/null')
+    url = '/queries/enum/null'
 
     # Construct parameters
     if enum_query is not None:
@@ -952,7 +952,7 @@ def build_byte_multi_byte_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/byte/multibyte')
+    url = '/queries/byte/multibyte'
 
     # Construct parameters
     if byte_query is not None:
@@ -996,7 +996,7 @@ def build_byte_empty_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/byte/empty')
+    url = '/queries/byte/empty'
 
     # Construct parameters
     _params['byteQuery'] = _SERIALIZER.query("byte_query", byte_query, 'bytearray')
@@ -1038,7 +1038,7 @@ def build_byte_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/byte/null')
+    url = '/queries/byte/null'
 
     # Construct parameters
     if byte_query is not None:
@@ -1082,7 +1082,7 @@ def build_date_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/date/2012-01-01')
+    url = '/queries/date/2012-01-01'
 
     # Construct parameters
     _params['dateQuery'] = _SERIALIZER.query("date_query", date_query, 'date')
@@ -1124,7 +1124,7 @@ def build_date_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/date/null')
+    url = '/queries/date/null'
 
     # Construct parameters
     if date_query is not None:
@@ -1169,7 +1169,7 @@ def build_date_time_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/datetime/2012-01-01T01%3A01%3A01Z')
+    url = '/queries/datetime/2012-01-01T01%3A01%3A01Z'
 
     # Construct parameters
     _params['dateTimeQuery'] = _SERIALIZER.query("date_time_query", date_time_query, 'iso-8601')
@@ -1211,7 +1211,7 @@ def build_date_time_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/datetime/null')
+    url = '/queries/datetime/null'
 
     # Construct parameters
     if date_time_query is not None:
@@ -1256,7 +1256,7 @@ def build_array_string_csv_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/array/csv/string/valid')
+    url = '/queries/array/csv/string/valid'
 
     # Construct parameters
     if array_query is not None:
@@ -1299,7 +1299,7 @@ def build_array_string_csv_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/array/csv/string/null')
+    url = '/queries/array/csv/string/null'
 
     # Construct parameters
     if array_query is not None:
@@ -1342,7 +1342,7 @@ def build_array_string_csv_empty_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/array/csv/string/empty')
+    url = '/queries/array/csv/string/empty'
 
     # Construct parameters
     if array_query is not None:
@@ -1386,7 +1386,7 @@ def build_array_string_no_collection_format_empty_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/array/none/string/empty')
+    url = '/queries/array/none/string/empty'
 
     # Construct parameters
     if array_query is not None:
@@ -1431,7 +1431,7 @@ def build_array_string_ssv_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/array/ssv/string/valid')
+    url = '/queries/array/ssv/string/valid'
 
     # Construct parameters
     if array_query is not None:
@@ -1476,7 +1476,7 @@ def build_array_string_tsv_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/array/tsv/string/valid')
+    url = '/queries/array/tsv/string/valid'
 
     # Construct parameters
     if array_query is not None:
@@ -1521,7 +1521,7 @@ def build_array_string_pipes_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/array/pipes/string/valid')
+    url = '/queries/array/pipes/string/valid'
 
     # Construct parameters
     if array_query is not None:

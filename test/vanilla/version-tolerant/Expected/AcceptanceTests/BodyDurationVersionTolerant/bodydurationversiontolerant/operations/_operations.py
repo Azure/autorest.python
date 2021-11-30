@@ -46,7 +46,7 @@ def build_duration_get_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/duration/null')
+    url = '/duration/null'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -70,7 +70,7 @@ def build_duration_put_positive_duration_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/duration/positiveduration')
+    url = '/duration/positiveduration'
 
     # Construct headers
     if content_type is not None:
@@ -94,7 +94,7 @@ def build_duration_get_positive_duration_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/duration/positiveduration')
+    url = '/duration/positiveduration'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -116,7 +116,7 @@ def build_duration_get_invalid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/duration/invalid')
+    url = '/duration/invalid'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -166,7 +166,6 @@ class DurationOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_duration_get_null_request(
-            template_url=self.get_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -222,7 +221,6 @@ class DurationOperations(object):
         request = build_duration_put_positive_duration_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_positive_duration.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -259,7 +257,6 @@ class DurationOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_duration_get_positive_duration_request(
-            template_url=self.get_positive_duration.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -303,7 +300,6 @@ class DurationOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_duration_get_invalid_request(
-            template_url=self.get_invalid.metadata["url"],
             headers=_headers,
             params=_params,
         )

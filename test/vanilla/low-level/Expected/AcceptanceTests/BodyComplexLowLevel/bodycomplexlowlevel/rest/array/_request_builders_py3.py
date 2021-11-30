@@ -45,7 +45,7 @@ def build_get_valid_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/array/valid")
+    url = "/complex/array/valid"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -90,7 +90,7 @@ def build_put_valid_request(*, json: JSONType = None, content: Any = None, **kwa
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/array/valid")
+    url = "/complex/array/valid"
 
     # Construct headers
     if content_type is not None:
@@ -127,7 +127,7 @@ def build_get_empty_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/array/empty")
+    url = "/complex/array/empty"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -170,7 +170,7 @@ def build_put_empty_request(*, json: JSONType = None, content: Any = None, **kwa
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/array/empty")
+    url = "/complex/array/empty"
 
     # Construct headers
     if content_type is not None:
@@ -207,7 +207,7 @@ def build_get_not_provided_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/array/notprovided")
+    url = "/complex/array/notprovided"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")

@@ -45,7 +45,6 @@ class ParmaterizedEndpointClientOperationsMixin:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_get_request(
-            template_url=self.get.metadata["url"],
             headers=_headers,
             params=_params,
         )

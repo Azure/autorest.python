@@ -46,7 +46,7 @@ def build_operation_one_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/reservedWords/operationGroup/import')
+    url = '/reservedWords/operationGroup/import'
 
     # Construct parameters
     _params['parameter1'] = _SERIALIZER.query("parameter1", parameter1, 'str')

@@ -10,11 +10,11 @@ from typing import TYPE_CHECKING
 from azure.core.rest import HttpRequest
 from msrest import Serializer
 
-from ..._vendor import _format_url_section, _get_from_dict
+from ..._vendor import _get_from_dict
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, Optional
+    from typing import Any, Dict
 
 _SERIALIZER = Serializer()
 
@@ -37,7 +37,7 @@ def build_get_request(
     """
 
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/overwrite/x-ms-client-request-id/method/')
+    url = '/azurespecials/overwrite/x-ms-client-request-id/method/'
 
     return HttpRequest(
         method="GET",
@@ -72,7 +72,7 @@ def build_param_get_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/overwrite/x-ms-client-request-id/via-param/method/')
+    url = '/azurespecials/overwrite/x-ms-client-request-id/via-param/method/'
 
     # Construct headers
     _headers['x-ms-client-request-id'] = _SERIALIZER.header("x_ms_client_request_id", x_ms_client_request_id, 'str')

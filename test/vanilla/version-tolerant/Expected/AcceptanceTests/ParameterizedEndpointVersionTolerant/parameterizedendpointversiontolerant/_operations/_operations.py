@@ -40,7 +40,7 @@ def build_get_request(
 ):
     # type: (...) -> HttpRequest
     # Construct URL
-    url = kwargs.pop("template_url", '/parameterizedEndpoint/get')
+    url = '/parameterizedEndpoint/get'
 
     return HttpRequest(
         method="GET",
@@ -69,7 +69,6 @@ class ParmaterizedEndpointClientOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_get_request(
-            template_url=self.get.metadata["url"],
             headers=_headers,
             params=_params,
         )

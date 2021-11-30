@@ -86,7 +86,6 @@ class MediaTypesClientOperationsMixin:
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.analyze_body.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -161,7 +160,6 @@ class MediaTypesClientOperationsMixin:
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.analyze_body_no_accept_header.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -205,7 +203,6 @@ class MediaTypesClientOperationsMixin:
         request = build_content_type_with_encoding_request(
             content_type=content_type,
             content=_content,
-            template_url=self.content_type_with_encoding.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -268,7 +265,6 @@ class MediaTypesClientOperationsMixin:
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.binary_body_with_two_content_types.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -335,7 +331,6 @@ class MediaTypesClientOperationsMixin:
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.binary_body_with_three_content_types.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -399,7 +394,6 @@ class MediaTypesClientOperationsMixin:
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_text_and_json_body.metadata["url"],
             headers=_headers,
             params=_params,
         )

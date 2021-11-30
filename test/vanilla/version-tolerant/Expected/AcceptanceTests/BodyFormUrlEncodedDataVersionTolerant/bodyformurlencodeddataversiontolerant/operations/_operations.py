@@ -46,7 +46,7 @@ def build_formdataurlencoded_update_pet_with_form_request(
     content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/formsdataurlencoded/pet/add/{petId}')
+    url = '/formsdataurlencoded/pet/add/{petId}'
     path_format_arguments = {
         "petId": _SERIALIZER.url("pet_id", pet_id, 'int'),
     }
@@ -74,7 +74,7 @@ def build_formdataurlencoded_partial_constant_body_request(
     content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/formsdataurlencoded/partialConstantBody')
+    url = '/formsdataurlencoded/partialConstantBody'
 
     # Construct headers
     if content_type is not None:
@@ -154,7 +154,6 @@ class FormdataurlencodedOperations(object):
             pet_id=pet_id,
             content_type=content_type,
             data=data,
-            template_url=self.update_pet_with_form.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -213,7 +212,6 @@ class FormdataurlencodedOperations(object):
         request = build_formdataurlencoded_partial_constant_body_request(
             content_type=content_type,
             data=data,
-            template_url=self.partial_constant_body.metadata["url"],
             headers=_headers,
             params=_params,
         )

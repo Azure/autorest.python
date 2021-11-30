@@ -10,7 +10,7 @@ from typing import Any, Dict, Optional
 from azure.core.rest import HttpRequest
 from msrest import Serializer
 
-from ..._vendor import _format_url_section, _get_from_dict
+from ..._vendor import _get_from_dict
 
 _SERIALIZER = Serializer()
 
@@ -41,7 +41,7 @@ def build_get_with_filter_request(
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/azurespecials/odata/filter")
+    url = "/azurespecials/odata/filter"
 
     # Construct parameters
     if filter is not None:

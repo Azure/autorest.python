@@ -46,7 +46,7 @@ def build_param_existing_key_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/header/param/existingkey')
+    url = '/header/param/existingkey'
 
     # Construct headers
     _headers['User-Agent'] = _SERIALIZER.header("user_agent_parameter", user_agent_parameter, 'str')
@@ -80,7 +80,7 @@ def build_response_existing_key_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/header/response/existingkey')
+    url = '/header/response/existingkey'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -115,7 +115,7 @@ def build_param_protected_key_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/header/param/protectedkey')
+    url = '/header/param/protectedkey'
 
     # Construct headers
     _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
@@ -149,7 +149,7 @@ def build_response_protected_key_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/header/response/protectedkey')
+    url = '/header/response/protectedkey'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -190,7 +190,7 @@ def build_param_integer_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/header/param/prim/integer')
+    url = '/header/param/prim/integer'
 
     # Construct headers
     _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
@@ -229,7 +229,7 @@ def build_response_integer_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/header/response/prim/integer')
+    url = '/header/response/prim/integer'
 
     # Construct headers
     _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
@@ -271,7 +271,7 @@ def build_param_long_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/header/param/prim/long')
+    url = '/header/param/prim/long'
 
     # Construct headers
     _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
@@ -310,7 +310,7 @@ def build_response_long_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/header/response/prim/long')
+    url = '/header/response/prim/long'
 
     # Construct headers
     _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
@@ -352,7 +352,7 @@ def build_param_float_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/header/param/prim/float')
+    url = '/header/param/prim/float'
 
     # Construct headers
     _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
@@ -391,7 +391,7 @@ def build_response_float_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/header/response/prim/float')
+    url = '/header/response/prim/float'
 
     # Construct headers
     _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
@@ -433,7 +433,7 @@ def build_param_double_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/header/param/prim/double')
+    url = '/header/param/prim/double'
 
     # Construct headers
     _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
@@ -472,7 +472,7 @@ def build_response_double_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/header/response/prim/double')
+    url = '/header/response/prim/double'
 
     # Construct headers
     _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
@@ -514,7 +514,7 @@ def build_param_bool_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/header/param/prim/bool')
+    url = '/header/param/prim/bool'
 
     # Construct headers
     _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
@@ -553,7 +553,7 @@ def build_response_bool_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/header/response/prim/bool')
+    url = '/header/response/prim/bool'
 
     # Construct headers
     _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
@@ -597,7 +597,7 @@ def build_param_string_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/header/param/prim/string')
+    url = '/header/param/prim/string'
 
     # Construct headers
     _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
@@ -638,7 +638,7 @@ def build_response_string_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/header/response/prim/string')
+    url = '/header/response/prim/string'
 
     # Construct headers
     _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
@@ -680,7 +680,7 @@ def build_param_date_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/header/param/prim/date')
+    url = '/header/param/prim/date'
 
     # Construct headers
     _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
@@ -719,7 +719,7 @@ def build_response_date_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/header/response/prim/date')
+    url = '/header/response/prim/date'
 
     # Construct headers
     _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
@@ -762,7 +762,7 @@ def build_param_datetime_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/header/param/prim/datetime')
+    url = '/header/param/prim/datetime'
 
     # Construct headers
     _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
@@ -801,7 +801,7 @@ def build_response_datetime_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/header/response/prim/datetime')
+    url = '/header/response/prim/datetime'
 
     # Construct headers
     _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
@@ -844,7 +844,7 @@ def build_param_datetime_rfc1123_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/header/param/prim/datetimerfc1123')
+    url = '/header/param/prim/datetimerfc1123'
 
     # Construct headers
     _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
@@ -885,7 +885,7 @@ def build_response_datetime_rfc1123_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/header/response/prim/datetimerfc1123')
+    url = '/header/response/prim/datetimerfc1123'
 
     # Construct headers
     _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
@@ -926,7 +926,7 @@ def build_param_duration_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/header/param/prim/duration')
+    url = '/header/param/prim/duration'
 
     # Construct headers
     _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
@@ -965,7 +965,7 @@ def build_response_duration_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/header/response/prim/duration')
+    url = '/header/response/prim/duration'
 
     # Construct headers
     _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
@@ -1006,7 +1006,7 @@ def build_param_byte_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/header/param/prim/byte')
+    url = '/header/param/prim/byte'
 
     # Construct headers
     _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
@@ -1045,7 +1045,7 @@ def build_response_byte_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/header/response/prim/byte')
+    url = '/header/response/prim/byte'
 
     # Construct headers
     _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
@@ -1089,7 +1089,7 @@ def build_param_enum_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/header/param/prim/enum')
+    url = '/header/param/prim/enum'
 
     # Construct headers
     _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
@@ -1130,7 +1130,7 @@ def build_response_enum_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/header/response/prim/enum')
+    url = '/header/response/prim/enum'
 
     # Construct headers
     _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
@@ -1165,7 +1165,7 @@ def build_custom_request_id_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0')
+    url = '/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')

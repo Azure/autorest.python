@@ -47,7 +47,7 @@ def build_queries_array_string_multi_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/array/multi/string/null')
+    url = '/queries/array/multi/string/null'
 
     # Construct parameters
     if array_query is not None:
@@ -77,7 +77,7 @@ def build_queries_array_string_multi_empty_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/array/multi/string/empty')
+    url = '/queries/array/multi/string/empty'
 
     # Construct parameters
     if array_query is not None:
@@ -107,7 +107,7 @@ def build_queries_array_string_multi_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/array/multi/string/valid')
+    url = '/queries/array/multi/string/valid'
 
     # Construct parameters
     if array_query is not None:
@@ -169,7 +169,6 @@ class QueriesOperations(object):
 
         request = build_queries_array_string_multi_null_request(
             array_query=array_query,
-            template_url=self.array_string_multi_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -213,7 +212,6 @@ class QueriesOperations(object):
 
         request = build_queries_array_string_multi_empty_request(
             array_query=array_query,
-            template_url=self.array_string_multi_empty.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -259,7 +257,6 @@ class QueriesOperations(object):
 
         request = build_queries_array_string_multi_valid_request(
             array_query=array_query,
-            template_url=self.array_string_multi_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )

@@ -44,7 +44,7 @@ def build_head400_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/400')
+    url = '/http/failure/client/400'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -77,7 +77,7 @@ def build_get400_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/400')
+    url = '/http/failure/client/400'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -110,7 +110,7 @@ def build_options400_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/400')
+    url = '/http/failure/client/400'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -157,7 +157,7 @@ def build_put400_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/400')
+    url = '/http/failure/client/400'
 
     # Construct headers
     if content_type is not None:
@@ -206,7 +206,7 @@ def build_patch400_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/400')
+    url = '/http/failure/client/400'
 
     # Construct headers
     if content_type is not None:
@@ -255,7 +255,7 @@ def build_post400_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/400')
+    url = '/http/failure/client/400'
 
     # Construct headers
     if content_type is not None:
@@ -304,7 +304,7 @@ def build_delete400_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/400')
+    url = '/http/failure/client/400'
 
     # Construct headers
     if content_type is not None:
@@ -339,7 +339,7 @@ def build_head401_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/401')
+    url = '/http/failure/client/401'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -372,7 +372,7 @@ def build_get402_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/402')
+    url = '/http/failure/client/402'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -405,7 +405,7 @@ def build_options403_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/403')
+    url = '/http/failure/client/403'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -438,7 +438,7 @@ def build_get403_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/403')
+    url = '/http/failure/client/403'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -485,7 +485,7 @@ def build_put404_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/404')
+    url = '/http/failure/client/404'
 
     # Construct headers
     if content_type is not None:
@@ -534,7 +534,7 @@ def build_patch405_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/405')
+    url = '/http/failure/client/405'
 
     # Construct headers
     if content_type is not None:
@@ -583,7 +583,7 @@ def build_post406_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/406')
+    url = '/http/failure/client/406'
 
     # Construct headers
     if content_type is not None:
@@ -632,7 +632,7 @@ def build_delete407_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/407')
+    url = '/http/failure/client/407'
 
     # Construct headers
     if content_type is not None:
@@ -681,7 +681,7 @@ def build_put409_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/409')
+    url = '/http/failure/client/409'
 
     # Construct headers
     if content_type is not None:
@@ -716,7 +716,7 @@ def build_head410_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/410')
+    url = '/http/failure/client/410'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -749,7 +749,7 @@ def build_get411_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/411')
+    url = '/http/failure/client/411'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -782,7 +782,7 @@ def build_options412_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/412')
+    url = '/http/failure/client/412'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -815,7 +815,7 @@ def build_get412_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/412')
+    url = '/http/failure/client/412'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -862,7 +862,7 @@ def build_put413_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/413')
+    url = '/http/failure/client/413'
 
     # Construct headers
     if content_type is not None:
@@ -911,7 +911,7 @@ def build_patch414_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/414')
+    url = '/http/failure/client/414'
 
     # Construct headers
     if content_type is not None:
@@ -960,7 +960,7 @@ def build_post415_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/415')
+    url = '/http/failure/client/415'
 
     # Construct headers
     if content_type is not None:
@@ -995,7 +995,7 @@ def build_get416_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/416')
+    url = '/http/failure/client/416'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -1042,7 +1042,7 @@ def build_delete417_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/417')
+    url = '/http/failure/client/417'
 
     # Construct headers
     if content_type is not None:
@@ -1077,7 +1077,7 @@ def build_head429_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/429')
+    url = '/http/failure/client/429'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')

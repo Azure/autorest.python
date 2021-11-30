@@ -129,7 +129,6 @@ class BasicOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_basic_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -195,7 +194,6 @@ class BasicOperations:
             api_version=api_version,
             content_type=content_type,
             json=_json,
-            template_url=self.put_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -239,7 +237,6 @@ class BasicOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_basic_get_invalid_request(
-            template_url=self.get_invalid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -290,7 +287,6 @@ class BasicOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_basic_get_empty_request(
-            template_url=self.get_empty.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -341,7 +337,6 @@ class BasicOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_basic_get_null_request(
-            template_url=self.get_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -392,7 +387,6 @@ class BasicOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_basic_get_not_provided_request(
-            template_url=self.get_not_provided.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -461,7 +455,6 @@ class PrimitiveOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_primitive_get_int_request(
-            template_url=self.get_int.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -521,7 +514,6 @@ class PrimitiveOperations:
         request = build_primitive_put_int_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_int.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -564,7 +556,6 @@ class PrimitiveOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_primitive_get_long_request(
-            template_url=self.get_long.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -624,7 +615,6 @@ class PrimitiveOperations:
         request = build_primitive_put_long_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_long.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -667,7 +657,6 @@ class PrimitiveOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_primitive_get_float_request(
-            template_url=self.get_float.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -727,7 +716,6 @@ class PrimitiveOperations:
         request = build_primitive_put_float_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_float.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -770,7 +758,6 @@ class PrimitiveOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_primitive_get_double_request(
-            template_url=self.get_double.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -831,7 +818,6 @@ class PrimitiveOperations:
         request = build_primitive_put_double_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_double.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -874,7 +860,6 @@ class PrimitiveOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_primitive_get_bool_request(
-            template_url=self.get_bool.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -934,7 +919,6 @@ class PrimitiveOperations:
         request = build_primitive_put_bool_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_bool.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -978,7 +962,6 @@ class PrimitiveOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_primitive_get_string_request(
-            template_url=self.get_string.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1039,7 +1022,6 @@ class PrimitiveOperations:
         request = build_primitive_put_string_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_string.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1082,7 +1064,6 @@ class PrimitiveOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_primitive_get_date_request(
-            template_url=self.get_date.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1142,7 +1123,6 @@ class PrimitiveOperations:
         request = build_primitive_put_date_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_date.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1185,7 +1165,6 @@ class PrimitiveOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_primitive_get_date_time_request(
-            template_url=self.get_date_time.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1245,7 +1224,6 @@ class PrimitiveOperations:
         request = build_primitive_put_date_time_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_date_time.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1288,7 +1266,6 @@ class PrimitiveOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_primitive_get_date_time_rfc1123_request(
-            template_url=self.get_date_time_rfc1123.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1349,7 +1326,6 @@ class PrimitiveOperations:
         request = build_primitive_put_date_time_rfc1123_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_date_time_rfc1123.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1391,7 +1367,6 @@ class PrimitiveOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_primitive_get_duration_request(
-            template_url=self.get_duration.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1450,7 +1425,6 @@ class PrimitiveOperations:
         request = build_primitive_put_duration_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_duration.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1492,7 +1466,6 @@ class PrimitiveOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_primitive_get_byte_request(
-            template_url=self.get_byte.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1551,7 +1524,6 @@ class PrimitiveOperations:
         request = build_primitive_put_byte_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_byte.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1614,7 +1586,6 @@ class ArrayOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_array_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1676,7 +1647,6 @@ class ArrayOperations:
         request = build_array_put_valid_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1720,7 +1690,6 @@ class ArrayOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_array_get_empty_request(
-            template_url=self.get_empty.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1781,7 +1750,6 @@ class ArrayOperations:
         request = build_array_put_empty_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_empty.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1825,7 +1793,6 @@ class ArrayOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_array_get_not_provided_request(
-            template_url=self.get_not_provided.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1895,7 +1862,6 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_dictionary_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1957,7 +1923,6 @@ class DictionaryOperations:
         request = build_dictionary_put_valid_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2001,7 +1966,6 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_dictionary_get_empty_request(
-            template_url=self.get_empty.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2062,7 +2026,6 @@ class DictionaryOperations:
         request = build_dictionary_put_empty_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_empty.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2106,7 +2069,6 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_dictionary_get_null_request(
-            template_url=self.get_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2157,7 +2119,6 @@ class DictionaryOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_dictionary_get_not_provided_request(
-            template_url=self.get_not_provided.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2235,7 +2196,6 @@ class InheritanceOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_inheritance_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2306,7 +2266,6 @@ class InheritanceOperations:
         request = build_inheritance_put_valid_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2372,7 +2331,6 @@ class PolymorphismOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_polymorphism_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2470,7 +2428,6 @@ class PolymorphismOperations:
         request = build_polymorphism_put_valid_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2513,7 +2470,6 @@ class PolymorphismOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_polymorphism_get_dot_syntax_request(
-            template_url=self.get_dot_syntax.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2587,7 +2543,6 @@ class PolymorphismOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_polymorphism_get_composed_with_discriminator_request(
-            template_url=self.get_composed_with_discriminator.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2661,7 +2616,6 @@ class PolymorphismOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_polymorphism_get_composed_without_discriminator_request(
-            template_url=self.get_composed_without_discriminator.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2725,7 +2679,6 @@ class PolymorphismOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_polymorphism_get_complicated_request(
-            template_url=self.get_complicated.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2801,7 +2754,6 @@ class PolymorphismOperations:
         request = build_polymorphism_put_complicated_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_complicated.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2888,7 +2840,6 @@ class PolymorphismOperations:
         request = build_polymorphism_put_missing_discriminator_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_missing_discriminator.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2981,7 +2932,6 @@ class PolymorphismOperations:
         request = build_polymorphism_put_valid_missing_required_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_valid_missing_required.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3047,7 +2997,6 @@ class PolymorphicrecursiveOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_polymorphicrecursive_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3165,7 +3114,6 @@ class PolymorphicrecursiveOperations:
         request = build_polymorphicrecursive_put_valid_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3227,7 +3175,6 @@ class ReadonlypropertyOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_readonlyproperty_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3287,7 +3234,6 @@ class ReadonlypropertyOperations:
         request = build_readonlyproperty_put_valid_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3352,7 +3298,6 @@ class FlattencomplexOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_flattencomplex_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )

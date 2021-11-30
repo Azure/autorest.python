@@ -86,7 +86,7 @@ def build_put200_succeeded_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/put/200/succeeded')
+    url = '/lro/put/200/succeeded'
 
     # Construct headers
     if content_type is not None:
@@ -163,7 +163,7 @@ def build_patch200_succeeded_ignore_headers_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/patch/200/succeeded/ignoreheaders')
+    url = '/lro/patch/200/succeeded/ignoreheaders'
 
     # Construct headers
     if content_type is not None:
@@ -240,7 +240,7 @@ def build_put201_succeeded_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/put/201/succeeded')
+    url = '/lro/put/201/succeeded'
 
     # Construct headers
     if content_type is not None:
@@ -296,7 +296,7 @@ def build_post202_list_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/list')
+    url = '/lro/list'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -371,7 +371,7 @@ def build_put200_succeeded_no_state_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/put/200/succeeded/nostate')
+    url = '/lro/put/200/succeeded/nostate'
 
     # Construct headers
     if content_type is not None:
@@ -449,7 +449,7 @@ def build_put202_retry200_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/put/202/retry/200')
+    url = '/lro/put/202/retry/200'
 
     # Construct headers
     if content_type is not None:
@@ -527,7 +527,7 @@ def build_put201_creating_succeeded200_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/put/201/creating/succeeded/200')
+    url = '/lro/put/201/creating/succeeded/200'
 
     # Construct headers
     if content_type is not None:
@@ -605,7 +605,7 @@ def build_put200_updating_succeeded204_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/put/200/updating/succeeded/200')
+    url = '/lro/put/200/updating/succeeded/200'
 
     # Construct headers
     if content_type is not None:
@@ -683,7 +683,7 @@ def build_put201_creating_failed200_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/put/201/created/failed/200')
+    url = '/lro/put/201/created/failed/200'
 
     # Construct headers
     if content_type is not None:
@@ -761,7 +761,7 @@ def build_put200_acceptedcanceled200_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/put/200/accepted/canceled/200')
+    url = '/lro/put/200/accepted/canceled/200'
 
     # Construct headers
     if content_type is not None:
@@ -838,7 +838,7 @@ def build_put_no_header_in_retry_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/put/noheader/202/200')
+    url = '/lro/put/noheader/202/200'
 
     # Construct headers
     if content_type is not None:
@@ -916,7 +916,7 @@ def build_put_async_retry_succeeded_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/putasync/retry/succeeded')
+    url = '/lro/putasync/retry/succeeded'
 
     # Construct headers
     if content_type is not None:
@@ -994,7 +994,7 @@ def build_put_async_no_retry_succeeded_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/putasync/noretry/succeeded')
+    url = '/lro/putasync/noretry/succeeded'
 
     # Construct headers
     if content_type is not None:
@@ -1072,7 +1072,7 @@ def build_put_async_retry_failed_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/putasync/retry/failed')
+    url = '/lro/putasync/retry/failed'
 
     # Construct headers
     if content_type is not None:
@@ -1150,7 +1150,7 @@ def build_put_async_no_retrycanceled_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/putasync/noretry/canceled')
+    url = '/lro/putasync/noretry/canceled'
 
     # Construct headers
     if content_type is not None:
@@ -1228,7 +1228,7 @@ def build_put_async_no_header_in_retry_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/putasync/noheader/201/200')
+    url = '/lro/putasync/noheader/201/200'
 
     # Construct headers
     if content_type is not None:
@@ -1286,7 +1286,7 @@ def build_put_non_resource_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/putnonresource/202/200')
+    url = '/lro/putnonresource/202/200'
 
     # Construct headers
     if content_type is not None:
@@ -1344,7 +1344,7 @@ def build_put_async_non_resource_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/putnonresourceasync/202/200')
+    url = '/lro/putnonresourceasync/202/200'
 
     # Construct headers
     if content_type is not None:
@@ -1408,7 +1408,7 @@ def build_put_sub_resource_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/putsubresource/202/200')
+    url = '/lro/putsubresource/202/200'
 
     # Construct headers
     if content_type is not None:
@@ -1472,7 +1472,7 @@ def build_put_async_sub_resource_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/putsubresourceasync/202/200')
+    url = '/lro/putsubresourceasync/202/200'
 
     # Construct headers
     if content_type is not None:
@@ -1527,7 +1527,7 @@ def build_delete_provisioning202_accepted200_succeeded_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/delete/provisioning/202/accepted/200/succeeded')
+    url = '/lro/delete/provisioning/202/accepted/200/succeeded'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -1580,7 +1580,7 @@ def build_delete_provisioning202_deleting_failed200_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/delete/provisioning/202/deleting/200/failed')
+    url = '/lro/delete/provisioning/202/deleting/200/failed'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -1633,7 +1633,7 @@ def build_delete_provisioning202_deletingcanceled200_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/delete/provisioning/202/deleting/200/canceled')
+    url = '/lro/delete/provisioning/202/deleting/200/canceled'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -1666,7 +1666,7 @@ def build_delete204_succeeded_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/delete/204/succeeded')
+    url = '/lro/delete/204/succeeded'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -1718,7 +1718,7 @@ def build_delete202_retry200_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/delete/202/retry/200')
+    url = '/lro/delete/202/retry/200'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -1770,7 +1770,7 @@ def build_delete202_no_retry204_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/delete/202/noretry/204')
+    url = '/lro/delete/202/noretry/204'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -1804,7 +1804,7 @@ def build_delete_no_header_in_retry_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/delete/noheader')
+    url = '/lro/delete/noheader'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -1838,7 +1838,7 @@ def build_delete_async_no_header_in_retry_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/deleteasync/noheader/202/204')
+    url = '/lro/deleteasync/noheader/202/204'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -1872,7 +1872,7 @@ def build_delete_async_retry_succeeded_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/deleteasync/retry/succeeded')
+    url = '/lro/deleteasync/retry/succeeded'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -1906,7 +1906,7 @@ def build_delete_async_no_retry_succeeded_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/deleteasync/noretry/succeeded')
+    url = '/lro/deleteasync/noretry/succeeded'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -1940,7 +1940,7 @@ def build_delete_async_retry_failed_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/deleteasync/retry/failed')
+    url = '/lro/deleteasync/retry/failed'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -1974,7 +1974,7 @@ def build_delete_async_retrycanceled_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/deleteasync/retry/canceled')
+    url = '/lro/deleteasync/retry/canceled'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -2017,7 +2017,7 @@ def build_post200_with_payload_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/post/payload/200')
+    url = '/lro/post/payload/200'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -2077,7 +2077,7 @@ def build_post202_retry200_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/post/202/retry/200')
+    url = '/lro/post/202/retry/200'
 
     # Construct headers
     if content_type is not None:
@@ -2154,7 +2154,7 @@ def build_post202_no_retry204_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/post/202/noretry/204')
+    url = '/lro/post/202/noretry/204'
 
     # Construct headers
     if content_type is not None:
@@ -2209,7 +2209,7 @@ def build_post_double_headers_final_location_get_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/LROPostDoubleHeadersFinalLocationGet')
+    url = '/lro/LROPostDoubleHeadersFinalLocationGet'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -2262,7 +2262,7 @@ def build_post_double_headers_final_azure_header_get_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/LROPostDoubleHeadersFinalAzureHeaderGet')
+    url = '/lro/LROPostDoubleHeadersFinalAzureHeaderGet'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -2315,7 +2315,7 @@ def build_post_double_headers_final_azure_header_get_default_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault')
+    url = '/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -2391,7 +2391,7 @@ def build_post_async_retry_succeeded_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/postasync/retry/succeeded')
+    url = '/lro/postasync/retry/succeeded'
 
     # Construct headers
     if content_type is not None:
@@ -2469,7 +2469,7 @@ def build_post_async_no_retry_succeeded_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/postasync/noretry/succeeded')
+    url = '/lro/postasync/noretry/succeeded'
 
     # Construct headers
     if content_type is not None:
@@ -2532,7 +2532,7 @@ def build_post_async_retry_failed_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/postasync/retry/failed')
+    url = '/lro/postasync/retry/failed'
 
     # Construct headers
     if content_type is not None:
@@ -2595,7 +2595,7 @@ def build_post_async_retrycanceled_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/postasync/retry/canceled')
+    url = '/lro/postasync/retry/canceled'
 
     # Construct headers
     if content_type is not None:

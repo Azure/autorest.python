@@ -45,7 +45,7 @@ def build_get_valid_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/basic/valid")
+    url = "/complex/basic/valid"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -93,7 +93,7 @@ def build_put_valid_request(*, json: JSONType = None, content: Any = None, **kwa
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/basic/valid")
+    url = "/complex/basic/valid"
 
     # Construct parameters
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
@@ -133,7 +133,7 @@ def build_get_invalid_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/basic/invalid")
+    url = "/complex/basic/invalid"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -168,7 +168,7 @@ def build_get_empty_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/basic/empty")
+    url = "/complex/basic/empty"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -203,7 +203,7 @@ def build_get_null_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/basic/null")
+    url = "/complex/basic/null"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -238,7 +238,7 @@ def build_get_not_provided_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/basic/notprovided")
+    url = "/complex/basic/notprovided"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")

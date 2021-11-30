@@ -48,7 +48,7 @@ def build_get_report_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/report/azure')
+    url = '/report/azure'
 
     # Construct parameters
     if qualifier is not None:
@@ -101,7 +101,6 @@ class AutoRestReportServiceForAzureOperationsMixin(object):
 
         request = build_get_report_request(
             qualifier=qualifier,
-            template_url=self.get_report.metadata["url"],
             headers=_headers,
             params=_params,
         )

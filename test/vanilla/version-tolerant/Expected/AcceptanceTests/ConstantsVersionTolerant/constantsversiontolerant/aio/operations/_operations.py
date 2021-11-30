@@ -87,7 +87,6 @@ class ContantsOperations:
 
         request = build_contants_put_no_model_as_string_no_required_two_value_no_default_request(
             input=input,
-            template_url=self.put_no_model_as_string_no_required_two_value_no_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -128,7 +127,6 @@ class ContantsOperations:
 
         request = build_contants_put_no_model_as_string_no_required_two_value_default_request(
             input=input,
-            template_url=self.put_no_model_as_string_no_required_two_value_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -169,7 +167,6 @@ class ContantsOperations:
 
         request = build_contants_put_no_model_as_string_no_required_one_value_no_default_request(
             input=input,
-            template_url=self.put_no_model_as_string_no_required_one_value_no_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -210,7 +207,6 @@ class ContantsOperations:
 
         request = build_contants_put_no_model_as_string_no_required_one_value_default_request(
             input=input,
-            template_url=self.put_no_model_as_string_no_required_one_value_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -249,7 +245,6 @@ class ContantsOperations:
 
         request = build_contants_put_no_model_as_string_required_two_value_no_default_request(
             input=input,
-            template_url=self.put_no_model_as_string_required_two_value_no_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -288,7 +283,6 @@ class ContantsOperations:
 
         request = build_contants_put_no_model_as_string_required_two_value_default_request(
             input=input,
-            template_url=self.put_no_model_as_string_required_two_value_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -330,7 +324,6 @@ class ContantsOperations:
 
         request = build_contants_put_no_model_as_string_required_one_value_no_default_request(
             input=input,
-            template_url=self.put_no_model_as_string_required_one_value_no_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -372,7 +365,6 @@ class ContantsOperations:
 
         request = build_contants_put_no_model_as_string_required_one_value_default_request(
             input=input,
-            template_url=self.put_no_model_as_string_required_one_value_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -413,7 +405,6 @@ class ContantsOperations:
 
         request = build_contants_put_model_as_string_no_required_two_value_no_default_request(
             input=input,
-            template_url=self.put_model_as_string_no_required_two_value_no_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -454,7 +445,6 @@ class ContantsOperations:
 
         request = build_contants_put_model_as_string_no_required_two_value_default_request(
             input=input,
-            template_url=self.put_model_as_string_no_required_two_value_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -495,7 +485,6 @@ class ContantsOperations:
 
         request = build_contants_put_model_as_string_no_required_one_value_no_default_request(
             input=input,
-            template_url=self.put_model_as_string_no_required_one_value_no_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -536,7 +525,6 @@ class ContantsOperations:
 
         request = build_contants_put_model_as_string_no_required_one_value_default_request(
             input=input,
-            template_url=self.put_model_as_string_no_required_one_value_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -575,7 +563,6 @@ class ContantsOperations:
 
         request = build_contants_put_model_as_string_required_two_value_no_default_request(
             input=input,
-            template_url=self.put_model_as_string_required_two_value_no_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -614,7 +601,6 @@ class ContantsOperations:
 
         request = build_contants_put_model_as_string_required_two_value_default_request(
             input=input,
-            template_url=self.put_model_as_string_required_two_value_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -653,7 +639,6 @@ class ContantsOperations:
 
         request = build_contants_put_model_as_string_required_one_value_no_default_request(
             input=input,
-            template_url=self.put_model_as_string_required_one_value_no_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -692,7 +677,6 @@ class ContantsOperations:
 
         request = build_contants_put_model_as_string_required_one_value_default_request(
             input=input,
-            template_url=self.put_model_as_string_required_one_value_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -730,7 +714,6 @@ class ContantsOperations:
             header_constant=self._config.header_constant,
             query_constant=self._config.query_constant,
             path_constant=self._config.path_constant,
-            template_url=self.put_client_constants.metadata["url"],
             headers=_headers,
             params=_params,
         )

@@ -43,7 +43,7 @@ def build_paths_get_empty_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/customuri')
+    url = '/customuri'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -97,7 +97,6 @@ class PathsOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_paths_get_empty_request(
-            template_url=self.get_empty.metadata["url"],
             headers=_headers,
             params=_params,
         )

@@ -49,7 +49,7 @@ def build_params_get_required_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/servicedriven/parameters')
+    url = '/servicedriven/parameters'
 
     # Construct parameters
     _params['parameter'] = _SERIALIZER.query("parameter", parameter, 'str')
@@ -79,7 +79,7 @@ def build_params_post_parameters_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/servicedriven/parameters')
+    url = '/servicedriven/parameters'
 
     # Construct headers
     if content_type is not None:
@@ -99,7 +99,7 @@ def build_params_delete_parameters_request(
 ):
     # type: (...) -> HttpRequest
     # Construct URL
-    url = kwargs.pop("template_url", '/servicedriven/parameters')
+    url = '/servicedriven/parameters'
 
     return HttpRequest(
         method="DELETE",
@@ -117,7 +117,7 @@ def build_params_get_new_operation_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/servicedriven/newpath')
+    url = '/servicedriven/newpath'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -178,7 +178,6 @@ class ParamsOperations(object):
         request = build_params_get_required_request(
             parameter=parameter,
             new_parameter=new_parameter,
-            template_url=self.get_required.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -248,7 +247,6 @@ class ParamsOperations(object):
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.post_parameters.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -292,7 +290,6 @@ class ParamsOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_params_delete_parameters_request(
-            template_url=self.delete_parameters.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -329,7 +326,6 @@ class ParamsOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_params_get_new_operation_request(
-            template_url=self.get_new_operation.metadata["url"],
             headers=_headers,
             params=_params,
         )

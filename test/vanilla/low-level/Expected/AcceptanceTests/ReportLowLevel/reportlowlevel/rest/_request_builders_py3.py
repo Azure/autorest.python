@@ -46,7 +46,7 @@ def build_get_report_request(*, qualifier: Optional[str] = None, **kwargs: Any) 
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/report")
+    url = "/report"
 
     # Construct parameters
     if qualifier is not None:
@@ -88,7 +88,7 @@ def build_get_optional_report_request(*, qualifier: Optional[str] = None, **kwar
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/report/optional")
+    url = "/report/optional"
 
     # Construct parameters
     if qualifier is not None:

@@ -44,7 +44,7 @@ def build_head200_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/200')
+    url = '/http/success/200'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -77,7 +77,7 @@ def build_get200_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/200')
+    url = '/http/success/200'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -110,7 +110,7 @@ def build_options200_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/200')
+    url = '/http/success/200'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -157,7 +157,7 @@ def build_put200_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/200')
+    url = '/http/success/200'
 
     # Construct headers
     if content_type is not None:
@@ -206,7 +206,7 @@ def build_patch200_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/200')
+    url = '/http/success/200'
 
     # Construct headers
     if content_type is not None:
@@ -255,7 +255,7 @@ def build_post200_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/200')
+    url = '/http/success/200'
 
     # Construct headers
     if content_type is not None:
@@ -304,7 +304,7 @@ def build_delete200_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/200')
+    url = '/http/success/200'
 
     # Construct headers
     if content_type is not None:
@@ -353,7 +353,7 @@ def build_put201_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/201')
+    url = '/http/success/201'
 
     # Construct headers
     if content_type is not None:
@@ -402,7 +402,7 @@ def build_post201_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/201')
+    url = '/http/success/201'
 
     # Construct headers
     if content_type is not None:
@@ -451,7 +451,7 @@ def build_put202_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/202')
+    url = '/http/success/202'
 
     # Construct headers
     if content_type is not None:
@@ -500,7 +500,7 @@ def build_patch202_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/202')
+    url = '/http/success/202'
 
     # Construct headers
     if content_type is not None:
@@ -549,7 +549,7 @@ def build_post202_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/202')
+    url = '/http/success/202'
 
     # Construct headers
     if content_type is not None:
@@ -598,7 +598,7 @@ def build_delete202_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/202')
+    url = '/http/success/202'
 
     # Construct headers
     if content_type is not None:
@@ -633,7 +633,7 @@ def build_head204_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/204')
+    url = '/http/success/204'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -680,7 +680,7 @@ def build_put204_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/204')
+    url = '/http/success/204'
 
     # Construct headers
     if content_type is not None:
@@ -729,7 +729,7 @@ def build_patch204_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/204')
+    url = '/http/success/204'
 
     # Construct headers
     if content_type is not None:
@@ -778,7 +778,7 @@ def build_post204_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/204')
+    url = '/http/success/204'
 
     # Construct headers
     if content_type is not None:
@@ -827,7 +827,7 @@ def build_delete204_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/204')
+    url = '/http/success/204'
 
     # Construct headers
     if content_type is not None:
@@ -862,7 +862,7 @@ def build_head404_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/404')
+    url = '/http/success/404'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')

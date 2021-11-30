@@ -50,7 +50,7 @@ def build_put_request(*, json: JSONType = None, content: Any = None, **kwargs: A
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/nonStringEnums/int/put")
+    url = "/nonStringEnums/int/put"
 
     # Construct headers
     if content_type is not None:
@@ -83,7 +83,7 @@ def build_get_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/nonStringEnums/int/get")
+    url = "/nonStringEnums/int/get"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")

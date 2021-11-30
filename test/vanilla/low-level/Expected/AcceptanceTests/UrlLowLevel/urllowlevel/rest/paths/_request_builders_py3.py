@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List
 
 from azure.core.rest import HttpRequest
 from msrest import Serializer
@@ -38,7 +38,7 @@ def build_get_boolean_true_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/paths/bool/true/{boolPath}")
+    url = "/paths/bool/true/{boolPath}"
     path_format_arguments = {
         "boolPath": _SERIALIZER.url("bool_path", bool_path, "bool"),
     }
@@ -73,7 +73,7 @@ def build_get_boolean_false_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/paths/bool/false/{boolPath}")
+    url = "/paths/bool/false/{boolPath}"
     path_format_arguments = {
         "boolPath": _SERIALIZER.url("bool_path", bool_path, "bool"),
     }
@@ -108,7 +108,7 @@ def build_get_int_one_million_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/paths/int/1000000/{intPath}")
+    url = "/paths/int/1000000/{intPath}"
     path_format_arguments = {
         "intPath": _SERIALIZER.url("int_path", int_path, "int"),
     }
@@ -143,7 +143,7 @@ def build_get_int_negative_one_million_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/paths/int/-1000000/{intPath}")
+    url = "/paths/int/-1000000/{intPath}"
     path_format_arguments = {
         "intPath": _SERIALIZER.url("int_path", int_path, "int"),
     }
@@ -178,7 +178,7 @@ def build_get_ten_billion_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/paths/long/10000000000/{longPath}")
+    url = "/paths/long/10000000000/{longPath}"
     path_format_arguments = {
         "longPath": _SERIALIZER.url("long_path", long_path, "long"),
     }
@@ -213,7 +213,7 @@ def build_get_negative_ten_billion_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/paths/long/-10000000000/{longPath}")
+    url = "/paths/long/-10000000000/{longPath}"
     path_format_arguments = {
         "longPath": _SERIALIZER.url("long_path", long_path, "long"),
     }
@@ -248,7 +248,7 @@ def build_float_scientific_positive_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/paths/float/1.034E+20/{floatPath}")
+    url = "/paths/float/1.034E+20/{floatPath}"
     path_format_arguments = {
         "floatPath": _SERIALIZER.url("float_path", float_path, "float"),
     }
@@ -283,7 +283,7 @@ def build_float_scientific_negative_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/paths/float/-1.034E-20/{floatPath}")
+    url = "/paths/float/-1.034E-20/{floatPath}"
     path_format_arguments = {
         "floatPath": _SERIALIZER.url("float_path", float_path, "float"),
     }
@@ -318,7 +318,7 @@ def build_double_decimal_positive_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/paths/double/9999999.999/{doublePath}")
+    url = "/paths/double/9999999.999/{doublePath}"
     path_format_arguments = {
         "doublePath": _SERIALIZER.url("double_path", double_path, "float"),
     }
@@ -353,7 +353,7 @@ def build_double_decimal_negative_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/paths/double/-9999999.999/{doublePath}")
+    url = "/paths/double/-9999999.999/{doublePath}"
     path_format_arguments = {
         "doublePath": _SERIALIZER.url("double_path", double_path, "float"),
     }
@@ -388,7 +388,7 @@ def build_string_unicode_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/paths/string/unicode/{stringPath}")
+    url = "/paths/string/unicode/{stringPath}"
     path_format_arguments = {
         "stringPath": _SERIALIZER.url("string_path", string_path, "str"),
     }
@@ -424,9 +424,7 @@ def build_string_url_encoded_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop(
-        "template_url", "/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}"
-    )
+    url = "/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}"
     path_format_arguments = {
         "stringPath": _SERIALIZER.url("string_path", string_path, "str"),
     }
@@ -464,7 +462,7 @@ def build_string_url_non_encoded_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/paths/string/begin!*'();:@&=+$,end/{stringPath}")
+    url = "/paths/string/begin!*'();:@&=+$,end/{stringPath}"
     path_format_arguments = {
         "stringPath": _SERIALIZER.url("string_path", string_path, "str", skip_quote=True),
     }
@@ -499,7 +497,7 @@ def build_string_empty_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/paths/string/empty/{stringPath}")
+    url = "/paths/string/empty/{stringPath}"
     path_format_arguments = {
         "stringPath": _SERIALIZER.url("string_path", string_path, "str"),
     }
@@ -531,7 +529,7 @@ def build_string_null_request(string_path: str, **kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/paths/string/null/{stringPath}")
+    url = "/paths/string/null/{stringPath}"
     path_format_arguments = {
         "stringPath": _SERIALIZER.url("string_path", string_path, "str"),
     }
@@ -564,7 +562,7 @@ def build_enum_valid_request(enum_path: str, **kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/paths/enum/green%20color/{enumPath}")
+    url = "/paths/enum/green%20color/{enumPath}"
     path_format_arguments = {
         "enumPath": _SERIALIZER.url("enum_path", enum_path, "str"),
     }
@@ -597,7 +595,7 @@ def build_enum_null_request(enum_path: str, **kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/paths/string/null/{enumPath}")
+    url = "/paths/string/null/{enumPath}"
     path_format_arguments = {
         "enumPath": _SERIALIZER.url("enum_path", enum_path, "str"),
     }
@@ -629,7 +627,7 @@ def build_byte_multi_byte_request(byte_path: bytearray, **kwargs: Any) -> HttpRe
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/paths/byte/multibyte/{bytePath}")
+    url = "/paths/byte/multibyte/{bytePath}"
     path_format_arguments = {
         "bytePath": _SERIALIZER.url("byte_path", byte_path, "bytearray"),
     }
@@ -664,7 +662,7 @@ def build_byte_empty_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/paths/byte/empty/{bytePath}")
+    url = "/paths/byte/empty/{bytePath}"
     path_format_arguments = {
         "bytePath": _SERIALIZER.url("byte_path", byte_path, "bytearray"),
     }
@@ -696,7 +694,7 @@ def build_byte_null_request(byte_path: bytearray, **kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/paths/byte/null/{bytePath}")
+    url = "/paths/byte/null/{bytePath}"
     path_format_arguments = {
         "bytePath": _SERIALIZER.url("byte_path", byte_path, "bytearray"),
     }
@@ -731,7 +729,7 @@ def build_date_valid_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/paths/date/2012-01-01/{datePath}")
+    url = "/paths/date/2012-01-01/{datePath}"
     path_format_arguments = {
         "datePath": _SERIALIZER.url("date_path", date_path, "date"),
     }
@@ -764,7 +762,7 @@ def build_date_null_request(date_path: datetime.date, **kwargs: Any) -> HttpRequ
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/paths/date/null/{datePath}")
+    url = "/paths/date/null/{datePath}"
     path_format_arguments = {
         "datePath": _SERIALIZER.url("date_path", date_path, "date"),
     }
@@ -800,7 +798,7 @@ def build_date_time_valid_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}")
+    url = "/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}"
     path_format_arguments = {
         "dateTimePath": _SERIALIZER.url("date_time_path", date_time_path, "iso-8601"),
     }
@@ -832,7 +830,7 @@ def build_date_time_null_request(date_time_path: datetime.datetime, **kwargs: An
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/paths/datetime/null/{dateTimePath}")
+    url = "/paths/datetime/null/{dateTimePath}"
     path_format_arguments = {
         "dateTimePath": _SERIALIZER.url("date_time_path", date_time_path, "iso-8601"),
     }
@@ -864,7 +862,7 @@ def build_base64_url_request(base64_url_path: bytes, **kwargs: Any) -> HttpReque
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/paths/string/bG9yZW0/{base64UrlPath}")
+    url = "/paths/string/bG9yZW0/{base64UrlPath}"
     path_format_arguments = {
         "base64UrlPath": _SERIALIZER.url("base64_url_path", base64_url_path, "base64"),
     }
@@ -898,9 +896,8 @@ def build_array_csv_in_path_request(array_path: List[str], **kwargs: Any) -> Htt
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop(
-        "template_url",
-        "/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}",
+    url = (
+        "/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}"
     )
     path_format_arguments = {
         "arrayPath": _SERIALIZER.url("array_path", array_path, "[str]", div=","),
@@ -933,7 +930,7 @@ def build_unix_time_url_request(unix_time_url_path: datetime.datetime, **kwargs:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/paths/int/1460505600/{unixTimeUrlPath}")
+    url = "/paths/int/1460505600/{unixTimeUrlPath}"
     path_format_arguments = {
         "unixTimeUrlPath": _SERIALIZER.url("unix_time_url_path", unix_time_url_path, "unix-time"),
     }

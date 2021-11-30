@@ -51,7 +51,7 @@ def build_lros_put200_succeeded_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/put/200/succeeded')
+    url = '/lro/put/200/succeeded'
 
     # Construct headers
     if content_type is not None:
@@ -77,7 +77,7 @@ def build_lros_patch200_succeeded_ignore_headers_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/patch/200/succeeded/ignoreheaders')
+    url = '/lro/patch/200/succeeded/ignoreheaders'
 
     # Construct headers
     if content_type is not None:
@@ -103,7 +103,7 @@ def build_lros_put201_succeeded_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/put/201/succeeded')
+    url = '/lro/put/201/succeeded'
 
     # Construct headers
     if content_type is not None:
@@ -127,7 +127,7 @@ def build_lros_post202_list_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/list')
+    url = '/lro/list'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -151,7 +151,7 @@ def build_lros_put200_succeeded_no_state_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/put/200/succeeded/nostate')
+    url = '/lro/put/200/succeeded/nostate'
 
     # Construct headers
     if content_type is not None:
@@ -177,7 +177,7 @@ def build_lros_put202_retry200_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/put/202/retry/200')
+    url = '/lro/put/202/retry/200'
 
     # Construct headers
     if content_type is not None:
@@ -203,7 +203,7 @@ def build_lros_put201_creating_succeeded200_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/put/201/creating/succeeded/200')
+    url = '/lro/put/201/creating/succeeded/200'
 
     # Construct headers
     if content_type is not None:
@@ -229,7 +229,7 @@ def build_lros_put200_updating_succeeded204_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/put/200/updating/succeeded/200')
+    url = '/lro/put/200/updating/succeeded/200'
 
     # Construct headers
     if content_type is not None:
@@ -255,7 +255,7 @@ def build_lros_put201_creating_failed200_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/put/201/created/failed/200')
+    url = '/lro/put/201/created/failed/200'
 
     # Construct headers
     if content_type is not None:
@@ -281,7 +281,7 @@ def build_lros_put200_acceptedcanceled200_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/put/200/accepted/canceled/200')
+    url = '/lro/put/200/accepted/canceled/200'
 
     # Construct headers
     if content_type is not None:
@@ -307,7 +307,7 @@ def build_lros_put_no_header_in_retry_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/put/noheader/202/200')
+    url = '/lro/put/noheader/202/200'
 
     # Construct headers
     if content_type is not None:
@@ -333,7 +333,7 @@ def build_lros_put_async_retry_succeeded_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/putasync/retry/succeeded')
+    url = '/lro/putasync/retry/succeeded'
 
     # Construct headers
     if content_type is not None:
@@ -359,7 +359,7 @@ def build_lros_put_async_no_retry_succeeded_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/putasync/noretry/succeeded')
+    url = '/lro/putasync/noretry/succeeded'
 
     # Construct headers
     if content_type is not None:
@@ -385,7 +385,7 @@ def build_lros_put_async_retry_failed_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/putasync/retry/failed')
+    url = '/lro/putasync/retry/failed'
 
     # Construct headers
     if content_type is not None:
@@ -411,7 +411,7 @@ def build_lros_put_async_no_retrycanceled_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/putasync/noretry/canceled')
+    url = '/lro/putasync/noretry/canceled'
 
     # Construct headers
     if content_type is not None:
@@ -437,7 +437,7 @@ def build_lros_put_async_no_header_in_retry_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/putasync/noheader/201/200')
+    url = '/lro/putasync/noheader/201/200'
 
     # Construct headers
     if content_type is not None:
@@ -463,7 +463,7 @@ def build_lros_put_non_resource_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/putnonresource/202/200')
+    url = '/lro/putnonresource/202/200'
 
     # Construct headers
     if content_type is not None:
@@ -489,7 +489,7 @@ def build_lros_put_async_non_resource_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/putnonresourceasync/202/200')
+    url = '/lro/putnonresourceasync/202/200'
 
     # Construct headers
     if content_type is not None:
@@ -515,7 +515,7 @@ def build_lros_put_sub_resource_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/putsubresource/202/200')
+    url = '/lro/putsubresource/202/200'
 
     # Construct headers
     if content_type is not None:
@@ -541,7 +541,7 @@ def build_lros_put_async_sub_resource_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/putsubresourceasync/202/200')
+    url = '/lro/putsubresourceasync/202/200'
 
     # Construct headers
     if content_type is not None:
@@ -565,7 +565,7 @@ def build_lros_delete_provisioning202_accepted200_succeeded_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/delete/provisioning/202/accepted/200/succeeded')
+    url = '/lro/delete/provisioning/202/accepted/200/succeeded'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -587,7 +587,7 @@ def build_lros_delete_provisioning202_deleting_failed200_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/delete/provisioning/202/deleting/200/failed')
+    url = '/lro/delete/provisioning/202/deleting/200/failed'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -609,7 +609,7 @@ def build_lros_delete_provisioning202_deletingcanceled200_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/delete/provisioning/202/deleting/200/canceled')
+    url = '/lro/delete/provisioning/202/deleting/200/canceled'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -631,7 +631,7 @@ def build_lros_delete204_succeeded_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/delete/204/succeeded')
+    url = '/lro/delete/204/succeeded'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -653,7 +653,7 @@ def build_lros_delete202_retry200_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/delete/202/retry/200')
+    url = '/lro/delete/202/retry/200'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -675,7 +675,7 @@ def build_lros_delete202_no_retry204_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/delete/202/noretry/204')
+    url = '/lro/delete/202/noretry/204'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -697,7 +697,7 @@ def build_lros_delete_no_header_in_retry_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/delete/noheader')
+    url = '/lro/delete/noheader'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -719,7 +719,7 @@ def build_lros_delete_async_no_header_in_retry_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/deleteasync/noheader/202/204')
+    url = '/lro/deleteasync/noheader/202/204'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -741,7 +741,7 @@ def build_lros_delete_async_retry_succeeded_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/deleteasync/retry/succeeded')
+    url = '/lro/deleteasync/retry/succeeded'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -763,7 +763,7 @@ def build_lros_delete_async_no_retry_succeeded_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/deleteasync/noretry/succeeded')
+    url = '/lro/deleteasync/noretry/succeeded'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -785,7 +785,7 @@ def build_lros_delete_async_retry_failed_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/deleteasync/retry/failed')
+    url = '/lro/deleteasync/retry/failed'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -807,7 +807,7 @@ def build_lros_delete_async_retrycanceled_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/deleteasync/retry/canceled')
+    url = '/lro/deleteasync/retry/canceled'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -829,7 +829,7 @@ def build_lros_post200_with_payload_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/post/payload/200')
+    url = '/lro/post/payload/200'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -853,7 +853,7 @@ def build_lros_post202_retry200_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/post/202/retry/200')
+    url = '/lro/post/202/retry/200'
 
     # Construct headers
     if content_type is not None:
@@ -879,7 +879,7 @@ def build_lros_post202_no_retry204_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/post/202/noretry/204')
+    url = '/lro/post/202/noretry/204'
 
     # Construct headers
     if content_type is not None:
@@ -903,7 +903,7 @@ def build_lros_post_double_headers_final_location_get_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/LROPostDoubleHeadersFinalLocationGet')
+    url = '/lro/LROPostDoubleHeadersFinalLocationGet'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -925,7 +925,7 @@ def build_lros_post_double_headers_final_azure_header_get_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/LROPostDoubleHeadersFinalAzureHeaderGet')
+    url = '/lro/LROPostDoubleHeadersFinalAzureHeaderGet'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -947,7 +947,7 @@ def build_lros_post_double_headers_final_azure_header_get_default_request_initia
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault')
+    url = '/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -971,7 +971,7 @@ def build_lros_post_async_retry_succeeded_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/postasync/retry/succeeded')
+    url = '/lro/postasync/retry/succeeded'
 
     # Construct headers
     if content_type is not None:
@@ -997,7 +997,7 @@ def build_lros_post_async_no_retry_succeeded_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/postasync/noretry/succeeded')
+    url = '/lro/postasync/noretry/succeeded'
 
     # Construct headers
     if content_type is not None:
@@ -1023,7 +1023,7 @@ def build_lros_post_async_retry_failed_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/postasync/retry/failed')
+    url = '/lro/postasync/retry/failed'
 
     # Construct headers
     if content_type is not None:
@@ -1049,7 +1049,7 @@ def build_lros_post_async_retrycanceled_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/postasync/retry/canceled')
+    url = '/lro/postasync/retry/canceled'
 
     # Construct headers
     if content_type is not None:
@@ -1075,7 +1075,7 @@ def build_lro_retrys_put201_creating_succeeded200_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/retryerror/put/201/creating/succeeded/200')
+    url = '/lro/retryerror/put/201/creating/succeeded/200'
 
     # Construct headers
     if content_type is not None:
@@ -1101,7 +1101,7 @@ def build_lro_retrys_put_async_relative_retry_succeeded_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/retryerror/putasync/retry/succeeded')
+    url = '/lro/retryerror/putasync/retry/succeeded'
 
     # Construct headers
     if content_type is not None:
@@ -1125,7 +1125,7 @@ def build_lro_retrys_delete_provisioning202_accepted200_succeeded_request_initia
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/retryerror/delete/provisioning/202/accepted/200/succeeded')
+    url = '/lro/retryerror/delete/provisioning/202/accepted/200/succeeded'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -1147,7 +1147,7 @@ def build_lro_retrys_delete202_retry200_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/retryerror/delete/202/retry/200')
+    url = '/lro/retryerror/delete/202/retry/200'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -1169,7 +1169,7 @@ def build_lro_retrys_delete_async_relative_retry_succeeded_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/retryerror/deleteasync/retry/succeeded')
+    url = '/lro/retryerror/deleteasync/retry/succeeded'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -1193,7 +1193,7 @@ def build_lro_retrys_post202_retry200_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/retryerror/post/202/retry/200')
+    url = '/lro/retryerror/post/202/retry/200'
 
     # Construct headers
     if content_type is not None:
@@ -1219,7 +1219,7 @@ def build_lro_retrys_post_async_relative_retry_succeeded_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/retryerror/postasync/retry/succeeded')
+    url = '/lro/retryerror/postasync/retry/succeeded'
 
     # Construct headers
     if content_type is not None:
@@ -1245,7 +1245,7 @@ def build_lrosads_put_non_retry400_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/nonretryerror/put/400')
+    url = '/lro/nonretryerror/put/400'
 
     # Construct headers
     if content_type is not None:
@@ -1271,7 +1271,7 @@ def build_lrosads_put_non_retry201_creating400_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/nonretryerror/put/201/creating/400')
+    url = '/lro/nonretryerror/put/201/creating/400'
 
     # Construct headers
     if content_type is not None:
@@ -1297,7 +1297,7 @@ def build_lrosads_put_non_retry201_creating400_invalid_json_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/nonretryerror/put/201/creating/400/invalidjson')
+    url = '/lro/nonretryerror/put/201/creating/400/invalidjson'
 
     # Construct headers
     if content_type is not None:
@@ -1323,7 +1323,7 @@ def build_lrosads_put_async_relative_retry400_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/nonretryerror/putasync/retry/400')
+    url = '/lro/nonretryerror/putasync/retry/400'
 
     # Construct headers
     if content_type is not None:
@@ -1347,7 +1347,7 @@ def build_lrosads_delete_non_retry400_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/nonretryerror/delete/400')
+    url = '/lro/nonretryerror/delete/400'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -1369,7 +1369,7 @@ def build_lrosads_delete202_non_retry400_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/nonretryerror/delete/202/retry/400')
+    url = '/lro/nonretryerror/delete/202/retry/400'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -1391,7 +1391,7 @@ def build_lrosads_delete_async_relative_retry400_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/nonretryerror/deleteasync/retry/400')
+    url = '/lro/nonretryerror/deleteasync/retry/400'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -1415,7 +1415,7 @@ def build_lrosads_post_non_retry400_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/nonretryerror/post/400')
+    url = '/lro/nonretryerror/post/400'
 
     # Construct headers
     if content_type is not None:
@@ -1441,7 +1441,7 @@ def build_lrosads_post202_non_retry400_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/nonretryerror/post/202/retry/400')
+    url = '/lro/nonretryerror/post/202/retry/400'
 
     # Construct headers
     if content_type is not None:
@@ -1467,7 +1467,7 @@ def build_lrosads_post_async_relative_retry400_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/nonretryerror/postasync/retry/400')
+    url = '/lro/nonretryerror/postasync/retry/400'
 
     # Construct headers
     if content_type is not None:
@@ -1493,7 +1493,7 @@ def build_lrosads_put_error201_no_provisioning_state_payload_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/error/put/201/noprovisioningstatepayload')
+    url = '/lro/error/put/201/noprovisioningstatepayload'
 
     # Construct headers
     if content_type is not None:
@@ -1519,7 +1519,7 @@ def build_lrosads_put_async_relative_retry_no_status_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/error/putasync/retry/nostatus')
+    url = '/lro/error/putasync/retry/nostatus'
 
     # Construct headers
     if content_type is not None:
@@ -1545,7 +1545,7 @@ def build_lrosads_put_async_relative_retry_no_status_payload_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/error/putasync/retry/nostatuspayload')
+    url = '/lro/error/putasync/retry/nostatuspayload'
 
     # Construct headers
     if content_type is not None:
@@ -1569,7 +1569,7 @@ def build_lrosads_delete204_succeeded_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/error/delete/204/nolocation')
+    url = '/lro/error/delete/204/nolocation'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -1591,7 +1591,7 @@ def build_lrosads_delete_async_relative_retry_no_status_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/error/deleteasync/retry/nostatus')
+    url = '/lro/error/deleteasync/retry/nostatus'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -1615,7 +1615,7 @@ def build_lrosads_post202_no_location_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/error/post/202/nolocation')
+    url = '/lro/error/post/202/nolocation'
 
     # Construct headers
     if content_type is not None:
@@ -1641,7 +1641,7 @@ def build_lrosads_post_async_relative_retry_no_payload_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/error/postasync/retry/nopayload')
+    url = '/lro/error/postasync/retry/nopayload'
 
     # Construct headers
     if content_type is not None:
@@ -1667,7 +1667,7 @@ def build_lrosads_put200_invalid_json_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/error/put/200/invalidjson')
+    url = '/lro/error/put/200/invalidjson'
 
     # Construct headers
     if content_type is not None:
@@ -1693,7 +1693,7 @@ def build_lrosads_put_async_relative_retry_invalid_header_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/error/putasync/retry/invalidheader')
+    url = '/lro/error/putasync/retry/invalidheader'
 
     # Construct headers
     if content_type is not None:
@@ -1719,7 +1719,7 @@ def build_lrosads_put_async_relative_retry_invalid_json_polling_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/error/putasync/retry/invalidjsonpolling')
+    url = '/lro/error/putasync/retry/invalidjsonpolling'
 
     # Construct headers
     if content_type is not None:
@@ -1743,7 +1743,7 @@ def build_lrosads_delete202_retry_invalid_header_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/error/delete/202/retry/invalidheader')
+    url = '/lro/error/delete/202/retry/invalidheader'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -1765,7 +1765,7 @@ def build_lrosads_delete_async_relative_retry_invalid_header_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/error/deleteasync/retry/invalidheader')
+    url = '/lro/error/deleteasync/retry/invalidheader'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -1787,7 +1787,7 @@ def build_lrosads_delete_async_relative_retry_invalid_json_polling_request_initi
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/error/deleteasync/retry/invalidjsonpolling')
+    url = '/lro/error/deleteasync/retry/invalidjsonpolling'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -1811,7 +1811,7 @@ def build_lrosads_post202_retry_invalid_header_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/error/post/202/retry/invalidheader')
+    url = '/lro/error/post/202/retry/invalidheader'
 
     # Construct headers
     if content_type is not None:
@@ -1837,7 +1837,7 @@ def build_lrosads_post_async_relative_retry_invalid_header_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/error/postasync/retry/invalidheader')
+    url = '/lro/error/postasync/retry/invalidheader'
 
     # Construct headers
     if content_type is not None:
@@ -1863,7 +1863,7 @@ def build_lrosads_post_async_relative_retry_invalid_json_polling_request_initial
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/error/postasync/retry/invalidjsonpolling')
+    url = '/lro/error/postasync/retry/invalidjsonpolling'
 
     # Construct headers
     if content_type is not None:
@@ -1889,7 +1889,7 @@ def build_lr_os_custom_header_put_async_retry_succeeded_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/customheader/putasync/retry/succeeded')
+    url = '/lro/customheader/putasync/retry/succeeded'
 
     # Construct headers
     if content_type is not None:
@@ -1915,7 +1915,7 @@ def build_lr_os_custom_header_put201_creating_succeeded200_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/customheader/put/201/creating/succeeded/200')
+    url = '/lro/customheader/put/201/creating/succeeded/200'
 
     # Construct headers
     if content_type is not None:
@@ -1941,7 +1941,7 @@ def build_lr_os_custom_header_post202_retry200_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/customheader/post/202/retry/200')
+    url = '/lro/customheader/post/202/retry/200'
 
     # Construct headers
     if content_type is not None:
@@ -1967,7 +1967,7 @@ def build_lr_os_custom_header_post_async_retry_succeeded_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lro/customheader/postasync/retry/succeeded')
+    url = '/lro/customheader/postasync/retry/succeeded'
 
     # Construct headers
     if content_type is not None:
@@ -2025,7 +2025,6 @@ class LROsOperations(object):
         request = build_lros_put200_succeeded_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._put200_succeeded_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2174,7 +2173,6 @@ class LROsOperations(object):
         request = build_lros_patch200_succeeded_ignore_headers_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._patch200_succeeded_ignore_headers_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2331,7 +2329,6 @@ class LROsOperations(object):
         request = build_lros_put201_succeeded_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._put201_succeeded_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2465,7 +2462,6 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_lros_post202_list_request_initial(
-            template_url=self._post202_list_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2599,7 +2595,6 @@ class LROsOperations(object):
         request = build_lros_put200_succeeded_no_state_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._put200_succeeded_no_state_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2746,7 +2741,6 @@ class LROsOperations(object):
         request = build_lros_put202_retry200_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._put202_retry200_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2894,7 +2888,6 @@ class LROsOperations(object):
         request = build_lros_put201_creating_succeeded200_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._put201_creating_succeeded200_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3049,7 +3042,6 @@ class LROsOperations(object):
         request = build_lros_put200_updating_succeeded204_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._put200_updating_succeeded204_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3197,7 +3189,6 @@ class LROsOperations(object):
         request = build_lros_put201_creating_failed200_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._put201_creating_failed200_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3352,7 +3343,6 @@ class LROsOperations(object):
         request = build_lros_put200_acceptedcanceled200_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._put200_acceptedcanceled200_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3500,7 +3490,6 @@ class LROsOperations(object):
         request = build_lros_put_no_header_in_retry_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._put_no_header_in_retry_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3653,7 +3642,6 @@ class LROsOperations(object):
         request = build_lros_put_async_retry_succeeded_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._put_async_retry_succeeded_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3815,7 +3803,6 @@ class LROsOperations(object):
         request = build_lros_put_async_no_retry_succeeded_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._put_async_no_retry_succeeded_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3975,7 +3962,6 @@ class LROsOperations(object):
         request = build_lros_put_async_retry_failed_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._put_async_retry_failed_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4137,7 +4123,6 @@ class LROsOperations(object):
         request = build_lros_put_async_no_retrycanceled_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._put_async_no_retrycanceled_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4297,7 +4282,6 @@ class LROsOperations(object):
         request = build_lros_put_async_no_header_in_retry_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._put_async_no_header_in_retry_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4455,7 +4439,6 @@ class LROsOperations(object):
         request = build_lros_put_non_resource_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._put_non_resource_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4583,7 +4566,6 @@ class LROsOperations(object):
         request = build_lros_put_async_non_resource_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._put_async_non_resource_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4711,7 +4693,6 @@ class LROsOperations(object):
         request = build_lros_put_sub_resource_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._put_sub_resource_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4845,7 +4826,6 @@ class LROsOperations(object):
         request = build_lros_put_async_sub_resource_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._put_async_sub_resource_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4966,7 +4946,6 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_lros_delete_provisioning202_accepted200_succeeded_request_initial(
-            template_url=self._delete_provisioning202_accepted200_succeeded_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -5088,7 +5067,6 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_lros_delete_provisioning202_deleting_failed200_request_initial(
-            template_url=self._delete_provisioning202_deleting_failed200_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -5210,7 +5188,6 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_lros_delete_provisioning202_deletingcanceled200_request_initial(
-            template_url=self._delete_provisioning202_deletingcanceled200_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -5332,7 +5309,6 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_lros_delete204_succeeded_request_initial(
-            template_url=self._delete204_succeeded_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -5410,7 +5386,6 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_lros_delete202_retry200_request_initial(
-            template_url=self._delete202_retry200_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -5527,7 +5502,6 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_lros_delete202_no_retry204_request_initial(
-            template_url=self._delete202_no_retry204_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -5644,7 +5618,6 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_lros_delete_no_header_in_retry_request_initial(
-            template_url=self._delete_no_header_in_retry_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -5727,7 +5700,6 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_lros_delete_async_no_header_in_retry_request_initial(
-            template_url=self._delete_async_no_header_in_retry_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -5810,7 +5782,6 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_lros_delete_async_retry_succeeded_request_initial(
-            template_url=self._delete_async_retry_succeeded_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -5896,7 +5867,6 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_lros_delete_async_no_retry_succeeded_request_initial(
-            template_url=self._delete_async_no_retry_succeeded_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -5982,7 +5952,6 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_lros_delete_async_retry_failed_request_initial(
-            template_url=self._delete_async_retry_failed_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -6068,7 +6037,6 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_lros_delete_async_retrycanceled_request_initial(
-            template_url=self._delete_async_retrycanceled_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -6154,7 +6122,6 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_lros_post200_with_payload_request_initial(
-            template_url=self._post200_with_payload_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -6275,7 +6242,6 @@ class LROsOperations(object):
         request = build_lros_post202_retry200_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._post202_retry200_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -6398,7 +6364,6 @@ class LROsOperations(object):
         request = build_lros_post202_no_retry204_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._post202_no_retry204_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -6540,7 +6505,6 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_lros_post_double_headers_final_location_get_request_initial(
-            template_url=self._post_double_headers_final_location_get_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -6651,7 +6615,6 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_lros_post_double_headers_final_azure_header_get_request_initial(
-            template_url=self._post_double_headers_final_azure_header_get_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -6762,7 +6725,6 @@ class LROsOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_lros_post_double_headers_final_azure_header_get_default_request_initial(
-            template_url=self._post_double_headers_final_azure_header_get_default_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -6888,7 +6850,6 @@ class LROsOperations(object):
         request = build_lros_post_async_retry_succeeded_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._post_async_retry_succeeded_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -7046,7 +7007,6 @@ class LROsOperations(object):
         request = build_lros_post_async_no_retry_succeeded_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._post_async_no_retry_succeeded_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -7204,7 +7164,6 @@ class LROsOperations(object):
         request = build_lros_post_async_retry_failed_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._post_async_retry_failed_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -7331,7 +7290,6 @@ class LROsOperations(object):
         request = build_lros_post_async_retrycanceled_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._post_async_retrycanceled_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -7477,7 +7435,6 @@ class LRORetrysOperations(object):
         request = build_lro_retrys_put201_creating_succeeded200_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._put201_creating_succeeded200_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -7632,7 +7589,6 @@ class LRORetrysOperations(object):
         request = build_lro_retrys_put_async_relative_retry_succeeded_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._put_async_relative_retry_succeeded_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -7781,7 +7737,6 @@ class LRORetrysOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_lro_retrys_delete_provisioning202_accepted200_succeeded_request_initial(
-            template_url=self._delete_provisioning202_accepted200_succeeded_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -7903,7 +7858,6 @@ class LRORetrysOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_lro_retrys_delete202_retry200_request_initial(
-            template_url=self._delete202_retry200_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -7986,7 +7940,6 @@ class LRORetrysOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_lro_retrys_delete_async_relative_retry_succeeded_request_initial(
-            template_url=self._delete_async_relative_retry_succeeded_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -8085,7 +8038,6 @@ class LRORetrysOperations(object):
         request = build_lro_retrys_post202_retry200_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._post202_retry200_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -8208,7 +8160,6 @@ class LRORetrysOperations(object):
         request = build_lro_retrys_post_async_relative_retry_succeeded_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._post_async_relative_retry_succeeded_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -8354,7 +8305,6 @@ class LROSADsOperations(object):
         request = build_lrosads_put_non_retry400_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._put_non_retry400_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -8507,7 +8457,6 @@ class LROSADsOperations(object):
         request = build_lrosads_put_non_retry201_creating400_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._put_non_retry201_creating400_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -8661,7 +8610,6 @@ class LROSADsOperations(object):
         request = build_lrosads_put_non_retry201_creating400_invalid_json_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._put_non_retry201_creating400_invalid_json_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -8815,7 +8763,6 @@ class LROSADsOperations(object):
         request = build_lrosads_put_async_relative_retry400_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._put_async_relative_retry400_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -8963,7 +8910,6 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_lrosads_delete_non_retry400_request_initial(
-            template_url=self._delete_non_retry400_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -9045,7 +8991,6 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_lrosads_delete202_non_retry400_request_initial(
-            template_url=self._delete202_non_retry400_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -9127,7 +9072,6 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_lrosads_delete_async_relative_retry400_request_initial(
-            template_url=self._delete_async_relative_retry400_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -9226,7 +9170,6 @@ class LROSADsOperations(object):
         request = build_lrosads_post_non_retry400_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._post_non_retry400_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -9348,7 +9291,6 @@ class LROSADsOperations(object):
         request = build_lrosads_post202_non_retry400_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._post202_non_retry400_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -9470,7 +9412,6 @@ class LROSADsOperations(object):
         request = build_lrosads_post_async_relative_retry400_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._post_async_relative_retry400_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -9596,7 +9537,6 @@ class LROSADsOperations(object):
         request = build_lrosads_put_error201_no_provisioning_state_payload_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._put_error201_no_provisioning_state_payload_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -9749,7 +9689,6 @@ class LROSADsOperations(object):
         request = build_lrosads_put_async_relative_retry_no_status_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._put_async_relative_retry_no_status_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -9911,7 +9850,6 @@ class LROSADsOperations(object):
         request = build_lrosads_put_async_relative_retry_no_status_payload_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._put_async_relative_retry_no_status_payload_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -10060,7 +9998,6 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_lrosads_delete204_succeeded_request_initial(
-            template_url=self._delete204_succeeded_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -10138,7 +10075,6 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_lrosads_delete_async_relative_retry_no_status_request_initial(
-            template_url=self._delete_async_relative_retry_no_status_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -10237,7 +10173,6 @@ class LROSADsOperations(object):
         request = build_lrosads_post202_no_location_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._post202_no_location_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -10360,7 +10295,6 @@ class LROSADsOperations(object):
         request = build_lrosads_post_async_relative_retry_no_payload_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._post_async_relative_retry_no_payload_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -10487,7 +10421,6 @@ class LROSADsOperations(object):
         request = build_lrosads_put200_invalid_json_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._put200_invalid_json_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -10636,7 +10569,6 @@ class LROSADsOperations(object):
         request = build_lrosads_put_async_relative_retry_invalid_header_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._put_async_relative_retry_invalid_header_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -10798,7 +10730,6 @@ class LROSADsOperations(object):
         request = build_lrosads_put_async_relative_retry_invalid_json_polling_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._put_async_relative_retry_invalid_json_polling_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -10947,7 +10878,6 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_lrosads_delete202_retry_invalid_header_request_initial(
-            template_url=self._delete202_retry_invalid_header_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -11030,7 +10960,6 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_lrosads_delete_async_relative_retry_invalid_header_request_initial(
-            template_url=self._delete_async_relative_retry_invalid_header_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -11116,7 +11045,6 @@ class LROSADsOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_lrosads_delete_async_relative_retry_invalid_json_polling_request_initial(
-            template_url=self._delete_async_relative_retry_invalid_json_polling_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -11215,7 +11143,6 @@ class LROSADsOperations(object):
         request = build_lrosads_post202_retry_invalid_header_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._post202_retry_invalid_header_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -11338,7 +11265,6 @@ class LROSADsOperations(object):
         request = build_lrosads_post_async_relative_retry_invalid_header_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._post_async_relative_retry_invalid_header_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -11465,7 +11391,6 @@ class LROSADsOperations(object):
         request = build_lrosads_post_async_relative_retry_invalid_json_polling_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._post_async_relative_retry_invalid_json_polling_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -11611,7 +11536,6 @@ class LROsCustomHeaderOperations(object):
         request = build_lr_os_custom_header_put_async_retry_succeeded_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._put_async_retry_succeeded_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -11774,7 +11698,6 @@ class LROsCustomHeaderOperations(object):
         request = build_lr_os_custom_header_put201_creating_succeeded200_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._put201_creating_succeeded200_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -11930,7 +11853,6 @@ class LROsCustomHeaderOperations(object):
         request = build_lr_os_custom_header_post202_retry200_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._post202_retry200_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -12054,7 +11976,6 @@ class LROsCustomHeaderOperations(object):
         request = build_lr_os_custom_header_post_async_retry_succeeded_request_initial(
             content_type=content_type,
             json=_json,
-            template_url=self._post_async_retry_succeeded_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )

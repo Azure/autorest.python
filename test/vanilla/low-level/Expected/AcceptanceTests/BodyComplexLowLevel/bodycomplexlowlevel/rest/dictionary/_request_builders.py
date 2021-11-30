@@ -53,7 +53,7 @@ def build_get_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/dictionary/typed/valid')
+    url = '/complex/dictionary/typed/valid'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -106,7 +106,7 @@ def build_put_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/dictionary/typed/valid')
+    url = '/complex/dictionary/typed/valid'
 
     # Construct headers
     if content_type is not None:
@@ -151,7 +151,7 @@ def build_get_empty_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/dictionary/typed/empty')
+    url = '/complex/dictionary/typed/empty'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -202,7 +202,7 @@ def build_put_empty_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/dictionary/typed/empty')
+    url = '/complex/dictionary/typed/empty'
 
     # Construct headers
     if content_type is not None:
@@ -247,7 +247,7 @@ def build_get_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/dictionary/typed/null')
+    url = '/complex/dictionary/typed/null'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -290,7 +290,7 @@ def build_get_not_provided_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/dictionary/typed/notprovided')
+    url = '/complex/dictionary/typed/notprovided'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')

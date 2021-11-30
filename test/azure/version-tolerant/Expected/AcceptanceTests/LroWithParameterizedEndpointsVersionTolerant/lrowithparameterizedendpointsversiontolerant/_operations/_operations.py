@@ -48,7 +48,7 @@ def build_poll_with_parameterized_endpoints_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lroParameterizedEndpoints')
+    url = '/lroParameterizedEndpoints'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -72,7 +72,7 @@ def build_poll_with_constant_parameterized_endpoints_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lroConstantParameterizedEndpoints/{constantParameter}')
+    url = '/lroConstantParameterizedEndpoints/{constantParameter}'
     path_format_arguments = {
         "constantParameter": _SERIALIZER.url("constant_parameter", constant_parameter, 'str', skip_quote=True),
     }
@@ -105,7 +105,6 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_poll_with_parameterized_endpoints_request_initial(
-            template_url=self._poll_with_parameterized_endpoints_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -227,7 +226,6 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
 
         request = build_poll_with_constant_parameterized_endpoints_request_initial(
             constant_parameter=constant_parameter,
-            template_url=self._poll_with_constant_parameterized_endpoints_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )

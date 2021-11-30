@@ -45,7 +45,7 @@ def build_get_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/objectType/get')
+    url = '/objectType/get'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -69,7 +69,7 @@ def build_put_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/objectType/put')
+    url = '/objectType/put'
 
     # Construct headers
     if content_type is not None:
@@ -105,7 +105,6 @@ class ObjectTypeClientOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_get_request(
-            template_url=self.get.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -162,7 +161,6 @@ class ObjectTypeClientOperationsMixin(object):
         request = build_put_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put.metadata["url"],
             headers=_headers,
             params=_params,
         )

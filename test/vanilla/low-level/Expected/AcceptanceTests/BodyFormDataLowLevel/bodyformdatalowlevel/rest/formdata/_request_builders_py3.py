@@ -55,7 +55,7 @@ def build_upload_file_request(
     accept = _get_from_dict(_headers, "Accept") or "application/octet-stream, application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/formdata/stream/uploadfile")
+    url = "/formdata/stream/uploadfile"
 
     # Construct headers
     if content_type is not None:
@@ -87,7 +87,7 @@ def build_upload_file_via_body_request(*, content: Any, **kwargs: Any) -> HttpRe
     accept = _get_from_dict(_headers, "Accept") or "application/octet-stream, application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/formdata/stream/uploadfile")
+    url = "/formdata/stream/uploadfile"
 
     # Construct headers
     if content_type is not None:
@@ -134,7 +134,7 @@ def build_upload_files_request(
     accept = _get_from_dict(_headers, "Accept") or "application/octet-stream, application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/formdata/stream/uploadfiles")
+    url = "/formdata/stream/uploadfiles"
 
     # Construct headers
     if content_type is not None:

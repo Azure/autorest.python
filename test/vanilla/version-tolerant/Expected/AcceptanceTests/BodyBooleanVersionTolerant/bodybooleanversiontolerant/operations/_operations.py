@@ -45,7 +45,7 @@ def build_bool_get_true_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/bool/true')
+    url = '/bool/true'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -70,7 +70,7 @@ def build_bool_put_true_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/bool/true')
+    url = '/bool/true'
 
     # Construct headers
     if content_type is not None:
@@ -95,7 +95,7 @@ def build_bool_get_false_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/bool/false')
+    url = '/bool/false'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -120,7 +120,7 @@ def build_bool_put_false_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/bool/false')
+    url = '/bool/false'
 
     # Construct headers
     if content_type is not None:
@@ -145,7 +145,7 @@ def build_bool_get_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/bool/null')
+    url = '/bool/null'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -167,7 +167,7 @@ def build_bool_get_invalid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/bool/invalid')
+    url = '/bool/invalid'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -217,7 +217,6 @@ class BoolOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_bool_get_true_request(
-            template_url=self.get_true.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -271,7 +270,6 @@ class BoolOperations(object):
         request = build_bool_put_true_request(
             content_type=content_type,
             json=bool_body,
-            template_url=self.put_true.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -308,7 +306,6 @@ class BoolOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_bool_get_false_request(
-            template_url=self.get_false.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -362,7 +359,6 @@ class BoolOperations(object):
         request = build_bool_put_false_request(
             content_type=content_type,
             json=bool_body,
-            template_url=self.put_false.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -399,7 +395,6 @@ class BoolOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_bool_get_null_request(
-            template_url=self.get_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -443,7 +438,6 @@ class BoolOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_bool_get_invalid_request(
-            template_url=self.get_invalid.metadata["url"],
             headers=_headers,
             params=_params,
         )

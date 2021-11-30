@@ -45,7 +45,7 @@ def build_get_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/duration/null')
+    url = '/duration/null'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -92,7 +92,7 @@ def build_put_positive_duration_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/duration/positiveduration')
+    url = '/duration/positiveduration'
 
     # Construct headers
     if content_type is not None:
@@ -127,7 +127,7 @@ def build_get_positive_duration_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/duration/positiveduration')
+    url = '/duration/positiveduration'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -160,7 +160,7 @@ def build_get_invalid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/duration/invalid')
+    url = '/duration/invalid'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')

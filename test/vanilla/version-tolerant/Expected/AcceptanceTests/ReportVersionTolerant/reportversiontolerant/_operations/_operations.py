@@ -48,7 +48,7 @@ def build_get_report_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/report')
+    url = '/report'
 
     # Construct parameters
     if qualifier is not None:
@@ -78,7 +78,7 @@ def build_get_optional_report_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/report/optional')
+    url = '/report/optional'
 
     # Construct parameters
     if qualifier is not None:
@@ -131,7 +131,6 @@ class AutoRestReportServiceOperationsMixin(object):
 
         request = build_get_report_request(
             qualifier=qualifier,
-            template_url=self.get_report.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -190,7 +189,6 @@ class AutoRestReportServiceOperationsMixin(object):
 
         request = build_get_optional_report_request(
             qualifier=qualifier,
-            template_url=self.get_optional_report.metadata["url"],
             headers=_headers,
             params=_params,
         )

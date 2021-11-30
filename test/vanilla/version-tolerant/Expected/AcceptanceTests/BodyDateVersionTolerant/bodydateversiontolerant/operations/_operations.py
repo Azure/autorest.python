@@ -46,7 +46,7 @@ def build_date_get_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/date/null')
+    url = '/date/null'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -68,7 +68,7 @@ def build_date_get_invalid_date_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/date/invaliddate')
+    url = '/date/invaliddate'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -90,7 +90,7 @@ def build_date_get_overflow_date_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/date/overflowdate')
+    url = '/date/overflowdate'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -112,7 +112,7 @@ def build_date_get_underflow_date_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/date/underflowdate')
+    url = '/date/underflowdate'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -136,7 +136,7 @@ def build_date_put_max_date_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/date/max')
+    url = '/date/max'
 
     # Construct headers
     if content_type is not None:
@@ -160,7 +160,7 @@ def build_date_get_max_date_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/date/max')
+    url = '/date/max'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -184,7 +184,7 @@ def build_date_put_min_date_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/date/min')
+    url = '/date/min'
 
     # Construct headers
     if content_type is not None:
@@ -208,7 +208,7 @@ def build_date_get_min_date_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/date/min')
+    url = '/date/min'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -258,7 +258,6 @@ class DateOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_date_get_null_request(
-            template_url=self.get_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -302,7 +301,6 @@ class DateOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_date_get_invalid_date_request(
-            template_url=self.get_invalid_date.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -346,7 +344,6 @@ class DateOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_date_get_overflow_date_request(
-            template_url=self.get_overflow_date.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -390,7 +387,6 @@ class DateOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_date_get_underflow_date_request(
-            template_url=self.get_underflow_date.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -446,7 +442,6 @@ class DateOperations(object):
         request = build_date_put_max_date_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_max_date.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -483,7 +478,6 @@ class DateOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_date_get_max_date_request(
-            template_url=self.get_max_date.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -539,7 +533,6 @@ class DateOperations(object):
         request = build_date_put_min_date_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_min_date.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -576,7 +569,6 @@ class DateOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_date_get_min_date_request(
-            template_url=self.get_min_date.metadata["url"],
             headers=_headers,
             params=_params,
         )

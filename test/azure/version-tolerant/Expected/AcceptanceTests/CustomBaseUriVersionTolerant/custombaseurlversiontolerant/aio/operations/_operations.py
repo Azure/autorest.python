@@ -64,7 +64,6 @@ class PathsOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_paths_get_empty_request(
-            template_url=self.get_empty.metadata["url"],
             headers=_headers,
             params=_params,
         )

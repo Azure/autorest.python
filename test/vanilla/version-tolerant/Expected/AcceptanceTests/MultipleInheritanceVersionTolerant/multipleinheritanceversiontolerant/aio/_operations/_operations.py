@@ -66,7 +66,6 @@ class MultipleInheritanceServiceClientOperationsMixin:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_get_horse_request(
-            template_url=self.get_horse.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -126,7 +125,6 @@ class MultipleInheritanceServiceClientOperationsMixin:
         request = build_put_horse_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_horse.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -175,7 +173,6 @@ class MultipleInheritanceServiceClientOperationsMixin:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_get_pet_request(
-            template_url=self.get_pet.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -234,7 +231,6 @@ class MultipleInheritanceServiceClientOperationsMixin:
         request = build_put_pet_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_pet.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -284,7 +280,6 @@ class MultipleInheritanceServiceClientOperationsMixin:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_get_feline_request(
-            template_url=self.get_feline.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -344,7 +339,6 @@ class MultipleInheritanceServiceClientOperationsMixin:
         request = build_put_feline_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_feline.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -396,7 +390,6 @@ class MultipleInheritanceServiceClientOperationsMixin:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_get_cat_request(
-            template_url=self.get_cat.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -458,7 +451,6 @@ class MultipleInheritanceServiceClientOperationsMixin:
         request = build_put_cat_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_cat.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -512,7 +504,6 @@ class MultipleInheritanceServiceClientOperationsMixin:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_get_kitten_request(
-            template_url=self.get_kitten.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -577,7 +568,6 @@ class MultipleInheritanceServiceClientOperationsMixin:
         request = build_put_kitten_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_kitten.metadata["url"],
             headers=_headers,
             params=_params,
         )

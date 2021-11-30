@@ -41,7 +41,7 @@ def build_poll_with_parameterized_endpoints_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lroParameterizedEndpoints')
+    url = '/lroParameterizedEndpoints'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -79,7 +79,7 @@ def build_poll_with_constant_parameterized_endpoints_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/lroConstantParameterizedEndpoints/{constantParameter}')
+    url = '/lroConstantParameterizedEndpoints/{constantParameter}'
     path_format_arguments = {
         "constantParameter": _SERIALIZER.url("constant_parameter", constant_parameter, 'str', skip_quote=True),
     }

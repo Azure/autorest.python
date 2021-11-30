@@ -48,7 +48,7 @@ def build_import_builders_operation_one_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/reservedWords/operationGroup/import')
+    url = '/reservedWords/operationGroup/import'
 
     # Construct parameters
     _params['parameter1'] = _SERIALIZER.query("parameter1", parameter1, 'str')
@@ -76,7 +76,7 @@ def build_operation_with_content_param_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/reservedWords/operation/content')
+    url = '/reservedWords/operation/content'
 
     # Construct headers
     if content_type is not None:
@@ -102,7 +102,7 @@ def build_operation_with_json_param_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/reservedWords/operation/json')
+    url = '/reservedWords/operation/json'
 
     # Construct headers
     if content_type is not None:
@@ -128,7 +128,7 @@ def build_operation_with_data_param_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/reservedWords/operation/data')
+    url = '/reservedWords/operation/data'
 
     # Construct headers
     if content_type is not None:
@@ -154,7 +154,7 @@ def build_operation_with_files_param_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/reservedWords/operation/files')
+    url = '/reservedWords/operation/files'
 
     # Construct headers
     if content_type is not None:
@@ -211,7 +211,6 @@ class ImportOperations(object):
 
         request = build_import_builders_operation_one_request(
             parameter1=parameter1,
-            template_url=self.operation_one.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -269,7 +268,6 @@ class ReservedWordsClientOperationsMixin(object):
         request = build_operation_with_content_param_request(
             content_type=content_type,
             content=_content,
-            template_url=self.operation_with_content_param.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -325,7 +323,6 @@ class ReservedWordsClientOperationsMixin(object):
         request = build_operation_with_json_param_request(
             content_type=content_type,
             json=_json,
-            template_url=self.operation_with_json_param.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -389,7 +386,6 @@ class ReservedWordsClientOperationsMixin(object):
         request = build_operation_with_data_param_request(
             content_type=content_type,
             data=data,
-            template_url=self.operation_with_data_param.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -453,7 +449,6 @@ class ReservedWordsClientOperationsMixin(object):
         request = build_operation_with_files_param_request(
             content_type=content_type,
             files=files,
-            template_url=self.operation_with_files_param.metadata["url"],
             headers=_headers,
             params=_params,
         )

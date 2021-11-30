@@ -61,7 +61,7 @@ def build_create_ap_true_request(*, json: JSONType = None, content: Any = None, 
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/additionalProperties/true")
+    url = "/additionalProperties/true"
 
     # Construct headers
     if content_type is not None:
@@ -115,7 +115,7 @@ def build_create_cat_ap_true_request(*, json: JSONType = None, content: Any = No
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/additionalProperties/true-subclass")
+    url = "/additionalProperties/true-subclass"
 
     # Construct headers
     if content_type is not None:
@@ -167,7 +167,7 @@ def build_create_ap_object_request(*, json: JSONType = None, content: Any = None
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/additionalProperties/type/object")
+    url = "/additionalProperties/type/object"
 
     # Construct headers
     if content_type is not None:
@@ -219,7 +219,7 @@ def build_create_ap_string_request(*, json: JSONType = None, content: Any = None
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/additionalProperties/type/string")
+    url = "/additionalProperties/type/string"
 
     # Construct headers
     if content_type is not None:
@@ -271,7 +271,7 @@ def build_create_ap_in_properties_request(*, json: JSONType = None, content: Any
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/additionalProperties/in/properties")
+    url = "/additionalProperties/in/properties"
 
     # Construct headers
     if content_type is not None:
@@ -333,7 +333,7 @@ def build_create_ap_in_properties_with_ap_string_request(
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/additionalProperties/in/properties/with/additionalProperties/string")
+    url = "/additionalProperties/in/properties/with/additionalProperties/string"
 
     # Construct headers
     if content_type is not None:

@@ -14,10 +14,7 @@ from ..._vendor import _get_from_dict
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, Optional, TypeVar
-
-    T = TypeVar("T")
-    JSONType = Any
+    from typing import Any, Dict
 
 _SERIALIZER = Serializer()
 
@@ -55,7 +52,7 @@ def build_get_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/flatten/valid')
+    url = '/complex/flatten/valid'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')

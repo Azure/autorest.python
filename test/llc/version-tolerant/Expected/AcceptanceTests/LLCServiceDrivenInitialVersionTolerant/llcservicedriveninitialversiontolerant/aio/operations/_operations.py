@@ -66,7 +66,6 @@ class ParamsOperations:
 
         request = build_params_get_required_request(
             parameter=parameter,
-            template_url=self.get_required.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -126,7 +125,6 @@ class ParamsOperations:
         request = build_params_post_parameters_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post_parameters.metadata["url"],
             headers=_headers,
             params=_params,
         )

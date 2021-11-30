@@ -59,7 +59,6 @@ class AutoRestReportServiceForAzureOperationsMixin:
 
         request = build_get_report_request(
             qualifier=qualifier,
-            template_url=self.get_report.metadata["url"],
             headers=_headers,
             params=_params,
         )

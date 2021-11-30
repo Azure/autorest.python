@@ -74,7 +74,6 @@ class Datetimerfc1123Operations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_datetimerfc1123_get_null_request(
-            template_url=self.get_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -115,7 +114,6 @@ class Datetimerfc1123Operations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_datetimerfc1123_get_invalid_request(
-            template_url=self.get_invalid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -156,7 +154,6 @@ class Datetimerfc1123Operations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_datetimerfc1123_get_overflow_request(
-            template_url=self.get_overflow.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -197,7 +194,6 @@ class Datetimerfc1123Operations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_datetimerfc1123_get_underflow_request(
-            template_url=self.get_underflow.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -248,7 +244,6 @@ class Datetimerfc1123Operations:
         request = build_datetimerfc1123_put_utc_max_date_time_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_utc_max_date_time.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -282,7 +277,6 @@ class Datetimerfc1123Operations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_datetimerfc1123_get_utc_lowercase_max_date_time_request(
-            template_url=self.get_utc_lowercase_max_date_time.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -323,7 +317,6 @@ class Datetimerfc1123Operations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_datetimerfc1123_get_utc_uppercase_max_date_time_request(
-            template_url=self.get_utc_uppercase_max_date_time.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -374,7 +367,6 @@ class Datetimerfc1123Operations:
         request = build_datetimerfc1123_put_utc_min_date_time_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_utc_min_date_time.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -408,7 +400,6 @@ class Datetimerfc1123Operations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_datetimerfc1123_get_utc_min_date_time_request(
-            template_url=self.get_utc_min_date_time.metadata["url"],
             headers=_headers,
             params=_params,
         )

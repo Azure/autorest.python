@@ -44,7 +44,7 @@ def build_contants_put_no_model_as_string_no_required_two_value_no_default_reque
     input = kwargs.pop('input', _get_from_dict(_params, 'input') or None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/constants/putNoModelAsStringNoRequiredTwoValueNoDefault')
+    url = '/constants/putNoModelAsStringNoRequiredTwoValueNoDefault'
 
     # Construct parameters
     if input is not None:
@@ -67,7 +67,7 @@ def build_contants_put_no_model_as_string_no_required_two_value_default_request(
     input = kwargs.pop('input', _get_from_dict(_params, 'input') or "value1")  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/constants/putNoModelAsStringNoRequiredTwoValueDefault')
+    url = '/constants/putNoModelAsStringNoRequiredTwoValueDefault'
 
     # Construct parameters
     if input is not None:
@@ -90,7 +90,7 @@ def build_contants_put_no_model_as_string_no_required_one_value_no_default_reque
     input = kwargs.pop('input', _get_from_dict(_params, 'input') or "value1")  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/constants/putNoModelAsStringNoRequiredOneValueNoDefault')
+    url = '/constants/putNoModelAsStringNoRequiredOneValueNoDefault'
 
     # Construct parameters
     if input is not None:
@@ -113,7 +113,7 @@ def build_contants_put_no_model_as_string_no_required_one_value_default_request(
     input = kwargs.pop('input', _get_from_dict(_params, 'input') or "value1")  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/constants/putNoModelAsStringNoRequiredOneValueDefault')
+    url = '/constants/putNoModelAsStringNoRequiredOneValueDefault'
 
     # Construct parameters
     if input is not None:
@@ -136,7 +136,7 @@ def build_contants_put_no_model_as_string_required_two_value_no_default_request(
     input = kwargs.pop('input')  # type: str
 
     # Construct URL
-    url = kwargs.pop("template_url", '/constants/putNoModelAsStringRequiredTwoValueNoDefault')
+    url = '/constants/putNoModelAsStringRequiredTwoValueNoDefault'
 
     # Construct parameters
     _params['input'] = _SERIALIZER.query("input", input, 'str')
@@ -158,7 +158,7 @@ def build_contants_put_no_model_as_string_required_two_value_default_request(
     input = kwargs.pop('input', _get_from_dict(_params, 'input') or "value1")  # type: str
 
     # Construct URL
-    url = kwargs.pop("template_url", '/constants/putNoModelAsStringRequiredTwoValueDefault')
+    url = '/constants/putNoModelAsStringRequiredTwoValueDefault'
 
     # Construct parameters
     _params['input'] = _SERIALIZER.query("input", input, 'str')
@@ -180,7 +180,7 @@ def build_contants_put_no_model_as_string_required_one_value_no_default_request(
     input = kwargs.pop('input', _get_from_dict(_params, 'input') or "value1")  # type: str
 
     # Construct URL
-    url = kwargs.pop("template_url", '/constants/putNoModelAsStringRequiredOneValueNoDefault')
+    url = '/constants/putNoModelAsStringRequiredOneValueNoDefault'
 
     # Construct parameters
     _params['input'] = _SERIALIZER.query("input", input, 'str')
@@ -202,7 +202,7 @@ def build_contants_put_no_model_as_string_required_one_value_default_request(
     input = kwargs.pop('input', _get_from_dict(_params, 'input') or "value1")  # type: str
 
     # Construct URL
-    url = kwargs.pop("template_url", '/constants/putNoModelAsStringRequiredOneValueDefault')
+    url = '/constants/putNoModelAsStringRequiredOneValueDefault'
 
     # Construct parameters
     _params['input'] = _SERIALIZER.query("input", input, 'str')
@@ -224,7 +224,7 @@ def build_contants_put_model_as_string_no_required_two_value_no_default_request(
     input = kwargs.pop('input', _get_from_dict(_params, 'input') or None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/constants/putModelAsStringNoRequiredTwoValueNoDefault')
+    url = '/constants/putModelAsStringNoRequiredTwoValueNoDefault'
 
     # Construct parameters
     if input is not None:
@@ -247,7 +247,7 @@ def build_contants_put_model_as_string_no_required_two_value_default_request(
     input = kwargs.pop('input', _get_from_dict(_params, 'input') or "value1")  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/constants/putModelAsStringNoRequiredTwoValueDefault')
+    url = '/constants/putModelAsStringNoRequiredTwoValueDefault'
 
     # Construct parameters
     if input is not None:
@@ -270,7 +270,7 @@ def build_contants_put_model_as_string_no_required_one_value_no_default_request(
     input = kwargs.pop('input', _get_from_dict(_params, 'input') or None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/constants/putModelAsStringNoRequiredOneValueNoDefault')
+    url = '/constants/putModelAsStringNoRequiredOneValueNoDefault'
 
     # Construct parameters
     if input is not None:
@@ -293,7 +293,7 @@ def build_contants_put_model_as_string_no_required_one_value_default_request(
     input = kwargs.pop('input', _get_from_dict(_params, 'input') or "value1")  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/constants/putModelAsStringNoRequiredOneValueDefault')
+    url = '/constants/putModelAsStringNoRequiredOneValueDefault'
 
     # Construct parameters
     if input is not None:
@@ -316,7 +316,7 @@ def build_contants_put_model_as_string_required_two_value_no_default_request(
     input = kwargs.pop('input')  # type: str
 
     # Construct URL
-    url = kwargs.pop("template_url", '/constants/putModelAsStringRequiredTwoValueNoDefault')
+    url = '/constants/putModelAsStringRequiredTwoValueNoDefault'
 
     # Construct parameters
     _params['input'] = _SERIALIZER.query("input", input, 'str')
@@ -338,7 +338,7 @@ def build_contants_put_model_as_string_required_two_value_default_request(
     input = kwargs.pop('input', _get_from_dict(_params, 'input') or "value1")  # type: str
 
     # Construct URL
-    url = kwargs.pop("template_url", '/constants/putModelAsStringRequiredTwoValueDefault')
+    url = '/constants/putModelAsStringRequiredTwoValueDefault'
 
     # Construct parameters
     _params['input'] = _SERIALIZER.query("input", input, 'str')
@@ -360,7 +360,7 @@ def build_contants_put_model_as_string_required_one_value_no_default_request(
     input = kwargs.pop('input')  # type: str
 
     # Construct URL
-    url = kwargs.pop("template_url", '/constants/putModelAsStringRequiredOneValueNoDefault')
+    url = '/constants/putModelAsStringRequiredOneValueNoDefault'
 
     # Construct parameters
     _params['input'] = _SERIALIZER.query("input", input, 'str')
@@ -382,7 +382,7 @@ def build_contants_put_model_as_string_required_one_value_default_request(
     input = kwargs.pop('input', _get_from_dict(_params, 'input') or "value1")  # type: str
 
     # Construct URL
-    url = kwargs.pop("template_url", '/constants/putModelAsStringRequiredOneValueDefault')
+    url = '/constants/putModelAsStringRequiredOneValueDefault'
 
     # Construct parameters
     _params['input'] = _SERIALIZER.query("input", input, 'str')
@@ -407,7 +407,7 @@ def build_contants_put_client_constants_request(
     path_constant = kwargs.pop('path_constant', "path")  # type: str
 
     # Construct URL
-    url = kwargs.pop("template_url", '/constants/clientConstants/{path-constant}')
+    url = '/constants/clientConstants/{path-constant}'
     path_format_arguments = {
         "path-constant": _SERIALIZER.url("path_constant", path_constant, 'str'),
     }
@@ -473,7 +473,6 @@ class ContantsOperations(object):
 
         request = build_contants_put_no_model_as_string_no_required_two_value_no_default_request(
             input=input,
-            template_url=self.put_no_model_as_string_no_required_two_value_no_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -517,7 +516,6 @@ class ContantsOperations(object):
 
         request = build_contants_put_no_model_as_string_no_required_two_value_default_request(
             input=input,
-            template_url=self.put_no_model_as_string_no_required_two_value_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -561,7 +559,6 @@ class ContantsOperations(object):
 
         request = build_contants_put_no_model_as_string_no_required_one_value_no_default_request(
             input=input,
-            template_url=self.put_no_model_as_string_no_required_one_value_no_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -605,7 +602,6 @@ class ContantsOperations(object):
 
         request = build_contants_put_no_model_as_string_no_required_one_value_default_request(
             input=input,
-            template_url=self.put_no_model_as_string_no_required_one_value_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -649,7 +645,6 @@ class ContantsOperations(object):
 
         request = build_contants_put_no_model_as_string_required_two_value_no_default_request(
             input=input,
-            template_url=self.put_no_model_as_string_required_two_value_no_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -693,7 +688,6 @@ class ContantsOperations(object):
 
         request = build_contants_put_no_model_as_string_required_two_value_default_request(
             input=input,
-            template_url=self.put_no_model_as_string_required_two_value_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -738,7 +732,6 @@ class ContantsOperations(object):
 
         request = build_contants_put_no_model_as_string_required_one_value_no_default_request(
             input=input,
-            template_url=self.put_no_model_as_string_required_one_value_no_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -783,7 +776,6 @@ class ContantsOperations(object):
 
         request = build_contants_put_no_model_as_string_required_one_value_default_request(
             input=input,
-            template_url=self.put_no_model_as_string_required_one_value_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -827,7 +819,6 @@ class ContantsOperations(object):
 
         request = build_contants_put_model_as_string_no_required_two_value_no_default_request(
             input=input,
-            template_url=self.put_model_as_string_no_required_two_value_no_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -871,7 +862,6 @@ class ContantsOperations(object):
 
         request = build_contants_put_model_as_string_no_required_two_value_default_request(
             input=input,
-            template_url=self.put_model_as_string_no_required_two_value_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -915,7 +905,6 @@ class ContantsOperations(object):
 
         request = build_contants_put_model_as_string_no_required_one_value_no_default_request(
             input=input,
-            template_url=self.put_model_as_string_no_required_one_value_no_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -959,7 +948,6 @@ class ContantsOperations(object):
 
         request = build_contants_put_model_as_string_no_required_one_value_default_request(
             input=input,
-            template_url=self.put_model_as_string_no_required_one_value_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1003,7 +991,6 @@ class ContantsOperations(object):
 
         request = build_contants_put_model_as_string_required_two_value_no_default_request(
             input=input,
-            template_url=self.put_model_as_string_required_two_value_no_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1047,7 +1034,6 @@ class ContantsOperations(object):
 
         request = build_contants_put_model_as_string_required_two_value_default_request(
             input=input,
-            template_url=self.put_model_as_string_required_two_value_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1091,7 +1077,6 @@ class ContantsOperations(object):
 
         request = build_contants_put_model_as_string_required_one_value_no_default_request(
             input=input,
-            template_url=self.put_model_as_string_required_one_value_no_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1135,7 +1120,6 @@ class ContantsOperations(object):
 
         request = build_contants_put_model_as_string_required_one_value_default_request(
             input=input,
-            template_url=self.put_model_as_string_required_one_value_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1176,7 +1160,6 @@ class ContantsOperations(object):
             header_constant=self._config.header_constant,
             query_constant=self._config.query_constant,
             path_constant=self._config.path_constant,
-            template_url=self.put_client_constants.metadata["url"],
             headers=_headers,
             params=_params,
         )

@@ -45,7 +45,7 @@ def build_get_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/date/null')
+    url = '/date/null'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -78,7 +78,7 @@ def build_get_invalid_date_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/date/invaliddate')
+    url = '/date/invaliddate'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -111,7 +111,7 @@ def build_get_overflow_date_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/date/overflowdate')
+    url = '/date/overflowdate'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -144,7 +144,7 @@ def build_get_underflow_date_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/date/underflowdate')
+    url = '/date/underflowdate'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -191,7 +191,7 @@ def build_put_max_date_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/date/max')
+    url = '/date/max'
 
     # Construct headers
     if content_type is not None:
@@ -226,7 +226,7 @@ def build_get_max_date_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/date/max')
+    url = '/date/max'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -273,7 +273,7 @@ def build_put_min_date_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/date/min')
+    url = '/date/min'
 
     # Construct headers
     if content_type is not None:
@@ -308,7 +308,7 @@ def build_get_min_date_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/date/min')
+    url = '/date/min'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')

@@ -85,7 +85,6 @@ class GroupOperations:
             subscription_id=self._config.subscription_id,
             resource_group_name=resource_group_name,
             api_version=api_version,
-            template_url=self.get_sample_resource_group.metadata["url"],
             headers=_headers,
             params=_params,
         )

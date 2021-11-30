@@ -42,7 +42,7 @@ def build_get_not_expandable_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/string/enum/notExpandable")
+    url = "/string/enum/notExpandable"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -81,7 +81,7 @@ def build_put_not_expandable_request(*, json: JSONType = None, content: Any = No
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/string/enum/notExpandable")
+    url = "/string/enum/notExpandable"
 
     # Construct headers
     if content_type is not None:
@@ -114,7 +114,7 @@ def build_get_referenced_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/string/enum/Referenced")
+    url = "/string/enum/Referenced"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -153,7 +153,7 @@ def build_put_referenced_request(*, json: JSONType = None, content: Any = None, 
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/string/enum/Referenced")
+    url = "/string/enum/Referenced"
 
     # Construct headers
     if content_type is not None:
@@ -189,7 +189,7 @@ def build_get_referenced_constant_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/string/enum/ReferencedConstant")
+    url = "/string/enum/ReferencedConstant"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -231,7 +231,7 @@ def build_put_referenced_constant_request(*, json: JSONType = None, content: Any
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/string/enum/ReferencedConstant")
+    url = "/string/enum/ReferencedConstant"
 
     # Construct headers
     if content_type is not None:

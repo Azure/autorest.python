@@ -45,7 +45,7 @@ def build_get_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/time/get')
+    url = '/time/get'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -92,7 +92,7 @@ def build_put_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/time/put')
+    url = '/time/put'
 
     # Construct headers
     if content_type is not None:

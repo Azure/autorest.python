@@ -40,7 +40,7 @@ def build_get_incorrect_error_from_server_request(
 ):
     # type: (...) -> HttpRequest
     # Construct URL
-    url = kwargs.pop("template_url", '/incorrectError')
+    url = '/incorrectError'
 
     return HttpRequest(
         method="GET",
@@ -70,7 +70,6 @@ class IncorrectReturnedErrorModelOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_get_incorrect_error_from_server_request(
-            template_url=self.get_incorrect_error_from_server.metadata["url"],
             headers=_headers,
             params=_params,
         )

@@ -46,7 +46,7 @@ def build_int_get_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/int/null')
+    url = '/int/null'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -68,7 +68,7 @@ def build_int_get_invalid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/int/invalid')
+    url = '/int/invalid'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -90,7 +90,7 @@ def build_int_get_overflow_int32_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/int/overflowint32')
+    url = '/int/overflowint32'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -112,7 +112,7 @@ def build_int_get_underflow_int32_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/int/underflowint32')
+    url = '/int/underflowint32'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -134,7 +134,7 @@ def build_int_get_overflow_int64_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/int/overflowint64')
+    url = '/int/overflowint64'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -156,7 +156,7 @@ def build_int_get_underflow_int64_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/int/underflowint64')
+    url = '/int/underflowint64'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -180,7 +180,7 @@ def build_int_put_max32_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/int/max/32')
+    url = '/int/max/32'
 
     # Construct headers
     if content_type is not None:
@@ -206,7 +206,7 @@ def build_int_put_max64_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/int/max/64')
+    url = '/int/max/64'
 
     # Construct headers
     if content_type is not None:
@@ -232,7 +232,7 @@ def build_int_put_min32_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/int/min/32')
+    url = '/int/min/32'
 
     # Construct headers
     if content_type is not None:
@@ -258,7 +258,7 @@ def build_int_put_min64_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/int/min/64')
+    url = '/int/min/64'
 
     # Construct headers
     if content_type is not None:
@@ -282,7 +282,7 @@ def build_int_get_unix_time_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/int/unixtime')
+    url = '/int/unixtime'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -306,7 +306,7 @@ def build_int_put_unix_time_date_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/int/unixtime')
+    url = '/int/unixtime'
 
     # Construct headers
     if content_type is not None:
@@ -330,7 +330,7 @@ def build_int_get_invalid_unix_time_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/int/invalidunixtime')
+    url = '/int/invalidunixtime'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -352,7 +352,7 @@ def build_int_get_null_unix_time_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/int/nullunixtime')
+    url = '/int/nullunixtime'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -402,7 +402,6 @@ class IntOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_int_get_null_request(
-            template_url=self.get_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -446,7 +445,6 @@ class IntOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_int_get_invalid_request(
-            template_url=self.get_invalid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -490,7 +488,6 @@ class IntOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_int_get_overflow_int32_request(
-            template_url=self.get_overflow_int32.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -534,7 +531,6 @@ class IntOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_int_get_underflow_int32_request(
-            template_url=self.get_underflow_int32.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -578,7 +574,6 @@ class IntOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_int_get_overflow_int64_request(
-            template_url=self.get_overflow_int64.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -622,7 +617,6 @@ class IntOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_int_get_underflow_int64_request(
-            template_url=self.get_underflow_int64.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -678,7 +672,6 @@ class IntOperations(object):
         request = build_int_put_max32_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_max32.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -727,7 +720,6 @@ class IntOperations(object):
         request = build_int_put_max64_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_max64.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -776,7 +768,6 @@ class IntOperations(object):
         request = build_int_put_min32_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_min32.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -825,7 +816,6 @@ class IntOperations(object):
         request = build_int_put_min64_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_min64.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -862,7 +852,6 @@ class IntOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_int_get_unix_time_request(
-            template_url=self.get_unix_time.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -918,7 +907,6 @@ class IntOperations(object):
         request = build_int_put_unix_time_date_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_unix_time_date.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -955,7 +943,6 @@ class IntOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_int_get_invalid_unix_time_request(
-            template_url=self.get_invalid_unix_time.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -999,7 +986,6 @@ class IntOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_int_get_null_unix_time_request(
-            template_url=self.get_null_unix_time.metadata["url"],
             headers=_headers,
             params=_params,
         )

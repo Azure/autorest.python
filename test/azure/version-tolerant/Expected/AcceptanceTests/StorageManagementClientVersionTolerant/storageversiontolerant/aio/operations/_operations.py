@@ -116,7 +116,6 @@ class StorageAccountsOperations:
             api_version=api_version,
             content_type=content_type,
             json=_json,
-            template_url=self.check_name_availability.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -167,7 +166,6 @@ class StorageAccountsOperations:
             api_version=api_version,
             content_type=content_type,
             json=_json,
-            template_url=self._create_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -372,7 +370,6 @@ class StorageAccountsOperations:
             account_name=account_name,
             subscription_id=self._config.subscription_id,
             api_version=api_version,
-            template_url=self.delete.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -475,7 +472,6 @@ class StorageAccountsOperations:
             account_name=account_name,
             subscription_id=self._config.subscription_id,
             api_version=api_version,
-            template_url=self.get_properties.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -619,7 +615,6 @@ class StorageAccountsOperations:
             api_version=api_version,
             content_type=content_type,
             json=_json,
-            template_url=self.update.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -684,7 +679,6 @@ class StorageAccountsOperations:
             account_name=account_name,
             subscription_id=self._config.subscription_id,
             api_version=api_version,
-            template_url=self.list_keys.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -790,7 +784,6 @@ class StorageAccountsOperations:
                 request = build_storage_accounts_list_request(
                     subscription_id=self._config.subscription_id,
                     api_version=api_version,
-                    template_url=self.list.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -801,11 +794,10 @@ class StorageAccountsOperations:
                 request = build_storage_accounts_list_request(
                     subscription_id=self._config.subscription_id,
                     api_version=api_version,
-                    template_url=next_link,
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                request.url = self._client.format_url(next_link)
                 request.method = "GET"
             return request
 
@@ -916,7 +908,6 @@ class StorageAccountsOperations:
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
                     api_version=api_version,
-                    template_url=self.list_by_resource_group.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -928,11 +919,10 @@ class StorageAccountsOperations:
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
                     api_version=api_version,
-                    template_url=next_link,
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                request.url = self._client.format_url(next_link)
                 request.method = "GET"
             return request
 
@@ -1017,7 +1007,6 @@ class StorageAccountsOperations:
             api_version=api_version,
             content_type=content_type,
             json=_json,
-            template_url=self.regenerate_key.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1104,7 +1093,6 @@ class UsageOperations:
         request = build_usage_list_request(
             subscription_id=self._config.subscription_id,
             api_version=api_version,
-            template_url=self.list.metadata["url"],
             headers=_headers,
             params=_params,
         )

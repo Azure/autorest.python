@@ -32,7 +32,7 @@ def build_get_empty_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/customuri")
+    url = "/customuri"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")

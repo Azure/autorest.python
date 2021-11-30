@@ -44,7 +44,7 @@ def build_head300_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/redirect/300')
+    url = '/http/redirect/300'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -85,7 +85,7 @@ def build_get300_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/redirect/300')
+    url = '/http/redirect/300'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -118,7 +118,7 @@ def build_head301_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/redirect/301')
+    url = '/http/redirect/301'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -151,7 +151,7 @@ def build_get301_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/redirect/301')
+    url = '/http/redirect/301'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -199,7 +199,7 @@ def build_put301_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/redirect/301')
+    url = '/http/redirect/301'
 
     # Construct headers
     if content_type is not None:
@@ -234,7 +234,7 @@ def build_head302_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/redirect/302')
+    url = '/http/redirect/302'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -267,7 +267,7 @@ def build_get302_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/redirect/302')
+    url = '/http/redirect/302'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -315,7 +315,7 @@ def build_patch302_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/redirect/302')
+    url = '/http/redirect/302'
 
     # Construct headers
     if content_type is not None:
@@ -365,7 +365,7 @@ def build_post303_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/redirect/303')
+    url = '/http/redirect/303'
 
     # Construct headers
     if content_type is not None:
@@ -400,7 +400,7 @@ def build_head307_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/redirect/307')
+    url = '/http/redirect/307'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -433,7 +433,7 @@ def build_get307_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/redirect/307')
+    url = '/http/redirect/307'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -466,7 +466,7 @@ def build_options307_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/redirect/307')
+    url = '/http/redirect/307'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -513,7 +513,7 @@ def build_put307_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/redirect/307')
+    url = '/http/redirect/307'
 
     # Construct headers
     if content_type is not None:
@@ -562,7 +562,7 @@ def build_patch307_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/redirect/307')
+    url = '/http/redirect/307'
 
     # Construct headers
     if content_type is not None:
@@ -611,7 +611,7 @@ def build_post307_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/redirect/307')
+    url = '/http/redirect/307'
 
     # Construct headers
     if content_type is not None:
@@ -660,7 +660,7 @@ def build_delete307_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/redirect/307')
+    url = '/http/redirect/307'
 
     # Construct headers
     if content_type is not None:

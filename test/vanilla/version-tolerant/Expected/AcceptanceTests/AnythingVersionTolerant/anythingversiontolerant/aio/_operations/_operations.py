@@ -54,7 +54,6 @@ class AnythingClientOperationsMixin:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_get_object_request(
-            template_url=self.get_object.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -106,7 +105,6 @@ class AnythingClientOperationsMixin:
         request = build_put_object_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_object.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -140,7 +138,6 @@ class AnythingClientOperationsMixin:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_get_string_request(
-            template_url=self.get_string.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -192,7 +189,6 @@ class AnythingClientOperationsMixin:
         request = build_put_string_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_string.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -226,7 +222,6 @@ class AnythingClientOperationsMixin:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_get_array_request(
-            template_url=self.get_array.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -278,7 +273,6 @@ class AnythingClientOperationsMixin:
         request = build_put_array_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_array.metadata["url"],
             headers=_headers,
             params=_params,
         )

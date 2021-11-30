@@ -55,7 +55,7 @@ def build_get_complex_type_ref_no_meta_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/xml"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/complex-type-ref-no-meta')
+    url = '/xml/complex-type-ref-no-meta'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -91,7 +91,7 @@ def build_put_complex_type_ref_no_meta_request(
     content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/complex-type-ref-no-meta')
+    url = '/xml/complex-type-ref-no-meta'
 
     # Construct headers
     if content_type is not None:
@@ -136,7 +136,7 @@ def build_get_complex_type_ref_with_meta_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/xml"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/complex-type-ref-with-meta')
+    url = '/xml/complex-type-ref-with-meta'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -172,7 +172,7 @@ def build_put_complex_type_ref_with_meta_request(
     content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/complex-type-ref-with-meta')
+    url = '/xml/complex-type-ref-with-meta'
 
     # Construct headers
     if content_type is not None:
@@ -225,7 +225,7 @@ def build_get_simple_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/xml"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/simple')
+    url = '/xml/simple'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -263,7 +263,7 @@ def build_put_simple_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/xml"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/simple')
+    url = '/xml/simple'
 
     # Construct headers
     if content_type is not None:
@@ -311,7 +311,7 @@ def build_get_wrapped_lists_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/xml"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/wrapped-lists')
+    url = '/xml/wrapped-lists'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -349,7 +349,7 @@ def build_put_wrapped_lists_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/xml"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/wrapped-lists')
+    url = '/xml/wrapped-lists'
 
     # Construct headers
     if content_type is not None:
@@ -380,7 +380,7 @@ def build_get_headers_request(
     """
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/headers')
+    url = '/xml/headers'
 
     return HttpRequest(
         method="GET",
@@ -428,7 +428,7 @@ def build_get_empty_list_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/xml"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/empty-list')
+    url = '/xml/empty-list'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -464,7 +464,7 @@ def build_put_empty_list_request(
     content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/empty-list')
+    url = '/xml/empty-list'
 
     # Construct headers
     if content_type is not None:
@@ -511,7 +511,7 @@ def build_get_empty_wrapped_lists_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/xml"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/empty-wrapped-lists')
+    url = '/xml/empty-wrapped-lists'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -547,7 +547,7 @@ def build_put_empty_wrapped_lists_request(
     content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/empty-wrapped-lists')
+    url = '/xml/empty-wrapped-lists'
 
     # Construct headers
     if content_type is not None:
@@ -593,7 +593,7 @@ def build_get_root_list_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/xml"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/root-list')
+    url = '/xml/root-list'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -629,7 +629,7 @@ def build_put_root_list_request(
     content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/root-list')
+    url = '/xml/root-list'
 
     # Construct headers
     if content_type is not None:
@@ -675,7 +675,7 @@ def build_get_root_list_single_item_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/xml"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/root-list-single-item')
+    url = '/xml/root-list-single-item'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -711,7 +711,7 @@ def build_put_root_list_single_item_request(
     content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/root-list-single-item')
+    url = '/xml/root-list-single-item'
 
     # Construct headers
     if content_type is not None:
@@ -757,7 +757,7 @@ def build_get_empty_root_list_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/xml"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/empty-root-list')
+    url = '/xml/empty-root-list'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -793,7 +793,7 @@ def build_put_empty_root_list_request(
     content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/empty-root-list')
+    url = '/xml/empty-root-list'
 
     # Construct headers
     if content_type is not None:
@@ -837,7 +837,7 @@ def build_get_empty_child_element_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/xml"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/empty-child-element')
+    url = '/xml/empty-child-element'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -873,7 +873,7 @@ def build_put_empty_child_element_request(
     content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/empty-child-element')
+    url = '/xml/empty-child-element'
 
     # Construct headers
     if content_type is not None:
@@ -941,7 +941,7 @@ def build_list_containers_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/xml"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/')
+    url = '/xml/'
 
     # Construct parameters
     _params['comp'] = _SERIALIZER.query("comp", comp, 'str')
@@ -1037,7 +1037,7 @@ def build_get_service_properties_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/xml"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/')
+    url = '/xml/'
 
     # Construct parameters
     _params['comp'] = _SERIALIZER.query("comp", comp, 'str')
@@ -1087,7 +1087,7 @@ def build_put_service_properties_request(
     content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/')
+    url = '/xml/'
 
     # Construct parameters
     _params['comp'] = _SERIALIZER.query("comp", comp, 'str')
@@ -1151,7 +1151,7 @@ def build_get_acls_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/xml"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/mycontainer')
+    url = '/xml/mycontainer'
 
     # Construct parameters
     _params['comp'] = _SERIALIZER.query("comp", comp, 'str')
@@ -1201,7 +1201,7 @@ def build_put_acls_request(
     content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/mycontainer')
+    url = '/xml/mycontainer'
 
     # Construct parameters
     _params['comp'] = _SERIALIZER.query("comp", comp, 'str')
@@ -1311,7 +1311,7 @@ def build_list_blobs_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/xml"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/mycontainer')
+    url = '/xml/mycontainer'
 
     # Construct parameters
     _params['comp'] = _SERIALIZER.query("comp", comp, 'str')
@@ -1364,7 +1364,7 @@ def build_json_input_request(
     content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/jsoninput')
+    url = '/xml/jsoninput'
 
     # Construct headers
     if content_type is not None:
@@ -1406,7 +1406,7 @@ def build_json_output_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/jsonoutput')
+    url = '/xml/jsonoutput'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -1449,7 +1449,7 @@ def build_get_xms_text_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/xml"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/x-ms-text')
+    url = '/xml/x-ms-text'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -1490,7 +1490,7 @@ def build_get_bytes_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/xml"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/bytes')
+    url = '/xml/bytes'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -1528,7 +1528,7 @@ def build_put_binary_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/xml"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/bytes')
+    url = '/xml/bytes'
 
     # Construct headers
     if content_type is not None:
@@ -1571,7 +1571,7 @@ def build_get_uri_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/xml"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/url')
+    url = '/xml/url'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -1609,7 +1609,7 @@ def build_put_uri_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/xml"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/xml/url')
+    url = '/xml/url'
 
     # Construct headers
     if content_type is not None:

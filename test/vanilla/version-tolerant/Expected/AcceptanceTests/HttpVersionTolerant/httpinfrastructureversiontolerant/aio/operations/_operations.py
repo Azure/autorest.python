@@ -175,7 +175,6 @@ class HttpFailureOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_http_failure_get_empty_error_request(
-            template_url=self.get_empty_error.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -216,7 +215,6 @@ class HttpFailureOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_http_failure_get_no_model_error_request(
-            template_url=self.get_no_model_error.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -257,7 +255,6 @@ class HttpFailureOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_http_failure_get_no_model_empty_request(
-            template_url=self.get_no_model_empty.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -317,7 +314,6 @@ class HttpSuccessOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_http_success_head200_request(
-            template_url=self.head200.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -351,7 +347,6 @@ class HttpSuccessOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_http_success_get200_request(
-            template_url=self.get200.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -392,7 +387,6 @@ class HttpSuccessOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_http_success_options200_request(
-            template_url=self.options200.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -446,7 +440,6 @@ class HttpSuccessOperations:
         request = build_http_success_put200_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put200.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -493,7 +486,6 @@ class HttpSuccessOperations:
         request = build_http_success_patch200_request(
             content_type=content_type,
             json=_json,
-            template_url=self.patch200.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -540,7 +532,6 @@ class HttpSuccessOperations:
         request = build_http_success_post200_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post200.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -587,7 +578,6 @@ class HttpSuccessOperations:
         request = build_http_success_delete200_request(
             content_type=content_type,
             json=_json,
-            template_url=self.delete200.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -634,7 +624,6 @@ class HttpSuccessOperations:
         request = build_http_success_put201_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put201.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -681,7 +670,6 @@ class HttpSuccessOperations:
         request = build_http_success_post201_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post201.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -728,7 +716,6 @@ class HttpSuccessOperations:
         request = build_http_success_put202_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put202.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -775,7 +762,6 @@ class HttpSuccessOperations:
         request = build_http_success_patch202_request(
             content_type=content_type,
             json=_json,
-            template_url=self.patch202.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -822,7 +808,6 @@ class HttpSuccessOperations:
         request = build_http_success_post202_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post202.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -869,7 +854,6 @@ class HttpSuccessOperations:
         request = build_http_success_delete202_request(
             content_type=content_type,
             json=_json,
-            template_url=self.delete202.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -903,7 +887,6 @@ class HttpSuccessOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_http_success_head204_request(
-            template_url=self.head204.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -950,7 +933,6 @@ class HttpSuccessOperations:
         request = build_http_success_put204_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put204.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -997,7 +979,6 @@ class HttpSuccessOperations:
         request = build_http_success_patch204_request(
             content_type=content_type,
             json=_json,
-            template_url=self.patch204.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1044,7 +1025,6 @@ class HttpSuccessOperations:
         request = build_http_success_post204_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post204.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1091,7 +1071,6 @@ class HttpSuccessOperations:
         request = build_http_success_delete204_request(
             content_type=content_type,
             json=_json,
-            template_url=self.delete204.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1125,7 +1104,6 @@ class HttpSuccessOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_http_success_head404_request(
-            template_url=self.head404.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1178,7 +1156,6 @@ class HttpRedirectsOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_http_redirects_head300_request(
-            template_url=self.head300.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1224,7 +1201,6 @@ class HttpRedirectsOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_http_redirects_get300_request(
-            template_url=self.get300.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1270,7 +1246,6 @@ class HttpRedirectsOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_http_redirects_head301_request(
-            template_url=self.head301.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1308,7 +1283,6 @@ class HttpRedirectsOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_http_redirects_get301_request(
-            template_url=self.get301.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1360,7 +1334,6 @@ class HttpRedirectsOperations:
         request = build_http_redirects_put301_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put301.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1397,7 +1370,6 @@ class HttpRedirectsOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_http_redirects_head302_request(
-            template_url=self.head302.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1435,7 +1407,6 @@ class HttpRedirectsOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_http_redirects_get302_request(
-            template_url=self.get302.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1487,7 +1458,6 @@ class HttpRedirectsOperations:
         request = build_http_redirects_patch302_request(
             content_type=content_type,
             json=_json,
-            template_url=self.patch302.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1538,7 +1508,6 @@ class HttpRedirectsOperations:
         request = build_http_redirects_post303_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post303.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1576,7 +1545,6 @@ class HttpRedirectsOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_http_redirects_head307_request(
-            template_url=self.head307.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1614,7 +1582,6 @@ class HttpRedirectsOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_http_redirects_get307_request(
-            template_url=self.get307.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1652,7 +1619,6 @@ class HttpRedirectsOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_http_redirects_options307_request(
-            template_url=self.options307.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1703,7 +1669,6 @@ class HttpRedirectsOperations:
         request = build_http_redirects_put307_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put307.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1754,7 +1719,6 @@ class HttpRedirectsOperations:
         request = build_http_redirects_patch307_request(
             content_type=content_type,
             json=_json,
-            template_url=self.patch307.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1805,7 +1769,6 @@ class HttpRedirectsOperations:
         request = build_http_redirects_post307_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post307.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1856,7 +1819,6 @@ class HttpRedirectsOperations:
         request = build_http_redirects_delete307_request(
             content_type=content_type,
             json=_json,
-            template_url=self.delete307.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1913,7 +1875,6 @@ class HttpClientFailureOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_http_client_failure_head400_request(
-            template_url=self.head400.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1947,7 +1908,6 @@ class HttpClientFailureOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_http_client_failure_get400_request(
-            template_url=self.get400.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1981,7 +1941,6 @@ class HttpClientFailureOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_http_client_failure_options400_request(
-            template_url=self.options400.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2028,7 +1987,6 @@ class HttpClientFailureOperations:
         request = build_http_client_failure_put400_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put400.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2075,7 +2033,6 @@ class HttpClientFailureOperations:
         request = build_http_client_failure_patch400_request(
             content_type=content_type,
             json=_json,
-            template_url=self.patch400.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2122,7 +2079,6 @@ class HttpClientFailureOperations:
         request = build_http_client_failure_post400_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post400.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2169,7 +2125,6 @@ class HttpClientFailureOperations:
         request = build_http_client_failure_delete400_request(
             content_type=content_type,
             json=_json,
-            template_url=self.delete400.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2203,7 +2158,6 @@ class HttpClientFailureOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_http_client_failure_head401_request(
-            template_url=self.head401.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2237,7 +2191,6 @@ class HttpClientFailureOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_http_client_failure_get402_request(
-            template_url=self.get402.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2271,7 +2224,6 @@ class HttpClientFailureOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_http_client_failure_options403_request(
-            template_url=self.options403.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2305,7 +2257,6 @@ class HttpClientFailureOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_http_client_failure_get403_request(
-            template_url=self.get403.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2352,7 +2303,6 @@ class HttpClientFailureOperations:
         request = build_http_client_failure_put404_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put404.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2399,7 +2349,6 @@ class HttpClientFailureOperations:
         request = build_http_client_failure_patch405_request(
             content_type=content_type,
             json=_json,
-            template_url=self.patch405.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2446,7 +2395,6 @@ class HttpClientFailureOperations:
         request = build_http_client_failure_post406_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post406.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2493,7 +2441,6 @@ class HttpClientFailureOperations:
         request = build_http_client_failure_delete407_request(
             content_type=content_type,
             json=_json,
-            template_url=self.delete407.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2540,7 +2487,6 @@ class HttpClientFailureOperations:
         request = build_http_client_failure_put409_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put409.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2574,7 +2520,6 @@ class HttpClientFailureOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_http_client_failure_head410_request(
-            template_url=self.head410.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2608,7 +2553,6 @@ class HttpClientFailureOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_http_client_failure_get411_request(
-            template_url=self.get411.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2642,7 +2586,6 @@ class HttpClientFailureOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_http_client_failure_options412_request(
-            template_url=self.options412.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2676,7 +2619,6 @@ class HttpClientFailureOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_http_client_failure_get412_request(
-            template_url=self.get412.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2723,7 +2665,6 @@ class HttpClientFailureOperations:
         request = build_http_client_failure_put413_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put413.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2770,7 +2711,6 @@ class HttpClientFailureOperations:
         request = build_http_client_failure_patch414_request(
             content_type=content_type,
             json=_json,
-            template_url=self.patch414.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2817,7 +2757,6 @@ class HttpClientFailureOperations:
         request = build_http_client_failure_post415_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post415.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2851,7 +2790,6 @@ class HttpClientFailureOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_http_client_failure_get416_request(
-            template_url=self.get416.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2898,7 +2836,6 @@ class HttpClientFailureOperations:
         request = build_http_client_failure_delete417_request(
             content_type=content_type,
             json=_json,
-            template_url=self.delete417.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2932,7 +2869,6 @@ class HttpClientFailureOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_http_client_failure_head429_request(
-            template_url=self.head429.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2985,7 +2921,6 @@ class HttpServerFailureOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_http_server_failure_head501_request(
-            template_url=self.head501.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3019,7 +2954,6 @@ class HttpServerFailureOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_http_server_failure_get501_request(
-            template_url=self.get501.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3066,7 +3000,6 @@ class HttpServerFailureOperations:
         request = build_http_server_failure_post505_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post505.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3113,7 +3046,6 @@ class HttpServerFailureOperations:
         request = build_http_server_failure_delete505_request(
             content_type=content_type,
             json=_json,
-            template_url=self.delete505.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3166,7 +3098,6 @@ class HttpRetryOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_http_retry_head408_request(
-            template_url=self.head408.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3213,7 +3144,6 @@ class HttpRetryOperations:
         request = build_http_retry_put500_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put500.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3260,7 +3190,6 @@ class HttpRetryOperations:
         request = build_http_retry_patch500_request(
             content_type=content_type,
             json=_json,
-            template_url=self.patch500.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3294,7 +3223,6 @@ class HttpRetryOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_http_retry_get502_request(
-            template_url=self.get502.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3328,7 +3256,6 @@ class HttpRetryOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_http_retry_options502_request(
-            template_url=self.options502.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3382,7 +3309,6 @@ class HttpRetryOperations:
         request = build_http_retry_post503_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post503.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3429,7 +3355,6 @@ class HttpRetryOperations:
         request = build_http_retry_delete503_request(
             content_type=content_type,
             json=_json,
-            template_url=self.delete503.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3476,7 +3401,6 @@ class HttpRetryOperations:
         request = build_http_retry_put504_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put504.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3523,7 +3447,6 @@ class HttpRetryOperations:
         request = build_http_retry_patch504_request(
             content_type=content_type,
             json=_json,
-            template_url=self.patch504.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3584,7 +3507,6 @@ class MultipleResponsesOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_multiple_responses_get200_model204_no_model_default_error200_valid_request(
-            template_url=self.get200_model204_no_model_default_error200_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3635,7 +3557,6 @@ class MultipleResponsesOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_multiple_responses_get200_model204_no_model_default_error204_valid_request(
-            template_url=self.get200_model204_no_model_default_error204_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3686,7 +3607,6 @@ class MultipleResponsesOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_multiple_responses_get200_model204_no_model_default_error201_invalid_request(
-            template_url=self.get200_model204_no_model_default_error201_invalid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3737,7 +3657,6 @@ class MultipleResponsesOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_multiple_responses_get200_model204_no_model_default_error202_none_request(
-            template_url=self.get200_model204_no_model_default_error202_none.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3788,7 +3707,6 @@ class MultipleResponsesOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_multiple_responses_get200_model204_no_model_default_error400_valid_request(
-            template_url=self.get200_model204_no_model_default_error400_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3844,7 +3762,6 @@ class MultipleResponsesOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_multiple_responses_get200_model201_model_default_error200_valid_request(
-            template_url=self.get200_model201_model_default_error200_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3905,7 +3822,6 @@ class MultipleResponsesOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_multiple_responses_get200_model201_model_default_error201_valid_request(
-            template_url=self.get200_model201_model_default_error201_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3966,7 +3882,6 @@ class MultipleResponsesOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_multiple_responses_get200_model201_model_default_error400_valid_request(
-            template_url=self.get200_model201_model_default_error400_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4030,7 +3945,6 @@ class MultipleResponsesOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_multiple_responses_get200_model_a201_model_c404_model_d_default_error200_valid_request(
-            template_url=self.get200_model_a201_model_c404_model_d_default_error200_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4100,7 +4014,6 @@ class MultipleResponsesOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_multiple_responses_get200_model_a201_model_c404_model_d_default_error201_valid_request(
-            template_url=self.get200_model_a201_model_c404_model_d_default_error201_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4170,7 +4083,6 @@ class MultipleResponsesOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_multiple_responses_get200_model_a201_model_c404_model_d_default_error404_valid_request(
-            template_url=self.get200_model_a201_model_c404_model_d_default_error404_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4240,7 +4152,6 @@ class MultipleResponsesOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_multiple_responses_get200_model_a201_model_c404_model_d_default_error400_valid_request(
-            template_url=self.get200_model_a201_model_c404_model_d_default_error400_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4294,7 +4205,6 @@ class MultipleResponsesOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_multiple_responses_get202_none204_none_default_error202_none_request(
-            template_url=self.get202_none204_none_default_error202_none.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4328,7 +4238,6 @@ class MultipleResponsesOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_multiple_responses_get202_none204_none_default_error204_none_request(
-            template_url=self.get202_none204_none_default_error204_none.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4362,7 +4271,6 @@ class MultipleResponsesOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_multiple_responses_get202_none204_none_default_error400_valid_request(
-            template_url=self.get202_none204_none_default_error400_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4396,7 +4304,6 @@ class MultipleResponsesOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_multiple_responses_get202_none204_none_default_none202_invalid_request(
-            template_url=self.get202_none204_none_default_none202_invalid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4430,7 +4337,6 @@ class MultipleResponsesOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_multiple_responses_get202_none204_none_default_none204_none_request(
-            template_url=self.get202_none204_none_default_none204_none.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4464,7 +4370,6 @@ class MultipleResponsesOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_multiple_responses_get202_none204_none_default_none400_none_request(
-            template_url=self.get202_none204_none_default_none400_none.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4498,7 +4403,6 @@ class MultipleResponsesOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_multiple_responses_get202_none204_none_default_none400_invalid_request(
-            template_url=self.get202_none204_none_default_none400_invalid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4540,7 +4444,6 @@ class MultipleResponsesOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_multiple_responses_get_default_model_a200_valid_request(
-            template_url=self.get_default_model_a200_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4589,7 +4492,6 @@ class MultipleResponsesOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_multiple_responses_get_default_model_a200_none_request(
-            template_url=self.get_default_model_a200_none.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4630,7 +4532,6 @@ class MultipleResponsesOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_multiple_responses_get_default_model_a400_valid_request(
-            template_url=self.get_default_model_a400_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4664,7 +4565,6 @@ class MultipleResponsesOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_multiple_responses_get_default_model_a400_none_request(
-            template_url=self.get_default_model_a400_none.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4698,7 +4598,6 @@ class MultipleResponsesOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_multiple_responses_get_default_none200_invalid_request(
-            template_url=self.get_default_none200_invalid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4732,7 +4631,6 @@ class MultipleResponsesOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_multiple_responses_get_default_none200_none_request(
-            template_url=self.get_default_none200_none.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4766,7 +4664,6 @@ class MultipleResponsesOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_multiple_responses_get_default_none400_invalid_request(
-            template_url=self.get_default_none400_invalid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4800,7 +4697,6 @@ class MultipleResponsesOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_multiple_responses_get_default_none400_none_request(
-            template_url=self.get_default_none400_none.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4843,7 +4739,6 @@ class MultipleResponsesOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_multiple_responses_get200_model_a200_none_request(
-            template_url=self.get200_model_a200_none.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4892,7 +4787,6 @@ class MultipleResponsesOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_multiple_responses_get200_model_a200_valid_request(
-            template_url=self.get200_model_a200_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4941,7 +4835,6 @@ class MultipleResponsesOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_multiple_responses_get200_model_a200_invalid_request(
-            template_url=self.get200_model_a200_invalid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4990,7 +4883,6 @@ class MultipleResponsesOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_multiple_responses_get200_model_a400_none_request(
-            template_url=self.get200_model_a400_none.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -5039,7 +4931,6 @@ class MultipleResponsesOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_multiple_responses_get200_model_a400_valid_request(
-            template_url=self.get200_model_a400_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -5088,7 +4979,6 @@ class MultipleResponsesOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_multiple_responses_get200_model_a400_invalid_request(
-            template_url=self.get200_model_a400_invalid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -5137,7 +5027,6 @@ class MultipleResponsesOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_multiple_responses_get200_model_a202_valid_request(
-            template_url=self.get200_model_a202_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )

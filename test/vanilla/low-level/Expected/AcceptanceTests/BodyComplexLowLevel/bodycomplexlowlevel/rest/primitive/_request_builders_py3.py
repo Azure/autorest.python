@@ -44,7 +44,7 @@ def build_get_int_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/integer")
+    url = "/complex/primitive/integer"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -86,7 +86,7 @@ def build_put_int_request(*, json: JSONType = None, content: Any = None, **kwarg
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/integer")
+    url = "/complex/primitive/integer"
 
     # Construct headers
     if content_type is not None:
@@ -122,7 +122,7 @@ def build_get_long_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/long")
+    url = "/complex/primitive/long"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -164,7 +164,7 @@ def build_put_long_request(*, json: JSONType = None, content: Any = None, **kwar
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/long")
+    url = "/complex/primitive/long"
 
     # Construct headers
     if content_type is not None:
@@ -200,7 +200,7 @@ def build_get_float_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/float")
+    url = "/complex/primitive/float"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -242,7 +242,7 @@ def build_put_float_request(*, json: JSONType = None, content: Any = None, **kwa
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/float")
+    url = "/complex/primitive/float"
 
     # Construct headers
     if content_type is not None:
@@ -278,7 +278,7 @@ def build_get_double_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/double")
+    url = "/complex/primitive/double"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -322,7 +322,7 @@ def build_put_double_request(*, json: JSONType = None, content: Any = None, **kw
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/double")
+    url = "/complex/primitive/double"
 
     # Construct headers
     if content_type is not None:
@@ -358,7 +358,7 @@ def build_get_bool_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/bool")
+    url = "/complex/primitive/bool"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -400,7 +400,7 @@ def build_put_bool_request(*, json: JSONType = None, content: Any = None, **kwar
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/bool")
+    url = "/complex/primitive/bool"
 
     # Construct headers
     if content_type is not None:
@@ -437,7 +437,7 @@ def build_get_string_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/string")
+    url = "/complex/primitive/string"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -480,7 +480,7 @@ def build_put_string_request(*, json: JSONType = None, content: Any = None, **kw
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/string")
+    url = "/complex/primitive/string"
 
     # Construct headers
     if content_type is not None:
@@ -516,7 +516,7 @@ def build_get_date_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/date")
+    url = "/complex/primitive/date"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -558,7 +558,7 @@ def build_put_date_request(*, json: JSONType = None, content: Any = None, **kwar
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/date")
+    url = "/complex/primitive/date"
 
     # Construct headers
     if content_type is not None:
@@ -594,7 +594,7 @@ def build_get_date_time_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/datetime")
+    url = "/complex/primitive/datetime"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -638,7 +638,7 @@ def build_put_date_time_request(*, json: JSONType = None, content: Any = None, *
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/datetime")
+    url = "/complex/primitive/datetime"
 
     # Construct headers
     if content_type is not None:
@@ -674,7 +674,7 @@ def build_get_date_time_rfc1123_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/datetimerfc1123")
+    url = "/complex/primitive/datetimerfc1123"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -718,7 +718,7 @@ def build_put_date_time_rfc1123_request(*, json: JSONType = None, content: Any =
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/datetimerfc1123")
+    url = "/complex/primitive/datetimerfc1123"
 
     # Construct headers
     if content_type is not None:
@@ -753,7 +753,7 @@ def build_get_duration_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/duration")
+    url = "/complex/primitive/duration"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -794,7 +794,7 @@ def build_put_duration_request(*, json: JSONType = None, content: Any = None, **
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/duration")
+    url = "/complex/primitive/duration"
 
     # Construct headers
     if content_type is not None:
@@ -829,7 +829,7 @@ def build_get_byte_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/byte")
+    url = "/complex/primitive/byte"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -872,7 +872,7 @@ def build_put_byte_request(*, json: JSONType = None, content: Any = None, **kwar
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/byte")
+    url = "/complex/primitive/byte"
 
     # Construct headers
     if content_type is not None:

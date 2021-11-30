@@ -55,7 +55,7 @@ def build_storage_accounts_check_name_availability_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json, text/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability')
+    url = '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability'
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
@@ -95,7 +95,7 @@ def build_storage_accounts_create_request_initial(
     accept = _get_from_dict(_headers, 'Accept') or "application/json, text/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}')
+    url = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'
     path_format_arguments = {
         "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
         "accountName": _SERIALIZER.url("account_name", account_name, 'str'),
@@ -133,7 +133,7 @@ def build_storage_accounts_delete_request(
     api_version = kwargs.pop('api_version', _get_from_dict(_params, 'api-version') or "2015-05-01-preview")  # type: str
 
     # Construct URL
-    url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}')
+    url = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'
     path_format_arguments = {
         "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
         "accountName": _SERIALIZER.url("account_name", account_name, 'str'),
@@ -168,7 +168,7 @@ def build_storage_accounts_get_properties_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json, text/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}')
+    url = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'
     path_format_arguments = {
         "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
         "accountName": _SERIALIZER.url("account_name", account_name, 'str'),
@@ -208,7 +208,7 @@ def build_storage_accounts_update_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json, text/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}')
+    url = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'
     path_format_arguments = {
         "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
         "accountName": _SERIALIZER.url("account_name", account_name, 'str'),
@@ -249,7 +249,7 @@ def build_storage_accounts_list_keys_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json, text/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys')
+    url = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys'
     path_format_arguments = {
         "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
         "accountName": _SERIALIZER.url("account_name", account_name, 'str'),
@@ -286,7 +286,7 @@ def build_storage_accounts_list_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json, text/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts')
+    url = '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts'
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
@@ -322,7 +322,7 @@ def build_storage_accounts_list_by_resource_group_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json, text/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts')
+    url = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts'
     path_format_arguments = {
         "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, 'str'),
@@ -361,7 +361,7 @@ def build_storage_accounts_regenerate_key_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json, text/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/regenerateKey')
+    url = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/regenerateKey'
     path_format_arguments = {
         "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
         "accountName": _SERIALIZER.url("account_name", account_name, 'str'),
@@ -400,7 +400,7 @@ def build_usage_list_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json, text/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages')
+    url = '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages'
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
@@ -497,7 +497,6 @@ class StorageAccountsOperations(object):
             api_version=api_version,
             content_type=content_type,
             json=_json,
-            template_url=self.check_name_availability.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -553,7 +552,6 @@ class StorageAccountsOperations(object):
             api_version=api_version,
             content_type=content_type,
             json=_json,
-            template_url=self._create_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -769,7 +767,6 @@ class StorageAccountsOperations(object):
             account_name=account_name,
             subscription_id=self._config.subscription_id,
             api_version=api_version,
-            template_url=self.delete.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -878,7 +875,6 @@ class StorageAccountsOperations(object):
             account_name=account_name,
             subscription_id=self._config.subscription_id,
             api_version=api_version,
-            template_url=self.get_properties.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1027,7 +1023,6 @@ class StorageAccountsOperations(object):
             api_version=api_version,
             content_type=content_type,
             json=_json,
-            template_url=self.update.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1098,7 +1093,6 @@ class StorageAccountsOperations(object):
             account_name=account_name,
             subscription_id=self._config.subscription_id,
             api_version=api_version,
-            template_url=self.list_keys.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1207,7 +1201,6 @@ class StorageAccountsOperations(object):
                 request = build_storage_accounts_list_request(
                     subscription_id=self._config.subscription_id,
                     api_version=api_version,
-                    template_url=self.list.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -1218,11 +1211,10 @@ class StorageAccountsOperations(object):
                 request = build_storage_accounts_list_request(
                     subscription_id=self._config.subscription_id,
                     api_version=api_version,
-                    template_url=next_link,
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                request.url = self._client.format_url(next_link)
                 request.method = "GET"
             return request
 
@@ -1338,7 +1330,6 @@ class StorageAccountsOperations(object):
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
                     api_version=api_version,
-                    template_url=self.list_by_resource_group.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -1350,11 +1341,10 @@ class StorageAccountsOperations(object):
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
                     api_version=api_version,
-                    template_url=next_link,
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                request.url = self._client.format_url(next_link)
                 request.method = "GET"
             return request
 
@@ -1444,7 +1434,6 @@ class StorageAccountsOperations(object):
             api_version=api_version,
             content_type=content_type,
             json=_json,
-            template_url=self.regenerate_key.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1534,7 +1523,6 @@ class UsageOperations(object):
         request = build_usage_list_request(
             subscription_id=self._config.subscription_id,
             api_version=api_version,
-            template_url=self.list.metadata["url"],
             headers=_headers,
             params=_params,
         )

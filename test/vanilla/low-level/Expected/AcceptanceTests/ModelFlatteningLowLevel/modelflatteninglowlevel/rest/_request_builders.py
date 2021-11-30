@@ -68,7 +68,7 @@ def build_put_array_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/model-flatten/array')
+    url = '/model-flatten/array'
 
     # Construct headers
     if content_type is not None:
@@ -125,7 +125,7 @@ def build_get_array_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/model-flatten/array')
+    url = '/model-flatten/array'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -177,7 +177,7 @@ def build_put_wrapped_array_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/model-flatten/wrappedarray')
+    url = '/model-flatten/wrappedarray'
 
     # Construct headers
     if content_type is not None:
@@ -225,7 +225,7 @@ def build_get_wrapped_array_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/model-flatten/wrappedarray')
+    url = '/model-flatten/wrappedarray'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -288,7 +288,7 @@ def build_put_dictionary_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/model-flatten/dictionary')
+    url = '/model-flatten/dictionary'
 
     # Construct headers
     if content_type is not None:
@@ -345,7 +345,7 @@ def build_get_dictionary_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/model-flatten/dictionary')
+    url = '/model-flatten/dictionary'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -442,7 +442,7 @@ def build_put_resource_collection_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/model-flatten/resourcecollection')
+    url = '/model-flatten/resourcecollection'
 
     # Construct headers
     if content_type is not None:
@@ -533,7 +533,7 @@ def build_get_resource_collection_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/model-flatten/resourcecollection')
+    url = '/model-flatten/resourcecollection'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -605,7 +605,7 @@ def build_put_simple_product_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/model-flatten/customFlattening')
+    url = '/model-flatten/customFlattening'
 
     # Construct headers
     if content_type is not None:
@@ -679,7 +679,7 @@ def build_post_flattened_simple_product_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/model-flatten/customFlattening')
+    url = '/model-flatten/customFlattening'
 
     # Construct headers
     if content_type is not None:
@@ -756,7 +756,7 @@ def build_put_simple_product_with_grouping_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/model-flatten/customFlattening/parametergrouping/{name}/')
+    url = '/model-flatten/customFlattening/parametergrouping/{name}/'
     path_format_arguments = {
         "name": _SERIALIZER.url("name", name, 'str'),
     }

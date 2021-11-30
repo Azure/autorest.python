@@ -69,7 +69,6 @@ class ByteOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_byte_get_null_request(
-            template_url=self.get_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -110,7 +109,6 @@ class ByteOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_byte_get_empty_request(
-            template_url=self.get_empty.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -151,7 +149,6 @@ class ByteOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_byte_get_non_ascii_request(
-            template_url=self.get_non_ascii.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -202,7 +199,6 @@ class ByteOperations:
         request = build_byte_put_non_ascii_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_non_ascii.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -236,7 +232,6 @@ class ByteOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_byte_get_invalid_request(
-            template_url=self.get_invalid.metadata["url"],
             headers=_headers,
             params=_params,
         )

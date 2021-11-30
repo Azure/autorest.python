@@ -44,7 +44,7 @@ def build_head408_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/retry/408')
+    url = '/http/retry/408'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -91,7 +91,7 @@ def build_put500_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/retry/500')
+    url = '/http/retry/500'
 
     # Construct headers
     if content_type is not None:
@@ -140,7 +140,7 @@ def build_patch500_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/retry/500')
+    url = '/http/retry/500'
 
     # Construct headers
     if content_type is not None:
@@ -175,7 +175,7 @@ def build_get502_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/retry/502')
+    url = '/http/retry/502'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -208,7 +208,7 @@ def build_options502_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/retry/502')
+    url = '/http/retry/502'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -255,7 +255,7 @@ def build_post503_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/retry/503')
+    url = '/http/retry/503'
 
     # Construct headers
     if content_type is not None:
@@ -304,7 +304,7 @@ def build_delete503_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/retry/503')
+    url = '/http/retry/503'
 
     # Construct headers
     if content_type is not None:
@@ -353,7 +353,7 @@ def build_put504_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/retry/504')
+    url = '/http/retry/504'
 
     # Construct headers
     if content_type is not None:
@@ -402,7 +402,7 @@ def build_patch504_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/http/retry/504')
+    url = '/http/retry/504'
 
     # Construct headers
     if content_type is not None:

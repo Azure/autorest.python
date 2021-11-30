@@ -36,7 +36,7 @@ def build_get_null_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/string/null")
+    url = "/string/null"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -75,7 +75,7 @@ def build_put_null_request(*, json: JSONType = None, content: Any = None, **kwar
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/string/null")
+    url = "/string/null"
 
     # Construct headers
     if content_type is not None:
@@ -102,7 +102,7 @@ def build_get_empty_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/string/empty")
+    url = "/string/empty"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -133,7 +133,7 @@ def build_put_empty_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/string/empty")
+    url = "/string/empty"
 
     # Construct headers
     if content_type is not None:
@@ -160,7 +160,7 @@ def build_get_mbcs_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/string/mbcs")
+    url = "/string/mbcs"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -192,7 +192,7 @@ def build_put_mbcs_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/string/mbcs")
+    url = "/string/mbcs"
 
     # Construct headers
     if content_type is not None:
@@ -221,7 +221,7 @@ def build_get_whitespace_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/string/whitespace")
+    url = "/string/whitespace"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -257,7 +257,7 @@ def build_put_whitespace_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/string/whitespace")
+    url = "/string/whitespace"
 
     # Construct headers
     if content_type is not None:
@@ -284,7 +284,7 @@ def build_get_not_provided_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/string/notProvided")
+    url = "/string/notProvided"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -309,7 +309,7 @@ def build_get_base64_encoded_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/string/base64Encoding")
+    url = "/string/base64Encoding"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -334,7 +334,7 @@ def build_get_base64_url_encoded_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/string/base64UrlEncoding")
+    url = "/string/base64UrlEncoding"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -373,7 +373,7 @@ def build_put_base64_url_encoded_request(*, json: JSONType = None, content: Any 
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/string/base64UrlEncoding")
+    url = "/string/base64UrlEncoding"
 
     # Construct headers
     if content_type is not None:
@@ -400,7 +400,7 @@ def build_get_null_base64_url_encoded_request(**kwargs: Any) -> HttpRequest:
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/string/nullBase64UrlEncoding")
+    url = "/string/nullBase64UrlEncoding"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")

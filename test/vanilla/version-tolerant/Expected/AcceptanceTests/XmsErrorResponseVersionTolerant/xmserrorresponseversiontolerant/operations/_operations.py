@@ -46,7 +46,7 @@ def build_pet_get_pet_by_id_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/errorStatusCodes/Pets/{petId}/GetPet')
+    url = '/errorStatusCodes/Pets/{petId}/GetPet'
     path_format_arguments = {
         "petId": _SERIALIZER.url("pet_id", pet_id, 'str'),
     }
@@ -74,7 +74,7 @@ def build_pet_do_something_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/errorStatusCodes/Pets/doSomething/{whatAction}')
+    url = '/errorStatusCodes/Pets/doSomething/{whatAction}'
     path_format_arguments = {
         "whatAction": _SERIALIZER.url("what_action", what_action, 'str'),
     }
@@ -104,7 +104,7 @@ def build_pet_has_models_param_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/errorStatusCodes/Pets/hasModelsParam')
+    url = '/errorStatusCodes/Pets/hasModelsParam'
 
     # Construct parameters
     if models is not None:
@@ -179,7 +179,6 @@ class PetOperations(object):
 
         request = build_pet_get_pet_by_id_request(
             pet_id=pet_id,
-            template_url=self.get_pet_by_id.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -243,7 +242,6 @@ class PetOperations(object):
 
         request = build_pet_do_something_request(
             what_action=what_action,
-            template_url=self.do_something.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -299,7 +297,6 @@ class PetOperations(object):
 
         request = build_pet_has_models_param_request(
             models=models,
-            template_url=self.has_models_param.metadata["url"],
             headers=_headers,
             params=_params,
         )

@@ -85,7 +85,6 @@ class PetOperations:
 
         request = build_pet_get_pet_by_id_request(
             pet_id=pet_id,
-            template_url=self.get_pet_by_id.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -144,7 +143,6 @@ class PetOperations:
 
         request = build_pet_do_something_request(
             what_action=what_action,
-            template_url=self.do_something.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -195,7 +193,6 @@ class PetOperations:
 
         request = build_pet_has_models_param_request(
             models=models,
-            template_url=self.has_models_param.metadata["url"],
             headers=_headers,
             params=_params,
         )

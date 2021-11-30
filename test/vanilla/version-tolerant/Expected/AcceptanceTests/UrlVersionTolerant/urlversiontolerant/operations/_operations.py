@@ -46,7 +46,7 @@ def build_paths_get_boolean_true_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/paths/bool/true/{boolPath}')
+    url = '/paths/bool/true/{boolPath}'
     path_format_arguments = {
         "boolPath": _SERIALIZER.url("bool_path", bool_path, 'bool'),
     }
@@ -75,7 +75,7 @@ def build_paths_get_boolean_false_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/paths/bool/false/{boolPath}')
+    url = '/paths/bool/false/{boolPath}'
     path_format_arguments = {
         "boolPath": _SERIALIZER.url("bool_path", bool_path, 'bool'),
     }
@@ -104,7 +104,7 @@ def build_paths_get_int_one_million_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/paths/int/1000000/{intPath}')
+    url = '/paths/int/1000000/{intPath}'
     path_format_arguments = {
         "intPath": _SERIALIZER.url("int_path", int_path, 'int'),
     }
@@ -133,7 +133,7 @@ def build_paths_get_int_negative_one_million_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/paths/int/-1000000/{intPath}')
+    url = '/paths/int/-1000000/{intPath}'
     path_format_arguments = {
         "intPath": _SERIALIZER.url("int_path", int_path, 'int'),
     }
@@ -162,7 +162,7 @@ def build_paths_get_ten_billion_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/paths/long/10000000000/{longPath}')
+    url = '/paths/long/10000000000/{longPath}'
     path_format_arguments = {
         "longPath": _SERIALIZER.url("long_path", long_path, 'long'),
     }
@@ -191,7 +191,7 @@ def build_paths_get_negative_ten_billion_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/paths/long/-10000000000/{longPath}')
+    url = '/paths/long/-10000000000/{longPath}'
     path_format_arguments = {
         "longPath": _SERIALIZER.url("long_path", long_path, 'long'),
     }
@@ -220,7 +220,7 @@ def build_paths_float_scientific_positive_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/paths/float/1.034E+20/{floatPath}')
+    url = '/paths/float/1.034E+20/{floatPath}'
     path_format_arguments = {
         "floatPath": _SERIALIZER.url("float_path", float_path, 'float'),
     }
@@ -249,7 +249,7 @@ def build_paths_float_scientific_negative_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/paths/float/-1.034E-20/{floatPath}')
+    url = '/paths/float/-1.034E-20/{floatPath}'
     path_format_arguments = {
         "floatPath": _SERIALIZER.url("float_path", float_path, 'float'),
     }
@@ -278,7 +278,7 @@ def build_paths_double_decimal_positive_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/paths/double/9999999.999/{doublePath}')
+    url = '/paths/double/9999999.999/{doublePath}'
     path_format_arguments = {
         "doublePath": _SERIALIZER.url("double_path", double_path, 'float'),
     }
@@ -307,7 +307,7 @@ def build_paths_double_decimal_negative_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/paths/double/-9999999.999/{doublePath}')
+    url = '/paths/double/-9999999.999/{doublePath}'
     path_format_arguments = {
         "doublePath": _SERIALIZER.url("double_path", double_path, 'float'),
     }
@@ -336,7 +336,7 @@ def build_paths_string_unicode_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/paths/string/unicode/{stringPath}')
+    url = '/paths/string/unicode/{stringPath}'
     path_format_arguments = {
         "stringPath": _SERIALIZER.url("string_path", string_path, 'str'),
     }
@@ -365,7 +365,7 @@ def build_paths_string_url_encoded_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}')
+    url = '/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}'
     path_format_arguments = {
         "stringPath": _SERIALIZER.url("string_path", string_path, 'str'),
     }
@@ -394,7 +394,7 @@ def build_paths_string_url_non_encoded_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/paths/string/begin!*\'();:@&=+$,end/{stringPath}')
+    url = '/paths/string/begin!*\'();:@&=+$,end/{stringPath}'
     path_format_arguments = {
         "stringPath": _SERIALIZER.url("string_path", string_path, 'str', skip_quote=True),
     }
@@ -423,7 +423,7 @@ def build_paths_string_empty_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/paths/string/empty/{stringPath}')
+    url = '/paths/string/empty/{stringPath}'
     path_format_arguments = {
         "stringPath": _SERIALIZER.url("string_path", string_path, 'str'),
     }
@@ -451,7 +451,7 @@ def build_paths_string_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/paths/string/null/{stringPath}')
+    url = '/paths/string/null/{stringPath}'
     path_format_arguments = {
         "stringPath": _SERIALIZER.url("string_path", string_path, 'str'),
     }
@@ -479,7 +479,7 @@ def build_paths_enum_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/paths/enum/green%20color/{enumPath}')
+    url = '/paths/enum/green%20color/{enumPath}'
     path_format_arguments = {
         "enumPath": _SERIALIZER.url("enum_path", enum_path, 'str'),
     }
@@ -507,7 +507,7 @@ def build_paths_enum_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/paths/string/null/{enumPath}')
+    url = '/paths/string/null/{enumPath}'
     path_format_arguments = {
         "enumPath": _SERIALIZER.url("enum_path", enum_path, 'str'),
     }
@@ -535,7 +535,7 @@ def build_paths_byte_multi_byte_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/paths/byte/multibyte/{bytePath}')
+    url = '/paths/byte/multibyte/{bytePath}'
     path_format_arguments = {
         "bytePath": _SERIALIZER.url("byte_path", byte_path, 'bytearray'),
     }
@@ -564,7 +564,7 @@ def build_paths_byte_empty_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/paths/byte/empty/{bytePath}')
+    url = '/paths/byte/empty/{bytePath}'
     path_format_arguments = {
         "bytePath": _SERIALIZER.url("byte_path", byte_path, 'bytearray'),
     }
@@ -592,7 +592,7 @@ def build_paths_byte_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/paths/byte/null/{bytePath}')
+    url = '/paths/byte/null/{bytePath}'
     path_format_arguments = {
         "bytePath": _SERIALIZER.url("byte_path", byte_path, 'bytearray'),
     }
@@ -621,7 +621,7 @@ def build_paths_date_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/paths/date/2012-01-01/{datePath}')
+    url = '/paths/date/2012-01-01/{datePath}'
     path_format_arguments = {
         "datePath": _SERIALIZER.url("date_path", date_path, 'date'),
     }
@@ -649,7 +649,7 @@ def build_paths_date_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/paths/date/null/{datePath}')
+    url = '/paths/date/null/{datePath}'
     path_format_arguments = {
         "datePath": _SERIALIZER.url("date_path", date_path, 'date'),
     }
@@ -678,7 +678,7 @@ def build_paths_date_time_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}')
+    url = '/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}'
     path_format_arguments = {
         "dateTimePath": _SERIALIZER.url("date_time_path", date_time_path, 'iso-8601'),
     }
@@ -706,7 +706,7 @@ def build_paths_date_time_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/paths/datetime/null/{dateTimePath}')
+    url = '/paths/datetime/null/{dateTimePath}'
     path_format_arguments = {
         "dateTimePath": _SERIALIZER.url("date_time_path", date_time_path, 'iso-8601'),
     }
@@ -734,7 +734,7 @@ def build_paths_base64_url_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/paths/string/bG9yZW0/{base64UrlPath}')
+    url = '/paths/string/bG9yZW0/{base64UrlPath}'
     path_format_arguments = {
         "base64UrlPath": _SERIALIZER.url("base64_url_path", base64_url_path, 'base64'),
     }
@@ -762,7 +762,7 @@ def build_paths_array_csv_in_path_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}')
+    url = '/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}'
     path_format_arguments = {
         "arrayPath": _SERIALIZER.url("array_path", array_path, '[str]', div=','),
     }
@@ -790,7 +790,7 @@ def build_paths_unix_time_url_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/paths/int/1460505600/{unixTimeUrlPath}')
+    url = '/paths/int/1460505600/{unixTimeUrlPath}'
     path_format_arguments = {
         "unixTimeUrlPath": _SERIALIZER.url("unix_time_url_path", unix_time_url_path, 'unix-time'),
     }
@@ -820,7 +820,7 @@ def build_queries_get_boolean_true_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/bool/true')
+    url = '/queries/bool/true'
 
     # Construct parameters
     _params['boolQuery'] = _SERIALIZER.query("bool_query", bool_query, 'bool')
@@ -849,7 +849,7 @@ def build_queries_get_boolean_false_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/bool/false')
+    url = '/queries/bool/false'
 
     # Construct parameters
     _params['boolQuery'] = _SERIALIZER.query("bool_query", bool_query, 'bool')
@@ -878,7 +878,7 @@ def build_queries_get_boolean_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/bool/null')
+    url = '/queries/bool/null'
 
     # Construct parameters
     if bool_query is not None:
@@ -908,7 +908,7 @@ def build_queries_get_int_one_million_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/int/1000000')
+    url = '/queries/int/1000000'
 
     # Construct parameters
     _params['intQuery'] = _SERIALIZER.query("int_query", int_query, 'int')
@@ -937,7 +937,7 @@ def build_queries_get_int_negative_one_million_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/int/-1000000')
+    url = '/queries/int/-1000000'
 
     # Construct parameters
     _params['intQuery'] = _SERIALIZER.query("int_query", int_query, 'int')
@@ -966,7 +966,7 @@ def build_queries_get_int_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/int/null')
+    url = '/queries/int/null'
 
     # Construct parameters
     if int_query is not None:
@@ -996,7 +996,7 @@ def build_queries_get_ten_billion_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/long/10000000000')
+    url = '/queries/long/10000000000'
 
     # Construct parameters
     _params['longQuery'] = _SERIALIZER.query("long_query", long_query, 'long')
@@ -1025,7 +1025,7 @@ def build_queries_get_negative_ten_billion_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/long/-10000000000')
+    url = '/queries/long/-10000000000'
 
     # Construct parameters
     _params['longQuery'] = _SERIALIZER.query("long_query", long_query, 'long')
@@ -1054,7 +1054,7 @@ def build_queries_get_long_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/long/null')
+    url = '/queries/long/null'
 
     # Construct parameters
     if long_query is not None:
@@ -1084,7 +1084,7 @@ def build_queries_float_scientific_positive_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/float/1.034E+20')
+    url = '/queries/float/1.034E+20'
 
     # Construct parameters
     _params['floatQuery'] = _SERIALIZER.query("float_query", float_query, 'float')
@@ -1113,7 +1113,7 @@ def build_queries_float_scientific_negative_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/float/-1.034E-20')
+    url = '/queries/float/-1.034E-20'
 
     # Construct parameters
     _params['floatQuery'] = _SERIALIZER.query("float_query", float_query, 'float')
@@ -1142,7 +1142,7 @@ def build_queries_float_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/float/null')
+    url = '/queries/float/null'
 
     # Construct parameters
     if float_query is not None:
@@ -1172,7 +1172,7 @@ def build_queries_double_decimal_positive_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/double/9999999.999')
+    url = '/queries/double/9999999.999'
 
     # Construct parameters
     _params['doubleQuery'] = _SERIALIZER.query("double_query", double_query, 'float')
@@ -1201,7 +1201,7 @@ def build_queries_double_decimal_negative_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/double/-9999999.999')
+    url = '/queries/double/-9999999.999'
 
     # Construct parameters
     _params['doubleQuery'] = _SERIALIZER.query("double_query", double_query, 'float')
@@ -1230,7 +1230,7 @@ def build_queries_double_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/double/null')
+    url = '/queries/double/null'
 
     # Construct parameters
     if double_query is not None:
@@ -1260,7 +1260,7 @@ def build_queries_string_unicode_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/string/unicode/')
+    url = '/queries/string/unicode/'
 
     # Construct parameters
     _params['stringQuery'] = _SERIALIZER.query("string_query", string_query, 'str')
@@ -1289,7 +1289,7 @@ def build_queries_string_url_encoded_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend')
+    url = '/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend'
 
     # Construct parameters
     _params['stringQuery'] = _SERIALIZER.query("string_query", string_query, 'str')
@@ -1318,7 +1318,7 @@ def build_queries_string_empty_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/string/empty')
+    url = '/queries/string/empty'
 
     # Construct parameters
     _params['stringQuery'] = _SERIALIZER.query("string_query", string_query, 'str')
@@ -1347,7 +1347,7 @@ def build_queries_string_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/string/null')
+    url = '/queries/string/null'
 
     # Construct parameters
     if string_query is not None:
@@ -1377,7 +1377,7 @@ def build_queries_enum_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/enum/green%20color')
+    url = '/queries/enum/green%20color'
 
     # Construct parameters
     if enum_query is not None:
@@ -1407,7 +1407,7 @@ def build_queries_enum_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/enum/null')
+    url = '/queries/enum/null'
 
     # Construct parameters
     if enum_query is not None:
@@ -1437,7 +1437,7 @@ def build_queries_byte_multi_byte_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/byte/multibyte')
+    url = '/queries/byte/multibyte'
 
     # Construct parameters
     if byte_query is not None:
@@ -1467,7 +1467,7 @@ def build_queries_byte_empty_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/byte/empty')
+    url = '/queries/byte/empty'
 
     # Construct parameters
     _params['byteQuery'] = _SERIALIZER.query("byte_query", byte_query, 'bytearray')
@@ -1496,7 +1496,7 @@ def build_queries_byte_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/byte/null')
+    url = '/queries/byte/null'
 
     # Construct parameters
     if byte_query is not None:
@@ -1526,7 +1526,7 @@ def build_queries_date_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/date/2012-01-01')
+    url = '/queries/date/2012-01-01'
 
     # Construct parameters
     _params['dateQuery'] = _SERIALIZER.query("date_query", date_query, 'date')
@@ -1555,7 +1555,7 @@ def build_queries_date_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/date/null')
+    url = '/queries/date/null'
 
     # Construct parameters
     if date_query is not None:
@@ -1585,7 +1585,7 @@ def build_queries_date_time_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/datetime/2012-01-01T01%3A01%3A01Z')
+    url = '/queries/datetime/2012-01-01T01%3A01%3A01Z'
 
     # Construct parameters
     _params['dateTimeQuery'] = _SERIALIZER.query("date_time_query", date_time_query, 'iso-8601')
@@ -1614,7 +1614,7 @@ def build_queries_date_time_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/datetime/null')
+    url = '/queries/datetime/null'
 
     # Construct parameters
     if date_time_query is not None:
@@ -1644,7 +1644,7 @@ def build_queries_array_string_csv_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/array/csv/string/valid')
+    url = '/queries/array/csv/string/valid'
 
     # Construct parameters
     if array_query is not None:
@@ -1674,7 +1674,7 @@ def build_queries_array_string_csv_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/array/csv/string/null')
+    url = '/queries/array/csv/string/null'
 
     # Construct parameters
     if array_query is not None:
@@ -1704,7 +1704,7 @@ def build_queries_array_string_csv_empty_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/array/csv/string/empty')
+    url = '/queries/array/csv/string/empty'
 
     # Construct parameters
     if array_query is not None:
@@ -1734,7 +1734,7 @@ def build_queries_array_string_no_collection_format_empty_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/array/none/string/empty')
+    url = '/queries/array/none/string/empty'
 
     # Construct parameters
     if array_query is not None:
@@ -1764,7 +1764,7 @@ def build_queries_array_string_ssv_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/array/ssv/string/valid')
+    url = '/queries/array/ssv/string/valid'
 
     # Construct parameters
     if array_query is not None:
@@ -1794,7 +1794,7 @@ def build_queries_array_string_tsv_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/array/tsv/string/valid')
+    url = '/queries/array/tsv/string/valid'
 
     # Construct parameters
     if array_query is not None:
@@ -1824,7 +1824,7 @@ def build_queries_array_string_pipes_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/array/pipes/string/valid')
+    url = '/queries/array/pipes/string/valid'
 
     # Construct parameters
     if array_query is not None:
@@ -1859,7 +1859,7 @@ def build_path_items_get_all_with_values_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery')
+    url = '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery'
     path_format_arguments = {
         "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, 'str'),
         "globalStringPath": _SERIALIZER.url("global_string_path", global_string_path, 'str'),
@@ -1905,7 +1905,7 @@ def build_path_items_get_global_query_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery')
+    url = '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery'
     path_format_arguments = {
         "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, 'str'),
         "globalStringPath": _SERIALIZER.url("global_string_path", global_string_path, 'str'),
@@ -1951,7 +1951,7 @@ def build_path_items_get_global_and_local_query_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null')
+    url = '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null'
     path_format_arguments = {
         "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, 'str'),
         "globalStringPath": _SERIALIZER.url("global_string_path", global_string_path, 'str'),
@@ -1997,7 +1997,7 @@ def build_path_items_get_local_path_item_query_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null')
+    url = '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null'
     path_format_arguments = {
         "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, 'str'),
         "globalStringPath": _SERIALIZER.url("global_string_path", global_string_path, 'str'),
@@ -2069,7 +2069,6 @@ class PathsOperations(object):
 
         request = build_paths_get_boolean_true_request(
             bool_path=bool_path,
-            template_url=self.get_boolean_true.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2112,7 +2111,6 @@ class PathsOperations(object):
 
         request = build_paths_get_boolean_false_request(
             bool_path=bool_path,
-            template_url=self.get_boolean_false.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2155,7 +2153,6 @@ class PathsOperations(object):
 
         request = build_paths_get_int_one_million_request(
             int_path=int_path,
-            template_url=self.get_int_one_million.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2198,7 +2195,6 @@ class PathsOperations(object):
 
         request = build_paths_get_int_negative_one_million_request(
             int_path=int_path,
-            template_url=self.get_int_negative_one_million.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2241,7 +2237,6 @@ class PathsOperations(object):
 
         request = build_paths_get_ten_billion_request(
             long_path=long_path,
-            template_url=self.get_ten_billion.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2284,7 +2279,6 @@ class PathsOperations(object):
 
         request = build_paths_get_negative_ten_billion_request(
             long_path=long_path,
-            template_url=self.get_negative_ten_billion.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2327,7 +2321,6 @@ class PathsOperations(object):
 
         request = build_paths_float_scientific_positive_request(
             float_path=float_path,
-            template_url=self.float_scientific_positive.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2370,7 +2363,6 @@ class PathsOperations(object):
 
         request = build_paths_float_scientific_negative_request(
             float_path=float_path,
-            template_url=self.float_scientific_negative.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2413,7 +2405,6 @@ class PathsOperations(object):
 
         request = build_paths_double_decimal_positive_request(
             double_path=double_path,
-            template_url=self.double_decimal_positive.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2456,7 +2447,6 @@ class PathsOperations(object):
 
         request = build_paths_double_decimal_negative_request(
             double_path=double_path,
-            template_url=self.double_decimal_negative.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2499,7 +2489,6 @@ class PathsOperations(object):
 
         request = build_paths_string_unicode_request(
             string_path=string_path,
-            template_url=self.string_unicode.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2543,7 +2532,6 @@ class PathsOperations(object):
 
         request = build_paths_string_url_encoded_request(
             string_path=string_path,
-            template_url=self.string_url_encoded.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2589,7 +2577,6 @@ class PathsOperations(object):
 
         request = build_paths_string_url_non_encoded_request(
             string_path=string_path,
-            template_url=self.string_url_non_encoded.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2632,7 +2619,6 @@ class PathsOperations(object):
 
         request = build_paths_string_empty_request(
             string_path=string_path,
-            template_url=self.string_empty.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2674,7 +2660,6 @@ class PathsOperations(object):
 
         request = build_paths_string_null_request(
             string_path=string_path,
-            template_url=self.string_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2717,7 +2702,6 @@ class PathsOperations(object):
 
         request = build_paths_enum_valid_request(
             enum_path=enum_path,
-            template_url=self.enum_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2760,7 +2744,6 @@ class PathsOperations(object):
 
         request = build_paths_enum_null_request(
             enum_path=enum_path,
-            template_url=self.enum_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2802,7 +2785,6 @@ class PathsOperations(object):
 
         request = build_paths_byte_multi_byte_request(
             byte_path=byte_path,
-            template_url=self.byte_multi_byte.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2845,7 +2827,6 @@ class PathsOperations(object):
 
         request = build_paths_byte_empty_request(
             byte_path=byte_path,
-            template_url=self.byte_empty.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2887,7 +2868,6 @@ class PathsOperations(object):
 
         request = build_paths_byte_null_request(
             byte_path=byte_path,
-            template_url=self.byte_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2930,7 +2910,6 @@ class PathsOperations(object):
 
         request = build_paths_date_valid_request(
             date_path=date_path,
-            template_url=self.date_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2973,7 +2952,6 @@ class PathsOperations(object):
 
         request = build_paths_date_null_request(
             date_path=date_path,
-            template_url=self.date_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3017,7 +2995,6 @@ class PathsOperations(object):
 
         request = build_paths_date_time_valid_request(
             date_time_path=date_time_path,
-            template_url=self.date_time_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3059,7 +3036,6 @@ class PathsOperations(object):
 
         request = build_paths_date_time_null_request(
             date_time_path=date_time_path,
-            template_url=self.date_time_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3101,7 +3077,6 @@ class PathsOperations(object):
 
         request = build_paths_base64_url_request(
             base64_url_path=base64_url_path,
-            template_url=self.base64_url.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3145,7 +3120,6 @@ class PathsOperations(object):
 
         request = build_paths_array_csv_in_path_request(
             array_path=array_path,
-            template_url=self.array_csv_in_path.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3187,7 +3161,6 @@ class PathsOperations(object):
 
         request = build_paths_unix_time_url_request(
             unix_time_url_path=unix_time_url_path,
-            template_url=self.unix_time_url.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3249,7 +3222,6 @@ class QueriesOperations(object):
 
         request = build_queries_get_boolean_true_request(
             bool_query=bool_query,
-            template_url=self.get_boolean_true.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3292,7 +3264,6 @@ class QueriesOperations(object):
 
         request = build_queries_get_boolean_false_request(
             bool_query=bool_query,
-            template_url=self.get_boolean_false.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3334,7 +3305,6 @@ class QueriesOperations(object):
 
         request = build_queries_get_boolean_null_request(
             bool_query=bool_query,
-            template_url=self.get_boolean_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3377,7 +3347,6 @@ class QueriesOperations(object):
 
         request = build_queries_get_int_one_million_request(
             int_query=int_query,
-            template_url=self.get_int_one_million.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3420,7 +3389,6 @@ class QueriesOperations(object):
 
         request = build_queries_get_int_negative_one_million_request(
             int_query=int_query,
-            template_url=self.get_int_negative_one_million.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3462,7 +3430,6 @@ class QueriesOperations(object):
 
         request = build_queries_get_int_null_request(
             int_query=int_query,
-            template_url=self.get_int_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3505,7 +3472,6 @@ class QueriesOperations(object):
 
         request = build_queries_get_ten_billion_request(
             long_query=long_query,
-            template_url=self.get_ten_billion.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3548,7 +3514,6 @@ class QueriesOperations(object):
 
         request = build_queries_get_negative_ten_billion_request(
             long_query=long_query,
-            template_url=self.get_negative_ten_billion.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3590,7 +3555,6 @@ class QueriesOperations(object):
 
         request = build_queries_get_long_null_request(
             long_query=long_query,
-            template_url=self.get_long_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3635,7 +3599,6 @@ class QueriesOperations(object):
 
         request = build_queries_float_scientific_positive_request(
             float_query=float_query,
-            template_url=self.float_scientific_positive.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3678,7 +3641,6 @@ class QueriesOperations(object):
 
         request = build_queries_float_scientific_negative_request(
             float_query=float_query,
-            template_url=self.float_scientific_negative.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3720,7 +3682,6 @@ class QueriesOperations(object):
 
         request = build_queries_float_null_request(
             float_query=float_query,
-            template_url=self.float_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3763,7 +3724,6 @@ class QueriesOperations(object):
 
         request = build_queries_double_decimal_positive_request(
             double_query=double_query,
-            template_url=self.double_decimal_positive.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3806,7 +3766,6 @@ class QueriesOperations(object):
 
         request = build_queries_double_decimal_negative_request(
             double_query=double_query,
-            template_url=self.double_decimal_negative.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3850,7 +3809,6 @@ class QueriesOperations(object):
 
         request = build_queries_double_null_request(
             double_query=double_query,
-            template_url=self.double_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3893,7 +3851,6 @@ class QueriesOperations(object):
 
         request = build_queries_string_unicode_request(
             string_query=string_query,
-            template_url=self.string_unicode.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3939,7 +3896,6 @@ class QueriesOperations(object):
 
         request = build_queries_string_url_encoded_request(
             string_query=string_query,
-            template_url=self.string_url_encoded.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3982,7 +3938,6 @@ class QueriesOperations(object):
 
         request = build_queries_string_empty_request(
             string_query=string_query,
-            template_url=self.string_empty.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4024,7 +3979,6 @@ class QueriesOperations(object):
 
         request = build_queries_string_null_request(
             string_query=string_query,
-            template_url=self.string_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4067,7 +4021,6 @@ class QueriesOperations(object):
 
         request = build_queries_enum_valid_request(
             enum_query=enum_query,
-            template_url=self.enum_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4110,7 +4063,6 @@ class QueriesOperations(object):
 
         request = build_queries_enum_null_request(
             enum_query=enum_query,
-            template_url=self.enum_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4152,7 +4104,6 @@ class QueriesOperations(object):
 
         request = build_queries_byte_multi_byte_request(
             byte_query=byte_query,
-            template_url=self.byte_multi_byte.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4197,7 +4148,6 @@ class QueriesOperations(object):
 
         request = build_queries_byte_empty_request(
             byte_query=byte_query,
-            template_url=self.byte_empty.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4239,7 +4189,6 @@ class QueriesOperations(object):
 
         request = build_queries_byte_null_request(
             byte_query=byte_query,
-            template_url=self.byte_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4284,7 +4233,6 @@ class QueriesOperations(object):
 
         request = build_queries_date_valid_request(
             date_query=date_query,
-            template_url=self.date_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4328,7 +4276,6 @@ class QueriesOperations(object):
 
         request = build_queries_date_null_request(
             date_query=date_query,
-            template_url=self.date_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4374,7 +4321,6 @@ class QueriesOperations(object):
 
         request = build_queries_date_time_valid_request(
             date_time_query=date_time_query,
-            template_url=self.date_time_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4418,7 +4364,6 @@ class QueriesOperations(object):
 
         request = build_queries_date_time_null_request(
             date_time_query=date_time_query,
-            template_url=self.date_time_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4464,7 +4409,6 @@ class QueriesOperations(object):
 
         request = build_queries_array_string_csv_valid_request(
             array_query=array_query,
-            template_url=self.array_string_csv_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4508,7 +4452,6 @@ class QueriesOperations(object):
 
         request = build_queries_array_string_csv_null_request(
             array_query=array_query,
-            template_url=self.array_string_csv_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4552,7 +4495,6 @@ class QueriesOperations(object):
 
         request = build_queries_array_string_csv_empty_request(
             array_query=array_query,
-            template_url=self.array_string_csv_empty.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4597,7 +4539,6 @@ class QueriesOperations(object):
 
         request = build_queries_array_string_no_collection_format_empty_request(
             array_query=array_query,
-            template_url=self.array_string_no_collection_format_empty.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4643,7 +4584,6 @@ class QueriesOperations(object):
 
         request = build_queries_array_string_ssv_valid_request(
             array_query=array_query,
-            template_url=self.array_string_ssv_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4689,7 +4629,6 @@ class QueriesOperations(object):
 
         request = build_queries_array_string_tsv_valid_request(
             array_query=array_query,
-            template_url=self.array_string_tsv_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4735,7 +4674,6 @@ class QueriesOperations(object):
 
         request = build_queries_array_string_pipes_valid_request(
             array_query=array_query,
-            template_url=self.array_string_pipes_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4818,7 +4756,6 @@ class PathItemsOperations(object):
             path_item_string_query=path_item_string_query,
             global_string_query=self._config.global_string_query,
             local_string_query=local_string_query,
-            template_url=self.get_all_with_values.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4882,7 +4819,6 @@ class PathItemsOperations(object):
             path_item_string_query=path_item_string_query,
             global_string_query=self._config.global_string_query,
             local_string_query=local_string_query,
-            template_url=self.get_global_query_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4946,7 +4882,6 @@ class PathItemsOperations(object):
             path_item_string_query=path_item_string_query,
             global_string_query=self._config.global_string_query,
             local_string_query=local_string_query,
-            template_url=self.get_global_and_local_query_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -5009,7 +4944,6 @@ class PathItemsOperations(object):
             path_item_string_query=path_item_string_query,
             global_string_query=self._config.global_string_query,
             local_string_query=local_string_query,
-            template_url=self.get_local_path_item_query_null.metadata["url"],
             headers=_headers,
             params=_params,
         )

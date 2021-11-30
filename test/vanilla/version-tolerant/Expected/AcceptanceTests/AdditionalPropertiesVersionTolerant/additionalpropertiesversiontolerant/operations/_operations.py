@@ -47,7 +47,7 @@ def build_pets_create_ap_true_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/additionalProperties/true')
+    url = '/additionalProperties/true'
 
     # Construct headers
     if content_type is not None:
@@ -73,7 +73,7 @@ def build_pets_create_cat_ap_true_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/additionalProperties/true-subclass')
+    url = '/additionalProperties/true-subclass'
 
     # Construct headers
     if content_type is not None:
@@ -99,7 +99,7 @@ def build_pets_create_ap_object_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/additionalProperties/type/object')
+    url = '/additionalProperties/type/object'
 
     # Construct headers
     if content_type is not None:
@@ -125,7 +125,7 @@ def build_pets_create_ap_string_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/additionalProperties/type/string')
+    url = '/additionalProperties/type/string'
 
     # Construct headers
     if content_type is not None:
@@ -151,7 +151,7 @@ def build_pets_create_ap_in_properties_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/additionalProperties/in/properties')
+    url = '/additionalProperties/in/properties'
 
     # Construct headers
     if content_type is not None:
@@ -177,7 +177,7 @@ def build_pets_create_ap_in_properties_with_ap_string_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/additionalProperties/in/properties/with/additionalProperties/string')
+    url = '/additionalProperties/in/properties/with/additionalProperties/string'
 
     # Construct headers
     if content_type is not None:
@@ -258,7 +258,6 @@ class PetsOperations(object):
         request = build_pets_create_ap_true_request(
             content_type=content_type,
             json=_json,
-            template_url=self.create_ap_true.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -333,7 +332,6 @@ class PetsOperations(object):
         request = build_pets_create_cat_ap_true_request(
             content_type=content_type,
             json=_json,
-            template_url=self.create_cat_ap_true.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -406,7 +404,6 @@ class PetsOperations(object):
         request = build_pets_create_ap_object_request(
             content_type=content_type,
             json=_json,
-            template_url=self.create_ap_object.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -479,7 +476,6 @@ class PetsOperations(object):
         request = build_pets_create_ap_string_request(
             content_type=content_type,
             json=_json,
-            template_url=self.create_ap_string.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -552,7 +548,6 @@ class PetsOperations(object):
         request = build_pets_create_ap_in_properties_request(
             content_type=content_type,
             json=_json,
-            template_url=self.create_ap_in_properties.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -633,7 +628,6 @@ class PetsOperations(object):
         request = build_pets_create_ap_in_properties_with_ap_string_request(
             content_type=content_type,
             json=_json,
-            template_url=self.create_ap_in_properties_with_ap_string.metadata["url"],
             headers=_headers,
             params=_params,
         )

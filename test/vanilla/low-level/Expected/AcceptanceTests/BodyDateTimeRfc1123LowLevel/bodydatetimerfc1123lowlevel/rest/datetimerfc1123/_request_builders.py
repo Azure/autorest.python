@@ -45,7 +45,7 @@ def build_get_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/datetimerfc1123/null')
+    url = '/datetimerfc1123/null'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -78,7 +78,7 @@ def build_get_invalid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/datetimerfc1123/invalid')
+    url = '/datetimerfc1123/invalid'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -111,7 +111,7 @@ def build_get_overflow_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/datetimerfc1123/overflow')
+    url = '/datetimerfc1123/overflow'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -144,7 +144,7 @@ def build_get_underflow_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/datetimerfc1123/underflow')
+    url = '/datetimerfc1123/underflow'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -191,7 +191,7 @@ def build_put_utc_max_date_time_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/datetimerfc1123/max')
+    url = '/datetimerfc1123/max'
 
     # Construct headers
     if content_type is not None:
@@ -226,7 +226,7 @@ def build_get_utc_lowercase_max_date_time_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/datetimerfc1123/max/lowercase')
+    url = '/datetimerfc1123/max/lowercase'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -259,7 +259,7 @@ def build_get_utc_uppercase_max_date_time_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/datetimerfc1123/max/uppercase')
+    url = '/datetimerfc1123/max/uppercase'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -306,7 +306,7 @@ def build_put_utc_min_date_time_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/datetimerfc1123/min')
+    url = '/datetimerfc1123/min'
 
     # Construct headers
     if content_type is not None:
@@ -341,7 +341,7 @@ def build_get_utc_min_date_time_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/datetimerfc1123/min')
+    url = '/datetimerfc1123/min'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')

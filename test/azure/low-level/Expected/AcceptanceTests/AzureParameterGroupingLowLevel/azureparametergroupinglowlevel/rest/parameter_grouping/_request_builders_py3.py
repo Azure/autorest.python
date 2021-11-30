@@ -64,7 +64,7 @@ def build_post_required_request(
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/parameterGrouping/postRequired/{path}")
+    url = "/parameterGrouping/postRequired/{path}"
     path_format_arguments = {
         "path": _SERIALIZER.url("path", path, "str"),
     }
@@ -109,7 +109,7 @@ def build_post_optional_request(
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/parameterGrouping/postOptional")
+    url = "/parameterGrouping/postOptional"
 
     # Construct parameters
     if query is not None:
@@ -147,7 +147,7 @@ def build_post_reserved_words_request(
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/parameterGrouping/postReservedWords")
+    url = "/parameterGrouping/postReservedWords"
 
     # Construct parameters
     if from_parameter is not None:
@@ -194,7 +194,7 @@ def build_post_multi_param_groups_request(
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/parameterGrouping/postMultipleParameterGroups")
+    url = "/parameterGrouping/postMultipleParameterGroups"
 
     # Construct parameters
     if query_one is not None:
@@ -236,7 +236,7 @@ def build_post_shared_parameter_group_object_request(
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/parameterGrouping/sharedParameterGroupObject")
+    url = "/parameterGrouping/sharedParameterGroupObject"
 
     # Construct parameters
     if query_one is not None:

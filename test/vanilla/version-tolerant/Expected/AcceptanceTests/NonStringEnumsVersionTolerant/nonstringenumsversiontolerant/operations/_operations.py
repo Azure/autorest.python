@@ -47,7 +47,7 @@ def build_int_put_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/nonStringEnums/int/put')
+    url = '/nonStringEnums/int/put'
 
     # Construct headers
     if content_type is not None:
@@ -71,7 +71,7 @@ def build_int_get_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/nonStringEnums/int/get')
+    url = '/nonStringEnums/int/get'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -95,7 +95,7 @@ def build_float_put_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/nonStringEnums/float/put')
+    url = '/nonStringEnums/float/put'
 
     # Construct headers
     if content_type is not None:
@@ -119,7 +119,7 @@ def build_float_get_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/nonStringEnums/float/get')
+    url = '/nonStringEnums/float/get'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -184,7 +184,6 @@ class IntOperations(object):
         request = build_int_put_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -234,7 +233,6 @@ class IntOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_int_get_request(
-            template_url=self.get.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -312,7 +310,6 @@ class FloatOperations(object):
         request = build_float_put_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -362,7 +359,6 @@ class FloatOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_float_get_request(
-            template_url=self.get.metadata["url"],
             headers=_headers,
             params=_params,
         )

@@ -40,7 +40,7 @@ def build_xms_client_request_id_get_request(
 ):
     # type: (...) -> HttpRequest
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/overwrite/x-ms-client-request-id/method/')
+    url = '/azurespecials/overwrite/x-ms-client-request-id/method/'
 
     return HttpRequest(
         method="GET",
@@ -60,7 +60,7 @@ def build_xms_client_request_id_param_get_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/overwrite/x-ms-client-request-id/via-param/method/')
+    url = '/azurespecials/overwrite/x-ms-client-request-id/via-param/method/'
 
     # Construct headers
     _headers['x-ms-client-request-id'] = _SERIALIZER.header("x_ms_client_request_id", x_ms_client_request_id, 'str')
@@ -84,7 +84,7 @@ def build_subscription_in_credentials_post_method_global_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/subscriptionId/method/string/none/path/global/1234-5678-9012-3456/{subscriptionId}')
+    url = '/azurespecials/subscriptionId/method/string/none/path/global/1234-5678-9012-3456/{subscriptionId}'
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
@@ -112,7 +112,7 @@ def build_subscription_in_credentials_post_method_global_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}')
+    url = '/azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}'
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
@@ -143,7 +143,7 @@ def build_subscription_in_credentials_post_method_global_not_provided_valid_requ
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/subscriptionId/method/string/none/path/globalNotProvided/1234-5678-9012-3456/{subscriptionId}')
+    url = '/azurespecials/subscriptionId/method/string/none/path/globalNotProvided/1234-5678-9012-3456/{subscriptionId}'
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
@@ -175,7 +175,7 @@ def build_subscription_in_credentials_post_path_global_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/subscriptionId/path/string/none/path/global/1234-5678-9012-3456/{subscriptionId}')
+    url = '/azurespecials/subscriptionId/path/string/none/path/global/1234-5678-9012-3456/{subscriptionId}'
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
@@ -203,7 +203,7 @@ def build_subscription_in_credentials_post_swagger_global_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/subscriptionId/swagger/string/none/path/global/1234-5678-9012-3456/{subscriptionId}')
+    url = '/azurespecials/subscriptionId/swagger/string/none/path/global/1234-5678-9012-3456/{subscriptionId}'
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
@@ -231,7 +231,7 @@ def build_subscription_in_method_post_method_local_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}')
+    url = '/azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}'
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
@@ -259,7 +259,7 @@ def build_subscription_in_method_post_method_local_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}')
+    url = '/azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}'
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
@@ -287,7 +287,7 @@ def build_subscription_in_method_post_path_local_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}')
+    url = '/azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}'
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
@@ -315,7 +315,7 @@ def build_subscription_in_method_post_swagger_local_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/subscriptionId/swagger/string/none/path/local/1234-5678-9012-3456/{subscriptionId}')
+    url = '/azurespecials/subscriptionId/swagger/string/none/path/local/1234-5678-9012-3456/{subscriptionId}'
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
@@ -345,7 +345,7 @@ def build_api_version_default_get_method_global_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview')
+    url = '/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview'
 
     # Construct parameters
     _params['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
@@ -374,7 +374,7 @@ def build_api_version_default_get_method_global_not_provided_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview')
+    url = '/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview'
 
     # Construct parameters
     _params['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
@@ -403,7 +403,7 @@ def build_api_version_default_get_path_global_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview')
+    url = '/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview'
 
     # Construct parameters
     _params['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
@@ -432,7 +432,7 @@ def build_api_version_default_get_swagger_global_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/apiVersion/swagger/string/none/query/global/2015-07-01-preview')
+    url = '/azurespecials/apiVersion/swagger/string/none/query/global/2015-07-01-preview'
 
     # Construct parameters
     _params['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
@@ -461,7 +461,7 @@ def build_api_version_local_get_method_local_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/apiVersion/method/string/none/query/local/2.0')
+    url = '/azurespecials/apiVersion/method/string/none/query/local/2.0'
 
     # Construct parameters
     _params['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
@@ -490,7 +490,7 @@ def build_api_version_local_get_method_local_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/apiVersion/method/string/none/query/local/null')
+    url = '/azurespecials/apiVersion/method/string/none/query/local/null'
 
     # Construct parameters
     if api_version is not None:
@@ -520,7 +520,7 @@ def build_api_version_local_get_path_local_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/apiVersion/path/string/none/query/local/2.0')
+    url = '/azurespecials/apiVersion/path/string/none/query/local/2.0'
 
     # Construct parameters
     _params['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
@@ -549,7 +549,7 @@ def build_api_version_local_get_swagger_local_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/apiVersion/swagger/string/none/query/local/2.0')
+    url = '/azurespecials/apiVersion/swagger/string/none/query/local/2.0'
 
     # Construct parameters
     _params['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
@@ -576,7 +576,7 @@ def build_skip_url_encoding_get_method_path_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}')
+    url = '/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}'
     path_format_arguments = {
         "unencodedPathParam": _SERIALIZER.url("unencoded_path_param", unencoded_path_param, 'str', skip_quote=True),
     }
@@ -604,7 +604,7 @@ def build_skip_url_encoding_get_path_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}')
+    url = '/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}'
     path_format_arguments = {
         "unencodedPathParam": _SERIALIZER.url("unencoded_path_param", unencoded_path_param, 'str', skip_quote=True),
     }
@@ -633,7 +633,7 @@ def build_skip_url_encoding_get_swagger_path_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}')
+    url = '/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}'
     path_format_arguments = {
         "unencodedPathParam": _SERIALIZER.url("unencoded_path_param", unencoded_path_param, 'str', skip_quote=True),
     }
@@ -663,7 +663,7 @@ def build_skip_url_encoding_get_method_query_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/skipUrlEncoding/method/query/valid')
+    url = '/azurespecials/skipUrlEncoding/method/query/valid'
 
     # Construct parameters
     _params['q1'] = _SERIALIZER.query("q1", q1, 'str', skip_quote=True)
@@ -692,7 +692,7 @@ def build_skip_url_encoding_get_method_query_null_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/skipUrlEncoding/method/query/null')
+    url = '/azurespecials/skipUrlEncoding/method/query/null'
 
     # Construct parameters
     if q1 is not None:
@@ -722,7 +722,7 @@ def build_skip_url_encoding_get_path_query_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/skipUrlEncoding/path/query/valid')
+    url = '/azurespecials/skipUrlEncoding/path/query/valid'
 
     # Construct parameters
     _params['q1'] = _SERIALIZER.query("q1", q1, 'str', skip_quote=True)
@@ -751,7 +751,7 @@ def build_skip_url_encoding_get_swagger_query_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/skipUrlEncoding/swagger/query/valid')
+    url = '/azurespecials/skipUrlEncoding/swagger/query/valid'
 
     # Construct parameters
     _params['q1'] = _SERIALIZER.query("q1", q1, 'str', skip_quote=True)
@@ -782,7 +782,7 @@ def build_odata_get_with_filter_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/odata/filter')
+    url = '/azurespecials/odata/filter'
 
     # Construct parameters
     if filter is not None:
@@ -815,7 +815,7 @@ def build_header_custom_named_request_id_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/customNamedRequestId')
+    url = '/azurespecials/customNamedRequestId'
 
     # Construct headers
     _headers['foo-client-request-id'] = _SERIALIZER.header("foo_client_request_id", foo_client_request_id, 'str')
@@ -840,7 +840,7 @@ def build_header_custom_named_request_id_param_grouping_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/customNamedRequestIdParamGrouping')
+    url = '/azurespecials/customNamedRequestIdParamGrouping'
 
     # Construct headers
     _headers['foo-client-request-id'] = _SERIALIZER.header("foo_client_request_id", foo_client_request_id, 'str')
@@ -865,7 +865,7 @@ def build_header_custom_named_request_id_head_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/customNamedRequestIdHead')
+    url = '/azurespecials/customNamedRequestIdHead'
 
     # Construct headers
     _headers['foo-client-request-id'] = _SERIALIZER.header("foo_client_request_id", foo_client_request_id, 'str')
@@ -917,7 +917,6 @@ class XMsClientRequestIdOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_xms_client_request_id_get_request(
-            template_url=self.get.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -961,7 +960,6 @@ class XMsClientRequestIdOperations(object):
 
         request = build_xms_client_request_id_param_get_request(
             x_ms_client_request_id=x_ms_client_request_id,
-            template_url=self.param_get.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1019,7 +1017,6 @@ class SubscriptionInCredentialsOperations(object):
 
         request = build_subscription_in_credentials_post_method_global_valid_request(
             subscription_id=self._config.subscription_id,
-            template_url=self.post_method_global_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1058,7 +1055,6 @@ class SubscriptionInCredentialsOperations(object):
 
         request = build_subscription_in_credentials_post_method_global_null_request(
             subscription_id=self._config.subscription_id,
-            template_url=self.post_method_global_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1105,7 +1101,6 @@ class SubscriptionInCredentialsOperations(object):
         request = build_subscription_in_credentials_post_method_global_not_provided_valid_request(
             subscription_id=self._config.subscription_id,
             api_version=api_version,
-            template_url=self.post_method_global_not_provided_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1144,7 +1139,6 @@ class SubscriptionInCredentialsOperations(object):
 
         request = build_subscription_in_credentials_post_path_global_valid_request(
             subscription_id=self._config.subscription_id,
-            template_url=self.post_path_global_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1183,7 +1177,6 @@ class SubscriptionInCredentialsOperations(object):
 
         request = build_subscription_in_credentials_post_swagger_global_valid_request(
             subscription_id=self._config.subscription_id,
-            template_url=self.post_swagger_global_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1246,7 +1239,6 @@ class SubscriptionInMethodOperations(object):
 
         request = build_subscription_in_method_post_method_local_valid_request(
             subscription_id=subscription_id,
-            template_url=self.post_method_local_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1290,7 +1282,6 @@ class SubscriptionInMethodOperations(object):
 
         request = build_subscription_in_method_post_method_local_null_request(
             subscription_id=subscription_id,
-            template_url=self.post_method_local_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1333,7 +1324,6 @@ class SubscriptionInMethodOperations(object):
 
         request = build_subscription_in_method_post_path_local_valid_request(
             subscription_id=subscription_id,
-            template_url=self.post_path_local_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1377,7 +1367,6 @@ class SubscriptionInMethodOperations(object):
 
         request = build_subscription_in_method_post_swagger_local_valid_request(
             subscription_id=subscription_id,
-            template_url=self.post_swagger_local_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1441,7 +1430,6 @@ class ApiVersionDefaultOperations(object):
 
         request = build_api_version_default_get_method_global_valid_request(
             api_version=api_version,
-            template_url=self.get_method_global_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1486,7 +1474,6 @@ class ApiVersionDefaultOperations(object):
 
         request = build_api_version_default_get_method_global_not_provided_valid_request(
             api_version=api_version,
-            template_url=self.get_method_global_not_provided_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1531,7 +1518,6 @@ class ApiVersionDefaultOperations(object):
 
         request = build_api_version_default_get_path_global_valid_request(
             api_version=api_version,
-            template_url=self.get_path_global_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1576,7 +1562,6 @@ class ApiVersionDefaultOperations(object):
 
         request = build_api_version_default_get_swagger_global_valid_request(
             api_version=api_version,
-            template_url=self.get_swagger_global_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1638,7 +1623,6 @@ class ApiVersionLocalOperations(object):
 
         request = build_api_version_local_get_method_local_valid_request(
             api_version=api_version,
-            template_url=self.get_method_local_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1681,7 +1665,6 @@ class ApiVersionLocalOperations(object):
 
         request = build_api_version_local_get_method_local_null_request(
             api_version=api_version,
-            template_url=self.get_method_local_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1724,7 +1707,6 @@ class ApiVersionLocalOperations(object):
 
         request = build_api_version_local_get_path_local_valid_request(
             api_version=api_version,
-            template_url=self.get_path_local_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1768,7 +1750,6 @@ class ApiVersionLocalOperations(object):
 
         request = build_api_version_local_get_swagger_local_valid_request(
             api_version=api_version,
-            template_url=self.get_swagger_local_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1829,7 +1810,6 @@ class SkipUrlEncodingOperations(object):
 
         request = build_skip_url_encoding_get_method_path_valid_request(
             unencoded_path_param=unencoded_path_param,
-            template_url=self.get_method_path_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1871,7 +1851,6 @@ class SkipUrlEncodingOperations(object):
 
         request = build_skip_url_encoding_get_path_valid_request(
             unencoded_path_param=unencoded_path_param,
-            template_url=self.get_path_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1915,7 +1894,6 @@ class SkipUrlEncodingOperations(object):
 
         request = build_skip_url_encoding_get_swagger_path_valid_request(
             unencoded_path_param=unencoded_path_param,
-            template_url=self.get_swagger_path_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1957,7 +1935,6 @@ class SkipUrlEncodingOperations(object):
 
         request = build_skip_url_encoding_get_method_query_valid_request(
             q1=q1,
-            template_url=self.get_method_query_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1999,7 +1976,6 @@ class SkipUrlEncodingOperations(object):
 
         request = build_skip_url_encoding_get_method_query_null_request(
             q1=q1,
-            template_url=self.get_method_query_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2041,7 +2017,6 @@ class SkipUrlEncodingOperations(object):
 
         request = build_skip_url_encoding_get_path_query_valid_request(
             q1=q1,
-            template_url=self.get_path_query_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2085,7 +2060,6 @@ class SkipUrlEncodingOperations(object):
 
         request = build_skip_url_encoding_get_swagger_query_valid_request(
             q1=q1,
-            template_url=self.get_swagger_query_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2154,7 +2128,6 @@ class OdataOperations(object):
             filter=filter,
             top=top,
             orderby=orderby,
-            template_url=self.get_with_filter.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2215,7 +2188,6 @@ class HeaderOperations(object):
 
         request = build_header_custom_named_request_id_request(
             foo_client_request_id=foo_client_request_id,
-            template_url=self.custom_named_request_id.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2261,7 +2233,6 @@ class HeaderOperations(object):
 
         request = build_header_custom_named_request_id_param_grouping_request(
             foo_client_request_id=foo_client_request_id,
-            template_url=self.custom_named_request_id_param_grouping.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2306,7 +2277,6 @@ class HeaderOperations(object):
 
         request = build_header_custom_named_request_id_head_request(
             foo_client_request_id=foo_client_request_id,
-            template_url=self.custom_named_request_id_head.metadata["url"],
             headers=_headers,
             params=_params,
         )

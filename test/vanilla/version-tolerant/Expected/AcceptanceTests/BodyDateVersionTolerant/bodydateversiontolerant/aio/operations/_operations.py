@@ -73,7 +73,6 @@ class DateOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_date_get_null_request(
-            template_url=self.get_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -114,7 +113,6 @@ class DateOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_date_get_invalid_date_request(
-            template_url=self.get_invalid_date.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -155,7 +153,6 @@ class DateOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_date_get_overflow_date_request(
-            template_url=self.get_overflow_date.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -196,7 +193,6 @@ class DateOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_date_get_underflow_date_request(
-            template_url=self.get_underflow_date.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -247,7 +243,6 @@ class DateOperations:
         request = build_date_put_max_date_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_max_date.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -281,7 +276,6 @@ class DateOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_date_get_max_date_request(
-            template_url=self.get_max_date.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -332,7 +326,6 @@ class DateOperations:
         request = build_date_put_min_date_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_min_date.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -366,7 +359,6 @@ class DateOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         request = build_date_get_min_date_request(
-            template_url=self.get_min_date.metadata["url"],
             headers=_headers,
             params=_params,
         )

@@ -41,7 +41,7 @@ def build_get_file_request(
     accept = _get_from_dict(_headers, 'Accept') or "image/png, application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/files/stream/nonempty')
+    url = '/files/stream/nonempty'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -74,7 +74,7 @@ def build_get_file_large_request(
     accept = _get_from_dict(_headers, 'Accept') or "image/png, application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/files/stream/verylarge')
+    url = '/files/stream/verylarge'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -107,7 +107,7 @@ def build_get_empty_file_request(
     accept = _get_from_dict(_headers, 'Accept') or "image/png, application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/files/stream/empty')
+    url = '/files/stream/empty'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')

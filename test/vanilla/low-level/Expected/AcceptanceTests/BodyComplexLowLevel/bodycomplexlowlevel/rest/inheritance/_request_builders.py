@@ -61,7 +61,7 @@ def build_get_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/inheritance/valid')
+    url = '/complex/inheritance/valid'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -124,7 +124,7 @@ def build_put_valid_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/inheritance/valid')
+    url = '/complex/inheritance/valid'
 
     # Construct headers
     if content_type is not None:

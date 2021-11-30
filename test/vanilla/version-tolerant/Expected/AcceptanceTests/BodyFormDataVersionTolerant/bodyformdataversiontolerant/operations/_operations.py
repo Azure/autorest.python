@@ -47,7 +47,7 @@ def build_formdata_upload_file_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/octet-stream, application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/formdata/stream/uploadfile')
+    url = '/formdata/stream/uploadfile'
 
     # Construct headers
     if content_type is not None:
@@ -73,7 +73,7 @@ def build_formdata_upload_file_via_body_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/octet-stream, application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/formdata/stream/uploadfile')
+    url = '/formdata/stream/uploadfile'
 
     # Construct headers
     if content_type is not None:
@@ -99,7 +99,7 @@ def build_formdata_upload_files_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/octet-stream, application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/formdata/stream/uploadfiles')
+    url = '/formdata/stream/uploadfiles'
 
     # Construct headers
     if content_type is not None:
@@ -171,7 +171,6 @@ class FormdataOperations(object):
         request = build_formdata_upload_file_request(
             content_type=content_type,
             files=files,
-            template_url=self.upload_file.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -224,7 +223,6 @@ class FormdataOperations(object):
         request = build_formdata_upload_file_via_body_request(
             content_type=content_type,
             content=_content,
-            template_url=self.upload_file_via_body.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -286,7 +284,6 @@ class FormdataOperations(object):
         request = build_formdata_upload_files_request(
             content_type=content_type,
             files=files,
-            template_url=self.upload_files.metadata["url"],
             headers=_headers,
             params=_params,
         )

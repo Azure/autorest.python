@@ -82,7 +82,7 @@ def build_put_async_retry_succeeded_request(
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/lro/customheader/putasync/retry/succeeded")
+    url = "/lro/customheader/putasync/retry/succeeded"
 
     # Construct headers
     if content_type is not None:
@@ -155,7 +155,7 @@ def build_put201_creating_succeeded200_request(
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/lro/customheader/put/201/creating/succeeded/200")
+    url = "/lro/customheader/put/201/creating/succeeded/200"
 
     # Construct headers
     if content_type is not None:
@@ -210,7 +210,7 @@ def build_post202_retry200_request(*, json: JSONType = None, content: Any = None
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/lro/customheader/post/202/retry/200")
+    url = "/lro/customheader/post/202/retry/200"
 
     # Construct headers
     if content_type is not None:
@@ -268,7 +268,7 @@ def build_post_async_retry_succeeded_request(
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", "/lro/customheader/postasync/retry/succeeded")
+    url = "/lro/customheader/postasync/retry/succeeded"
 
     # Construct headers
     if content_type is not None:

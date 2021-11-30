@@ -47,7 +47,7 @@ def build_paging_get_pages_partial_url_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/paging/customurl/partialnextlink')
+    url = '/paging/customurl/partialnextlink'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -69,7 +69,7 @@ def build_paging_get_pages_partial_url_operation_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/paging/customurl/partialnextlinkop')
+    url = '/paging/customurl/partialnextlinkop'
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -92,7 +92,7 @@ def build_paging_get_pages_partial_url_operation_next_request(
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
-    url = kwargs.pop("template_url", '/paging/customurl/{nextLink}')
+    url = '/paging/customurl/{nextLink}'
     path_format_arguments = {
         "nextLink": _SERIALIZER.url("next_link", next_link, 'str', skip_quote=True),
     }
@@ -168,7 +168,6 @@ class PagingOperations(object):
             if not next_link:
 
                 request = build_paging_get_pages_partial_url_request(
-                    template_url=self.get_pages_partial_url.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -181,7 +180,6 @@ class PagingOperations(object):
             else:
 
                 request = build_paging_get_pages_partial_url_request(
-                    template_url=next_link,
                     headers=_headers,
                     params=_params,
                 )
@@ -189,7 +187,7 @@ class PagingOperations(object):
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
                     "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
                 }
-                request.url = self._client.format_url(request.url, **path_format_arguments)
+                request.url = self._client.format_url(next_link, **path_format_arguments)
 
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
@@ -260,7 +258,6 @@ class PagingOperations(object):
             if not next_link:
 
                 request = build_paging_get_pages_partial_url_operation_request(
-                    template_url=self.get_pages_partial_url_operation.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -274,7 +271,6 @@ class PagingOperations(object):
 
                 request = build_paging_get_pages_partial_url_operation_next_request(
                     next_link=next_link,
-                    template_url="/paging/customurl/{nextLink}",
                     headers=_headers,
                     params=_params,
                 )
