@@ -31,7 +31,7 @@ def build_param_existing_key_request(*, user_agent_parameter: str, **kwargs: Any
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/param/existingkey")
+    url = "/header/param/existingkey"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -55,7 +55,7 @@ def build_response_existing_key_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/response/existingkey")
+    url = "/header/response/existingkey"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -80,7 +80,7 @@ def build_param_protected_key_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/param/protectedkey")
+    url = "/header/param/protectedkey"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -104,7 +104,7 @@ def build_response_protected_key_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/response/protectedkey")
+    url = "/header/response/protectedkey"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -132,7 +132,7 @@ def build_param_integer_request(*, scenario: str, value: int, **kwargs: Any) -> 
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/param/prim/integer")
+    url = "/header/param/prim/integer"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -159,7 +159,7 @@ def build_response_integer_request(*, scenario: str, **kwargs: Any) -> HttpReque
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/response/prim/integer")
+    url = "/header/response/prim/integer"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -188,7 +188,7 @@ def build_param_long_request(*, scenario: str, value: int, **kwargs: Any) -> Htt
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/param/prim/long")
+    url = "/header/param/prim/long"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -215,7 +215,7 @@ def build_response_long_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/response/prim/long")
+    url = "/header/response/prim/long"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -244,7 +244,7 @@ def build_param_float_request(*, scenario: str, value: float, **kwargs: Any) -> 
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/param/prim/float")
+    url = "/header/param/prim/float"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -271,7 +271,7 @@ def build_response_float_request(*, scenario: str, **kwargs: Any) -> HttpRequest
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/response/prim/float")
+    url = "/header/response/prim/float"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -300,7 +300,7 @@ def build_param_double_request(*, scenario: str, value: float, **kwargs: Any) ->
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/param/prim/double")
+    url = "/header/param/prim/double"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -327,7 +327,7 @@ def build_response_double_request(*, scenario: str, **kwargs: Any) -> HttpReques
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/response/prim/double")
+    url = "/header/response/prim/double"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -356,7 +356,7 @@ def build_param_bool_request(*, scenario: str, value: bool, **kwargs: Any) -> Ht
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/param/prim/bool")
+    url = "/header/param/prim/bool"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -383,7 +383,7 @@ def build_response_bool_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/response/prim/bool")
+    url = "/header/response/prim/bool"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -414,7 +414,7 @@ def build_param_string_request(*, scenario: str, value: Optional[str] = None, **
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/param/prim/string")
+    url = "/header/param/prim/string"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -443,7 +443,7 @@ def build_response_string_request(*, scenario: str, **kwargs: Any) -> HttpReques
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/response/prim/string")
+    url = "/header/response/prim/string"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -472,7 +472,7 @@ def build_param_date_request(*, scenario: str, value: datetime.date, **kwargs: A
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/param/prim/date")
+    url = "/header/param/prim/date"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -499,7 +499,7 @@ def build_response_date_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/response/prim/date")
+    url = "/header/response/prim/date"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -529,7 +529,7 @@ def build_param_datetime_request(*, scenario: str, value: datetime.datetime, **k
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/param/prim/datetime")
+    url = "/header/param/prim/datetime"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -556,7 +556,7 @@ def build_response_datetime_request(*, scenario: str, **kwargs: Any) -> HttpRequ
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/response/prim/datetime")
+    url = "/header/response/prim/datetime"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -588,7 +588,7 @@ def build_param_datetime_rfc1123_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/param/prim/datetimerfc1123")
+    url = "/header/param/prim/datetimerfc1123"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -617,7 +617,7 @@ def build_response_datetime_rfc1123_request(*, scenario: str, **kwargs: Any) -> 
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/response/prim/datetimerfc1123")
+    url = "/header/response/prim/datetimerfc1123"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -645,7 +645,7 @@ def build_param_duration_request(*, scenario: str, value: datetime.timedelta, **
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/param/prim/duration")
+    url = "/header/param/prim/duration"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -672,7 +672,7 @@ def build_response_duration_request(*, scenario: str, **kwargs: Any) -> HttpRequ
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/response/prim/duration")
+    url = "/header/response/prim/duration"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -700,7 +700,7 @@ def build_param_byte_request(*, scenario: str, value: bytearray, **kwargs: Any) 
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/param/prim/byte")
+    url = "/header/param/prim/byte"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -727,7 +727,7 @@ def build_response_byte_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/response/prim/byte")
+    url = "/header/response/prim/byte"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -758,7 +758,7 @@ def build_param_enum_request(*, scenario: str, value: Optional[str] = None, **kw
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/param/prim/enum")
+    url = "/header/param/prim/enum"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -787,7 +787,7 @@ def build_response_enum_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/response/prim/enum")
+    url = "/header/response/prim/enum"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -812,7 +812,7 @@ def build_custom_request_id_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0")
+    url = "/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

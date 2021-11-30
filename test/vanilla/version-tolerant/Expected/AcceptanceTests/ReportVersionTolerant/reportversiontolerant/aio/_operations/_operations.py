@@ -55,7 +55,6 @@ class AutoRestReportServiceOperationsMixin:
 
         request = build_get_report_request(
             qualifier=qualifier,
-            template_url=self.get_report.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -104,7 +103,6 @@ class AutoRestReportServiceOperationsMixin:
 
         request = build_get_optional_report_request(
             qualifier=qualifier,
-            template_url=self.get_optional_report.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 

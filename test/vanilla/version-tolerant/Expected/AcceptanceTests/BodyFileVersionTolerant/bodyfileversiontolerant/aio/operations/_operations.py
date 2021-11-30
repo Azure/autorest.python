@@ -62,9 +62,7 @@ class FilesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_files_get_file_request(
-            template_url=self.get_file.metadata["url"],
-        )
+        request = build_files_get_file_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)
@@ -95,9 +93,7 @@ class FilesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_files_get_file_large_request(
-            template_url=self.get_file_large.metadata["url"],
-        )
+        request = build_files_get_file_large_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)
@@ -128,9 +124,7 @@ class FilesOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_files_get_empty_file_request(
-            template_url=self.get_empty_file.metadata["url"],
-        )
+        request = build_files_get_empty_file_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=True, **kwargs)

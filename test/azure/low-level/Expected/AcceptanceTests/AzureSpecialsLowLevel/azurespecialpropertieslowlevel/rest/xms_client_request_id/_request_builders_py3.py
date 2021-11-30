@@ -27,7 +27,7 @@ def build_get_request(**kwargs: Any) -> HttpRequest:
     """
 
     # Construct URL
-    url = kwargs.pop("template_url", "/azurespecials/overwrite/x-ms-client-request-id/method/")
+    url = "/azurespecials/overwrite/x-ms-client-request-id/method/"
 
     return HttpRequest(method="GET", url=url, **kwargs)
 
@@ -50,7 +50,7 @@ def build_param_get_request(*, x_ms_client_request_id: str, **kwargs: Any) -> Ht
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/azurespecials/overwrite/x-ms-client-request-id/via-param/method/")
+    url = "/azurespecials/overwrite/x-ms-client-request-id/via-param/method/"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

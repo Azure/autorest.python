@@ -35,7 +35,7 @@ def build_get_required_request(*, parameter: str, new_parameter: Optional[str] =
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/servicedriven/parameters")
+    url = "/servicedriven/parameters"
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -82,7 +82,7 @@ def build_post_parameters_request(*, json: JSONType = None, content: Any = None,
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/servicedriven/parameters")
+    url = "/servicedriven/parameters"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -106,7 +106,7 @@ def build_delete_parameters_request(**kwargs: Any) -> HttpRequest:
     """
 
     # Construct URL
-    url = kwargs.pop("template_url", "/servicedriven/parameters")
+    url = "/servicedriven/parameters"
 
     return HttpRequest(method="DELETE", url=url, **kwargs)
 
@@ -125,7 +125,7 @@ def build_get_new_operation_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/servicedriven/newpath")
+    url = "/servicedriven/newpath"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

@@ -42,7 +42,7 @@ def build_header_param_existing_key_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/header/param/existingkey')
+    url = '/header/param/existingkey'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -63,7 +63,7 @@ def build_header_response_existing_key_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/header/response/existingkey')
+    url = '/header/response/existingkey'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -85,7 +85,7 @@ def build_header_param_protected_key_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/header/param/protectedkey')
+    url = '/header/param/protectedkey'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -106,7 +106,7 @@ def build_header_response_protected_key_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/header/response/protectedkey')
+    url = '/header/response/protectedkey'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -129,7 +129,7 @@ def build_header_param_integer_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/header/param/prim/integer')
+    url = '/header/param/prim/integer'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -153,7 +153,7 @@ def build_header_response_integer_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/header/response/prim/integer')
+    url = '/header/response/prim/integer'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -177,7 +177,7 @@ def build_header_param_long_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/header/param/prim/long')
+    url = '/header/param/prim/long'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -201,7 +201,7 @@ def build_header_response_long_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/header/response/prim/long')
+    url = '/header/response/prim/long'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -225,7 +225,7 @@ def build_header_param_float_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/header/param/prim/float')
+    url = '/header/param/prim/float'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -249,7 +249,7 @@ def build_header_response_float_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/header/response/prim/float')
+    url = '/header/response/prim/float'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -273,7 +273,7 @@ def build_header_param_double_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/header/param/prim/double')
+    url = '/header/param/prim/double'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -297,7 +297,7 @@ def build_header_response_double_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/header/response/prim/double')
+    url = '/header/response/prim/double'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -321,7 +321,7 @@ def build_header_param_bool_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/header/param/prim/bool')
+    url = '/header/param/prim/bool'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -345,7 +345,7 @@ def build_header_response_bool_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/header/response/prim/bool')
+    url = '/header/response/prim/bool'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -369,7 +369,7 @@ def build_header_param_string_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/header/param/prim/string')
+    url = '/header/param/prim/string'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -394,7 +394,7 @@ def build_header_response_string_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/header/response/prim/string')
+    url = '/header/response/prim/string'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -418,7 +418,7 @@ def build_header_param_date_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/header/param/prim/date')
+    url = '/header/param/prim/date'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -442,7 +442,7 @@ def build_header_response_date_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/header/response/prim/date')
+    url = '/header/response/prim/date'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -466,7 +466,7 @@ def build_header_param_datetime_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/header/param/prim/datetime')
+    url = '/header/param/prim/datetime'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -490,7 +490,7 @@ def build_header_response_datetime_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/header/response/prim/datetime')
+    url = '/header/response/prim/datetime'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -514,7 +514,7 @@ def build_header_param_datetime_rfc1123_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/header/param/prim/datetimerfc1123')
+    url = '/header/param/prim/datetimerfc1123'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -539,7 +539,7 @@ def build_header_response_datetime_rfc1123_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/header/response/prim/datetimerfc1123')
+    url = '/header/response/prim/datetimerfc1123'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -563,7 +563,7 @@ def build_header_param_duration_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/header/param/prim/duration')
+    url = '/header/param/prim/duration'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -587,7 +587,7 @@ def build_header_response_duration_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/header/response/prim/duration')
+    url = '/header/response/prim/duration'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -611,7 +611,7 @@ def build_header_param_byte_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/header/param/prim/byte')
+    url = '/header/param/prim/byte'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -635,7 +635,7 @@ def build_header_response_byte_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/header/response/prim/byte')
+    url = '/header/response/prim/byte'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -659,7 +659,7 @@ def build_header_param_enum_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/header/param/prim/enum')
+    url = '/header/param/prim/enum'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -684,7 +684,7 @@ def build_header_response_enum_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/header/response/prim/enum')
+    url = '/header/response/prim/enum'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -705,7 +705,7 @@ def build_header_custom_request_id_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0')
+    url = '/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -758,7 +758,6 @@ class HeaderOperations(object):
 
         request = build_header_param_existing_key_request(
             user_agent_parameter=user_agent_parameter,
-            template_url=self.param_existing_key.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -789,9 +788,7 @@ class HeaderOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_header_response_existing_key_request(
-            template_url=self.response_existing_key.metadata["url"],
-        )
+        request = build_header_response_existing_key_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -828,7 +825,6 @@ class HeaderOperations(object):
 
         request = build_header_param_protected_key_request(
             content_type=content_type,
-            template_url=self.param_protected_key.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -859,9 +855,7 @@ class HeaderOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_header_response_protected_key_request(
-            template_url=self.response_protected_key.metadata["url"],
-        )
+        request = build_header_response_protected_key_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -905,7 +899,6 @@ class HeaderOperations(object):
         request = build_header_param_integer_request(
             scenario=scenario,
             value=value,
-            template_url=self.param_integer.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -942,7 +935,6 @@ class HeaderOperations(object):
 
         request = build_header_response_integer_request(
             scenario=scenario,
-            template_url=self.response_integer.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -987,7 +979,6 @@ class HeaderOperations(object):
         request = build_header_param_long_request(
             scenario=scenario,
             value=value,
-            template_url=self.param_long.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1024,7 +1015,6 @@ class HeaderOperations(object):
 
         request = build_header_response_long_request(
             scenario=scenario,
-            template_url=self.response_long.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1069,7 +1059,6 @@ class HeaderOperations(object):
         request = build_header_param_float_request(
             scenario=scenario,
             value=value,
-            template_url=self.param_float.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1106,7 +1095,6 @@ class HeaderOperations(object):
 
         request = build_header_response_float_request(
             scenario=scenario,
-            template_url=self.response_float.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1151,7 +1139,6 @@ class HeaderOperations(object):
         request = build_header_param_double_request(
             scenario=scenario,
             value=value,
-            template_url=self.param_double.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1188,7 +1175,6 @@ class HeaderOperations(object):
 
         request = build_header_response_double_request(
             scenario=scenario,
-            template_url=self.response_double.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1233,7 +1219,6 @@ class HeaderOperations(object):
         request = build_header_param_bool_request(
             scenario=scenario,
             value=value,
-            template_url=self.param_bool.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1270,7 +1255,6 @@ class HeaderOperations(object):
 
         request = build_header_response_bool_request(
             scenario=scenario,
-            template_url=self.response_bool.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1317,7 +1301,6 @@ class HeaderOperations(object):
         request = build_header_param_string_request(
             scenario=scenario,
             value=value,
-            template_url=self.param_string.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1355,7 +1338,6 @@ class HeaderOperations(object):
 
         request = build_header_response_string_request(
             scenario=scenario,
-            template_url=self.response_string.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1400,7 +1382,6 @@ class HeaderOperations(object):
         request = build_header_param_date_request(
             scenario=scenario,
             value=value,
-            template_url=self.param_date.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1437,7 +1418,6 @@ class HeaderOperations(object):
 
         request = build_header_response_date_request(
             scenario=scenario,
-            template_url=self.response_date.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1483,7 +1463,6 @@ class HeaderOperations(object):
         request = build_header_param_datetime_request(
             scenario=scenario,
             value=value,
-            template_url=self.param_datetime.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1520,7 +1499,6 @@ class HeaderOperations(object):
 
         request = build_header_response_datetime_request(
             scenario=scenario,
-            template_url=self.response_datetime.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1566,7 +1544,6 @@ class HeaderOperations(object):
         request = build_header_param_datetime_rfc1123_request(
             scenario=scenario,
             value=value,
-            template_url=self.param_datetime_rfc1123.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1604,7 +1581,6 @@ class HeaderOperations(object):
 
         request = build_header_response_datetime_rfc1123_request(
             scenario=scenario,
-            template_url=self.response_datetime_rfc1123.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1648,7 +1624,6 @@ class HeaderOperations(object):
         request = build_header_param_duration_request(
             scenario=scenario,
             value=value,
-            template_url=self.param_duration.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1685,7 +1660,6 @@ class HeaderOperations(object):
 
         request = build_header_response_duration_request(
             scenario=scenario,
-            template_url=self.response_duration.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1729,7 +1703,6 @@ class HeaderOperations(object):
         request = build_header_param_byte_request(
             scenario=scenario,
             value=value,
-            template_url=self.param_byte.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1766,7 +1739,6 @@ class HeaderOperations(object):
 
         request = build_header_response_byte_request(
             scenario=scenario,
-            template_url=self.response_byte.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1813,7 +1785,6 @@ class HeaderOperations(object):
         request = build_header_param_enum_request(
             scenario=scenario,
             value=value,
-            template_url=self.param_enum.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1851,7 +1822,6 @@ class HeaderOperations(object):
 
         request = build_header_response_enum_request(
             scenario=scenario,
-            template_url=self.response_enum.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1886,9 +1856,7 @@ class HeaderOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_header_custom_request_id_request(
-            template_url=self.custom_request_id.metadata["url"],
-        )
+        request = build_header_custom_request_id_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

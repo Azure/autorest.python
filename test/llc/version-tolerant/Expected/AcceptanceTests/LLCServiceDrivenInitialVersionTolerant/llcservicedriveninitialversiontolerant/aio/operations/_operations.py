@@ -62,7 +62,6 @@ class ParamsOperations:
 
         request = build_params_get_required_request(
             parameter=parameter,
-            template_url=self.get_required.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -115,7 +114,6 @@ class ParamsOperations:
         request = build_params_post_parameters_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post_parameters.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 

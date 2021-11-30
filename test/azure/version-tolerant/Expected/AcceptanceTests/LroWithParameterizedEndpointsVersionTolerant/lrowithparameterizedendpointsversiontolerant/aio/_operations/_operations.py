@@ -40,9 +40,7 @@ class LROWithParamaterizedEndpointsOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_poll_with_parameterized_endpoints_request_initial(
-            template_url=self._poll_with_parameterized_endpoints_initial.metadata["url"],
-        )
+        request = build_poll_with_parameterized_endpoints_request_initial()
         path_format_arguments = {
             "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
@@ -150,7 +148,6 @@ class LROWithParamaterizedEndpointsOperationsMixin:
 
         request = build_poll_with_constant_parameterized_endpoints_request_initial(
             constant_parameter=constant_parameter,
-            template_url=self._poll_with_constant_parameterized_endpoints_initial.metadata["url"],
         )
         path_format_arguments = {
             "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),

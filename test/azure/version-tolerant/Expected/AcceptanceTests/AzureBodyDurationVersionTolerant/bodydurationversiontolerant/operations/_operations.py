@@ -41,7 +41,7 @@ def build_duration_get_null_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/duration/null')
+    url = '/duration/null'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -63,7 +63,7 @@ def build_duration_put_positive_duration_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/duration/positiveduration')
+    url = '/duration/positiveduration'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -85,7 +85,7 @@ def build_duration_get_positive_duration_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/duration/positiveduration')
+    url = '/duration/positiveduration'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -105,7 +105,7 @@ def build_duration_get_invalid_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/duration/invalid')
+    url = '/duration/invalid'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -152,9 +152,7 @@ class DurationOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_duration_get_null_request(
-            template_url=self.get_null.metadata["url"],
-        )
+        request = build_duration_get_null_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -202,7 +200,6 @@ class DurationOperations(object):
         request = build_duration_put_positive_duration_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_positive_duration.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -233,9 +230,7 @@ class DurationOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_duration_get_positive_duration_request(
-            template_url=self.get_positive_duration.metadata["url"],
-        )
+        request = build_duration_get_positive_duration_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -272,9 +267,7 @@ class DurationOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_duration_get_invalid_request(
-            template_url=self.get_invalid.metadata["url"],
-        )
+        request = build_duration_get_invalid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

@@ -41,7 +41,7 @@ def build_time_get_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/time/get')
+    url = '/time/get'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -63,7 +63,7 @@ def build_time_put_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/time/put')
+    url = '/time/put'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -112,9 +112,7 @@ class TimeOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_time_get_request(
-            template_url=self.get.metadata["url"],
-        )
+        request = build_time_get_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -162,7 +160,6 @@ class TimeOperations(object):
         request = build_time_put_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 

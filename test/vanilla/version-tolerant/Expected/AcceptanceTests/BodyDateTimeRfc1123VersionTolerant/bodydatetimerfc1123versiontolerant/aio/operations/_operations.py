@@ -69,9 +69,7 @@ class Datetimerfc1123Operations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetimerfc1123_get_null_request(
-            template_url=self.get_null.metadata["url"],
-        )
+        request = build_datetimerfc1123_get_null_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -105,9 +103,7 @@ class Datetimerfc1123Operations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetimerfc1123_get_invalid_request(
-            template_url=self.get_invalid.metadata["url"],
-        )
+        request = build_datetimerfc1123_get_invalid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -141,9 +137,7 @@ class Datetimerfc1123Operations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetimerfc1123_get_overflow_request(
-            template_url=self.get_overflow.metadata["url"],
-        )
+        request = build_datetimerfc1123_get_overflow_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -177,9 +171,7 @@ class Datetimerfc1123Operations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetimerfc1123_get_underflow_request(
-            template_url=self.get_underflow.metadata["url"],
-        )
+        request = build_datetimerfc1123_get_underflow_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -222,7 +214,6 @@ class Datetimerfc1123Operations:
         request = build_datetimerfc1123_put_utc_max_date_time_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_utc_max_date_time.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -250,9 +241,7 @@ class Datetimerfc1123Operations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetimerfc1123_get_utc_lowercase_max_date_time_request(
-            template_url=self.get_utc_lowercase_max_date_time.metadata["url"],
-        )
+        request = build_datetimerfc1123_get_utc_lowercase_max_date_time_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -286,9 +275,7 @@ class Datetimerfc1123Operations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetimerfc1123_get_utc_uppercase_max_date_time_request(
-            template_url=self.get_utc_uppercase_max_date_time.metadata["url"],
-        )
+        request = build_datetimerfc1123_get_utc_uppercase_max_date_time_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -331,7 +318,6 @@ class Datetimerfc1123Operations:
         request = build_datetimerfc1123_put_utc_min_date_time_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_utc_min_date_time.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -359,9 +345,7 @@ class Datetimerfc1123Operations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetimerfc1123_get_utc_min_date_time_request(
-            template_url=self.get_utc_min_date_time.metadata["url"],
-        )
+        request = build_datetimerfc1123_get_utc_min_date_time_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

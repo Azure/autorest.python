@@ -42,7 +42,7 @@ def build_get_complex_type_ref_no_meta_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", "/xml/complex-type-ref-no-meta")
+    url = "/xml/complex-type-ref-no-meta"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -69,7 +69,7 @@ def build_put_complex_type_ref_no_meta_request(*, content: Any, **kwargs: Any) -
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", "/xml/complex-type-ref-no-meta")
+    url = "/xml/complex-type-ref-no-meta"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -104,7 +104,7 @@ def build_get_complex_type_ref_with_meta_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", "/xml/complex-type-ref-with-meta")
+    url = "/xml/complex-type-ref-with-meta"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -131,7 +131,7 @@ def build_put_complex_type_ref_with_meta_request(*, content: Any, **kwargs: Any)
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", "/xml/complex-type-ref-with-meta")
+    url = "/xml/complex-type-ref-with-meta"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -174,7 +174,7 @@ def build_get_simple_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", "/xml/simple")
+    url = "/xml/simple"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -202,7 +202,7 @@ def build_put_simple_request(*, content: Any, **kwargs: Any) -> HttpRequest:
 
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", "/xml/simple")
+    url = "/xml/simple"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -240,7 +240,7 @@ def build_get_wrapped_lists_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", "/xml/wrapped-lists")
+    url = "/xml/wrapped-lists"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -268,7 +268,7 @@ def build_put_wrapped_lists_request(*, content: Any, **kwargs: Any) -> HttpReque
 
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", "/xml/wrapped-lists")
+    url = "/xml/wrapped-lists"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -292,7 +292,7 @@ def build_get_headers_request(**kwargs: Any) -> HttpRequest:
     """
 
     # Construct URL
-    url = kwargs.pop("template_url", "/xml/headers")
+    url = "/xml/headers"
 
     return HttpRequest(method="GET", url=url, **kwargs)
 
@@ -330,7 +330,7 @@ def build_get_empty_list_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", "/xml/empty-list")
+    url = "/xml/empty-list"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -357,7 +357,7 @@ def build_put_empty_list_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", "/xml/empty-list")
+    url = "/xml/empty-list"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -394,7 +394,7 @@ def build_get_empty_wrapped_lists_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", "/xml/empty-wrapped-lists")
+    url = "/xml/empty-wrapped-lists"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -421,7 +421,7 @@ def build_put_empty_wrapped_lists_request(*, content: Any, **kwargs: Any) -> Htt
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", "/xml/empty-wrapped-lists")
+    url = "/xml/empty-wrapped-lists"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -457,7 +457,7 @@ def build_get_root_list_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", "/xml/root-list")
+    url = "/xml/root-list"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -484,7 +484,7 @@ def build_put_root_list_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", "/xml/root-list")
+    url = "/xml/root-list"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -520,7 +520,7 @@ def build_get_root_list_single_item_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", "/xml/root-list-single-item")
+    url = "/xml/root-list-single-item"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -547,7 +547,7 @@ def build_put_root_list_single_item_request(*, content: Any, **kwargs: Any) -> H
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", "/xml/root-list-single-item")
+    url = "/xml/root-list-single-item"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -583,7 +583,7 @@ def build_get_empty_root_list_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", "/xml/empty-root-list")
+    url = "/xml/empty-root-list"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -610,7 +610,7 @@ def build_put_empty_root_list_request(*, content: Any, **kwargs: Any) -> HttpReq
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", "/xml/empty-root-list")
+    url = "/xml/empty-root-list"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -644,7 +644,7 @@ def build_get_empty_child_element_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", "/xml/empty-child-element")
+    url = "/xml/empty-child-element"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -671,7 +671,7 @@ def build_put_empty_child_element_request(*, content: Any, **kwargs: Any) -> Htt
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", "/xml/empty-child-element")
+    url = "/xml/empty-child-element"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -728,7 +728,7 @@ def build_list_containers_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", "/xml/")
+    url = "/xml/"
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -813,7 +813,7 @@ def build_get_service_properties_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", "/xml/")
+    url = "/xml/"
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -853,7 +853,7 @@ def build_put_service_properties_request(*, content: Any, **kwargs: Any) -> Http
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", "/xml/")
+    url = "/xml/"
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -908,7 +908,7 @@ def build_get_acls_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", "/xml/mycontainer")
+    url = "/xml/mycontainer"
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -948,7 +948,7 @@ def build_put_acls_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", "/xml/mycontainer")
+    url = "/xml/mycontainer"
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -1049,7 +1049,7 @@ def build_list_blobs_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", "/xml/mycontainer")
+    url = "/xml/mycontainer"
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -1093,7 +1093,7 @@ def build_json_input_request(*, json: JSONType = None, content: Any = None, **kw
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", "/xml/jsoninput")
+    url = "/xml/jsoninput"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1125,7 +1125,7 @@ def build_json_output_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/xml/jsonoutput")
+    url = "/xml/jsonoutput"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1158,7 +1158,7 @@ def build_get_xms_text_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", "/xml/x-ms-text")
+    url = "/xml/x-ms-text"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1189,7 +1189,7 @@ def build_get_bytes_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", "/xml/bytes")
+    url = "/xml/bytes"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1217,7 +1217,7 @@ def build_put_binary_request(*, content: Any, **kwargs: Any) -> HttpRequest:
 
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", "/xml/bytes")
+    url = "/xml/bytes"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1250,7 +1250,7 @@ def build_get_uri_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", "/xml/url")
+    url = "/xml/url"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1278,7 +1278,7 @@ def build_put_uri_request(*, content: Any, **kwargs: Any) -> HttpRequest:
 
     accept = "application/xml"
     # Construct URL
-    url = kwargs.pop("template_url", "/xml/url")
+    url = "/xml/url"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

@@ -124,9 +124,7 @@ class BasicOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_basic_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
-        )
+        request = build_basic_get_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -184,7 +182,6 @@ class BasicOperations:
             api_version=api_version,
             content_type=content_type,
             json=_json,
-            template_url=self.put_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -222,9 +219,7 @@ class BasicOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_basic_get_invalid_request(
-            template_url=self.get_invalid.metadata["url"],
-        )
+        request = build_basic_get_invalid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -268,9 +263,7 @@ class BasicOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_basic_get_empty_request(
-            template_url=self.get_empty.metadata["url"],
-        )
+        request = build_basic_get_empty_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -314,9 +307,7 @@ class BasicOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_basic_get_null_request(
-            template_url=self.get_null.metadata["url"],
-        )
+        request = build_basic_get_null_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -360,9 +351,7 @@ class BasicOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_basic_get_not_provided_request(
-            template_url=self.get_not_provided.metadata["url"],
-        )
+        request = build_basic_get_not_provided_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -424,9 +413,7 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_primitive_get_int_request(
-            template_url=self.get_int.metadata["url"],
-        )
+        request = build_primitive_get_int_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -478,7 +465,6 @@ class PrimitiveOperations:
         request = build_primitive_put_int_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_int.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -515,9 +501,7 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_primitive_get_long_request(
-            template_url=self.get_long.metadata["url"],
-        )
+        request = build_primitive_get_long_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -569,7 +553,6 @@ class PrimitiveOperations:
         request = build_primitive_put_long_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_long.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -606,9 +589,7 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_primitive_get_float_request(
-            template_url=self.get_float.metadata["url"],
-        )
+        request = build_primitive_get_float_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -660,7 +641,6 @@ class PrimitiveOperations:
         request = build_primitive_put_float_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_float.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -697,9 +677,7 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_primitive_get_double_request(
-            template_url=self.get_double.metadata["url"],
-        )
+        request = build_primitive_get_double_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -752,7 +730,6 @@ class PrimitiveOperations:
         request = build_primitive_put_double_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_double.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -789,9 +766,7 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_primitive_get_bool_request(
-            template_url=self.get_bool.metadata["url"],
-        )
+        request = build_primitive_get_bool_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -843,7 +818,6 @@ class PrimitiveOperations:
         request = build_primitive_put_bool_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_bool.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -881,9 +855,7 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_primitive_get_string_request(
-            template_url=self.get_string.metadata["url"],
-        )
+        request = build_primitive_get_string_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -936,7 +908,6 @@ class PrimitiveOperations:
         request = build_primitive_put_string_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_string.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -973,9 +944,7 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_primitive_get_date_request(
-            template_url=self.get_date.metadata["url"],
-        )
+        request = build_primitive_get_date_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1027,7 +996,6 @@ class PrimitiveOperations:
         request = build_primitive_put_date_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_date.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1064,9 +1032,7 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_primitive_get_date_time_request(
-            template_url=self.get_date_time.metadata["url"],
-        )
+        request = build_primitive_get_date_time_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1118,7 +1084,6 @@ class PrimitiveOperations:
         request = build_primitive_put_date_time_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_date_time.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1155,9 +1120,7 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_primitive_get_date_time_rfc1123_request(
-            template_url=self.get_date_time_rfc1123.metadata["url"],
-        )
+        request = build_primitive_get_date_time_rfc1123_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1210,7 +1173,6 @@ class PrimitiveOperations:
         request = build_primitive_put_date_time_rfc1123_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_date_time_rfc1123.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1246,9 +1208,7 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_primitive_get_duration_request(
-            template_url=self.get_duration.metadata["url"],
-        )
+        request = build_primitive_get_duration_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1299,7 +1259,6 @@ class PrimitiveOperations:
         request = build_primitive_put_duration_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_duration.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1335,9 +1294,7 @@ class PrimitiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_primitive_get_byte_request(
-            template_url=self.get_byte.metadata["url"],
-        )
+        request = build_primitive_get_byte_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1388,7 +1345,6 @@ class PrimitiveOperations:
         request = build_primitive_put_byte_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_byte.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1445,9 +1401,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
-        )
+        request = build_array_get_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1501,7 +1455,6 @@ class ArrayOperations:
         request = build_array_put_valid_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1539,9 +1492,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_empty_request(
-            template_url=self.get_empty.metadata["url"],
-        )
+        request = build_array_get_empty_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1594,7 +1545,6 @@ class ArrayOperations:
         request = build_array_put_empty_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_empty.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1632,9 +1582,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_not_provided_request(
-            template_url=self.get_not_provided.metadata["url"],
-        )
+        request = build_array_get_not_provided_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1697,9 +1645,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
-        )
+        request = build_dictionary_get_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1753,7 +1699,6 @@ class DictionaryOperations:
         request = build_dictionary_put_valid_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1791,9 +1736,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_empty_request(
-            template_url=self.get_empty.metadata["url"],
-        )
+        request = build_dictionary_get_empty_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1846,7 +1789,6 @@ class DictionaryOperations:
         request = build_dictionary_put_empty_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_empty.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1884,9 +1826,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_null_request(
-            template_url=self.get_null.metadata["url"],
-        )
+        request = build_dictionary_get_null_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1930,9 +1870,7 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_not_provided_request(
-            template_url=self.get_not_provided.metadata["url"],
-        )
+        request = build_dictionary_get_not_provided_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2003,9 +1941,7 @@ class InheritanceOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_inheritance_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
-        )
+        request = build_inheritance_get_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2068,7 +2004,6 @@ class InheritanceOperations:
         request = build_inheritance_put_valid_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2128,9 +2063,7 @@ class PolymorphismOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_polymorphism_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
-        )
+        request = build_polymorphism_get_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2220,7 +2153,6 @@ class PolymorphismOperations:
         request = build_polymorphism_put_valid_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2257,9 +2189,7 @@ class PolymorphismOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_polymorphism_get_dot_syntax_request(
-            template_url=self.get_dot_syntax.metadata["url"],
-        )
+        request = build_polymorphism_get_dot_syntax_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2326,9 +2256,7 @@ class PolymorphismOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_polymorphism_get_composed_with_discriminator_request(
-            template_url=self.get_composed_with_discriminator.metadata["url"],
-        )
+        request = build_polymorphism_get_composed_with_discriminator_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2395,9 +2323,7 @@ class PolymorphismOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_polymorphism_get_composed_without_discriminator_request(
-            template_url=self.get_composed_without_discriminator.metadata["url"],
-        )
+        request = build_polymorphism_get_composed_without_discriminator_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2454,9 +2380,7 @@ class PolymorphismOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_polymorphism_get_complicated_request(
-            template_url=self.get_complicated.metadata["url"],
-        )
+        request = build_polymorphism_get_complicated_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2524,7 +2448,6 @@ class PolymorphismOperations:
         request = build_polymorphism_put_complicated_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_complicated.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2604,7 +2527,6 @@ class PolymorphismOperations:
         request = build_polymorphism_put_missing_discriminator_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_missing_discriminator.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2690,7 +2612,6 @@ class PolymorphismOperations:
         request = build_polymorphism_put_valid_missing_required_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_valid_missing_required.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2750,9 +2671,7 @@ class PolymorphicrecursiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_polymorphicrecursive_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
-        )
+        request = build_polymorphicrecursive_get_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2862,7 +2781,6 @@ class PolymorphicrecursiveOperations:
         request = build_polymorphicrecursive_put_valid_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2918,9 +2836,7 @@ class ReadonlypropertyOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_readonlyproperty_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
-        )
+        request = build_readonlyproperty_get_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2972,7 +2888,6 @@ class ReadonlypropertyOperations:
         request = build_readonlyproperty_put_valid_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -3031,9 +2946,7 @@ class FlattencomplexOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_flattencomplex_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
-        )
+        request = build_flattencomplex_get_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

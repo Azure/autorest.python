@@ -42,7 +42,7 @@ def build_params_get_required_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/servicedriven/parameters')
+    url = '/servicedriven/parameters'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -69,7 +69,7 @@ def build_params_post_parameters_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/servicedriven/parameters')
+    url = '/servicedriven/parameters'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -124,7 +124,6 @@ class ParamsOperations(object):
 
         request = build_params_get_required_request(
             parameter=parameter,
-            template_url=self.get_required.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -182,7 +181,6 @@ class ParamsOperations(object):
         request = build_params_post_parameters_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post_parameters.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 

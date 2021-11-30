@@ -34,7 +34,7 @@ def build_get_required_path_request(path_parameter: str, **kwargs: Any) -> HttpR
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reqopt/implicit/required/path/{pathParameter}")
+    url = "/reqopt/implicit/required/path/{pathParameter}"
     path_format_arguments = {
         "pathParameter": _SERIALIZER.url("path_parameter", path_parameter, "str"),
     }
@@ -64,7 +64,7 @@ def build_put_optional_query_request(*, query_parameter: Optional[str] = None, *
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reqopt/implicit/optional/query")
+    url = "/reqopt/implicit/optional/query"
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -94,7 +94,7 @@ def build_put_optional_header_request(*, query_parameter: Optional[str] = None, 
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reqopt/implicit/optional/header")
+    url = "/reqopt/implicit/optional/header"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -133,7 +133,7 @@ def build_put_optional_body_request(*, json: JSONType = None, content: Any = Non
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reqopt/implicit/optional/body")
+    url = "/reqopt/implicit/optional/body"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -163,7 +163,7 @@ def build_put_optional_binary_body_request(*, content: Any = None, **kwargs: Any
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reqopt/implicit/optional/binary-body")
+    url = "/reqopt/implicit/optional/binary-body"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -190,7 +190,7 @@ def build_get_required_global_path_request(required_global_path: str, **kwargs: 
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reqopt/global/required/path/{required-global-path}")
+    url = "/reqopt/global/required/path/{required-global-path}"
     path_format_arguments = {
         "required-global-path": _SERIALIZER.url("required_global_path", required_global_path, "str"),
     }
@@ -220,7 +220,7 @@ def build_get_required_global_query_request(*, required_global_query: str, **kwa
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reqopt/global/required/query")
+    url = "/reqopt/global/required/query"
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -251,7 +251,7 @@ def build_get_optional_global_query_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/reqopt/global/optional/query")
+    url = "/reqopt/global/optional/query"
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]

@@ -86,7 +86,6 @@ class FormdataurlencodedOperations:
             pet_id=pet_id,
             content_type=content_type,
             data=data,
-            template_url=self.update_pet_with_form.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -133,7 +132,6 @@ class FormdataurlencodedOperations:
         request = build_formdataurlencoded_partial_constant_body_request(
             content_type=content_type,
             data=data,
-            template_url=self.partial_constant_body.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 

@@ -33,10 +33,7 @@ def build_post_method_local_valid_request(subscription_id: str, **kwargs: Any) -
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop(
-        "template_url",
-        "/azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
-    )
+    url = "/azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
     }
@@ -68,9 +65,7 @@ def build_post_method_local_null_request(subscription_id: str, **kwargs: Any) ->
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop(
-        "template_url", "/azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}"
-    )
+    url = "/azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}"
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
     }
@@ -101,9 +96,7 @@ def build_post_path_local_valid_request(subscription_id: str, **kwargs: Any) -> 
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop(
-        "template_url", "/azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"
-    )
+    url = "/azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
     }
@@ -135,10 +128,7 @@ def build_post_swagger_local_valid_request(subscription_id: str, **kwargs: Any) 
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop(
-        "template_url",
-        "/azurespecials/subscriptionId/swagger/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
-    )
+    url = "/azurespecials/subscriptionId/swagger/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
     }
