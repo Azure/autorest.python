@@ -12,7 +12,7 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, List, Optional, TypeVar
+    from typing import Any, Dict, List, Optional, TypeVar
 
     T = TypeVar("T")
     JSONType = Any
