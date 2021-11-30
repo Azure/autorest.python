@@ -19,10 +19,11 @@ class Rest(BaseModel):
         super(Rest, self). __init__(yaml_data=yaml_data)
         self.request_builders = request_builders
 
-    def imports(self) -> FileImport:
+    def imports(self, builder_group_name: str) -> FileImport:
         file_import = FileImport()
         for request_builder in self.request_builders:
-            file_import.merge(request_builder.imports())
+            if request_builder.builder_group_name == builder_group_name:
+                file_import.merge(request_builder.imports())
         return file_import
 
     @classmethod
