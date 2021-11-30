@@ -6,7 +6,6 @@
 from typing import List, Optional
 from pathlib import Path
 from jinja2 import PackageLoader, Environment
-from jinja2.runtime import F
 from autorest.codegen.models.operation_group import OperationGroup
 
 from ...jsonrpc import AutorestAPI
