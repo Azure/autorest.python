@@ -6,12 +6,10 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import Any, List, Optional
+from typing import Any, Dict, List, Optional
 
 from azure.core.rest import HttpRequest
 from msrest import Serializer
-
-from ..._vendor import _format_url_section
 
 _SERIALIZER = Serializer()
 

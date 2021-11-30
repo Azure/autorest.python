@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import Any, Optional, TypeVar
+from typing import Any, Dict, Optional, TypeVar
 
 from azure.core.rest import HttpRequest
 from msrest import Serializer

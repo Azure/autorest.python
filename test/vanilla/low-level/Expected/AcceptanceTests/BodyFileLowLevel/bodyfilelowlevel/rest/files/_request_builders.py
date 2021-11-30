@@ -12,7 +12,7 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any
+    from typing import Any, Dict
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False

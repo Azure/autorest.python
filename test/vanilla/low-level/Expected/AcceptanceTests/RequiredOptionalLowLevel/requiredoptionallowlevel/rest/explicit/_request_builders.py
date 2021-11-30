@@ -10,11 +10,9 @@ from typing import TYPE_CHECKING
 from azure.core.rest import HttpRequest
 from msrest import Serializer
 
-from ..._vendor import _format_url_section
-
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, IO, List, Optional, TypeVar
+    from typing import Any, Dict, IO, List, Optional, TypeVar
 
     T = TypeVar("T")
     JSONType = Any

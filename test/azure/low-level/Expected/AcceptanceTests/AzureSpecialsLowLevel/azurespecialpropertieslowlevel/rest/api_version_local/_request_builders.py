@@ -10,11 +10,9 @@ from typing import TYPE_CHECKING
 from azure.core.rest import HttpRequest
 from msrest import Serializer
 
-from ..._vendor import _format_url_section
-
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any, Dict, Optional
 
 _SERIALIZER = Serializer()
 

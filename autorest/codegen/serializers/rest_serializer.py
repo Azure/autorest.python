@@ -20,6 +20,7 @@ class RestSerializer:
         self.code_model = code_model
         self.env = env
         self.request_builders = request_builders
+        self.builder_group_name = request_builders[0].builder_group_name
 
     def serialize_init(self) -> str:
         template = self.env.get_template("rest_init.py.jinja2")
@@ -33,7 +34,9 @@ class RestPython3Serializer(RestSerializer):
         return template.render(
             code_model=self.code_model,
             request_builders=self.request_builders,
-            imports=FileImportSerializer(self.code_model.rest.imports(), is_python3_file=True),
+            imports=FileImportSerializer(self.code_model.rest.imports(
+                self.builder_group_name
+            ), is_python3_file=True),
             is_python3_file=True,
             request_builder_serializer=RequestBuilderPython3Serializer(self.code_model),
         )
@@ -46,7 +49,9 @@ class RestGenericSerializer(RestSerializer):
         return template.render(
             code_model=self.code_model,
             request_builders=self.request_builders,
-            imports=FileImportSerializer(self.code_model.rest.imports(), is_python3_file=False),
+            imports=FileImportSerializer(self.code_model.rest.imports(
+                self.builder_group_name
+            ), is_python3_file=False),
             is_python3_file=False,
             request_builder_serializer=RequestBuilderGenericSerializer(self.code_model),
         )
