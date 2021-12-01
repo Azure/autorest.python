@@ -98,7 +98,6 @@ def build_get_swagger_path_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     unencoded_path_param = kwargs.pop("unencoded_path_param", "path1/path2/path3")  # type: str
-
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
@@ -229,7 +228,6 @@ def build_get_swagger_query_valid_request(**kwargs: Any) -> HttpRequest:
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     q1 = kwargs.pop("q1", _get_from_dict(_params, "q1") or "value1&q2=value2&q3=value3")  # type: str
-
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL

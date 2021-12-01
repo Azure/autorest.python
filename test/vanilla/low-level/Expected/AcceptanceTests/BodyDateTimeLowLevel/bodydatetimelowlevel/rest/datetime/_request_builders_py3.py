@@ -147,7 +147,6 @@ def build_put_utc_max_date_time_request(*, json: JSONType = None, content: Any =
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop("content_type", _get_from_dict(_headers, "Content-Type") or None)  # type: Optional[str]
-
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
@@ -193,7 +192,6 @@ def build_put_utc_max_date_time7_digits_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop("content_type", _get_from_dict(_headers, "Content-Type") or None)  # type: Optional[str]
-
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
@@ -314,7 +312,6 @@ def build_put_local_positive_offset_max_date_time_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop("content_type", _get_from_dict(_headers, "Content-Type") or None)  # type: Optional[str]
-
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
@@ -407,7 +404,6 @@ def build_put_local_negative_offset_max_date_time_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop("content_type", _get_from_dict(_headers, "Content-Type") or None)  # type: Optional[str]
-
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
@@ -498,7 +494,6 @@ def build_put_utc_min_date_time_request(*, json: JSONType = None, content: Any =
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop("content_type", _get_from_dict(_headers, "Content-Type") or None)  # type: Optional[str]
-
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
@@ -566,7 +561,6 @@ def build_put_local_positive_offset_min_date_time_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop("content_type", _get_from_dict(_headers, "Content-Type") or None)  # type: Optional[str]
-
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
@@ -634,7 +628,6 @@ def build_put_local_negative_offset_min_date_time_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop("content_type", _get_from_dict(_headers, "Content-Type") or None)  # type: Optional[str]
-
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL

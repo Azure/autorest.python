@@ -100,7 +100,6 @@ def build_pet_has_models_param_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     models = kwargs.pop('models', _get_from_dict(_params, 'models') or "value1")  # type: Optional[str]
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -165,9 +164,6 @@ class PetOperations(object):
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {
             401: ClientAuthenticationError,
             409: ResourceExistsError,
@@ -176,6 +172,9 @@ class PetOperations(object):
             501: HttpResponseError,
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_pet_get_pet_by_id_request(
             pet_id=pet_id,
@@ -229,9 +228,6 @@ class PetOperations(object):
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -239,6 +235,9 @@ class PetOperations(object):
             500: HttpResponseError,
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_pet_do_something_request(
             what_action=what_action,
@@ -282,9 +281,6 @@ class PetOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -292,6 +288,9 @@ class PetOperations(object):
             500: HttpResponseError,
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         models = kwargs.pop("models", _get_from_dict(_params, "models") or "value1")  # type: Optional[str]
 

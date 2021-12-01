@@ -37,6 +37,8 @@ class ClientSerializer:
                 async_mode or self.is_python3_file,
             ),
             check_kwarg_dict=False,
+            pop_headers_kwarg=False,
+            pop_params_kwarg=False,
         )
 
     def class_definition(self, async_mode) -> str:
@@ -217,6 +219,8 @@ class ConfigSerializer:
                 async_mode or self.is_python3_file
             ),
             check_kwarg_dict=False,
+            pop_headers_kwarg=False,
+            pop_params_kwarg=False,
         )
 
     def set_constants(self) -> List[str]:

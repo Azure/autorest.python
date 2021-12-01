@@ -143,7 +143,6 @@ def build_has_models_param_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     models = kwargs.pop('models', _get_from_dict(_params, 'models') or "value1")  # type: Optional[str]
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL

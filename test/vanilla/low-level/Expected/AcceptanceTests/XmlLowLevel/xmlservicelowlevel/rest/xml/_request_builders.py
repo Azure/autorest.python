@@ -89,7 +89,6 @@ def build_put_complex_type_ref_no_meta_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
-
     # Construct URL
     url = '/xml/complex-type-ref-no-meta'
 
@@ -170,7 +169,6 @@ def build_put_complex_type_ref_with_meta_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
-
     # Construct URL
     url = '/xml/complex-type-ref-with-meta'
 
@@ -259,7 +257,6 @@ def build_put_simple_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
-
     accept = _get_from_dict(_headers, 'Accept') or "application/xml"
 
     # Construct URL
@@ -345,7 +342,6 @@ def build_put_wrapped_lists_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
-
     accept = _get_from_dict(_headers, 'Accept') or "application/xml"
 
     # Construct URL
@@ -462,7 +458,6 @@ def build_put_empty_list_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
-
     # Construct URL
     url = '/xml/empty-list'
 
@@ -545,7 +540,6 @@ def build_put_empty_wrapped_lists_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
-
     # Construct URL
     url = '/xml/empty-wrapped-lists'
 
@@ -627,7 +621,6 @@ def build_put_root_list_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
-
     # Construct URL
     url = '/xml/root-list'
 
@@ -709,7 +702,6 @@ def build_put_root_list_single_item_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
-
     # Construct URL
     url = '/xml/root-list-single-item'
 
@@ -791,7 +783,6 @@ def build_put_empty_root_list_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
-
     # Construct URL
     url = '/xml/empty-root-list'
 
@@ -871,7 +862,6 @@ def build_put_empty_child_element_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
-
     # Construct URL
     url = '/xml/empty-child-element'
 
@@ -937,7 +927,6 @@ def build_list_containers_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     comp = kwargs.pop('comp', _get_from_dict(_params, 'comp') or "list")  # type: str
-
     accept = _get_from_dict(_headers, 'Accept') or "application/xml"
 
     # Construct URL
@@ -1033,7 +1022,6 @@ def build_get_service_properties_request(
 
     comp = kwargs.pop('comp', _get_from_dict(_params, 'comp') or "properties")  # type: str
     restype = kwargs.pop('restype', _get_from_dict(_params, 'restype') or "service")  # type: str
-
     accept = _get_from_dict(_headers, 'Accept') or "application/xml"
 
     # Construct URL
@@ -1085,7 +1073,6 @@ def build_put_service_properties_request(
     comp = kwargs.pop('comp', _get_from_dict(_params, 'comp') or "properties")  # type: str
     restype = kwargs.pop('restype', _get_from_dict(_params, 'restype') or "service")  # type: str
     content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
-
     # Construct URL
     url = '/xml/'
 
@@ -1147,7 +1134,6 @@ def build_get_acls_request(
 
     comp = kwargs.pop('comp', _get_from_dict(_params, 'comp') or "acl")  # type: str
     restype = kwargs.pop('restype', _get_from_dict(_params, 'restype') or "container")  # type: str
-
     accept = _get_from_dict(_headers, 'Accept') or "application/xml"
 
     # Construct URL
@@ -1199,7 +1185,6 @@ def build_put_acls_request(
     comp = kwargs.pop('comp', _get_from_dict(_params, 'comp') or "acl")  # type: str
     restype = kwargs.pop('restype', _get_from_dict(_params, 'restype') or "container")  # type: str
     content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
-
     # Construct URL
     url = '/xml/mycontainer'
 
@@ -1307,7 +1292,6 @@ def build_list_blobs_request(
 
     comp = kwargs.pop('comp', _get_from_dict(_params, 'comp') or "list")  # type: str
     restype = kwargs.pop('restype', _get_from_dict(_params, 'restype') or "container")  # type: str
-
     accept = _get_from_dict(_headers, 'Accept') or "application/xml"
 
     # Construct URL
@@ -1362,7 +1346,6 @@ def build_json_input_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
-
     # Construct URL
     url = '/xml/jsoninput'
 
@@ -1524,7 +1507,6 @@ def build_put_binary_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
-
     accept = _get_from_dict(_headers, 'Accept') or "application/xml"
 
     # Construct URL
@@ -1605,7 +1587,6 @@ def build_put_uri_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
-
     accept = _get_from_dict(_headers, 'Accept') or "application/xml"
 
     # Construct URL

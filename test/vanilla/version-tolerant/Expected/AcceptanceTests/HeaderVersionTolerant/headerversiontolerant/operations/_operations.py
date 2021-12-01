@@ -43,7 +43,6 @@ def build_header_param_existing_key_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     user_agent_parameter = kwargs.pop('user_agent_parameter')  # type: str
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -90,7 +89,6 @@ def build_header_param_protected_key_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop('content_type')  # type: str
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -138,7 +136,6 @@ def build_header_param_integer_request(
 
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value')  # type: int
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -164,7 +161,6 @@ def build_header_response_integer_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     scenario = kwargs.pop('scenario')  # type: str
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -190,7 +186,6 @@ def build_header_param_long_request(
 
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value')  # type: int
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -216,7 +211,6 @@ def build_header_response_long_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     scenario = kwargs.pop('scenario')  # type: str
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -242,7 +236,6 @@ def build_header_param_float_request(
 
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value')  # type: float
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -268,7 +261,6 @@ def build_header_response_float_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     scenario = kwargs.pop('scenario')  # type: str
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -294,7 +286,6 @@ def build_header_param_double_request(
 
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value')  # type: float
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -320,7 +311,6 @@ def build_header_response_double_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     scenario = kwargs.pop('scenario')  # type: str
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -346,7 +336,6 @@ def build_header_param_bool_request(
 
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value')  # type: bool
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -372,7 +361,6 @@ def build_header_response_bool_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     scenario = kwargs.pop('scenario')  # type: str
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -398,7 +386,6 @@ def build_header_param_string_request(
 
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value', _get_from_dict(_headers, 'value') or None)  # type: Optional[str]
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -425,7 +412,6 @@ def build_header_response_string_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     scenario = kwargs.pop('scenario')  # type: str
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -451,7 +437,6 @@ def build_header_param_date_request(
 
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value')  # type: datetime.date
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -477,7 +462,6 @@ def build_header_response_date_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     scenario = kwargs.pop('scenario')  # type: str
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -503,7 +487,6 @@ def build_header_param_datetime_request(
 
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value')  # type: datetime.datetime
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -529,7 +512,6 @@ def build_header_response_datetime_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     scenario = kwargs.pop('scenario')  # type: str
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -555,7 +537,6 @@ def build_header_param_datetime_rfc1123_request(
 
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value', _get_from_dict(_headers, 'value') or None)  # type: Optional[datetime.datetime]
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -582,7 +563,6 @@ def build_header_response_datetime_rfc1123_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     scenario = kwargs.pop('scenario')  # type: str
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -608,7 +588,6 @@ def build_header_param_duration_request(
 
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value')  # type: datetime.timedelta
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -634,7 +613,6 @@ def build_header_response_duration_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     scenario = kwargs.pop('scenario')  # type: str
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -660,7 +638,6 @@ def build_header_param_byte_request(
 
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value')  # type: bytearray
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -686,7 +663,6 @@ def build_header_response_byte_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     scenario = kwargs.pop('scenario')  # type: str
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -712,7 +688,6 @@ def build_header_param_enum_request(
 
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value', _get_from_dict(_headers, 'value') or None)  # type: Optional[str]
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -739,7 +714,6 @@ def build_header_response_enum_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     scenario = kwargs.pop('scenario')  # type: str
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -811,11 +785,11 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         user_agent_parameter = kwargs.pop("user_agent_parameter")  # type: str
 
@@ -850,11 +824,11 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_header_response_existing_key_request(
             headers=_headers,
@@ -889,11 +863,11 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         content_type = kwargs.pop("content_type")  # type: str
 
@@ -928,11 +902,11 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_header_response_protected_key_request(
             headers=_headers,
@@ -972,11 +946,11 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         scenario = kwargs.pop("scenario")  # type: str
         value = kwargs.pop("value")  # type: int
@@ -1015,11 +989,11 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         scenario = kwargs.pop("scenario")  # type: str
 
@@ -1062,11 +1036,11 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         scenario = kwargs.pop("scenario")  # type: str
         value = kwargs.pop("value")  # type: int
@@ -1105,11 +1079,11 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         scenario = kwargs.pop("scenario")  # type: str
 
@@ -1152,11 +1126,11 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         scenario = kwargs.pop("scenario")  # type: str
         value = kwargs.pop("value")  # type: float
@@ -1195,11 +1169,11 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         scenario = kwargs.pop("scenario")  # type: str
 
@@ -1242,11 +1216,11 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         scenario = kwargs.pop("scenario")  # type: str
         value = kwargs.pop("value")  # type: float
@@ -1285,11 +1259,11 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         scenario = kwargs.pop("scenario")  # type: str
 
@@ -1332,11 +1306,11 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         scenario = kwargs.pop("scenario")  # type: str
         value = kwargs.pop("value")  # type: bool
@@ -1375,11 +1349,11 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         scenario = kwargs.pop("scenario")  # type: str
 
@@ -1424,11 +1398,11 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         scenario = kwargs.pop("scenario")  # type: str
         value = kwargs.pop("value", _get_from_dict(_headers, "value") or None)  # type: Optional[str]
@@ -1468,11 +1442,11 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         scenario = kwargs.pop("scenario")  # type: str
 
@@ -1515,11 +1489,11 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         scenario = kwargs.pop("scenario")  # type: str
         value = kwargs.pop("value")  # type: datetime.date
@@ -1558,11 +1532,11 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         scenario = kwargs.pop("scenario")  # type: str
 
@@ -1606,11 +1580,11 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         scenario = kwargs.pop("scenario")  # type: str
         value = kwargs.pop("value")  # type: datetime.datetime
@@ -1649,11 +1623,11 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         scenario = kwargs.pop("scenario")  # type: str
 
@@ -1697,11 +1671,11 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         scenario = kwargs.pop("scenario")  # type: str
         value = kwargs.pop("value", _get_from_dict(_headers, "value") or None)  # type: Optional[datetime.datetime]
@@ -1741,11 +1715,11 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         scenario = kwargs.pop("scenario")  # type: str
 
@@ -1787,11 +1761,11 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         scenario = kwargs.pop("scenario")  # type: str
         value = kwargs.pop("value")  # type: datetime.timedelta
@@ -1830,11 +1804,11 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         scenario = kwargs.pop("scenario")  # type: str
 
@@ -1876,11 +1850,11 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         scenario = kwargs.pop("scenario")  # type: str
         value = kwargs.pop("value")  # type: bytearray
@@ -1919,11 +1893,11 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         scenario = kwargs.pop("scenario")  # type: str
 
@@ -1968,11 +1942,11 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         scenario = kwargs.pop("scenario")  # type: str
         value = kwargs.pop("value", _get_from_dict(_headers, "value") or None)  # type: Optional[str]
@@ -2012,11 +1986,11 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         scenario = kwargs.pop("scenario")  # type: str
 
@@ -2055,11 +2029,11 @@ class HeaderOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_header_custom_request_id_request(
             headers=_headers,

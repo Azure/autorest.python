@@ -81,7 +81,6 @@ def build_post_parameters_request(*, json: JSONType = None, content: Any = None,
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop("content_type", _get_from_dict(_headers, "Content-Type") or None)  # type: Optional[str]
-
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL

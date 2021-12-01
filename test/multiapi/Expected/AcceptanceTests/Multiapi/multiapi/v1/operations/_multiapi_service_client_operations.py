@@ -42,7 +42,6 @@ def build_test_one_request(
 
     id = kwargs.pop('id')  # type: int
     message = kwargs.pop('message', _get_from_dict(_params, 'message') or None)  # type: Optional[str]
-
     api_version = _get_from_dict(_params, 'api-version') or "1.0.0"
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
@@ -74,7 +73,6 @@ def build_test_lro_request_initial(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -102,7 +100,6 @@ def build_test_lro_and_paging_request_initial(
     client_request_id = kwargs.pop('client_request_id', _get_from_dict(_headers, 'client-request-id') or None)  # type: Optional[str]
     maxresults = kwargs.pop('maxresults', _get_from_dict(_headers, 'maxresults') or None)  # type: Optional[int]
     timeout = kwargs.pop('timeout', _get_from_dict(_headers, 'timeout') or 30)  # type: Optional[int]
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -133,7 +130,6 @@ def build_test_different_calls_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     greeting_in_english = kwargs.pop('greeting_in_english')  # type: str
-
     api_version = _get_from_dict(_params, 'api-version') or "1.0.0"
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
@@ -178,13 +174,14 @@ class MultiapiServiceClientOperationsMixin(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
 
         
         request = build_test_one_request(
@@ -218,13 +215,13 @@ class MultiapiServiceClientOperationsMixin(object):
     ):
         # type: (...) -> Optional["_models.Product"]
         cls = kwargs.pop('cls', None)  # type: ClsType[Optional["_models.Product"]]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or "application/json")  # type: Optional[str]
 
@@ -285,6 +282,9 @@ class MultiapiServiceClientOperationsMixin(object):
         :rtype: ~azure.core.polling.LROPoller[~multiapi.v1.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or "application/json")  # type: Optional[str]
         polling = kwargs.pop('polling', True)  # type: Union[bool, azure.core.polling.PollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.Product"]
@@ -333,13 +333,14 @@ class MultiapiServiceClientOperationsMixin(object):
     ):
         # type: (...) -> "_models.PagingResult"
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.PagingResult"]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
 
         _maxresults = None
         _timeout = None
@@ -403,6 +404,10 @@ class MultiapiServiceClientOperationsMixin(object):
          ~azure.core.polling.LROPoller[~azure.core.paging.ItemPaged[~multiapi.v1.models.PagingResult]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
 
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.PagingResult"]
         error_map = {
@@ -528,13 +533,14 @@ class MultiapiServiceClientOperationsMixin(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
 
         
         request = build_test_different_calls_request(

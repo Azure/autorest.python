@@ -42,7 +42,6 @@ def build_operation_one_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     parameter1 = kwargs.pop('parameter1')  # type: str
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL

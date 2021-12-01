@@ -48,7 +48,6 @@ def build_get_empty_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     key_version = kwargs.pop('key_version', _get_from_dict(_params, 'keyVersion') or "v1")  # type: Optional[str]
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL

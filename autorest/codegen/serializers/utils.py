@@ -99,8 +99,20 @@ def method_signature_and_response_type_annotation_template(
         return f"{method_signature} -> {response_type_annotation}:"
     return f"{method_signature}:\n    # type: (...) -> {response_type_annotation}"
 
-def pop_kwargs_from_signature(kwargs_to_pop: List[Parameter], check_kwarg_dict: bool) -> List[str]:
+def pop_kwargs_from_signature(
+    kwargs_to_pop: List[Parameter],
+    check_kwarg_dict: bool,
+    pop_headers_kwarg: bool,
+    pop_params_kwarg: bool
+) -> List[str]:
     retval = []
+    pop_kwarg_template = '_{} = kwargs.pop("{}", {{}}) or {{}}  # type: Dict[str, Any]'
+    if pop_headers_kwarg:
+        retval.append(pop_kwarg_template.format("headers", "headers"))
+    if pop_params_kwarg:
+        retval.append(pop_kwarg_template.format("params", "params"))
+    if pop_headers_kwarg or pop_params_kwarg:
+        retval.append("")
     for kwarg in kwargs_to_pop:
         if kwarg.has_default_value:
             default_value = kwarg.default_value_declaration

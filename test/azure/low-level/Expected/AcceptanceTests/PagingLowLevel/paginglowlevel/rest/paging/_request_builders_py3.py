@@ -281,7 +281,6 @@ def build_get_with_query_params_request(*, required_query_parameter: int, **kwar
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     query_constant = kwargs.pop("query_constant", _get_from_dict(_params, "queryConstant") or True)  # type: bool
-
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
@@ -332,7 +331,6 @@ def build_next_operation_with_query_params_request(**kwargs: Any) -> HttpRequest
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     query_constant = kwargs.pop("query_constant", _get_from_dict(_params, "queryConstant") or True)  # type: bool
-
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL

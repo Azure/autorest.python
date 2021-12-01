@@ -108,11 +108,6 @@ def _serialize_files_and_data_body(builder: BuilderType, param_name: str) -> Lis
     retval.append("}")
     return retval
 
-def _pop_parameters_kwarg(
-    kwarg_name: str,
-) -> str:
-    return f'_{kwarg_name} = kwargs.pop("{kwarg_name}", {{}}) or {{}}  # type: Dict[str, Any]'
-
 def _serialize_grouped_body(builder: BuilderType) -> List[str]:
     retval: List[str] = []
     for grouped_parameter in builder.parameters.grouped:
@@ -257,11 +252,6 @@ class _BuilderSerializerProtocol(ABC):
 
     @abstractmethod
     def _get_kwargs_to_pop(self, builder: BuilderType) -> List[Parameter]:
-        ...
-
-    @staticmethod
-    @abstractmethod
-    def pop_parameters_kwargs(builder: BuilderType) -> List[str]:
         ...
 
 class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abstract-method
@@ -430,10 +420,6 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
             template.extend(f"response.json() == {response_body}".splitlines())
         return template
 
-
-    def pop_kwargs_from_signature(self, builder: BuilderType) -> List[str]:
-        return utils.pop_kwargs_from_signature(self._get_kwargs_to_pop(builder), check_kwarg_dict=True)
-
     def serialize_path(self, builder: BuilderType) -> List[str]:
         return utils.serialize_path(builder.parameters.path, self.serializer_name)
 
@@ -483,15 +469,6 @@ class _RequestBuilderBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=
             return bool(body_kwargs.intersection({"json", "files", "data"}))
         return bool(self._get_json_response_template_to_status_codes(builder))
 
-    @staticmethod
-    def pop_parameters_kwargs(builder: BuilderType) -> List[str]:
-        retval: List[str] = []
-        if builder.parameters.headers:
-            retval.append(_pop_parameters_kwarg("headers"))
-        if builder.parameters.query:
-            retval.append(_pop_parameters_kwarg("params"))
-        return retval
-
     @property
     def _def(self) -> str:
         return "def"
@@ -527,6 +504,14 @@ class _RequestBuilderBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=
     @abstractmethod
     def _body_params_to_pass_to_request_creation(self, builder: BuilderType) -> List[str]:
         ...
+
+    def pop_kwargs_from_signature(self, builder: BuilderType) -> List[str]:
+        return utils.pop_kwargs_from_signature(
+            self._get_kwargs_to_pop(builder),
+            check_kwarg_dict=True,
+            pop_headers_kwarg=bool(builder.parameters.headers),
+            pop_params_kwarg=bool(builder.parameters.query),
+        )
 
     def create_http_request(self, builder: BuilderType) -> List[str]:
         retval = ["return HttpRequest("]
@@ -719,12 +704,13 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
     def _has_data_example_template(self, builder: BuilderType) -> bool:
         return bool(builder.parameters.data_inputs)
 
-    @staticmethod
-    def pop_parameters_kwargs(builder: BuilderType) -> List[str]:
-        return [
-            _pop_parameters_kwarg("headers"),
-            _pop_parameters_kwarg("params"),
-        ]
+    def pop_kwargs_from_signature(self, builder: BuilderType) -> List[str]:
+        return utils.pop_kwargs_from_signature(
+            self._get_kwargs_to_pop(builder),
+            check_kwarg_dict=True,
+            pop_headers_kwarg=True,
+            pop_params_kwarg=True,
+        )
 
     def _serialize_body_call(
         self, builder: BuilderType, body_param: Parameter, send_xml: bool, ser_ctxt: Optional[str], ser_ctxt_name: str

@@ -34,7 +34,6 @@ def build_get_method_local_valid_request(**kwargs: Any) -> HttpRequest:
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     api_version = kwargs.pop("api_version", _get_from_dict(_params, "api-version") or "2.0")  # type: str
-
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
@@ -101,7 +100,6 @@ def build_get_path_local_valid_request(**kwargs: Any) -> HttpRequest:
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     api_version = kwargs.pop("api_version", _get_from_dict(_params, "api-version") or "2.0")  # type: str
-
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
@@ -136,7 +134,6 @@ def build_get_swagger_local_valid_request(**kwargs: Any) -> HttpRequest:
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     api_version = kwargs.pop("api_version", _get_from_dict(_params, "api-version") or "2.0")  # type: str
-
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL

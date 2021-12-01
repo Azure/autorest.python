@@ -65,7 +65,6 @@ def build_list_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     api_version = kwargs.pop('api_version', _get_from_dict(_params, 'api-version') or "2015-05-01-preview")  # type: str
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json, text/json"
 
     # Construct URL

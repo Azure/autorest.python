@@ -45,7 +45,6 @@ def build_get_required_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     parameter = kwargs.pop('parameter')  # type: str
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -100,7 +99,6 @@ def build_post_parameters_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL

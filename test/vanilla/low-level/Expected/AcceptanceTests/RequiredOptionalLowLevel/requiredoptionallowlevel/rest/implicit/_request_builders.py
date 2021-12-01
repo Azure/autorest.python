@@ -85,7 +85,6 @@ def build_put_optional_query_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     query_parameter = kwargs.pop('query_parameter', _get_from_dict(_params, 'queryParameter') or None)  # type: Optional[str]
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -127,7 +126,6 @@ def build_put_optional_header_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     query_parameter = kwargs.pop('query_parameter', _get_from_dict(_headers, 'queryParameter') or None)  # type: Optional[str]
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -176,7 +174,6 @@ def build_put_optional_body_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -216,7 +213,6 @@ def build_put_optional_binary_body_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -297,7 +293,6 @@ def build_get_required_global_query_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     required_global_query = kwargs.pop('required_global_query')  # type: str
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -339,7 +334,6 @@ def build_get_optional_global_query_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     optional_global_query = kwargs.pop('optional_global_query', _get_from_dict(_params, 'optional-global-query') or None)  # type: Optional[int]
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL

@@ -40,7 +40,6 @@ def build_custom_named_request_id_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     foo_client_request_id = kwargs.pop('foo_client_request_id')  # type: str
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -79,7 +78,6 @@ def build_custom_named_request_id_param_grouping_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     foo_client_request_id = kwargs.pop('foo_client_request_id')  # type: str
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -117,7 +115,6 @@ def build_custom_named_request_id_head_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     foo_client_request_id = kwargs.pop('foo_client_request_id')  # type: str
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL

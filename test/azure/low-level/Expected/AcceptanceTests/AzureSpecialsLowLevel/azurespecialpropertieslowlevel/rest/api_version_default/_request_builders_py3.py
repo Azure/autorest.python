@@ -34,7 +34,6 @@ def build_get_method_global_valid_request(**kwargs: Any) -> HttpRequest:
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     api_version = kwargs.pop("api_version", _get_from_dict(_params, "api-version") or "2015-07-01-preview")  # type: str
-
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
@@ -68,7 +67,6 @@ def build_get_method_global_not_provided_valid_request(**kwargs: Any) -> HttpReq
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     api_version = kwargs.pop("api_version", _get_from_dict(_params, "api-version") or "2015-07-01-preview")  # type: str
-
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
@@ -102,7 +100,6 @@ def build_get_path_global_valid_request(**kwargs: Any) -> HttpRequest:
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     api_version = kwargs.pop("api_version", _get_from_dict(_params, "api-version") or "2015-07-01-preview")  # type: str
-
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
@@ -136,7 +133,6 @@ def build_get_swagger_global_valid_request(**kwargs: Any) -> HttpRequest:
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     api_version = kwargs.pop("api_version", _get_from_dict(_params, "api-version") or "2015-07-01-preview")  # type: str
-
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL

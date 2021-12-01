@@ -85,7 +85,6 @@ def build_param_protected_key_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop("content_type")  # type: str
-
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL

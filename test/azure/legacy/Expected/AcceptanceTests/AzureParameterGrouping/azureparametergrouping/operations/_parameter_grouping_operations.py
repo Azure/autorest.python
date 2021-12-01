@@ -46,7 +46,6 @@ def build_post_required_request(
     content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
     custom_header = kwargs.pop('custom_header', _get_from_dict(_headers, 'customHeader') or None)  # type: Optional[str]
     query = kwargs.pop('query', _get_from_dict(_params, 'query') or 30)  # type: Optional[int]
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -86,7 +85,6 @@ def build_post_optional_request(
 
     custom_header = kwargs.pop('custom_header', _get_from_dict(_headers, 'customHeader') or None)  # type: Optional[str]
     query = kwargs.pop('query', _get_from_dict(_params, 'query') or 30)  # type: Optional[int]
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -119,7 +117,6 @@ def build_post_reserved_words_request(
 
     from_parameter = kwargs.pop('from_parameter', _get_from_dict(_params, 'from') or None)  # type: Optional[str]
     accept_parameter = kwargs.pop('accept_parameter', _get_from_dict(_params, 'accept') or None)  # type: Optional[str]
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -154,7 +151,6 @@ def build_post_multi_param_groups_request(
     query_one = kwargs.pop('query_one', _get_from_dict(_params, 'query-one') or 30)  # type: Optional[int]
     header_two = kwargs.pop('header_two', _get_from_dict(_headers, 'header-two') or None)  # type: Optional[str]
     query_two = kwargs.pop('query_two', _get_from_dict(_params, 'query-two') or 30)  # type: Optional[int]
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -191,7 +187,6 @@ def build_post_shared_parameter_group_object_request(
 
     header_one = kwargs.pop('header_one', _get_from_dict(_headers, 'header-one') or None)  # type: Optional[str]
     query_one = kwargs.pop('query_one', _get_from_dict(_params, 'query-one') or 30)  # type: Optional[int]
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -255,11 +250,11 @@ class ParameterGroupingOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         content_type = kwargs.pop(
             "content_type", _get_from_dict(_headers, "Content-Type") or "application/json"
@@ -320,11 +315,11 @@ class ParameterGroupingOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         _custom_header = None
         _query = None
@@ -373,11 +368,11 @@ class ParameterGroupingOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         _from_parameter = None
         _accept_parameter = None
@@ -429,11 +424,11 @@ class ParameterGroupingOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         _header_one = None
         _query_one = None
@@ -488,11 +483,11 @@ class ParameterGroupingOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         _header_one = None
         _query_one = None

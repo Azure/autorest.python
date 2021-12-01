@@ -63,7 +63,6 @@ def build_put_true_request(**kwargs: Any) -> HttpRequest:
 
     content_type = kwargs.pop("content_type", _get_from_dict(_headers, "Content-Type") or None)  # type: Optional[str]
     json = kwargs.pop("json", True)  # type: bool
-
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL
@@ -121,7 +120,6 @@ def build_put_false_request(**kwargs: Any) -> HttpRequest:
 
     content_type = kwargs.pop("content_type", _get_from_dict(_headers, "Content-Type") or None)  # type: Optional[str]
     json = kwargs.pop("json", False)  # type: bool
-
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL

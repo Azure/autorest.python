@@ -71,9 +71,6 @@ class PetOperations:
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {
             401: ClientAuthenticationError,
             409: ResourceExistsError,
@@ -82,6 +79,9 @@ class PetOperations:
             501: HttpResponseError,
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_pet_get_pet_by_id_request(
             pet_id=pet_id,
@@ -130,9 +130,6 @@ class PetOperations:
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -140,6 +137,9 @@ class PetOperations:
             500: HttpResponseError,
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_pet_do_something_request(
             what_action=what_action,
@@ -180,9 +180,6 @@ class PetOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -190,6 +187,9 @@ class PetOperations:
             500: HttpResponseError,
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_pet_has_models_param_request(
             models=models,

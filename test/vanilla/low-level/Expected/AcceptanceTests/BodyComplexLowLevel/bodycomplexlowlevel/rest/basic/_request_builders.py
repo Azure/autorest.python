@@ -105,7 +105,6 @@ def build_put_valid_request(
 
     api_version = kwargs.pop('api_version', _get_from_dict(_params, 'api-version') or "2016-02-29")  # type: str
     content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL

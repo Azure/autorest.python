@@ -59,7 +59,6 @@ def build_poll_with_constant_parameterized_endpoints_request(**kwargs: Any) -> H
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     constant_parameter = kwargs.pop("constant_parameter", "iAmConstant")  # type: str
-
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL

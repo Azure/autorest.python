@@ -52,7 +52,6 @@ def build_get_report_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     qualifier = kwargs.pop('qualifier', _get_from_dict(_params, 'qualifier') or None)  # type: Optional[str]
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -105,7 +104,6 @@ def build_get_optional_report_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     qualifier = kwargs.pop('qualifier', _get_from_dict(_params, 'qualifier') or None)  # type: Optional[str]
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL

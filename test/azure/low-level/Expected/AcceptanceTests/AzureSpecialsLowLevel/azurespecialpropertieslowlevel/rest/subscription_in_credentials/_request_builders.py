@@ -133,7 +133,6 @@ def build_post_method_global_not_provided_valid_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     api_version = kwargs.pop('api_version', _get_from_dict(_params, 'api-version') or "2015-07-01-preview")  # type: str
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL

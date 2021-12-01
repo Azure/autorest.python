@@ -48,7 +48,6 @@ def build_get_all_with_values_request(
     path_item_string_query = kwargs.pop('path_item_string_query', _get_from_dict(_params, 'pathItemStringQuery') or None)  # type: Optional[str]
     global_string_query = kwargs.pop('global_string_query', _get_from_dict(_params, 'globalStringQuery') or None)  # type: Optional[str]
     local_string_query = kwargs.pop('local_string_query', _get_from_dict(_params, 'localStringQuery') or None)  # type: Optional[str]
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -94,7 +93,6 @@ def build_get_global_query_null_request(
     path_item_string_query = kwargs.pop('path_item_string_query', _get_from_dict(_params, 'pathItemStringQuery') or None)  # type: Optional[str]
     global_string_query = kwargs.pop('global_string_query', _get_from_dict(_params, 'globalStringQuery') or None)  # type: Optional[str]
     local_string_query = kwargs.pop('local_string_query', _get_from_dict(_params, 'localStringQuery') or None)  # type: Optional[str]
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -140,7 +138,6 @@ def build_get_global_and_local_query_null_request(
     path_item_string_query = kwargs.pop('path_item_string_query', _get_from_dict(_params, 'pathItemStringQuery') or None)  # type: Optional[str]
     global_string_query = kwargs.pop('global_string_query', _get_from_dict(_params, 'globalStringQuery') or None)  # type: Optional[str]
     local_string_query = kwargs.pop('local_string_query', _get_from_dict(_params, 'localStringQuery') or None)  # type: Optional[str]
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -186,7 +183,6 @@ def build_get_local_path_item_query_null_request(
     path_item_string_query = kwargs.pop('path_item_string_query', _get_from_dict(_params, 'pathItemStringQuery') or None)  # type: Optional[str]
     global_string_query = kwargs.pop('global_string_query', _get_from_dict(_params, 'globalStringQuery') or None)  # type: Optional[str]
     local_string_query = kwargs.pop('local_string_query', _get_from_dict(_params, 'localStringQuery') or None)  # type: Optional[str]
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -270,11 +266,11 @@ class PathItemsOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_get_all_with_values_request(
             path_item_string_path=path_item_string_path,
@@ -332,11 +328,11 @@ class PathItemsOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_get_global_query_null_request(
             path_item_string_path=path_item_string_path,
@@ -394,11 +390,11 @@ class PathItemsOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_get_global_and_local_query_null_request(
             path_item_string_path=path_item_string_path,
@@ -455,11 +451,11 @@ class PathItemsOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_get_local_path_item_query_null_request(
             path_item_string_path=path_item_string_path,

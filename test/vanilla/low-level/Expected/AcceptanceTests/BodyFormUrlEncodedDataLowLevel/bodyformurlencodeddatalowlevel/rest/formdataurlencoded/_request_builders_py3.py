@@ -58,7 +58,6 @@ def build_update_pet_with_form_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop("content_type", _get_from_dict(_headers, "Content-Type") or None)  # type: Optional[str]
-
     # Construct URL
     url = "/formsdataurlencoded/pet/add/{petId}"
     path_format_arguments = {
@@ -108,7 +107,6 @@ def build_partial_constant_body_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop("content_type", _get_from_dict(_headers, "Content-Type") or None)  # type: Optional[str]
-
     # Construct URL
     url = "/formsdataurlencoded/partialConstantBody"
 

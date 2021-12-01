@@ -50,7 +50,6 @@ def build_get_sample_resource_group_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     api_version = kwargs.pop("api_version", _get_from_dict(_params, "api-version") or "2014-04-01-preview")  # type: str
-
     accept = _get_from_dict(_headers, "Accept") or "application/json"
 
     # Construct URL

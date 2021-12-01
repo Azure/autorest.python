@@ -42,7 +42,6 @@ def build_param_existing_key_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     user_agent_parameter = kwargs.pop('user_agent_parameter')  # type: str
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -111,7 +110,6 @@ def build_param_protected_key_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop('content_type')  # type: str
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -186,7 +184,6 @@ def build_param_integer_request(
 
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value')  # type: int
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -225,7 +222,6 @@ def build_response_integer_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     scenario = kwargs.pop('scenario')  # type: str
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -267,7 +263,6 @@ def build_param_long_request(
 
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value')  # type: int
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -306,7 +301,6 @@ def build_response_long_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     scenario = kwargs.pop('scenario')  # type: str
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -348,7 +342,6 @@ def build_param_float_request(
 
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value')  # type: float
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -387,7 +380,6 @@ def build_response_float_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     scenario = kwargs.pop('scenario')  # type: str
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -429,7 +421,6 @@ def build_param_double_request(
 
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value')  # type: float
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -468,7 +459,6 @@ def build_response_double_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     scenario = kwargs.pop('scenario')  # type: str
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -510,7 +500,6 @@ def build_param_bool_request(
 
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value')  # type: bool
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -549,7 +538,6 @@ def build_response_bool_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     scenario = kwargs.pop('scenario')  # type: str
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -593,7 +581,6 @@ def build_param_string_request(
 
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value', _get_from_dict(_headers, 'value') or None)  # type: Optional[str]
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -634,7 +621,6 @@ def build_response_string_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     scenario = kwargs.pop('scenario')  # type: str
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -676,7 +662,6 @@ def build_param_date_request(
 
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value')  # type: datetime.date
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -715,7 +700,6 @@ def build_response_date_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     scenario = kwargs.pop('scenario')  # type: str
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -758,7 +742,6 @@ def build_param_datetime_request(
 
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value')  # type: datetime.datetime
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -797,7 +780,6 @@ def build_response_datetime_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     scenario = kwargs.pop('scenario')  # type: str
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -840,7 +822,6 @@ def build_param_datetime_rfc1123_request(
 
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value', _get_from_dict(_headers, 'value') or None)  # type: Optional[datetime.datetime]
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -881,7 +862,6 @@ def build_response_datetime_rfc1123_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     scenario = kwargs.pop('scenario')  # type: str
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -922,7 +902,6 @@ def build_param_duration_request(
 
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value')  # type: datetime.timedelta
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -961,7 +940,6 @@ def build_response_duration_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     scenario = kwargs.pop('scenario')  # type: str
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -1002,7 +980,6 @@ def build_param_byte_request(
 
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value')  # type: bytearray
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -1041,7 +1018,6 @@ def build_response_byte_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     scenario = kwargs.pop('scenario')  # type: str
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -1085,7 +1061,6 @@ def build_param_enum_request(
 
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value', _get_from_dict(_headers, 'value') or None)  # type: Optional[str]
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL
@@ -1126,7 +1101,6 @@ def build_response_enum_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     scenario = kwargs.pop('scenario')  # type: str
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL

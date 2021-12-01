@@ -68,7 +68,6 @@ def build_param_get_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     x_ms_client_request_id = kwargs.pop('x_ms_client_request_id')  # type: str
-
     accept = _get_from_dict(_headers, 'Accept') or "application/json"
 
     # Construct URL

@@ -43,7 +43,6 @@ def build_put_no_model_as_string_no_required_two_value_no_default_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     input = kwargs.pop('input', _get_from_dict(_params, 'input') or None)  # type: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]]
-
     # Construct URL
     url = kwargs.pop("template_url", '/constants/putNoModelAsStringNoRequiredTwoValueNoDefault')
 
@@ -66,7 +65,6 @@ def build_put_no_model_as_string_no_required_two_value_default_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     input = kwargs.pop('input', _get_from_dict(_params, 'input') or "value1")  # type: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum"]]
-
     # Construct URL
     url = kwargs.pop("template_url", '/constants/putNoModelAsStringNoRequiredTwoValueDefault')
 
@@ -89,7 +87,6 @@ def build_put_no_model_as_string_no_required_one_value_no_default_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     input = kwargs.pop('input', _get_from_dict(_params, 'input') or "value1")  # type: Optional[str]
-
     # Construct URL
     url = kwargs.pop("template_url", '/constants/putNoModelAsStringNoRequiredOneValueNoDefault')
 
@@ -112,7 +109,6 @@ def build_put_no_model_as_string_no_required_one_value_default_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     input = kwargs.pop('input', _get_from_dict(_params, 'input') or "value1")  # type: Optional[str]
-
     # Construct URL
     url = kwargs.pop("template_url", '/constants/putNoModelAsStringNoRequiredOneValueDefault')
 
@@ -135,7 +131,6 @@ def build_put_no_model_as_string_required_two_value_no_default_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     input = kwargs.pop('input')  # type: Union[str, "_models.NoModelAsStringRequiredTwoValueNoDefaultOpEnum"]
-
     # Construct URL
     url = kwargs.pop("template_url", '/constants/putNoModelAsStringRequiredTwoValueNoDefault')
 
@@ -157,7 +152,6 @@ def build_put_no_model_as_string_required_two_value_default_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     input = kwargs.pop('input', _get_from_dict(_params, 'input') or "value1")  # type: Union[str, "_models.NoModelAsStringRequiredTwoValueDefaultOpEnum"]
-
     # Construct URL
     url = kwargs.pop("template_url", '/constants/putNoModelAsStringRequiredTwoValueDefault')
 
@@ -179,7 +173,6 @@ def build_put_no_model_as_string_required_one_value_no_default_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     input = kwargs.pop('input', _get_from_dict(_params, 'input') or "value1")  # type: str
-
     # Construct URL
     url = kwargs.pop("template_url", '/constants/putNoModelAsStringRequiredOneValueNoDefault')
 
@@ -201,7 +194,6 @@ def build_put_no_model_as_string_required_one_value_default_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     input = kwargs.pop('input', _get_from_dict(_params, 'input') or "value1")  # type: str
-
     # Construct URL
     url = kwargs.pop("template_url", '/constants/putNoModelAsStringRequiredOneValueDefault')
 
@@ -223,7 +215,6 @@ def build_put_model_as_string_no_required_two_value_no_default_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     input = kwargs.pop('input', _get_from_dict(_params, 'input') or None)  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]]
-
     # Construct URL
     url = kwargs.pop("template_url", '/constants/putModelAsStringNoRequiredTwoValueNoDefault')
 
@@ -246,7 +237,6 @@ def build_put_model_as_string_no_required_two_value_default_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     input = kwargs.pop('input', _get_from_dict(_params, 'input') or "value1")  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueDefaultOpEnum"]]
-
     # Construct URL
     url = kwargs.pop("template_url", '/constants/putModelAsStringNoRequiredTwoValueDefault')
 
@@ -269,7 +259,6 @@ def build_put_model_as_string_no_required_one_value_no_default_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     input = kwargs.pop('input', _get_from_dict(_params, 'input') or None)  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueNoDefaultOpEnum"]]
-
     # Construct URL
     url = kwargs.pop("template_url", '/constants/putModelAsStringNoRequiredOneValueNoDefault')
 
@@ -292,7 +281,6 @@ def build_put_model_as_string_no_required_one_value_default_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     input = kwargs.pop('input', _get_from_dict(_params, 'input') or "value1")  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueDefaultOpEnum"]]
-
     # Construct URL
     url = kwargs.pop("template_url", '/constants/putModelAsStringNoRequiredOneValueDefault')
 
@@ -315,7 +303,6 @@ def build_put_model_as_string_required_two_value_no_default_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     input = kwargs.pop('input')  # type: Union[str, "_models.ModelAsStringRequiredTwoValueNoDefaultOpEnum"]
-
     # Construct URL
     url = kwargs.pop("template_url", '/constants/putModelAsStringRequiredTwoValueNoDefault')
 
@@ -337,7 +324,6 @@ def build_put_model_as_string_required_two_value_default_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     input = kwargs.pop('input', _get_from_dict(_params, 'input') or "value1")  # type: Union[str, "_models.ModelAsStringRequiredTwoValueDefaultOpEnum"]
-
     # Construct URL
     url = kwargs.pop("template_url", '/constants/putModelAsStringRequiredTwoValueDefault')
 
@@ -359,7 +345,6 @@ def build_put_model_as_string_required_one_value_no_default_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     input = kwargs.pop('input')  # type: Union[str, "_models.ModelAsStringRequiredOneValueNoDefaultOpEnum"]
-
     # Construct URL
     url = kwargs.pop("template_url", '/constants/putModelAsStringRequiredOneValueNoDefault')
 
@@ -381,7 +366,6 @@ def build_put_model_as_string_required_one_value_default_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     input = kwargs.pop('input', _get_from_dict(_params, 'input') or "value1")  # type: Union[str, "_models.ModelAsStringRequiredOneValueDefaultOpEnum"]
-
     # Construct URL
     url = kwargs.pop("template_url", '/constants/putModelAsStringRequiredOneValueDefault')
 
@@ -406,7 +390,6 @@ def build_put_client_constants_request(
     header_constant = kwargs.pop('header_constant', _get_from_dict(_headers, 'header-constant') or True)  # type: bool
     query_constant = kwargs.pop('query_constant', _get_from_dict(_params, 'query-constant') or 100)  # type: int
     path_constant = kwargs.pop('path_constant', "path")  # type: str
-
     # Construct URL
     url = kwargs.pop("template_url", '/constants/clientConstants/{path-constant}')
     path_format_arguments = {
@@ -471,11 +454,11 @@ class ContantsOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_put_no_model_as_string_no_required_two_value_no_default_request(
             input=input,
@@ -517,11 +500,11 @@ class ContantsOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_put_no_model_as_string_no_required_two_value_default_request(
             input=input,
@@ -563,11 +546,11 @@ class ContantsOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_put_no_model_as_string_no_required_one_value_no_default_request(
             input=input,
@@ -609,11 +592,11 @@ class ContantsOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_put_no_model_as_string_no_required_one_value_default_request(
             input=input,
@@ -655,11 +638,11 @@ class ContantsOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_put_no_model_as_string_required_two_value_no_default_request(
             input=input,
@@ -701,11 +684,11 @@ class ContantsOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_put_no_model_as_string_required_two_value_default_request(
             input=input,
@@ -746,11 +729,11 @@ class ContantsOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         input = kwargs.pop("input", _get_from_dict(_params, "input") or "value1")  # type: str
 
@@ -793,11 +776,11 @@ class ContantsOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         input = kwargs.pop("input", _get_from_dict(_params, "input") or "value1")  # type: str
 
@@ -841,11 +824,11 @@ class ContantsOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_put_model_as_string_no_required_two_value_no_default_request(
             input=input,
@@ -887,11 +870,11 @@ class ContantsOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_put_model_as_string_no_required_two_value_default_request(
             input=input,
@@ -933,11 +916,11 @@ class ContantsOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_put_model_as_string_no_required_one_value_no_default_request(
             input=input,
@@ -979,11 +962,11 @@ class ContantsOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_put_model_as_string_no_required_one_value_default_request(
             input=input,
@@ -1025,11 +1008,11 @@ class ContantsOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_put_model_as_string_required_two_value_no_default_request(
             input=input,
@@ -1071,11 +1054,11 @@ class ContantsOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_put_model_as_string_required_two_value_default_request(
             input=input,
@@ -1117,11 +1100,11 @@ class ContantsOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_put_model_as_string_required_one_value_no_default_request(
             input=input,
@@ -1163,11 +1146,11 @@ class ContantsOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_put_model_as_string_required_one_value_default_request(
             input=input,
@@ -1204,11 +1187,11 @@ class ContantsOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_put_client_constants_request(
             header_constant=self._config.header_constant,
