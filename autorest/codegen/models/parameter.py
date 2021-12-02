@@ -168,7 +168,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
     @property
     def pre_semicolon_content_types(self) -> List[str]:
         """Splits on semicolon of media types and returns the first half.
-        I.e. ["text/plain; encoding=UTF-8"] -> ["text/plain"]
+        I.e. ["text/plain; charset=UTF-8"] -> ["text/plain"]
         """
         return [content_type.split(";")[0] for content_type in self.content_types]
 
