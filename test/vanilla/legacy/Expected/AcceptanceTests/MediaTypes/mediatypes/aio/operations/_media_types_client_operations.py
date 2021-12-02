@@ -158,7 +158,7 @@ class MediaTypesClientOperationsMixin:
 
     @distributed_trace_async
     async def content_type_with_encoding(self, input: Optional[str] = None, **kwargs: Any) -> str:
-        """Pass in contentType 'text/plain; encoding=UTF-8' to pass test. Value for input does not matter.
+        """Pass in contentType 'text/plain; charset=UTF-8' to pass test. Value for input does not matter.
 
         :param input: Input parameter.
         :type input: str
@@ -171,7 +171,7 @@ class MediaTypesClientOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        content_type = kwargs.pop("content_type", "text/plain")  # type: Optional[str]
+        content_type = kwargs.pop("content_type", "text/plain; charset=UTF-8")  # type: Optional[str]
 
         _content = input
 

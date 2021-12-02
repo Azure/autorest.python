@@ -40,7 +40,7 @@ def build_group_get_sample_resource_group_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}")
+    url = "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}"
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
         "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
@@ -109,7 +109,6 @@ class GroupOperations(object):
             subscription_id=self._config.subscription_id,
             resource_group_name=resource_group_name,
             api_version=api_version,
-            template_url=self.get_sample_resource_group.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 

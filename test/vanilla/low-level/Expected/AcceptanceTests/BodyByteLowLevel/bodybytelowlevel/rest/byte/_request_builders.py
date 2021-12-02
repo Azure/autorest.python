@@ -12,7 +12,7 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional, TypeVar
+    from typing import Any, Dict, Optional, TypeVar
 
     T = TypeVar("T")
     JSONType = Any
@@ -39,7 +39,7 @@ def build_get_null_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/byte/null')
+    url = '/byte/null'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -70,7 +70,7 @@ def build_get_empty_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/byte/empty')
+    url = '/byte/empty'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -101,7 +101,7 @@ def build_get_non_ascii_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/byte/nonAscii')
+    url = '/byte/nonAscii'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -148,7 +148,7 @@ def build_put_non_ascii_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/byte/nonAscii')
+    url = '/byte/nonAscii'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -181,7 +181,7 @@ def build_get_invalid_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/byte/invalid')
+    url = '/byte/invalid'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

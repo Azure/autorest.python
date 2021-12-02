@@ -12,7 +12,7 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional, TypeVar
+    from typing import Any, Dict, Optional, TypeVar
 
     T = TypeVar("T")
     JSONType = Any
@@ -39,7 +39,7 @@ def build_head501_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/server/501')
+    url = '/http/failure/server/501'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -70,7 +70,7 @@ def build_get501_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/server/501')
+    url = '/http/failure/server/501'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -115,7 +115,7 @@ def build_post505_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/server/505')
+    url = '/http/failure/server/505'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -162,7 +162,7 @@ def build_delete505_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/server/505')
+    url = '/http/failure/server/505'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

@@ -12,10 +12,7 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, IO, Optional, TypeVar
-
-    T = TypeVar("T")
-    JSONType = Any
+    from typing import Any, Dict
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -43,7 +40,7 @@ def build_operation_one_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/reservedWords/operationGroup/import')
+    url = '/reservedWords/operationGroup/import'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]

@@ -72,7 +72,6 @@ class PetOperations:
 
         request = build_pet_get_by_pet_id_request(
             pet_id=pet_id,
-            template_url=self.get_by_pet_id.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -136,7 +135,6 @@ class PetOperations:
         request = build_pet_add_pet_request(
             content_type=content_type,
             json=_json,
-            template_url=self.add_pet.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 

@@ -12,7 +12,7 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, List, Optional
+    from typing import Any, Dict, List, Optional
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -40,7 +40,7 @@ def build_array_string_multi_null_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/array/multi/string/null')
+    url = '/queries/array/multi/string/null'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -81,7 +81,7 @@ def build_array_string_multi_empty_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/array/multi/string/empty')
+    url = '/queries/array/multi/string/empty'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -124,7 +124,7 @@ def build_array_string_multi_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/array/multi/string/valid')
+    url = '/queries/array/multi/string/valid'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]

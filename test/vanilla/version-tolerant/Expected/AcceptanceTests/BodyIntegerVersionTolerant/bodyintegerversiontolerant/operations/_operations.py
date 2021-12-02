@@ -34,7 +34,7 @@ _SERIALIZER.client_side_validation = False
 def build_int_get_null_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/int/null")
+    url = "/int/null"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -46,7 +46,7 @@ def build_int_get_null_request(**kwargs: Any) -> HttpRequest:
 def build_int_get_invalid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/int/invalid")
+    url = "/int/invalid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -58,7 +58,7 @@ def build_int_get_invalid_request(**kwargs: Any) -> HttpRequest:
 def build_int_get_overflow_int32_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/int/overflowint32")
+    url = "/int/overflowint32"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -70,7 +70,7 @@ def build_int_get_overflow_int32_request(**kwargs: Any) -> HttpRequest:
 def build_int_get_underflow_int32_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/int/underflowint32")
+    url = "/int/underflowint32"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -82,7 +82,7 @@ def build_int_get_underflow_int32_request(**kwargs: Any) -> HttpRequest:
 def build_int_get_overflow_int64_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/int/overflowint64")
+    url = "/int/overflowint64"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -94,7 +94,7 @@ def build_int_get_overflow_int64_request(**kwargs: Any) -> HttpRequest:
 def build_int_get_underflow_int64_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/int/underflowint64")
+    url = "/int/underflowint64"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -108,7 +108,7 @@ def build_int_put_max32_request(*, json: JSONType = None, content: Any = None, *
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/int/max/32")
+    url = "/int/max/32"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -124,7 +124,7 @@ def build_int_put_max64_request(*, json: JSONType = None, content: Any = None, *
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/int/max/64")
+    url = "/int/max/64"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -140,7 +140,7 @@ def build_int_put_min32_request(*, json: JSONType = None, content: Any = None, *
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/int/min/32")
+    url = "/int/min/32"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -156,7 +156,7 @@ def build_int_put_min64_request(*, json: JSONType = None, content: Any = None, *
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/int/min/64")
+    url = "/int/min/64"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -170,7 +170,7 @@ def build_int_put_min64_request(*, json: JSONType = None, content: Any = None, *
 def build_int_get_unix_time_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/int/unixtime")
+    url = "/int/unixtime"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -184,7 +184,7 @@ def build_int_put_unix_time_date_request(*, json: JSONType = None, content: Any 
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/int/unixtime")
+    url = "/int/unixtime"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -198,7 +198,7 @@ def build_int_put_unix_time_date_request(*, json: JSONType = None, content: Any 
 def build_int_get_invalid_unix_time_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/int/invalidunixtime")
+    url = "/int/invalidunixtime"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -210,7 +210,7 @@ def build_int_get_invalid_unix_time_request(**kwargs: Any) -> HttpRequest:
 def build_int_get_null_unix_time_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/int/nullunixtime")
+    url = "/int/nullunixtime"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -249,9 +249,7 @@ class IntOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_int_get_null_request(
-            template_url=self.get_null.metadata["url"],
-        )
+        request = build_int_get_null_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -285,9 +283,7 @@ class IntOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_int_get_invalid_request(
-            template_url=self.get_invalid.metadata["url"],
-        )
+        request = build_int_get_invalid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -321,9 +317,7 @@ class IntOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_int_get_overflow_int32_request(
-            template_url=self.get_overflow_int32.metadata["url"],
-        )
+        request = build_int_get_overflow_int32_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -357,9 +351,7 @@ class IntOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_int_get_underflow_int32_request(
-            template_url=self.get_underflow_int32.metadata["url"],
-        )
+        request = build_int_get_underflow_int32_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -393,9 +385,7 @@ class IntOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_int_get_overflow_int64_request(
-            template_url=self.get_overflow_int64.metadata["url"],
-        )
+        request = build_int_get_overflow_int64_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -429,9 +419,7 @@ class IntOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_int_get_underflow_int64_request(
-            template_url=self.get_underflow_int64.metadata["url"],
-        )
+        request = build_int_get_underflow_int64_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -474,7 +462,6 @@ class IntOperations(object):
         request = build_int_put_max32_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_max32.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -511,7 +498,6 @@ class IntOperations(object):
         request = build_int_put_max64_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_max64.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -548,7 +534,6 @@ class IntOperations(object):
         request = build_int_put_min32_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_min32.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -585,7 +570,6 @@ class IntOperations(object):
         request = build_int_put_min64_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_min64.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -613,9 +597,7 @@ class IntOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_int_get_unix_time_request(
-            template_url=self.get_unix_time.metadata["url"],
-        )
+        request = build_int_get_unix_time_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -658,7 +640,6 @@ class IntOperations(object):
         request = build_int_put_unix_time_date_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_unix_time_date.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -686,9 +667,7 @@ class IntOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_int_get_invalid_unix_time_request(
-            template_url=self.get_invalid_unix_time.metadata["url"],
-        )
+        request = build_int_get_invalid_unix_time_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -722,9 +701,7 @@ class IntOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_int_get_null_unix_time_request(
-            template_url=self.get_null_unix_time.metadata["url"],
-        )
+        request = build_int_get_null_unix_time_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

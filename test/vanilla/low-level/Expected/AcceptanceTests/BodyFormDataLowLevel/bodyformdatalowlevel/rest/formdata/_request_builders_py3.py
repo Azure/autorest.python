@@ -50,7 +50,7 @@ def build_upload_file_request(
 
     accept = "application/octet-stream, application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/formdata/stream/uploadfile")
+    url = "/formdata/stream/uploadfile"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -80,7 +80,7 @@ def build_upload_file_via_body_request(*, content: Any, **kwargs: Any) -> HttpRe
 
     accept = "application/octet-stream, application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/formdata/stream/uploadfile")
+    url = "/formdata/stream/uploadfile"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -125,7 +125,7 @@ def build_upload_files_request(
 
     accept = "application/octet-stream, application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/formdata/stream/uploadfiles")
+    url = "/formdata/stream/uploadfiles"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

@@ -58,7 +58,7 @@ def build_update_pet_with_form_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", "/formsdataurlencoded/pet/add/{petId}")
+    url = "/formsdataurlencoded/pet/add/{petId}"
     path_format_arguments = {
         "petId": _SERIALIZER.url("pet_id", pet_id, "int"),
     }
@@ -107,7 +107,7 @@ def build_partial_constant_body_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", "/formsdataurlencoded/partialConstantBody")
+    url = "/formsdataurlencoded/partialConstantBody"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

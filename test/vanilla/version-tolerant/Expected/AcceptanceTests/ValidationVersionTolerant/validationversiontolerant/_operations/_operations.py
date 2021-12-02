@@ -38,7 +38,7 @@ def build_validation_of_method_parameters_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/fakepath/{subscriptionId}/{resourceGroupName}/{id}")
+    url = "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
         "resourceGroupName": _SERIALIZER.url(
@@ -74,7 +74,7 @@ def build_validation_of_body_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/fakepath/{subscriptionId}/{resourceGroupName}/{id}")
+    url = "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
         "resourceGroupName": _SERIALIZER.url(
@@ -104,7 +104,7 @@ def build_get_with_constant_in_path_request(**kwargs: Any) -> HttpRequest:
     constant_param = kwargs.pop("constant_param", "constant")  # type: str
 
     # Construct URL
-    url = kwargs.pop("template_url", "/validation/constantsInPath/{constantParam}/value")
+    url = "/validation/constantsInPath/{constantParam}/value"
     path_format_arguments = {
         "constantParam": _SERIALIZER.url("constant_param", constant_param, "str"),
     }
@@ -122,7 +122,7 @@ def build_post_with_constant_in_body_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/validation/constantsInPath/{constantParam}/value")
+    url = "/validation/constantsInPath/{constantParam}/value"
     path_format_arguments = {
         "constantParam": _SERIALIZER.url("constant_param", constant_param, "str"),
     }
@@ -188,7 +188,6 @@ class AutoRestValidationTestOperationsMixin(object):
             resource_group_name=resource_group_name,
             id=id,
             api_version=api_version,
-            template_url=self.validation_of_method_parameters.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -290,7 +289,6 @@ class AutoRestValidationTestOperationsMixin(object):
             api_version=api_version,
             content_type=content_type,
             json=_json,
-            template_url=self.validation_of_body.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -332,7 +330,6 @@ class AutoRestValidationTestOperationsMixin(object):
 
         request = build_get_with_constant_in_path_request(
             constant_param=constant_param,
-            template_url=self.get_with_constant_in_path.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -420,7 +417,6 @@ class AutoRestValidationTestOperationsMixin(object):
             constant_param=constant_param,
             content_type=content_type,
             json=_json,
-            template_url=self.post_with_constant_in_body.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 

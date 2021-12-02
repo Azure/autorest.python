@@ -35,7 +35,7 @@ def build_int_put_request(*, json: JSONType = None, content: Any = None, **kwarg
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/nonStringEnums/int/put")
+    url = "/nonStringEnums/int/put"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -49,7 +49,7 @@ def build_int_put_request(*, json: JSONType = None, content: Any = None, **kwarg
 def build_int_get_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/nonStringEnums/int/get")
+    url = "/nonStringEnums/int/get"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -63,7 +63,7 @@ def build_float_put_request(*, json: JSONType = None, content: Any = None, **kwa
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/nonStringEnums/float/put")
+    url = "/nonStringEnums/float/put"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -77,7 +77,7 @@ def build_float_put_request(*, json: JSONType = None, content: Any = None, **kwa
 def build_float_get_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/nonStringEnums/float/get")
+    url = "/nonStringEnums/float/get"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -128,7 +128,6 @@ class IntOperations(object):
         request = build_int_put_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -169,9 +168,7 @@ class IntOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_int_get_request(
-            template_url=self.get.metadata["url"],
-        )
+        request = build_int_get_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -236,7 +233,6 @@ class FloatOperations(object):
         request = build_float_put_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -277,9 +273,7 @@ class FloatOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_float_get_request(
-            template_url=self.get.metadata["url"],
-        )
+        request = build_float_get_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

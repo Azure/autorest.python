@@ -70,7 +70,6 @@ class ParamsOperations:
         request = build_params_get_required_request(
             parameter=parameter,
             new_parameter=new_parameter,
-            template_url=self.get_required.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -128,7 +127,6 @@ class ParamsOperations:
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.post_parameters.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -163,9 +161,7 @@ class ParamsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_params_delete_parameters_request(
-            template_url=self.delete_parameters.metadata["url"],
-        )
+        request = build_params_delete_parameters_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -192,9 +188,7 @@ class ParamsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_params_get_new_operation_request(
-            template_url=self.get_new_operation.metadata["url"],
-        )
+        request = build_params_get_new_operation_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

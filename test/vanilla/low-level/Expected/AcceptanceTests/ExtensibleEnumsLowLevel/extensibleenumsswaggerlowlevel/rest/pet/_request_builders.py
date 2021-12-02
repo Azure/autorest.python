@@ -14,7 +14,7 @@ from ..._vendor import _format_url_section
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional, TypeVar
+    from typing import Any, Dict, Optional, TypeVar
 
     T = TypeVar("T")
     JSONType = Any
@@ -54,7 +54,7 @@ def build_get_by_pet_id_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/extensibleenums/pet/{petId}')
+    url = '/extensibleenums/pet/{petId}'
     path_format_arguments = {
         "petId": _SERIALIZER.url("pet_id", pet_id, 'str'),
     }
@@ -115,7 +115,7 @@ def build_add_pet_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/extensibleenums/pet/addPet')
+    url = '/extensibleenums/pet/addPet'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

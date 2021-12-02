@@ -14,10 +14,7 @@ from ..._vendor import _format_url_section
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional, TypeVar
-
-    T = TypeVar("T")
-    JSONType = Any
+    from typing import Any, Dict
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -68,7 +65,7 @@ def build_list_request(
 
     accept = "application/json, text/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages')
+    url = '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages'
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }

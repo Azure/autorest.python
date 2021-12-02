@@ -38,7 +38,7 @@ def build_availability_sets_update_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", "/parameterFlattening/{resourceGroupName}/{availabilitySetName}")
+    url = "/parameterFlattening/{resourceGroupName}/{availabilitySetName}"
     path_format_arguments = {
         "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
         "availabilitySetName": _SERIALIZER.url("avset", avset, "str", max_length=80, min_length=0),
@@ -109,7 +109,6 @@ class AvailabilitySetsOperations(object):
             avset=avset,
             content_type=content_type,
             json=_json,
-            template_url=self.update.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 

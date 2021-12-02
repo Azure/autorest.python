@@ -39,7 +39,7 @@ _SERIALIZER.client_side_validation = False
 def build_paging_get_no_item_name_pages_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/noitemname")
+    url = "/paging/noitemname"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -51,7 +51,7 @@ def build_paging_get_no_item_name_pages_request(**kwargs: Any) -> HttpRequest:
 def build_paging_get_null_next_link_name_pages_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/nullnextlink")
+    url = "/paging/nullnextlink"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -63,7 +63,7 @@ def build_paging_get_null_next_link_name_pages_request(**kwargs: Any) -> HttpReq
 def build_paging_get_single_pages_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/single")
+    url = "/paging/single"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -75,7 +75,7 @@ def build_paging_get_single_pages_request(**kwargs: Any) -> HttpRequest:
 def build_paging_first_response_empty_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/firstResponseEmpty/1")
+    url = "/paging/firstResponseEmpty/1"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -93,7 +93,7 @@ def build_paging_get_multiple_pages_request(
 ) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/multiple")
+    url = "/paging/multiple"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -113,7 +113,7 @@ def build_paging_get_with_query_params_request(*, required_query_parameter: int,
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/multiple/getWithQueryParams")
+    url = "/paging/multiple/getWithQueryParams"
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -134,7 +134,7 @@ def build_paging_next_operation_with_query_params_request(**kwargs: Any) -> Http
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/multiple/nextOperationWithQueryParams")
+    url = "/paging/multiple/nextOperationWithQueryParams"
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -156,7 +156,7 @@ def build_paging_get_odata_multiple_pages_request(
 ) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/multiple/odata")
+    url = "/paging/multiple/odata"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -181,7 +181,7 @@ def build_paging_get_multiple_pages_with_offset_request(
 ) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/multiple/withpath/{offset}")
+    url = "/paging/multiple/withpath/{offset}"
     path_format_arguments = {
         "offset": _SERIALIZER.url("offset", offset, "int"),
     }
@@ -204,7 +204,7 @@ def build_paging_get_multiple_pages_with_offset_request(
 def build_paging_get_multiple_pages_retry_first_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/multiple/retryfirst")
+    url = "/paging/multiple/retryfirst"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -216,7 +216,7 @@ def build_paging_get_multiple_pages_retry_first_request(**kwargs: Any) -> HttpRe
 def build_paging_get_multiple_pages_retry_second_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/multiple/retrysecond")
+    url = "/paging/multiple/retrysecond"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -228,7 +228,7 @@ def build_paging_get_multiple_pages_retry_second_request(**kwargs: Any) -> HttpR
 def build_paging_get_single_pages_failure_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/single/failure")
+    url = "/paging/single/failure"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -240,7 +240,7 @@ def build_paging_get_single_pages_failure_request(**kwargs: Any) -> HttpRequest:
 def build_paging_get_multiple_pages_failure_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/multiple/failure")
+    url = "/paging/multiple/failure"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -252,7 +252,7 @@ def build_paging_get_multiple_pages_failure_request(**kwargs: Any) -> HttpReques
 def build_paging_get_multiple_pages_failure_uri_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/multiple/failureuri")
+    url = "/paging/multiple/failureuri"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -266,7 +266,7 @@ def build_paging_get_multiple_pages_fragment_next_link_request(
 ) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/multiple/fragment/{tenant}")
+    url = "/paging/multiple/fragment/{tenant}"
     path_format_arguments = {
         "tenant": _SERIALIZER.url("tenant", tenant, "str"),
     }
@@ -289,7 +289,7 @@ def build_paging_get_multiple_pages_fragment_with_grouping_next_link_request(
 ) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/multiple/fragmentwithgrouping/{tenant}")
+    url = "/paging/multiple/fragmentwithgrouping/{tenant}"
     path_format_arguments = {
         "tenant": _SERIALIZER.url("tenant", tenant, "str"),
     }
@@ -316,7 +316,7 @@ def build_paging_get_multiple_pages_lro_request_initial(
 ) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/multiple/lro")
+    url = "/paging/multiple/lro"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -334,7 +334,7 @@ def build_paging_get_multiple_pages_lro_request_initial(
 def build_paging_next_fragment_request(tenant: str, next_link: str, *, api_version: str, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/multiple/fragment/{tenant}/{nextLink}")
+    url = "/paging/multiple/fragment/{tenant}/{nextLink}"
     path_format_arguments = {
         "tenant": _SERIALIZER.url("tenant", tenant, "str"),
         "nextLink": _SERIALIZER.url("next_link", next_link, "str", skip_quote=True),
@@ -358,7 +358,7 @@ def build_paging_next_fragment_with_grouping_request(
 ) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}")
+    url = "/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}"
     path_format_arguments = {
         "tenant": _SERIALIZER.url("tenant", tenant, "str"),
         "nextLink": _SERIALIZER.url("next_link", next_link, "str", skip_quote=True),
@@ -380,7 +380,7 @@ def build_paging_next_fragment_with_grouping_request(
 def build_paging_get_paging_model_with_item_name_with_xms_client_name_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/paging/itemNameWithXMSClientName")
+    url = "/paging/itemNameWithXMSClientName"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -438,17 +438,13 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_no_item_name_pages_request(
-                    template_url=self.get_no_item_name_pages.metadata["url"],
-                )
+                request = build_paging_get_no_item_name_pages_request()
                 request.url = self._client.format_url(request.url)
 
             else:
 
-                request = build_paging_get_no_item_name_pages_request(
-                    template_url=next_link,
-                )
-                request.url = self._client.format_url(request.url)
+                request = build_paging_get_no_item_name_pages_request()
+                request.url = self._client.format_url(next_link)
                 request.method = "GET"
             return request
 
@@ -506,17 +502,13 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_null_next_link_name_pages_request(
-                    template_url=self.get_null_next_link_name_pages.metadata["url"],
-                )
+                request = build_paging_get_null_next_link_name_pages_request()
                 request.url = self._client.format_url(request.url)
 
             else:
 
-                request = build_paging_get_null_next_link_name_pages_request(
-                    template_url=next_link,
-                )
-                request.url = self._client.format_url(request.url)
+                request = build_paging_get_null_next_link_name_pages_request()
+                request.url = self._client.format_url(next_link)
                 request.method = "GET"
             return request
 
@@ -574,17 +566,13 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_single_pages_request(
-                    template_url=self.get_single_pages.metadata["url"],
-                )
+                request = build_paging_get_single_pages_request()
                 request.url = self._client.format_url(request.url)
 
             else:
 
-                request = build_paging_get_single_pages_request(
-                    template_url=next_link,
-                )
-                request.url = self._client.format_url(request.url)
+                request = build_paging_get_single_pages_request()
+                request.url = self._client.format_url(next_link)
                 request.method = "GET"
             return request
 
@@ -643,17 +631,13 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_first_response_empty_request(
-                    template_url=self.first_response_empty.metadata["url"],
-                )
+                request = build_paging_first_response_empty_request()
                 request.url = self._client.format_url(request.url)
 
             else:
 
-                request = build_paging_first_response_empty_request(
-                    template_url=next_link,
-                )
-                request.url = self._client.format_url(request.url)
+                request = build_paging_first_response_empty_request()
+                request.url = self._client.format_url(next_link)
                 request.method = "GET"
             return request
 
@@ -730,7 +714,6 @@ class PagingOperations(object):
                     client_request_id=client_request_id,
                     maxresults=maxresults,
                     timeout=timeout,
-                    template_url=self.get_multiple_pages.metadata["url"],
                 )
                 request.url = self._client.format_url(request.url)
 
@@ -740,9 +723,8 @@ class PagingOperations(object):
                     client_request_id=client_request_id,
                     maxresults=maxresults,
                     timeout=timeout,
-                    template_url=next_link,
                 )
-                request.url = self._client.format_url(request.url)
+                request.url = self._client.format_url(next_link)
                 request.method = "GET"
             return request
 
@@ -813,7 +795,6 @@ class PagingOperations(object):
                 request = build_paging_get_with_query_params_request(
                     query_constant=query_constant,
                     required_query_parameter=required_query_parameter,
-                    template_url=self.get_with_query_params.metadata["url"],
                 )
                 request.url = self._client.format_url(request.url)
 
@@ -821,7 +802,6 @@ class PagingOperations(object):
 
                 request = build_paging_next_operation_with_query_params_request(
                     query_constant=query_constant,
-                    template_url="/paging/multiple/nextOperationWithQueryParams",
                 )
                 request.url = self._client.format_url(request.url)
 
@@ -900,7 +880,6 @@ class PagingOperations(object):
                     client_request_id=client_request_id,
                     maxresults=maxresults,
                     timeout=timeout,
-                    template_url=self.get_odata_multiple_pages.metadata["url"],
                 )
                 request.url = self._client.format_url(request.url)
 
@@ -910,9 +889,8 @@ class PagingOperations(object):
                     client_request_id=client_request_id,
                     maxresults=maxresults,
                     timeout=timeout,
-                    template_url=next_link,
                 )
-                request.url = self._client.format_url(request.url)
+                request.url = self._client.format_url(next_link)
                 request.method = "GET"
             return request
 
@@ -993,7 +971,6 @@ class PagingOperations(object):
                     client_request_id=client_request_id,
                     maxresults=maxresults,
                     timeout=timeout,
-                    template_url=self.get_multiple_pages_with_offset.metadata["url"],
                 )
                 request.url = self._client.format_url(request.url)
 
@@ -1004,9 +981,8 @@ class PagingOperations(object):
                     client_request_id=client_request_id,
                     maxresults=maxresults,
                     timeout=timeout,
-                    template_url=next_link,
                 )
-                request.url = self._client.format_url(request.url)
+                request.url = self._client.format_url(next_link)
                 request.method = "GET"
             return request
 
@@ -1065,17 +1041,13 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_multiple_pages_retry_first_request(
-                    template_url=self.get_multiple_pages_retry_first.metadata["url"],
-                )
+                request = build_paging_get_multiple_pages_retry_first_request()
                 request.url = self._client.format_url(request.url)
 
             else:
 
-                request = build_paging_get_multiple_pages_retry_first_request(
-                    template_url=next_link,
-                )
-                request.url = self._client.format_url(request.url)
+                request = build_paging_get_multiple_pages_retry_first_request()
+                request.url = self._client.format_url(next_link)
                 request.method = "GET"
             return request
 
@@ -1134,17 +1106,13 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_multiple_pages_retry_second_request(
-                    template_url=self.get_multiple_pages_retry_second.metadata["url"],
-                )
+                request = build_paging_get_multiple_pages_retry_second_request()
                 request.url = self._client.format_url(request.url)
 
             else:
 
-                request = build_paging_get_multiple_pages_retry_second_request(
-                    template_url=next_link,
-                )
-                request.url = self._client.format_url(request.url)
+                request = build_paging_get_multiple_pages_retry_second_request()
+                request.url = self._client.format_url(next_link)
                 request.method = "GET"
             return request
 
@@ -1202,17 +1170,13 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_single_pages_failure_request(
-                    template_url=self.get_single_pages_failure.metadata["url"],
-                )
+                request = build_paging_get_single_pages_failure_request()
                 request.url = self._client.format_url(request.url)
 
             else:
 
-                request = build_paging_get_single_pages_failure_request(
-                    template_url=next_link,
-                )
-                request.url = self._client.format_url(request.url)
+                request = build_paging_get_single_pages_failure_request()
+                request.url = self._client.format_url(next_link)
                 request.method = "GET"
             return request
 
@@ -1270,17 +1234,13 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_multiple_pages_failure_request(
-                    template_url=self.get_multiple_pages_failure.metadata["url"],
-                )
+                request = build_paging_get_multiple_pages_failure_request()
                 request.url = self._client.format_url(request.url)
 
             else:
 
-                request = build_paging_get_multiple_pages_failure_request(
-                    template_url=next_link,
-                )
-                request.url = self._client.format_url(request.url)
+                request = build_paging_get_multiple_pages_failure_request()
+                request.url = self._client.format_url(next_link)
                 request.method = "GET"
             return request
 
@@ -1338,17 +1298,13 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_multiple_pages_failure_uri_request(
-                    template_url=self.get_multiple_pages_failure_uri.metadata["url"],
-                )
+                request = build_paging_get_multiple_pages_failure_uri_request()
                 request.url = self._client.format_url(request.url)
 
             else:
 
-                request = build_paging_get_multiple_pages_failure_uri_request(
-                    template_url=next_link,
-                )
-                request.url = self._client.format_url(request.url)
+                request = build_paging_get_multiple_pages_failure_uri_request()
+                request.url = self._client.format_url(next_link)
                 request.method = "GET"
             return request
 
@@ -1416,7 +1372,6 @@ class PagingOperations(object):
                 request = build_paging_get_multiple_pages_fragment_next_link_request(
                     tenant=tenant,
                     api_version=api_version,
-                    template_url=self.get_multiple_pages_fragment_next_link.metadata["url"],
                 )
                 request.url = self._client.format_url(request.url)
 
@@ -1426,7 +1381,6 @@ class PagingOperations(object):
                     tenant=tenant,
                     next_link=next_link,
                     api_version=api_version,
-                    template_url="/paging/multiple/fragment/{tenant}/{nextLink}",
                 )
                 request.url = self._client.format_url(request.url)
 
@@ -1496,7 +1450,6 @@ class PagingOperations(object):
                 request = build_paging_get_multiple_pages_fragment_with_grouping_next_link_request(
                     tenant=tenant,
                     api_version=api_version,
-                    template_url=self.get_multiple_pages_fragment_with_grouping_next_link.metadata["url"],
                 )
                 request.url = self._client.format_url(request.url)
 
@@ -1506,7 +1459,6 @@ class PagingOperations(object):
                     tenant=tenant,
                     next_link=next_link,
                     api_version=api_version,
-                    template_url="/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}",
                 )
                 request.url = self._client.format_url(request.url)
 
@@ -1551,7 +1503,6 @@ class PagingOperations(object):
             client_request_id=client_request_id,
             maxresults=maxresults,
             timeout=timeout,
-            template_url=self._get_multiple_pages_lro_initial.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1615,7 +1566,6 @@ class PagingOperations(object):
                     client_request_id=client_request_id,
                     maxresults=maxresults,
                     timeout=timeout,
-                    template_url=self.begin_get_multiple_pages_lro.metadata["url"],
                 )
                 request.url = self._client.format_url(request.url)
 
@@ -1625,9 +1575,8 @@ class PagingOperations(object):
                     client_request_id=client_request_id,
                     maxresults=maxresults,
                     timeout=timeout,
-                    template_url=next_link,
                 )
-                request.url = self._client.format_url(request.url)
+                request.url = self._client.format_url(next_link)
                 request.method = "GET"
             return request
 
@@ -1723,17 +1672,13 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_paging_model_with_item_name_with_xms_client_name_request(
-                    template_url=self.get_paging_model_with_item_name_with_xms_client_name.metadata["url"],
-                )
+                request = build_paging_get_paging_model_with_item_name_with_xms_client_name_request()
                 request.url = self._client.format_url(request.url)
 
             else:
 
-                request = build_paging_get_paging_model_with_item_name_with_xms_client_name_request(
-                    template_url=next_link,
-                )
-                request.url = self._client.format_url(request.url)
+                request = build_paging_get_paging_model_with_item_name_with_xms_client_name_request()
+                request.url = self._client.format_url(next_link)
                 request.method = "GET"
             return request
 

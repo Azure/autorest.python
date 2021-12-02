@@ -14,7 +14,7 @@ from ..._vendor import _format_url_section
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any, Dict, Optional
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -54,7 +54,7 @@ def build_get_no_item_name_pages_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/paging/noitemname')
+    url = '/paging/noitemname'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -101,7 +101,7 @@ def build_get_null_next_link_name_pages_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/paging/nullnextlink')
+    url = '/paging/nullnextlink'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -148,7 +148,7 @@ def build_get_single_pages_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/paging/single')
+    url = '/paging/single'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -196,7 +196,7 @@ def build_first_response_empty_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/paging/firstResponseEmpty/1')
+    url = '/paging/firstResponseEmpty/1'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -254,7 +254,7 @@ def build_get_multiple_pages_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/paging/multiple')
+    url = '/paging/multiple'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -318,7 +318,7 @@ def build_get_with_query_params_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/paging/multiple/getWithQueryParams')
+    url = '/paging/multiple/getWithQueryParams'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -376,7 +376,7 @@ def build_next_operation_with_query_params_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/paging/multiple/nextOperationWithQueryParams')
+    url = '/paging/multiple/nextOperationWithQueryParams'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -439,7 +439,7 @@ def build_get_odata_multiple_pages_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/paging/multiple/odata')
+    url = '/paging/multiple/odata'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -506,7 +506,7 @@ def build_get_multiple_pages_with_offset_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/paging/multiple/withpath/{offset}')
+    url = '/paging/multiple/withpath/{offset}'
     path_format_arguments = {
         "offset": _SERIALIZER.url("offset", offset, 'int'),
     }
@@ -565,7 +565,7 @@ def build_get_multiple_pages_retry_first_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/paging/multiple/retryfirst')
+    url = '/paging/multiple/retryfirst'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -613,7 +613,7 @@ def build_get_multiple_pages_retry_second_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/paging/multiple/retrysecond')
+    url = '/paging/multiple/retrysecond'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -660,7 +660,7 @@ def build_get_single_pages_failure_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/paging/single/failure')
+    url = '/paging/single/failure'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -707,7 +707,7 @@ def build_get_multiple_pages_failure_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/paging/multiple/failure')
+    url = '/paging/multiple/failure'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -754,7 +754,7 @@ def build_get_multiple_pages_failure_uri_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/paging/multiple/failureuri')
+    url = '/paging/multiple/failureuri'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -808,7 +808,7 @@ def build_get_multiple_pages_fragment_next_link_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/paging/multiple/fragment/{tenant}')
+    url = '/paging/multiple/fragment/{tenant}'
     path_format_arguments = {
         "tenant": _SERIALIZER.url("tenant", tenant, 'str'),
     }
@@ -872,7 +872,7 @@ def build_get_multiple_pages_fragment_with_grouping_next_link_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/paging/multiple/fragmentwithgrouping/{tenant}')
+    url = '/paging/multiple/fragmentwithgrouping/{tenant}'
     path_format_arguments = {
         "tenant": _SERIALIZER.url("tenant", tenant, 'str'),
     }
@@ -940,7 +940,7 @@ def build_get_multiple_pages_lro_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/paging/multiple/lro')
+    url = '/paging/multiple/lro'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -1003,7 +1003,7 @@ def build_next_fragment_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/paging/multiple/fragment/{tenant}/{nextLink}')
+    url = '/paging/multiple/fragment/{tenant}/{nextLink}'
     path_format_arguments = {
         "tenant": _SERIALIZER.url("tenant", tenant, 'str'),
         "nextLink": _SERIALIZER.url("next_link", next_link, 'str', skip_quote=True),
@@ -1071,7 +1071,7 @@ def build_next_fragment_with_grouping_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}')
+    url = '/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}'
     path_format_arguments = {
         "tenant": _SERIALIZER.url("tenant", tenant, 'str'),
         "nextLink": _SERIALIZER.url("next_link", next_link, 'str', skip_quote=True),
@@ -1130,7 +1130,7 @@ def build_get_paging_model_with_item_name_with_xms_client_name_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/paging/itemNameWithXMSClientName')
+    url = '/paging/itemNameWithXMSClientName'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

@@ -13,7 +13,7 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional, TypeVar
+    from typing import Any, Dict, Optional, TypeVar
 
     T = TypeVar("T")
     JSONType = Any
@@ -40,7 +40,7 @@ def build_get_null_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/date/null')
+    url = '/date/null'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -71,7 +71,7 @@ def build_get_invalid_date_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/date/invaliddate')
+    url = '/date/invaliddate'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -102,7 +102,7 @@ def build_get_overflow_date_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/date/overflowdate')
+    url = '/date/overflowdate'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -133,7 +133,7 @@ def build_get_underflow_date_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/date/underflowdate')
+    url = '/date/underflowdate'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -178,7 +178,7 @@ def build_put_max_date_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/date/max')
+    url = '/date/max'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -211,7 +211,7 @@ def build_get_max_date_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/date/max')
+    url = '/date/max'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -256,7 +256,7 @@ def build_put_min_date_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/date/min')
+    url = '/date/min'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -289,7 +289,7 @@ def build_get_min_date_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/date/min')
+    url = '/date/min'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

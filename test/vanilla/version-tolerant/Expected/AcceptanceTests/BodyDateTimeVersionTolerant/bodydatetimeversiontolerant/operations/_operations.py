@@ -34,7 +34,7 @@ _SERIALIZER.client_side_validation = False
 def build_datetime_get_null_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/datetime/null")
+    url = "/datetime/null"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -46,7 +46,7 @@ def build_datetime_get_null_request(**kwargs: Any) -> HttpRequest:
 def build_datetime_get_invalid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/datetime/invalid")
+    url = "/datetime/invalid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -58,7 +58,7 @@ def build_datetime_get_invalid_request(**kwargs: Any) -> HttpRequest:
 def build_datetime_get_overflow_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/datetime/overflow")
+    url = "/datetime/overflow"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -70,7 +70,7 @@ def build_datetime_get_overflow_request(**kwargs: Any) -> HttpRequest:
 def build_datetime_get_underflow_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/datetime/underflow")
+    url = "/datetime/underflow"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -86,7 +86,7 @@ def build_datetime_put_utc_max_date_time_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/datetime/max/utc")
+    url = "/datetime/max/utc"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -104,7 +104,7 @@ def build_datetime_put_utc_max_date_time7_digits_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/datetime/max/utc7ms")
+    url = "/datetime/max/utc7ms"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -118,7 +118,7 @@ def build_datetime_put_utc_max_date_time7_digits_request(
 def build_datetime_get_utc_lowercase_max_date_time_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/datetime/max/utc/lowercase")
+    url = "/datetime/max/utc/lowercase"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -130,7 +130,7 @@ def build_datetime_get_utc_lowercase_max_date_time_request(**kwargs: Any) -> Htt
 def build_datetime_get_utc_uppercase_max_date_time_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/datetime/max/utc/uppercase")
+    url = "/datetime/max/utc/uppercase"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -142,7 +142,7 @@ def build_datetime_get_utc_uppercase_max_date_time_request(**kwargs: Any) -> Htt
 def build_datetime_get_utc_uppercase_max_date_time7_digits_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/datetime/max/utc7ms/uppercase")
+    url = "/datetime/max/utc7ms/uppercase"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -158,7 +158,7 @@ def build_datetime_put_local_positive_offset_max_date_time_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/datetime/max/localpositiveoffset")
+    url = "/datetime/max/localpositiveoffset"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -172,7 +172,7 @@ def build_datetime_put_local_positive_offset_max_date_time_request(
 def build_datetime_get_local_positive_offset_lowercase_max_date_time_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/datetime/max/localpositiveoffset/lowercase")
+    url = "/datetime/max/localpositiveoffset/lowercase"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -184,7 +184,7 @@ def build_datetime_get_local_positive_offset_lowercase_max_date_time_request(**k
 def build_datetime_get_local_positive_offset_uppercase_max_date_time_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/datetime/max/localpositiveoffset/uppercase")
+    url = "/datetime/max/localpositiveoffset/uppercase"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -200,7 +200,7 @@ def build_datetime_put_local_negative_offset_max_date_time_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/datetime/max/localnegativeoffset")
+    url = "/datetime/max/localnegativeoffset"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -214,7 +214,7 @@ def build_datetime_put_local_negative_offset_max_date_time_request(
 def build_datetime_get_local_negative_offset_uppercase_max_date_time_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/datetime/max/localnegativeoffset/uppercase")
+    url = "/datetime/max/localnegativeoffset/uppercase"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -226,7 +226,7 @@ def build_datetime_get_local_negative_offset_uppercase_max_date_time_request(**k
 def build_datetime_get_local_negative_offset_lowercase_max_date_time_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/datetime/max/localnegativeoffset/lowercase")
+    url = "/datetime/max/localnegativeoffset/lowercase"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -242,7 +242,7 @@ def build_datetime_put_utc_min_date_time_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/datetime/min/utc")
+    url = "/datetime/min/utc"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -256,7 +256,7 @@ def build_datetime_put_utc_min_date_time_request(
 def build_datetime_get_utc_min_date_time_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/datetime/min/utc")
+    url = "/datetime/min/utc"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -272,7 +272,7 @@ def build_datetime_put_local_positive_offset_min_date_time_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/datetime/min/localpositiveoffset")
+    url = "/datetime/min/localpositiveoffset"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -286,7 +286,7 @@ def build_datetime_put_local_positive_offset_min_date_time_request(
 def build_datetime_get_local_positive_offset_min_date_time_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/datetime/min/localpositiveoffset")
+    url = "/datetime/min/localpositiveoffset"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -302,7 +302,7 @@ def build_datetime_put_local_negative_offset_min_date_time_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/datetime/min/localnegativeoffset")
+    url = "/datetime/min/localnegativeoffset"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -316,7 +316,7 @@ def build_datetime_put_local_negative_offset_min_date_time_request(
 def build_datetime_get_local_negative_offset_min_date_time_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/datetime/min/localnegativeoffset")
+    url = "/datetime/min/localnegativeoffset"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -328,7 +328,7 @@ def build_datetime_get_local_negative_offset_min_date_time_request(**kwargs: Any
 def build_datetime_get_local_no_offset_min_date_time_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/datetime/min/localnooffset")
+    url = "/datetime/min/localnooffset"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -367,9 +367,7 @@ class DatetimeOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetime_get_null_request(
-            template_url=self.get_null.metadata["url"],
-        )
+        request = build_datetime_get_null_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -403,9 +401,7 @@ class DatetimeOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetime_get_invalid_request(
-            template_url=self.get_invalid.metadata["url"],
-        )
+        request = build_datetime_get_invalid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -439,9 +435,7 @@ class DatetimeOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetime_get_overflow_request(
-            template_url=self.get_overflow.metadata["url"],
-        )
+        request = build_datetime_get_overflow_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -475,9 +469,7 @@ class DatetimeOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetime_get_underflow_request(
-            template_url=self.get_underflow.metadata["url"],
-        )
+        request = build_datetime_get_underflow_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -520,7 +512,6 @@ class DatetimeOperations(object):
         request = build_datetime_put_utc_max_date_time_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_utc_max_date_time.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -560,7 +551,6 @@ class DatetimeOperations(object):
         request = build_datetime_put_utc_max_date_time7_digits_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_utc_max_date_time7_digits.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -588,9 +578,7 @@ class DatetimeOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetime_get_utc_lowercase_max_date_time_request(
-            template_url=self.get_utc_lowercase_max_date_time.metadata["url"],
-        )
+        request = build_datetime_get_utc_lowercase_max_date_time_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -624,9 +612,7 @@ class DatetimeOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetime_get_utc_uppercase_max_date_time_request(
-            template_url=self.get_utc_uppercase_max_date_time.metadata["url"],
-        )
+        request = build_datetime_get_utc_uppercase_max_date_time_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -663,9 +649,7 @@ class DatetimeOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetime_get_utc_uppercase_max_date_time7_digits_request(
-            template_url=self.get_utc_uppercase_max_date_time7_digits.metadata["url"],
-        )
+        request = build_datetime_get_utc_uppercase_max_date_time7_digits_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -708,7 +692,6 @@ class DatetimeOperations(object):
         request = build_datetime_put_local_positive_offset_max_date_time_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_local_positive_offset_max_date_time.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -736,9 +719,7 @@ class DatetimeOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetime_get_local_positive_offset_lowercase_max_date_time_request(
-            template_url=self.get_local_positive_offset_lowercase_max_date_time.metadata["url"],
-        )
+        request = build_datetime_get_local_positive_offset_lowercase_max_date_time_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -772,9 +753,7 @@ class DatetimeOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetime_get_local_positive_offset_uppercase_max_date_time_request(
-            template_url=self.get_local_positive_offset_uppercase_max_date_time.metadata["url"],
-        )
+        request = build_datetime_get_local_positive_offset_uppercase_max_date_time_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -817,7 +796,6 @@ class DatetimeOperations(object):
         request = build_datetime_put_local_negative_offset_max_date_time_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_local_negative_offset_max_date_time.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -845,9 +823,7 @@ class DatetimeOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetime_get_local_negative_offset_uppercase_max_date_time_request(
-            template_url=self.get_local_negative_offset_uppercase_max_date_time.metadata["url"],
-        )
+        request = build_datetime_get_local_negative_offset_uppercase_max_date_time_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -881,9 +857,7 @@ class DatetimeOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetime_get_local_negative_offset_lowercase_max_date_time_request(
-            template_url=self.get_local_negative_offset_lowercase_max_date_time.metadata["url"],
-        )
+        request = build_datetime_get_local_negative_offset_lowercase_max_date_time_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -926,7 +900,6 @@ class DatetimeOperations(object):
         request = build_datetime_put_utc_min_date_time_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_utc_min_date_time.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -954,9 +927,7 @@ class DatetimeOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetime_get_utc_min_date_time_request(
-            template_url=self.get_utc_min_date_time.metadata["url"],
-        )
+        request = build_datetime_get_utc_min_date_time_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -999,7 +970,6 @@ class DatetimeOperations(object):
         request = build_datetime_put_local_positive_offset_min_date_time_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_local_positive_offset_min_date_time.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1027,9 +997,7 @@ class DatetimeOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetime_get_local_positive_offset_min_date_time_request(
-            template_url=self.get_local_positive_offset_min_date_time.metadata["url"],
-        )
+        request = build_datetime_get_local_positive_offset_min_date_time_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1072,7 +1040,6 @@ class DatetimeOperations(object):
         request = build_datetime_put_local_negative_offset_min_date_time_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_local_negative_offset_min_date_time.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1100,9 +1067,7 @@ class DatetimeOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetime_get_local_negative_offset_min_date_time_request(
-            template_url=self.get_local_negative_offset_min_date_time.metadata["url"],
-        )
+        request = build_datetime_get_local_negative_offset_min_date_time_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1136,9 +1101,7 @@ class DatetimeOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_datetime_get_local_no_offset_min_date_time_request(
-            template_url=self.get_local_no_offset_min_date_time.metadata["url"],
-        )
+        request = build_datetime_get_local_no_offset_min_date_time_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

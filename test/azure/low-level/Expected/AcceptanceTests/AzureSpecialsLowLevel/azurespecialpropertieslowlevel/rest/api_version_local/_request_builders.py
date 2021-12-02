@@ -10,11 +10,9 @@ from typing import TYPE_CHECKING
 from azure.core.rest import HttpRequest
 from msrest import Serializer
 
-from ..._vendor import _format_url_section
-
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any, Dict, Optional
 
 _SERIALIZER = Serializer()
 
@@ -42,7 +40,7 @@ def build_get_method_local_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/apiVersion/method/string/none/query/local/2.0')
+    url = '/azurespecials/apiVersion/method/string/none/query/local/2.0'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -83,7 +81,7 @@ def build_get_method_local_null_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/apiVersion/method/string/none/query/local/null')
+    url = '/azurespecials/apiVersion/method/string/none/query/local/null'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -125,7 +123,7 @@ def build_get_path_local_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/apiVersion/path/string/none/query/local/2.0')
+    url = '/azurespecials/apiVersion/path/string/none/query/local/2.0'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -167,7 +165,7 @@ def build_get_swagger_local_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/apiVersion/swagger/string/none/query/local/2.0')
+    url = '/azurespecials/apiVersion/swagger/string/none/query/local/2.0'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]

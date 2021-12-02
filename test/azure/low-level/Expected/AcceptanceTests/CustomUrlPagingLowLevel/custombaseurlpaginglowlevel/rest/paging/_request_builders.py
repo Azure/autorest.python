@@ -14,7 +14,7 @@ from ..._vendor import _format_url_section
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any
+    from typing import Any, Dict
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -55,7 +55,7 @@ def build_get_pages_partial_url_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/paging/customurl/partialnextlink')
+    url = '/paging/customurl/partialnextlink'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -102,7 +102,7 @@ def build_get_pages_partial_url_operation_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/paging/customurl/partialnextlinkop')
+    url = '/paging/customurl/partialnextlinkop'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -152,7 +152,7 @@ def build_get_pages_partial_url_operation_next_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/paging/customurl/{nextLink}')
+    url = '/paging/customurl/{nextLink}'
     path_format_arguments = {
         "nextLink": _SERIALIZER.url("next_link", next_link, 'str', skip_quote=True),
     }

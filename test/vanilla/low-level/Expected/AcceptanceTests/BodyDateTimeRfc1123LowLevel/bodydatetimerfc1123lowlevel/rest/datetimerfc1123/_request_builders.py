@@ -13,7 +13,7 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional, TypeVar
+    from typing import Any, Dict, Optional, TypeVar
 
     T = TypeVar("T")
     JSONType = Any
@@ -40,7 +40,7 @@ def build_get_null_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/datetimerfc1123/null')
+    url = '/datetimerfc1123/null'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -71,7 +71,7 @@ def build_get_invalid_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/datetimerfc1123/invalid')
+    url = '/datetimerfc1123/invalid'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -102,7 +102,7 @@ def build_get_overflow_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/datetimerfc1123/overflow')
+    url = '/datetimerfc1123/overflow'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -133,7 +133,7 @@ def build_get_underflow_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/datetimerfc1123/underflow')
+    url = '/datetimerfc1123/underflow'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -178,7 +178,7 @@ def build_put_utc_max_date_time_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/datetimerfc1123/max')
+    url = '/datetimerfc1123/max'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -211,7 +211,7 @@ def build_get_utc_lowercase_max_date_time_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/datetimerfc1123/max/lowercase')
+    url = '/datetimerfc1123/max/lowercase'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -242,7 +242,7 @@ def build_get_utc_uppercase_max_date_time_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/datetimerfc1123/max/uppercase')
+    url = '/datetimerfc1123/max/uppercase'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -287,7 +287,7 @@ def build_put_utc_min_date_time_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/datetimerfc1123/min')
+    url = '/datetimerfc1123/min'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -320,7 +320,7 @@ def build_get_utc_min_date_time_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/datetimerfc1123/min')
+    url = '/datetimerfc1123/min'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

@@ -83,7 +83,8 @@ def default_prepare_request(next_link=None, **kwargs):
         except TypeError:
             request = next_request()  # the query one doesn't take next link
     else:
-        request = initial_request(template_url=next_link)
+        request = initial_request()
+        request.url = next_link
     return request
 
 @pytest.fixture

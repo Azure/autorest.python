@@ -33,7 +33,7 @@ _SERIALIZER.client_side_validation = False
 def build_get_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/objectType/get")
+    url = "/objectType/get"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -47,7 +47,7 @@ def build_put_request(*, json: JSONType = None, content: Any = None, **kwargs: A
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/objectType/put")
+    url = "/objectType/put"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -72,9 +72,7 @@ class ObjectTypeClientOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_get_request(
-            template_url=self.get.metadata["url"],
-        )
+        request = build_get_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -118,7 +116,6 @@ class ObjectTypeClientOperationsMixin(object):
         request = build_put_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 

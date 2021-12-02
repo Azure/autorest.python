@@ -33,7 +33,7 @@ _SERIALIZER.client_side_validation = False
 def build_byte_get_null_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/byte/null")
+    url = "/byte/null"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -45,7 +45,7 @@ def build_byte_get_null_request(**kwargs: Any) -> HttpRequest:
 def build_byte_get_empty_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/byte/empty")
+    url = "/byte/empty"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -57,7 +57,7 @@ def build_byte_get_empty_request(**kwargs: Any) -> HttpRequest:
 def build_byte_get_non_ascii_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/byte/nonAscii")
+    url = "/byte/nonAscii"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -71,7 +71,7 @@ def build_byte_put_non_ascii_request(*, json: JSONType = None, content: Any = No
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/byte/nonAscii")
+    url = "/byte/nonAscii"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -85,7 +85,7 @@ def build_byte_put_non_ascii_request(*, json: JSONType = None, content: Any = No
 def build_byte_get_invalid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/byte/invalid")
+    url = "/byte/invalid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -124,9 +124,7 @@ class ByteOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_byte_get_null_request(
-            template_url=self.get_null.metadata["url"],
-        )
+        request = build_byte_get_null_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -160,9 +158,7 @@ class ByteOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_byte_get_empty_request(
-            template_url=self.get_empty.metadata["url"],
-        )
+        request = build_byte_get_empty_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -196,9 +192,7 @@ class ByteOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_byte_get_non_ascii_request(
-            template_url=self.get_non_ascii.metadata["url"],
-        )
+        request = build_byte_get_non_ascii_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -241,7 +235,6 @@ class ByteOperations(object):
         request = build_byte_put_non_ascii_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_non_ascii.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -269,9 +262,7 @@ class ByteOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_byte_get_invalid_request(
-            template_url=self.get_invalid.metadata["url"],
-        )
+        request = build_byte_get_invalid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

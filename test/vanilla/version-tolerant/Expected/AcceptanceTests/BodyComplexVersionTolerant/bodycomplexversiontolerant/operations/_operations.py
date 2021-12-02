@@ -32,7 +32,7 @@ _SERIALIZER = Serializer()
 def build_basic_get_valid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/basic/valid")
+    url = "/complex/basic/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -47,7 +47,7 @@ def build_basic_put_valid_request(*, json: JSONType = None, content: Any = None,
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/basic/valid")
+    url = "/complex/basic/valid"
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -67,7 +67,7 @@ def build_basic_put_valid_request(*, json: JSONType = None, content: Any = None,
 def build_basic_get_invalid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/basic/invalid")
+    url = "/complex/basic/invalid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -79,7 +79,7 @@ def build_basic_get_invalid_request(**kwargs: Any) -> HttpRequest:
 def build_basic_get_empty_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/basic/empty")
+    url = "/complex/basic/empty"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -91,7 +91,7 @@ def build_basic_get_empty_request(**kwargs: Any) -> HttpRequest:
 def build_basic_get_null_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/basic/null")
+    url = "/complex/basic/null"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -103,7 +103,7 @@ def build_basic_get_null_request(**kwargs: Any) -> HttpRequest:
 def build_basic_get_not_provided_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/basic/notprovided")
+    url = "/complex/basic/notprovided"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -115,7 +115,7 @@ def build_basic_get_not_provided_request(**kwargs: Any) -> HttpRequest:
 def build_primitive_get_int_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/integer")
+    url = "/complex/primitive/integer"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -129,7 +129,7 @@ def build_primitive_put_int_request(*, json: JSONType = None, content: Any = Non
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/integer")
+    url = "/complex/primitive/integer"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -143,7 +143,7 @@ def build_primitive_put_int_request(*, json: JSONType = None, content: Any = Non
 def build_primitive_get_long_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/long")
+    url = "/complex/primitive/long"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -157,7 +157,7 @@ def build_primitive_put_long_request(*, json: JSONType = None, content: Any = No
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/long")
+    url = "/complex/primitive/long"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -171,7 +171,7 @@ def build_primitive_put_long_request(*, json: JSONType = None, content: Any = No
 def build_primitive_get_float_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/float")
+    url = "/complex/primitive/float"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -185,7 +185,7 @@ def build_primitive_put_float_request(*, json: JSONType = None, content: Any = N
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/float")
+    url = "/complex/primitive/float"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -199,7 +199,7 @@ def build_primitive_put_float_request(*, json: JSONType = None, content: Any = N
 def build_primitive_get_double_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/double")
+    url = "/complex/primitive/double"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -213,7 +213,7 @@ def build_primitive_put_double_request(*, json: JSONType = None, content: Any = 
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/double")
+    url = "/complex/primitive/double"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -227,7 +227,7 @@ def build_primitive_put_double_request(*, json: JSONType = None, content: Any = 
 def build_primitive_get_bool_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/bool")
+    url = "/complex/primitive/bool"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -241,7 +241,7 @@ def build_primitive_put_bool_request(*, json: JSONType = None, content: Any = No
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/bool")
+    url = "/complex/primitive/bool"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -255,7 +255,7 @@ def build_primitive_put_bool_request(*, json: JSONType = None, content: Any = No
 def build_primitive_get_string_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/string")
+    url = "/complex/primitive/string"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -269,7 +269,7 @@ def build_primitive_put_string_request(*, json: JSONType = None, content: Any = 
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/string")
+    url = "/complex/primitive/string"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -283,7 +283,7 @@ def build_primitive_put_string_request(*, json: JSONType = None, content: Any = 
 def build_primitive_get_date_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/date")
+    url = "/complex/primitive/date"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -297,7 +297,7 @@ def build_primitive_put_date_request(*, json: JSONType = None, content: Any = No
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/date")
+    url = "/complex/primitive/date"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -311,7 +311,7 @@ def build_primitive_put_date_request(*, json: JSONType = None, content: Any = No
 def build_primitive_get_date_time_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/datetime")
+    url = "/complex/primitive/datetime"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -325,7 +325,7 @@ def build_primitive_put_date_time_request(*, json: JSONType = None, content: Any
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/datetime")
+    url = "/complex/primitive/datetime"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -339,7 +339,7 @@ def build_primitive_put_date_time_request(*, json: JSONType = None, content: Any
 def build_primitive_get_date_time_rfc1123_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/datetimerfc1123")
+    url = "/complex/primitive/datetimerfc1123"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -355,7 +355,7 @@ def build_primitive_put_date_time_rfc1123_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/datetimerfc1123")
+    url = "/complex/primitive/datetimerfc1123"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -369,7 +369,7 @@ def build_primitive_put_date_time_rfc1123_request(
 def build_primitive_get_duration_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/duration")
+    url = "/complex/primitive/duration"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -383,7 +383,7 @@ def build_primitive_put_duration_request(*, json: JSONType = None, content: Any 
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/duration")
+    url = "/complex/primitive/duration"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -397,7 +397,7 @@ def build_primitive_put_duration_request(*, json: JSONType = None, content: Any 
 def build_primitive_get_byte_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/byte")
+    url = "/complex/primitive/byte"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -411,7 +411,7 @@ def build_primitive_put_byte_request(*, json: JSONType = None, content: Any = No
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/primitive/byte")
+    url = "/complex/primitive/byte"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -425,7 +425,7 @@ def build_primitive_put_byte_request(*, json: JSONType = None, content: Any = No
 def build_array_get_valid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/array/valid")
+    url = "/complex/array/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -439,7 +439,7 @@ def build_array_put_valid_request(*, json: JSONType = None, content: Any = None,
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/array/valid")
+    url = "/complex/array/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -453,7 +453,7 @@ def build_array_put_valid_request(*, json: JSONType = None, content: Any = None,
 def build_array_get_empty_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/array/empty")
+    url = "/complex/array/empty"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -467,7 +467,7 @@ def build_array_put_empty_request(*, json: JSONType = None, content: Any = None,
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/array/empty")
+    url = "/complex/array/empty"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -481,7 +481,7 @@ def build_array_put_empty_request(*, json: JSONType = None, content: Any = None,
 def build_array_get_not_provided_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/array/notprovided")
+    url = "/complex/array/notprovided"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -493,7 +493,7 @@ def build_array_get_not_provided_request(**kwargs: Any) -> HttpRequest:
 def build_dictionary_get_valid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/dictionary/typed/valid")
+    url = "/complex/dictionary/typed/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -507,7 +507,7 @@ def build_dictionary_put_valid_request(*, json: JSONType = None, content: Any = 
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/dictionary/typed/valid")
+    url = "/complex/dictionary/typed/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -521,7 +521,7 @@ def build_dictionary_put_valid_request(*, json: JSONType = None, content: Any = 
 def build_dictionary_get_empty_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/dictionary/typed/empty")
+    url = "/complex/dictionary/typed/empty"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -535,7 +535,7 @@ def build_dictionary_put_empty_request(*, json: JSONType = None, content: Any = 
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/dictionary/typed/empty")
+    url = "/complex/dictionary/typed/empty"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -549,7 +549,7 @@ def build_dictionary_put_empty_request(*, json: JSONType = None, content: Any = 
 def build_dictionary_get_null_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/dictionary/typed/null")
+    url = "/complex/dictionary/typed/null"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -561,7 +561,7 @@ def build_dictionary_get_null_request(**kwargs: Any) -> HttpRequest:
 def build_dictionary_get_not_provided_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/dictionary/typed/notprovided")
+    url = "/complex/dictionary/typed/notprovided"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -573,7 +573,7 @@ def build_dictionary_get_not_provided_request(**kwargs: Any) -> HttpRequest:
 def build_inheritance_get_valid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/inheritance/valid")
+    url = "/complex/inheritance/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -587,7 +587,7 @@ def build_inheritance_put_valid_request(*, json: JSONType = None, content: Any =
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/inheritance/valid")
+    url = "/complex/inheritance/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -601,7 +601,7 @@ def build_inheritance_put_valid_request(*, json: JSONType = None, content: Any =
 def build_polymorphism_get_valid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/polymorphism/valid")
+    url = "/complex/polymorphism/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -615,7 +615,7 @@ def build_polymorphism_put_valid_request(*, json: JSONType = None, content: Any 
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/polymorphism/valid")
+    url = "/complex/polymorphism/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -629,7 +629,7 @@ def build_polymorphism_put_valid_request(*, json: JSONType = None, content: Any 
 def build_polymorphism_get_dot_syntax_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/polymorphism/dotsyntax")
+    url = "/complex/polymorphism/dotsyntax"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -641,7 +641,7 @@ def build_polymorphism_get_dot_syntax_request(**kwargs: Any) -> HttpRequest:
 def build_polymorphism_get_composed_with_discriminator_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/polymorphism/composedWithDiscriminator")
+    url = "/complex/polymorphism/composedWithDiscriminator"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -653,7 +653,7 @@ def build_polymorphism_get_composed_with_discriminator_request(**kwargs: Any) ->
 def build_polymorphism_get_composed_without_discriminator_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/polymorphism/composedWithoutDiscriminator")
+    url = "/complex/polymorphism/composedWithoutDiscriminator"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -665,7 +665,7 @@ def build_polymorphism_get_composed_without_discriminator_request(**kwargs: Any)
 def build_polymorphism_get_complicated_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/polymorphism/complicated")
+    url = "/complex/polymorphism/complicated"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -681,7 +681,7 @@ def build_polymorphism_put_complicated_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/polymorphism/complicated")
+    url = "/complex/polymorphism/complicated"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -699,7 +699,7 @@ def build_polymorphism_put_missing_discriminator_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/polymorphism/missingdiscriminator")
+    url = "/complex/polymorphism/missingdiscriminator"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -717,7 +717,7 @@ def build_polymorphism_put_valid_missing_required_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/polymorphism/missingrequired/invalid")
+    url = "/complex/polymorphism/missingrequired/invalid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -731,7 +731,7 @@ def build_polymorphism_put_valid_missing_required_request(
 def build_polymorphicrecursive_get_valid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/polymorphicrecursive/valid")
+    url = "/complex/polymorphicrecursive/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -747,7 +747,7 @@ def build_polymorphicrecursive_put_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/polymorphicrecursive/valid")
+    url = "/complex/polymorphicrecursive/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -761,7 +761,7 @@ def build_polymorphicrecursive_put_valid_request(
 def build_readonlyproperty_get_valid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/readonlyproperty/valid")
+    url = "/complex/readonlyproperty/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -777,7 +777,7 @@ def build_readonlyproperty_put_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/readonlyproperty/valid")
+    url = "/complex/readonlyproperty/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -791,7 +791,7 @@ def build_readonlyproperty_put_valid_request(
 def build_flattencomplex_get_valid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/complex/flatten/valid")
+    url = "/complex/flatten/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -840,9 +840,7 @@ class BasicOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_basic_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
-        )
+        request = build_basic_get_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -900,7 +898,6 @@ class BasicOperations(object):
             api_version=api_version,
             content_type=content_type,
             json=_json,
-            template_url=self.put_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -938,9 +935,7 @@ class BasicOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_basic_get_invalid_request(
-            template_url=self.get_invalid.metadata["url"],
-        )
+        request = build_basic_get_invalid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -984,9 +979,7 @@ class BasicOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_basic_get_empty_request(
-            template_url=self.get_empty.metadata["url"],
-        )
+        request = build_basic_get_empty_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1030,9 +1023,7 @@ class BasicOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_basic_get_null_request(
-            template_url=self.get_null.metadata["url"],
-        )
+        request = build_basic_get_null_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1076,9 +1067,7 @@ class BasicOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_basic_get_not_provided_request(
-            template_url=self.get_not_provided.metadata["url"],
-        )
+        request = build_basic_get_not_provided_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1140,9 +1129,7 @@ class PrimitiveOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_primitive_get_int_request(
-            template_url=self.get_int.metadata["url"],
-        )
+        request = build_primitive_get_int_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1194,7 +1181,6 @@ class PrimitiveOperations(object):
         request = build_primitive_put_int_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_int.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1231,9 +1217,7 @@ class PrimitiveOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_primitive_get_long_request(
-            template_url=self.get_long.metadata["url"],
-        )
+        request = build_primitive_get_long_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1285,7 +1269,6 @@ class PrimitiveOperations(object):
         request = build_primitive_put_long_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_long.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1322,9 +1305,7 @@ class PrimitiveOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_primitive_get_float_request(
-            template_url=self.get_float.metadata["url"],
-        )
+        request = build_primitive_get_float_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1376,7 +1357,6 @@ class PrimitiveOperations(object):
         request = build_primitive_put_float_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_float.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1413,9 +1393,7 @@ class PrimitiveOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_primitive_get_double_request(
-            template_url=self.get_double.metadata["url"],
-        )
+        request = build_primitive_get_double_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1468,7 +1446,6 @@ class PrimitiveOperations(object):
         request = build_primitive_put_double_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_double.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1505,9 +1482,7 @@ class PrimitiveOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_primitive_get_bool_request(
-            template_url=self.get_bool.metadata["url"],
-        )
+        request = build_primitive_get_bool_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1559,7 +1534,6 @@ class PrimitiveOperations(object):
         request = build_primitive_put_bool_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_bool.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1597,9 +1571,7 @@ class PrimitiveOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_primitive_get_string_request(
-            template_url=self.get_string.metadata["url"],
-        )
+        request = build_primitive_get_string_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1652,7 +1624,6 @@ class PrimitiveOperations(object):
         request = build_primitive_put_string_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_string.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1689,9 +1660,7 @@ class PrimitiveOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_primitive_get_date_request(
-            template_url=self.get_date.metadata["url"],
-        )
+        request = build_primitive_get_date_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1743,7 +1712,6 @@ class PrimitiveOperations(object):
         request = build_primitive_put_date_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_date.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1780,9 +1748,7 @@ class PrimitiveOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_primitive_get_date_time_request(
-            template_url=self.get_date_time.metadata["url"],
-        )
+        request = build_primitive_get_date_time_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1834,7 +1800,6 @@ class PrimitiveOperations(object):
         request = build_primitive_put_date_time_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_date_time.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1871,9 +1836,7 @@ class PrimitiveOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_primitive_get_date_time_rfc1123_request(
-            template_url=self.get_date_time_rfc1123.metadata["url"],
-        )
+        request = build_primitive_get_date_time_rfc1123_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1926,7 +1889,6 @@ class PrimitiveOperations(object):
         request = build_primitive_put_date_time_rfc1123_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_date_time_rfc1123.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -1962,9 +1924,7 @@ class PrimitiveOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_primitive_get_duration_request(
-            template_url=self.get_duration.metadata["url"],
-        )
+        request = build_primitive_get_duration_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2015,7 +1975,6 @@ class PrimitiveOperations(object):
         request = build_primitive_put_duration_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_duration.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2051,9 +2010,7 @@ class PrimitiveOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_primitive_get_byte_request(
-            template_url=self.get_byte.metadata["url"],
-        )
+        request = build_primitive_get_byte_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2104,7 +2061,6 @@ class PrimitiveOperations(object):
         request = build_primitive_put_byte_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_byte.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2161,9 +2117,7 @@ class ArrayOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
-        )
+        request = build_array_get_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2217,7 +2171,6 @@ class ArrayOperations(object):
         request = build_array_put_valid_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2255,9 +2208,7 @@ class ArrayOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_empty_request(
-            template_url=self.get_empty.metadata["url"],
-        )
+        request = build_array_get_empty_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2310,7 +2261,6 @@ class ArrayOperations(object):
         request = build_array_put_empty_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_empty.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2348,9 +2298,7 @@ class ArrayOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_array_get_not_provided_request(
-            template_url=self.get_not_provided.metadata["url"],
-        )
+        request = build_array_get_not_provided_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2413,9 +2361,7 @@ class DictionaryOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
-        )
+        request = build_dictionary_get_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2469,7 +2415,6 @@ class DictionaryOperations(object):
         request = build_dictionary_put_valid_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2507,9 +2452,7 @@ class DictionaryOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_empty_request(
-            template_url=self.get_empty.metadata["url"],
-        )
+        request = build_dictionary_get_empty_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2562,7 +2505,6 @@ class DictionaryOperations(object):
         request = build_dictionary_put_empty_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_empty.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2600,9 +2542,7 @@ class DictionaryOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_null_request(
-            template_url=self.get_null.metadata["url"],
-        )
+        request = build_dictionary_get_null_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2646,9 +2586,7 @@ class DictionaryOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_not_provided_request(
-            template_url=self.get_not_provided.metadata["url"],
-        )
+        request = build_dictionary_get_not_provided_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2719,9 +2657,7 @@ class InheritanceOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_inheritance_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
-        )
+        request = build_inheritance_get_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2784,7 +2720,6 @@ class InheritanceOperations(object):
         request = build_inheritance_put_valid_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2844,9 +2779,7 @@ class PolymorphismOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_polymorphism_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
-        )
+        request = build_polymorphism_get_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2936,7 +2869,6 @@ class PolymorphismOperations(object):
         request = build_polymorphism_put_valid_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -2973,9 +2905,7 @@ class PolymorphismOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_polymorphism_get_dot_syntax_request(
-            template_url=self.get_dot_syntax.metadata["url"],
-        )
+        request = build_polymorphism_get_dot_syntax_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3042,9 +2972,7 @@ class PolymorphismOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_polymorphism_get_composed_with_discriminator_request(
-            template_url=self.get_composed_with_discriminator.metadata["url"],
-        )
+        request = build_polymorphism_get_composed_with_discriminator_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3111,9 +3039,7 @@ class PolymorphismOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_polymorphism_get_composed_without_discriminator_request(
-            template_url=self.get_composed_without_discriminator.metadata["url"],
-        )
+        request = build_polymorphism_get_composed_without_discriminator_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3170,9 +3096,7 @@ class PolymorphismOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_polymorphism_get_complicated_request(
-            template_url=self.get_complicated.metadata["url"],
-        )
+        request = build_polymorphism_get_complicated_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3240,7 +3164,6 @@ class PolymorphismOperations(object):
         request = build_polymorphism_put_complicated_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_complicated.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -3320,7 +3243,6 @@ class PolymorphismOperations(object):
         request = build_polymorphism_put_missing_discriminator_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_missing_discriminator.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -3406,7 +3328,6 @@ class PolymorphismOperations(object):
         request = build_polymorphism_put_valid_missing_required_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_valid_missing_required.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -3466,9 +3387,7 @@ class PolymorphicrecursiveOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_polymorphicrecursive_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
-        )
+        request = build_polymorphicrecursive_get_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3578,7 +3497,6 @@ class PolymorphicrecursiveOperations(object):
         request = build_polymorphicrecursive_put_valid_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -3634,9 +3552,7 @@ class ReadonlypropertyOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_readonlyproperty_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
-        )
+        request = build_readonlyproperty_get_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3688,7 +3604,6 @@ class ReadonlypropertyOperations(object):
         request = build_readonlyproperty_put_valid_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_valid.metadata["url"],
         )
         request.url = self._client.format_url(request.url)
 
@@ -3747,9 +3662,7 @@ class FlattencomplexOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_flattencomplex_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
-        )
+        request = build_flattencomplex_get_valid_request()
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

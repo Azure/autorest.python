@@ -12,7 +12,7 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional, TypeVar
+    from typing import Any, Dict, Optional, TypeVar
 
     T = TypeVar("T")
     JSONType = Any
@@ -39,7 +39,7 @@ def build_get_true_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/bool/true')
+    url = '/bool/true'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -76,7 +76,7 @@ def build_put_true_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/bool/true')
+    url = '/bool/true'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -110,7 +110,7 @@ def build_get_false_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/bool/false')
+    url = '/bool/false'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -147,7 +147,7 @@ def build_put_false_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/bool/false')
+    url = '/bool/false'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -181,7 +181,7 @@ def build_get_null_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/bool/null')
+    url = '/bool/null'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -212,7 +212,7 @@ def build_get_invalid_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/bool/invalid')
+    url = '/bool/invalid'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

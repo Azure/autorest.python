@@ -23,6 +23,7 @@ from .operations_init_serializer import OperationsInitSerializer
 from .operation_groups_serializer import OperationGroupsSerializer
 from .metadata_serializer import MetadataSerializer
 from .rest_serializer import RestPython3Serializer, RestGenericSerializer, RestSerializer
+from .patch_serializer import PatchSerializer
 
 __all__ = [
     "JinjaSerializer",
@@ -47,8 +48,8 @@ class JinjaSerializer:
         )
 
         # if there was a patch file before, we keep it
-        self._keep_patch_file(namespace_path / Path("_patch.py"))
-        self._keep_patch_file(namespace_path / Path("aio") / Path("_patch.py"))
+        self._keep_patch_file(namespace_path / Path("_patch.py"), env)
+        self._keep_patch_file(namespace_path / Path("aio") / Path("_patch.py"), env)
 
         self._serialize_and_write_top_level_folder(code_model=code_model, env=env, namespace_path=namespace_path)
 
@@ -72,9 +73,11 @@ class JinjaSerializer:
 
 
 
-    def _keep_patch_file(self, path_file: Path):
+    def _keep_patch_file(self, path_file: Path, env: Environment):
         if self._autorestapi.read_file(path_file):
             self._autorestapi.write_file(path_file, self._autorestapi.read_file(path_file))
+        else:
+            self._autorestapi.write_file(path_file, PatchSerializer(env=env).serialize())
 
 
     def _serialize_and_write_models_folder(self, code_model: CodeModel, env: Environment, namespace_path: Path) -> None:

@@ -12,7 +12,7 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional, TypeVar
+    from typing import Any, Dict, Optional, TypeVar
 
     T = TypeVar("T")
     JSONType = Any
@@ -48,7 +48,7 @@ def build_get_horse_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/multipleInheritance/horse')
+    url = '/multipleInheritance/horse'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -96,7 +96,7 @@ def build_put_horse_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/multipleInheritance/horse')
+    url = '/multipleInheritance/horse'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -137,7 +137,7 @@ def build_get_pet_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/multipleInheritance/pet')
+    url = '/multipleInheritance/pet'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -184,7 +184,7 @@ def build_put_pet_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/multipleInheritance/pet')
+    url = '/multipleInheritance/pet'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -226,7 +226,7 @@ def build_get_feline_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/multipleInheritance/feline')
+    url = '/multipleInheritance/feline'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -274,7 +274,7 @@ def build_put_feline_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/multipleInheritance/feline')
+    url = '/multipleInheritance/feline'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -318,7 +318,7 @@ def build_get_cat_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/multipleInheritance/cat')
+    url = '/multipleInheritance/cat'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -370,7 +370,7 @@ def build_put_cat_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/multipleInheritance/cat')
+    url = '/multipleInheritance/cat'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -416,7 +416,7 @@ def build_get_kitten_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/multipleInheritance/kitten')
+    url = '/multipleInheritance/kitten'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -470,7 +470,7 @@ def build_put_kitten_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/multipleInheritance/kitten')
+    url = '/multipleInheritance/kitten'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
