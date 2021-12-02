@@ -125,7 +125,7 @@ def build_content_type_with_encoding_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    """Pass in contentType 'text/plain; encoding=UTF-8' to pass test. Value for input does not matter.
+    """Pass in contentType 'text/plain; charset=UTF-8' to pass test. Value for input does not matter.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
