@@ -58,7 +58,7 @@ class TestMediaTypes(object):
 
     @pytest.mark.asyncio
     async def test_content_type_with_encoding(self, client):
-        result = await client.content_type_with_encoding(input="hello", content_type='text/plain; encoding=UTF-8')
+        result = await client.content_type_with_encoding(input="hello", content_type='text/plain; charset=UTF-8')
         assert result == "Nice job sending content type with encoding"
 
     @pytest.mark.asyncio
