@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import functools
-from typing import TYPE_CHECKING
+from typing import Any, Callable, Dict, Generic, IO, Optional, TypeVar
 import warnings
 
 from azure.core.exceptions import (
@@ -22,141 +22,100 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from msrest import Serializer
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, IO, Optional, TypeVar
-
-    T = TypeVar("T")
-    JSONType = Any
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+T = TypeVar("T")
+JSONType = Any
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-# fmt: off
 
-def build_import_builders_operation_one_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    parameter1 = kwargs.pop('parameter1')  # type: str
 
+def build_import_builders_operation_one_request(*, parameter1: str, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/reservedWords/operationGroup/import'
+    url = "/reservedWords/operationGroup/import"
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['parameter1'] = _SERIALIZER.query("parameter1", parameter1, 'str')
+    query_parameters["parameter1"] = _SERIALIZER.query("parameter1", parameter1, "str")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
-def build_operation_with_content_param_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_operation_with_content_param_request(*, content: Any, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/reservedWords/operation/content'
+    url = "/reservedWords/operation/content"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, content=content, **kwargs)
 
 
 def build_operation_with_json_param_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/reservedWords/operation/json'
+    url = "/reservedWords/operation/json"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_operation_with_data_param_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, data: Optional[Dict[str, Any]] = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/reservedWords/operation/data'
+    url = "/reservedWords/operation/data"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, data=data, content=content, **kwargs)
 
 
 def build_operation_with_files_param_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, files: Optional[Dict[str, Any]] = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/reservedWords/operation/files'
+    url = "/reservedWords/operation/files"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, files=files, content=content, **kwargs)
 
-# fmt: on
+
 class ImportOperations(object):
     """ImportOperations operations.
 
@@ -176,10 +135,7 @@ class ImportOperations(object):
         self._config = config
 
     @distributed_trace
-    def operation_one(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Any
+    def operation_one(self, *, parameter1: str, **kwargs: Any) -> Any:
         """Operation in operation group import, a reserved word.
 
         :keyword parameter1: Pass in 'foo' to pass this test.
@@ -191,8 +147,6 @@ class ImportOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-
-        parameter1 = kwargs.pop("parameter1")  # type: str
 
         request = build_import_builders_operation_one_request(
             parameter1=parameter1,
@@ -221,12 +175,7 @@ class ImportOperations(object):
 
 class ReservedWordsClientOperationsMixin(object):
     @distributed_trace
-    def operation_with_content_param(
-        self,
-        content,  # type: IO
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> Any
+    def operation_with_content_param(self, content: IO, **kwargs: Any) -> Any:
         """Operation with body param called content. Pass in b'hello, world'.
 
         :param content: Pass in b'hello, world'.
@@ -269,12 +218,7 @@ class ReservedWordsClientOperationsMixin(object):
     operation_with_content_param.metadata = {"url": "/reservedWords/operation/content"}  # type: ignore
 
     @distributed_trace
-    def operation_with_json_param(
-        self,
-        json,  # type: Any
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> Any
+    def operation_with_json_param(self, json: Any, **kwargs: Any) -> Any:
         """Operation with body param called 'json'. Pass in {'hello': 'world'}.
 
         :param json: Pass in {'hello': 'world'}.
@@ -317,12 +261,7 @@ class ReservedWordsClientOperationsMixin(object):
     operation_with_json_param.metadata = {"url": "/reservedWords/operation/json"}  # type: ignore
 
     @distributed_trace
-    def operation_with_data_param(
-        self,
-        data,  # type: Dict[str, Any]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> Any
+    def operation_with_data_param(self, data: Dict[str, Any], **kwargs: Any) -> Any:
         """Operation with urlencoded body param called 'data'.
 
         :param data: Form-encoded input for data. See the template in our example to find the input
@@ -373,12 +312,7 @@ class ReservedWordsClientOperationsMixin(object):
     operation_with_data_param.metadata = {"url": "/reservedWords/operation/data"}  # type: ignore
 
     @distributed_trace
-    def operation_with_files_param(
-        self,
-        files,  # type: Dict[str, Any]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> Any
+    def operation_with_files_param(self, files: Dict[str, Any], **kwargs: Any) -> Any:
         """Operation with multipart body param called 'files'.
 
         :param files: Multipart input for files. See the template in our example to find the input

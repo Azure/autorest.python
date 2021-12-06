@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import functools
-from typing import TYPE_CHECKING
+from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
 from azure.core.exceptions import (
@@ -22,52 +22,34 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from msrest import Serializer
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
-
-    T = TypeVar("T")
-    JSONType = Any
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+T = TypeVar("T")
+JSONType = Any
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-# fmt: off
 
-def build_get_report_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    qualifier = kwargs.pop('qualifier', None)  # type: Optional[str]
 
+def build_get_report_request(*, qualifier: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/report/azure'
+    url = "/report/azure"
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if qualifier is not None:
-        query_parameters['qualifier'] = _SERIALIZER.query("qualifier", qualifier, 'str')
+        query_parameters["qualifier"] = _SERIALIZER.query("qualifier", qualifier, "str")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
-# fmt: on
+
 class AutoRestReportServiceForAzureOperationsMixin(object):
     @distributed_trace
-    def get_report(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, int]
+    def get_report(self, *, qualifier: Optional[str] = None, **kwargs: Any) -> Dict[str, int]:
         """Get test coverage report.
 
         :keyword qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5'
@@ -89,8 +71,6 @@ class AutoRestReportServiceForAzureOperationsMixin(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-
-        qualifier = kwargs.pop("qualifier", None)  # type: Optional[str]
 
         request = build_get_report_request(
             qualifier=qualifier,

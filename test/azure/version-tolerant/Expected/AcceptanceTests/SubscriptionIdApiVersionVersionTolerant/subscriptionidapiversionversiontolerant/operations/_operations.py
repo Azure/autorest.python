@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import functools
-from typing import TYPE_CHECKING
+from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
 from azure.core.exceptions import (
@@ -25,53 +25,40 @@ from msrest import Serializer
 
 from .._vendor import _format_url_section
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
-
-    T = TypeVar("T")
-    JSONType = Any
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+T = TypeVar("T")
+JSONType = Any
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-# fmt: off
+
 
 def build_group_get_sample_resource_group_request(
-    subscription_id,  # type: str
-    resource_group_name,  # type: str
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    api_version = kwargs.pop('api_version', "2014-04-01-preview")  # type: str
+    subscription_id: str, resource_group_name: str, **kwargs: Any
+) -> HttpRequest:
+    api_version = kwargs.pop("api_version", "2014-04-01-preview")  # type: str
 
     accept = "application/json"
     # Construct URL
-    url = '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}'
+    url = "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}"
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, 'str'),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
     }
 
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
+    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
-# fmt: on
+
 class GroupOperations(object):
     """GroupOperations operations.
 
@@ -91,12 +78,7 @@ class GroupOperations(object):
         self._config = config
 
     @distributed_trace
-    def get_sample_resource_group(
-        self,
-        resource_group_name,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def get_sample_resource_group(self, resource_group_name: str, **kwargs: Any) -> JSONType:
         """Provides a resouce group with name 'testgroup101' and location 'West US'.
 
         :param resource_group_name: Resource Group name 'testgroup101'.

@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import functools
-from typing import TYPE_CHECKING
+from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
 from azure.core.exceptions import (
@@ -24,98 +24,65 @@ from msrest import Serializer
 
 from .._vendor import _format_url_section
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
-
-    T = TypeVar("T")
-    JSONType = Any
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+T = TypeVar("T")
+JSONType = Any
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-# fmt: off
 
-def build_pet_get_pet_by_id_request(
-    pet_id,  # type: str
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+
+def build_pet_get_pet_by_id_request(pet_id: str, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/errorStatusCodes/Pets/{petId}/GetPet'
+    url = "/errorStatusCodes/Pets/{petId}/GetPet"
     path_format_arguments = {
-        "petId": _SERIALIZER.url("pet_id", pet_id, 'str'),
+        "petId": _SERIALIZER.url("pet_id", pet_id, "str"),
     }
 
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_pet_do_something_request(
-    what_action,  # type: str
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_pet_do_something_request(what_action: str, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/errorStatusCodes/Pets/doSomething/{whatAction}'
+    url = "/errorStatusCodes/Pets/doSomething/{whatAction}"
     path_format_arguments = {
-        "whatAction": _SERIALIZER.url("what_action", what_action, 'str'),
+        "whatAction": _SERIALIZER.url("what_action", what_action, "str"),
     }
 
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
 
 
-def build_pet_has_models_param_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    models = kwargs.pop('models', "value1")  # type: Optional[str]
-
+def build_pet_has_models_param_request(*, models: Optional[str] = "value1", **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/errorStatusCodes/Pets/hasModelsParam'
+    url = "/errorStatusCodes/Pets/hasModelsParam"
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if models is not None:
-        query_parameters['models'] = _SERIALIZER.query("models", models, 'str')
+        query_parameters["models"] = _SERIALIZER.query("models", models, "str")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
-# fmt: on
+
 class PetOperations(object):
     """PetOperations operations.
 
@@ -135,12 +102,7 @@ class PetOperations(object):
         self._config = config
 
     @distributed_trace
-    def get_pet_by_id(
-        self,
-        pet_id,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> Optional[JSONType]
+    def get_pet_by_id(self, pet_id: str, **kwargs: Any) -> Optional[JSONType]:
         """Gets pets by id.
 
         :param pet_id: pet id.
@@ -195,12 +157,7 @@ class PetOperations(object):
     get_pet_by_id.metadata = {"url": "/errorStatusCodes/Pets/{petId}/GetPet"}  # type: ignore
 
     @distributed_trace
-    def do_something(
-        self,
-        what_action,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def do_something(self, what_action: str, **kwargs: Any) -> JSONType:
         """Asks pet to do something.
 
         :param what_action: what action the pet should do.
@@ -251,10 +208,7 @@ class PetOperations(object):
     do_something.metadata = {"url": "/errorStatusCodes/Pets/doSomething/{whatAction}"}  # type: ignore
 
     @distributed_trace
-    def has_models_param(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def has_models_param(self, *, models: Optional[str] = "value1", **kwargs: Any) -> None:
         """Ensure you can correctly deserialize the returned PetActionError and deserialization doesn't
         conflict with the input param name 'models'.
 
@@ -273,8 +227,6 @@ class PetOperations(object):
             500: HttpResponseError,
         }
         error_map.update(kwargs.pop("error_map", {}))
-
-        models = kwargs.pop("models", "value1")  # type: Optional[str]
 
         request = build_pet_has_models_param_request(
             models=models,

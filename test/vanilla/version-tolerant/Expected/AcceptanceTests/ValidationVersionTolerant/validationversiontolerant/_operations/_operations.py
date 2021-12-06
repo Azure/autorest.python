@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import functools
-from typing import TYPE_CHECKING
+from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
 from azure.core.exceptions import (
@@ -24,127 +24,107 @@ from msrest import Serializer
 
 from .._vendor import _format_url_section
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
-
-    T = TypeVar("T")
-    JSONType = Any
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+T = TypeVar("T")
+JSONType = Any
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
-# fmt: off
+
 
 def build_validation_of_method_parameters_request(
-    subscription_id,  # type: str
-    resource_group_name,  # type: str
-    id,  # type: int
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    api_version = kwargs.pop('api_version', "1.0.0")  # type: str
+    subscription_id: str, resource_group_name: str, id: int, **kwargs: Any
+) -> HttpRequest:
+    api_version = kwargs.pop("api_version", "1.0.0")  # type: str
 
     accept = "application/json"
     # Construct URL
-    url = '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'
+    url = "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, 'str'),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, 'str', max_length=10, min_length=3, pattern=r'[a-zA-Z0-9\']+'),
-        "id": _SERIALIZER.url("id", id, 'int', maximum=1000, minimum=100, multiple=10),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=10, min_length=3, pattern=r"[a-zA-Z0-9\']+"
+        ),
+        "id": _SERIALIZER.url("id", id, "int", maximum=1000, minimum=100, multiple=10),
     }
 
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['apiVersion'] = _SERIALIZER.query("api_version", api_version, 'str')
+    query_parameters["apiVersion"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
 def build_validation_of_body_request(
-    subscription_id,  # type: str
-    resource_group_name,  # type: str
-    id,  # type: int
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    api_version = kwargs.pop('api_version', "1.0.0")  # type: str
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    subscription_id: str,
+    resource_group_name: str,
+    id: int,
+    *,
+    json: JSONType = None,
+    content: Any = None,
+    **kwargs: Any
+) -> HttpRequest:
+    api_version = kwargs.pop("api_version", "1.0.0")  # type: str
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'
+    url = "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, 'str'),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, 'str', max_length=10, min_length=3, pattern=r'[a-zA-Z0-9]+'),
-        "id": _SERIALIZER.url("id", id, 'int', maximum=1000, minimum=100, multiple=10),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=10, min_length=3, pattern=r"[a-zA-Z0-9]+"
+        ),
+        "id": _SERIALIZER.url("id", id, "int", maximum=1000, minimum=100, multiple=10),
     }
 
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['apiVersion'] = _SERIALIZER.query("api_version", api_version, 'str')
+    query_parameters["apiVersion"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(
-        method="PUT",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
-        **kwargs
+        method="PUT", url=url, params=query_parameters, headers=header_parameters, json=json, content=content, **kwargs
     )
 
 
-def build_get_with_constant_in_path_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    constant_param = kwargs.pop('constant_param', "constant")  # type: str
+def build_get_with_constant_in_path_request(**kwargs: Any) -> HttpRequest:
+    constant_param = kwargs.pop("constant_param", "constant")  # type: str
 
     # Construct URL
-    url = '/validation/constantsInPath/{constantParam}/value'
+    url = "/validation/constantsInPath/{constantParam}/value"
     path_format_arguments = {
-        "constantParam": _SERIALIZER.url("constant_param", constant_param, 'str'),
+        "constantParam": _SERIALIZER.url("constant_param", constant_param, "str"),
     }
 
     url = _format_url_section(url, **path_format_arguments)
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, **kwargs)
 
 
 def build_post_with_constant_in_body_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    constant_param = kwargs.pop('constant_param', "constant")  # type: str
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    constant_param = kwargs.pop("constant_param", "constant")  # type: str
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/validation/constantsInPath/{constantParam}/value'
+    url = "/validation/constantsInPath/{constantParam}/value"
     path_format_arguments = {
-        "constantParam": _SERIALIZER.url("constant_param", constant_param, 'str'),
+        "constantParam": _SERIALIZER.url("constant_param", constant_param, "str"),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -152,26 +132,15 @@ def build_post_with_constant_in_body_request(
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
-# fmt: on
+
 class AutoRestValidationTestOperationsMixin(object):
     @distributed_trace
-    def validation_of_method_parameters(
-        self,
-        resource_group_name,  # type: str
-        id,  # type: int
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def validation_of_method_parameters(self, resource_group_name: str, id: int, **kwargs: Any) -> JSONType:
         """Validates input parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
@@ -242,14 +211,7 @@ class AutoRestValidationTestOperationsMixin(object):
     validation_of_method_parameters.metadata = {"url": "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"}  # type: ignore
 
     @distributed_trace
-    def validation_of_body(
-        self,
-        resource_group_name,  # type: str
-        id,  # type: int
-        body=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def validation_of_body(self, resource_group_name: str, id: int, body: JSONType = None, **kwargs: Any) -> JSONType:
         """Validates body parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
@@ -350,10 +312,7 @@ class AutoRestValidationTestOperationsMixin(object):
     validation_of_body.metadata = {"url": "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"}  # type: ignore
 
     @distributed_trace
-    def get_with_constant_in_path(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def get_with_constant_in_path(self, **kwargs: Any) -> None:
         """get_with_constant_in_path.
 
         :keyword constant_param: The default value is "constant". Note that overriding this default
@@ -387,12 +346,7 @@ class AutoRestValidationTestOperationsMixin(object):
     get_with_constant_in_path.metadata = {"url": "/validation/constantsInPath/{constantParam}/value"}  # type: ignore
 
     @distributed_trace
-    def post_with_constant_in_body(
-        self,
-        body=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def post_with_constant_in_body(self, body: JSONType = None, **kwargs: Any) -> JSONType:
         """post_with_constant_in_body.
 
         :param body:

@@ -7,9 +7,10 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import TYPE_CHECKING
+from typing import Any, TYPE_CHECKING
 
 from azure.core import PipelineClient
+from azure.core.rest import HttpRequest, HttpResponse
 from msrest import Deserializer, Serializer
 
 from ._configuration import LROWithParamaterizedEndpointsConfiguration
@@ -17,9 +18,7 @@ from ._operations import LROWithParamaterizedEndpointsOperationsMixin
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict
-
-    from azure.core.rest import HttpRequest, HttpResponse
+    from typing import Dict
 
 
 class LROWithParamaterizedEndpoints(LROWithParamaterizedEndpointsOperationsMixin):
@@ -32,12 +31,7 @@ class LROWithParamaterizedEndpoints(LROWithParamaterizedEndpointsOperationsMixin
      Retry-After header is present.
     """
 
-    def __init__(
-        self,
-        host="host",  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def __init__(self, host: str = "host", **kwargs: Any) -> None:
         _endpoint = "http://{accountName}{host}"
         self._config = LROWithParamaterizedEndpointsConfiguration(host=host, **kwargs)
         self._client = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
@@ -49,9 +43,8 @@ class LROWithParamaterizedEndpoints(LROWithParamaterizedEndpointsOperationsMixin
     def send_request(
         self,
         request,  # type: HttpRequest
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpResponse
+        **kwargs: Any
+    ) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

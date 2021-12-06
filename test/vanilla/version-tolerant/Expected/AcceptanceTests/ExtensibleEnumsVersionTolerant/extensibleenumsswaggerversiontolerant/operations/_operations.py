@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import functools
-from typing import TYPE_CHECKING
+from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
 from azure.core.exceptions import (
@@ -24,68 +24,47 @@ from msrest import Serializer
 
 from .._vendor import _format_url_section
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
-
-    T = TypeVar("T")
-    JSONType = Any
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+T = TypeVar("T")
+JSONType = Any
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-# fmt: off
 
-def build_pet_get_by_pet_id_request(
-    pet_id,  # type: str
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+
+def build_pet_get_by_pet_id_request(pet_id: str, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/extensibleenums/pet/{petId}'
+    url = "/extensibleenums/pet/{petId}"
     path_format_arguments = {
-        "petId": _SERIALIZER.url("pet_id", pet_id, 'str'),
+        "petId": _SERIALIZER.url("pet_id", pet_id, "str"),
     }
 
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_pet_add_pet_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_pet_add_pet_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/extensibleenums/pet/addPet'
+    url = "/extensibleenums/pet/addPet"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
-# fmt: on
+
 class PetOperations(object):
     """PetOperations operations.
 
@@ -105,12 +84,7 @@ class PetOperations(object):
         self._config = config
 
     @distributed_trace
-    def get_by_pet_id(
-        self,
-        pet_id,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def get_by_pet_id(self, pet_id: str, **kwargs: Any) -> JSONType:
         """get pet by id.
 
         :param pet_id: Pet id.
@@ -158,12 +132,7 @@ class PetOperations(object):
     get_by_pet_id.metadata = {"url": "/extensibleenums/pet/{petId}"}  # type: ignore
 
     @distributed_trace
-    def add_pet(
-        self,
-        pet_param=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def add_pet(self, pet_param: JSONType = None, **kwargs: Any) -> JSONType:
         """add pet.
 
         :param pet_param: pet param.
