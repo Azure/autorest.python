@@ -15,6 +15,10 @@
 - Remove metadata property for version tolerant and low level client generations #1090
 - Generate SDKs with `--python3-only` defaulting to `True` for version tolerant and low level client  #1087
 
+**New Features**
+
+- Generate a `_patch.py` file if one does not exist. These files are used to customize the generated code  #1092
+
 **Bug Fixes**
 
 - Can now handle body params with names `json`, `content`, `data`, and `files` #1081
