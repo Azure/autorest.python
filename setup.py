@@ -46,9 +46,8 @@ setup(
     ]),
     install_requires=[
         "json-rpc",
-        "Jinja2 >= 2.11", # I need "include" and auto-context + blank line are not indented by default
+        "Jinja2",
         "pyyaml",
-        "mistune < 2.0.0",
         "m2r",
         "black",
     ],
