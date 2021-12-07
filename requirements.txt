@@ -1,2 +1,1 @@
 mistune < 2.0.0
-Jinja2 >= 2.11
