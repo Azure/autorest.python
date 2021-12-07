@@ -48,7 +48,7 @@ setup(
         "json-rpc",
         "Jinja2 >= 2.11", # I need "include" and auto-context + blank line are not indented by default
         "pyyaml",
-        "mistune < 2.0.0",
+        "mistune < 2.0.0",  # Need to pin mistune's max version so m2r doesn't break
         "m2r",
         "black",
     ],
