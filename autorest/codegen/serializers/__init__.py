@@ -3,9 +3,10 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import List, Optional
+from typing import List, Optional, Any, Dict
 from pathlib import Path
 from jinja2 import PackageLoader, Environment
+import time
 from autorest.codegen.models.operation_group import OperationGroup
 
 from ...jsonrpc import AutorestAPI
@@ -28,6 +29,23 @@ from .patch_serializer import PatchSerializer
 __all__ = [
     "JinjaSerializer",
 ]
+
+def _get_environment(template_path: str) -> Environment:
+    return Environment(loader=PackageLoader("autorest.codegen", template_path))
+
+
+def _build_package_render_parameters(code_model: CodeModel) -> Any:
+    parameters = {}
+    parameters["package_name"] = code_model.options["package_name"]
+    parameters["namespace"] = code_model.options["namespace"]
+    folder_list = parameters["package_name"].split('-')
+    parameters["folder_first"] = folder_list[0]
+    parameters["folder_second"] = folder_list[1]
+    parameters["test_prefix"] = folder_list[-1]
+    parameters["date_to_release"] = time.strftime('%Y-%m-%d', time.localtime())
+    parameters["client_name"] = code_model.options["client_name"]
+
+    return parameters
 
 class JinjaSerializer:
     def __init__(self, autorestapi: AutorestAPI) -> None:
@@ -70,6 +88,34 @@ class JinjaSerializer:
 
         if code_model.options["models_mode"] and (code_model.schemas or code_model.enums):
             self._serialize_and_write_models_folder(code_model=code_model, env=env, namespace_path=namespace_path)
+
+
+        if code_model.options["package_mode"] == 'dataplane':
+            parameters = _build_package_render_parameters(code_model)
+            self._serialize_and_write_package_folder(
+                namespace_path=namespace_path,
+                template_path="templates/templates_package_dataplane",
+                parameters=parameters
+            )
+
+            template_list = ["samples", "swagger", "tests"]
+            for item in template_list:
+                self._serialize_and_write_package_folder(
+                    namespace_path=namespace_path / item,
+                    template_path=f"templates/templates_package_dataplane/template_{item}",
+                    parameters=parameters
+                )
+
+
+    def _serialize_and_write_package_folder(
+        self, namespace_path: Path, template_path: str, parameters: Any
+    ) -> None:
+        env = _get_environment(template_path)
+        for template_name in env.list_templates():
+            template = env.get_template(template_name)
+            result = template.render(**parameters)
+            output_name = template_name.replace(".jinja2", "")
+            self._autorestapi.write_file(namespace_path / output_name, result)
 
 
 

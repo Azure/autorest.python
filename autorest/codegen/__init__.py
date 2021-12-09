@@ -76,6 +76,21 @@ def _validate_code_model_options(options: Dict[str, Any]) -> None:
             "If you want operation files, pass in flag --show-operations"
         )
 
+    if options["package_mode"] == 'dataplane' and \
+        not all([options["package_name"], options["client_name"], options["credential_scopes"],
+                options["package_pprint_name"], options["python_sdks_folder"]]):
+        raise ValueError(
+            "--package-name, --title, --package-pprint-name, --credential-scopes, --python-sdks-folder"
+            "are necessary"
+        )
+
+    if options["package_mode"] == 'dataplane' and options["azure_arm"]:
+        raise ValueError(
+            "--package_mode=dataplane and --azure-arm can not be used at the same time"
+        )
+
+
+
 _LOGGER = logging.getLogger(__name__)
 class CodeGenerator(Plugin):
     @staticmethod
@@ -134,7 +149,7 @@ class CodeGenerator(Plugin):
         code_model.setup_client_input_parameters(yaml_data)
 
         # Get my namespace
-        namespace = self._autorestapi.get_value("namespace")
+        namespace = code_model.options["namespace"]
         _LOGGER.debug("Namespace parameter was %s", namespace)
         if not namespace:
             namespace = yaml_data["info"]["python_title"]
@@ -289,6 +304,11 @@ class CodeGenerator(Plugin):
             "low_level_client": low_level_client,
             "combine_operation_files": self._autorestapi.get_boolean_value("combine-operation-files", version_tolerant),
             "python3_only": python3_only,
+            "package_mode": self._autorestapi.get_value("package-mode"),
+            "client_name": self._autorestapi.get_value("title"),
+            "credential_scopes": self._autorestapi.get_value("credential-scopes"),
+            "package_pprint_name": self._autorestapi.get_value("package-pprint-name"),
+            "python_sdks_folder": self._autorestapi.get_value("python-sdks-folder"),
         }
 
         if options["builders_visibility"] is None:
@@ -306,7 +326,14 @@ class CodeGenerator(Plugin):
         if azure_arm:
             options["credential"] = True
             options["head_as_boolean"] = True
+
+        if options["package_mode"] == 'dataplane':
+            options["namespace"] = options["package_name"].replace("-", '.')
+            options["credential"] = True
+            options["basic_setup_py"] = True
+
         return options
+
 
     def process(self) -> bool:
         # List the input file, should be only one
