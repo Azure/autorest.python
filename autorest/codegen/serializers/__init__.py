@@ -44,6 +44,8 @@ def _build_package_render_parameters(code_model: CodeModel) -> Any:
     parameters["test_prefix"] = folder_list[-1]
     parameters["date_to_release"] = time.strftime('%Y-%m-%d', time.localtime())
     parameters["client_name"] = code_model.options["client_name"]
+    parameters["package_pprint_name"] = code_model.options["package_pprint_name"]
+    parameters['folder_parent'] = Path(code_model.options["output_folder"]).parts[-2]
 
     return parameters
 
@@ -93,18 +95,10 @@ class JinjaSerializer:
         if code_model.options["package_mode"] == 'dataplane':
             parameters = _build_package_render_parameters(code_model)
             self._serialize_and_write_package_folder(
-                namespace_path=namespace_path,
+                namespace_path=Path("."),
                 template_path="templates/templates_package_dataplane",
                 parameters=parameters
             )
-
-            template_list = ["samples", "swagger", "tests"]
-            for item in template_list:
-                self._serialize_and_write_package_folder(
-                    namespace_path=namespace_path / item,
-                    template_path=f"templates/templates_package_dataplane/template_{item}",
-                    parameters=parameters
-                )
 
 
     def _serialize_and_write_package_folder(

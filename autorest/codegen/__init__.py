@@ -78,9 +78,9 @@ def _validate_code_model_options(options: Dict[str, Any]) -> None:
 
     if options["package_mode"] == 'dataplane' and \
         not all([options["package_name"], options["client_name"], options["credential_scopes"],
-                options["package_pprint_name"], options["python_sdks_folder"]]):
+                options["package_pprint_name"], options["output_folder"]]):
         raise ValueError(
-            "--package-name, --title, --package-pprint-name, --credential-scopes, --python-sdks-folder"
+            "--package-name, --title, --package-pprint-name, --credential-scopes, --output-folder"
             "are necessary"
         )
 
@@ -308,7 +308,7 @@ class CodeGenerator(Plugin):
             "client_name": self._autorestapi.get_value("title"),
             "credential_scopes": self._autorestapi.get_value("credential-scopes"),
             "package_pprint_name": self._autorestapi.get_value("package-pprint-name"),
-            "python_sdks_folder": self._autorestapi.get_value("python-sdks-folder"),
+            "output_folder": self._autorestapi.get_value("output-folder"),
         }
 
         if options["builders_visibility"] is None:
