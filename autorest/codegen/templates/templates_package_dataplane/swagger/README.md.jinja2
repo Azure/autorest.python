@@ -1,7 +1,10 @@
 ### Settings
 
 ```yaml
-input-file: {{ input_file }}
+input-file:
+{% for file in input_file -%}
+- {{ file }}
+{% endfor -%}
 output-folder: {{ swagger_readme_output }}
 namespace: {{ namespace }}
 package-name: {{ package_name }}
@@ -11,7 +14,7 @@ no-namespace-folders: true
 python: true
 title: {{ client_name }}
 version-tolerant: true
-package-version: 1.0.0b1
+package-version: {{ package_version }}
 add-credential: true
-credential-scopes: {{ credential_scope }}
+credential-scopes: {{ credential_scopes }}
 ```

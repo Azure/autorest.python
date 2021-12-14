@@ -78,10 +78,10 @@ def _validate_code_model_options(options: Dict[str, Any]) -> None:
 
     if options["package_mode"] == 'dataplane' and \
         not all([options["package_name"], options["client_name"], options["credential_scopes"],
-                options["package_pprint_name"], options["output_folder"]]):
+                options["package_pprint_name"], options["output_folder"], options["input_file"]]):
         raise ValueError(
             "--package-name, --title, --package-pprint-name, --credential-scopes, --output-folder"
-            "are necessary"
+            " --input-file are necessary"
         )
 
     if options["package_mode"] == 'dataplane' and options["azure_arm"]:
@@ -149,7 +149,7 @@ class CodeGenerator(Plugin):
         code_model.setup_client_input_parameters(yaml_data)
 
         # Get my namespace
-        namespace = code_model.options["namespace"]
+        namespace = code_model.options.get("namespace", self._autorestapi.get_value("namespace"))
         _LOGGER.debug("Namespace parameter was %s", namespace)
         if not namespace:
             namespace = yaml_data["info"]["python_title"]
@@ -309,6 +309,7 @@ class CodeGenerator(Plugin):
             "credential_scopes": self._autorestapi.get_value("credential-scopes"),
             "package_pprint_name": self._autorestapi.get_value("package-pprint-name"),
             "output_folder": self._autorestapi.get_value("output-folder"),
+            "input_file": self._autorestapi.get_value("input-file"),
         }
 
         if options["builders_visibility"] is None:
@@ -331,6 +332,7 @@ class CodeGenerator(Plugin):
             options["namespace"] = options["package_name"].replace("-", '.')
             options["credential"] = True
             options["basic_setup_py"] = True
+            options["package_version"] = options["package_version"] if options["package_version"] else "1.0.0b1"
 
         return options
 

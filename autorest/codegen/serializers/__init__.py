@@ -37,6 +37,7 @@ def _get_environment(template_path: str) -> Environment:
 def _build_package_render_parameters(code_model: CodeModel) -> Any:
     parameters = {}
     parameters["package_name"] = code_model.options["package_name"]
+    parameters["package_version"] = code_model.options["package_version"]
     parameters["namespace"] = code_model.options["namespace"]
     folder_list = parameters["package_name"].split('-')
     parameters["folder_first"] = folder_list[0]
@@ -45,7 +46,12 @@ def _build_package_render_parameters(code_model: CodeModel) -> Any:
     parameters["date_to_release"] = time.strftime('%Y-%m-%d', time.localtime())
     parameters["client_name"] = code_model.options["client_name"]
     parameters["package_pprint_name"] = code_model.options["package_pprint_name"]
-    parameters['folder_parent'] = Path(code_model.options["output_folder"]).parts[-2]
+    parameters['output_folder'] = code_model.options["output_folder"]
+    parameters['folder_parent'] = Path(parameters["output_folder"]).parts[-2]
+    parameters['input_file'] = code_model.options["input_file"]
+    parameters['credential_scopes'] = code_model.options["credential_scopes"]
+    parameters['swagger_readme_output'] = '../' + parameters["package_name"].replace('-', '/')
+
 
     return parameters
 
