@@ -271,7 +271,7 @@ class CodeGenerator(Plugin):
         version_tolerant = self._autorestapi.get_boolean_value("version-tolerant", False)
         show_operations = self._autorestapi.get_boolean_value("show-operations", not low_level_client)
         models_mode_default = "none" if low_level_client or version_tolerant else "msrest"
-        python3_only = self._autorestapi.get_boolean_value("python3-only", False)
+        python3_only = self._autorestapi.get_boolean_value("python3-only", low_level_client or version_tolerant)
 
         options: Dict[str, Any] = {
             "azure_arm": azure_arm,
@@ -298,7 +298,7 @@ class CodeGenerator(Plugin):
                 "only-path-and-body-params-positional", low_level_client or version_tolerant
             ),
             "add_python3_operation_files": self._autorestapi.get_boolean_value(
-                "add-python3-operation-files", python3_only
+                "add-python3-operation-files", python3_only and not low_level_client
             ),
             "version_tolerant": version_tolerant,
             "low_level_client": low_level_client,

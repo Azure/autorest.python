@@ -7,9 +7,10 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import TYPE_CHECKING
+from typing import Any, Optional, TYPE_CHECKING
 
 from azure.core import PipelineClient
+from azure.core.rest import HttpRequest, HttpResponse
 from msrest import Deserializer, Serializer
 
 from ._configuration import AutoRestUrlTestServiceConfiguration
@@ -17,12 +18,10 @@ from .operations import PathItemsOperations, PathsOperations, QueriesOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, Optional
-
-    from azure.core.rest import HttpRequest, HttpResponse
+    from typing import Dict
 
 
-class AutoRestUrlTestService(object):
+class AutoRestUrlTestService:
     """Test Infrastructure for AutoRest.
 
     :ivar paths: PathsOperations operations
@@ -41,12 +40,12 @@ class AutoRestUrlTestService(object):
 
     def __init__(
         self,
-        global_string_path,  # type: str
-        global_string_query=None,  # type: Optional[str]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
-        endpoint = kwargs.pop("endpoint", "http://localhost:3000")  # type: str
+        global_string_path: str,
+        global_string_query: Optional[str] = None,
+        *,
+        endpoint: str = "http://localhost:3000",
+        **kwargs: Any
+    ) -> None:
 
         self._config = AutoRestUrlTestServiceConfiguration(
             global_string_path=global_string_path, global_string_query=global_string_query, **kwargs
@@ -62,9 +61,8 @@ class AutoRestUrlTestService(object):
     def send_request(
         self,
         request,  # type: HttpRequest
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpResponse
+        **kwargs: Any
+    ) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

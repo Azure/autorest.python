@@ -7,32 +7,27 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import TYPE_CHECKING
+from typing import Any, Optional, TYPE_CHECKING
 
 from azure.core import PipelineClient
+from azure.core.rest import HttpRequest, HttpResponse
 from msrest import Deserializer, Serializer
 
 from ._configuration import AutoRestReportServiceConfiguration
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, Optional
-
-    from azure.core.rest import HttpRequest, HttpResponse
+    from typing import Dict
 
 
-class AutoRestReportService(object):
+class AutoRestReportService:
     """Test Infrastructure for AutoRest.
 
     :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
     :paramtype endpoint: str
     """
 
-    def __init__(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
-        endpoint = kwargs.pop("endpoint", "http://localhost:3000")  # type: str
+    def __init__(self, *, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
 
         self._config = AutoRestReportServiceConfiguration(**kwargs)
         self._client = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
@@ -44,9 +39,8 @@ class AutoRestReportService(object):
     def send_request(
         self,
         request,  # type: HttpRequest
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpResponse
+        **kwargs: Any
+    ) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `reportlowlevel.rest`.

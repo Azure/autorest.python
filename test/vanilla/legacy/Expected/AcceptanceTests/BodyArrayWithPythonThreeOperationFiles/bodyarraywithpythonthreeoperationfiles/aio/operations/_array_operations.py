@@ -24,7 +24,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
 from ..._vendor import _convert_request
-from ...operations._array_operations import (
+from ...operations._array_operations_py3 import (
     build_get_array_empty_request,
     build_get_array_item_empty_request,
     build_get_array_item_null_request,

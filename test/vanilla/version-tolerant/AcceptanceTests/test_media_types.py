@@ -47,7 +47,7 @@ def test_incorrect_content_type(client):
         client.analyze_body(input=b"PDF", content_type="text/plain")
 
 def test_content_type_with_encoding(client):
-    result = client.content_type_with_encoding(input="hello", content_type='text/plain; encoding=UTF-8')
+    result = client.content_type_with_encoding(input="hello", content_type='text/plain; charset=UTF-8')
     assert result == "Nice job sending content type with encoding"
 
 def test_pdf_no_accept_header(client):

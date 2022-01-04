@@ -59,7 +59,7 @@ async def test_json(send_request_json_response):
 
 @pytest.mark.asyncio
 async def test_content_type_with_encoding(send_request_json_response):
-    request = build_content_type_with_encoding_request(content="hello", content_type='text/plain; encoding=UTF-8')
+    request = build_content_type_with_encoding_request(content="hello", content_type='text/plain; charset=UTF-8')
     assert await send_request_json_response(request) == "Nice job sending content type with encoding"
 
 @pytest.mark.asyncio

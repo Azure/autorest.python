@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import functools
-from typing import TYPE_CHECKING
+from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
 from azure.core.exceptions import (
@@ -22,546 +22,346 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from msrest import Serializer
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
-
-    T = TypeVar("T")
-    JSONType = Any
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+T = TypeVar("T")
+JSONType = Any
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-# fmt: off
 
-def build_number_get_null_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+
+def build_number_get_null_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/number/null'
+    url = "/number/null"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_number_get_invalid_float_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_number_get_invalid_float_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/number/invalidfloat'
+    url = "/number/invalidfloat"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_number_get_invalid_double_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_number_get_invalid_double_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/number/invaliddouble'
+    url = "/number/invaliddouble"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_number_get_invalid_decimal_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_number_get_invalid_decimal_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/number/invaliddecimal'
+    url = "/number/invaliddecimal"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_number_put_big_float_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_number_put_big_float_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/number/big/float/3.402823e+20'
+    url = "/number/big/float/3.402823e+20"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_number_get_big_float_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_number_get_big_float_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/number/big/float/3.402823e+20'
+    url = "/number/big/float/3.402823e+20"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_number_put_big_double_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_number_put_big_double_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/number/big/double/2.5976931e+101'
+    url = "/number/big/double/2.5976931e+101"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_number_get_big_double_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_number_get_big_double_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/number/big/double/2.5976931e+101'
+    url = "/number/big/double/2.5976931e+101"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_number_put_big_double_positive_decimal_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
-    json = kwargs.pop('json', 99999999.99)  # type: float
+def build_number_put_big_double_positive_decimal_request(**kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    json = kwargs.pop("json", 99999999.99)  # type: float
 
     accept = "application/json"
     # Construct URL
-    url = '/number/big/double/99999999.99'
+    url = "/number/big/double/99999999.99"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        json=json,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, **kwargs)
 
 
-def build_number_get_big_double_positive_decimal_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_number_get_big_double_positive_decimal_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/number/big/double/99999999.99'
+    url = "/number/big/double/99999999.99"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_number_put_big_double_negative_decimal_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
-    json = kwargs.pop('json', -99999999.99)  # type: float
+def build_number_put_big_double_negative_decimal_request(**kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    json = kwargs.pop("json", -99999999.99)  # type: float
 
     accept = "application/json"
     # Construct URL
-    url = '/number/big/double/-99999999.99'
+    url = "/number/big/double/-99999999.99"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        json=json,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, **kwargs)
 
 
-def build_number_get_big_double_negative_decimal_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_number_get_big_double_negative_decimal_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/number/big/double/-99999999.99'
+    url = "/number/big/double/-99999999.99"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_number_put_big_decimal_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_number_put_big_decimal_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/number/big/decimal/2.5976931e+101'
+    url = "/number/big/decimal/2.5976931e+101"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_number_get_big_decimal_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_number_get_big_decimal_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/number/big/decimal/2.5976931e+101'
+    url = "/number/big/decimal/2.5976931e+101"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_number_put_big_decimal_positive_decimal_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
-    json = kwargs.pop('json', 99999999.99)  # type: float
+def build_number_put_big_decimal_positive_decimal_request(**kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    json = kwargs.pop("json", 99999999.99)  # type: float
 
     accept = "application/json"
     # Construct URL
-    url = '/number/big/decimal/99999999.99'
+    url = "/number/big/decimal/99999999.99"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        json=json,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, **kwargs)
 
 
-def build_number_get_big_decimal_positive_decimal_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_number_get_big_decimal_positive_decimal_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/number/big/decimal/99999999.99'
+    url = "/number/big/decimal/99999999.99"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_number_put_big_decimal_negative_decimal_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
-    json = kwargs.pop('json', -99999999.99)  # type: float
+def build_number_put_big_decimal_negative_decimal_request(**kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    json = kwargs.pop("json", -99999999.99)  # type: float
 
     accept = "application/json"
     # Construct URL
-    url = '/number/big/decimal/-99999999.99'
+    url = "/number/big/decimal/-99999999.99"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        json=json,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, **kwargs)
 
 
-def build_number_get_big_decimal_negative_decimal_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_number_get_big_decimal_negative_decimal_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/number/big/decimal/-99999999.99'
+    url = "/number/big/decimal/-99999999.99"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_number_put_small_float_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_number_put_small_float_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/number/small/float/3.402823e-20'
+    url = "/number/small/float/3.402823e-20"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_number_get_small_float_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_number_get_small_float_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/number/small/float/3.402823e-20'
+    url = "/number/small/float/3.402823e-20"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_number_put_small_double_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_number_put_small_double_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/number/small/double/2.5976931e-101'
+    url = "/number/small/double/2.5976931e-101"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_number_get_small_double_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_number_get_small_double_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/number/small/double/2.5976931e-101'
+    url = "/number/small/double/2.5976931e-101"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_number_put_small_decimal_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_number_put_small_decimal_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/number/small/decimal/2.5976931e-101'
+    url = "/number/small/decimal/2.5976931e-101"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_number_get_small_decimal_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_number_get_small_decimal_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/number/small/decimal/2.5976931e-101'
+    url = "/number/small/decimal/2.5976931e-101"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
-# fmt: on
+
 class NumberOperations(object):
     """NumberOperations operations.
 
@@ -581,10 +381,7 @@ class NumberOperations(object):
         self._config = config
 
     @distributed_trace
-    def get_null(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Optional[float]
+    def get_null(self, **kwargs: Any) -> Optional[float]:
         """Get null Number value.
 
         :return: float or None
@@ -618,10 +415,7 @@ class NumberOperations(object):
     get_null.metadata = {"url": "/number/null"}  # type: ignore
 
     @distributed_trace
-    def get_invalid_float(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> float
+    def get_invalid_float(self, **kwargs: Any) -> float:
         """Get invalid float Number value.
 
         :return: float
@@ -655,10 +449,7 @@ class NumberOperations(object):
     get_invalid_float.metadata = {"url": "/number/invalidfloat"}  # type: ignore
 
     @distributed_trace
-    def get_invalid_double(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> float
+    def get_invalid_double(self, **kwargs: Any) -> float:
         """Get invalid double Number value.
 
         :return: float
@@ -692,10 +483,7 @@ class NumberOperations(object):
     get_invalid_double.metadata = {"url": "/number/invaliddouble"}  # type: ignore
 
     @distributed_trace
-    def get_invalid_decimal(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> float
+    def get_invalid_decimal(self, **kwargs: Any) -> float:
         """Get invalid decimal Number value.
 
         :return: float
@@ -729,12 +517,7 @@ class NumberOperations(object):
     get_invalid_decimal.metadata = {"url": "/number/invaliddecimal"}  # type: ignore
 
     @distributed_trace
-    def put_big_float(
-        self,
-        number_body,  # type: float
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_big_float(self, number_body: float, **kwargs: Any) -> None:
         """Put big float value 3.402823e+20.
 
         :param number_body: number body.
@@ -770,10 +553,7 @@ class NumberOperations(object):
     put_big_float.metadata = {"url": "/number/big/float/3.402823e+20"}  # type: ignore
 
     @distributed_trace
-    def get_big_float(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> float
+    def get_big_float(self, **kwargs: Any) -> float:
         """Get big float value 3.402823e+20.
 
         :return: float
@@ -807,12 +587,7 @@ class NumberOperations(object):
     get_big_float.metadata = {"url": "/number/big/float/3.402823e+20"}  # type: ignore
 
     @distributed_trace
-    def put_big_double(
-        self,
-        number_body,  # type: float
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_big_double(self, number_body: float, **kwargs: Any) -> None:
         """Put big double value 2.5976931e+101.
 
         :param number_body: number body.
@@ -848,10 +623,7 @@ class NumberOperations(object):
     put_big_double.metadata = {"url": "/number/big/double/2.5976931e+101"}  # type: ignore
 
     @distributed_trace
-    def get_big_double(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> float
+    def get_big_double(self, **kwargs: Any) -> float:
         """Get big double value 2.5976931e+101.
 
         :return: float
@@ -885,10 +657,7 @@ class NumberOperations(object):
     get_big_double.metadata = {"url": "/number/big/double/2.5976931e+101"}  # type: ignore
 
     @distributed_trace
-    def put_big_double_positive_decimal(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_big_double_positive_decimal(self, **kwargs: Any) -> None:
         """Put big double value 99999999.99.
 
         :keyword number_body: The default value is 99999999.99. Note that overriding this default value
@@ -924,10 +693,7 @@ class NumberOperations(object):
     put_big_double_positive_decimal.metadata = {"url": "/number/big/double/99999999.99"}  # type: ignore
 
     @distributed_trace
-    def get_big_double_positive_decimal(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> float
+    def get_big_double_positive_decimal(self, **kwargs: Any) -> float:
         """Get big double value 99999999.99.
 
         :return: float
@@ -961,10 +727,7 @@ class NumberOperations(object):
     get_big_double_positive_decimal.metadata = {"url": "/number/big/double/99999999.99"}  # type: ignore
 
     @distributed_trace
-    def put_big_double_negative_decimal(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_big_double_negative_decimal(self, **kwargs: Any) -> None:
         """Put big double value -99999999.99.
 
         :keyword number_body: The default value is -99999999.99. Note that overriding this default
@@ -1000,10 +763,7 @@ class NumberOperations(object):
     put_big_double_negative_decimal.metadata = {"url": "/number/big/double/-99999999.99"}  # type: ignore
 
     @distributed_trace
-    def get_big_double_negative_decimal(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> float
+    def get_big_double_negative_decimal(self, **kwargs: Any) -> float:
         """Get big double value -99999999.99.
 
         :return: float
@@ -1037,12 +797,7 @@ class NumberOperations(object):
     get_big_double_negative_decimal.metadata = {"url": "/number/big/double/-99999999.99"}  # type: ignore
 
     @distributed_trace
-    def put_big_decimal(
-        self,
-        number_body,  # type: float
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_big_decimal(self, number_body: float, **kwargs: Any) -> None:
         """Put big decimal value 2.5976931e+101.
 
         :param number_body: number body.
@@ -1078,10 +833,7 @@ class NumberOperations(object):
     put_big_decimal.metadata = {"url": "/number/big/decimal/2.5976931e+101"}  # type: ignore
 
     @distributed_trace
-    def get_big_decimal(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> float
+    def get_big_decimal(self, **kwargs: Any) -> float:
         """Get big decimal value 2.5976931e+101.
 
         :return: float
@@ -1115,10 +867,7 @@ class NumberOperations(object):
     get_big_decimal.metadata = {"url": "/number/big/decimal/2.5976931e+101"}  # type: ignore
 
     @distributed_trace
-    def put_big_decimal_positive_decimal(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_big_decimal_positive_decimal(self, **kwargs: Any) -> None:
         """Put big decimal value 99999999.99.
 
         :keyword number_body: The default value is 99999999.99. Note that overriding this default value
@@ -1154,10 +903,7 @@ class NumberOperations(object):
     put_big_decimal_positive_decimal.metadata = {"url": "/number/big/decimal/99999999.99"}  # type: ignore
 
     @distributed_trace
-    def get_big_decimal_positive_decimal(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> float
+    def get_big_decimal_positive_decimal(self, **kwargs: Any) -> float:
         """Get big decimal value 99999999.99.
 
         :return: float
@@ -1191,10 +937,7 @@ class NumberOperations(object):
     get_big_decimal_positive_decimal.metadata = {"url": "/number/big/decimal/99999999.99"}  # type: ignore
 
     @distributed_trace
-    def put_big_decimal_negative_decimal(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_big_decimal_negative_decimal(self, **kwargs: Any) -> None:
         """Put big decimal value -99999999.99.
 
         :keyword number_body: The default value is -99999999.99. Note that overriding this default
@@ -1230,10 +973,7 @@ class NumberOperations(object):
     put_big_decimal_negative_decimal.metadata = {"url": "/number/big/decimal/-99999999.99"}  # type: ignore
 
     @distributed_trace
-    def get_big_decimal_negative_decimal(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> float
+    def get_big_decimal_negative_decimal(self, **kwargs: Any) -> float:
         """Get big decimal value -99999999.99.
 
         :return: float
@@ -1267,12 +1007,7 @@ class NumberOperations(object):
     get_big_decimal_negative_decimal.metadata = {"url": "/number/big/decimal/-99999999.99"}  # type: ignore
 
     @distributed_trace
-    def put_small_float(
-        self,
-        number_body,  # type: float
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_small_float(self, number_body: float, **kwargs: Any) -> None:
         """Put small float value 3.402823e-20.
 
         :param number_body: number body.
@@ -1308,10 +1043,7 @@ class NumberOperations(object):
     put_small_float.metadata = {"url": "/number/small/float/3.402823e-20"}  # type: ignore
 
     @distributed_trace
-    def get_small_float(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> float
+    def get_small_float(self, **kwargs: Any) -> float:
         """Get big double value 3.402823e-20.
 
         :return: float
@@ -1345,12 +1077,7 @@ class NumberOperations(object):
     get_small_float.metadata = {"url": "/number/small/float/3.402823e-20"}  # type: ignore
 
     @distributed_trace
-    def put_small_double(
-        self,
-        number_body,  # type: float
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_small_double(self, number_body: float, **kwargs: Any) -> None:
         """Put small double value 2.5976931e-101.
 
         :param number_body: number body.
@@ -1386,10 +1113,7 @@ class NumberOperations(object):
     put_small_double.metadata = {"url": "/number/small/double/2.5976931e-101"}  # type: ignore
 
     @distributed_trace
-    def get_small_double(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> float
+    def get_small_double(self, **kwargs: Any) -> float:
         """Get big double value 2.5976931e-101.
 
         :return: float
@@ -1423,12 +1147,7 @@ class NumberOperations(object):
     get_small_double.metadata = {"url": "/number/small/double/2.5976931e-101"}  # type: ignore
 
     @distributed_trace
-    def put_small_decimal(
-        self,
-        number_body,  # type: float
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_small_decimal(self, number_body: float, **kwargs: Any) -> None:
         """Put small decimal value 2.5976931e-101.
 
         :param number_body: number body.
@@ -1464,10 +1183,7 @@ class NumberOperations(object):
     put_small_decimal.metadata = {"url": "/number/small/decimal/2.5976931e-101"}  # type: ignore
 
     @distributed_trace
-    def get_small_decimal(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> float
+    def get_small_decimal(self, **kwargs: Any) -> float:
         """Get small decimal value 2.5976931e-101.
 
         :return: float

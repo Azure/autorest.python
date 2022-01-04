@@ -1,24 +1,30 @@
 # Change Log
 
-### 2021-11-xx - 5.12.0
+### 2021-12-06 - 5.12.0
 
 | Library | Min Version
 | --------------- | -------
 |`@autorest/core` |  `3.6.2`
 |`@autorest/modelerfour` | `4.19.1`
-|`azure-core` dep of generated code | `1.20.0`
+|`azure-core` dep of generated code | `1.20.1`
 |`msrest` dep of generated code | `0.6.21`
 |`azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`
 
 **Breaking Changes in Version Tolerant Generation**
 
 - Remove metadata property for version tolerant and low level client generations #1090
+- Generate SDKs with `--python3-only` defaulting to `True` for version tolerant and low level client  #1087
+
+**New Features**
+
+- Generate a `_patch.py` file if one does not exist. These files are used to customize the generated code  #1092
 
 **Bug Fixes**
 
 - Can now handle body params with names `json`, `content`, `data`, and `files` #1081
 - Improve generated templates for `data` and `files` input body params by adding quotes around the keys  #1082
 - Using flag `--python3-only` will get you typed sync client and config files  #1085
+- Pin `mistune` dependency to less than `2.x.x` so autorest can be successfully installed  #1106
 
 ### 2021-11-05 - 5.11.2
 

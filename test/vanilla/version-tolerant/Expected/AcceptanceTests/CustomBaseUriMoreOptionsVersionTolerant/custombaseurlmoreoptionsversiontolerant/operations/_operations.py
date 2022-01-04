@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import functools
-from typing import TYPE_CHECKING
+from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
 from azure.core.exceptions import (
@@ -24,31 +24,22 @@ from msrest import Serializer
 
 from .._vendor import _format_url_section
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
-
-    T = TypeVar("T")
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+T = TypeVar("T")
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-# fmt: off
+
 
 def build_paths_get_empty_request(
-    key_name,  # type: str
-    subscription_id,  # type: str
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    key_version = kwargs.pop('key_version', "v1")  # type: Optional[str]
-
+    key_name: str, subscription_id: str, *, key_version: Optional[str] = "v1", **kwargs: Any
+) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/customuri/{subscriptionId}/{keyName}'
+    url = "/customuri/{subscriptionId}/{keyName}"
     path_format_arguments = {
-        "keyName": _SERIALIZER.url("key_name", key_name, 'str'),
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, 'str'),
+        "keyName": _SERIALIZER.url("key_name", key_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -56,21 +47,15 @@ def build_paths_get_empty_request(
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if key_version is not None:
-        query_parameters['keyVersion'] = _SERIALIZER.query("key_version", key_version, 'str')
+        query_parameters["keyVersion"] = _SERIALIZER.query("key_version", key_version, "str")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
-# fmt: on
+
 class PathsOperations(object):
     """PathsOperations operations.
 
@@ -91,13 +76,8 @@ class PathsOperations(object):
 
     @distributed_trace
     def get_empty(
-        self,
-        vault,  # type: str
-        secret,  # type: str
-        key_name,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+        self, vault: str, secret: str, key_name: str, *, key_version: Optional[str] = "v1", **kwargs: Any
+    ) -> None:
         """Get a 200 to test a valid base uri.
 
         :param vault: The vault name, e.g. https://myvault.
@@ -115,8 +95,6 @@ class PathsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-
-        key_version = kwargs.pop("key_version", "v1")  # type: Optional[str]
 
         request = build_paths_get_empty_request(
             key_name=key_name,

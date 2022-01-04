@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 import functools
 from json import loads as _loads
-from typing import TYPE_CHECKING
+from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 import warnings
 
 from azure.core.exceptions import (
@@ -27,72 +27,47 @@ from msrest import Serializer
 
 from .._vendor import _format_url_section
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
-
-    T = TypeVar("T")
-    JSONType = Any
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+T = TypeVar("T")
+JSONType = Any
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-# fmt: off
 
-def build_poll_with_parameterized_endpoints_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+
+def build_poll_with_parameterized_endpoints_request_initial(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/lroParameterizedEndpoints'
+    url = "/lroParameterizedEndpoints"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
 
 
-def build_poll_with_constant_parameterized_endpoints_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    constant_parameter = kwargs.pop('constant_parameter', "iAmConstant")  # type: str
+def build_poll_with_constant_parameterized_endpoints_request_initial(**kwargs: Any) -> HttpRequest:
+    constant_parameter = kwargs.pop("constant_parameter", "iAmConstant")  # type: str
 
     accept = "application/json"
     # Construct URL
-    url = '/lroConstantParameterizedEndpoints/{constantParameter}'
+    url = "/lroConstantParameterizedEndpoints/{constantParameter}"
     path_format_arguments = {
-        "constantParameter": _SERIALIZER.url("constant_parameter", constant_parameter, 'str', skip_quote=True),
+        "constantParameter": _SERIALIZER.url("constant_parameter", constant_parameter, "str", skip_quote=True),
     }
 
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
 
-# fmt: on
+
 class LROWithParamaterizedEndpointsOperationsMixin(object):
-    def _poll_with_parameterized_endpoints_initial(
-        self,
-        account_name,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> Optional[str]
+    def _poll_with_parameterized_endpoints_initial(self, account_name: str, **kwargs: Any) -> Optional[str]:
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -130,12 +105,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
     _poll_with_parameterized_endpoints_initial.metadata = {"url": "/lroParameterizedEndpoints"}  # type: ignore
 
     @distributed_trace
-    def begin_poll_with_parameterized_endpoints(
-        self,
-        account_name,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[str]
+    def begin_poll_with_parameterized_endpoints(self, account_name: str, **kwargs: Any) -> LROPoller[str]:
         """Poll with method and client level parameters in endpoint.
 
         :param account_name: Account Name. Pass in 'local' to pass test.
@@ -199,12 +169,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
 
     begin_poll_with_parameterized_endpoints.metadata = {"url": "/lroParameterizedEndpoints"}  # type: ignore
 
-    def _poll_with_constant_parameterized_endpoints_initial(
-        self,
-        account_name,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> Optional[str]
+    def _poll_with_constant_parameterized_endpoints_initial(self, account_name: str, **kwargs: Any) -> Optional[str]:
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -246,12 +211,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
     _poll_with_constant_parameterized_endpoints_initial.metadata = {"url": "/lroConstantParameterizedEndpoints/{constantParameter}"}  # type: ignore
 
     @distributed_trace
-    def begin_poll_with_constant_parameterized_endpoints(
-        self,
-        account_name,  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[str]
+    def begin_poll_with_constant_parameterized_endpoints(self, account_name: str, **kwargs: Any) -> LROPoller[str]:
         """Poll with method and client level parameters in endpoint, with a constant value.
 
         :param account_name: Account Name. Pass in 'local' to pass test.

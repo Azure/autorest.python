@@ -7,21 +7,20 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import TYPE_CHECKING
+from typing import Any, Optional, TYPE_CHECKING
 
 from azure.core import PipelineClient
+from azure.core.rest import HttpRequest, HttpResponse
 from msrest import Deserializer, Serializer
 
 from ._configuration import AutoRestRequiredOptionalTestServiceConfiguration
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, Optional
-
-    from azure.core.rest import HttpRequest, HttpResponse
+    from typing import Dict
 
 
-class AutoRestRequiredOptionalTestService(object):
+class AutoRestRequiredOptionalTestService:
     """Test Infrastructure for AutoRest.
 
     :param required_global_path: number of items to skip.
@@ -36,13 +35,13 @@ class AutoRestRequiredOptionalTestService(object):
 
     def __init__(
         self,
-        required_global_path,  # type: str
-        required_global_query,  # type: str
-        optional_global_query=None,  # type: Optional[int]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
-        endpoint = kwargs.pop("endpoint", "http://localhost:3000")  # type: str
+        required_global_path: str,
+        required_global_query: str,
+        optional_global_query: Optional[int] = None,
+        *,
+        endpoint: str = "http://localhost:3000",
+        **kwargs: Any
+    ) -> None:
 
         self._config = AutoRestRequiredOptionalTestServiceConfiguration(
             required_global_path=required_global_path,
@@ -58,9 +57,8 @@ class AutoRestRequiredOptionalTestService(object):
     def send_request(
         self,
         request,  # type: HttpRequest
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpResponse
+        **kwargs: Any
+    ) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `requiredoptionallowlevel.rest`.

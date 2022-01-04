@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 import functools
 from json import loads as _loads
-from typing import TYPE_CHECKING
+from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar, Union
 import warnings
 
 from azure.core.exceptions import (
@@ -26,1802 +26,1268 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 from msrest import Serializer
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar, Union
-
-    T = TypeVar("T")
-    JSONType = Any
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+T = TypeVar("T")
+JSONType = Any
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-# fmt: off
+
 
 def build_lros_put200_succeeded_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/put/200/succeeded'
+    url = "/lro/put/200/succeeded"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lros_patch200_succeeded_ignore_headers_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/patch/200/succeeded/ignoreheaders'
+    url = "/lro/patch/200/succeeded/ignoreheaders"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PATCH",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PATCH", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lros_put201_succeeded_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/put/201/succeeded'
+    url = "/lro/put/201/succeeded"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_lros_post202_list_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_lros_post202_list_request_initial(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/lro/list'
+    url = "/lro/list"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
 
 
 def build_lros_put200_succeeded_no_state_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/put/200/succeeded/nostate'
+    url = "/lro/put/200/succeeded/nostate"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lros_put202_retry200_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/put/202/retry/200'
+    url = "/lro/put/202/retry/200"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lros_put201_creating_succeeded200_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/put/201/creating/succeeded/200'
+    url = "/lro/put/201/creating/succeeded/200"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lros_put200_updating_succeeded204_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/put/200/updating/succeeded/200'
+    url = "/lro/put/200/updating/succeeded/200"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lros_put201_creating_failed200_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/put/201/created/failed/200'
+    url = "/lro/put/201/created/failed/200"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lros_put200_acceptedcanceled200_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/put/200/accepted/canceled/200'
+    url = "/lro/put/200/accepted/canceled/200"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lros_put_no_header_in_retry_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/put/noheader/202/200'
+    url = "/lro/put/noheader/202/200"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lros_put_async_retry_succeeded_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/putasync/retry/succeeded'
+    url = "/lro/putasync/retry/succeeded"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lros_put_async_no_retry_succeeded_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/putasync/noretry/succeeded'
+    url = "/lro/putasync/noretry/succeeded"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lros_put_async_retry_failed_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/putasync/retry/failed'
+    url = "/lro/putasync/retry/failed"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lros_put_async_no_retrycanceled_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/putasync/noretry/canceled'
+    url = "/lro/putasync/noretry/canceled"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lros_put_async_no_header_in_retry_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/putasync/noheader/201/200'
+    url = "/lro/putasync/noheader/201/200"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lros_put_non_resource_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/putnonresource/202/200'
+    url = "/lro/putnonresource/202/200"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lros_put_async_non_resource_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/putnonresourceasync/202/200'
+    url = "/lro/putnonresourceasync/202/200"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lros_put_sub_resource_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/putsubresource/202/200'
+    url = "/lro/putsubresource/202/200"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lros_put_async_sub_resource_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/putsubresourceasync/202/200'
+    url = "/lro/putsubresourceasync/202/200"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_lros_delete_provisioning202_accepted200_succeeded_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_lros_delete_provisioning202_accepted200_succeeded_request_initial(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/lro/delete/provisioning/202/accepted/200/succeeded'
+    url = "/lro/delete/provisioning/202/accepted/200/succeeded"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
 
-def build_lros_delete_provisioning202_deleting_failed200_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_lros_delete_provisioning202_deleting_failed200_request_initial(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/lro/delete/provisioning/202/deleting/200/failed'
+    url = "/lro/delete/provisioning/202/deleting/200/failed"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
 
-def build_lros_delete_provisioning202_deletingcanceled200_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_lros_delete_provisioning202_deletingcanceled200_request_initial(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/lro/delete/provisioning/202/deleting/200/canceled'
+    url = "/lro/delete/provisioning/202/deleting/200/canceled"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
 
-def build_lros_delete204_succeeded_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_lros_delete204_succeeded_request_initial(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/lro/delete/204/succeeded'
+    url = "/lro/delete/204/succeeded"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
 
-def build_lros_delete202_retry200_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_lros_delete202_retry200_request_initial(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/lro/delete/202/retry/200'
+    url = "/lro/delete/202/retry/200"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
 
-def build_lros_delete202_no_retry204_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_lros_delete202_no_retry204_request_initial(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/lro/delete/202/noretry/204'
+    url = "/lro/delete/202/noretry/204"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
 
-def build_lros_delete_no_header_in_retry_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_lros_delete_no_header_in_retry_request_initial(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/lro/delete/noheader'
+    url = "/lro/delete/noheader"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
 
-def build_lros_delete_async_no_header_in_retry_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_lros_delete_async_no_header_in_retry_request_initial(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/lro/deleteasync/noheader/202/204'
+    url = "/lro/deleteasync/noheader/202/204"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
 
-def build_lros_delete_async_retry_succeeded_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_lros_delete_async_retry_succeeded_request_initial(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/lro/deleteasync/retry/succeeded'
+    url = "/lro/deleteasync/retry/succeeded"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
 
-def build_lros_delete_async_no_retry_succeeded_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_lros_delete_async_no_retry_succeeded_request_initial(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/lro/deleteasync/noretry/succeeded'
+    url = "/lro/deleteasync/noretry/succeeded"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
 
-def build_lros_delete_async_retry_failed_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_lros_delete_async_retry_failed_request_initial(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/lro/deleteasync/retry/failed'
+    url = "/lro/deleteasync/retry/failed"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
 
-def build_lros_delete_async_retrycanceled_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_lros_delete_async_retrycanceled_request_initial(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/lro/deleteasync/retry/canceled'
+    url = "/lro/deleteasync/retry/canceled"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
 
-def build_lros_post200_with_payload_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_lros_post200_with_payload_request_initial(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/lro/post/payload/200'
+    url = "/lro/post/payload/200"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
 
 
 def build_lros_post202_retry200_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/post/202/retry/200'
+    url = "/lro/post/202/retry/200"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lros_post202_no_retry204_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/post/202/noretry/204'
+    url = "/lro/post/202/noretry/204"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_lros_post_double_headers_final_location_get_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_lros_post_double_headers_final_location_get_request_initial(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/lro/LROPostDoubleHeadersFinalLocationGet'
+    url = "/lro/LROPostDoubleHeadersFinalLocationGet"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
 
 
-def build_lros_post_double_headers_final_azure_header_get_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_lros_post_double_headers_final_azure_header_get_request_initial(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/lro/LROPostDoubleHeadersFinalAzureHeaderGet'
+    url = "/lro/LROPostDoubleHeadersFinalAzureHeaderGet"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
 
 
-def build_lros_post_double_headers_final_azure_header_get_default_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_lros_post_double_headers_final_azure_header_get_default_request_initial(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault'
+    url = "/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
 
 
 def build_lros_post_async_retry_succeeded_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/postasync/retry/succeeded'
+    url = "/lro/postasync/retry/succeeded"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lros_post_async_no_retry_succeeded_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/postasync/noretry/succeeded'
+    url = "/lro/postasync/noretry/succeeded"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lros_post_async_retry_failed_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/postasync/retry/failed'
+    url = "/lro/postasync/retry/failed"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lros_post_async_retrycanceled_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/postasync/retry/canceled'
+    url = "/lro/postasync/retry/canceled"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lro_retrys_put201_creating_succeeded200_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/retryerror/put/201/creating/succeeded/200'
+    url = "/lro/retryerror/put/201/creating/succeeded/200"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lro_retrys_put_async_relative_retry_succeeded_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/retryerror/putasync/retry/succeeded'
+    url = "/lro/retryerror/putasync/retry/succeeded"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_lro_retrys_delete_provisioning202_accepted200_succeeded_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_lro_retrys_delete_provisioning202_accepted200_succeeded_request_initial(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/lro/retryerror/delete/provisioning/202/accepted/200/succeeded'
+    url = "/lro/retryerror/delete/provisioning/202/accepted/200/succeeded"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
 
-def build_lro_retrys_delete202_retry200_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_lro_retrys_delete202_retry200_request_initial(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/lro/retryerror/delete/202/retry/200'
+    url = "/lro/retryerror/delete/202/retry/200"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
 
-def build_lro_retrys_delete_async_relative_retry_succeeded_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_lro_retrys_delete_async_relative_retry_succeeded_request_initial(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/lro/retryerror/deleteasync/retry/succeeded'
+    url = "/lro/retryerror/deleteasync/retry/succeeded"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
 
 def build_lro_retrys_post202_retry200_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/retryerror/post/202/retry/200'
+    url = "/lro/retryerror/post/202/retry/200"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lro_retrys_post_async_relative_retry_succeeded_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/retryerror/postasync/retry/succeeded'
+    url = "/lro/retryerror/postasync/retry/succeeded"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lrosads_put_non_retry400_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/nonretryerror/put/400'
+    url = "/lro/nonretryerror/put/400"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lrosads_put_non_retry201_creating400_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/nonretryerror/put/201/creating/400'
+    url = "/lro/nonretryerror/put/201/creating/400"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lrosads_put_non_retry201_creating400_invalid_json_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/nonretryerror/put/201/creating/400/invalidjson'
+    url = "/lro/nonretryerror/put/201/creating/400/invalidjson"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lrosads_put_async_relative_retry400_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/nonretryerror/putasync/retry/400'
+    url = "/lro/nonretryerror/putasync/retry/400"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_lrosads_delete_non_retry400_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_lrosads_delete_non_retry400_request_initial(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/lro/nonretryerror/delete/400'
+    url = "/lro/nonretryerror/delete/400"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
 
-def build_lrosads_delete202_non_retry400_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_lrosads_delete202_non_retry400_request_initial(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/lro/nonretryerror/delete/202/retry/400'
+    url = "/lro/nonretryerror/delete/202/retry/400"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
 
-def build_lrosads_delete_async_relative_retry400_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_lrosads_delete_async_relative_retry400_request_initial(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/lro/nonretryerror/deleteasync/retry/400'
+    url = "/lro/nonretryerror/deleteasync/retry/400"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
 
 def build_lrosads_post_non_retry400_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/nonretryerror/post/400'
+    url = "/lro/nonretryerror/post/400"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lrosads_post202_non_retry400_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/nonretryerror/post/202/retry/400'
+    url = "/lro/nonretryerror/post/202/retry/400"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lrosads_post_async_relative_retry400_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/nonretryerror/postasync/retry/400'
+    url = "/lro/nonretryerror/postasync/retry/400"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lrosads_put_error201_no_provisioning_state_payload_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/error/put/201/noprovisioningstatepayload'
+    url = "/lro/error/put/201/noprovisioningstatepayload"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lrosads_put_async_relative_retry_no_status_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/error/putasync/retry/nostatus'
+    url = "/lro/error/putasync/retry/nostatus"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lrosads_put_async_relative_retry_no_status_payload_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/error/putasync/retry/nostatuspayload'
+    url = "/lro/error/putasync/retry/nostatuspayload"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_lrosads_delete204_succeeded_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_lrosads_delete204_succeeded_request_initial(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/lro/error/delete/204/nolocation'
+    url = "/lro/error/delete/204/nolocation"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
 
-def build_lrosads_delete_async_relative_retry_no_status_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_lrosads_delete_async_relative_retry_no_status_request_initial(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/lro/error/deleteasync/retry/nostatus'
+    url = "/lro/error/deleteasync/retry/nostatus"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
 
 def build_lrosads_post202_no_location_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/error/post/202/nolocation'
+    url = "/lro/error/post/202/nolocation"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lrosads_post_async_relative_retry_no_payload_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/error/postasync/retry/nopayload'
+    url = "/lro/error/postasync/retry/nopayload"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lrosads_put200_invalid_json_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/error/put/200/invalidjson'
+    url = "/lro/error/put/200/invalidjson"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lrosads_put_async_relative_retry_invalid_header_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/error/putasync/retry/invalidheader'
+    url = "/lro/error/putasync/retry/invalidheader"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lrosads_put_async_relative_retry_invalid_json_polling_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/error/putasync/retry/invalidjsonpolling'
+    url = "/lro/error/putasync/retry/invalidjsonpolling"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_lrosads_delete202_retry_invalid_header_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_lrosads_delete202_retry_invalid_header_request_initial(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/lro/error/delete/202/retry/invalidheader'
+    url = "/lro/error/delete/202/retry/invalidheader"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
 
-def build_lrosads_delete_async_relative_retry_invalid_header_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_lrosads_delete_async_relative_retry_invalid_header_request_initial(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/lro/error/deleteasync/retry/invalidheader'
+    url = "/lro/error/deleteasync/retry/invalidheader"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
 
-def build_lrosads_delete_async_relative_retry_invalid_json_polling_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_lrosads_delete_async_relative_retry_invalid_json_polling_request_initial(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/lro/error/deleteasync/retry/invalidjsonpolling'
+    url = "/lro/error/deleteasync/retry/invalidjsonpolling"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
 
 
 def build_lrosads_post202_retry_invalid_header_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/error/post/202/retry/invalidheader'
+    url = "/lro/error/post/202/retry/invalidheader"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lrosads_post_async_relative_retry_invalid_header_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/error/postasync/retry/invalidheader'
+    url = "/lro/error/postasync/retry/invalidheader"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lrosads_post_async_relative_retry_invalid_json_polling_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/error/postasync/retry/invalidjsonpolling'
+    url = "/lro/error/postasync/retry/invalidjsonpolling"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lr_os_custom_header_put_async_retry_succeeded_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/customheader/putasync/retry/succeeded'
+    url = "/lro/customheader/putasync/retry/succeeded"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lr_os_custom_header_put201_creating_succeeded200_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/customheader/put/201/creating/succeeded/200'
+    url = "/lro/customheader/put/201/creating/succeeded/200"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lr_os_custom_header_post202_retry200_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/customheader/post/202/retry/200'
+    url = "/lro/customheader/post/202/retry/200"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_lr_os_custom_header_post_async_retry_succeeded_request_initial(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/lro/customheader/postasync/retry/succeeded'
+    url = "/lro/customheader/postasync/retry/succeeded"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
-# fmt: on
+
 class LROsOperations(object):
     """LROsOperations operations.
 
@@ -1840,12 +1306,7 @@ class LROsOperations(object):
         self._deserialize = deserializer
         self._config = config
 
-    def _put200_succeeded_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> Optional[JSONType]
+    def _put200_succeeded_initial(self, product: JSONType = None, **kwargs: Any) -> Optional[JSONType]:
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -1885,12 +1346,7 @@ class LROsOperations(object):
     _put200_succeeded_initial.metadata = {"url": "/lro/put/200/succeeded"}  # type: ignore
 
     @distributed_trace
-    def begin_put200_succeeded(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+    def begin_put200_succeeded(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Succeeded’.
 
@@ -1979,12 +1435,7 @@ class LROsOperations(object):
 
     begin_put200_succeeded.metadata = {"url": "/lro/put/200/succeeded"}  # type: ignore
 
-    def _patch200_succeeded_ignore_headers_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def _patch200_succeeded_ignore_headers_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -2027,12 +1478,7 @@ class LROsOperations(object):
     _patch200_succeeded_ignore_headers_initial.metadata = {"url": "/lro/patch/200/succeeded/ignoreheaders"}  # type: ignore
 
     @distributed_trace
-    def begin_patch200_succeeded_ignore_headers(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+    def begin_patch200_succeeded_ignore_headers(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
         """Long running put request, service returns a 200 to the initial request with location header. We
         should not have any subsequent calls after receiving this first response.
 
@@ -2126,12 +1572,7 @@ class LROsOperations(object):
 
     begin_patch200_succeeded_ignore_headers.metadata = {"url": "/lro/patch/200/succeeded/ignoreheaders"}  # type: ignore
 
-    def _put201_succeeded_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def _put201_succeeded_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -2169,12 +1610,7 @@ class LROsOperations(object):
     _put201_succeeded_initial.metadata = {"url": "/lro/put/201/succeeded"}  # type: ignore
 
     @distributed_trace
-    def begin_put201_succeeded(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+    def begin_put201_succeeded(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Succeeded’.
 
@@ -2263,10 +1699,7 @@ class LROsOperations(object):
 
     begin_put201_succeeded.metadata = {"url": "/lro/put/201/succeeded"}  # type: ignore
 
-    def _post202_list_initial(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Optional[List[JSONType]]
+    def _post202_list_initial(self, **kwargs: Any) -> Optional[List[JSONType]]:
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[List[JSONType]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -2303,10 +1736,7 @@ class LROsOperations(object):
     _post202_list_initial.metadata = {"url": "/lro/list"}  # type: ignore
 
     @distributed_trace
-    def begin_post202_list(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[List[JSONType]]
+    def begin_post202_list(self, **kwargs: Any) -> LROPoller[List[JSONType]]:
         """Long running put request, service returns a 202 with empty body to first request, returns a 200
         with body [{ 'id': '100', 'name': 'foo' }].
 
@@ -2377,12 +1807,7 @@ class LROsOperations(object):
 
     begin_post202_list.metadata = {"url": "/lro/list"}  # type: ignore
 
-    def _put200_succeeded_no_state_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def _put200_succeeded_no_state_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -2420,12 +1845,7 @@ class LROsOperations(object):
     _put200_succeeded_no_state_initial.metadata = {"url": "/lro/put/200/succeeded/nostate"}  # type: ignore
 
     @distributed_trace
-    def begin_put200_succeeded_no_state(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+    def begin_put200_succeeded_no_state(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         does not contain ProvisioningState=’Succeeded’.
 
@@ -2514,12 +1934,7 @@ class LROsOperations(object):
 
     begin_put200_succeeded_no_state.metadata = {"url": "/lro/put/200/succeeded/nostate"}  # type: ignore
 
-    def _put202_retry200_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def _put202_retry200_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -2557,12 +1972,7 @@ class LROsOperations(object):
     _put202_retry200_initial.metadata = {"url": "/lro/put/202/retry/200"}  # type: ignore
 
     @distributed_trace
-    def begin_put202_retry200(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+    def begin_put202_retry200(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
         """Long running put request, service returns a 202 to the initial request, with a location header
         that points to a polling URL that returns a 200 and an entity that doesn't contains
         ProvisioningState.
@@ -2652,12 +2062,7 @@ class LROsOperations(object):
 
     begin_put202_retry200.metadata = {"url": "/lro/put/202/retry/200"}  # type: ignore
 
-    def _put201_creating_succeeded200_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def _put201_creating_succeeded200_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -2702,12 +2107,7 @@ class LROsOperations(object):
     _put201_creating_succeeded200_initial.metadata = {"url": "/lro/put/201/creating/succeeded/200"}  # type: ignore
 
     @distributed_trace
-    def begin_put201_creating_succeeded200(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+    def begin_put201_creating_succeeded200(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Succeeded’.
@@ -2797,12 +2197,7 @@ class LROsOperations(object):
 
     begin_put201_creating_succeeded200.metadata = {"url": "/lro/put/201/creating/succeeded/200"}  # type: ignore
 
-    def _put200_updating_succeeded204_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def _put200_updating_succeeded204_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -2840,12 +2235,7 @@ class LROsOperations(object):
     _put200_updating_succeeded204_initial.metadata = {"url": "/lro/put/200/updating/succeeded/200"}  # type: ignore
 
     @distributed_trace
-    def begin_put200_updating_succeeded204(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+    def begin_put200_updating_succeeded204(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Updating’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Succeeded’.
@@ -2935,12 +2325,7 @@ class LROsOperations(object):
 
     begin_put200_updating_succeeded204.metadata = {"url": "/lro/put/200/updating/succeeded/200"}  # type: ignore
 
-    def _put201_creating_failed200_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def _put201_creating_failed200_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -2985,12 +2370,7 @@ class LROsOperations(object):
     _put201_creating_failed200_initial.metadata = {"url": "/lro/put/201/created/failed/200"}  # type: ignore
 
     @distributed_trace
-    def begin_put201_creating_failed200(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+    def begin_put201_creating_failed200(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Created’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Failed’.
@@ -3080,12 +2460,7 @@ class LROsOperations(object):
 
     begin_put201_creating_failed200.metadata = {"url": "/lro/put/201/created/failed/200"}  # type: ignore
 
-    def _put200_acceptedcanceled200_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def _put200_acceptedcanceled200_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -3123,12 +2498,7 @@ class LROsOperations(object):
     _put200_acceptedcanceled200_initial.metadata = {"url": "/lro/put/200/accepted/canceled/200"}  # type: ignore
 
     @distributed_trace
-    def begin_put200_acceptedcanceled200(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+    def begin_put200_acceptedcanceled200(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Canceled’.
@@ -3218,12 +2588,7 @@ class LROsOperations(object):
 
     begin_put200_acceptedcanceled200.metadata = {"url": "/lro/put/200/accepted/canceled/200"}  # type: ignore
 
-    def _put_no_header_in_retry_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def _put_no_header_in_retry_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -3264,12 +2629,7 @@ class LROsOperations(object):
     _put_no_header_in_retry_initial.metadata = {"url": "/lro/put/noheader/202/200"}  # type: ignore
 
     @distributed_trace
-    def begin_put_no_header_in_retry(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+    def begin_put_no_header_in_retry(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
         """Long running put request, service returns a 202 to the initial request with location header.
         Subsequent calls to operation status do not contain location header.
 
@@ -3361,12 +2721,7 @@ class LROsOperations(object):
 
     begin_put_no_header_in_retry.metadata = {"url": "/lro/put/noheader/202/200"}  # type: ignore
 
-    def _put_async_retry_succeeded_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def _put_async_retry_succeeded_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -3411,12 +2766,7 @@ class LROsOperations(object):
     _put_async_retry_succeeded_initial.metadata = {"url": "/lro/putasync/retry/succeeded"}  # type: ignore
 
     @distributed_trace
-    def begin_put_async_retry_succeeded(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+    def begin_put_async_retry_succeeded(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
@@ -3513,12 +2863,7 @@ class LROsOperations(object):
 
     begin_put_async_retry_succeeded.metadata = {"url": "/lro/putasync/retry/succeeded"}  # type: ignore
 
-    def _put_async_no_retry_succeeded_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def _put_async_no_retry_succeeded_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -3562,12 +2907,7 @@ class LROsOperations(object):
     _put_async_no_retry_succeeded_initial.metadata = {"url": "/lro/putasync/noretry/succeeded"}  # type: ignore
 
     @distributed_trace
-    def begin_put_async_no_retry_succeeded(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+    def begin_put_async_no_retry_succeeded(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
@@ -3663,12 +3003,7 @@ class LROsOperations(object):
 
     begin_put_async_no_retry_succeeded.metadata = {"url": "/lro/putasync/noretry/succeeded"}  # type: ignore
 
-    def _put_async_retry_failed_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def _put_async_retry_failed_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -3713,12 +3048,7 @@ class LROsOperations(object):
     _put_async_retry_failed_initial.metadata = {"url": "/lro/putasync/retry/failed"}  # type: ignore
 
     @distributed_trace
-    def begin_put_async_retry_failed(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+    def begin_put_async_retry_failed(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
@@ -3815,12 +3145,7 @@ class LROsOperations(object):
 
     begin_put_async_retry_failed.metadata = {"url": "/lro/putasync/retry/failed"}  # type: ignore
 
-    def _put_async_no_retrycanceled_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def _put_async_no_retrycanceled_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -3864,12 +3189,7 @@ class LROsOperations(object):
     _put_async_no_retrycanceled_initial.metadata = {"url": "/lro/putasync/noretry/canceled"}  # type: ignore
 
     @distributed_trace
-    def begin_put_async_no_retrycanceled(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+    def begin_put_async_no_retrycanceled(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
@@ -3965,12 +3285,7 @@ class LROsOperations(object):
 
     begin_put_async_no_retrycanceled.metadata = {"url": "/lro/putasync/noretry/canceled"}  # type: ignore
 
-    def _put_async_no_header_in_retry_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def _put_async_no_header_in_retry_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -4013,12 +3328,7 @@ class LROsOperations(object):
     _put_async_no_header_in_retry_initial.metadata = {"url": "/lro/putasync/noheader/201/200"}  # type: ignore
 
     @distributed_trace
-    def begin_put_async_no_header_in_retry(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+    def begin_put_async_no_header_in_retry(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
         """Long running put request, service returns a 202 to the initial request with
         Azure-AsyncOperation header. Subsequent calls to operation status do not contain
         Azure-AsyncOperation header.
@@ -4113,12 +3423,7 @@ class LROsOperations(object):
 
     begin_put_async_no_header_in_retry.metadata = {"url": "/lro/putasync/noheader/201/200"}  # type: ignore
 
-    def _put_non_resource_initial(
-        self,
-        sku=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def _put_non_resource_initial(self, sku: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -4156,12 +3461,7 @@ class LROsOperations(object):
     _put_non_resource_initial.metadata = {"url": "/lro/putnonresource/202/200"}  # type: ignore
 
     @distributed_trace
-    def begin_put_non_resource(
-        self,
-        sku=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+    def begin_put_non_resource(self, sku: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
         """Long running put request with non resource.
 
         :param sku: sku to put.
@@ -4231,12 +3531,7 @@ class LROsOperations(object):
 
     begin_put_non_resource.metadata = {"url": "/lro/putnonresource/202/200"}  # type: ignore
 
-    def _put_async_non_resource_initial(
-        self,
-        sku=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def _put_async_non_resource_initial(self, sku: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -4274,12 +3569,7 @@ class LROsOperations(object):
     _put_async_non_resource_initial.metadata = {"url": "/lro/putnonresourceasync/202/200"}  # type: ignore
 
     @distributed_trace
-    def begin_put_async_non_resource(
-        self,
-        sku=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+    def begin_put_async_non_resource(self, sku: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
         """Long running put request with non resource.
 
         :param sku: Sku to put.
@@ -4349,12 +3639,7 @@ class LROsOperations(object):
 
     begin_put_async_non_resource.metadata = {"url": "/lro/putnonresourceasync/202/200"}  # type: ignore
 
-    def _put_sub_resource_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def _put_sub_resource_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -4392,12 +3677,7 @@ class LROsOperations(object):
     _put_sub_resource_initial.metadata = {"url": "/lro/putsubresource/202/200"}  # type: ignore
 
     @distributed_trace
-    def begin_put_sub_resource(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+    def begin_put_sub_resource(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
         """Long running put request with sub resource.
 
         :param product: Sub Product to put.
@@ -4473,12 +3753,7 @@ class LROsOperations(object):
 
     begin_put_sub_resource.metadata = {"url": "/lro/putsubresource/202/200"}  # type: ignore
 
-    def _put_async_sub_resource_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def _put_async_sub_resource_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -4516,12 +3791,7 @@ class LROsOperations(object):
     _put_async_sub_resource_initial.metadata = {"url": "/lro/putsubresourceasync/202/200"}  # type: ignore
 
     @distributed_trace
-    def begin_put_async_sub_resource(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+    def begin_put_async_sub_resource(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
         """Long running put request with sub resource.
 
         :param product: Sub Product to put.
@@ -4597,10 +3867,7 @@ class LROsOperations(object):
 
     begin_put_async_sub_resource.metadata = {"url": "/lro/putsubresourceasync/202/200"}  # type: ignore
 
-    def _delete_provisioning202_accepted200_succeeded_initial(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def _delete_provisioning202_accepted200_succeeded_initial(self, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -4639,10 +3906,7 @@ class LROsOperations(object):
     _delete_provisioning202_accepted200_succeeded_initial.metadata = {"url": "/lro/delete/provisioning/202/accepted/200/succeeded"}  # type: ignore
 
     @distributed_trace
-    def begin_delete_provisioning202_accepted200_succeeded(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+    def begin_delete_provisioning202_accepted200_succeeded(self, **kwargs: Any) -> LROPoller[JSONType]:
         """Long running delete request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Succeeded’.
@@ -4712,10 +3976,7 @@ class LROsOperations(object):
 
     begin_delete_provisioning202_accepted200_succeeded.metadata = {"url": "/lro/delete/provisioning/202/accepted/200/succeeded"}  # type: ignore
 
-    def _delete_provisioning202_deleting_failed200_initial(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def _delete_provisioning202_deleting_failed200_initial(self, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -4754,10 +4015,7 @@ class LROsOperations(object):
     _delete_provisioning202_deleting_failed200_initial.metadata = {"url": "/lro/delete/provisioning/202/deleting/200/failed"}  # type: ignore
 
     @distributed_trace
-    def begin_delete_provisioning202_deleting_failed200(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+    def begin_delete_provisioning202_deleting_failed200(self, **kwargs: Any) -> LROPoller[JSONType]:
         """Long running delete request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Failed’.
@@ -4827,10 +4085,7 @@ class LROsOperations(object):
 
     begin_delete_provisioning202_deleting_failed200.metadata = {"url": "/lro/delete/provisioning/202/deleting/200/failed"}  # type: ignore
 
-    def _delete_provisioning202_deletingcanceled200_initial(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def _delete_provisioning202_deletingcanceled200_initial(self, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -4869,10 +4124,7 @@ class LROsOperations(object):
     _delete_provisioning202_deletingcanceled200_initial.metadata = {"url": "/lro/delete/provisioning/202/deleting/200/canceled"}  # type: ignore
 
     @distributed_trace
-    def begin_delete_provisioning202_deletingcanceled200(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+    def begin_delete_provisioning202_deletingcanceled200(self, **kwargs: Any) -> LROPoller[JSONType]:
         """Long running delete request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Canceled’.
@@ -4942,10 +4194,7 @@ class LROsOperations(object):
 
     begin_delete_provisioning202_deletingcanceled200.metadata = {"url": "/lro/delete/provisioning/202/deleting/200/canceled"}  # type: ignore
 
-    def _delete204_succeeded_initial(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def _delete204_succeeded_initial(self, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -4966,10 +4215,7 @@ class LROsOperations(object):
     _delete204_succeeded_initial.metadata = {"url": "/lro/delete/204/succeeded"}  # type: ignore
 
     @distributed_trace
-    def begin_delete204_succeeded(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[None]
+    def begin_delete204_succeeded(self, **kwargs: Any) -> LROPoller[None]:
         """Long running delete succeeds and returns right away.
 
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -5013,10 +4259,7 @@ class LROsOperations(object):
 
     begin_delete204_succeeded.metadata = {"url": "/lro/delete/204/succeeded"}  # type: ignore
 
-    def _delete202_retry200_initial(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Optional[JSONType]
+    def _delete202_retry200_initial(self, **kwargs: Any) -> Optional[JSONType]:
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -5051,10 +4294,7 @@ class LROsOperations(object):
     _delete202_retry200_initial.metadata = {"url": "/lro/delete/202/retry/200"}  # type: ignore
 
     @distributed_trace
-    def begin_delete202_retry200(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+    def begin_delete202_retry200(self, **kwargs: Any) -> LROPoller[JSONType]:
         """Long running delete request, service returns a 202 to the initial request. Polls return this
         value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
@@ -5123,10 +4363,7 @@ class LROsOperations(object):
 
     begin_delete202_retry200.metadata = {"url": "/lro/delete/202/retry/200"}  # type: ignore
 
-    def _delete202_no_retry204_initial(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Optional[JSONType]
+    def _delete202_no_retry204_initial(self, **kwargs: Any) -> Optional[JSONType]:
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -5161,10 +4398,7 @@ class LROsOperations(object):
     _delete202_no_retry204_initial.metadata = {"url": "/lro/delete/202/noretry/204"}  # type: ignore
 
     @distributed_trace
-    def begin_delete202_no_retry204(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+    def begin_delete202_no_retry204(self, **kwargs: Any) -> LROPoller[JSONType]:
         """Long running delete request, service returns a 202 to the initial request. Polls return this
         value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
@@ -5233,10 +4467,7 @@ class LROsOperations(object):
 
     begin_delete202_no_retry204.metadata = {"url": "/lro/delete/202/noretry/204"}  # type: ignore
 
-    def _delete_no_header_in_retry_initial(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def _delete_no_header_in_retry_initial(self, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -5261,10 +4492,7 @@ class LROsOperations(object):
     _delete_no_header_in_retry_initial.metadata = {"url": "/lro/delete/noheader"}  # type: ignore
 
     @distributed_trace
-    def begin_delete_no_header_in_retry(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[None]
+    def begin_delete_no_header_in_retry(self, **kwargs: Any) -> LROPoller[None]:
         """Long running delete request, service returns a location header in the initial request.
         Subsequent calls to operation status do not contain location header.
 
@@ -5309,10 +4537,7 @@ class LROsOperations(object):
 
     begin_delete_no_header_in_retry.metadata = {"url": "/lro/delete/noheader"}  # type: ignore
 
-    def _delete_async_no_header_in_retry_initial(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def _delete_async_no_header_in_retry_initial(self, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -5337,10 +4562,7 @@ class LROsOperations(object):
     _delete_async_no_header_in_retry_initial.metadata = {"url": "/lro/deleteasync/noheader/202/204"}  # type: ignore
 
     @distributed_trace
-    def begin_delete_async_no_header_in_retry(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[None]
+    def begin_delete_async_no_header_in_retry(self, **kwargs: Any) -> LROPoller[None]:
         """Long running delete request, service returns an Azure-AsyncOperation header in the initial
         request. Subsequent calls to operation status do not contain Azure-AsyncOperation header.
 
@@ -5385,10 +4607,7 @@ class LROsOperations(object):
 
     begin_delete_async_no_header_in_retry.metadata = {"url": "/lro/deleteasync/noheader/202/204"}  # type: ignore
 
-    def _delete_async_retry_succeeded_initial(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def _delete_async_retry_succeeded_initial(self, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -5416,10 +4635,7 @@ class LROsOperations(object):
     _delete_async_retry_succeeded_initial.metadata = {"url": "/lro/deleteasync/retry/succeeded"}  # type: ignore
 
     @distributed_trace
-    def begin_delete_async_retry_succeeded(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[None]
+    def begin_delete_async_retry_succeeded(self, **kwargs: Any) -> LROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
@@ -5464,10 +4680,7 @@ class LROsOperations(object):
 
     begin_delete_async_retry_succeeded.metadata = {"url": "/lro/deleteasync/retry/succeeded"}  # type: ignore
 
-    def _delete_async_no_retry_succeeded_initial(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def _delete_async_no_retry_succeeded_initial(self, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -5495,10 +4708,7 @@ class LROsOperations(object):
     _delete_async_no_retry_succeeded_initial.metadata = {"url": "/lro/deleteasync/noretry/succeeded"}  # type: ignore
 
     @distributed_trace
-    def begin_delete_async_no_retry_succeeded(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[None]
+    def begin_delete_async_no_retry_succeeded(self, **kwargs: Any) -> LROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
@@ -5543,10 +4753,7 @@ class LROsOperations(object):
 
     begin_delete_async_no_retry_succeeded.metadata = {"url": "/lro/deleteasync/noretry/succeeded"}  # type: ignore
 
-    def _delete_async_retry_failed_initial(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def _delete_async_retry_failed_initial(self, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -5574,10 +4781,7 @@ class LROsOperations(object):
     _delete_async_retry_failed_initial.metadata = {"url": "/lro/deleteasync/retry/failed"}  # type: ignore
 
     @distributed_trace
-    def begin_delete_async_retry_failed(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[None]
+    def begin_delete_async_retry_failed(self, **kwargs: Any) -> LROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
@@ -5622,10 +4826,7 @@ class LROsOperations(object):
 
     begin_delete_async_retry_failed.metadata = {"url": "/lro/deleteasync/retry/failed"}  # type: ignore
 
-    def _delete_async_retrycanceled_initial(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def _delete_async_retrycanceled_initial(self, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -5653,10 +4854,7 @@ class LROsOperations(object):
     _delete_async_retrycanceled_initial.metadata = {"url": "/lro/deleteasync/retry/canceled"}  # type: ignore
 
     @distributed_trace
-    def begin_delete_async_retrycanceled(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[None]
+    def begin_delete_async_retrycanceled(self, **kwargs: Any) -> LROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
@@ -5701,10 +4899,7 @@ class LROsOperations(object):
 
     begin_delete_async_retrycanceled.metadata = {"url": "/lro/deleteasync/retry/canceled"}  # type: ignore
 
-    def _post200_with_payload_initial(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def _post200_with_payload_initial(self, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -5739,10 +4934,7 @@ class LROsOperations(object):
     _post200_with_payload_initial.metadata = {"url": "/lro/post/payload/200"}  # type: ignore
 
     @distributed_trace
-    def begin_post200_with_payload(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+    def begin_post200_with_payload(self, **kwargs: Any) -> LROPoller[JSONType]:
         """Long running post request, service returns a 202 to the initial request, with 'Location'
         header. Poll returns a 200 with a response body after success.
 
@@ -5802,12 +4994,7 @@ class LROsOperations(object):
 
     begin_post200_with_payload.metadata = {"url": "/lro/post/payload/200"}  # type: ignore
 
-    def _post202_retry200_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def _post202_retry200_initial(self, product: JSONType = None, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -5842,12 +5029,7 @@ class LROsOperations(object):
     _post202_retry200_initial.metadata = {"url": "/lro/post/202/retry/200"}  # type: ignore
 
     @distributed_trace
-    def begin_post202_retry200(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[None]
+    def begin_post202_retry200(self, product: JSONType = None, **kwargs: Any) -> LROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with 'Location' and
         'Retry-After' headers, Polls return a 200 with a response body after success.
 
@@ -5915,12 +5097,7 @@ class LROsOperations(object):
 
     begin_post202_retry200.metadata = {"url": "/lro/post/202/retry/200"}  # type: ignore
 
-    def _post202_no_retry204_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def _post202_no_retry204_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -5962,12 +5139,7 @@ class LROsOperations(object):
     _post202_no_retry204_initial.metadata = {"url": "/lro/post/202/noretry/204"}  # type: ignore
 
     @distributed_trace
-    def begin_post202_no_retry204(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+    def begin_post202_no_retry204(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
         """Long running post request, service returns a 202 to the initial request, with 'Location'
         header, 204 with noresponse body after success.
 
@@ -6060,10 +5232,7 @@ class LROsOperations(object):
 
     begin_post202_no_retry204.metadata = {"url": "/lro/post/202/noretry/204"}  # type: ignore
 
-    def _post_double_headers_final_location_get_initial(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def _post_double_headers_final_location_get_initial(self, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -6091,10 +5260,7 @@ class LROsOperations(object):
     _post_double_headers_final_location_get_initial.metadata = {"url": "/lro/LROPostDoubleHeadersFinalLocationGet"}  # type: ignore
 
     @distributed_trace
-    def begin_post_double_headers_final_location_get(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+    def begin_post_double_headers_final_location_get(self, **kwargs: Any) -> LROPoller[JSONType]:
         """Long running post request, service returns a 202 to the initial request with both Location and
         Azure-Async header. Poll Azure-Async and it's success. Should poll Location to get the final
         object.
@@ -6164,10 +5330,7 @@ class LROsOperations(object):
 
     begin_post_double_headers_final_location_get.metadata = {"url": "/lro/LROPostDoubleHeadersFinalLocationGet"}  # type: ignore
 
-    def _post_double_headers_final_azure_header_get_initial(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def _post_double_headers_final_azure_header_get_initial(self, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -6195,10 +5358,7 @@ class LROsOperations(object):
     _post_double_headers_final_azure_header_get_initial.metadata = {"url": "/lro/LROPostDoubleHeadersFinalAzureHeaderGet"}  # type: ignore
 
     @distributed_trace
-    def begin_post_double_headers_final_azure_header_get(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+    def begin_post_double_headers_final_azure_header_get(self, **kwargs: Any) -> LROPoller[JSONType]:
         """Long running post request, service returns a 202 to the initial request with both Location and
         Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the
         final object.
@@ -6268,10 +5428,7 @@ class LROsOperations(object):
 
     begin_post_double_headers_final_azure_header_get.metadata = {"url": "/lro/LROPostDoubleHeadersFinalAzureHeaderGet"}  # type: ignore
 
-    def _post_double_headers_final_azure_header_get_default_initial(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def _post_double_headers_final_azure_header_get_default_initial(self, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -6299,10 +5456,7 @@ class LROsOperations(object):
     _post_double_headers_final_azure_header_get_default_initial.metadata = {"url": "/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault"}  # type: ignore
 
     @distributed_trace
-    def begin_post_double_headers_final_azure_header_get_default(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+    def begin_post_double_headers_final_azure_header_get_default(self, **kwargs: Any) -> LROPoller[JSONType]:
         """Long running post request, service returns a 202 to the initial request with both Location and
         Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the
         final object if you support initial Autorest behavior.
@@ -6374,12 +5528,7 @@ class LROsOperations(object):
 
     begin_post_double_headers_final_azure_header_get_default.metadata = {"url": "/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault"}  # type: ignore
 
-    def _post_async_retry_succeeded_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> Optional[JSONType]
+    def _post_async_retry_succeeded_initial(self, product: JSONType = None, **kwargs: Any) -> Optional[JSONType]:
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -6427,12 +5576,7 @@ class LROsOperations(object):
     _post_async_retry_succeeded_initial.metadata = {"url": "/lro/postasync/retry/succeeded"}  # type: ignore
 
     @distributed_trace
-    def begin_post_async_retry_succeeded(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+    def begin_post_async_retry_succeeded(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
@@ -6522,12 +5666,7 @@ class LROsOperations(object):
 
     begin_post_async_retry_succeeded.metadata = {"url": "/lro/postasync/retry/succeeded"}  # type: ignore
 
-    def _post_async_no_retry_succeeded_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> Optional[JSONType]
+    def _post_async_no_retry_succeeded_initial(self, product: JSONType = None, **kwargs: Any) -> Optional[JSONType]:
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -6575,12 +5714,7 @@ class LROsOperations(object):
     _post_async_no_retry_succeeded_initial.metadata = {"url": "/lro/postasync/noretry/succeeded"}  # type: ignore
 
     @distributed_trace
-    def begin_post_async_no_retry_succeeded(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+    def begin_post_async_no_retry_succeeded(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
@@ -6670,12 +5804,7 @@ class LROsOperations(object):
 
     begin_post_async_no_retry_succeeded.metadata = {"url": "/lro/postasync/noretry/succeeded"}  # type: ignore
 
-    def _post_async_retry_failed_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def _post_async_retry_failed_initial(self, product: JSONType = None, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -6713,12 +5842,7 @@ class LROsOperations(object):
     _post_async_retry_failed_initial.metadata = {"url": "/lro/postasync/retry/failed"}  # type: ignore
 
     @distributed_trace
-    def begin_post_async_retry_failed(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[None]
+    def begin_post_async_retry_failed(self, product: JSONType = None, **kwargs: Any) -> LROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
@@ -6787,12 +5911,7 @@ class LROsOperations(object):
 
     begin_post_async_retry_failed.metadata = {"url": "/lro/postasync/retry/failed"}  # type: ignore
 
-    def _post_async_retrycanceled_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def _post_async_retrycanceled_initial(self, product: JSONType = None, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -6830,12 +5949,7 @@ class LROsOperations(object):
     _post_async_retrycanceled_initial.metadata = {"url": "/lro/postasync/retry/canceled"}  # type: ignore
 
     @distributed_trace
-    def begin_post_async_retrycanceled(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[None]
+    def begin_post_async_retrycanceled(self, product: JSONType = None, **kwargs: Any) -> LROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
@@ -6923,12 +6037,7 @@ class LRORetrysOperations(object):
         self._deserialize = deserializer
         self._config = config
 
-    def _put201_creating_succeeded200_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def _put201_creating_succeeded200_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -6973,12 +6082,7 @@ class LRORetrysOperations(object):
     _put201_creating_succeeded200_initial.metadata = {"url": "/lro/retryerror/put/201/creating/succeeded/200"}  # type: ignore
 
     @distributed_trace
-    def begin_put201_creating_succeeded200(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+    def begin_put201_creating_succeeded200(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
         """Long running put request, service returns a 500, then a 201 to the initial request, with an
         entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
         returns a ‘200’ with ProvisioningState=’Succeeded’.
@@ -7068,12 +6172,7 @@ class LRORetrysOperations(object):
 
     begin_put201_creating_succeeded200.metadata = {"url": "/lro/retryerror/put/201/creating/succeeded/200"}  # type: ignore
 
-    def _put_async_relative_retry_succeeded_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def _put_async_relative_retry_succeeded_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -7118,12 +6217,7 @@ class LRORetrysOperations(object):
     _put_async_relative_retry_succeeded_initial.metadata = {"url": "/lro/retryerror/putasync/retry/succeeded"}  # type: ignore
 
     @distributed_trace
-    def begin_put_async_relative_retry_succeeded(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+    def begin_put_async_relative_retry_succeeded(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
         """Long running put request, service returns a 500, then a 200 to the initial request, with an
         entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
         Azure-AsyncOperation header for operation status.
@@ -7220,10 +6314,7 @@ class LRORetrysOperations(object):
 
     begin_put_async_relative_retry_succeeded.metadata = {"url": "/lro/retryerror/putasync/retry/succeeded"}  # type: ignore
 
-    def _delete_provisioning202_accepted200_succeeded_initial(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def _delete_provisioning202_accepted200_succeeded_initial(self, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -7262,10 +6353,7 @@ class LRORetrysOperations(object):
     _delete_provisioning202_accepted200_succeeded_initial.metadata = {"url": "/lro/retryerror/delete/provisioning/202/accepted/200/succeeded"}  # type: ignore
 
     @distributed_trace
-    def begin_delete_provisioning202_accepted200_succeeded(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+    def begin_delete_provisioning202_accepted200_succeeded(self, **kwargs: Any) -> LROPoller[JSONType]:
         """Long running delete request, service returns a 500, then a  202 to the initial request, with an
         entity that contains ProvisioningState=’Accepted’.  Polls return this value until the last poll
         returns a ‘200’ with ProvisioningState=’Succeeded’.
@@ -7335,10 +6423,7 @@ class LRORetrysOperations(object):
 
     begin_delete_provisioning202_accepted200_succeeded.metadata = {"url": "/lro/retryerror/delete/provisioning/202/accepted/200/succeeded"}  # type: ignore
 
-    def _delete202_retry200_initial(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def _delete202_retry200_initial(self, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -7363,10 +6448,7 @@ class LRORetrysOperations(object):
     _delete202_retry200_initial.metadata = {"url": "/lro/retryerror/delete/202/retry/200"}  # type: ignore
 
     @distributed_trace
-    def begin_delete202_retry200(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[None]
+    def begin_delete202_retry200(self, **kwargs: Any) -> LROPoller[None]:
         """Long running delete request, service returns a 500, then a 202 to the initial request. Polls
         return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
@@ -7411,10 +6493,7 @@ class LRORetrysOperations(object):
 
     begin_delete202_retry200.metadata = {"url": "/lro/retryerror/delete/202/retry/200"}  # type: ignore
 
-    def _delete_async_relative_retry_succeeded_initial(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def _delete_async_relative_retry_succeeded_initial(self, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -7442,10 +6521,7 @@ class LRORetrysOperations(object):
     _delete_async_relative_retry_succeeded_initial.metadata = {"url": "/lro/retryerror/deleteasync/retry/succeeded"}  # type: ignore
 
     @distributed_trace
-    def begin_delete_async_relative_retry_succeeded(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[None]
+    def begin_delete_async_relative_retry_succeeded(self, **kwargs: Any) -> LROPoller[None]:
         """Long running delete request, service returns a 500, then a 202 to the initial request. Poll the
         endpoint indicated in the Azure-AsyncOperation header for operation status.
 
@@ -7490,12 +6566,7 @@ class LRORetrysOperations(object):
 
     begin_delete_async_relative_retry_succeeded.metadata = {"url": "/lro/retryerror/deleteasync/retry/succeeded"}  # type: ignore
 
-    def _post202_retry200_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def _post202_retry200_initial(self, product: JSONType = None, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -7530,12 +6601,7 @@ class LRORetrysOperations(object):
     _post202_retry200_initial.metadata = {"url": "/lro/retryerror/post/202/retry/200"}  # type: ignore
 
     @distributed_trace
-    def begin_post202_retry200(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[None]
+    def begin_post202_retry200(self, product: JSONType = None, **kwargs: Any) -> LROPoller[None]:
         """Long running post request, service returns a 500, then a 202 to the initial request, with
         'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
 
@@ -7603,12 +6669,7 @@ class LRORetrysOperations(object):
 
     begin_post202_retry200.metadata = {"url": "/lro/retryerror/post/202/retry/200"}  # type: ignore
 
-    def _post_async_relative_retry_succeeded_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def _post_async_relative_retry_succeeded_initial(self, product: JSONType = None, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -7646,12 +6707,7 @@ class LRORetrysOperations(object):
     _post_async_relative_retry_succeeded_initial.metadata = {"url": "/lro/retryerror/postasync/retry/succeeded"}  # type: ignore
 
     @distributed_trace
-    def begin_post_async_relative_retry_succeeded(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[None]
+    def begin_post_async_relative_retry_succeeded(self, product: JSONType = None, **kwargs: Any) -> LROPoller[None]:
         """Long running post request, service returns a 500, then a 202 to the initial request, with an
         entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
         Azure-AsyncOperation header for operation status.
@@ -7739,12 +6795,7 @@ class LROSADsOperations(object):
         self._deserialize = deserializer
         self._config = config
 
-    def _put_non_retry400_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def _put_non_retry400_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -7789,12 +6840,7 @@ class LROSADsOperations(object):
     _put_non_retry400_initial.metadata = {"url": "/lro/nonretryerror/put/400"}  # type: ignore
 
     @distributed_trace
-    def begin_put_non_retry400(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+    def begin_put_non_retry400(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
         """Long running put request, service returns a 400 to the initial request.
 
         :param product: Product to put.
@@ -7882,12 +6928,7 @@ class LROSADsOperations(object):
 
     begin_put_non_retry400.metadata = {"url": "/lro/nonretryerror/put/400"}  # type: ignore
 
-    def _put_non_retry201_creating400_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def _put_non_retry201_creating400_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -7932,12 +6973,7 @@ class LROSADsOperations(object):
     _put_non_retry201_creating400_initial.metadata = {"url": "/lro/nonretryerror/put/201/creating/400"}  # type: ignore
 
     @distributed_trace
-    def begin_put_non_retry201_creating400(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+    def begin_put_non_retry201_creating400(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
         """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
         201 response code.
 
@@ -8026,12 +7062,7 @@ class LROSADsOperations(object):
 
     begin_put_non_retry201_creating400.metadata = {"url": "/lro/nonretryerror/put/201/creating/400"}  # type: ignore
 
-    def _put_non_retry201_creating400_invalid_json_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def _put_non_retry201_creating400_invalid_json_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -8077,11 +7108,8 @@ class LROSADsOperations(object):
 
     @distributed_trace
     def begin_put_non_retry201_creating400_invalid_json(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+        self, product: JSONType = None, **kwargs: Any
+    ) -> LROPoller[JSONType]:
         """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
         201 response code.
 
@@ -8170,12 +7198,7 @@ class LROSADsOperations(object):
 
     begin_put_non_retry201_creating400_invalid_json.metadata = {"url": "/lro/nonretryerror/put/201/creating/400/invalidjson"}  # type: ignore
 
-    def _put_async_relative_retry400_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def _put_async_relative_retry400_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -8220,12 +7243,7 @@ class LROSADsOperations(object):
     _put_async_relative_retry400_initial.metadata = {"url": "/lro/nonretryerror/putasync/retry/400"}  # type: ignore
 
     @distributed_trace
-    def begin_put_async_relative_retry400(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+    def begin_put_async_relative_retry400(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
         """Long running put request, service returns a 200 with ProvisioningState=’Creating’. Poll the
         endpoint indicated in the Azure-AsyncOperation header for operation status.
 
@@ -8321,10 +7339,7 @@ class LROSADsOperations(object):
 
     begin_put_async_relative_retry400.metadata = {"url": "/lro/nonretryerror/putasync/retry/400"}  # type: ignore
 
-    def _delete_non_retry400_initial(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def _delete_non_retry400_initial(self, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -8349,10 +7364,7 @@ class LROSADsOperations(object):
     _delete_non_retry400_initial.metadata = {"url": "/lro/nonretryerror/delete/400"}  # type: ignore
 
     @distributed_trace
-    def begin_delete_non_retry400(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[None]
+    def begin_delete_non_retry400(self, **kwargs: Any) -> LROPoller[None]:
         """Long running delete request, service returns a 400 with an error body.
 
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -8396,10 +7408,7 @@ class LROSADsOperations(object):
 
     begin_delete_non_retry400.metadata = {"url": "/lro/nonretryerror/delete/400"}  # type: ignore
 
-    def _delete202_non_retry400_initial(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def _delete202_non_retry400_initial(self, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -8424,10 +7433,7 @@ class LROSADsOperations(object):
     _delete202_non_retry400_initial.metadata = {"url": "/lro/nonretryerror/delete/202/retry/400"}  # type: ignore
 
     @distributed_trace
-    def begin_delete202_non_retry400(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[None]
+    def begin_delete202_non_retry400(self, **kwargs: Any) -> LROPoller[None]:
         """Long running delete request, service returns a 202 with a location header.
 
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -8471,10 +7477,7 @@ class LROSADsOperations(object):
 
     begin_delete202_non_retry400.metadata = {"url": "/lro/nonretryerror/delete/202/retry/400"}  # type: ignore
 
-    def _delete_async_relative_retry400_initial(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def _delete_async_relative_retry400_initial(self, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -8502,10 +7505,7 @@ class LROSADsOperations(object):
     _delete_async_relative_retry400_initial.metadata = {"url": "/lro/nonretryerror/deleteasync/retry/400"}  # type: ignore
 
     @distributed_trace
-    def begin_delete_async_relative_retry400(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[None]
+    def begin_delete_async_relative_retry400(self, **kwargs: Any) -> LROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
@@ -8550,12 +7550,7 @@ class LROSADsOperations(object):
 
     begin_delete_async_relative_retry400.metadata = {"url": "/lro/nonretryerror/deleteasync/retry/400"}  # type: ignore
 
-    def _post_non_retry400_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def _post_non_retry400_initial(self, product: JSONType = None, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -8590,12 +7585,7 @@ class LROSADsOperations(object):
     _post_non_retry400_initial.metadata = {"url": "/lro/nonretryerror/post/400"}  # type: ignore
 
     @distributed_trace
-    def begin_post_non_retry400(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[None]
+    def begin_post_non_retry400(self, product: JSONType = None, **kwargs: Any) -> LROPoller[None]:
         """Long running post request, service returns a 400 with no error body.
 
         :param product: Product to put.
@@ -8662,12 +7652,7 @@ class LROSADsOperations(object):
 
     begin_post_non_retry400.metadata = {"url": "/lro/nonretryerror/post/400"}  # type: ignore
 
-    def _post202_non_retry400_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def _post202_non_retry400_initial(self, product: JSONType = None, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -8702,12 +7687,7 @@ class LROSADsOperations(object):
     _post202_non_retry400_initial.metadata = {"url": "/lro/nonretryerror/post/202/retry/400"}  # type: ignore
 
     @distributed_trace
-    def begin_post202_non_retry400(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[None]
+    def begin_post202_non_retry400(self, product: JSONType = None, **kwargs: Any) -> LROPoller[None]:
         """Long running post request, service returns a 202 with a location header.
 
         :param product: Product to put.
@@ -8774,12 +7754,7 @@ class LROSADsOperations(object):
 
     begin_post202_non_retry400.metadata = {"url": "/lro/nonretryerror/post/202/retry/400"}  # type: ignore
 
-    def _post_async_relative_retry400_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def _post_async_relative_retry400_initial(self, product: JSONType = None, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -8817,12 +7792,7 @@ class LROSADsOperations(object):
     _post_async_relative_retry400_initial.metadata = {"url": "/lro/nonretryerror/postasync/retry/400"}  # type: ignore
 
     @distributed_trace
-    def begin_post_async_relative_retry400(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[None]
+    def begin_post_async_relative_retry400(self, product: JSONType = None, **kwargs: Any) -> LROPoller[None]:
         """Long running post request, service returns a 202 to the initial request Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
@@ -8890,12 +7860,7 @@ class LROSADsOperations(object):
 
     begin_post_async_relative_retry400.metadata = {"url": "/lro/nonretryerror/postasync/retry/400"}  # type: ignore
 
-    def _put_error201_no_provisioning_state_payload_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def _put_error201_no_provisioning_state_payload_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -8941,11 +7906,8 @@ class LROSADsOperations(object):
 
     @distributed_trace
     def begin_put_error201_no_provisioning_state_payload(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+        self, product: JSONType = None, **kwargs: Any
+    ) -> LROPoller[JSONType]:
         """Long running put request, service returns a 201 to the initial request with no payload.
 
         :param product: Product to put.
@@ -9033,12 +7995,7 @@ class LROSADsOperations(object):
 
     begin_put_error201_no_provisioning_state_payload.metadata = {"url": "/lro/error/put/201/noprovisioningstatepayload"}  # type: ignore
 
-    def _put_async_relative_retry_no_status_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def _put_async_relative_retry_no_status_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -9083,12 +8040,7 @@ class LROSADsOperations(object):
     _put_async_relative_retry_no_status_initial.metadata = {"url": "/lro/error/putasync/retry/nostatus"}  # type: ignore
 
     @distributed_trace
-    def begin_put_async_relative_retry_no_status(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+    def begin_put_async_relative_retry_no_status(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
@@ -9185,12 +8137,7 @@ class LROSADsOperations(object):
 
     begin_put_async_relative_retry_no_status.metadata = {"url": "/lro/error/putasync/retry/nostatus"}  # type: ignore
 
-    def _put_async_relative_retry_no_status_payload_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def _put_async_relative_retry_no_status_payload_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -9236,11 +8183,8 @@ class LROSADsOperations(object):
 
     @distributed_trace
     def begin_put_async_relative_retry_no_status_payload(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+        self, product: JSONType = None, **kwargs: Any
+    ) -> LROPoller[JSONType]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
@@ -9337,10 +8281,7 @@ class LROSADsOperations(object):
 
     begin_put_async_relative_retry_no_status_payload.metadata = {"url": "/lro/error/putasync/retry/nostatuspayload"}  # type: ignore
 
-    def _delete204_succeeded_initial(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def _delete204_succeeded_initial(self, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -9361,10 +8302,7 @@ class LROSADsOperations(object):
     _delete204_succeeded_initial.metadata = {"url": "/lro/error/delete/204/nolocation"}  # type: ignore
 
     @distributed_trace
-    def begin_delete204_succeeded(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[None]
+    def begin_delete204_succeeded(self, **kwargs: Any) -> LROPoller[None]:
         """Long running delete request, service returns a 204 to the initial request, indicating success.
 
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -9408,10 +8346,7 @@ class LROSADsOperations(object):
 
     begin_delete204_succeeded.metadata = {"url": "/lro/error/delete/204/nolocation"}  # type: ignore
 
-    def _delete_async_relative_retry_no_status_initial(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def _delete_async_relative_retry_no_status_initial(self, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -9439,10 +8374,7 @@ class LROSADsOperations(object):
     _delete_async_relative_retry_no_status_initial.metadata = {"url": "/lro/error/deleteasync/retry/nostatus"}  # type: ignore
 
     @distributed_trace
-    def begin_delete_async_relative_retry_no_status(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[None]
+    def begin_delete_async_relative_retry_no_status(self, **kwargs: Any) -> LROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
@@ -9487,12 +8419,7 @@ class LROSADsOperations(object):
 
     begin_delete_async_relative_retry_no_status.metadata = {"url": "/lro/error/deleteasync/retry/nostatus"}  # type: ignore
 
-    def _post202_no_location_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def _post202_no_location_initial(self, product: JSONType = None, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -9527,12 +8454,7 @@ class LROSADsOperations(object):
     _post202_no_location_initial.metadata = {"url": "/lro/error/post/202/nolocation"}  # type: ignore
 
     @distributed_trace
-    def begin_post202_no_location(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[None]
+    def begin_post202_no_location(self, product: JSONType = None, **kwargs: Any) -> LROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, without a location
         header.
 
@@ -9600,12 +8522,7 @@ class LROSADsOperations(object):
 
     begin_post202_no_location.metadata = {"url": "/lro/error/post/202/nolocation"}  # type: ignore
 
-    def _post_async_relative_retry_no_payload_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def _post_async_relative_retry_no_payload_initial(self, product: JSONType = None, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -9643,12 +8560,7 @@ class LROSADsOperations(object):
     _post_async_relative_retry_no_payload_initial.metadata = {"url": "/lro/error/postasync/retry/nopayload"}  # type: ignore
 
     @distributed_trace
-    def begin_post_async_relative_retry_no_payload(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[None]
+    def begin_post_async_relative_retry_no_payload(self, product: JSONType = None, **kwargs: Any) -> LROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
@@ -9717,12 +8629,7 @@ class LROSADsOperations(object):
 
     begin_post_async_relative_retry_no_payload.metadata = {"url": "/lro/error/postasync/retry/nopayload"}  # type: ignore
 
-    def _put200_invalid_json_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> Optional[JSONType]
+    def _put200_invalid_json_initial(self, product: JSONType = None, **kwargs: Any) -> Optional[JSONType]:
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -9762,12 +8669,7 @@ class LROSADsOperations(object):
     _put200_invalid_json_initial.metadata = {"url": "/lro/error/put/200/invalidjson"}  # type: ignore
 
     @distributed_trace
-    def begin_put200_invalid_json(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+    def begin_put200_invalid_json(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
         """Long running put request, service returns a 200 to the initial request, with an entity that is
         not a valid json.
 
@@ -9856,12 +8758,7 @@ class LROSADsOperations(object):
 
     begin_put200_invalid_json.metadata = {"url": "/lro/error/put/200/invalidjson"}  # type: ignore
 
-    def _put_async_relative_retry_invalid_header_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def _put_async_relative_retry_invalid_header_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -9907,11 +8804,8 @@ class LROSADsOperations(object):
 
     @distributed_trace
     def begin_put_async_relative_retry_invalid_header(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+        self, product: JSONType = None, **kwargs: Any
+    ) -> LROPoller[JSONType]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
         header is invalid.
@@ -10009,11 +8903,8 @@ class LROSADsOperations(object):
     begin_put_async_relative_retry_invalid_header.metadata = {"url": "/lro/error/putasync/retry/invalidheader"}  # type: ignore
 
     def _put_async_relative_retry_invalid_json_polling_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+        self, product: JSONType = None, **kwargs: Any
+    ) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -10059,11 +8950,8 @@ class LROSADsOperations(object):
 
     @distributed_trace
     def begin_put_async_relative_retry_invalid_json_polling(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+        self, product: JSONType = None, **kwargs: Any
+    ) -> LROPoller[JSONType]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
@@ -10160,10 +9048,7 @@ class LROSADsOperations(object):
 
     begin_put_async_relative_retry_invalid_json_polling.metadata = {"url": "/lro/error/putasync/retry/invalidjsonpolling"}  # type: ignore
 
-    def _delete202_retry_invalid_header_initial(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def _delete202_retry_invalid_header_initial(self, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -10188,10 +9073,7 @@ class LROSADsOperations(object):
     _delete202_retry_invalid_header_initial.metadata = {"url": "/lro/error/delete/202/retry/invalidheader"}  # type: ignore
 
     @distributed_trace
-    def begin_delete202_retry_invalid_header(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[None]
+    def begin_delete202_retry_invalid_header(self, **kwargs: Any) -> LROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request receing a reponse
         with an invalid 'Location' and 'Retry-After' headers.
 
@@ -10236,10 +9118,7 @@ class LROSADsOperations(object):
 
     begin_delete202_retry_invalid_header.metadata = {"url": "/lro/error/delete/202/retry/invalidheader"}  # type: ignore
 
-    def _delete_async_relative_retry_invalid_header_initial(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def _delete_async_relative_retry_invalid_header_initial(self, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -10267,10 +9146,7 @@ class LROSADsOperations(object):
     _delete_async_relative_retry_invalid_header_initial.metadata = {"url": "/lro/error/deleteasync/retry/invalidheader"}  # type: ignore
 
     @distributed_trace
-    def begin_delete_async_relative_retry_invalid_header(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[None]
+    def begin_delete_async_relative_retry_invalid_header(self, **kwargs: Any) -> LROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. The endpoint
         indicated in the Azure-AsyncOperation header is invalid.
 
@@ -10315,10 +9191,7 @@ class LROSADsOperations(object):
 
     begin_delete_async_relative_retry_invalid_header.metadata = {"url": "/lro/error/deleteasync/retry/invalidheader"}  # type: ignore
 
-    def _delete_async_relative_retry_invalid_json_polling_initial(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def _delete_async_relative_retry_invalid_json_polling_initial(self, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -10346,10 +9219,7 @@ class LROSADsOperations(object):
     _delete_async_relative_retry_invalid_json_polling_initial.metadata = {"url": "/lro/error/deleteasync/retry/invalidjsonpolling"}  # type: ignore
 
     @distributed_trace
-    def begin_delete_async_relative_retry_invalid_json_polling(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[None]
+    def begin_delete_async_relative_retry_invalid_json_polling(self, **kwargs: Any) -> LROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
@@ -10394,12 +9264,7 @@ class LROSADsOperations(object):
 
     begin_delete_async_relative_retry_invalid_json_polling.metadata = {"url": "/lro/error/deleteasync/retry/invalidjsonpolling"}  # type: ignore
 
-    def _post202_retry_invalid_header_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def _post202_retry_invalid_header_initial(self, product: JSONType = None, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -10434,12 +9299,7 @@ class LROSADsOperations(object):
     _post202_retry_invalid_header_initial.metadata = {"url": "/lro/error/post/202/retry/invalidheader"}  # type: ignore
 
     @distributed_trace
-    def begin_post202_retry_invalid_header(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[None]
+    def begin_post202_retry_invalid_header(self, product: JSONType = None, **kwargs: Any) -> LROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with invalid
         'Location' and 'Retry-After' headers.
 
@@ -10507,12 +9367,7 @@ class LROSADsOperations(object):
 
     begin_post202_retry_invalid_header.metadata = {"url": "/lro/error/post/202/retry/invalidheader"}  # type: ignore
 
-    def _post_async_relative_retry_invalid_header_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def _post_async_relative_retry_invalid_header_initial(self, product: JSONType = None, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -10551,11 +9406,8 @@ class LROSADsOperations(object):
 
     @distributed_trace
     def begin_post_async_relative_retry_invalid_header(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[None]
+        self, product: JSONType = None, **kwargs: Any
+    ) -> LROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
         header is invalid.
@@ -10624,12 +9476,7 @@ class LROSADsOperations(object):
 
     begin_post_async_relative_retry_invalid_header.metadata = {"url": "/lro/error/postasync/retry/invalidheader"}  # type: ignore
 
-    def _post_async_relative_retry_invalid_json_polling_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def _post_async_relative_retry_invalid_json_polling_initial(self, product: JSONType = None, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -10668,11 +9515,8 @@ class LROSADsOperations(object):
 
     @distributed_trace
     def begin_post_async_relative_retry_invalid_json_polling(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[None]
+        self, product: JSONType = None, **kwargs: Any
+    ) -> LROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
@@ -10760,12 +9604,7 @@ class LROsCustomHeaderOperations(object):
         self._deserialize = deserializer
         self._config = config
 
-    def _put_async_retry_succeeded_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def _put_async_retry_succeeded_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -10810,12 +9649,7 @@ class LROsCustomHeaderOperations(object):
     _put_async_retry_succeeded_initial.metadata = {"url": "/lro/customheader/putasync/retry/succeeded"}  # type: ignore
 
     @distributed_trace
-    def begin_put_async_retry_succeeded(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+    def begin_put_async_retry_succeeded(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running put request, service returns a 200 to the initial request, with an
         entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
@@ -10913,12 +9747,7 @@ class LROsCustomHeaderOperations(object):
 
     begin_put_async_retry_succeeded.metadata = {"url": "/lro/customheader/putasync/retry/succeeded"}  # type: ignore
 
-    def _put201_creating_succeeded200_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def _put201_creating_succeeded200_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -10963,12 +9792,7 @@ class LROsCustomHeaderOperations(object):
     _put201_creating_succeeded200_initial.metadata = {"url": "/lro/customheader/put/201/creating/succeeded/200"}  # type: ignore
 
     @distributed_trace
-    def begin_put201_creating_succeeded200(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[JSONType]
+    def begin_put201_creating_succeeded200(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running put request, service returns a 201 to the initial request, with an
         entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
@@ -11059,12 +9883,7 @@ class LROsCustomHeaderOperations(object):
 
     begin_put201_creating_succeeded200.metadata = {"url": "/lro/customheader/put/201/creating/succeeded/200"}  # type: ignore
 
-    def _post202_retry200_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def _post202_retry200_initial(self, product: JSONType = None, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -11099,12 +9918,7 @@ class LROsCustomHeaderOperations(object):
     _post202_retry200_initial.metadata = {"url": "/lro/customheader/post/202/retry/200"}  # type: ignore
 
     @distributed_trace
-    def begin_post202_retry200(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[None]
+    def begin_post202_retry200(self, product: JSONType = None, **kwargs: Any) -> LROPoller[None]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running post request, service returns a 202 to the initial request, with
         'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
@@ -11173,12 +9987,7 @@ class LROsCustomHeaderOperations(object):
 
     begin_post202_retry200.metadata = {"url": "/lro/customheader/post/202/retry/200"}  # type: ignore
 
-    def _post_async_retry_succeeded_initial(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def _post_async_retry_succeeded_initial(self, product: JSONType = None, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -11216,12 +10025,7 @@ class LROsCustomHeaderOperations(object):
     _post_async_retry_succeeded_initial.metadata = {"url": "/lro/customheader/postasync/retry/succeeded"}  # type: ignore
 
     @distributed_trace
-    def begin_post_async_retry_succeeded(
-        self,
-        product=None,  # type: JSONType
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> LROPoller[None]
+    def begin_post_async_retry_succeeded(self, product: JSONType = None, **kwargs: Any) -> LROPoller[None]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running post request, service returns a 202 to the initial request, with an
         entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the

@@ -52,7 +52,7 @@ class TestMediaTypes(object):
             client.analyze_body(input=b"PDF", content_type="text/plain")
 
     def test_content_type_with_encoding(self, client):
-        result = client.content_type_with_encoding(input="hello", content_type='text/plain; encoding=UTF-8')
+        result = client.content_type_with_encoding(input="hello", content_type='text/plain; charset=UTF-8')
         assert result == "Nice job sending content type with encoding"
 
     def test_pdf_no_accept_header(self, client):

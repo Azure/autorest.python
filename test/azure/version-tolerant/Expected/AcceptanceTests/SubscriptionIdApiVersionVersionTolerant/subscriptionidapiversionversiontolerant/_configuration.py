@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import TYPE_CHECKING
+from typing import Any, TYPE_CHECKING
 
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
@@ -16,8 +16,6 @@ from ._version import VERSION
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any
-
     from azure.core.credentials import TokenCredential
 
 
@@ -35,13 +33,7 @@ class MicrosoftAzureTestUrlConfiguration(Configuration):
     :paramtype api_version: str
     """
 
-    def __init__(
-        self,
-        subscription_id,  # type: str
-        credential,  # type: "TokenCredential"
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def __init__(self, subscription_id: str, credential: "TokenCredential", **kwargs: Any) -> None:
         super(MicrosoftAzureTestUrlConfiguration, self).__init__(**kwargs)
         api_version = kwargs.pop("api_version", "2014-04-01-preview")  # type: str
 

@@ -7,8 +7,9 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import TYPE_CHECKING
+from typing import Any, Optional, TYPE_CHECKING
 
+from azure.core.rest import HttpRequest, HttpResponse
 from azure.mgmt.core import ARMPipelineClient
 from msrest import Deserializer, Serializer
 
@@ -17,13 +18,12 @@ from .operations import GroupOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, Optional
+    from typing import Dict
 
     from azure.core.credentials import TokenCredential
-    from azure.core.rest import HttpRequest, HttpResponse
 
 
-class MicrosoftAzureTestUrl(object):
+class MicrosoftAzureTestUrl:
     """Some cool documentation.
 
     :ivar group: GroupOperations operations
@@ -41,12 +41,12 @@ class MicrosoftAzureTestUrl(object):
 
     def __init__(
         self,
-        subscription_id,  # type: str
-        credential,  # type: "TokenCredential"
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
-        endpoint = kwargs.pop("endpoint", "http://localhost:3000")  # type: str
+        subscription_id: str,
+        credential: "TokenCredential",
+        *,
+        endpoint: str = "http://localhost:3000",
+        **kwargs: Any
+    ) -> None:
 
         self._config = MicrosoftAzureTestUrlConfiguration(
             subscription_id=subscription_id, credential=credential, **kwargs
@@ -61,9 +61,8 @@ class MicrosoftAzureTestUrl(object):
     def send_request(
         self,
         request,  # type: HttpRequest
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpResponse
+        **kwargs: Any
+    ) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

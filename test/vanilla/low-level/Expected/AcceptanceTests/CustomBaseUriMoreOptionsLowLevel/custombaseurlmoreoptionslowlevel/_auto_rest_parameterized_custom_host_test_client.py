@@ -7,21 +7,20 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import TYPE_CHECKING
+from typing import Any, TYPE_CHECKING
 
 from azure.core import PipelineClient
+from azure.core.rest import HttpRequest, HttpResponse
 from msrest import Deserializer, Serializer
 
 from ._configuration import AutoRestParameterizedCustomHostTestClientConfiguration
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict
-
-    from azure.core.rest import HttpRequest, HttpResponse
+    from typing import Dict
 
 
-class AutoRestParameterizedCustomHostTestClient(object):
+class AutoRestParameterizedCustomHostTestClient:
     """Test Infrastructure for AutoRest.
 
     :param subscription_id: The subscription id with value 'test12'.
@@ -31,13 +30,7 @@ class AutoRestParameterizedCustomHostTestClient(object):
     :type dns_suffix: str
     """
 
-    def __init__(
-        self,
-        subscription_id,  # type: str
-        dns_suffix="host",  # type: str
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def __init__(self, subscription_id: str, dns_suffix: str = "host", **kwargs: Any) -> None:
         _endpoint = "{vault}{secret}{dnsSuffix}"
         self._config = AutoRestParameterizedCustomHostTestClientConfiguration(
             subscription_id=subscription_id, dns_suffix=dns_suffix, **kwargs
@@ -51,9 +44,8 @@ class AutoRestParameterizedCustomHostTestClient(object):
     def send_request(
         self,
         request,  # type: HttpRequest
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> HttpResponse
+        **kwargs: Any
+    ) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `custombaseurlmoreoptionslowlevel.rest`.

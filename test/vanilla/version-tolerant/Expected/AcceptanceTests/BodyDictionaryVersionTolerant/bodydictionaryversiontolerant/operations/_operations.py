@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 import datetime
 import functools
-from typing import TYPE_CHECKING
+from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar
 import warnings
 
 from azure.core.exceptions import (
@@ -23,1378 +23,882 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from msrest import Serializer
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar
-
-    T = TypeVar("T")
-    JSONType = Any
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+T = TypeVar("T")
+JSONType = Any
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-# fmt: off
 
-def build_dictionary_get_null_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+
+def build_dictionary_get_null_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/null'
+    url = "/dictionary/null"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_dictionary_get_empty_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_empty_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/empty'
+    url = "/dictionary/empty"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_dictionary_put_empty_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_dictionary_put_empty_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/empty'
+    url = "/dictionary/empty"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_dictionary_get_null_value_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_null_value_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/nullvalue'
+    url = "/dictionary/nullvalue"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_dictionary_get_null_key_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_null_key_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/nullkey'
+    url = "/dictionary/nullkey"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_dictionary_get_empty_string_key_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_empty_string_key_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/keyemptystring'
+    url = "/dictionary/keyemptystring"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_dictionary_get_invalid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_invalid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/invalid'
+    url = "/dictionary/invalid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_dictionary_get_boolean_tfft_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_boolean_tfft_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/prim/boolean/tfft'
+    url = "/dictionary/prim/boolean/tfft"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
 def build_dictionary_put_boolean_tfft_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/prim/boolean/tfft'
+    url = "/dictionary/prim/boolean/tfft"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_dictionary_get_boolean_invalid_null_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_boolean_invalid_null_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/prim/boolean/true.null.false'
+    url = "/dictionary/prim/boolean/true.null.false"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_dictionary_get_boolean_invalid_string_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_boolean_invalid_string_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/prim/boolean/true.boolean.false'
+    url = "/dictionary/prim/boolean/true.boolean.false"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_dictionary_get_integer_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_integer_valid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/prim/integer/1.-1.3.300'
+    url = "/dictionary/prim/integer/1.-1.3.300"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
 def build_dictionary_put_integer_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/prim/integer/1.-1.3.300'
+    url = "/dictionary/prim/integer/1.-1.3.300"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_dictionary_get_int_invalid_null_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_int_invalid_null_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/prim/integer/1.null.zero'
+    url = "/dictionary/prim/integer/1.null.zero"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_dictionary_get_int_invalid_string_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_int_invalid_string_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/prim/integer/1.integer.0'
+    url = "/dictionary/prim/integer/1.integer.0"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_dictionary_get_long_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_long_valid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/prim/long/1.-1.3.300'
+    url = "/dictionary/prim/long/1.-1.3.300"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
 def build_dictionary_put_long_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/prim/long/1.-1.3.300'
+    url = "/dictionary/prim/long/1.-1.3.300"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_dictionary_get_long_invalid_null_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_long_invalid_null_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/prim/long/1.null.zero'
+    url = "/dictionary/prim/long/1.null.zero"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_dictionary_get_long_invalid_string_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_long_invalid_string_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/prim/long/1.integer.0'
+    url = "/dictionary/prim/long/1.integer.0"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_dictionary_get_float_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_float_valid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/prim/float/0--0.01-1.2e20'
+    url = "/dictionary/prim/float/0--0.01-1.2e20"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
 def build_dictionary_put_float_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/prim/float/0--0.01-1.2e20'
+    url = "/dictionary/prim/float/0--0.01-1.2e20"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_dictionary_get_float_invalid_null_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_float_invalid_null_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/prim/float/0.0-null-1.2e20'
+    url = "/dictionary/prim/float/0.0-null-1.2e20"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_dictionary_get_float_invalid_string_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_float_invalid_string_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/prim/float/1.number.0'
+    url = "/dictionary/prim/float/1.number.0"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_dictionary_get_double_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_double_valid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/prim/double/0--0.01-1.2e20'
+    url = "/dictionary/prim/double/0--0.01-1.2e20"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
 def build_dictionary_put_double_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/prim/double/0--0.01-1.2e20'
+    url = "/dictionary/prim/double/0--0.01-1.2e20"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_dictionary_get_double_invalid_null_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_double_invalid_null_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/prim/double/0.0-null-1.2e20'
+    url = "/dictionary/prim/double/0.0-null-1.2e20"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_dictionary_get_double_invalid_string_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_double_invalid_string_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/prim/double/1.number.0'
+    url = "/dictionary/prim/double/1.number.0"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_dictionary_get_string_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_string_valid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/prim/string/foo1.foo2.foo3'
+    url = "/dictionary/prim/string/foo1.foo2.foo3"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
 def build_dictionary_put_string_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/prim/string/foo1.foo2.foo3'
+    url = "/dictionary/prim/string/foo1.foo2.foo3"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_dictionary_get_string_with_null_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_string_with_null_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/prim/string/foo.null.foo2'
+    url = "/dictionary/prim/string/foo.null.foo2"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_dictionary_get_string_with_invalid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_string_with_invalid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/prim/string/foo.123.foo2'
+    url = "/dictionary/prim/string/foo.123.foo2"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_dictionary_get_date_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_date_valid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/prim/date/valid'
+    url = "/dictionary/prim/date/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
 def build_dictionary_put_date_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/prim/date/valid'
+    url = "/dictionary/prim/date/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_dictionary_get_date_invalid_null_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_date_invalid_null_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/prim/date/invalidnull'
+    url = "/dictionary/prim/date/invalidnull"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_dictionary_get_date_invalid_chars_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_date_invalid_chars_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/prim/date/invalidchars'
+    url = "/dictionary/prim/date/invalidchars"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_dictionary_get_date_time_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_date_time_valid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/prim/date-time/valid'
+    url = "/dictionary/prim/date-time/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
 def build_dictionary_put_date_time_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/prim/date-time/valid'
+    url = "/dictionary/prim/date-time/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_dictionary_get_date_time_invalid_null_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_date_time_invalid_null_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/prim/date-time/invalidnull'
+    url = "/dictionary/prim/date-time/invalidnull"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_dictionary_get_date_time_invalid_chars_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_date_time_invalid_chars_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/prim/date-time/invalidchars'
+    url = "/dictionary/prim/date-time/invalidchars"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_dictionary_get_date_time_rfc1123_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_date_time_rfc1123_valid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/prim/date-time-rfc1123/valid'
+    url = "/dictionary/prim/date-time-rfc1123/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
 def build_dictionary_put_date_time_rfc1123_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/prim/date-time-rfc1123/valid'
+    url = "/dictionary/prim/date-time-rfc1123/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_dictionary_get_duration_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_duration_valid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/prim/duration/valid'
+    url = "/dictionary/prim/duration/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
 def build_dictionary_put_duration_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/prim/duration/valid'
+    url = "/dictionary/prim/duration/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_dictionary_get_byte_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_byte_valid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/prim/byte/valid'
+    url = "/dictionary/prim/byte/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
 def build_dictionary_put_byte_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/prim/byte/valid'
+    url = "/dictionary/prim/byte/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_dictionary_get_byte_invalid_null_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_byte_invalid_null_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/prim/byte/invalidnull'
+    url = "/dictionary/prim/byte/invalidnull"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_dictionary_get_base64_url_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_base64_url_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/prim/base64url/valid'
+    url = "/dictionary/prim/base64url/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_dictionary_get_complex_null_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_complex_null_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/complex/null'
+    url = "/dictionary/complex/null"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_dictionary_get_complex_empty_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_complex_empty_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/complex/empty'
+    url = "/dictionary/complex/empty"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_dictionary_get_complex_item_null_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_complex_item_null_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/complex/itemnull'
+    url = "/dictionary/complex/itemnull"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_dictionary_get_complex_item_empty_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_complex_item_empty_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/complex/itemempty'
+    url = "/dictionary/complex/itemempty"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_dictionary_get_complex_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_complex_valid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/complex/valid'
+    url = "/dictionary/complex/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
 def build_dictionary_put_complex_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/complex/valid'
+    url = "/dictionary/complex/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_dictionary_get_array_null_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_array_null_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/array/null'
+    url = "/dictionary/array/null"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_dictionary_get_array_empty_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_array_empty_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/array/empty'
+    url = "/dictionary/array/empty"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_dictionary_get_array_item_null_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_array_item_null_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/array/itemnull'
+    url = "/dictionary/array/itemnull"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_dictionary_get_array_item_empty_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_array_item_empty_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/array/itemempty'
+    url = "/dictionary/array/itemempty"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_dictionary_get_array_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_array_valid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/array/valid'
+    url = "/dictionary/array/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
 def build_dictionary_put_array_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/array/valid'
+    url = "/dictionary/array/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_dictionary_get_dictionary_null_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_dictionary_null_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/dictionary/null'
+    url = "/dictionary/dictionary/null"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_dictionary_get_dictionary_empty_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_dictionary_empty_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/dictionary/empty'
+    url = "/dictionary/dictionary/empty"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_dictionary_get_dictionary_item_null_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_dictionary_item_null_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/dictionary/itemnull'
+    url = "/dictionary/dictionary/itemnull"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_dictionary_get_dictionary_item_empty_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_dictionary_item_empty_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/dictionary/itemempty'
+    url = "/dictionary/dictionary/itemempty"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_dictionary_get_dictionary_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_dictionary_get_dictionary_valid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/dictionary/valid'
+    url = "/dictionary/dictionary/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
 def build_dictionary_put_dictionary_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/dictionary/dictionary/valid'
+    url = "/dictionary/dictionary/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
-# fmt: on
+
 class DictionaryOperations(object):
     """DictionaryOperations operations.
 
@@ -1414,10 +918,7 @@ class DictionaryOperations(object):
         self._config = config
 
     @distributed_trace
-    def get_null(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, int]
+    def get_null(self, **kwargs: Any) -> Dict[str, int]:
         """Get null dictionary value.
 
         :return: dict mapping str to int
@@ -1459,10 +960,7 @@ class DictionaryOperations(object):
     get_null.metadata = {"url": "/dictionary/null"}  # type: ignore
 
     @distributed_trace
-    def get_empty(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, int]
+    def get_empty(self, **kwargs: Any) -> Dict[str, int]:
         """Get empty dictionary value {}.
 
         :return: dict mapping str to int
@@ -1504,12 +1002,7 @@ class DictionaryOperations(object):
     get_empty.metadata = {"url": "/dictionary/empty"}  # type: ignore
 
     @distributed_trace
-    def put_empty(
-        self,
-        array_body,  # type: Dict[str, str]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_empty(self, array_body: Dict[str, str], **kwargs: Any) -> None:
         """Set dictionary value empty {}.
 
         :param array_body:
@@ -1553,10 +1046,7 @@ class DictionaryOperations(object):
     put_empty.metadata = {"url": "/dictionary/empty"}  # type: ignore
 
     @distributed_trace
-    def get_null_value(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, str]
+    def get_null_value(self, **kwargs: Any) -> Dict[str, str]:
         """Get Dictionary with null value.
 
         :return: dict mapping str to str
@@ -1598,10 +1088,7 @@ class DictionaryOperations(object):
     get_null_value.metadata = {"url": "/dictionary/nullvalue"}  # type: ignore
 
     @distributed_trace
-    def get_null_key(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, str]
+    def get_null_key(self, **kwargs: Any) -> Dict[str, str]:
         """Get Dictionary with null key.
 
         :return: dict mapping str to str
@@ -1643,10 +1130,7 @@ class DictionaryOperations(object):
     get_null_key.metadata = {"url": "/dictionary/nullkey"}  # type: ignore
 
     @distributed_trace
-    def get_empty_string_key(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, str]
+    def get_empty_string_key(self, **kwargs: Any) -> Dict[str, str]:
         """Get Dictionary with key as empty string.
 
         :return: dict mapping str to str
@@ -1688,10 +1172,7 @@ class DictionaryOperations(object):
     get_empty_string_key.metadata = {"url": "/dictionary/keyemptystring"}  # type: ignore
 
     @distributed_trace
-    def get_invalid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, str]
+    def get_invalid(self, **kwargs: Any) -> Dict[str, str]:
         """Get invalid Dictionary value.
 
         :return: dict mapping str to str
@@ -1733,10 +1214,7 @@ class DictionaryOperations(object):
     get_invalid.metadata = {"url": "/dictionary/invalid"}  # type: ignore
 
     @distributed_trace
-    def get_boolean_tfft(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, bool]
+    def get_boolean_tfft(self, **kwargs: Any) -> Dict[str, bool]:
         """Get boolean dictionary value {"0": true, "1": false, "2": false, "3": true }.
 
         :return: dict mapping str to bool
@@ -1778,12 +1256,7 @@ class DictionaryOperations(object):
     get_boolean_tfft.metadata = {"url": "/dictionary/prim/boolean/tfft"}  # type: ignore
 
     @distributed_trace
-    def put_boolean_tfft(
-        self,
-        array_body,  # type: Dict[str, bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_boolean_tfft(self, array_body: Dict[str, bool], **kwargs: Any) -> None:
         """Set dictionary value empty {"0": true, "1": false, "2": false, "3": true }.
 
         :param array_body:
@@ -1827,10 +1300,7 @@ class DictionaryOperations(object):
     put_boolean_tfft.metadata = {"url": "/dictionary/prim/boolean/tfft"}  # type: ignore
 
     @distributed_trace
-    def get_boolean_invalid_null(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, bool]
+    def get_boolean_invalid_null(self, **kwargs: Any) -> Dict[str, bool]:
         """Get boolean dictionary value {"0": true, "1": null, "2": false }.
 
         :return: dict mapping str to bool
@@ -1872,10 +1342,7 @@ class DictionaryOperations(object):
     get_boolean_invalid_null.metadata = {"url": "/dictionary/prim/boolean/true.null.false"}  # type: ignore
 
     @distributed_trace
-    def get_boolean_invalid_string(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, bool]
+    def get_boolean_invalid_string(self, **kwargs: Any) -> Dict[str, bool]:
         """Get boolean dictionary value '{"0": true, "1": "boolean", "2": false}'.
 
         :return: dict mapping str to bool
@@ -1917,10 +1384,7 @@ class DictionaryOperations(object):
     get_boolean_invalid_string.metadata = {"url": "/dictionary/prim/boolean/true.boolean.false"}  # type: ignore
 
     @distributed_trace
-    def get_integer_valid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, int]
+    def get_integer_valid(self, **kwargs: Any) -> Dict[str, int]:
         """Get integer dictionary value {"0": 1, "1": -1, "2": 3, "3": 300}.
 
         :return: dict mapping str to int
@@ -1962,12 +1426,7 @@ class DictionaryOperations(object):
     get_integer_valid.metadata = {"url": "/dictionary/prim/integer/1.-1.3.300"}  # type: ignore
 
     @distributed_trace
-    def put_integer_valid(
-        self,
-        array_body,  # type: Dict[str, int]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_integer_valid(self, array_body: Dict[str, int], **kwargs: Any) -> None:
         """Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}.
 
         :param array_body:
@@ -2011,10 +1470,7 @@ class DictionaryOperations(object):
     put_integer_valid.metadata = {"url": "/dictionary/prim/integer/1.-1.3.300"}  # type: ignore
 
     @distributed_trace
-    def get_int_invalid_null(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, int]
+    def get_int_invalid_null(self, **kwargs: Any) -> Dict[str, int]:
         """Get integer dictionary value {"0": 1, "1": null, "2": 0}.
 
         :return: dict mapping str to int
@@ -2056,10 +1512,7 @@ class DictionaryOperations(object):
     get_int_invalid_null.metadata = {"url": "/dictionary/prim/integer/1.null.zero"}  # type: ignore
 
     @distributed_trace
-    def get_int_invalid_string(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, int]
+    def get_int_invalid_string(self, **kwargs: Any) -> Dict[str, int]:
         """Get integer dictionary value {"0": 1, "1": "integer", "2": 0}.
 
         :return: dict mapping str to int
@@ -2101,10 +1554,7 @@ class DictionaryOperations(object):
     get_int_invalid_string.metadata = {"url": "/dictionary/prim/integer/1.integer.0"}  # type: ignore
 
     @distributed_trace
-    def get_long_valid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, int]
+    def get_long_valid(self, **kwargs: Any) -> Dict[str, int]:
         """Get integer dictionary value {"0": 1, "1": -1, "2": 3, "3": 300}.
 
         :return: dict mapping str to long
@@ -2146,12 +1596,7 @@ class DictionaryOperations(object):
     get_long_valid.metadata = {"url": "/dictionary/prim/long/1.-1.3.300"}  # type: ignore
 
     @distributed_trace
-    def put_long_valid(
-        self,
-        array_body,  # type: Dict[str, int]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_long_valid(self, array_body: Dict[str, int], **kwargs: Any) -> None:
         """Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}.
 
         :param array_body:
@@ -2195,10 +1640,7 @@ class DictionaryOperations(object):
     put_long_valid.metadata = {"url": "/dictionary/prim/long/1.-1.3.300"}  # type: ignore
 
     @distributed_trace
-    def get_long_invalid_null(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, int]
+    def get_long_invalid_null(self, **kwargs: Any) -> Dict[str, int]:
         """Get long dictionary value {"0": 1, "1": null, "2": 0}.
 
         :return: dict mapping str to long
@@ -2240,10 +1682,7 @@ class DictionaryOperations(object):
     get_long_invalid_null.metadata = {"url": "/dictionary/prim/long/1.null.zero"}  # type: ignore
 
     @distributed_trace
-    def get_long_invalid_string(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, int]
+    def get_long_invalid_string(self, **kwargs: Any) -> Dict[str, int]:
         """Get long dictionary value {"0": 1, "1": "integer", "2": 0}.
 
         :return: dict mapping str to long
@@ -2285,10 +1724,7 @@ class DictionaryOperations(object):
     get_long_invalid_string.metadata = {"url": "/dictionary/prim/long/1.integer.0"}  # type: ignore
 
     @distributed_trace
-    def get_float_valid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, float]
+    def get_float_valid(self, **kwargs: Any) -> Dict[str, float]:
         """Get float dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
 
         :return: dict mapping str to float
@@ -2330,12 +1766,7 @@ class DictionaryOperations(object):
     get_float_valid.metadata = {"url": "/dictionary/prim/float/0--0.01-1.2e20"}  # type: ignore
 
     @distributed_trace
-    def put_float_valid(
-        self,
-        array_body,  # type: Dict[str, float]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_float_valid(self, array_body: Dict[str, float], **kwargs: Any) -> None:
         """Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
 
         :param array_body:
@@ -2379,10 +1810,7 @@ class DictionaryOperations(object):
     put_float_valid.metadata = {"url": "/dictionary/prim/float/0--0.01-1.2e20"}  # type: ignore
 
     @distributed_trace
-    def get_float_invalid_null(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, float]
+    def get_float_invalid_null(self, **kwargs: Any) -> Dict[str, float]:
         """Get float dictionary value {"0": 0.0, "1": null, "2": 1.2e20}.
 
         :return: dict mapping str to float
@@ -2424,10 +1852,7 @@ class DictionaryOperations(object):
     get_float_invalid_null.metadata = {"url": "/dictionary/prim/float/0.0-null-1.2e20"}  # type: ignore
 
     @distributed_trace
-    def get_float_invalid_string(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, float]
+    def get_float_invalid_string(self, **kwargs: Any) -> Dict[str, float]:
         """Get boolean dictionary value {"0": 1.0, "1": "number", "2": 0.0}.
 
         :return: dict mapping str to float
@@ -2469,10 +1894,7 @@ class DictionaryOperations(object):
     get_float_invalid_string.metadata = {"url": "/dictionary/prim/float/1.number.0"}  # type: ignore
 
     @distributed_trace
-    def get_double_valid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, float]
+    def get_double_valid(self, **kwargs: Any) -> Dict[str, float]:
         """Get float dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
 
         :return: dict mapping str to float
@@ -2514,12 +1936,7 @@ class DictionaryOperations(object):
     get_double_valid.metadata = {"url": "/dictionary/prim/double/0--0.01-1.2e20"}  # type: ignore
 
     @distributed_trace
-    def put_double_valid(
-        self,
-        array_body,  # type: Dict[str, float]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_double_valid(self, array_body: Dict[str, float], **kwargs: Any) -> None:
         """Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
 
         :param array_body:
@@ -2563,10 +1980,7 @@ class DictionaryOperations(object):
     put_double_valid.metadata = {"url": "/dictionary/prim/double/0--0.01-1.2e20"}  # type: ignore
 
     @distributed_trace
-    def get_double_invalid_null(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, float]
+    def get_double_invalid_null(self, **kwargs: Any) -> Dict[str, float]:
         """Get float dictionary value {"0": 0.0, "1": null, "2": 1.2e20}.
 
         :return: dict mapping str to float
@@ -2608,10 +2022,7 @@ class DictionaryOperations(object):
     get_double_invalid_null.metadata = {"url": "/dictionary/prim/double/0.0-null-1.2e20"}  # type: ignore
 
     @distributed_trace
-    def get_double_invalid_string(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, float]
+    def get_double_invalid_string(self, **kwargs: Any) -> Dict[str, float]:
         """Get boolean dictionary value {"0": 1.0, "1": "number", "2": 0.0}.
 
         :return: dict mapping str to float
@@ -2653,10 +2064,7 @@ class DictionaryOperations(object):
     get_double_invalid_string.metadata = {"url": "/dictionary/prim/double/1.number.0"}  # type: ignore
 
     @distributed_trace
-    def get_string_valid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, str]
+    def get_string_valid(self, **kwargs: Any) -> Dict[str, str]:
         """Get string dictionary value {"0": "foo1", "1": "foo2", "2": "foo3"}.
 
         :return: dict mapping str to str
@@ -2698,12 +2106,7 @@ class DictionaryOperations(object):
     get_string_valid.metadata = {"url": "/dictionary/prim/string/foo1.foo2.foo3"}  # type: ignore
 
     @distributed_trace
-    def put_string_valid(
-        self,
-        array_body,  # type: Dict[str, str]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_string_valid(self, array_body: Dict[str, str], **kwargs: Any) -> None:
         """Set dictionary value {"0": "foo1", "1": "foo2", "2": "foo3"}.
 
         :param array_body:
@@ -2747,10 +2150,7 @@ class DictionaryOperations(object):
     put_string_valid.metadata = {"url": "/dictionary/prim/string/foo1.foo2.foo3"}  # type: ignore
 
     @distributed_trace
-    def get_string_with_null(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, str]
+    def get_string_with_null(self, **kwargs: Any) -> Dict[str, str]:
         """Get string dictionary value {"0": "foo", "1": null, "2": "foo2"}.
 
         :return: dict mapping str to str
@@ -2792,10 +2192,7 @@ class DictionaryOperations(object):
     get_string_with_null.metadata = {"url": "/dictionary/prim/string/foo.null.foo2"}  # type: ignore
 
     @distributed_trace
-    def get_string_with_invalid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, str]
+    def get_string_with_invalid(self, **kwargs: Any) -> Dict[str, str]:
         """Get string dictionary value {"0": "foo", "1": 123, "2": "foo2"}.
 
         :return: dict mapping str to str
@@ -2837,10 +2234,7 @@ class DictionaryOperations(object):
     get_string_with_invalid.metadata = {"url": "/dictionary/prim/string/foo.123.foo2"}  # type: ignore
 
     @distributed_trace
-    def get_date_valid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, datetime.date]
+    def get_date_valid(self, **kwargs: Any) -> Dict[str, datetime.date]:
         """Get integer dictionary value {"0": "2000-12-01", "1": "1980-01-02", "2": "1492-10-12"}.
 
         :return: dict mapping str to date
@@ -2882,12 +2276,7 @@ class DictionaryOperations(object):
     get_date_valid.metadata = {"url": "/dictionary/prim/date/valid"}  # type: ignore
 
     @distributed_trace
-    def put_date_valid(
-        self,
-        array_body,  # type: Dict[str, datetime.date]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_date_valid(self, array_body: Dict[str, datetime.date], **kwargs: Any) -> None:
         """Set dictionary value  {"0": "2000-12-01", "1": "1980-01-02", "2": "1492-10-12"}.
 
         :param array_body:
@@ -2931,10 +2320,7 @@ class DictionaryOperations(object):
     put_date_valid.metadata = {"url": "/dictionary/prim/date/valid"}  # type: ignore
 
     @distributed_trace
-    def get_date_invalid_null(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, datetime.date]
+    def get_date_invalid_null(self, **kwargs: Any) -> Dict[str, datetime.date]:
         """Get date dictionary value {"0": "2012-01-01", "1": null, "2": "1776-07-04"}.
 
         :return: dict mapping str to date
@@ -2976,10 +2362,7 @@ class DictionaryOperations(object):
     get_date_invalid_null.metadata = {"url": "/dictionary/prim/date/invalidnull"}  # type: ignore
 
     @distributed_trace
-    def get_date_invalid_chars(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, datetime.date]
+    def get_date_invalid_chars(self, **kwargs: Any) -> Dict[str, datetime.date]:
         """Get date dictionary value {"0": "2011-03-22", "1": "date"}.
 
         :return: dict mapping str to date
@@ -3021,10 +2404,7 @@ class DictionaryOperations(object):
     get_date_invalid_chars.metadata = {"url": "/dictionary/prim/date/invalidchars"}  # type: ignore
 
     @distributed_trace
-    def get_date_time_valid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, datetime.datetime]
+    def get_date_time_valid(self, **kwargs: Any) -> Dict[str, datetime.datetime]:
         """Get date-time dictionary value {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00",
         "2": "1492-10-12T10:15:01-08:00"}.
 
@@ -3067,12 +2447,7 @@ class DictionaryOperations(object):
     get_date_time_valid.metadata = {"url": "/dictionary/prim/date-time/valid"}  # type: ignore
 
     @distributed_trace
-    def put_date_time_valid(
-        self,
-        array_body,  # type: Dict[str, datetime.datetime]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_date_time_valid(self, array_body: Dict[str, datetime.datetime], **kwargs: Any) -> None:
         """Set dictionary value  {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00", "2":
         "1492-10-12T10:15:01-08:00"}.
 
@@ -3117,10 +2492,7 @@ class DictionaryOperations(object):
     put_date_time_valid.metadata = {"url": "/dictionary/prim/date-time/valid"}  # type: ignore
 
     @distributed_trace
-    def get_date_time_invalid_null(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, datetime.datetime]
+    def get_date_time_invalid_null(self, **kwargs: Any) -> Dict[str, datetime.datetime]:
         """Get date dictionary value {"0": "2000-12-01t00:00:01z", "1": null}.
 
         :return: dict mapping str to datetime
@@ -3162,10 +2534,7 @@ class DictionaryOperations(object):
     get_date_time_invalid_null.metadata = {"url": "/dictionary/prim/date-time/invalidnull"}  # type: ignore
 
     @distributed_trace
-    def get_date_time_invalid_chars(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, datetime.datetime]
+    def get_date_time_invalid_chars(self, **kwargs: Any) -> Dict[str, datetime.datetime]:
         """Get date dictionary value {"0": "2000-12-01t00:00:01z", "1": "date-time"}.
 
         :return: dict mapping str to datetime
@@ -3207,10 +2576,7 @@ class DictionaryOperations(object):
     get_date_time_invalid_chars.metadata = {"url": "/dictionary/prim/date-time/invalidchars"}  # type: ignore
 
     @distributed_trace
-    def get_date_time_rfc1123_valid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, datetime.datetime]
+    def get_date_time_rfc1123_valid(self, **kwargs: Any) -> Dict[str, datetime.datetime]:
         """Get date-time-rfc1123 dictionary value {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan
         1980 00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}.
 
@@ -3253,12 +2619,7 @@ class DictionaryOperations(object):
     get_date_time_rfc1123_valid.metadata = {"url": "/dictionary/prim/date-time-rfc1123/valid"}  # type: ignore
 
     @distributed_trace
-    def put_date_time_rfc1123_valid(
-        self,
-        array_body,  # type: Dict[str, datetime.datetime]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_date_time_rfc1123_valid(self, array_body: Dict[str, datetime.datetime], **kwargs: Any) -> None:
         """Set dictionary value empty {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan 1980
         00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}.
 
@@ -3303,10 +2664,7 @@ class DictionaryOperations(object):
     put_date_time_rfc1123_valid.metadata = {"url": "/dictionary/prim/date-time-rfc1123/valid"}  # type: ignore
 
     @distributed_trace
-    def get_duration_valid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, datetime.timedelta]
+    def get_duration_valid(self, **kwargs: Any) -> Dict[str, datetime.timedelta]:
         """Get duration dictionary value {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}.
 
         :return: dict mapping str to timedelta
@@ -3348,12 +2706,7 @@ class DictionaryOperations(object):
     get_duration_valid.metadata = {"url": "/dictionary/prim/duration/valid"}  # type: ignore
 
     @distributed_trace
-    def put_duration_valid(
-        self,
-        array_body,  # type: Dict[str, datetime.timedelta]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_duration_valid(self, array_body: Dict[str, datetime.timedelta], **kwargs: Any) -> None:
         """Set dictionary value  {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}.
 
         :param array_body:
@@ -3397,10 +2750,7 @@ class DictionaryOperations(object):
     put_duration_valid.metadata = {"url": "/dictionary/prim/duration/valid"}  # type: ignore
 
     @distributed_trace
-    def get_byte_valid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, bytearray]
+    def get_byte_valid(self, **kwargs: Any) -> Dict[str, bytearray]:
         """Get byte dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)}
         with each item encoded in base64.
 
@@ -3443,12 +2793,7 @@ class DictionaryOperations(object):
     get_byte_valid.metadata = {"url": "/dictionary/prim/byte/valid"}  # type: ignore
 
     @distributed_trace
-    def put_byte_valid(
-        self,
-        array_body,  # type: Dict[str, bytearray]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_byte_valid(self, array_body: Dict[str, bytearray], **kwargs: Any) -> None:
         """Put the dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)}
         with each elementencoded in base 64.
 
@@ -3493,10 +2838,7 @@ class DictionaryOperations(object):
     put_byte_valid.metadata = {"url": "/dictionary/prim/byte/valid"}  # type: ignore
 
     @distributed_trace
-    def get_byte_invalid_null(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, bytearray]
+    def get_byte_invalid_null(self, **kwargs: Any) -> Dict[str, bytearray]:
         """Get byte dictionary value {"0": hex(FF FF FF FA), "1": null} with the first item base64
         encoded.
 
@@ -3539,10 +2881,7 @@ class DictionaryOperations(object):
     get_byte_invalid_null.metadata = {"url": "/dictionary/prim/byte/invalidnull"}  # type: ignore
 
     @distributed_trace
-    def get_base64_url(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, bytes]
+    def get_base64_url(self, **kwargs: Any) -> Dict[str, bytes]:
         """Get base64url dictionary value {"0": "a string that gets encoded with base64url", "1": "test
         string", "2": "Lorem ipsum"}.
 
@@ -3585,10 +2924,7 @@ class DictionaryOperations(object):
     get_base64_url.metadata = {"url": "/dictionary/prim/base64url/valid"}  # type: ignore
 
     @distributed_trace
-    def get_complex_null(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Optional[Dict[str, JSONType]]
+    def get_complex_null(self, **kwargs: Any) -> Optional[Dict[str, JSONType]]:
         """Get dictionary of complex type null value.
 
         :return: dict mapping str to JSON object or None
@@ -3633,10 +2969,7 @@ class DictionaryOperations(object):
     get_complex_null.metadata = {"url": "/dictionary/complex/null"}  # type: ignore
 
     @distributed_trace
-    def get_complex_empty(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, JSONType]
+    def get_complex_empty(self, **kwargs: Any) -> Dict[str, JSONType]:
         """Get empty dictionary of complex type {}.
 
         :return: dict mapping str to JSON object
@@ -3681,10 +3014,7 @@ class DictionaryOperations(object):
     get_complex_empty.metadata = {"url": "/dictionary/complex/empty"}  # type: ignore
 
     @distributed_trace
-    def get_complex_item_null(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, JSONType]
+    def get_complex_item_null(self, **kwargs: Any) -> Dict[str, JSONType]:
         """Get dictionary of complex type with null item {"0": {"integer": 1, "string": "2"}, "1": null,
         "2": {"integer": 5, "string": "6"}}.
 
@@ -3730,10 +3060,7 @@ class DictionaryOperations(object):
     get_complex_item_null.metadata = {"url": "/dictionary/complex/itemnull"}  # type: ignore
 
     @distributed_trace
-    def get_complex_item_empty(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, JSONType]
+    def get_complex_item_empty(self, **kwargs: Any) -> Dict[str, JSONType]:
         """Get dictionary of complex type with empty item {"0": {"integer": 1, "string": "2"}, "1:" {},
         "2": {"integer": 5, "string": "6"}}.
 
@@ -3779,10 +3106,7 @@ class DictionaryOperations(object):
     get_complex_item_empty.metadata = {"url": "/dictionary/complex/itemempty"}  # type: ignore
 
     @distributed_trace
-    def get_complex_valid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, JSONType]
+    def get_complex_valid(self, **kwargs: Any) -> Dict[str, JSONType]:
         """Get dictionary of complex type with {"0": {"integer": 1, "string": "2"}, "1": {"integer": 3,
         "string": "4"}, "2": {"integer": 5, "string": "6"}}.
 
@@ -3828,12 +3152,7 @@ class DictionaryOperations(object):
     get_complex_valid.metadata = {"url": "/dictionary/complex/valid"}  # type: ignore
 
     @distributed_trace
-    def put_complex_valid(
-        self,
-        array_body,  # type: Dict[str, JSONType]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_complex_valid(self, array_body: Dict[str, JSONType], **kwargs: Any) -> None:
         """Put an dictionary of complex type with values {"0": {"integer": 1, "string": "2"}, "1":
         {"integer": 3, "string": "4"}, "2": {"integer": 5, "string": "6"}}.
 
@@ -3881,10 +3200,7 @@ class DictionaryOperations(object):
     put_complex_valid.metadata = {"url": "/dictionary/complex/valid"}  # type: ignore
 
     @distributed_trace
-    def get_array_null(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Optional[Dict[str, List[str]]]
+    def get_array_null(self, **kwargs: Any) -> Optional[Dict[str, List[str]]]:
         """Get a null array.
 
         :return: dict mapping str to list of str or None
@@ -3928,10 +3244,7 @@ class DictionaryOperations(object):
     get_array_null.metadata = {"url": "/dictionary/array/null"}  # type: ignore
 
     @distributed_trace
-    def get_array_empty(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, List[str]]
+    def get_array_empty(self, **kwargs: Any) -> Dict[str, List[str]]:
         """Get an empty dictionary {}.
 
         :return: dict mapping str to list of str
@@ -3975,10 +3288,7 @@ class DictionaryOperations(object):
     get_array_empty.metadata = {"url": "/dictionary/array/empty"}  # type: ignore
 
     @distributed_trace
-    def get_array_item_null(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, List[str]]
+    def get_array_item_null(self, **kwargs: Any) -> Dict[str, List[str]]:
         """Get an dictionary of array of strings {"0": ["1", "2", "3"], "1": null, "2": ["7", "8", "9"]}.
 
         :return: dict mapping str to list of str
@@ -4022,10 +3332,7 @@ class DictionaryOperations(object):
     get_array_item_null.metadata = {"url": "/dictionary/array/itemnull"}  # type: ignore
 
     @distributed_trace
-    def get_array_item_empty(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, List[str]]
+    def get_array_item_empty(self, **kwargs: Any) -> Dict[str, List[str]]:
         """Get an array of array of strings [{"0": ["1", "2", "3"], "1": [], "2": ["7", "8", "9"]}.
 
         :return: dict mapping str to list of str
@@ -4069,10 +3376,7 @@ class DictionaryOperations(object):
     get_array_item_empty.metadata = {"url": "/dictionary/array/itemempty"}  # type: ignore
 
     @distributed_trace
-    def get_array_valid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, List[str]]
+    def get_array_valid(self, **kwargs: Any) -> Dict[str, List[str]]:
         """Get an array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8",
         "9"]}.
 
@@ -4117,12 +3421,7 @@ class DictionaryOperations(object):
     get_array_valid.metadata = {"url": "/dictionary/array/valid"}  # type: ignore
 
     @distributed_trace
-    def put_array_valid(
-        self,
-        array_body,  # type: Dict[str, List[str]]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_array_valid(self, array_body: Dict[str, List[str]], **kwargs: Any) -> None:
         """Put An array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8",
         "9"]}.
 
@@ -4169,10 +3468,7 @@ class DictionaryOperations(object):
     put_array_valid.metadata = {"url": "/dictionary/array/valid"}  # type: ignore
 
     @distributed_trace
-    def get_dictionary_null(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, Dict[str, str]]
+    def get_dictionary_null(self, **kwargs: Any) -> Dict[str, Dict[str, str]]:
         """Get an dictionaries of dictionaries with value null.
 
         :return: dict mapping str to dict mapping str to str
@@ -4216,10 +3512,7 @@ class DictionaryOperations(object):
     get_dictionary_null.metadata = {"url": "/dictionary/dictionary/null"}  # type: ignore
 
     @distributed_trace
-    def get_dictionary_empty(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, Dict[str, str]]
+    def get_dictionary_empty(self, **kwargs: Any) -> Dict[str, Dict[str, str]]:
         """Get an dictionaries of dictionaries of type <string, string> with value {}.
 
         :return: dict mapping str to dict mapping str to str
@@ -4263,10 +3556,7 @@ class DictionaryOperations(object):
     get_dictionary_empty.metadata = {"url": "/dictionary/dictionary/empty"}  # type: ignore
 
     @distributed_trace
-    def get_dictionary_item_null(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, Dict[str, str]]
+    def get_dictionary_item_null(self, **kwargs: Any) -> Dict[str, Dict[str, str]]:
         """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
         "two", "3": "three"}, "1": null, "2": {"7": "seven", "8": "eight", "9": "nine"}}.
 
@@ -4311,10 +3601,7 @@ class DictionaryOperations(object):
     get_dictionary_item_null.metadata = {"url": "/dictionary/dictionary/itemnull"}  # type: ignore
 
     @distributed_trace
-    def get_dictionary_item_empty(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, Dict[str, str]]
+    def get_dictionary_item_empty(self, **kwargs: Any) -> Dict[str, Dict[str, str]]:
         """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
         "two", "3": "three"}, "1": {}, "2": {"7": "seven", "8": "eight", "9": "nine"}}.
 
@@ -4359,10 +3646,7 @@ class DictionaryOperations(object):
     get_dictionary_item_empty.metadata = {"url": "/dictionary/dictionary/itemempty"}  # type: ignore
 
     @distributed_trace
-    def get_dictionary_valid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Dict[str, Dict[str, str]]
+    def get_dictionary_valid(self, **kwargs: Any) -> Dict[str, Dict[str, str]]:
         """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
         "two", "3": "three"}, "1": {"4": "four", "5": "five", "6": "six"}, "2": {"7": "seven", "8":
         "eight", "9": "nine"}}.
@@ -4408,12 +3692,7 @@ class DictionaryOperations(object):
     get_dictionary_valid.metadata = {"url": "/dictionary/dictionary/valid"}  # type: ignore
 
     @distributed_trace
-    def put_dictionary_valid(
-        self,
-        array_body,  # type: Dict[str, Dict[str, str]]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put_dictionary_valid(self, array_body: Dict[str, Dict[str, str]], **kwargs: Any) -> None:
         """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
         "two", "3": "three"}, "1": {"4": "four", "5": "five", "6": "six"}, "2": {"7": "seven", "8":
         "eight", "9": "nine"}}.

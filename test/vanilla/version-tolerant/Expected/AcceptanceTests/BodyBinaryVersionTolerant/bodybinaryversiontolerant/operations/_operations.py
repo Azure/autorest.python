@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import functools
-from typing import TYPE_CHECKING
+from typing import Any, Callable, Dict, Generic, IO, Optional, TypeVar, Union
 import warnings
 
 from azure.core.exceptions import (
@@ -22,62 +22,42 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from msrest import Serializer
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, IO, Optional, TypeVar, Union
-
-    T = TypeVar("T")
-    JSONType = Any
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+T = TypeVar("T")
+JSONType = Any
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-# fmt: off
 
-def build_upload_file_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+
+def build_upload_file_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
-    url = '/binary/file'
+    url = "/binary/file"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_upload_binary_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_upload_binary_request(*, content: Any, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
-    url = '/binary/octet'
+    url = "/binary/octet"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, content=content, **kwargs)
 
-# fmt: on
+
 class UploadOperations(object):
     """UploadOperations operations.
 
@@ -97,12 +77,7 @@ class UploadOperations(object):
         self._config = config
 
     @distributed_trace
-    def file(
-        self,
-        file_param,  # type: Union[IO, JSONType]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def file(self, file_param: Union[IO, JSONType], **kwargs: Any) -> None:
         """Uploading json file.
 
         :param file_param: JSON file with payload { "more": "cowbell" }.
@@ -138,12 +113,7 @@ class UploadOperations(object):
     file.metadata = {"url": "/binary/file"}  # type: ignore
 
     @distributed_trace
-    def binary(
-        self,
-        file_param,  # type: IO
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def binary(self, file_param: IO, **kwargs: Any) -> None:
         """Uploading binary file.
 
         :param file_param: Non-empty binary file.

@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import functools
-from typing import TYPE_CHECKING
+from typing import Any, Callable, Dict, Generic, IO, List, Optional, TypeVar
 import warnings
 
 from azure.core.exceptions import (
@@ -22,90 +22,66 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from msrest import Serializer
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, IO, List, Optional, TypeVar
-
-    T = TypeVar("T")
-    JSONType = Any
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+T = TypeVar("T")
+JSONType = Any
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-# fmt: off
+
 
 def build_formdata_upload_file_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, files: Optional[Dict[str, Any]] = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/octet-stream, application/json"
     # Construct URL
-    url = '/formdata/stream/uploadfile'
+    url = "/formdata/stream/uploadfile"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, files=files, content=content, **kwargs)
 
 
-def build_formdata_upload_file_via_body_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_formdata_upload_file_via_body_request(*, content: Any, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/octet-stream, application/json"
     # Construct URL
-    url = '/formdata/stream/uploadfile'
+    url = "/formdata/stream/uploadfile"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, content=content, **kwargs)
 
 
 def build_formdata_upload_files_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, files: Optional[Dict[str, Any]] = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/octet-stream, application/json"
     # Construct URL
-    url = '/formdata/stream/uploadfiles'
+    url = "/formdata/stream/uploadfiles"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, files=files, content=content, **kwargs)
 
-# fmt: on
+
 class FormdataOperations(object):
     """FormdataOperations operations.
 
@@ -125,12 +101,7 @@ class FormdataOperations(object):
         self._config = config
 
     @distributed_trace
-    def upload_file(
-        self,
-        files,  # type: Dict[str, Any]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> IO
+    def upload_file(self, files: Dict[str, Any], **kwargs: Any) -> IO:
         """Upload file.
 
         :param files: Multipart input for files. See the template in our example to find the input
@@ -178,12 +149,7 @@ class FormdataOperations(object):
     upload_file.metadata = {"url": "/formdata/stream/uploadfile"}  # type: ignore
 
     @distributed_trace
-    def upload_file_via_body(
-        self,
-        file_content,  # type: IO
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> IO
+    def upload_file_via_body(self, file_content: IO, **kwargs: Any) -> IO:
         """Upload file.
 
         :param file_content: File to upload.
@@ -223,12 +189,7 @@ class FormdataOperations(object):
     upload_file_via_body.metadata = {"url": "/formdata/stream/uploadfile"}  # type: ignore
 
     @distributed_trace
-    def upload_files(
-        self,
-        files,  # type: Dict[str, Any]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> IO
+    def upload_files(self, files: Dict[str, Any], **kwargs: Any) -> IO:
         """Upload multiple files.
 
         :param files: Multipart input for files. See the template in our example to find the input

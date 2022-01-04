@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import functools
-from typing import TYPE_CHECKING
+from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar, Union
 import warnings
 
 from azure.core.exceptions import (
@@ -22,2358 +22,1512 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from msrest import Serializer
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar, Union
-
-    T = TypeVar("T")
-    JSONType = Any
-    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+T = TypeVar("T")
+JSONType = Any
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
-# fmt: off
 
-def build_http_failure_get_empty_error_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+
+def build_http_failure_get_empty_error_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/failure/emptybody/error'
+    url = "/http/failure/emptybody/error"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_http_failure_get_no_model_error_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_http_failure_get_no_model_error_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/failure/nomodel/error'
+    url = "/http/failure/nomodel/error"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_http_failure_get_no_model_empty_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_http_failure_get_no_model_empty_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/failure/nomodel/empty'
+    url = "/http/failure/nomodel/empty"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_http_success_head200_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_http_success_head200_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/success/200'
+    url = "/http/success/200"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="HEAD",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="HEAD", url=url, headers=header_parameters, **kwargs)
 
 
-def build_http_success_get200_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_http_success_get200_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/success/200'
+    url = "/http/success/200"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_http_success_options200_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_http_success_options200_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/success/200'
+    url = "/http/success/200"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="OPTIONS",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="OPTIONS", url=url, headers=header_parameters, **kwargs)
 
 
-def build_http_success_put200_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_http_success_put200_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/success/200'
+    url = "/http/success/200"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_http_success_patch200_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_http_success_patch200_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/success/200'
+    url = "/http/success/200"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PATCH",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PATCH", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_http_success_post200_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_http_success_post200_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/success/200'
+    url = "/http/success/200"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_http_success_delete200_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_http_success_delete200_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/success/200'
+    url = "/http/success/200"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_http_success_put201_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_http_success_put201_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/success/201'
+    url = "/http/success/201"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_http_success_post201_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_http_success_post201_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/success/201'
+    url = "/http/success/201"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_http_success_put202_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_http_success_put202_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/success/202'
+    url = "/http/success/202"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_http_success_patch202_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_http_success_patch202_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/success/202'
+    url = "/http/success/202"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PATCH",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PATCH", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_http_success_post202_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_http_success_post202_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/success/202'
+    url = "/http/success/202"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_http_success_delete202_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_http_success_delete202_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/success/202'
+    url = "/http/success/202"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_http_success_head204_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_http_success_head204_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/success/204'
+    url = "/http/success/204"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="HEAD",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="HEAD", url=url, headers=header_parameters, **kwargs)
 
 
-def build_http_success_put204_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_http_success_put204_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/success/204'
+    url = "/http/success/204"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_http_success_patch204_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_http_success_patch204_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/success/204'
+    url = "/http/success/204"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PATCH",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PATCH", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_http_success_post204_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_http_success_post204_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/success/204'
+    url = "/http/success/204"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_http_success_delete204_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_http_success_delete204_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/success/204'
+    url = "/http/success/204"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_http_success_head404_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_http_success_head404_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/success/404'
+    url = "/http/success/404"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="HEAD",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="HEAD", url=url, headers=header_parameters, **kwargs)
 
 
-def build_http_redirects_head300_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_http_redirects_head300_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/redirect/300'
+    url = "/http/redirect/300"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="HEAD",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="HEAD", url=url, headers=header_parameters, **kwargs)
 
 
-def build_http_redirects_get300_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_http_redirects_get300_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/redirect/300'
+    url = "/http/redirect/300"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_http_redirects_head301_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_http_redirects_head301_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/redirect/301'
+    url = "/http/redirect/301"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="HEAD",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="HEAD", url=url, headers=header_parameters, **kwargs)
 
 
-def build_http_redirects_get301_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_http_redirects_get301_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/redirect/301'
+    url = "/http/redirect/301"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_http_redirects_put301_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_http_redirects_put301_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/redirect/301'
+    url = "/http/redirect/301"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_http_redirects_head302_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_http_redirects_head302_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/redirect/302'
+    url = "/http/redirect/302"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="HEAD",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="HEAD", url=url, headers=header_parameters, **kwargs)
 
 
-def build_http_redirects_get302_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_http_redirects_get302_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/redirect/302'
+    url = "/http/redirect/302"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_http_redirects_patch302_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_http_redirects_patch302_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/redirect/302'
+    url = "/http/redirect/302"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PATCH",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PATCH", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_http_redirects_post303_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_http_redirects_post303_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/redirect/303'
+    url = "/http/redirect/303"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_http_redirects_head307_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_http_redirects_head307_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/redirect/307'
+    url = "/http/redirect/307"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="HEAD",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="HEAD", url=url, headers=header_parameters, **kwargs)
 
 
-def build_http_redirects_get307_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_http_redirects_get307_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/redirect/307'
+    url = "/http/redirect/307"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_http_redirects_options307_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_http_redirects_options307_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/redirect/307'
+    url = "/http/redirect/307"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="OPTIONS",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="OPTIONS", url=url, headers=header_parameters, **kwargs)
 
 
-def build_http_redirects_put307_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_http_redirects_put307_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/redirect/307'
+    url = "/http/redirect/307"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_http_redirects_patch307_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_http_redirects_patch307_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/redirect/307'
+    url = "/http/redirect/307"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PATCH",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PATCH", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_http_redirects_post307_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_http_redirects_post307_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/redirect/307'
+    url = "/http/redirect/307"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_http_redirects_delete307_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_http_redirects_delete307_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/redirect/307'
+    url = "/http/redirect/307"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_http_client_failure_head400_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_http_client_failure_head400_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/failure/client/400'
+    url = "/http/failure/client/400"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="HEAD",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="HEAD", url=url, headers=header_parameters, **kwargs)
 
 
-def build_http_client_failure_get400_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_http_client_failure_get400_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/failure/client/400'
+    url = "/http/failure/client/400"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_http_client_failure_options400_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_http_client_failure_options400_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/failure/client/400'
+    url = "/http/failure/client/400"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="OPTIONS",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="OPTIONS", url=url, headers=header_parameters, **kwargs)
 
 
 def build_http_client_failure_put400_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/failure/client/400'
+    url = "/http/failure/client/400"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_http_client_failure_patch400_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/failure/client/400'
+    url = "/http/failure/client/400"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PATCH",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PATCH", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_http_client_failure_post400_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/failure/client/400'
+    url = "/http/failure/client/400"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_http_client_failure_delete400_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/failure/client/400'
+    url = "/http/failure/client/400"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_http_client_failure_head401_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_http_client_failure_head401_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/failure/client/401'
+    url = "/http/failure/client/401"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="HEAD",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="HEAD", url=url, headers=header_parameters, **kwargs)
 
 
-def build_http_client_failure_get402_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_http_client_failure_get402_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/failure/client/402'
+    url = "/http/failure/client/402"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_http_client_failure_options403_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_http_client_failure_options403_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/failure/client/403'
+    url = "/http/failure/client/403"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="OPTIONS",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="OPTIONS", url=url, headers=header_parameters, **kwargs)
 
 
-def build_http_client_failure_get403_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_http_client_failure_get403_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/failure/client/403'
+    url = "/http/failure/client/403"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
 def build_http_client_failure_put404_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/failure/client/404'
+    url = "/http/failure/client/404"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_http_client_failure_patch405_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/failure/client/405'
+    url = "/http/failure/client/405"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PATCH",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PATCH", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_http_client_failure_post406_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/failure/client/406'
+    url = "/http/failure/client/406"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_http_client_failure_delete407_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/failure/client/407'
+    url = "/http/failure/client/407"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_http_client_failure_put409_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/failure/client/409'
+    url = "/http/failure/client/409"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_http_client_failure_head410_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_http_client_failure_head410_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/failure/client/410'
+    url = "/http/failure/client/410"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="HEAD",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="HEAD", url=url, headers=header_parameters, **kwargs)
 
 
-def build_http_client_failure_get411_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_http_client_failure_get411_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/failure/client/411'
+    url = "/http/failure/client/411"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_http_client_failure_options412_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_http_client_failure_options412_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/failure/client/412'
+    url = "/http/failure/client/412"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="OPTIONS",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="OPTIONS", url=url, headers=header_parameters, **kwargs)
 
 
-def build_http_client_failure_get412_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_http_client_failure_get412_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/failure/client/412'
+    url = "/http/failure/client/412"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
 def build_http_client_failure_put413_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/failure/client/413'
+    url = "/http/failure/client/413"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_http_client_failure_patch414_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/failure/client/414'
+    url = "/http/failure/client/414"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PATCH",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PATCH", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_http_client_failure_post415_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/failure/client/415'
+    url = "/http/failure/client/415"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_http_client_failure_get416_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_http_client_failure_get416_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/failure/client/416'
+    url = "/http/failure/client/416"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
 def build_http_client_failure_delete417_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/failure/client/417'
+    url = "/http/failure/client/417"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_http_client_failure_head429_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_http_client_failure_head429_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/failure/client/429'
+    url = "/http/failure/client/429"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="HEAD",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="HEAD", url=url, headers=header_parameters, **kwargs)
 
 
-def build_http_server_failure_head501_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_http_server_failure_head501_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/failure/server/501'
+    url = "/http/failure/server/501"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="HEAD",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="HEAD", url=url, headers=header_parameters, **kwargs)
 
 
-def build_http_server_failure_get501_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_http_server_failure_get501_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/failure/server/501'
+    url = "/http/failure/server/501"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
 def build_http_server_failure_post505_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/failure/server/505'
+    url = "/http/failure/server/505"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
 def build_http_server_failure_delete505_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/failure/server/505'
+    url = "/http/failure/server/505"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_http_retry_head408_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_http_retry_head408_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/retry/408'
+    url = "/http/retry/408"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="HEAD",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="HEAD", url=url, headers=header_parameters, **kwargs)
 
 
-def build_http_retry_put500_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_http_retry_put500_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/retry/500'
+    url = "/http/retry/500"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_http_retry_patch500_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_http_retry_patch500_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/retry/500'
+    url = "/http/retry/500"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PATCH",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PATCH", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_http_retry_get502_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_http_retry_get502_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/retry/502'
+    url = "/http/retry/502"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_http_retry_options502_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_http_retry_options502_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/retry/502'
+    url = "/http/retry/502"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="OPTIONS",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="OPTIONS", url=url, headers=header_parameters, **kwargs)
 
 
-def build_http_retry_post503_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_http_retry_post503_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/retry/503'
+    url = "/http/retry/503"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_http_retry_delete503_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_http_retry_delete503_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/retry/503'
+    url = "/http/retry/503"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="DELETE",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="DELETE", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_http_retry_put504_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_http_retry_put504_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/retry/504'
+    url = "/http/retry/504"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_http_retry_patch504_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+def build_http_retry_patch504_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = '/http/retry/504'
+    url = "/http/retry/504"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PATCH",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="PATCH", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-def build_multiple_responses_get200_model204_no_model_default_error200_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_multiple_responses_get200_model204_no_model_default_error200_valid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/payloads/200/A/204/none/default/Error/response/200/valid'
+    url = "/http/payloads/200/A/204/none/default/Error/response/200/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_multiple_responses_get200_model204_no_model_default_error204_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_multiple_responses_get200_model204_no_model_default_error204_valid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/payloads/200/A/204/none/default/Error/response/204/none'
+    url = "/http/payloads/200/A/204/none/default/Error/response/204/none"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_multiple_responses_get200_model204_no_model_default_error201_invalid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_multiple_responses_get200_model204_no_model_default_error201_invalid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/payloads/200/A/204/none/default/Error/response/201/valid'
+    url = "/http/payloads/200/A/204/none/default/Error/response/201/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_multiple_responses_get200_model204_no_model_default_error202_none_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_multiple_responses_get200_model204_no_model_default_error202_none_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/payloads/200/A/204/none/default/Error/response/202/none'
+    url = "/http/payloads/200/A/204/none/default/Error/response/202/none"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_multiple_responses_get200_model204_no_model_default_error400_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_multiple_responses_get200_model204_no_model_default_error400_valid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/payloads/200/A/204/none/default/Error/response/400/valid'
+    url = "/http/payloads/200/A/204/none/default/Error/response/400/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_multiple_responses_get200_model201_model_default_error200_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_multiple_responses_get200_model201_model_default_error200_valid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/payloads/200/A/201/B/default/Error/response/200/valid'
+    url = "/http/payloads/200/A/201/B/default/Error/response/200/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_multiple_responses_get200_model201_model_default_error201_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_multiple_responses_get200_model201_model_default_error201_valid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/payloads/200/A/201/B/default/Error/response/201/valid'
+    url = "/http/payloads/200/A/201/B/default/Error/response/201/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_multiple_responses_get200_model201_model_default_error400_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_multiple_responses_get200_model201_model_default_error400_valid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/payloads/200/A/201/B/default/Error/response/400/valid'
+    url = "/http/payloads/200/A/201/B/default/Error/response/400/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
 def build_multiple_responses_get200_model_a201_model_c404_model_d_default_error200_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    **kwargs: Any,
+) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/payloads/200/A/201/C/404/D/default/Error/response/200/valid'
+    url = "/http/payloads/200/A/201/C/404/D/default/Error/response/200/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
 def build_multiple_responses_get200_model_a201_model_c404_model_d_default_error201_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    **kwargs: Any,
+) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/payloads/200/A/201/C/404/D/default/Error/response/201/valid'
+    url = "/http/payloads/200/A/201/C/404/D/default/Error/response/201/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
 def build_multiple_responses_get200_model_a201_model_c404_model_d_default_error404_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    **kwargs: Any,
+) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/payloads/200/A/201/C/404/D/default/Error/response/404/valid'
+    url = "/http/payloads/200/A/201/C/404/D/default/Error/response/404/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
 def build_multiple_responses_get200_model_a201_model_c404_model_d_default_error400_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+    **kwargs: Any,
+) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/payloads/200/A/201/C/404/D/default/Error/response/400/valid'
+    url = "/http/payloads/200/A/201/C/404/D/default/Error/response/400/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_multiple_responses_get202_none204_none_default_error202_none_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_multiple_responses_get202_none204_none_default_error202_none_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/payloads/202/none/204/none/default/Error/response/202/none'
+    url = "/http/payloads/202/none/204/none/default/Error/response/202/none"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_multiple_responses_get202_none204_none_default_error204_none_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_multiple_responses_get202_none204_none_default_error204_none_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/payloads/202/none/204/none/default/Error/response/204/none'
+    url = "/http/payloads/202/none/204/none/default/Error/response/204/none"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_multiple_responses_get202_none204_none_default_error400_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_multiple_responses_get202_none204_none_default_error400_valid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/payloads/202/none/204/none/default/Error/response/400/valid'
+    url = "/http/payloads/202/none/204/none/default/Error/response/400/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_multiple_responses_get202_none204_none_default_none202_invalid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_multiple_responses_get202_none204_none_default_none202_invalid_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
-    url = '/http/payloads/202/none/204/none/default/none/response/202/invalid'
+    url = "/http/payloads/202/none/204/none/default/none/response/202/invalid"
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, **kwargs)
 
 
-def build_multiple_responses_get202_none204_none_default_none204_none_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_multiple_responses_get202_none204_none_default_none204_none_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
-    url = '/http/payloads/202/none/204/none/default/none/response/204/none'
+    url = "/http/payloads/202/none/204/none/default/none/response/204/none"
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, **kwargs)
 
 
-def build_multiple_responses_get202_none204_none_default_none400_none_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_multiple_responses_get202_none204_none_default_none400_none_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
-    url = '/http/payloads/202/none/204/none/default/none/response/400/none'
+    url = "/http/payloads/202/none/204/none/default/none/response/400/none"
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, **kwargs)
 
 
-def build_multiple_responses_get202_none204_none_default_none400_invalid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_multiple_responses_get202_none204_none_default_none400_invalid_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
-    url = '/http/payloads/202/none/204/none/default/none/response/400/invalid'
+    url = "/http/payloads/202/none/204/none/default/none/response/400/invalid"
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, **kwargs)
 
 
-def build_multiple_responses_get_default_model_a200_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_multiple_responses_get_default_model_a200_valid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/payloads/default/A/response/200/valid'
+    url = "/http/payloads/default/A/response/200/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_multiple_responses_get_default_model_a200_none_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_multiple_responses_get_default_model_a200_none_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/payloads/default/A/response/200/none'
+    url = "/http/payloads/default/A/response/200/none"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_multiple_responses_get_default_model_a400_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_multiple_responses_get_default_model_a400_valid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/payloads/default/A/response/400/valid'
+    url = "/http/payloads/default/A/response/400/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_multiple_responses_get_default_model_a400_none_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_multiple_responses_get_default_model_a400_none_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/payloads/default/A/response/400/none'
+    url = "/http/payloads/default/A/response/400/none"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_multiple_responses_get_default_none200_invalid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_multiple_responses_get_default_none200_invalid_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
-    url = '/http/payloads/default/none/response/200/invalid'
+    url = "/http/payloads/default/none/response/200/invalid"
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, **kwargs)
 
 
-def build_multiple_responses_get_default_none200_none_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_multiple_responses_get_default_none200_none_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
-    url = '/http/payloads/default/none/response/200/none'
+    url = "/http/payloads/default/none/response/200/none"
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, **kwargs)
 
 
-def build_multiple_responses_get_default_none400_invalid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_multiple_responses_get_default_none400_invalid_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
-    url = '/http/payloads/default/none/response/400/invalid'
+    url = "/http/payloads/default/none/response/400/invalid"
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, **kwargs)
 
 
-def build_multiple_responses_get_default_none400_none_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_multiple_responses_get_default_none400_none_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
-    url = '/http/payloads/default/none/response/400/none'
+    url = "/http/payloads/default/none/response/400/none"
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, **kwargs)
 
 
-def build_multiple_responses_get200_model_a200_none_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_multiple_responses_get200_model_a200_none_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/payloads/200/A/response/200/none'
+    url = "/http/payloads/200/A/response/200/none"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_multiple_responses_get200_model_a200_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_multiple_responses_get200_model_a200_valid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/payloads/200/A/response/200/valid'
+    url = "/http/payloads/200/A/response/200/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_multiple_responses_get200_model_a200_invalid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_multiple_responses_get200_model_a200_invalid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/payloads/200/A/response/200/invalid'
+    url = "/http/payloads/200/A/response/200/invalid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_multiple_responses_get200_model_a400_none_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_multiple_responses_get200_model_a400_none_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/payloads/200/A/response/400/none'
+    url = "/http/payloads/200/A/response/400/none"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_multiple_responses_get200_model_a400_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_multiple_responses_get200_model_a400_valid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/payloads/200/A/response/400/valid'
+    url = "/http/payloads/200/A/response/400/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_multiple_responses_get200_model_a400_invalid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_multiple_responses_get200_model_a400_invalid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/payloads/200/A/response/400/invalid'
+    url = "/http/payloads/200/A/response/400/invalid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
 
-def build_multiple_responses_get200_model_a202_valid_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
+def build_multiple_responses_get200_model_a202_valid_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = '/http/payloads/200/A/response/202/valid'
+    url = "/http/payloads/200/A/response/202/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=url,
-        headers=header_parameters,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
 
-# fmt: on
+
 class HttpFailureOperations(object):
     """HttpFailureOperations operations.
 
@@ -2393,10 +1547,7 @@ class HttpFailureOperations(object):
         self._config = config
 
     @distributed_trace
-    def get_empty_error(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> bool
+    def get_empty_error(self, **kwargs: Any) -> bool:
         """Get empty error form server.
 
         :return: bool
@@ -2430,10 +1581,7 @@ class HttpFailureOperations(object):
     get_empty_error.metadata = {"url": "/http/failure/emptybody/error"}  # type: ignore
 
     @distributed_trace
-    def get_no_model_error(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> bool
+    def get_no_model_error(self, **kwargs: Any) -> bool:
         """Get empty error form server.
 
         :return: bool
@@ -2467,10 +1615,7 @@ class HttpFailureOperations(object):
     get_no_model_error.metadata = {"url": "/http/failure/nomodel/error"}  # type: ignore
 
     @distributed_trace
-    def get_no_model_empty(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> bool
+    def get_no_model_empty(self, **kwargs: Any) -> bool:
         """Get empty response from server.
 
         :return: bool
@@ -2523,10 +1668,7 @@ class HttpSuccessOperations(object):
         self._config = config
 
     @distributed_trace
-    def head200(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def head200(self, **kwargs: Any) -> None:
         """Return 200 status code if successful.
 
         :return: None
@@ -2553,10 +1695,7 @@ class HttpSuccessOperations(object):
     head200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace
-    def get200(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> bool
+    def get200(self, **kwargs: Any) -> bool:
         """Get 200 success.
 
         :return: bool
@@ -2590,10 +1729,7 @@ class HttpSuccessOperations(object):
     get200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace
-    def options200(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> bool
+    def options200(self, **kwargs: Any) -> bool:
         """Options 200 success.
 
         :return: bool
@@ -2627,12 +1763,7 @@ class HttpSuccessOperations(object):
     options200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace
-    def put200(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put200(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Put boolean value true returning 200 success.
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -2671,12 +1802,7 @@ class HttpSuccessOperations(object):
     put200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace
-    def patch200(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def patch200(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Patch true Boolean value in request returning 200.
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -2715,12 +1841,7 @@ class HttpSuccessOperations(object):
     patch200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace
-    def post200(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def post200(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Post bollean value true in request that returns a 200.
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -2759,12 +1880,7 @@ class HttpSuccessOperations(object):
     post200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace
-    def delete200(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def delete200(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Delete simple boolean value true returns 200.
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -2803,12 +1919,7 @@ class HttpSuccessOperations(object):
     delete200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace
-    def put201(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put201(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Put true Boolean value in request returns 201.
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -2847,12 +1958,7 @@ class HttpSuccessOperations(object):
     put201.metadata = {"url": "/http/success/201"}  # type: ignore
 
     @distributed_trace
-    def post201(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def post201(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Post true Boolean value in request returns 201 (Created).
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -2891,12 +1997,7 @@ class HttpSuccessOperations(object):
     post201.metadata = {"url": "/http/success/201"}  # type: ignore
 
     @distributed_trace
-    def put202(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put202(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Put true Boolean value in request returns 202 (Accepted).
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -2935,12 +2036,7 @@ class HttpSuccessOperations(object):
     put202.metadata = {"url": "/http/success/202"}  # type: ignore
 
     @distributed_trace
-    def patch202(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def patch202(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Patch true Boolean value in request returns 202.
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -2979,12 +2075,7 @@ class HttpSuccessOperations(object):
     patch202.metadata = {"url": "/http/success/202"}  # type: ignore
 
     @distributed_trace
-    def post202(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def post202(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Post true Boolean value in request returns 202 (Accepted).
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -3023,12 +2114,7 @@ class HttpSuccessOperations(object):
     post202.metadata = {"url": "/http/success/202"}  # type: ignore
 
     @distributed_trace
-    def delete202(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def delete202(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Delete true Boolean value in request returns 202 (accepted).
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -3067,10 +2153,7 @@ class HttpSuccessOperations(object):
     delete202.metadata = {"url": "/http/success/202"}  # type: ignore
 
     @distributed_trace
-    def head204(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def head204(self, **kwargs: Any) -> None:
         """Return 204 status code if successful.
 
         :return: None
@@ -3097,12 +2180,7 @@ class HttpSuccessOperations(object):
     head204.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace
-    def put204(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put204(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Put true Boolean value in request returns 204 (no content).
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -3141,12 +2219,7 @@ class HttpSuccessOperations(object):
     put204.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace
-    def patch204(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def patch204(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Patch true Boolean value in request returns 204 (no content).
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -3185,12 +2258,7 @@ class HttpSuccessOperations(object):
     patch204.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace
-    def post204(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def post204(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Post true Boolean value in request returns 204 (no content).
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -3229,12 +2297,7 @@ class HttpSuccessOperations(object):
     post204.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace
-    def delete204(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def delete204(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Delete true Boolean value in request returns 204 (no content).
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -3273,10 +2336,7 @@ class HttpSuccessOperations(object):
     delete204.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace
-    def head404(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def head404(self, **kwargs: Any) -> None:
         """Return 404 status code.
 
         :return: None
@@ -3322,10 +2382,7 @@ class HttpRedirectsOperations(object):
         self._config = config
 
     @distributed_trace
-    def head300(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def head300(self, **kwargs: Any) -> None:
         """Return 300 status code and redirect to /http/success/200.
 
         :return: None
@@ -3356,10 +2413,7 @@ class HttpRedirectsOperations(object):
     head300.metadata = {"url": "/http/redirect/300"}  # type: ignore
 
     @distributed_trace
-    def get300(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Optional[List[str]]
+    def get300(self, **kwargs: Any) -> Optional[List[str]]:
         """Return 300 status code and redirect to /http/success/200.
 
         :return: list of str
@@ -3406,10 +2460,7 @@ class HttpRedirectsOperations(object):
     get300.metadata = {"url": "/http/redirect/300"}  # type: ignore
 
     @distributed_trace
-    def head301(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def head301(self, **kwargs: Any) -> None:
         """Return 301 status code and redirect to /http/success/200.
 
         :return: None
@@ -3440,10 +2491,7 @@ class HttpRedirectsOperations(object):
     head301.metadata = {"url": "/http/redirect/301"}  # type: ignore
 
     @distributed_trace
-    def get301(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def get301(self, **kwargs: Any) -> None:
         """Return 301 status code and redirect to /http/success/200.
 
         :return: None
@@ -3474,12 +2522,7 @@ class HttpRedirectsOperations(object):
     get301.metadata = {"url": "/http/redirect/301"}  # type: ignore
 
     @distributed_trace
-    def put301(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put301(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Put true Boolean value in request returns 301.  This request should not be automatically
         redirected, but should return the received 301 to the caller for evaluation.
 
@@ -3522,10 +2565,7 @@ class HttpRedirectsOperations(object):
     put301.metadata = {"url": "/http/redirect/301"}  # type: ignore
 
     @distributed_trace
-    def head302(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def head302(self, **kwargs: Any) -> None:
         """Return 302 status code and redirect to /http/success/200.
 
         :return: None
@@ -3556,10 +2596,7 @@ class HttpRedirectsOperations(object):
     head302.metadata = {"url": "/http/redirect/302"}  # type: ignore
 
     @distributed_trace
-    def get302(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def get302(self, **kwargs: Any) -> None:
         """Return 302 status code and redirect to /http/success/200.
 
         :return: None
@@ -3590,12 +2627,7 @@ class HttpRedirectsOperations(object):
     get302.metadata = {"url": "/http/redirect/302"}  # type: ignore
 
     @distributed_trace
-    def patch302(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def patch302(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Patch true Boolean value in request returns 302.  This request should not be automatically
         redirected, but should return the received 302 to the caller for evaluation.
 
@@ -3638,12 +2670,7 @@ class HttpRedirectsOperations(object):
     patch302.metadata = {"url": "/http/redirect/302"}  # type: ignore
 
     @distributed_trace
-    def post303(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def post303(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Post true Boolean value in request returns 303.  This request should be automatically
         redirected usign a get, ultimately returning a 200 status code.
 
@@ -3687,10 +2714,7 @@ class HttpRedirectsOperations(object):
     post303.metadata = {"url": "/http/redirect/303"}  # type: ignore
 
     @distributed_trace
-    def head307(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def head307(self, **kwargs: Any) -> None:
         """Redirect with 307, resulting in a 200 success.
 
         :return: None
@@ -3721,10 +2745,7 @@ class HttpRedirectsOperations(object):
     head307.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
     @distributed_trace
-    def get307(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def get307(self, **kwargs: Any) -> None:
         """Redirect get with 307, resulting in a 200 success.
 
         :return: None
@@ -3755,10 +2776,7 @@ class HttpRedirectsOperations(object):
     get307.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
     @distributed_trace
-    def options307(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def options307(self, **kwargs: Any) -> None:
         """options redirected with 307, resulting in a 200 after redirect.
 
         :return: None
@@ -3789,12 +2807,7 @@ class HttpRedirectsOperations(object):
     options307.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
     @distributed_trace
-    def put307(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put307(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Put redirected with 307, resulting in a 200 after redirect.
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -3837,12 +2850,7 @@ class HttpRedirectsOperations(object):
     put307.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
     @distributed_trace
-    def patch307(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def patch307(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Patch redirected with 307, resulting in a 200 after redirect.
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -3885,12 +2893,7 @@ class HttpRedirectsOperations(object):
     patch307.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
     @distributed_trace
-    def post307(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def post307(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Post redirected with 307, resulting in a 200 after redirect.
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -3933,12 +2936,7 @@ class HttpRedirectsOperations(object):
     post307.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
     @distributed_trace
-    def delete307(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def delete307(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Delete redirected with 307, resulting in a 200 after redirect.
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -4000,10 +2998,7 @@ class HttpClientFailureOperations(object):
         self._config = config
 
     @distributed_trace
-    def head400(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def head400(self, **kwargs: Any) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
         :return: None
@@ -4030,10 +3025,7 @@ class HttpClientFailureOperations(object):
     head400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace
-    def get400(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def get400(self, **kwargs: Any) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
         :return: None
@@ -4060,10 +3052,7 @@ class HttpClientFailureOperations(object):
     get400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace
-    def options400(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def options400(self, **kwargs: Any) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
         :return: None
@@ -4090,12 +3079,7 @@ class HttpClientFailureOperations(object):
     options400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace
-    def put400(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put400(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -4134,12 +3118,7 @@ class HttpClientFailureOperations(object):
     put400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace
-    def patch400(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def patch400(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -4178,12 +3157,7 @@ class HttpClientFailureOperations(object):
     patch400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace
-    def post400(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def post400(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -4222,12 +3196,7 @@ class HttpClientFailureOperations(object):
     post400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace
-    def delete400(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def delete400(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -4266,10 +3235,7 @@ class HttpClientFailureOperations(object):
     delete400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace
-    def head401(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def head401(self, **kwargs: Any) -> None:
         """Return 401 status code - should be represented in the client as an error.
 
         :return: None
@@ -4296,10 +3262,7 @@ class HttpClientFailureOperations(object):
     head401.metadata = {"url": "/http/failure/client/401"}  # type: ignore
 
     @distributed_trace
-    def get402(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def get402(self, **kwargs: Any) -> None:
         """Return 402 status code - should be represented in the client as an error.
 
         :return: None
@@ -4326,10 +3289,7 @@ class HttpClientFailureOperations(object):
     get402.metadata = {"url": "/http/failure/client/402"}  # type: ignore
 
     @distributed_trace
-    def options403(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def options403(self, **kwargs: Any) -> None:
         """Return 403 status code - should be represented in the client as an error.
 
         :return: None
@@ -4356,10 +3316,7 @@ class HttpClientFailureOperations(object):
     options403.metadata = {"url": "/http/failure/client/403"}  # type: ignore
 
     @distributed_trace
-    def get403(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def get403(self, **kwargs: Any) -> None:
         """Return 403 status code - should be represented in the client as an error.
 
         :return: None
@@ -4386,12 +3343,7 @@ class HttpClientFailureOperations(object):
     get403.metadata = {"url": "/http/failure/client/403"}  # type: ignore
 
     @distributed_trace
-    def put404(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put404(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 404 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -4430,12 +3382,7 @@ class HttpClientFailureOperations(object):
     put404.metadata = {"url": "/http/failure/client/404"}  # type: ignore
 
     @distributed_trace
-    def patch405(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def patch405(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 405 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -4474,12 +3421,7 @@ class HttpClientFailureOperations(object):
     patch405.metadata = {"url": "/http/failure/client/405"}  # type: ignore
 
     @distributed_trace
-    def post406(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def post406(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 406 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -4518,12 +3460,7 @@ class HttpClientFailureOperations(object):
     post406.metadata = {"url": "/http/failure/client/406"}  # type: ignore
 
     @distributed_trace
-    def delete407(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def delete407(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 407 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -4562,12 +3499,7 @@ class HttpClientFailureOperations(object):
     delete407.metadata = {"url": "/http/failure/client/407"}  # type: ignore
 
     @distributed_trace
-    def put409(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put409(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 409 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -4606,10 +3538,7 @@ class HttpClientFailureOperations(object):
     put409.metadata = {"url": "/http/failure/client/409"}  # type: ignore
 
     @distributed_trace
-    def head410(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def head410(self, **kwargs: Any) -> None:
         """Return 410 status code - should be represented in the client as an error.
 
         :return: None
@@ -4636,10 +3565,7 @@ class HttpClientFailureOperations(object):
     head410.metadata = {"url": "/http/failure/client/410"}  # type: ignore
 
     @distributed_trace
-    def get411(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def get411(self, **kwargs: Any) -> None:
         """Return 411 status code - should be represented in the client as an error.
 
         :return: None
@@ -4666,10 +3592,7 @@ class HttpClientFailureOperations(object):
     get411.metadata = {"url": "/http/failure/client/411"}  # type: ignore
 
     @distributed_trace
-    def options412(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def options412(self, **kwargs: Any) -> None:
         """Return 412 status code - should be represented in the client as an error.
 
         :return: None
@@ -4696,10 +3619,7 @@ class HttpClientFailureOperations(object):
     options412.metadata = {"url": "/http/failure/client/412"}  # type: ignore
 
     @distributed_trace
-    def get412(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def get412(self, **kwargs: Any) -> None:
         """Return 412 status code - should be represented in the client as an error.
 
         :return: None
@@ -4726,12 +3646,7 @@ class HttpClientFailureOperations(object):
     get412.metadata = {"url": "/http/failure/client/412"}  # type: ignore
 
     @distributed_trace
-    def put413(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put413(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 413 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -4770,12 +3685,7 @@ class HttpClientFailureOperations(object):
     put413.metadata = {"url": "/http/failure/client/413"}  # type: ignore
 
     @distributed_trace
-    def patch414(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def patch414(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 414 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -4814,12 +3724,7 @@ class HttpClientFailureOperations(object):
     patch414.metadata = {"url": "/http/failure/client/414"}  # type: ignore
 
     @distributed_trace
-    def post415(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def post415(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 415 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -4858,10 +3763,7 @@ class HttpClientFailureOperations(object):
     post415.metadata = {"url": "/http/failure/client/415"}  # type: ignore
 
     @distributed_trace
-    def get416(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def get416(self, **kwargs: Any) -> None:
         """Return 416 status code - should be represented in the client as an error.
 
         :return: None
@@ -4888,12 +3790,7 @@ class HttpClientFailureOperations(object):
     get416.metadata = {"url": "/http/failure/client/416"}  # type: ignore
 
     @distributed_trace
-    def delete417(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def delete417(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 417 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -4932,10 +3829,7 @@ class HttpClientFailureOperations(object):
     delete417.metadata = {"url": "/http/failure/client/417"}  # type: ignore
 
     @distributed_trace
-    def head429(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def head429(self, **kwargs: Any) -> None:
         """Return 429 status code - should be represented in the client as an error.
 
         :return: None
@@ -4981,10 +3875,7 @@ class HttpServerFailureOperations(object):
         self._config = config
 
     @distributed_trace
-    def head501(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def head501(self, **kwargs: Any) -> None:
         """Return 501 status code - should be represented in the client as an error.
 
         :return: None
@@ -5011,10 +3902,7 @@ class HttpServerFailureOperations(object):
     head501.metadata = {"url": "/http/failure/server/501"}  # type: ignore
 
     @distributed_trace
-    def get501(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def get501(self, **kwargs: Any) -> None:
         """Return 501 status code - should be represented in the client as an error.
 
         :return: None
@@ -5041,12 +3929,7 @@ class HttpServerFailureOperations(object):
     get501.metadata = {"url": "/http/failure/server/501"}  # type: ignore
 
     @distributed_trace
-    def post505(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def post505(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 505 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -5085,12 +3968,7 @@ class HttpServerFailureOperations(object):
     post505.metadata = {"url": "/http/failure/server/505"}  # type: ignore
 
     @distributed_trace
-    def delete505(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def delete505(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 505 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -5148,10 +4026,7 @@ class HttpRetryOperations(object):
         self._config = config
 
     @distributed_trace
-    def head408(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def head408(self, **kwargs: Any) -> None:
         """Return 408 status code, then 200 after retry.
 
         :return: None
@@ -5178,12 +4053,7 @@ class HttpRetryOperations(object):
     head408.metadata = {"url": "/http/retry/408"}  # type: ignore
 
     @distributed_trace
-    def put500(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put500(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 500 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -5222,12 +4092,7 @@ class HttpRetryOperations(object):
     put500.metadata = {"url": "/http/retry/500"}  # type: ignore
 
     @distributed_trace
-    def patch500(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def patch500(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 500 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -5266,10 +4131,7 @@ class HttpRetryOperations(object):
     patch500.metadata = {"url": "/http/retry/500"}  # type: ignore
 
     @distributed_trace
-    def get502(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def get502(self, **kwargs: Any) -> None:
         """Return 502 status code, then 200 after retry.
 
         :return: None
@@ -5296,10 +4158,7 @@ class HttpRetryOperations(object):
     get502.metadata = {"url": "/http/retry/502"}  # type: ignore
 
     @distributed_trace
-    def options502(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> bool
+    def options502(self, **kwargs: Any) -> bool:
         """Return 502 status code, then 200 after retry.
 
         :return: bool
@@ -5333,12 +4192,7 @@ class HttpRetryOperations(object):
     options502.metadata = {"url": "/http/retry/502"}  # type: ignore
 
     @distributed_trace
-    def post503(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def post503(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 503 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -5377,12 +4231,7 @@ class HttpRetryOperations(object):
     post503.metadata = {"url": "/http/retry/503"}  # type: ignore
 
     @distributed_trace
-    def delete503(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def delete503(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 503 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -5421,12 +4270,7 @@ class HttpRetryOperations(object):
     delete503.metadata = {"url": "/http/retry/503"}  # type: ignore
 
     @distributed_trace
-    def put504(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def put504(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 504 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -5465,12 +4309,7 @@ class HttpRetryOperations(object):
     put504.metadata = {"url": "/http/retry/504"}  # type: ignore
 
     @distributed_trace
-    def patch504(
-        self,
-        boolean_value=True,  # type: Optional[bool]
-        **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def patch504(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 504 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -5528,10 +4367,7 @@ class MultipleResponsesOperations(object):
         self._config = config
 
     @distributed_trace
-    def get200_model204_no_model_default_error200_valid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Optional[JSONType]
+    def get200_model204_no_model_default_error200_valid(self, **kwargs: Any) -> Optional[JSONType]:
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :return: JSON object
@@ -5575,10 +4411,7 @@ class MultipleResponsesOperations(object):
     get200_model204_no_model_default_error200_valid.metadata = {"url": "/http/payloads/200/A/204/none/default/Error/response/200/valid"}  # type: ignore
 
     @distributed_trace
-    def get200_model204_no_model_default_error204_valid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Optional[JSONType]
+    def get200_model204_no_model_default_error204_valid(self, **kwargs: Any) -> Optional[JSONType]:
         """Send a 204 response with no payload.
 
         :return: JSON object
@@ -5622,10 +4455,7 @@ class MultipleResponsesOperations(object):
     get200_model204_no_model_default_error204_valid.metadata = {"url": "/http/payloads/200/A/204/none/default/Error/response/204/none"}  # type: ignore
 
     @distributed_trace
-    def get200_model204_no_model_default_error201_invalid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Optional[JSONType]
+    def get200_model204_no_model_default_error201_invalid(self, **kwargs: Any) -> Optional[JSONType]:
         """Send a 201 response with valid payload: {'statusCode': '201'}.
 
         :return: JSON object
@@ -5669,10 +4499,7 @@ class MultipleResponsesOperations(object):
     get200_model204_no_model_default_error201_invalid.metadata = {"url": "/http/payloads/200/A/204/none/default/Error/response/201/valid"}  # type: ignore
 
     @distributed_trace
-    def get200_model204_no_model_default_error202_none(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Optional[JSONType]
+    def get200_model204_no_model_default_error202_none(self, **kwargs: Any) -> Optional[JSONType]:
         """Send a 202 response with no payload:.
 
         :return: JSON object
@@ -5716,10 +4543,7 @@ class MultipleResponsesOperations(object):
     get200_model204_no_model_default_error202_none.metadata = {"url": "/http/payloads/200/A/204/none/default/Error/response/202/none"}  # type: ignore
 
     @distributed_trace
-    def get200_model204_no_model_default_error400_valid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> Optional[JSONType]
+    def get200_model204_no_model_default_error400_valid(self, **kwargs: Any) -> Optional[JSONType]:
         """Send a 400 response with valid error payload: {'status': 400, 'message': 'client error'}.
 
         :return: JSON object
@@ -5763,10 +4587,7 @@ class MultipleResponsesOperations(object):
     get200_model204_no_model_default_error400_valid.metadata = {"url": "/http/payloads/200/A/204/none/default/Error/response/400/valid"}  # type: ignore
 
     @distributed_trace
-    def get200_model201_model_default_error200_valid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def get200_model201_model_default_error200_valid(self, **kwargs: Any) -> JSONType:
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :return: JSON object
@@ -5820,10 +4641,7 @@ class MultipleResponsesOperations(object):
     get200_model201_model_default_error200_valid.metadata = {"url": "/http/payloads/200/A/201/B/default/Error/response/200/valid"}  # type: ignore
 
     @distributed_trace
-    def get200_model201_model_default_error201_valid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def get200_model201_model_default_error201_valid(self, **kwargs: Any) -> JSONType:
         """Send a 201 response with valid payload: {'statusCode': '201', 'textStatusCode': 'Created'}.
 
         :return: JSON object
@@ -5877,10 +4695,7 @@ class MultipleResponsesOperations(object):
     get200_model201_model_default_error201_valid.metadata = {"url": "/http/payloads/200/A/201/B/default/Error/response/201/valid"}  # type: ignore
 
     @distributed_trace
-    def get200_model201_model_default_error400_valid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def get200_model201_model_default_error400_valid(self, **kwargs: Any) -> JSONType:
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
 
         :return: JSON object
@@ -5934,10 +4749,7 @@ class MultipleResponsesOperations(object):
     get200_model201_model_default_error400_valid.metadata = {"url": "/http/payloads/200/A/201/B/default/Error/response/400/valid"}  # type: ignore
 
     @distributed_trace
-    def get200_model_a201_model_c404_model_d_default_error200_valid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def get200_model_a201_model_c404_model_d_default_error200_valid(self, **kwargs: Any) -> JSONType:
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :return: JSON object
@@ -6000,10 +4812,7 @@ class MultipleResponsesOperations(object):
     get200_model_a201_model_c404_model_d_default_error200_valid.metadata = {"url": "/http/payloads/200/A/201/C/404/D/default/Error/response/200/valid"}  # type: ignore
 
     @distributed_trace
-    def get200_model_a201_model_c404_model_d_default_error201_valid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def get200_model_a201_model_c404_model_d_default_error201_valid(self, **kwargs: Any) -> JSONType:
         """Send a 200 response with valid payload: {'httpCode': '201'}.
 
         :return: JSON object
@@ -6066,10 +4875,7 @@ class MultipleResponsesOperations(object):
     get200_model_a201_model_c404_model_d_default_error201_valid.metadata = {"url": "/http/payloads/200/A/201/C/404/D/default/Error/response/201/valid"}  # type: ignore
 
     @distributed_trace
-    def get200_model_a201_model_c404_model_d_default_error404_valid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def get200_model_a201_model_c404_model_d_default_error404_valid(self, **kwargs: Any) -> JSONType:
         """Send a 200 response with valid payload: {'httpStatusCode': '404'}.
 
         :return: JSON object
@@ -6132,10 +4938,7 @@ class MultipleResponsesOperations(object):
     get200_model_a201_model_c404_model_d_default_error404_valid.metadata = {"url": "/http/payloads/200/A/201/C/404/D/default/Error/response/404/valid"}  # type: ignore
 
     @distributed_trace
-    def get200_model_a201_model_c404_model_d_default_error400_valid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def get200_model_a201_model_c404_model_d_default_error400_valid(self, **kwargs: Any) -> JSONType:
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
 
         :return: JSON object
@@ -6198,10 +5001,7 @@ class MultipleResponsesOperations(object):
     get200_model_a201_model_c404_model_d_default_error400_valid.metadata = {"url": "/http/payloads/200/A/201/C/404/D/default/Error/response/400/valid"}  # type: ignore
 
     @distributed_trace
-    def get202_none204_none_default_error202_none(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def get202_none204_none_default_error202_none(self, **kwargs: Any) -> None:
         """Send a 202 response with no payload.
 
         :return: None
@@ -6228,10 +5028,7 @@ class MultipleResponsesOperations(object):
     get202_none204_none_default_error202_none.metadata = {"url": "/http/payloads/202/none/204/none/default/Error/response/202/none"}  # type: ignore
 
     @distributed_trace
-    def get202_none204_none_default_error204_none(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def get202_none204_none_default_error204_none(self, **kwargs: Any) -> None:
         """Send a 204 response with no payload.
 
         :return: None
@@ -6258,10 +5055,7 @@ class MultipleResponsesOperations(object):
     get202_none204_none_default_error204_none.metadata = {"url": "/http/payloads/202/none/204/none/default/Error/response/204/none"}  # type: ignore
 
     @distributed_trace
-    def get202_none204_none_default_error400_valid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def get202_none204_none_default_error400_valid(self, **kwargs: Any) -> None:
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
 
         :return: None
@@ -6288,10 +5082,7 @@ class MultipleResponsesOperations(object):
     get202_none204_none_default_error400_valid.metadata = {"url": "/http/payloads/202/none/204/none/default/Error/response/400/valid"}  # type: ignore
 
     @distributed_trace
-    def get202_none204_none_default_none202_invalid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def get202_none204_none_default_none202_invalid(self, **kwargs: Any) -> None:
         """Send a 202 response with an unexpected payload {'property': 'value'}.
 
         :return: None
@@ -6318,10 +5109,7 @@ class MultipleResponsesOperations(object):
     get202_none204_none_default_none202_invalid.metadata = {"url": "/http/payloads/202/none/204/none/default/none/response/202/invalid"}  # type: ignore
 
     @distributed_trace
-    def get202_none204_none_default_none204_none(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def get202_none204_none_default_none204_none(self, **kwargs: Any) -> None:
         """Send a 204 response with no payload.
 
         :return: None
@@ -6348,10 +5136,7 @@ class MultipleResponsesOperations(object):
     get202_none204_none_default_none204_none.metadata = {"url": "/http/payloads/202/none/204/none/default/none/response/204/none"}  # type: ignore
 
     @distributed_trace
-    def get202_none204_none_default_none400_none(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def get202_none204_none_default_none400_none(self, **kwargs: Any) -> None:
         """Send a 400 response with no payload.
 
         :return: None
@@ -6378,10 +5163,7 @@ class MultipleResponsesOperations(object):
     get202_none204_none_default_none400_none.metadata = {"url": "/http/payloads/202/none/204/none/default/none/response/400/none"}  # type: ignore
 
     @distributed_trace
-    def get202_none204_none_default_none400_invalid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def get202_none204_none_default_none400_invalid(self, **kwargs: Any) -> None:
         """Send a 400 response with an unexpected payload {'property': 'value'}.
 
         :return: None
@@ -6408,10 +5190,7 @@ class MultipleResponsesOperations(object):
     get202_none204_none_default_none400_invalid.metadata = {"url": "/http/payloads/202/none/204/none/default/none/response/400/invalid"}  # type: ignore
 
     @distributed_trace
-    def get_default_model_a200_valid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def get_default_model_a200_valid(self, **kwargs: Any) -> JSONType:
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :return: JSON object
@@ -6453,10 +5232,7 @@ class MultipleResponsesOperations(object):
     get_default_model_a200_valid.metadata = {"url": "/http/payloads/default/A/response/200/valid"}  # type: ignore
 
     @distributed_trace
-    def get_default_model_a200_none(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def get_default_model_a200_none(self, **kwargs: Any) -> JSONType:
         """Send a 200 response with no payload.
 
         :return: JSON object
@@ -6498,10 +5274,7 @@ class MultipleResponsesOperations(object):
     get_default_model_a200_none.metadata = {"url": "/http/payloads/default/A/response/200/none"}  # type: ignore
 
     @distributed_trace
-    def get_default_model_a400_valid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def get_default_model_a400_valid(self, **kwargs: Any) -> None:
         """Send a 400 response with valid payload: {'statusCode': '400'}.
 
         :return: None
@@ -6528,10 +5301,7 @@ class MultipleResponsesOperations(object):
     get_default_model_a400_valid.metadata = {"url": "/http/payloads/default/A/response/400/valid"}  # type: ignore
 
     @distributed_trace
-    def get_default_model_a400_none(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def get_default_model_a400_none(self, **kwargs: Any) -> None:
         """Send a 400 response with no payload.
 
         :return: None
@@ -6558,10 +5328,7 @@ class MultipleResponsesOperations(object):
     get_default_model_a400_none.metadata = {"url": "/http/payloads/default/A/response/400/none"}  # type: ignore
 
     @distributed_trace
-    def get_default_none200_invalid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def get_default_none200_invalid(self, **kwargs: Any) -> None:
         """Send a 200 response with invalid payload: {'statusCode': '200'}.
 
         :return: None
@@ -6588,10 +5355,7 @@ class MultipleResponsesOperations(object):
     get_default_none200_invalid.metadata = {"url": "/http/payloads/default/none/response/200/invalid"}  # type: ignore
 
     @distributed_trace
-    def get_default_none200_none(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def get_default_none200_none(self, **kwargs: Any) -> None:
         """Send a 200 response with no payload.
 
         :return: None
@@ -6618,10 +5382,7 @@ class MultipleResponsesOperations(object):
     get_default_none200_none.metadata = {"url": "/http/payloads/default/none/response/200/none"}  # type: ignore
 
     @distributed_trace
-    def get_default_none400_invalid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def get_default_none400_invalid(self, **kwargs: Any) -> None:
         """Send a 400 response with valid payload: {'statusCode': '400'}.
 
         :return: None
@@ -6648,10 +5409,7 @@ class MultipleResponsesOperations(object):
     get_default_none400_invalid.metadata = {"url": "/http/payloads/default/none/response/400/invalid"}  # type: ignore
 
     @distributed_trace
-    def get_default_none400_none(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> None
+    def get_default_none400_none(self, **kwargs: Any) -> None:
         """Send a 400 response with no payload.
 
         :return: None
@@ -6678,10 +5436,7 @@ class MultipleResponsesOperations(object):
     get_default_none400_none.metadata = {"url": "/http/payloads/default/none/response/400/none"}  # type: ignore
 
     @distributed_trace
-    def get200_model_a200_none(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def get200_model_a200_none(self, **kwargs: Any) -> JSONType:
         """Send a 200 response with no payload, when a payload is expected - client should return a null
         object of thde type for model A.
 
@@ -6724,10 +5479,7 @@ class MultipleResponsesOperations(object):
     get200_model_a200_none.metadata = {"url": "/http/payloads/200/A/response/200/none"}  # type: ignore
 
     @distributed_trace
-    def get200_model_a200_valid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def get200_model_a200_valid(self, **kwargs: Any) -> JSONType:
         """Send a 200 response with payload {'statusCode': '200'}.
 
         :return: JSON object
@@ -6769,10 +5521,7 @@ class MultipleResponsesOperations(object):
     get200_model_a200_valid.metadata = {"url": "/http/payloads/200/A/response/200/valid"}  # type: ignore
 
     @distributed_trace
-    def get200_model_a200_invalid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def get200_model_a200_invalid(self, **kwargs: Any) -> JSONType:
         """Send a 200 response with invalid payload {'statusCodeInvalid': '200'}.
 
         :return: JSON object
@@ -6814,10 +5563,7 @@ class MultipleResponsesOperations(object):
     get200_model_a200_invalid.metadata = {"url": "/http/payloads/200/A/response/200/invalid"}  # type: ignore
 
     @distributed_trace
-    def get200_model_a400_none(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def get200_model_a400_none(self, **kwargs: Any) -> JSONType:
         """Send a 400 response with no payload client should treat as an http error with no error model.
 
         :return: JSON object
@@ -6859,10 +5605,7 @@ class MultipleResponsesOperations(object):
     get200_model_a400_none.metadata = {"url": "/http/payloads/200/A/response/400/none"}  # type: ignore
 
     @distributed_trace
-    def get200_model_a400_valid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def get200_model_a400_valid(self, **kwargs: Any) -> JSONType:
         """Send a 200 response with payload {'statusCode': '400'}.
 
         :return: JSON object
@@ -6904,10 +5647,7 @@ class MultipleResponsesOperations(object):
     get200_model_a400_valid.metadata = {"url": "/http/payloads/200/A/response/400/valid"}  # type: ignore
 
     @distributed_trace
-    def get200_model_a400_invalid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def get200_model_a400_invalid(self, **kwargs: Any) -> JSONType:
         """Send a 200 response with invalid payload {'statusCodeInvalid': '400'}.
 
         :return: JSON object
@@ -6949,10 +5689,7 @@ class MultipleResponsesOperations(object):
     get200_model_a400_invalid.metadata = {"url": "/http/payloads/200/A/response/400/invalid"}  # type: ignore
 
     @distributed_trace
-    def get200_model_a202_valid(
-        self, **kwargs  # type: Any
-    ):
-        # type: (...) -> JSONType
+    def get200_model_a202_valid(self, **kwargs: Any) -> JSONType:
         """Send a 202 response with payload {'statusCode': '202'}.
 
         :return: JSON object
