@@ -3,10 +3,10 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import List, Optional, Any, Dict
+from typing import List, Optional, Any
 from pathlib import Path
-from jinja2 import PackageLoader, Environment
 import time
+from jinja2 import PackageLoader, Environment
 from autorest.codegen.models.operation_group import OperationGroup
 
 from ...jsonrpc import AutorestAPI
