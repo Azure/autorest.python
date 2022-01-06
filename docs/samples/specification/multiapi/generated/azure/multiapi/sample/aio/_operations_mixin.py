@@ -9,10 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 from msrest import Serializer, Deserializer
-from typing import Any, AsyncIterable, Optional
 
-from azure.core.async_paging import AsyncItemPaged
-from azure.core.polling import AsyncLROPoller
 
 
 class MultiapiServiceClientOperationsMixin(object):

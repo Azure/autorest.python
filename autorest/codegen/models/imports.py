@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 from enum import Enum
-from typing import Dict, Optional, Set, Tuple, Union
+from typing import Dict, Optional, List, Tuple, Callable, Set, Union
 
 
 class ImportType(str, Enum):
@@ -18,41 +18,98 @@ class TypingSection(str, Enum):
     CONDITIONAL = "conditional"  # is a typing import when we're dealing with files that py2 will use, else regular
     TYPING = "typing"  # never a typing import
 
+class SingularImport:
+    def __init__(
+        self,
+        typing_section: TypingSection,
+        import_type: ImportType,
+        name: str,
+        *,
+        from_section: Optional[str] = None,
+        alias: Optional[str] = None
+    ):
+        self.typing_section = typing_section
+        self.import_type = import_type
+        self.name = name
+        self.from_section = from_section
+        self.alias = alias
+
+    def __eq__(self, other):
+        try:
+            return (
+                self.typing_section == other.typing_section and
+                self.import_type == other.import_type and
+                self.name == other.name and
+                self.from_section == other.from_section and
+                self.alias == other.alias
+            )
+        except AttributeError:
+            return False
+
+    def __hash__(self):
+        retval: int = 0
+        for attr in dir(self):
+            if attr[0] != "_":
+                retval += hash(getattr(self, attr))
+        return retval
+
 
 class FileImport:
     def __init__(
         self,
-        imports: Dict[
-            TypingSection,
-            Dict[ImportType, Dict[str, Set[Optional[Union[str, Tuple[str, str]]]]]]
-        ] = None
+        imports: List[SingularImport] = None
     ) -> None:
-        # Basic implementation
-        # First level dict: TypingSection
-        # Second level dict: ImportType
-        # Third level dict: the package name.
-        # Fourth level set: None if this import is a "import", the name to import if it's a "from"
-        self._imports: Dict[
+        self._imports = imports or []
+        self._imports_dict: Dict[
             TypingSection,
             Dict[ImportType, Dict[str, Set[Optional[Union[str, Tuple[str, str]]]]]]
-        ] = imports or dict()
+        ] = dict()
         # has sync and async type definitions
         self.type_definitions: Dict[str, Tuple[str, str]] = {}
+
+    def to_dict(self) -> Dict[
+            TypingSection,
+            Dict[ImportType, Dict[str, Set[Optional[Union[str, Tuple[str, str]]]]]]
+        ]:
+        return self._imports_dict
+
+    def get_from_predicate(self, predicate: Callable[[SingularImport], bool]) -> List[SingularImport]:
+        return [i for i in self.imports if predicate(i)]
+
+    @property
+    def imports(self) -> List[SingularImport]:
+        return list(set(self._imports))
 
     def _add_import(
         self,
         from_section: str,
         import_type: ImportType,
-        name_import: Optional[Union[str, Tuple[str, str]]] = None,
-        typing_section: TypingSection = TypingSection.REGULAR
+        typing_section: TypingSection = TypingSection.REGULAR,
+        name_import: Optional[str] = None,
+        alias: Optional[str] = None,
+
     ) -> None:
-        self._imports.setdefault(
-                typing_section, dict()
-            ).setdefault(
-                import_type, dict()
-            ).setdefault(
-                from_section, set()
-            ).add(name_import)
+        last_entry: Optional[Union[str, Tuple[str, str]]] = None
+        if not name_import:
+            last_entry = None
+        elif alias:
+            last_entry = (name_import, alias)
+        else:
+            last_entry = name_import
+        self._imports_dict.setdefault(
+            typing_section, dict()
+        ).setdefault(
+            import_type, dict()
+        ).setdefault(
+            from_section, set()
+        ).add(last_entry)
+        self._imports.append(SingularImport(
+            typing_section=typing_section,
+            import_type=import_type,
+            name=name_import if name_import else from_section,
+            from_section=from_section if name_import else None,
+            alias=alias,
+        ))
 
     def add_from_import(
         self,
@@ -65,7 +122,7 @@ class FileImport:
         """Add an import to this import block.
         """
         self._add_import(
-            from_section, import_type, (name_import, alias) if alias else name_import, typing_section
+            from_section, import_type, typing_section, name_import, alias
         )
 
     def add_import(
@@ -75,24 +132,13 @@ class FileImport:
         typing_section: TypingSection = TypingSection.REGULAR
     ) -> None:
         # Implementation detail: a regular import is just a "from" with no from
-        self._add_import(name_import, import_type, None, typing_section)
-
-    @property
-    def imports(self) -> Dict[
-            TypingSection,
-            Dict[ImportType, Dict[str, Set[Optional[Union[str, Tuple[str, str]]]]]]
-        ]:
-        return self._imports
+        self._add_import(name_import, import_type, typing_section)
 
     def define_mypy_type(self, type_name: str, type_value: str, async_type_value: Optional[str] = None):
-        self._add_import("typing", ImportType.STDLIB, "TypeVar", TypingSection.CONDITIONAL)
+        self.add_from_import("typing", "TypeVar", ImportType.STDLIB, TypingSection.CONDITIONAL)
         self.type_definitions[type_name] = (type_value, async_type_value or type_value)
 
     def merge(self, file_import: "FileImport") -> None:
         """Merge the given file import format."""
-        for typing_section, import_type_dict in file_import.imports.items():
-            for import_type, package_list in import_type_dict.items():
-                for package_name, module_list in package_list.items():
-                    for module_name in module_list:
-                        self._add_import(package_name, import_type, module_name, typing_section)
+        self._imports.extend(file_import.imports)
         self.type_definitions.update(file_import.type_definitions)

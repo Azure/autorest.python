@@ -9,14 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 from msrest import Serializer, Deserializer
-from typing import TYPE_CHECKING
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Iterable, Optional
-
-    from azure.core.paging import ItemPaged
-    from azure.core.polling import LROPoller
 
 
 class MultiapiServiceClientOperationsMixin(object):
