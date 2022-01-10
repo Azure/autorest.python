@@ -21,7 +21,7 @@ if TYPE_CHECKING:
 
 
 class LLCClient:
-    """LLC Swagger, this is the initial swager a service could do.
+    """LLC Swagger, this is the initial swagger a service could do.
 
     :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
     :paramtype endpoint: str
@@ -47,8 +47,8 @@ class LLCClient:
         Use these helper methods to create the request you pass to this method.
 
         >>> from llcservicedriveninitiallowlevel.rest import params
-        >>> request = params.build_get_required_request(parameter=parameter, **kwargs)
-        <HttpRequest [GET], url: '/servicedriven/parameters'>
+        >>> request = params.build_head_no_params_request(**kwargs)
+        <HttpRequest [HEAD], url: '/serviceDriven/parameters'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
 
