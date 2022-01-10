@@ -541,3 +541,12 @@ def test_lro_list(get_poller):
     assert product['id'] == "100"
     assert product['name'] == "foo"
 
+def test_patch201_retry_with_async_header(get_poller, product):
+    request = lros.build_patch201_retry_with_async_header_request(json=product)
+    product = get_poller(request).result()
+    assert product == {"properties": {"provisioningState": "Succeeded"}, "id": "/lro/patch/201/retry/onlyAsyncHeader", "name": "foo"}
+
+def test_patch202_retry_with_async_and_location_header(get_poller, product):
+    request = lros.build_patch202_retry_with_async_and_location_header_request(json=product)
+    product = get_poller(request).result()
+    assert product == { "properties": { "provisioningState": "Succeeded"}, "id": "/lro/patch/202/retry/asyncAndLocationHeader", "name": "foo" }

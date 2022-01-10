@@ -22,7 +22,7 @@ if TYPE_CHECKING:
 
 
 class LLCClient:
-    """LLC Swagger, this is the initial swager a service could do.
+    """LLC Swagger, this is the initial swagger a service could do.
 
     :ivar params: ParamsOperations operations
     :vartype params: llcservicedriveninitialversiontolerant.aio.operations.ParamsOperations

@@ -30,10 +30,22 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
+def build_params_head_no_params_request(**kwargs: Any) -> HttpRequest:
+    accept = "application/json"
+    # Construct URL
+    url = "/serviceDriven/parameters"
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="HEAD", url=url, headers=header_parameters, **kwargs)
+
+
 def build_params_get_required_request(*, parameter: str, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/servicedriven/parameters"
+    url = "/serviceDriven/parameters"
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -46,12 +58,32 @@ def build_params_get_required_request(*, parameter: str, **kwargs: Any) -> HttpR
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
+def build_params_put_required_optional_request(
+    *, required_param: str, optional_param: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
+    accept = "application/json"
+    # Construct URL
+    url = "/serviceDriven/parameters"
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters["requiredParam"] = _SERIALIZER.query("required_param", required_param, "str")
+    if optional_param is not None:
+        query_parameters["optionalParam"] = _SERIALIZER.query("optional_param", optional_param, "str")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="PUT", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+
+
 def build_params_post_parameters_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = "/servicedriven/parameters"
+    url = "/serviceDriven/parameters"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -60,6 +92,23 @@ def build_params_post_parameters_request(*, json: JSONType = None, content: Any 
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+
+
+def build_params_get_optional_request(*, optional_param: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+    accept = "application/json"
+    # Construct URL
+    url = "/serviceDriven/moreParameters"
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    if optional_param is not None:
+        query_parameters["optionalParam"] = _SERIALIZER.query("optional_param", optional_param, "str")
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
 class ParamsOperations(object):
@@ -79,6 +128,40 @@ class ParamsOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+
+    @distributed_trace
+    def head_no_params(self, **kwargs: Any) -> Any:
+        """Head request, no params.
+
+        :return: any
+        :rtype: any
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = build_params_head_no_params_request()
+        request.url = self._client.format_url(request.url)
+
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+
+    head_no_params.metadata = {"url": "/serviceDriven/parameters"}  # type: ignore
 
     @distributed_trace
     def get_required(self, *, parameter: str, **kwargs: Any) -> Any:
@@ -116,7 +199,48 @@ class ParamsOperations(object):
 
         return deserialized
 
-    get_required.metadata = {"url": "/servicedriven/parameters"}  # type: ignore
+    get_required.metadata = {"url": "/serviceDriven/parameters"}  # type: ignore
+
+    @distributed_trace
+    def put_required_optional(self, *, required_param: str, optional_param: Optional[str] = None, **kwargs: Any) -> Any:
+        """Put, has both required and optional params.
+
+        :keyword required_param: I am a required parameter.
+        :paramtype required_param: str
+        :keyword optional_param: I am an optional parameter.
+        :paramtype optional_param: str
+        :return: any
+        :rtype: any
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = build_params_put_required_optional_request(
+            required_param=required_param,
+            optional_param=optional_param,
+        )
+        request.url = self._client.format_url(request.url)
+
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+
+    put_required_optional.metadata = {"url": "/serviceDriven/parameters"}  # type: ignore
 
     @distributed_trace
     def post_parameters(self, parameter: JSONType, **kwargs: Any) -> Any:
@@ -168,4 +292,42 @@ class ParamsOperations(object):
 
         return deserialized
 
-    post_parameters.metadata = {"url": "/servicedriven/parameters"}  # type: ignore
+    post_parameters.metadata = {"url": "/serviceDriven/parameters"}  # type: ignore
+
+    @distributed_trace
+    def get_optional(self, *, optional_param: Optional[str] = None, **kwargs: Any) -> Any:
+        """Get true Boolean value on path.
+
+        :keyword optional_param: I am an optional parameter.
+        :paramtype optional_param: str
+        :return: any
+        :rtype: any
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = build_params_get_optional_request(
+            optional_param=optional_param,
+        )
+        request.url = self._client.format_url(request.url)
+
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+
+    get_optional.metadata = {"url": "/serviceDriven/moreParameters"}  # type: ignore

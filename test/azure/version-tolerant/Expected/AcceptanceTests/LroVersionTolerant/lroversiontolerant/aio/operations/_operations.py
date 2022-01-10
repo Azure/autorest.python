@@ -50,6 +50,8 @@ from ...operations._operations import (
     build_lros_delete_provisioning202_deleting_failed200_request_initial,
     build_lros_delete_provisioning202_deletingcanceled200_request_initial,
     build_lros_patch200_succeeded_ignore_headers_request_initial,
+    build_lros_patch201_retry_with_async_header_request_initial,
+    build_lros_patch202_retry_with_async_and_location_header_request_initial,
     build_lros_post200_with_payload_request_initial,
     build_lros_post202_list_request_initial,
     build_lros_post202_no_retry204_request_initial,
@@ -397,6 +399,292 @@ class LROsOperations:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     begin_patch200_succeeded_ignore_headers.metadata = {"url": "/lro/patch/200/succeeded/ignoreheaders"}  # type: ignore
+
+    async def _patch201_retry_with_async_header_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
+        if product is not None:
+            _json = product
+        else:
+            _json = None
+
+        request = build_lros_patch201_retry_with_async_header_request_initial(
+            content_type=content_type,
+            json=_json,
+        )
+        request.url = self._client.format_url(request.url)
+
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200, 201]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        response_headers = {}
+        if response.status_code == 200:
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
+
+        if response.status_code == 201:
+            response_headers["Azure-AsyncOperation"] = self._deserialize(
+                "str", response.headers.get("Azure-AsyncOperation")
+            )
+
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
+
+        if cls:
+            return cls(pipeline_response, deserialized, response_headers)
+
+        return deserialized
+
+    _patch201_retry_with_async_header_initial.metadata = {"url": "/lro/patch/201/retry/onlyAsyncHeader"}  # type: ignore
+
+    @distributed_trace_async
+    async def begin_patch201_retry_with_async_header(
+        self, product: JSONType = None, **kwargs: Any
+    ) -> AsyncLROPoller[JSONType]:
+        """Long running patch request, service returns a 201 to the initial request with async header.
+
+        :param product: Product to patch.
+        :type product: JSONType
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
+         this operation to not poll, or pass in your own initialized polling object for a personal
+         polling strategy.
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of AsyncLROPoller that returns JSON object
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSONType]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+
+                # response body for status code(s): 200, 201
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
+        cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = await self._patch201_retry_with_async_header_initial(
+                product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
+            )
+        kwargs.pop("error_map", None)
+
+        def get_long_running_output(pipeline_response):
+            response = pipeline_response.http_response
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
+            if cls:
+                return cls(pipeline_response, deserialized, {})
+            return deserialized
+
+        if polling is True:
+            polling_method = AsyncARMPolling(
+                lro_delay, lro_options={"final-state-via": "azure-async-operation"}, **kwargs
+            )
+        elif polling is False:
+            polling_method = AsyncNoPolling()
+        else:
+            polling_method = polling
+        if cont_token:
+            return AsyncLROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output,
+            )
+        else:
+            return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
+
+    begin_patch201_retry_with_async_header.metadata = {"url": "/lro/patch/201/retry/onlyAsyncHeader"}  # type: ignore
+
+    async def _patch202_retry_with_async_and_location_header_initial(
+        self, product: JSONType = None, **kwargs: Any
+    ) -> JSONType:
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+
+        if product is not None:
+            _json = product
+        else:
+            _json = None
+
+        request = build_lros_patch202_retry_with_async_and_location_header_request_initial(
+            content_type=content_type,
+            json=_json,
+        )
+        request.url = self._client.format_url(request.url)
+
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200, 202]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+        response_headers = {}
+        if response.status_code == 200:
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
+
+        if response.status_code == 202:
+            response_headers["Azure-AsyncOperation"] = self._deserialize(
+                "str", response.headers.get("Azure-AsyncOperation")
+            )
+            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
+
+        if cls:
+            return cls(pipeline_response, deserialized, response_headers)
+
+        return deserialized
+
+    _patch202_retry_with_async_and_location_header_initial.metadata = {"url": "/lro/patch/202/retry/asyncAndLocationHeader"}  # type: ignore
+
+    @distributed_trace_async
+    async def begin_patch202_retry_with_async_and_location_header(
+        self, product: JSONType = None, **kwargs: Any
+    ) -> AsyncLROPoller[JSONType]:
+        """Long running patch request, service returns a 202 to the initial request with async and
+        location header.
+
+        :param product: Product to patch.
+        :type product: JSONType
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
+         this operation to not poll, or pass in your own initialized polling object for a personal
+         polling strategy.
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of AsyncLROPoller that returns JSON object
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSONType]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+
+                # response body for status code(s): 200, 202
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        polling = kwargs.pop("polling", True)  # type: Union[bool, azure.core.polling.AsyncPollingMethod]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
+        cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
+        if cont_token is None:
+            raw_result = await self._patch202_retry_with_async_and_location_header_initial(
+                product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
+            )
+        kwargs.pop("error_map", None)
+
+        def get_long_running_output(pipeline_response):
+            response = pipeline_response.http_response
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
+            if cls:
+                return cls(pipeline_response, deserialized, {})
+            return deserialized
+
+        if polling is True:
+            polling_method = AsyncARMPolling(lro_delay, **kwargs)
+        elif polling is False:
+            polling_method = AsyncNoPolling()
+        else:
+            polling_method = polling
+        if cont_token:
+            return AsyncLROPoller.from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output,
+            )
+        else:
+            return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
+
+    begin_patch202_retry_with_async_and_location_header.metadata = {"url": "/lro/patch/202/retry/asyncAndLocationHeader"}  # type: ignore
 
     async def _put201_succeeded_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
