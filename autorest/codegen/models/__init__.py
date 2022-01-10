@@ -4,6 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 from typing import Any, Dict, TypeVar, Union
+from typing_extensions import TypeAlias
 from .base_model import BaseModel
 from .code_model import CodeModel
 from .credential_schema import AzureKeyCredentialSchema, TokenCredentialSchema
@@ -119,6 +120,8 @@ def build_schema(yaml_data: Dict[str, Any], **kwargs) -> BaseSchema:
         code_model.primitives[yaml_id] = schema
 
     return schema
+
+# BuilderType: TypeAlias = Union[RequestBuilder, Operation, LROPagingOperation, LROOperation, PagingOperation]
 
 BuilderType = TypeVar(
     "BuilderType",

@@ -65,7 +65,7 @@ def _serialize_files_or_data_dict(multipart_parameters: List[Parameter]) -> str:
     }
     return _json_dumps_template(template)
 
-def _get_files_example_template(builder: BuilderType) -> List[str]:
+def _get_files_example_template(builder) -> List[str]:
     multipart_params = builder.parameters.multipart
     if multipart_params:
         retval = [
@@ -77,7 +77,7 @@ def _get_files_example_template(builder: BuilderType) -> List[str]:
         "You're trying to get a template for your multipart params, but you don't have multipart params"
     )
 
-def _get_data_example_template(builder: BuilderType) -> List[str]:
+def _get_data_example_template(builder) -> List[str]:
     data_inputs = builder.parameters.data_inputs
     if data_inputs:
         retval = [
@@ -89,7 +89,7 @@ def _get_data_example_template(builder: BuilderType) -> List[str]:
         "You're trying to get a template for your form-encoded params, but you don't have form-encoded params"
     )
 
-def _content_type_error_check(builder: BuilderType) -> List[str]:
+def _content_type_error_check(builder) -> List[str]:
     retval = ["else:"]
     retval.append("    raise ValueError(")
     retval.append("        \"The content_type '{}' is not one of the allowed values: \"")
@@ -97,7 +97,7 @@ def _content_type_error_check(builder: BuilderType) -> List[str]:
     retval.append("    )")
     return retval
 
-def _serialize_files_and_data_body(builder: BuilderType, param_name: str) -> List[str]:
+def _serialize_files_and_data_body(builder, param_name: str) -> List[str]:
     retval: List[str] = []
     # we have to construct our form data before passing to the request as well
     retval.append("# Construct form data")
@@ -113,7 +113,7 @@ def _pop_parameters_kwarg(
 ) -> str:
     return f'{function_name}_parameters = kwargs.pop("{kwarg_name}", {{}})  # type: Dict[str, Any]'
 
-def _serialize_grouped_body(builder: BuilderType) -> List[str]:
+def _serialize_grouped_body(builder) -> List[str]:
     retval: List[str] = []
     for grouped_parameter in builder.parameters.grouped:
         retval.append(f"{grouped_parameter.serialized_name} = None")
@@ -128,7 +128,7 @@ def _serialize_grouped_body(builder: BuilderType) -> List[str]:
             )
     return retval
 
-def _serialize_flattened_body(builder: BuilderType) -> List[str]:
+def _serialize_flattened_body(builder) -> List[str]:
     retval: List[str] = []
     if not builder.parameters.is_flattened:
         raise ValueError(
@@ -149,7 +149,7 @@ def _serialize_flattened_body(builder: BuilderType) -> List[str]:
     )
     return retval
 
-def _content_type_docstring(builder: BuilderType) -> str:
+def _content_type_docstring(builder) -> str:
     content_type_str = (
         ":keyword str content_type: Media type of the body sent to the API. " +
         f'Default value is "{builder.parameters.default_content_type}". ' +
@@ -182,17 +182,17 @@ class _BuilderSerializerProtocol(ABC):
         ...
 
     @abstractmethod
-    def _method_signature(self, builder: BuilderType) -> str:
+    def _method_signature(self, builder) -> str:
         """Signature of the builder. Does not include return type annotation"""
         ...
 
     @abstractmethod
-    def _response_type_annotation(self, builder: BuilderType, modify_if_head_as_boolean: bool = True) -> str:
+    def _response_type_annotation(self, builder, modify_if_head_as_boolean: bool = True) -> str:
         """The mypy type annotation for the response"""
         ...
 
     @abstractmethod
-    def _response_type_annotation_wrapper(self, builder: BuilderType) -> List[str]:
+    def _response_type_annotation_wrapper(self, builder) -> List[str]:
         """Any wrappers that you want to go around the response type annotation"""
         ...
 
@@ -206,57 +206,57 @@ class _BuilderSerializerProtocol(ABC):
         ...
 
     @abstractmethod
-    def method_signature_and_response_type_annotation(self, builder: BuilderType) -> str:
+    def method_signature_and_response_type_annotation(self, builder) -> str:
         """Combines the method signature + the response type annotation together"""
         ...
 
     @abstractmethod
-    def description_and_summary(self, builder: BuilderType) -> List[str]:
+    def description_and_summary(self, builder) -> List[str]:
         """Description + summary from the swagger. Will be formatted into the overall operation description"""
         ...
 
     @abstractmethod
-    def response_docstring(self, builder: BuilderType) -> List[str]:
+    def response_docstring(self, builder) -> List[str]:
         """Response portion of the docstring"""
         ...
 
     @abstractmethod
-    def want_example_template(self, builder: BuilderType) -> bool:
+    def want_example_template(self, builder) -> bool:
         ...
 
     @abstractmethod
-    def get_example_template(self, builder: BuilderType) -> List[str]:
+    def get_example_template(self, builder) -> List[str]:
         ...
 
     @abstractmethod
-    def _get_json_example_template(self, builder: BuilderType) -> List[str]:
+    def _get_json_example_template(self, builder) -> List[str]:
         ...
 
     @abstractmethod
-    def _has_json_example_template(self, builder: BuilderType) -> bool:
+    def _has_json_example_template(self, builder) -> bool:
         ...
 
     @abstractmethod
-    def _has_files_example_template(self, builder: BuilderType) -> bool:
+    def _has_files_example_template(self, builder) -> bool:
         ...
     @abstractmethod
-    def _has_data_example_template(self, builder: BuilderType) -> bool:
-        ...
-
-    @abstractmethod
-    def _json_example_param_name(self, builder: BuilderType) -> str:
+    def _has_data_example_template(self, builder) -> bool:
         ...
 
     @abstractmethod
-    def _get_json_response_template(self, builder: BuilderType) -> List[str]:
+    def _json_example_param_name(self, builder) -> str:
         ...
 
     @abstractmethod
-    def _get_json_response_template_to_status_codes(self, builder: BuilderType) -> Dict[str, List[str]]:
+    def _get_json_response_template(self, builder) -> List[str]:
         ...
 
     @abstractmethod
-    def _get_kwargs_to_pop(self, builder: BuilderType) -> List[Parameter]:
+    def _get_json_response_template_to_status_codes(self, builder) -> Dict[str, List[str]]:
+        ...
+
+    @abstractmethod
+    def _get_kwargs_to_pop(self, builder) -> List[Parameter]:
         ...
 
 class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abstract-method
@@ -267,7 +267,7 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
     def _cls_docstring_rtype(self) -> str:
         return "" if self.code_model.options["version_tolerant"] else " or the result of cls(response)"
 
-    def _method_signature(self, builder: BuilderType) -> str:
+    def _method_signature(self, builder) -> str:
         return utils.serialize_method(
             function_def=self._function_definition,
             method_name=builder.name,
@@ -275,17 +275,17 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
             method_param_signatures=builder.parameters.method_signature(self._want_inline_type_hints),
         )
 
-    def _response_type_annotation_wrapper(self, builder: BuilderType) -> List[str]:
+    def _response_type_annotation_wrapper(self, builder) -> List[str]:
         return []
 
-    def method_signature_and_response_type_annotation(self, builder: BuilderType) -> str:
+    def method_signature_and_response_type_annotation(self, builder) -> str:
         method_signature = self._method_signature(builder)
         response_type_annotation = self._response_type_annotation(builder)
         for wrapper in self._response_type_annotation_wrapper(builder)[::-1]:
             response_type_annotation = f"{wrapper}[{response_type_annotation}]"
         return self._method_signature_and_response_type_annotation_template(method_signature, response_type_annotation)
 
-    def description_and_summary(self, builder: BuilderType) -> List[str]:
+    def description_and_summary(self, builder) -> List[str]:
         description_list: List[str] = []
         description_list.append(f"{ builder.summary.strip() if builder.summary else builder.description.strip() }")
         if builder.summary and builder.description:
@@ -314,10 +314,10 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
             description_list.append(_content_type_docstring(builder))
         return description_list
 
-    def param_description_and_response_docstring(self, builder: BuilderType) -> List[str]:
+    def param_description_and_response_docstring(self, builder) -> List[str]:
         return self.param_description(builder) + self.response_docstring(builder)
 
-    def _get_json_response_template_to_status_codes(self, builder: BuilderType) -> Dict[str, List[str]]:
+    def _get_json_response_template_to_status_codes(self, builder) -> Dict[str, List[str]]:
         # successful status codes of responses that have bodies
         responses = [
             response
@@ -338,7 +338,7 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
             retval[response_json].extend(status_codes)
         return retval
 
-    def get_example_template(self, builder: BuilderType) -> List[str]:
+    def get_example_template(self, builder) -> List[str]:
         template = []
         if self._has_json_example_template(builder):
             template.append("")
@@ -354,7 +354,7 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
             template += self._get_json_response_template(builder)
         return template
 
-    def _get_json_example_template(self, builder: BuilderType) -> List[str]:
+    def _get_json_example_template(self, builder) -> List[str]:
         template = []
         json_body = builder.parameters.json_body
         object_schema = cast(ObjectSchema, json_body)
@@ -417,7 +417,7 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
             ]
         return retval
 
-    def _get_json_response_template(self, builder: BuilderType) -> List[str]:
+    def _get_json_response_template(self, builder) -> List[str]:
         template = []
         for response_body, status_codes in self._get_json_response_template_to_status_codes(builder).items():
             template.append("# response body for status code(s): {}".format(", ".join(status_codes)))
@@ -425,10 +425,10 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
         return template
 
 
-    def pop_kwargs_from_signature(self, builder: BuilderType) -> List[str]:
+    def pop_kwargs_from_signature(self, builder) -> List[str]:
         return utils.pop_kwargs_from_signature(self._get_kwargs_to_pop(builder))
 
-    def serialize_path(self, builder: BuilderType) -> List[str]:
+    def serialize_path(self, builder) -> List[str]:
         return utils.serialize_path(builder.parameters.path, self.serializer_name)
 
     @property
@@ -440,7 +440,7 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
 
 
 class _RequestBuilderBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstract-method
-    def description_and_summary(self, builder: BuilderType) -> List[str]:
+    def description_and_summary(self, builder) -> List[str]:
         retval = super().description_and_summary(builder)
         retval += [
             "See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this "
@@ -453,7 +453,7 @@ class _RequestBuilderBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=
     def serializer_name(self) -> str:
         return "_SERIALIZER"
 
-    def want_example_template(self, builder: BuilderType) -> bool:
+    def want_example_template(self, builder: RequestBuilder) -> bool:
         if self.code_model.options["builders_visibility"] != "public":
             return False  # if we're not exposing rest layer, don't need to generate
         if builder.parameters.has_body:
@@ -469,10 +469,10 @@ class _RequestBuilderBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=
     def _is_in_class(self) -> bool:
         return False
 
-    def _response_type_annotation(self, builder: BuilderType, modify_if_head_as_boolean: bool = True) -> str:
+    def _response_type_annotation(self, builder, modify_if_head_as_boolean: bool = True) -> str:
         return "HttpRequest"
 
-    def response_docstring(self, builder: BuilderType) -> List[str]:
+    def response_docstring(self, builder) -> List[str]:
         response_str = (
             f":return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's "
             + "`send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to "
@@ -481,23 +481,23 @@ class _RequestBuilderBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=
         rtype_str = f":rtype: ~azure.core.rest.HttpRequest"
         return [response_str, rtype_str]
 
-    def _json_example_param_name(self, builder: BuilderType) -> str:
+    def _json_example_param_name(self, builder: RequestBuilder) -> str:
         return "json"
 
-    def _has_json_example_template(self, builder: BuilderType) -> bool:
+    def _has_json_example_template(self, builder) -> bool:
         return "json" in builder.parameters.body_kwarg_names
 
-    def _has_files_example_template(self, builder: BuilderType) -> bool:
+    def _has_files_example_template(self, builder) -> bool:
         return "files" in builder.parameters.body_kwarg_names
 
-    def _has_data_example_template(self, builder: BuilderType) -> bool:
+    def _has_data_example_template(self, builder) -> bool:
         return "data" in builder.parameters.body_kwarg_names
 
     @abstractmethod
-    def _body_params_to_pass_to_request_creation(self, builder: BuilderType) -> List[str]:
+    def _body_params_to_pass_to_request_creation(self, builder) -> List[str]:
         ...
 
-    def create_http_request(self, builder: BuilderType) -> List[str]:
+    def create_http_request(self, builder: RequestBuilder) -> List[str]:
         retval = ["return HttpRequest("]
         retval.append(f'    method="{builder.method}",')
         retval.append("    url=url,")
@@ -514,7 +514,7 @@ class _RequestBuilderBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=
         retval.append(")")
         return retval
 
-    def serialize_headers(self, builder: BuilderType) -> List[str]:
+    def serialize_headers(self, builder) -> List[str]:
         retval = ["# Construct headers"]
         retval.append(_pop_parameters_kwarg("header", "headers"))
         for parameter in builder.parameters.headers:
@@ -524,7 +524,7 @@ class _RequestBuilderBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=
             ))
         return retval
 
-    def serialize_query(self, builder: BuilderType) -> List[str]:
+    def serialize_query(self, builder) -> List[str]:
         retval = ["# Construct parameters"]
         retval.append(_pop_parameters_kwarg("query", "params"))
         for parameter in builder.parameters.query:
@@ -545,10 +545,10 @@ class RequestBuilderGenericSerializer(_RequestBuilderBaseSerializer):
             is_python3_file=False, method_signature=method_signature, response_type_annotation=response_type_annotation
         )
 
-    def _get_kwargs_to_pop(self, builder: BuilderType):
+    def _get_kwargs_to_pop(self, builder: RequestBuilder):
         return builder.parameters.kwargs_to_pop(is_python3_file=False)
 
-    def _body_params_to_pass_to_request_creation(self, builder: BuilderType) -> List[str]:
+    def _body_params_to_pass_to_request_creation(self, builder) -> List[str]:
         if builder.parameters.has_body and not builder.parameters.body_kwarg_names:
             # this means we have a constant body
             # only doing json body in this case
@@ -567,10 +567,10 @@ class RequestBuilderPython3Serializer(_RequestBuilderBaseSerializer):
             is_python3_file=True, method_signature=method_signature, response_type_annotation=response_type_annotation
         )
 
-    def _get_kwargs_to_pop(self, builder: BuilderType):
+    def _get_kwargs_to_pop(self, builder):
         return builder.parameters.kwargs_to_pop(is_python3_file=True)
 
-    def _body_params_to_pass_to_request_creation(self, builder: BuilderType) -> List[str]:
+    def _body_params_to_pass_to_request_creation(self, builder: RequestBuilder) -> List[str]:
         body_kwargs = list(builder.parameters.body_kwarg_names.keys())
         if body_kwargs:
             return body_kwargs
@@ -585,7 +585,7 @@ class RequestBuilderPython3Serializer(_RequestBuilderBaseSerializer):
 
 
 class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstract-method
-    def description_and_summary(self, builder: BuilderType) -> List[str]:
+    def description_and_summary(self, builder: Operation) -> List[str]:
         retval = super().description_and_summary(builder)
         if builder.deprecated:
             retval.append(".. warning::")
@@ -601,10 +601,10 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
     def serializer_name(self) -> str:
         return "self._serialize"
 
-    def _response_docstring_type_wrapper(self, builder: BuilderType) -> List[str]:  # pylint: disable=unused-argument, no-self-use
+    def _response_docstring_type_wrapper(self, builder) -> List[str]:  # pylint: disable=unused-argument, no-self-use
         return []
 
-    def param_description(self, builder: BuilderType) -> List[str]:  # pylint: disable=no-self-use
+    def param_description(self, builder) -> List[str]:  # pylint: disable=no-self-use
         description_list = super().param_description(builder)
         if not self.code_model.options["version_tolerant"]:
             description_list.append(
@@ -612,13 +612,13 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
             )
         return description_list
 
-    def _response_docstring_type_template(self, builder: BuilderType) -> str:
+    def _response_docstring_type_template(self, builder) -> str:
         retval = "{}"
         for wrapper in self._response_docstring_type_wrapper(builder)[::-1]:
             retval = f"{wrapper}[{retval}]"
         return retval
 
-    def _response_type_annotation(self, builder: BuilderType, modify_if_head_as_boolean: bool = True) -> str:
+    def _response_type_annotation(self, builder: Operation, modify_if_head_as_boolean: bool = True) -> str:
         if (
             modify_if_head_as_boolean
             and builder.request_builder.method.lower() == "head"
@@ -635,14 +635,14 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
             response_str = f"Optional[{response_str}]"
         return response_str
 
-    def cls_type_annotation(self, builder: BuilderType) -> str:
+    def cls_type_annotation(self, builder) -> str:
         return f"# type: ClsType[{self._response_type_annotation(builder, modify_if_head_as_boolean=False)}]"
 
-    def _response_docstring_text_template(self, builder: BuilderType) -> str:  # pylint: disable=no-self-use, unused-argument
+    def _response_docstring_text_template(self, builder) -> str:  # pylint: disable=no-self-use, unused-argument
         cls_str = f",{self._cls_docstring_rtype}" if self._cls_docstring_rtype else ""
         return "{}" + cls_str
 
-    def response_docstring(self, builder: BuilderType) -> List[str]:
+    def response_docstring(self, builder: Operation) -> List[str]:
         responses_with_body = [r for r in builder.responses if r.has_body]
         if builder.request_builder.method.lower() == "head" and self.code_model.options["head_as_boolean"]:
             response_docstring_text = "bool"
@@ -665,7 +665,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         rtype_str = f":rtype: {self._response_docstring_type_template(builder).format(rtype)}"
         return [response_str, rtype_str, ":raises: ~azure.core.exceptions.HttpResponseError"]
 
-    def want_example_template(self, builder: BuilderType) -> bool:
+    def want_example_template(self, builder) -> bool:
         if self.code_model.options['models_mode']:
             return False
         if builder.parameters.has_body:
@@ -675,23 +675,23 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
             return any([b for b in body_params if isinstance(b.schema, (DictionarySchema, ListSchema, ObjectSchema))])
         return bool(self._get_json_response_template_to_status_codes(builder))
 
-    def _json_example_param_name(self, builder: BuilderType) -> str:
+    def _json_example_param_name(self, builder) -> str:
         return builder.parameters.body[0].serialized_name
 
-    def _has_json_example_template(self, builder: BuilderType) -> bool:
+    def _has_json_example_template(self, builder) -> bool:
         return (
             builder.parameters.has_body and
             not (builder.parameters.multipart or builder.parameters.data_inputs)
         )
 
-    def _has_files_example_template(self, builder: BuilderType) -> bool:
+    def _has_files_example_template(self, builder) -> bool:
         return bool(builder.parameters.multipart)
 
-    def _has_data_example_template(self, builder: BuilderType) -> bool:
+    def _has_data_example_template(self, builder) -> bool:
         return bool(builder.parameters.data_inputs)
 
     def _serialize_body_call(
-        self, builder: BuilderType, body_param: Parameter, send_xml: bool, ser_ctxt: Optional[str], ser_ctxt_name: str
+        self, builder: Operation, body_param: Parameter, send_xml: bool, ser_ctxt: Optional[str], ser_ctxt_name: str
     ) -> str:
         body_is_xml = ", is_xml=True" if send_xml else ""
         pass_ser_ctxt = f", {ser_ctxt_name}={ser_ctxt_name}" if ser_ctxt else ""
@@ -703,7 +703,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
             )
         return f"_{body_kwarg_to_pass} = {body_param.serialized_name}"
 
-    def _serialize_body(self, builder: BuilderType, body_param: Parameter, body_kwarg: str) -> List[str]:
+    def _serialize_body(self, builder, body_param: Parameter, body_kwarg: str) -> List[str]:
         retval = []
         send_xml = bool(
             builder.parameters.has_body and
@@ -732,7 +732,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         return retval
 
     def _set_body_content_kwarg(
-        self, builder: BuilderType, body_param: Parameter, body_kwarg: Parameter
+        self, builder, body_param: Parameter, body_kwarg: Parameter
     ) -> List[str]:
         retval: List[str] = []
         if body_kwarg.serialized_name == "data" or body_kwarg.serialized_name == "files":
@@ -748,7 +748,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
 
 
     def _serialize_body_parameters(
-        self, builder: BuilderType,
+        self, builder: Operation,
     ) -> List[str]:
         retval = []
         body_kwargs = [
@@ -779,7 +779,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
 
     def _call_request_builder_helper(
         self,
-        builder: BuilderType,
+        builder: Operation,
         request_builder: RequestBuilder,
         template_url: Optional[str] = None,
     ) -> List[str]:
@@ -845,7 +845,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         )
         return retval
 
-    def call_request_builder(self, builder: BuilderType) -> List[str]:
+    def call_request_builder(self, builder) -> List[str]:
         return self._call_request_builder_helper(builder, builder.request_builder)
 
     def response_headers_and_deserialization(
@@ -886,7 +886,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
     def _call_method(self) -> str:
         ...
 
-    def handle_error_response(self, builder: BuilderType) -> List[str]:
+    def handle_error_response(self, builder: Operation) -> List[str]:
         retval = [f"if response.status_code not in {str(builder.success_status_code)}:"]
         retval.append("    map_error(status_code=response.status_code, response=response, error_map=error_map)")
         error_model = ""
@@ -901,7 +901,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         ))
         return retval
 
-    def handle_response(self, builder: BuilderType) -> List[str]:
+    def handle_response(self, builder: Operation) -> List[str]:
         retval: List[str] = ["response = pipeline_response.http_response"]
         retval.append("")
         retval.extend(self.handle_error_response(builder))
@@ -938,7 +938,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
             retval.append("return 200 <= response.status_code <= 299")
         return retval
 
-    def error_map(self, builder: BuilderType) -> List[str]:
+    def error_map(self, builder: Operation) -> List[str]:
         retval = ["error_map = {"]
         if builder.status_code_exceptions:
             if not 401 in builder.status_code_exceptions_status_codes:
@@ -986,7 +986,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         return retval
 
     @staticmethod
-    def get_metadata_url(builder: BuilderType) -> str:
+    def get_metadata_url(builder: Operation) -> str:
         return f"{builder.python_name}.metadata = {{'url': '{ builder.request_builder.url }'}}  # type: ignore"
 
 class _SyncOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=abstract-method
@@ -1013,7 +1013,7 @@ class SyncOperationGenericSerializer(_SyncOperationBaseSerializer):
             is_python3_file=False, method_signature=method_signature, response_type_annotation=response_type_annotation
         )
 
-    def _get_kwargs_to_pop(self, builder: BuilderType):
+    def _get_kwargs_to_pop(self, builder):
         return builder.parameters.kwargs_to_pop(is_python3_file=False)
 
 
@@ -1028,7 +1028,7 @@ class SyncOperationPython3Serializer(_SyncOperationBaseSerializer):
             is_python3_file=True, method_signature=method_signature, response_type_annotation=response_type_annotation
         )
 
-    def _get_kwargs_to_pop(self, builder: BuilderType):
+    def _get_kwargs_to_pop(self, builder):
         return builder.parameters.kwargs_to_pop(is_python3_file=True)
 
 class AsyncOperationSerializer(SyncOperationPython3Serializer):
@@ -1050,16 +1050,16 @@ class AsyncOperationSerializer(SyncOperationPython3Serializer):
 
 
 class _PagingOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=abstract-method
-    def _response_docstring_text_template(self, builder: BuilderType) -> str:  # pylint: disable=no-self-use, unused-argument
+    def _response_docstring_text_template(self, builder: PagingOperation) -> str:  # pylint: disable=no-self-use, unused-argument
         if self._cls_docstring_rtype:
             return "An iterator like instance of either {}" + self._cls_docstring_rtype
         return "An iterator like instance of {}"
 
-    def cls_type_annotation(self, builder: BuilderType) -> str:
+    def cls_type_annotation(self, builder: PagingOperation) -> str:
         interior = super()._response_type_annotation(builder, modify_if_head_as_boolean=False)
         return f"# type: ClsType[{interior}]"
 
-    def call_next_link_request_builder(self, builder: BuilderType) -> List[str]:
+    def call_next_link_request_builder(self, builder: PagingOperation) -> List[str]:
         if builder.next_request_builder:
             request_builder = builder.next_request_builder
             template_url = None if self.code_model.options["version_tolerant"] else f"'{request_builder.url}'"
@@ -1073,7 +1073,7 @@ class _PagingOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disab
             template_url=template_url,
         )
 
-    def _prepare_request_callback(self, builder: BuilderType) -> List[str]:
+    def _prepare_request_callback(self, builder: PagingOperation) -> List[str]:
         retval = ["def prepare_request(next_link=None):"]
         retval.append("    if not next_link:")
         retval.extend([
@@ -1106,10 +1106,10 @@ class _PagingOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disab
 
     @staticmethod
     @abstractmethod
-    def _pager(builder: BuilderType) -> str:
+    def _pager(builder: PagingOperation) -> str:
         ...
 
-    def _extract_data_callback(self, builder: BuilderType) -> List[str]:
+    def _extract_data_callback(self, builder: PagingOperation) -> List[str]:
         retval = [f"{self._def} extract_data(pipeline_response):"]
         response = builder.responses[0]
         deserialized = (
@@ -1134,7 +1134,7 @@ class _PagingOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disab
         retval.append(f"    return {next_link_property}, {self._list_type_returned_to_users}(list_of_elem)")
         return retval
 
-    def _get_next_callback(self, builder: BuilderType) -> List[str]:
+    def _get_next_callback(self, builder: PagingOperation) -> List[str]:
         retval = [f"{self._def} get_next(next_link=None):"]
         retval.append("    request = prepare_request(next_link)")
         retval.append("")
@@ -1152,7 +1152,7 @@ class _PagingOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disab
         retval.append("    return pipeline_response")
         return retval
 
-    def set_up_params_for_pager(self, builder: BuilderType) -> List[str]:
+    def set_up_params_for_pager(self, builder: PagingOperation) -> List[str]:
         retval = [f"cls = kwargs.pop('cls', None)  {self.cls_type_annotation(builder)}"]
         retval.extend(self.error_map(builder))
         retval.extend(self._prepare_request_callback(builder))
@@ -1163,10 +1163,10 @@ class _PagingOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disab
         return retval
 
 class _SyncPagingOperationBaseSerializer(_PagingOperationBaseSerializer, _SyncOperationBaseSerializer):  # pylint: disable=abstract-method
-    def _response_docstring_type_wrapper(self, builder: BuilderType) -> List[str]:  # pylint: no-self-use
+    def _response_docstring_type_wrapper(self, builder: PagingOperation) -> List[str]:  # pylint: no-self-use
         return [f"~{builder.get_pager_path(async_mode=False)}"]
 
-    def _response_type_annotation_wrapper(self, builder: BuilderType) -> List[str]:
+    def _response_type_annotation_wrapper(self, builder: PagingOperation) -> List[str]:
         return ["Iterable"]
 
     @property
@@ -1174,7 +1174,7 @@ class _SyncPagingOperationBaseSerializer(_PagingOperationBaseSerializer, _SyncOp
         return "iter"
 
     @staticmethod
-    def _pager(builder: BuilderType) -> str:
+    def _pager(builder: PagingOperation) -> str:
         return builder.get_pager(async_mode=False)
 
 class SyncPagingOperationGenericSerializer(_SyncPagingOperationBaseSerializer, SyncOperationGenericSerializer):
@@ -1184,14 +1184,14 @@ class SyncPagingOperationPython3Serializer(_SyncPagingOperationBaseSerializer, S
     pass
 
 class AsyncPagingOperationSerializer(_PagingOperationBaseSerializer, AsyncOperationSerializer):
-    def _response_docstring_type_wrapper(self, builder: BuilderType) -> List[str]:  # pylint: no-self-use
+    def _response_docstring_type_wrapper(self, builder: PagingOperation) -> List[str]:  # pylint: no-self-use
         return [f"~{builder.get_pager_path(async_mode=True)}"]
 
     @property
     def _function_definition(self) -> str:
         return "def"
 
-    def _response_type_annotation_wrapper(self, builder: BuilderType) -> List[str]:
+    def _response_type_annotation_wrapper(self, builder: PagingOperation) -> List[str]:
         return ["AsyncIterable"]
 
     @property
@@ -1199,7 +1199,7 @@ class AsyncPagingOperationSerializer(_PagingOperationBaseSerializer, AsyncOperat
         return "AsyncList"
 
     @staticmethod
-    def _pager(builder: BuilderType) -> str:
+    def _pager(builder: PagingOperation) -> str:
         return builder.get_pager(async_mode=True)
 
 
@@ -1207,19 +1207,19 @@ class AsyncPagingOperationSerializer(_PagingOperationBaseSerializer, AsyncOperat
 
 
 class _LROOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=abstract-method
-    def cls_type_annotation(self, builder: BuilderType) -> str:
+    def cls_type_annotation(self, builder: LROOperation) -> str:
         return f"# type: ClsType[{super()._response_type_annotation(builder, modify_if_head_as_boolean=False)}]"
 
     @abstractmethod
-    def _default_polling_method(self, builder: BuilderType) -> str:
+    def _default_polling_method(self, builder: LROOperation) -> str:
         ...
 
     @abstractmethod
-    def _default_no_polling_method(self, builder: BuilderType) -> str:
+    def _default_no_polling_method(self, builder: LROOperation) -> str:
         ...
 
     @abstractmethod
-    def _poller(self, builder: BuilderType) -> str:
+    def _poller(self, builder: LROOperation) -> str:
         ...
 
     @property
@@ -1227,7 +1227,7 @@ class _LROOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=
     def _polling_method_type(self):
         ...
 
-    def param_description(self, builder: BuilderType) -> List[str]:
+    def param_description(self, builder: LROOperation) -> List[str]:
         retval = super().param_description(builder)
         retval.append(":keyword str continuation_token: A continuation token to restart a poller from a saved state.")
         retval.append(
@@ -1242,7 +1242,7 @@ class _LROOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=
         )
         return retval
 
-    def initial_call(self, builder: BuilderType) -> List[str]:
+    def initial_call(self, builder: LROOperation) -> List[str]:
         retval = [f"polling = kwargs.pop('polling', True)  # type: Union[bool, {self._polling_method_type}]"]
         retval.append(f"cls = kwargs.pop('cls', None)  {self.cls_type_annotation(builder)}")
         retval.append("lro_delay = kwargs.pop(")
@@ -1262,7 +1262,7 @@ class _LROOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=
         retval.append("kwargs.pop('error_map', None)")
         return retval
 
-    def return_lro_poller(self, builder: BuilderType) -> List[str]:
+    def return_lro_poller(self, builder: LROOperation) -> List[str]:
         retval = []
         lro_options_str = (
             ", lro_options={'final-state-via': '" + builder.lro_options['final-state-via'] + "'}"
@@ -1295,7 +1295,7 @@ class _LROOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=
         )
         return retval
 
-    def get_long_running_output(self, builder: BuilderType) -> List[str]:
+    def get_long_running_output(self, builder: LROOperation) -> List[str]:
         retval = ["def get_long_running_output(pipeline_response):"]
         if builder.lro_response:
             if builder.lro_response.has_headers:
@@ -1316,29 +1316,29 @@ class _LROOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=
 
 
 class _SyncLROOperationBaseSerializer(_LROOperationBaseSerializer, _SyncOperationBaseSerializer):  # pylint: disable=abstract-method
-    def _response_docstring_text_template(self, builder: BuilderType) -> str:  # pylint: disable=no-self-use
+    def _response_docstring_text_template(self, builder: LROOperation) -> str:  # pylint: disable=no-self-use
         lro_section = f"An instance of {builder.get_poller(async_mode=False)} "
         if self._cls_docstring_rtype:
             return lro_section + "that returns either {}" + self._cls_docstring_rtype
         return lro_section + "that returns {}"
 
-    def _response_docstring_type_wrapper(self, builder: BuilderType) -> List[str]:  # pylint: no-self-use
+    def _response_docstring_type_wrapper(self, builder: LROOperation) -> List[str]:  # pylint: no-self-use
         return [f"~{builder.get_poller_path(async_mode=False)}"]
 
-    def _response_type_annotation_wrapper(self, builder: BuilderType) -> List[str]:
+    def _response_type_annotation_wrapper(self, builder: LROOperation) -> List[str]:
         return [builder.get_poller(async_mode=False)]
 
-    def _default_polling_method(self, builder: BuilderType) -> str:
+    def _default_polling_method(self, builder: LROOperation) -> str:
         return builder.get_default_polling_method(async_mode=False, azure_arm=self.code_model.options["azure_arm"])
 
-    def _default_no_polling_method(self, builder: BuilderType) -> str:
+    def _default_no_polling_method(self, builder: LROOperation) -> str:
         return builder.get_default_no_polling_method(async_mode=False)
 
     @property
     def _polling_method_type(self):
         return "azure.core.polling.PollingMethod"
 
-    def _poller(self, builder: BuilderType) -> str:
+    def _poller(self, builder: LROOperation) -> str:
         return builder.get_poller(async_mode=False)
 
 class SyncLROOperationGenericSerializer(_SyncLROOperationBaseSerializer, SyncOperationGenericSerializer):
@@ -1349,29 +1349,29 @@ class SyncLROOperationPython3Serializer(_SyncLROOperationBaseSerializer, SyncOpe
 
 class AsyncLROOperationSerializer(_LROOperationBaseSerializer, AsyncOperationSerializer):
 
-    def _response_docstring_text_template(self, builder: BuilderType) -> str:  # pylint: disable=no-self-use
+    def _response_docstring_text_template(self, builder: LROOperation) -> str:  # pylint: disable=no-self-use
         lro_section = f"An instance of {builder.get_poller(async_mode=True)} "
         if self._cls_docstring_rtype:
             return lro_section + "that returns either {}" + self._cls_docstring_rtype
         return lro_section + "that returns {}"
 
-    def _response_docstring_type_wrapper(self, builder: BuilderType) -> List[str]:  # pylint: no-self-use
+    def _response_docstring_type_wrapper(self, builder: LROOperation) -> List[str]:  # pylint: no-self-use
         return [f"~{builder.get_poller_path(async_mode=True)}"]
 
-    def _response_type_annotation_wrapper(self, builder: BuilderType) -> List[str]:
+    def _response_type_annotation_wrapper(self, builder: LROOperation) -> List[str]:
         return [builder.get_poller(async_mode=True)]
 
-    def _default_polling_method(self, builder: BuilderType) -> str:
+    def _default_polling_method(self, builder: LROOperation) -> str:
         return builder.get_default_polling_method(async_mode=True, azure_arm=self.code_model.options["azure_arm"])
 
-    def _default_no_polling_method(self, builder: BuilderType) -> str:
+    def _default_no_polling_method(self, builder: LROOperation) -> str:
         return builder.get_default_no_polling_method(async_mode=True)
 
     @property
     def _polling_method_type(self):
         return "azure.core.polling.AsyncPollingMethod"
 
-    def _poller(self, builder: BuilderType) -> str:
+    def _poller(self, builder: LROOperation) -> str:
         return builder.get_poller(async_mode=True)
 
 
@@ -1379,7 +1379,7 @@ class AsyncLROOperationSerializer(_LROOperationBaseSerializer, AsyncOperationSer
 
 class _LROPagingOperationBaseSerializer(_LROOperationBaseSerializer, _PagingOperationBaseSerializer):  # pylint: disable=abstract-method
 
-    def get_long_running_output(self, builder: BuilderType) -> List[str]:
+    def get_long_running_output(self, builder: LROPagingOperation) -> List[str]:
         retval = ["def get_long_running_output(pipeline_response):"]
         retval.append(f"    {self._def} internal_get_next(next_link=None):")
         retval.append("        if next_link is None:")
@@ -1397,23 +1397,23 @@ class _SyncLROPagingOperationBaseSerializer(  # pylint: disable=abstract-method
     _SyncLROOperationBaseSerializer, _SyncPagingOperationBaseSerializer, _LROPagingOperationBaseSerializer
 ):
 
-    def _response_docstring_type_wrapper(self, builder: BuilderType) -> List[str]:
+    def _response_docstring_type_wrapper(self, builder: LROPagingOperation) -> List[str]:
         return _SyncLROOperationBaseSerializer._response_docstring_type_wrapper(
             self, builder
         ) + _SyncPagingOperationBaseSerializer._response_docstring_type_wrapper(self, builder)
 
-    def _response_type_annotation_wrapper(self, builder: BuilderType) -> List[str]:
+    def _response_type_annotation_wrapper(self, builder: LROPagingOperation) -> List[str]:
         return _SyncLROOperationBaseSerializer._response_type_annotation_wrapper(self, builder) + [
             builder.get_pager(async_mode=False)
         ]
 
-    def _response_docstring_text_template(self, builder: BuilderType) -> str:
+    def _response_docstring_text_template(self, builder: LROPagingOperation) -> str:
         lro_doc = _SyncLROOperationBaseSerializer._response_docstring_text_template(self, builder)
         paging_doc = _SyncPagingOperationBaseSerializer._response_docstring_text_template(self, builder)
         paging_doc = paging_doc.replace(paging_doc[0], paging_doc[0].lower(), 1)
         return lro_doc.format(paging_doc).replace(self._cls_docstring_rtype, "", 1).replace("either ", "", 1)
 
-    def cls_type_annotation(self, builder: BuilderType) -> str:
+    def cls_type_annotation(self, builder: LROPagingOperation) -> str:
         return f"# type: ClsType[{self._response_type_annotation(builder, modify_if_head_as_boolean=False)}]"
 
 class SyncLROPagingOperationGenericSerializer(_SyncLROPagingOperationBaseSerializer, SyncOperationGenericSerializer):
@@ -1429,17 +1429,17 @@ class AsyncLROPagingOperationSerializer(
     def _function_definition(self) -> str:
         return "async def"
 
-    def _response_docstring_type_wrapper(self, builder: BuilderType) -> List[str]:
+    def _response_docstring_type_wrapper(self, builder: LROPagingOperation) -> List[str]:
         return AsyncLROOperationSerializer._response_docstring_type_wrapper(
             self, builder
         ) + AsyncPagingOperationSerializer._response_docstring_type_wrapper(self, builder)
 
-    def _response_type_annotation_wrapper(self, builder: BuilderType) -> List[str]:
+    def _response_type_annotation_wrapper(self, builder: LROPagingOperation) -> List[str]:
         return AsyncLROOperationSerializer._response_type_annotation_wrapper(self, builder) + [
             builder.get_pager(async_mode=True)
         ]
 
-    def _response_docstring_text_template(self, builder: BuilderType) -> str:
+    def _response_docstring_text_template(self, builder: LROPagingOperation) -> str:
         lro_doc = AsyncLROOperationSerializer._response_docstring_text_template(self, builder)
         paging_doc = AsyncPagingOperationSerializer._response_docstring_text_template(self, builder)
         paging_doc = paging_doc.replace(paging_doc[0], paging_doc[0].lower(), 1)
@@ -1447,7 +1447,7 @@ class AsyncLROPagingOperationSerializer(
 
 
 def get_operation_serializer(
-    builder: BuilderType,
+    builder,
     code_model,
     async_mode: bool,
     is_python3_file: bool,
