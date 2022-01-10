@@ -82,11 +82,11 @@ class ObjectTypeClientOperationsMixin(object):
 
         content_type = kwargs.pop("content_type", "application/merge-patch+json")  # type: Optional[str]
 
-        _content = self._serialize.body(body, "object")
+        _json = self._serialize.body(body, "object")
 
         request = build_patch_single_request(
             content_type=content_type,
-            content=_content,
+            json=_json,
             template_url=self.patch_single.metadata["url"],
         )
         request = _convert_request(request)

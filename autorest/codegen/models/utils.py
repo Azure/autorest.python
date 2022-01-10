@@ -5,4 +5,4 @@
 # --------------------------------------------------------------------------
 import re
 
-JSON_REGEXP = re.compile(r'^(application|text)/([0-9a-z+.-]+\+)?json$')
+JSON_REGEXP = re.compile(r'^(application|text)/(.+\+)?json$')
