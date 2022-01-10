@@ -1,5 +1,19 @@
 # Change Log
 
+### 2022-01-10 - 5.12.1
+
+| Library | Min Version
+| --------------- | -------
+|`@autorest/core` |  `3.6.2`
+|`@autorest/modelerfour` | `4.19.1`
+|`azure-core` dep of generated code | `1.20.1`
+|`msrest` dep of generated code | `0.6.21`
+|`azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`
+
+**Bug Fixes**
+
+- Fix support for json merge patch  #1117
+
 ### 2021-12-06 - 5.12.0
 
 | Library | Min Version
