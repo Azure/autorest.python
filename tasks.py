@@ -52,6 +52,7 @@ _VANILLA_SWAGGER_MAPPINGS = {
     'Validation': 'validation.json',
     'CustomBaseUri': 'custom-baseUrl.json',
     'CustomBaseUriMoreOptions': 'custom-baseUrl-more-options.json',
+    'MergePatchJson': 'merge-patch.json',
     'ModelFlattening': 'model-flattening.json',
     'Xml': 'xml-service.json',
     'UrlMultiCollectionFormat' : 'url-multi-collectionFormat.json',

@@ -7,6 +7,7 @@ import re
 import copy
 from typing import cast, Any, Dict, List, Match, Optional
 from .python_mappings import basic_latin_chars, reserved_words, PadType
+from ..codegen.models.utils import JSON_REGEXP
 
 def _get_all_values(all_headers: List[Dict[str, Any]]) -> List[str]:
     content_types: List[str] = []
@@ -24,7 +25,7 @@ def _get_all_values(all_headers: List[Dict[str, Any]]) -> List[str]:
     return content_types
 
 def _get_default_value(all_values: List[str]) -> str:
-    json_values = [v for v in all_values if "json" in v]
+    json_values = [v for v in all_values if JSON_REGEXP.match(v)]
     if json_values:
         if "application/json" in json_values:
             return "application/json"
