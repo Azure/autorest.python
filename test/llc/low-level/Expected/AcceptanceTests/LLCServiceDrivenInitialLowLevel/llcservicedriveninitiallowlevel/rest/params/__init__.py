@@ -7,13 +7,22 @@
 # --------------------------------------------------------------------------
 
 try:
+    from ._request_builders_py3 import build_head_no_params_request
     from ._request_builders_py3 import build_get_required_request
+    from ._request_builders_py3 import build_put_required_optional_request
     from ._request_builders_py3 import build_post_parameters_request
+    from ._request_builders_py3 import build_get_optional_request
 except (SyntaxError, ImportError):
+    from ._request_builders import build_head_no_params_request  # type: ignore
     from ._request_builders import build_get_required_request  # type: ignore
+    from ._request_builders import build_put_required_optional_request  # type: ignore
     from ._request_builders import build_post_parameters_request  # type: ignore
+    from ._request_builders import build_get_optional_request  # type: ignore
 
 __all__ = [
+    "build_head_no_params_request",
     "build_get_required_request",
+    "build_put_required_optional_request",
     "build_post_parameters_request",
+    "build_get_optional_request",
 ]

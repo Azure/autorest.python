@@ -22,6 +22,37 @@ _SERIALIZER.client_side_validation = False
 
 # fmt: off
 
+def build_head_no_params_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """Head request, no params.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    accept = "application/json"
+    # Construct URL
+    url = '/serviceDriven/parameters'
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="HEAD",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
 def build_get_required_request(
     **kwargs  # type: Any
 ):
@@ -43,7 +74,7 @@ def build_get_required_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/servicedriven/parameters'
+    url = '/serviceDriven/parameters'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -55,6 +86,51 @@ def build_get_required_request(
 
     return HttpRequest(
         method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_put_required_optional_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """Put, has both required and optional params.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword required_param: I am a required parameter.
+    :paramtype required_param: str
+    :keyword optional_param: I am an optional parameter.
+    :paramtype optional_param: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    required_param = kwargs.pop('required_param')  # type: str
+    optional_param = kwargs.pop('optional_param', None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = '/serviceDriven/parameters'
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    query_parameters['requiredParam'] = _SERIALIZER.query("required_param", required_param, 'str')
+    if optional_param is not None:
+        query_parameters['optionalParam'] = _SERIALIZER.query("optional_param", optional_param, 'str')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="PUT",
         url=url,
         params=query_parameters,
         headers=header_parameters,
@@ -97,7 +173,7 @@ def build_post_parameters_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/servicedriven/parameters'
+    url = '/serviceDriven/parameters'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -108,6 +184,47 @@ def build_post_parameters_request(
     return HttpRequest(
         method="POST",
         url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_get_optional_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """Get true Boolean value on path.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword optional_param: I am an optional parameter.
+    :paramtype optional_param: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    optional_param = kwargs.pop('optional_param', None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    url = '/serviceDriven/moreParameters'
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    if optional_param is not None:
+        query_parameters['optionalParam'] = _SERIALIZER.query("optional_param", optional_param, 'str')
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
         headers=header_parameters,
         **kwargs
     )

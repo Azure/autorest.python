@@ -32,6 +32,6 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     long_description="""\
-    LLC Swagger, this is the initial swager a service could do.
+    LLC Swagger, this is the initial swagger a service could do.
     """,
 )
