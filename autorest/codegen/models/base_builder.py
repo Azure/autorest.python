@@ -3,13 +3,10 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Callable, Dict, List, Optional, Union, TYPE_CHECKING
+from typing import Any, Callable, Dict, List, Optional, Union
 from .base_model import BaseModel
 from .schema_response import SchemaResponse
 from .schema_request import SchemaRequest
-
-if TYPE_CHECKING:
-    from . import ParameterListType
 
 
 _M4_HEADER_PARAMETERS = ["content_type", "accept"]
@@ -70,7 +67,7 @@ class BaseBuilder(BaseModel):
         yaml_data: Dict[str, Any],
         name: str,
         description: str,
-        parameters: "ParameterListType",
+        parameters,
         schema_requests: List[SchemaRequest],
         responses: Optional[List[SchemaResponse]] = None,
         summary: Optional[str] = None,
