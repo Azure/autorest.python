@@ -17,43 +17,26 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import HttpResponse
+from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
-from azure.core.tracing.decorator import distributed_trace
-from msrest import Serializer
+from azure.core.tracing.decorator_async import distributed_trace_async
+
+from ..._vendor import _convert_request
+from ...operations._merge_patch_json_client_operations import build_patch_single_request
 
 T = TypeVar("T")
-JSONType = Any
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
-
-_SERIALIZER = Serializer()
-_SERIALIZER.client_side_validation = False
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-def build_patch_single_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
-
-    accept = "application/json"
-    # Construct URL
-    url = "/mergePatchJson/single"
-
-    # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-
-    return HttpRequest(method="PATCH", url=url, headers=header_parameters, json=json, content=content, **kwargs)
-
-
-class MergePatchJsonClientOperationsMixin(object):
-    @distributed_trace
-    def patch_single(self, body: Any, **kwargs: Any) -> None:
+class MergePatchJsonClientOperationsMixin:
+    @distributed_trace_async
+    async def patch_single(self, body: Any, **kwargs: Any) -> None:
         """Basic patch with an object.
 
         :param body: Pass in {'foo': 'bar'} for a 200, anything else for an object error.
         :type body: any
-        :return: None
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -63,20 +46,23 @@ class MergePatchJsonClientOperationsMixin(object):
 
         content_type = kwargs.pop("content_type", "application/merge-patch+json")  # type: Optional[str]
 
-        _json = body
+        _json = self._serialize.body(body, "object")
 
         request = build_patch_single_request(
             content_type=content_type,
             json=_json,
+            template_url=self.patch_single.metadata["url"],
         )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize.failsafe_deserialize("object", pipeline_response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
             return cls(pipeline_response, None, {})

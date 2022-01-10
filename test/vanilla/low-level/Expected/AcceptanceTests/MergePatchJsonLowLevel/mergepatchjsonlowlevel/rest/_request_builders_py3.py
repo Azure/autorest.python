@@ -55,4 +55,4 @@ def build_patch_single_request(*, json: JSONType = None, content: Any = None, **
         header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="PATCH", url=url, headers=header_parameters, json=json, content=content, **kwargs)

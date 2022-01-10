@@ -9,7 +9,7 @@
 
 from setuptools import setup, find_packages
 
-NAME = "objecttypeclient"
+NAME = "mergepatchjsonclient"
 VERSION = "0.1.0"
 
 # To install the library, run the following
@@ -24,14 +24,14 @@ REQUIRES = ["msrest>=0.6.21", "azure-core<2.0.0,>=1.20.1"]
 setup(
     name=NAME,
     version=VERSION,
-    description="ObjectTypeClient",
+    description="MergePatchJsonClient",
     author_email="",
     url="",
-    keywords=["Swagger", "ObjectTypeClient"],
+    keywords=["Swagger", "MergePatchJsonClient"],
     install_requires=REQUIRES,
     packages=find_packages(),
     include_package_data=True,
     long_description="""\
-    Service client for testing basic type: object swaggers.
+    Service client for testing merge patch json.
     """,
 )

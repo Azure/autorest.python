@@ -28,7 +28,7 @@ JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ObjectTypeClientOperationsMixin:
+class MergePatchJsonClientOperationsMixin:
     @distributed_trace_async
     async def patch_single(self, body: Any, **kwargs: Any) -> None:
         """Basic patch with an object.

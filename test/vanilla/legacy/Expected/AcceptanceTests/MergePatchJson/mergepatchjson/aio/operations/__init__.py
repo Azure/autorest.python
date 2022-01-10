@@ -6,8 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._object_type_client_operations import ObjectTypeClientOperationsMixin
+from ._merge_patch_json_client_operations import MergePatchJsonClientOperationsMixin
 
 __all__ = [
-    "ObjectTypeClientOperationsMixin",
+    "MergePatchJsonClientOperationsMixin",
 ]

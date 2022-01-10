@@ -64,7 +64,7 @@ def build_patch_single_request(
     header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
-        method="PUT",
+        method="PATCH",
         url=url,
         headers=header_parameters,
         **kwargs

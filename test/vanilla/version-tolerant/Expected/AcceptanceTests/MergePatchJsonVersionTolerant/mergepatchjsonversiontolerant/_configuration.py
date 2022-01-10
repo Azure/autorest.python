@@ -14,17 +14,17 @@ from azure.core.pipeline import policies
 from ._version import VERSION
 
 
-class ObjectTypeClientConfiguration(Configuration):
-    """Configuration for ObjectTypeClient.
+class MergePatchJsonClientConfiguration(Configuration):
+    """Configuration for MergePatchJsonClient.
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
     """
 
     def __init__(self, **kwargs: Any) -> None:
-        super(ObjectTypeClientConfiguration, self).__init__(**kwargs)
+        super(MergePatchJsonClientConfiguration, self).__init__(**kwargs)
 
-        kwargs.setdefault("sdk_moniker", "objecttypeclient/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "mergepatchjsonclient/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(

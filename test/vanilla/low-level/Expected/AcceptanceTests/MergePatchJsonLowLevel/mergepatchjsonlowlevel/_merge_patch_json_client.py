@@ -13,15 +13,15 @@ from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
 from msrest import Deserializer, Serializer
 
-from ._configuration import ObjectTypeClientConfiguration
+from ._configuration import MergePatchJsonClientConfiguration
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Dict
 
 
-class ObjectTypeClient:
-    """Service client for testing basic type: object swaggers.
+class MergePatchJsonClient:
+    """Service client for testing merge patch json.
 
     :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
     :paramtype endpoint: str
@@ -29,7 +29,7 @@ class ObjectTypeClient:
 
     def __init__(self, *, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
 
-        self._config = ObjectTypeClientConfiguration(**kwargs)
+        self._config = MergePatchJsonClientConfiguration(**kwargs)
         self._client = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
@@ -70,7 +70,7 @@ class ObjectTypeClient:
         self._client.close()
 
     def __enter__(self):
-        # type: () -> ObjectTypeClient
+        # type: () -> MergePatchJsonClient
         self._client.__enter__()
         return self
 

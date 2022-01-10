@@ -6,9 +6,9 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._object_type_client import ObjectTypeClient
+from ._merge_patch_json_client import MergePatchJsonClient
 
-__all__ = ["ObjectTypeClient"]
+__all__ = ["MergePatchJsonClient"]
 
 # `._patch.py` is used for handwritten extensions to the generated code
 # Example: https://github.com/Azure/azure-sdk-for-python/blob/main/doc/dev/customize_code/how-to-patch-sdk-code.md

@@ -7,40 +7,35 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Optional, TYPE_CHECKING
+from typing import Any, Awaitable, Optional, TYPE_CHECKING
 
-from azure.core import PipelineClient
-from azure.core.rest import HttpRequest, HttpResponse
+from azure.core import AsyncPipelineClient
+from azure.core.rest import AsyncHttpResponse, HttpRequest
 from msrest import Deserializer, Serializer
 
-from ._configuration import ObjectTypeClientConfiguration
+from ._configuration import MergePatchJsonClientConfiguration
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Dict
 
 
-class ObjectTypeClient:
-    """Service client for testing basic type: object swaggers.
+class MergePatchJsonClient:
+    """Service client for testing merge patch json.
 
     :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
     :paramtype endpoint: str
     """
 
     def __init__(self, *, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
-
-        self._config = ObjectTypeClientConfiguration(**kwargs)
-        self._client = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
+        self._config = MergePatchJsonClientConfiguration(**kwargs)
+        self._client = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
 
-    def send_request(
-        self,
-        request,  # type: HttpRequest
-        **kwargs: Any
-    ) -> HttpResponse:
+    def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `mergepatchjsonlowlevel.rest`.
@@ -49,8 +44,8 @@ class ObjectTypeClient:
         >>> from mergepatchjsonlowlevel.rest import build_patch_single_request
         >>> request = build_patch_single_request(json=json, content=content, **kwargs)
         <HttpRequest [PATCH], url: '/mergePatchJson/single'>
-        >>> response = client.send_request(request)
-        <HttpResponse: 200 OK>
+        >>> response = await client.send_request(request)
+        <AsyncHttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/python/protocol/quickstart
 
@@ -58,22 +53,19 @@ class ObjectTypeClient:
         :type request: ~azure.core.rest.HttpRequest
         :keyword bool stream: Whether the response payload will be streamed. Defaults to False.
         :return: The response of your network call. Does not do error handling on your response.
-        :rtype: ~azure.core.rest.HttpResponse
+        :rtype: ~azure.core.rest.AsyncHttpResponse
         """
 
         request_copy = deepcopy(request)
         request_copy.url = self._client.format_url(request_copy.url)
         return self._client.send_request(request_copy, **kwargs)
 
-    def close(self):
-        # type: () -> None
-        self._client.close()
+    async def close(self) -> None:
+        await self._client.close()
 
-    def __enter__(self):
-        # type: () -> ObjectTypeClient
-        self._client.__enter__()
+    async def __aenter__(self) -> "MergePatchJsonClient":
+        await self._client.__aenter__()
         return self
 
-    def __exit__(self, *exc_details):
-        # type: (Any) -> None
-        self._client.__exit__(*exc_details)
+    async def __aexit__(self, *exc_details) -> None:
+        await self._client.__aexit__(*exc_details)

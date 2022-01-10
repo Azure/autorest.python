@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import functools
-from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+from typing import TYPE_CHECKING
 import warnings
 
 from azure.core.exceptions import (
@@ -22,38 +22,57 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from msrest import Serializer
 
-T = TypeVar("T")
-JSONType = Any
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+from .._vendor import _convert_request
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+
+    T = TypeVar("T")
+    ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
+# fmt: off
 
-
-def build_patch_single_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+def build_patch_single_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = "/mergePatchJson/single"
+    url = kwargs.pop("template_url", '/mergePatchJson/single')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PATCH", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="PATCH",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
-
+# fmt: on
 class MergePatchJsonClientOperationsMixin(object):
     @distributed_trace
-    def patch_single(self, body: Any, **kwargs: Any) -> None:
+    def patch_single(
+        self,
+        body,  # type: Any
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Basic patch with an object.
 
         :param body: Pass in {'foo': 'bar'} for a 200, anything else for an object error.
         :type body: any
-        :return: None
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -63,12 +82,14 @@ class MergePatchJsonClientOperationsMixin(object):
 
         content_type = kwargs.pop("content_type", "application/merge-patch+json")  # type: Optional[str]
 
-        _json = body
+        _json = self._serialize.body(body, "object")
 
         request = build_patch_single_request(
             content_type=content_type,
             json=_json,
+            template_url=self.patch_single.metadata["url"],
         )
+        request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -76,7 +97,8 @@ class MergePatchJsonClientOperationsMixin(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize.failsafe_deserialize("object", pipeline_response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
             return cls(pipeline_response, None, {})
