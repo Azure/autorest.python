@@ -28,7 +28,7 @@ from .operations import (
 )
 
 
-class AutoRestComplexTestService:
+class AutoRestComplexTestServiceGenerated:
     """Test Infrastructure for AutoRest.
 
     :ivar basic: BasicOperations operations

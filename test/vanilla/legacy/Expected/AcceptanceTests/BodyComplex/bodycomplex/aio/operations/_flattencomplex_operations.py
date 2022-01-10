@@ -29,7 +29,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class FlattencomplexOperations:
+class FlattencomplexOperationsGenerated:
     """FlattencomplexOperations async operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that

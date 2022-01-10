@@ -50,6 +50,9 @@ class JinjaSerializer:
         # if there was a patch file before, we keep it
         self._keep_patch_file(namespace_path / Path("_patch.py"), env)
         self._keep_patch_file(namespace_path / Path("aio") / Path("_patch.py"), env)
+        self._keep_patch_file(namespace_path / Path("models") / Path("_patch.py"), env)
+        self._keep_patch_file(namespace_path / Path("operations") / Path("_patch.py"), env)
+        self._keep_patch_file(namespace_path / Path("aio") / Path("operations") / Path("_patch.py"), env) 
 
         self._serialize_and_write_top_level_folder(code_model=code_model, env=env, namespace_path=namespace_path)
 

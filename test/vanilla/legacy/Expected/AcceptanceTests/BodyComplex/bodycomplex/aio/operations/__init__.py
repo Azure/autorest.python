@@ -6,15 +6,18 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._basic_operations import BasicOperations
-from ._primitive_operations import PrimitiveOperations
-from ._array_operations import ArrayOperations
-from ._dictionary_operations import DictionaryOperations
-from ._inheritance_operations import InheritanceOperations
-from ._polymorphism_operations import PolymorphismOperations
-from ._polymorphicrecursive_operations import PolymorphicrecursiveOperations
-from ._readonlyproperty_operations import ReadonlypropertyOperations
-from ._flattencomplex_operations import FlattencomplexOperations
+from ._basic_operations import BasicOperationsGenerated as BasicOperations
+from ._primitive_operations import PrimitiveOperationsGenerated as PrimitiveOperations
+from ._array_operations import ArrayOperationsGenerated as ArrayOperations
+from ._dictionary_operations import DictionaryOperationsGenerated as DictionaryOperations
+from ._inheritance_operations import InheritanceOperationsGenerated as InheritanceOperations
+from ._polymorphism_operations import PolymorphismOperationsGenerated as PolymorphismOperations
+from ._polymorphicrecursive_operations import PolymorphicrecursiveOperationsGenerated as PolymorphicrecursiveOperations
+from ._readonlyproperty_operations import ReadonlypropertyOperationsGenerated as ReadonlypropertyOperations
+from ._flattencomplex_operations import FlattencomplexOperationsGenerated as FlattencomplexOperations
+
+from ._patch import __all__ as _patch_all
+from ._patch import *
 
 __all__ = [
     "BasicOperations",
@@ -27,3 +30,4 @@ __all__ = [
     "ReadonlypropertyOperations",
     "FlattencomplexOperations",
 ]
+__all__.extend(_patch_all)

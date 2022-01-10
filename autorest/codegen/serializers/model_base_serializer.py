@@ -40,6 +40,7 @@ class ModelBaseSerializer:
             init_args=self.init_args,
             input_documentation_string=ModelBaseSerializer.input_documentation_string,
             variable_documentation_string=ModelBaseSerializer.variable_documentation_string,
+            declare_model=ModelBaseSerializer.declare_model,
         )
 
     def imports(self) -> FileImport:
@@ -63,6 +64,13 @@ class ModelBaseSerializer:
         return properties_to_initialize
 
     @staticmethod
+    def declare_model(model: ObjectSchema) -> str:
+        basename = "msrest.serialization.Model"
+        if model.base_models:
+            basename = ", ".join([f"{m.name}Generated" for m in model.base_models])
+        return f"class {model.name}Generated({basename}):"
+
+    @staticmethod
     def input_documentation_string(prop: Property) -> List[str]:
         # building the param line of the property doc
         return _documentation_string(prop, "keyword", "paramtype")
@@ -74,7 +82,7 @@ class ModelBaseSerializer:
     def init_args(self, model: ObjectSchema) -> List[str]:
         init_args = []
         properties_to_pass_to_super = self.properties_to_pass_to_super(model)
-        init_args.append(f"super({model.name}, self).__init__({properties_to_pass_to_super})")
+        init_args.append(f"super({model.name}Generated, self).__init__({properties_to_pass_to_super})")
         for prop in ModelBaseSerializer.get_properties_to_initialize(model):
             if prop.is_discriminator:
                 discriminator_value = f"'{model.discriminator_value}'" if model.discriminator_value else None

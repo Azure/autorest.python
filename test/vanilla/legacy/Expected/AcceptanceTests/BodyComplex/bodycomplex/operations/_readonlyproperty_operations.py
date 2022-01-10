@@ -79,7 +79,7 @@ def build_put_valid_request(
     )
 
 # fmt: on
-class ReadonlypropertyOperations(object):
+class ReadonlypropertyOperationsGenerated(object):
     """ReadonlypropertyOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that

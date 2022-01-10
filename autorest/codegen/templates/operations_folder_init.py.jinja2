@@ -1,9 +1,12 @@
 {% import 'operation_tools.jinja2' as op_tools %}
+{% import 'keywords.jinja2' as keywords %}
 {# actual template starts here #}
 # coding=utf-8
 {{ code_model.options['license_header'] }}
 
 {{ op_tools.serialize(operation_group_imports()) }}
+from ._patch import __all__ as _patch_all
+from ._patch import *
 {% if operation_groups %}
 __all__ = [
     {% for operation_group in operation_groups %}
@@ -11,3 +14,4 @@ __all__ = [
     {% endfor %}
 ]
 {% endif %}
+{{ keywords.extend_all }}

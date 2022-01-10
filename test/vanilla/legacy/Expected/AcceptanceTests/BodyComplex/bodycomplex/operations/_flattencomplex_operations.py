@@ -55,7 +55,7 @@ def build_get_valid_request(
     )
 
 # fmt: on
-class FlattencomplexOperations(object):
+class FlattencomplexOperationsGenerated(object):
     """FlattencomplexOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that

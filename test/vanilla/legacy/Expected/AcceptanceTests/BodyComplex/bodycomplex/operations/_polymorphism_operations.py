@@ -231,7 +231,7 @@ def build_put_valid_missing_required_request(
     )
 
 # fmt: on
-class PolymorphismOperations(object):
+class PolymorphismOperationsGenerated(object):
     """PolymorphismOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that

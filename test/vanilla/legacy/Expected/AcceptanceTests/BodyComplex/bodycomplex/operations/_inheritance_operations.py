@@ -79,7 +79,7 @@ def build_put_valid_request(
     )
 
 # fmt: on
-class InheritanceOperations(object):
+class InheritanceOperationsGenerated(object):
     """InheritanceOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that

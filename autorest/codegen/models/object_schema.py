@@ -216,6 +216,11 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
             file_import.add_from_import("azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE)
         return file_import
 
+    def model_file_imports(self) -> FileImport:
+        file_import = self.imports()
+        file_import.add_from_import(".", self.name, ImportType.LOCAL, TypingSection.TYPING)
+        return file_import
+
 class HiddenModelObjectSchema(ObjectSchema):
 
     @property
@@ -241,6 +246,8 @@ class HiddenModelObjectSchema(ObjectSchema):
     def imports(self) -> FileImport:
         file_import = FileImport()
         file_import.add_from_import("typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL)
+        for p in self.properties:
+            file_import.merge(p.imports())
         return file_import
 
 def get_object_schema(code_model) -> Type[ObjectSchema]:

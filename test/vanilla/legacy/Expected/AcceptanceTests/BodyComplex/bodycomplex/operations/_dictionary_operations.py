@@ -163,7 +163,7 @@ def build_get_not_provided_request(
     )
 
 # fmt: on
-class DictionaryOperations(object):
+class DictionaryOperationsGenerated(object):
     """DictionaryOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that

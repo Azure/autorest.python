@@ -21,7 +21,7 @@ class OperationsInitSerializer:
             prefix = "_operations" if self.code_model.options["combine_operation_files"] else operation_group.filename
             return prefix + filename_suffix
         return [
-            f"from .{_get_filename(og)} import {og.class_name}"
+            f"from .{_get_filename(og)} import {og.class_name}Generated as {og.class_name}"
             for og in self.code_model.operation_groups
         ]
 

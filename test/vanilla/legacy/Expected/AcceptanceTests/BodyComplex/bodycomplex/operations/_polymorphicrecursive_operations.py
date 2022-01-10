@@ -79,7 +79,7 @@ def build_put_valid_request(
     )
 
 # fmt: on
-class PolymorphicrecursiveOperations(object):
+class PolymorphicrecursiveOperationsGenerated(object):
     """PolymorphicrecursiveOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that

@@ -165,7 +165,7 @@ def build_get_not_provided_request(
     )
 
 # fmt: on
-class BasicOperations(object):
+class BasicOperationsGenerated(object):
     """BasicOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that

@@ -520,7 +520,7 @@ def build_put_byte_request(
     )
 
 # fmt: on
-class PrimitiveOperations(object):
+class PrimitiveOperationsGenerated(object):
     """PrimitiveOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that

@@ -33,7 +33,7 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest, HttpResponse
 
 
-class AutoRestComplexTestService(object):
+class AutoRestComplexTestServiceGenerated(object):
     """Test Infrastructure for AutoRest.
 
     :ivar basic: BasicOperations operations
