@@ -37,6 +37,7 @@
         "prepare.py",
         "start.py",
         "venvtools.py",
-        "run-python3.js"
+        "run-python3.js",
+        "requirements.txt"
     ]
 }

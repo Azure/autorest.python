@@ -178,6 +178,12 @@ jobs:
         inputs:
           testRunTitle: "$(OSName) Python $(PythonVersion) - multiapi"
           searchFolder: "$(TestFolder)/multiapi"
+      - script: |
+          npm pack
+          RelativePathToPkg = $(find . | grep -E "autorest-python-")
+          AbsolutePkgPath = $(readlink -f $RelativePathToPkg)
+          cd ..
+          npm install $(AbsolutePkgPath)
 
       - script: |
           npm run coverage -- publish --repo=$(Build.Repository.Name) --ref=$(Build.SourceBranch) --githubToken=$(github-token) --azStorageAccount=$(storage-coverage-user) --azStorageAccessKey=$(storage-coverage-pass) --coverageDirectory=$(AUTOREST_TESTSERVER_COVERAGE_DIRECTORY)
