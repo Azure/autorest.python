@@ -34,9 +34,9 @@ def build_test_two_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    api_version = kwargs.pop('api_version', "3.0.0")  # type: str
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
-    api_version = "3.0.0"
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/multiapi/one/testTwoEndpoint')
@@ -104,6 +104,7 @@ class OperationGroupOneOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
+        api_version = kwargs.pop('api_version', "3.0.0")  # type: str
         content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
         if parameter_one is not None:
@@ -112,6 +113,7 @@ class OperationGroupOneOperations(object):
             _json = None
 
         request = build_test_two_request(
+            api_version=api_version,
             content_type=content_type,
             json=_json,
             template_url=self.test_two.metadata['url'],

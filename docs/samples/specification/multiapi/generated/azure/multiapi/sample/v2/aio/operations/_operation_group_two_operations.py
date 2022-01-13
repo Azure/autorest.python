@@ -65,8 +65,11 @@ class OperationGroupTwoOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
+        api_version = kwargs.pop('api_version', "2.0.0")  # type: str
+
         
         request = build_test_four_request(
+            api_version=api_version,
             parameter_one=parameter_one,
             template_url=self.test_four.metadata['url'],
         )
