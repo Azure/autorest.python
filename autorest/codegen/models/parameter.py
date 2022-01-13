@@ -313,7 +313,9 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
 
     @property
     def is_hidden(self) -> bool:
-        return self.serialized_name in _HIDDEN_KWARGS
+        return self.serialized_name in _HIDDEN_KWARGS or (
+            self.yaml_data["implementation"] == "Client" and self.constant
+        )
 
     @property
     def is_positional(self) -> bool:

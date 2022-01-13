@@ -55,9 +55,6 @@ def build_put_valid_request(*, json: JSONType = None, content: Any = None, **kwa
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword api_version: Api Version. The default value is "2016-02-29". Note that overriding this
-     default value may result in unsupported behavior.
-    :paramtype api_version: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Please put {id: 2, name: 'abc', color: 'Magenta'}.
     :paramtype json: JSONType

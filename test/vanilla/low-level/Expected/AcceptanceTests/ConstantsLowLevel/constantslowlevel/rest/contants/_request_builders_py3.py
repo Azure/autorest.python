@@ -475,18 +475,6 @@ def build_put_client_constants_request(**kwargs: Any) -> HttpRequest:
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword header_constant: Constant header property on the client that is a required parameter
-     for operation 'constants_putClientConstants'. The default value is True. Note that overriding
-     this default value may result in unsupported behavior.
-    :paramtype header_constant: bool
-    :keyword query_constant: Constant query property on the client that is a required parameter for
-     operation 'constants_putClientConstants'. The default value is 100. Note that overriding this
-     default value may result in unsupported behavior.
-    :paramtype query_constant: int
-    :keyword path_constant: Constant path property on the client that is a required parameter for
-     operation 'constants_putClientConstants'. The default value is "path". Note that overriding
-     this default value may result in unsupported behavior.
-    :paramtype path_constant: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.

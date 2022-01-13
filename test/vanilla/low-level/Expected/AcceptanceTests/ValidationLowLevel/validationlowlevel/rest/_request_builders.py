@@ -41,9 +41,6 @@ def build_validation_of_method_parameters_request(
     :type resource_group_name: str
     :param id: Required int multiple of 10 from 100 to 1000.
     :type id: int
-    :keyword api_version: Api Version. The default value is "1.0.0". Note that overriding this
-     default value may result in unsupported behavior.
-    :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -121,9 +118,6 @@ def build_validation_of_body_request(
     :type resource_group_name: str
     :param id: Required int multiple of 10 from 100 to 1000.
     :type id: int
-    :keyword api_version: Api Version. The default value is "1.0.0". Note that overriding this
-     default value may result in unsupported behavior.
-    :paramtype api_version: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.
     :paramtype json: JSONType

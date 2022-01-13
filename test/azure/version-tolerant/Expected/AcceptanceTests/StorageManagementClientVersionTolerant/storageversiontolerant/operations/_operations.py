@@ -363,9 +363,6 @@ class StorageAccountsOperations(object):
          Storage account names must be between 3 and 24 characters in length and use numbers and
          lower-case letters only.
         :type account_name: JSONType
-        :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
-         overriding this default value may result in unsupported behavior.
-        :paramtype api_version: str
         :return: JSON object
         :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -482,9 +479,6 @@ class StorageAccountsOperations(object):
         :type account_name: str
         :param parameters: The parameters to provide for the created account.
         :type parameters: JSONType
-        :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
-         overriding this default value may result in unsupported behavior.
-        :paramtype api_version: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -616,9 +610,6 @@ class StorageAccountsOperations(object):
          Storage account names must be between 3 and 24 characters in length and use numbers and
          lower-case letters only.
         :type account_name: str
-        :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
-         overriding this default value may result in unsupported behavior.
-        :paramtype api_version: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -661,9 +652,6 @@ class StorageAccountsOperations(object):
          Storage account names must be between 3 and 24 characters in length and use numbers and
          lower-case letters only.
         :type account_name: str
-        :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
-         overriding this default value may result in unsupported behavior.
-        :paramtype api_version: str
         :return: JSON object
         :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -770,9 +758,6 @@ class StorageAccountsOperations(object):
         :param parameters: The parameters to update on the account. Note that only one property can be
          changed at a time using this API.
         :type parameters: JSONType
-        :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
-         overriding this default value may result in unsupported behavior.
-        :paramtype api_version: str
         :return: JSON object
         :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -891,9 +876,6 @@ class StorageAccountsOperations(object):
         :type resource_group_name: str
         :param account_name: The name of the storage account.
         :type account_name: str
-        :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
-         overriding this default value may result in unsupported behavior.
-        :paramtype api_version: str
         :return: JSON object
         :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -945,9 +927,6 @@ class StorageAccountsOperations(object):
         """Lists all the storage accounts available under the subscription. Note that storage keys are not
         returned; use the ListKeys operation for this.
 
-        :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
-         overriding this default value may result in unsupported behavior.
-        :paramtype api_version: str
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1062,9 +1041,6 @@ class StorageAccountsOperations(object):
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
-        :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
-         overriding this default value may result in unsupported behavior.
-        :paramtype api_version: str
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1188,9 +1164,6 @@ class StorageAccountsOperations(object):
         :type account_name: str
         :param regenerate_key: Specifies name of the key which should be regenerated.
         :type regenerate_key: JSONType
-        :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
-         overriding this default value may result in unsupported behavior.
-        :paramtype api_version: str
         :return: JSON object
         :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1270,9 +1243,6 @@ class UsageOperations(object):
     def list(self, **kwargs: Any) -> JSONType:
         """Gets the current usage count and the limit for the resources under the subscription.
 
-        :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
-         overriding this default value may result in unsupported behavior.
-        :paramtype api_version: str
         :return: JSON object
         :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
