@@ -1,5 +1,20 @@
 # Change Log
 
+### 2022-01-xx - 5.12.3
+
+| Library | Min Version
+| --------------- | -------
+|`@autorest/core` |  `3.6.2`
+|`@autorest/modelerfour` | `4.19.1`
+|`azure-core` dep of generated code | `1.20.1`
+|`msrest` dep of generated code | `0.6.21`
+|`azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`
+
+**Bug Fixes**
+
+- Unify multiapi constant behavior with single API version  #1119
+- Clean up docstrings by removing descriptions for client constants on methods and request builders  #1119
+
 ### 2022-01-11 - 5.12.2
 
 | Library | Min Version

@@ -30,6 +30,9 @@ class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOpera
     :type credential: ~azure.core.credentials.TokenCredential
     :param endpoint: Pass in https://localhost:3000.
     :type endpoint: str
+    :keyword api_version: Api Version. The default value is "2.0.0". Note that overriding this
+     default value may result in unsupported behavior.
+    :paramtype api_version: str
     """
 
     def __init__(

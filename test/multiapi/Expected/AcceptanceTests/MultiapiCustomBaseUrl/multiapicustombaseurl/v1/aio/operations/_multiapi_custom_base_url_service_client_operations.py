@@ -45,8 +45,11 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
+        api_version = kwargs.pop('api_version', "1.0.0")  # type: str
+
         
         request = build_test_request(
+            api_version=api_version,
             id=id,
             template_url=self.test.metadata['url'],
         )

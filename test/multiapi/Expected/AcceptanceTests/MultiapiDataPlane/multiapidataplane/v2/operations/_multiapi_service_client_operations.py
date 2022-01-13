@@ -33,10 +33,10 @@ def build_test_one_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    api_version = kwargs.pop('api_version', "2.0.0")  # type: str
     id = kwargs.pop('id')  # type: int
     message = kwargs.pop('message', None)  # type: Optional[str]
 
-    api_version = "2.0.0"
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/multiapi/testOneEndpoint')
@@ -65,10 +65,10 @@ def build_test_different_calls_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    api_version = kwargs.pop('api_version', "2.0.0")  # type: str
     greeting_in_english = kwargs.pop('greeting_in_english')  # type: str
     greeting_in_chinese = kwargs.pop('greeting_in_chinese', None)  # type: Optional[str]
 
-    api_version = "2.0.0"
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/multiapi/testDifferentCalls')
@@ -120,8 +120,11 @@ class MultiapiServiceClientOperationsMixin(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
+        api_version = kwargs.pop('api_version', "2.0.0")  # type: str
+
         
         request = build_test_one_request(
+            api_version=api_version,
             id=id,
             message=message,
             template_url=self.test_one.metadata['url'],
@@ -172,8 +175,11 @@ class MultiapiServiceClientOperationsMixin(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
+        api_version = kwargs.pop('api_version', "2.0.0")  # type: str
+
         
         request = build_test_different_calls_request(
+            api_version=api_version,
             greeting_in_english=greeting_in_english,
             greeting_in_chinese=greeting_in_chinese,
             template_url=self.test_different_calls.metadata['url'],

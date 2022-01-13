@@ -18,7 +18,7 @@
     },
     "global_parameters": {
         "sync": {
-            {% for gp in sync_global_parameters.config_method %}
+            {% for gp in sync_global_parameters.config_method | rejectattr("serialized_name", "equalto", "api_version") %}
             {{ gp.serialized_name | tojson }}: {
                 "signature": {{ gp.method_signature(is_python3_file=False) | tojson }},
                 "description": {{ gp.description | tojson }},
@@ -28,7 +28,7 @@
             {% endfor %}
         },
         "async": {
-            {% for gp in async_global_parameters.config_method %}
+            {% for gp in async_global_parameters.config_method | rejectattr("serialized_name", "equalto", "api_version") %}
             {{ gp.serialized_name | tojson }}: {
                 "signature": {{ (gp.method_signature(is_python3_file=True)) | tojson }},
                 "description": {{ gp.description | tojson }},
@@ -42,7 +42,7 @@
             {{ gp.serialized_name | tojson }}: {{ gp.constant_declaration | tojson }}{{ "," if not loop.last else "" }}
             {% endfor %}
         },
-        "call": {{ code_model.global_parameters.config_method | map(attribute="serialized_name") | join(', ') | tojson }},
+        "call": {{ code_model.global_parameters.config_method | rejectattr("serialized_name", "equalto", "api_version") | map(attribute="serialized_name") | join(', ') | tojson }},
         "service_client_specific": {
             "sync": {
                 "api_version": {

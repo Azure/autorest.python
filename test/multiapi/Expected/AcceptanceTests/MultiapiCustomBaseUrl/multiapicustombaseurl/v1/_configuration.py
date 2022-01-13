@@ -29,6 +29,8 @@ class MultiapiCustomBaseUrlServiceClientConfiguration(Configuration):
     :type credential: ~azure.core.credentials.TokenCredential
     :param endpoint: Pass in https://localhost:3000.
     :type endpoint: str
+    :keyword api_version: Api Version. The default value is "1.0.0". Note that overriding this default value may result in unsupported behavior.
+    :paramtype api_version: str
     """
 
     def __init__(
@@ -39,6 +41,8 @@ class MultiapiCustomBaseUrlServiceClientConfiguration(Configuration):
     ):
         # type: (...) -> None
         super(MultiapiCustomBaseUrlServiceClientConfiguration, self).__init__(**kwargs)
+        api_version = kwargs.pop('api_version', "1.0.0")  # type: str
+
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
         if endpoint is None:
@@ -46,7 +50,7 @@ class MultiapiCustomBaseUrlServiceClientConfiguration(Configuration):
 
         self.credential = credential
         self.endpoint = endpoint
-        self.api_version = "1.0.0"
+        self.api_version = api_version
         self.credential_scopes = kwargs.pop('credential_scopes', [])
         kwargs.setdefault('sdk_moniker', 'multiapicustombaseurl/{}'.format(VERSION))
         self._configure(**kwargs)

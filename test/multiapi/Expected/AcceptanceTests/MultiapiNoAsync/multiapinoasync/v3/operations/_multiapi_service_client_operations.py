@@ -55,11 +55,11 @@ def build_test_different_calls_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    api_version = kwargs.pop('api_version', "3.0.0")  # type: str
     greeting_in_english = kwargs.pop('greeting_in_english')  # type: str
     greeting_in_chinese = kwargs.pop('greeting_in_chinese', None)  # type: Optional[str]
     greeting_in_french = kwargs.pop('greeting_in_french', None)  # type: Optional[str]
 
-    api_version = "3.0.0"
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/multiapi/testDifferentCalls')
@@ -178,8 +178,11 @@ class MultiapiServiceClientOperationsMixin(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
+        api_version = kwargs.pop('api_version', "3.0.0")  # type: str
+
         
         request = build_test_different_calls_request(
+            api_version=api_version,
             greeting_in_english=greeting_in_english,
             greeting_in_chinese=greeting_in_chinese,
             greeting_in_french=greeting_in_french,

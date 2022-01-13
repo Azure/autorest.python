@@ -147,9 +147,6 @@ class AutoRestValidationTestOperationsMixin(object):
         :type resource_group_name: str
         :param id: Required int multiple of 10 from 100 to 1000.
         :type id: int
-        :keyword api_version: Api Version. The default value is "1.0.0". Note that overriding this
-         default value may result in unsupported behavior.
-        :paramtype api_version: str
         :return: JSON object
         :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -220,9 +217,6 @@ class AutoRestValidationTestOperationsMixin(object):
         :type id: int
         :param body:
         :type body: JSONType
-        :keyword api_version: Api Version. The default value is "1.0.0". Note that overriding this
-         default value may result in unsupported behavior.
-        :paramtype api_version: str
         :return: JSON object
         :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError

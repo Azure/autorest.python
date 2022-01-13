@@ -53,9 +53,6 @@ class GroupOperations:
 
         :param resource_group_name: Resource Group name 'testgroup101'.
         :type resource_group_name: str
-        :keyword api_version: Api Version. The default value is "2014-04-01-preview". Note that
-         overriding this default value may result in unsupported behavior.
-        :paramtype api_version: str
         :return: JSON object
         :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError

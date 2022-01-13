@@ -18,8 +18,6 @@ class RequestBuilderParameter(ParameterOnlyPathAndBodyPositional):
         return not(
             # don't put accept in method signature
             self.rest_api_name == "Accept"
-            # if i'm multiapi, don't add constants
-            or (self.code_model.options["multiapi"] and self.constant)
             # If i'm not in the method code, no point in being in signature
             or not self.in_method_code
             # If I'm a flattened property of a body, don't want me, want the body param

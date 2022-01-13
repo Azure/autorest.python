@@ -720,9 +720,6 @@ class SubscriptionInCredentialsOperations(object):
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
         '1234-5678-9012-3456' to succeed.
 
-        :keyword api_version: Api Version. The default value is "2015-07-01-preview". Note that
-         overriding this default value may result in unsupported behavior.
-        :paramtype api_version: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -984,9 +981,6 @@ class ApiVersionDefaultOperations(object):
     def get_method_global_valid(self, **kwargs: Any) -> None:
         """GET method with api-version modeled in global settings.
 
-        :keyword api_version: Api Version. The default value is "2015-07-01-preview". Note that
-         overriding this default value may result in unsupported behavior.
-        :paramtype api_version: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1018,9 +1012,6 @@ class ApiVersionDefaultOperations(object):
     def get_method_global_not_provided_valid(self, **kwargs: Any) -> None:
         """GET method with api-version modeled in global settings.
 
-        :keyword api_version: Api Version. The default value is "2015-07-01-preview". Note that
-         overriding this default value may result in unsupported behavior.
-        :paramtype api_version: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1052,9 +1043,6 @@ class ApiVersionDefaultOperations(object):
     def get_path_global_valid(self, **kwargs: Any) -> None:
         """GET method with api-version modeled in global settings.
 
-        :keyword api_version: Api Version. The default value is "2015-07-01-preview". Note that
-         overriding this default value may result in unsupported behavior.
-        :paramtype api_version: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1086,9 +1074,6 @@ class ApiVersionDefaultOperations(object):
     def get_swagger_global_valid(self, **kwargs: Any) -> None:
         """GET method with api-version modeled in global settings.
 
-        :keyword api_version: Api Version. The default value is "2015-07-01-preview". Note that
-         overriding this default value may result in unsupported behavior.
-        :paramtype api_version: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError

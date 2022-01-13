@@ -33,9 +33,9 @@ def build_test_four_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    api_version = kwargs.pop('api_version', "2.0.0")  # type: str
     parameter_one = kwargs.pop('parameter_one')  # type: bool
 
-    api_version = "2.0.0"
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/multiapi/two/testFourEndpoint')
@@ -102,8 +102,11 @@ class OperationGroupTwoOperations(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
+        api_version = kwargs.pop('api_version', "2.0.0")  # type: str
+
         
         request = build_test_four_request(
+            api_version=api_version,
             parameter_one=parameter_one,
             template_url=self.test_four.metadata['url'],
         )
