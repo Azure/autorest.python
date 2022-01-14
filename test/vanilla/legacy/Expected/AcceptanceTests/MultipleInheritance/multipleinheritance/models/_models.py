@@ -104,7 +104,6 @@ class Cat(Pet, Feline):
         self.hisses = kwargs.get("hisses", None)
         self.likes_milk = kwargs.get("likes_milk", None)
         self.name = kwargs["name"]
-        self.likes_milk = kwargs.get("likes_milk", None)
 
 
 class Error(msrest.serialization.Model):

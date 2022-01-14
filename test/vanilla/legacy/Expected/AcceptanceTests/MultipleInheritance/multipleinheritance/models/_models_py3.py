@@ -114,7 +114,6 @@ class Cat(Pet, Feline):
         self.hisses = hisses
         self.likes_milk = likes_milk
         self.name = name
-        self.likes_milk = likes_milk
 
 
 class Error(msrest.serialization.Model):
