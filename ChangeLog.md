@@ -1,5 +1,19 @@
 # Change Log
 
+### 2022-01-14 - 5.12.4
+
+| Library | Min Version
+| --------------- | -------
+|`@autorest/core` |  `3.6.2`
+|`@autorest/modelerfour` | `4.19.1`
+|`azure-core` dep of generated code | `1.20.1`
+|`msrest` dep of generated code | `0.6.21`
+|`azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`
+
+**Bug Fixes**
+
+- Remove duplicate generation of properties in classes that inherit from multiple classes  #1120
+
 ### 2022-01-13 - 5.12.3
 
 | Library | Min Version
