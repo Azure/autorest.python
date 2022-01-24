@@ -102,16 +102,18 @@ class MetadataSerializer:
         file_import = FileImport()
         for gp in global_parameters:
             file_import.merge(gp.imports())
-        file_import.add_from_import("azure.profiles", "KnownProfiles", import_type=ImportType.AZURECORE)
-        file_import.add_from_import("azure.profiles", "ProfileDefinition", import_type=ImportType.AZURECORE)
-        file_import.add_from_import(
+        file_import.add_submodule_import("azure.profiles", "KnownProfiles", import_type=ImportType.AZURECORE)
+        file_import.add_submodule_import("azure.profiles", "ProfileDefinition", import_type=ImportType.AZURECORE)
+        file_import.add_submodule_import(
             "azure.profiles.multiapiclient", "MultiApiClientMixin", import_type=ImportType.AZURECORE
         )
-        file_import.add_from_import("._configuration", f"{self.code_model.class_name}Configuration", ImportType.LOCAL)
+        file_import.add_submodule_import(
+            "._configuration", f"{self.code_model.class_name}Configuration", ImportType.LOCAL
+        )
         # api_version and potentially endpoint require Optional typing
-        file_import.add_from_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
+        file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
         if mixin_operation_group:
-            file_import.add_from_import(
+            file_import.add_submodule_import(
                 "._operations_mixin", f"{self.code_model.class_name}OperationsMixin", ImportType.LOCAL
             )
         file_import.merge(self.code_model.service_client.imports_for_multiapi(async_mode=async_mode))

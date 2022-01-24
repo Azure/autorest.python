@@ -125,9 +125,9 @@ class PagingOperation(Operation):
     def _imports_shared(self, async_mode: bool) -> FileImport:
         file_import = super()._imports_shared(async_mode)
         if async_mode:
-            file_import.add_from_import("typing", "AsyncIterable", ImportType.STDLIB, TypingSection.CONDITIONAL)
+            file_import.add_submodule_import("typing", "AsyncIterable", ImportType.STDLIB, TypingSection.CONDITIONAL)
         else:
-            file_import.add_from_import("typing", "Iterable", ImportType.STDLIB, TypingSection.CONDITIONAL)
+            file_import.add_submodule_import("typing", "Iterable", ImportType.STDLIB, TypingSection.CONDITIONAL)
         if (
             self.next_request_builder and
             self.code_model.options["builders_visibility"] == "embedded"
@@ -141,7 +141,7 @@ class PagingOperation(Operation):
         pager_import_path = ".".join(self.get_pager_path(async_mode).split(".")[:-1])
         pager = self.get_pager(async_mode)
 
-        file_import.add_from_import(pager_import_path, pager, ImportType.AZURECORE, TypingSection.CONDITIONAL)
+        file_import.add_submodule_import(pager_import_path, pager, ImportType.AZURECORE, TypingSection.CONDITIONAL)
 
         return file_import
 
@@ -151,16 +151,16 @@ class PagingOperation(Operation):
         pager_import_path = ".".join(self.get_pager_path(async_mode).split(".")[:-1])
         pager = self.get_pager(async_mode)
 
-        file_import.add_from_import(pager_import_path, pager, ImportType.AZURECORE)
+        file_import.add_submodule_import(pager_import_path, pager, ImportType.AZURECORE)
 
         if async_mode:
-            file_import.add_from_import("azure.core.async_paging", "AsyncList", ImportType.AZURECORE)
+            file_import.add_submodule_import("azure.core.async_paging", "AsyncList", ImportType.AZURECORE)
 
         if self.code_model.options["tracing"]:
-            file_import.add_from_import(
+            file_import.add_submodule_import(
                 "azure.core.tracing.decorator", "distributed_trace", ImportType.AZURECORE,
             )
         if not self.code_model.options["models_mode"]:
-            file_import.add_from_import("json", "loads", ImportType.STDLIB, alias="_loads")
+            file_import.add_submodule_import("json", "loads", ImportType.STDLIB, alias="_loads")
 
         return file_import

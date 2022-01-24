@@ -68,7 +68,7 @@ class RequestBuilder(BaseBuilder):
         for parameter in self.parameters:
             file_import.merge(parameter.imports())
 
-        file_import.add_from_import(
+        file_import.add_submodule_import(
             "azure.core.rest",
             "HttpRequest",
             ImportType.AZURECORE,
@@ -77,17 +77,17 @@ class RequestBuilder(BaseBuilder):
             relative_path = ".."
             if not self.code_model.options["builders_visibility"] == "embedded" and self.operation_group_name:
                 relative_path = "..." if self.operation_group_name else ".."
-            file_import.add_from_import(
+            file_import.add_submodule_import(
                 f"{relative_path}_vendor", "_format_url_section", ImportType.LOCAL
             )
         if self.parameters.headers or self.parameters.query:
-            file_import.add_from_import(
+            file_import.add_submodule_import(
                 "typing", "Dict", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
             )
-        file_import.add_from_import(
+        file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
         )
-        file_import.add_from_import("msrest", "Serializer", ImportType.AZURECORE)
+        file_import.add_submodule_import("msrest", "Serializer", ImportType.AZURECORE)
         if self.parameters.has_body and (
             self.code_model.options["builders_visibility"] != "embedded" or
             self.code_model.options["add_python3_operation_files"]

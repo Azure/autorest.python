@@ -147,7 +147,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
 
     def _imports_shared(self, async_mode: bool) -> FileImport: # pylint: disable=unused-argument
         file_import = FileImport()
-        file_import.add_from_import("typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL)
+        file_import.add_submodule_import("typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL)
         for param in self.parameters.method:
             file_import.merge(param.imports())
 
@@ -160,10 +160,10 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
                 file_import.merge(cast(BaseSchema, response.schema).imports())
 
         if len([r for r in self.responses if r.has_body]) > 1:
-            file_import.add_from_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
+            file_import.add_submodule_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
 
         if self.is_stream_response:
-            file_import.add_from_import("typing", "IO", ImportType.STDLIB, TypingSection.CONDITIONAL)
+            file_import.add_submodule_import("typing", "IO", ImportType.STDLIB, TypingSection.CONDITIONAL)
         return file_import
 
 
@@ -174,24 +174,24 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         file_import = self._imports_shared(async_mode)
 
         # Exceptions
-        file_import.add_from_import("azure.core.exceptions", "map_error", ImportType.AZURECORE)
+        file_import.add_submodule_import("azure.core.exceptions", "map_error", ImportType.AZURECORE)
         if self.code_model.options["azure_arm"]:
-            file_import.add_from_import("azure.mgmt.core.exceptions", "ARMErrorFormat", ImportType.AZURECORE)
-        file_import.add_from_import("azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE)
+            file_import.add_submodule_import("azure.mgmt.core.exceptions", "ARMErrorFormat", ImportType.AZURECORE)
+        file_import.add_submodule_import("azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE)
 
 
         file_import.add_import("functools", ImportType.STDLIB)
-        file_import.add_from_import("typing", "Callable", ImportType.STDLIB, TypingSection.CONDITIONAL)
-        file_import.add_from_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
-        file_import.add_from_import("typing", "Dict", ImportType.STDLIB, TypingSection.CONDITIONAL)
-        file_import.add_from_import("typing", "TypeVar", ImportType.STDLIB, TypingSection.CONDITIONAL)
-        file_import.add_from_import("typing", "Generic", ImportType.STDLIB, TypingSection.CONDITIONAL)
-        file_import.add_from_import("azure.core.pipeline", "PipelineResponse", ImportType.AZURECORE)
-        file_import.add_from_import("azure.core.rest", "HttpRequest", ImportType.AZURECORE)
+        file_import.add_submodule_import("typing", "Callable", ImportType.STDLIB, TypingSection.CONDITIONAL)
+        file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
+        file_import.add_submodule_import("typing", "Dict", ImportType.STDLIB, TypingSection.CONDITIONAL)
+        file_import.add_submodule_import("typing", "TypeVar", ImportType.STDLIB, TypingSection.CONDITIONAL)
+        file_import.add_submodule_import("typing", "Generic", ImportType.STDLIB, TypingSection.CONDITIONAL)
+        file_import.add_submodule_import("azure.core.pipeline", "PipelineResponse", ImportType.AZURECORE)
+        file_import.add_submodule_import("azure.core.rest", "HttpRequest", ImportType.AZURECORE)
         if async_mode:
-            file_import.add_from_import("azure.core.pipeline.transport", "AsyncHttpResponse", ImportType.AZURECORE)
+            file_import.add_submodule_import("azure.core.pipeline.transport", "AsyncHttpResponse", ImportType.AZURECORE)
         else:
-            file_import.add_from_import("azure.core.pipeline.transport", "HttpResponse", ImportType.AZURECORE)
+            file_import.add_submodule_import("azure.core.pipeline.transport", "HttpResponse", ImportType.AZURECORE)
 
         # Deprecation
         # FIXME: Replace with "the YAML contains deprecated:true"
@@ -202,14 +202,14 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             builder_group_name = self.request_builder.builder_group_name
             rest_import_path = "..." if async_mode else ".."
             if builder_group_name:
-                file_import.add_from_import(
+                file_import.add_submodule_import(
                     f"{rest_import_path}{self.code_model.rest_layer_name}",
-                    name_import=builder_group_name,
+                    builder_group_name,
                     import_type=ImportType.LOCAL,
                     alias=f"rest_{builder_group_name}"
                 )
             else:
-                file_import.add_from_import(
+                file_import.add_submodule_import(
                     rest_import_path,
                     self.code_model.rest_layer_name,
                     import_type=ImportType.LOCAL,
@@ -219,7 +219,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             file_import.merge(self.request_builder.imports())
         if self.code_model.need_request_converter:
             relative_path = "..." if async_mode else ".."
-            file_import.add_from_import(
+            file_import.add_submodule_import(
                 f"{relative_path}_vendor", "_convert_request", ImportType.LOCAL
             )
         if self.code_model.options["version_tolerant"] and (

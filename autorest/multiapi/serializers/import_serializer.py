@@ -62,7 +62,7 @@ class FileImportSerializer:
             self._file_import.imports.get(TypingSection.TYPING) or
             (not self.is_python3_file and self._file_import.imports.get(TypingSection.CONDITIONAL))
         ):
-            self._file_import.add_from_import("typing", "TYPE_CHECKING", ImportType.STDLIB)
+            self._file_import.add_submodule_import("typing", "TYPE_CHECKING", ImportType.STDLIB)
 
     def __str__(self) -> str:
         self._add_type_checking_import()

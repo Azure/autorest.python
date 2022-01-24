@@ -58,23 +58,23 @@ class OperationGroup(BaseModel):
 
     def imports(self, async_mode: bool) -> FileImport:
         file_import = FileImport()
-        file_import.add_from_import("azure.core.exceptions", "ClientAuthenticationError", ImportType.AZURECORE)
-        file_import.add_from_import("azure.core.exceptions", "ResourceNotFoundError", ImportType.AZURECORE)
-        file_import.add_from_import("azure.core.exceptions", "ResourceExistsError", ImportType.AZURECORE)
+        file_import.add_submodule_import("azure.core.exceptions", "ClientAuthenticationError", ImportType.AZURECORE)
+        file_import.add_submodule_import("azure.core.exceptions", "ResourceNotFoundError", ImportType.AZURECORE)
+        file_import.add_submodule_import("azure.core.exceptions", "ResourceExistsError", ImportType.AZURECORE)
         for operation in self.operations:
             file_import.merge(operation.imports(async_mode))
         if self.code_model.options["tracing"]:
             if async_mode:
-                file_import.add_from_import(
+                file_import.add_submodule_import(
                     "azure.core.tracing.decorator_async", "distributed_trace_async", ImportType.AZURECORE,
                 )
             else:
-                file_import.add_from_import(
+                file_import.add_submodule_import(
                     "azure.core.tracing.decorator", "distributed_trace", ImportType.AZURECORE,
                 )
         local_path = "..." if async_mode else ".."
         if self.code_model.has_schemas and self.code_model.options["models_mode"]:
-            file_import.add_from_import(local_path, "models", ImportType.LOCAL, alias="_models")
+            file_import.add_submodule_import(local_path, "models", ImportType.LOCAL, alias="_models")
         if self.code_model.options["builders_visibility"] == "embedded" and async_mode:
             if not self.code_model.options["combine_operation_files"]:
                 operation_group_name = "" if self.is_empty_operation_group else self.name
@@ -88,7 +88,7 @@ class OperationGroup(BaseModel):
                 python3_only = self.code_model.options["python3_only"]
                 typed_sync_operation_file = self.code_model.options["add_python3_operation_files"]
                 suffix = "_py3" if typed_sync_operation_file and not python3_only else ""
-                file_import.add_from_import(
+                file_import.add_submodule_import(
                     f"...{self.code_model.operations_folder_name}.{self.filename}{suffix}",
                     request_builder.name,
                     import_type=ImportType.LOCAL

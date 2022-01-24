@@ -10,17 +10,17 @@ from .client_serializer import ClientSerializer, ConfigSerializer
 
 def config_imports(code_model, global_parameters: ParameterList, async_mode: bool) -> FileImport:
     file_import = FileImport()
-    file_import.add_from_import("azure.core.configuration", "Configuration", ImportType.AZURECORE)
-    file_import.add_from_import("azure.core.pipeline", "policies", ImportType.AZURECORE)
-    file_import.add_from_import("typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL)
+    file_import.add_submodule_import("azure.core.configuration", "Configuration", ImportType.AZURECORE)
+    file_import.add_submodule_import("azure.core.pipeline", "policies", ImportType.AZURECORE)
+    file_import.add_submodule_import("typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL)
     if code_model.options["package_version"]:
-        file_import.add_from_import(".._version" if async_mode else "._version", "VERSION", ImportType.LOCAL)
+        file_import.add_submodule_import(".._version" if async_mode else "._version", "VERSION", ImportType.LOCAL)
     for gp in global_parameters:
         file_import.merge(gp.imports())
     if code_model.options["azure_arm"]:
         policy = "AsyncARMChallengeAuthenticationPolicy" if async_mode else "ARMChallengeAuthenticationPolicy"
-        file_import.add_from_import("azure.mgmt.core.policies", "ARMHttpLoggingPolicy", ImportType.AZURECORE)
-        file_import.add_from_import("azure.mgmt.core.policies", policy, ImportType.AZURECORE)
+        file_import.add_submodule_import("azure.mgmt.core.policies", "ARMHttpLoggingPolicy", ImportType.AZURECORE)
+        file_import.add_submodule_import("azure.mgmt.core.policies", policy, ImportType.AZURECORE)
     return file_import
 
 
@@ -71,7 +71,7 @@ class GeneralSerializer:
         # configure imports
         file_import = FileImport()
         if self.code_model.need_request_converter:
-            file_import.add_from_import(
+            file_import.add_submodule_import(
                 "azure.core.pipeline.transport",
                 "HttpRequest",
                 ImportType.AZURECORE,

@@ -44,7 +44,7 @@ class AzureKeyCredentialSchema(CredentialSchema):
 
     def imports(self) -> FileImport:
         file_import = FileImport()
-        file_import.add_from_import(
+        file_import.add_submodule_import(
             "azure.core.credentials",
             "AzureKeyCredential",
             ImportType.AZURECORE,
@@ -76,13 +76,13 @@ class TokenCredentialSchema(CredentialSchema):
     def imports(self) -> FileImport:
         file_import = FileImport()
         if self.async_mode:
-            file_import.add_from_import(
+            file_import.add_submodule_import(
                 "azure.core.credentials_async", "AsyncTokenCredential",
                 ImportType.AZURECORE,
                 typing_section=TypingSection.TYPING
             )
         else:
-            file_import.add_from_import(
+            file_import.add_submodule_import(
                 "azure.core.credentials", "TokenCredential",
                 ImportType.AZURECORE,
                 typing_section=TypingSection.TYPING

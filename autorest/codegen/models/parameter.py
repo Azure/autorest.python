@@ -354,9 +354,9 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
     def imports(self) -> FileImport:
         file_import = self.schema.imports()
         if not self.required:
-            file_import.add_from_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
+            file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
         if self.has_multiple_content_types or self._is_io_json:
-            file_import.add_from_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
+            file_import.add_submodule_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
 
         return file_import
 
