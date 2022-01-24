@@ -4,75 +4,73 @@
 # license information.
 # --------------------------------------------------------------------------
 from copy import deepcopy
-from typing import Dict, Set, Optional, List, Tuple, Union
-from ..models.imports import ImportType, FileImport, TypingSection
+from typing import List
+from ..models.imports import ImportType, FileImport, ImportModel, TypingSection
 
 def _serialize_package(
-    package_name: str, module_list: Set[Optional[Union[str, Tuple[str, str]]]], delimiter: str
+    imports: List[ImportModel], delimiter: str
 ) -> str:
     buffer = []
-    if None in module_list:
-        buffer.append(f"import {package_name}")
-    if module_list != {None}:
-        buffer.append(
-            "from {} import {}".format(
-                package_name, ", ".join(sorted([
-                    mod if isinstance(mod, str) else f"{mod[0]} as {mod[1]}" for mod in module_list if mod is not None
-                ]))
-            )
-        )
+    if any(i for i in imports if i.submodule_name is None):
+        buffer.append(f"import {imports[0].module_name}")
+    else:
+        import_str = ", ".join(sorted([
+            f"{i.submodule_name} as {i.alias}" if i.alias else i.submodule_name for i in imports # type: ignore
+        ]))
+        buffer.append(f"from {imports[0].module_name} import {import_str}")
     return delimiter.join(buffer)
 
-def _serialize_type(import_type_dict: Dict[str, Set[Optional[Union[str, Tuple[str, str]]]]], delimiter: str) -> str:
+def _serialize_import_type(imports: List[ImportModel], delimiter: str) -> str:
     """Serialize a given import type."""
     import_list = []
-    for package_name in sorted(list(import_type_dict.keys())):
-        module_list = import_type_dict[package_name]
-        import_list.append(_serialize_package(package_name, module_list, delimiter))
+    for module_name in sorted(set(i.module_name for i in imports)):
+
+        import_list.append(_serialize_package([
+            i for i in imports if i.module_name == module_name
+        ], delimiter))
     return delimiter.join(import_list)
 
 def _get_import_clauses(
-    imports: Dict[ImportType, Dict[str, Set[Optional[Union[str, Tuple[str, str]]]]]], delimiter: str
+    imports: List[ImportModel], delimiter: str
 ) -> List[str]:
     import_clause = []
     for import_type in ImportType:
-        if import_type in imports:
-            import_clause.append(_serialize_type(imports[import_type], delimiter))
+        imports_with_import_type = [i for i in imports if i.import_type == import_type]
+        if imports_with_import_type:
+            import_clause.append(_serialize_import_type(imports_with_import_type, delimiter))
     return import_clause
 
 
 class FileImportSerializer:
     def __init__(self, file_import: FileImport, is_python3_file: bool, async_mode: bool = False) -> None:
-        self._file_import = file_import
+        self.file_import = file_import
         self.is_python3_file = is_python3_file
         self.async_mode = async_mode
 
-    def _switch_typing_section_key(self, new_key: TypingSection):
-        switched_dictionary = {}
-        switched_dictionary[new_key] = self._file_import.imports[TypingSection.CONDITIONAL]
-        return switched_dictionary
-
-    def _get_imports_dict(self, baseline_typing_section: TypingSection, add_conditional_typing: bool):
+    def _get_imports_list(self, baseline_typing_section: TypingSection, add_conditional_typing: bool):
         # If this is a python 3 file, our regular imports include the CONDITIONAL category
         # If this is not a python 3 file, our typing imports include the CONDITIONAL category
-        file_import_copy = deepcopy(self._file_import)
-        if add_conditional_typing and self._file_import.imports.get(TypingSection.CONDITIONAL):
+        file_import_copy = deepcopy(self.file_import)
+        if add_conditional_typing and any(
+            self.file_import.get_imports_from_section(TypingSection.CONDITIONAL)
+        ):
             # we switch the TypingSection key for the CONDITIONAL typing imports so we can merge
             # the imports together
-            switched_imports_dictionary = self._switch_typing_section_key(baseline_typing_section)
-            switched_imports = FileImport(switched_imports_dictionary)
-            file_import_copy.merge(switched_imports)
-        return file_import_copy.imports.get(baseline_typing_section, {})
+            for i in file_import_copy.imports:
+                if i.typing_section == TypingSection.CONDITIONAL:
+                    i.typing_section = baseline_typing_section
+        return file_import_copy.get_imports_from_section(baseline_typing_section)
 
     def _add_type_checking_import(self):
-        if (
-            self._file_import.imports.get(TypingSection.TYPING) or
-            (not self.is_python3_file and self._file_import.imports.get(TypingSection.CONDITIONAL))
-        ):
-            self._file_import.add_from_import("typing", "TYPE_CHECKING", ImportType.STDLIB)
+        any_typing = any(self.file_import.get_imports_from_section(TypingSection.TYPING))
+        conditional_and_not_py3 = not self.is_python3_file and any(
+            self.file_import.get_imports_from_section(TypingSection.CONDITIONAL)
+        )
+        if any_typing or conditional_and_not_py3:
+            self.file_import.add_submodule_import("typing", "TYPE_CHECKING", ImportType.STDLIB)
 
     def _get_typing_definitions(self) -> str:
-        if not self._file_import.type_definitions:
+        if not self.file_import.type_definitions:
             return ""
         spacing = "" if self.is_python3_file else "    "
         declarations: List[str] = [f"\n{spacing}T = TypeVar('T')"]
@@ -82,27 +80,27 @@ class FileImportSerializer:
                 type_name,
                 values[1] if self.async_mode else values[0]
             )
-            for type_name, values in self._file_import.type_definitions.items()
+            for type_name, values in self.file_import.type_definitions.items()
         ])
         return "\n".join(declarations)
 
     def __str__(self) -> str:
         self._add_type_checking_import()
         regular_imports = ""
-        regular_imports_dict = self._get_imports_dict(
+        regular_imports_list = self._get_imports_list(
             baseline_typing_section=TypingSection.REGULAR, add_conditional_typing=self.is_python3_file
         )
 
-        if regular_imports_dict:
+        if regular_imports_list:
             regular_imports = "\n\n".join(
-                _get_import_clauses(regular_imports_dict, "\n")
+                _get_import_clauses(regular_imports_list, "\n")
             )
 
         typing_imports = ""
-        typing_imports_dict = self._get_imports_dict(
+        typing_imports_list = self._get_imports_list(
             baseline_typing_section=TypingSection.TYPING, add_conditional_typing=not self.is_python3_file
         )
-        if typing_imports_dict:
+        if typing_imports_list:
             typing_imports += "\n\nif TYPE_CHECKING:\n    # pylint: disable=unused-import,ungrouped-imports\n    "
-            typing_imports += "\n\n    ".join(_get_import_clauses(typing_imports_dict, "\n    "))
+            typing_imports += "\n\n    ".join(_get_import_clauses(typing_imports_list, "\n    "))
         return regular_imports + typing_imports + self._get_typing_definitions()
