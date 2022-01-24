@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 from enum import Enum
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional, Tuple, Union, Set
 
 class ImportType(str, Enum):
     STDLIB = "stdlib"
@@ -115,3 +115,24 @@ class FileImport:
         for i in file_import.imports:
             self._append_import(i)
         self.type_definitions.update(file_import.type_definitions)
+
+    def to_dict(self) -> Dict[
+        TypingSection,
+        Dict[ImportType, Dict[str, Set[Optional[Union[str, Tuple[str, str]]]]]]
+    ]:
+        retval: Dict[
+            TypingSection,
+            Dict[ImportType, Dict[str, Set[Optional[Union[str, Tuple[str, str]]]]]]
+        ] = dict()
+        for i in self.imports:
+            name_import: Optional[Union[str, Tuple[str, str]]] = None
+            if i.submodule_name:
+                name_import = (i.submodule_name, i.alias) if i.alias else i.submodule_name
+            retval.setdefault(
+                    i.typing_section, dict()
+                ).setdefault(
+                    i.import_type, dict()
+                ).setdefault(
+                    i.module_name, set()
+                ).add(name_import)
+        return retval
