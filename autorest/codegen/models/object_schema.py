@@ -243,13 +243,6 @@ class HiddenModelObjectSchema(ObjectSchema):
     def docstring_text(self) -> str:
         return "JSON object"
 
-    def imports(self) -> FileImport:
-        file_import = FileImport()
-        file_import.add_from_import("typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL)
-        for p in self.properties:
-            file_import.merge(p.imports())
-        return file_import
-
 def get_object_schema(code_model) -> Type[ObjectSchema]:
     if code_model.options["models_mode"]:
         return ObjectSchema
