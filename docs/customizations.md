@@ -27,44 +27,12 @@ lost!
 
 ## Examples
 
-- [Improve Documentation](#improve-documentation)
 - [Change Model Behavior](#change-model-behavior)
 - [Add a model](#add-a-model)
 - [Change Operation Behavior](#change-operation-behavior)
 - [Overload an Operation](#overload-an-operation)
 - [Change Client Behavior](#change-client-behavior)
 - [Add a Client Method](#add-a-client-method)
-
-### Improve Documentation
-
-Documentation for generated objects can be easily improved in the `_patch.py` by overriding generated code.
-
-In this example, we improve the docstrings for model `Foo` by adding more information.
-
-In this `_patch.py` file:
-
-```
-azure-sdk
-│   README.md
-│
-└───azure
-    └───sdk
-        └───models
-        │   _models.py # where the generated models are
-        |   _patch.py # where we customize the models code
-```
-
-```python
-from ._models import FooGenerated
-
-class Foo(FooGenerated):
-    """Foo.
-
-    :param str input: Input. This is my new nicer description
-    """
-
-__all__ = ["Foo"]
-```
 
 ### Change Model Behavior
 
