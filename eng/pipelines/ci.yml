@@ -98,7 +98,6 @@ jobs:
         inputs:
           testRunTitle: "$(OSName) Python $(PythonVersion) - legacy azure"
           searchFolder: "$(TestFolder)/azure/legacy"
-
       - script: |
           cd $(TestFolder)/azure/low-level
           tox -e ci
