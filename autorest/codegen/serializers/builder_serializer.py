@@ -1137,10 +1137,11 @@ class _PagingOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disab
         retval = [f"{self._def} get_next(next_link=None):"]
         retval.append("    request = prepare_request(next_link)")
         retval.append("")
-        retval.append(
-            f"    pipeline_response = {self._call_method}self._client._pipeline.run(request, "
-            f"stream={builder.is_stream_response}, **kwargs)"
-        )
+        retval.append(f"    pipeline_response = {self._call_method}self._client._pipeline.run(  # pylint: disable=protected-access")
+        retval.append("        request,")
+        retval.append(f"        stream={builder.is_stream_response},")
+        retval.append("        **kwargs")
+        retval.append("    )")
         retval.append("    response = pipeline_response.http_response")
         retval.append("")
         retval.extend([

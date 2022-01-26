@@ -39,7 +39,8 @@ class Client:
 
         any_optional_gp = any(not gp.required for gp in self.parameters)
 
-        if any_optional_gp or self.code_model.service_client.parameters.host:
+        legacy = not any(g for g in ["low_level_client", "version_tolerant"] if g in self.code_model.options)
+        if any_optional_gp or (legacy and self.code_model.service_client.parameters.host):
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
 
         if self.code_model.options["azure_arm"]:

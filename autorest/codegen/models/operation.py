@@ -159,7 +159,8 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             if response.has_body:
                 file_import.merge(cast(BaseSchema, response.schema).imports())
 
-        if len([r for r in self.responses if r.has_body]) > 1:
+        response_types = [r.operation_type_annotation for r in self.responses if r.has_body]
+        if len(set(response_types)) > 1:
             file_import.add_submodule_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
 
         if self.is_stream_response:
@@ -179,13 +180,10 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             file_import.add_submodule_import("azure.mgmt.core.exceptions", "ARMErrorFormat", ImportType.AZURECORE)
         file_import.add_submodule_import("azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE)
 
-
-        file_import.add_import("functools", ImportType.STDLIB)
         file_import.add_submodule_import("typing", "Callable", ImportType.STDLIB, TypingSection.CONDITIONAL)
         file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
         file_import.add_submodule_import("typing", "Dict", ImportType.STDLIB, TypingSection.CONDITIONAL)
         file_import.add_submodule_import("typing", "TypeVar", ImportType.STDLIB, TypingSection.CONDITIONAL)
-        file_import.add_submodule_import("typing", "Generic", ImportType.STDLIB, TypingSection.CONDITIONAL)
         file_import.add_submodule_import("azure.core.pipeline", "PipelineResponse", ImportType.AZURECORE)
         file_import.add_submodule_import("azure.core.rest", "HttpRequest", ImportType.AZURECORE)
         if async_mode:
@@ -193,9 +191,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         else:
             file_import.add_submodule_import("azure.core.pipeline.transport", "HttpResponse", ImportType.AZURECORE)
 
-        # Deprecation
-        # FIXME: Replace with "the YAML contains deprecated:true"
-        if True:  # pylint: disable=using-constant-test
+        if self.deprecated:
             file_import.add_import("warnings", ImportType.STDLIB)
 
         if self.code_model.options["builders_visibility"] != "embedded":
