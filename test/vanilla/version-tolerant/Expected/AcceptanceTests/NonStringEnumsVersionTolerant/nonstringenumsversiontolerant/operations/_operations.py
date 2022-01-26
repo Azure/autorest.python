@@ -148,8 +148,6 @@ class IntOperations(object):
 
         return deserialized
 
-    put.metadata = {"url": "/nonStringEnums/int/put"}  # type: ignore
-
     @distributed_trace
     def get(self, **kwargs: Any) -> int:
         """Get an int enum.
@@ -187,8 +185,6 @@ class IntOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get.metadata = {"url": "/nonStringEnums/int/get"}  # type: ignore
 
 
 class FloatOperations(object):
@@ -253,8 +249,6 @@ class FloatOperations(object):
 
         return deserialized
 
-    put.metadata = {"url": "/nonStringEnums/float/put"}  # type: ignore
-
     @distributed_trace
     def get(self, **kwargs: Any) -> float:
         """Get a float enum.
@@ -292,5 +286,3 @@ class FloatOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get.metadata = {"url": "/nonStringEnums/float/get"}  # type: ignore

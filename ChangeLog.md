@@ -27,6 +27,7 @@
 **Bug Fixes**
 
 - Remove duplicate generation of properties in classes that inherit from multiple classes  #1120
+- Remove unused `metadata` value for `version-tolerant` generations  #1127
 
 ### 2022-01-13 - 5.12.3
 

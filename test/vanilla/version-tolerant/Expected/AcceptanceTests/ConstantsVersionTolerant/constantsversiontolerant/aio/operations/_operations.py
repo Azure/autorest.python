@@ -96,8 +96,6 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_no_model_as_string_no_required_two_value_no_default.metadata = {"url": "/constants/putNoModelAsStringNoRequiredTwoValueNoDefault"}  # type: ignore
-
     @distributed_trace_async
     async def put_no_model_as_string_no_required_two_value_default(
         self, *, input: Optional[str] = "value1", **kwargs: Any
@@ -130,8 +128,6 @@ class ContantsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_no_model_as_string_no_required_two_value_default.metadata = {"url": "/constants/putNoModelAsStringNoRequiredTwoValueDefault"}  # type: ignore
 
     @distributed_trace_async
     async def put_no_model_as_string_no_required_one_value_no_default(
@@ -166,8 +162,6 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_no_model_as_string_no_required_one_value_no_default.metadata = {"url": "/constants/putNoModelAsStringNoRequiredOneValueNoDefault"}  # type: ignore
-
     @distributed_trace_async
     async def put_no_model_as_string_no_required_one_value_default(
         self, *, input: Optional[str] = "value1", **kwargs: Any
@@ -201,8 +195,6 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_no_model_as_string_no_required_one_value_default.metadata = {"url": "/constants/putNoModelAsStringNoRequiredOneValueDefault"}  # type: ignore
-
     @distributed_trace_async
     async def put_no_model_as_string_required_two_value_no_default(self, *, input: str, **kwargs: Any) -> None:
         """Puts constants to the testserver.
@@ -234,8 +226,6 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_no_model_as_string_required_two_value_no_default.metadata = {"url": "/constants/putNoModelAsStringRequiredTwoValueNoDefault"}  # type: ignore
-
     @distributed_trace_async
     async def put_no_model_as_string_required_two_value_default(self, *, input: str = "value1", **kwargs: Any) -> None:
         """Puts constants to the testserver.
@@ -266,8 +256,6 @@ class ContantsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_no_model_as_string_required_two_value_default.metadata = {"url": "/constants/putNoModelAsStringRequiredTwoValueDefault"}  # type: ignore
 
     @distributed_trace_async
     async def put_no_model_as_string_required_one_value_no_default(self, **kwargs: Any) -> None:
@@ -303,8 +291,6 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_no_model_as_string_required_one_value_no_default.metadata = {"url": "/constants/putNoModelAsStringRequiredOneValueNoDefault"}  # type: ignore
-
     @distributed_trace_async
     async def put_no_model_as_string_required_one_value_default(self, **kwargs: Any) -> None:
         """Puts constants to the testserver.
@@ -339,8 +325,6 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_no_model_as_string_required_one_value_default.metadata = {"url": "/constants/putNoModelAsStringRequiredOneValueDefault"}  # type: ignore
-
     @distributed_trace_async
     async def put_model_as_string_no_required_two_value_no_default(
         self, *, input: Optional[str] = None, **kwargs: Any
@@ -373,8 +357,6 @@ class ContantsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_model_as_string_no_required_two_value_no_default.metadata = {"url": "/constants/putModelAsStringNoRequiredTwoValueNoDefault"}  # type: ignore
 
     @distributed_trace_async
     async def put_model_as_string_no_required_two_value_default(
@@ -409,8 +391,6 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_model_as_string_no_required_two_value_default.metadata = {"url": "/constants/putModelAsStringNoRequiredTwoValueDefault"}  # type: ignore
-
     @distributed_trace_async
     async def put_model_as_string_no_required_one_value_no_default(
         self, *, input: Optional[str] = None, **kwargs: Any
@@ -443,8 +423,6 @@ class ContantsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_model_as_string_no_required_one_value_no_default.metadata = {"url": "/constants/putModelAsStringNoRequiredOneValueNoDefault"}  # type: ignore
 
     @distributed_trace_async
     async def put_model_as_string_no_required_one_value_default(
@@ -479,8 +457,6 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_model_as_string_no_required_one_value_default.metadata = {"url": "/constants/putModelAsStringNoRequiredOneValueDefault"}  # type: ignore
-
     @distributed_trace_async
     async def put_model_as_string_required_two_value_no_default(self, *, input: str, **kwargs: Any) -> None:
         """Puts constants to the testserver.
@@ -511,8 +487,6 @@ class ContantsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_model_as_string_required_two_value_no_default.metadata = {"url": "/constants/putModelAsStringRequiredTwoValueNoDefault"}  # type: ignore
 
     @distributed_trace_async
     async def put_model_as_string_required_two_value_default(self, *, input: str = "value1", **kwargs: Any) -> None:
@@ -545,8 +519,6 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_model_as_string_required_two_value_default.metadata = {"url": "/constants/putModelAsStringRequiredTwoValueDefault"}  # type: ignore
-
     @distributed_trace_async
     async def put_model_as_string_required_one_value_no_default(self, *, input: str, **kwargs: Any) -> None:
         """Puts constants to the testserver.
@@ -577,8 +549,6 @@ class ContantsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_model_as_string_required_one_value_no_default.metadata = {"url": "/constants/putModelAsStringRequiredOneValueNoDefault"}  # type: ignore
 
     @distributed_trace_async
     async def put_model_as_string_required_one_value_default(self, *, input: str = "value1", **kwargs: Any) -> None:
@@ -611,8 +581,6 @@ class ContantsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_model_as_string_required_one_value_default.metadata = {"url": "/constants/putModelAsStringRequiredOneValueDefault"}  # type: ignore
-
     @distributed_trace_async
     async def put_client_constants(self, **kwargs: Any) -> None:
         """Pass constants from the client to this function. Will pass in constant path, query, and header
@@ -642,5 +610,3 @@ class ContantsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_client_constants.metadata = {"url": "/constants/clientConstants/{path-constant}"}  # type: ignore

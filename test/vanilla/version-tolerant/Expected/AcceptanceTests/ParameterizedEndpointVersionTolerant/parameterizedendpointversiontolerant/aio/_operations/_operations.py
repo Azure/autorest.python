@@ -55,5 +55,3 @@ class ParmaterizedEndpointClientOperationsMixin:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get.metadata = {"url": "/parameterizedEndpoint/get"}  # type: ignore

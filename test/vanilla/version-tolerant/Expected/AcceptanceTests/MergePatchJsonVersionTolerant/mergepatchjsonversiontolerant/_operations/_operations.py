@@ -80,5 +80,3 @@ class MergePatchJsonClientOperationsMixin(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    patch_single.metadata = {"url": "/mergePatchJson/single"}  # type: ignore

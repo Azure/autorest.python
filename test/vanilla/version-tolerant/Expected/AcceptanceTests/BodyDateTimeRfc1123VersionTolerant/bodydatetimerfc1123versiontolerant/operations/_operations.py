@@ -201,8 +201,6 @@ class Datetimerfc1123Operations(object):
 
         return deserialized
 
-    get_null.metadata = {"url": "/datetimerfc1123/null"}  # type: ignore
-
     @distributed_trace
     def get_invalid(self, **kwargs: Any) -> datetime.datetime:
         """Get invalid datetime value.
@@ -234,8 +232,6 @@ class Datetimerfc1123Operations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_invalid.metadata = {"url": "/datetimerfc1123/invalid"}  # type: ignore
 
     @distributed_trace
     def get_overflow(self, **kwargs: Any) -> datetime.datetime:
@@ -269,8 +265,6 @@ class Datetimerfc1123Operations(object):
 
         return deserialized
 
-    get_overflow.metadata = {"url": "/datetimerfc1123/overflow"}  # type: ignore
-
     @distributed_trace
     def get_underflow(self, **kwargs: Any) -> datetime.datetime:
         """Get underflow datetime value.
@@ -302,8 +296,6 @@ class Datetimerfc1123Operations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_underflow.metadata = {"url": "/datetimerfc1123/underflow"}  # type: ignore
 
     @distributed_trace
     def put_utc_max_date_time(self, datetime_body: datetime.datetime, **kwargs: Any) -> None:
@@ -339,8 +331,6 @@ class Datetimerfc1123Operations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_utc_max_date_time.metadata = {"url": "/datetimerfc1123/max"}  # type: ignore
-
     @distributed_trace
     def get_utc_lowercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
         """Get max datetime value fri, 31 dec 9999 23:59:59 gmt.
@@ -373,8 +363,6 @@ class Datetimerfc1123Operations(object):
 
         return deserialized
 
-    get_utc_lowercase_max_date_time.metadata = {"url": "/datetimerfc1123/max/lowercase"}  # type: ignore
-
     @distributed_trace
     def get_utc_uppercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
         """Get max datetime value FRI, 31 DEC 9999 23:59:59 GMT.
@@ -406,8 +394,6 @@ class Datetimerfc1123Operations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_utc_uppercase_max_date_time.metadata = {"url": "/datetimerfc1123/max/uppercase"}  # type: ignore
 
     @distributed_trace
     def put_utc_min_date_time(self, datetime_body: datetime.datetime, **kwargs: Any) -> None:
@@ -443,8 +429,6 @@ class Datetimerfc1123Operations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_utc_min_date_time.metadata = {"url": "/datetimerfc1123/min"}  # type: ignore
-
     @distributed_trace
     def get_utc_min_date_time(self, **kwargs: Any) -> datetime.datetime:
         """Get min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
@@ -476,5 +460,3 @@ class Datetimerfc1123Operations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_utc_min_date_time.metadata = {"url": "/datetimerfc1123/min"}  # type: ignore

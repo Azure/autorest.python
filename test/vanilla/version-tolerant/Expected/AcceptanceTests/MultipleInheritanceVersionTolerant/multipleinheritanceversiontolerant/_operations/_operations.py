@@ -212,8 +212,6 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
 
         return deserialized
 
-    get_horse.metadata = {"url": "/multipleInheritance/horse"}  # type: ignore
-
     @distributed_trace
     def put_horse(self, horse: JSONType, **kwargs: Any) -> str:
         """Put a horse with name 'General' and isAShowHorse false.
@@ -264,8 +262,6 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
 
         return deserialized
 
-    put_horse.metadata = {"url": "/multipleInheritance/horse"}  # type: ignore
-
     @distributed_trace
     def get_pet(self, **kwargs: Any) -> JSONType:
         """Get a pet with name 'Peanut'.
@@ -305,8 +301,6 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_pet.metadata = {"url": "/multipleInheritance/pet"}  # type: ignore
 
     @distributed_trace
     def put_pet(self, pet: JSONType, **kwargs: Any) -> str:
@@ -357,8 +351,6 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
 
         return deserialized
 
-    put_pet.metadata = {"url": "/multipleInheritance/pet"}  # type: ignore
-
     @distributed_trace
     def get_feline(self, **kwargs: Any) -> JSONType:
         """Get a feline where meows and hisses are true.
@@ -399,8 +391,6 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_feline.metadata = {"url": "/multipleInheritance/feline"}  # type: ignore
 
     @distributed_trace
     def put_feline(self, feline: JSONType, **kwargs: Any) -> str:
@@ -452,8 +442,6 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
 
         return deserialized
 
-    put_feline.metadata = {"url": "/multipleInheritance/feline"}  # type: ignore
-
     @distributed_trace
     def get_cat(self, **kwargs: Any) -> JSONType:
         """Get a cat with name 'Whiskers' where likesMilk, meows, and hisses is true.
@@ -496,8 +484,6 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_cat.metadata = {"url": "/multipleInheritance/cat"}  # type: ignore
 
     @distributed_trace
     def put_cat(self, cat: JSONType, **kwargs: Any) -> str:
@@ -551,8 +537,6 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
 
         return deserialized
 
-    put_cat.metadata = {"url": "/multipleInheritance/cat"}  # type: ignore
-
     @distributed_trace
     def get_kitten(self, **kwargs: Any) -> JSONType:
         """Get a kitten with name 'Gatito' where likesMilk and meows is true, and hisses and eatsMiceYet
@@ -597,8 +581,6 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_kitten.metadata = {"url": "/multipleInheritance/kitten"}  # type: ignore
 
     @distributed_trace
     def put_kitten(self, kitten: JSONType, **kwargs: Any) -> str:
@@ -654,5 +636,3 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    put_kitten.metadata = {"url": "/multipleInheritance/kitten"}  # type: ignore

@@ -125,8 +125,6 @@ class XmlOperations:
 
         return deserialized
 
-    get_complex_type_ref_no_meta.metadata = {"url": "/xml/complex-type-ref-no-meta"}  # type: ignore
-
     @distributed_trace_async
     async def put_complex_type_ref_no_meta(self, model: JSONType, **kwargs: Any) -> None:
         """Puts a complex type that has a ref to a complex type with no XML node.
@@ -172,8 +170,6 @@ class XmlOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_complex_type_ref_no_meta.metadata = {"url": "/xml/complex-type-ref-no-meta"}  # type: ignore
-
     @distributed_trace_async
     async def get_complex_type_ref_with_meta(self, **kwargs: Any) -> JSONType:
         """Get a complex type that has a ref to a complex type with XML node.
@@ -216,8 +212,6 @@ class XmlOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_complex_type_ref_with_meta.metadata = {"url": "/xml/complex-type-ref-with-meta"}  # type: ignore
 
     @distributed_trace_async
     async def put_complex_type_ref_with_meta(self, model: JSONType, **kwargs: Any) -> None:
@@ -263,8 +257,6 @@ class XmlOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_complex_type_ref_with_meta.metadata = {"url": "/xml/complex-type-ref-with-meta"}  # type: ignore
 
     @distributed_trace_async
     async def get_simple(self, **kwargs: Any) -> JSONType:
@@ -316,8 +308,6 @@ class XmlOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_simple.metadata = {"url": "/xml/simple"}  # type: ignore
 
     @distributed_trace_async
     async def put_simple(self, slideshow: JSONType, **kwargs: Any) -> None:
@@ -372,8 +362,6 @@ class XmlOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_simple.metadata = {"url": "/xml/simple"}  # type: ignore
-
     @distributed_trace_async
     async def get_wrapped_lists(self, **kwargs: Any) -> JSONType:
         """Get an XML document with multiple wrapped lists.
@@ -418,8 +406,6 @@ class XmlOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_wrapped_lists.metadata = {"url": "/xml/wrapped-lists"}  # type: ignore
 
     @distributed_trace_async
     async def put_wrapped_lists(self, wrapped_lists: JSONType, **kwargs: Any) -> None:
@@ -468,8 +454,6 @@ class XmlOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_wrapped_lists.metadata = {"url": "/xml/wrapped-lists"}  # type: ignore
-
     @distributed_trace_async
     async def get_headers(self, **kwargs: Any) -> None:
         """Get strongly-typed response headers.
@@ -497,8 +481,6 @@ class XmlOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    get_headers.metadata = {"url": "/xml/headers"}  # type: ignore
 
     @distributed_trace_async
     async def get_empty_list(self, **kwargs: Any) -> JSONType:
@@ -550,8 +532,6 @@ class XmlOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_empty_list.metadata = {"url": "/xml/empty-list"}  # type: ignore
 
     @distributed_trace_async
     async def put_empty_list(self, slideshow: JSONType, **kwargs: Any) -> None:
@@ -606,8 +586,6 @@ class XmlOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_empty_list.metadata = {"url": "/xml/empty-list"}  # type: ignore
-
     @distributed_trace_async
     async def get_empty_wrapped_lists(self, **kwargs: Any) -> JSONType:
         """Gets some empty wrapped lists.
@@ -652,8 +630,6 @@ class XmlOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_empty_wrapped_lists.metadata = {"url": "/xml/empty-wrapped-lists"}  # type: ignore
 
     @distributed_trace_async
     async def put_empty_wrapped_lists(self, apple_barrel: JSONType, **kwargs: Any) -> None:
@@ -702,8 +678,6 @@ class XmlOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_empty_wrapped_lists.metadata = {"url": "/xml/empty-wrapped-lists"}  # type: ignore
-
     @distributed_trace_async
     async def get_root_list(self, **kwargs: Any) -> List[JSONType]:
         """Gets a list as the root element.
@@ -747,8 +721,6 @@ class XmlOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_root_list.metadata = {"url": "/xml/root-list"}  # type: ignore
 
     @distributed_trace_async
     async def put_root_list(self, bananas: List[JSONType], **kwargs: Any) -> None:
@@ -797,8 +769,6 @@ class XmlOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_root_list.metadata = {"url": "/xml/root-list"}  # type: ignore
-
     @distributed_trace_async
     async def get_root_list_single_item(self, **kwargs: Any) -> List[JSONType]:
         """Gets a list with a single item.
@@ -842,8 +812,6 @@ class XmlOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_root_list_single_item.metadata = {"url": "/xml/root-list-single-item"}  # type: ignore
 
     @distributed_trace_async
     async def put_root_list_single_item(self, bananas: List[JSONType], **kwargs: Any) -> None:
@@ -892,8 +860,6 @@ class XmlOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_root_list_single_item.metadata = {"url": "/xml/root-list-single-item"}  # type: ignore
-
     @distributed_trace_async
     async def get_empty_root_list(self, **kwargs: Any) -> List[JSONType]:
         """Gets an empty list as the root element.
@@ -937,8 +903,6 @@ class XmlOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_empty_root_list.metadata = {"url": "/xml/empty-root-list"}  # type: ignore
 
     @distributed_trace_async
     async def put_empty_root_list(self, bananas: List[JSONType], **kwargs: Any) -> None:
@@ -987,8 +951,6 @@ class XmlOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_empty_root_list.metadata = {"url": "/xml/empty-root-list"}  # type: ignore
-
     @distributed_trace_async
     async def get_empty_child_element(self, **kwargs: Any) -> JSONType:
         """Gets an XML document with an empty child element.
@@ -1030,8 +992,6 @@ class XmlOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_empty_child_element.metadata = {"url": "/xml/empty-child-element"}  # type: ignore
 
     @distributed_trace_async
     async def put_empty_child_element(self, banana: JSONType, **kwargs: Any) -> None:
@@ -1076,8 +1036,6 @@ class XmlOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_empty_child_element.metadata = {"url": "/xml/empty-child-element"}  # type: ignore
 
     @distributed_trace_async
     async def list_containers(self, **kwargs: Any) -> JSONType:
@@ -1145,8 +1103,6 @@ class XmlOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    list_containers.metadata = {"url": "/xml/"}  # type: ignore
 
     @distributed_trace_async
     async def get_service_properties(self, **kwargs: Any) -> JSONType:
@@ -1241,8 +1197,6 @@ class XmlOperations:
 
         return deserialized
 
-    get_service_properties.metadata = {"url": "/xml/"}  # type: ignore
-
     @distributed_trace_async
     async def put_service_properties(self, properties: JSONType, **kwargs: Any) -> None:
         """Puts storage service properties.
@@ -1336,8 +1290,6 @@ class XmlOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_service_properties.metadata = {"url": "/xml/"}  # type: ignore
-
     @distributed_trace_async
     async def get_acls(self, **kwargs: Any) -> List[JSONType]:
         """Gets storage ACLs for a container.
@@ -1396,8 +1348,6 @@ class XmlOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_acls.metadata = {"url": "/xml/mycontainer"}  # type: ignore
 
     @distributed_trace_async
     async def put_acls(self, properties: List[JSONType], **kwargs: Any) -> None:
@@ -1458,8 +1408,6 @@ class XmlOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_acls.metadata = {"url": "/xml/mycontainer"}  # type: ignore
 
     @distributed_trace_async
     async def list_blobs(self, **kwargs: Any) -> JSONType:
@@ -1566,8 +1514,6 @@ class XmlOperations:
 
         return deserialized
 
-    list_blobs.metadata = {"url": "/xml/mycontainer"}  # type: ignore
-
     @distributed_trace_async
     async def json_input(self, properties: JSONType, **kwargs: Any) -> None:
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
@@ -1611,8 +1557,6 @@ class XmlOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    json_input.metadata = {"url": "/xml/jsoninput"}  # type: ignore
-
     @distributed_trace_async
     async def json_output(self, **kwargs: Any) -> JSONType:
         """A Swagger with XML that has one operation that returns JSON. ID number 42.
@@ -1652,8 +1596,6 @@ class XmlOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    json_output.metadata = {"url": "/xml/jsonoutput"}  # type: ignore
 
     @distributed_trace_async
     async def get_xms_text(self, **kwargs: Any) -> JSONType:
@@ -1697,8 +1639,6 @@ class XmlOperations:
 
         return deserialized
 
-    get_xms_text.metadata = {"url": "/xml/x-ms-text"}  # type: ignore
-
     @distributed_trace_async
     async def get_bytes(self, **kwargs: Any) -> JSONType:
         """Get an XML document with binary property.
@@ -1738,8 +1678,6 @@ class XmlOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_bytes.metadata = {"url": "/xml/bytes"}  # type: ignore
 
     @distributed_trace_async
     async def put_binary(self, slideshow: JSONType, **kwargs: Any) -> None:
@@ -1783,8 +1721,6 @@ class XmlOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_binary.metadata = {"url": "/xml/bytes"}  # type: ignore
-
     @distributed_trace_async
     async def get_uri(self, **kwargs: Any) -> JSONType:
         """Get an XML document with uri property.
@@ -1824,8 +1760,6 @@ class XmlOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_uri.metadata = {"url": "/xml/url"}  # type: ignore
 
     @distributed_trace_async
     async def put_uri(self, model: JSONType, **kwargs: Any) -> None:
@@ -1868,5 +1802,3 @@ class XmlOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_uri.metadata = {"url": "/xml/url"}  # type: ignore

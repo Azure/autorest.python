@@ -125,8 +125,6 @@ class StorageAccountsOperations:
 
         return deserialized
 
-    check_name_availability.metadata = {"url": "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability"}  # type: ignore
-
     async def _create_initial(
         self, resource_group_name: str, account_name: str, parameters: JSONType, **kwargs: Any
     ) -> Optional[JSONType]:
@@ -167,8 +165,6 @@ class StorageAccountsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _create_initial.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"}  # type: ignore
 
     @distributed_trace_async
     async def begin_create(
@@ -346,8 +342,6 @@ class StorageAccountsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    delete.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"}  # type: ignore
-
     @distributed_trace_async
     async def get_properties(self, resource_group_name: str, account_name: str, **kwargs: Any) -> JSONType:
         """Returns the properties for the specified storage account including but not limited to name,
@@ -444,8 +438,6 @@ class StorageAccountsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_properties.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"}  # type: ignore
 
     @distributed_trace_async
     async def update(
@@ -576,8 +568,6 @@ class StorageAccountsOperations:
 
         return deserialized
 
-    update.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"}  # type: ignore
-
     @distributed_trace_async
     async def list_keys(self, resource_group_name: str, account_name: str, **kwargs: Any) -> JSONType:
         """Lists the access keys for the specified storage account.
@@ -629,8 +619,6 @@ class StorageAccountsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    list_keys.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys"}  # type: ignore
 
     @distributed_trace
     def list(self, **kwargs: Any) -> AsyncIterable[JSONType]:
@@ -928,8 +916,6 @@ class StorageAccountsOperations:
 
         return deserialized
 
-    regenerate_key.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/regenerateKey"}  # type: ignore
-
 
 class UsageOperations:
     """UsageOperations async operations.
@@ -1003,5 +989,3 @@ class UsageOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    list.metadata = {"url": "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages"}  # type: ignore

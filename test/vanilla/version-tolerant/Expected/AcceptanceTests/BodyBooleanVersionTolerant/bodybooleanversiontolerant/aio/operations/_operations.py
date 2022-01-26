@@ -85,8 +85,6 @@ class BoolOperations:
 
         return deserialized
 
-    get_true.metadata = {"url": "/bool/true"}  # type: ignore
-
     @distributed_trace_async
     async def put_true(self, **kwargs: Any) -> None:
         """Set Boolean value true.
@@ -121,8 +119,6 @@ class BoolOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_true.metadata = {"url": "/bool/true"}  # type: ignore
-
     @distributed_trace_async
     async def get_false(self, **kwargs: Any) -> bool:
         """Get false Boolean value.
@@ -154,8 +150,6 @@ class BoolOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_false.metadata = {"url": "/bool/false"}  # type: ignore
 
     @distributed_trace_async
     async def put_false(self, **kwargs: Any) -> None:
@@ -191,8 +185,6 @@ class BoolOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_false.metadata = {"url": "/bool/false"}  # type: ignore
-
     @distributed_trace_async
     async def get_null(self, **kwargs: Any) -> Optional[bool]:
         """Get null Boolean value.
@@ -225,8 +217,6 @@ class BoolOperations:
 
         return deserialized
 
-    get_null.metadata = {"url": "/bool/null"}  # type: ignore
-
     @distributed_trace_async
     async def get_invalid(self, **kwargs: Any) -> bool:
         """Get invalid Boolean value.
@@ -258,5 +248,3 @@ class BoolOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_invalid.metadata = {"url": "/bool/invalid"}  # type: ignore

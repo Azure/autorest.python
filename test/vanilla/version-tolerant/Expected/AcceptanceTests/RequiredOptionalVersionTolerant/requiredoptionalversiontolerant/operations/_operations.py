@@ -623,8 +623,6 @@ class ImplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_required_path.metadata = {"url": "/reqopt/implicit/required/path/{pathParameter}"}  # type: ignore
-
     @distributed_trace
     def put_optional_query(self, *, query_parameter: Optional[str] = None, **kwargs: Any) -> None:
         """Test implicitly optional query parameter.
@@ -654,8 +652,6 @@ class ImplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_optional_query.metadata = {"url": "/reqopt/implicit/optional/query"}  # type: ignore
-
     @distributed_trace
     def put_optional_header(self, *, query_parameter: Optional[str] = None, **kwargs: Any) -> None:
         """Test implicitly optional header parameter.
@@ -684,8 +680,6 @@ class ImplicitOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_optional_header.metadata = {"url": "/reqopt/implicit/optional/header"}  # type: ignore
 
     @distributed_trace
     def put_optional_body(self, body_parameter: Optional[str] = None, **kwargs: Any) -> None:
@@ -724,8 +718,6 @@ class ImplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_optional_body.metadata = {"url": "/reqopt/implicit/optional/body"}  # type: ignore
-
     @distributed_trace
     def put_optional_binary_body(self, body_parameter: Optional[IO] = None, **kwargs: Any) -> None:
         """Test implicitly optional body parameter.
@@ -760,8 +752,6 @@ class ImplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_optional_binary_body.metadata = {"url": "/reqopt/implicit/optional/binary-body"}  # type: ignore
-
     @distributed_trace
     def get_required_global_path(self, **kwargs: Any) -> None:
         """Test implicitly required path parameter.
@@ -788,8 +778,6 @@ class ImplicitOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_required_global_path.metadata = {"url": "/reqopt/global/required/path/{required-global-path}"}  # type: ignore
 
     @distributed_trace
     def get_required_global_query(self, **kwargs: Any) -> None:
@@ -818,8 +806,6 @@ class ImplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_required_global_query.metadata = {"url": "/reqopt/global/required/query"}  # type: ignore
-
     @distributed_trace
     def get_optional_global_query(self, **kwargs: Any) -> None:
         """Test implicitly optional query parameter.
@@ -846,8 +832,6 @@ class ImplicitOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_optional_global_query.metadata = {"url": "/reqopt/global/optional/query"}  # type: ignore
 
 
 class ExplicitOperations(object):
@@ -902,8 +886,6 @@ class ExplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_optional_binary_body.metadata = {"url": "/reqopt/explicit/optional/binary-body"}  # type: ignore
-
     @distributed_trace
     def put_required_binary_body(self, body_parameter: IO, **kwargs: Any) -> None:
         """Test explicitly required body parameter.
@@ -937,8 +919,6 @@ class ExplicitOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_required_binary_body.metadata = {"url": "/reqopt/explicit/required/binary-body"}  # type: ignore
 
     @distributed_trace
     def post_required_integer_parameter(self, body_parameter: int, **kwargs: Any) -> None:
@@ -974,8 +954,6 @@ class ExplicitOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_required_integer_parameter.metadata = {"url": "/reqopt/requied/integer/parameter"}  # type: ignore
 
     @distributed_trace
     def post_optional_integer_parameter(self, body_parameter: Optional[int] = None, **kwargs: Any) -> None:
@@ -1013,8 +991,6 @@ class ExplicitOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_optional_integer_parameter.metadata = {"url": "/reqopt/optional/integer/parameter"}  # type: ignore
 
     @distributed_trace
     def post_required_integer_property(self, body_parameter: JSONType, **kwargs: Any) -> None:
@@ -1058,8 +1034,6 @@ class ExplicitOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_required_integer_property.metadata = {"url": "/reqopt/requied/integer/property"}  # type: ignore
 
     @distributed_trace
     def post_optional_integer_property(self, body_parameter: JSONType = None, **kwargs: Any) -> None:
@@ -1106,8 +1080,6 @@ class ExplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_optional_integer_property.metadata = {"url": "/reqopt/optional/integer/property"}  # type: ignore
-
     @distributed_trace
     def post_required_integer_header(self, *, header_parameter: int, **kwargs: Any) -> None:
         """Test explicitly required integer. Please put a header 'headerParameter' => null and the client
@@ -1138,8 +1110,6 @@ class ExplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_required_integer_header.metadata = {"url": "/reqopt/requied/integer/header"}  # type: ignore
-
     @distributed_trace
     def post_optional_integer_header(self, *, header_parameter: Optional[int] = None, **kwargs: Any) -> None:
         """Test explicitly optional integer. Please put a header 'headerParameter' => null.
@@ -1168,8 +1138,6 @@ class ExplicitOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_optional_integer_header.metadata = {"url": "/reqopt/optional/integer/header"}  # type: ignore
 
     @distributed_trace
     def post_required_string_parameter(self, body_parameter: str, **kwargs: Any) -> None:
@@ -1205,8 +1173,6 @@ class ExplicitOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_required_string_parameter.metadata = {"url": "/reqopt/requied/string/parameter"}  # type: ignore
 
     @distributed_trace
     def post_optional_string_parameter(self, body_parameter: Optional[str] = None, **kwargs: Any) -> None:
@@ -1244,8 +1210,6 @@ class ExplicitOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_optional_string_parameter.metadata = {"url": "/reqopt/optional/string/parameter"}  # type: ignore
 
     @distributed_trace
     def post_required_string_property(self, body_parameter: JSONType, **kwargs: Any) -> None:
@@ -1289,8 +1253,6 @@ class ExplicitOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_required_string_property.metadata = {"url": "/reqopt/requied/string/property"}  # type: ignore
 
     @distributed_trace
     def post_optional_string_property(self, body_parameter: JSONType = None, **kwargs: Any) -> None:
@@ -1337,8 +1299,6 @@ class ExplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_optional_string_property.metadata = {"url": "/reqopt/optional/string/property"}  # type: ignore
-
     @distributed_trace
     def post_required_string_header(self, *, header_parameter: str, **kwargs: Any) -> None:
         """Test explicitly required string. Please put a header 'headerParameter' => null and the client
@@ -1369,8 +1329,6 @@ class ExplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_required_string_header.metadata = {"url": "/reqopt/requied/string/header"}  # type: ignore
-
     @distributed_trace
     def post_optional_string_header(self, *, body_parameter: Optional[str] = None, **kwargs: Any) -> None:
         """Test explicitly optional string. Please put a header 'headerParameter' => null.
@@ -1399,8 +1357,6 @@ class ExplicitOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_optional_string_header.metadata = {"url": "/reqopt/optional/string/header"}  # type: ignore
 
     @distributed_trace
     def post_required_class_parameter(self, body_parameter: JSONType, **kwargs: Any) -> None:
@@ -1445,8 +1401,6 @@ class ExplicitOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_required_class_parameter.metadata = {"url": "/reqopt/requied/class/parameter"}  # type: ignore
 
     @distributed_trace
     def post_optional_class_parameter(self, body_parameter: JSONType = None, **kwargs: Any) -> None:
@@ -1494,8 +1448,6 @@ class ExplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_optional_class_parameter.metadata = {"url": "/reqopt/optional/class/parameter"}  # type: ignore
-
     @distributed_trace
     def post_required_class_property(self, body_parameter: JSONType, **kwargs: Any) -> None:
         """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null
@@ -1541,8 +1493,6 @@ class ExplicitOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_required_class_property.metadata = {"url": "/reqopt/requied/class/property"}  # type: ignore
 
     @distributed_trace
     def post_optional_class_property(self, body_parameter: JSONType = None, **kwargs: Any) -> None:
@@ -1592,8 +1542,6 @@ class ExplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_optional_class_property.metadata = {"url": "/reqopt/optional/class/property"}  # type: ignore
-
     @distributed_trace
     def post_required_array_parameter(self, body_parameter: List[str], **kwargs: Any) -> None:
         """Test explicitly required array. Please put null and the client library should throw before the
@@ -1636,8 +1584,6 @@ class ExplicitOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_required_array_parameter.metadata = {"url": "/reqopt/requied/array/parameter"}  # type: ignore
 
     @distributed_trace
     def post_optional_array_parameter(self, body_parameter: Optional[List[str]] = None, **kwargs: Any) -> None:
@@ -1684,8 +1630,6 @@ class ExplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_optional_array_parameter.metadata = {"url": "/reqopt/optional/array/parameter"}  # type: ignore
-
     @distributed_trace
     def post_required_array_property(self, body_parameter: JSONType, **kwargs: Any) -> None:
         """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the
@@ -1730,8 +1674,6 @@ class ExplicitOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_required_array_property.metadata = {"url": "/reqopt/requied/array/property"}  # type: ignore
 
     @distributed_trace
     def post_optional_array_property(self, body_parameter: JSONType = None, **kwargs: Any) -> None:
@@ -1780,8 +1722,6 @@ class ExplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_optional_array_property.metadata = {"url": "/reqopt/optional/array/property"}  # type: ignore
-
     @distributed_trace
     def post_required_array_header(self, *, header_parameter: List[str], **kwargs: Any) -> None:
         """Test explicitly required array. Please put a header 'headerParameter' => null and the client
@@ -1812,8 +1752,6 @@ class ExplicitOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_required_array_header.metadata = {"url": "/reqopt/requied/array/header"}  # type: ignore
-
     @distributed_trace
     def post_optional_array_header(self, *, header_parameter: Optional[List[str]] = None, **kwargs: Any) -> None:
         """Test explicitly optional integer. Please put a header 'headerParameter' => null.
@@ -1842,5 +1780,3 @@ class ExplicitOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_optional_array_header.metadata = {"url": "/reqopt/optional/array/header"}  # type: ignore

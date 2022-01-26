@@ -1523,8 +1523,6 @@ class PagingOperations(object):
 
         return deserialized
 
-    _get_multiple_pages_lro_initial.metadata = {"url": "/paging/multiple/lro"}  # type: ignore
-
     @distributed_trace
     def begin_get_multiple_pages_lro(
         self,

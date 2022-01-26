@@ -70,8 +70,6 @@ class LROWithParamaterizedEndpointsOperationsMixin:
 
         return deserialized
 
-    _poll_with_parameterized_endpoints_initial.metadata = {"url": "/lroParameterizedEndpoints"}  # type: ignore
-
     @distributed_trace_async
     async def begin_poll_with_parameterized_endpoints(self, account_name: str, **kwargs: Any) -> AsyncLROPoller[str]:
         """Poll with method and client level parameters in endpoint.
@@ -177,8 +175,6 @@ class LROWithParamaterizedEndpointsOperationsMixin:
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _poll_with_constant_parameterized_endpoints_initial.metadata = {"url": "/lroConstantParameterizedEndpoints/{constantParameter}"}  # type: ignore
 
     @distributed_trace_async
     async def begin_poll_with_constant_parameterized_endpoints(

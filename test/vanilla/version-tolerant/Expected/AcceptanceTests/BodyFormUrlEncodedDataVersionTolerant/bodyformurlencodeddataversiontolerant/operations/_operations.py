@@ -137,8 +137,6 @@ class FormdataurlencodedOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    update_pet_with_form.metadata = {"url": "/formsdataurlencoded/pet/add/{petId}"}  # type: ignore
-
     @distributed_trace
     def partial_constant_body(self, data: Dict[str, Any], **kwargs: Any) -> None:
         """Test a partially constant formdata body. Pass in { grant_type: 'access_token', access_token:
@@ -182,5 +180,3 @@ class FormdataurlencodedOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    partial_constant_body.metadata = {"url": "/formsdataurlencoded/partialConstantBody"}  # type: ignore

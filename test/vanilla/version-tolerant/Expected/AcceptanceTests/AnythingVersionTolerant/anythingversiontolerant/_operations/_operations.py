@@ -142,8 +142,6 @@ class AnythingClientOperationsMixin(object):
 
         return deserialized
 
-    get_object.metadata = {"url": "/anything/object"}  # type: ignore
-
     @distributed_trace
     def put_object(self, input: Any, **kwargs: Any) -> None:
         """Basic put that puts an object as anything. Pass in {'foo': 'bar'} to get a 200 and anything
@@ -179,8 +177,6 @@ class AnythingClientOperationsMixin(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_object.metadata = {"url": "/anything/object"}  # type: ignore
-
     @distributed_trace
     def get_string(self, **kwargs: Any) -> Any:
         """Basic get that returns an string as anything. Returns string 'foo'.
@@ -212,8 +208,6 @@ class AnythingClientOperationsMixin(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_string.metadata = {"url": "/anything/string"}  # type: ignore
 
     @distributed_trace
     def put_string(self, input: Any, **kwargs: Any) -> None:
@@ -250,8 +244,6 @@ class AnythingClientOperationsMixin(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_string.metadata = {"url": "/anything/string"}  # type: ignore
-
     @distributed_trace
     def get_array(self, **kwargs: Any) -> Any:
         """Basic get that returns an array as anything. Returns string ['foo', 'bar'].
@@ -283,8 +275,6 @@ class AnythingClientOperationsMixin(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_array.metadata = {"url": "/anything/array"}  # type: ignore
 
     @distributed_trace
     def put_array(self, input: Any, **kwargs: Any) -> None:
@@ -320,5 +310,3 @@ class AnythingClientOperationsMixin(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_array.metadata = {"url": "/anything/array"}  # type: ignore
