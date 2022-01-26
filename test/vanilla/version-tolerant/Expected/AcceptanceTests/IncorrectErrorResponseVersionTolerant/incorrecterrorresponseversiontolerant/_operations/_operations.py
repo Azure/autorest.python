@@ -62,5 +62,3 @@ class IncorrectReturnedErrorModelOperationsMixin(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_incorrect_error_from_server.metadata = {"url": "/incorrectError"}  # type: ignore

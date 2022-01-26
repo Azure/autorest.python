@@ -84,8 +84,6 @@ class DurationOperations:
 
         return deserialized
 
-    get_null.metadata = {"url": "/duration/null"}  # type: ignore
-
     @distributed_trace_async
     async def put_positive_duration(self, duration_body: datetime.timedelta, **kwargs: Any) -> None:
         """Put a positive duration value.
@@ -120,8 +118,6 @@ class DurationOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_positive_duration.metadata = {"url": "/duration/positiveduration"}  # type: ignore
-
     @distributed_trace_async
     async def get_positive_duration(self, **kwargs: Any) -> datetime.timedelta:
         """Get a positive duration value.
@@ -154,8 +150,6 @@ class DurationOperations:
 
         return deserialized
 
-    get_positive_duration.metadata = {"url": "/duration/positiveduration"}  # type: ignore
-
     @distributed_trace_async
     async def get_invalid(self, **kwargs: Any) -> datetime.timedelta:
         """Get an invalid duration value.
@@ -187,5 +181,3 @@ class DurationOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_invalid.metadata = {"url": "/duration/invalid"}  # type: ignore

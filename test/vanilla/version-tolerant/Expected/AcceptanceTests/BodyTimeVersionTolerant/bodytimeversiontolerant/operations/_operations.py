@@ -109,8 +109,6 @@ class TimeOperations(object):
 
         return deserialized
 
-    get.metadata = {"url": "/time/get"}  # type: ignore
-
     @distributed_trace
     def put(self, time_body: datetime.time, **kwargs: Any) -> str:
         """Put time value "08:07:56".
@@ -151,5 +149,3 @@ class TimeOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    put.metadata = {"url": "/time/put"}  # type: ignore

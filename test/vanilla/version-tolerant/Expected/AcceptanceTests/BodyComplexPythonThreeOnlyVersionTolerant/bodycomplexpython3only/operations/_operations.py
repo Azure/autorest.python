@@ -861,8 +861,6 @@ class BasicOperations(object):
 
         return deserialized
 
-    get_valid.metadata = {"url": "/complex/basic/valid"}  # type: ignore
-
     @distributed_trace
     def put_valid(self, complex_body: JSONType, **kwargs: Any) -> None:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
@@ -909,8 +907,6 @@ class BasicOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_valid.metadata = {"url": "/complex/basic/valid"}  # type: ignore
-
     @distributed_trace
     def get_invalid(self, **kwargs: Any) -> JSONType:
         """Get a basic complex type that is invalid for the local strong type.
@@ -952,8 +948,6 @@ class BasicOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_invalid.metadata = {"url": "/complex/basic/invalid"}  # type: ignore
 
     @distributed_trace
     def get_empty(self, **kwargs: Any) -> JSONType:
@@ -997,8 +991,6 @@ class BasicOperations(object):
 
         return deserialized
 
-    get_empty.metadata = {"url": "/complex/basic/empty"}  # type: ignore
-
     @distributed_trace
     def get_null(self, **kwargs: Any) -> JSONType:
         """Get a basic complex type whose properties are null.
@@ -1041,8 +1033,6 @@ class BasicOperations(object):
 
         return deserialized
 
-    get_null.metadata = {"url": "/complex/basic/null"}  # type: ignore
-
     @distributed_trace
     def get_not_provided(self, **kwargs: Any) -> JSONType:
         """Get a basic complex type while the server doesn't provide a response payload.
@@ -1084,8 +1074,6 @@ class BasicOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_not_provided.metadata = {"url": "/complex/basic/notprovided"}  # type: ignore
 
 
 class PrimitiveOperations(object):
@@ -1147,8 +1135,6 @@ class PrimitiveOperations(object):
 
         return deserialized
 
-    get_int.metadata = {"url": "/complex/primitive/integer"}  # type: ignore
-
     @distributed_trace
     def put_int(self, complex_body: JSONType, **kwargs: Any) -> None:
         """Put complex types with integer properties.
@@ -1192,8 +1178,6 @@ class PrimitiveOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_int.metadata = {"url": "/complex/primitive/integer"}  # type: ignore
-
     @distributed_trace
     def get_long(self, **kwargs: Any) -> JSONType:
         """Get complex types with long properties.
@@ -1234,8 +1218,6 @@ class PrimitiveOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_long.metadata = {"url": "/complex/primitive/long"}  # type: ignore
 
     @distributed_trace
     def put_long(self, complex_body: JSONType, **kwargs: Any) -> None:
@@ -1280,8 +1262,6 @@ class PrimitiveOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_long.metadata = {"url": "/complex/primitive/long"}  # type: ignore
-
     @distributed_trace
     def get_float(self, **kwargs: Any) -> JSONType:
         """Get complex types with float properties.
@@ -1322,8 +1302,6 @@ class PrimitiveOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_float.metadata = {"url": "/complex/primitive/float"}  # type: ignore
 
     @distributed_trace
     def put_float(self, complex_body: JSONType, **kwargs: Any) -> None:
@@ -1368,8 +1346,6 @@ class PrimitiveOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_float.metadata = {"url": "/complex/primitive/float"}  # type: ignore
-
     @distributed_trace
     def get_double(self, **kwargs: Any) -> JSONType:
         """Get complex types with double properties.
@@ -1410,8 +1386,6 @@ class PrimitiveOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_double.metadata = {"url": "/complex/primitive/double"}  # type: ignore
 
     @distributed_trace
     def put_double(self, complex_body: JSONType, **kwargs: Any) -> None:
@@ -1457,8 +1431,6 @@ class PrimitiveOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_double.metadata = {"url": "/complex/primitive/double"}  # type: ignore
-
     @distributed_trace
     def get_bool(self, **kwargs: Any) -> JSONType:
         """Get complex types with bool properties.
@@ -1499,8 +1471,6 @@ class PrimitiveOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_bool.metadata = {"url": "/complex/primitive/bool"}  # type: ignore
 
     @distributed_trace
     def put_bool(self, complex_body: JSONType, **kwargs: Any) -> None:
@@ -1545,8 +1515,6 @@ class PrimitiveOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_bool.metadata = {"url": "/complex/primitive/bool"}  # type: ignore
-
     @distributed_trace
     def get_string(self, **kwargs: Any) -> JSONType:
         """Get complex types with string properties.
@@ -1588,8 +1556,6 @@ class PrimitiveOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_string.metadata = {"url": "/complex/primitive/string"}  # type: ignore
 
     @distributed_trace
     def put_string(self, complex_body: JSONType, **kwargs: Any) -> None:
@@ -1635,8 +1601,6 @@ class PrimitiveOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_string.metadata = {"url": "/complex/primitive/string"}  # type: ignore
-
     @distributed_trace
     def get_date(self, **kwargs: Any) -> JSONType:
         """Get complex types with date properties.
@@ -1677,8 +1641,6 @@ class PrimitiveOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_date.metadata = {"url": "/complex/primitive/date"}  # type: ignore
 
     @distributed_trace
     def put_date(self, complex_body: JSONType, **kwargs: Any) -> None:
@@ -1723,8 +1685,6 @@ class PrimitiveOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_date.metadata = {"url": "/complex/primitive/date"}  # type: ignore
-
     @distributed_trace
     def get_date_time(self, **kwargs: Any) -> JSONType:
         """Get complex types with datetime properties.
@@ -1765,8 +1725,6 @@ class PrimitiveOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_date_time.metadata = {"url": "/complex/primitive/datetime"}  # type: ignore
 
     @distributed_trace
     def put_date_time(self, complex_body: JSONType, **kwargs: Any) -> None:
@@ -1811,8 +1769,6 @@ class PrimitiveOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_date_time.metadata = {"url": "/complex/primitive/datetime"}  # type: ignore
-
     @distributed_trace
     def get_date_time_rfc1123(self, **kwargs: Any) -> JSONType:
         """Get complex types with datetimeRfc1123 properties.
@@ -1853,8 +1809,6 @@ class PrimitiveOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_date_time_rfc1123.metadata = {"url": "/complex/primitive/datetimerfc1123"}  # type: ignore
 
     @distributed_trace
     def put_date_time_rfc1123(self, complex_body: JSONType, **kwargs: Any) -> None:
@@ -1900,8 +1854,6 @@ class PrimitiveOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_date_time_rfc1123.metadata = {"url": "/complex/primitive/datetimerfc1123"}  # type: ignore
-
     @distributed_trace
     def get_duration(self, **kwargs: Any) -> JSONType:
         """Get complex types with duration properties.
@@ -1941,8 +1893,6 @@ class PrimitiveOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_duration.metadata = {"url": "/complex/primitive/duration"}  # type: ignore
 
     @distributed_trace
     def put_duration(self, complex_body: JSONType, **kwargs: Any) -> None:
@@ -1986,8 +1936,6 @@ class PrimitiveOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_duration.metadata = {"url": "/complex/primitive/duration"}  # type: ignore
-
     @distributed_trace
     def get_byte(self, **kwargs: Any) -> JSONType:
         """Get complex types with byte properties.
@@ -2027,8 +1975,6 @@ class PrimitiveOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_byte.metadata = {"url": "/complex/primitive/byte"}  # type: ignore
 
     @distributed_trace
     def put_byte(self, complex_body: JSONType, **kwargs: Any) -> None:
@@ -2071,8 +2017,6 @@ class PrimitiveOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_byte.metadata = {"url": "/complex/primitive/byte"}  # type: ignore
 
 
 class ArrayOperations(object):
@@ -2135,8 +2079,6 @@ class ArrayOperations(object):
 
         return deserialized
 
-    get_valid.metadata = {"url": "/complex/array/valid"}  # type: ignore
-
     @distributed_trace
     def put_valid(self, complex_body: JSONType, **kwargs: Any) -> None:
         """Put complex types with array property.
@@ -2182,8 +2124,6 @@ class ArrayOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_valid.metadata = {"url": "/complex/array/valid"}  # type: ignore
-
     @distributed_trace
     def get_empty(self, **kwargs: Any) -> JSONType:
         """Get complex types with array property which is empty.
@@ -2225,8 +2165,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_empty.metadata = {"url": "/complex/array/empty"}  # type: ignore
 
     @distributed_trace
     def put_empty(self, complex_body: JSONType, **kwargs: Any) -> None:
@@ -2272,8 +2210,6 @@ class ArrayOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_empty.metadata = {"url": "/complex/array/empty"}  # type: ignore
-
     @distributed_trace
     def get_not_provided(self, **kwargs: Any) -> JSONType:
         """Get complex types with array property while server doesn't provide a response payload.
@@ -2315,8 +2251,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_not_provided.metadata = {"url": "/complex/array/notprovided"}  # type: ignore
 
 
 class DictionaryOperations(object):
@@ -2379,8 +2313,6 @@ class DictionaryOperations(object):
 
         return deserialized
 
-    get_valid.metadata = {"url": "/complex/dictionary/typed/valid"}  # type: ignore
-
     @distributed_trace
     def put_valid(self, complex_body: JSONType, **kwargs: Any) -> None:
         """Put complex types with dictionary property.
@@ -2426,8 +2358,6 @@ class DictionaryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_valid.metadata = {"url": "/complex/dictionary/typed/valid"}  # type: ignore
-
     @distributed_trace
     def get_empty(self, **kwargs: Any) -> JSONType:
         """Get complex types with dictionary property which is empty.
@@ -2469,8 +2399,6 @@ class DictionaryOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_empty.metadata = {"url": "/complex/dictionary/typed/empty"}  # type: ignore
 
     @distributed_trace
     def put_empty(self, complex_body: JSONType, **kwargs: Any) -> None:
@@ -2516,8 +2444,6 @@ class DictionaryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_empty.metadata = {"url": "/complex/dictionary/typed/empty"}  # type: ignore
-
     @distributed_trace
     def get_null(self, **kwargs: Any) -> JSONType:
         """Get complex types with dictionary property which is null.
@@ -2560,8 +2486,6 @@ class DictionaryOperations(object):
 
         return deserialized
 
-    get_null.metadata = {"url": "/complex/dictionary/typed/null"}  # type: ignore
-
     @distributed_trace
     def get_not_provided(self, **kwargs: Any) -> JSONType:
         """Get complex types with dictionary property while server doesn't provide a response payload.
@@ -2603,8 +2527,6 @@ class DictionaryOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_not_provided.metadata = {"url": "/complex/dictionary/typed/notprovided"}  # type: ignore
 
 
 class InheritanceOperations(object):
@@ -2675,8 +2597,6 @@ class InheritanceOperations(object):
 
         return deserialized
 
-    get_valid.metadata = {"url": "/complex/inheritance/valid"}  # type: ignore
-
     @distributed_trace
     def put_valid(self, complex_body: JSONType, **kwargs: Any) -> None:
         """Put complex types that extend others.
@@ -2730,8 +2650,6 @@ class InheritanceOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_valid.metadata = {"url": "/complex/inheritance/valid"}  # type: ignore
 
 
 class PolymorphismOperations(object):
@@ -2796,8 +2714,6 @@ class PolymorphismOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_valid.metadata = {"url": "/complex/polymorphism/valid"}  # type: ignore
 
     @distributed_trace
     def put_valid(self, complex_body: JSONType, **kwargs: Any) -> None:
@@ -2880,8 +2796,6 @@ class PolymorphismOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_valid.metadata = {"url": "/complex/polymorphism/valid"}  # type: ignore
-
     @distributed_trace
     def get_dot_syntax(self, **kwargs: Any) -> JSONType:
         """Get complex types that are polymorphic, JSON key contains a dot.
@@ -2922,8 +2836,6 @@ class PolymorphismOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_dot_syntax.metadata = {"url": "/complex/polymorphism/dotsyntax"}  # type: ignore
 
     @distributed_trace
     def get_composed_with_discriminator(self, **kwargs: Any) -> JSONType:
@@ -2990,8 +2902,6 @@ class PolymorphismOperations(object):
 
         return deserialized
 
-    get_composed_with_discriminator.metadata = {"url": "/complex/polymorphism/composedWithDiscriminator"}  # type: ignore
-
     @distributed_trace
     def get_composed_without_discriminator(self, **kwargs: Any) -> JSONType:
         """Get complex object composing a polymorphic scalar property and array property with polymorphic
@@ -3057,8 +2967,6 @@ class PolymorphismOperations(object):
 
         return deserialized
 
-    get_composed_without_discriminator.metadata = {"url": "/complex/polymorphism/composedWithoutDiscriminator"}  # type: ignore
-
     @distributed_trace
     def get_complicated(self, **kwargs: Any) -> JSONType:
         """Get complex types that are polymorphic, but not at the root of the hierarchy; also have
@@ -3113,8 +3021,6 @@ class PolymorphismOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_complicated.metadata = {"url": "/complex/polymorphism/complicated"}  # type: ignore
 
     @distributed_trace
     def put_complicated(self, complex_body: JSONType, **kwargs: Any) -> None:
@@ -3174,8 +3080,6 @@ class PolymorphismOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_complicated.metadata = {"url": "/complex/polymorphism/complicated"}  # type: ignore
 
     @distributed_trace
     def put_missing_discriminator(self, complex_body: JSONType, **kwargs: Any) -> JSONType:
@@ -3261,8 +3165,6 @@ class PolymorphismOperations(object):
 
         return deserialized
 
-    put_missing_discriminator.metadata = {"url": "/complex/polymorphism/missingdiscriminator"}  # type: ignore
-
     @distributed_trace
     def put_valid_missing_required(self, complex_body: JSONType, **kwargs: Any) -> None:
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
@@ -3339,8 +3241,6 @@ class PolymorphismOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_valid_missing_required.metadata = {"url": "/complex/polymorphism/missingrequired/invalid"}  # type: ignore
-
 
 class PolymorphicrecursiveOperations(object):
     """PolymorphicrecursiveOperations operations.
@@ -3404,8 +3304,6 @@ class PolymorphicrecursiveOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_valid.metadata = {"url": "/complex/polymorphicrecursive/valid"}  # type: ignore
 
     @distributed_trace
     def put_valid(self, complex_body: JSONType, **kwargs: Any) -> None:
@@ -3508,8 +3406,6 @@ class PolymorphicrecursiveOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_valid.metadata = {"url": "/complex/polymorphicrecursive/valid"}  # type: ignore
-
 
 class ReadonlypropertyOperations(object):
     """ReadonlypropertyOperations operations.
@@ -3570,8 +3466,6 @@ class ReadonlypropertyOperations(object):
 
         return deserialized
 
-    get_valid.metadata = {"url": "/complex/readonlyproperty/valid"}  # type: ignore
-
     @distributed_trace
     def put_valid(self, complex_body: JSONType, **kwargs: Any) -> None:
         """Put complex types that have readonly properties.
@@ -3614,8 +3508,6 @@ class ReadonlypropertyOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_valid.metadata = {"url": "/complex/readonlyproperty/valid"}  # type: ignore
 
 
 class FlattencomplexOperations(object):
@@ -3679,5 +3571,3 @@ class FlattencomplexOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_valid.metadata = {"url": "/complex/flatten/valid"}  # type: ignore

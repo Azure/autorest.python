@@ -79,8 +79,6 @@ class FilesOperations:
 
         return deserialized
 
-    get_file.metadata = {"url": "/files/stream/nonempty"}  # type: ignore
-
     @distributed_trace_async
     async def get_file_large(self, **kwargs: Any) -> IO:
         """Get a large file.
@@ -110,8 +108,6 @@ class FilesOperations:
 
         return deserialized
 
-    get_file_large.metadata = {"url": "/files/stream/verylarge"}  # type: ignore
-
     @distributed_trace_async
     async def get_empty_file(self, **kwargs: Any) -> IO:
         """Get empty file.
@@ -140,5 +136,3 @@ class FilesOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_empty_file.metadata = {"url": "/files/stream/empty"}  # type: ignore

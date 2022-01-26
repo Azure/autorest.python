@@ -80,8 +80,6 @@ class UploadOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    file.metadata = {"url": "/binary/file"}  # type: ignore
-
     @distributed_trace_async
     async def binary(self, file_param: IO, **kwargs: Any) -> None:
         """Uploading binary file.
@@ -115,5 +113,3 @@ class UploadOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    binary.metadata = {"url": "/binary/octet"}  # type: ignore

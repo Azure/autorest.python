@@ -92,8 +92,6 @@ class ObjectTypeClientOperationsMixin(object):
 
         return deserialized
 
-    get.metadata = {"url": "/objectType/get"}  # type: ignore
-
     @distributed_trace
     def put(self, put_object: Any, **kwargs: Any) -> None:
         """Basic put that puts an object. Pass in {'foo': 'bar'} to get a 200 and anything else to get an
@@ -128,5 +126,3 @@ class ObjectTypeClientOperationsMixin(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put.metadata = {"url": "/objectType/put"}  # type: ignore

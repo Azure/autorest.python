@@ -349,8 +349,6 @@ class StringOperations(object):
 
         return deserialized
 
-    get_null.metadata = {"url": "/string/null"}  # type: ignore
-
     @distributed_trace
     def put_null(self, string_body: Optional[str] = None, **kwargs: Any) -> None:
         """Set string value null.
@@ -388,8 +386,6 @@ class StringOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_null.metadata = {"url": "/string/null"}  # type: ignore
-
     @distributed_trace
     def get_empty(self, **kwargs: Any) -> str:
         """Get empty string value value ''.
@@ -421,8 +417,6 @@ class StringOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_empty.metadata = {"url": "/string/empty"}  # type: ignore
 
     @distributed_trace
     def put_empty(self, **kwargs: Any) -> None:
@@ -458,8 +452,6 @@ class StringOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_empty.metadata = {"url": "/string/empty"}  # type: ignore
-
     @distributed_trace
     def get_mbcs(self, **kwargs: Any) -> str:
         """Get mbcs string value '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
@@ -491,8 +483,6 @@ class StringOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_mbcs.metadata = {"url": "/string/mbcs"}  # type: ignore
 
     @distributed_trace
     def put_mbcs(self, **kwargs: Any) -> None:
@@ -531,8 +521,6 @@ class StringOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_mbcs.metadata = {"url": "/string/mbcs"}  # type: ignore
-
     @distributed_trace
     def get_whitespace(self, **kwargs: Any) -> str:
         """Get string value with leading and trailing whitespace
@@ -566,8 +554,6 @@ class StringOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_whitespace.metadata = {"url": "/string/whitespace"}  # type: ignore
 
     @distributed_trace
     def put_whitespace(self, **kwargs: Any) -> None:
@@ -608,8 +594,6 @@ class StringOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_whitespace.metadata = {"url": "/string/whitespace"}  # type: ignore
-
     @distributed_trace
     def get_not_provided(self, **kwargs: Any) -> str:
         """Get String value when no string value is sent in response payload.
@@ -641,8 +625,6 @@ class StringOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_not_provided.metadata = {"url": "/string/notProvided"}  # type: ignore
 
     @distributed_trace
     def get_base64_encoded(self, **kwargs: Any) -> bytearray:
@@ -676,8 +658,6 @@ class StringOperations(object):
 
         return deserialized
 
-    get_base64_encoded.metadata = {"url": "/string/base64Encoding"}  # type: ignore
-
     @distributed_trace
     def get_base64_url_encoded(self, **kwargs: Any) -> bytes:
         """Get value that is base64url encoded.
@@ -709,8 +689,6 @@ class StringOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_base64_url_encoded.metadata = {"url": "/string/base64UrlEncoding"}  # type: ignore
 
     @distributed_trace
     def put_base64_url_encoded(self, string_body: bytes, **kwargs: Any) -> None:
@@ -746,8 +724,6 @@ class StringOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_base64_url_encoded.metadata = {"url": "/string/base64UrlEncoding"}  # type: ignore
-
     @distributed_trace
     def get_null_base64_url_encoded(self, **kwargs: Any) -> Optional[bytes]:
         """Get null value that is expected to be base64url encoded.
@@ -779,8 +755,6 @@ class StringOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_null_base64_url_encoded.metadata = {"url": "/string/nullBase64UrlEncoding"}  # type: ignore
 
 
 class EnumOperations(object):
@@ -839,8 +813,6 @@ class EnumOperations(object):
 
         return deserialized
 
-    get_not_expandable.metadata = {"url": "/string/enum/notExpandable"}  # type: ignore
-
     @distributed_trace
     def put_not_expandable(self, string_body: str, **kwargs: Any) -> None:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
@@ -875,8 +847,6 @@ class EnumOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_not_expandable.metadata = {"url": "/string/enum/notExpandable"}  # type: ignore
 
     @distributed_trace
     def get_referenced(self, **kwargs: Any) -> str:
@@ -916,8 +886,6 @@ class EnumOperations(object):
 
         return deserialized
 
-    get_referenced.metadata = {"url": "/string/enum/Referenced"}  # type: ignore
-
     @distributed_trace
     def put_referenced(self, enum_string_body: str, **kwargs: Any) -> None:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
@@ -952,8 +920,6 @@ class EnumOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_referenced.metadata = {"url": "/string/enum/Referenced"}  # type: ignore
 
     @distributed_trace
     def get_referenced_constant(self, **kwargs: Any) -> JSONType:
@@ -995,8 +961,6 @@ class EnumOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_referenced_constant.metadata = {"url": "/string/enum/ReferencedConstant"}  # type: ignore
 
     @distributed_trace
     def put_referenced_constant(self, enum_string_body: JSONType, **kwargs: Any) -> None:
@@ -1040,5 +1004,3 @@ class EnumOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_referenced_constant.metadata = {"url": "/string/enum/ReferencedConstant"}  # type: ignore

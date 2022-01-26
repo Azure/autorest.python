@@ -185,8 +185,6 @@ class DateOperations(object):
 
         return deserialized
 
-    get_null.metadata = {"url": "/date/null"}  # type: ignore
-
     @distributed_trace
     def get_invalid_date(self, **kwargs: Any) -> datetime.date:
         """Get invalid date value.
@@ -218,8 +216,6 @@ class DateOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_invalid_date.metadata = {"url": "/date/invaliddate"}  # type: ignore
 
     @distributed_trace
     def get_overflow_date(self, **kwargs: Any) -> datetime.date:
@@ -253,8 +249,6 @@ class DateOperations(object):
 
         return deserialized
 
-    get_overflow_date.metadata = {"url": "/date/overflowdate"}  # type: ignore
-
     @distributed_trace
     def get_underflow_date(self, **kwargs: Any) -> datetime.date:
         """Get underflow date value.
@@ -286,8 +280,6 @@ class DateOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_underflow_date.metadata = {"url": "/date/underflowdate"}  # type: ignore
 
     @distributed_trace
     def put_max_date(self, date_body: datetime.date, **kwargs: Any) -> None:
@@ -323,8 +315,6 @@ class DateOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_max_date.metadata = {"url": "/date/max"}  # type: ignore
-
     @distributed_trace
     def get_max_date(self, **kwargs: Any) -> datetime.date:
         """Get max date value 9999-12-31.
@@ -356,8 +346,6 @@ class DateOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_max_date.metadata = {"url": "/date/max"}  # type: ignore
 
     @distributed_trace
     def put_min_date(self, date_body: datetime.date, **kwargs: Any) -> None:
@@ -393,8 +381,6 @@ class DateOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_min_date.metadata = {"url": "/date/min"}  # type: ignore
-
     @distributed_trace
     def get_min_date(self, **kwargs: Any) -> datetime.date:
         """Get min date value 0000-01-01.
@@ -426,5 +412,3 @@ class DateOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_min_date.metadata = {"url": "/date/min"}  # type: ignore

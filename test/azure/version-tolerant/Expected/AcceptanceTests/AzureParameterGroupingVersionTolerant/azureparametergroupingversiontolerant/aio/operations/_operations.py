@@ -97,8 +97,6 @@ class ParameterGroupingOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_required.metadata = {"url": "/parameterGrouping/postRequired/{path}"}  # type: ignore
-
     @distributed_trace_async
     async def post_optional(
         self, *, custom_header: Optional[str] = None, query: Optional[int] = 30, **kwargs: Any
@@ -133,8 +131,6 @@ class ParameterGroupingOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_optional.metadata = {"url": "/parameterGrouping/postOptional"}  # type: ignore
-
     @distributed_trace_async
     async def post_reserved_words(
         self, *, from_parameter: Optional[str] = None, accept_parameter: Optional[str] = None, **kwargs: Any
@@ -168,8 +164,6 @@ class ParameterGroupingOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_reserved_words.metadata = {"url": "/parameterGrouping/postReservedWords"}  # type: ignore
 
     @distributed_trace_async
     async def post_multi_param_groups(
@@ -217,8 +211,6 @@ class ParameterGroupingOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post_multi_param_groups.metadata = {"url": "/parameterGrouping/postMultipleParameterGroups"}  # type: ignore
-
     @distributed_trace_async
     async def post_shared_parameter_group_object(
         self, *, header_one: Optional[str] = None, query_one: Optional[int] = 30, **kwargs: Any
@@ -252,5 +244,3 @@ class ParameterGroupingOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_shared_parameter_group_object.metadata = {"url": "/parameterGrouping/sharedParameterGroupObject"}  # type: ignore

@@ -161,8 +161,6 @@ class ParamsOperations(object):
 
         return deserialized
 
-    head_no_params.metadata = {"url": "/serviceDriven/parameters"}  # type: ignore
-
     @distributed_trace
     def get_required(self, *, parameter: str, **kwargs: Any) -> Any:
         """Get true Boolean value on path.
@@ -198,8 +196,6 @@ class ParamsOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_required.metadata = {"url": "/serviceDriven/parameters"}  # type: ignore
 
     @distributed_trace
     def put_required_optional(self, *, required_param: str, optional_param: Optional[str] = None, **kwargs: Any) -> Any:
@@ -239,8 +235,6 @@ class ParamsOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    put_required_optional.metadata = {"url": "/serviceDriven/parameters"}  # type: ignore
 
     @distributed_trace
     def post_parameters(self, parameter: JSONType, **kwargs: Any) -> Any:
@@ -292,8 +286,6 @@ class ParamsOperations(object):
 
         return deserialized
 
-    post_parameters.metadata = {"url": "/serviceDriven/parameters"}  # type: ignore
-
     @distributed_trace
     def get_optional(self, *, optional_param: Optional[str] = None, **kwargs: Any) -> Any:
         """Get true Boolean value on path.
@@ -329,5 +321,3 @@ class ParamsOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_optional.metadata = {"url": "/serviceDriven/moreParameters"}  # type: ignore

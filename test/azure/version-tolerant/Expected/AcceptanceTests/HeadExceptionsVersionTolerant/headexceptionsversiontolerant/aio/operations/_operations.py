@@ -76,8 +76,6 @@ class HeadExceptionOperations:
             return cls(pipeline_response, None, {})
         return 200 <= response.status_code <= 299
 
-    head200.metadata = {"url": "/http/success/200"}  # type: ignore
-
     @distributed_trace_async
     async def head204(self, **kwargs: Any) -> bool:
         """Return 204 status code if successful.
@@ -104,8 +102,6 @@ class HeadExceptionOperations:
             return cls(pipeline_response, None, {})
         return 200 <= response.status_code <= 299
 
-    head204.metadata = {"url": "/http/success/204"}  # type: ignore
-
     @distributed_trace_async
     async def head404(self, **kwargs: Any) -> bool:
         """Return 404 status code if successful.
@@ -131,5 +127,3 @@ class HeadExceptionOperations:
         if cls:
             return cls(pipeline_response, None, {})
         return 200 <= response.status_code <= 299
-
-    head404.metadata = {"url": "/http/success/404"}  # type: ignore

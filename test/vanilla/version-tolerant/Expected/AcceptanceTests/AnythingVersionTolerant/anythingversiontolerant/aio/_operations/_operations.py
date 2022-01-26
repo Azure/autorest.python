@@ -69,8 +69,6 @@ class AnythingClientOperationsMixin:
 
         return deserialized
 
-    get_object.metadata = {"url": "/anything/object"}  # type: ignore
-
     @distributed_trace_async
     async def put_object(self, input: Any, **kwargs: Any) -> None:
         """Basic put that puts an object as anything. Pass in {'foo': 'bar'} to get a 200 and anything
@@ -106,8 +104,6 @@ class AnythingClientOperationsMixin:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_object.metadata = {"url": "/anything/object"}  # type: ignore
-
     @distributed_trace_async
     async def get_string(self, **kwargs: Any) -> Any:
         """Basic get that returns an string as anything. Returns string 'foo'.
@@ -139,8 +135,6 @@ class AnythingClientOperationsMixin:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_string.metadata = {"url": "/anything/string"}  # type: ignore
 
     @distributed_trace_async
     async def put_string(self, input: Any, **kwargs: Any) -> None:
@@ -177,8 +171,6 @@ class AnythingClientOperationsMixin:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_string.metadata = {"url": "/anything/string"}  # type: ignore
-
     @distributed_trace_async
     async def get_array(self, **kwargs: Any) -> Any:
         """Basic get that returns an array as anything. Returns string ['foo', 'bar'].
@@ -210,8 +202,6 @@ class AnythingClientOperationsMixin:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_array.metadata = {"url": "/anything/array"}  # type: ignore
 
     @distributed_trace_async
     async def put_array(self, input: Any, **kwargs: Any) -> None:
@@ -247,5 +237,3 @@ class AnythingClientOperationsMixin:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_array.metadata = {"url": "/anything/array"}  # type: ignore

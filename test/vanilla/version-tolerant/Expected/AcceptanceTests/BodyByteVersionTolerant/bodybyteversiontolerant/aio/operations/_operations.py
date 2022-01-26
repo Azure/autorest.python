@@ -84,8 +84,6 @@ class ByteOperations:
 
         return deserialized
 
-    get_null.metadata = {"url": "/byte/null"}  # type: ignore
-
     @distributed_trace_async
     async def get_empty(self, **kwargs: Any) -> bytearray:
         """Get empty byte value ''.
@@ -118,8 +116,6 @@ class ByteOperations:
 
         return deserialized
 
-    get_empty.metadata = {"url": "/byte/empty"}  # type: ignore
-
     @distributed_trace_async
     async def get_non_ascii(self, **kwargs: Any) -> bytearray:
         """Get non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
@@ -151,8 +147,6 @@ class ByteOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_non_ascii.metadata = {"url": "/byte/nonAscii"}  # type: ignore
 
     @distributed_trace_async
     async def put_non_ascii(self, byte_body: bytearray, **kwargs: Any) -> None:
@@ -188,8 +182,6 @@ class ByteOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_non_ascii.metadata = {"url": "/byte/nonAscii"}  # type: ignore
-
     @distributed_trace_async
     async def get_invalid(self, **kwargs: Any) -> bytearray:
         """Get invalid byte value ':::SWAGGER::::'.
@@ -221,5 +213,3 @@ class ByteOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_invalid.metadata = {"url": "/byte/invalid"}  # type: ignore

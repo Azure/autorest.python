@@ -75,5 +75,3 @@ class PathsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_empty.metadata = {"url": "/customuri"}  # type: ignore

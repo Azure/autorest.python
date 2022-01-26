@@ -88,8 +88,6 @@ class ImportOperations:
 
         return deserialized
 
-    operation_one.metadata = {"url": "/reservedWords/operationGroup/import"}  # type: ignore
-
 
 class ReservedWordsClientOperationsMixin:
     @distributed_trace_async
@@ -133,8 +131,6 @@ class ReservedWordsClientOperationsMixin:
 
         return deserialized
 
-    operation_with_content_param.metadata = {"url": "/reservedWords/operation/content"}  # type: ignore
-
     @distributed_trace_async
     async def operation_with_json_param(self, json: Any, **kwargs: Any) -> Any:
         """Operation with body param called 'json'. Pass in {'hello': 'world'}.
@@ -175,8 +171,6 @@ class ReservedWordsClientOperationsMixin:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    operation_with_json_param.metadata = {"url": "/reservedWords/operation/json"}  # type: ignore
 
     @distributed_trace_async
     async def operation_with_data_param(self, data: Dict[str, Any], **kwargs: Any) -> Any:
@@ -227,8 +221,6 @@ class ReservedWordsClientOperationsMixin:
 
         return deserialized
 
-    operation_with_data_param.metadata = {"url": "/reservedWords/operation/data"}  # type: ignore
-
     @distributed_trace_async
     async def operation_with_files_param(self, files: Dict[str, Any], **kwargs: Any) -> Any:
         """Operation with multipart body param called 'files'.
@@ -277,5 +269,3 @@ class ReservedWordsClientOperationsMixin:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    operation_with_files_param.metadata = {"url": "/reservedWords/operation/files"}  # type: ignore

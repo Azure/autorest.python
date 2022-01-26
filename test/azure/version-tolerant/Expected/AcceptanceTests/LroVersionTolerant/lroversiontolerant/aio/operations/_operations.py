@@ -169,8 +169,6 @@ class LROsOperations:
 
         return deserialized
 
-    _put200_succeeded_initial.metadata = {"url": "/lro/put/200/succeeded"}  # type: ignore
-
     @distributed_trace_async
     async def begin_put200_succeeded(self, product: JSONType = None, **kwargs: Any) -> AsyncLROPoller[JSONType]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
@@ -300,8 +298,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _patch200_succeeded_ignore_headers_initial.metadata = {"url": "/lro/patch/200/succeeded/ignoreheaders"}  # type: ignore
 
     @distributed_trace_async
     async def begin_patch200_succeeded_ignore_headers(
@@ -447,8 +443,6 @@ class LROsOperations:
 
         return deserialized
 
-    _patch201_retry_with_async_header_initial.metadata = {"url": "/lro/patch/201/retry/onlyAsyncHeader"}  # type: ignore
-
     @distributed_trace_async
     async def begin_patch201_retry_with_async_header(
         self, product: JSONType = None, **kwargs: Any
@@ -592,8 +586,6 @@ class LROsOperations:
 
         return deserialized
 
-    _patch202_retry_with_async_and_location_header_initial.metadata = {"url": "/lro/patch/202/retry/asyncAndLocationHeader"}  # type: ignore
-
     @distributed_trace_async
     async def begin_patch202_retry_with_async_and_location_header(
         self, product: JSONType = None, **kwargs: Any
@@ -721,8 +713,6 @@ class LROsOperations:
 
         return deserialized
 
-    _put201_succeeded_initial.metadata = {"url": "/lro/put/201/succeeded"}  # type: ignore
-
     @distributed_trace_async
     async def begin_put201_succeeded(self, product: JSONType = None, **kwargs: Any) -> AsyncLROPoller[JSONType]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
@@ -847,8 +837,6 @@ class LROsOperations:
 
         return deserialized
 
-    _post202_list_initial.metadata = {"url": "/lro/list"}  # type: ignore
-
     @distributed_trace_async
     async def begin_post202_list(self, **kwargs: Any) -> AsyncLROPoller[List[JSONType]]:
         """Long running put request, service returns a 202 with empty body to first request, returns a 200
@@ -955,8 +943,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _put200_succeeded_no_state_initial.metadata = {"url": "/lro/put/200/succeeded/nostate"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put200_succeeded_no_state(
@@ -1084,8 +1070,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _put202_retry200_initial.metadata = {"url": "/lro/put/202/retry/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put202_retry200(self, product: JSONType = None, **kwargs: Any) -> AsyncLROPoller[JSONType]:
@@ -1220,8 +1204,6 @@ class LROsOperations:
 
         return deserialized
 
-    _put201_creating_succeeded200_initial.metadata = {"url": "/lro/put/201/creating/succeeded/200"}  # type: ignore
-
     @distributed_trace_async
     async def begin_put201_creating_succeeded200(
         self, product: JSONType = None, **kwargs: Any
@@ -1349,8 +1331,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _put200_updating_succeeded204_initial.metadata = {"url": "/lro/put/200/updating/succeeded/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put200_updating_succeeded204(
@@ -1487,8 +1467,6 @@ class LROsOperations:
 
         return deserialized
 
-    _put201_creating_failed200_initial.metadata = {"url": "/lro/put/201/created/failed/200"}  # type: ignore
-
     @distributed_trace_async
     async def begin_put201_creating_failed200(
         self, product: JSONType = None, **kwargs: Any
@@ -1616,8 +1594,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _put200_acceptedcanceled200_initial.metadata = {"url": "/lro/put/200/accepted/canceled/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put200_acceptedcanceled200(
@@ -1749,8 +1725,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _put_no_header_in_retry_initial.metadata = {"url": "/lro/put/noheader/202/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_no_header_in_retry(self, product: JSONType = None, **kwargs: Any) -> AsyncLROPoller[JSONType]:
@@ -1886,8 +1860,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _put_async_retry_succeeded_initial.metadata = {"url": "/lro/putasync/retry/succeeded"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_async_retry_succeeded(
@@ -2030,8 +2002,6 @@ class LROsOperations:
 
         return deserialized
 
-    _put_async_no_retry_succeeded_initial.metadata = {"url": "/lro/putasync/noretry/succeeded"}  # type: ignore
-
     @distributed_trace_async
     async def begin_put_async_no_retry_succeeded(
         self, product: JSONType = None, **kwargs: Any
@@ -2173,8 +2143,6 @@ class LROsOperations:
 
         return deserialized
 
-    _put_async_retry_failed_initial.metadata = {"url": "/lro/putasync/retry/failed"}  # type: ignore
-
     @distributed_trace_async
     async def begin_put_async_retry_failed(self, product: JSONType = None, **kwargs: Any) -> AsyncLROPoller[JSONType]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
@@ -2313,8 +2281,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _put_async_no_retrycanceled_initial.metadata = {"url": "/lro/putasync/noretry/canceled"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_async_no_retrycanceled(
@@ -2455,8 +2421,6 @@ class LROsOperations:
 
         return deserialized
 
-    _put_async_no_header_in_retry_initial.metadata = {"url": "/lro/putasync/noheader/201/200"}  # type: ignore
-
     @distributed_trace_async
     async def begin_put_async_no_header_in_retry(
         self, product: JSONType = None, **kwargs: Any
@@ -2590,8 +2554,6 @@ class LROsOperations:
 
         return deserialized
 
-    _put_non_resource_initial.metadata = {"url": "/lro/putnonresource/202/200"}  # type: ignore
-
     @distributed_trace_async
     async def begin_put_non_resource(self, sku: JSONType = None, **kwargs: Any) -> AsyncLROPoller[JSONType]:
         """Long running put request with non resource.
@@ -2698,8 +2660,6 @@ class LROsOperations:
 
         return deserialized
 
-    _put_async_non_resource_initial.metadata = {"url": "/lro/putnonresourceasync/202/200"}  # type: ignore
-
     @distributed_trace_async
     async def begin_put_async_non_resource(self, sku: JSONType = None, **kwargs: Any) -> AsyncLROPoller[JSONType]:
         """Long running put request with non resource.
@@ -2805,8 +2765,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _put_sub_resource_initial.metadata = {"url": "/lro/putsubresource/202/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_sub_resource(self, product: JSONType = None, **kwargs: Any) -> AsyncLROPoller[JSONType]:
@@ -2919,8 +2877,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _put_async_sub_resource_initial.metadata = {"url": "/lro/putsubresourceasync/202/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_async_sub_resource(self, product: JSONType = None, **kwargs: Any) -> AsyncLROPoller[JSONType]:
@@ -3035,8 +2991,6 @@ class LROsOperations:
 
         return deserialized
 
-    _delete_provisioning202_accepted200_succeeded_initial.metadata = {"url": "/lro/delete/provisioning/202/accepted/200/succeeded"}  # type: ignore
-
     @distributed_trace_async
     async def begin_delete_provisioning202_accepted200_succeeded(self, **kwargs: Any) -> AsyncLROPoller[JSONType]:
         """Long running delete request, service returns a 202 to the initial request, with an entity that
@@ -3146,8 +3100,6 @@ class LROsOperations:
 
         return deserialized
 
-    _delete_provisioning202_deleting_failed200_initial.metadata = {"url": "/lro/delete/provisioning/202/deleting/200/failed"}  # type: ignore
-
     @distributed_trace_async
     async def begin_delete_provisioning202_deleting_failed200(self, **kwargs: Any) -> AsyncLROPoller[JSONType]:
         """Long running delete request, service returns a 202 to the initial request, with an entity that
@@ -3255,8 +3207,6 @@ class LROsOperations:
 
         return deserialized
 
-    _delete_provisioning202_deletingcanceled200_initial.metadata = {"url": "/lro/delete/provisioning/202/deleting/200/canceled"}  # type: ignore
-
     @distributed_trace_async
     async def begin_delete_provisioning202_deletingcanceled200(self, **kwargs: Any) -> AsyncLROPoller[JSONType]:
         """Long running delete request, service returns a 202 to the initial request, with an entity that
@@ -3346,8 +3296,6 @@ class LROsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    _delete204_succeeded_initial.metadata = {"url": "/lro/delete/204/succeeded"}  # type: ignore
-
     @distributed_trace_async
     async def begin_delete204_succeeded(self, **kwargs: Any) -> AsyncLROPoller[None]:
         """Long running delete succeeds and returns right away.
@@ -3424,8 +3372,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _delete202_retry200_initial.metadata = {"url": "/lro/delete/202/retry/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete202_retry200(self, **kwargs: Any) -> AsyncLROPoller[JSONType]:
@@ -3529,8 +3475,6 @@ class LROsOperations:
 
         return deserialized
 
-    _delete202_no_retry204_initial.metadata = {"url": "/lro/delete/202/noretry/204"}  # type: ignore
-
     @distributed_trace_async
     async def begin_delete202_no_retry204(self, **kwargs: Any) -> AsyncLROPoller[JSONType]:
         """Long running delete request, service returns a 202 to the initial request. Polls return this
@@ -3623,8 +3567,6 @@ class LROsOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    _delete_no_header_in_retry_initial.metadata = {"url": "/lro/delete/noheader"}  # type: ignore
-
     @distributed_trace_async
     async def begin_delete_no_header_in_retry(self, **kwargs: Any) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a location header in the initial request.
@@ -3692,8 +3634,6 @@ class LROsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _delete_async_no_header_in_retry_initial.metadata = {"url": "/lro/deleteasync/noheader/202/204"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_async_no_header_in_retry(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -3766,8 +3706,6 @@ class LROsOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    _delete_async_retry_succeeded_initial.metadata = {"url": "/lro/deleteasync/retry/succeeded"}  # type: ignore
-
     @distributed_trace_async
     async def begin_delete_async_retry_succeeded(self, **kwargs: Any) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
@@ -3838,8 +3776,6 @@ class LROsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _delete_async_no_retry_succeeded_initial.metadata = {"url": "/lro/deleteasync/noretry/succeeded"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_async_no_retry_succeeded(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -3912,8 +3848,6 @@ class LROsOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    _delete_async_retry_failed_initial.metadata = {"url": "/lro/deleteasync/retry/failed"}  # type: ignore
-
     @distributed_trace_async
     async def begin_delete_async_retry_failed(self, **kwargs: Any) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
@@ -3984,8 +3918,6 @@ class LROsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _delete_async_retrycanceled_initial.metadata = {"url": "/lro/deleteasync/retry/canceled"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_async_retrycanceled(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -4064,8 +3996,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _post200_with_payload_initial.metadata = {"url": "/lro/post/payload/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post200_with_payload(self, **kwargs: Any) -> AsyncLROPoller[JSONType]:
@@ -4159,8 +4089,6 @@ class LROsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _post202_retry200_initial.metadata = {"url": "/lro/post/202/retry/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post202_retry200(self, product: JSONType = None, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -4269,8 +4197,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _post202_no_retry204_initial.metadata = {"url": "/lro/post/202/noretry/204"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post202_no_retry204(self, product: JSONType = None, **kwargs: Any) -> AsyncLROPoller[JSONType]:
@@ -4391,8 +4317,6 @@ class LROsOperations:
 
         return deserialized
 
-    _post_double_headers_final_location_get_initial.metadata = {"url": "/lro/LROPostDoubleHeadersFinalLocationGet"}  # type: ignore
-
     @distributed_trace_async
     async def begin_post_double_headers_final_location_get(self, **kwargs: Any) -> AsyncLROPoller[JSONType]:
         """Long running post request, service returns a 202 to the initial request with both Location and
@@ -4488,8 +4412,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _post_double_headers_final_azure_header_get_initial.metadata = {"url": "/lro/LROPostDoubleHeadersFinalAzureHeaderGet"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post_double_headers_final_azure_header_get(self, **kwargs: Any) -> AsyncLROPoller[JSONType]:
@@ -4588,8 +4510,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _post_double_headers_final_azure_header_get_default_initial.metadata = {"url": "/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post_double_headers_final_azure_header_get_default(self, **kwargs: Any) -> AsyncLROPoller[JSONType]:
@@ -4708,8 +4628,6 @@ class LROsOperations:
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _post_async_retry_succeeded_initial.metadata = {"url": "/lro/postasync/retry/succeeded"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post_async_retry_succeeded(
@@ -4851,8 +4769,6 @@ class LROsOperations:
 
         return deserialized
 
-    _post_async_no_retry_succeeded_initial.metadata = {"url": "/lro/postasync/noretry/succeeded"}  # type: ignore
-
     @distributed_trace_async
     async def begin_post_async_no_retry_succeeded(
         self, product: JSONType = None, **kwargs: Any
@@ -4981,8 +4897,6 @@ class LROsOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    _post_async_retry_failed_initial.metadata = {"url": "/lro/postasync/retry/failed"}  # type: ignore
-
     @distributed_trace_async
     async def begin_post_async_retry_failed(self, product: JSONType = None, **kwargs: Any) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
@@ -5087,8 +5001,6 @@ class LROsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _post_async_retrycanceled_initial.metadata = {"url": "/lro/postasync/retry/canceled"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post_async_retrycanceled(self, product: JSONType = None, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -5220,8 +5132,6 @@ class LRORetrysOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _put201_creating_succeeded200_initial.metadata = {"url": "/lro/retryerror/put/201/creating/succeeded/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put201_creating_succeeded200(
@@ -5357,8 +5267,6 @@ class LRORetrysOperations:
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _put_async_relative_retry_succeeded_initial.metadata = {"url": "/lro/retryerror/putasync/retry/succeeded"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_async_relative_retry_succeeded(
@@ -5496,8 +5404,6 @@ class LRORetrysOperations:
 
         return deserialized
 
-    _delete_provisioning202_accepted200_succeeded_initial.metadata = {"url": "/lro/retryerror/delete/provisioning/202/accepted/200/succeeded"}  # type: ignore
-
     @distributed_trace_async
     async def begin_delete_provisioning202_accepted200_succeeded(self, **kwargs: Any) -> AsyncLROPoller[JSONType]:
         """Long running delete request, service returns a 500, then a  202 to the initial request, with an
@@ -5593,8 +5499,6 @@ class LRORetrysOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    _delete202_retry200_initial.metadata = {"url": "/lro/retryerror/delete/202/retry/200"}  # type: ignore
-
     @distributed_trace_async
     async def begin_delete202_retry200(self, **kwargs: Any) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 500, then a 202 to the initial request. Polls
@@ -5665,8 +5569,6 @@ class LRORetrysOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _delete_async_relative_retry_succeeded_initial.metadata = {"url": "/lro/retryerror/deleteasync/retry/succeeded"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_async_relative_retry_succeeded(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -5745,8 +5647,6 @@ class LRORetrysOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _post202_retry200_initial.metadata = {"url": "/lro/retryerror/post/202/retry/200"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post202_retry200(self, product: JSONType = None, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -5851,8 +5751,6 @@ class LRORetrysOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _post_async_relative_retry_succeeded_initial.metadata = {"url": "/lro/retryerror/postasync/retry/succeeded"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post_async_relative_retry_succeeded(
@@ -5987,8 +5885,6 @@ class LROSADsOperations:
 
         return deserialized
 
-    _put_non_retry400_initial.metadata = {"url": "/lro/nonretryerror/put/400"}  # type: ignore
-
     @distributed_trace_async
     async def begin_put_non_retry400(self, product: JSONType = None, **kwargs: Any) -> AsyncLROPoller[JSONType]:
         """Long running put request, service returns a 400 to the initial request.
@@ -6119,8 +6015,6 @@ class LROSADsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _put_non_retry201_creating400_initial.metadata = {"url": "/lro/nonretryerror/put/201/creating/400"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_non_retry201_creating400(
@@ -6258,8 +6152,6 @@ class LROSADsOperations:
 
         return deserialized
 
-    _put_non_retry201_creating400_invalid_json_initial.metadata = {"url": "/lro/nonretryerror/put/201/creating/400/invalidjson"}  # type: ignore
-
     @distributed_trace_async
     async def begin_put_non_retry201_creating400_invalid_json(
         self, product: JSONType = None, **kwargs: Any
@@ -6394,8 +6286,6 @@ class LROSADsOperations:
 
         return deserialized
 
-    _put_async_relative_retry400_initial.metadata = {"url": "/lro/nonretryerror/putasync/retry/400"}  # type: ignore
-
     @distributed_trace_async
     async def begin_put_async_relative_retry400(
         self, product: JSONType = None, **kwargs: Any
@@ -6517,8 +6407,6 @@ class LROSADsOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    _delete_non_retry400_initial.metadata = {"url": "/lro/nonretryerror/delete/400"}  # type: ignore
-
     @distributed_trace_async
     async def begin_delete_non_retry400(self, **kwargs: Any) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 400 with an error body.
@@ -6585,8 +6473,6 @@ class LROSADsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _delete202_non_retry400_initial.metadata = {"url": "/lro/nonretryerror/delete/202/retry/400"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete202_non_retry400(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -6657,8 +6543,6 @@ class LROSADsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _delete_async_relative_retry400_initial.metadata = {"url": "/lro/nonretryerror/deleteasync/retry/400"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_async_relative_retry400(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -6737,8 +6621,6 @@ class LROSADsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _post_non_retry400_initial.metadata = {"url": "/lro/nonretryerror/post/400"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post_non_retry400(self, product: JSONType = None, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -6839,8 +6721,6 @@ class LROSADsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _post202_non_retry400_initial.metadata = {"url": "/lro/nonretryerror/post/202/retry/400"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post202_non_retry400(self, product: JSONType = None, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -6944,8 +6824,6 @@ class LROSADsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _post_async_relative_retry400_initial.metadata = {"url": "/lro/nonretryerror/postasync/retry/400"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post_async_relative_retry400(self, product: JSONType = None, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -7059,8 +6937,6 @@ class LROSADsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _put_error201_no_provisioning_state_payload_initial.metadata = {"url": "/lro/error/put/201/noprovisioningstatepayload"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_error201_no_provisioning_state_payload(
@@ -7194,8 +7070,6 @@ class LROSADsOperations:
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _put_async_relative_retry_no_status_initial.metadata = {"url": "/lro/error/putasync/retry/nostatus"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_async_relative_retry_no_status(
@@ -7341,8 +7215,6 @@ class LROSADsOperations:
 
         return deserialized
 
-    _put_async_relative_retry_no_status_payload_initial.metadata = {"url": "/lro/error/putasync/retry/nostatuspayload"}  # type: ignore
-
     @distributed_trace_async
     async def begin_put_async_relative_retry_no_status_payload(
         self, product: JSONType = None, **kwargs: Any
@@ -7461,8 +7333,6 @@ class LROSADsOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    _delete204_succeeded_initial.metadata = {"url": "/lro/error/delete/204/nolocation"}  # type: ignore
-
     @distributed_trace_async
     async def begin_delete204_succeeded(self, **kwargs: Any) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 204 to the initial request, indicating success.
@@ -7532,8 +7402,6 @@ class LROSADsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _delete_async_relative_retry_no_status_initial.metadata = {"url": "/lro/error/deleteasync/retry/nostatus"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_async_relative_retry_no_status(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -7612,8 +7480,6 @@ class LROSADsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _post202_no_location_initial.metadata = {"url": "/lro/error/post/202/nolocation"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post202_no_location(self, product: JSONType = None, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -7718,8 +7584,6 @@ class LROSADsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _post_async_relative_retry_no_payload_initial.metadata = {"url": "/lro/error/postasync/retry/nopayload"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post_async_relative_retry_no_payload(
@@ -7829,8 +7693,6 @@ class LROSADsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _put200_invalid_json_initial.metadata = {"url": "/lro/error/put/200/invalidjson"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put200_invalid_json(self, product: JSONType = None, **kwargs: Any) -> AsyncLROPoller[JSONType]:
@@ -7965,8 +7827,6 @@ class LROSADsOperations:
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _put_async_relative_retry_invalid_header_initial.metadata = {"url": "/lro/error/putasync/retry/invalidheader"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_async_relative_retry_invalid_header(
@@ -8112,8 +7972,6 @@ class LROSADsOperations:
 
         return deserialized
 
-    _put_async_relative_retry_invalid_json_polling_initial.metadata = {"url": "/lro/error/putasync/retry/invalidjsonpolling"}  # type: ignore
-
     @distributed_trace_async
     async def begin_put_async_relative_retry_invalid_json_polling(
         self, product: JSONType = None, **kwargs: Any
@@ -8236,8 +8094,6 @@ class LROSADsOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    _delete202_retry_invalid_header_initial.metadata = {"url": "/lro/error/delete/202/retry/invalidheader"}  # type: ignore
-
     @distributed_trace_async
     async def begin_delete202_retry_invalid_header(self, **kwargs: Any) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request receing a reponse
@@ -8309,8 +8165,6 @@ class LROSADsOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    _delete_async_relative_retry_invalid_header_initial.metadata = {"url": "/lro/error/deleteasync/retry/invalidheader"}  # type: ignore
-
     @distributed_trace_async
     async def begin_delete_async_relative_retry_invalid_header(self, **kwargs: Any) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. The endpoint
@@ -8381,8 +8235,6 @@ class LROSADsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _delete_async_relative_retry_invalid_json_polling_initial.metadata = {"url": "/lro/error/deleteasync/retry/invalidjsonpolling"}  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_async_relative_retry_invalid_json_polling(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -8463,8 +8315,6 @@ class LROSADsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _post202_retry_invalid_header_initial.metadata = {"url": "/lro/error/post/202/retry/invalidheader"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post202_retry_invalid_header(self, product: JSONType = None, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -8569,8 +8419,6 @@ class LROSADsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _post_async_relative_retry_invalid_header_initial.metadata = {"url": "/lro/error/postasync/retry/invalidheader"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post_async_relative_retry_invalid_header(
@@ -8680,8 +8528,6 @@ class LROSADsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _post_async_relative_retry_invalid_json_polling_initial.metadata = {"url": "/lro/error/postasync/retry/invalidjsonpolling"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post_async_relative_retry_invalid_json_polling(
@@ -8815,8 +8661,6 @@ class LROsCustomHeaderOperations:
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _put_async_retry_succeeded_initial.metadata = {"url": "/lro/customheader/putasync/retry/succeeded"}  # type: ignore
 
     @distributed_trace_async
     async def begin_put_async_retry_succeeded(
@@ -8961,8 +8805,6 @@ class LROsCustomHeaderOperations:
 
         return deserialized
 
-    _put201_creating_succeeded200_initial.metadata = {"url": "/lro/customheader/put/201/creating/succeeded/200"}  # type: ignore
-
     @distributed_trace_async
     async def begin_put201_creating_succeeded200(
         self, product: JSONType = None, **kwargs: Any
@@ -9089,8 +8931,6 @@ class LROsCustomHeaderOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    _post202_retry200_initial.metadata = {"url": "/lro/customheader/post/202/retry/200"}  # type: ignore
-
     @distributed_trace_async
     async def begin_post202_retry200(self, product: JSONType = None, **kwargs: Any) -> AsyncLROPoller[None]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
@@ -9195,8 +9035,6 @@ class LROsCustomHeaderOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _post_async_retry_succeeded_initial.metadata = {"url": "/lro/customheader/postasync/retry/succeeded"}  # type: ignore
 
     @distributed_trace_async
     async def begin_post_async_retry_succeeded(self, product: JSONType = None, **kwargs: Any) -> AsyncLROPoller[None]:

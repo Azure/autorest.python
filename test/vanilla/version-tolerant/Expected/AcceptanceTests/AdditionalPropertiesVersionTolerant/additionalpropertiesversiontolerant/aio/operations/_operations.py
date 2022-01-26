@@ -111,8 +111,6 @@ class PetsOperations:
 
         return deserialized
 
-    create_ap_true.metadata = {"url": "/additionalProperties/true"}  # type: ignore
-
     @distributed_trace_async
     async def create_cat_ap_true(self, create_parameters: JSONType, **kwargs: Any) -> JSONType:
         """Create a CatAPTrue which contains more properties than what is defined.
@@ -173,8 +171,6 @@ class PetsOperations:
 
         return deserialized
 
-    create_cat_ap_true.metadata = {"url": "/additionalProperties/true-subclass"}  # type: ignore
-
     @distributed_trace_async
     async def create_ap_object(self, create_parameters: JSONType, **kwargs: Any) -> JSONType:
         """Create a Pet which contains more properties than what is defined.
@@ -232,8 +228,6 @@ class PetsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    create_ap_object.metadata = {"url": "/additionalProperties/type/object"}  # type: ignore
 
     @distributed_trace_async
     async def create_ap_string(self, create_parameters: JSONType, **kwargs: Any) -> JSONType:
@@ -293,8 +287,6 @@ class PetsOperations:
 
         return deserialized
 
-    create_ap_string.metadata = {"url": "/additionalProperties/type/string"}  # type: ignore
-
     @distributed_trace_async
     async def create_ap_in_properties(self, create_parameters: JSONType, **kwargs: Any) -> JSONType:
         """Create a Pet which contains more properties than what is defined.
@@ -352,8 +344,6 @@ class PetsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    create_ap_in_properties.metadata = {"url": "/additionalProperties/in/properties"}  # type: ignore
 
     @distributed_trace_async
     async def create_ap_in_properties_with_ap_string(self, create_parameters: JSONType, **kwargs: Any) -> JSONType:
@@ -420,5 +410,3 @@ class PetsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    create_ap_in_properties_with_ap_string.metadata = {"url": "/additionalProperties/in/properties/with/additionalProperties/string"}  # type: ignore

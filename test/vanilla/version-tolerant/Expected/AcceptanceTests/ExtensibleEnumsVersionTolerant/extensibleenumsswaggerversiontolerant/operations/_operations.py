@@ -129,8 +129,6 @@ class PetOperations(object):
 
         return deserialized
 
-    get_by_pet_id.metadata = {"url": "/extensibleenums/pet/{petId}"}  # type: ignore
-
     @distributed_trace
     def add_pet(self, pet_param: JSONType = None, **kwargs: Any) -> JSONType:
         """add pet.
@@ -191,5 +189,3 @@ class PetOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    add_pet.metadata = {"url": "/extensibleenums/pet/addPet"}  # type: ignore

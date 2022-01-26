@@ -190,8 +190,6 @@ class HttpFailureOperations:
 
         return deserialized
 
-    get_empty_error.metadata = {"url": "/http/failure/emptybody/error"}  # type: ignore
-
     @distributed_trace_async
     async def get_no_model_error(self, **kwargs: Any) -> bool:
         """Get empty error form server.
@@ -226,8 +224,6 @@ class HttpFailureOperations:
 
         return deserialized
 
-    get_no_model_error.metadata = {"url": "/http/failure/nomodel/error"}  # type: ignore
-
     @distributed_trace_async
     async def get_no_model_empty(self, **kwargs: Any) -> bool:
         """Get empty response from server.
@@ -261,8 +257,6 @@ class HttpFailureOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_no_model_empty.metadata = {"url": "/http/failure/nomodel/empty"}  # type: ignore
 
 
 class HttpSuccessOperations:
@@ -310,8 +304,6 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    head200.metadata = {"url": "/http/success/200"}  # type: ignore
-
     @distributed_trace_async
     async def get200(self, **kwargs: Any) -> bool:
         """Get 200 success.
@@ -346,8 +338,6 @@ class HttpSuccessOperations:
 
         return deserialized
 
-    get200.metadata = {"url": "/http/success/200"}  # type: ignore
-
     @distributed_trace_async
     async def options200(self, **kwargs: Any) -> bool:
         """Options 200 success.
@@ -381,8 +371,6 @@ class HttpSuccessOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    options200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace_async
     async def put200(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
@@ -423,8 +411,6 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put200.metadata = {"url": "/http/success/200"}  # type: ignore
-
     @distributed_trace_async
     async def patch200(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Patch true Boolean value in request returning 200.
@@ -463,8 +449,6 @@ class HttpSuccessOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    patch200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace_async
     async def post200(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
@@ -505,8 +489,6 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post200.metadata = {"url": "/http/success/200"}  # type: ignore
-
     @distributed_trace_async
     async def delete200(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Delete simple boolean value true returns 200.
@@ -545,8 +527,6 @@ class HttpSuccessOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    delete200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace_async
     async def put201(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
@@ -587,8 +567,6 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put201.metadata = {"url": "/http/success/201"}  # type: ignore
-
     @distributed_trace_async
     async def post201(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Post true Boolean value in request returns 201 (Created).
@@ -627,8 +605,6 @@ class HttpSuccessOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post201.metadata = {"url": "/http/success/201"}  # type: ignore
 
     @distributed_trace_async
     async def put202(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
@@ -669,8 +645,6 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put202.metadata = {"url": "/http/success/202"}  # type: ignore
-
     @distributed_trace_async
     async def patch202(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Patch true Boolean value in request returns 202.
@@ -709,8 +683,6 @@ class HttpSuccessOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    patch202.metadata = {"url": "/http/success/202"}  # type: ignore
 
     @distributed_trace_async
     async def post202(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
@@ -751,8 +723,6 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post202.metadata = {"url": "/http/success/202"}  # type: ignore
-
     @distributed_trace_async
     async def delete202(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Delete true Boolean value in request returns 202 (accepted).
@@ -792,8 +762,6 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    delete202.metadata = {"url": "/http/success/202"}  # type: ignore
-
     @distributed_trace_async
     async def head204(self, **kwargs: Any) -> None:
         """Return 204 status code if successful.
@@ -820,8 +788,6 @@ class HttpSuccessOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    head204.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace_async
     async def put204(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
@@ -862,8 +828,6 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put204.metadata = {"url": "/http/success/204"}  # type: ignore
-
     @distributed_trace_async
     async def patch204(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Patch true Boolean value in request returns 204 (no content).
@@ -902,8 +866,6 @@ class HttpSuccessOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    patch204.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace_async
     async def post204(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
@@ -944,8 +906,6 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post204.metadata = {"url": "/http/success/204"}  # type: ignore
-
     @distributed_trace_async
     async def delete204(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Delete true Boolean value in request returns 204 (no content).
@@ -985,8 +945,6 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    delete204.metadata = {"url": "/http/success/204"}  # type: ignore
-
     @distributed_trace_async
     async def head404(self, **kwargs: Any) -> None:
         """Return 404 status code.
@@ -1013,8 +971,6 @@ class HttpSuccessOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    head404.metadata = {"url": "/http/success/404"}  # type: ignore
 
 
 class HttpRedirectsOperations:
@@ -1066,8 +1022,6 @@ class HttpRedirectsOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    head300.metadata = {"url": "/http/redirect/300"}  # type: ignore
-
     @distributed_trace_async
     async def get300(self, **kwargs: Any) -> Optional[List[str]]:
         """Return 300 status code and redirect to /http/success/200.
@@ -1115,8 +1069,6 @@ class HttpRedirectsOperations:
 
         return deserialized
 
-    get300.metadata = {"url": "/http/redirect/300"}  # type: ignore
-
     @distributed_trace_async
     async def head301(self, **kwargs: Any) -> None:
         """Return 301 status code and redirect to /http/success/200.
@@ -1148,8 +1100,6 @@ class HttpRedirectsOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    head301.metadata = {"url": "/http/redirect/301"}  # type: ignore
-
     @distributed_trace_async
     async def get301(self, **kwargs: Any) -> None:
         """Return 301 status code and redirect to /http/success/200.
@@ -1180,8 +1130,6 @@ class HttpRedirectsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    get301.metadata = {"url": "/http/redirect/301"}  # type: ignore
 
     @distributed_trace_async
     async def put301(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
@@ -1226,8 +1174,6 @@ class HttpRedirectsOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    put301.metadata = {"url": "/http/redirect/301"}  # type: ignore
-
     @distributed_trace_async
     async def head302(self, **kwargs: Any) -> None:
         """Return 302 status code and redirect to /http/success/200.
@@ -1259,8 +1205,6 @@ class HttpRedirectsOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    head302.metadata = {"url": "/http/redirect/302"}  # type: ignore
-
     @distributed_trace_async
     async def get302(self, **kwargs: Any) -> None:
         """Return 302 status code and redirect to /http/success/200.
@@ -1291,8 +1235,6 @@ class HttpRedirectsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    get302.metadata = {"url": "/http/redirect/302"}  # type: ignore
 
     @distributed_trace_async
     async def patch302(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
@@ -1336,8 +1278,6 @@ class HttpRedirectsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    patch302.metadata = {"url": "/http/redirect/302"}  # type: ignore
 
     @distributed_trace_async
     async def post303(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
@@ -1383,8 +1323,6 @@ class HttpRedirectsOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    post303.metadata = {"url": "/http/redirect/303"}  # type: ignore
-
     @distributed_trace_async
     async def head307(self, **kwargs: Any) -> None:
         """Redirect with 307, resulting in a 200 success.
@@ -1415,8 +1353,6 @@ class HttpRedirectsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    head307.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
     @distributed_trace_async
     async def get307(self, **kwargs: Any) -> None:
@@ -1449,8 +1385,6 @@ class HttpRedirectsOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    get307.metadata = {"url": "/http/redirect/307"}  # type: ignore
-
     @distributed_trace_async
     async def options307(self, **kwargs: Any) -> None:
         """options redirected with 307, resulting in a 200 after redirect.
@@ -1481,8 +1415,6 @@ class HttpRedirectsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    options307.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
     @distributed_trace_async
     async def put307(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
@@ -1527,8 +1459,6 @@ class HttpRedirectsOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    put307.metadata = {"url": "/http/redirect/307"}  # type: ignore
-
     @distributed_trace_async
     async def patch307(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Patch redirected with 307, resulting in a 200 after redirect.
@@ -1571,8 +1501,6 @@ class HttpRedirectsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    patch307.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
     @distributed_trace_async
     async def post307(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
@@ -1617,8 +1545,6 @@ class HttpRedirectsOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    post307.metadata = {"url": "/http/redirect/307"}  # type: ignore
-
     @distributed_trace_async
     async def delete307(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Delete redirected with 307, resulting in a 200 after redirect.
@@ -1661,8 +1587,6 @@ class HttpRedirectsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    delete307.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
 
 class HttpClientFailureOperations:
@@ -1710,8 +1634,6 @@ class HttpClientFailureOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    head400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
-
     @distributed_trace_async
     async def get400(self, **kwargs: Any) -> None:
         """Return 400 status code - should be represented in the client as an error.
@@ -1739,8 +1661,6 @@ class HttpClientFailureOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
-
     @distributed_trace_async
     async def options400(self, **kwargs: Any) -> None:
         """Return 400 status code - should be represented in the client as an error.
@@ -1767,8 +1687,6 @@ class HttpClientFailureOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    options400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace_async
     async def put400(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
@@ -1809,8 +1727,6 @@ class HttpClientFailureOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
-
     @distributed_trace_async
     async def patch400(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 400 status code - should be represented in the client as an error.
@@ -1849,8 +1765,6 @@ class HttpClientFailureOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    patch400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace_async
     async def post400(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
@@ -1891,8 +1805,6 @@ class HttpClientFailureOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
-
     @distributed_trace_async
     async def delete400(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 400 status code - should be represented in the client as an error.
@@ -1932,8 +1844,6 @@ class HttpClientFailureOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    delete400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
-
     @distributed_trace_async
     async def head401(self, **kwargs: Any) -> None:
         """Return 401 status code - should be represented in the client as an error.
@@ -1960,8 +1870,6 @@ class HttpClientFailureOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    head401.metadata = {"url": "/http/failure/client/401"}  # type: ignore
 
     @distributed_trace_async
     async def get402(self, **kwargs: Any) -> None:
@@ -1990,8 +1898,6 @@ class HttpClientFailureOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get402.metadata = {"url": "/http/failure/client/402"}  # type: ignore
-
     @distributed_trace_async
     async def options403(self, **kwargs: Any) -> None:
         """Return 403 status code - should be represented in the client as an error.
@@ -2019,8 +1925,6 @@ class HttpClientFailureOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    options403.metadata = {"url": "/http/failure/client/403"}  # type: ignore
-
     @distributed_trace_async
     async def get403(self, **kwargs: Any) -> None:
         """Return 403 status code - should be represented in the client as an error.
@@ -2047,8 +1951,6 @@ class HttpClientFailureOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get403.metadata = {"url": "/http/failure/client/403"}  # type: ignore
 
     @distributed_trace_async
     async def put404(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
@@ -2089,8 +1991,6 @@ class HttpClientFailureOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put404.metadata = {"url": "/http/failure/client/404"}  # type: ignore
-
     @distributed_trace_async
     async def patch405(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 405 status code - should be represented in the client as an error.
@@ -2129,8 +2029,6 @@ class HttpClientFailureOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    patch405.metadata = {"url": "/http/failure/client/405"}  # type: ignore
 
     @distributed_trace_async
     async def post406(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
@@ -2171,8 +2069,6 @@ class HttpClientFailureOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post406.metadata = {"url": "/http/failure/client/406"}  # type: ignore
-
     @distributed_trace_async
     async def delete407(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 407 status code - should be represented in the client as an error.
@@ -2211,8 +2107,6 @@ class HttpClientFailureOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    delete407.metadata = {"url": "/http/failure/client/407"}  # type: ignore
 
     @distributed_trace_async
     async def put409(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
@@ -2253,8 +2147,6 @@ class HttpClientFailureOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put409.metadata = {"url": "/http/failure/client/409"}  # type: ignore
-
     @distributed_trace_async
     async def head410(self, **kwargs: Any) -> None:
         """Return 410 status code - should be represented in the client as an error.
@@ -2281,8 +2173,6 @@ class HttpClientFailureOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    head410.metadata = {"url": "/http/failure/client/410"}  # type: ignore
 
     @distributed_trace_async
     async def get411(self, **kwargs: Any) -> None:
@@ -2311,8 +2201,6 @@ class HttpClientFailureOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get411.metadata = {"url": "/http/failure/client/411"}  # type: ignore
-
     @distributed_trace_async
     async def options412(self, **kwargs: Any) -> None:
         """Return 412 status code - should be represented in the client as an error.
@@ -2340,8 +2228,6 @@ class HttpClientFailureOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    options412.metadata = {"url": "/http/failure/client/412"}  # type: ignore
-
     @distributed_trace_async
     async def get412(self, **kwargs: Any) -> None:
         """Return 412 status code - should be represented in the client as an error.
@@ -2368,8 +2254,6 @@ class HttpClientFailureOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get412.metadata = {"url": "/http/failure/client/412"}  # type: ignore
 
     @distributed_trace_async
     async def put413(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
@@ -2410,8 +2294,6 @@ class HttpClientFailureOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put413.metadata = {"url": "/http/failure/client/413"}  # type: ignore
-
     @distributed_trace_async
     async def patch414(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 414 status code - should be represented in the client as an error.
@@ -2450,8 +2332,6 @@ class HttpClientFailureOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    patch414.metadata = {"url": "/http/failure/client/414"}  # type: ignore
 
     @distributed_trace_async
     async def post415(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
@@ -2492,8 +2372,6 @@ class HttpClientFailureOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post415.metadata = {"url": "/http/failure/client/415"}  # type: ignore
-
     @distributed_trace_async
     async def get416(self, **kwargs: Any) -> None:
         """Return 416 status code - should be represented in the client as an error.
@@ -2520,8 +2398,6 @@ class HttpClientFailureOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get416.metadata = {"url": "/http/failure/client/416"}  # type: ignore
 
     @distributed_trace_async
     async def delete417(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
@@ -2562,8 +2438,6 @@ class HttpClientFailureOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    delete417.metadata = {"url": "/http/failure/client/417"}  # type: ignore
-
     @distributed_trace_async
     async def head429(self, **kwargs: Any) -> None:
         """Return 429 status code - should be represented in the client as an error.
@@ -2590,8 +2464,6 @@ class HttpClientFailureOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    head429.metadata = {"url": "/http/failure/client/429"}  # type: ignore
 
 
 class HttpServerFailureOperations:
@@ -2639,8 +2511,6 @@ class HttpServerFailureOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    head501.metadata = {"url": "/http/failure/server/501"}  # type: ignore
-
     @distributed_trace_async
     async def get501(self, **kwargs: Any) -> None:
         """Return 501 status code - should be represented in the client as an error.
@@ -2667,8 +2537,6 @@ class HttpServerFailureOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get501.metadata = {"url": "/http/failure/server/501"}  # type: ignore
 
     @distributed_trace_async
     async def post505(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
@@ -2709,8 +2577,6 @@ class HttpServerFailureOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post505.metadata = {"url": "/http/failure/server/505"}  # type: ignore
-
     @distributed_trace_async
     async def delete505(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 505 status code - should be represented in the client as an error.
@@ -2749,8 +2615,6 @@ class HttpServerFailureOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    delete505.metadata = {"url": "/http/failure/server/505"}  # type: ignore
 
 
 class HttpRetryOperations:
@@ -2798,8 +2662,6 @@ class HttpRetryOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    head408.metadata = {"url": "/http/retry/408"}  # type: ignore
-
     @distributed_trace_async
     async def put500(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 500 status code, then 200 after retry.
@@ -2838,8 +2700,6 @@ class HttpRetryOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put500.metadata = {"url": "/http/retry/500"}  # type: ignore
 
     @distributed_trace_async
     async def patch500(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
@@ -2880,8 +2740,6 @@ class HttpRetryOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    patch500.metadata = {"url": "/http/retry/500"}  # type: ignore
-
     @distributed_trace_async
     async def get502(self, **kwargs: Any) -> None:
         """Return 502 status code, then 200 after retry.
@@ -2908,8 +2766,6 @@ class HttpRetryOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get502.metadata = {"url": "/http/retry/502"}  # type: ignore
 
     @distributed_trace_async
     async def options502(self, **kwargs: Any) -> bool:
@@ -2944,8 +2800,6 @@ class HttpRetryOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    options502.metadata = {"url": "/http/retry/502"}  # type: ignore
 
     @distributed_trace_async
     async def post503(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
@@ -2986,8 +2840,6 @@ class HttpRetryOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    post503.metadata = {"url": "/http/retry/503"}  # type: ignore
-
     @distributed_trace_async
     async def delete503(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 503 status code, then 200 after retry.
@@ -3026,8 +2878,6 @@ class HttpRetryOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    delete503.metadata = {"url": "/http/retry/503"}  # type: ignore
 
     @distributed_trace_async
     async def put504(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
@@ -3068,8 +2918,6 @@ class HttpRetryOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put504.metadata = {"url": "/http/retry/504"}  # type: ignore
-
     @distributed_trace_async
     async def patch504(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
         """Return 504 status code, then 200 after retry.
@@ -3108,8 +2956,6 @@ class HttpRetryOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    patch504.metadata = {"url": "/http/retry/504"}  # type: ignore
 
 
 class MultipleResponsesOperations:
@@ -3174,8 +3020,6 @@ class MultipleResponsesOperations:
 
         return deserialized
 
-    get200_model204_no_model_default_error200_valid.metadata = {"url": "/http/payloads/200/A/204/none/default/Error/response/200/valid"}  # type: ignore
-
     @distributed_trace_async
     async def get200_model204_no_model_default_error204_valid(self, **kwargs: Any) -> Optional[JSONType]:
         """Send a 204 response with no payload.
@@ -3219,8 +3063,6 @@ class MultipleResponsesOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get200_model204_no_model_default_error204_valid.metadata = {"url": "/http/payloads/200/A/204/none/default/Error/response/204/none"}  # type: ignore
 
     @distributed_trace_async
     async def get200_model204_no_model_default_error201_invalid(self, **kwargs: Any) -> Optional[JSONType]:
@@ -3266,8 +3108,6 @@ class MultipleResponsesOperations:
 
         return deserialized
 
-    get200_model204_no_model_default_error201_invalid.metadata = {"url": "/http/payloads/200/A/204/none/default/Error/response/201/valid"}  # type: ignore
-
     @distributed_trace_async
     async def get200_model204_no_model_default_error202_none(self, **kwargs: Any) -> Optional[JSONType]:
         """Send a 202 response with no payload:.
@@ -3312,8 +3152,6 @@ class MultipleResponsesOperations:
 
         return deserialized
 
-    get200_model204_no_model_default_error202_none.metadata = {"url": "/http/payloads/200/A/204/none/default/Error/response/202/none"}  # type: ignore
-
     @distributed_trace_async
     async def get200_model204_no_model_default_error400_valid(self, **kwargs: Any) -> Optional[JSONType]:
         """Send a 400 response with valid error payload: {'status': 400, 'message': 'client error'}.
@@ -3357,8 +3195,6 @@ class MultipleResponsesOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get200_model204_no_model_default_error400_valid.metadata = {"url": "/http/payloads/200/A/204/none/default/Error/response/400/valid"}  # type: ignore
 
     @distributed_trace_async
     async def get200_model201_model_default_error200_valid(self, **kwargs: Any) -> JSONType:
@@ -3414,8 +3250,6 @@ class MultipleResponsesOperations:
 
         return deserialized
 
-    get200_model201_model_default_error200_valid.metadata = {"url": "/http/payloads/200/A/201/B/default/Error/response/200/valid"}  # type: ignore
-
     @distributed_trace_async
     async def get200_model201_model_default_error201_valid(self, **kwargs: Any) -> JSONType:
         """Send a 201 response with valid payload: {'statusCode': '201', 'textStatusCode': 'Created'}.
@@ -3470,8 +3304,6 @@ class MultipleResponsesOperations:
 
         return deserialized
 
-    get200_model201_model_default_error201_valid.metadata = {"url": "/http/payloads/200/A/201/B/default/Error/response/201/valid"}  # type: ignore
-
     @distributed_trace_async
     async def get200_model201_model_default_error400_valid(self, **kwargs: Any) -> JSONType:
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
@@ -3525,8 +3357,6 @@ class MultipleResponsesOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get200_model201_model_default_error400_valid.metadata = {"url": "/http/payloads/200/A/201/B/default/Error/response/400/valid"}  # type: ignore
 
     @distributed_trace_async
     async def get200_model_a201_model_c404_model_d_default_error200_valid(self, **kwargs: Any) -> JSONType:
@@ -3591,8 +3421,6 @@ class MultipleResponsesOperations:
 
         return deserialized
 
-    get200_model_a201_model_c404_model_d_default_error200_valid.metadata = {"url": "/http/payloads/200/A/201/C/404/D/default/Error/response/200/valid"}  # type: ignore
-
     @distributed_trace_async
     async def get200_model_a201_model_c404_model_d_default_error201_valid(self, **kwargs: Any) -> JSONType:
         """Send a 200 response with valid payload: {'httpCode': '201'}.
@@ -3655,8 +3483,6 @@ class MultipleResponsesOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get200_model_a201_model_c404_model_d_default_error201_valid.metadata = {"url": "/http/payloads/200/A/201/C/404/D/default/Error/response/201/valid"}  # type: ignore
 
     @distributed_trace_async
     async def get200_model_a201_model_c404_model_d_default_error404_valid(self, **kwargs: Any) -> JSONType:
@@ -3721,8 +3547,6 @@ class MultipleResponsesOperations:
 
         return deserialized
 
-    get200_model_a201_model_c404_model_d_default_error404_valid.metadata = {"url": "/http/payloads/200/A/201/C/404/D/default/Error/response/404/valid"}  # type: ignore
-
     @distributed_trace_async
     async def get200_model_a201_model_c404_model_d_default_error400_valid(self, **kwargs: Any) -> JSONType:
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
@@ -3786,8 +3610,6 @@ class MultipleResponsesOperations:
 
         return deserialized
 
-    get200_model_a201_model_c404_model_d_default_error400_valid.metadata = {"url": "/http/payloads/200/A/201/C/404/D/default/Error/response/400/valid"}  # type: ignore
-
     @distributed_trace_async
     async def get202_none204_none_default_error202_none(self, **kwargs: Any) -> None:
         """Send a 202 response with no payload.
@@ -3814,8 +3636,6 @@ class MultipleResponsesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get202_none204_none_default_error202_none.metadata = {"url": "/http/payloads/202/none/204/none/default/Error/response/202/none"}  # type: ignore
 
     @distributed_trace_async
     async def get202_none204_none_default_error204_none(self, **kwargs: Any) -> None:
@@ -3844,8 +3664,6 @@ class MultipleResponsesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get202_none204_none_default_error204_none.metadata = {"url": "/http/payloads/202/none/204/none/default/Error/response/204/none"}  # type: ignore
-
     @distributed_trace_async
     async def get202_none204_none_default_error400_valid(self, **kwargs: Any) -> None:
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
@@ -3872,8 +3690,6 @@ class MultipleResponsesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get202_none204_none_default_error400_valid.metadata = {"url": "/http/payloads/202/none/204/none/default/Error/response/400/valid"}  # type: ignore
 
     @distributed_trace_async
     async def get202_none204_none_default_none202_invalid(self, **kwargs: Any) -> None:
@@ -3902,8 +3718,6 @@ class MultipleResponsesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get202_none204_none_default_none202_invalid.metadata = {"url": "/http/payloads/202/none/204/none/default/none/response/202/invalid"}  # type: ignore
-
     @distributed_trace_async
     async def get202_none204_none_default_none204_none(self, **kwargs: Any) -> None:
         """Send a 204 response with no payload.
@@ -3930,8 +3744,6 @@ class MultipleResponsesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get202_none204_none_default_none204_none.metadata = {"url": "/http/payloads/202/none/204/none/default/none/response/204/none"}  # type: ignore
 
     @distributed_trace_async
     async def get202_none204_none_default_none400_none(self, **kwargs: Any) -> None:
@@ -3960,8 +3772,6 @@ class MultipleResponsesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get202_none204_none_default_none400_none.metadata = {"url": "/http/payloads/202/none/204/none/default/none/response/400/none"}  # type: ignore
-
     @distributed_trace_async
     async def get202_none204_none_default_none400_invalid(self, **kwargs: Any) -> None:
         """Send a 400 response with an unexpected payload {'property': 'value'}.
@@ -3988,8 +3798,6 @@ class MultipleResponsesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get202_none204_none_default_none400_invalid.metadata = {"url": "/http/payloads/202/none/204/none/default/none/response/400/invalid"}  # type: ignore
 
     @distributed_trace_async
     async def get_default_model_a200_valid(self, **kwargs: Any) -> JSONType:
@@ -4033,8 +3841,6 @@ class MultipleResponsesOperations:
 
         return deserialized
 
-    get_default_model_a200_valid.metadata = {"url": "/http/payloads/default/A/response/200/valid"}  # type: ignore
-
     @distributed_trace_async
     async def get_default_model_a200_none(self, **kwargs: Any) -> JSONType:
         """Send a 200 response with no payload.
@@ -4077,8 +3883,6 @@ class MultipleResponsesOperations:
 
         return deserialized
 
-    get_default_model_a200_none.metadata = {"url": "/http/payloads/default/A/response/200/none"}  # type: ignore
-
     @distributed_trace_async
     async def get_default_model_a400_valid(self, **kwargs: Any) -> None:
         """Send a 400 response with valid payload: {'statusCode': '400'}.
@@ -4105,8 +3909,6 @@ class MultipleResponsesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_default_model_a400_valid.metadata = {"url": "/http/payloads/default/A/response/400/valid"}  # type: ignore
 
     @distributed_trace_async
     async def get_default_model_a400_none(self, **kwargs: Any) -> None:
@@ -4135,8 +3937,6 @@ class MultipleResponsesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_default_model_a400_none.metadata = {"url": "/http/payloads/default/A/response/400/none"}  # type: ignore
-
     @distributed_trace_async
     async def get_default_none200_invalid(self, **kwargs: Any) -> None:
         """Send a 200 response with invalid payload: {'statusCode': '200'}.
@@ -4163,8 +3963,6 @@ class MultipleResponsesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_default_none200_invalid.metadata = {"url": "/http/payloads/default/none/response/200/invalid"}  # type: ignore
 
     @distributed_trace_async
     async def get_default_none200_none(self, **kwargs: Any) -> None:
@@ -4193,8 +3991,6 @@ class MultipleResponsesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_default_none200_none.metadata = {"url": "/http/payloads/default/none/response/200/none"}  # type: ignore
-
     @distributed_trace_async
     async def get_default_none400_invalid(self, **kwargs: Any) -> None:
         """Send a 400 response with valid payload: {'statusCode': '400'}.
@@ -4222,8 +4018,6 @@ class MultipleResponsesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_default_none400_invalid.metadata = {"url": "/http/payloads/default/none/response/400/invalid"}  # type: ignore
-
     @distributed_trace_async
     async def get_default_none400_none(self, **kwargs: Any) -> None:
         """Send a 400 response with no payload.
@@ -4250,8 +4044,6 @@ class MultipleResponsesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_default_none400_none.metadata = {"url": "/http/payloads/default/none/response/400/none"}  # type: ignore
 
     @distributed_trace_async
     async def get200_model_a200_none(self, **kwargs: Any) -> JSONType:
@@ -4296,8 +4088,6 @@ class MultipleResponsesOperations:
 
         return deserialized
 
-    get200_model_a200_none.metadata = {"url": "/http/payloads/200/A/response/200/none"}  # type: ignore
-
     @distributed_trace_async
     async def get200_model_a200_valid(self, **kwargs: Any) -> JSONType:
         """Send a 200 response with payload {'statusCode': '200'}.
@@ -4339,8 +4129,6 @@ class MultipleResponsesOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get200_model_a200_valid.metadata = {"url": "/http/payloads/200/A/response/200/valid"}  # type: ignore
 
     @distributed_trace_async
     async def get200_model_a200_invalid(self, **kwargs: Any) -> JSONType:
@@ -4384,8 +4172,6 @@ class MultipleResponsesOperations:
 
         return deserialized
 
-    get200_model_a200_invalid.metadata = {"url": "/http/payloads/200/A/response/200/invalid"}  # type: ignore
-
     @distributed_trace_async
     async def get200_model_a400_none(self, **kwargs: Any) -> JSONType:
         """Send a 400 response with no payload client should treat as an http error with no error model.
@@ -4427,8 +4213,6 @@ class MultipleResponsesOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get200_model_a400_none.metadata = {"url": "/http/payloads/200/A/response/400/none"}  # type: ignore
 
     @distributed_trace_async
     async def get200_model_a400_valid(self, **kwargs: Any) -> JSONType:
@@ -4472,8 +4256,6 @@ class MultipleResponsesOperations:
 
         return deserialized
 
-    get200_model_a400_valid.metadata = {"url": "/http/payloads/200/A/response/400/valid"}  # type: ignore
-
     @distributed_trace_async
     async def get200_model_a400_invalid(self, **kwargs: Any) -> JSONType:
         """Send a 200 response with invalid payload {'statusCodeInvalid': '400'}.
@@ -4516,8 +4298,6 @@ class MultipleResponsesOperations:
 
         return deserialized
 
-    get200_model_a400_invalid.metadata = {"url": "/http/payloads/200/A/response/400/invalid"}  # type: ignore
-
     @distributed_trace_async
     async def get200_model_a202_valid(self, **kwargs: Any) -> JSONType:
         """Send a 202 response with payload {'statusCode': '202'}.
@@ -4559,5 +4339,3 @@ class MultipleResponsesOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get200_model_a202_valid.metadata = {"url": "/http/payloads/200/A/response/202/valid"}  # type: ignore
