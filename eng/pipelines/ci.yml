@@ -191,7 +191,7 @@ jobs:
         workingDirectory: node_modules/@microsoft.azure/autorest.testserver
         displayName: "Publish coverage report to storage account"
 
-      - ${{ if ne(variables['Build.Reason'], 'PullRequest') }}:
+      - ${{ if eq(and(ne(variables['Build.Reason'], 'PullRequest'), ne(variables['PythonVersion'], '2.7')), 'True') }}:
         - script: |
             git clone https://github.com/Azure/azure-sdk-for-python.git --depth=1 --branch main $(Build.SourcesDirectory)/regenerated/
           displayName: 'Clone python repo'
