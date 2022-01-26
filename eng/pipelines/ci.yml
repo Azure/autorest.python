@@ -64,7 +64,7 @@ jobs:
         displayName: 'Prepare Environment for Generation'
 
 
-      - ${{ if ne(variables['Build.Reason'], 'PullRequest') and ne(variables['PythonVersion'], '2.7') }}:
+      - ${{ if ne(variables['Build.Reason'], 'PullRequest') && if ne(variables['PythonVersion'], '2.7') }}:
         - script: |
             git clone https://github.com/Azure/azure-sdk-for-python.git --depth=1 --branch main $(Build.SourcesDirectory)/regenerated/
           displayName: 'Clone python repo'
