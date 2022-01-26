@@ -45,8 +45,8 @@ class ClientSerializer:
         elif not (async_mode or self.is_python3_file):
             base_class = "object"
         if base_class:
-            return f"class {class_name}Generated({base_class}):"
-        return f"class {class_name}Generated:"
+            return f"class {class_name}({base_class}):"
+        return f"class {class_name}:"
 
     def property_descriptions(self, async_mode: bool) -> List[str]:
         retval: List[str] = []

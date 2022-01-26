@@ -3,7 +3,7 @@
 {{ code_model.options['license_header'] }}
 {% macro iterate_models_py3() %}
     {% for schema in schemas %}
-from ._models_py3 import {{ schema }}Generated as {{schema}}
+from ._models_py3 import {{ schema }}
     {% endfor %}
 {% endmacro %}
 
@@ -15,7 +15,7 @@ try:
     {{ iterate_models_py3() | indent-}}
 except (SyntaxError, ImportError):
         {% for schema in schemas %}
-    from ._models import {{ schema }}Generated as {{schema}}  # type: ignore
+    from ._models import {{ schema }}  # type: ignore
         {% endfor %}
     {% endif %}
 {% endif %}
