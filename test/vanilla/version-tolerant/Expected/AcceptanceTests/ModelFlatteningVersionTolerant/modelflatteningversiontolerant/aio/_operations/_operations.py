@@ -94,8 +94,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_array.metadata = {"url": "/model-flatten/array"}  # type: ignore
-
     @distributed_trace_async
     async def get_array(self, **kwargs: Any) -> List[JSONType]:
         """Get External Resource as an Array.
@@ -150,8 +148,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
         return deserialized
 
-    get_array.metadata = {"url": "/model-flatten/array"}  # type: ignore
-
     @distributed_trace_async
     async def put_wrapped_array(self, resource_array: Optional[List[JSONType]] = None, **kwargs: Any) -> None:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
@@ -200,8 +196,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_wrapped_array.metadata = {"url": "/model-flatten/wrappedarray"}  # type: ignore
-
     @distributed_trace_async
     async def get_wrapped_array(self, **kwargs: Any) -> List[JSONType]:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
@@ -246,8 +240,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_wrapped_array.metadata = {"url": "/model-flatten/wrappedarray"}  # type: ignore
 
     @distributed_trace_async
     async def put_dictionary(self, resource_dictionary: Optional[Dict[str, JSONType]] = None, **kwargs: Any) -> None:
@@ -308,8 +300,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_dictionary.metadata = {"url": "/model-flatten/dictionary"}  # type: ignore
-
     @distributed_trace_async
     async def get_dictionary(self, **kwargs: Any) -> Dict[str, JSONType]:
         """Get External Resource as a Dictionary.
@@ -363,8 +353,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_dictionary.metadata = {"url": "/model-flatten/dictionary"}  # type: ignore
 
     @distributed_trace_async
     async def put_resource_collection(self, resource_complex_object: JSONType = None, **kwargs: Any) -> None:
@@ -459,8 +447,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_resource_collection.metadata = {"url": "/model-flatten/resourcecollection"}  # type: ignore
-
     @distributed_trace_async
     async def get_resource_collection(self, **kwargs: Any) -> JSONType:
         """Get External Resource as a ResourceCollection.
@@ -549,8 +535,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
         return deserialized
 
-    get_resource_collection.metadata = {"url": "/model-flatten/resourcecollection"}  # type: ignore
-
     @distributed_trace_async
     async def put_simple_product(self, simple_body_product: JSONType = None, **kwargs: Any) -> JSONType:
         """Put Simple Product with client flattening true on the model.
@@ -626,8 +610,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
         return deserialized
 
-    put_simple_product.metadata = {"url": "/model-flatten/customFlattening"}  # type: ignore
-
     @distributed_trace_async
     async def post_flattened_simple_product(self, simple_body_product: JSONType = None, **kwargs: Any) -> JSONType:
         """Put Flattened Simple Product with client flattening true on the parameter.
@@ -702,8 +684,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    post_flattened_simple_product.metadata = {"url": "/model-flatten/customFlattening"}  # type: ignore
 
     @distributed_trace_async
     async def put_simple_product_with_grouping(
@@ -784,5 +764,3 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    put_simple_product_with_grouping.metadata = {"url": "/model-flatten/customFlattening/parametergrouping/{name}/"}  # type: ignore

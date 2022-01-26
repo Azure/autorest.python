@@ -205,8 +205,6 @@ class AutoRestValidationTestOperationsMixin(object):
 
         return deserialized
 
-    validation_of_method_parameters.metadata = {"url": "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"}  # type: ignore
-
     @distributed_trace
     def validation_of_body(self, resource_group_name: str, id: int, body: JSONType = None, **kwargs: Any) -> JSONType:
         """Validates body parameters on the method. See swagger for details.
@@ -303,8 +301,6 @@ class AutoRestValidationTestOperationsMixin(object):
 
         return deserialized
 
-    validation_of_body.metadata = {"url": "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"}  # type: ignore
-
     @distributed_trace
     def get_with_constant_in_path(self, **kwargs: Any) -> None:
         """get_with_constant_in_path.
@@ -336,8 +332,6 @@ class AutoRestValidationTestOperationsMixin(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_with_constant_in_path.metadata = {"url": "/validation/constantsInPath/{constantParam}/value"}  # type: ignore
 
     @distributed_trace
     def post_with_constant_in_body(self, body: JSONType = None, **kwargs: Any) -> JSONType:
@@ -430,5 +424,3 @@ class AutoRestValidationTestOperationsMixin(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    post_with_constant_in_body.metadata = {"url": "/validation/constantsInPath/{constantParam}/value"}  # type: ignore

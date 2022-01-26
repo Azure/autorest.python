@@ -103,8 +103,6 @@ class PetOperations:
 
         return deserialized
 
-    get_pet_by_id.metadata = {"url": "/errorStatusCodes/Pets/{petId}/GetPet"}  # type: ignore
-
     @distributed_trace_async
     async def do_something(self, what_action: str, **kwargs: Any) -> JSONType:
         """Asks pet to do something.
@@ -154,8 +152,6 @@ class PetOperations:
 
         return deserialized
 
-    do_something.metadata = {"url": "/errorStatusCodes/Pets/doSomething/{whatAction}"}  # type: ignore
-
     @distributed_trace_async
     async def has_models_param(self, *, models: Optional[str] = "value1", **kwargs: Any) -> None:
         """Ensure you can correctly deserialize the returned PetActionError and deserialization doesn't
@@ -191,5 +187,3 @@ class PetOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    has_models_param.metadata = {"url": "/errorStatusCodes/Pets/hasModelsParam"}  # type: ignore

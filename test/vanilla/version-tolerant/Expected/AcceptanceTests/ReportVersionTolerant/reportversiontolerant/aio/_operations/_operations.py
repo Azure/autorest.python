@@ -75,8 +75,6 @@ class AutoRestReportServiceOperationsMixin:
 
         return deserialized
 
-    get_report.metadata = {"url": "/report"}  # type: ignore
-
     @distributed_trace_async
     async def get_optional_report(self, *, qualifier: Optional[str] = None, **kwargs: Any) -> Dict[str, int]:
         """Get optional test coverage report.
@@ -122,5 +120,3 @@ class AutoRestReportServiceOperationsMixin:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_optional_report.metadata = {"url": "/report/optional"}  # type: ignore

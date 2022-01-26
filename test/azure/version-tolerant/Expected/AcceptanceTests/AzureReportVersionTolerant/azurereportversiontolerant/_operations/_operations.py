@@ -93,5 +93,3 @@ class AutoRestReportServiceForAzureOperationsMixin(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_report.metadata = {"url": "/report/azure"}  # type: ignore

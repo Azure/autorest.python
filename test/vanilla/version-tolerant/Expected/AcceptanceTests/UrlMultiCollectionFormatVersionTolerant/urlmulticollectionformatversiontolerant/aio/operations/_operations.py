@@ -78,8 +78,6 @@ class QueriesOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    array_string_multi_null.metadata = {"url": "/queries/array/multi/string/null"}  # type: ignore
-
     @distributed_trace_async
     async def array_string_multi_empty(self, *, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
         """Get an empty array [] of string using the multi-array format.
@@ -108,8 +106,6 @@ class QueriesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    array_string_multi_empty.metadata = {"url": "/queries/array/multi/string/empty"}  # type: ignore
 
     @distributed_trace_async
     async def array_string_multi_valid(self, *, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
@@ -141,5 +137,3 @@ class QueriesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    array_string_multi_valid.metadata = {"url": "/queries/array/multi/string/valid"}  # type: ignore

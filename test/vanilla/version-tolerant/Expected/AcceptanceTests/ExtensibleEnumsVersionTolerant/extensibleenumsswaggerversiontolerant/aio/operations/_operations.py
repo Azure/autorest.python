@@ -92,8 +92,6 @@ class PetOperations:
 
         return deserialized
 
-    get_by_pet_id.metadata = {"url": "/extensibleenums/pet/{petId}"}  # type: ignore
-
     @distributed_trace_async
     async def add_pet(self, pet_param: JSONType = None, **kwargs: Any) -> JSONType:
         """add pet.
@@ -154,5 +152,3 @@ class PetOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    add_pet.metadata = {"url": "/extensibleenums/pet/addPet"}  # type: ignore

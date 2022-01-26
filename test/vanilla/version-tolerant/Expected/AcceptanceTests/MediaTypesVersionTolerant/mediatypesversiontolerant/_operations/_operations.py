@@ -195,8 +195,6 @@ class MediaTypesClientOperationsMixin(object):
 
         return deserialized
 
-    analyze_body.metadata = {"url": "/mediatypes/analyze"}  # type: ignore
-
     @distributed_trace
     def analyze_body_no_accept_header(self, input: Optional[Union[IO, JSONType]] = None, **kwargs: Any) -> None:
         """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
@@ -255,8 +253,6 @@ class MediaTypesClientOperationsMixin(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    analyze_body_no_accept_header.metadata = {"url": "/mediatypes/analyzeNoAccept"}  # type: ignore
-
     @distributed_trace
     def content_type_with_encoding(self, input: Optional[str] = None, **kwargs: Any) -> str:
         """Pass in contentType 'text/plain; charset=UTF-8' to pass test. Value for input does not matter.
@@ -297,8 +293,6 @@ class MediaTypesClientOperationsMixin(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    content_type_with_encoding.metadata = {"url": "/mediatypes/contentTypeWithEncoding"}  # type: ignore
 
     @distributed_trace
     def binary_body_with_two_content_types(self, message: Union[IO, JSONType], **kwargs: Any) -> str:
@@ -352,8 +346,6 @@ class MediaTypesClientOperationsMixin(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    binary_body_with_two_content_types.metadata = {"url": "/mediatypes/binaryBodyTwoContentTypes"}  # type: ignore
 
     @distributed_trace
     def binary_body_with_three_content_types(self, message: Union[IO, str], **kwargs: Any) -> str:
@@ -412,8 +404,6 @@ class MediaTypesClientOperationsMixin(object):
 
         return deserialized
 
-    binary_body_with_three_content_types.metadata = {"url": "/mediatypes/binaryBodyThreeContentTypes"}  # type: ignore
-
     @distributed_trace
     def put_text_and_json_body(self, message: Union[str, str], **kwargs: Any) -> str:
         """Body that's either text/plain or application/json.
@@ -467,5 +457,3 @@ class MediaTypesClientOperationsMixin(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    put_text_and_json_body.metadata = {"url": "/mediatypes/textAndJson"}  # type: ignore

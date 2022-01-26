@@ -146,8 +146,6 @@ class FormdataOperations(object):
 
         return deserialized
 
-    upload_file.metadata = {"url": "/formdata/stream/uploadfile"}  # type: ignore
-
     @distributed_trace
     def upload_file_via_body(self, file_content: IO, **kwargs: Any) -> IO:
         """Upload file.
@@ -185,8 +183,6 @@ class FormdataOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    upload_file_via_body.metadata = {"url": "/formdata/stream/uploadfile"}  # type: ignore
 
     @distributed_trace
     def upload_files(self, files: Dict[str, Any], **kwargs: Any) -> IO:
@@ -234,5 +230,3 @@ class FormdataOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    upload_files.metadata = {"url": "/formdata/stream/uploadfiles"}  # type: ignore
