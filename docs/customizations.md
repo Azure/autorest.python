@@ -14,7 +14,7 @@ generated code to override.
 
 The main flow of the `_patch.py` file will be:
 
-1. Import the generated object you wish to override. Generated objects will have the suffix `Generated`
+1. Import the generated object you wish to override.
 2. Inherit from the generated object, and override its behavior with your desired code functionality
 3. Include the name of your customized object in the `__all__` of the `_patch.py` file
 
@@ -28,7 +28,6 @@ lost!
 ## Examples
 
 - [Change Model Behavior](#change-model-behavior)
-- [Add a model](#add-a-model)
 - [Change Operation Behavior](#change-operation-behavior)
 - [Overload an Operation](#overload-an-operation)
 - [Change Client Behavior](#change-client-behavior)
@@ -57,7 +56,7 @@ azure-sdk
 ```python
 import datetime
 from typing import Union
-from ._models import ModelGenerated
+from ._models import Model as ModelGenerated
 
 class Model(ModelGenerated):
 
@@ -67,32 +66,6 @@ class Model(ModelGenerated):
     )
 
 __all__ = ["Model"]
-```
-
-### Add a Model
-
-You can add a model easily in the `_patch.py` file in the models module. Just be sure to include it in that file's `__all__`!
-
-In this `_patch.py` file:
-
-```
-azure-sdk
-│   README.md
-│
-└───azure
-    └───sdk
-        └───models
-        │   _models.py # where the generated models are
-        |   _patch.py # where we customize the models code
-```
-
-```python
-class AddedModel:
-
-  def __init__(self, input: str):
-    self.input = input
-
-__all__ = ["AddedModel"]
 ```
 
 ### Change Operation Behavior
@@ -119,7 +92,7 @@ azure-sdk
 ```python
 from typing import Union
 import datetime
-from ._operations import OperationGroupGenerated
+from ._operations import OperationGroup as OperationGroupGenerated
 
 class OperationGroup(OperationGroupGenerated):
 
@@ -154,7 +127,7 @@ azure-sdk
 
 ```python
 from typing import overload, Dict, Any
-from ._operations import OperationGroupGenerated
+from ._operations import OperationGroup as OperationGroupGenerated
 
 class OperationGroup(OperationGroupGenerated):
 
@@ -194,7 +167,7 @@ azure-sdk
 ```
 
 ```python
-from ._service_client import ServiceClientGenerated
+from ._service_client import ServiceClient as ServiceClientGenerated
 from azure.core.pipeline import PipelineRequest
 from azure.core.pipeline.policies import SansIOHTTPPolicy
 
@@ -244,7 +217,7 @@ azure-sdk
 ```python
 from typing import Any
 from azure.core.credentials import AzureKeyCredential
-from ._service_client import ServiceClientGenerated
+from ._service_client import ServiceClient as ServiceClientGenerated
 
 class ServiceClient(ServiceClientGenerated):
 
