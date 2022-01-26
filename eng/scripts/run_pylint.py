@@ -53,7 +53,7 @@ if __name__ == "__main__":
     if args.file_name:
         dirs = [d for d in dirs if d.stem.lower() == args.file_name.lower()]
     for mod in dirs:
-        inner_class = next(d for d in mod.iterdir() if d.is_dir() and not d.stem.endswith("egg-info"))
+        inner_class = next(d for d in mod.iterdir() if d.is_dir() and not str(d).endswith("egg-info"))
         try:
             check_call(
                 [

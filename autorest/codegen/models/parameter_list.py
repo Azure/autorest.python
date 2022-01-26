@@ -275,6 +275,7 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
 def _create_files_or_data_param(
     params: List[Parameter], serialized_name: str, description: str
 ) -> Parameter:
+    params[0].need_import = False
     param = copy(params[0])
     param.serialized_name = serialized_name
     param.schema = DictionarySchema(

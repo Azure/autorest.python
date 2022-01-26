@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -253,7 +254,7 @@ class MediaTypesClientOperationsMixin(object):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})  # pylint: disable=inconsistent-return-statements
+            return cls(pipeline_response, None, {})
 
     @distributed_trace
     def content_type_with_encoding(self, input: Optional[str] = None, **kwargs: Any) -> str:

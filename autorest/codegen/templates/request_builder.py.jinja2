@@ -18,7 +18,7 @@
 {% else %}
     {% set url_value = 'kwargs.pop("template_url", ' + keywords.escape_str(request_builder.url) + ')' %}
 {% endif %}
-    url = {{ url_value }}
+    url = {{ url_value }}{{ "  # pylint: disable=line-too-long" if (url_value | length) > 114 else "" }}
 {% if request_builder.parameters.path %}
     {{ op_tools.serialize(request_builder_serializer.serialize_path(request_builder)) | indent }}
     url = _format_url_section(url, **path_format_arguments)

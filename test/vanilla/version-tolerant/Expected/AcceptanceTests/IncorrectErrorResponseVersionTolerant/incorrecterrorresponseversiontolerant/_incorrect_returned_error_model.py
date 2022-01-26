@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Optional, TYPE_CHECKING
+from typing import Any, TYPE_CHECKING
 
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
@@ -22,7 +22,8 @@ if TYPE_CHECKING:
 
 
 class IncorrectReturnedErrorModel(IncorrectReturnedErrorModelOperationsMixin):
-    """Test to see when throwing an HttpResponseError whether we swallow error model deserialization errors.
+    """Test to see when throwing an HttpResponseError whether we swallow error model deserialization
+    errors.
 
     :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
     :paramtype endpoint: str

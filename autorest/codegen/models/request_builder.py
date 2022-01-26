@@ -66,7 +66,8 @@ class RequestBuilder(BaseBuilder):
     def imports(self) -> FileImport:
         file_import = FileImport()
         for parameter in self.parameters:
-            file_import.merge(parameter.imports())
+            if parameter.need_import:
+                file_import.merge(parameter.imports())
 
         file_import.add_submodule_import(
             "azure.core.rest",

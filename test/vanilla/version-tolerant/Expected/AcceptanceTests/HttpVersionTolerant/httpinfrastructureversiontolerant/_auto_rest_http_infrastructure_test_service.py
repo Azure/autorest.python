@@ -29,7 +29,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class AutoRestHttpInfrastructureTestService:
+class AutoRestHttpInfrastructureTestService:  # pylint: disable=too-many-instance-attributes
     """Test Infrastructure for AutoRest.
 
     :ivar http_failure: HttpFailureOperations operations

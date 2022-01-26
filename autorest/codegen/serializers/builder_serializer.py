@@ -711,7 +711,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         )
         ser_ctxt_name = "serialization_ctxt"
         ser_ctxt = builder.parameters.body[0].xml_serialization_ctxt if send_xml else None
-        if ser_ctxt:
+        if ser_ctxt and self.code_model.options["models_mode"]:
             retval.append(f'{ser_ctxt_name} = {{"xml": {{{ser_ctxt}}}}}')
         serialize_body_call = self._serialize_body_call(
             builder,

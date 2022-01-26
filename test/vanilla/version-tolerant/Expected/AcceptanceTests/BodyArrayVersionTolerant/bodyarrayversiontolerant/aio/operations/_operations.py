@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -6,9 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-import functools
-from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar
-import warnings
+from typing import Any, Callable, Dict, List, Optional, TypeVar
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -99,7 +98,7 @@ JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ArrayOperations:
+class ArrayOperations:  # pylint: disable=too-many-public-methods
     """ArrayOperations async operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -140,7 +139,9 @@ class ArrayOperations:
         request = build_array_get_null_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -180,7 +181,9 @@ class ArrayOperations:
         request = build_array_get_invalid_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -220,7 +223,9 @@ class ArrayOperations:
         request = build_array_get_empty_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -269,7 +274,9 @@ class ArrayOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -302,7 +309,9 @@ class ArrayOperations:
         request = build_array_get_boolean_tfft_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -351,7 +360,9 @@ class ArrayOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -384,7 +395,9 @@ class ArrayOperations:
         request = build_array_get_boolean_invalid_null_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -424,7 +437,9 @@ class ArrayOperations:
         request = build_array_get_boolean_invalid_string_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -464,7 +479,9 @@ class ArrayOperations:
         request = build_array_get_integer_valid_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -513,7 +530,9 @@ class ArrayOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -546,7 +565,9 @@ class ArrayOperations:
         request = build_array_get_int_invalid_null_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -586,7 +607,9 @@ class ArrayOperations:
         request = build_array_get_int_invalid_string_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -626,7 +649,9 @@ class ArrayOperations:
         request = build_array_get_long_valid_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -675,7 +700,9 @@ class ArrayOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -708,7 +735,9 @@ class ArrayOperations:
         request = build_array_get_long_invalid_null_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -748,7 +777,9 @@ class ArrayOperations:
         request = build_array_get_long_invalid_string_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -788,7 +819,9 @@ class ArrayOperations:
         request = build_array_get_float_valid_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -837,7 +870,9 @@ class ArrayOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -870,7 +905,9 @@ class ArrayOperations:
         request = build_array_get_float_invalid_null_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -910,7 +947,9 @@ class ArrayOperations:
         request = build_array_get_float_invalid_string_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -950,7 +989,9 @@ class ArrayOperations:
         request = build_array_get_double_valid_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -999,7 +1040,9 @@ class ArrayOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1032,7 +1075,9 @@ class ArrayOperations:
         request = build_array_get_double_invalid_null_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1072,7 +1117,9 @@ class ArrayOperations:
         request = build_array_get_double_invalid_string_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1112,7 +1159,9 @@ class ArrayOperations:
         request = build_array_get_string_valid_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1161,7 +1210,9 @@ class ArrayOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1194,7 +1245,9 @@ class ArrayOperations:
         request = build_array_get_enum_valid_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1243,7 +1296,9 @@ class ArrayOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1276,7 +1331,9 @@ class ArrayOperations:
         request = build_array_get_string_enum_valid_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1325,7 +1382,9 @@ class ArrayOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1358,7 +1417,9 @@ class ArrayOperations:
         request = build_array_get_string_with_null_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1398,7 +1459,9 @@ class ArrayOperations:
         request = build_array_get_string_with_invalid_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1439,7 +1502,9 @@ class ArrayOperations:
         request = build_array_get_uuid_valid_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1489,7 +1554,9 @@ class ArrayOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1522,7 +1589,9 @@ class ArrayOperations:
         request = build_array_get_uuid_invalid_chars_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1562,7 +1631,9 @@ class ArrayOperations:
         request = build_array_get_date_valid_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1611,7 +1682,9 @@ class ArrayOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1644,7 +1717,9 @@ class ArrayOperations:
         request = build_array_get_date_invalid_null_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1684,7 +1759,9 @@ class ArrayOperations:
         request = build_array_get_date_invalid_chars_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1725,7 +1802,9 @@ class ArrayOperations:
         request = build_array_get_date_time_valid_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1775,7 +1854,9 @@ class ArrayOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1808,7 +1889,9 @@ class ArrayOperations:
         request = build_array_get_date_time_invalid_null_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1848,7 +1931,9 @@ class ArrayOperations:
         request = build_array_get_date_time_invalid_chars_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1889,7 +1974,9 @@ class ArrayOperations:
         request = build_array_get_date_time_rfc1123_valid_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1939,7 +2026,9 @@ class ArrayOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1972,7 +2061,9 @@ class ArrayOperations:
         request = build_array_get_duration_valid_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2021,7 +2112,9 @@ class ArrayOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2055,7 +2148,9 @@ class ArrayOperations:
         request = build_array_get_byte_valid_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2105,7 +2200,9 @@ class ArrayOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2138,7 +2235,9 @@ class ArrayOperations:
         request = build_array_get_byte_invalid_null_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2179,7 +2278,9 @@ class ArrayOperations:
         request = build_array_get_base64_url_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2222,7 +2323,9 @@ class ArrayOperations:
         request = build_array_get_complex_null_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2265,7 +2368,9 @@ class ArrayOperations:
         request = build_array_get_complex_empty_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2309,7 +2414,9 @@ class ArrayOperations:
         request = build_array_get_complex_item_null_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2353,7 +2460,9 @@ class ArrayOperations:
         request = build_array_get_complex_item_empty_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2397,7 +2506,9 @@ class ArrayOperations:
         request = build_array_get_complex_valid_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2450,7 +2561,9 @@ class ArrayOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2485,7 +2598,9 @@ class ArrayOperations:
         request = build_array_get_array_null_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2527,7 +2642,9 @@ class ArrayOperations:
         request = build_array_get_array_empty_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2569,7 +2686,9 @@ class ArrayOperations:
         request = build_array_get_array_item_null_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2611,7 +2730,9 @@ class ArrayOperations:
         request = build_array_get_array_item_empty_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2653,7 +2774,9 @@ class ArrayOperations:
         request = build_array_get_array_valid_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2704,7 +2827,9 @@ class ArrayOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2739,7 +2864,9 @@ class ArrayOperations:
         request = build_array_get_dictionary_null_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2781,7 +2908,9 @@ class ArrayOperations:
         request = build_array_get_dictionary_empty_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2824,7 +2953,9 @@ class ArrayOperations:
         request = build_array_get_dictionary_item_null_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2867,7 +2998,9 @@ class ArrayOperations:
         request = build_array_get_dictionary_item_empty_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2910,7 +3043,9 @@ class ArrayOperations:
         request = build_array_get_dictionary_valid_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2962,7 +3097,9 @@ class ArrayOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:

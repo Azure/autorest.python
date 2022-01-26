@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -2977,7 +2978,7 @@ class HttpRedirectsOperations(object):
             return cls(pipeline_response, None, response_headers)
 
 
-class HttpClientFailureOperations(object):
+class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-methods
     """HttpClientFailureOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -4346,7 +4347,7 @@ class HttpRetryOperations(object):
             return cls(pipeline_response, None, {})
 
 
-class MultipleResponsesOperations(object):
+class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-methods
     """MultipleResponsesOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
