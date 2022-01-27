@@ -18,5 +18,5 @@
         get_next, extract_data
     )
 {% if not code_model.options["version_tolerant"] %}
-{{ operation_serializer.get_metadata_url(operation) }}
+{{ operation_serializer.get_metadata_url(operation) -}}
 {% endif %}
