@@ -124,6 +124,12 @@ jobs:
           searchFolder: "$(TestFolder)/azure/version-tolerant"
 
       - script: |
+          cd $(TestFolder)/azure/version-tolerant
+          tox -e lint
+        displayName: 'Lint version-tolerant "azure" Tests - Python $(PythonVersion)'
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.6'))
+
+      - script: |
           cd $(TestFolder)/vanilla/legacy
           tox -e ci
         displayName: 'Execute legacy "vanilla" Tests - Python $(PythonVersion)'
