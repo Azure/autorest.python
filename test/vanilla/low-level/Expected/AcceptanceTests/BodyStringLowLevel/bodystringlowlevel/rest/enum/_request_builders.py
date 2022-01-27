@@ -209,7 +209,8 @@ def build_get_referenced_constant_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "ColorConstant": "green-color",  # Default value is "green-color". Referenced Color Constant Description. Has constant value: "green-color".
+                "ColorConstant": "green-color",  # Default value is "green-color". Referenced
+                  Color Constant Description. Has constant value: "green-color".
                 "field1": "str"  # Optional. Sample string.
             }
     """
@@ -255,7 +256,8 @@ def build_put_referenced_constant_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "ColorConstant": "green-color",  # Default value is "green-color". Referenced Color Constant Description. Has constant value: "green-color".
+                "ColorConstant": "green-color",  # Default value is "green-color". Referenced
+                  Color Constant Description. Has constant value: "green-color".
                 "field1": "str"  # Optional. Sample string.
             }
     """

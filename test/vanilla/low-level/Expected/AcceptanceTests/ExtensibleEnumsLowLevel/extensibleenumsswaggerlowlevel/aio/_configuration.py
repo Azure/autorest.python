@@ -14,7 +14,7 @@ from azure.core.pipeline import policies
 from .._version import VERSION
 
 
-class PetStoreIncConfiguration(Configuration):
+class PetStoreIncConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
     """Configuration for PetStoreInc.
 
     Note that all parameters used to create this instance are saved as instance

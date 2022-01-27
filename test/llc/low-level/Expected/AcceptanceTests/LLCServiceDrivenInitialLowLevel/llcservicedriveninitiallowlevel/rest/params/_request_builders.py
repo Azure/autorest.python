@@ -165,7 +165,7 @@ def build_post_parameters_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "url": "str"  # Required. 
+                "url": "str"  # Required.
             }
     """
 

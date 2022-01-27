@@ -46,13 +46,19 @@ def build_list_request(
             response.json() == {
                 "value": [
                     {
-                        "currentValue": 0,  # Optional. Gets the current count of the allocated resources in the subscription.
-                        "limit": 0,  # Optional. Gets the maximum count of the resources that can be allocated in the subscription.
+                        "currentValue": 0,  # Optional. Gets the current count of the
+                          allocated resources in the subscription.
+                        "limit": 0,  # Optional. Gets the maximum count of the
+                          resources that can be allocated in the subscription.
                         "name": {
-                            "localizedValue": "str",  # Optional. Gets a localized string describing the resource name.
-                            "value": "str"  # Optional. Gets a string describing the resource name.
+                            "localizedValue": "str",  # Optional. Gets a
+                              localized string describing the resource name.
+                            "value": "str"  # Optional. Gets a string describing
+                              the resource name.
                         },
-                        "unit": "str"  # Optional. Gets the unit of measurement. Possible values include: "Count", "Bytes", "Seconds", "Percent", "CountsPerSecond", "BytesPerSecond".
+                        "unit": "str"  # Optional. Gets the unit of measurement.
+                          Possible values include: "Count", "Bytes", "Seconds", "Percent",
+                          "CountsPerSecond", "BytesPerSecond".
                     }
                 ]
             }

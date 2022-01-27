@@ -12,7 +12,7 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, IO, List, Optional, TypeVar
+    from typing import Any, Dict, Optional, TypeVar
 
     T = TypeVar("T")
     JSONType = Any
@@ -48,7 +48,8 @@ def build_upload_file_request(
             # multipart input template you can fill out and use as your `files` input.
             files = {
                 "file_content": b'bytes',  # File to upload.
-                "file_name": "str"  # File name to upload. Name has to be spelled exactly as written here.
+                "file_name": "str"  # File name to upload. Name has to be spelled exactly as
+                  written here.
             }
     """
 
