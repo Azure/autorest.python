@@ -105,7 +105,6 @@ _OVERWRITE_DEFAULT_NAMESPACE = {
     'CustomUrlPaging': 'custombaseurlpaging',
     'AzureSpecials': 'azurespecialproperties',
     'StorageManagementClient': 'storage',
-    'CustomUrlPaging': 'custombaseurlpaging',
 }
 
 _OVERRIDE_PACKAGE_NAME = {

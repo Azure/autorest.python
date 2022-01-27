@@ -1,4 +1,5 @@
-class {{ operation_group.class_name }}{{ object_base_class }}:
+{% set disable = "  # pylint: disable=too-many-public-methods" if operation_group.operations | length > 20 else "" %}
+class {{ operation_group.class_name }}{{ object_base_class }}:{{ disable }}
 {% if not operation_group.is_empty_operation_group %}
     """{{ operation_group.class_name }} {{ operations_description }}.
 

@@ -198,6 +198,7 @@ class RequestBuilderParameterList(ParameterList):
         else:
             for kwarg in body_kwargs_added:
                 kwarg.required = False
+        first_body_param.need_import = False
         self.parameters = body_kwargs_added + self.parameters
 
     @property

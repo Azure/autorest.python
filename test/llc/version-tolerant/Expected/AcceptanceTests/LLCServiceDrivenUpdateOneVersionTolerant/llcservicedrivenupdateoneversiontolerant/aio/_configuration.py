@@ -14,7 +14,7 @@ from azure.core.pipeline import policies
 from .._version import VERSION
 
 
-class LLCClientConfiguration(Configuration):
+class LLCClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
     """Configuration for LLCClient.
 
     Note that all parameters used to create this instance are saved as instance

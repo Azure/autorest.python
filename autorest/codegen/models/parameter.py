@@ -98,6 +98,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         self.content_types = content_types or []
         self.body_kwargs: List[Parameter] = []
         self.is_body_kwarg = False
+        self.need_import = True
 
     def __hash__(self) -> int:
         return hash(self.serialized_name)

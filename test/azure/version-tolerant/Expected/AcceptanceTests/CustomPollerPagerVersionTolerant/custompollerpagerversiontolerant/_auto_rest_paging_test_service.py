@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Optional, TYPE_CHECKING
+from typing import Any, TYPE_CHECKING
 
 from azure.core.rest import HttpRequest, HttpResponse
 from azure.mgmt.core import ARMPipelineClient
@@ -21,6 +21,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
     from azure.core.credentials import TokenCredential
+
 
 class AutoRestPagingTestService:
     """Long-running Operation for AutoRest.
@@ -36,13 +37,9 @@ class AutoRestPagingTestService:
     """
 
     def __init__(
-        self,
-        credential: "TokenCredential",
-        *,
-        endpoint: str = "http://localhost:3000",
-        **kwargs: Any
+        self, credential: "TokenCredential", *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
-        
+
         self._config = AutoRestPagingTestServiceConfiguration(credential=credential, **kwargs)
         self._client = ARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
@@ -50,7 +47,6 @@ class AutoRestPagingTestService:
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
         self.paging = PagingOperations(self._client, self._config, self._serialize, self._deserialize)
-
 
     def send_request(
         self,

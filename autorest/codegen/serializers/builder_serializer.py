@@ -711,7 +711,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         )
         ser_ctxt_name = "serialization_ctxt"
         ser_ctxt = builder.parameters.body[0].xml_serialization_ctxt if send_xml else None
-        if ser_ctxt:
+        if ser_ctxt and self.code_model.options["models_mode"]:
             retval.append(f'{ser_ctxt_name} = {{"xml": {{{ser_ctxt}}}}}')
         serialize_body_call = self._serialize_body_call(
             builder,
@@ -1115,7 +1115,7 @@ class _PagingOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disab
         deserialized = (
             f'self._deserialize("{response.serialization_type}", pipeline_response)'
             if self.code_model.options["models_mode"] else
-            "_loads(pipeline_response.http_response.body())"
+            "pipeline_response.http_response.json()"
         )
         retval.append(f"    deserialized = {deserialized}")
         item_name = builder.item_name(self.code_model)
@@ -1138,10 +1138,11 @@ class _PagingOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disab
         retval = [f"{self._def} get_next(next_link=None):"]
         retval.append("    request = prepare_request(next_link)")
         retval.append("")
-        retval.append(
-            f"    pipeline_response = {self._call_method}self._client._pipeline.run(request, "
-            f"stream={builder.is_stream_response}, **kwargs)"
-        )
+        retval.append(f"    pipeline_response = {self._call_method}self._client._pipeline.run(  # pylint: disable=protected-access")
+        retval.append("        request,")
+        retval.append(f"        stream={builder.is_stream_response},")
+        retval.append("        **kwargs")
+        retval.append("    )")
         retval.append("    response = pipeline_response.http_response")
         retval.append("")
         retval.extend([
@@ -1235,7 +1236,7 @@ class _LROOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=
             "Pass in False for this operation to not poll, or pass in your own initialized polling object for a"
             " personal polling strategy."
         )
-        retval.append(f":paramtype polling: bool or ~{self._polling_method_type}")
+        retval.append(f":paramtype polling: bool or ~azure.core.polling.{self._polling_method_type}")
         retval.append(
             ":keyword int polling_interval: Default waiting time between two polls for LRO operations "
             "if no Retry-After header is present."
@@ -1288,9 +1289,8 @@ class _LROOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=
         retval.append("        client=self._client,")
         retval.append("        deserialization_callback=get_long_running_output")
         retval.append("    )")
-        retval.append("else:")
         retval.append(
-            f"    return {self._poller(builder)}"
+            f"return {self._poller(builder)}"
             "(self._client, raw_result, get_long_running_output, polling_method)"
         )
         return retval
@@ -1336,7 +1336,7 @@ class _SyncLROOperationBaseSerializer(_LROOperationBaseSerializer, _SyncOperatio
 
     @property
     def _polling_method_type(self):
-        return "azure.core.polling.PollingMethod"
+        return "PollingMethod"
 
     def _poller(self, builder) -> str:
         return builder.get_poller(async_mode=False)
@@ -1369,7 +1369,7 @@ class AsyncLROOperationSerializer(_LROOperationBaseSerializer, AsyncOperationSer
 
     @property
     def _polling_method_type(self):
-        return "azure.core.polling.AsyncPollingMethod"
+        return "AsyncPollingMethod"
 
     def _poller(self, builder) -> str:
         return builder.get_poller(async_mode=True)
@@ -1384,8 +1384,7 @@ class _LROPagingOperationBaseSerializer(_LROOperationBaseSerializer, _PagingOper
         retval.append(f"    {self._def} internal_get_next(next_link=None):")
         retval.append("        if next_link is None:")
         retval.append("            return pipeline_response")
-        retval.append("        else:")
-        retval.append(f"            return {self._call_method}get_next(next_link)")
+        retval.append(f"        return {self._call_method}get_next(next_link)")
         retval.append("")
         retval.append(f"    return {self._pager(builder)}(")
         retval.append("        internal_get_next, extract_data")

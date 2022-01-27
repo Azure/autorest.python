@@ -124,6 +124,12 @@ jobs:
           searchFolder: "$(TestFolder)/azure/version-tolerant"
 
       - script: |
+          cd $(TestFolder)/azure/version-tolerant
+          tox -e lint
+        displayName: 'Lint version-tolerant "azure" Tests - Python $(PythonVersion)'
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.6'))
+
+      - script: |
           cd $(TestFolder)/vanilla/legacy
           tox -e ci
         displayName: 'Execute legacy "vanilla" Tests - Python $(PythonVersion)'
@@ -159,6 +165,12 @@ jobs:
           searchFolder: "$(TestFolder)/vanilla/version-tolerant"
 
       - script: |
+          cd $(TestFolder)/vanilla/version-tolerant
+          tox -e lint
+        displayName: 'Lint version-tolerant "vanilla" Tests - Python $(PythonVersion)'
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.6'))
+
+      - script: |
           cd $(TestFolder)/llc/low-level
           tox -e ci
         displayName: 'Execute low level update "llc" Tests - Python $(PythonVersion)'
@@ -168,6 +180,11 @@ jobs:
           tox -e ci
         displayName: 'Execute version-tolerant update "llc" Tests - Python $(PythonVersion)'
         condition: and(succeededOrFailed(), ne(variables['PythonVersion'], '2.7'))
+      - script: |
+          cd $(TestFolder)/llc/version-tolerant
+          tox -e lint
+        displayName: 'Lint version-tolerant "llc" Tests - Python $(PythonVersion)'
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.6'))
       - script: |
           cd $(TestFolder)/multiapi
           tox -e ci
