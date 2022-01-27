@@ -149,7 +149,6 @@ jobs:
       - script: |
           cd $(TestFolder)/vanilla/version-tolerant
           tox -e ci
-          tox -e lint
         displayName: 'Execute version-tolerant "vanilla" Tests - Python $(PythonVersion)'
         condition: and(succeededOrFailed(), ne(variables['PythonVersion'], '2.7'))
       - task: PublishTestResults@2
@@ -158,6 +157,12 @@ jobs:
         inputs:
           testRunTitle: "$(OSName) Python $(PythonVersion) - version-tolerant vanilla"
           searchFolder: "$(TestFolder)/vanilla/version-tolerant"
+
+      - script: |
+          cd $(TestFolder)/vanilla/version-tolerant
+          tox -e lint
+        displayName: 'Lint version-tolerant "vanilla" Tests - Python $(PythonVersion)'
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.6'))
 
       - script: |
           cd $(TestFolder)/llc/low-level
