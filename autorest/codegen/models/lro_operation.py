@@ -175,6 +175,10 @@ class LROOperation(Operation):
 
         if async_mode:
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
-        if self.lro_response and self.lro_response.has_body and not self.code_model.options["models_mode"]:
-            file_import.add_submodule_import("json", "loads", import_type=ImportType.STDLIB, alias="_loads")
+        if self.code_model.options["tracing"] and self.want_tracing:
+            file_import.add_submodule_import(
+                f"azure.core.tracing.decorator{'_async' if async_mode else ''}",
+                f"distributed_trace{'_async' if async_mode else ''}",
+                ImportType.AZURECORE,
+            )
         return file_import

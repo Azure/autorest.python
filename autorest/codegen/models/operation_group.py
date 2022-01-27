@@ -63,15 +63,6 @@ class OperationGroup(BaseModel):
         file_import.add_submodule_import("azure.core.exceptions", "ResourceExistsError", ImportType.AZURECORE)
         for operation in self.operations:
             file_import.merge(operation.imports(async_mode))
-        if self.code_model.options["tracing"]:
-            if async_mode:
-                file_import.add_submodule_import(
-                    "azure.core.tracing.decorator_async", "distributed_trace_async", ImportType.AZURECORE,
-                )
-            else:
-                file_import.add_submodule_import(
-                    "azure.core.tracing.decorator", "distributed_trace", ImportType.AZURECORE,
-                )
         local_path = "..." if async_mode else ".."
         if self.code_model.has_schemas and self.code_model.options["models_mode"]:
             file_import.add_submodule_import(local_path, "models", ImportType.LOCAL, alias="_models")

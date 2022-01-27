@@ -147,6 +147,8 @@ class PagingOperation(Operation):
 
     def imports(self, async_mode: bool) -> FileImport:
         file_import = super(PagingOperation, self).imports(async_mode)
+        # operation adds an import for distributed_trace_async, we don't want it
+        file_import.imports = [i for i in file_import.imports if not i.submodule_name == "distributed_trace_async"]
 
         pager_import_path = ".".join(self.get_pager_path(async_mode).split(".")[:-1])
         pager = self.get_pager(async_mode)
@@ -156,11 +158,9 @@ class PagingOperation(Operation):
         if async_mode:
             file_import.add_submodule_import("azure.core.async_paging", "AsyncList", ImportType.AZURECORE)
 
-        if self.code_model.options["tracing"]:
+        if self.code_model.options["tracing"] and self.want_tracing:
             file_import.add_submodule_import(
                 "azure.core.tracing.decorator", "distributed_trace", ImportType.AZURECORE,
             )
-        if not self.code_model.options["models_mode"]:
-            file_import.add_submodule_import("json", "loads", ImportType.STDLIB, alias="_loads")
 
         return file_import

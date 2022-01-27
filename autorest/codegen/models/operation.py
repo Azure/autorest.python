@@ -223,6 +223,12 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             any(r for r in self.responses if r.has_body)
         ):
             file_import.define_mypy_type("JSONType", "Any")
+        if self.code_model.options["tracing"] and self.want_tracing:
+            file_import.add_submodule_import(
+                f"azure.core.tracing.decorator{'_async' if async_mode else ''}",
+                f"distributed_trace{'_async' if async_mode else ''}",
+                ImportType.AZURECORE,
+            )
         return file_import
 
     def _get_body_param_from_body_kwarg(self, body_kwarg: Parameter) -> Parameter:
