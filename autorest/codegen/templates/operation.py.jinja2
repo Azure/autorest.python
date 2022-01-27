@@ -21,5 +21,5 @@
     pipeline_response = {{ keywords.await }}self._client._pipeline.run(request, {{ stream_request_parameter }}, **kwargs)
     {{ op_tools.serialize(operation_serializer.handle_response(operation)) | indent }}
 {% if not code_model.options["version_tolerant"] %}
-{{ operation.python_name }}.metadata = {'url': {{ keywords.escape_str(request_builder.url) }}}  # type: ignore
+{{ operation_serializer.get_metadata_url(operation) }}
 {% endif %}
