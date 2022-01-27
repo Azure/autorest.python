@@ -74,8 +74,8 @@ if __name__ == "__main__":
         dirs = [d for d in dirs if d.stem.lower() == args.file_name.lower()]
     with Pool() as pool:
         result = pool.map(_single_dir_pylint, dirs)
-        if not all(result):
-            logging.error(
-                "Linting fails"
-            )
-            exit(1)
+    if not all(result):
+        logging.error(
+            "Linting fails"
+        )
+        exit(1)
