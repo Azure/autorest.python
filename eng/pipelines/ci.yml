@@ -64,6 +64,89 @@ jobs:
         displayName: 'Prepare Environment for Generation'
 
       - script: |
+          pylint autorest
+        displayName: 'Pylint'
+      - script: |
+          mypy autorest
+        displayName: 'Mypy'
+      - script: |
+          pytest test/unittests
+        displayName: 'Unit tests'
+      - script: |
+          inv regenerate
+        displayName: 'Regenerate Code'
+      - script: |
+          git add -A  # 'add' first so 'diff' includes untracked files
+          git diff --staged -w
+        displayName: 'Diff regeneration'
+      - task: UsePythonVersion@0
+        displayName: 'Use Python $(PythonVersion)'
+        inputs:
+          versionSpec: $(PythonVersion)
+
+      - script: |
+          pip install pip==20.2
+          pip install tox coverage
+        displayName: "Install Env Specific Reqs in Target PyVersion $(PythonVersion)"
+      - script: |
+          cd $(TestFolder)/azure/legacy
+          tox -e ci
+        displayName: 'Execute legacy "azure" Tests - Python $(PythonVersion)'
+      - task: PublishTestResults@2
+        condition: always()
+        displayName: 'Publish legacy "azure" Test Results'
+        inputs:
+          testRunTitle: "$(OSName) Python $(PythonVersion) - legacy azure"
+          searchFolder: "$(TestFolder)/azure/legacy"
+
+      - script: |
+          cd $(TestFolder)/azure/low-level
+          tox -e ci
+        displayName: 'Execute low-level "azure" Tests - Python $(PythonVersion)'
+        condition: and(succeededOrFailed(), ne(variables['PythonVersion'], '2.7'))
+      - task: PublishTestResults@2
+        condition: and(succeededOrFailed(), ne(variables['PythonVersion'], '2.7'))
+        displayName: 'Publish low-level "azure" Test Results'
+        inputs:
+          testRunTitle: "$(OSName) Python $(PythonVersion) - low-level azure"
+          searchFolder: "$(TestFolder)/azure/low-level"
+
+      - script: |
+          cd $(TestFolder)/azure/version-tolerant
+          tox -e ci
+        displayName: 'Execute version-tolerant "azure" Tests - Python $(PythonVersion)'
+        condition: and(succeededOrFailed(), ne(variables['PythonVersion'], '2.7'))
+      - task: PublishTestResults@2
+        condition: and(succeededOrFailed(), ne(variables['PythonVersion'], '2.7'))
+        displayName: 'Publish version-tolerant "azure" Test Results'
+        inputs:
+          testRunTitle: "$(OSName) Python $(PythonVersion) - version-tolerant azure"
+          searchFolder: "$(TestFolder)/azure/version-tolerant"
+
+      - script: |
+          cd $(TestFolder)/vanilla/legacy
+          tox -e ci
+        displayName: 'Execute legacy "vanilla" Tests - Python $(PythonVersion)'
+      - task: PublishTestResults@2
+        displayName: 'Publish legacy "vanilla" Test Results'
+        condition: always()
+        inputs:
+          testRunTitle: "$(OSName) Python $(PythonVersion) - legacy vanilla"
+          searchFolder: "$(TestFolder)/vanilla/legacy"
+
+      - script: |
+          cd $(TestFolder)/vanilla/low-level
+          tox -e ci
+        displayName: 'Execute low level "vanilla" Tests - Python $(PythonVersion)'
+        condition: and(succeededOrFailed(), ne(variables['PythonVersion'], '2.7'))
+      - task: PublishTestResults@2
+        displayName: 'Publish low level "vanilla" Test Results'
+        condition: and(succeededOrFailed(), ne(variables['PythonVersion'], '2.7'))
+        inputs:
+          testRunTitle: "$(OSName) Python $(PythonVersion) - low level vanilla"
+          searchFolder: "$(TestFolder)/vanilla/low-level"
+
+      - script: |
           cd $(TestFolder)/vanilla/version-tolerant
           tox -e ci
           tox -e lint
@@ -75,3 +158,57 @@ jobs:
         inputs:
           testRunTitle: "$(OSName) Python $(PythonVersion) - version-tolerant vanilla"
           searchFolder: "$(TestFolder)/vanilla/version-tolerant"
+
+      - script: |
+          cd $(TestFolder)/llc/low-level
+          tox -e ci
+        displayName: 'Execute low level update "llc" Tests - Python $(PythonVersion)'
+        condition: and(succeededOrFailed(), ne(variables['PythonVersion'], '2.7'))
+      - script: |
+          cd $(TestFolder)/llc/version-tolerant
+          tox -e ci
+        displayName: 'Execute version-tolerant update "llc" Tests - Python $(PythonVersion)'
+        condition: and(succeededOrFailed(), ne(variables['PythonVersion'], '2.7'))
+      - script: |
+          cd $(TestFolder)/multiapi
+          tox -e ci
+        displayName: 'Execute "multiapi" Tests - Python $(PythonVersion)'
+      - task: PublishTestResults@2
+        displayName: 'Publish "multiapi" Test Results'
+        condition: always()
+        inputs:
+          testRunTitle: "$(OSName) Python $(PythonVersion) - multiapi"
+          searchFolder: "$(TestFolder)/multiapi"
+
+      - script: |
+          npm pack
+          AbsolutePkgPath=$(find "$(pwd)" -name "autorest-python-*" -maxdepth 1)
+          cd ..
+          npm install $AbsolutePkgPath
+        displayName: "Test tarball"
+
+      - script: |
+          npm run coverage -- publish --repo=$(Build.Repository.Name) --ref=$(Build.SourceBranch) --githubToken=$(github-token) --azStorageAccount=$(storage-coverage-user) --azStorageAccessKey=$(storage-coverage-pass) --coverageDirectory=$(AUTOREST_TESTSERVER_COVERAGE_DIRECTORY)
+        workingDirectory: node_modules/@microsoft.azure/autorest.testserver
+        displayName: "Publish coverage report to storage account"
+
+      - ${{ if eq(and(ne(variables['Build.Reason'], 'PullRequest'), ne(variables['PythonVersion'], '2.7')), 'True') }}:
+        - script: |
+            git clone https://github.com/Azure/azure-sdk-for-python.git --depth=1 --branch main $(Build.SourcesDirectory)/regenerated/
+          displayName: 'Clone python repo'
+
+        - script: |
+            pip install tox-monorepo
+          displayName: 'Prepare environment'
+          workingDirectory: '$(Build.SourcesDirectory)/regenerated/'
+
+        - ${{ each package in parameters.VerificationPackages }}:
+          - script: |
+              autorest ./swagger/README.md --use=$(Build.SourcesDirectory)
+            displayName: 'Regenerate target package ${{ package.name }}'
+            workingDirectory: '$(Build.SourcesDirectory)/regenerated/sdk/${{ package.service }}/${{ package.name }}'
+
+          - script: |
+              tox -e whl -c ../../../eng/tox/tox.ini
+            displayName: 'Run tests for ${{ package.name }}'
+            workingDirectory: '$(Build.SourcesDirectory)/regenerated/sdk/${{ package.service }}/${{ package.name }}'
