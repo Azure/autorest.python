@@ -181,6 +181,11 @@ jobs:
         displayName: 'Execute version-tolerant update "llc" Tests - Python $(PythonVersion)'
         condition: and(succeededOrFailed(), ne(variables['PythonVersion'], '2.7'))
       - script: |
+          cd $(TestFolder)/llc/version-tolerant
+          tox -e lint
+        displayName: 'Lint version-tolerant "llc" Tests - Python $(PythonVersion)'
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.6'))
+      - script: |
           cd $(TestFolder)/multiapi
           tox -e ci
         displayName: 'Execute "multiapi" Tests - Python $(PythonVersion)'
