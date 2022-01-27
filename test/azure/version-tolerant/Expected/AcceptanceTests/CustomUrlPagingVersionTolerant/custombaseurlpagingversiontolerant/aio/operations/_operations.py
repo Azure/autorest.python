@@ -131,8 +131,6 @@ class PagingOperations:
 
         return AsyncItemPaged(get_next, extract_data)
 
-    get_pages_partial_url.metadata = {"url": "/paging/customurl/partialnextlink"}  # type: ignore
-
     @distributed_trace
     def get_pages_partial_url_operation(self, account_name: str, **kwargs: Any) -> AsyncIterable[JSONType]:
         """A paging operation that combines custom url, paging and partial URL with next operation.
@@ -206,5 +204,3 @@ class PagingOperations:
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
-
-    get_pages_partial_url_operation.metadata = {"url": "/paging/customurl/partialnextlinkop"}  # type: ignore
