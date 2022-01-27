@@ -1,5 +1,19 @@
 # Change Log
 
+### 2022-xx-xx - 5.12.6
+
+| Library | Min Version
+| --------------- | -------
+|`@autorest/core` |  `3.6.2`
+|`@autorest/modelerfour` | `4.19.1`
+|`azure-core` dep of generated code | `1.20.1`
+|`msrest` dep of generated code | `0.6.21`
+|`azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`
+
+**Bug Fixes**
+
+- Remove unused `metadata` value for paging and long running operations with `version-tolerant` generations #1131
+
 ### 2022-01-26 - 5.12.5
 
 | Library | Min Version

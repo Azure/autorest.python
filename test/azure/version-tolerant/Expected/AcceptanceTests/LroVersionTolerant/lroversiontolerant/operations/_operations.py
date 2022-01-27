@@ -1474,8 +1474,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_put200_succeeded.metadata = {"url": "/lro/put/200/succeeded"}  # type: ignore
-
     def _patch200_succeeded_ignore_headers_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1616,8 +1614,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_patch200_succeeded_ignore_headers.metadata = {"url": "/lro/patch/200/succeeded/ignoreheaders"}  # type: ignore
 
     def _patch201_retry_with_async_header_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
@@ -1760,8 +1756,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_patch201_retry_with_async_header.metadata = {"url": "/lro/patch/201/retry/onlyAsyncHeader"}  # type: ignore
 
     def _patch202_retry_with_async_and_location_header_initial(
         self, product: JSONType = None, **kwargs: Any
@@ -1911,8 +1905,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_patch202_retry_with_async_and_location_header.metadata = {"url": "/lro/patch/202/retry/asyncAndLocationHeader"}  # type: ignore
-
     def _put201_succeeded_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -2044,8 +2036,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_put201_succeeded.metadata = {"url": "/lro/put/201/succeeded"}  # type: ignore
-
     def _post202_list_initial(self, **kwargs: Any) -> Optional[List[JSONType]]:
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[List[JSONType]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -2154,8 +2144,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_post202_list.metadata = {"url": "/lro/list"}  # type: ignore
 
     def _put200_succeeded_no_state_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
@@ -2288,8 +2276,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_put200_succeeded_no_state.metadata = {"url": "/lro/put/200/succeeded/nostate"}  # type: ignore
-
     def _put202_retry200_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -2421,8 +2407,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_put202_retry200.metadata = {"url": "/lro/put/202/retry/200"}  # type: ignore
 
     def _put201_creating_succeeded200_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
@@ -2563,8 +2547,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_put201_creating_succeeded200.metadata = {"url": "/lro/put/201/creating/succeeded/200"}  # type: ignore
-
     def _put200_updating_succeeded204_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -2696,8 +2678,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_put200_updating_succeeded204.metadata = {"url": "/lro/put/200/updating/succeeded/200"}  # type: ignore
 
     def _put201_creating_failed200_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
@@ -2838,8 +2818,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_put201_creating_failed200.metadata = {"url": "/lro/put/201/created/failed/200"}  # type: ignore
-
     def _put200_acceptedcanceled200_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -2971,8 +2949,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_put200_acceptedcanceled200.metadata = {"url": "/lro/put/200/accepted/canceled/200"}  # type: ignore
 
     def _put_no_header_in_retry_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
@@ -3110,8 +3086,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_put_no_header_in_retry.metadata = {"url": "/lro/put/noheader/202/200"}  # type: ignore
 
     def _put_async_retry_succeeded_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
@@ -3259,8 +3233,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_put_async_retry_succeeded.metadata = {"url": "/lro/putasync/retry/succeeded"}  # type: ignore
-
     def _put_async_no_retry_succeeded_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -3404,8 +3376,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_put_async_no_retry_succeeded.metadata = {"url": "/lro/putasync/noretry/succeeded"}  # type: ignore
 
     def _put_async_retry_failed_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
@@ -3553,8 +3523,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_put_async_retry_failed.metadata = {"url": "/lro/putasync/retry/failed"}  # type: ignore
-
     def _put_async_no_retrycanceled_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -3699,8 +3667,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_put_async_no_retrycanceled.metadata = {"url": "/lro/putasync/noretry/canceled"}  # type: ignore
-
     def _put_async_no_header_in_retry_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -3843,8 +3809,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_put_async_no_header_in_retry.metadata = {"url": "/lro/putasync/noheader/201/200"}  # type: ignore
-
     def _put_non_resource_initial(self, sku: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -3951,8 +3915,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_put_non_resource.metadata = {"url": "/lro/putnonresource/202/200"}  # type: ignore
-
     def _put_async_non_resource_initial(self, sku: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -4058,8 +4020,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_put_async_non_resource.metadata = {"url": "/lro/putnonresourceasync/202/200"}  # type: ignore
 
     def _put_sub_resource_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
@@ -4177,8 +4137,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_put_sub_resource.metadata = {"url": "/lro/putsubresource/202/200"}  # type: ignore
-
     def _put_async_sub_resource_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -4295,8 +4253,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_put_async_sub_resource.metadata = {"url": "/lro/putsubresourceasync/202/200"}  # type: ignore
-
     def _delete_provisioning202_accepted200_succeeded_initial(self, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -4406,8 +4362,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_delete_provisioning202_accepted200_succeeded.metadata = {"url": "/lro/delete/provisioning/202/accepted/200/succeeded"}  # type: ignore
 
     def _delete_provisioning202_deleting_failed200_initial(self, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
@@ -4519,8 +4473,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_delete_provisioning202_deleting_failed200.metadata = {"url": "/lro/delete/provisioning/202/deleting/200/failed"}  # type: ignore
-
     def _delete_provisioning202_deletingcanceled200_initial(self, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -4631,8 +4583,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_delete_provisioning202_deletingcanceled200.metadata = {"url": "/lro/delete/provisioning/202/deleting/200/canceled"}  # type: ignore
-
     def _delete204_succeeded_initial(self, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -4695,8 +4645,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_delete204_succeeded.metadata = {"url": "/lro/delete/204/succeeded"}  # type: ignore
 
     def _delete202_retry200_initial(self, **kwargs: Any) -> Optional[JSONType]:
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
@@ -4803,8 +4751,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_delete202_retry200.metadata = {"url": "/lro/delete/202/retry/200"}  # type: ignore
-
     def _delete202_no_retry204_initial(self, **kwargs: Any) -> Optional[JSONType]:
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -4910,8 +4856,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_delete202_no_retry204.metadata = {"url": "/lro/delete/202/noretry/204"}  # type: ignore
-
     def _delete_no_header_in_retry_initial(self, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -4980,8 +4924,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_delete_no_header_in_retry.metadata = {"url": "/lro/delete/noheader"}  # type: ignore
-
     def _delete_async_no_header_in_retry_initial(self, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -5049,8 +4991,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_delete_async_no_header_in_retry.metadata = {"url": "/lro/deleteasync/noheader/202/204"}  # type: ignore
 
     def _delete_async_retry_succeeded_initial(self, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -5123,8 +5063,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_delete_async_retry_succeeded.metadata = {"url": "/lro/deleteasync/retry/succeeded"}  # type: ignore
-
     def _delete_async_no_retry_succeeded_initial(self, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -5195,8 +5133,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_delete_async_no_retry_succeeded.metadata = {"url": "/lro/deleteasync/noretry/succeeded"}  # type: ignore
 
     def _delete_async_retry_failed_initial(self, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -5269,8 +5205,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_delete_async_retry_failed.metadata = {"url": "/lro/deleteasync/retry/failed"}  # type: ignore
-
     def _delete_async_retrycanceled_initial(self, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -5341,8 +5275,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_delete_async_retrycanceled.metadata = {"url": "/lro/deleteasync/retry/canceled"}  # type: ignore
 
     def _post200_with_payload_initial(self, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
@@ -5436,8 +5368,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_post200_with_payload.metadata = {"url": "/lro/post/payload/200"}  # type: ignore
 
     def _post202_retry200_initial(self, product: JSONType = None, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -5542,8 +5472,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_post202_retry200.metadata = {"url": "/lro/post/202/retry/200"}  # type: ignore
 
     def _post202_no_retry204_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
@@ -5684,8 +5612,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_post202_no_retry204.metadata = {"url": "/lro/post/202/noretry/204"}  # type: ignore
-
     def _post_double_headers_final_location_get_initial(self, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -5785,8 +5711,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_post_double_headers_final_location_get.metadata = {"url": "/lro/LROPostDoubleHeadersFinalLocationGet"}  # type: ignore
-
     def _post_double_headers_final_azure_header_get_initial(self, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -5885,8 +5809,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_post_double_headers_final_azure_header_get.metadata = {"url": "/lro/LROPostDoubleHeadersFinalAzureHeaderGet"}  # type: ignore
 
     def _post_double_headers_final_azure_header_get_default_initial(self, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
@@ -5988,8 +5910,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_post_double_headers_final_azure_header_get_default.metadata = {"url": "/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault"}  # type: ignore
 
     def _post_async_retry_succeeded_initial(self, product: JSONType = None, **kwargs: Any) -> Optional[JSONType]:
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
@@ -6133,8 +6053,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_post_async_retry_succeeded.metadata = {"url": "/lro/postasync/retry/succeeded"}  # type: ignore
-
     def _post_async_no_retry_succeeded_initial(self, product: JSONType = None, **kwargs: Any) -> Optional[JSONType]:
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -6277,8 +6195,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_post_async_no_retry_succeeded.metadata = {"url": "/lro/postasync/noretry/succeeded"}  # type: ignore
-
     def _post_async_retry_failed_initial(self, product: JSONType = None, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -6387,8 +6303,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_post_async_retry_failed.metadata = {"url": "/lro/postasync/retry/failed"}  # type: ignore
-
     def _post_async_retrycanceled_initial(self, product: JSONType = None, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -6496,8 +6410,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_post_async_retrycanceled.metadata = {"url": "/lro/postasync/retry/canceled"}  # type: ignore
 
 
 class LRORetrysOperations(object):
@@ -6657,8 +6569,6 @@ class LRORetrysOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_put201_creating_succeeded200.metadata = {"url": "/lro/retryerror/put/201/creating/succeeded/200"}  # type: ignore
-
     def _put_async_relative_retry_succeeded_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -6805,8 +6715,6 @@ class LRORetrysOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_put_async_relative_retry_succeeded.metadata = {"url": "/lro/retryerror/putasync/retry/succeeded"}  # type: ignore
-
     def _delete_provisioning202_accepted200_succeeded_initial(self, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -6917,8 +6825,6 @@ class LRORetrysOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_delete_provisioning202_accepted200_succeeded.metadata = {"url": "/lro/retryerror/delete/provisioning/202/accepted/200/succeeded"}  # type: ignore
-
     def _delete202_retry200_initial(self, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -6986,8 +6892,6 @@ class LRORetrysOperations(object):
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_delete202_retry200.metadata = {"url": "/lro/retryerror/delete/202/retry/200"}  # type: ignore
 
     def _delete_async_relative_retry_succeeded_initial(self, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -7059,8 +6963,6 @@ class LRORetrysOperations(object):
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_delete_async_relative_retry_succeeded.metadata = {"url": "/lro/retryerror/deleteasync/retry/succeeded"}  # type: ignore
 
     def _post202_retry200_initial(self, product: JSONType = None, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -7165,8 +7067,6 @@ class LRORetrysOperations(object):
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_post202_retry200.metadata = {"url": "/lro/retryerror/post/202/retry/200"}  # type: ignore
 
     def _post_async_relative_retry_succeeded_initial(self, product: JSONType = None, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -7275,8 +7175,6 @@ class LRORetrysOperations(object):
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_post_async_relative_retry_succeeded.metadata = {"url": "/lro/retryerror/postasync/retry/succeeded"}  # type: ignore
 
 
 class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
@@ -7434,8 +7332,6 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_put_non_retry400.metadata = {"url": "/lro/nonretryerror/put/400"}  # type: ignore
-
     def _put_non_retry201_creating400_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -7573,8 +7469,6 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_put_non_retry201_creating400.metadata = {"url": "/lro/nonretryerror/put/201/creating/400"}  # type: ignore
 
     def _put_non_retry201_creating400_invalid_json_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
@@ -7715,8 +7609,6 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_put_non_retry201_creating400_invalid_json.metadata = {"url": "/lro/nonretryerror/put/201/creating/400/invalidjson"}  # type: ignore
 
     def _put_async_relative_retry400_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
@@ -7863,8 +7755,6 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_put_async_relative_retry400.metadata = {"url": "/lro/nonretryerror/putasync/retry/400"}  # type: ignore
-
     def _delete_non_retry400_initial(self, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -7932,8 +7822,6 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_delete_non_retry400.metadata = {"url": "/lro/nonretryerror/delete/400"}  # type: ignore
-
     def _delete202_non_retry400_initial(self, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -8000,8 +7888,6 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_delete202_non_retry400.metadata = {"url": "/lro/nonretryerror/delete/202/retry/400"}  # type: ignore
 
     def _delete_async_relative_retry400_initial(self, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -8073,8 +7959,6 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_delete_async_relative_retry400.metadata = {"url": "/lro/nonretryerror/deleteasync/retry/400"}  # type: ignore
 
     def _post_non_retry400_initial(self, product: JSONType = None, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -8179,8 +8063,6 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_post_non_retry400.metadata = {"url": "/lro/nonretryerror/post/400"}  # type: ignore
-
     def _post202_non_retry400_initial(self, product: JSONType = None, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -8283,8 +8165,6 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_post202_non_retry400.metadata = {"url": "/lro/nonretryerror/post/202/retry/400"}  # type: ignore
 
     def _post_async_relative_retry400_initial(self, product: JSONType = None, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -8392,8 +8272,6 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_post_async_relative_retry400.metadata = {"url": "/lro/nonretryerror/postasync/retry/400"}  # type: ignore
 
     def _put_error201_no_provisioning_state_payload_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
@@ -8533,8 +8411,6 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_put_error201_no_provisioning_state_payload.metadata = {"url": "/lro/error/put/201/noprovisioningstatepayload"}  # type: ignore
 
     def _put_async_relative_retry_no_status_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
@@ -8681,8 +8557,6 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_put_async_relative_retry_no_status.metadata = {"url": "/lro/error/putasync/retry/nostatus"}  # type: ignore
 
     def _put_async_relative_retry_no_status_payload_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
@@ -8832,8 +8706,6 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_put_async_relative_retry_no_status_payload.metadata = {"url": "/lro/error/putasync/retry/nostatuspayload"}  # type: ignore
-
     def _delete204_succeeded_initial(self, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -8896,8 +8768,6 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_delete204_succeeded.metadata = {"url": "/lro/error/delete/204/nolocation"}  # type: ignore
 
     def _delete_async_relative_retry_no_status_initial(self, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -8969,8 +8839,6 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_delete_async_relative_retry_no_status.metadata = {"url": "/lro/error/deleteasync/retry/nostatus"}  # type: ignore
 
     def _post202_no_location_initial(self, product: JSONType = None, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -9075,8 +8943,6 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_post202_no_location.metadata = {"url": "/lro/error/post/202/nolocation"}  # type: ignore
 
     def _post_async_relative_retry_no_payload_initial(self, product: JSONType = None, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -9185,8 +9051,6 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_post_async_relative_retry_no_payload.metadata = {"url": "/lro/error/postasync/retry/nopayload"}  # type: ignore
 
     def _put200_invalid_json_initial(self, product: JSONType = None, **kwargs: Any) -> Optional[JSONType]:
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
@@ -9320,8 +9184,6 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_put200_invalid_json.metadata = {"url": "/lro/error/put/200/invalidjson"}  # type: ignore
 
     def _put_async_relative_retry_invalid_header_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
@@ -9470,8 +9332,6 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_put_async_relative_retry_invalid_header.metadata = {"url": "/lro/error/putasync/retry/invalidheader"}  # type: ignore
 
     def _put_async_relative_retry_invalid_json_polling_initial(
         self, product: JSONType = None, **kwargs: Any
@@ -9623,8 +9483,6 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_put_async_relative_retry_invalid_json_polling.metadata = {"url": "/lro/error/putasync/retry/invalidjsonpolling"}  # type: ignore
-
     def _delete202_retry_invalid_header_initial(self, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -9692,8 +9550,6 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_delete202_retry_invalid_header.metadata = {"url": "/lro/error/delete/202/retry/invalidheader"}  # type: ignore
 
     def _delete_async_relative_retry_invalid_header_initial(self, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -9766,8 +9622,6 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_delete_async_relative_retry_invalid_header.metadata = {"url": "/lro/error/deleteasync/retry/invalidheader"}  # type: ignore
-
     def _delete_async_relative_retry_invalid_json_polling_initial(self, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -9838,8 +9692,6 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_delete_async_relative_retry_invalid_json_polling.metadata = {"url": "/lro/error/deleteasync/retry/invalidjsonpolling"}  # type: ignore
 
     def _post202_retry_invalid_header_initial(self, product: JSONType = None, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -9944,8 +9796,6 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_post202_retry_invalid_header.metadata = {"url": "/lro/error/post/202/retry/invalidheader"}  # type: ignore
 
     def _post_async_relative_retry_invalid_header_initial(self, product: JSONType = None, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -10057,8 +9907,6 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_post_async_relative_retry_invalid_header.metadata = {"url": "/lro/error/postasync/retry/invalidheader"}  # type: ignore
-
     def _post_async_relative_retry_invalid_json_polling_initial(self, product: JSONType = None, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -10168,8 +10016,6 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_post_async_relative_retry_invalid_json_polling.metadata = {"url": "/lro/error/postasync/retry/invalidjsonpolling"}  # type: ignore
 
 
 class LROsCustomHeaderOperations(object):
@@ -10337,8 +10183,6 @@ class LROsCustomHeaderOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_put_async_retry_succeeded.metadata = {"url": "/lro/customheader/putasync/retry/succeeded"}  # type: ignore
-
     def _put201_creating_succeeded200_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -10479,8 +10323,6 @@ class LROsCustomHeaderOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_put201_creating_succeeded200.metadata = {"url": "/lro/customheader/put/201/creating/succeeded/200"}  # type: ignore
-
     def _post202_retry200_initial(self, product: JSONType = None, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -10585,8 +10427,6 @@ class LROsCustomHeaderOperations(object):
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_post202_retry200.metadata = {"url": "/lro/customheader/post/202/retry/200"}  # type: ignore
 
     def _post_async_retry_succeeded_initial(self, product: JSONType = None, **kwargs: Any) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -10696,5 +10536,3 @@ class LROsCustomHeaderOperations(object):
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_post_async_retry_succeeded.metadata = {"url": "/lro/customheader/postasync/retry/succeeded"}  # type: ignore

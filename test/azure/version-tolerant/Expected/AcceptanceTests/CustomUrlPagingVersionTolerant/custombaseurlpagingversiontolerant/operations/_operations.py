@@ -172,8 +172,6 @@ class PagingOperations(object):
 
         return ItemPaged(get_next, extract_data)
 
-    get_pages_partial_url.metadata = {"url": "/paging/customurl/partialnextlink"}  # type: ignore
-
     @distributed_trace
     def get_pages_partial_url_operation(self, account_name: str, **kwargs: Any) -> Iterable[JSONType]:
         """A paging operation that combines custom url, paging and partial URL with next operation.
@@ -249,5 +247,3 @@ class PagingOperations(object):
             return pipeline_response
 
         return ItemPaged(get_next, extract_data)
-
-    get_pages_partial_url_operation.metadata = {"url": "/paging/customurl/partialnextlinkop"}  # type: ignore

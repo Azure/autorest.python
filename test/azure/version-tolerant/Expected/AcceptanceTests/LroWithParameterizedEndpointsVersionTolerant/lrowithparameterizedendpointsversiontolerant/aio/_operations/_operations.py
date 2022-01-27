@@ -134,8 +134,6 @@ class LROWithParamaterizedEndpointsOperationsMixin:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_poll_with_parameterized_endpoints.metadata = {"url": "/lroParameterizedEndpoints"}  # type: ignore
-
     async def _poll_with_constant_parameterized_endpoints_initial(
         self, account_name: str, **kwargs: Any
     ) -> Optional[str]:
@@ -242,5 +240,3 @@ class LROWithParamaterizedEndpointsOperationsMixin:
             )
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_poll_with_constant_parameterized_endpoints.metadata = {"url": "/lroConstantParameterizedEndpoints/{constantParameter}"}  # type: ignore

@@ -36,10 +36,10 @@ jobs:
           OSVmImage: "MMSUbuntu20.04"
           PythonVersion: "3.6"
           CoverageArg: ""
-        Linux_Python38:
+        Linux_Python310:
           OSName: "Linux"
           OSVmImage: "MMSUbuntu20.04"
-          PythonVersion: "3.8"
+          PythonVersion: "3.10"
 
     pool:
       name: azsdk-pool-mms-ubuntu-2004-general

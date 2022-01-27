@@ -166,8 +166,6 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_poll_with_parameterized_endpoints.metadata = {"url": "/lroParameterizedEndpoints"}  # type: ignore
-
     def _poll_with_constant_parameterized_endpoints_initial(self, account_name: str, **kwargs: Any) -> Optional[str]:
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -270,5 +268,3 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
             )
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-
-    begin_poll_with_constant_parameterized_endpoints.metadata = {"url": "/lroConstantParameterizedEndpoints/{constantParameter}"}  # type: ignore

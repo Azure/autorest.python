@@ -333,8 +333,6 @@ class StorageAccountsOperations:
         else:
             return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_create.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"}  # type: ignore
-
     @distributed_trace_async
     async def delete(self, resource_group_name: str, account_name: str, **kwargs: Any) -> None:
         """Deletes a storage account in Microsoft Azure.
@@ -849,8 +847,6 @@ class StorageAccountsOperations:
 
         return AsyncItemPaged(get_next, extract_data)
 
-    list.metadata = {"url": "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts"}  # type: ignore
-
     @distributed_trace
     def list_by_resource_group(self, resource_group_name: str, **kwargs: Any) -> AsyncIterable[JSONType]:
         """Lists all the storage accounts available under the given resource group. Note that storage keys
@@ -997,8 +993,6 @@ class StorageAccountsOperations:
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
-
-    list_by_resource_group.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts"}  # type: ignore
 
     @distributed_trace_async
     async def regenerate_key(

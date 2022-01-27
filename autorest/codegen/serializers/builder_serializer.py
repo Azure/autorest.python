@@ -986,7 +986,8 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
 
     @staticmethod
     def get_metadata_url(builder) -> str:
-        return f"{builder.python_name}.metadata = {{'url': '{ builder.request_builder.url }'}}  # type: ignore"
+        url = builder.request_builder.url.replace("'", "\\'")
+        return f"{builder.python_name}.metadata = {{'url': '{ url }'}}  # type: ignore"
 
 class _SyncOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=abstract-method
     @property
