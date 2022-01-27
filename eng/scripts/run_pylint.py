@@ -14,11 +14,31 @@ import logging
 import sys
 from pathlib import Path
 import argparse
+from multiprocessing import Pool
 logging.getLogger().setLevel(logging.INFO)
 
 root_dir = os.path.abspath(os.path.join(os.path.abspath(__file__), "..", "..", ".."))
 rfc_file_location = os.path.join(root_dir, "pylintrc")
 lint_plugin_path = os.path.join(root_dir, "scripts/pylint_custom_plugin")
+
+def _single_dir_pylint(mod):
+    inner_class = next(d for d in mod.iterdir() if d.is_dir() and not str(d).endswith("egg-info"))
+    try:
+        check_call(
+            [
+                sys.executable,
+                "-m",
+                "pylint",
+                "--rcfile={}".format(rfc_file_location),
+                "--output-format=parseable",
+                str(inner_class.absolute()),
+            ]
+        )
+    except CalledProcessError as e:
+        logging.error(
+            "{} exited with linting error {}".format(inner_class.stem, e.returncode)
+        )
+        exit(1)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
@@ -52,21 +72,5 @@ if __name__ == "__main__":
     dirs = [d for d in pkg_dir.iterdir() if d.is_dir()]
     if args.file_name:
         dirs = [d for d in dirs if d.stem.lower() == args.file_name.lower()]
-    for mod in dirs:
-        inner_class = next(d for d in mod.iterdir() if d.is_dir() and not str(d).endswith("egg-info"))
-        try:
-            check_call(
-                [
-                    sys.executable,
-                    "-m",
-                    "pylint",
-                    "--rcfile={}".format(rfc_file_location),
-                    "--output-format=parseable",
-                    str(inner_class.absolute()),
-                ]
-            )
-        except CalledProcessError as e:
-            logging.error(
-                "{} exited with linting error {}".format(inner_class.stem, e.returncode)
-            )
-            exit(1)
+    with Pool() as pool:
+        result = pool.map(_single_dir_pylint, dirs)
