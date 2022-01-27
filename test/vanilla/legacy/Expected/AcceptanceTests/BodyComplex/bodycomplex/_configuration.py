@@ -18,13 +18,14 @@ if TYPE_CHECKING:
     from typing import Any
 
 
-class AutoRestComplexTestServiceConfiguration(Configuration):
+class AutoRestComplexTestServiceConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
     """Configuration for AutoRestComplexTestService.
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
-    :keyword api_version: Api Version. The default value is "2016-02-29". Note that overriding this default value may result in unsupported behavior.
+    :keyword api_version: Api Version. The default value is "2016-02-29". Note that overriding this
+     default value may result in unsupported behavior.
     :paramtype api_version: str
     """
 

@@ -21,7 +21,9 @@ if TYPE_CHECKING:
     from azure.core.credentials import TokenCredential
 
 
-class AutoRestLongRunningOperationTestServiceConfiguration(Configuration):
+class AutoRestLongRunningOperationTestServiceConfiguration(
+    Configuration
+):  # pylint: disable=too-many-instance-attributes
     """Configuration for AutoRestLongRunningOperationTestService.
 
     Note that all parameters used to create this instance are saved as instance

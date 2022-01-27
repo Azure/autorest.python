@@ -18,7 +18,7 @@ if TYPE_CHECKING:
     from typing import Any
 
 
-class AutoRestIntegerTestServiceConfiguration(Configuration):
+class AutoRestIntegerTestServiceConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
     """Configuration for AutoRestIntegerTestService.
 
     Note that all parameters used to create this instance are saved as instance

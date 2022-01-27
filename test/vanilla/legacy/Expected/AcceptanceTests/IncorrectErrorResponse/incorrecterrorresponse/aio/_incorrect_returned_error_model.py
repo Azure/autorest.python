@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Awaitable, Optional
+from typing import Any, Awaitable
 
 from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
@@ -19,7 +19,8 @@ from .operations import IncorrectReturnedErrorModelOperationsMixin
 
 
 class IncorrectReturnedErrorModel(IncorrectReturnedErrorModelOperationsMixin):
-    """Test to see when throwing an HttpResponseError whether we swallow error model deserialization errors.
+    """Test to see when throwing an HttpResponseError whether we swallow error model deserialization
+    errors.
 
     :param base_url: Service URL. Default value is 'http://localhost:3000'.
     :type base_url: str
