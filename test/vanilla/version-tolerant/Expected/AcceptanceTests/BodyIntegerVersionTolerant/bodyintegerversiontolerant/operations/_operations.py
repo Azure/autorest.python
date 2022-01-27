@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -6,9 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-import functools
-from typing import Any, Callable, Dict, Generic, Optional, TypeVar
-import warnings
+from typing import Any, Callable, Dict, Optional, TypeVar
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -252,7 +251,9 @@ class IntOperations(object):
         request = build_int_get_null_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -268,8 +269,6 @@ class IntOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_null.metadata = {"url": "/int/null"}  # type: ignore
 
     @distributed_trace
     def get_invalid(self, **kwargs: Any) -> int:
@@ -286,7 +285,9 @@ class IntOperations(object):
         request = build_int_get_invalid_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -302,8 +303,6 @@ class IntOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_invalid.metadata = {"url": "/int/invalid"}  # type: ignore
 
     @distributed_trace
     def get_overflow_int32(self, **kwargs: Any) -> int:
@@ -320,7 +319,9 @@ class IntOperations(object):
         request = build_int_get_overflow_int32_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -336,8 +337,6 @@ class IntOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_overflow_int32.metadata = {"url": "/int/overflowint32"}  # type: ignore
 
     @distributed_trace
     def get_underflow_int32(self, **kwargs: Any) -> int:
@@ -354,7 +353,9 @@ class IntOperations(object):
         request = build_int_get_underflow_int32_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -370,8 +371,6 @@ class IntOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_underflow_int32.metadata = {"url": "/int/underflowint32"}  # type: ignore
 
     @distributed_trace
     def get_overflow_int64(self, **kwargs: Any) -> int:
@@ -388,7 +387,9 @@ class IntOperations(object):
         request = build_int_get_overflow_int64_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -404,8 +405,6 @@ class IntOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_overflow_int64.metadata = {"url": "/int/overflowint64"}  # type: ignore
 
     @distributed_trace
     def get_underflow_int64(self, **kwargs: Any) -> int:
@@ -422,7 +421,9 @@ class IntOperations(object):
         request = build_int_get_underflow_int64_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -438,8 +439,6 @@ class IntOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_underflow_int64.metadata = {"url": "/int/underflowint64"}  # type: ignore
 
     @distributed_trace
     def put_max32(self, int_body: int, **kwargs: Any) -> None:
@@ -465,7 +464,9 @@ class IntOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -474,8 +475,6 @@ class IntOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_max32.metadata = {"url": "/int/max/32"}  # type: ignore
 
     @distributed_trace
     def put_max64(self, int_body: int, **kwargs: Any) -> None:
@@ -501,7 +500,9 @@ class IntOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -510,8 +511,6 @@ class IntOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_max64.metadata = {"url": "/int/max/64"}  # type: ignore
 
     @distributed_trace
     def put_min32(self, int_body: int, **kwargs: Any) -> None:
@@ -537,7 +536,9 @@ class IntOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -546,8 +547,6 @@ class IntOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_min32.metadata = {"url": "/int/min/32"}  # type: ignore
 
     @distributed_trace
     def put_min64(self, int_body: int, **kwargs: Any) -> None:
@@ -573,7 +572,9 @@ class IntOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -582,8 +583,6 @@ class IntOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_min64.metadata = {"url": "/int/min/64"}  # type: ignore
 
     @distributed_trace
     def get_unix_time(self, **kwargs: Any) -> datetime.datetime:
@@ -600,7 +599,9 @@ class IntOperations(object):
         request = build_int_get_unix_time_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -616,8 +617,6 @@ class IntOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_unix_time.metadata = {"url": "/int/unixtime"}  # type: ignore
 
     @distributed_trace
     def put_unix_time_date(self, int_body: datetime.datetime, **kwargs: Any) -> None:
@@ -643,7 +642,9 @@ class IntOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -652,8 +653,6 @@ class IntOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_unix_time_date.metadata = {"url": "/int/unixtime"}  # type: ignore
 
     @distributed_trace
     def get_invalid_unix_time(self, **kwargs: Any) -> datetime.datetime:
@@ -670,7 +669,9 @@ class IntOperations(object):
         request = build_int_get_invalid_unix_time_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -686,8 +687,6 @@ class IntOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_invalid_unix_time.metadata = {"url": "/int/invalidunixtime"}  # type: ignore
 
     @distributed_trace
     def get_null_unix_time(self, **kwargs: Any) -> Optional[datetime.datetime]:
@@ -704,7 +703,9 @@ class IntOperations(object):
         request = build_int_get_null_unix_time_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -720,5 +721,3 @@ class IntOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_null_unix_time.metadata = {"url": "/int/nullunixtime"}  # type: ignore

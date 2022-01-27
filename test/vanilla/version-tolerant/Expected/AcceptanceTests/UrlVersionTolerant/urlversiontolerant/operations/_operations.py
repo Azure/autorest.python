@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -6,9 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-import functools
-from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar
-import warnings
+from typing import Any, Callable, Dict, List, Optional, TypeVar
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -1165,7 +1164,7 @@ def build_path_items_get_all_with_values_request(
 ) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery"
+    url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery"  # pylint: disable=line-too-long
     path_format_arguments = {
         "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, "str"),
         "globalStringPath": _SERIALIZER.url("global_string_path", global_string_path, "str"),
@@ -1204,7 +1203,7 @@ def build_path_items_get_global_query_null_request(
 ) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery"
+    url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery"  # pylint: disable=line-too-long
     path_format_arguments = {
         "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, "str"),
         "globalStringPath": _SERIALIZER.url("global_string_path", global_string_path, "str"),
@@ -1243,7 +1242,7 @@ def build_path_items_get_global_and_local_query_null_request(
 ) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null"
+    url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null"  # pylint: disable=line-too-long
     path_format_arguments = {
         "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, "str"),
         "globalStringPath": _SERIALIZER.url("global_string_path", global_string_path, "str"),
@@ -1282,7 +1281,7 @@ def build_path_items_get_local_path_item_query_null_request(
 ) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null"
+    url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null"  # pylint: disable=line-too-long
     path_format_arguments = {
         "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, "str"),
         "globalStringPath": _SERIALIZER.url("global_string_path", global_string_path, "str"),
@@ -1309,7 +1308,7 @@ def build_path_items_get_local_path_item_query_null_request(
     return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
 
 
-class PathsOperations(object):
+class PathsOperations(object):  # pylint: disable=too-many-public-methods
     """PathsOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -1349,7 +1348,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1358,8 +1359,6 @@ class PathsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_boolean_true.metadata = {"url": "/paths/bool/true/{boolPath}"}  # type: ignore
 
     @distributed_trace
     def get_boolean_false(self, **kwargs: Any) -> None:
@@ -1383,7 +1382,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1392,8 +1393,6 @@ class PathsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_boolean_false.metadata = {"url": "/paths/bool/false/{boolPath}"}  # type: ignore
 
     @distributed_trace
     def get_int_one_million(self, **kwargs: Any) -> None:
@@ -1417,7 +1416,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1426,8 +1427,6 @@ class PathsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_int_one_million.metadata = {"url": "/paths/int/1000000/{intPath}"}  # type: ignore
 
     @distributed_trace
     def get_int_negative_one_million(self, **kwargs: Any) -> None:
@@ -1451,7 +1450,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1460,8 +1461,6 @@ class PathsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_int_negative_one_million.metadata = {"url": "/paths/int/-1000000/{intPath}"}  # type: ignore
 
     @distributed_trace
     def get_ten_billion(self, **kwargs: Any) -> None:
@@ -1485,7 +1484,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1494,8 +1495,6 @@ class PathsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_ten_billion.metadata = {"url": "/paths/long/10000000000/{longPath}"}  # type: ignore
 
     @distributed_trace
     def get_negative_ten_billion(self, **kwargs: Any) -> None:
@@ -1519,7 +1518,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1528,8 +1529,6 @@ class PathsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_negative_ten_billion.metadata = {"url": "/paths/long/-10000000000/{longPath}"}  # type: ignore
 
     @distributed_trace
     def float_scientific_positive(self, **kwargs: Any) -> None:
@@ -1553,7 +1552,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1562,8 +1563,6 @@ class PathsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    float_scientific_positive.metadata = {"url": "/paths/float/1.034E+20/{floatPath}"}  # type: ignore
 
     @distributed_trace
     def float_scientific_negative(self, **kwargs: Any) -> None:
@@ -1587,7 +1586,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1596,8 +1597,6 @@ class PathsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    float_scientific_negative.metadata = {"url": "/paths/float/-1.034E-20/{floatPath}"}  # type: ignore
 
     @distributed_trace
     def double_decimal_positive(self, **kwargs: Any) -> None:
@@ -1621,7 +1620,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1630,8 +1631,6 @@ class PathsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    double_decimal_positive.metadata = {"url": "/paths/double/9999999.999/{doublePath}"}  # type: ignore
 
     @distributed_trace
     def double_decimal_negative(self, **kwargs: Any) -> None:
@@ -1655,7 +1654,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1664,8 +1665,6 @@ class PathsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    double_decimal_negative.metadata = {"url": "/paths/double/-9999999.999/{doublePath}"}  # type: ignore
 
     @distributed_trace
     def string_unicode(self, **kwargs: Any) -> None:
@@ -1689,7 +1688,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1698,8 +1699,6 @@ class PathsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    string_unicode.metadata = {"url": "/paths/string/unicode/{stringPath}"}  # type: ignore
 
     @distributed_trace
     def string_url_encoded(self, **kwargs: Any) -> None:
@@ -1724,7 +1723,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1733,8 +1734,6 @@ class PathsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    string_url_encoded.metadata = {"url": "/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}"}  # type: ignore
 
     @distributed_trace
     def string_url_non_encoded(self, **kwargs: Any) -> None:
@@ -1761,7 +1760,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1770,8 +1771,6 @@ class PathsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    string_url_non_encoded.metadata = {"url": "/paths/string/begin!*'();:@&=+$,end/{stringPath}"}  # type: ignore
 
     @distributed_trace
     def string_empty(self, **kwargs: Any) -> None:
@@ -1795,7 +1794,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1804,8 +1805,6 @@ class PathsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    string_empty.metadata = {"url": "/paths/string/empty/{stringPath}"}  # type: ignore
 
     @distributed_trace
     def string_null(self, string_path: str, **kwargs: Any) -> None:
@@ -1826,7 +1825,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [400]:
@@ -1835,8 +1836,6 @@ class PathsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    string_null.metadata = {"url": "/paths/string/null/{stringPath}"}  # type: ignore
 
     @distributed_trace
     def enum_valid(self, enum_path: str, **kwargs: Any) -> None:
@@ -1858,7 +1857,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1867,8 +1868,6 @@ class PathsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    enum_valid.metadata = {"url": "/paths/enum/green%20color/{enumPath}"}  # type: ignore
 
     @distributed_trace
     def enum_null(self, enum_path: str, **kwargs: Any) -> None:
@@ -1890,7 +1889,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [400]:
@@ -1899,8 +1900,6 @@ class PathsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    enum_null.metadata = {"url": "/paths/string/null/{enumPath}"}  # type: ignore
 
     @distributed_trace
     def byte_multi_byte(self, byte_path: bytearray, **kwargs: Any) -> None:
@@ -1921,7 +1920,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1930,8 +1931,6 @@ class PathsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    byte_multi_byte.metadata = {"url": "/paths/byte/multibyte/{bytePath}"}  # type: ignore
 
     @distributed_trace
     def byte_empty(self, **kwargs: Any) -> None:
@@ -1955,7 +1954,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1964,8 +1965,6 @@ class PathsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    byte_empty.metadata = {"url": "/paths/byte/empty/{bytePath}"}  # type: ignore
 
     @distributed_trace
     def byte_null(self, byte_path: bytearray, **kwargs: Any) -> None:
@@ -1986,7 +1985,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [400]:
@@ -1995,8 +1996,6 @@ class PathsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    byte_null.metadata = {"url": "/paths/byte/null/{bytePath}"}  # type: ignore
 
     @distributed_trace
     def date_valid(self, **kwargs: Any) -> None:
@@ -2020,7 +2019,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2029,8 +2030,6 @@ class PathsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    date_valid.metadata = {"url": "/paths/date/2012-01-01/{datePath}"}  # type: ignore
 
     @distributed_trace
     def date_null(self, date_path: datetime.date, **kwargs: Any) -> None:
@@ -2052,7 +2051,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [400]:
@@ -2061,8 +2062,6 @@ class PathsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    date_null.metadata = {"url": "/paths/date/null/{datePath}"}  # type: ignore
 
     @distributed_trace
     def date_time_valid(self, **kwargs: Any) -> None:
@@ -2087,7 +2086,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2096,8 +2097,6 @@ class PathsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    date_time_valid.metadata = {"url": "/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}"}  # type: ignore
 
     @distributed_trace
     def date_time_null(self, date_time_path: datetime.datetime, **kwargs: Any) -> None:
@@ -2118,7 +2117,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [400]:
@@ -2127,8 +2128,6 @@ class PathsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    date_time_null.metadata = {"url": "/paths/datetime/null/{dateTimePath}"}  # type: ignore
 
     @distributed_trace
     def base64_url(self, base64_url_path: bytes, **kwargs: Any) -> None:
@@ -2149,7 +2148,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2158,8 +2159,6 @@ class PathsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    base64_url.metadata = {"url": "/paths/string/bG9yZW0/{base64UrlPath}"}  # type: ignore
 
     @distributed_trace
     def array_csv_in_path(self, array_path: List[str], **kwargs: Any) -> None:
@@ -2182,7 +2181,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2191,8 +2192,6 @@ class PathsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    array_csv_in_path.metadata = {"url": "/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}"}  # type: ignore
 
     @distributed_trace
     def unix_time_url(self, unix_time_url_path: datetime.datetime, **kwargs: Any) -> None:
@@ -2213,7 +2212,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2223,10 +2224,8 @@ class PathsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    unix_time_url.metadata = {"url": "/paths/int/1460505600/{unixTimeUrlPath}"}  # type: ignore
 
-
-class QueriesOperations(object):
+class QueriesOperations(object):  # pylint: disable=too-many-public-methods
     """QueriesOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -2266,7 +2265,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2275,8 +2276,6 @@ class QueriesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_boolean_true.metadata = {"url": "/queries/bool/true"}  # type: ignore
 
     @distributed_trace
     def get_boolean_false(self, **kwargs: Any) -> None:
@@ -2300,7 +2299,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2309,8 +2310,6 @@ class QueriesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_boolean_false.metadata = {"url": "/queries/bool/false"}  # type: ignore
 
     @distributed_trace
     def get_boolean_null(self, *, bool_query: Optional[bool] = None, **kwargs: Any) -> None:
@@ -2331,7 +2330,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2340,8 +2341,6 @@ class QueriesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_boolean_null.metadata = {"url": "/queries/bool/null"}  # type: ignore
 
     @distributed_trace
     def get_int_one_million(self, **kwargs: Any) -> None:
@@ -2365,7 +2364,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2374,8 +2375,6 @@ class QueriesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_int_one_million.metadata = {"url": "/queries/int/1000000"}  # type: ignore
 
     @distributed_trace
     def get_int_negative_one_million(self, **kwargs: Any) -> None:
@@ -2399,7 +2398,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2408,8 +2409,6 @@ class QueriesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_int_negative_one_million.metadata = {"url": "/queries/int/-1000000"}  # type: ignore
 
     @distributed_trace
     def get_int_null(self, *, int_query: Optional[int] = None, **kwargs: Any) -> None:
@@ -2430,7 +2429,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2439,8 +2440,6 @@ class QueriesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_int_null.metadata = {"url": "/queries/int/null"}  # type: ignore
 
     @distributed_trace
     def get_ten_billion(self, **kwargs: Any) -> None:
@@ -2464,7 +2463,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2473,8 +2474,6 @@ class QueriesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_ten_billion.metadata = {"url": "/queries/long/10000000000"}  # type: ignore
 
     @distributed_trace
     def get_negative_ten_billion(self, **kwargs: Any) -> None:
@@ -2498,7 +2497,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2507,8 +2508,6 @@ class QueriesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_negative_ten_billion.metadata = {"url": "/queries/long/-10000000000"}  # type: ignore
 
     @distributed_trace
     def get_long_null(self, *, long_query: Optional[int] = None, **kwargs: Any) -> None:
@@ -2529,7 +2528,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2538,8 +2539,6 @@ class QueriesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_long_null.metadata = {"url": "/queries/long/null"}  # type: ignore
 
     @distributed_trace
     def float_scientific_positive(self, **kwargs: Any) -> None:
@@ -2563,7 +2562,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2572,8 +2573,6 @@ class QueriesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    float_scientific_positive.metadata = {"url": "/queries/float/1.034E+20"}  # type: ignore
 
     @distributed_trace
     def float_scientific_negative(self, **kwargs: Any) -> None:
@@ -2597,7 +2596,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2606,8 +2607,6 @@ class QueriesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    float_scientific_negative.metadata = {"url": "/queries/float/-1.034E-20"}  # type: ignore
 
     @distributed_trace
     def float_null(self, *, float_query: Optional[float] = None, **kwargs: Any) -> None:
@@ -2628,7 +2627,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2637,8 +2638,6 @@ class QueriesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    float_null.metadata = {"url": "/queries/float/null"}  # type: ignore
 
     @distributed_trace
     def double_decimal_positive(self, **kwargs: Any) -> None:
@@ -2662,7 +2661,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2671,8 +2672,6 @@ class QueriesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    double_decimal_positive.metadata = {"url": "/queries/double/9999999.999"}  # type: ignore
 
     @distributed_trace
     def double_decimal_negative(self, **kwargs: Any) -> None:
@@ -2696,7 +2695,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2705,8 +2706,6 @@ class QueriesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    double_decimal_negative.metadata = {"url": "/queries/double/-9999999.999"}  # type: ignore
 
     @distributed_trace
     def double_null(self, *, double_query: Optional[float] = None, **kwargs: Any) -> None:
@@ -2727,7 +2726,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2736,8 +2737,6 @@ class QueriesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    double_null.metadata = {"url": "/queries/double/null"}  # type: ignore
 
     @distributed_trace
     def string_unicode(self, **kwargs: Any) -> None:
@@ -2761,7 +2760,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2770,8 +2771,6 @@ class QueriesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    string_unicode.metadata = {"url": "/queries/string/unicode/"}  # type: ignore
 
     @distributed_trace
     def string_url_encoded(self, **kwargs: Any) -> None:
@@ -2796,7 +2795,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2805,8 +2806,6 @@ class QueriesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    string_url_encoded.metadata = {"url": "/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend"}  # type: ignore
 
     @distributed_trace
     def string_empty(self, **kwargs: Any) -> None:
@@ -2830,7 +2829,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2839,8 +2840,6 @@ class QueriesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    string_empty.metadata = {"url": "/queries/string/empty"}  # type: ignore
 
     @distributed_trace
     def string_null(self, *, string_query: Optional[str] = None, **kwargs: Any) -> None:
@@ -2861,7 +2860,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2870,8 +2871,6 @@ class QueriesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    string_null.metadata = {"url": "/queries/string/null"}  # type: ignore
 
     @distributed_trace
     def enum_valid(self, *, enum_query: Optional[str] = None, **kwargs: Any) -> None:
@@ -2893,7 +2892,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2902,8 +2903,6 @@ class QueriesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    enum_valid.metadata = {"url": "/queries/enum/green%20color"}  # type: ignore
 
     @distributed_trace
     def enum_null(self, *, enum_query: Optional[str] = None, **kwargs: Any) -> None:
@@ -2925,7 +2924,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2934,8 +2935,6 @@ class QueriesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    enum_null.metadata = {"url": "/queries/enum/null"}  # type: ignore
 
     @distributed_trace
     def byte_multi_byte(self, *, byte_query: Optional[bytearray] = None, **kwargs: Any) -> None:
@@ -2956,7 +2955,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2965,8 +2966,6 @@ class QueriesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    byte_multi_byte.metadata = {"url": "/queries/byte/multibyte"}  # type: ignore
 
     @distributed_trace
     def byte_empty(self, **kwargs: Any) -> None:
@@ -2990,7 +2989,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2999,8 +3000,6 @@ class QueriesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    byte_empty.metadata = {"url": "/queries/byte/empty"}  # type: ignore
 
     @distributed_trace
     def byte_null(self, *, byte_query: Optional[bytearray] = None, **kwargs: Any) -> None:
@@ -3021,7 +3020,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3030,8 +3031,6 @@ class QueriesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    byte_null.metadata = {"url": "/queries/byte/null"}  # type: ignore
 
     @distributed_trace
     def date_valid(self, **kwargs: Any) -> None:
@@ -3055,7 +3054,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3064,8 +3065,6 @@ class QueriesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    date_valid.metadata = {"url": "/queries/date/2012-01-01"}  # type: ignore
 
     @distributed_trace
     def date_null(self, *, date_query: Optional[datetime.date] = None, **kwargs: Any) -> None:
@@ -3086,7 +3085,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3095,8 +3096,6 @@ class QueriesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    date_null.metadata = {"url": "/queries/date/null"}  # type: ignore
 
     @distributed_trace
     def date_time_valid(self, **kwargs: Any) -> None:
@@ -3121,7 +3120,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3130,8 +3131,6 @@ class QueriesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    date_time_valid.metadata = {"url": "/queries/datetime/2012-01-01T01%3A01%3A01Z"}  # type: ignore
 
     @distributed_trace
     def date_time_null(self, *, date_time_query: Optional[datetime.datetime] = None, **kwargs: Any) -> None:
@@ -3152,7 +3151,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3161,8 +3162,6 @@ class QueriesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    date_time_null.metadata = {"url": "/queries/datetime/null"}  # type: ignore
 
     @distributed_trace
     def array_string_csv_valid(self, *, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
@@ -3185,7 +3184,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3194,8 +3195,6 @@ class QueriesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    array_string_csv_valid.metadata = {"url": "/queries/array/csv/string/valid"}  # type: ignore
 
     @distributed_trace
     def array_string_csv_null(self, *, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
@@ -3216,7 +3215,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3225,8 +3226,6 @@ class QueriesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    array_string_csv_null.metadata = {"url": "/queries/array/csv/string/null"}  # type: ignore
 
     @distributed_trace
     def array_string_csv_empty(self, *, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
@@ -3247,7 +3246,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3256,8 +3257,6 @@ class QueriesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    array_string_csv_empty.metadata = {"url": "/queries/array/csv/string/empty"}  # type: ignore
 
     @distributed_trace
     def array_string_no_collection_format_empty(
@@ -3281,7 +3280,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3290,8 +3291,6 @@ class QueriesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    array_string_no_collection_format_empty.metadata = {"url": "/queries/array/none/string/empty"}  # type: ignore
 
     @distributed_trace
     def array_string_ssv_valid(self, *, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
@@ -3314,7 +3313,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3323,8 +3324,6 @@ class QueriesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    array_string_ssv_valid.metadata = {"url": "/queries/array/ssv/string/valid"}  # type: ignore
 
     @distributed_trace
     def array_string_tsv_valid(self, *, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
@@ -3347,7 +3346,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3356,8 +3357,6 @@ class QueriesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    array_string_tsv_valid.metadata = {"url": "/queries/array/tsv/string/valid"}  # type: ignore
 
     @distributed_trace
     def array_string_pipes_valid(self, *, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
@@ -3380,7 +3379,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3389,8 +3390,6 @@ class QueriesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    array_string_pipes_valid.metadata = {"url": "/queries/array/pipes/string/valid"}  # type: ignore
 
 
 class PathItemsOperations(object):
@@ -3452,7 +3451,9 @@ class PathItemsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3461,8 +3462,6 @@ class PathItemsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_all_with_values.metadata = {"url": "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery"}  # type: ignore
 
     @distributed_trace
     def get_global_query_null(
@@ -3505,7 +3504,9 @@ class PathItemsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3514,8 +3515,6 @@ class PathItemsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_global_query_null.metadata = {"url": "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery"}  # type: ignore
 
     @distributed_trace
     def get_global_and_local_query_null(
@@ -3558,7 +3557,9 @@ class PathItemsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3567,8 +3568,6 @@ class PathItemsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_global_and_local_query_null.metadata = {"url": "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null"}  # type: ignore
 
     @distributed_trace
     def get_local_path_item_query_null(
@@ -3610,7 +3609,9 @@ class PathItemsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3619,5 +3620,3 @@ class PathItemsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_local_path_item_query_null.metadata = {"url": "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null"}  # type: ignore

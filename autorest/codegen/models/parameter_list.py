@@ -12,6 +12,7 @@ from .parameter import Parameter, ParameterLocation
 from .base_schema import BaseSchema
 from .dictionary_schema import DictionarySchema
 from .primitive_schemas import AnySchema, StringSchema
+from .utils import JSON_REGEXP
 
 if TYPE_CHECKING:
     from .schema_request import SchemaRequest
@@ -79,7 +80,7 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
 
     @property
     def default_content_type(self) -> str:
-        json_content_types = [c for c in self.content_types if "json" in c]
+        json_content_types = [c for c in self.content_types if JSON_REGEXP.match(c)]
         if json_content_types:
             if "application/json" in json_content_types:
                 return "application/json"
@@ -274,6 +275,7 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
 def _create_files_or_data_param(
     params: List[Parameter], serialized_name: str, description: str
 ) -> Parameter:
+    params[0].need_import = False
     param = copy(params[0])
     param.serialized_name = serialized_name
     param.schema = DictionarySchema(

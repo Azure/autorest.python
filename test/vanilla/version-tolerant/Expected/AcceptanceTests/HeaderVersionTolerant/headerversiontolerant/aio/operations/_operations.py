@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -6,9 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-import functools
-from typing import Any, Callable, Dict, Generic, Optional, TypeVar
-import warnings
+from typing import Any, Callable, Dict, Optional, TypeVar
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -58,7 +57,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class HeaderOperations:
+class HeaderOperations:  # pylint: disable=too-many-public-methods
     """HeaderOperations async operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -95,7 +94,9 @@ class HeaderOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -104,8 +105,6 @@ class HeaderOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    param_existing_key.metadata = {"url": "/header/param/existingkey"}  # type: ignore
 
     @distributed_trace_async
     async def response_existing_key(self, **kwargs: Any) -> None:
@@ -122,7 +121,9 @@ class HeaderOperations:
         request = build_header_response_existing_key_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -134,8 +135,6 @@ class HeaderOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    response_existing_key.metadata = {"url": "/header/response/existingkey"}  # type: ignore
 
     @distributed_trace_async
     async def param_protected_key(self, **kwargs: Any) -> None:
@@ -156,7 +155,9 @@ class HeaderOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -165,8 +166,6 @@ class HeaderOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    param_protected_key.metadata = {"url": "/header/param/protectedkey"}  # type: ignore
 
     @distributed_trace_async
     async def response_protected_key(self, **kwargs: Any) -> None:
@@ -183,7 +182,9 @@ class HeaderOperations:
         request = build_header_response_protected_key_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -195,8 +196,6 @@ class HeaderOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    response_protected_key.metadata = {"url": "/header/response/protectedkey"}  # type: ignore
 
     @distributed_trace_async
     async def param_integer(self, *, scenario: str, value: int, **kwargs: Any) -> None:
@@ -221,7 +220,9 @@ class HeaderOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -230,8 +231,6 @@ class HeaderOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    param_integer.metadata = {"url": "/header/param/prim/integer"}  # type: ignore
 
     @distributed_trace_async
     async def response_integer(self, *, scenario: str, **kwargs: Any) -> None:
@@ -252,7 +251,9 @@ class HeaderOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -264,8 +265,6 @@ class HeaderOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    response_integer.metadata = {"url": "/header/response/prim/integer"}  # type: ignore
 
     @distributed_trace_async
     async def param_long(self, *, scenario: str, value: int, **kwargs: Any) -> None:
@@ -290,7 +289,9 @@ class HeaderOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -299,8 +300,6 @@ class HeaderOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    param_long.metadata = {"url": "/header/param/prim/long"}  # type: ignore
 
     @distributed_trace_async
     async def response_long(self, *, scenario: str, **kwargs: Any) -> None:
@@ -321,7 +320,9 @@ class HeaderOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -333,8 +334,6 @@ class HeaderOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    response_long.metadata = {"url": "/header/response/prim/long"}  # type: ignore
 
     @distributed_trace_async
     async def param_float(self, *, scenario: str, value: float, **kwargs: Any) -> None:
@@ -359,7 +358,9 @@ class HeaderOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -368,8 +369,6 @@ class HeaderOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    param_float.metadata = {"url": "/header/param/prim/float"}  # type: ignore
 
     @distributed_trace_async
     async def response_float(self, *, scenario: str, **kwargs: Any) -> None:
@@ -390,7 +389,9 @@ class HeaderOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -402,8 +403,6 @@ class HeaderOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    response_float.metadata = {"url": "/header/response/prim/float"}  # type: ignore
 
     @distributed_trace_async
     async def param_double(self, *, scenario: str, value: float, **kwargs: Any) -> None:
@@ -428,7 +427,9 @@ class HeaderOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -437,8 +438,6 @@ class HeaderOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    param_double.metadata = {"url": "/header/param/prim/double"}  # type: ignore
 
     @distributed_trace_async
     async def response_double(self, *, scenario: str, **kwargs: Any) -> None:
@@ -459,7 +458,9 @@ class HeaderOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -471,8 +472,6 @@ class HeaderOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    response_double.metadata = {"url": "/header/response/prim/double"}  # type: ignore
 
     @distributed_trace_async
     async def param_bool(self, *, scenario: str, value: bool, **kwargs: Any) -> None:
@@ -497,7 +496,9 @@ class HeaderOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -506,8 +507,6 @@ class HeaderOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    param_bool.metadata = {"url": "/header/param/prim/bool"}  # type: ignore
 
     @distributed_trace_async
     async def response_bool(self, *, scenario: str, **kwargs: Any) -> None:
@@ -528,7 +527,9 @@ class HeaderOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -540,8 +541,6 @@ class HeaderOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    response_bool.metadata = {"url": "/header/response/prim/bool"}  # type: ignore
 
     @distributed_trace_async
     async def param_string(self, *, scenario: str, value: Optional[str] = None, **kwargs: Any) -> None:
@@ -568,7 +567,9 @@ class HeaderOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -577,8 +578,6 @@ class HeaderOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    param_string.metadata = {"url": "/header/param/prim/string"}  # type: ignore
 
     @distributed_trace_async
     async def response_string(self, *, scenario: str, **kwargs: Any) -> None:
@@ -600,7 +599,9 @@ class HeaderOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -612,8 +613,6 @@ class HeaderOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    response_string.metadata = {"url": "/header/response/prim/string"}  # type: ignore
 
     @distributed_trace_async
     async def param_date(self, *, scenario: str, value: datetime.date, **kwargs: Any) -> None:
@@ -638,7 +637,9 @@ class HeaderOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -647,8 +648,6 @@ class HeaderOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    param_date.metadata = {"url": "/header/param/prim/date"}  # type: ignore
 
     @distributed_trace_async
     async def response_date(self, *, scenario: str, **kwargs: Any) -> None:
@@ -669,7 +668,9 @@ class HeaderOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -681,8 +682,6 @@ class HeaderOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    response_date.metadata = {"url": "/header/response/prim/date"}  # type: ignore
 
     @distributed_trace_async
     async def param_datetime(self, *, scenario: str, value: datetime.datetime, **kwargs: Any) -> None:
@@ -708,7 +707,9 @@ class HeaderOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -717,8 +718,6 @@ class HeaderOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    param_datetime.metadata = {"url": "/header/param/prim/datetime"}  # type: ignore
 
     @distributed_trace_async
     async def response_datetime(self, *, scenario: str, **kwargs: Any) -> None:
@@ -739,7 +738,9 @@ class HeaderOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -751,8 +752,6 @@ class HeaderOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    response_datetime.metadata = {"url": "/header/response/prim/datetime"}  # type: ignore
 
     @distributed_trace_async
     async def param_datetime_rfc1123(
@@ -780,7 +779,9 @@ class HeaderOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -789,8 +790,6 @@ class HeaderOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    param_datetime_rfc1123.metadata = {"url": "/header/param/prim/datetimerfc1123"}  # type: ignore
 
     @distributed_trace_async
     async def response_datetime_rfc1123(self, *, scenario: str, **kwargs: Any) -> None:
@@ -812,7 +811,9 @@ class HeaderOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -824,8 +825,6 @@ class HeaderOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    response_datetime_rfc1123.metadata = {"url": "/header/response/prim/datetimerfc1123"}  # type: ignore
 
     @distributed_trace_async
     async def param_duration(self, *, scenario: str, value: datetime.timedelta, **kwargs: Any) -> None:
@@ -849,7 +848,9 @@ class HeaderOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -858,8 +859,6 @@ class HeaderOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    param_duration.metadata = {"url": "/header/param/prim/duration"}  # type: ignore
 
     @distributed_trace_async
     async def response_duration(self, *, scenario: str, **kwargs: Any) -> None:
@@ -880,7 +879,9 @@ class HeaderOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -892,8 +893,6 @@ class HeaderOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    response_duration.metadata = {"url": "/header/response/prim/duration"}  # type: ignore
 
     @distributed_trace_async
     async def param_byte(self, *, scenario: str, value: bytearray, **kwargs: Any) -> None:
@@ -917,7 +916,9 @@ class HeaderOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -926,8 +927,6 @@ class HeaderOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    param_byte.metadata = {"url": "/header/param/prim/byte"}  # type: ignore
 
     @distributed_trace_async
     async def response_byte(self, *, scenario: str, **kwargs: Any) -> None:
@@ -948,7 +947,9 @@ class HeaderOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -960,8 +961,6 @@ class HeaderOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    response_byte.metadata = {"url": "/header/response/prim/byte"}  # type: ignore
 
     @distributed_trace_async
     async def param_enum(self, *, scenario: str, value: Optional[str] = None, **kwargs: Any) -> None:
@@ -988,7 +987,9 @@ class HeaderOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -997,8 +998,6 @@ class HeaderOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    param_enum.metadata = {"url": "/header/param/prim/enum"}  # type: ignore
 
     @distributed_trace_async
     async def response_enum(self, *, scenario: str, **kwargs: Any) -> None:
@@ -1020,7 +1019,9 @@ class HeaderOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1032,8 +1033,6 @@ class HeaderOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    response_enum.metadata = {"url": "/header/response/prim/enum"}  # type: ignore
 
     @distributed_trace_async
     async def custom_request_id(self, **kwargs: Any) -> None:
@@ -1051,7 +1050,9 @@ class HeaderOperations:
         request = build_header_custom_request_id_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1060,5 +1061,3 @@ class HeaderOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    custom_request_id.metadata = {"url": "/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0"}  # type: ignore

@@ -33,9 +33,9 @@ def build_test_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
+    api_version = kwargs.pop('api_version', "1.0.0")  # type: str
     id = kwargs.pop('id')  # type: int
 
-    api_version = "1.0.0"
     accept = "application/json"
     # Construct URL
     url = kwargs.pop("template_url", '/test')
@@ -83,8 +83,11 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin(object):
         }
         error_map.update(kwargs.pop('error_map', {}))
 
+        api_version = kwargs.pop('api_version', "1.0.0")  # type: str
+
         
         request = build_test_request(
+            api_version=api_version,
             id=id,
             template_url=self.test.metadata['url'],
         )

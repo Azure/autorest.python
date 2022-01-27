@@ -11,7 +11,7 @@
 VERSION = "unknown"
 {% endif %}
 
-class {{ code_model.class_name }}Configuration(Configuration):
+class {{ code_model.class_name }}Configuration(Configuration):  # pylint: disable=too-many-instance-attributes
     """Configuration for {{ code_model.class_name }}.
 
     Note that all parameters used to create this instance are saved as instance
@@ -19,12 +19,7 @@ class {{ code_model.class_name }}Configuration(Configuration):
 {% if code_model.global_parameters.config_method | first %}
 
 {% endif %}
-{% for parameter in code_model.global_parameters.config_method %}
-    :{{ parameter.description_keyword }} {{ parameter.serialized_name }}: {{ parameter.description }}
-    :{{ parameter.docstring_type_keyword }} {{ parameter.serialized_name }}: {{ parameter.docstring_type }}
-{% endfor %}
-    """
-
+    {{ op_tools.serialize_with_wrap(serializer.property_descriptions(), "\n ") | indent }}
     {{ serializer.init_signature_and_response_type_annotation(async_mode) | indent }}
         super({{ code_model.class_name }}Configuration, self).__init__(**kwargs)
     {% if code_model.service_client.parameters.config_kwargs_to_pop(async_mode) %}

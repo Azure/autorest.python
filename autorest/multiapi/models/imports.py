@@ -45,7 +45,7 @@ class FileImport:
                 from_section, set()
             ).add(name_import)
 
-    def add_from_import(
+    def add_submodule_import(
         self,
         from_section: str,
         name_import: str,

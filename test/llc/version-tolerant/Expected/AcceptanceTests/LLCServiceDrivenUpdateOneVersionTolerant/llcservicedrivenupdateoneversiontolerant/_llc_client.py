@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Optional, TYPE_CHECKING
+from typing import Any, TYPE_CHECKING
 
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
@@ -22,7 +22,7 @@ if TYPE_CHECKING:
 
 
 class LLCClient:
-    """LLC Swagger, this is the initial swager a service could do.
+    """LLC Swagger, this is the initial swagger a service could do.
 
     :ivar params: ParamsOperations operations
     :vartype params: llcservicedrivenupdateoneversiontolerant.operations.ParamsOperations

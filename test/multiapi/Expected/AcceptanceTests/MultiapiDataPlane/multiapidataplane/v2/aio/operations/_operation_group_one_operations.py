@@ -64,6 +64,7 @@ class OperationGroupOneOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
+        api_version = kwargs.pop('api_version', "2.0.0")  # type: str
         content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
         if parameter_one is not None:
@@ -72,6 +73,7 @@ class OperationGroupOneOperations:
             _json = None
 
         request = build_test_two_request(
+            api_version=api_version,
             content_type=content_type,
             json=_json,
             template_url=self.test_two.metadata['url'],
@@ -115,8 +117,11 @@ class OperationGroupOneOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
+        api_version = kwargs.pop('api_version', "2.0.0")  # type: str
+
         
         request = build_test_three_request(
+            api_version=api_version,
             template_url=self.test_three.metadata['url'],
         )
         request = _convert_request(request)

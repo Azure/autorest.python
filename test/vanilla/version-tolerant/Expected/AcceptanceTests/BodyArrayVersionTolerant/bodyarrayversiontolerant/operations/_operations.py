@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -6,9 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-import functools
-from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar
-import warnings
+from typing import Any, Callable, Dict, List, Optional, TypeVar
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -939,7 +938,7 @@ def build_array_put_dictionary_valid_request(
     return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
 
 
-class ArrayOperations(object):
+class ArrayOperations(object):  # pylint: disable=too-many-public-methods
     """ArrayOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -980,7 +979,9 @@ class ArrayOperations(object):
         request = build_array_get_null_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -996,8 +997,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_null.metadata = {"url": "/array/null"}  # type: ignore
 
     @distributed_trace
     def get_invalid(self, **kwargs: Any) -> List[int]:
@@ -1022,7 +1021,9 @@ class ArrayOperations(object):
         request = build_array_get_invalid_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1038,8 +1039,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_invalid.metadata = {"url": "/array/invalid"}  # type: ignore
 
     @distributed_trace
     def get_empty(self, **kwargs: Any) -> List[int]:
@@ -1064,7 +1063,9 @@ class ArrayOperations(object):
         request = build_array_get_empty_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1080,8 +1081,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_empty.metadata = {"url": "/array/empty"}  # type: ignore
 
     @distributed_trace
     def put_empty(self, array_body: List[str], **kwargs: Any) -> None:
@@ -1115,7 +1114,9 @@ class ArrayOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1124,8 +1125,6 @@ class ArrayOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_empty.metadata = {"url": "/array/empty"}  # type: ignore
 
     @distributed_trace
     def get_boolean_tfft(self, **kwargs: Any) -> List[bool]:
@@ -1150,7 +1149,9 @@ class ArrayOperations(object):
         request = build_array_get_boolean_tfft_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1166,8 +1167,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_boolean_tfft.metadata = {"url": "/array/prim/boolean/tfft"}  # type: ignore
 
     @distributed_trace
     def put_boolean_tfft(self, array_body: List[bool], **kwargs: Any) -> None:
@@ -1201,7 +1200,9 @@ class ArrayOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1210,8 +1211,6 @@ class ArrayOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_boolean_tfft.metadata = {"url": "/array/prim/boolean/tfft"}  # type: ignore
 
     @distributed_trace
     def get_boolean_invalid_null(self, **kwargs: Any) -> List[bool]:
@@ -1236,7 +1235,9 @@ class ArrayOperations(object):
         request = build_array_get_boolean_invalid_null_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1252,8 +1253,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_boolean_invalid_null.metadata = {"url": "/array/prim/boolean/true.null.false"}  # type: ignore
 
     @distributed_trace
     def get_boolean_invalid_string(self, **kwargs: Any) -> List[bool]:
@@ -1278,7 +1277,9 @@ class ArrayOperations(object):
         request = build_array_get_boolean_invalid_string_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1294,8 +1295,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_boolean_invalid_string.metadata = {"url": "/array/prim/boolean/true.boolean.false"}  # type: ignore
 
     @distributed_trace
     def get_integer_valid(self, **kwargs: Any) -> List[int]:
@@ -1320,7 +1319,9 @@ class ArrayOperations(object):
         request = build_array_get_integer_valid_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1336,8 +1337,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_integer_valid.metadata = {"url": "/array/prim/integer/1.-1.3.300"}  # type: ignore
 
     @distributed_trace
     def put_integer_valid(self, array_body: List[int], **kwargs: Any) -> None:
@@ -1371,7 +1370,9 @@ class ArrayOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1380,8 +1381,6 @@ class ArrayOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_integer_valid.metadata = {"url": "/array/prim/integer/1.-1.3.300"}  # type: ignore
 
     @distributed_trace
     def get_int_invalid_null(self, **kwargs: Any) -> List[int]:
@@ -1406,7 +1405,9 @@ class ArrayOperations(object):
         request = build_array_get_int_invalid_null_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1422,8 +1423,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_int_invalid_null.metadata = {"url": "/array/prim/integer/1.null.zero"}  # type: ignore
 
     @distributed_trace
     def get_int_invalid_string(self, **kwargs: Any) -> List[int]:
@@ -1448,7 +1447,9 @@ class ArrayOperations(object):
         request = build_array_get_int_invalid_string_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1464,8 +1465,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_int_invalid_string.metadata = {"url": "/array/prim/integer/1.integer.0"}  # type: ignore
 
     @distributed_trace
     def get_long_valid(self, **kwargs: Any) -> List[int]:
@@ -1490,7 +1489,9 @@ class ArrayOperations(object):
         request = build_array_get_long_valid_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1506,8 +1507,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_long_valid.metadata = {"url": "/array/prim/long/1.-1.3.300"}  # type: ignore
 
     @distributed_trace
     def put_long_valid(self, array_body: List[int], **kwargs: Any) -> None:
@@ -1541,7 +1540,9 @@ class ArrayOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1550,8 +1551,6 @@ class ArrayOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_long_valid.metadata = {"url": "/array/prim/long/1.-1.3.300"}  # type: ignore
 
     @distributed_trace
     def get_long_invalid_null(self, **kwargs: Any) -> List[int]:
@@ -1576,7 +1575,9 @@ class ArrayOperations(object):
         request = build_array_get_long_invalid_null_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1592,8 +1593,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_long_invalid_null.metadata = {"url": "/array/prim/long/1.null.zero"}  # type: ignore
 
     @distributed_trace
     def get_long_invalid_string(self, **kwargs: Any) -> List[int]:
@@ -1618,7 +1617,9 @@ class ArrayOperations(object):
         request = build_array_get_long_invalid_string_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1634,8 +1635,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_long_invalid_string.metadata = {"url": "/array/prim/long/1.integer.0"}  # type: ignore
 
     @distributed_trace
     def get_float_valid(self, **kwargs: Any) -> List[float]:
@@ -1660,7 +1659,9 @@ class ArrayOperations(object):
         request = build_array_get_float_valid_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1676,8 +1677,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_float_valid.metadata = {"url": "/array/prim/float/0--0.01-1.2e20"}  # type: ignore
 
     @distributed_trace
     def put_float_valid(self, array_body: List[float], **kwargs: Any) -> None:
@@ -1711,7 +1710,9 @@ class ArrayOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1720,8 +1721,6 @@ class ArrayOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_float_valid.metadata = {"url": "/array/prim/float/0--0.01-1.2e20"}  # type: ignore
 
     @distributed_trace
     def get_float_invalid_null(self, **kwargs: Any) -> List[float]:
@@ -1746,7 +1745,9 @@ class ArrayOperations(object):
         request = build_array_get_float_invalid_null_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1762,8 +1763,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_float_invalid_null.metadata = {"url": "/array/prim/float/0.0-null-1.2e20"}  # type: ignore
 
     @distributed_trace
     def get_float_invalid_string(self, **kwargs: Any) -> List[float]:
@@ -1788,7 +1787,9 @@ class ArrayOperations(object):
         request = build_array_get_float_invalid_string_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1804,8 +1805,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_float_invalid_string.metadata = {"url": "/array/prim/float/1.number.0"}  # type: ignore
 
     @distributed_trace
     def get_double_valid(self, **kwargs: Any) -> List[float]:
@@ -1830,7 +1829,9 @@ class ArrayOperations(object):
         request = build_array_get_double_valid_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1846,8 +1847,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_double_valid.metadata = {"url": "/array/prim/double/0--0.01-1.2e20"}  # type: ignore
 
     @distributed_trace
     def put_double_valid(self, array_body: List[float], **kwargs: Any) -> None:
@@ -1881,7 +1880,9 @@ class ArrayOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1890,8 +1891,6 @@ class ArrayOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_double_valid.metadata = {"url": "/array/prim/double/0--0.01-1.2e20"}  # type: ignore
 
     @distributed_trace
     def get_double_invalid_null(self, **kwargs: Any) -> List[float]:
@@ -1916,7 +1915,9 @@ class ArrayOperations(object):
         request = build_array_get_double_invalid_null_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1932,8 +1933,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_double_invalid_null.metadata = {"url": "/array/prim/double/0.0-null-1.2e20"}  # type: ignore
 
     @distributed_trace
     def get_double_invalid_string(self, **kwargs: Any) -> List[float]:
@@ -1958,7 +1957,9 @@ class ArrayOperations(object):
         request = build_array_get_double_invalid_string_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1974,8 +1975,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_double_invalid_string.metadata = {"url": "/array/prim/double/1.number.0"}  # type: ignore
 
     @distributed_trace
     def get_string_valid(self, **kwargs: Any) -> List[str]:
@@ -2000,7 +1999,9 @@ class ArrayOperations(object):
         request = build_array_get_string_valid_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2016,8 +2017,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_string_valid.metadata = {"url": "/array/prim/string/foo1.foo2.foo3"}  # type: ignore
 
     @distributed_trace
     def put_string_valid(self, array_body: List[str], **kwargs: Any) -> None:
@@ -2051,7 +2050,9 @@ class ArrayOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2060,8 +2061,6 @@ class ArrayOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_string_valid.metadata = {"url": "/array/prim/string/foo1.foo2.foo3"}  # type: ignore
 
     @distributed_trace
     def get_enum_valid(self, **kwargs: Any) -> List[str]:
@@ -2086,7 +2085,9 @@ class ArrayOperations(object):
         request = build_array_get_enum_valid_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2102,8 +2103,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_enum_valid.metadata = {"url": "/array/prim/enum/foo1.foo2.foo3"}  # type: ignore
 
     @distributed_trace
     def put_enum_valid(self, array_body: List[str], **kwargs: Any) -> None:
@@ -2137,7 +2136,9 @@ class ArrayOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2146,8 +2147,6 @@ class ArrayOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_enum_valid.metadata = {"url": "/array/prim/enum/foo1.foo2.foo3"}  # type: ignore
 
     @distributed_trace
     def get_string_enum_valid(self, **kwargs: Any) -> List[str]:
@@ -2172,7 +2171,9 @@ class ArrayOperations(object):
         request = build_array_get_string_enum_valid_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2188,8 +2189,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_string_enum_valid.metadata = {"url": "/array/prim/string-enum/foo1.foo2.foo3"}  # type: ignore
 
     @distributed_trace
     def put_string_enum_valid(self, array_body: List[str], **kwargs: Any) -> None:
@@ -2223,7 +2222,9 @@ class ArrayOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2232,8 +2233,6 @@ class ArrayOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_string_enum_valid.metadata = {"url": "/array/prim/string-enum/foo1.foo2.foo3"}  # type: ignore
 
     @distributed_trace
     def get_string_with_null(self, **kwargs: Any) -> List[str]:
@@ -2258,7 +2257,9 @@ class ArrayOperations(object):
         request = build_array_get_string_with_null_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2274,8 +2275,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_string_with_null.metadata = {"url": "/array/prim/string/foo.null.foo2"}  # type: ignore
 
     @distributed_trace
     def get_string_with_invalid(self, **kwargs: Any) -> List[str]:
@@ -2300,7 +2299,9 @@ class ArrayOperations(object):
         request = build_array_get_string_with_invalid_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2316,8 +2317,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_string_with_invalid.metadata = {"url": "/array/prim/string/foo.123.foo2"}  # type: ignore
 
     @distributed_trace
     def get_uuid_valid(self, **kwargs: Any) -> List[str]:
@@ -2343,7 +2342,9 @@ class ArrayOperations(object):
         request = build_array_get_uuid_valid_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2359,8 +2360,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_uuid_valid.metadata = {"url": "/array/prim/uuid/valid"}  # type: ignore
 
     @distributed_trace
     def put_uuid_valid(self, array_body: List[str], **kwargs: Any) -> None:
@@ -2395,7 +2394,9 @@ class ArrayOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2404,8 +2405,6 @@ class ArrayOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_uuid_valid.metadata = {"url": "/array/prim/uuid/valid"}  # type: ignore
 
     @distributed_trace
     def get_uuid_invalid_chars(self, **kwargs: Any) -> List[str]:
@@ -2430,7 +2429,9 @@ class ArrayOperations(object):
         request = build_array_get_uuid_invalid_chars_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2446,8 +2447,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_uuid_invalid_chars.metadata = {"url": "/array/prim/uuid/invalidchars"}  # type: ignore
 
     @distributed_trace
     def get_date_valid(self, **kwargs: Any) -> List[datetime.date]:
@@ -2472,7 +2471,9 @@ class ArrayOperations(object):
         request = build_array_get_date_valid_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2488,8 +2489,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_date_valid.metadata = {"url": "/array/prim/date/valid"}  # type: ignore
 
     @distributed_trace
     def put_date_valid(self, array_body: List[datetime.date], **kwargs: Any) -> None:
@@ -2523,7 +2522,9 @@ class ArrayOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2532,8 +2533,6 @@ class ArrayOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_date_valid.metadata = {"url": "/array/prim/date/valid"}  # type: ignore
 
     @distributed_trace
     def get_date_invalid_null(self, **kwargs: Any) -> List[datetime.date]:
@@ -2558,7 +2557,9 @@ class ArrayOperations(object):
         request = build_array_get_date_invalid_null_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2574,8 +2575,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_date_invalid_null.metadata = {"url": "/array/prim/date/invalidnull"}  # type: ignore
 
     @distributed_trace
     def get_date_invalid_chars(self, **kwargs: Any) -> List[datetime.date]:
@@ -2600,7 +2599,9 @@ class ArrayOperations(object):
         request = build_array_get_date_invalid_chars_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2616,8 +2617,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_date_invalid_chars.metadata = {"url": "/array/prim/date/invalidchars"}  # type: ignore
 
     @distributed_trace
     def get_date_time_valid(self, **kwargs: Any) -> List[datetime.datetime]:
@@ -2643,7 +2642,9 @@ class ArrayOperations(object):
         request = build_array_get_date_time_valid_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2659,8 +2660,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_date_time_valid.metadata = {"url": "/array/prim/date-time/valid"}  # type: ignore
 
     @distributed_trace
     def put_date_time_valid(self, array_body: List[datetime.datetime], **kwargs: Any) -> None:
@@ -2695,7 +2694,9 @@ class ArrayOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2704,8 +2705,6 @@ class ArrayOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_date_time_valid.metadata = {"url": "/array/prim/date-time/valid"}  # type: ignore
 
     @distributed_trace
     def get_date_time_invalid_null(self, **kwargs: Any) -> List[datetime.datetime]:
@@ -2730,7 +2729,9 @@ class ArrayOperations(object):
         request = build_array_get_date_time_invalid_null_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2746,8 +2747,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_date_time_invalid_null.metadata = {"url": "/array/prim/date-time/invalidnull"}  # type: ignore
 
     @distributed_trace
     def get_date_time_invalid_chars(self, **kwargs: Any) -> List[datetime.datetime]:
@@ -2772,7 +2771,9 @@ class ArrayOperations(object):
         request = build_array_get_date_time_invalid_chars_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2788,8 +2789,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_date_time_invalid_chars.metadata = {"url": "/array/prim/date-time/invalidchars"}  # type: ignore
 
     @distributed_trace
     def get_date_time_rfc1123_valid(self, **kwargs: Any) -> List[datetime.datetime]:
@@ -2815,7 +2814,9 @@ class ArrayOperations(object):
         request = build_array_get_date_time_rfc1123_valid_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2831,8 +2832,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_date_time_rfc1123_valid.metadata = {"url": "/array/prim/date-time-rfc1123/valid"}  # type: ignore
 
     @distributed_trace
     def put_date_time_rfc1123_valid(self, array_body: List[datetime.datetime], **kwargs: Any) -> None:
@@ -2867,7 +2866,9 @@ class ArrayOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2876,8 +2877,6 @@ class ArrayOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_date_time_rfc1123_valid.metadata = {"url": "/array/prim/date-time-rfc1123/valid"}  # type: ignore
 
     @distributed_trace
     def get_duration_valid(self, **kwargs: Any) -> List[datetime.timedelta]:
@@ -2902,7 +2901,9 @@ class ArrayOperations(object):
         request = build_array_get_duration_valid_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2918,8 +2919,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_duration_valid.metadata = {"url": "/array/prim/duration/valid"}  # type: ignore
 
     @distributed_trace
     def put_duration_valid(self, array_body: List[datetime.timedelta], **kwargs: Any) -> None:
@@ -2953,7 +2952,9 @@ class ArrayOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2962,8 +2963,6 @@ class ArrayOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_duration_valid.metadata = {"url": "/array/prim/duration/valid"}  # type: ignore
 
     @distributed_trace
     def get_byte_valid(self, **kwargs: Any) -> List[bytearray]:
@@ -2989,7 +2988,9 @@ class ArrayOperations(object):
         request = build_array_get_byte_valid_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3005,8 +3006,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_byte_valid.metadata = {"url": "/array/prim/byte/valid"}  # type: ignore
 
     @distributed_trace
     def put_byte_valid(self, array_body: List[bytearray], **kwargs: Any) -> None:
@@ -3041,7 +3040,9 @@ class ArrayOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3050,8 +3051,6 @@ class ArrayOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_byte_valid.metadata = {"url": "/array/prim/byte/valid"}  # type: ignore
 
     @distributed_trace
     def get_byte_invalid_null(self, **kwargs: Any) -> List[bytearray]:
@@ -3076,7 +3075,9 @@ class ArrayOperations(object):
         request = build_array_get_byte_invalid_null_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3092,8 +3093,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_byte_invalid_null.metadata = {"url": "/array/prim/byte/invalidnull"}  # type: ignore
 
     @distributed_trace
     def get_base64_url(self, **kwargs: Any) -> List[bytes]:
@@ -3119,7 +3118,9 @@ class ArrayOperations(object):
         request = build_array_get_base64_url_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3135,8 +3136,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_base64_url.metadata = {"url": "/array/prim/base64url/valid"}  # type: ignore
 
     @distributed_trace
     def get_complex_null(self, **kwargs: Any) -> List[JSONType]:
@@ -3164,7 +3163,9 @@ class ArrayOperations(object):
         request = build_array_get_complex_null_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3180,8 +3181,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_complex_null.metadata = {"url": "/array/complex/null"}  # type: ignore
 
     @distributed_trace
     def get_complex_empty(self, **kwargs: Any) -> List[JSONType]:
@@ -3209,7 +3208,9 @@ class ArrayOperations(object):
         request = build_array_get_complex_empty_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3225,8 +3226,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_complex_empty.metadata = {"url": "/array/complex/empty"}  # type: ignore
 
     @distributed_trace
     def get_complex_item_null(self, **kwargs: Any) -> List[JSONType]:
@@ -3255,7 +3254,9 @@ class ArrayOperations(object):
         request = build_array_get_complex_item_null_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3271,8 +3272,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_complex_item_null.metadata = {"url": "/array/complex/itemnull"}  # type: ignore
 
     @distributed_trace
     def get_complex_item_empty(self, **kwargs: Any) -> List[JSONType]:
@@ -3301,7 +3300,9 @@ class ArrayOperations(object):
         request = build_array_get_complex_item_empty_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3317,8 +3318,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_complex_item_empty.metadata = {"url": "/array/complex/itemempty"}  # type: ignore
 
     @distributed_trace
     def get_complex_valid(self, **kwargs: Any) -> List[JSONType]:
@@ -3347,7 +3346,9 @@ class ArrayOperations(object):
         request = build_array_get_complex_valid_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3363,8 +3364,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_complex_valid.metadata = {"url": "/array/complex/valid"}  # type: ignore
 
     @distributed_trace
     def put_complex_valid(self, array_body: List[JSONType], **kwargs: Any) -> None:
@@ -3402,7 +3401,9 @@ class ArrayOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3411,8 +3412,6 @@ class ArrayOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_complex_valid.metadata = {"url": "/array/complex/valid"}  # type: ignore
 
     @distributed_trace
     def get_array_null(self, **kwargs: Any) -> List[List[str]]:
@@ -3439,7 +3438,9 @@ class ArrayOperations(object):
         request = build_array_get_array_null_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3455,8 +3456,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_array_null.metadata = {"url": "/array/array/null"}  # type: ignore
 
     @distributed_trace
     def get_array_empty(self, **kwargs: Any) -> List[List[str]]:
@@ -3483,7 +3482,9 @@ class ArrayOperations(object):
         request = build_array_get_array_empty_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3499,8 +3500,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_array_empty.metadata = {"url": "/array/array/empty"}  # type: ignore
 
     @distributed_trace
     def get_array_item_null(self, **kwargs: Any) -> List[List[str]]:
@@ -3527,7 +3526,9 @@ class ArrayOperations(object):
         request = build_array_get_array_item_null_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3543,8 +3544,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_array_item_null.metadata = {"url": "/array/array/itemnull"}  # type: ignore
 
     @distributed_trace
     def get_array_item_empty(self, **kwargs: Any) -> List[List[str]]:
@@ -3571,7 +3570,9 @@ class ArrayOperations(object):
         request = build_array_get_array_item_empty_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3587,8 +3588,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_array_item_empty.metadata = {"url": "/array/array/itemempty"}  # type: ignore
 
     @distributed_trace
     def get_array_valid(self, **kwargs: Any) -> List[List[str]]:
@@ -3615,7 +3614,9 @@ class ArrayOperations(object):
         request = build_array_get_array_valid_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3631,8 +3632,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_array_valid.metadata = {"url": "/array/array/valid"}  # type: ignore
 
     @distributed_trace
     def put_array_valid(self, array_body: List[List[str]], **kwargs: Any) -> None:
@@ -3668,7 +3667,9 @@ class ArrayOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3677,8 +3678,6 @@ class ArrayOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_array_valid.metadata = {"url": "/array/array/valid"}  # type: ignore
 
     @distributed_trace
     def get_dictionary_null(self, **kwargs: Any) -> List[Dict[str, str]]:
@@ -3705,7 +3704,9 @@ class ArrayOperations(object):
         request = build_array_get_dictionary_null_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3721,8 +3722,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_dictionary_null.metadata = {"url": "/array/dictionary/null"}  # type: ignore
 
     @distributed_trace
     def get_dictionary_empty(self, **kwargs: Any) -> List[Dict[str, str]]:
@@ -3749,7 +3748,9 @@ class ArrayOperations(object):
         request = build_array_get_dictionary_empty_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3765,8 +3766,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_dictionary_empty.metadata = {"url": "/array/dictionary/empty"}  # type: ignore
 
     @distributed_trace
     def get_dictionary_item_null(self, **kwargs: Any) -> List[Dict[str, str]]:
@@ -3794,7 +3793,9 @@ class ArrayOperations(object):
         request = build_array_get_dictionary_item_null_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3810,8 +3811,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_dictionary_item_null.metadata = {"url": "/array/dictionary/itemnull"}  # type: ignore
 
     @distributed_trace
     def get_dictionary_item_empty(self, **kwargs: Any) -> List[Dict[str, str]]:
@@ -3839,7 +3838,9 @@ class ArrayOperations(object):
         request = build_array_get_dictionary_item_empty_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3855,8 +3856,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_dictionary_item_empty.metadata = {"url": "/array/dictionary/itemempty"}  # type: ignore
 
     @distributed_trace
     def get_dictionary_valid(self, **kwargs: Any) -> List[Dict[str, str]]:
@@ -3884,7 +3883,9 @@ class ArrayOperations(object):
         request = build_array_get_dictionary_valid_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3900,8 +3901,6 @@ class ArrayOperations(object):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_dictionary_valid.metadata = {"url": "/array/dictionary/valid"}  # type: ignore
 
     @distributed_trace
     def put_dictionary_valid(self, array_body: List[Dict[str, str]], **kwargs: Any) -> None:
@@ -3938,7 +3937,9 @@ class ArrayOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3947,5 +3948,3 @@ class ArrayOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_dictionary_valid.metadata = {"url": "/array/dictionary/valid"}  # type: ignore

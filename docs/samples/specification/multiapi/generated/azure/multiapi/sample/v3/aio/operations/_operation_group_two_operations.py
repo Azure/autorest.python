@@ -68,6 +68,7 @@ class OperationGroupTwoOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
+        api_version = kwargs.pop('api_version', "3.0.0")  # type: str
         content_type = kwargs.pop('content_type', "application/json")  # type: Optional[Union[str, "_models.ContentType"]]
 
         _json = None
@@ -84,6 +85,7 @@ class OperationGroupTwoOperations:
             )
 
         request = build_test_four_request(
+            api_version=api_version,
             content_type=content_type,
             json=_json,
             content=_content,
@@ -124,8 +126,11 @@ class OperationGroupTwoOperations:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
+        api_version = kwargs.pop('api_version', "3.0.0")  # type: str
+
         
         request = build_test_five_request(
+            api_version=api_version,
             template_url=self.test_five.metadata['url'],
         )
         request = _convert_request(request)
