@@ -9,5 +9,5 @@
 from ._lro_with_paramaterized_endpoints_operations import LROWithParamaterizedEndpointsOperationsMixin
 
 __all__ = [
-    "LROWithParamaterizedEndpointsOperationsMixin",
+    'LROWithParamaterizedEndpointsOperationsMixin',
 ]

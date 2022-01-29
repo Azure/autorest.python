@@ -22,11 +22,17 @@ class Feline(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "meows": {"key": "meows", "type": "bool"},
-        "hisses": {"key": "hisses", "type": "bool"},
+        'meows': {'key': 'meows', 'type': 'bool'},
+        'hisses': {'key': 'hisses', 'type': 'bool'},
     }
 
-    def __init__(self, *, meows: Optional[bool] = None, hisses: Optional[bool] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        meows: Optional[bool] = None,
+        hisses: Optional[bool] = None,
+        **kwargs
+    ):
         """
         :keyword meows:
         :paramtype meows: bool
@@ -48,14 +54,19 @@ class Pet(msrest.serialization.Model):
     """
 
     _validation = {
-        "name": {"required": True},
+        'name': {'required': True},
     }
 
     _attribute_map = {
-        "name": {"key": "name", "type": "str"},
+        'name': {'key': 'name', 'type': 'str'},
     }
 
-    def __init__(self, *, name: str, **kwargs):
+    def __init__(
+        self,
+        *,
+        name: str,
+        **kwargs
+    ):
         """
         :keyword name: Required.
         :paramtype name: str
@@ -80,14 +91,14 @@ class Cat(Pet, Feline):
     """
 
     _validation = {
-        "name": {"required": True},
+        'name': {'required': True},
     }
 
     _attribute_map = {
-        "meows": {"key": "meows", "type": "bool"},
-        "hisses": {"key": "hisses", "type": "bool"},
-        "name": {"key": "name", "type": "str"},
-        "likes_milk": {"key": "likesMilk", "type": "bool"},
+        'meows': {'key': 'meows', 'type': 'bool'},
+        'hisses': {'key': 'hisses', 'type': 'bool'},
+        'name': {'key': 'name', 'type': 'str'},
+        'likes_milk': {'key': 'likesMilk', 'type': 'bool'},
     }
 
     def __init__(
@@ -114,7 +125,6 @@ class Cat(Pet, Feline):
         self.hisses = hisses
         self.likes_milk = likes_milk
         self.name = name
-        self.likes_milk = likes_milk
 
 
 class Error(msrest.serialization.Model):
@@ -127,11 +137,17 @@ class Error(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "status": {"key": "status", "type": "int"},
-        "message": {"key": "message", "type": "str"},
+        'status': {'key': 'status', 'type': 'int'},
+        'message': {'key': 'message', 'type': 'str'},
     }
 
-    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        status: Optional[int] = None,
+        message: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword status:
         :paramtype status: int
@@ -155,15 +171,21 @@ class Horse(Pet):
     """
 
     _validation = {
-        "name": {"required": True},
+        'name': {'required': True},
     }
 
     _attribute_map = {
-        "name": {"key": "name", "type": "str"},
-        "is_a_show_horse": {"key": "isAShowHorse", "type": "bool"},
+        'name': {'key': 'name', 'type': 'str'},
+        'is_a_show_horse': {'key': 'isAShowHorse', 'type': 'bool'},
     }
 
-    def __init__(self, *, name: str, is_a_show_horse: Optional[bool] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        name: str,
+        is_a_show_horse: Optional[bool] = None,
+        **kwargs
+    ):
         """
         :keyword name: Required.
         :paramtype name: str
@@ -192,15 +214,15 @@ class Kitten(Cat):
     """
 
     _validation = {
-        "name": {"required": True},
+        'name': {'required': True},
     }
 
     _attribute_map = {
-        "meows": {"key": "meows", "type": "bool"},
-        "hisses": {"key": "hisses", "type": "bool"},
-        "name": {"key": "name", "type": "str"},
-        "likes_milk": {"key": "likesMilk", "type": "bool"},
-        "eats_mice_yet": {"key": "eatsMiceYet", "type": "bool"},
+        'meows': {'key': 'meows', 'type': 'bool'},
+        'hisses': {'key': 'hisses', 'type': 'bool'},
+        'name': {'key': 'name', 'type': 'str'},
+        'likes_milk': {'key': 'likesMilk', 'type': 'bool'},
+        'eats_mice_yet': {'key': 'eatsMiceYet', 'type': 'bool'},
     }
 
     def __init__(

@@ -22,11 +22,17 @@ class Error(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "status": {"key": "status", "type": "int"},
-        "message": {"key": "message", "type": "str"},
+        'status': {'key': 'status', 'type': 'int'},
+        'message': {'key': 'message', 'type': 'str'},
     }
 
-    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        status: Optional[int] = None,
+        message: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword status:
         :paramtype status: int

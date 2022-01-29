@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Optional, TYPE_CHECKING
+from typing import Any, TYPE_CHECKING
 
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
@@ -19,7 +19,6 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Dict
 
-
 class AutoRestParameterGroupingTestService:
     """Test Infrastructure for AutoRest.
 
@@ -27,13 +26,19 @@ class AutoRestParameterGroupingTestService:
     :paramtype endpoint: str
     """
 
-    def __init__(self, *, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
-
+    def __init__(
+        self,
+        *,
+        endpoint: str = "http://localhost:3000",
+        **kwargs: Any
+    ) -> None:
+        
         self._config = AutoRestParameterGroupingTestServiceConfiguration(**kwargs)
         self._client = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
+
 
     def send_request(
         self,

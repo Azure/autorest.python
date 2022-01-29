@@ -9,5 +9,5 @@
 from ._head_exception_operations import HeadExceptionOperations
 
 __all__ = [
-    "HeadExceptionOperations",
+    'HeadExceptionOperations',
 ]

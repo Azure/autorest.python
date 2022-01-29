@@ -7,29 +7,20 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Optional, TYPE_CHECKING
+from typing import Any, TYPE_CHECKING
 
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
 from msrest import Deserializer, Serializer
 
 from ._configuration import AutoRestHttpInfrastructureTestServiceConfiguration
-from .operations import (
-    HttpClientFailureOperations,
-    HttpFailureOperations,
-    HttpRedirectsOperations,
-    HttpRetryOperations,
-    HttpServerFailureOperations,
-    HttpSuccessOperations,
-    MultipleResponsesOperations,
-)
+from .operations import HttpClientFailureOperations, HttpFailureOperations, HttpRedirectsOperations, HttpRetryOperations, HttpServerFailureOperations, HttpSuccessOperations, MultipleResponsesOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Dict
 
-
-class AutoRestHttpInfrastructureTestService:
+class AutoRestHttpInfrastructureTestService:    # pylint: disable=too-many-instance-attributes
     """Test Infrastructure for AutoRest.
 
     :ivar http_failure: HttpFailureOperations operations
@@ -53,8 +44,13 @@ class AutoRestHttpInfrastructureTestService:
     :paramtype endpoint: str
     """
 
-    def __init__(self, *, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
-
+    def __init__(
+        self,
+        *,
+        endpoint: str = "http://localhost:3000",
+        **kwargs: Any
+    ) -> None:
+        
         self._config = AutoRestHttpInfrastructureTestServiceConfiguration(**kwargs)
         self._client = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
@@ -64,16 +60,11 @@ class AutoRestHttpInfrastructureTestService:
         self.http_failure = HttpFailureOperations(self._client, self._config, self._serialize, self._deserialize)
         self.http_success = HttpSuccessOperations(self._client, self._config, self._serialize, self._deserialize)
         self.http_redirects = HttpRedirectsOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.http_client_failure = HttpClientFailureOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
-        self.http_server_failure = HttpServerFailureOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
+        self.http_client_failure = HttpClientFailureOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.http_server_failure = HttpServerFailureOperations(self._client, self._config, self._serialize, self._deserialize)
         self.http_retry = HttpRetryOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.multiple_responses = MultipleResponsesOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
+        self.multiple_responses = MultipleResponsesOperations(self._client, self._config, self._serialize, self._deserialize)
+
 
     def send_request(
         self,

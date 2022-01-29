@@ -9,9 +9,7 @@
 import msrest.serialization
 
 
-class PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwFormUrlencodedSchema(
-    msrest.serialization.Model
-):
+class PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwFormUrlencodedSchema(msrest.serialization.Model):
     """PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwFormUrlencodedSchema.
 
     All required parameters must be populated in order to send to Azure.
@@ -23,27 +21,28 @@ class PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwF
     """
 
     _validation = {
-        "data": {"required": True},
-        "world": {"required": True},
+        'data': {'required': True},
+        'world': {'required': True},
     }
 
     _attribute_map = {
-        "data": {"key": "data", "type": "str"},
-        "world": {"key": "world", "type": "str"},
+        'data': {'key': 'data', 'type': 'str'},
+        'world': {'key': 'world', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword data: Required. Pass in 'hello'.
         :paramtype data: str
         :keyword world: Required. Pass in 'world'.
         :paramtype world: str
         """
-        super(
-            PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwFormUrlencodedSchema, self
-        ).__init__(**kwargs)
-        self.data = kwargs["data"]
-        self.world = kwargs["world"]
+        super(PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwFormUrlencodedSchema, self).__init__(**kwargs)
+        self.data = kwargs['data']
+        self.world = kwargs['world']
 
 
 class PathsU1PxjnReservedwordsOperationFilesPutRequestbodyContentMultipartFormDataSchema(msrest.serialization.Model):
@@ -58,24 +57,25 @@ class PathsU1PxjnReservedwordsOperationFilesPutRequestbodyContentMultipartFormDa
     """
 
     _validation = {
-        "files": {"required": True},
-        "file_name": {"required": True},
+        'files': {'required': True},
+        'file_name': {'required': True},
     }
 
     _attribute_map = {
-        "files": {"key": "files", "type": "IO"},
-        "file_name": {"key": "fileName", "type": "str"},
+        'files': {'key': 'files', 'type': 'IO'},
+        'file_name': {'key': 'fileName', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword files: Required. Files to upload. Pass in list of input streams.
         :paramtype files: IO
         :keyword file_name: Required. File name to upload. Pass in 'my.txt'.
         :paramtype file_name: str
         """
-        super(PathsU1PxjnReservedwordsOperationFilesPutRequestbodyContentMultipartFormDataSchema, self).__init__(
-            **kwargs
-        )
-        self.files = kwargs["files"]
-        self.file_name = kwargs["file_name"]
+        super(PathsU1PxjnReservedwordsOperationFilesPutRequestbodyContentMultipartFormDataSchema, self).__init__(**kwargs)
+        self.files = kwargs['files']
+        self.file_name = kwargs['file_name']

@@ -9,5 +9,5 @@
 from ._operations import MediaTypesClientOperationsMixin
 
 __all__ = [
-    "MediaTypesClientOperationsMixin",
+    'MediaTypesClientOperationsMixin',
 ]

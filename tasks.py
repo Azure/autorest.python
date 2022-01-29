@@ -52,6 +52,7 @@ _VANILLA_SWAGGER_MAPPINGS = {
     'Validation': 'validation.json',
     'CustomBaseUri': 'custom-baseUrl.json',
     'CustomBaseUriMoreOptions': 'custom-baseUrl-more-options.json',
+    'MergePatchJson': 'merge-patch.json',
     'ModelFlattening': 'model-flattening.json',
     'Xml': 'xml-service.json',
     'UrlMultiCollectionFormat' : 'url-multi-collectionFormat.json',
@@ -104,7 +105,6 @@ _OVERWRITE_DEFAULT_NAMESPACE = {
     'CustomUrlPaging': 'custombaseurlpaging',
     'AzureSpecials': 'azurespecialproperties',
     'StorageManagementClient': 'storage',
-    'CustomUrlPaging': 'custombaseurlpaging',
 }
 
 _OVERRIDE_PACKAGE_NAME = {

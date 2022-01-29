@@ -26,12 +26,12 @@ except (SyntaxError, ImportError):
     from ._request_builders import build_get_optional_global_query_request  # type: ignore
 
 __all__ = [
-    "build_get_required_path_request",
-    "build_put_optional_query_request",
-    "build_put_optional_header_request",
-    "build_put_optional_body_request",
-    "build_put_optional_binary_body_request",
-    "build_get_required_global_path_request",
-    "build_get_required_global_query_request",
-    "build_get_optional_global_query_request",
+    'build_get_required_path_request',
+    'build_put_optional_query_request',
+    'build_put_optional_header_request',
+    'build_put_optional_body_request',
+    'build_put_optional_binary_body_request',
+    'build_get_required_global_path_request',
+    'build_get_required_global_query_request',
+    'build_get_optional_global_query_request',
 ]

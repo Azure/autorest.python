@@ -9,5 +9,5 @@
 from ._operations import ObjectTypeClientOperationsMixin
 
 __all__ = [
-    "ObjectTypeClientOperationsMixin",
+    'ObjectTypeClientOperationsMixin',
 ]

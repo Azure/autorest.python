@@ -28,13 +28,13 @@ except (SyntaxError, ImportError):
     from ._request_builders import build_regenerate_key_request  # type: ignore
 
 __all__ = [
-    "build_check_name_availability_request",
-    "build_create_request",
-    "build_delete_request",
-    "build_get_properties_request",
-    "build_update_request",
-    "build_list_keys_request",
-    "build_list_request",
-    "build_list_by_resource_group_request",
-    "build_regenerate_key_request",
+    'build_check_name_availability_request',
+    'build_create_request',
+    'build_delete_request',
+    'build_get_properties_request',
+    'build_update_request',
+    'build_list_keys_request',
+    'build_list_request',
+    'build_list_by_resource_group_request',
+    'build_regenerate_key_request',
 ]

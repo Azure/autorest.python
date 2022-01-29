@@ -18,10 +18,9 @@ from .operations import HeaderOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any
 
     from azure.core.rest import HttpRequest, HttpResponse
-
 
 class AutoRestSwaggerBATHeaderService(object):
     """Test Infrastructure for AutoRest.
@@ -46,6 +45,7 @@ class AutoRestSwaggerBATHeaderService(object):
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
         self.header = HeaderOperations(self._client, self._config, self._serialize, self._deserialize)
+
 
     def _send_request(
         self,

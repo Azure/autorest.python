@@ -17,7 +17,7 @@ from ._media_types_client_enums import (
 )
 
 __all__ = [
-    "SourcePath",
-    "ContentType",
-    "ContentType1",
+    'SourcePath',
+    'ContentType',
+    'ContentType1',
 ]

@@ -17,13 +17,13 @@ from ._operations import ReadonlypropertyOperations
 from ._operations import FlattencomplexOperations
 
 __all__ = [
-    "BasicOperations",
-    "PrimitiveOperations",
-    "ArrayOperations",
-    "DictionaryOperations",
-    "InheritanceOperations",
-    "PolymorphismOperations",
-    "PolymorphicrecursiveOperations",
-    "ReadonlypropertyOperations",
-    "FlattencomplexOperations",
+    'BasicOperations',
+    'PrimitiveOperations',
+    'ArrayOperations',
+    'DictionaryOperations',
+    'InheritanceOperations',
+    'PolymorphismOperations',
+    'PolymorphicrecursiveOperations',
+    'ReadonlypropertyOperations',
+    'FlattencomplexOperations',
 ]

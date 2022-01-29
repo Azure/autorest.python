@@ -18,8 +18,8 @@ except (SyntaxError, ImportError):
     from ._request_builders import build_post_with_constant_in_body_request  # type: ignore
 
 __all__ = [
-    "build_validation_of_method_parameters_request",
-    "build_validation_of_body_request",
-    "build_get_with_constant_in_path_request",
-    "build_post_with_constant_in_body_request",
+    'build_validation_of_method_parameters_request',
+    'build_validation_of_body_request',
+    'build_get_with_constant_in_path_request',
+    'build_post_with_constant_in_body_request',
 ]

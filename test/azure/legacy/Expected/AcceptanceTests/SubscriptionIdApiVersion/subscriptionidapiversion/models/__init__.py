@@ -14,6 +14,6 @@ except (SyntaxError, ImportError):
     from ._models import SampleResourceGroup  # type: ignore
 
 __all__ = [
-    "Error",
-    "SampleResourceGroup",
+    'Error',
+    'SampleResourceGroup',
 ]

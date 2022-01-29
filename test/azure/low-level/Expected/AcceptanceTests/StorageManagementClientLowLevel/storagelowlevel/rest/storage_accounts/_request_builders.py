@@ -15,8 +15,7 @@ from ..._vendor import _format_url_section
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Dict, Optional, TypeVar
-
-    T = TypeVar("T")
+    T = TypeVar('T')
     JSONType = Any
 
 _SERIALIZER = Serializer()
@@ -37,9 +36,6 @@ def build_check_name_availability_request(
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
      subscription. The subscription ID forms part of the URI for every service call.
     :type subscription_id: str
-    :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
-     overriding this default value may result in unsupported behavior.
-    :paramtype api_version: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. The name of the storage account within the specified
      resource group. Storage account names must be between 3 and 24 characters in length and use
@@ -60,15 +56,21 @@ def build_check_name_availability_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "name": "str",  # Required. 
-                "type": "Microsoft.Storage/storageAccounts"  # Optional. Default value is "Microsoft.Storage/storageAccounts".
+                "name": "str",  # Required.
+                "type": "Microsoft.Storage/storageAccounts"  # Optional. Default value is
+                  "Microsoft.Storage/storageAccounts".
             }
 
             # response body for status code(s): 200
             response.json() == {
-                "message": "str",  # Optional. Gets an error message explaining the Reason value in more detail.
-                "nameAvailable": bool,  # Optional. Gets a boolean value that indicates whether the name is available for you to use. If true, the name is available. If false, the name has already been taken or invalid and cannot be used.
-                "reason": "str"  # Optional. Gets the reason that a storage account name could not be used. The Reason element is only returned if NameAvailable is false. Possible values include: "AccountNameInvalid", "AlreadyExists".
+                "message": "str",  # Optional. Gets an error message explaining the Reason
+                  value in more detail.
+                "nameAvailable": bool,  # Optional. Gets a boolean value that indicates
+                  whether the name is available for you to use. If true, the name is available. If
+                  false, the name has already been taken or invalid and cannot be used.
+                "reason": "str"  # Optional. Gets the reason that a storage account name
+                  could not be used. The Reason element is only returned if NameAvailable is false.
+                  Possible values include: "AccountNameInvalid", "AlreadyExists".
             }
     """
 
@@ -127,9 +129,6 @@ def build_create_request(
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
      subscription. The subscription ID forms part of the URI for every service call.
     :type subscription_id: str
-    :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
-     overriding this default value may result in unsupported behavior.
-    :paramtype api_version: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. The parameters to provide for the created account.
     :paramtype json: JSONType
@@ -150,7 +149,9 @@ def build_create_request(
                 "location": "str",  # Required. Resource location.
                 "name": "str",  # Optional. Resource name.
                 "properties": {
-                    "accountType": "str"  # Optional. Gets or sets the account type. Possible values include: "Standard_LRS", "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
+                    "accountType": "str"  # Optional. Gets or sets the account type.
+                      Possible values include: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
+                      "Standard_RAGRS", "Premium_LRS".
                 },
                 "tags": {
                     "str": "str"  # Optional. A set of tags. Resource tags.
@@ -164,13 +165,23 @@ def build_create_request(
                 "location": "str",  # Required. Resource location.
                 "name": "str",  # Optional. Resource name.
                 "properties": {
-                    "accountType": "str",  # Optional. Gets the type of the storage account. Possible values include: "Standard_LRS", "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
-                    "creationTime": "2020-02-20 00:00:00",  # Optional. Gets the creation date and time of the storage account in UTC.
+                    "accountType": "str",  # Optional. Gets the type of the storage
+                      account. Possible values include: "Standard_LRS", "Standard_ZRS",
+                      "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
+                    "creationTime": "2020-02-20 00:00:00",  # Optional. Gets the creation
+                      date and time of the storage account in UTC.
                     "customDomain": {
-                        "name": "str",  # Optional. Gets or sets the custom domain name. Name is the CNAME source.
-                        "useSubDomain": bool  # Optional. Indicates whether indirect CName validation is enabled. Default value is false. This should only be set on updates.
+                        "name": "str",  # Optional. Gets or sets the custom domain
+                          name. Name is the CNAME source.
+                        "useSubDomain": bool  # Optional. Indicates whether indirect
+                          CName validation is enabled. Default value is false. This should only be
+                          set on updates.
                     },
-                    "lastGeoFailoverTime": "2020-02-20 00:00:00",  # Optional. Gets the timestamp of the most recent instance of a failover to the secondary location. Only the most recent timestamp is retained. This element is not returned if there has never been a failover instance. Only available if the accountType is StandardGRS or StandardRAGRS.
+                    "lastGeoFailoverTime": "2020-02-20 00:00:00",  # Optional. Gets the
+                      timestamp of the most recent instance of a failover to the secondary
+                      location. Only the most recent timestamp is retained. This element is not
+                      returned if there has never been a failover instance. Only available if the
+                      accountType is StandardGRS or StandardRAGRS.
                     "primaryEndpoints": {
                         "FooPoint": {
                             "Bar.Point": {
@@ -182,8 +193,11 @@ def build_create_request(
                         "queue": "str",  # Optional. Gets the queue endpoint.
                         "table": "str"  # Optional. Gets the table endpoint.
                     },
-                    "primaryLocation": "str",  # Optional. Gets the location of the primary for the storage account.
-                    "provisioningState": "str",  # Optional. Gets the status of the storage account at the time the operation was called. Possible values include: "Creating", "ResolvingDNS", "Succeeded".
+                    "primaryLocation": "str",  # Optional. Gets the location of the
+                      primary for the storage account.
+                    "provisioningState": "str",  # Optional. Gets the status of the
+                      storage account at the time the operation was called. Possible values
+                      include: "Creating", "ResolvingDNS", "Succeeded".
                     "secondaryEndpoints": {
                         "FooPoint": {
                             "Bar.Point": {
@@ -195,9 +209,16 @@ def build_create_request(
                         "queue": "str",  # Optional. Gets the queue endpoint.
                         "table": "str"  # Optional. Gets the table endpoint.
                     },
-                    "secondaryLocation": "str",  # Optional. Gets the location of the geo replicated secondary for the storage account. Only available if the accountType is StandardGRS or StandardRAGRS.
-                    "statusOfPrimary": "str",  # Optional. Gets the status indicating whether the primary location of the storage account is available or unavailable. Possible values include: "Available", "Unavailable".
-                    "statusOfSecondary": "str"  # Optional. Gets the status indicating whether the secondary location of the storage account is available or unavailable. Only available if the accountType is StandardGRS or StandardRAGRS. Possible values include: "Available", "Unavailable".
+                    "secondaryLocation": "str",  # Optional. Gets the location of the geo
+                      replicated secondary for the storage account. Only available if the
+                      accountType is StandardGRS or StandardRAGRS.
+                    "statusOfPrimary": "str",  # Optional. Gets the status indicating
+                      whether the primary location of the storage account is available or
+                      unavailable. Possible values include: "Available", "Unavailable".
+                    "statusOfSecondary": "str"  # Optional. Gets the status indicating
+                      whether the secondary location of the storage account is available or
+                      unavailable. Only available if the accountType is StandardGRS or
+                      StandardRAGRS. Possible values include: "Available", "Unavailable".
                 },
                 "tags": {
                     "str": "str"  # Optional. A set of tags. Resource tags.
@@ -211,7 +232,7 @@ def build_create_request(
 
     accept = "application/json, text/json"
     # Construct URL
-    url = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'
+    url = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'  # pylint: disable=line-too-long
     path_format_arguments = {
         "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
         "accountName": _SERIALIZER.url("account_name", account_name, 'str'),
@@ -260,9 +281,6 @@ def build_delete_request(
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
      subscription. The subscription ID forms part of the URI for every service call.
     :type subscription_id: str
-    :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
-     overriding this default value may result in unsupported behavior.
-    :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -272,7 +290,7 @@ def build_delete_request(
     api_version = kwargs.pop('api_version', "2015-05-01-preview")  # type: str
 
     # Construct URL
-    url = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'
+    url = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'  # pylint: disable=line-too-long
     path_format_arguments = {
         "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
         "accountName": _SERIALIZER.url("account_name", account_name, 'str'),
@@ -316,9 +334,6 @@ def build_get_properties_request(
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
      subscription. The subscription ID forms part of the URI for every service call.
     :type subscription_id: str
-    :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
-     overriding this default value may result in unsupported behavior.
-    :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -333,13 +348,23 @@ def build_get_properties_request(
                 "location": "str",  # Required. Resource location.
                 "name": "str",  # Optional. Resource name.
                 "properties": {
-                    "accountType": "str",  # Optional. Gets the type of the storage account. Possible values include: "Standard_LRS", "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
-                    "creationTime": "2020-02-20 00:00:00",  # Optional. Gets the creation date and time of the storage account in UTC.
+                    "accountType": "str",  # Optional. Gets the type of the storage
+                      account. Possible values include: "Standard_LRS", "Standard_ZRS",
+                      "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
+                    "creationTime": "2020-02-20 00:00:00",  # Optional. Gets the creation
+                      date and time of the storage account in UTC.
                     "customDomain": {
-                        "name": "str",  # Optional. Gets or sets the custom domain name. Name is the CNAME source.
-                        "useSubDomain": bool  # Optional. Indicates whether indirect CName validation is enabled. Default value is false. This should only be set on updates.
+                        "name": "str",  # Optional. Gets or sets the custom domain
+                          name. Name is the CNAME source.
+                        "useSubDomain": bool  # Optional. Indicates whether indirect
+                          CName validation is enabled. Default value is false. This should only be
+                          set on updates.
                     },
-                    "lastGeoFailoverTime": "2020-02-20 00:00:00",  # Optional. Gets the timestamp of the most recent instance of a failover to the secondary location. Only the most recent timestamp is retained. This element is not returned if there has never been a failover instance. Only available if the accountType is StandardGRS or StandardRAGRS.
+                    "lastGeoFailoverTime": "2020-02-20 00:00:00",  # Optional. Gets the
+                      timestamp of the most recent instance of a failover to the secondary
+                      location. Only the most recent timestamp is retained. This element is not
+                      returned if there has never been a failover instance. Only available if the
+                      accountType is StandardGRS or StandardRAGRS.
                     "primaryEndpoints": {
                         "FooPoint": {
                             "Bar.Point": {
@@ -351,8 +376,11 @@ def build_get_properties_request(
                         "queue": "str",  # Optional. Gets the queue endpoint.
                         "table": "str"  # Optional. Gets the table endpoint.
                     },
-                    "primaryLocation": "str",  # Optional. Gets the location of the primary for the storage account.
-                    "provisioningState": "str",  # Optional. Gets the status of the storage account at the time the operation was called. Possible values include: "Creating", "ResolvingDNS", "Succeeded".
+                    "primaryLocation": "str",  # Optional. Gets the location of the
+                      primary for the storage account.
+                    "provisioningState": "str",  # Optional. Gets the status of the
+                      storage account at the time the operation was called. Possible values
+                      include: "Creating", "ResolvingDNS", "Succeeded".
                     "secondaryEndpoints": {
                         "FooPoint": {
                             "Bar.Point": {
@@ -364,9 +392,16 @@ def build_get_properties_request(
                         "queue": "str",  # Optional. Gets the queue endpoint.
                         "table": "str"  # Optional. Gets the table endpoint.
                     },
-                    "secondaryLocation": "str",  # Optional. Gets the location of the geo replicated secondary for the storage account. Only available if the accountType is StandardGRS or StandardRAGRS.
-                    "statusOfPrimary": "str",  # Optional. Gets the status indicating whether the primary location of the storage account is available or unavailable. Possible values include: "Available", "Unavailable".
-                    "statusOfSecondary": "str"  # Optional. Gets the status indicating whether the secondary location of the storage account is available or unavailable. Only available if the accountType is StandardGRS or StandardRAGRS. Possible values include: "Available", "Unavailable".
+                    "secondaryLocation": "str",  # Optional. Gets the location of the geo
+                      replicated secondary for the storage account. Only available if the
+                      accountType is StandardGRS or StandardRAGRS.
+                    "statusOfPrimary": "str",  # Optional. Gets the status indicating
+                      whether the primary location of the storage account is available or
+                      unavailable. Possible values include: "Available", "Unavailable".
+                    "statusOfSecondary": "str"  # Optional. Gets the status indicating
+                      whether the secondary location of the storage account is available or
+                      unavailable. Only available if the accountType is StandardGRS or
+                      StandardRAGRS. Possible values include: "Available", "Unavailable".
                 },
                 "tags": {
                     "str": "str"  # Optional. A set of tags. Resource tags.
@@ -379,7 +414,7 @@ def build_get_properties_request(
 
     accept = "application/json, text/json"
     # Construct URL
-    url = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'
+    url = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'  # pylint: disable=line-too-long
     path_format_arguments = {
         "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
         "accountName": _SERIALIZER.url("account_name", account_name, 'str'),
@@ -432,9 +467,6 @@ def build_update_request(
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
      subscription. The subscription ID forms part of the URI for every service call.
     :type subscription_id: str
-    :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
-     overriding this default value may result in unsupported behavior.
-    :paramtype api_version: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. The parameters to update on the account. Note that only
      one property can be changed at a time using this API.
@@ -457,10 +489,17 @@ def build_update_request(
                 "location": "str",  # Required. Resource location.
                 "name": "str",  # Optional. Resource name.
                 "properties": {
-                    "accountType": "str",  # Optional. Gets or sets the account type. Note that StandardZRS and PremiumLRS accounts cannot be changed to other account types, and other account types cannot be changed to StandardZRS or PremiumLRS. Possible values include: "Standard_LRS", "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
+                    "accountType": "str",  # Optional. Gets or sets the account type.
+                      Note that StandardZRS and PremiumLRS accounts cannot be changed to other
+                      account types, and other account types cannot be changed to StandardZRS or
+                      PremiumLRS. Possible values include: "Standard_LRS", "Standard_ZRS",
+                      "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
                     "customDomain": {
-                        "name": "str",  # Optional. Gets or sets the custom domain name. Name is the CNAME source.
-                        "useSubDomain": bool  # Optional. Indicates whether indirect CName validation is enabled. Default value is false. This should only be set on updates.
+                        "name": "str",  # Optional. Gets or sets the custom domain
+                          name. Name is the CNAME source.
+                        "useSubDomain": bool  # Optional. Indicates whether indirect
+                          CName validation is enabled. Default value is false. This should only be
+                          set on updates.
                     }
                 },
                 "tags": {
@@ -475,13 +514,23 @@ def build_update_request(
                 "location": "str",  # Required. Resource location.
                 "name": "str",  # Optional. Resource name.
                 "properties": {
-                    "accountType": "str",  # Optional. Gets the type of the storage account. Possible values include: "Standard_LRS", "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
-                    "creationTime": "2020-02-20 00:00:00",  # Optional. Gets the creation date and time of the storage account in UTC.
+                    "accountType": "str",  # Optional. Gets the type of the storage
+                      account. Possible values include: "Standard_LRS", "Standard_ZRS",
+                      "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
+                    "creationTime": "2020-02-20 00:00:00",  # Optional. Gets the creation
+                      date and time of the storage account in UTC.
                     "customDomain": {
-                        "name": "str",  # Optional. Gets or sets the custom domain name. Name is the CNAME source.
-                        "useSubDomain": bool  # Optional. Indicates whether indirect CName validation is enabled. Default value is false. This should only be set on updates.
+                        "name": "str",  # Optional. Gets or sets the custom domain
+                          name. Name is the CNAME source.
+                        "useSubDomain": bool  # Optional. Indicates whether indirect
+                          CName validation is enabled. Default value is false. This should only be
+                          set on updates.
                     },
-                    "lastGeoFailoverTime": "2020-02-20 00:00:00",  # Optional. Gets the timestamp of the most recent instance of a failover to the secondary location. Only the most recent timestamp is retained. This element is not returned if there has never been a failover instance. Only available if the accountType is StandardGRS or StandardRAGRS.
+                    "lastGeoFailoverTime": "2020-02-20 00:00:00",  # Optional. Gets the
+                      timestamp of the most recent instance of a failover to the secondary
+                      location. Only the most recent timestamp is retained. This element is not
+                      returned if there has never been a failover instance. Only available if the
+                      accountType is StandardGRS or StandardRAGRS.
                     "primaryEndpoints": {
                         "FooPoint": {
                             "Bar.Point": {
@@ -493,8 +542,11 @@ def build_update_request(
                         "queue": "str",  # Optional. Gets the queue endpoint.
                         "table": "str"  # Optional. Gets the table endpoint.
                     },
-                    "primaryLocation": "str",  # Optional. Gets the location of the primary for the storage account.
-                    "provisioningState": "str",  # Optional. Gets the status of the storage account at the time the operation was called. Possible values include: "Creating", "ResolvingDNS", "Succeeded".
+                    "primaryLocation": "str",  # Optional. Gets the location of the
+                      primary for the storage account.
+                    "provisioningState": "str",  # Optional. Gets the status of the
+                      storage account at the time the operation was called. Possible values
+                      include: "Creating", "ResolvingDNS", "Succeeded".
                     "secondaryEndpoints": {
                         "FooPoint": {
                             "Bar.Point": {
@@ -506,9 +558,16 @@ def build_update_request(
                         "queue": "str",  # Optional. Gets the queue endpoint.
                         "table": "str"  # Optional. Gets the table endpoint.
                     },
-                    "secondaryLocation": "str",  # Optional. Gets the location of the geo replicated secondary for the storage account. Only available if the accountType is StandardGRS or StandardRAGRS.
-                    "statusOfPrimary": "str",  # Optional. Gets the status indicating whether the primary location of the storage account is available or unavailable. Possible values include: "Available", "Unavailable".
-                    "statusOfSecondary": "str"  # Optional. Gets the status indicating whether the secondary location of the storage account is available or unavailable. Only available if the accountType is StandardGRS or StandardRAGRS. Possible values include: "Available", "Unavailable".
+                    "secondaryLocation": "str",  # Optional. Gets the location of the geo
+                      replicated secondary for the storage account. Only available if the
+                      accountType is StandardGRS or StandardRAGRS.
+                    "statusOfPrimary": "str",  # Optional. Gets the status indicating
+                      whether the primary location of the storage account is available or
+                      unavailable. Possible values include: "Available", "Unavailable".
+                    "statusOfSecondary": "str"  # Optional. Gets the status indicating
+                      whether the secondary location of the storage account is available or
+                      unavailable. Only available if the accountType is StandardGRS or
+                      StandardRAGRS. Possible values include: "Available", "Unavailable".
                 },
                 "tags": {
                     "str": "str"  # Optional. A set of tags. Resource tags.
@@ -522,7 +581,7 @@ def build_update_request(
 
     accept = "application/json, text/json"
     # Construct URL
-    url = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'
+    url = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'  # pylint: disable=line-too-long
     path_format_arguments = {
         "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
         "accountName": _SERIALIZER.url("account_name", account_name, 'str'),
@@ -569,9 +628,6 @@ def build_list_keys_request(
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
      subscription. The subscription ID forms part of the URI for every service call.
     :type subscription_id: str
-    :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
-     overriding this default value may result in unsupported behavior.
-    :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -591,7 +647,7 @@ def build_list_keys_request(
 
     accept = "application/json, text/json"
     # Construct URL
-    url = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys'
+    url = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys'  # pylint: disable=line-too-long
     path_format_arguments = {
         "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
         "accountName": _SERIALIZER.url("account_name", account_name, 'str'),
@@ -631,9 +687,6 @@ def build_list_request(
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
      subscription. The subscription ID forms part of the URI for every service call.
     :type subscription_id: str
-    :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
-     overriding this default value may result in unsupported behavior.
-    :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -644,50 +697,81 @@ def build_list_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "nextLink": "str",  # Optional. Gets the link to the next set of results. Currently this will always be empty as the API does not support pagination.
+                "nextLink": "str",  # Optional. Gets the link to the next set of results.
+                  Currently this will always be empty as the API does not support pagination.
                 "value": [
                     {
                         "id": "str",  # Optional. Resource Id.
                         "location": "str",  # Required. Resource location.
                         "name": "str",  # Optional. Resource name.
                         "properties": {
-                            "accountType": "str",  # Optional. Gets the type of the storage account. Possible values include: "Standard_LRS", "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
-                            "creationTime": "2020-02-20 00:00:00",  # Optional. Gets the creation date and time of the storage account in UTC.
+                            "accountType": "str",  # Optional. Gets the type of
+                              the storage account. Possible values include: "Standard_LRS",
+                              "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
+                            "creationTime": "2020-02-20 00:00:00",  # Optional.
+                              Gets the creation date and time of the storage account in UTC.
                             "customDomain": {
-                                "name": "str",  # Optional. Gets or sets the custom domain name. Name is the CNAME source.
-                                "useSubDomain": bool  # Optional. Indicates whether indirect CName validation is enabled. Default value is false. This should only be set on updates.
+                                "name": "str",  # Optional. Gets or sets the
+                                  custom domain name. Name is the CNAME source.
+                                "useSubDomain": bool  # Optional. Indicates
+                                  whether indirect CName validation is enabled. Default value is
+                                  false. This should only be set on updates.
                             },
-                            "lastGeoFailoverTime": "2020-02-20 00:00:00",  # Optional. Gets the timestamp of the most recent instance of a failover to the secondary location. Only the most recent timestamp is retained. This element is not returned if there has never been a failover instance. Only available if the accountType is StandardGRS or StandardRAGRS.
+                            "lastGeoFailoverTime": "2020-02-20 00:00:00",  #
+                              Optional. Gets the timestamp of the most recent instance of a
+                              failover to the secondary location. Only the most recent timestamp is
+                              retained. This element is not returned if there has never been a
+                              failover instance. Only available if the accountType is StandardGRS
+                              or StandardRAGRS.
                             "primaryEndpoints": {
                                 "FooPoint": {
                                     "Bar.Point": {
                                         "RecursivePoint": ...
                                     }
                                 },
-                                "blob": "str",  # Optional. Gets the blob endpoint.
+                                "blob": "str",  # Optional. Gets the blob
+                                  endpoint.
                                 "dummyEndPoint": ...,
-                                "queue": "str",  # Optional. Gets the queue endpoint.
-                                "table": "str"  # Optional. Gets the table endpoint.
+                                "queue": "str",  # Optional. Gets the queue
+                                  endpoint.
+                                "table": "str"  # Optional. Gets the table
+                                  endpoint.
                             },
-                            "primaryLocation": "str",  # Optional. Gets the location of the primary for the storage account.
-                            "provisioningState": "str",  # Optional. Gets the status of the storage account at the time the operation was called. Possible values include: "Creating", "ResolvingDNS", "Succeeded".
+                            "primaryLocation": "str",  # Optional. Gets the
+                              location of the primary for the storage account.
+                            "provisioningState": "str",  # Optional. Gets the
+                              status of the storage account at the time the operation was called.
+                              Possible values include: "Creating", "ResolvingDNS", "Succeeded".
                             "secondaryEndpoints": {
                                 "FooPoint": {
                                     "Bar.Point": {
                                         "RecursivePoint": ...
                                     }
                                 },
-                                "blob": "str",  # Optional. Gets the blob endpoint.
+                                "blob": "str",  # Optional. Gets the blob
+                                  endpoint.
                                 "dummyEndPoint": ...,
-                                "queue": "str",  # Optional. Gets the queue endpoint.
-                                "table": "str"  # Optional. Gets the table endpoint.
+                                "queue": "str",  # Optional. Gets the queue
+                                  endpoint.
+                                "table": "str"  # Optional. Gets the table
+                                  endpoint.
                             },
-                            "secondaryLocation": "str",  # Optional. Gets the location of the geo replicated secondary for the storage account. Only available if the accountType is StandardGRS or StandardRAGRS.
-                            "statusOfPrimary": "str",  # Optional. Gets the status indicating whether the primary location of the storage account is available or unavailable. Possible values include: "Available", "Unavailable".
-                            "statusOfSecondary": "str"  # Optional. Gets the status indicating whether the secondary location of the storage account is available or unavailable. Only available if the accountType is StandardGRS or StandardRAGRS. Possible values include: "Available", "Unavailable".
+                            "secondaryLocation": "str",  # Optional. Gets the
+                              location of the geo replicated secondary for the storage account.
+                              Only available if the accountType is StandardGRS or StandardRAGRS.
+                            "statusOfPrimary": "str",  # Optional. Gets the
+                              status indicating whether the primary location of the storage account
+                              is available or unavailable. Possible values include: "Available",
+                              "Unavailable".
+                            "statusOfSecondary": "str"  # Optional. Gets the
+                              status indicating whether the secondary location of the storage
+                              account is available or unavailable. Only available if the
+                              accountType is StandardGRS or StandardRAGRS. Possible values include:
+                              "Available", "Unavailable".
                         },
                         "tags": {
-                            "str": "str"  # Optional. A set of tags. Resource tags.
+                            "str": "str"  # Optional. A set of tags. Resource
+                              tags.
                         },
                         "type": "str"  # Optional. Resource type.
                     }
@@ -740,9 +824,6 @@ def build_list_by_resource_group_request(
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
      subscription. The subscription ID forms part of the URI for every service call.
     :type subscription_id: str
-    :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
-     overriding this default value may result in unsupported behavior.
-    :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -753,50 +834,81 @@ def build_list_by_resource_group_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "nextLink": "str",  # Optional. Gets the link to the next set of results. Currently this will always be empty as the API does not support pagination.
+                "nextLink": "str",  # Optional. Gets the link to the next set of results.
+                  Currently this will always be empty as the API does not support pagination.
                 "value": [
                     {
                         "id": "str",  # Optional. Resource Id.
                         "location": "str",  # Required. Resource location.
                         "name": "str",  # Optional. Resource name.
                         "properties": {
-                            "accountType": "str",  # Optional. Gets the type of the storage account. Possible values include: "Standard_LRS", "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
-                            "creationTime": "2020-02-20 00:00:00",  # Optional. Gets the creation date and time of the storage account in UTC.
+                            "accountType": "str",  # Optional. Gets the type of
+                              the storage account. Possible values include: "Standard_LRS",
+                              "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
+                            "creationTime": "2020-02-20 00:00:00",  # Optional.
+                              Gets the creation date and time of the storage account in UTC.
                             "customDomain": {
-                                "name": "str",  # Optional. Gets or sets the custom domain name. Name is the CNAME source.
-                                "useSubDomain": bool  # Optional. Indicates whether indirect CName validation is enabled. Default value is false. This should only be set on updates.
+                                "name": "str",  # Optional. Gets or sets the
+                                  custom domain name. Name is the CNAME source.
+                                "useSubDomain": bool  # Optional. Indicates
+                                  whether indirect CName validation is enabled. Default value is
+                                  false. This should only be set on updates.
                             },
-                            "lastGeoFailoverTime": "2020-02-20 00:00:00",  # Optional. Gets the timestamp of the most recent instance of a failover to the secondary location. Only the most recent timestamp is retained. This element is not returned if there has never been a failover instance. Only available if the accountType is StandardGRS or StandardRAGRS.
+                            "lastGeoFailoverTime": "2020-02-20 00:00:00",  #
+                              Optional. Gets the timestamp of the most recent instance of a
+                              failover to the secondary location. Only the most recent timestamp is
+                              retained. This element is not returned if there has never been a
+                              failover instance. Only available if the accountType is StandardGRS
+                              or StandardRAGRS.
                             "primaryEndpoints": {
                                 "FooPoint": {
                                     "Bar.Point": {
                                         "RecursivePoint": ...
                                     }
                                 },
-                                "blob": "str",  # Optional. Gets the blob endpoint.
+                                "blob": "str",  # Optional. Gets the blob
+                                  endpoint.
                                 "dummyEndPoint": ...,
-                                "queue": "str",  # Optional. Gets the queue endpoint.
-                                "table": "str"  # Optional. Gets the table endpoint.
+                                "queue": "str",  # Optional. Gets the queue
+                                  endpoint.
+                                "table": "str"  # Optional. Gets the table
+                                  endpoint.
                             },
-                            "primaryLocation": "str",  # Optional. Gets the location of the primary for the storage account.
-                            "provisioningState": "str",  # Optional. Gets the status of the storage account at the time the operation was called. Possible values include: "Creating", "ResolvingDNS", "Succeeded".
+                            "primaryLocation": "str",  # Optional. Gets the
+                              location of the primary for the storage account.
+                            "provisioningState": "str",  # Optional. Gets the
+                              status of the storage account at the time the operation was called.
+                              Possible values include: "Creating", "ResolvingDNS", "Succeeded".
                             "secondaryEndpoints": {
                                 "FooPoint": {
                                     "Bar.Point": {
                                         "RecursivePoint": ...
                                     }
                                 },
-                                "blob": "str",  # Optional. Gets the blob endpoint.
+                                "blob": "str",  # Optional. Gets the blob
+                                  endpoint.
                                 "dummyEndPoint": ...,
-                                "queue": "str",  # Optional. Gets the queue endpoint.
-                                "table": "str"  # Optional. Gets the table endpoint.
+                                "queue": "str",  # Optional. Gets the queue
+                                  endpoint.
+                                "table": "str"  # Optional. Gets the table
+                                  endpoint.
                             },
-                            "secondaryLocation": "str",  # Optional. Gets the location of the geo replicated secondary for the storage account. Only available if the accountType is StandardGRS or StandardRAGRS.
-                            "statusOfPrimary": "str",  # Optional. Gets the status indicating whether the primary location of the storage account is available or unavailable. Possible values include: "Available", "Unavailable".
-                            "statusOfSecondary": "str"  # Optional. Gets the status indicating whether the secondary location of the storage account is available or unavailable. Only available if the accountType is StandardGRS or StandardRAGRS. Possible values include: "Available", "Unavailable".
+                            "secondaryLocation": "str",  # Optional. Gets the
+                              location of the geo replicated secondary for the storage account.
+                              Only available if the accountType is StandardGRS or StandardRAGRS.
+                            "statusOfPrimary": "str",  # Optional. Gets the
+                              status indicating whether the primary location of the storage account
+                              is available or unavailable. Possible values include: "Available",
+                              "Unavailable".
+                            "statusOfSecondary": "str"  # Optional. Gets the
+                              status indicating whether the secondary location of the storage
+                              account is available or unavailable. Only available if the
+                              accountType is StandardGRS or StandardRAGRS. Possible values include:
+                              "Available", "Unavailable".
                         },
                         "tags": {
-                            "str": "str"  # Optional. A set of tags. Resource tags.
+                            "str": "str"  # Optional. A set of tags. Resource
+                              tags.
                         },
                         "type": "str"  # Optional. Resource type.
                     }
@@ -854,9 +966,6 @@ def build_regenerate_key_request(
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
      subscription. The subscription ID forms part of the URI for every service call.
     :type subscription_id: str
-    :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
-     overriding this default value may result in unsupported behavior.
-    :paramtype api_version: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Specifies name of the key which should be regenerated.
     :paramtype json: JSONType
@@ -888,7 +997,7 @@ def build_regenerate_key_request(
 
     accept = "application/json, text/json"
     # Construct URL
-    url = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/regenerateKey'
+    url = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/regenerateKey'  # pylint: disable=line-too-long
     path_format_arguments = {
         "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
         "accountName": _SERIALIZER.url("account_name", account_name, 'str'),
@@ -914,3 +1023,4 @@ def build_regenerate_key_request(
         headers=header_parameters,
         **kwargs
     )
+

@@ -12,9 +12,8 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, IO, Optional, TypeVar, Union
-
-    T = TypeVar("T")
+    from typing import Any, Dict, Optional, TypeVar, Union
+    T = TypeVar('T')
     JSONType = Any
 
 _SERIALIZER = Serializer()
@@ -309,3 +308,4 @@ def build_get_new_operation_request(
         headers=header_parameters,
         **kwargs
     )
+

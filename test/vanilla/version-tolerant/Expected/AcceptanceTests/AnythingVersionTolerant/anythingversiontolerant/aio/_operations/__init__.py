@@ -9,5 +9,5 @@
 from ._operations import AnythingClientOperationsMixin
 
 __all__ = [
-    "AnythingClientOperationsMixin",
+    'AnythingClientOperationsMixin',
 ]

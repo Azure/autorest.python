@@ -7,11 +7,9 @@
 # --------------------------------------------------------------------------
 
 from ._auto_rest_duration_test_service import AutoRestDurationTestService
-
-__all__ = ["AutoRestDurationTestService"]
+__all__ = ['AutoRestDurationTestService']
 
 # `._patch.py` is used for handwritten extensions to the generated code
 # Example: https://github.com/Azure/azure-sdk-for-python/blob/main/doc/dev/customize_code/how-to-patch-sdk-code.md
 from ._patch import patch_sdk
-
 patch_sdk()

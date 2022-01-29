@@ -14,6 +14,6 @@ except (SyntaxError, ImportError):
     from ._request_builders import build_poll_with_constant_parameterized_endpoints_request  # type: ignore
 
 __all__ = [
-    "build_poll_with_parameterized_endpoints_request",
-    "build_poll_with_constant_parameterized_endpoints_request",
+    'build_poll_with_parameterized_endpoints_request',
+    'build_poll_with_constant_parameterized_endpoints_request',
 ]

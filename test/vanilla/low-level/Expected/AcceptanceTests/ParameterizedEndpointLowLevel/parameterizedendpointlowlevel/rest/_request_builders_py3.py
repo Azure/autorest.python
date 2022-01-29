@@ -14,7 +14,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_get_request(**kwargs: Any) -> HttpRequest:
+def build_get_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Basic get to make sure base url formatting of 'endpoint' works.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -27,6 +29,11 @@ def build_get_request(**kwargs: Any) -> HttpRequest:
     """
 
     # Construct URL
-    url = "/parameterizedEndpoint/get"
+    url = '/parameterizedEndpoint/get'
 
-    return HttpRequest(method="GET", url=url, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        **kwargs
+    )
+

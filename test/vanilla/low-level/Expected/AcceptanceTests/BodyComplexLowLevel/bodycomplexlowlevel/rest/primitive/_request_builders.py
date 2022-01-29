@@ -13,8 +13,7 @@ from msrest import Serializer
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Dict, Optional, TypeVar
-
-    T = TypeVar("T")
+    T = TypeVar('T')
     JSONType = Any
 
 _SERIALIZER = Serializer()
@@ -311,7 +310,8 @@ def build_get_double_request(
             # response body for status code(s): 200
             response.json() == {
                 "field1": 0.0,  # Optional.
-                "field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose": 0.0  # Optional.
+            "field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose":
+                  0.0  # Optional.
             }
     """
 
@@ -359,7 +359,8 @@ def build_put_double_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "field1": 0.0,  # Optional.
-                "field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose": 0.0  # Optional.
+            "field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose":
+                  0.0  # Optional.
             }
     """
 
@@ -1015,3 +1016,4 @@ def build_put_byte_request(
         headers=header_parameters,
         **kwargs
     )
+

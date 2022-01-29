@@ -18,8 +18,8 @@ except (SyntaxError, ImportError):
     from ._request_builders import build_get_invalid_request  # type: ignore
 
 __all__ = [
-    "build_get_null_request",
-    "build_put_positive_duration_request",
-    "build_get_positive_duration_request",
-    "build_get_invalid_request",
+    'build_get_null_request',
+    'build_put_positive_duration_request',
+    'build_get_positive_duration_request',
+    'build_get_invalid_request',
 ]

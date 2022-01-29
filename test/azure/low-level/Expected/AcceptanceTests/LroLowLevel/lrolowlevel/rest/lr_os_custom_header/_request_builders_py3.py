@@ -9,8 +9,7 @@ from typing import Any, Dict, Optional, TypeVar
 
 from azure.core.rest import HttpRequest
 from msrest import Serializer
-
-T = TypeVar("T")
+T = TypeVar('T')
 JSONType = Any
 
 _SERIALIZER = Serializer()
@@ -18,7 +17,10 @@ _SERIALIZER.client_side_validation = False
 
 
 def build_put_async_retry_succeeded_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *,
+    json: JSONType = None,
+    content: Any = None,
+    **kwargs: Any
 ) -> HttpRequest:
     """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
     all requests. Long running put request, service returns a 200 to the initial request, with an
@@ -49,10 +51,13 @@ def build_put_async_retry_succeeded_request(
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    "provisioningStateValues": "str"  # Optional. Possible values
+                      include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                      "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
-                    "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                    "str": "str"  # Optional. A set of tags. Dictionary of
+                      :code:`<string>`.
                 },
                 "type": "str"  # Optional. Resource Type.
             }
@@ -64,32 +69,45 @@ def build_put_async_retry_succeeded_request(
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    "provisioningStateValues": "str"  # Optional. Possible values
+                      include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                      "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
-                    "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                    "str": "str"  # Optional. A set of tags. Dictionary of
+                      :code:`<string>`.
                 },
                 "type": "str"  # Optional. Resource Type.
             }
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = "/lro/customheader/putasync/retry/succeeded"
+    url = '/lro/customheader/putasync/retry/succeeded'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        json=json,
+        content=content,
+        **kwargs
+    )
 
 
 def build_put201_creating_succeeded200_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *,
+    json: JSONType = None,
+    content: Any = None,
+    **kwargs: Any
 ) -> HttpRequest:
     """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
     all requests. Long running put request, service returns a 201 to the initial request, with an
@@ -120,10 +138,13 @@ def build_put201_creating_succeeded200_request(
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    "provisioningStateValues": "str"  # Optional. Possible values
+                      include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                      "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
-                    "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                    "str": "str"  # Optional. A set of tags. Dictionary of
+                      :code:`<string>`.
                 },
                 "type": "str"  # Optional. Resource Type.
             }
@@ -135,31 +156,46 @@ def build_put201_creating_succeeded200_request(
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    "provisioningStateValues": "str"  # Optional. Possible values
+                      include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                      "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
-                    "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                    "str": "str"  # Optional. A set of tags. Dictionary of
+                      :code:`<string>`.
                 },
                 "type": "str"  # Optional. Resource Type.
             }
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = "/lro/customheader/put/201/creating/succeeded/200"
+    url = '/lro/customheader/put/201/creating/succeeded/200'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        json=json,
+        content=content,
+        **kwargs
+    )
 
 
-def build_post202_retry200_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_post202_retry200_request(
+    *,
+    json: JSONType = None,
+    content: Any = None,
+    **kwargs: Any
+) -> HttpRequest:
     """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
     all requests. Long running post request, service returns a 202 to the initial request, with
     'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
@@ -188,32 +224,45 @@ def build_post202_retry200_request(*, json: JSONType = None, content: Any = None
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    "provisioningStateValues": "str"  # Optional. Possible values
+                      include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                      "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
-                    "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                    "str": "str"  # Optional. A set of tags. Dictionary of
+                      :code:`<string>`.
                 },
                 "type": "str"  # Optional. Resource Type.
             }
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = "/lro/customheader/post/202/retry/200"
+    url = '/lro/customheader/post/202/retry/200'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        json=json,
+        content=content,
+        **kwargs
+    )
 
 
 def build_post_async_retry_succeeded_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *,
+    json: JSONType = None,
+    content: Any = None,
+    **kwargs: Any
 ) -> HttpRequest:
     """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
     all requests. Long running post request, service returns a 202 to the initial request, with an
@@ -244,25 +293,36 @@ def build_post_async_retry_succeeded_request(
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    "provisioningStateValues": "str"  # Optional. Possible values
+                      include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                      "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
-                    "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                    "str": "str"  # Optional. A set of tags. Dictionary of
+                      :code:`<string>`.
                 },
                 "type": "str"  # Optional. Resource Type.
             }
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = "/lro/customheader/postasync/retry/succeeded"
+    url = '/lro/customheader/postasync/retry/succeeded'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        json=json,
+        content=content,
+        **kwargs
+    )
+

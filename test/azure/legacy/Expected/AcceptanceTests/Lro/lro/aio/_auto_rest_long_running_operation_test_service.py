@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Awaitable, Optional, TYPE_CHECKING
+from typing import Any, Awaitable, TYPE_CHECKING
 
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.mgmt.core import AsyncARMPipelineClient
@@ -20,7 +20,6 @@ from .operations import LRORetrysOperations, LROSADsOperations, LROsCustomHeader
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials_async import AsyncTokenCredential
-
 
 class AutoRestLongRunningOperationTestService:
     """Long-running Operation for AutoRest.
@@ -42,7 +41,10 @@ class AutoRestLongRunningOperationTestService:
     """
 
     def __init__(
-        self, credential: "AsyncTokenCredential", base_url: str = "http://localhost:3000", **kwargs: Any
+        self,
+        credential: "AsyncTokenCredential",
+        base_url: str = "http://localhost:3000",
+        **kwargs: Any
     ) -> None:
         self._config = AutoRestLongRunningOperationTestServiceConfiguration(credential=credential, **kwargs)
         self._client = AsyncARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
@@ -54,11 +56,14 @@ class AutoRestLongRunningOperationTestService:
         self.lros = LROsOperations(self._client, self._config, self._serialize, self._deserialize)
         self.lro_retrys = LRORetrysOperations(self._client, self._config, self._serialize, self._deserialize)
         self.lrosads = LROSADsOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.lr_os_custom_header = LROsCustomHeaderOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
+        self.lr_os_custom_header = LROsCustomHeaderOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def _send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
+
+    def _send_request(
+        self,
+        request: HttpRequest,
+        **kwargs: Any
+    ) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

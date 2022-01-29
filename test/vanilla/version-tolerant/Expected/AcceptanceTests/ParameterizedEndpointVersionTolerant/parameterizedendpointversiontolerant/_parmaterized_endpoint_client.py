@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Optional, TYPE_CHECKING
+from typing import Any, TYPE_CHECKING
 
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
@@ -20,7 +20,6 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Dict
 
-
 class ParmaterizedEndpointClient(ParmaterizedEndpointClientOperationsMixin):
     """Service client for testing parameterized hosts with the name 'endpoint'.
 
@@ -28,14 +27,19 @@ class ParmaterizedEndpointClient(ParmaterizedEndpointClientOperationsMixin):
     :type endpoint: str
     """
 
-    def __init__(self, endpoint: str, **kwargs: Any) -> None:
-        _endpoint = "{endpoint}"
+    def __init__(
+        self,
+        endpoint: str,
+        **kwargs: Any
+    ) -> None:
+        _endpoint = '{endpoint}'
         self._config = ParmaterizedEndpointClientConfiguration(endpoint=endpoint, **kwargs)
         self._client = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
+
 
     def send_request(
         self,
@@ -61,7 +65,7 @@ class ParmaterizedEndpointClient(ParmaterizedEndpointClientOperationsMixin):
 
         request_copy = deepcopy(request)
         path_format_arguments = {
-            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, 'str', skip_quote=True),
         }
 
         request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)

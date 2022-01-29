@@ -20,7 +20,6 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Dict
 
-
 class AutoRestUrlTestService:
     """Test Infrastructure for AutoRest.
 
@@ -46,10 +45,8 @@ class AutoRestUrlTestService:
         endpoint: str = "http://localhost:3000",
         **kwargs: Any
     ) -> None:
-
-        self._config = AutoRestUrlTestServiceConfiguration(
-            global_string_path=global_string_path, global_string_query=global_string_query, **kwargs
-        )
+        
+        self._config = AutoRestUrlTestServiceConfiguration(global_string_path=global_string_path, global_string_query=global_string_query, **kwargs)
         self._client = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
@@ -57,6 +54,7 @@ class AutoRestUrlTestService:
         self.paths = PathsOperations(self._client, self._config, self._serialize, self._deserialize)
         self.queries = QueriesOperations(self._client, self._config, self._serialize, self._deserialize)
         self.path_items = PathItemsOperations(self._client, self._config, self._serialize, self._deserialize)
+
 
     def send_request(
         self,

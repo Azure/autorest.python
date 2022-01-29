@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Optional, TYPE_CHECKING
+from typing import Any, TYPE_CHECKING
 
 from azure.core.rest import HttpRequest, HttpResponse
 from azure.mgmt.core import ARMPipelineClient
@@ -22,7 +22,6 @@ if TYPE_CHECKING:
 
     from azure.core.credentials import TokenCredential
 
-
 class AutoRestHeadTestService:
     """Test Infrastructure for AutoRest.
 
@@ -35,9 +34,13 @@ class AutoRestHeadTestService:
     """
 
     def __init__(
-        self, credential: "TokenCredential", *, endpoint: str = "http://localhost:3000", **kwargs: Any
+        self,
+        credential: "TokenCredential",
+        *,
+        endpoint: str = "http://localhost:3000",
+        **kwargs: Any
     ) -> None:
-
+        
         self._config = AutoRestHeadTestServiceConfiguration(credential=credential, **kwargs)
         self._client = ARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
@@ -45,6 +48,7 @@ class AutoRestHeadTestService:
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
         self.http_success = HttpSuccessOperations(self._client, self._config, self._serialize, self._deserialize)
+
 
     def send_request(
         self,

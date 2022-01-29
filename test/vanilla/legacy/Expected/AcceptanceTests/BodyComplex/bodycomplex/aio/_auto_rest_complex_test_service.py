@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Awaitable, Optional
+from typing import Any, Awaitable
 
 from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
@@ -15,20 +15,9 @@ from msrest import Deserializer, Serializer
 
 from .. import models
 from ._configuration import AutoRestComplexTestServiceConfiguration
-from .operations import (
-    ArrayOperations,
-    BasicOperations,
-    DictionaryOperations,
-    FlattencomplexOperations,
-    InheritanceOperations,
-    PolymorphicrecursiveOperations,
-    PolymorphismOperations,
-    PrimitiveOperations,
-    ReadonlypropertyOperations,
-)
+from .operations import ArrayOperations, BasicOperations, DictionaryOperations, FlattencomplexOperations, InheritanceOperations, PolymorphicrecursiveOperations, PolymorphismOperations, PrimitiveOperations, ReadonlypropertyOperations
 
-
-class AutoRestComplexTestService:
+class AutoRestComplexTestService:    # pylint: disable=too-many-instance-attributes
     """Test Infrastructure for AutoRest.
 
     :ivar basic: BasicOperations operations
@@ -56,7 +45,11 @@ class AutoRestComplexTestService:
     :paramtype api_version: str
     """
 
-    def __init__(self, base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
+    def __init__(
+        self,
+        base_url: str = "http://localhost:3000",
+        **kwargs: Any
+    ) -> None:
         self._config = AutoRestComplexTestServiceConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -69,15 +62,16 @@ class AutoRestComplexTestService:
         self.dictionary = DictionaryOperations(self._client, self._config, self._serialize, self._deserialize)
         self.inheritance = InheritanceOperations(self._client, self._config, self._serialize, self._deserialize)
         self.polymorphism = PolymorphismOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.polymorphicrecursive = PolymorphicrecursiveOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
-        self.readonlyproperty = ReadonlypropertyOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
+        self.polymorphicrecursive = PolymorphicrecursiveOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.readonlyproperty = ReadonlypropertyOperations(self._client, self._config, self._serialize, self._deserialize)
         self.flattencomplex = FlattencomplexOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def _send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
+
+    def _send_request(
+        self,
+        request: HttpRequest,
+        **kwargs: Any
+    ) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

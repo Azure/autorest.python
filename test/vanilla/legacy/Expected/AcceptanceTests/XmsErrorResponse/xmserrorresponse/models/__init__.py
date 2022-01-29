@@ -30,14 +30,14 @@ except (SyntaxError, ImportError):
     from ._models import PetSadError  # type: ignore
 
 __all__ = [
-    "Animal",
-    "AnimalNotFound",
-    "BaseError",
-    "LinkNotFound",
-    "NotFoundErrorBase",
-    "Pet",
-    "PetAction",
-    "PetActionError",
-    "PetHungryOrThirstyError",
-    "PetSadError",
+    'Animal',
+    'AnimalNotFound',
+    'BaseError',
+    'LinkNotFound',
+    'NotFoundErrorBase',
+    'Pet',
+    'PetAction',
+    'PetActionError',
+    'PetHungryOrThirstyError',
+    'PetSadError',
 ]

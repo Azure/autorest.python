@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Optional, TYPE_CHECKING
+from typing import Any, TYPE_CHECKING
 
 from azure.core.rest import HttpRequest, HttpResponse
 from azure.mgmt.core import ARMPipelineClient
@@ -20,7 +20,6 @@ if TYPE_CHECKING:
     from typing import Dict
 
     from azure.core.credentials import TokenCredential
-
 
 class StorageManagementClient:
     """StorageManagementClient.
@@ -45,15 +44,14 @@ class StorageManagementClient:
         endpoint: str = "https://management.azure.com",
         **kwargs: Any
     ) -> None:
-
-        self._config = StorageManagementClientConfiguration(
-            subscription_id=subscription_id, credential=credential, **kwargs
-        )
+        
+        self._config = StorageManagementClientConfiguration(subscription_id=subscription_id, credential=credential, **kwargs)
         self._client = ARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
+
 
     def send_request(
         self,

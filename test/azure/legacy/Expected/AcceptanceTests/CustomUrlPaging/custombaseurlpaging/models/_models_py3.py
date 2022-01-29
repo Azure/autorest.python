@@ -21,11 +21,17 @@ class Error(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "status": {"key": "status", "type": "int"},
-        "message": {"key": "message", "type": "str"},
+        'status': {'key': 'status', 'type': 'int'},
+        'message': {'key': 'message', 'type': 'str'},
     }
 
-    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        status: Optional[int] = None,
+        message: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword status:
         :paramtype status: int
@@ -45,10 +51,15 @@ class Product(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "properties": {"key": "properties", "type": "ProductProperties"},
+        'properties': {'key': 'properties', 'type': 'ProductProperties'},
     }
 
-    def __init__(self, *, properties: Optional["ProductProperties"] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        properties: Optional["ProductProperties"] = None,
+        **kwargs
+    ):
         """
         :keyword properties:
         :paramtype properties: ~custombaseurlpaging.models.ProductProperties
@@ -67,11 +78,17 @@ class ProductProperties(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "id": {"key": "id", "type": "int"},
-        "name": {"key": "name", "type": "str"},
+        'id': {'key': 'id', 'type': 'int'},
+        'name': {'key': 'name', 'type': 'str'},
     }
 
-    def __init__(self, *, id: Optional[int] = None, name: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        id: Optional[int] = None,
+        name: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword id:
         :paramtype id: int
@@ -93,11 +110,17 @@ class ProductResult(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "values": {"key": "values", "type": "[Product]"},
-        "next_link": {"key": "nextLink", "type": "str"},
+        'values': {'key': 'values', 'type': '[Product]'},
+        'next_link': {'key': 'nextLink', 'type': 'str'},
     }
 
-    def __init__(self, *, values: Optional[List["Product"]] = None, next_link: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        values: Optional[List["Product"]] = None,
+        next_link: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword values:
         :paramtype values: list[~custombaseurlpaging.models.Product]

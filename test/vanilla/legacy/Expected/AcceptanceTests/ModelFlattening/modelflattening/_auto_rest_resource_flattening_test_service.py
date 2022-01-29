@@ -18,10 +18,9 @@ from .operations import AutoRestResourceFlatteningTestServiceOperationsMixin
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any
 
     from azure.core.rest import HttpRequest, HttpResponse
-
 
 class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServiceOperationsMixin):
     """Resource Flattening for AutoRest.
@@ -43,6 +42,7 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
+
 
     def _send_request(
         self,

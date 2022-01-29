@@ -13,7 +13,9 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def build_get_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get_valid_request(
+    **kwargs: Any
+) -> HttpRequest:
     """get_valid.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -39,10 +41,16 @@ def build_get_valid_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/complex/flatten/valid"
+    url = '/complex/flatten/valid'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+

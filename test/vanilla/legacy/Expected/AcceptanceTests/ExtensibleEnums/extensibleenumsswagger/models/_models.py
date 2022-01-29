@@ -24,16 +24,19 @@ class Pet(msrest.serialization.Model):
     """
 
     _validation = {
-        "int_enum": {"required": True},
+        'int_enum': {'required': True},
     }
 
     _attribute_map = {
-        "name": {"key": "name", "type": "str"},
-        "days_of_week": {"key": "DaysOfWeek", "type": "str"},
-        "int_enum": {"key": "IntEnum", "type": "str"},
+        'name': {'key': 'name', 'type': 'str'},
+        'days_of_week': {'key': 'DaysOfWeek', 'type': 'str'},
+        'int_enum': {'key': 'IntEnum', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword name: name.
         :paramtype name: str
@@ -44,6 +47,6 @@ class Pet(msrest.serialization.Model):
         :paramtype int_enum: str or ~extensibleenumsswagger.models.IntEnum
         """
         super(Pet, self).__init__(**kwargs)
-        self.name = kwargs.get("name", None)
-        self.days_of_week = kwargs.get("days_of_week", "Friday")
-        self.int_enum = kwargs["int_enum"]
+        self.name = kwargs.get('name', None)
+        self.days_of_week = kwargs.get('days_of_week', "Friday")
+        self.int_enum = kwargs['int_enum']

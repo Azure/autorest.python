@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Awaitable, Optional, TYPE_CHECKING
+from typing import Any, Awaitable, TYPE_CHECKING
 
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.mgmt.core import AsyncARMPipelineClient
@@ -20,7 +20,6 @@ if TYPE_CHECKING:
     from typing import Dict
 
     from azure.core.credentials_async import AsyncTokenCredential
-
 
 class StorageManagementClient:
     """StorageManagementClient.
@@ -45,16 +44,19 @@ class StorageManagementClient:
         endpoint: str = "https://management.azure.com",
         **kwargs: Any
     ) -> None:
-        self._config = StorageManagementClientConfiguration(
-            subscription_id=subscription_id, credential=credential, **kwargs
-        )
+        self._config = StorageManagementClientConfiguration(subscription_id=subscription_id, credential=credential, **kwargs)
         self._client = AsyncARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
 
-    def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
+
+    def send_request(
+        self,
+        request: HttpRequest,
+        **kwargs: Any
+    ) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `storagelowlevel.rest`.

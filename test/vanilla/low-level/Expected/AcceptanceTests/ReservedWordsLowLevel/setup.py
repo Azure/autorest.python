@@ -33,5 +33,5 @@ setup(
     include_package_data=True,
     long_description="""\
     Swagger that has operation groups etc. with reserved words.
-    """,
+    """
 )

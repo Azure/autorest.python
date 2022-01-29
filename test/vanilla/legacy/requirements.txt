@@ -34,6 +34,7 @@ azure-core==1.20.1
 -e ./Expected/AcceptanceTests/Http
 -e ./Expected/AcceptanceTests/IncorrectErrorResponse
 -e ./Expected/AcceptanceTests/MediaTypes
+-e ./Expected/AcceptanceTests/MergePatchJson
 -e ./Expected/AcceptanceTests/ModelFlattening
 -e ./Expected/AcceptanceTests/MultipleInheritance
 -e ./Expected/AcceptanceTests/NoOperations

@@ -22,10 +22,10 @@ except (SyntaxError, ImportError):
     from ._request_builders import build_put_array_request  # type: ignore
 
 __all__ = [
-    "build_get_object_request",
-    "build_put_object_request",
-    "build_get_string_request",
-    "build_put_string_request",
-    "build_get_array_request",
-    "build_put_array_request",
+    'build_get_object_request',
+    'build_put_object_request',
+    'build_get_string_request',
+    'build_put_string_request',
+    'build_get_array_request',
+    'build_put_array_request',
 ]

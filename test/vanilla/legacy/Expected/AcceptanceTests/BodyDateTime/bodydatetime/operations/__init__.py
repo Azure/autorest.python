@@ -9,5 +9,5 @@
 from ._datetime_operations import DatetimeOperations
 
 __all__ = [
-    "DatetimeOperations",
+    'DatetimeOperations',
 ]

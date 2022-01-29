@@ -9,5 +9,5 @@
 from ._files_operations import FilesOperations
 
 __all__ = [
-    "FilesOperations",
+    'FilesOperations',
 ]

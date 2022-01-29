@@ -24,23 +24,26 @@ class ChildProduct(msrest.serialization.Model):
     """
 
     _validation = {
-        "const_property": {"required": True, "constant": True},
+        'const_property': {'required': True, 'constant': True},
     }
 
     _attribute_map = {
-        "const_property": {"key": "constProperty", "type": "str"},
-        "count": {"key": "count", "type": "int"},
+        'const_property': {'key': 'constProperty', 'type': 'str'},
+        'count': {'key': 'count', 'type': 'int'},
     }
 
     const_property = "constant"
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword count: Count.
         :paramtype count: int
         """
         super(ChildProduct, self).__init__(**kwargs)
-        self.count = kwargs.get("count", None)
+        self.count = kwargs.get('count', None)
 
 
 class ConstantProduct(msrest.serialization.Model):
@@ -57,20 +60,24 @@ class ConstantProduct(msrest.serialization.Model):
     """
 
     _validation = {
-        "const_property": {"required": True, "constant": True},
-        "const_property2": {"required": True, "constant": True},
+        'const_property': {'required': True, 'constant': True},
+        'const_property2': {'required': True, 'constant': True},
     }
 
     _attribute_map = {
-        "const_property": {"key": "constProperty", "type": "str"},
-        "const_property2": {"key": "constProperty2", "type": "str"},
+        'const_property': {'key': 'constProperty', 'type': 'str'},
+        'const_property2': {'key': 'constProperty2', 'type': 'str'},
     }
 
     const_property = "constant"
     const_property2 = "constant2"
 
-    def __init__(self, **kwargs):
-        """ """
+    def __init__(
+        self,
+        **kwargs
+    ):
+        """
+        """
         super(ConstantProduct, self).__init__(**kwargs)
 
 
@@ -86,12 +93,15 @@ class Error(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "code": {"key": "code", "type": "int"},
-        "message": {"key": "message", "type": "str"},
-        "fields": {"key": "fields", "type": "str"},
+        'code': {'key': 'code', 'type': 'int'},
+        'message': {'key': 'message', 'type': 'str'},
+        'fields': {'key': 'fields', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword code:
         :paramtype code: int
@@ -101,9 +111,9 @@ class Error(msrest.serialization.Model):
         :paramtype fields: str
         """
         super(Error, self).__init__(**kwargs)
-        self.code = kwargs.get("code", None)
-        self.message = kwargs.get("message", None)
-        self.fields = kwargs.get("fields", None)
+        self.code = kwargs.get('code', None)
+        self.message = kwargs.get('message', None)
+        self.fields = kwargs.get('fields', None)
 
 
 class Product(msrest.serialization.Model):
@@ -133,30 +143,33 @@ class Product(msrest.serialization.Model):
     """
 
     _validation = {
-        "display_names": {"max_items": 6, "min_items": 0, "unique": True},
-        "capacity": {"maximum_ex": 100, "minimum_ex": 0},
-        "image": {"pattern": r"http://\w+"},
-        "child": {"required": True},
-        "const_child": {"required": True},
-        "const_int": {"required": True, "constant": True},
-        "const_string": {"required": True, "constant": True},
+        'display_names': {'max_items': 6, 'min_items': 0, 'unique': True},
+        'capacity': {'maximum_ex': 100, 'minimum_ex': 0},
+        'image': {'pattern': r'http://\w+'},
+        'child': {'required': True},
+        'const_child': {'required': True},
+        'const_int': {'required': True, 'constant': True},
+        'const_string': {'required': True, 'constant': True},
     }
 
     _attribute_map = {
-        "display_names": {"key": "display_names", "type": "[str]"},
-        "capacity": {"key": "capacity", "type": "int"},
-        "image": {"key": "image", "type": "str"},
-        "child": {"key": "child", "type": "ChildProduct"},
-        "const_child": {"key": "constChild", "type": "ConstantProduct"},
-        "const_int": {"key": "constInt", "type": "int"},
-        "const_string": {"key": "constString", "type": "str"},
-        "const_string_as_enum": {"key": "constStringAsEnum", "type": "str"},
+        'display_names': {'key': 'display_names', 'type': '[str]'},
+        'capacity': {'key': 'capacity', 'type': 'int'},
+        'image': {'key': 'image', 'type': 'str'},
+        'child': {'key': 'child', 'type': 'ChildProduct'},
+        'const_child': {'key': 'constChild', 'type': 'ConstantProduct'},
+        'const_int': {'key': 'constInt', 'type': 'int'},
+        'const_string': {'key': 'constString', 'type': 'str'},
+        'const_string_as_enum': {'key': 'constStringAsEnum', 'type': 'str'},
     }
 
     const_int = 0
     const_string = "constant"
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword display_names: Non required array of unique items from 0 to 6 elements.
         :paramtype display_names: list[str]
@@ -173,9 +186,9 @@ class Product(msrest.serialization.Model):
         :paramtype const_string_as_enum: str
         """
         super(Product, self).__init__(**kwargs)
-        self.display_names = kwargs.get("display_names", None)
-        self.capacity = kwargs.get("capacity", None)
-        self.image = kwargs.get("image", None)
-        self.child = kwargs["child"]
-        self.const_child = kwargs["const_child"]
-        self.const_string_as_enum = kwargs.get("const_string_as_enum", None)
+        self.display_names = kwargs.get('display_names', None)
+        self.capacity = kwargs.get('capacity', None)
+        self.image = kwargs.get('image', None)
+        self.child = kwargs['child']
+        self.const_child = kwargs['const_child']
+        self.const_string_as_enum = kwargs.get('const_string_as_enum', None)

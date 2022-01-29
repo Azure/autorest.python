@@ -9,5 +9,5 @@
 from ._operations import HttpSuccessOperations
 
 __all__ = [
-    "HttpSuccessOperations",
+    'HttpSuccessOperations',
 ]

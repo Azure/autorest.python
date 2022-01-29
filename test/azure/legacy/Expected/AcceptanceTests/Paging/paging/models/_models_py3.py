@@ -25,16 +25,22 @@ class CustomParameterGroup(msrest.serialization.Model):
     """
 
     _validation = {
-        "api_version": {"required": True},
-        "tenant": {"required": True},
+        'api_version': {'required': True},
+        'tenant': {'required': True},
     }
 
     _attribute_map = {
-        "api_version": {"key": "api_version", "type": "str"},
-        "tenant": {"key": "tenant", "type": "str"},
+        'api_version': {'key': 'api_version', 'type': 'str'},
+        'tenant': {'key': 'tenant', 'type': 'str'},
     }
 
-    def __init__(self, *, api_version: str, tenant: str, **kwargs):
+    def __init__(
+        self,
+        *,
+        api_version: str,
+        tenant: str,
+        **kwargs
+    ):
         """
         :keyword api_version: Required. Sets the api version to use.
         :paramtype api_version: str
@@ -56,11 +62,17 @@ class OdataProductResult(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "values": {"key": "values", "type": "[Product]"},
-        "odata_next_link": {"key": "odata\\.nextLink", "type": "str"},
+        'values': {'key': 'values', 'type': '[Product]'},
+        'odata_next_link': {'key': 'odata\\.nextLink', 'type': 'str'},
     }
 
-    def __init__(self, *, values: Optional[List["Product"]] = None, odata_next_link: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        values: Optional[List["Product"]] = None,
+        odata_next_link: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword values:
         :paramtype values: list[~paging.models.Product]
@@ -82,10 +94,15 @@ class OperationResult(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "status": {"key": "status", "type": "str"},
+        'status': {'key': 'status', 'type': 'str'},
     }
 
-    def __init__(self, *, status: Optional[Union[str, "OperationResultStatus"]] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        status: Optional[Union[str, "OperationResultStatus"]] = None,
+        **kwargs
+    ):
         """
         :keyword status: The status of the request. Possible values include: "Succeeded", "Failed",
          "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
@@ -107,11 +124,17 @@ class PagingGetMultiplePagesLroOptions(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "maxresults": {"key": "maxresults", "type": "int"},
-        "timeout": {"key": "timeout", "type": "int"},
+        'maxresults': {'key': 'maxresults', 'type': 'int'},
+        'timeout': {'key': 'timeout', 'type': 'int'},
     }
 
-    def __init__(self, *, maxresults: Optional[int] = None, timeout: Optional[int] = 30, **kwargs):
+    def __init__(
+        self,
+        *,
+        maxresults: Optional[int] = None,
+        timeout: Optional[int] = 30,
+        **kwargs
+    ):
         """
         :keyword maxresults: Sets the maximum number of items to return in the response.
         :paramtype maxresults: int
@@ -135,11 +158,17 @@ class PagingGetMultiplePagesOptions(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "maxresults": {"key": "maxresults", "type": "int"},
-        "timeout": {"key": "timeout", "type": "int"},
+        'maxresults': {'key': 'maxresults', 'type': 'int'},
+        'timeout': {'key': 'timeout', 'type': 'int'},
     }
 
-    def __init__(self, *, maxresults: Optional[int] = None, timeout: Optional[int] = 30, **kwargs):
+    def __init__(
+        self,
+        *,
+        maxresults: Optional[int] = None,
+        timeout: Optional[int] = 30,
+        **kwargs
+    ):
         """
         :keyword maxresults: Sets the maximum number of items to return in the response.
         :paramtype maxresults: int
@@ -167,16 +196,23 @@ class PagingGetMultiplePagesWithOffsetOptions(msrest.serialization.Model):
     """
 
     _validation = {
-        "offset": {"required": True},
+        'offset': {'required': True},
     }
 
     _attribute_map = {
-        "maxresults": {"key": "maxresults", "type": "int"},
-        "offset": {"key": "offset", "type": "int"},
-        "timeout": {"key": "timeout", "type": "int"},
+        'maxresults': {'key': 'maxresults', 'type': 'int'},
+        'offset': {'key': 'offset', 'type': 'int'},
+        'timeout': {'key': 'timeout', 'type': 'int'},
     }
 
-    def __init__(self, *, offset: int, maxresults: Optional[int] = None, timeout: Optional[int] = 30, **kwargs):
+    def __init__(
+        self,
+        *,
+        offset: int,
+        maxresults: Optional[int] = None,
+        timeout: Optional[int] = 30,
+        **kwargs
+    ):
         """
         :keyword maxresults: Sets the maximum number of items to return in the response.
         :paramtype maxresults: int
@@ -203,11 +239,17 @@ class PagingGetOdataMultiplePagesOptions(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "maxresults": {"key": "maxresults", "type": "int"},
-        "timeout": {"key": "timeout", "type": "int"},
+        'maxresults': {'key': 'maxresults', 'type': 'int'},
+        'timeout': {'key': 'timeout', 'type': 'int'},
     }
 
-    def __init__(self, *, maxresults: Optional[int] = None, timeout: Optional[int] = 30, **kwargs):
+    def __init__(
+        self,
+        *,
+        maxresults: Optional[int] = None,
+        timeout: Optional[int] = 30,
+        **kwargs
+    ):
         """
         :keyword maxresults: Sets the maximum number of items to return in the response.
         :paramtype maxresults: int
@@ -228,10 +270,15 @@ class Product(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "properties": {"key": "properties", "type": "ProductProperties"},
+        'properties': {'key': 'properties', 'type': 'ProductProperties'},
     }
 
-    def __init__(self, *, properties: Optional["ProductProperties"] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        properties: Optional["ProductProperties"] = None,
+        **kwargs
+    ):
         """
         :keyword properties:
         :paramtype properties: ~paging.models.ProductProperties
@@ -250,11 +297,17 @@ class ProductProperties(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "id": {"key": "id", "type": "int"},
-        "name": {"key": "name", "type": "str"},
+        'id': {'key': 'id', 'type': 'int'},
+        'name': {'key': 'name', 'type': 'str'},
     }
 
-    def __init__(self, *, id: Optional[int] = None, name: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        id: Optional[int] = None,
+        name: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword id:
         :paramtype id: int
@@ -276,11 +329,17 @@ class ProductResult(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "values": {"key": "values", "type": "[Product]"},
-        "next_link": {"key": "nextLink", "type": "str"},
+        'values': {'key': 'values', 'type': '[Product]'},
+        'next_link': {'key': 'nextLink', 'type': 'str'},
     }
 
-    def __init__(self, *, values: Optional[List["Product"]] = None, next_link: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        values: Optional[List["Product"]] = None,
+        next_link: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword values:
         :paramtype values: list[~paging.models.Product]
@@ -302,11 +361,17 @@ class ProductResultValue(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "value": {"key": "value", "type": "[Product]"},
-        "next_link": {"key": "nextLink", "type": "str"},
+        'value': {'key': 'value', 'type': '[Product]'},
+        'next_link': {'key': 'nextLink', 'type': 'str'},
     }
 
-    def __init__(self, *, value: Optional[List["Product"]] = None, next_link: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        value: Optional[List["Product"]] = None,
+        next_link: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword value:
         :paramtype value: list[~paging.models.Product]
@@ -328,11 +393,17 @@ class ProductResultValueWithXMSClientName(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "indexes": {"key": "values", "type": "[Product]"},
-        "next_link": {"key": "nextLink", "type": "str"},
+        'indexes': {'key': 'values', 'type': '[Product]'},
+        'next_link': {'key': 'nextLink', 'type': 'str'},
     }
 
-    def __init__(self, *, indexes: Optional[List["Product"]] = None, next_link: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        indexes: Optional[List["Product"]] = None,
+        next_link: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword indexes:
         :paramtype indexes: list[~paging.models.Product]

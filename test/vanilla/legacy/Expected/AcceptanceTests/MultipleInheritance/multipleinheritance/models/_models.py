@@ -20,11 +20,14 @@ class Feline(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "meows": {"key": "meows", "type": "bool"},
-        "hisses": {"key": "hisses", "type": "bool"},
+        'meows': {'key': 'meows', 'type': 'bool'},
+        'hisses': {'key': 'hisses', 'type': 'bool'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword meows:
         :paramtype meows: bool
@@ -32,8 +35,8 @@ class Feline(msrest.serialization.Model):
         :paramtype hisses: bool
         """
         super(Feline, self).__init__(**kwargs)
-        self.meows = kwargs.get("meows", None)
-        self.hisses = kwargs.get("hisses", None)
+        self.meows = kwargs.get('meows', None)
+        self.hisses = kwargs.get('hisses', None)
 
 
 class Pet(msrest.serialization.Model):
@@ -46,20 +49,23 @@ class Pet(msrest.serialization.Model):
     """
 
     _validation = {
-        "name": {"required": True},
+        'name': {'required': True},
     }
 
     _attribute_map = {
-        "name": {"key": "name", "type": "str"},
+        'name': {'key': 'name', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword name: Required.
         :paramtype name: str
         """
         super(Pet, self).__init__(**kwargs)
-        self.name = kwargs["name"]
+        self.name = kwargs['name']
 
 
 class Cat(Pet, Feline):
@@ -78,17 +84,20 @@ class Cat(Pet, Feline):
     """
 
     _validation = {
-        "name": {"required": True},
+        'name': {'required': True},
     }
 
     _attribute_map = {
-        "meows": {"key": "meows", "type": "bool"},
-        "hisses": {"key": "hisses", "type": "bool"},
-        "name": {"key": "name", "type": "str"},
-        "likes_milk": {"key": "likesMilk", "type": "bool"},
+        'meows': {'key': 'meows', 'type': 'bool'},
+        'hisses': {'key': 'hisses', 'type': 'bool'},
+        'name': {'key': 'name', 'type': 'str'},
+        'likes_milk': {'key': 'likesMilk', 'type': 'bool'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword meows:
         :paramtype meows: bool
@@ -100,11 +109,10 @@ class Cat(Pet, Feline):
         :paramtype likes_milk: bool
         """
         super(Cat, self).__init__(**kwargs)
-        self.meows = kwargs.get("meows", None)
-        self.hisses = kwargs.get("hisses", None)
-        self.likes_milk = kwargs.get("likes_milk", None)
-        self.name = kwargs["name"]
-        self.likes_milk = kwargs.get("likes_milk", None)
+        self.meows = kwargs.get('meows', None)
+        self.hisses = kwargs.get('hisses', None)
+        self.likes_milk = kwargs.get('likes_milk', None)
+        self.name = kwargs['name']
 
 
 class Error(msrest.serialization.Model):
@@ -117,11 +125,14 @@ class Error(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "status": {"key": "status", "type": "int"},
-        "message": {"key": "message", "type": "str"},
+        'status': {'key': 'status', 'type': 'int'},
+        'message': {'key': 'message', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword status:
         :paramtype status: int
@@ -129,8 +140,8 @@ class Error(msrest.serialization.Model):
         :paramtype message: str
         """
         super(Error, self).__init__(**kwargs)
-        self.status = kwargs.get("status", None)
-        self.message = kwargs.get("message", None)
+        self.status = kwargs.get('status', None)
+        self.message = kwargs.get('message', None)
 
 
 class Horse(Pet):
@@ -145,15 +156,18 @@ class Horse(Pet):
     """
 
     _validation = {
-        "name": {"required": True},
+        'name': {'required': True},
     }
 
     _attribute_map = {
-        "name": {"key": "name", "type": "str"},
-        "is_a_show_horse": {"key": "isAShowHorse", "type": "bool"},
+        'name': {'key': 'name', 'type': 'str'},
+        'is_a_show_horse': {'key': 'isAShowHorse', 'type': 'bool'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword name: Required.
         :paramtype name: str
@@ -161,7 +175,7 @@ class Horse(Pet):
         :paramtype is_a_show_horse: bool
         """
         super(Horse, self).__init__(**kwargs)
-        self.is_a_show_horse = kwargs.get("is_a_show_horse", None)
+        self.is_a_show_horse = kwargs.get('is_a_show_horse', None)
 
 
 class Kitten(Cat):
@@ -182,18 +196,21 @@ class Kitten(Cat):
     """
 
     _validation = {
-        "name": {"required": True},
+        'name': {'required': True},
     }
 
     _attribute_map = {
-        "meows": {"key": "meows", "type": "bool"},
-        "hisses": {"key": "hisses", "type": "bool"},
-        "name": {"key": "name", "type": "str"},
-        "likes_milk": {"key": "likesMilk", "type": "bool"},
-        "eats_mice_yet": {"key": "eatsMiceYet", "type": "bool"},
+        'meows': {'key': 'meows', 'type': 'bool'},
+        'hisses': {'key': 'hisses', 'type': 'bool'},
+        'name': {'key': 'name', 'type': 'str'},
+        'likes_milk': {'key': 'likesMilk', 'type': 'bool'},
+        'eats_mice_yet': {'key': 'eatsMiceYet', 'type': 'bool'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword meows:
         :paramtype meows: bool
@@ -207,4 +224,4 @@ class Kitten(Cat):
         :paramtype eats_mice_yet: bool
         """
         super(Kitten, self).__init__(**kwargs)
-        self.eats_mice_yet = kwargs.get("eats_mice_yet", None)
+        self.eats_mice_yet = kwargs.get('eats_mice_yet', None)

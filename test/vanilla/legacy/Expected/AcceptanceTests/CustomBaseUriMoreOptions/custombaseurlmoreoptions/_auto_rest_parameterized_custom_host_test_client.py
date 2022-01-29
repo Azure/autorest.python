@@ -22,7 +22,6 @@ if TYPE_CHECKING:
 
     from azure.core.rest import HttpRequest, HttpResponse
 
-
 class AutoRestParameterizedCustomHostTestClient(object):
     """Test Infrastructure for AutoRest.
 
@@ -42,10 +41,8 @@ class AutoRestParameterizedCustomHostTestClient(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        _base_url = "{vault}{secret}{dnsSuffix}"
-        self._config = AutoRestParameterizedCustomHostTestClientConfiguration(
-            subscription_id=subscription_id, dns_suffix=dns_suffix, **kwargs
-        )
+        _base_url = '{vault}{secret}{dnsSuffix}'
+        self._config = AutoRestParameterizedCustomHostTestClientConfiguration(subscription_id=subscription_id, dns_suffix=dns_suffix, **kwargs)
         self._client = PipelineClient(base_url=_base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
@@ -53,6 +50,7 @@ class AutoRestParameterizedCustomHostTestClient(object):
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
         self.paths = PathsOperations(self._client, self._config, self._serialize, self._deserialize)
+
 
     def _send_request(
         self,
@@ -79,9 +77,7 @@ class AutoRestParameterizedCustomHostTestClient(object):
 
         request_copy = deepcopy(request)
         path_format_arguments = {
-            "dnsSuffix": self._serialize.url(
-                "self._config.dns_suffix", self._config.dns_suffix, "str", skip_quote=True
-            ),
+            "dnsSuffix": self._serialize.url("self._config.dns_suffix", self._config.dns_suffix, 'str', skip_quote=True),
         }
 
         request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)

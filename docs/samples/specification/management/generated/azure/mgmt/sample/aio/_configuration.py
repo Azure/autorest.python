@@ -19,7 +19,7 @@ if TYPE_CHECKING:
     from azure.core.credentials_async import AsyncTokenCredential
 
 
-class AutoRestHeadTestServiceConfiguration(Configuration):
+class AutoRestHeadTestServiceConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
     """Configuration for AutoRestHeadTestService.
 
     Note that all parameters used to create this instance are saved as instance

@@ -16,7 +16,7 @@ except (SyntaxError, ImportError):
     from ._request_builders import build_get_empty_file_request  # type: ignore
 
 __all__ = [
-    "build_get_file_request",
-    "build_get_file_large_request",
-    "build_get_empty_file_request",
+    'build_get_file_request',
+    'build_get_file_large_request',
+    'build_get_empty_file_request',
 ]

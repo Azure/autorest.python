@@ -14,7 +14,11 @@ _SERIALIZER = Serializer()
 
 
 def build_get_with_filter_request(
-    *, filter: Optional[str] = None, top: Optional[int] = None, orderby: Optional[str] = None, **kwargs: Any
+    *,
+    filter: Optional[str] = None,
+    top: Optional[int] = None,
+    orderby: Optional[str] = None,
+    **kwargs: Any
 ) -> HttpRequest:
     """Specify filter parameter with value '$filter=id gt 5 and name eq 'foo'&$orderby=id&$top=10'.
 
@@ -35,19 +39,26 @@ def build_get_with_filter_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/azurespecials/odata/filter"
+    url = '/azurespecials/odata/filter'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if filter is not None:
-        query_parameters["$filter"] = _SERIALIZER.query("filter", filter, "str")
+        query_parameters['$filter'] = _SERIALIZER.query("filter", filter, 'str')
     if top is not None:
-        query_parameters["$top"] = _SERIALIZER.query("top", top, "int")
+        query_parameters['$top'] = _SERIALIZER.query("top", top, 'int')
     if orderby is not None:
-        query_parameters["$orderby"] = _SERIALIZER.query("orderby", orderby, "str")
+        query_parameters['$orderby'] = _SERIALIZER.query("orderby", orderby, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+

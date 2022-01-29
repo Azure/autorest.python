@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -6,17 +7,9 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-import functools
 from typing import TYPE_CHECKING
-import warnings
 
-from azure.core.exceptions import (
-    ClientAuthenticationError,
-    HttpResponseError,
-    ResourceExistsError,
-    ResourceNotFoundError,
-    map_error,
-)
+from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
@@ -28,9 +21,8 @@ from .._vendor import _convert_request
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar, Union
-
-    T = TypeVar("T")
+    from typing import Any, Callable, Dict, List, Optional, TypeVar, Union
+    T = TypeVar('T')
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -1000,7 +992,7 @@ def build_array_string_pipes_valid_request(
     )
 
 # fmt: on
-class QueriesOperations(object):
+class QueriesOperations(object):  # pylint: disable=too-many-public-methods
     """QueriesOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -1024,7 +1016,8 @@ class QueriesOperations(object):
 
     @distributed_trace
     def get_boolean_true(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get true Boolean value on path.
@@ -1037,20 +1030,27 @@ class QueriesOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        bool_query = kwargs.pop("bool_query", True)  # type: bool
+        bool_query = kwargs.pop('bool_query', True)  # type: bool
 
+        
         request = build_get_boolean_true_request(
             bool_query=bool_query,
-            template_url=self.get_boolean_true.metadata["url"],
+            template_url=self.get_boolean_true.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1061,11 +1061,13 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_boolean_true.metadata = {"url": "/queries/bool/true"}  # type: ignore
+    get_boolean_true.metadata = {'url': '/queries/bool/true'}  # type: ignore
+
 
     @distributed_trace
     def get_boolean_false(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get false Boolean value on path.
@@ -1078,20 +1080,27 @@ class QueriesOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        bool_query = kwargs.pop("bool_query", False)  # type: bool
+        bool_query = kwargs.pop('bool_query', False)  # type: bool
 
+        
         request = build_get_boolean_false_request(
             bool_query=bool_query,
-            template_url=self.get_boolean_false.metadata["url"],
+            template_url=self.get_boolean_false.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1102,7 +1111,8 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_boolean_false.metadata = {"url": "/queries/bool/false"}  # type: ignore
+    get_boolean_false.metadata = {'url': '/queries/bool/false'}  # type: ignore
+
 
     @distributed_trace
     def get_boolean_null(
@@ -1120,18 +1130,25 @@ class QueriesOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_boolean_null_request(
             bool_query=bool_query,
-            template_url=self.get_boolean_null.metadata["url"],
+            template_url=self.get_boolean_null.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1142,11 +1159,13 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_boolean_null.metadata = {"url": "/queries/bool/null"}  # type: ignore
+    get_boolean_null.metadata = {'url': '/queries/bool/null'}  # type: ignore
+
 
     @distributed_trace
     def get_int_one_million(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '1000000' integer value.
@@ -1159,20 +1178,27 @@ class QueriesOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        int_query = kwargs.pop("int_query", 1000000)  # type: int
+        int_query = kwargs.pop('int_query', 1000000)  # type: int
 
+        
         request = build_get_int_one_million_request(
             int_query=int_query,
-            template_url=self.get_int_one_million.metadata["url"],
+            template_url=self.get_int_one_million.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1183,11 +1209,13 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_int_one_million.metadata = {"url": "/queries/int/1000000"}  # type: ignore
+    get_int_one_million.metadata = {'url': '/queries/int/1000000'}  # type: ignore
+
 
     @distributed_trace
     def get_int_negative_one_million(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '-1000000' integer value.
@@ -1200,20 +1228,27 @@ class QueriesOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        int_query = kwargs.pop("int_query", -1000000)  # type: int
+        int_query = kwargs.pop('int_query', -1000000)  # type: int
 
+        
         request = build_get_int_negative_one_million_request(
             int_query=int_query,
-            template_url=self.get_int_negative_one_million.metadata["url"],
+            template_url=self.get_int_negative_one_million.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1224,7 +1259,8 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_int_negative_one_million.metadata = {"url": "/queries/int/-1000000"}  # type: ignore
+    get_int_negative_one_million.metadata = {'url': '/queries/int/-1000000'}  # type: ignore
+
 
     @distributed_trace
     def get_int_null(
@@ -1242,18 +1278,25 @@ class QueriesOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_int_null_request(
             int_query=int_query,
-            template_url=self.get_int_null.metadata["url"],
+            template_url=self.get_int_null.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1264,11 +1307,13 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_int_null.metadata = {"url": "/queries/int/null"}  # type: ignore
+    get_int_null.metadata = {'url': '/queries/int/null'}  # type: ignore
+
 
     @distributed_trace
     def get_ten_billion(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '10000000000' 64 bit integer value.
@@ -1281,20 +1326,27 @@ class QueriesOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        long_query = kwargs.pop("long_query", 10000000000)  # type: int
+        long_query = kwargs.pop('long_query', 10000000000)  # type: int
 
+        
         request = build_get_ten_billion_request(
             long_query=long_query,
-            template_url=self.get_ten_billion.metadata["url"],
+            template_url=self.get_ten_billion.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1305,11 +1357,13 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_ten_billion.metadata = {"url": "/queries/long/10000000000"}  # type: ignore
+    get_ten_billion.metadata = {'url': '/queries/long/10000000000'}  # type: ignore
+
 
     @distributed_trace
     def get_negative_ten_billion(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '-10000000000' 64 bit integer value.
@@ -1322,20 +1376,27 @@ class QueriesOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        long_query = kwargs.pop("long_query", -10000000000)  # type: int
+        long_query = kwargs.pop('long_query', -10000000000)  # type: int
 
+        
         request = build_get_negative_ten_billion_request(
             long_query=long_query,
-            template_url=self.get_negative_ten_billion.metadata["url"],
+            template_url=self.get_negative_ten_billion.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1346,7 +1407,8 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_negative_ten_billion.metadata = {"url": "/queries/long/-10000000000"}  # type: ignore
+    get_negative_ten_billion.metadata = {'url': '/queries/long/-10000000000'}  # type: ignore
+
 
     @distributed_trace
     def get_long_null(
@@ -1364,18 +1426,25 @@ class QueriesOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_long_null_request(
             long_query=long_query,
-            template_url=self.get_long_null.metadata["url"],
+            template_url=self.get_long_null.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1386,11 +1455,13 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_long_null.metadata = {"url": "/queries/long/null"}  # type: ignore
+    get_long_null.metadata = {'url': '/queries/long/null'}  # type: ignore
+
 
     @distributed_trace
     def float_scientific_positive(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '1.034E+20' numeric value.
@@ -1403,20 +1474,27 @@ class QueriesOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        float_query = kwargs.pop("float_query", 103400000000000000000)  # type: float
+        float_query = kwargs.pop('float_query', 103400000000000000000)  # type: float
 
+        
         request = build_float_scientific_positive_request(
             float_query=float_query,
-            template_url=self.float_scientific_positive.metadata["url"],
+            template_url=self.float_scientific_positive.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1427,11 +1505,13 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    float_scientific_positive.metadata = {"url": "/queries/float/1.034E+20"}  # type: ignore
+    float_scientific_positive.metadata = {'url': '/queries/float/1.034E+20'}  # type: ignore
+
 
     @distributed_trace
     def float_scientific_negative(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '-1.034E-20' numeric value.
@@ -1444,20 +1524,27 @@ class QueriesOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        float_query = kwargs.pop("float_query", -1.034e-20)  # type: float
+        float_query = kwargs.pop('float_query', -1.034e-20)  # type: float
 
+        
         request = build_float_scientific_negative_request(
             float_query=float_query,
-            template_url=self.float_scientific_negative.metadata["url"],
+            template_url=self.float_scientific_negative.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1468,7 +1555,8 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    float_scientific_negative.metadata = {"url": "/queries/float/-1.034E-20"}  # type: ignore
+    float_scientific_negative.metadata = {'url': '/queries/float/-1.034E-20'}  # type: ignore
+
 
     @distributed_trace
     def float_null(
@@ -1486,18 +1574,25 @@ class QueriesOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_float_null_request(
             float_query=float_query,
-            template_url=self.float_null.metadata["url"],
+            template_url=self.float_null.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1508,11 +1603,13 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    float_null.metadata = {"url": "/queries/float/null"}  # type: ignore
+    float_null.metadata = {'url': '/queries/float/null'}  # type: ignore
+
 
     @distributed_trace
     def double_decimal_positive(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '9999999.999' numeric value.
@@ -1525,20 +1622,27 @@ class QueriesOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        double_query = kwargs.pop("double_query", 9999999.999)  # type: float
+        double_query = kwargs.pop('double_query', 9999999.999)  # type: float
 
+        
         request = build_double_decimal_positive_request(
             double_query=double_query,
-            template_url=self.double_decimal_positive.metadata["url"],
+            template_url=self.double_decimal_positive.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1549,11 +1653,13 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    double_decimal_positive.metadata = {"url": "/queries/double/9999999.999"}  # type: ignore
+    double_decimal_positive.metadata = {'url': '/queries/double/9999999.999'}  # type: ignore
+
 
     @distributed_trace
     def double_decimal_negative(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '-9999999.999' numeric value.
@@ -1566,20 +1672,27 @@ class QueriesOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        double_query = kwargs.pop("double_query", -9999999.999)  # type: float
+        double_query = kwargs.pop('double_query', -9999999.999)  # type: float
 
+        
         request = build_double_decimal_negative_request(
             double_query=double_query,
-            template_url=self.double_decimal_negative.metadata["url"],
+            template_url=self.double_decimal_negative.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1590,7 +1703,8 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    double_decimal_negative.metadata = {"url": "/queries/double/-9999999.999"}  # type: ignore
+    double_decimal_negative.metadata = {'url': '/queries/double/-9999999.999'}  # type: ignore
+
 
     @distributed_trace
     def double_null(
@@ -1608,18 +1722,25 @@ class QueriesOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_double_null_request(
             double_query=double_query,
-            template_url=self.double_null.metadata["url"],
+            template_url=self.double_null.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1630,11 +1751,13 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    double_null.metadata = {"url": "/queries/double/null"}  # type: ignore
+    double_null.metadata = {'url': '/queries/double/null'}  # type: ignore
+
 
     @distributed_trace
     def string_unicode(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
@@ -1647,20 +1770,27 @@ class QueriesOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        string_query = kwargs.pop("string_query", "啊齄丂狛狜隣郎隣兀﨩")  # type: str
+        string_query = kwargs.pop('string_query', "啊齄丂狛狜隣郎隣兀﨩")  # type: str
 
+        
         request = build_string_unicode_request(
             string_query=string_query,
-            template_url=self.string_unicode.metadata["url"],
+            template_url=self.string_unicode.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1671,11 +1801,13 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    string_unicode.metadata = {"url": "/queries/string/unicode/"}  # type: ignore
+    string_unicode.metadata = {'url': '/queries/string/unicode/'}  # type: ignore
+
 
     @distributed_trace
     def string_url_encoded(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get 'begin!*'();:@ &=+$,/?#[]end.
@@ -1689,20 +1821,27 @@ class QueriesOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        string_query = kwargs.pop("string_query", "begin!*'();:@ &=+$,/?#[]end")  # type: str
+        string_query = kwargs.pop('string_query', "begin!*'();:@ &=+$,/?#[]end")  # type: str
 
+        
         request = build_string_url_encoded_request(
             string_query=string_query,
-            template_url=self.string_url_encoded.metadata["url"],
+            template_url=self.string_url_encoded.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1713,11 +1852,13 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    string_url_encoded.metadata = {"url": "/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend"}  # type: ignore
+    string_url_encoded.metadata = {'url': '/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend'}  # type: ignore
+
 
     @distributed_trace
     def string_empty(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get ''.
@@ -1730,20 +1871,27 @@ class QueriesOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        string_query = kwargs.pop("string_query", "")  # type: str
+        string_query = kwargs.pop('string_query', "")  # type: str
 
+        
         request = build_string_empty_request(
             string_query=string_query,
-            template_url=self.string_empty.metadata["url"],
+            template_url=self.string_empty.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1754,7 +1902,8 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    string_empty.metadata = {"url": "/queries/string/empty"}  # type: ignore
+    string_empty.metadata = {'url': '/queries/string/empty'}  # type: ignore
+
 
     @distributed_trace
     def string_null(
@@ -1772,18 +1921,25 @@ class QueriesOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_string_null_request(
             string_query=string_query,
-            template_url=self.string_null.metadata["url"],
+            template_url=self.string_null.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1794,7 +1950,8 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    string_null.metadata = {"url": "/queries/string/null"}  # type: ignore
+    string_null.metadata = {'url': '/queries/string/null'}  # type: ignore
+
 
     @distributed_trace
     def enum_valid(
@@ -1812,18 +1969,25 @@ class QueriesOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_enum_valid_request(
             enum_query=enum_query,
-            template_url=self.enum_valid.metadata["url"],
+            template_url=self.enum_valid.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1834,7 +1998,8 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    enum_valid.metadata = {"url": "/queries/enum/green%20color"}  # type: ignore
+    enum_valid.metadata = {'url': '/queries/enum/green%20color'}  # type: ignore
+
 
     @distributed_trace
     def enum_null(
@@ -1852,18 +2017,25 @@ class QueriesOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_enum_null_request(
             enum_query=enum_query,
-            template_url=self.enum_null.metadata["url"],
+            template_url=self.enum_null.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1874,7 +2046,8 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    enum_null.metadata = {"url": "/queries/enum/null"}  # type: ignore
+    enum_null.metadata = {'url': '/queries/enum/null'}  # type: ignore
+
 
     @distributed_trace
     def byte_multi_byte(
@@ -1892,18 +2065,25 @@ class QueriesOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_byte_multi_byte_request(
             byte_query=byte_query,
-            template_url=self.byte_multi_byte.metadata["url"],
+            template_url=self.byte_multi_byte.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1914,11 +2094,13 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    byte_multi_byte.metadata = {"url": "/queries/byte/multibyte"}  # type: ignore
+    byte_multi_byte.metadata = {'url': '/queries/byte/multibyte'}  # type: ignore
+
 
     @distributed_trace
     def byte_empty(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '' as byte array.
@@ -1931,20 +2113,27 @@ class QueriesOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        byte_query = kwargs.pop("byte_query", bytearray("", encoding="utf-8"))  # type: bytearray
+        byte_query = kwargs.pop('byte_query', bytearray("", encoding="utf-8"))  # type: bytearray
 
+        
         request = build_byte_empty_request(
             byte_query=byte_query,
-            template_url=self.byte_empty.metadata["url"],
+            template_url=self.byte_empty.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1955,7 +2144,8 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    byte_empty.metadata = {"url": "/queries/byte/empty"}  # type: ignore
+    byte_empty.metadata = {'url': '/queries/byte/empty'}  # type: ignore
+
 
     @distributed_trace
     def byte_null(
@@ -1973,18 +2163,25 @@ class QueriesOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_byte_null_request(
             byte_query=byte_query,
-            template_url=self.byte_null.metadata["url"],
+            template_url=self.byte_null.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1995,11 +2192,13 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    byte_null.metadata = {"url": "/queries/byte/null"}  # type: ignore
+    byte_null.metadata = {'url': '/queries/byte/null'}  # type: ignore
+
 
     @distributed_trace
     def date_valid(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '2012-01-01' as date.
@@ -2012,20 +2211,27 @@ class QueriesOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        date_query = kwargs.pop("date_query", "2012-01-01")  # type: datetime.date
+        date_query = kwargs.pop('date_query', "2012-01-01")  # type: datetime.date
 
+        
         request = build_date_valid_request(
             date_query=date_query,
-            template_url=self.date_valid.metadata["url"],
+            template_url=self.date_valid.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2036,7 +2242,8 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    date_valid.metadata = {"url": "/queries/date/2012-01-01"}  # type: ignore
+    date_valid.metadata = {'url': '/queries/date/2012-01-01'}  # type: ignore
+
 
     @distributed_trace
     def date_null(
@@ -2054,18 +2261,25 @@ class QueriesOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_date_null_request(
             date_query=date_query,
-            template_url=self.date_null.metadata["url"],
+            template_url=self.date_null.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2076,11 +2290,13 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    date_null.metadata = {"url": "/queries/date/null"}  # type: ignore
+    date_null.metadata = {'url': '/queries/date/null'}  # type: ignore
+
 
     @distributed_trace
     def date_time_valid(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '2012-01-01T01:01:01Z' as date-time.
@@ -2094,20 +2310,27 @@ class QueriesOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        date_time_query = kwargs.pop("date_time_query", "2012-01-01T01:01:01Z")  # type: datetime.datetime
+        date_time_query = kwargs.pop('date_time_query', "2012-01-01T01:01:01Z")  # type: datetime.datetime
 
+        
         request = build_date_time_valid_request(
             date_time_query=date_time_query,
-            template_url=self.date_time_valid.metadata["url"],
+            template_url=self.date_time_valid.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2118,7 +2341,8 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    date_time_valid.metadata = {"url": "/queries/datetime/2012-01-01T01%3A01%3A01Z"}  # type: ignore
+    date_time_valid.metadata = {'url': '/queries/datetime/2012-01-01T01%3A01%3A01Z'}  # type: ignore
+
 
     @distributed_trace
     def date_time_null(
@@ -2136,18 +2360,25 @@ class QueriesOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_date_time_null_request(
             date_time_query=date_time_query,
-            template_url=self.date_time_null.metadata["url"],
+            template_url=self.date_time_null.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2158,7 +2389,8 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    date_time_null.metadata = {"url": "/queries/datetime/null"}  # type: ignore
+    date_time_null.metadata = {'url': '/queries/datetime/null'}  # type: ignore
+
 
     @distributed_trace
     def array_string_csv_valid(
@@ -2178,18 +2410,25 @@ class QueriesOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_array_string_csv_valid_request(
             array_query=array_query,
-            template_url=self.array_string_csv_valid.metadata["url"],
+            template_url=self.array_string_csv_valid.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2200,7 +2439,8 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    array_string_csv_valid.metadata = {"url": "/queries/array/csv/string/valid"}  # type: ignore
+    array_string_csv_valid.metadata = {'url': '/queries/array/csv/string/valid'}  # type: ignore
+
 
     @distributed_trace
     def array_string_csv_null(
@@ -2218,18 +2458,25 @@ class QueriesOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_array_string_csv_null_request(
             array_query=array_query,
-            template_url=self.array_string_csv_null.metadata["url"],
+            template_url=self.array_string_csv_null.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2240,7 +2487,8 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    array_string_csv_null.metadata = {"url": "/queries/array/csv/string/null"}  # type: ignore
+    array_string_csv_null.metadata = {'url': '/queries/array/csv/string/null'}  # type: ignore
+
 
     @distributed_trace
     def array_string_csv_empty(
@@ -2258,18 +2506,25 @@ class QueriesOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_array_string_csv_empty_request(
             array_query=array_query,
-            template_url=self.array_string_csv_empty.metadata["url"],
+            template_url=self.array_string_csv_empty.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2280,7 +2535,8 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    array_string_csv_empty.metadata = {"url": "/queries/array/csv/string/empty"}  # type: ignore
+    array_string_csv_empty.metadata = {'url': '/queries/array/csv/string/empty'}  # type: ignore
+
 
     @distributed_trace
     def array_string_no_collection_format_empty(
@@ -2299,18 +2555,25 @@ class QueriesOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_array_string_no_collection_format_empty_request(
             array_query=array_query,
-            template_url=self.array_string_no_collection_format_empty.metadata["url"],
+            template_url=self.array_string_no_collection_format_empty.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2321,7 +2584,8 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    array_string_no_collection_format_empty.metadata = {"url": "/queries/array/none/string/empty"}  # type: ignore
+    array_string_no_collection_format_empty.metadata = {'url': '/queries/array/none/string/empty'}  # type: ignore
+
 
     @distributed_trace
     def array_string_ssv_valid(
@@ -2341,18 +2605,25 @@ class QueriesOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_array_string_ssv_valid_request(
             array_query=array_query,
-            template_url=self.array_string_ssv_valid.metadata["url"],
+            template_url=self.array_string_ssv_valid.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2363,7 +2634,8 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    array_string_ssv_valid.metadata = {"url": "/queries/array/ssv/string/valid"}  # type: ignore
+    array_string_ssv_valid.metadata = {'url': '/queries/array/ssv/string/valid'}  # type: ignore
+
 
     @distributed_trace
     def array_string_tsv_valid(
@@ -2383,18 +2655,25 @@ class QueriesOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_array_string_tsv_valid_request(
             array_query=array_query,
-            template_url=self.array_string_tsv_valid.metadata["url"],
+            template_url=self.array_string_tsv_valid.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2405,7 +2684,8 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    array_string_tsv_valid.metadata = {"url": "/queries/array/tsv/string/valid"}  # type: ignore
+    array_string_tsv_valid.metadata = {'url': '/queries/array/tsv/string/valid'}  # type: ignore
+
 
     @distributed_trace
     def array_string_pipes_valid(
@@ -2425,18 +2705,25 @@ class QueriesOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_array_string_pipes_valid_request(
             array_query=array_query,
-            template_url=self.array_string_pipes_valid.metadata["url"],
+            template_url=self.array_string_pipes_valid.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2447,4 +2734,5 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    array_string_pipes_valid.metadata = {"url": "/queries/array/pipes/string/valid"}  # type: ignore
+    array_string_pipes_valid.metadata = {'url': '/queries/array/pipes/string/valid'}  # type: ignore
+

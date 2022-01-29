@@ -17,7 +17,6 @@ from .. import models
 from ._configuration import AutoRestParameterizedHostTestPagingClientConfiguration
 from .operations import PagingOperations
 
-
 class AutoRestParameterizedHostTestPagingClient:
     """Test Infrastructure for AutoRest.
 
@@ -27,8 +26,12 @@ class AutoRestParameterizedHostTestPagingClient:
     :type host: str
     """
 
-    def __init__(self, host: str = "host", **kwargs: Any) -> None:
-        _base_url = "http://{accountName}{host}"
+    def __init__(
+        self,
+        host: str = "host",
+        **kwargs: Any
+    ) -> None:
+        _base_url = 'http://{accountName}{host}'
         self._config = AutoRestParameterizedHostTestPagingClientConfiguration(host=host, **kwargs)
         self._client = AsyncPipelineClient(base_url=_base_url, config=self._config, **kwargs)
 
@@ -38,7 +41,12 @@ class AutoRestParameterizedHostTestPagingClient:
         self._serialize.client_side_validation = False
         self.paging = PagingOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def _send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
+
+    def _send_request(
+        self,
+        request: HttpRequest,
+        **kwargs: Any
+    ) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest
@@ -58,7 +66,7 @@ class AutoRestParameterizedHostTestPagingClient:
 
         request_copy = deepcopy(request)
         path_format_arguments = {
-            "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
+            "host": self._serialize.url("self._config.host", self._config.host, 'str', skip_quote=True),
         }
 
         request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)

@@ -14,6 +14,6 @@ except (SyntaxError, ImportError):
     from ._request_builders import build_binary_request  # type: ignore
 
 __all__ = [
-    "build_file_request",
-    "build_binary_request",
+    'build_file_request',
+    'build_binary_request',
 ]

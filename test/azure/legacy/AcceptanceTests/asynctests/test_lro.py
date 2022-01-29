@@ -517,3 +517,17 @@ class TestLro:
         product = products[0]
         assert product.id == "100"
         assert product.name == "foo"
+
+    @pytest.mark.asyncio
+    async def test_patch201_retry_with_async_header(self, client, product):
+        product = await self.lro_result(client.lros.begin_patch201_retry_with_async_header, product)
+        assert product.provisioning_state == "Succeeded"
+        assert product.id == "/lro/patch/201/retry/onlyAsyncHeader"
+        assert product.name == "foo"
+
+    @pytest.mark.asyncio
+    async def test_patch202_retry_with_async_and_location_header(self, client, product):
+        product = await self.lro_result(client.lros.begin_patch202_retry_with_async_and_location_header, product)
+        assert product.provisioning_state == "Succeeded"
+        assert product.id == "/lro/patch/202/retry/asyncAndLocationHeader"
+        assert product.name == "foo"

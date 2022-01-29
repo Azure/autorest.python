@@ -18,11 +18,10 @@ from .operations import LRORetrysOperations, LROSADsOperations, LROsCustomHeader
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any
 
     from azure.core.credentials import TokenCredential
     from azure.core.rest import HttpRequest, HttpResponse
-
 
 class AutoRestLongRunningOperationTestService(object):
     """Long-running Operation for AutoRest.
@@ -60,9 +59,8 @@ class AutoRestLongRunningOperationTestService(object):
         self.lros = LROsOperations(self._client, self._config, self._serialize, self._deserialize)
         self.lro_retrys = LRORetrysOperations(self._client, self._config, self._serialize, self._deserialize)
         self.lrosads = LROSADsOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.lr_os_custom_header = LROsCustomHeaderOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
+        self.lr_os_custom_header = LROsCustomHeaderOperations(self._client, self._config, self._serialize, self._deserialize)
+
 
     def _send_request(
         self,

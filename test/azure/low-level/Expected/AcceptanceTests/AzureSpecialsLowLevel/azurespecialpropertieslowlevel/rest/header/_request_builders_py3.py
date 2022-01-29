@@ -13,7 +13,11 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def build_custom_named_request_id_request(*, foo_client_request_id: str, **kwargs: Any) -> HttpRequest:
+def build_custom_named_request_id_request(
+    *,
+    foo_client_request_id: str,
+    **kwargs: Any
+) -> HttpRequest:
     """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -29,19 +33,26 @@ def build_custom_named_request_id_request(*, foo_client_request_id: str, **kwarg
 
     accept = "application/json"
     # Construct URL
-    url = "/azurespecials/customNamedRequestId"
+    url = '/azurespecials/customNamedRequestId'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["foo-client-request-id"] = _SERIALIZER.header(
-        "foo_client_request_id", foo_client_request_id, "str"
+    header_parameters['foo-client-request-id'] = _SERIALIZER.header("foo_client_request_id", foo_client_request_id, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
     )
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
 
 
-def build_custom_named_request_id_param_grouping_request(*, foo_client_request_id: str, **kwargs: Any) -> HttpRequest:
+def build_custom_named_request_id_param_grouping_request(
+    *,
+    foo_client_request_id: str,
+    **kwargs: Any
+) -> HttpRequest:
     """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request,
     via a parameter group.
 
@@ -58,19 +69,26 @@ def build_custom_named_request_id_param_grouping_request(*, foo_client_request_i
 
     accept = "application/json"
     # Construct URL
-    url = "/azurespecials/customNamedRequestIdParamGrouping"
+    url = '/azurespecials/customNamedRequestIdParamGrouping'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["foo-client-request-id"] = _SERIALIZER.header(
-        "foo_client_request_id", foo_client_request_id, "str"
+    header_parameters['foo-client-request-id'] = _SERIALIZER.header("foo_client_request_id", foo_client_request_id, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
     )
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
 
 
-def build_custom_named_request_id_head_request(*, foo_client_request_id: str, **kwargs: Any) -> HttpRequest:
+def build_custom_named_request_id_head_request(
+    *,
+    foo_client_request_id: str,
+    **kwargs: Any
+) -> HttpRequest:
     """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -86,13 +104,17 @@ def build_custom_named_request_id_head_request(*, foo_client_request_id: str, **
 
     accept = "application/json"
     # Construct URL
-    url = "/azurespecials/customNamedRequestIdHead"
+    url = '/azurespecials/customNamedRequestIdHead'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["foo-client-request-id"] = _SERIALIZER.header(
-        "foo_client_request_id", foo_client_request_id, "str"
-    )
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['foo-client-request-id'] = _SERIALIZER.header("foo_client_request_id", foo_client_request_id, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="HEAD", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="HEAD",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+

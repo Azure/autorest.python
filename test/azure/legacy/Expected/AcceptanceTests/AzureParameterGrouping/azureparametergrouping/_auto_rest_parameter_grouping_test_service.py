@@ -18,10 +18,9 @@ from .operations import ParameterGroupingOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any
 
     from azure.core.rest import HttpRequest, HttpResponse
-
 
 class AutoRestParameterGroupingTestService(object):
     """Test Infrastructure for AutoRest.
@@ -44,9 +43,8 @@ class AutoRestParameterGroupingTestService(object):
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
-        self.parameter_grouping = ParameterGroupingOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
+        self.parameter_grouping = ParameterGroupingOperations(self._client, self._config, self._serialize, self._deserialize)
+
 
     def _send_request(
         self,

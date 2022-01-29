@@ -9,15 +9,16 @@ from typing import Any, Dict, Optional, TypeVar
 
 from azure.core.rest import HttpRequest
 from msrest import Serializer
-
-T = TypeVar("T")
+T = TypeVar('T')
 JSONType = Any
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_get_null_request(**kwargs: Any) -> HttpRequest:
+def build_get_null_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get null byte value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -31,16 +32,23 @@ def build_get_null_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/byte/null"
+    url = '/byte/null'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_get_empty_request(**kwargs: Any) -> HttpRequest:
+def build_get_empty_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get empty byte value ''.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -54,16 +62,23 @@ def build_get_empty_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/byte/empty"
+    url = '/byte/empty'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_get_non_ascii_request(**kwargs: Any) -> HttpRequest:
+def build_get_non_ascii_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -77,16 +92,26 @@ def build_get_non_ascii_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/byte/nonAscii"
+    url = '/byte/nonAscii'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_put_non_ascii_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_non_ascii_request(
+    *,
+    json: JSONType = None,
+    content: Any = None,
+    **kwargs: Any
+) -> HttpRequest:
     """Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -112,22 +137,31 @@ def build_put_non_ascii_request(*, json: JSONType = None, content: Any = None, *
             json = bytearray("bytearray", encoding="utf-8")  # Optional.
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = "/byte/nonAscii"
+    url = '/byte/nonAscii'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        json=json,
+        content=content,
+        **kwargs
+    )
 
 
-def build_get_invalid_request(**kwargs: Any) -> HttpRequest:
+def build_get_invalid_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get invalid byte value ':::SWAGGER::::'.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -141,10 +175,16 @@ def build_get_invalid_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/byte/invalid"
+    url = '/byte/invalid'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+

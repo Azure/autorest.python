@@ -14,7 +14,11 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_get_report_request(*, qualifier: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_get_report_request(
+    *,
+    qualifier: Optional[str] = None,
+    **kwargs: Any
+) -> HttpRequest:
     """Get test coverage report.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -40,15 +44,22 @@ def build_get_report_request(*, qualifier: Optional[str] = None, **kwargs: Any) 
 
     accept = "application/json"
     # Construct URL
-    url = "/report/azure"
+    url = '/report/azure'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if qualifier is not None:
-        query_parameters["qualifier"] = _SERIALIZER.query("qualifier", qualifier, "str")
+        query_parameters['qualifier'] = _SERIALIZER.query("qualifier", qualifier, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+

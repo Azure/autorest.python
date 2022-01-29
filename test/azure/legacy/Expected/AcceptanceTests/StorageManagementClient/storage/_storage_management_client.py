@@ -18,11 +18,10 @@ from .operations import StorageAccountsOperations, UsageOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any
 
     from azure.core.credentials import TokenCredential
     from azure.core.rest import HttpRequest, HttpResponse
-
 
 class StorageManagementClient(object):
     """StorageManagementClient.
@@ -53,19 +52,16 @@ class StorageManagementClient(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        self._config = StorageManagementClientConfiguration(
-            credential=credential, subscription_id=subscription_id, **kwargs
-        )
+        self._config = StorageManagementClientConfiguration(credential=credential, subscription_id=subscription_id, **kwargs)
         self._client = ARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
-        self.storage_accounts = StorageAccountsOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
+        self.storage_accounts = StorageAccountsOperations(self._client, self._config, self._serialize, self._deserialize)
         self.usage = UsageOperations(self._client, self._config, self._serialize, self._deserialize)
+
 
     def _send_request(
         self,

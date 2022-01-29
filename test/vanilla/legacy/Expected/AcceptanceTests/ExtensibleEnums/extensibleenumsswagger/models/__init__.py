@@ -17,7 +17,7 @@ from ._pet_store_inc_enums import (
 )
 
 __all__ = [
-    "Pet",
-    "DaysOfWeekExtensibleEnum",
-    "IntEnum",
+    'Pet',
+    'DaysOfWeekExtensibleEnum',
+    'IntEnum',
 ]

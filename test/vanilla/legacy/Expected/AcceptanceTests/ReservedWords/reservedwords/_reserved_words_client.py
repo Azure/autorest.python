@@ -18,10 +18,9 @@ from .operations import ImportOperations, ReservedWordsClientOperationsMixin
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any
 
     from azure.core.rest import HttpRequest, HttpResponse
-
 
 class ReservedWordsClient(ReservedWordsClientOperationsMixin):
     """Swagger that has operation groups etc. with reserved words.
@@ -46,6 +45,7 @@ class ReservedWordsClient(ReservedWordsClientOperationsMixin):
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
         self.import_operations = ImportOperations(self._client, self._config, self._serialize, self._deserialize)
+
 
     def _send_request(
         self,

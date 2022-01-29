@@ -7,12 +7,8 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._models_py3 import (
-        Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema,
-    )
-    from ._models_py3 import (
-        PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApplicationXWwwFormUrlencodedSchema,
-    )
+    from ._models_py3 import Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema
+    from ._models_py3 import PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApplicationXWwwFormUrlencodedSchema
 except (SyntaxError, ImportError):
     from ._models import Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema  # type: ignore
     from ._models import PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApplicationXWwwFormUrlencodedSchema  # type: ignore
@@ -23,8 +19,8 @@ from ._body_forms_data_url_encoded_enums import (
 )
 
 __all__ = [
-    "Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema",
-    "PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApplicationXWwwFormUrlencodedSchema",
-    "PetFood",
-    "PetType",
+    'Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema',
+    'PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApplicationXWwwFormUrlencodedSchema',
+    'PetFood',
+    'PetType',
 ]

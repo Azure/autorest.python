@@ -17,11 +17,10 @@ from .operations import HttpSuccessOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, Optional
+    from typing import Any, Dict
 
     from azure.core.credentials import TokenCredential
     from azure.core.rest import HttpRequest, HttpResponse
-
 
 class AutoRestHeadTestService(object):
     """Test Infrastructure for AutoRest.
@@ -49,6 +48,7 @@ class AutoRestHeadTestService(object):
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
         self.http_success = HttpSuccessOperations(self._client, self._config, self._serialize, self._deserialize)
+
 
     def _send_request(
         self,

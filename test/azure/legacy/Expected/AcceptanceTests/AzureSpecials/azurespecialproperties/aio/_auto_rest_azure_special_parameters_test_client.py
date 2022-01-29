@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Awaitable, Optional, TYPE_CHECKING
+from typing import Any, Awaitable, TYPE_CHECKING
 
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.mgmt.core import AsyncARMPipelineClient
@@ -15,23 +15,13 @@ from msrest import Deserializer, Serializer
 
 from .. import models
 from ._configuration import AutoRestAzureSpecialParametersTestClientConfiguration
-from .operations import (
-    ApiVersionDefaultOperations,
-    ApiVersionLocalOperations,
-    HeaderOperations,
-    OdataOperations,
-    SkipUrlEncodingOperations,
-    SubscriptionInCredentialsOperations,
-    SubscriptionInMethodOperations,
-    XMsClientRequestIdOperations,
-)
+from .operations import ApiVersionDefaultOperations, ApiVersionLocalOperations, HeaderOperations, OdataOperations, SkipUrlEncodingOperations, SubscriptionInCredentialsOperations, SubscriptionInMethodOperations, XMsClientRequestIdOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials_async import AsyncTokenCredential
 
-
-class AutoRestAzureSpecialParametersTestClient:
+class AutoRestAzureSpecialParametersTestClient:    # pylint: disable=too-many-instance-attributes
     """Test Infrastructure for AutoRest.
 
     :ivar xms_client_request_id: XMsClientRequestIdOperations operations
@@ -72,36 +62,27 @@ class AutoRestAzureSpecialParametersTestClient:
         base_url: str = "http://localhost:3000",
         **kwargs: Any
     ) -> None:
-        self._config = AutoRestAzureSpecialParametersTestClientConfiguration(
-            credential=credential, subscription_id=subscription_id, **kwargs
-        )
+        self._config = AutoRestAzureSpecialParametersTestClientConfiguration(credential=credential, subscription_id=subscription_id, **kwargs)
         self._client = AsyncARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
-        self.xms_client_request_id = XMsClientRequestIdOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
-        self.subscription_in_credentials = SubscriptionInCredentialsOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
-        self.subscription_in_method = SubscriptionInMethodOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
-        self.api_version_default = ApiVersionDefaultOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
-        self.api_version_local = ApiVersionLocalOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
-        self.skip_url_encoding = SkipUrlEncodingOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
+        self.xms_client_request_id = XMsClientRequestIdOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.subscription_in_credentials = SubscriptionInCredentialsOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.subscription_in_method = SubscriptionInMethodOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.api_version_default = ApiVersionDefaultOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.api_version_local = ApiVersionLocalOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.skip_url_encoding = SkipUrlEncodingOperations(self._client, self._config, self._serialize, self._deserialize)
         self.odata = OdataOperations(self._client, self._config, self._serialize, self._deserialize)
         self.header = HeaderOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def _send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
+
+    def _send_request(
+        self,
+        request: HttpRequest,
+        **kwargs: Any
+    ) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

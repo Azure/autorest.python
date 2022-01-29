@@ -13,8 +13,7 @@ from msrest import Serializer
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Dict, Optional, TypeVar
-
-    T = TypeVar("T")
+    T = TypeVar('T')
     JSONType = Any
 
 _SERIALIZER = Serializer()
@@ -47,14 +46,14 @@ def build_create_ap_true_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "id": 0,  # Required. 
+                "id": 0,  # Required.
                 "name": "str",  # Optional.
                 "status": bool  # Optional.
             }
 
             # response body for status code(s): 200
             response.json() == {
-                "id": 0,  # Required. 
+                "id": 0,  # Required.
                 "name": "str",  # Optional.
                 "status": bool  # Optional.
             }
@@ -106,7 +105,7 @@ def build_create_cat_ap_true_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "friendly": bool,  # Optional.
-                "id": 0,  # Required. 
+                "id": 0,  # Required.
                 "name": "str",  # Optional.
                 "status": bool  # Optional.
             }
@@ -114,7 +113,7 @@ def build_create_cat_ap_true_request(
             # response body for status code(s): 200
             response.json() == {
                 "friendly": bool,  # Optional.
-                "id": 0,  # Required. 
+                "id": 0,  # Required.
                 "name": "str",  # Optional.
                 "status": bool  # Optional.
             }
@@ -165,14 +164,14 @@ def build_create_ap_object_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "id": 0,  # Required. 
+                "id": 0,  # Required.
                 "name": "str",  # Optional.
                 "status": bool  # Optional.
             }
 
             # response body for status code(s): 200
             response.json() == {
-                "id": 0,  # Required. 
+                "id": 0,  # Required.
                 "name": "str",  # Optional.
                 "status": bool  # Optional.
             }
@@ -223,14 +222,14 @@ def build_create_ap_string_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "id": 0,  # Required. 
+                "id": 0,  # Required.
                 "name": "str",  # Optional.
                 "status": bool  # Optional.
             }
 
             # response body for status code(s): 200
             response.json() == {
-                "id": 0,  # Required. 
+                "id": 0,  # Required.
                 "name": "str",  # Optional.
                 "status": bool  # Optional.
             }
@@ -281,14 +280,14 @@ def build_create_ap_in_properties_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "id": 0,  # Required. 
+                "id": 0,  # Required.
                 "name": "str",  # Optional.
                 "status": bool  # Optional.
             }
 
             # response body for status code(s): 200
             response.json() == {
-                "id": 0,  # Required. 
+                "id": 0,  # Required.
                 "name": "str",  # Optional.
                 "status": bool  # Optional.
             }
@@ -339,22 +338,22 @@ def build_create_ap_in_properties_with_ap_string_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "@odata.location": "str",  # Required. 
+                "@odata.location": "str",  # Required.
                 "additionalProperties": {
                     "str": 0.0  # Optional. Dictionary of :code:`<number>`.
                 },
-                "id": 0,  # Required. 
+                "id": 0,  # Required.
                 "name": "str",  # Optional.
                 "status": bool  # Optional.
             }
 
             # response body for status code(s): 200
             response.json() == {
-                "@odata.location": "str",  # Required. 
+                "@odata.location": "str",  # Required.
                 "additionalProperties": {
                     "str": 0.0  # Optional. Dictionary of :code:`<number>`.
                 },
-                "id": 0,  # Required. 
+                "id": 0,  # Required.
                 "name": "str",  # Optional.
                 "status": bool  # Optional.
             }
@@ -378,3 +377,4 @@ def build_create_ap_in_properties_with_ap_string_request(
         headers=header_parameters,
         **kwargs
     )
+

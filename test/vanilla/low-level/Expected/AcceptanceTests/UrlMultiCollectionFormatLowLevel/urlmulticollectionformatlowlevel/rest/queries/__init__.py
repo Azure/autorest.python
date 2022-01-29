@@ -16,7 +16,7 @@ except (SyntaxError, ImportError):
     from ._request_builders import build_array_string_multi_valid_request  # type: ignore
 
 __all__ = [
-    "build_array_string_multi_null_request",
-    "build_array_string_multi_empty_request",
-    "build_array_string_multi_valid_request",
+    'build_array_string_multi_null_request',
+    'build_array_string_multi_empty_request',
+    'build_array_string_multi_valid_request',
 ]

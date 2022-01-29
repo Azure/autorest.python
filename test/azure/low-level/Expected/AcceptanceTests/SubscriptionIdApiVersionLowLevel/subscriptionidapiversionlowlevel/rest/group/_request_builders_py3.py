@@ -17,7 +17,9 @@ _SERIALIZER.client_side_validation = False
 
 
 def build_get_sample_resource_group_request(
-    subscription_id: str, resource_group_name: str, **kwargs: Any
+    subscription_id: str,
+    resource_group_name: str,
+    **kwargs: Any
 ) -> HttpRequest:
     """Provides a resouce group with name 'testgroup101' and location 'West US'.
 
@@ -28,9 +30,6 @@ def build_get_sample_resource_group_request(
     :type subscription_id: str
     :param resource_group_name: Resource Group name 'testgroup101'.
     :type resource_group_name: str
-    :keyword api_version: Api Version. The default value is "2014-04-01-preview". Note that
-     overriding this default value may result in unsupported behavior.
-    :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -46,24 +45,31 @@ def build_get_sample_resource_group_request(
             }
     """
 
-    api_version = kwargs.pop("api_version", "2014-04-01-preview")  # type: str
+    api_version = kwargs.pop('api_version', "2014-04-01-preview")  # type: str
 
     accept = "application/json"
     # Construct URL
-    url = "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}"
+    url = '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}'
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, 'str'),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, 'str'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+

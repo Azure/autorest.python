@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, TypeVar, Union
+from typing import Any, Dict
 from .base_model import BaseModel
 from .code_model import CodeModel
 from .credential_schema import AzureKeyCredentialSchema, TokenCredentialSchema
@@ -22,8 +22,7 @@ from .operation import Operation
 from .property import Property
 from .operation_group import OperationGroup
 from .schema_response import SchemaResponse
-from .parameter_list import GlobalParameterList, ParameterList
-from .request_builder_parameter_list import RequestBuilderParameterList
+from .parameter_list import ParameterList, GlobalParameterList
 from .request_builder import RequestBuilder
 from .base_builder import BaseBuilder
 from .lro_paging_operation import LROPagingOperation
@@ -63,6 +62,7 @@ __all__ = [
     "HiddenModelObjectSchema",
     "ParameterStyle",
     "IOSchema",
+    "GlobalParameterList",
 ]
 
 def _generate_as_object_schema(yaml_data: Dict[str, Any]) -> bool:
@@ -119,23 +119,3 @@ def build_schema(yaml_data: Dict[str, Any], **kwargs) -> BaseSchema:
         code_model.primitives[yaml_id] = schema
 
     return schema
-
-BuilderType = TypeVar(
-    "BuilderType",
-    bound=Union[
-        RequestBuilder,
-        Operation,
-        LROPagingOperation,
-        LROOperation,
-        PagingOperation,
-    ]
-)
-
-ParameterListType = TypeVar(
-    "ParameterListType",
-    bound=Union[
-        ParameterList,
-        GlobalParameterList,
-        RequestBuilderParameterList,
-    ],
-)

@@ -9,5 +9,5 @@
 from ._operations import AvailabilitySetsOperations
 
 __all__ = [
-    "AvailabilitySetsOperations",
+    'AvailabilitySetsOperations',
 ]

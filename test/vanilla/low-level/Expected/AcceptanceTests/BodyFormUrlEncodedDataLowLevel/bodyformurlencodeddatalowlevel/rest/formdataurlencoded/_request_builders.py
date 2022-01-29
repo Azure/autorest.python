@@ -15,8 +15,7 @@ from ..._vendor import _format_url_section
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Dict, Optional, TypeVar
-
-    T = TypeVar("T")
+    T = TypeVar('T')
     JSONType = Any
 
 _SERIALIZER = Serializer()
@@ -56,8 +55,10 @@ def build_update_pet_with_form_request(
             data = {
                 "name": "str",  # Optional. Updated name of the pet.
                 "pet_age": 0,  # How many years is it old?.
-                "pet_food": "str",  # Can take a value of meat, or fish, or plant. Possible values are: "meat", "fish", and "plant".
-                "pet_type": "str",  # Can take a value of dog, or cat, or fish. Possible values are: "dog", "cat", and "fish".
+                "pet_food": "str",  # Can take a value of meat, or fish, or plant. Possible
+                  values are: "meat", "fish", and "plant".
+                "pet_type": "str",  # Can take a value of dog, or cat, or fish. Possible
+                  values are: "dog", "cat", and "fish".
                 "status": "str"  # Optional. Updated status of the pet.
             }
     """
@@ -111,8 +112,11 @@ def build_partial_constant_body_request(
 
             # form-encoded input template you can fill out and use as your `data` input.
             data = {
-                "access_token": "str",  # AAD access token, mandatory when grant_type is access_token_refresh_token or access_token.
-                "grant_type": "access_token",  # Default value is "access_token". Constant part of a formdata body. The default value is "access_token". Note that overriding this default value may result in unsupported behavior.
+                "access_token": "str",  # AAD access token, mandatory when grant_type is
+                  access_token_refresh_token or access_token.
+                "grant_type": "access_token",  # Default value is "access_token". Constant
+                  part of a formdata body. The default value is "access_token". Note that
+                  overriding this default value may result in unsupported behavior.
                 "service": "str"  # Indicates the name of your Azure container registry.
             }
     """
@@ -133,3 +137,4 @@ def build_partial_constant_body_request(
         headers=header_parameters,
         **kwargs
     )
+

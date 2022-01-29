@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -6,100 +7,20 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-import functools
-from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar
-import warnings
+from typing import Any, Callable, Dict, List, Optional, TypeVar
 
-from azure.core.exceptions import (
-    ClientAuthenticationError,
-    HttpResponseError,
-    ResourceExistsError,
-    ResourceNotFoundError,
-    map_error,
-)
+from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ...operations._operations import (
-    build_array_get_array_empty_request,
-    build_array_get_array_item_empty_request,
-    build_array_get_array_item_null_request,
-    build_array_get_array_null_request,
-    build_array_get_array_valid_request,
-    build_array_get_base64_url_request,
-    build_array_get_boolean_invalid_null_request,
-    build_array_get_boolean_invalid_string_request,
-    build_array_get_boolean_tfft_request,
-    build_array_get_byte_invalid_null_request,
-    build_array_get_byte_valid_request,
-    build_array_get_complex_empty_request,
-    build_array_get_complex_item_empty_request,
-    build_array_get_complex_item_null_request,
-    build_array_get_complex_null_request,
-    build_array_get_complex_valid_request,
-    build_array_get_date_invalid_chars_request,
-    build_array_get_date_invalid_null_request,
-    build_array_get_date_time_invalid_chars_request,
-    build_array_get_date_time_invalid_null_request,
-    build_array_get_date_time_rfc1123_valid_request,
-    build_array_get_date_time_valid_request,
-    build_array_get_date_valid_request,
-    build_array_get_dictionary_empty_request,
-    build_array_get_dictionary_item_empty_request,
-    build_array_get_dictionary_item_null_request,
-    build_array_get_dictionary_null_request,
-    build_array_get_dictionary_valid_request,
-    build_array_get_double_invalid_null_request,
-    build_array_get_double_invalid_string_request,
-    build_array_get_double_valid_request,
-    build_array_get_duration_valid_request,
-    build_array_get_empty_request,
-    build_array_get_enum_valid_request,
-    build_array_get_float_invalid_null_request,
-    build_array_get_float_invalid_string_request,
-    build_array_get_float_valid_request,
-    build_array_get_int_invalid_null_request,
-    build_array_get_int_invalid_string_request,
-    build_array_get_integer_valid_request,
-    build_array_get_invalid_request,
-    build_array_get_long_invalid_null_request,
-    build_array_get_long_invalid_string_request,
-    build_array_get_long_valid_request,
-    build_array_get_null_request,
-    build_array_get_string_enum_valid_request,
-    build_array_get_string_valid_request,
-    build_array_get_string_with_invalid_request,
-    build_array_get_string_with_null_request,
-    build_array_get_uuid_invalid_chars_request,
-    build_array_get_uuid_valid_request,
-    build_array_put_array_valid_request,
-    build_array_put_boolean_tfft_request,
-    build_array_put_byte_valid_request,
-    build_array_put_complex_valid_request,
-    build_array_put_date_time_rfc1123_valid_request,
-    build_array_put_date_time_valid_request,
-    build_array_put_date_valid_request,
-    build_array_put_dictionary_valid_request,
-    build_array_put_double_valid_request,
-    build_array_put_duration_valid_request,
-    build_array_put_empty_request,
-    build_array_put_enum_valid_request,
-    build_array_put_float_valid_request,
-    build_array_put_integer_valid_request,
-    build_array_put_long_valid_request,
-    build_array_put_string_enum_valid_request,
-    build_array_put_string_valid_request,
-    build_array_put_uuid_valid_request,
-)
-
-T = TypeVar("T")
+from ...operations._operations import build_array_get_array_empty_request, build_array_get_array_item_empty_request, build_array_get_array_item_null_request, build_array_get_array_null_request, build_array_get_array_valid_request, build_array_get_base64_url_request, build_array_get_boolean_invalid_null_request, build_array_get_boolean_invalid_string_request, build_array_get_boolean_tfft_request, build_array_get_byte_invalid_null_request, build_array_get_byte_valid_request, build_array_get_complex_empty_request, build_array_get_complex_item_empty_request, build_array_get_complex_item_null_request, build_array_get_complex_null_request, build_array_get_complex_valid_request, build_array_get_date_invalid_chars_request, build_array_get_date_invalid_null_request, build_array_get_date_time_invalid_chars_request, build_array_get_date_time_invalid_null_request, build_array_get_date_time_rfc1123_valid_request, build_array_get_date_time_valid_request, build_array_get_date_valid_request, build_array_get_dictionary_empty_request, build_array_get_dictionary_item_empty_request, build_array_get_dictionary_item_null_request, build_array_get_dictionary_null_request, build_array_get_dictionary_valid_request, build_array_get_double_invalid_null_request, build_array_get_double_invalid_string_request, build_array_get_double_valid_request, build_array_get_duration_valid_request, build_array_get_empty_request, build_array_get_enum_valid_request, build_array_get_float_invalid_null_request, build_array_get_float_invalid_string_request, build_array_get_float_valid_request, build_array_get_int_invalid_null_request, build_array_get_int_invalid_string_request, build_array_get_integer_valid_request, build_array_get_invalid_request, build_array_get_long_invalid_null_request, build_array_get_long_invalid_string_request, build_array_get_long_valid_request, build_array_get_null_request, build_array_get_string_enum_valid_request, build_array_get_string_valid_request, build_array_get_string_with_invalid_request, build_array_get_string_with_null_request, build_array_get_uuid_invalid_chars_request, build_array_get_uuid_valid_request, build_array_put_array_valid_request, build_array_put_boolean_tfft_request, build_array_put_byte_valid_request, build_array_put_complex_valid_request, build_array_put_date_time_rfc1123_valid_request, build_array_put_date_time_valid_request, build_array_put_date_valid_request, build_array_put_dictionary_valid_request, build_array_put_double_valid_request, build_array_put_duration_valid_request, build_array_put_empty_request, build_array_put_enum_valid_request, build_array_put_float_valid_request, build_array_put_integer_valid_request, build_array_put_long_valid_request, build_array_put_string_enum_valid_request, build_array_put_string_valid_request, build_array_put_uuid_valid_request
+T = TypeVar('T')
 JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
-
-class ArrayOperations:
+class ArrayOperations:  # pylint: disable=too-many-public-methods
     """ArrayOperations async operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -118,7 +39,10 @@ class ArrayOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_null(self, **kwargs: Any) -> List[int]:
+    async def get_null(
+        self,
+        **kwargs: Any
+    ) -> List[int]:
         """Get null array value.
 
         :return: list of int
@@ -133,14 +57,22 @@ class ArrayOperations:
                     0  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[int]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_null_request()
+        
+        request = build_array_get_null_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -157,10 +89,13 @@ class ArrayOperations:
 
         return deserialized
 
-    get_null.metadata = {"url": "/array/null"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_invalid(self, **kwargs: Any) -> List[int]:
+    async def get_invalid(
+        self,
+        **kwargs: Any
+    ) -> List[int]:
         """Get invalid array [1, 2, 3.
 
         :return: list of int
@@ -175,14 +110,22 @@ class ArrayOperations:
                     0  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[int]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_invalid_request()
+        
+        request = build_array_get_invalid_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -199,10 +142,13 @@ class ArrayOperations:
 
         return deserialized
 
-    get_invalid.metadata = {"url": "/array/invalid"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_empty(self, **kwargs: Any) -> List[int]:
+    async def get_empty(
+        self,
+        **kwargs: Any
+    ) -> List[int]:
         """Get empty array value [].
 
         :return: list of int
@@ -217,14 +163,22 @@ class ArrayOperations:
                     0  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[int]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_empty_request()
+        
+        request = build_array_get_empty_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -241,10 +195,14 @@ class ArrayOperations:
 
         return deserialized
 
-    get_empty.metadata = {"url": "/array/empty"}  # type: ignore
+
 
     @distributed_trace_async
-    async def put_empty(self, array_body: List[str], **kwargs: Any) -> None:
+    async def put_empty(
+        self,
+        array_body: List[str],
+        **kwargs: Any
+    ) -> None:
         """Set array value empty [].
 
         :param array_body:
@@ -261,11 +219,13 @@ class ArrayOperations:
                     "str"  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
         _json = array_body
 
@@ -275,7 +235,11 @@ class ArrayOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -285,10 +249,13 @@ class ArrayOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_empty.metadata = {"url": "/array/empty"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_boolean_tfft(self, **kwargs: Any) -> List[bool]:
+    async def get_boolean_tfft(
+        self,
+        **kwargs: Any
+    ) -> List[bool]:
         """Get boolean array value [true, false, false, true].
 
         :return: list of bool
@@ -303,14 +270,22 @@ class ArrayOperations:
                     bool  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[bool]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[bool]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_boolean_tfft_request()
+        
+        request = build_array_get_boolean_tfft_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -327,10 +302,14 @@ class ArrayOperations:
 
         return deserialized
 
-    get_boolean_tfft.metadata = {"url": "/array/prim/boolean/tfft"}  # type: ignore
+
 
     @distributed_trace_async
-    async def put_boolean_tfft(self, array_body: List[bool], **kwargs: Any) -> None:
+    async def put_boolean_tfft(
+        self,
+        array_body: List[bool],
+        **kwargs: Any
+    ) -> None:
         """Set array value empty [true, false, false, true].
 
         :param array_body:
@@ -347,11 +326,13 @@ class ArrayOperations:
                     bool  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
         _json = array_body
 
@@ -361,7 +342,11 @@ class ArrayOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -371,10 +356,13 @@ class ArrayOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_boolean_tfft.metadata = {"url": "/array/prim/boolean/tfft"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_boolean_invalid_null(self, **kwargs: Any) -> List[bool]:
+    async def get_boolean_invalid_null(
+        self,
+        **kwargs: Any
+    ) -> List[bool]:
         """Get boolean array value [true, null, false].
 
         :return: list of bool
@@ -389,14 +377,22 @@ class ArrayOperations:
                     bool  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[bool]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[bool]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_boolean_invalid_null_request()
+        
+        request = build_array_get_boolean_invalid_null_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -413,10 +409,13 @@ class ArrayOperations:
 
         return deserialized
 
-    get_boolean_invalid_null.metadata = {"url": "/array/prim/boolean/true.null.false"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_boolean_invalid_string(self, **kwargs: Any) -> List[bool]:
+    async def get_boolean_invalid_string(
+        self,
+        **kwargs: Any
+    ) -> List[bool]:
         """Get boolean array value [true, 'boolean', false].
 
         :return: list of bool
@@ -431,14 +430,22 @@ class ArrayOperations:
                     bool  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[bool]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[bool]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_boolean_invalid_string_request()
+        
+        request = build_array_get_boolean_invalid_string_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -455,10 +462,13 @@ class ArrayOperations:
 
         return deserialized
 
-    get_boolean_invalid_string.metadata = {"url": "/array/prim/boolean/true.boolean.false"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_integer_valid(self, **kwargs: Any) -> List[int]:
+    async def get_integer_valid(
+        self,
+        **kwargs: Any
+    ) -> List[int]:
         """Get integer array value [1, -1, 3, 300].
 
         :return: list of int
@@ -473,14 +483,22 @@ class ArrayOperations:
                     0  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[int]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_integer_valid_request()
+        
+        request = build_array_get_integer_valid_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -497,10 +515,14 @@ class ArrayOperations:
 
         return deserialized
 
-    get_integer_valid.metadata = {"url": "/array/prim/integer/1.-1.3.300"}  # type: ignore
+
 
     @distributed_trace_async
-    async def put_integer_valid(self, array_body: List[int], **kwargs: Any) -> None:
+    async def put_integer_valid(
+        self,
+        array_body: List[int],
+        **kwargs: Any
+    ) -> None:
         """Set array value empty [1, -1, 3, 300].
 
         :param array_body:
@@ -517,11 +539,13 @@ class ArrayOperations:
                     0  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
         _json = array_body
 
@@ -531,7 +555,11 @@ class ArrayOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -541,10 +569,13 @@ class ArrayOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_integer_valid.metadata = {"url": "/array/prim/integer/1.-1.3.300"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_int_invalid_null(self, **kwargs: Any) -> List[int]:
+    async def get_int_invalid_null(
+        self,
+        **kwargs: Any
+    ) -> List[int]:
         """Get integer array value [1, null, 0].
 
         :return: list of int
@@ -559,14 +590,22 @@ class ArrayOperations:
                     0  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[int]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_int_invalid_null_request()
+        
+        request = build_array_get_int_invalid_null_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -583,10 +622,13 @@ class ArrayOperations:
 
         return deserialized
 
-    get_int_invalid_null.metadata = {"url": "/array/prim/integer/1.null.zero"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_int_invalid_string(self, **kwargs: Any) -> List[int]:
+    async def get_int_invalid_string(
+        self,
+        **kwargs: Any
+    ) -> List[int]:
         """Get integer array value [1, 'integer', 0].
 
         :return: list of int
@@ -601,14 +643,22 @@ class ArrayOperations:
                     0  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[int]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_int_invalid_string_request()
+        
+        request = build_array_get_int_invalid_string_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -625,10 +675,13 @@ class ArrayOperations:
 
         return deserialized
 
-    get_int_invalid_string.metadata = {"url": "/array/prim/integer/1.integer.0"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_long_valid(self, **kwargs: Any) -> List[int]:
+    async def get_long_valid(
+        self,
+        **kwargs: Any
+    ) -> List[int]:
         """Get integer array value [1, -1, 3, 300].
 
         :return: list of long
@@ -643,14 +696,22 @@ class ArrayOperations:
                     0.0  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[int]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_long_valid_request()
+        
+        request = build_array_get_long_valid_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -667,10 +728,14 @@ class ArrayOperations:
 
         return deserialized
 
-    get_long_valid.metadata = {"url": "/array/prim/long/1.-1.3.300"}  # type: ignore
+
 
     @distributed_trace_async
-    async def put_long_valid(self, array_body: List[int], **kwargs: Any) -> None:
+    async def put_long_valid(
+        self,
+        array_body: List[int],
+        **kwargs: Any
+    ) -> None:
         """Set array value empty [1, -1, 3, 300].
 
         :param array_body:
@@ -687,11 +752,13 @@ class ArrayOperations:
                     0.0  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
         _json = array_body
 
@@ -701,7 +768,11 @@ class ArrayOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -711,10 +782,13 @@ class ArrayOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_long_valid.metadata = {"url": "/array/prim/long/1.-1.3.300"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_long_invalid_null(self, **kwargs: Any) -> List[int]:
+    async def get_long_invalid_null(
+        self,
+        **kwargs: Any
+    ) -> List[int]:
         """Get long array value [1, null, 0].
 
         :return: list of long
@@ -729,14 +803,22 @@ class ArrayOperations:
                     0.0  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[int]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_long_invalid_null_request()
+        
+        request = build_array_get_long_invalid_null_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -753,10 +835,13 @@ class ArrayOperations:
 
         return deserialized
 
-    get_long_invalid_null.metadata = {"url": "/array/prim/long/1.null.zero"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_long_invalid_string(self, **kwargs: Any) -> List[int]:
+    async def get_long_invalid_string(
+        self,
+        **kwargs: Any
+    ) -> List[int]:
         """Get long array value [1, 'integer', 0].
 
         :return: list of long
@@ -771,14 +856,22 @@ class ArrayOperations:
                     0.0  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[int]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_long_invalid_string_request()
+        
+        request = build_array_get_long_invalid_string_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -795,10 +888,13 @@ class ArrayOperations:
 
         return deserialized
 
-    get_long_invalid_string.metadata = {"url": "/array/prim/long/1.integer.0"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_float_valid(self, **kwargs: Any) -> List[float]:
+    async def get_float_valid(
+        self,
+        **kwargs: Any
+    ) -> List[float]:
         """Get float array value [0, -0.01, 1.2e20].
 
         :return: list of float
@@ -813,14 +909,22 @@ class ArrayOperations:
                     0.0  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[float]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[float]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_float_valid_request()
+        
+        request = build_array_get_float_valid_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -837,10 +941,14 @@ class ArrayOperations:
 
         return deserialized
 
-    get_float_valid.metadata = {"url": "/array/prim/float/0--0.01-1.2e20"}  # type: ignore
+
 
     @distributed_trace_async
-    async def put_float_valid(self, array_body: List[float], **kwargs: Any) -> None:
+    async def put_float_valid(
+        self,
+        array_body: List[float],
+        **kwargs: Any
+    ) -> None:
         """Set array value [0, -0.01, 1.2e20].
 
         :param array_body:
@@ -857,11 +965,13 @@ class ArrayOperations:
                     0.0  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
         _json = array_body
 
@@ -871,7 +981,11 @@ class ArrayOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -881,10 +995,13 @@ class ArrayOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_float_valid.metadata = {"url": "/array/prim/float/0--0.01-1.2e20"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_float_invalid_null(self, **kwargs: Any) -> List[float]:
+    async def get_float_invalid_null(
+        self,
+        **kwargs: Any
+    ) -> List[float]:
         """Get float array value [0.0, null, -1.2e20].
 
         :return: list of float
@@ -899,14 +1016,22 @@ class ArrayOperations:
                     0.0  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[float]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[float]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_float_invalid_null_request()
+        
+        request = build_array_get_float_invalid_null_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -923,10 +1048,13 @@ class ArrayOperations:
 
         return deserialized
 
-    get_float_invalid_null.metadata = {"url": "/array/prim/float/0.0-null-1.2e20"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_float_invalid_string(self, **kwargs: Any) -> List[float]:
+    async def get_float_invalid_string(
+        self,
+        **kwargs: Any
+    ) -> List[float]:
         """Get boolean array value [1.0, 'number', 0.0].
 
         :return: list of float
@@ -941,14 +1069,22 @@ class ArrayOperations:
                     0.0  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[float]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[float]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_float_invalid_string_request()
+        
+        request = build_array_get_float_invalid_string_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -965,10 +1101,13 @@ class ArrayOperations:
 
         return deserialized
 
-    get_float_invalid_string.metadata = {"url": "/array/prim/float/1.number.0"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_double_valid(self, **kwargs: Any) -> List[float]:
+    async def get_double_valid(
+        self,
+        **kwargs: Any
+    ) -> List[float]:
         """Get float array value [0, -0.01, 1.2e20].
 
         :return: list of float
@@ -983,14 +1122,22 @@ class ArrayOperations:
                     0.0  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[float]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[float]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_double_valid_request()
+        
+        request = build_array_get_double_valid_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1007,10 +1154,14 @@ class ArrayOperations:
 
         return deserialized
 
-    get_double_valid.metadata = {"url": "/array/prim/double/0--0.01-1.2e20"}  # type: ignore
+
 
     @distributed_trace_async
-    async def put_double_valid(self, array_body: List[float], **kwargs: Any) -> None:
+    async def put_double_valid(
+        self,
+        array_body: List[float],
+        **kwargs: Any
+    ) -> None:
         """Set array value [0, -0.01, 1.2e20].
 
         :param array_body:
@@ -1027,11 +1178,13 @@ class ArrayOperations:
                     0.0  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
         _json = array_body
 
@@ -1041,7 +1194,11 @@ class ArrayOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1051,10 +1208,13 @@ class ArrayOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_double_valid.metadata = {"url": "/array/prim/double/0--0.01-1.2e20"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_double_invalid_null(self, **kwargs: Any) -> List[float]:
+    async def get_double_invalid_null(
+        self,
+        **kwargs: Any
+    ) -> List[float]:
         """Get float array value [0.0, null, -1.2e20].
 
         :return: list of float
@@ -1069,14 +1229,22 @@ class ArrayOperations:
                     0.0  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[float]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[float]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_double_invalid_null_request()
+        
+        request = build_array_get_double_invalid_null_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1093,10 +1261,13 @@ class ArrayOperations:
 
         return deserialized
 
-    get_double_invalid_null.metadata = {"url": "/array/prim/double/0.0-null-1.2e20"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_double_invalid_string(self, **kwargs: Any) -> List[float]:
+    async def get_double_invalid_string(
+        self,
+        **kwargs: Any
+    ) -> List[float]:
         """Get boolean array value [1.0, 'number', 0.0].
 
         :return: list of float
@@ -1111,14 +1282,22 @@ class ArrayOperations:
                     0.0  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[float]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[float]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_double_invalid_string_request()
+        
+        request = build_array_get_double_invalid_string_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1135,10 +1314,13 @@ class ArrayOperations:
 
         return deserialized
 
-    get_double_invalid_string.metadata = {"url": "/array/prim/double/1.number.0"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_string_valid(self, **kwargs: Any) -> List[str]:
+    async def get_string_valid(
+        self,
+        **kwargs: Any
+    ) -> List[str]:
         """Get string array value ['foo1', 'foo2', 'foo3'].
 
         :return: list of str
@@ -1153,14 +1335,22 @@ class ArrayOperations:
                     "str"  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[str]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[str]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_string_valid_request()
+        
+        request = build_array_get_string_valid_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1177,10 +1367,14 @@ class ArrayOperations:
 
         return deserialized
 
-    get_string_valid.metadata = {"url": "/array/prim/string/foo1.foo2.foo3"}  # type: ignore
+
 
     @distributed_trace_async
-    async def put_string_valid(self, array_body: List[str], **kwargs: Any) -> None:
+    async def put_string_valid(
+        self,
+        array_body: List[str],
+        **kwargs: Any
+    ) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
 
         :param array_body:
@@ -1197,11 +1391,13 @@ class ArrayOperations:
                     "str"  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
         _json = array_body
 
@@ -1211,7 +1407,11 @@ class ArrayOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1221,10 +1421,13 @@ class ArrayOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_string_valid.metadata = {"url": "/array/prim/string/foo1.foo2.foo3"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_enum_valid(self, **kwargs: Any) -> List[str]:
+    async def get_enum_valid(
+        self,
+        **kwargs: Any
+    ) -> List[str]:
         """Get enum array value ['foo1', 'foo2', 'foo3'].
 
         :return: list of str. Possible values are: "foo1", "foo2", and "foo3".
@@ -1239,14 +1442,22 @@ class ArrayOperations:
                     "str"  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[str]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[str]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_enum_valid_request()
+        
+        request = build_array_get_enum_valid_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1263,10 +1474,14 @@ class ArrayOperations:
 
         return deserialized
 
-    get_enum_valid.metadata = {"url": "/array/prim/enum/foo1.foo2.foo3"}  # type: ignore
+
 
     @distributed_trace_async
-    async def put_enum_valid(self, array_body: List[str], **kwargs: Any) -> None:
+    async def put_enum_valid(
+        self,
+        array_body: List[str],
+        **kwargs: Any
+    ) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
 
         :param array_body:
@@ -1283,11 +1498,13 @@ class ArrayOperations:
                     "str"  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
         _json = array_body
 
@@ -1297,7 +1514,11 @@ class ArrayOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1307,10 +1528,13 @@ class ArrayOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_enum_valid.metadata = {"url": "/array/prim/enum/foo1.foo2.foo3"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_string_enum_valid(self, **kwargs: Any) -> List[str]:
+    async def get_string_enum_valid(
+        self,
+        **kwargs: Any
+    ) -> List[str]:
         """Get enum array value ['foo1', 'foo2', 'foo3'].
 
         :return: list of str. Possible values are: "foo1", "foo2", and "foo3".
@@ -1325,14 +1549,22 @@ class ArrayOperations:
                     "str"  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[str]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[str]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_string_enum_valid_request()
+        
+        request = build_array_get_string_enum_valid_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1349,10 +1581,14 @@ class ArrayOperations:
 
         return deserialized
 
-    get_string_enum_valid.metadata = {"url": "/array/prim/string-enum/foo1.foo2.foo3"}  # type: ignore
+
 
     @distributed_trace_async
-    async def put_string_enum_valid(self, array_body: List[str], **kwargs: Any) -> None:
+    async def put_string_enum_valid(
+        self,
+        array_body: List[str],
+        **kwargs: Any
+    ) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
 
         :param array_body:
@@ -1369,11 +1605,13 @@ class ArrayOperations:
                     "str"  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
         _json = array_body
 
@@ -1383,7 +1621,11 @@ class ArrayOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1393,10 +1635,13 @@ class ArrayOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_string_enum_valid.metadata = {"url": "/array/prim/string-enum/foo1.foo2.foo3"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_string_with_null(self, **kwargs: Any) -> List[str]:
+    async def get_string_with_null(
+        self,
+        **kwargs: Any
+    ) -> List[str]:
         """Get string array value ['foo', null, 'foo2'].
 
         :return: list of str
@@ -1411,14 +1656,22 @@ class ArrayOperations:
                     "str"  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[str]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[str]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_string_with_null_request()
+        
+        request = build_array_get_string_with_null_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1435,10 +1688,13 @@ class ArrayOperations:
 
         return deserialized
 
-    get_string_with_null.metadata = {"url": "/array/prim/string/foo.null.foo2"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_string_with_invalid(self, **kwargs: Any) -> List[str]:
+    async def get_string_with_invalid(
+        self,
+        **kwargs: Any
+    ) -> List[str]:
         """Get string array value ['foo', 123, 'foo2'].
 
         :return: list of str
@@ -1453,14 +1709,22 @@ class ArrayOperations:
                     "str"  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[str]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[str]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_string_with_invalid_request()
+        
+        request = build_array_get_string_with_invalid_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1477,10 +1741,13 @@ class ArrayOperations:
 
         return deserialized
 
-    get_string_with_invalid.metadata = {"url": "/array/prim/string/foo.123.foo2"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_uuid_valid(self, **kwargs: Any) -> List[str]:
+    async def get_uuid_valid(
+        self,
+        **kwargs: Any
+    ) -> List[str]:
         """Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
         'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
 
@@ -1496,14 +1763,22 @@ class ArrayOperations:
                     str  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[str]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[str]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_uuid_valid_request()
+        
+        request = build_array_get_uuid_valid_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1520,10 +1795,14 @@ class ArrayOperations:
 
         return deserialized
 
-    get_uuid_valid.metadata = {"url": "/array/prim/uuid/valid"}  # type: ignore
+
 
     @distributed_trace_async
-    async def put_uuid_valid(self, array_body: List[str], **kwargs: Any) -> None:
+    async def put_uuid_valid(
+        self,
+        array_body: List[str],
+        **kwargs: Any
+    ) -> None:
         """Set array value  ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
         'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
 
@@ -1541,11 +1820,13 @@ class ArrayOperations:
                     str  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
         _json = array_body
 
@@ -1555,7 +1836,11 @@ class ArrayOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1565,10 +1850,13 @@ class ArrayOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_uuid_valid.metadata = {"url": "/array/prim/uuid/valid"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_uuid_invalid_chars(self, **kwargs: Any) -> List[str]:
+    async def get_uuid_invalid_chars(
+        self,
+        **kwargs: Any
+    ) -> List[str]:
         """Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652', 'foo'].
 
         :return: list of str
@@ -1583,14 +1871,22 @@ class ArrayOperations:
                     str  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[str]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[str]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_uuid_invalid_chars_request()
+        
+        request = build_array_get_uuid_invalid_chars_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1607,10 +1903,13 @@ class ArrayOperations:
 
         return deserialized
 
-    get_uuid_invalid_chars.metadata = {"url": "/array/prim/uuid/invalidchars"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_date_valid(self, **kwargs: Any) -> List[datetime.date]:
+    async def get_date_valid(
+        self,
+        **kwargs: Any
+    ) -> List[datetime.date]:
         """Get integer array value ['2000-12-01', '1980-01-02', '1492-10-12'].
 
         :return: list of date
@@ -1625,14 +1924,22 @@ class ArrayOperations:
                     "2020-02-20"  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[datetime.date]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.date]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_date_valid_request()
+        
+        request = build_array_get_date_valid_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1649,10 +1956,14 @@ class ArrayOperations:
 
         return deserialized
 
-    get_date_valid.metadata = {"url": "/array/prim/date/valid"}  # type: ignore
+
 
     @distributed_trace_async
-    async def put_date_valid(self, array_body: List[datetime.date], **kwargs: Any) -> None:
+    async def put_date_valid(
+        self,
+        array_body: List[datetime.date],
+        **kwargs: Any
+    ) -> None:
         """Set array value  ['2000-12-01', '1980-01-02', '1492-10-12'].
 
         :param array_body:
@@ -1669,11 +1980,13 @@ class ArrayOperations:
                     "2020-02-20"  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
         _json = array_body
 
@@ -1683,7 +1996,11 @@ class ArrayOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1693,10 +2010,13 @@ class ArrayOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_date_valid.metadata = {"url": "/array/prim/date/valid"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_date_invalid_null(self, **kwargs: Any) -> List[datetime.date]:
+    async def get_date_invalid_null(
+        self,
+        **kwargs: Any
+    ) -> List[datetime.date]:
         """Get date array value ['2012-01-01', null, '1776-07-04'].
 
         :return: list of date
@@ -1711,14 +2031,22 @@ class ArrayOperations:
                     "2020-02-20"  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[datetime.date]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.date]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_date_invalid_null_request()
+        
+        request = build_array_get_date_invalid_null_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1735,10 +2063,13 @@ class ArrayOperations:
 
         return deserialized
 
-    get_date_invalid_null.metadata = {"url": "/array/prim/date/invalidnull"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_date_invalid_chars(self, **kwargs: Any) -> List[datetime.date]:
+    async def get_date_invalid_chars(
+        self,
+        **kwargs: Any
+    ) -> List[datetime.date]:
         """Get date array value ['2011-03-22', 'date'].
 
         :return: list of date
@@ -1753,14 +2084,22 @@ class ArrayOperations:
                     "2020-02-20"  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[datetime.date]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.date]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_date_invalid_chars_request()
+        
+        request = build_array_get_date_invalid_chars_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1777,10 +2116,13 @@ class ArrayOperations:
 
         return deserialized
 
-    get_date_invalid_chars.metadata = {"url": "/array/prim/date/invalidchars"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_date_time_valid(self, **kwargs: Any) -> List[datetime.datetime]:
+    async def get_date_time_valid(
+        self,
+        **kwargs: Any
+    ) -> List[datetime.datetime]:
         """Get date-time array value ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
         '1492-10-12T10:15:01-08:00'].
 
@@ -1796,14 +2138,22 @@ class ArrayOperations:
                     "2020-02-20 00:00:00"  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[datetime.datetime]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.datetime]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_date_time_valid_request()
+        
+        request = build_array_get_date_time_valid_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1820,10 +2170,14 @@ class ArrayOperations:
 
         return deserialized
 
-    get_date_time_valid.metadata = {"url": "/array/prim/date-time/valid"}  # type: ignore
+
 
     @distributed_trace_async
-    async def put_date_time_valid(self, array_body: List[datetime.datetime], **kwargs: Any) -> None:
+    async def put_date_time_valid(
+        self,
+        array_body: List[datetime.datetime],
+        **kwargs: Any
+    ) -> None:
         """Set array value  ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
         '1492-10-12T10:15:01-08:00'].
 
@@ -1841,11 +2195,13 @@ class ArrayOperations:
                     "2020-02-20 00:00:00"  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
         _json = array_body
 
@@ -1855,7 +2211,11 @@ class ArrayOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1865,10 +2225,13 @@ class ArrayOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_date_time_valid.metadata = {"url": "/array/prim/date-time/valid"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_date_time_invalid_null(self, **kwargs: Any) -> List[datetime.datetime]:
+    async def get_date_time_invalid_null(
+        self,
+        **kwargs: Any
+    ) -> List[datetime.datetime]:
         """Get date array value ['2000-12-01t00:00:01z', null].
 
         :return: list of datetime
@@ -1883,14 +2246,22 @@ class ArrayOperations:
                     "2020-02-20 00:00:00"  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[datetime.datetime]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.datetime]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_date_time_invalid_null_request()
+        
+        request = build_array_get_date_time_invalid_null_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1907,10 +2278,13 @@ class ArrayOperations:
 
         return deserialized
 
-    get_date_time_invalid_null.metadata = {"url": "/array/prim/date-time/invalidnull"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_date_time_invalid_chars(self, **kwargs: Any) -> List[datetime.datetime]:
+    async def get_date_time_invalid_chars(
+        self,
+        **kwargs: Any
+    ) -> List[datetime.datetime]:
         """Get date array value ['2000-12-01t00:00:01z', 'date-time'].
 
         :return: list of datetime
@@ -1925,14 +2299,22 @@ class ArrayOperations:
                     "2020-02-20 00:00:00"  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[datetime.datetime]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.datetime]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_date_time_invalid_chars_request()
+        
+        request = build_array_get_date_time_invalid_chars_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1949,10 +2331,13 @@ class ArrayOperations:
 
         return deserialized
 
-    get_date_time_invalid_chars.metadata = {"url": "/array/prim/date-time/invalidchars"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_date_time_rfc1123_valid(self, **kwargs: Any) -> List[datetime.datetime]:
+    async def get_date_time_rfc1123_valid(
+        self,
+        **kwargs: Any
+    ) -> List[datetime.datetime]:
         """Get date-time array value ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT',
         'Wed, 12 Oct 1492 10:15:01 GMT'].
 
@@ -1968,14 +2353,22 @@ class ArrayOperations:
                     "2020-02-20 00:00:00"  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[datetime.datetime]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.datetime]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_date_time_rfc1123_valid_request()
+        
+        request = build_array_get_date_time_rfc1123_valid_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1992,10 +2385,14 @@ class ArrayOperations:
 
         return deserialized
 
-    get_date_time_rfc1123_valid.metadata = {"url": "/array/prim/date-time-rfc1123/valid"}  # type: ignore
+
 
     @distributed_trace_async
-    async def put_date_time_rfc1123_valid(self, array_body: List[datetime.datetime], **kwargs: Any) -> None:
+    async def put_date_time_rfc1123_valid(
+        self,
+        array_body: List[datetime.datetime],
+        **kwargs: Any
+    ) -> None:
         """Set array value  ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12
         Oct 1492 10:15:01 GMT'].
 
@@ -2013,11 +2410,13 @@ class ArrayOperations:
                     "2020-02-20 00:00:00"  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
         _json = array_body
 
@@ -2027,7 +2426,11 @@ class ArrayOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2037,10 +2440,13 @@ class ArrayOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_date_time_rfc1123_valid.metadata = {"url": "/array/prim/date-time-rfc1123/valid"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_duration_valid(self, **kwargs: Any) -> List[datetime.timedelta]:
+    async def get_duration_valid(
+        self,
+        **kwargs: Any
+    ) -> List[datetime.timedelta]:
         """Get duration array value ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
 
         :return: list of timedelta
@@ -2055,14 +2461,22 @@ class ArrayOperations:
                     "1 day, 0:00:00"  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[datetime.timedelta]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.timedelta]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_duration_valid_request()
+        
+        request = build_array_get_duration_valid_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2079,10 +2493,14 @@ class ArrayOperations:
 
         return deserialized
 
-    get_duration_valid.metadata = {"url": "/array/prim/duration/valid"}  # type: ignore
+
 
     @distributed_trace_async
-    async def put_duration_valid(self, array_body: List[datetime.timedelta], **kwargs: Any) -> None:
+    async def put_duration_valid(
+        self,
+        array_body: List[datetime.timedelta],
+        **kwargs: Any
+    ) -> None:
         """Set array value  ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
 
         :param array_body:
@@ -2099,11 +2517,13 @@ class ArrayOperations:
                     "1 day, 0:00:00"  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
         _json = array_body
 
@@ -2113,7 +2533,11 @@ class ArrayOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2123,10 +2547,13 @@ class ArrayOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_duration_valid.metadata = {"url": "/array/prim/duration/valid"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_byte_valid(self, **kwargs: Any) -> List[bytearray]:
+    async def get_byte_valid(
+        self,
+        **kwargs: Any
+    ) -> List[bytearray]:
         """Get byte array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each item encoded
         in base64.
 
@@ -2142,14 +2569,22 @@ class ArrayOperations:
                     bytearray("bytearray", encoding="utf-8")  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[bytearray]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[bytearray]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_byte_valid_request()
+        
+        request = build_array_get_byte_valid_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2166,10 +2601,14 @@ class ArrayOperations:
 
         return deserialized
 
-    get_byte_valid.metadata = {"url": "/array/prim/byte/valid"}  # type: ignore
+
 
     @distributed_trace_async
-    async def put_byte_valid(self, array_body: List[bytearray], **kwargs: Any) -> None:
+    async def put_byte_valid(
+        self,
+        array_body: List[bytearray],
+        **kwargs: Any
+    ) -> None:
         """Put the array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each
         elementencoded in base 64.
 
@@ -2187,11 +2626,13 @@ class ArrayOperations:
                     bytearray("bytearray", encoding="utf-8")  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
         _json = array_body
 
@@ -2201,7 +2642,11 @@ class ArrayOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2211,10 +2656,13 @@ class ArrayOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_byte_valid.metadata = {"url": "/array/prim/byte/valid"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_byte_invalid_null(self, **kwargs: Any) -> List[bytearray]:
+    async def get_byte_invalid_null(
+        self,
+        **kwargs: Any
+    ) -> List[bytearray]:
         """Get byte array value [hex(AB, AC, AD), null] with the first item base64 encoded.
 
         :return: list of bytearray
@@ -2229,14 +2677,22 @@ class ArrayOperations:
                     bytearray("bytearray", encoding="utf-8")  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[bytearray]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[bytearray]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_byte_invalid_null_request()
+        
+        request = build_array_get_byte_invalid_null_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2253,10 +2709,13 @@ class ArrayOperations:
 
         return deserialized
 
-    get_byte_invalid_null.metadata = {"url": "/array/prim/byte/invalidnull"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_base64_url(self, **kwargs: Any) -> List[bytes]:
+    async def get_base64_url(
+        self,
+        **kwargs: Any
+    ) -> List[bytes]:
         """Get array value ['a string that gets encoded with base64url', 'test string' 'Lorem ipsum'] with
         the items base64url encoded.
 
@@ -2272,14 +2731,22 @@ class ArrayOperations:
                     bytes("bytes", encoding="utf-8")  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[bytes]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[bytes]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_base64_url_request()
+        
+        request = build_array_get_base64_url_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2296,10 +2763,13 @@ class ArrayOperations:
 
         return deserialized
 
-    get_base64_url.metadata = {"url": "/array/prim/base64url/valid"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_complex_null(self, **kwargs: Any) -> List[JSONType]:
+    async def get_complex_null(
+        self,
+        **kwargs: Any
+    ) -> List[JSONType]:
         """Get array of complex type null value.
 
         :return: list of JSON object
@@ -2317,14 +2787,22 @@ class ArrayOperations:
                     }
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[JSONType]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_complex_null_request()
+        
+        request = build_array_get_complex_null_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2341,10 +2819,13 @@ class ArrayOperations:
 
         return deserialized
 
-    get_complex_null.metadata = {"url": "/array/complex/null"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_complex_empty(self, **kwargs: Any) -> List[JSONType]:
+    async def get_complex_empty(
+        self,
+        **kwargs: Any
+    ) -> List[JSONType]:
         """Get empty array of complex type [].
 
         :return: list of JSON object
@@ -2362,14 +2843,22 @@ class ArrayOperations:
                     }
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[JSONType]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_complex_empty_request()
+        
+        request = build_array_get_complex_empty_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2386,10 +2875,13 @@ class ArrayOperations:
 
         return deserialized
 
-    get_complex_empty.metadata = {"url": "/array/complex/empty"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_complex_item_null(self, **kwargs: Any) -> List[JSONType]:
+    async def get_complex_item_null(
+        self,
+        **kwargs: Any
+    ) -> List[JSONType]:
         """Get array of complex type with null item [{'integer': 1 'string': '2'}, null, {'integer': 5,
         'string': '6'}].
 
@@ -2408,14 +2900,22 @@ class ArrayOperations:
                     }
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[JSONType]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_complex_item_null_request()
+        
+        request = build_array_get_complex_item_null_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2432,10 +2932,13 @@ class ArrayOperations:
 
         return deserialized
 
-    get_complex_item_null.metadata = {"url": "/array/complex/itemnull"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_complex_item_empty(self, **kwargs: Any) -> List[JSONType]:
+    async def get_complex_item_empty(
+        self,
+        **kwargs: Any
+    ) -> List[JSONType]:
         """Get array of complex type with empty item [{'integer': 1 'string': '2'}, {}, {'integer': 5,
         'string': '6'}].
 
@@ -2454,14 +2957,22 @@ class ArrayOperations:
                     }
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[JSONType]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_complex_item_empty_request()
+        
+        request = build_array_get_complex_item_empty_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2478,10 +2989,13 @@ class ArrayOperations:
 
         return deserialized
 
-    get_complex_item_empty.metadata = {"url": "/array/complex/itemempty"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_complex_valid(self, **kwargs: Any) -> List[JSONType]:
+    async def get_complex_valid(
+        self,
+        **kwargs: Any
+    ) -> List[JSONType]:
         """Get array of complex type with [{'integer': 1 'string': '2'}, {'integer': 3, 'string': '4'},
         {'integer': 5, 'string': '6'}].
 
@@ -2500,14 +3014,22 @@ class ArrayOperations:
                     }
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[JSONType]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_complex_valid_request()
+        
+        request = build_array_get_complex_valid_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2524,10 +3046,14 @@ class ArrayOperations:
 
         return deserialized
 
-    get_complex_valid.metadata = {"url": "/array/complex/valid"}  # type: ignore
+
 
     @distributed_trace_async
-    async def put_complex_valid(self, array_body: List[JSONType], **kwargs: Any) -> None:
+    async def put_complex_valid(
+        self,
+        array_body: List[JSONType],
+        **kwargs: Any
+    ) -> None:
         """Put an array of complex type with values [{'integer': 1 'string': '2'}, {'integer': 3,
         'string': '4'}, {'integer': 5, 'string': '6'}].
 
@@ -2548,11 +3074,13 @@ class ArrayOperations:
                     }
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
         _json = array_body
 
@@ -2562,7 +3090,11 @@ class ArrayOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2572,10 +3104,13 @@ class ArrayOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_complex_valid.metadata = {"url": "/array/complex/valid"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_array_null(self, **kwargs: Any) -> List[List[str]]:
+    async def get_array_null(
+        self,
+        **kwargs: Any
+    ) -> List[List[str]]:
         """Get a null array.
 
         :return: list of list of str
@@ -2592,14 +3127,22 @@ class ArrayOperations:
                     ]
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[List[str]]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[List[str]]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_array_null_request()
+        
+        request = build_array_get_array_null_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2616,10 +3159,13 @@ class ArrayOperations:
 
         return deserialized
 
-    get_array_null.metadata = {"url": "/array/array/null"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_array_empty(self, **kwargs: Any) -> List[List[str]]:
+    async def get_array_empty(
+        self,
+        **kwargs: Any
+    ) -> List[List[str]]:
         """Get an empty array [].
 
         :return: list of list of str
@@ -2636,14 +3182,22 @@ class ArrayOperations:
                     ]
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[List[str]]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[List[str]]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_array_empty_request()
+        
+        request = build_array_get_array_empty_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2660,10 +3214,13 @@ class ArrayOperations:
 
         return deserialized
 
-    get_array_empty.metadata = {"url": "/array/array/empty"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_array_item_null(self, **kwargs: Any) -> List[List[str]]:
+    async def get_array_item_null(
+        self,
+        **kwargs: Any
+    ) -> List[List[str]]:
         """Get an array of array of strings [['1', '2', '3'], null, ['7', '8', '9']].
 
         :return: list of list of str
@@ -2680,14 +3237,22 @@ class ArrayOperations:
                     ]
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[List[str]]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[List[str]]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_array_item_null_request()
+        
+        request = build_array_get_array_item_null_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2704,10 +3269,13 @@ class ArrayOperations:
 
         return deserialized
 
-    get_array_item_null.metadata = {"url": "/array/array/itemnull"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_array_item_empty(self, **kwargs: Any) -> List[List[str]]:
+    async def get_array_item_empty(
+        self,
+        **kwargs: Any
+    ) -> List[List[str]]:
         """Get an array of array of strings [['1', '2', '3'], [], ['7', '8', '9']].
 
         :return: list of list of str
@@ -2724,14 +3292,22 @@ class ArrayOperations:
                     ]
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[List[str]]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[List[str]]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_array_item_empty_request()
+        
+        request = build_array_get_array_item_empty_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2748,10 +3324,13 @@ class ArrayOperations:
 
         return deserialized
 
-    get_array_item_empty.metadata = {"url": "/array/array/itemempty"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_array_valid(self, **kwargs: Any) -> List[List[str]]:
+    async def get_array_valid(
+        self,
+        **kwargs: Any
+    ) -> List[List[str]]:
         """Get an array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']].
 
         :return: list of list of str
@@ -2768,14 +3347,22 @@ class ArrayOperations:
                     ]
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[List[str]]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[List[str]]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_array_valid_request()
+        
+        request = build_array_get_array_valid_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2792,10 +3379,14 @@ class ArrayOperations:
 
         return deserialized
 
-    get_array_valid.metadata = {"url": "/array/array/valid"}  # type: ignore
+
 
     @distributed_trace_async
-    async def put_array_valid(self, array_body: List[List[str]], **kwargs: Any) -> None:
+    async def put_array_valid(
+        self,
+        array_body: List[List[str]],
+        **kwargs: Any
+    ) -> None:
         """Put An array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']].
 
         :param array_body:
@@ -2814,11 +3405,13 @@ class ArrayOperations:
                     ]
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
         _json = array_body
 
@@ -2828,7 +3421,11 @@ class ArrayOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2838,10 +3435,13 @@ class ArrayOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_array_valid.metadata = {"url": "/array/array/valid"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_dictionary_null(self, **kwargs: Any) -> List[Dict[str, str]]:
+    async def get_dictionary_null(
+        self,
+        **kwargs: Any
+    ) -> List[Dict[str, str]]:
         """Get an array of Dictionaries with value null.
 
         :return: list of dict mapping str to str
@@ -2858,14 +3458,22 @@ class ArrayOperations:
                     }
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[Dict[str, str]]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[Dict[str, str]]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_dictionary_null_request()
+        
+        request = build_array_get_dictionary_null_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2882,10 +3490,13 @@ class ArrayOperations:
 
         return deserialized
 
-    get_dictionary_null.metadata = {"url": "/array/dictionary/null"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_dictionary_empty(self, **kwargs: Any) -> List[Dict[str, str]]:
+    async def get_dictionary_empty(
+        self,
+        **kwargs: Any
+    ) -> List[Dict[str, str]]:
         """Get an array of Dictionaries of type <string, string> with value [].
 
         :return: list of dict mapping str to str
@@ -2902,14 +3513,22 @@ class ArrayOperations:
                     }
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[Dict[str, str]]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[Dict[str, str]]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_dictionary_empty_request()
+        
+        request = build_array_get_dictionary_empty_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2926,10 +3545,13 @@ class ArrayOperations:
 
         return deserialized
 
-    get_dictionary_empty.metadata = {"url": "/array/dictionary/empty"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_dictionary_item_null(self, **kwargs: Any) -> List[Dict[str, str]]:
+    async def get_dictionary_item_null(
+        self,
+        **kwargs: Any
+    ) -> List[Dict[str, str]]:
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
         'three'}, null, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
@@ -2947,14 +3569,22 @@ class ArrayOperations:
                     }
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[Dict[str, str]]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[Dict[str, str]]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_dictionary_item_null_request()
+        
+        request = build_array_get_dictionary_item_null_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2971,10 +3601,13 @@ class ArrayOperations:
 
         return deserialized
 
-    get_dictionary_item_null.metadata = {"url": "/array/dictionary/itemnull"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_dictionary_item_empty(self, **kwargs: Any) -> List[Dict[str, str]]:
+    async def get_dictionary_item_empty(
+        self,
+        **kwargs: Any
+    ) -> List[Dict[str, str]]:
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
         'three'}, {}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
@@ -2992,14 +3625,22 @@ class ArrayOperations:
                     }
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[Dict[str, str]]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[Dict[str, str]]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_dictionary_item_empty_request()
+        
+        request = build_array_get_dictionary_item_empty_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3016,10 +3657,13 @@ class ArrayOperations:
 
         return deserialized
 
-    get_dictionary_item_empty.metadata = {"url": "/array/dictionary/itemempty"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_dictionary_valid(self, **kwargs: Any) -> List[Dict[str, str]]:
+    async def get_dictionary_valid(
+        self,
+        **kwargs: Any
+    ) -> List[Dict[str, str]]:
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
         'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
@@ -3037,14 +3681,22 @@ class ArrayOperations:
                     }
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[Dict[str, str]]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[Dict[str, str]]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_array_get_dictionary_valid_request()
+        
+        request = build_array_get_dictionary_valid_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3061,10 +3713,14 @@ class ArrayOperations:
 
         return deserialized
 
-    get_dictionary_valid.metadata = {"url": "/array/dictionary/valid"}  # type: ignore
+
 
     @distributed_trace_async
-    async def put_dictionary_valid(self, array_body: List[Dict[str, str]], **kwargs: Any) -> None:
+    async def put_dictionary_valid(
+        self,
+        array_body: List[Dict[str, str]],
+        **kwargs: Any
+    ) -> None:
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
         'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
@@ -3084,11 +3740,13 @@ class ArrayOperations:
                     }
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
         _json = array_body
 
@@ -3098,7 +3756,11 @@ class ArrayOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3108,4 +3770,4 @@ class ArrayOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_dictionary_valid.metadata = {"url": "/array/dictionary/valid"}  # type: ignore
+

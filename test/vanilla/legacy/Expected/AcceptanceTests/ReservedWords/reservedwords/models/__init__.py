@@ -7,15 +7,13 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._models_py3 import (
-        PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwFormUrlencodedSchema,
-    )
+    from ._models_py3 import PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwFormUrlencodedSchema
     from ._models_py3 import PathsU1PxjnReservedwordsOperationFilesPutRequestbodyContentMultipartFormDataSchema
 except (SyntaxError, ImportError):
     from ._models import PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwFormUrlencodedSchema  # type: ignore
     from ._models import PathsU1PxjnReservedwordsOperationFilesPutRequestbodyContentMultipartFormDataSchema  # type: ignore
 
 __all__ = [
-    "PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwFormUrlencodedSchema",
-    "PathsU1PxjnReservedwordsOperationFilesPutRequestbodyContentMultipartFormDataSchema",
+    'PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwFormUrlencodedSchema',
+    'PathsU1PxjnReservedwordsOperationFilesPutRequestbodyContentMultipartFormDataSchema',
 ]

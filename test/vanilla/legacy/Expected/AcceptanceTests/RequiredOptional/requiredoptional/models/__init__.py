@@ -30,14 +30,14 @@ except (SyntaxError, ImportError):
     from ._models import StringWrapper  # type: ignore
 
 __all__ = [
-    "ArrayOptionalWrapper",
-    "ArrayWrapper",
-    "ClassOptionalWrapper",
-    "ClassWrapper",
-    "Error",
-    "IntOptionalWrapper",
-    "IntWrapper",
-    "Product",
-    "StringOptionalWrapper",
-    "StringWrapper",
+    'ArrayOptionalWrapper',
+    'ArrayWrapper',
+    'ClassOptionalWrapper',
+    'ClassWrapper',
+    'Error',
+    'IntOptionalWrapper',
+    'IntWrapper',
+    'Product',
+    'StringOptionalWrapper',
+    'StringWrapper',
 ]

@@ -22,10 +22,10 @@ except (SyntaxError, ImportError):
     from ._request_builders import build_put_referenced_constant_request  # type: ignore
 
 __all__ = [
-    "build_get_not_expandable_request",
-    "build_put_not_expandable_request",
-    "build_get_referenced_request",
-    "build_put_referenced_request",
-    "build_get_referenced_constant_request",
-    "build_put_referenced_constant_request",
+    'build_get_not_expandable_request',
+    'build_put_not_expandable_request',
+    'build_get_referenced_request',
+    'build_put_referenced_request',
+    'build_get_referenced_constant_request',
+    'build_put_referenced_constant_request',
 ]

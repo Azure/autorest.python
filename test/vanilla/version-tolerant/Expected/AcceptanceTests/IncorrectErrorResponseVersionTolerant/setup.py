@@ -33,5 +33,5 @@ setup(
     include_package_data=True,
     long_description="""\
     Test to see when throwing an HttpResponseError whether we swallow error model deserialization errors.
-    """,
+    """
 )

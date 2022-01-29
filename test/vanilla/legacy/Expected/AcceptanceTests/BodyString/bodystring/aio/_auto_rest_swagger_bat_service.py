@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Awaitable, Optional
+from typing import Any, Awaitable
 
 from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
@@ -16,7 +16,6 @@ from msrest import Deserializer, Serializer
 from .. import models
 from ._configuration import AutoRestSwaggerBATServiceConfiguration
 from .operations import EnumOperations, StringOperations
-
 
 class AutoRestSwaggerBATService:
     """Test Infrastructure for AutoRest Swagger BAT.
@@ -29,7 +28,11 @@ class AutoRestSwaggerBATService:
     :type base_url: str
     """
 
-    def __init__(self, base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
+    def __init__(
+        self,
+        base_url: str = "http://localhost:3000",
+        **kwargs: Any
+    ) -> None:
         self._config = AutoRestSwaggerBATServiceConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -40,7 +43,12 @@ class AutoRestSwaggerBATService:
         self.string = StringOperations(self._client, self._config, self._serialize, self._deserialize)
         self.enum = EnumOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def _send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
+
+    def _send_request(
+        self,
+        request: HttpRequest,
+        **kwargs: Any
+    ) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

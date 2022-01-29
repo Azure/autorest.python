@@ -10,6 +10,6 @@ from ._operations import StorageAccountsOperations
 from ._operations import UsageOperations
 
 __all__ = [
-    "StorageAccountsOperations",
-    "UsageOperations",
+    'StorageAccountsOperations',
+    'UsageOperations',
 ]

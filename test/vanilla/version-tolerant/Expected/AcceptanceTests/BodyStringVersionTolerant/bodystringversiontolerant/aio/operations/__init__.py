@@ -10,6 +10,6 @@ from ._operations import StringOperations
 from ._operations import EnumOperations
 
 __all__ = [
-    "StringOperations",
-    "EnumOperations",
+    'StringOperations',
+    'EnumOperations',
 ]

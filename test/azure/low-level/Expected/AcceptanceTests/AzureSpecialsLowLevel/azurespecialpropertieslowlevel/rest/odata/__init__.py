@@ -12,5 +12,5 @@ except (SyntaxError, ImportError):
     from ._request_builders import build_get_with_filter_request  # type: ignore
 
 __all__ = [
-    "build_get_with_filter_request",
+    'build_get_with_filter_request',
 ]

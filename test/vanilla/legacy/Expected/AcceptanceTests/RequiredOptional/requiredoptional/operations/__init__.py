@@ -10,6 +10,6 @@ from ._implicit_operations import ImplicitOperations
 from ._explicit_operations import ExplicitOperations
 
 __all__ = [
-    "ImplicitOperations",
-    "ExplicitOperations",
+    'ImplicitOperations',
+    'ExplicitOperations',
 ]

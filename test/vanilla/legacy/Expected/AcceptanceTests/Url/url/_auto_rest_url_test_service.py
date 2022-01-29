@@ -22,7 +22,6 @@ if TYPE_CHECKING:
 
     from azure.core.rest import HttpRequest, HttpResponse
 
-
 class AutoRestUrlTestService(object):
     """Test Infrastructure for AutoRest.
 
@@ -48,9 +47,7 @@ class AutoRestUrlTestService(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        self._config = AutoRestUrlTestServiceConfiguration(
-            global_string_path=global_string_path, global_string_query=global_string_query, **kwargs
-        )
+        self._config = AutoRestUrlTestServiceConfiguration(global_string_path=global_string_path, global_string_query=global_string_query, **kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
@@ -59,6 +56,7 @@ class AutoRestUrlTestService(object):
         self.paths = PathsOperations(self._client, self._config, self._serialize, self._deserialize)
         self.queries = QueriesOperations(self._client, self._config, self._serialize, self._deserialize)
         self.path_items = PathItemsOperations(self._client, self._config, self._serialize, self._deserialize)
+
 
     def _send_request(
         self,

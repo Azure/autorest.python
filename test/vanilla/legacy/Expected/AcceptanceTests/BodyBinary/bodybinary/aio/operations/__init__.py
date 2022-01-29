@@ -9,5 +9,5 @@
 from ._upload_operations import UploadOperations
 
 __all__ = [
-    "UploadOperations",
+    'UploadOperations',
 ]

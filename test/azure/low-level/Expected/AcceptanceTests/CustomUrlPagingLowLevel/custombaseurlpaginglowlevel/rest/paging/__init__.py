@@ -16,7 +16,7 @@ except (SyntaxError, ImportError):
     from ._request_builders import build_get_pages_partial_url_operation_next_request  # type: ignore
 
 __all__ = [
-    "build_get_pages_partial_url_request",
-    "build_get_pages_partial_url_operation_request",
-    "build_get_pages_partial_url_operation_next_request",
+    'build_get_pages_partial_url_request',
+    'build_get_pages_partial_url_operation_request',
+    'build_get_pages_partial_url_operation_next_request',
 ]

@@ -24,11 +24,11 @@ except (SyntaxError, ImportError):
     from ._request_builders import build_post_async_relative_retry_succeeded_request  # type: ignore
 
 __all__ = [
-    "build_put201_creating_succeeded200_request",
-    "build_put_async_relative_retry_succeeded_request",
-    "build_delete_provisioning202_accepted200_succeeded_request",
-    "build_delete202_retry200_request",
-    "build_delete_async_relative_retry_succeeded_request",
-    "build_post202_retry200_request",
-    "build_post_async_relative_retry_succeeded_request",
+    'build_put201_creating_succeeded200_request',
+    'build_put_async_relative_retry_succeeded_request',
+    'build_delete_provisioning202_accepted200_succeeded_request',
+    'build_delete202_retry200_request',
+    'build_delete_async_relative_retry_succeeded_request',
+    'build_post202_retry200_request',
+    'build_post_async_relative_retry_succeeded_request',
 ]

@@ -17,10 +17,9 @@ from .operations import FloatOperations, IntOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, Optional
+    from typing import Any, Dict
 
     from azure.core.rest import HttpRequest, HttpResponse
-
 
 class NonStringEnumsClient(object):
     """Testing non-string enums.
@@ -48,6 +47,7 @@ class NonStringEnumsClient(object):
         self._serialize.client_side_validation = False
         self.int = IntOperations(self._client, self._config, self._serialize, self._deserialize)
         self.float = FloatOperations(self._client, self._config, self._serialize, self._deserialize)
+
 
     def _send_request(
         self,

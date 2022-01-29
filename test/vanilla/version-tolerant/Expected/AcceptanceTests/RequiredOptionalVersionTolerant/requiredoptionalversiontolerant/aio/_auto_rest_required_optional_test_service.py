@@ -20,7 +20,6 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Dict
 
-
 class AutoRestRequiredOptionalTestService:
     """Test Infrastructure for AutoRest.
 
@@ -47,12 +46,7 @@ class AutoRestRequiredOptionalTestService:
         endpoint: str = "http://localhost:3000",
         **kwargs: Any
     ) -> None:
-        self._config = AutoRestRequiredOptionalTestServiceConfiguration(
-            required_global_path=required_global_path,
-            required_global_query=required_global_query,
-            optional_global_query=optional_global_query,
-            **kwargs
-        )
+        self._config = AutoRestRequiredOptionalTestServiceConfiguration(required_global_path=required_global_path, required_global_query=required_global_query, optional_global_query=optional_global_query, **kwargs)
         self._client = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
@@ -60,7 +54,12 @@ class AutoRestRequiredOptionalTestService:
         self.implicit = ImplicitOperations(self._client, self._config, self._serialize, self._deserialize)
         self.explicit = ExplicitOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
+
+    def send_request(
+        self,
+        request: HttpRequest,
+        **kwargs: Any
+    ) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

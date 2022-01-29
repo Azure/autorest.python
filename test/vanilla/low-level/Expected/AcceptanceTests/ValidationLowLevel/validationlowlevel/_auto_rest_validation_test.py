@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Optional, TYPE_CHECKING
+from typing import Any, TYPE_CHECKING
 
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
@@ -18,7 +18,6 @@ from ._configuration import AutoRestValidationTestConfiguration
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Dict
-
 
 class AutoRestValidationTest:
     """Test Infrastructure for AutoRest. No server backend exists for these tests.
@@ -32,13 +31,20 @@ class AutoRestValidationTest:
     :paramtype api_version: str
     """
 
-    def __init__(self, subscription_id: str, *, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
-
+    def __init__(
+        self,
+        subscription_id: str,
+        *,
+        endpoint: str = "http://localhost:3000",
+        **kwargs: Any
+    ) -> None:
+        
         self._config = AutoRestValidationTestConfiguration(subscription_id=subscription_id, **kwargs)
         self._client = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
+
 
     def send_request(
         self,

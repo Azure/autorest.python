@@ -28,13 +28,13 @@ except (SyntaxError, ImportError):
     from ._request_builders import build_patch504_request  # type: ignore
 
 __all__ = [
-    "build_head408_request",
-    "build_put500_request",
-    "build_patch500_request",
-    "build_get502_request",
-    "build_options502_request",
-    "build_post503_request",
-    "build_delete503_request",
-    "build_put504_request",
-    "build_patch504_request",
+    'build_head408_request',
+    'build_put500_request',
+    'build_patch500_request',
+    'build_get502_request',
+    'build_options502_request',
+    'build_post503_request',
+    'build_delete503_request',
+    'build_put504_request',
+    'build_patch504_request',
 ]

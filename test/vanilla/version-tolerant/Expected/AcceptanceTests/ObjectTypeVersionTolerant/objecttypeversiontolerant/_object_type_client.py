@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Optional, TYPE_CHECKING
+from typing import Any, TYPE_CHECKING
 
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
@@ -20,7 +20,6 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Dict
 
-
 class ObjectTypeClient(ObjectTypeClientOperationsMixin):
     """Service client for testing basic type: object swaggers.
 
@@ -28,14 +27,20 @@ class ObjectTypeClient(ObjectTypeClientOperationsMixin):
     :paramtype endpoint: str
     """
 
-    def __init__(self, *, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
-
+    def __init__(
+        self,
+        *,
+        endpoint: str = "http://localhost:3000",
+        **kwargs: Any
+    ) -> None:
+        
         self._config = ObjectTypeClientConfiguration(**kwargs)
         self._client = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
+
 
     def send_request(
         self,

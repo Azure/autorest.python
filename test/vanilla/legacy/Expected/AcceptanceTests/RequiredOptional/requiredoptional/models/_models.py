@@ -18,16 +18,19 @@ class ArrayOptionalWrapper(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "value": {"key": "value", "type": "[str]"},
+        'value': {'key': 'value', 'type': '[str]'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword value:
         :paramtype value: list[str]
         """
         super(ArrayOptionalWrapper, self).__init__(**kwargs)
-        self.value = kwargs.get("value", None)
+        self.value = kwargs.get('value', None)
 
 
 class ArrayWrapper(msrest.serialization.Model):
@@ -40,20 +43,23 @@ class ArrayWrapper(msrest.serialization.Model):
     """
 
     _validation = {
-        "value": {"required": True},
+        'value': {'required': True},
     }
 
     _attribute_map = {
-        "value": {"key": "value", "type": "[str]"},
+        'value': {'key': 'value', 'type': '[str]'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword value: Required.
         :paramtype value: list[str]
         """
         super(ArrayWrapper, self).__init__(**kwargs)
-        self.value = kwargs["value"]
+        self.value = kwargs['value']
 
 
 class ClassOptionalWrapper(msrest.serialization.Model):
@@ -64,16 +70,19 @@ class ClassOptionalWrapper(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "value": {"key": "value", "type": "Product"},
+        'value': {'key': 'value', 'type': 'Product'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword value:
         :paramtype value: ~requiredoptional.models.Product
         """
         super(ClassOptionalWrapper, self).__init__(**kwargs)
-        self.value = kwargs.get("value", None)
+        self.value = kwargs.get('value', None)
 
 
 class ClassWrapper(msrest.serialization.Model):
@@ -86,20 +95,23 @@ class ClassWrapper(msrest.serialization.Model):
     """
 
     _validation = {
-        "value": {"required": True},
+        'value': {'required': True},
     }
 
     _attribute_map = {
-        "value": {"key": "value", "type": "Product"},
+        'value': {'key': 'value', 'type': 'Product'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword value: Required.
         :paramtype value: ~requiredoptional.models.Product
         """
         super(ClassWrapper, self).__init__(**kwargs)
-        self.value = kwargs["value"]
+        self.value = kwargs['value']
 
 
 class Error(msrest.serialization.Model):
@@ -112,11 +124,14 @@ class Error(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "status": {"key": "status", "type": "int"},
-        "message": {"key": "message", "type": "str"},
+        'status': {'key': 'status', 'type': 'int'},
+        'message': {'key': 'message', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword status:
         :paramtype status: int
@@ -124,8 +139,8 @@ class Error(msrest.serialization.Model):
         :paramtype message: str
         """
         super(Error, self).__init__(**kwargs)
-        self.status = kwargs.get("status", None)
-        self.message = kwargs.get("message", None)
+        self.status = kwargs.get('status', None)
+        self.message = kwargs.get('message', None)
 
 
 class IntOptionalWrapper(msrest.serialization.Model):
@@ -136,16 +151,19 @@ class IntOptionalWrapper(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "value": {"key": "value", "type": "int"},
+        'value': {'key': 'value', 'type': 'int'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword value:
         :paramtype value: int
         """
         super(IntOptionalWrapper, self).__init__(**kwargs)
-        self.value = kwargs.get("value", None)
+        self.value = kwargs.get('value', None)
 
 
 class IntWrapper(msrest.serialization.Model):
@@ -158,20 +176,23 @@ class IntWrapper(msrest.serialization.Model):
     """
 
     _validation = {
-        "value": {"required": True},
+        'value': {'required': True},
     }
 
     _attribute_map = {
-        "value": {"key": "value", "type": "int"},
+        'value': {'key': 'value', 'type': 'int'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword value: Required.
         :paramtype value: int
         """
         super(IntWrapper, self).__init__(**kwargs)
-        self.value = kwargs["value"]
+        self.value = kwargs['value']
 
 
 class Product(msrest.serialization.Model):
@@ -186,15 +207,18 @@ class Product(msrest.serialization.Model):
     """
 
     _validation = {
-        "id": {"required": True},
+        'id': {'required': True},
     }
 
     _attribute_map = {
-        "id": {"key": "id", "type": "int"},
-        "name": {"key": "name", "type": "str"},
+        'id': {'key': 'id', 'type': 'int'},
+        'name': {'key': 'name', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword id: Required.
         :paramtype id: int
@@ -202,8 +226,8 @@ class Product(msrest.serialization.Model):
         :paramtype name: str
         """
         super(Product, self).__init__(**kwargs)
-        self.id = kwargs["id"]
-        self.name = kwargs.get("name", None)
+        self.id = kwargs['id']
+        self.name = kwargs.get('name', None)
 
 
 class StringOptionalWrapper(msrest.serialization.Model):
@@ -214,16 +238,19 @@ class StringOptionalWrapper(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "value": {"key": "value", "type": "str"},
+        'value': {'key': 'value', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword value:
         :paramtype value: str
         """
         super(StringOptionalWrapper, self).__init__(**kwargs)
-        self.value = kwargs.get("value", None)
+        self.value = kwargs.get('value', None)
 
 
 class StringWrapper(msrest.serialization.Model):
@@ -236,17 +263,20 @@ class StringWrapper(msrest.serialization.Model):
     """
 
     _validation = {
-        "value": {"required": True},
+        'value': {'required': True},
     }
 
     _attribute_map = {
-        "value": {"key": "value", "type": "str"},
+        'value': {'key': 'value', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword value: Required.
         :paramtype value: str
         """
         super(StringWrapper, self).__init__(**kwargs)
-        self.value = kwargs["value"]
+        self.value = kwargs['value']

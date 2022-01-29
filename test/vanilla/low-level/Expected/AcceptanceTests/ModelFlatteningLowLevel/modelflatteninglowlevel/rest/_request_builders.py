@@ -14,9 +14,8 @@ from .._vendor import _format_url_section
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, List, Optional, TypeVar
-
-    T = TypeVar("T")
+    from typing import Any, Dict, Optional, TypeVar
+    T = TypeVar('T')
     JSONType = Any
 
 _SERIALIZER = Serializer()
@@ -54,7 +53,8 @@ def build_put_array_request(
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of
+                          :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -107,11 +107,15 @@ def build_get_array_request(
                     "properties": {
                         "p.name": "str",  # Optional.
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str",  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str",  # Optional. Possible
+                          values include: "Succeeded", "Failed", "canceled", "Accepted",
+                          "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
+                          "OK".
                         "type": "str"  # Optional.
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of
+                          :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -262,11 +266,15 @@ def build_put_dictionary_request(
                     "properties": {
                         "p.name": "str",  # Optional.
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str",  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str",  # Optional. Possible
+                          values include: "Succeeded", "Failed", "canceled", "Accepted",
+                          "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
+                          "OK".
                         "type": "str"  # Optional.
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of
+                          :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -319,11 +327,15 @@ def build_get_dictionary_request(
                     "properties": {
                         "p.name": "str",  # Optional.
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str",  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str",  # Optional. Possible
+                          values include: "Succeeded", "Failed", "canceled", "Accepted",
+                          "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
+                          "OK".
                         "type": "str"  # Optional.
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of
+                          :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -379,11 +391,15 @@ def build_put_resource_collection_request(
                         "properties": {
                             "p.name": "str",  # Optional.
                             "provisioningState": "str",  # Optional.
-                            "provisioningStateValues": "str",  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                            "provisioningStateValues": "str",  # Optional.
+                              Possible values include: "Succeeded", "Failed", "canceled",
+                              "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting",
+                              "Deleted", "OK".
                             "type": "str"  # Optional.
                         },
                         "tags": {
-                            "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                            "str": "str"  # Optional. A set of tags. Dictionary
+                              of :code:`<string>`.
                         },
                         "type": "str"  # Optional. Resource Type.
                     }
@@ -394,13 +410,20 @@ def build_put_resource_collection_request(
                         "location": "str",  # Optional. Resource Location.
                         "name": "str",  # Optional. Resource Name.
                         "properties": {
-                            "p.name": "str",  # Optional. Dictionary of :code:`<FlattenedProduct>`.
-                            "provisioningState": "str",  # Optional. Dictionary of :code:`<FlattenedProduct>`.
-                            "provisioningStateValues": "str",  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
-                            "type": "str"  # Optional. Dictionary of :code:`<FlattenedProduct>`.
+                            "p.name": "str",  # Optional. Dictionary of
+                              :code:`<FlattenedProduct>`.
+                            "provisioningState": "str",  # Optional. Dictionary
+                              of :code:`<FlattenedProduct>`.
+                            "provisioningStateValues": "str",  # Optional.
+                              Possible values include: "Succeeded", "Failed", "canceled",
+                              "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting",
+                              "Deleted", "OK".
+                            "type": "str"  # Optional. Dictionary of
+                              :code:`<FlattenedProduct>`.
                         },
                         "tags": {
-                            "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                            "str": "str"  # Optional. A set of tags. Dictionary
+                              of :code:`<string>`.
                         },
                         "type": "str"  # Optional. Resource Type.
                     }
@@ -412,11 +435,15 @@ def build_put_resource_collection_request(
                     "properties": {
                         "p.name": "str",  # Optional. Flattened product.
                         "provisioningState": "str",  # Optional. Flattened product.
-                        "provisioningStateValues": "str",  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str",  # Optional. Possible
+                          values include: "Succeeded", "Failed", "canceled", "Accepted",
+                          "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
+                          "OK".
                         "type": "str"  # Optional. Flattened product.
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of
+                          :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -470,11 +497,15 @@ def build_get_resource_collection_request(
                         "properties": {
                             "p.name": "str",  # Optional.
                             "provisioningState": "str",  # Optional.
-                            "provisioningStateValues": "str",  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                            "provisioningStateValues": "str",  # Optional.
+                              Possible values include: "Succeeded", "Failed", "canceled",
+                              "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting",
+                              "Deleted", "OK".
                             "type": "str"  # Optional.
                         },
                         "tags": {
-                            "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                            "str": "str"  # Optional. A set of tags. Dictionary
+                              of :code:`<string>`.
                         },
                         "type": "str"  # Optional. Resource Type.
                     }
@@ -485,13 +516,20 @@ def build_get_resource_collection_request(
                         "location": "str",  # Optional. Resource Location.
                         "name": "str",  # Optional. Resource Name.
                         "properties": {
-                            "p.name": "str",  # Optional. Dictionary of :code:`<FlattenedProduct>`.
-                            "provisioningState": "str",  # Optional. Dictionary of :code:`<FlattenedProduct>`.
-                            "provisioningStateValues": "str",  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
-                            "type": "str"  # Optional. Dictionary of :code:`<FlattenedProduct>`.
+                            "p.name": "str",  # Optional. Dictionary of
+                              :code:`<FlattenedProduct>`.
+                            "provisioningState": "str",  # Optional. Dictionary
+                              of :code:`<FlattenedProduct>`.
+                            "provisioningStateValues": "str",  # Optional.
+                              Possible values include: "Succeeded", "Failed", "canceled",
+                              "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting",
+                              "Deleted", "OK".
+                            "type": "str"  # Optional. Dictionary of
+                              :code:`<FlattenedProduct>`.
                         },
                         "tags": {
-                            "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                            "str": "str"  # Optional. A set of tags. Dictionary
+                              of :code:`<string>`.
                         },
                         "type": "str"  # Optional. Resource Type.
                     }
@@ -503,11 +541,15 @@ def build_get_resource_collection_request(
                     "properties": {
                         "p.name": "str",  # Optional. Flattened product.
                         "provisioningState": "str",  # Optional. Flattened product.
-                        "provisioningStateValues": "str",  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str",  # Optional. Possible
+                          values include: "Succeeded", "Failed", "canceled", "Accepted",
+                          "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
+                          "OK".
                         "type": "str"  # Optional. Flattened product.
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of
+                          :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -556,10 +598,14 @@ def build_put_simple_product_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "base_product_description": "str",  # Optional. Description of product.
-                "base_product_id": "str",  # Required. Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
+                "base_product_id": "str",  # Required. Unique identifier representing a
+                  specific product for a given latitude & longitude. For example, uberX in San
+                  Francisco will have a different product_id than uberX in Los Angeles.
                 "details": {
-                    "max_product_capacity": "Large",  # Default value is "Large". Capacity of product. For example, 4 people. Has constant value: "Large".
-                    "max_product_display_name": "str",  # Required. Display name of product.
+                    "max_product_capacity": "Large",  # Default value is "Large".
+                      Capacity of product. For example, 4 people. Has constant value: "Large".
+                    "max_product_display_name": "str",  # Required. Display name of
+                      product.
                     "max_product_image": {
                         "@odata.value": "str",  # Optional. URL value.
                         "generic_value": "str"  # Optional. Generic URL value.
@@ -570,10 +616,14 @@ def build_put_simple_product_request(
             # response body for status code(s): 200
             response.json() == {
                 "base_product_description": "str",  # Optional. Description of product.
-                "base_product_id": "str",  # Required. Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
+                "base_product_id": "str",  # Required. Unique identifier representing a
+                  specific product for a given latitude & longitude. For example, uberX in San
+                  Francisco will have a different product_id than uberX in Los Angeles.
                 "details": {
-                    "max_product_capacity": "Large",  # Default value is "Large". Capacity of product. For example, 4 people. Has constant value: "Large".
-                    "max_product_display_name": "str",  # Required. Display name of product.
+                    "max_product_capacity": "Large",  # Default value is "Large".
+                      Capacity of product. For example, 4 people. Has constant value: "Large".
+                    "max_product_display_name": "str",  # Required. Display name of
+                      product.
                     "max_product_image": {
                         "@odata.value": "str",  # Optional. URL value.
                         "generic_value": "str"  # Optional. Generic URL value.
@@ -628,10 +678,14 @@ def build_post_flattened_simple_product_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "base_product_description": "str",  # Optional. Description of product.
-                "base_product_id": "str",  # Required. Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
+                "base_product_id": "str",  # Required. Unique identifier representing a
+                  specific product for a given latitude & longitude. For example, uberX in San
+                  Francisco will have a different product_id than uberX in Los Angeles.
                 "details": {
-                    "max_product_capacity": "Large",  # Default value is "Large". Capacity of product. For example, 4 people. Has constant value: "Large".
-                    "max_product_display_name": "str",  # Required. Display name of product.
+                    "max_product_capacity": "Large",  # Default value is "Large".
+                      Capacity of product. For example, 4 people. Has constant value: "Large".
+                    "max_product_display_name": "str",  # Required. Display name of
+                      product.
                     "max_product_image": {
                         "@odata.value": "str",  # Optional. URL value.
                         "generic_value": "str"  # Optional. Generic URL value.
@@ -642,10 +696,14 @@ def build_post_flattened_simple_product_request(
             # response body for status code(s): 200
             response.json() == {
                 "base_product_description": "str",  # Optional. Description of product.
-                "base_product_id": "str",  # Required. Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
+                "base_product_id": "str",  # Required. Unique identifier representing a
+                  specific product for a given latitude & longitude. For example, uberX in San
+                  Francisco will have a different product_id than uberX in Los Angeles.
                 "details": {
-                    "max_product_capacity": "Large",  # Default value is "Large". Capacity of product. For example, 4 people. Has constant value: "Large".
-                    "max_product_display_name": "str",  # Required. Display name of product.
+                    "max_product_capacity": "Large",  # Default value is "Large".
+                      Capacity of product. For example, 4 people. Has constant value: "Large".
+                    "max_product_display_name": "str",  # Required. Display name of
+                      product.
                     "max_product_image": {
                         "@odata.value": "str",  # Optional. URL value.
                         "generic_value": "str"  # Optional. Generic URL value.
@@ -703,10 +761,14 @@ def build_put_simple_product_with_grouping_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "base_product_description": "str",  # Optional. Description of product.
-                "base_product_id": "str",  # Required. Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
+                "base_product_id": "str",  # Required. Unique identifier representing a
+                  specific product for a given latitude & longitude. For example, uberX in San
+                  Francisco will have a different product_id than uberX in Los Angeles.
                 "details": {
-                    "max_product_capacity": "Large",  # Default value is "Large". Capacity of product. For example, 4 people. Has constant value: "Large".
-                    "max_product_display_name": "str",  # Required. Display name of product.
+                    "max_product_capacity": "Large",  # Default value is "Large".
+                      Capacity of product. For example, 4 people. Has constant value: "Large".
+                    "max_product_display_name": "str",  # Required. Display name of
+                      product.
                     "max_product_image": {
                         "@odata.value": "str",  # Optional. URL value.
                         "generic_value": "str"  # Optional. Generic URL value.
@@ -717,10 +779,14 @@ def build_put_simple_product_with_grouping_request(
             # response body for status code(s): 200
             response.json() == {
                 "base_product_description": "str",  # Optional. Description of product.
-                "base_product_id": "str",  # Required. Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
+                "base_product_id": "str",  # Required. Unique identifier representing a
+                  specific product for a given latitude & longitude. For example, uberX in San
+                  Francisco will have a different product_id than uberX in Los Angeles.
                 "details": {
-                    "max_product_capacity": "Large",  # Default value is "Large". Capacity of product. For example, 4 people. Has constant value: "Large".
-                    "max_product_display_name": "str",  # Required. Display name of product.
+                    "max_product_capacity": "Large",  # Default value is "Large".
+                      Capacity of product. For example, 4 people. Has constant value: "Large".
+                    "max_product_display_name": "str",  # Required. Display name of
+                      product.
                     "max_product_image": {
                         "@odata.value": "str",  # Optional. URL value.
                         "generic_value": "str"  # Optional. Generic URL value.
@@ -752,3 +818,4 @@ def build_put_simple_product_with_grouping_request(
         headers=header_parameters,
         **kwargs
     )
+

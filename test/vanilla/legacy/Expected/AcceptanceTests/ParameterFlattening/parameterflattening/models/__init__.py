@@ -12,5 +12,5 @@ except (SyntaxError, ImportError):
     from ._models import AvailabilitySetUpdateParameters  # type: ignore
 
 __all__ = [
-    "AvailabilitySetUpdateParameters",
+    'AvailabilitySetUpdateParameters',
 ]

@@ -20,9 +20,9 @@ from ._auto_rest_swagger_bat_array_service_enums import (
 )
 
 __all__ = [
-    "Error",
-    "Product",
-    "Enum0",
-    "Enum1",
-    "FooEnum",
+    'Error',
+    'Product',
+    'Enum0',
+    'Enum1',
+    'FooEnum',
 ]

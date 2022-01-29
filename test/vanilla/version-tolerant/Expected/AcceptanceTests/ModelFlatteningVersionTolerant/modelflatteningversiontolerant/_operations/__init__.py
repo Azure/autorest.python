@@ -9,5 +9,5 @@
 from ._operations import AutoRestResourceFlatteningTestServiceOperationsMixin
 
 __all__ = [
-    "AutoRestResourceFlatteningTestServiceOperationsMixin",
+    'AutoRestResourceFlatteningTestServiceOperationsMixin',
 ]

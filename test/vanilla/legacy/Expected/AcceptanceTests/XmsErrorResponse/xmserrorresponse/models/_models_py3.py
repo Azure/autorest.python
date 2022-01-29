@@ -20,10 +20,15 @@ class Animal(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "ani_type": {"key": "aniType", "type": "str"},
+        'ani_type': {'key': 'aniType', 'type': 'str'},
     }
 
-    def __init__(self, *, ani_type: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        ani_type: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword ani_type:
         :paramtype ani_type: str
@@ -40,10 +45,15 @@ class BaseError(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "some_base_prop": {"key": "someBaseProp", "type": "str"},
+        'some_base_prop': {'key': 'someBaseProp', 'type': 'str'},
     }
 
-    def __init__(self, *, some_base_prop: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        some_base_prop: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword some_base_prop:
         :paramtype some_base_prop: str
@@ -69,18 +79,26 @@ class NotFoundErrorBase(BaseError):
     """
 
     _validation = {
-        "what_not_found": {"required": True},
+        'what_not_found': {'required': True},
     }
 
     _attribute_map = {
-        "some_base_prop": {"key": "someBaseProp", "type": "str"},
-        "reason": {"key": "reason", "type": "str"},
-        "what_not_found": {"key": "whatNotFound", "type": "str"},
+        'some_base_prop': {'key': 'someBaseProp', 'type': 'str'},
+        'reason': {'key': 'reason', 'type': 'str'},
+        'what_not_found': {'key': 'whatNotFound', 'type': 'str'},
     }
 
-    _subtype_map = {"what_not_found": {"AnimalNotFound": "AnimalNotFound", "InvalidResourceLink": "LinkNotFound"}}
+    _subtype_map = {
+        'what_not_found': {'AnimalNotFound': 'AnimalNotFound', 'InvalidResourceLink': 'LinkNotFound'}
+    }
 
-    def __init__(self, *, some_base_prop: Optional[str] = None, reason: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        some_base_prop: Optional[str] = None,
+        reason: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword some_base_prop:
         :paramtype some_base_prop: str
@@ -89,7 +107,7 @@ class NotFoundErrorBase(BaseError):
         """
         super(NotFoundErrorBase, self).__init__(some_base_prop=some_base_prop, **kwargs)
         self.reason = reason
-        self.what_not_found = "NotFoundErrorBase"  # type: str
+        self.what_not_found = 'NotFoundErrorBase'  # type: str
 
 
 class AnimalNotFound(NotFoundErrorBase):
@@ -108,14 +126,14 @@ class AnimalNotFound(NotFoundErrorBase):
     """
 
     _validation = {
-        "what_not_found": {"required": True},
+        'what_not_found': {'required': True},
     }
 
     _attribute_map = {
-        "some_base_prop": {"key": "someBaseProp", "type": "str"},
-        "reason": {"key": "reason", "type": "str"},
-        "what_not_found": {"key": "whatNotFound", "type": "str"},
-        "name": {"key": "name", "type": "str"},
+        'some_base_prop': {'key': 'someBaseProp', 'type': 'str'},
+        'reason': {'key': 'reason', 'type': 'str'},
+        'what_not_found': {'key': 'whatNotFound', 'type': 'str'},
+        'name': {'key': 'name', 'type': 'str'},
     }
 
     def __init__(
@@ -135,7 +153,7 @@ class AnimalNotFound(NotFoundErrorBase):
         :paramtype name: str
         """
         super(AnimalNotFound, self).__init__(some_base_prop=some_base_prop, reason=reason, **kwargs)
-        self.what_not_found = "AnimalNotFound"  # type: str
+        self.what_not_found = 'AnimalNotFound'  # type: str
         self.name = name
 
 
@@ -155,14 +173,14 @@ class LinkNotFound(NotFoundErrorBase):
     """
 
     _validation = {
-        "what_not_found": {"required": True},
+        'what_not_found': {'required': True},
     }
 
     _attribute_map = {
-        "some_base_prop": {"key": "someBaseProp", "type": "str"},
-        "reason": {"key": "reason", "type": "str"},
-        "what_not_found": {"key": "whatNotFound", "type": "str"},
-        "what_sub_address": {"key": "whatSubAddress", "type": "str"},
+        'some_base_prop': {'key': 'someBaseProp', 'type': 'str'},
+        'reason': {'key': 'reason', 'type': 'str'},
+        'what_not_found': {'key': 'whatNotFound', 'type': 'str'},
+        'what_sub_address': {'key': 'whatSubAddress', 'type': 'str'},
     }
 
     def __init__(
@@ -182,7 +200,7 @@ class LinkNotFound(NotFoundErrorBase):
         :paramtype what_sub_address: str
         """
         super(LinkNotFound, self).__init__(some_base_prop=some_base_prop, reason=reason, **kwargs)
-        self.what_not_found = "InvalidResourceLink"  # type: str
+        self.what_not_found = 'InvalidResourceLink'  # type: str
         self.what_sub_address = what_sub_address
 
 
@@ -198,15 +216,20 @@ class Pet(Animal):
     """
 
     _validation = {
-        "name": {"readonly": True},
+        'name': {'readonly': True},
     }
 
     _attribute_map = {
-        "ani_type": {"key": "aniType", "type": "str"},
-        "name": {"key": "name", "type": "str"},
+        'ani_type': {'key': 'aniType', 'type': 'str'},
+        'name': {'key': 'name', 'type': 'str'},
     }
 
-    def __init__(self, *, ani_type: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        ani_type: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword ani_type:
         :paramtype ani_type: str
@@ -223,10 +246,15 @@ class PetAction(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "action_response": {"key": "actionResponse", "type": "str"},
+        'action_response': {'key': 'actionResponse', 'type': 'str'},
     }
 
-    def __init__(self, *, action_response: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        action_response: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword action_response: action feedback.
         :paramtype action_response: str
@@ -252,18 +280,26 @@ class PetActionError(PetAction):
     """
 
     _validation = {
-        "error_type": {"required": True},
+        'error_type': {'required': True},
     }
 
     _attribute_map = {
-        "action_response": {"key": "actionResponse", "type": "str"},
-        "error_type": {"key": "errorType", "type": "str"},
-        "error_message": {"key": "errorMessage", "type": "str"},
+        'action_response': {'key': 'actionResponse', 'type': 'str'},
+        'error_type': {'key': 'errorType', 'type': 'str'},
+        'error_message': {'key': 'errorMessage', 'type': 'str'},
     }
 
-    _subtype_map = {"error_type": {"PetSadError": "PetSadError"}}
+    _subtype_map = {
+        'error_type': {'PetSadError': 'PetSadError'}
+    }
 
-    def __init__(self, *, action_response: Optional[str] = None, error_message: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        action_response: Optional[str] = None,
+        error_message: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword action_response: action feedback.
         :paramtype action_response: str
@@ -271,7 +307,7 @@ class PetActionError(PetAction):
         :paramtype error_message: str
         """
         super(PetActionError, self).__init__(action_response=action_response, **kwargs)
-        self.error_type = "PetActionError"  # type: str
+        self.error_type = 'PetActionError'  # type: str
         self.error_message = error_message
 
 
@@ -294,17 +330,19 @@ class PetSadError(PetActionError):
     """
 
     _validation = {
-        "error_type": {"required": True},
+        'error_type': {'required': True},
     }
 
     _attribute_map = {
-        "action_response": {"key": "actionResponse", "type": "str"},
-        "error_type": {"key": "errorType", "type": "str"},
-        "error_message": {"key": "errorMessage", "type": "str"},
-        "reason": {"key": "reason", "type": "str"},
+        'action_response': {'key': 'actionResponse', 'type': 'str'},
+        'error_type': {'key': 'errorType', 'type': 'str'},
+        'error_message': {'key': 'errorMessage', 'type': 'str'},
+        'reason': {'key': 'reason', 'type': 'str'},
     }
 
-    _subtype_map = {"error_type": {"PetHungryOrThirstyError": "PetHungryOrThirstyError"}}
+    _subtype_map = {
+        'error_type': {'PetHungryOrThirstyError': 'PetHungryOrThirstyError'}
+    }
 
     def __init__(
         self,
@@ -323,7 +361,7 @@ class PetSadError(PetActionError):
         :paramtype reason: str
         """
         super(PetSadError, self).__init__(action_response=action_response, error_message=error_message, **kwargs)
-        self.error_type = "PetSadError"  # type: str
+        self.error_type = 'PetSadError'  # type: str
         self.reason = reason
 
 
@@ -345,15 +383,15 @@ class PetHungryOrThirstyError(PetSadError):
     """
 
     _validation = {
-        "error_type": {"required": True},
+        'error_type': {'required': True},
     }
 
     _attribute_map = {
-        "action_response": {"key": "actionResponse", "type": "str"},
-        "error_type": {"key": "errorType", "type": "str"},
-        "error_message": {"key": "errorMessage", "type": "str"},
-        "reason": {"key": "reason", "type": "str"},
-        "hungry_or_thirsty": {"key": "hungryOrThirsty", "type": "str"},
+        'action_response': {'key': 'actionResponse', 'type': 'str'},
+        'error_type': {'key': 'errorType', 'type': 'str'},
+        'error_message': {'key': 'errorMessage', 'type': 'str'},
+        'reason': {'key': 'reason', 'type': 'str'},
+        'hungry_or_thirsty': {'key': 'hungryOrThirsty', 'type': 'str'},
     }
 
     def __init__(
@@ -375,8 +413,6 @@ class PetHungryOrThirstyError(PetSadError):
         :keyword hungry_or_thirsty: is the pet hungry or thirsty or both.
         :paramtype hungry_or_thirsty: str
         """
-        super(PetHungryOrThirstyError, self).__init__(
-            action_response=action_response, error_message=error_message, reason=reason, **kwargs
-        )
-        self.error_type = "PetHungryOrThirstyError"  # type: str
+        super(PetHungryOrThirstyError, self).__init__(action_response=action_response, error_message=error_message, reason=reason, **kwargs)
+        self.error_type = 'PetHungryOrThirstyError'  # type: str
         self.hungry_or_thirsty = hungry_or_thirsty

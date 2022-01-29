@@ -19,7 +19,6 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Dict
 
-
 class AutoRestUrlTestService:
     """Test Infrastructure for AutoRest.
 
@@ -39,15 +38,18 @@ class AutoRestUrlTestService:
         endpoint: str = "http://localhost:3000",
         **kwargs: Any
     ) -> None:
-        self._config = AutoRestUrlTestServiceConfiguration(
-            global_string_path=global_string_path, global_string_query=global_string_query, **kwargs
-        )
+        self._config = AutoRestUrlTestServiceConfiguration(global_string_path=global_string_path, global_string_query=global_string_query, **kwargs)
         self._client = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
 
-    def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
+
+    def send_request(
+        self,
+        request: HttpRequest,
+        **kwargs: Any
+    ) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `urllowlevel.rest`.

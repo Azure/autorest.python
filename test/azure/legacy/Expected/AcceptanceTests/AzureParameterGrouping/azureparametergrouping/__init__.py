@@ -10,10 +10,9 @@ from ._auto_rest_parameter_grouping_test_service import AutoRestParameterGroupin
 from ._version import VERSION
 
 __version__ = VERSION
-__all__ = ["AutoRestParameterGroupingTestService"]
+__all__ = ['AutoRestParameterGroupingTestService']
 
 # `._patch.py` is used for handwritten extensions to the generated code
 # Example: https://github.com/Azure/azure-sdk-for-python/blob/main/doc/dev/customize_code/how-to-patch-sdk-code.md
 from ._patch import patch_sdk
-
 patch_sdk()

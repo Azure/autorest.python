@@ -9,5 +9,5 @@
 from ._operations import ByteOperations
 
 __all__ = [
-    "ByteOperations",
+    'ByteOperations',
 ]

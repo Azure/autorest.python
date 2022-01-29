@@ -36,10 +36,10 @@ jobs:
           OSVmImage: "MMSUbuntu20.04"
           PythonVersion: "3.6"
           CoverageArg: ""
-        Linux_Python38:
+        Linux_Python310:
           OSName: "Linux"
           OSVmImage: "MMSUbuntu20.04"
-          PythonVersion: "3.8"
+          PythonVersion: "3.10"
 
     pool:
       name: azsdk-pool-mms-ubuntu-2004-general
@@ -124,6 +124,12 @@ jobs:
           searchFolder: "$(TestFolder)/azure/version-tolerant"
 
       - script: |
+          cd $(TestFolder)/azure/version-tolerant
+          tox -e lint
+        displayName: 'Lint version-tolerant "azure" Tests - Python $(PythonVersion)'
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.6'))
+
+      - script: |
           cd $(TestFolder)/vanilla/legacy
           tox -e ci
         displayName: 'Execute legacy "vanilla" Tests - Python $(PythonVersion)'
@@ -159,6 +165,12 @@ jobs:
           searchFolder: "$(TestFolder)/vanilla/version-tolerant"
 
       - script: |
+          cd $(TestFolder)/vanilla/version-tolerant
+          tox -e lint
+        displayName: 'Lint version-tolerant "vanilla" Tests - Python $(PythonVersion)'
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.6'))
+
+      - script: |
           cd $(TestFolder)/llc/low-level
           tox -e ci
         displayName: 'Execute low level update "llc" Tests - Python $(PythonVersion)'
@@ -168,6 +180,11 @@ jobs:
           tox -e ci
         displayName: 'Execute version-tolerant update "llc" Tests - Python $(PythonVersion)'
         condition: and(succeededOrFailed(), ne(variables['PythonVersion'], '2.7'))
+      - script: |
+          cd $(TestFolder)/llc/version-tolerant
+          tox -e lint
+        displayName: 'Lint version-tolerant "llc" Tests - Python $(PythonVersion)'
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.6'))
       - script: |
           cd $(TestFolder)/multiapi
           tox -e ci
@@ -180,11 +197,18 @@ jobs:
           searchFolder: "$(TestFolder)/multiapi"
 
       - script: |
+          npm pack
+          AbsolutePkgPath=$(find "$(pwd)" -name "autorest-python-*" -maxdepth 1)
+          cd ..
+          npm install $AbsolutePkgPath
+        displayName: "Test tarball"
+
+      - script: |
           npm run coverage -- publish --repo=$(Build.Repository.Name) --ref=$(Build.SourceBranch) --githubToken=$(github-token) --azStorageAccount=$(storage-coverage-user) --azStorageAccessKey=$(storage-coverage-pass) --coverageDirectory=$(AUTOREST_TESTSERVER_COVERAGE_DIRECTORY)
         workingDirectory: node_modules/@microsoft.azure/autorest.testserver
         displayName: "Publish coverage report to storage account"
 
-      - ${{ if ne(variables['Build.Reason'], 'PullRequest') }}:
+      - ${{ if eq(and(ne(variables['Build.Reason'], 'PullRequest'), ne(variables['PythonVersion'], '2.7')), 'True') }}:
         - script: |
             git clone https://github.com/Azure/azure-sdk-for-python.git --depth=1 --branch main $(Build.SourcesDirectory)/regenerated/
           displayName: 'Clone python repo'

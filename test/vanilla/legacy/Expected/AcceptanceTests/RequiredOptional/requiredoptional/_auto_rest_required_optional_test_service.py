@@ -22,7 +22,6 @@ if TYPE_CHECKING:
 
     from azure.core.rest import HttpRequest, HttpResponse
 
-
 class AutoRestRequiredOptionalTestService(object):
     """Test Infrastructure for AutoRest.
 
@@ -49,12 +48,7 @@ class AutoRestRequiredOptionalTestService(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        self._config = AutoRestRequiredOptionalTestServiceConfiguration(
-            required_global_path=required_global_path,
-            required_global_query=required_global_query,
-            optional_global_query=optional_global_query,
-            **kwargs
-        )
+        self._config = AutoRestRequiredOptionalTestServiceConfiguration(required_global_path=required_global_path, required_global_query=required_global_query, optional_global_query=optional_global_query, **kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
@@ -62,6 +56,7 @@ class AutoRestRequiredOptionalTestService(object):
         self._deserialize = Deserializer(client_models)
         self.implicit = ImplicitOperations(self._client, self._config, self._serialize, self._deserialize)
         self.explicit = ExplicitOperations(self._client, self._config, self._serialize, self._deserialize)
+
 
     def _send_request(
         self,

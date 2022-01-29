@@ -178,7 +178,7 @@ class EnumSchema(BaseSchema):
 
     def imports(self) -> FileImport:
         file_import = FileImport()
-        file_import.add_from_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
+        file_import.add_submodule_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
         file_import.merge(self.enum_type.imports())
         return file_import
 
@@ -186,7 +186,7 @@ class EnumSchema(BaseSchema):
         imports = self.imports()
         # we import every enum since we can get extremely long imports
         # if we import my name
-        imports.add_from_import("." + self.enum_file_name, "*", ImportType.LOCAL)
+        imports.add_submodule_import("." + self.enum_file_name, "*", ImportType.LOCAL)
         return imports
 
 class HiddenModelEnumSchema(EnumSchema):

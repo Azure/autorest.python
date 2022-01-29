@@ -16,7 +16,7 @@ except (SyntaxError, ImportError):
     from ._request_builders import build_get_no_model_empty_request  # type: ignore
 
 __all__ = [
-    "build_get_empty_error_request",
-    "build_get_no_model_error_request",
-    "build_get_no_model_empty_request",
+    'build_get_empty_error_request',
+    'build_get_no_model_error_request',
+    'build_get_no_model_empty_request',
 ]

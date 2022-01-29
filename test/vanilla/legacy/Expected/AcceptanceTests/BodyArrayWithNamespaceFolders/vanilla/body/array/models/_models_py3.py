@@ -22,11 +22,17 @@ class Error(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "status": {"key": "status", "type": "int"},
-        "message": {"key": "message", "type": "str"},
+        'status': {'key': 'status', 'type': 'int'},
+        'message': {'key': 'message', 'type': 'str'},
     }
 
-    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        status: Optional[int] = None,
+        message: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword status:
         :paramtype status: int
@@ -48,11 +54,17 @@ class Product(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "integer": {"key": "integer", "type": "int"},
-        "string": {"key": "string", "type": "str"},
+        'integer': {'key': 'integer', 'type': 'int'},
+        'string': {'key': 'string', 'type': 'str'},
     }
 
-    def __init__(self, *, integer: Optional[int] = None, string: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        integer: Optional[int] = None,
+        string: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword integer:
         :paramtype integer: int

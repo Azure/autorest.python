@@ -33,5 +33,5 @@ setup(
     include_package_data=True,
     long_description="""\
     LLC Swagger, this is the initial swagger a service could do.
-    """,
+    """
 )

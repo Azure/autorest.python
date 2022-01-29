@@ -13,8 +13,7 @@ from msrest import Serializer
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Dict, Optional, TypeVar
-
-    T = TypeVar("T")
+    T = TypeVar('T')
     JSONType = Any
 
 _SERIALIZER = Serializer()
@@ -209,7 +208,8 @@ def build_get_referenced_constant_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "ColorConstant": "green-color",  # Default value is "green-color". Referenced Color Constant Description. Has constant value: "green-color".
+                "ColorConstant": "green-color",  # Default value is "green-color". Referenced
+                  Color Constant Description. Has constant value: "green-color".
                 "field1": "str"  # Optional. Sample string.
             }
     """
@@ -255,7 +255,8 @@ def build_put_referenced_constant_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "ColorConstant": "green-color",  # Default value is "green-color". Referenced Color Constant Description. Has constant value: "green-color".
+                "ColorConstant": "green-color",  # Default value is "green-color". Referenced
+                  Color Constant Description. Has constant value: "green-color".
                 "field1": "str"  # Optional. Sample string.
             }
     """
@@ -278,3 +279,4 @@ def build_put_referenced_constant_request(
         headers=header_parameters,
         **kwargs
     )
+

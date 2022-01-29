@@ -18,8 +18,8 @@ except (SyntaxError, ImportError):
     from ._request_builders import build_delete505_request  # type: ignore
 
 __all__ = [
-    "build_head501_request",
-    "build_get501_request",
-    "build_post505_request",
-    "build_delete505_request",
+    'build_head501_request',
+    'build_get501_request',
+    'build_post505_request',
+    'build_delete505_request',
 ]

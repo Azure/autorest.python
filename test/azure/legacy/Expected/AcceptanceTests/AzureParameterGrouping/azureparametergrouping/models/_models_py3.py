@@ -22,11 +22,17 @@ class Error(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "status": {"key": "status", "type": "int"},
-        "message": {"key": "message", "type": "str"},
+        'status': {'key': 'status', 'type': 'int'},
+        'message': {'key': 'message', 'type': 'str'},
     }
 
-    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        status: Optional[int] = None,
+        message: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword status:
         :paramtype status: int
@@ -48,11 +54,17 @@ class FirstParameterGroup(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "header_one": {"key": "header-one", "type": "str"},
-        "query_one": {"key": "query-one", "type": "int"},
+        'header_one': {'key': 'header-one', 'type': 'str'},
+        'query_one': {'key': 'query-one', 'type': 'int'},
     }
 
-    def __init__(self, *, header_one: Optional[str] = None, query_one: Optional[int] = 30, **kwargs):
+    def __init__(
+        self,
+        *,
+        header_one: Optional[str] = None,
+        query_one: Optional[int] = 30,
+        **kwargs
+    ):
         """
         :keyword header_one:
         :paramtype header_one: str
@@ -74,11 +86,17 @@ class ParameterGroupingPostMultiParamGroupsSecondParamGroup(msrest.serialization
     """
 
     _attribute_map = {
-        "header_two": {"key": "header-two", "type": "str"},
-        "query_two": {"key": "query-two", "type": "int"},
+        'header_two': {'key': 'header-two', 'type': 'str'},
+        'query_two': {'key': 'query-two', 'type': 'int'},
     }
 
-    def __init__(self, *, header_two: Optional[str] = None, query_two: Optional[int] = 30, **kwargs):
+    def __init__(
+        self,
+        *,
+        header_two: Optional[str] = None,
+        query_two: Optional[int] = 30,
+        **kwargs
+    ):
         """
         :keyword header_two:
         :paramtype header_two: str
@@ -100,11 +118,17 @@ class ParameterGroupingPostOptionalParameters(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "custom_header": {"key": "customHeader", "type": "str"},
-        "query": {"key": "query", "type": "int"},
+        'custom_header': {'key': 'customHeader', 'type': 'str'},
+        'query': {'key': 'query', 'type': 'int'},
     }
 
-    def __init__(self, *, custom_header: Optional[str] = None, query: Optional[int] = 30, **kwargs):
+    def __init__(
+        self,
+        *,
+        custom_header: Optional[str] = None,
+        query: Optional[int] = 30,
+        **kwargs
+    ):
         """
         :keyword custom_header:
         :paramtype custom_header: str
@@ -132,19 +156,25 @@ class ParameterGroupingPostRequiredParameters(msrest.serialization.Model):
     """
 
     _validation = {
-        "path": {"required": True},
-        "body": {"required": True},
+        'path': {'required': True},
+        'body': {'required': True},
     }
 
     _attribute_map = {
-        "custom_header": {"key": "customHeader", "type": "str"},
-        "query": {"key": "query", "type": "int"},
-        "path": {"key": "path", "type": "str"},
-        "body": {"key": "body", "type": "int"},
+        'custom_header': {'key': 'customHeader', 'type': 'str'},
+        'query': {'key': 'query', 'type': 'int'},
+        'path': {'key': 'path', 'type': 'str'},
+        'body': {'key': 'body', 'type': 'int'},
     }
 
     def __init__(
-        self, *, path: str, body: int, custom_header: Optional[str] = None, query: Optional[int] = 30, **kwargs
+        self,
+        *,
+        path: str,
+        body: int,
+        custom_header: Optional[str] = None,
+        query: Optional[int] = 30,
+        **kwargs
     ):
         """
         :keyword custom_header:
@@ -173,11 +203,17 @@ class ParameterGroupingPostReservedWordsParameters(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "from_property": {"key": "from", "type": "str"},
-        "accept": {"key": "accept", "type": "str"},
+        'from_property': {'key': 'from', 'type': 'str'},
+        'accept': {'key': 'accept', 'type': 'str'},
     }
 
-    def __init__(self, *, from_property: Optional[str] = None, accept: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        from_property: Optional[str] = None,
+        accept: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword from_property: 'from' is a reserved word. Pass in 'bob' to pass.
         :paramtype from_property: str

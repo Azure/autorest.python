@@ -34,9 +34,6 @@ def build_list_request(
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
      subscription. The subscription ID forms part of the URI for every service call.
     :type subscription_id: str
-    :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
-     overriding this default value may result in unsupported behavior.
-    :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -49,13 +46,19 @@ def build_list_request(
             response.json() == {
                 "value": [
                     {
-                        "currentValue": 0,  # Optional. Gets the current count of the allocated resources in the subscription.
-                        "limit": 0,  # Optional. Gets the maximum count of the resources that can be allocated in the subscription.
+                        "currentValue": 0,  # Optional. Gets the current count of the
+                          allocated resources in the subscription.
+                        "limit": 0,  # Optional. Gets the maximum count of the
+                          resources that can be allocated in the subscription.
                         "name": {
-                            "localizedValue": "str",  # Optional. Gets a localized string describing the resource name.
-                            "value": "str"  # Optional. Gets a string describing the resource name.
+                            "localizedValue": "str",  # Optional. Gets a
+                              localized string describing the resource name.
+                            "value": "str"  # Optional. Gets a string describing
+                              the resource name.
                         },
-                        "unit": "str"  # Optional. Gets the unit of measurement. Possible values include: "Count", "Bytes", "Seconds", "Percent", "CountsPerSecond", "BytesPerSecond".
+                        "unit": "str"  # Optional. Gets the unit of measurement.
+                          Possible values include: "Count", "Bytes", "Seconds", "Percent",
+                          "CountsPerSecond", "BytesPerSecond".
                     }
                 ]
             }
@@ -87,3 +90,4 @@ def build_list_request(
         headers=header_parameters,
         **kwargs
     )
+

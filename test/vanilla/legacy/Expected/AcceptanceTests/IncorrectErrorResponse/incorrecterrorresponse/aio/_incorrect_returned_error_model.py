@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Awaitable, Optional
+from typing import Any, Awaitable
 
 from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
@@ -17,15 +17,19 @@ from .. import models
 from ._configuration import IncorrectReturnedErrorModelConfiguration
 from .operations import IncorrectReturnedErrorModelOperationsMixin
 
-
 class IncorrectReturnedErrorModel(IncorrectReturnedErrorModelOperationsMixin):
-    """Test to see when throwing an HttpResponseError whether we swallow error model deserialization errors.
+    """Test to see when throwing an HttpResponseError whether we swallow error model deserialization
+    errors.
 
     :param base_url: Service URL. Default value is 'http://localhost:3000'.
     :type base_url: str
     """
 
-    def __init__(self, base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
+    def __init__(
+        self,
+        base_url: str = "http://localhost:3000",
+        **kwargs: Any
+    ) -> None:
         self._config = IncorrectReturnedErrorModelConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -34,7 +38,12 @@ class IncorrectReturnedErrorModel(IncorrectReturnedErrorModelOperationsMixin):
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
 
-    def _send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
+
+    def _send_request(
+        self,
+        request: HttpRequest,
+        **kwargs: Any
+    ) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

@@ -18,7 +18,7 @@ if TYPE_CHECKING:
     from typing import Any
 
 
-class AutoRestParameterizedCustomHostTestClientConfiguration(Configuration):
+class AutoRestParameterizedCustomHostTestClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
     """Configuration for AutoRestParameterizedCustomHostTestClient.
 
     Note that all parameters used to create this instance are saved as instance
@@ -26,7 +26,8 @@ class AutoRestParameterizedCustomHostTestClientConfiguration(Configuration):
 
     :param subscription_id: The subscription id with value 'test12'.
     :type subscription_id: str
-    :param dns_suffix: A string value that is used as a global part of the parameterized host. Default value 'host'.
+    :param dns_suffix: A string value that is used as a global part of the parameterized host.
+     Default value 'host'.
     :type dns_suffix: str
     """
 
@@ -45,19 +46,20 @@ class AutoRestParameterizedCustomHostTestClientConfiguration(Configuration):
 
         self.subscription_id = subscription_id
         self.dns_suffix = dns_suffix
-        kwargs.setdefault("sdk_moniker", "autorestparameterizedcustomhosttestclient/{}".format(VERSION))
+        kwargs.setdefault('sdk_moniker', 'autorestparameterizedcustomhosttestclient/{}'.format(VERSION))
         self._configure(**kwargs)
 
     def _configure(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
-        self.user_agent_policy = kwargs.get("user_agent_policy") or policies.UserAgentPolicy(**kwargs)
-        self.headers_policy = kwargs.get("headers_policy") or policies.HeadersPolicy(**kwargs)
-        self.proxy_policy = kwargs.get("proxy_policy") or policies.ProxyPolicy(**kwargs)
-        self.logging_policy = kwargs.get("logging_policy") or policies.NetworkTraceLoggingPolicy(**kwargs)
-        self.http_logging_policy = kwargs.get("http_logging_policy") or policies.HttpLoggingPolicy(**kwargs)
-        self.retry_policy = kwargs.get("retry_policy") or policies.RetryPolicy(**kwargs)
-        self.custom_hook_policy = kwargs.get("custom_hook_policy") or policies.CustomHookPolicy(**kwargs)
-        self.redirect_policy = kwargs.get("redirect_policy") or policies.RedirectPolicy(**kwargs)
-        self.authentication_policy = kwargs.get("authentication_policy")
+        self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)
+        self.headers_policy = kwargs.get('headers_policy') or policies.HeadersPolicy(**kwargs)
+        self.proxy_policy = kwargs.get('proxy_policy') or policies.ProxyPolicy(**kwargs)
+        self.logging_policy = kwargs.get('logging_policy') or policies.NetworkTraceLoggingPolicy(**kwargs)
+        self.http_logging_policy = kwargs.get('http_logging_policy') or policies.HttpLoggingPolicy(**kwargs)
+        self.retry_policy = kwargs.get('retry_policy') or policies.RetryPolicy(**kwargs)
+        self.custom_hook_policy = kwargs.get('custom_hook_policy') or policies.CustomHookPolicy(**kwargs)
+        self.redirect_policy = kwargs.get('redirect_policy') or policies.RedirectPolicy(**kwargs)
+        self.authentication_policy = kwargs.get('authentication_policy')

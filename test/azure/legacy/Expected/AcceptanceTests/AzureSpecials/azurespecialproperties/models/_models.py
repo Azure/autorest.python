@@ -26,18 +26,21 @@ class Error(msrest.serialization.Model):
     """
 
     _validation = {
-        "constant_id": {"required": True, "constant": True},
+        'constant_id': {'required': True, 'constant': True},
     }
 
     _attribute_map = {
-        "status": {"key": "status", "type": "int"},
-        "constant_id": {"key": "constantId", "type": "int"},
-        "message": {"key": "message", "type": "str"},
+        'status': {'key': 'status', 'type': 'int'},
+        'constant_id': {'key': 'constantId', 'type': 'int'},
+        'message': {'key': 'message', 'type': 'str'},
     }
 
     constant_id = 1
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword status:
         :paramtype status: int
@@ -45,8 +48,8 @@ class Error(msrest.serialization.Model):
         :paramtype message: str
         """
         super(Error, self).__init__(**kwargs)
-        self.status = kwargs.get("status", None)
-        self.message = kwargs.get("message", None)
+        self.status = kwargs.get('status', None)
+        self.message = kwargs.get('message', None)
 
 
 class HeaderCustomNamedRequestIdParamGroupingParameters(msrest.serialization.Model):
@@ -59,20 +62,23 @@ class HeaderCustomNamedRequestIdParamGroupingParameters(msrest.serialization.Mod
     """
 
     _validation = {
-        "foo_client_request_id": {"required": True},
+        'foo_client_request_id': {'required': True},
     }
 
     _attribute_map = {
-        "foo_client_request_id": {"key": "foo-client-request-id", "type": "str"},
+        'foo_client_request_id': {'key': 'foo-client-request-id', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword foo_client_request_id: Required. The fooRequestId.
         :paramtype foo_client_request_id: str
         """
         super(HeaderCustomNamedRequestIdParamGroupingParameters, self).__init__(**kwargs)
-        self.foo_client_request_id = kwargs["foo_client_request_id"]
+        self.foo_client_request_id = kwargs['foo_client_request_id']
 
 
 class OdataFilter(msrest.serialization.Model):
@@ -85,11 +91,14 @@ class OdataFilter(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "id": {"key": "id", "type": "int"},
-        "name": {"key": "name", "type": "str"},
+        'id': {'key': 'id', 'type': 'int'},
+        'name': {'key': 'name', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword id:
         :paramtype id: int
@@ -97,5 +106,5 @@ class OdataFilter(msrest.serialization.Model):
         :paramtype name: str
         """
         super(OdataFilter, self).__init__(**kwargs)
-        self.id = kwargs.get("id", None)
-        self.name = kwargs.get("name", None)
+        self.id = kwargs.get('id', None)
+        self.name = kwargs.get('name', None)

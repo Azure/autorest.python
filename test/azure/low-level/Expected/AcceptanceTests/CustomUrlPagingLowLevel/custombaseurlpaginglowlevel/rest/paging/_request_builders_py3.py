@@ -16,7 +16,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_get_pages_partial_url_request(**kwargs: Any) -> HttpRequest:
+def build_get_pages_partial_url_request(
+    **kwargs: Any
+) -> HttpRequest:
     """A paging operation that combines custom url, paging and partial URL and expect to concat after
     host.
 
@@ -47,16 +49,23 @@ def build_get_pages_partial_url_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/paging/customurl/partialnextlink"
+    url = '/paging/customurl/partialnextlink'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_get_pages_partial_url_operation_request(**kwargs: Any) -> HttpRequest:
+def build_get_pages_partial_url_operation_request(
+    **kwargs: Any
+) -> HttpRequest:
     """A paging operation that combines custom url, paging and partial URL with next operation.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -86,16 +95,24 @@ def build_get_pages_partial_url_operation_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/paging/customurl/partialnextlinkop"
+    url = '/paging/customurl/partialnextlinkop'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_get_pages_partial_url_operation_next_request(next_link: str, **kwargs: Any) -> HttpRequest:
+def build_get_pages_partial_url_operation_next_request(
+    next_link: str,
+    **kwargs: Any
+) -> HttpRequest:
     """A paging operation that combines custom url, paging and partial URL.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -127,15 +144,21 @@ def build_get_pages_partial_url_operation_next_request(next_link: str, **kwargs:
 
     accept = "application/json"
     # Construct URL
-    url = "/paging/customurl/{nextLink}"
+    url = '/paging/customurl/{nextLink}'
     path_format_arguments = {
-        "nextLink": _SERIALIZER.url("next_link", next_link, "str", skip_quote=True),
+        "nextLink": _SERIALIZER.url("next_link", next_link, 'str', skip_quote=True),
     }
 
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+

@@ -16,7 +16,10 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_get_pet_by_id_request(pet_id: str, **kwargs: Any) -> HttpRequest:
+def build_get_pet_by_id_request(
+    pet_id: str,
+    **kwargs: Any
+) -> HttpRequest:
     """Gets pets by id.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -41,21 +44,29 @@ def build_get_pet_by_id_request(pet_id: str, **kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/errorStatusCodes/Pets/{petId}/GetPet"
+    url = '/errorStatusCodes/Pets/{petId}/GetPet'
     path_format_arguments = {
-        "petId": _SERIALIZER.url("pet_id", pet_id, "str"),
+        "petId": _SERIALIZER.url("pet_id", pet_id, 'str'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_do_something_request(what_action: str, **kwargs: Any) -> HttpRequest:
+def build_do_something_request(
+    what_action: str,
+    **kwargs: Any
+) -> HttpRequest:
     """Asks pet to do something.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -79,21 +90,30 @@ def build_do_something_request(what_action: str, **kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/errorStatusCodes/Pets/doSomething/{whatAction}"
+    url = '/errorStatusCodes/Pets/doSomething/{whatAction}'
     path_format_arguments = {
-        "whatAction": _SERIALIZER.url("what_action", what_action, "str"),
+        "whatAction": _SERIALIZER.url("what_action", what_action, 'str'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_has_models_param_request(*, models: Optional[str] = "value1", **kwargs: Any) -> HttpRequest:
+def build_has_models_param_request(
+    *,
+    models: Optional[str] = "value1",
+    **kwargs: Any
+) -> HttpRequest:
     """Ensure you can correctly deserialize the returned PetActionError and deserialization doesn't
     conflict with the input param name 'models'.
 
@@ -111,15 +131,22 @@ def build_has_models_param_request(*, models: Optional[str] = "value1", **kwargs
 
     accept = "application/json"
     # Construct URL
-    url = "/errorStatusCodes/Pets/hasModelsParam"
+    url = '/errorStatusCodes/Pets/hasModelsParam'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if models is not None:
-        query_parameters["models"] = _SERIALIZER.query("models", models, "str")
+        query_parameters['models'] = _SERIALIZER.query("models", models, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+

@@ -14,7 +14,11 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_operation_one_request(*, parameter1: str, **kwargs: Any) -> HttpRequest:
+def build_operation_one_request(
+    *,
+    parameter1: str,
+    **kwargs: Any
+) -> HttpRequest:
     """Operation in operation group import, a reserved word.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -30,14 +34,21 @@ def build_operation_one_request(*, parameter1: str, **kwargs: Any) -> HttpReques
 
     accept = "application/json"
     # Construct URL
-    url = "/reservedWords/operationGroup/import"
+    url = '/reservedWords/operationGroup/import'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["parameter1"] = _SERIALIZER.query("parameter1", parameter1, "str")
+    query_parameters['parameter1'] = _SERIALIZER.query("parameter1", parameter1, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+

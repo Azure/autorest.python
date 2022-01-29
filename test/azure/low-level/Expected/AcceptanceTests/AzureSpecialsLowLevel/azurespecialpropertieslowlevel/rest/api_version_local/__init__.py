@@ -18,8 +18,8 @@ except (SyntaxError, ImportError):
     from ._request_builders import build_get_swagger_local_valid_request  # type: ignore
 
 __all__ = [
-    "build_get_method_local_valid_request",
-    "build_get_method_local_null_request",
-    "build_get_path_local_valid_request",
-    "build_get_swagger_local_valid_request",
+    'build_get_method_local_valid_request',
+    'build_get_method_local_null_request',
+    'build_get_path_local_valid_request',
+    'build_get_swagger_local_valid_request',
 ]

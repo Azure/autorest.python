@@ -17,7 +17,6 @@ from .. import models
 from ._configuration import LROWithParamaterizedEndpointsConfiguration
 from .operations import LROWithParamaterizedEndpointsOperationsMixin
 
-
 class LROWithParamaterizedEndpoints(LROWithParamaterizedEndpointsOperationsMixin):
     """Test Infrastructure for AutoRest.
 
@@ -28,8 +27,12 @@ class LROWithParamaterizedEndpoints(LROWithParamaterizedEndpointsOperationsMixin
      Retry-After header is present.
     """
 
-    def __init__(self, host: str = "host", **kwargs: Any) -> None:
-        _base_url = "http://{accountName}{host}"
+    def __init__(
+        self,
+        host: str = "host",
+        **kwargs: Any
+    ) -> None:
+        _base_url = 'http://{accountName}{host}'
         self._config = LROWithParamaterizedEndpointsConfiguration(host=host, **kwargs)
         self._client = AsyncPipelineClient(base_url=_base_url, config=self._config, **kwargs)
 
@@ -38,7 +41,12 @@ class LROWithParamaterizedEndpoints(LROWithParamaterizedEndpointsOperationsMixin
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
 
-    def _send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
+
+    def _send_request(
+        self,
+        request: HttpRequest,
+        **kwargs: Any
+    ) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest
@@ -58,7 +66,7 @@ class LROWithParamaterizedEndpoints(LROWithParamaterizedEndpointsOperationsMixin
 
         request_copy = deepcopy(request)
         path_format_arguments = {
-            "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
+            "host": self._serialize.url("self._config.host", self._config.host, 'str', skip_quote=True),
         }
 
         request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)

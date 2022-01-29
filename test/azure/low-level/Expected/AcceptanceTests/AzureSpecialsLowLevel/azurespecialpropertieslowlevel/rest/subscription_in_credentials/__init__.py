@@ -20,9 +20,9 @@ except (SyntaxError, ImportError):
     from ._request_builders import build_post_swagger_global_valid_request  # type: ignore
 
 __all__ = [
-    "build_post_method_global_valid_request",
-    "build_post_method_global_null_request",
-    "build_post_method_global_not_provided_valid_request",
-    "build_post_path_global_valid_request",
-    "build_post_swagger_global_valid_request",
+    'build_post_method_global_valid_request',
+    'build_post_method_global_null_request',
+    'build_post_method_global_not_provided_valid_request',
+    'build_post_path_global_valid_request',
+    'build_post_swagger_global_valid_request',
 ]

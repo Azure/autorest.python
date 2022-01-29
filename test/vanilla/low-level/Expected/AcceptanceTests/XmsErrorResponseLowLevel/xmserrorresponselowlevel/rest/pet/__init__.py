@@ -16,7 +16,7 @@ except (SyntaxError, ImportError):
     from ._request_builders import build_has_models_param_request  # type: ignore
 
 __all__ = [
-    "build_get_pet_by_id_request",
-    "build_do_something_request",
-    "build_has_models_param_request",
+    'build_get_pet_by_id_request',
+    'build_do_something_request',
+    'build_has_models_param_request',
 ]

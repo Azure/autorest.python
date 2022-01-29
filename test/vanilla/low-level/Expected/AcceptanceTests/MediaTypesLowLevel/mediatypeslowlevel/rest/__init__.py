@@ -22,10 +22,10 @@ except (SyntaxError, ImportError):
     from ._request_builders import build_put_text_and_json_body_request  # type: ignore
 
 __all__ = [
-    "build_analyze_body_request",
-    "build_analyze_body_no_accept_header_request",
-    "build_content_type_with_encoding_request",
-    "build_binary_body_with_two_content_types_request",
-    "build_binary_body_with_three_content_types_request",
-    "build_put_text_and_json_body_request",
+    'build_analyze_body_request',
+    'build_analyze_body_no_accept_header_request',
+    'build_content_type_with_encoding_request',
+    'build_binary_body_with_two_content_types_request',
+    'build_binary_body_with_three_content_types_request',
+    'build_put_text_and_json_body_request',
 ]

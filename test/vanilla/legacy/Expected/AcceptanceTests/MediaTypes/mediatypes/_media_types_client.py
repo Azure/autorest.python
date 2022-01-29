@@ -18,10 +18,9 @@ from .operations import MediaTypesClientOperationsMixin
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any
 
     from azure.core.rest import HttpRequest, HttpResponse
-
 
 class MediaTypesClient(MediaTypesClientOperationsMixin):
     """Play with produces/consumes and media-types in general.
@@ -43,6 +42,7 @@ class MediaTypesClient(MediaTypesClientOperationsMixin):
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
+
 
     def _send_request(
         self,

@@ -24,15 +24,18 @@ class BaseProduct(msrest.serialization.Model):
     """
 
     _validation = {
-        "product_id": {"required": True},
+        'product_id': {'required': True},
     }
 
     _attribute_map = {
-        "product_id": {"key": "base_product_id", "type": "str"},
-        "description": {"key": "base_product_description", "type": "str"},
+        'product_id': {'key': 'base_product_id', 'type': 'str'},
+        'description': {'key': 'base_product_description', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword product_id: Required. Unique identifier representing a specific product for a given
          latitude & longitude. For example, uberX in San Francisco will have a different product_id than
@@ -42,8 +45,8 @@ class BaseProduct(msrest.serialization.Model):
         :paramtype description: str
         """
         super(BaseProduct, self).__init__(**kwargs)
-        self.product_id = kwargs["product_id"]
-        self.description = kwargs.get("description", None)
+        self.product_id = kwargs['product_id']
+        self.description = kwargs.get('description', None)
 
 
 class Error(msrest.serialization.Model):
@@ -58,12 +61,15 @@ class Error(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "status": {"key": "status", "type": "int"},
-        "message": {"key": "message", "type": "str"},
-        "parent_error": {"key": "parentError", "type": "Error"},
+        'status': {'key': 'status', 'type': 'int'},
+        'message': {'key': 'message', 'type': 'str'},
+        'parent_error': {'key': 'parentError', 'type': 'Error'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword status:
         :paramtype status: int
@@ -73,9 +79,9 @@ class Error(msrest.serialization.Model):
         :paramtype parent_error: ~modelflattening.models.Error
         """
         super(Error, self).__init__(**kwargs)
-        self.status = kwargs.get("status", None)
-        self.message = kwargs.get("message", None)
-        self.parent_error = kwargs.get("parent_error", None)
+        self.status = kwargs.get('status', None)
+        self.message = kwargs.get('message', None)
+        self.parent_error = kwargs.get('parent_error', None)
 
 
 class Resource(msrest.serialization.Model):
@@ -96,20 +102,23 @@ class Resource(msrest.serialization.Model):
     """
 
     _validation = {
-        "id": {"readonly": True},
-        "type": {"readonly": True},
-        "name": {"readonly": True},
+        'id': {'readonly': True},
+        'type': {'readonly': True},
+        'name': {'readonly': True},
     }
 
     _attribute_map = {
-        "id": {"key": "id", "type": "str"},
-        "type": {"key": "type", "type": "str"},
-        "tags": {"key": "tags", "type": "{str}"},
-        "location": {"key": "location", "type": "str"},
-        "name": {"key": "name", "type": "str"},
+        'id': {'key': 'id', 'type': 'str'},
+        'type': {'key': 'type', 'type': 'str'},
+        'tags': {'key': 'tags', 'type': '{str}'},
+        'location': {'key': 'location', 'type': 'str'},
+        'name': {'key': 'name', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword tags: A set of tags. Dictionary of :code:`<string>`.
         :paramtype tags: dict[str, str]
@@ -119,8 +128,8 @@ class Resource(msrest.serialization.Model):
         super(Resource, self).__init__(**kwargs)
         self.id = None
         self.type = None
-        self.tags = kwargs.get("tags", None)
-        self.location = kwargs.get("location", None)
+        self.tags = kwargs.get('tags', None)
+        self.location = kwargs.get('location', None)
         self.name = None
 
 
@@ -152,25 +161,28 @@ class FlattenedProduct(Resource):
     """
 
     _validation = {
-        "id": {"readonly": True},
-        "type": {"readonly": True},
-        "name": {"readonly": True},
-        "provisioning_state_values": {"readonly": True},
+        'id': {'readonly': True},
+        'type': {'readonly': True},
+        'name': {'readonly': True},
+        'provisioning_state_values': {'readonly': True},
     }
 
     _attribute_map = {
-        "id": {"key": "id", "type": "str"},
-        "type": {"key": "type", "type": "str"},
-        "tags": {"key": "tags", "type": "{str}"},
-        "location": {"key": "location", "type": "str"},
-        "name": {"key": "name", "type": "str"},
-        "p_name": {"key": "properties.p\\.name", "type": "str"},
-        "type_properties_type": {"key": "properties.type", "type": "str"},
-        "provisioning_state_values": {"key": "properties.provisioningStateValues", "type": "str"},
-        "provisioning_state": {"key": "properties.provisioningState", "type": "str"},
+        'id': {'key': 'id', 'type': 'str'},
+        'type': {'key': 'type', 'type': 'str'},
+        'tags': {'key': 'tags', 'type': '{str}'},
+        'location': {'key': 'location', 'type': 'str'},
+        'name': {'key': 'name', 'type': 'str'},
+        'p_name': {'key': 'properties.p\\.name', 'type': 'str'},
+        'type_properties_type': {'key': 'properties.type', 'type': 'str'},
+        'provisioning_state_values': {'key': 'properties.provisioningStateValues', 'type': 'str'},
+        'provisioning_state': {'key': 'properties.provisioningState', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword tags: A set of tags. Dictionary of :code:`<string>`.
         :paramtype tags: dict[str, str]
@@ -184,10 +196,10 @@ class FlattenedProduct(Resource):
         :paramtype provisioning_state: str
         """
         super(FlattenedProduct, self).__init__(**kwargs)
-        self.p_name = kwargs.get("p_name", None)
-        self.type_properties_type = kwargs.get("type_properties_type", None)
+        self.p_name = kwargs.get('p_name', None)
+        self.type_properties_type = kwargs.get('type_properties_type', None)
         self.provisioning_state_values = None
-        self.provisioning_state = kwargs.get("provisioning_state", None)
+        self.provisioning_state = kwargs.get('provisioning_state', None)
 
 
 class FlattenParameterGroup(msrest.serialization.Model):
@@ -217,22 +229,25 @@ class FlattenParameterGroup(msrest.serialization.Model):
     """
 
     _validation = {
-        "name": {"required": True},
-        "product_id": {"required": True},
+        'name': {'required': True},
+        'product_id': {'required': True},
     }
 
     _attribute_map = {
-        "name": {"key": "name", "type": "str"},
-        "simple_body_product": {"key": "SimpleBodyProduct", "type": "SimpleProduct"},
-        "product_id": {"key": "productId", "type": "str"},
-        "description": {"key": "description", "type": "str"},
-        "max_product_display_name": {"key": "max_product_display_name", "type": "str"},
-        "capacity": {"key": "capacity", "type": "str"},
-        "generic_value": {"key": "generic_value", "type": "str"},
-        "odata_value": {"key": "@odata\\.value", "type": "str"},
+        'name': {'key': 'name', 'type': 'str'},
+        'simple_body_product': {'key': 'SimpleBodyProduct', 'type': 'SimpleProduct'},
+        'product_id': {'key': 'productId', 'type': 'str'},
+        'description': {'key': 'description', 'type': 'str'},
+        'max_product_display_name': {'key': 'max_product_display_name', 'type': 'str'},
+        'capacity': {'key': 'capacity', 'type': 'str'},
+        'generic_value': {'key': 'generic_value', 'type': 'str'},
+        'odata_value': {'key': '@odata\\.value', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword name: Required. Product name with value 'groupproduct'.
         :paramtype name: str
@@ -255,14 +270,14 @@ class FlattenParameterGroup(msrest.serialization.Model):
         :paramtype odata_value: str
         """
         super(FlattenParameterGroup, self).__init__(**kwargs)
-        self.name = kwargs["name"]
-        self.simple_body_product = kwargs.get("simple_body_product", None)
-        self.product_id = kwargs["product_id"]
-        self.description = kwargs.get("description", None)
-        self.max_product_display_name = kwargs.get("max_product_display_name", None)
-        self.capacity = kwargs.get("capacity", None)
-        self.generic_value = kwargs.get("generic_value", None)
-        self.odata_value = kwargs.get("odata_value", None)
+        self.name = kwargs['name']
+        self.simple_body_product = kwargs.get('simple_body_product', None)
+        self.product_id = kwargs['product_id']
+        self.description = kwargs.get('description', None)
+        self.max_product_display_name = kwargs.get('max_product_display_name', None)
+        self.capacity = kwargs.get('capacity', None)
+        self.generic_value = kwargs.get('generic_value', None)
+        self.odata_value = kwargs.get('odata_value', None)
 
 
 class GenericUrl(msrest.serialization.Model):
@@ -273,16 +288,19 @@ class GenericUrl(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "generic_value": {"key": "generic_value", "type": "str"},
+        'generic_value': {'key': 'generic_value', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword generic_value: Generic URL value.
         :paramtype generic_value: str
         """
         super(GenericUrl, self).__init__(**kwargs)
-        self.generic_value = kwargs.get("generic_value", None)
+        self.generic_value = kwargs.get('generic_value', None)
 
 
 class ProductUrl(GenericUrl):
@@ -295,11 +313,14 @@ class ProductUrl(GenericUrl):
     """
 
     _attribute_map = {
-        "generic_value": {"key": "generic_value", "type": "str"},
-        "odata_value": {"key": "@odata\\.value", "type": "str"},
+        'generic_value': {'key': 'generic_value', 'type': 'str'},
+        'odata_value': {'key': '@odata\\.value', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword generic_value: Generic URL value.
         :paramtype generic_value: str
@@ -307,7 +328,7 @@ class ProductUrl(GenericUrl):
         :paramtype odata_value: str
         """
         super(ProductUrl, self).__init__(**kwargs)
-        self.odata_value = kwargs.get("odata_value", None)
+        self.odata_value = kwargs.get('odata_value', None)
 
 
 class ProductWrapper(msrest.serialization.Model):
@@ -318,16 +339,19 @@ class ProductWrapper(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "value": {"key": "property.value", "type": "str"},
+        'value': {'key': 'property.value', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword value: the product value.
         :paramtype value: str
         """
         super(ProductWrapper, self).__init__(**kwargs)
-        self.value = kwargs.get("value", None)
+        self.value = kwargs.get('value', None)
 
 
 class ResourceCollection(msrest.serialization.Model):
@@ -342,12 +366,15 @@ class ResourceCollection(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "productresource": {"key": "productresource", "type": "FlattenedProduct"},
-        "arrayofresources": {"key": "arrayofresources", "type": "[FlattenedProduct]"},
-        "dictionaryofresources": {"key": "dictionaryofresources", "type": "{FlattenedProduct}"},
+        'productresource': {'key': 'productresource', 'type': 'FlattenedProduct'},
+        'arrayofresources': {'key': 'arrayofresources', 'type': '[FlattenedProduct]'},
+        'dictionaryofresources': {'key': 'dictionaryofresources', 'type': '{FlattenedProduct}'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword productresource: Flattened product.
         :paramtype productresource: ~modelflattening.models.FlattenedProduct
@@ -357,9 +384,9 @@ class ResourceCollection(msrest.serialization.Model):
         :paramtype dictionaryofresources: dict[str, ~modelflattening.models.FlattenedProduct]
         """
         super(ResourceCollection, self).__init__(**kwargs)
-        self.productresource = kwargs.get("productresource", None)
-        self.arrayofresources = kwargs.get("arrayofresources", None)
-        self.dictionaryofresources = kwargs.get("dictionaryofresources", None)
+        self.productresource = kwargs.get('productresource', None)
+        self.arrayofresources = kwargs.get('arrayofresources', None)
+        self.dictionaryofresources = kwargs.get('dictionaryofresources', None)
 
 
 class SimpleProduct(BaseProduct):
@@ -385,19 +412,22 @@ class SimpleProduct(BaseProduct):
     """
 
     _validation = {
-        "product_id": {"required": True},
+        'product_id': {'required': True},
     }
 
     _attribute_map = {
-        "product_id": {"key": "base_product_id", "type": "str"},
-        "description": {"key": "base_product_description", "type": "str"},
-        "max_product_display_name": {"key": "details.max_product_display_name", "type": "str"},
-        "capacity": {"key": "details.max_product_capacity", "type": "str"},
-        "generic_value": {"key": "details.max_product_image.generic_value", "type": "str"},
-        "odata_value": {"key": "details.max_product_image.@odata\\.value", "type": "str"},
+        'product_id': {'key': 'base_product_id', 'type': 'str'},
+        'description': {'key': 'base_product_description', 'type': 'str'},
+        'max_product_display_name': {'key': 'details.max_product_display_name', 'type': 'str'},
+        'capacity': {'key': 'details.max_product_capacity', 'type': 'str'},
+        'generic_value': {'key': 'details.max_product_image.generic_value', 'type': 'str'},
+        'odata_value': {'key': 'details.max_product_image.@odata\\.value', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword product_id: Required. Unique identifier representing a specific product for a given
          latitude & longitude. For example, uberX in San Francisco will have a different product_id than
@@ -416,10 +446,10 @@ class SimpleProduct(BaseProduct):
         :paramtype odata_value: str
         """
         super(SimpleProduct, self).__init__(**kwargs)
-        self.max_product_display_name = kwargs.get("max_product_display_name", None)
-        self.capacity = kwargs.get("capacity", None)
-        self.generic_value = kwargs.get("generic_value", None)
-        self.odata_value = kwargs.get("odata_value", None)
+        self.max_product_display_name = kwargs.get('max_product_display_name', None)
+        self.capacity = kwargs.get('capacity', None)
+        self.generic_value = kwargs.get('generic_value', None)
+        self.odata_value = kwargs.get('odata_value', None)
 
 
 class WrappedProduct(msrest.serialization.Model):
@@ -430,13 +460,16 @@ class WrappedProduct(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "value": {"key": "value", "type": "str"},
+        'value': {'key': 'value', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword value: the product value.
         :paramtype value: str
         """
         super(WrappedProduct, self).__init__(**kwargs)
-        self.value = kwargs.get("value", None)
+        self.value = kwargs.get('value', None)

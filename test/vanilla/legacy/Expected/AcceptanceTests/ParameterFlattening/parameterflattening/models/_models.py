@@ -19,17 +19,20 @@ class AvailabilitySetUpdateParameters(msrest.serialization.Model):
     """
 
     _validation = {
-        "tags": {"required": True},
+        'tags': {'required': True},
     }
 
     _attribute_map = {
-        "tags": {"key": "tags", "type": "{str}"},
+        'tags': {'key': 'tags', 'type': '{str}'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword tags: Required. A set of tags. A description about the set of tags.
         :paramtype tags: dict[str, str]
         """
         super(AvailabilitySetUpdateParameters, self).__init__(**kwargs)
-        self.tags = kwargs["tags"]
+        self.tags = kwargs['tags']

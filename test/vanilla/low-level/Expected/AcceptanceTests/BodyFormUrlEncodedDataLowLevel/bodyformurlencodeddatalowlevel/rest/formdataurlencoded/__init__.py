@@ -14,6 +14,6 @@ except (SyntaxError, ImportError):
     from ._request_builders import build_partial_constant_body_request  # type: ignore
 
 __all__ = [
-    "build_update_pet_with_form_request",
-    "build_partial_constant_body_request",
+    'build_update_pet_with_form_request',
+    'build_partial_constant_body_request',
 ]

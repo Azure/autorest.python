@@ -22,10 +22,10 @@ except (SyntaxError, ImportError):
     from ._models import Pet  # type: ignore
 
 __all__ = [
-    "Cat",
-    "Error",
-    "Feline",
-    "Horse",
-    "Kitten",
-    "Pet",
+    'Cat',
+    'Error',
+    'Feline',
+    'Horse',
+    'Kitten',
+    'Pet',
 ]

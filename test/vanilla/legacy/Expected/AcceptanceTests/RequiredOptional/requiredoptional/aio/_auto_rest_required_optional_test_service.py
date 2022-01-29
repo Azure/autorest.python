@@ -17,7 +17,6 @@ from .. import models
 from ._configuration import AutoRestRequiredOptionalTestServiceConfiguration
 from .operations import ExplicitOperations, ImplicitOperations
 
-
 class AutoRestRequiredOptionalTestService:
     """Test Infrastructure for AutoRest.
 
@@ -43,12 +42,7 @@ class AutoRestRequiredOptionalTestService:
         base_url: str = "http://localhost:3000",
         **kwargs: Any
     ) -> None:
-        self._config = AutoRestRequiredOptionalTestServiceConfiguration(
-            required_global_path=required_global_path,
-            required_global_query=required_global_query,
-            optional_global_query=optional_global_query,
-            **kwargs
-        )
+        self._config = AutoRestRequiredOptionalTestServiceConfiguration(required_global_path=required_global_path, required_global_query=required_global_query, optional_global_query=optional_global_query, **kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
@@ -57,7 +51,12 @@ class AutoRestRequiredOptionalTestService:
         self.implicit = ImplicitOperations(self._client, self._config, self._serialize, self._deserialize)
         self.explicit = ExplicitOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def _send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
+
+    def _send_request(
+        self,
+        request: HttpRequest,
+        **kwargs: Any
+    ) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

@@ -9,15 +9,19 @@ from typing import Any, Dict, Optional, TypeVar
 
 from azure.core.rest import HttpRequest
 from msrest import Serializer
-
-T = TypeVar("T")
+T = TypeVar('T')
 JSONType = Any
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_put_non_retry400_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_non_retry400_request(
+    *,
+    json: JSONType = None,
+    content: Any = None,
+    **kwargs: Any
+) -> HttpRequest:
     """Long running put request, service returns a 400 to the initial request.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -44,10 +48,13 @@ def build_put_non_retry400_request(*, json: JSONType = None, content: Any = None
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    "provisioningStateValues": "str"  # Optional. Possible values
+                      include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                      "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
-                    "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                    "str": "str"  # Optional. A set of tags. Dictionary of
+                      :code:`<string>`.
                 },
                 "type": "str"  # Optional. Resource Type.
             }
@@ -59,32 +66,45 @@ def build_put_non_retry400_request(*, json: JSONType = None, content: Any = None
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    "provisioningStateValues": "str"  # Optional. Possible values
+                      include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                      "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
-                    "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                    "str": "str"  # Optional. A set of tags. Dictionary of
+                      :code:`<string>`.
                 },
                 "type": "str"  # Optional. Resource Type.
             }
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = "/lro/nonretryerror/put/400"
+    url = '/lro/nonretryerror/put/400'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        json=json,
+        content=content,
+        **kwargs
+    )
 
 
 def build_put_non_retry201_creating400_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *,
+    json: JSONType = None,
+    content: Any = None,
+    **kwargs: Any
 ) -> HttpRequest:
     """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
     201 response code.
@@ -113,10 +133,13 @@ def build_put_non_retry201_creating400_request(
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    "provisioningStateValues": "str"  # Optional. Possible values
+                      include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                      "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
-                    "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                    "str": "str"  # Optional. A set of tags. Dictionary of
+                      :code:`<string>`.
                 },
                 "type": "str"  # Optional. Resource Type.
             }
@@ -128,32 +151,45 @@ def build_put_non_retry201_creating400_request(
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    "provisioningStateValues": "str"  # Optional. Possible values
+                      include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                      "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
-                    "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                    "str": "str"  # Optional. A set of tags. Dictionary of
+                      :code:`<string>`.
                 },
                 "type": "str"  # Optional. Resource Type.
             }
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = "/lro/nonretryerror/put/201/creating/400"
+    url = '/lro/nonretryerror/put/201/creating/400'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        json=json,
+        content=content,
+        **kwargs
+    )
 
 
 def build_put_non_retry201_creating400_invalid_json_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *,
+    json: JSONType = None,
+    content: Any = None,
+    **kwargs: Any
 ) -> HttpRequest:
     """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
     201 response code.
@@ -182,10 +218,13 @@ def build_put_non_retry201_creating400_invalid_json_request(
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    "provisioningStateValues": "str"  # Optional. Possible values
+                      include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                      "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
-                    "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                    "str": "str"  # Optional. A set of tags. Dictionary of
+                      :code:`<string>`.
                 },
                 "type": "str"  # Optional. Resource Type.
             }
@@ -197,32 +236,45 @@ def build_put_non_retry201_creating400_invalid_json_request(
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    "provisioningStateValues": "str"  # Optional. Possible values
+                      include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                      "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
-                    "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                    "str": "str"  # Optional. A set of tags. Dictionary of
+                      :code:`<string>`.
                 },
                 "type": "str"  # Optional. Resource Type.
             }
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = "/lro/nonretryerror/put/201/creating/400/invalidjson"
+    url = '/lro/nonretryerror/put/201/creating/400/invalidjson'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        json=json,
+        content=content,
+        **kwargs
+    )
 
 
 def build_put_async_relative_retry400_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *,
+    json: JSONType = None,
+    content: Any = None,
+    **kwargs: Any
 ) -> HttpRequest:
     """Long running put request, service returns a 200 with ProvisioningState=’Creating’. Poll the
     endpoint indicated in the Azure-AsyncOperation header for operation status.
@@ -251,10 +303,13 @@ def build_put_async_relative_retry400_request(
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    "provisioningStateValues": "str"  # Optional. Possible values
+                      include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                      "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
-                    "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                    "str": "str"  # Optional. A set of tags. Dictionary of
+                      :code:`<string>`.
                 },
                 "type": "str"  # Optional. Resource Type.
             }
@@ -266,31 +321,43 @@ def build_put_async_relative_retry400_request(
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    "provisioningStateValues": "str"  # Optional. Possible values
+                      include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                      "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
-                    "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                    "str": "str"  # Optional. A set of tags. Dictionary of
+                      :code:`<string>`.
                 },
                 "type": "str"  # Optional. Resource Type.
             }
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = "/lro/nonretryerror/putasync/retry/400"
+    url = '/lro/nonretryerror/putasync/retry/400'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        json=json,
+        content=content,
+        **kwargs
+    )
 
 
-def build_delete_non_retry400_request(**kwargs: Any) -> HttpRequest:
+def build_delete_non_retry400_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Long running delete request, service returns a 400 with an error body.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -304,16 +371,23 @@ def build_delete_non_retry400_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/lro/nonretryerror/delete/400"
+    url = '/lro/nonretryerror/delete/400'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="DELETE",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_delete202_non_retry400_request(**kwargs: Any) -> HttpRequest:
+def build_delete202_non_retry400_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Long running delete request, service returns a 202 with a location header.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -327,16 +401,23 @@ def build_delete202_non_retry400_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/lro/nonretryerror/delete/202/retry/400"
+    url = '/lro/nonretryerror/delete/202/retry/400'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="DELETE",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_delete_async_relative_retry400_request(**kwargs: Any) -> HttpRequest:
+def build_delete_async_relative_retry400_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
     indicated in the Azure-AsyncOperation header for operation status.
 
@@ -351,16 +432,26 @@ def build_delete_async_relative_retry400_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/lro/nonretryerror/deleteasync/retry/400"
+    url = '/lro/nonretryerror/deleteasync/retry/400'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="DELETE",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_post_non_retry400_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_post_non_retry400_request(
+    *,
+    json: JSONType = None,
+    content: Any = None,
+    **kwargs: Any
+) -> HttpRequest:
     """Long running post request, service returns a 400 with no error body.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -387,31 +478,46 @@ def build_post_non_retry400_request(*, json: JSONType = None, content: Any = Non
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    "provisioningStateValues": "str"  # Optional. Possible values
+                      include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                      "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
-                    "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                    "str": "str"  # Optional. A set of tags. Dictionary of
+                      :code:`<string>`.
                 },
                 "type": "str"  # Optional. Resource Type.
             }
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = "/lro/nonretryerror/post/400"
+    url = '/lro/nonretryerror/post/400'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        json=json,
+        content=content,
+        **kwargs
+    )
 
 
-def build_post202_non_retry400_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_post202_non_retry400_request(
+    *,
+    json: JSONType = None,
+    content: Any = None,
+    **kwargs: Any
+) -> HttpRequest:
     """Long running post request, service returns a 202 with a location header.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -438,32 +544,45 @@ def build_post202_non_retry400_request(*, json: JSONType = None, content: Any = 
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    "provisioningStateValues": "str"  # Optional. Possible values
+                      include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                      "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
-                    "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                    "str": "str"  # Optional. A set of tags. Dictionary of
+                      :code:`<string>`.
                 },
                 "type": "str"  # Optional. Resource Type.
             }
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = "/lro/nonretryerror/post/202/retry/400"
+    url = '/lro/nonretryerror/post/202/retry/400'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        json=json,
+        content=content,
+        **kwargs
+    )
 
 
 def build_post_async_relative_retry400_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *,
+    json: JSONType = None,
+    content: Any = None,
+    **kwargs: Any
 ) -> HttpRequest:
     """Long running post request, service returns a 202 to the initial request Poll the endpoint
     indicated in the Azure-AsyncOperation header for operation status.
@@ -492,32 +611,45 @@ def build_post_async_relative_retry400_request(
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    "provisioningStateValues": "str"  # Optional. Possible values
+                      include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                      "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
-                    "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                    "str": "str"  # Optional. A set of tags. Dictionary of
+                      :code:`<string>`.
                 },
                 "type": "str"  # Optional. Resource Type.
             }
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = "/lro/nonretryerror/postasync/retry/400"
+    url = '/lro/nonretryerror/postasync/retry/400'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        json=json,
+        content=content,
+        **kwargs
+    )
 
 
 def build_put_error201_no_provisioning_state_payload_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *,
+    json: JSONType = None,
+    content: Any = None,
+    **kwargs: Any
 ) -> HttpRequest:
     """Long running put request, service returns a 201 to the initial request with no payload.
 
@@ -545,10 +677,13 @@ def build_put_error201_no_provisioning_state_payload_request(
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    "provisioningStateValues": "str"  # Optional. Possible values
+                      include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                      "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
-                    "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                    "str": "str"  # Optional. A set of tags. Dictionary of
+                      :code:`<string>`.
                 },
                 "type": "str"  # Optional. Resource Type.
             }
@@ -560,32 +695,45 @@ def build_put_error201_no_provisioning_state_payload_request(
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    "provisioningStateValues": "str"  # Optional. Possible values
+                      include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                      "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
-                    "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                    "str": "str"  # Optional. A set of tags. Dictionary of
+                      :code:`<string>`.
                 },
                 "type": "str"  # Optional. Resource Type.
             }
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = "/lro/error/put/201/noprovisioningstatepayload"
+    url = '/lro/error/put/201/noprovisioningstatepayload'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        json=json,
+        content=content,
+        **kwargs
+    )
 
 
 def build_put_async_relative_retry_no_status_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *,
+    json: JSONType = None,
+    content: Any = None,
+    **kwargs: Any
 ) -> HttpRequest:
     """Long running put request, service returns a 200 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
@@ -615,10 +763,13 @@ def build_put_async_relative_retry_no_status_request(
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    "provisioningStateValues": "str"  # Optional. Possible values
+                      include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                      "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
-                    "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                    "str": "str"  # Optional. A set of tags. Dictionary of
+                      :code:`<string>`.
                 },
                 "type": "str"  # Optional. Resource Type.
             }
@@ -630,32 +781,45 @@ def build_put_async_relative_retry_no_status_request(
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    "provisioningStateValues": "str"  # Optional. Possible values
+                      include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                      "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
-                    "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                    "str": "str"  # Optional. A set of tags. Dictionary of
+                      :code:`<string>`.
                 },
                 "type": "str"  # Optional. Resource Type.
             }
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = "/lro/error/putasync/retry/nostatus"
+    url = '/lro/error/putasync/retry/nostatus'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        json=json,
+        content=content,
+        **kwargs
+    )
 
 
 def build_put_async_relative_retry_no_status_payload_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *,
+    json: JSONType = None,
+    content: Any = None,
+    **kwargs: Any
 ) -> HttpRequest:
     """Long running put request, service returns a 200 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
@@ -685,10 +849,13 @@ def build_put_async_relative_retry_no_status_payload_request(
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    "provisioningStateValues": "str"  # Optional. Possible values
+                      include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                      "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
-                    "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                    "str": "str"  # Optional. A set of tags. Dictionary of
+                      :code:`<string>`.
                 },
                 "type": "str"  # Optional. Resource Type.
             }
@@ -700,31 +867,43 @@ def build_put_async_relative_retry_no_status_payload_request(
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    "provisioningStateValues": "str"  # Optional. Possible values
+                      include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                      "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
-                    "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                    "str": "str"  # Optional. A set of tags. Dictionary of
+                      :code:`<string>`.
                 },
                 "type": "str"  # Optional. Resource Type.
             }
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = "/lro/error/putasync/retry/nostatuspayload"
+    url = '/lro/error/putasync/retry/nostatuspayload'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        json=json,
+        content=content,
+        **kwargs
+    )
 
 
-def build_delete204_succeeded_request(**kwargs: Any) -> HttpRequest:
+def build_delete204_succeeded_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Long running delete request, service returns a 204 to the initial request, indicating success.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -738,16 +917,23 @@ def build_delete204_succeeded_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/lro/error/delete/204/nolocation"
+    url = '/lro/error/delete/204/nolocation'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="DELETE",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_delete_async_relative_retry_no_status_request(**kwargs: Any) -> HttpRequest:
+def build_delete_async_relative_retry_no_status_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
     indicated in the Azure-AsyncOperation header for operation status.
 
@@ -762,16 +948,26 @@ def build_delete_async_relative_retry_no_status_request(**kwargs: Any) -> HttpRe
 
     accept = "application/json"
     # Construct URL
-    url = "/lro/error/deleteasync/retry/nostatus"
+    url = '/lro/error/deleteasync/retry/nostatus'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="DELETE",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_post202_no_location_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_post202_no_location_request(
+    *,
+    json: JSONType = None,
+    content: Any = None,
+    **kwargs: Any
+) -> HttpRequest:
     """Long running post request, service returns a 202 to the initial request, without a location
     header.
 
@@ -799,32 +995,45 @@ def build_post202_no_location_request(*, json: JSONType = None, content: Any = N
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    "provisioningStateValues": "str"  # Optional. Possible values
+                      include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                      "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
-                    "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                    "str": "str"  # Optional. A set of tags. Dictionary of
+                      :code:`<string>`.
                 },
                 "type": "str"  # Optional. Resource Type.
             }
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = "/lro/error/post/202/nolocation"
+    url = '/lro/error/post/202/nolocation'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        json=json,
+        content=content,
+        **kwargs
+    )
 
 
 def build_post_async_relative_retry_no_payload_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *,
+    json: JSONType = None,
+    content: Any = None,
+    **kwargs: Any
 ) -> HttpRequest:
     """Long running post request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
@@ -854,31 +1063,46 @@ def build_post_async_relative_retry_no_payload_request(
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    "provisioningStateValues": "str"  # Optional. Possible values
+                      include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                      "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
-                    "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                    "str": "str"  # Optional. A set of tags. Dictionary of
+                      :code:`<string>`.
                 },
                 "type": "str"  # Optional. Resource Type.
             }
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = "/lro/error/postasync/retry/nopayload"
+    url = '/lro/error/postasync/retry/nopayload'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        json=json,
+        content=content,
+        **kwargs
+    )
 
 
-def build_put200_invalid_json_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put200_invalid_json_request(
+    *,
+    json: JSONType = None,
+    content: Any = None,
+    **kwargs: Any
+) -> HttpRequest:
     """Long running put request, service returns a 200 to the initial request, with an entity that is
     not a valid json.
 
@@ -906,10 +1130,13 @@ def build_put200_invalid_json_request(*, json: JSONType = None, content: Any = N
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    "provisioningStateValues": "str"  # Optional. Possible values
+                      include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                      "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
-                    "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                    "str": "str"  # Optional. A set of tags. Dictionary of
+                      :code:`<string>`.
                 },
                 "type": "str"  # Optional. Resource Type.
             }
@@ -921,32 +1148,45 @@ def build_put200_invalid_json_request(*, json: JSONType = None, content: Any = N
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    "provisioningStateValues": "str"  # Optional. Possible values
+                      include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                      "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
-                    "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                    "str": "str"  # Optional. A set of tags. Dictionary of
+                      :code:`<string>`.
                 },
                 "type": "str"  # Optional. Resource Type.
             }
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = "/lro/error/put/200/invalidjson"
+    url = '/lro/error/put/200/invalidjson'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        json=json,
+        content=content,
+        **kwargs
+    )
 
 
 def build_put_async_relative_retry_invalid_header_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *,
+    json: JSONType = None,
+    content: Any = None,
+    **kwargs: Any
 ) -> HttpRequest:
     """Long running put request, service returns a 200 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
@@ -976,10 +1216,13 @@ def build_put_async_relative_retry_invalid_header_request(
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    "provisioningStateValues": "str"  # Optional. Possible values
+                      include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                      "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
-                    "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                    "str": "str"  # Optional. A set of tags. Dictionary of
+                      :code:`<string>`.
                 },
                 "type": "str"  # Optional. Resource Type.
             }
@@ -991,32 +1234,45 @@ def build_put_async_relative_retry_invalid_header_request(
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    "provisioningStateValues": "str"  # Optional. Possible values
+                      include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                      "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
-                    "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                    "str": "str"  # Optional. A set of tags. Dictionary of
+                      :code:`<string>`.
                 },
                 "type": "str"  # Optional. Resource Type.
             }
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = "/lro/error/putasync/retry/invalidheader"
+    url = '/lro/error/putasync/retry/invalidheader'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        json=json,
+        content=content,
+        **kwargs
+    )
 
 
 def build_put_async_relative_retry_invalid_json_polling_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *,
+    json: JSONType = None,
+    content: Any = None,
+    **kwargs: Any
 ) -> HttpRequest:
     """Long running put request, service returns a 200 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
@@ -1046,10 +1302,13 @@ def build_put_async_relative_retry_invalid_json_polling_request(
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    "provisioningStateValues": "str"  # Optional. Possible values
+                      include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                      "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
-                    "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                    "str": "str"  # Optional. A set of tags. Dictionary of
+                      :code:`<string>`.
                 },
                 "type": "str"  # Optional. Resource Type.
             }
@@ -1061,31 +1320,43 @@ def build_put_async_relative_retry_invalid_json_polling_request(
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    "provisioningStateValues": "str"  # Optional. Possible values
+                      include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                      "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
-                    "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                    "str": "str"  # Optional. A set of tags. Dictionary of
+                      :code:`<string>`.
                 },
                 "type": "str"  # Optional. Resource Type.
             }
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = "/lro/error/putasync/retry/invalidjsonpolling"
+    url = '/lro/error/putasync/retry/invalidjsonpolling'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=url,
+        headers=header_parameters,
+        json=json,
+        content=content,
+        **kwargs
+    )
 
 
-def build_delete202_retry_invalid_header_request(**kwargs: Any) -> HttpRequest:
+def build_delete202_retry_invalid_header_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Long running delete request, service returns a 202 to the initial request receing a reponse
     with an invalid 'Location' and 'Retry-After' headers.
 
@@ -1100,16 +1371,23 @@ def build_delete202_retry_invalid_header_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/lro/error/delete/202/retry/invalidheader"
+    url = '/lro/error/delete/202/retry/invalidheader'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="DELETE",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_delete_async_relative_retry_invalid_header_request(**kwargs: Any) -> HttpRequest:
+def build_delete_async_relative_retry_invalid_header_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Long running delete request, service returns a 202 to the initial request. The endpoint
     indicated in the Azure-AsyncOperation header is invalid.
 
@@ -1124,16 +1402,23 @@ def build_delete_async_relative_retry_invalid_header_request(**kwargs: Any) -> H
 
     accept = "application/json"
     # Construct URL
-    url = "/lro/error/deleteasync/retry/invalidheader"
+    url = '/lro/error/deleteasync/retry/invalidheader'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="DELETE",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_delete_async_relative_retry_invalid_json_polling_request(**kwargs: Any) -> HttpRequest:
+def build_delete_async_relative_retry_invalid_json_polling_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
     indicated in the Azure-AsyncOperation header for operation status.
 
@@ -1148,17 +1433,25 @@ def build_delete_async_relative_retry_invalid_json_polling_request(**kwargs: Any
 
     accept = "application/json"
     # Construct URL
-    url = "/lro/error/deleteasync/retry/invalidjsonpolling"
+    url = '/lro/error/deleteasync/retry/invalidjsonpolling'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="DELETE", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="DELETE",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_post202_retry_invalid_header_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *,
+    json: JSONType = None,
+    content: Any = None,
+    **kwargs: Any
 ) -> HttpRequest:
     """Long running post request, service returns a 202 to the initial request, with invalid
     'Location' and 'Retry-After' headers.
@@ -1187,32 +1480,45 @@ def build_post202_retry_invalid_header_request(
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    "provisioningStateValues": "str"  # Optional. Possible values
+                      include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                      "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
-                    "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                    "str": "str"  # Optional. A set of tags. Dictionary of
+                      :code:`<string>`.
                 },
                 "type": "str"  # Optional. Resource Type.
             }
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = "/lro/error/post/202/retry/invalidheader"
+    url = '/lro/error/post/202/retry/invalidheader'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        json=json,
+        content=content,
+        **kwargs
+    )
 
 
 def build_post_async_relative_retry_invalid_header_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *,
+    json: JSONType = None,
+    content: Any = None,
+    **kwargs: Any
 ) -> HttpRequest:
     """Long running post request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
@@ -1242,32 +1548,45 @@ def build_post_async_relative_retry_invalid_header_request(
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    "provisioningStateValues": "str"  # Optional. Possible values
+                      include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                      "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
-                    "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                    "str": "str"  # Optional. A set of tags. Dictionary of
+                      :code:`<string>`.
                 },
                 "type": "str"  # Optional. Resource Type.
             }
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = "/lro/error/postasync/retry/invalidheader"
+    url = '/lro/error/postasync/retry/invalidheader'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        json=json,
+        content=content,
+        **kwargs
+    )
 
 
 def build_post_async_relative_retry_invalid_json_polling_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *,
+    json: JSONType = None,
+    content: Any = None,
+    **kwargs: Any
 ) -> HttpRequest:
     """Long running post request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
@@ -1297,25 +1616,36 @@ def build_post_async_relative_retry_invalid_json_polling_request(
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    "provisioningStateValues": "str"  # Optional. Possible values
+                      include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                      "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
-                    "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                    "str": "str"  # Optional. A set of tags. Dictionary of
+                      :code:`<string>`.
                 },
                 "type": "str"  # Optional. Resource Type.
             }
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     accept = "application/json"
     # Construct URL
-    url = "/lro/error/postasync/retry/invalidjsonpolling"
+    url = '/lro/error/postasync/retry/invalidjsonpolling'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        json=json,
+        content=content,
+        **kwargs
+    )
+

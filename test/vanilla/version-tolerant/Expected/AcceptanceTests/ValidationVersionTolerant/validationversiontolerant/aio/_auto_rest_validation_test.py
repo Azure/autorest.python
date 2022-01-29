@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Awaitable, Optional, TYPE_CHECKING
+from typing import Any, Awaitable, TYPE_CHECKING
 
 from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
@@ -19,7 +19,6 @@ from ._operations import AutoRestValidationTestOperationsMixin
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Dict
-
 
 class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
     """Test Infrastructure for AutoRest. No server backend exists for these tests.
@@ -33,14 +32,25 @@ class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
     :paramtype api_version: str
     """
 
-    def __init__(self, subscription_id: str, *, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
+    def __init__(
+        self,
+        subscription_id: str,
+        *,
+        endpoint: str = "http://localhost:3000",
+        **kwargs: Any
+    ) -> None:
         self._config = AutoRestValidationTestConfiguration(subscription_id=subscription_id, **kwargs)
         self._client = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
 
-    def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
+
+    def send_request(
+        self,
+        request: HttpRequest,
+        **kwargs: Any
+    ) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

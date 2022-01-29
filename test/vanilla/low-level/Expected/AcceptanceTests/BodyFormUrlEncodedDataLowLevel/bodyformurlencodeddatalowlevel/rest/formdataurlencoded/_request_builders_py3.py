@@ -11,8 +11,7 @@ from azure.core.rest import HttpRequest
 from msrest import Serializer
 
 from ..._vendor import _format_url_section
-
-T = TypeVar("T")
+T = TypeVar('T')
 JSONType = Any
 
 _SERIALIZER = Serializer()
@@ -20,7 +19,11 @@ _SERIALIZER.client_side_validation = False
 
 
 def build_update_pet_with_form_request(
-    pet_id: int, *, data: Optional[Dict[str, Any]] = None, content: Any = None, **kwargs: Any
+    pet_id: int,
+    *,
+    data: Optional[Dict[str, Any]] = None,
+    content: Any = None,
+    **kwargs: Any
 ) -> HttpRequest:
     """Updates a pet in the store with form data.
 
@@ -49,18 +52,20 @@ def build_update_pet_with_form_request(
             data = {
                 "name": "str",  # Optional. Updated name of the pet.
                 "pet_age": 0,  # How many years is it old?.
-                "pet_food": "str",  # Can take a value of meat, or fish, or plant. Possible values are: "meat", "fish", and "plant".
-                "pet_type": "str",  # Can take a value of dog, or cat, or fish. Possible values are: "dog", "cat", and "fish".
+                "pet_food": "str",  # Can take a value of meat, or fish, or plant. Possible
+                  values are: "meat", "fish", and "plant".
+                "pet_type": "str",  # Can take a value of dog, or cat, or fish. Possible
+                  values are: "dog", "cat", and "fish".
                 "status": "str"  # Optional. Updated status of the pet.
             }
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     # Construct URL
-    url = "/formsdataurlencoded/pet/add/{petId}"
+    url = '/formsdataurlencoded/pet/add/{petId}'
     path_format_arguments = {
-        "petId": _SERIALIZER.url("pet_id", pet_id, "int"),
+        "petId": _SERIALIZER.url("pet_id", pet_id, 'int'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
@@ -68,13 +73,23 @@ def build_update_pet_with_form_request(
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, data=data, content=content, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        data=data,
+        content=content,
+        **kwargs
+    )
 
 
 def build_partial_constant_body_request(
-    *, data: Optional[Dict[str, Any]] = None, content: Any = None, **kwargs: Any
+    *,
+    data: Optional[Dict[str, Any]] = None,
+    content: Any = None,
+    **kwargs: Any
 ) -> HttpRequest:
     """Test a partially constant formdata body. Pass in { grant_type: 'access_token', access_token:
     'foo', service: 'bar' } to pass the test.
@@ -98,20 +113,31 @@ def build_partial_constant_body_request(
 
             # form-encoded input template you can fill out and use as your `data` input.
             data = {
-                "access_token": "str",  # AAD access token, mandatory when grant_type is access_token_refresh_token or access_token.
-                "grant_type": "access_token",  # Default value is "access_token". Constant part of a formdata body. The default value is "access_token". Note that overriding this default value may result in unsupported behavior.
+                "access_token": "str",  # AAD access token, mandatory when grant_type is
+                  access_token_refresh_token or access_token.
+                "grant_type": "access_token",  # Default value is "access_token". Constant
+                  part of a formdata body. The default value is "access_token". Note that
+                  overriding this default value may result in unsupported behavior.
                 "service": "str"  # Indicates the name of your Azure container registry.
             }
     """
 
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     # Construct URL
-    url = "/formsdataurlencoded/partialConstantBody"
+    url = '/formsdataurlencoded/partialConstantBody'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, data=data, content=content, **kwargs)
+    return HttpRequest(
+        method="POST",
+        url=url,
+        headers=header_parameters,
+        data=data,
+        content=content,
+        **kwargs
+    )
+

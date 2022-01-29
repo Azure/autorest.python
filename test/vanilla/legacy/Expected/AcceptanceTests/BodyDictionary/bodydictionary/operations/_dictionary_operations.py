@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -6,17 +7,9 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-import functools
 from typing import TYPE_CHECKING
-import warnings
 
-from azure.core.exceptions import (
-    ClientAuthenticationError,
-    HttpResponseError,
-    ResourceExistsError,
-    ResourceNotFoundError,
-    map_error,
-)
+from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
@@ -28,9 +21,8 @@ from .._vendor import _convert_request
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar
-
-    T = TypeVar("T")
+    from typing import Any, Callable, Dict, List, Optional, TypeVar
+    T = TypeVar('T')
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -1397,7 +1389,7 @@ def build_put_dictionary_valid_request(
     )
 
 # fmt: on
-class DictionaryOperations(object):
+class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
     """DictionaryOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -1421,7 +1413,8 @@ class DictionaryOperations(object):
 
     @distributed_trace
     def get_null(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, int]
         """Get null dictionary value.
@@ -1431,17 +1424,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, int]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_null_request(
-            template_url=self.get_null.metadata["url"],
+            template_url=self.get_null.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1449,18 +1449,20 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{int}", pipeline_response)
+        deserialized = self._deserialize('{int}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_null.metadata = {"url": "/dictionary/null"}  # type: ignore
+    get_null.metadata = {'url': '/dictionary/null'}  # type: ignore
+
 
     @distributed_trace
     def get_empty(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, int]
         """Get empty dictionary value {}.
@@ -1470,17 +1472,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, int]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_empty_request(
-            template_url=self.get_empty.metadata["url"],
+            template_url=self.get_empty.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1488,14 +1497,15 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{int}", pipeline_response)
+        deserialized = self._deserialize('{int}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_empty.metadata = {"url": "/dictionary/empty"}  # type: ignore
+    get_empty.metadata = {'url': '/dictionary/empty'}  # type: ignore
+
 
     @distributed_trace
     def put_empty(
@@ -1513,23 +1523,29 @@ class DictionaryOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
-        _json = self._serialize.body(array_body, "{str}")
+        _json = self._serialize.body(array_body, '{str}')
 
         request = build_put_empty_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_empty.metadata["url"],
+            template_url=self.put_empty.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1540,11 +1556,13 @@ class DictionaryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_empty.metadata = {"url": "/dictionary/empty"}  # type: ignore
+    put_empty.metadata = {'url': '/dictionary/empty'}  # type: ignore
+
 
     @distributed_trace
     def get_null_value(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, str]
         """Get Dictionary with null value.
@@ -1554,17 +1572,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, str]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_null_value_request(
-            template_url=self.get_null_value.metadata["url"],
+            template_url=self.get_null_value.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1572,18 +1597,20 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{str}", pipeline_response)
+        deserialized = self._deserialize('{str}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_null_value.metadata = {"url": "/dictionary/nullvalue"}  # type: ignore
+    get_null_value.metadata = {'url': '/dictionary/nullvalue'}  # type: ignore
+
 
     @distributed_trace
     def get_null_key(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, str]
         """Get Dictionary with null key.
@@ -1593,17 +1620,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, str]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_null_key_request(
-            template_url=self.get_null_key.metadata["url"],
+            template_url=self.get_null_key.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1611,18 +1645,20 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{str}", pipeline_response)
+        deserialized = self._deserialize('{str}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_null_key.metadata = {"url": "/dictionary/nullkey"}  # type: ignore
+    get_null_key.metadata = {'url': '/dictionary/nullkey'}  # type: ignore
+
 
     @distributed_trace
     def get_empty_string_key(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, str]
         """Get Dictionary with key as empty string.
@@ -1632,17 +1668,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, str]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_empty_string_key_request(
-            template_url=self.get_empty_string_key.metadata["url"],
+            template_url=self.get_empty_string_key.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1650,18 +1693,20 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{str}", pipeline_response)
+        deserialized = self._deserialize('{str}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_empty_string_key.metadata = {"url": "/dictionary/keyemptystring"}  # type: ignore
+    get_empty_string_key.metadata = {'url': '/dictionary/keyemptystring'}  # type: ignore
+
 
     @distributed_trace
     def get_invalid(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, str]
         """Get invalid Dictionary value.
@@ -1671,17 +1716,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, str]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_invalid_request(
-            template_url=self.get_invalid.metadata["url"],
+            template_url=self.get_invalid.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1689,18 +1741,20 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{str}", pipeline_response)
+        deserialized = self._deserialize('{str}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_invalid.metadata = {"url": "/dictionary/invalid"}  # type: ignore
+    get_invalid.metadata = {'url': '/dictionary/invalid'}  # type: ignore
+
 
     @distributed_trace
     def get_boolean_tfft(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, bool]
         """Get boolean dictionary value {"0": true, "1": false, "2": false, "3": true }.
@@ -1710,17 +1764,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, bool]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bool]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, bool]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_boolean_tfft_request(
-            template_url=self.get_boolean_tfft.metadata["url"],
+            template_url=self.get_boolean_tfft.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1728,14 +1789,15 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{bool}", pipeline_response)
+        deserialized = self._deserialize('{bool}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_boolean_tfft.metadata = {"url": "/dictionary/prim/boolean/tfft"}  # type: ignore
+    get_boolean_tfft.metadata = {'url': '/dictionary/prim/boolean/tfft'}  # type: ignore
+
 
     @distributed_trace
     def put_boolean_tfft(
@@ -1753,23 +1815,29 @@ class DictionaryOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
-        _json = self._serialize.body(array_body, "{bool}")
+        _json = self._serialize.body(array_body, '{bool}')
 
         request = build_put_boolean_tfft_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_boolean_tfft.metadata["url"],
+            template_url=self.put_boolean_tfft.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1780,11 +1848,13 @@ class DictionaryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_boolean_tfft.metadata = {"url": "/dictionary/prim/boolean/tfft"}  # type: ignore
+    put_boolean_tfft.metadata = {'url': '/dictionary/prim/boolean/tfft'}  # type: ignore
+
 
     @distributed_trace
     def get_boolean_invalid_null(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, bool]
         """Get boolean dictionary value {"0": true, "1": null, "2": false }.
@@ -1794,17 +1864,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, bool]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bool]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, bool]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_boolean_invalid_null_request(
-            template_url=self.get_boolean_invalid_null.metadata["url"],
+            template_url=self.get_boolean_invalid_null.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1812,18 +1889,20 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{bool}", pipeline_response)
+        deserialized = self._deserialize('{bool}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_boolean_invalid_null.metadata = {"url": "/dictionary/prim/boolean/true.null.false"}  # type: ignore
+    get_boolean_invalid_null.metadata = {'url': '/dictionary/prim/boolean/true.null.false'}  # type: ignore
+
 
     @distributed_trace
     def get_boolean_invalid_string(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, bool]
         """Get boolean dictionary value '{"0": true, "1": "boolean", "2": false}'.
@@ -1833,17 +1912,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, bool]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bool]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, bool]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_boolean_invalid_string_request(
-            template_url=self.get_boolean_invalid_string.metadata["url"],
+            template_url=self.get_boolean_invalid_string.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1851,18 +1937,20 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{bool}", pipeline_response)
+        deserialized = self._deserialize('{bool}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_boolean_invalid_string.metadata = {"url": "/dictionary/prim/boolean/true.boolean.false"}  # type: ignore
+    get_boolean_invalid_string.metadata = {'url': '/dictionary/prim/boolean/true.boolean.false'}  # type: ignore
+
 
     @distributed_trace
     def get_integer_valid(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, int]
         """Get integer dictionary value {"0": 1, "1": -1, "2": 3, "3": 300}.
@@ -1872,17 +1960,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, int]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_integer_valid_request(
-            template_url=self.get_integer_valid.metadata["url"],
+            template_url=self.get_integer_valid.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1890,14 +1985,15 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{int}", pipeline_response)
+        deserialized = self._deserialize('{int}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_integer_valid.metadata = {"url": "/dictionary/prim/integer/1.-1.3.300"}  # type: ignore
+    get_integer_valid.metadata = {'url': '/dictionary/prim/integer/1.-1.3.300'}  # type: ignore
+
 
     @distributed_trace
     def put_integer_valid(
@@ -1915,23 +2011,29 @@ class DictionaryOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
-        _json = self._serialize.body(array_body, "{int}")
+        _json = self._serialize.body(array_body, '{int}')
 
         request = build_put_integer_valid_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_integer_valid.metadata["url"],
+            template_url=self.put_integer_valid.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1942,11 +2044,13 @@ class DictionaryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_integer_valid.metadata = {"url": "/dictionary/prim/integer/1.-1.3.300"}  # type: ignore
+    put_integer_valid.metadata = {'url': '/dictionary/prim/integer/1.-1.3.300'}  # type: ignore
+
 
     @distributed_trace
     def get_int_invalid_null(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, int]
         """Get integer dictionary value {"0": 1, "1": null, "2": 0}.
@@ -1956,17 +2060,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, int]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_int_invalid_null_request(
-            template_url=self.get_int_invalid_null.metadata["url"],
+            template_url=self.get_int_invalid_null.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1974,18 +2085,20 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{int}", pipeline_response)
+        deserialized = self._deserialize('{int}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_int_invalid_null.metadata = {"url": "/dictionary/prim/integer/1.null.zero"}  # type: ignore
+    get_int_invalid_null.metadata = {'url': '/dictionary/prim/integer/1.null.zero'}  # type: ignore
+
 
     @distributed_trace
     def get_int_invalid_string(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, int]
         """Get integer dictionary value {"0": 1, "1": "integer", "2": 0}.
@@ -1995,17 +2108,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, int]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_int_invalid_string_request(
-            template_url=self.get_int_invalid_string.metadata["url"],
+            template_url=self.get_int_invalid_string.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2013,18 +2133,20 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{int}", pipeline_response)
+        deserialized = self._deserialize('{int}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_int_invalid_string.metadata = {"url": "/dictionary/prim/integer/1.integer.0"}  # type: ignore
+    get_int_invalid_string.metadata = {'url': '/dictionary/prim/integer/1.integer.0'}  # type: ignore
+
 
     @distributed_trace
     def get_long_valid(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, int]
         """Get integer dictionary value {"0": 1, "1": -1, "2": 3, "3": 300}.
@@ -2034,17 +2156,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, long]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, int]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_long_valid_request(
-            template_url=self.get_long_valid.metadata["url"],
+            template_url=self.get_long_valid.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2052,14 +2181,15 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{long}", pipeline_response)
+        deserialized = self._deserialize('{long}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_long_valid.metadata = {"url": "/dictionary/prim/long/1.-1.3.300"}  # type: ignore
+    get_long_valid.metadata = {'url': '/dictionary/prim/long/1.-1.3.300'}  # type: ignore
+
 
     @distributed_trace
     def put_long_valid(
@@ -2077,23 +2207,29 @@ class DictionaryOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
-        _json = self._serialize.body(array_body, "{long}")
+        _json = self._serialize.body(array_body, '{long}')
 
         request = build_put_long_valid_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_long_valid.metadata["url"],
+            template_url=self.put_long_valid.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2104,11 +2240,13 @@ class DictionaryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_long_valid.metadata = {"url": "/dictionary/prim/long/1.-1.3.300"}  # type: ignore
+    put_long_valid.metadata = {'url': '/dictionary/prim/long/1.-1.3.300'}  # type: ignore
+
 
     @distributed_trace
     def get_long_invalid_null(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, int]
         """Get long dictionary value {"0": 1, "1": null, "2": 0}.
@@ -2118,17 +2256,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, long]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, int]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_long_invalid_null_request(
-            template_url=self.get_long_invalid_null.metadata["url"],
+            template_url=self.get_long_invalid_null.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2136,18 +2281,20 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{long}", pipeline_response)
+        deserialized = self._deserialize('{long}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_long_invalid_null.metadata = {"url": "/dictionary/prim/long/1.null.zero"}  # type: ignore
+    get_long_invalid_null.metadata = {'url': '/dictionary/prim/long/1.null.zero'}  # type: ignore
+
 
     @distributed_trace
     def get_long_invalid_string(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, int]
         """Get long dictionary value {"0": 1, "1": "integer", "2": 0}.
@@ -2157,17 +2304,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, long]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, int]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_long_invalid_string_request(
-            template_url=self.get_long_invalid_string.metadata["url"],
+            template_url=self.get_long_invalid_string.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2175,18 +2329,20 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{long}", pipeline_response)
+        deserialized = self._deserialize('{long}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_long_invalid_string.metadata = {"url": "/dictionary/prim/long/1.integer.0"}  # type: ignore
+    get_long_invalid_string.metadata = {'url': '/dictionary/prim/long/1.integer.0'}  # type: ignore
+
 
     @distributed_trace
     def get_float_valid(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, float]
         """Get float dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
@@ -2196,17 +2352,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, float]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_float_valid_request(
-            template_url=self.get_float_valid.metadata["url"],
+            template_url=self.get_float_valid.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2214,14 +2377,15 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{float}", pipeline_response)
+        deserialized = self._deserialize('{float}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_float_valid.metadata = {"url": "/dictionary/prim/float/0--0.01-1.2e20"}  # type: ignore
+    get_float_valid.metadata = {'url': '/dictionary/prim/float/0--0.01-1.2e20'}  # type: ignore
+
 
     @distributed_trace
     def put_float_valid(
@@ -2239,23 +2403,29 @@ class DictionaryOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
-        _json = self._serialize.body(array_body, "{float}")
+        _json = self._serialize.body(array_body, '{float}')
 
         request = build_put_float_valid_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_float_valid.metadata["url"],
+            template_url=self.put_float_valid.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2266,11 +2436,13 @@ class DictionaryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_float_valid.metadata = {"url": "/dictionary/prim/float/0--0.01-1.2e20"}  # type: ignore
+    put_float_valid.metadata = {'url': '/dictionary/prim/float/0--0.01-1.2e20'}  # type: ignore
+
 
     @distributed_trace
     def get_float_invalid_null(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, float]
         """Get float dictionary value {"0": 0.0, "1": null, "2": 1.2e20}.
@@ -2280,17 +2452,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, float]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_float_invalid_null_request(
-            template_url=self.get_float_invalid_null.metadata["url"],
+            template_url=self.get_float_invalid_null.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2298,18 +2477,20 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{float}", pipeline_response)
+        deserialized = self._deserialize('{float}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_float_invalid_null.metadata = {"url": "/dictionary/prim/float/0.0-null-1.2e20"}  # type: ignore
+    get_float_invalid_null.metadata = {'url': '/dictionary/prim/float/0.0-null-1.2e20'}  # type: ignore
+
 
     @distributed_trace
     def get_float_invalid_string(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, float]
         """Get boolean dictionary value {"0": 1.0, "1": "number", "2": 0.0}.
@@ -2319,17 +2500,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, float]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_float_invalid_string_request(
-            template_url=self.get_float_invalid_string.metadata["url"],
+            template_url=self.get_float_invalid_string.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2337,18 +2525,20 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{float}", pipeline_response)
+        deserialized = self._deserialize('{float}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_float_invalid_string.metadata = {"url": "/dictionary/prim/float/1.number.0"}  # type: ignore
+    get_float_invalid_string.metadata = {'url': '/dictionary/prim/float/1.number.0'}  # type: ignore
+
 
     @distributed_trace
     def get_double_valid(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, float]
         """Get float dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
@@ -2358,17 +2548,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, float]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_double_valid_request(
-            template_url=self.get_double_valid.metadata["url"],
+            template_url=self.get_double_valid.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2376,14 +2573,15 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{float}", pipeline_response)
+        deserialized = self._deserialize('{float}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_double_valid.metadata = {"url": "/dictionary/prim/double/0--0.01-1.2e20"}  # type: ignore
+    get_double_valid.metadata = {'url': '/dictionary/prim/double/0--0.01-1.2e20'}  # type: ignore
+
 
     @distributed_trace
     def put_double_valid(
@@ -2401,23 +2599,29 @@ class DictionaryOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
-        _json = self._serialize.body(array_body, "{float}")
+        _json = self._serialize.body(array_body, '{float}')
 
         request = build_put_double_valid_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_double_valid.metadata["url"],
+            template_url=self.put_double_valid.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2428,11 +2632,13 @@ class DictionaryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_double_valid.metadata = {"url": "/dictionary/prim/double/0--0.01-1.2e20"}  # type: ignore
+    put_double_valid.metadata = {'url': '/dictionary/prim/double/0--0.01-1.2e20'}  # type: ignore
+
 
     @distributed_trace
     def get_double_invalid_null(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, float]
         """Get float dictionary value {"0": 0.0, "1": null, "2": 1.2e20}.
@@ -2442,17 +2648,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, float]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_double_invalid_null_request(
-            template_url=self.get_double_invalid_null.metadata["url"],
+            template_url=self.get_double_invalid_null.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2460,18 +2673,20 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{float}", pipeline_response)
+        deserialized = self._deserialize('{float}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_double_invalid_null.metadata = {"url": "/dictionary/prim/double/0.0-null-1.2e20"}  # type: ignore
+    get_double_invalid_null.metadata = {'url': '/dictionary/prim/double/0.0-null-1.2e20'}  # type: ignore
+
 
     @distributed_trace
     def get_double_invalid_string(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, float]
         """Get boolean dictionary value {"0": 1.0, "1": "number", "2": 0.0}.
@@ -2481,17 +2696,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, float]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_double_invalid_string_request(
-            template_url=self.get_double_invalid_string.metadata["url"],
+            template_url=self.get_double_invalid_string.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2499,18 +2721,20 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{float}", pipeline_response)
+        deserialized = self._deserialize('{float}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_double_invalid_string.metadata = {"url": "/dictionary/prim/double/1.number.0"}  # type: ignore
+    get_double_invalid_string.metadata = {'url': '/dictionary/prim/double/1.number.0'}  # type: ignore
+
 
     @distributed_trace
     def get_string_valid(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, str]
         """Get string dictionary value {"0": "foo1", "1": "foo2", "2": "foo3"}.
@@ -2520,17 +2744,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, str]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_string_valid_request(
-            template_url=self.get_string_valid.metadata["url"],
+            template_url=self.get_string_valid.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2538,14 +2769,15 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{str}", pipeline_response)
+        deserialized = self._deserialize('{str}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_string_valid.metadata = {"url": "/dictionary/prim/string/foo1.foo2.foo3"}  # type: ignore
+    get_string_valid.metadata = {'url': '/dictionary/prim/string/foo1.foo2.foo3'}  # type: ignore
+
 
     @distributed_trace
     def put_string_valid(
@@ -2563,23 +2795,29 @@ class DictionaryOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
-        _json = self._serialize.body(array_body, "{str}")
+        _json = self._serialize.body(array_body, '{str}')
 
         request = build_put_string_valid_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_string_valid.metadata["url"],
+            template_url=self.put_string_valid.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2590,11 +2828,13 @@ class DictionaryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_string_valid.metadata = {"url": "/dictionary/prim/string/foo1.foo2.foo3"}  # type: ignore
+    put_string_valid.metadata = {'url': '/dictionary/prim/string/foo1.foo2.foo3'}  # type: ignore
+
 
     @distributed_trace
     def get_string_with_null(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, str]
         """Get string dictionary value {"0": "foo", "1": null, "2": "foo2"}.
@@ -2604,17 +2844,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, str]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_string_with_null_request(
-            template_url=self.get_string_with_null.metadata["url"],
+            template_url=self.get_string_with_null.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2622,18 +2869,20 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{str}", pipeline_response)
+        deserialized = self._deserialize('{str}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_string_with_null.metadata = {"url": "/dictionary/prim/string/foo.null.foo2"}  # type: ignore
+    get_string_with_null.metadata = {'url': '/dictionary/prim/string/foo.null.foo2'}  # type: ignore
+
 
     @distributed_trace
     def get_string_with_invalid(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, str]
         """Get string dictionary value {"0": "foo", "1": 123, "2": "foo2"}.
@@ -2643,17 +2892,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, str]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_string_with_invalid_request(
-            template_url=self.get_string_with_invalid.metadata["url"],
+            template_url=self.get_string_with_invalid.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2661,18 +2917,20 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{str}", pipeline_response)
+        deserialized = self._deserialize('{str}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_string_with_invalid.metadata = {"url": "/dictionary/prim/string/foo.123.foo2"}  # type: ignore
+    get_string_with_invalid.metadata = {'url': '/dictionary/prim/string/foo.123.foo2'}  # type: ignore
+
 
     @distributed_trace
     def get_date_valid(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, datetime.date]
         """Get integer dictionary value {"0": "2000-12-01", "1": "1980-01-02", "2": "1492-10-12"}.
@@ -2682,17 +2940,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, ~datetime.date]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.date]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, datetime.date]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_date_valid_request(
-            template_url=self.get_date_valid.metadata["url"],
+            template_url=self.get_date_valid.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2700,14 +2965,15 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{date}", pipeline_response)
+        deserialized = self._deserialize('{date}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_date_valid.metadata = {"url": "/dictionary/prim/date/valid"}  # type: ignore
+    get_date_valid.metadata = {'url': '/dictionary/prim/date/valid'}  # type: ignore
+
 
     @distributed_trace
     def put_date_valid(
@@ -2725,23 +2991,29 @@ class DictionaryOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
-        _json = self._serialize.body(array_body, "{date}")
+        _json = self._serialize.body(array_body, '{date}')
 
         request = build_put_date_valid_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_date_valid.metadata["url"],
+            template_url=self.put_date_valid.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2752,11 +3024,13 @@ class DictionaryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_date_valid.metadata = {"url": "/dictionary/prim/date/valid"}  # type: ignore
+    put_date_valid.metadata = {'url': '/dictionary/prim/date/valid'}  # type: ignore
+
 
     @distributed_trace
     def get_date_invalid_null(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, datetime.date]
         """Get date dictionary value {"0": "2012-01-01", "1": null, "2": "1776-07-04"}.
@@ -2766,17 +3040,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, ~datetime.date]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.date]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, datetime.date]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_date_invalid_null_request(
-            template_url=self.get_date_invalid_null.metadata["url"],
+            template_url=self.get_date_invalid_null.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2784,18 +3065,20 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{date}", pipeline_response)
+        deserialized = self._deserialize('{date}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_date_invalid_null.metadata = {"url": "/dictionary/prim/date/invalidnull"}  # type: ignore
+    get_date_invalid_null.metadata = {'url': '/dictionary/prim/date/invalidnull'}  # type: ignore
+
 
     @distributed_trace
     def get_date_invalid_chars(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, datetime.date]
         """Get date dictionary value {"0": "2011-03-22", "1": "date"}.
@@ -2805,17 +3088,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, ~datetime.date]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.date]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, datetime.date]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_date_invalid_chars_request(
-            template_url=self.get_date_invalid_chars.metadata["url"],
+            template_url=self.get_date_invalid_chars.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2823,18 +3113,20 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{date}", pipeline_response)
+        deserialized = self._deserialize('{date}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_date_invalid_chars.metadata = {"url": "/dictionary/prim/date/invalidchars"}  # type: ignore
+    get_date_invalid_chars.metadata = {'url': '/dictionary/prim/date/invalidchars'}  # type: ignore
+
 
     @distributed_trace
     def get_date_time_valid(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, datetime.datetime]
         """Get date-time dictionary value {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00",
@@ -2845,17 +3137,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, ~datetime.datetime]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.datetime]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, datetime.datetime]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_date_time_valid_request(
-            template_url=self.get_date_time_valid.metadata["url"],
+            template_url=self.get_date_time_valid.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2863,14 +3162,15 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{iso-8601}", pipeline_response)
+        deserialized = self._deserialize('{iso-8601}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_date_time_valid.metadata = {"url": "/dictionary/prim/date-time/valid"}  # type: ignore
+    get_date_time_valid.metadata = {'url': '/dictionary/prim/date-time/valid'}  # type: ignore
+
 
     @distributed_trace
     def put_date_time_valid(
@@ -2889,23 +3189,29 @@ class DictionaryOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
-        _json = self._serialize.body(array_body, "{iso-8601}")
+        _json = self._serialize.body(array_body, '{iso-8601}')
 
         request = build_put_date_time_valid_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_date_time_valid.metadata["url"],
+            template_url=self.put_date_time_valid.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2916,11 +3222,13 @@ class DictionaryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_date_time_valid.metadata = {"url": "/dictionary/prim/date-time/valid"}  # type: ignore
+    put_date_time_valid.metadata = {'url': '/dictionary/prim/date-time/valid'}  # type: ignore
+
 
     @distributed_trace
     def get_date_time_invalid_null(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, datetime.datetime]
         """Get date dictionary value {"0": "2000-12-01t00:00:01z", "1": null}.
@@ -2930,17 +3238,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, ~datetime.datetime]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.datetime]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, datetime.datetime]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_date_time_invalid_null_request(
-            template_url=self.get_date_time_invalid_null.metadata["url"],
+            template_url=self.get_date_time_invalid_null.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2948,18 +3263,20 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{iso-8601}", pipeline_response)
+        deserialized = self._deserialize('{iso-8601}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_date_time_invalid_null.metadata = {"url": "/dictionary/prim/date-time/invalidnull"}  # type: ignore
+    get_date_time_invalid_null.metadata = {'url': '/dictionary/prim/date-time/invalidnull'}  # type: ignore
+
 
     @distributed_trace
     def get_date_time_invalid_chars(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, datetime.datetime]
         """Get date dictionary value {"0": "2000-12-01t00:00:01z", "1": "date-time"}.
@@ -2969,17 +3286,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, ~datetime.datetime]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.datetime]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, datetime.datetime]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_date_time_invalid_chars_request(
-            template_url=self.get_date_time_invalid_chars.metadata["url"],
+            template_url=self.get_date_time_invalid_chars.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2987,18 +3311,20 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{iso-8601}", pipeline_response)
+        deserialized = self._deserialize('{iso-8601}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_date_time_invalid_chars.metadata = {"url": "/dictionary/prim/date-time/invalidchars"}  # type: ignore
+    get_date_time_invalid_chars.metadata = {'url': '/dictionary/prim/date-time/invalidchars'}  # type: ignore
+
 
     @distributed_trace
     def get_date_time_rfc1123_valid(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, datetime.datetime]
         """Get date-time-rfc1123 dictionary value {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan
@@ -3009,17 +3335,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, ~datetime.datetime]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.datetime]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, datetime.datetime]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_date_time_rfc1123_valid_request(
-            template_url=self.get_date_time_rfc1123_valid.metadata["url"],
+            template_url=self.get_date_time_rfc1123_valid.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3027,14 +3360,15 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{rfc-1123}", pipeline_response)
+        deserialized = self._deserialize('{rfc-1123}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_date_time_rfc1123_valid.metadata = {"url": "/dictionary/prim/date-time-rfc1123/valid"}  # type: ignore
+    get_date_time_rfc1123_valid.metadata = {'url': '/dictionary/prim/date-time-rfc1123/valid'}  # type: ignore
+
 
     @distributed_trace
     def put_date_time_rfc1123_valid(
@@ -3053,23 +3387,29 @@ class DictionaryOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
-        _json = self._serialize.body(array_body, "{rfc-1123}")
+        _json = self._serialize.body(array_body, '{rfc-1123}')
 
         request = build_put_date_time_rfc1123_valid_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_date_time_rfc1123_valid.metadata["url"],
+            template_url=self.put_date_time_rfc1123_valid.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3080,11 +3420,13 @@ class DictionaryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_date_time_rfc1123_valid.metadata = {"url": "/dictionary/prim/date-time-rfc1123/valid"}  # type: ignore
+    put_date_time_rfc1123_valid.metadata = {'url': '/dictionary/prim/date-time-rfc1123/valid'}  # type: ignore
+
 
     @distributed_trace
     def get_duration_valid(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, datetime.timedelta]
         """Get duration dictionary value {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}.
@@ -3094,17 +3436,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, ~datetime.timedelta]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.timedelta]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, datetime.timedelta]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_duration_valid_request(
-            template_url=self.get_duration_valid.metadata["url"],
+            template_url=self.get_duration_valid.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3112,14 +3461,15 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{duration}", pipeline_response)
+        deserialized = self._deserialize('{duration}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_duration_valid.metadata = {"url": "/dictionary/prim/duration/valid"}  # type: ignore
+    get_duration_valid.metadata = {'url': '/dictionary/prim/duration/valid'}  # type: ignore
+
 
     @distributed_trace
     def put_duration_valid(
@@ -3137,23 +3487,29 @@ class DictionaryOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
-        _json = self._serialize.body(array_body, "{duration}")
+        _json = self._serialize.body(array_body, '{duration}')
 
         request = build_put_duration_valid_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_duration_valid.metadata["url"],
+            template_url=self.put_duration_valid.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3164,11 +3520,13 @@ class DictionaryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_duration_valid.metadata = {"url": "/dictionary/prim/duration/valid"}  # type: ignore
+    put_duration_valid.metadata = {'url': '/dictionary/prim/duration/valid'}  # type: ignore
+
 
     @distributed_trace
     def get_byte_valid(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, bytearray]
         """Get byte dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)}
@@ -3179,17 +3537,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, bytearray]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bytearray]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, bytearray]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_byte_valid_request(
-            template_url=self.get_byte_valid.metadata["url"],
+            template_url=self.get_byte_valid.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3197,14 +3562,15 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{bytearray}", pipeline_response)
+        deserialized = self._deserialize('{bytearray}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_byte_valid.metadata = {"url": "/dictionary/prim/byte/valid"}  # type: ignore
+    get_byte_valid.metadata = {'url': '/dictionary/prim/byte/valid'}  # type: ignore
+
 
     @distributed_trace
     def put_byte_valid(
@@ -3223,23 +3589,29 @@ class DictionaryOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
-        _json = self._serialize.body(array_body, "{bytearray}")
+        _json = self._serialize.body(array_body, '{bytearray}')
 
         request = build_put_byte_valid_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_byte_valid.metadata["url"],
+            template_url=self.put_byte_valid.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3250,11 +3622,13 @@ class DictionaryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_byte_valid.metadata = {"url": "/dictionary/prim/byte/valid"}  # type: ignore
+    put_byte_valid.metadata = {'url': '/dictionary/prim/byte/valid'}  # type: ignore
+
 
     @distributed_trace
     def get_byte_invalid_null(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, bytearray]
         """Get byte dictionary value {"0": hex(FF FF FF FA), "1": null} with the first item base64
@@ -3265,17 +3639,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, bytearray]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bytearray]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, bytearray]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_byte_invalid_null_request(
-            template_url=self.get_byte_invalid_null.metadata["url"],
+            template_url=self.get_byte_invalid_null.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3283,18 +3664,20 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{bytearray}", pipeline_response)
+        deserialized = self._deserialize('{bytearray}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_byte_invalid_null.metadata = {"url": "/dictionary/prim/byte/invalidnull"}  # type: ignore
+    get_byte_invalid_null.metadata = {'url': '/dictionary/prim/byte/invalidnull'}  # type: ignore
+
 
     @distributed_trace
     def get_base64_url(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, bytes]
         """Get base64url dictionary value {"0": "a string that gets encoded with base64url", "1": "test
@@ -3305,17 +3688,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, bytes]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bytes]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, bytes]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_base64_url_request(
-            template_url=self.get_base64_url.metadata["url"],
+            template_url=self.get_base64_url.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3323,18 +3713,20 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{base64}", pipeline_response)
+        deserialized = self._deserialize('{base64}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_base64_url.metadata = {"url": "/dictionary/prim/base64url/valid"}  # type: ignore
+    get_base64_url.metadata = {'url': '/dictionary/prim/base64url/valid'}  # type: ignore
+
 
     @distributed_trace
     def get_complex_null(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Optional[Dict[str, "_models.Widget"]]
         """Get dictionary of complex type null value.
@@ -3344,17 +3736,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, ~bodydictionary.models.Widget] or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Dict[str, "_models.Widget"]]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[Dict[str, "_models.Widget"]]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_complex_null_request(
-            template_url=self.get_complex_null.metadata["url"],
+            template_url=self.get_complex_null.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3362,18 +3761,20 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{Widget}", pipeline_response)
+        deserialized = self._deserialize('{Widget}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_complex_null.metadata = {"url": "/dictionary/complex/null"}  # type: ignore
+    get_complex_null.metadata = {'url': '/dictionary/complex/null'}  # type: ignore
+
 
     @distributed_trace
     def get_complex_empty(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, "_models.Widget"]
         """Get empty dictionary of complex type {}.
@@ -3383,17 +3784,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, ~bodydictionary.models.Widget]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, "_models.Widget"]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, "_models.Widget"]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_complex_empty_request(
-            template_url=self.get_complex_empty.metadata["url"],
+            template_url=self.get_complex_empty.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3401,18 +3809,20 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{Widget}", pipeline_response)
+        deserialized = self._deserialize('{Widget}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_complex_empty.metadata = {"url": "/dictionary/complex/empty"}  # type: ignore
+    get_complex_empty.metadata = {'url': '/dictionary/complex/empty'}  # type: ignore
+
 
     @distributed_trace
     def get_complex_item_null(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, "_models.Widget"]
         """Get dictionary of complex type with null item {"0": {"integer": 1, "string": "2"}, "1": null,
@@ -3423,17 +3833,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, ~bodydictionary.models.Widget]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, "_models.Widget"]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, "_models.Widget"]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_complex_item_null_request(
-            template_url=self.get_complex_item_null.metadata["url"],
+            template_url=self.get_complex_item_null.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3441,18 +3858,20 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{Widget}", pipeline_response)
+        deserialized = self._deserialize('{Widget}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_complex_item_null.metadata = {"url": "/dictionary/complex/itemnull"}  # type: ignore
+    get_complex_item_null.metadata = {'url': '/dictionary/complex/itemnull'}  # type: ignore
+
 
     @distributed_trace
     def get_complex_item_empty(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, "_models.Widget"]
         """Get dictionary of complex type with empty item {"0": {"integer": 1, "string": "2"}, "1:" {},
@@ -3463,17 +3882,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, ~bodydictionary.models.Widget]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, "_models.Widget"]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, "_models.Widget"]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_complex_item_empty_request(
-            template_url=self.get_complex_item_empty.metadata["url"],
+            template_url=self.get_complex_item_empty.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3481,18 +3907,20 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{Widget}", pipeline_response)
+        deserialized = self._deserialize('{Widget}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_complex_item_empty.metadata = {"url": "/dictionary/complex/itemempty"}  # type: ignore
+    get_complex_item_empty.metadata = {'url': '/dictionary/complex/itemempty'}  # type: ignore
+
 
     @distributed_trace
     def get_complex_valid(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, "_models.Widget"]
         """Get dictionary of complex type with {"0": {"integer": 1, "string": "2"}, "1": {"integer": 3,
@@ -3503,17 +3931,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, ~bodydictionary.models.Widget]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, "_models.Widget"]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, "_models.Widget"]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_complex_valid_request(
-            template_url=self.get_complex_valid.metadata["url"],
+            template_url=self.get_complex_valid.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3521,14 +3956,15 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{Widget}", pipeline_response)
+        deserialized = self._deserialize('{Widget}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_complex_valid.metadata = {"url": "/dictionary/complex/valid"}  # type: ignore
+    get_complex_valid.metadata = {'url': '/dictionary/complex/valid'}  # type: ignore
+
 
     @distributed_trace
     def put_complex_valid(
@@ -3547,23 +3983,29 @@ class DictionaryOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
-        _json = self._serialize.body(array_body, "{Widget}")
+        _json = self._serialize.body(array_body, '{Widget}')
 
         request = build_put_complex_valid_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_complex_valid.metadata["url"],
+            template_url=self.put_complex_valid.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3574,11 +4016,13 @@ class DictionaryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_complex_valid.metadata = {"url": "/dictionary/complex/valid"}  # type: ignore
+    put_complex_valid.metadata = {'url': '/dictionary/complex/valid'}  # type: ignore
+
 
     @distributed_trace
     def get_array_null(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Optional[Dict[str, List[str]]]
         """Get a null array.
@@ -3588,17 +4032,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, list[str]] or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Dict[str, List[str]]]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[Dict[str, List[str]]]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_array_null_request(
-            template_url=self.get_array_null.metadata["url"],
+            template_url=self.get_array_null.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3606,18 +4057,20 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{[str]}", pipeline_response)
+        deserialized = self._deserialize('{[str]}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_array_null.metadata = {"url": "/dictionary/array/null"}  # type: ignore
+    get_array_null.metadata = {'url': '/dictionary/array/null'}  # type: ignore
+
 
     @distributed_trace
     def get_array_empty(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, List[str]]
         """Get an empty dictionary {}.
@@ -3627,17 +4080,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, List[str]]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, List[str]]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_array_empty_request(
-            template_url=self.get_array_empty.metadata["url"],
+            template_url=self.get_array_empty.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3645,18 +4105,20 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{[str]}", pipeline_response)
+        deserialized = self._deserialize('{[str]}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_array_empty.metadata = {"url": "/dictionary/array/empty"}  # type: ignore
+    get_array_empty.metadata = {'url': '/dictionary/array/empty'}  # type: ignore
+
 
     @distributed_trace
     def get_array_item_null(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, List[str]]
         """Get an dictionary of array of strings {"0": ["1", "2", "3"], "1": null, "2": ["7", "8", "9"]}.
@@ -3666,17 +4128,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, List[str]]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, List[str]]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_array_item_null_request(
-            template_url=self.get_array_item_null.metadata["url"],
+            template_url=self.get_array_item_null.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3684,18 +4153,20 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{[str]}", pipeline_response)
+        deserialized = self._deserialize('{[str]}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_array_item_null.metadata = {"url": "/dictionary/array/itemnull"}  # type: ignore
+    get_array_item_null.metadata = {'url': '/dictionary/array/itemnull'}  # type: ignore
+
 
     @distributed_trace
     def get_array_item_empty(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, List[str]]
         """Get an array of array of strings [{"0": ["1", "2", "3"], "1": [], "2": ["7", "8", "9"]}.
@@ -3705,17 +4176,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, List[str]]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, List[str]]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_array_item_empty_request(
-            template_url=self.get_array_item_empty.metadata["url"],
+            template_url=self.get_array_item_empty.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3723,18 +4201,20 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{[str]}", pipeline_response)
+        deserialized = self._deserialize('{[str]}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_array_item_empty.metadata = {"url": "/dictionary/array/itemempty"}  # type: ignore
+    get_array_item_empty.metadata = {'url': '/dictionary/array/itemempty'}  # type: ignore
+
 
     @distributed_trace
     def get_array_valid(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, List[str]]
         """Get an array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8",
@@ -3745,17 +4225,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, List[str]]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, List[str]]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_array_valid_request(
-            template_url=self.get_array_valid.metadata["url"],
+            template_url=self.get_array_valid.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3763,14 +4250,15 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{[str]}", pipeline_response)
+        deserialized = self._deserialize('{[str]}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_array_valid.metadata = {"url": "/dictionary/array/valid"}  # type: ignore
+    get_array_valid.metadata = {'url': '/dictionary/array/valid'}  # type: ignore
+
 
     @distributed_trace
     def put_array_valid(
@@ -3789,23 +4277,29 @@ class DictionaryOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
-        _json = self._serialize.body(array_body, "{[str]}")
+        _json = self._serialize.body(array_body, '{[str]}')
 
         request = build_put_array_valid_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_array_valid.metadata["url"],
+            template_url=self.put_array_valid.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3816,11 +4310,13 @@ class DictionaryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_array_valid.metadata = {"url": "/dictionary/array/valid"}  # type: ignore
+    put_array_valid.metadata = {'url': '/dictionary/array/valid'}  # type: ignore
+
 
     @distributed_trace
     def get_dictionary_null(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, Dict[str, str]]
         """Get an dictionaries of dictionaries with value null.
@@ -3830,17 +4326,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Dict[str, str]]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, Dict[str, str]]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_dictionary_null_request(
-            template_url=self.get_dictionary_null.metadata["url"],
+            template_url=self.get_dictionary_null.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3848,18 +4351,20 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{{str}}", pipeline_response)
+        deserialized = self._deserialize('{{str}}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_dictionary_null.metadata = {"url": "/dictionary/dictionary/null"}  # type: ignore
+    get_dictionary_null.metadata = {'url': '/dictionary/dictionary/null'}  # type: ignore
+
 
     @distributed_trace
     def get_dictionary_empty(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, Dict[str, str]]
         """Get an dictionaries of dictionaries of type <string, string> with value {}.
@@ -3869,17 +4374,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Dict[str, str]]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, Dict[str, str]]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_dictionary_empty_request(
-            template_url=self.get_dictionary_empty.metadata["url"],
+            template_url=self.get_dictionary_empty.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3887,18 +4399,20 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{{str}}", pipeline_response)
+        deserialized = self._deserialize('{{str}}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_dictionary_empty.metadata = {"url": "/dictionary/dictionary/empty"}  # type: ignore
+    get_dictionary_empty.metadata = {'url': '/dictionary/dictionary/empty'}  # type: ignore
+
 
     @distributed_trace
     def get_dictionary_item_null(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, Dict[str, str]]
         """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
@@ -3909,17 +4423,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Dict[str, str]]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, Dict[str, str]]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_dictionary_item_null_request(
-            template_url=self.get_dictionary_item_null.metadata["url"],
+            template_url=self.get_dictionary_item_null.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3927,18 +4448,20 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{{str}}", pipeline_response)
+        deserialized = self._deserialize('{{str}}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_dictionary_item_null.metadata = {"url": "/dictionary/dictionary/itemnull"}  # type: ignore
+    get_dictionary_item_null.metadata = {'url': '/dictionary/dictionary/itemnull'}  # type: ignore
+
 
     @distributed_trace
     def get_dictionary_item_empty(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, Dict[str, str]]
         """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
@@ -3949,17 +4472,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Dict[str, str]]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, Dict[str, str]]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_dictionary_item_empty_request(
-            template_url=self.get_dictionary_item_empty.metadata["url"],
+            template_url=self.get_dictionary_item_empty.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3967,18 +4497,20 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{{str}}", pipeline_response)
+        deserialized = self._deserialize('{{str}}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_dictionary_item_empty.metadata = {"url": "/dictionary/dictionary/itemempty"}  # type: ignore
+    get_dictionary_item_empty.metadata = {'url': '/dictionary/dictionary/itemempty'}  # type: ignore
+
 
     @distributed_trace
     def get_dictionary_valid(
-        self, **kwargs  # type: Any
+        self,
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, Dict[str, str]]
         """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
@@ -3990,17 +4522,24 @@ class DictionaryOperations(object):
         :rtype: dict[str, dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Dict[str, str]]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, Dict[str, str]]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_get_dictionary_valid_request(
-            template_url=self.get_dictionary_valid.metadata["url"],
+            template_url=self.get_dictionary_valid.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -4008,14 +4547,15 @@ class DictionaryOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("{{str}}", pipeline_response)
+        deserialized = self._deserialize('{{str}}', pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
 
-    get_dictionary_valid.metadata = {"url": "/dictionary/dictionary/valid"}  # type: ignore
+    get_dictionary_valid.metadata = {'url': '/dictionary/dictionary/valid'}  # type: ignore
+
 
     @distributed_trace
     def put_dictionary_valid(
@@ -4035,23 +4575,29 @@ class DictionaryOperations(object):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
-        _json = self._serialize.body(array_body, "{{str}}")
+        _json = self._serialize.body(array_body, '{{str}}')
 
         request = build_put_dictionary_valid_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_dictionary_valid.metadata["url"],
+            template_url=self.put_dictionary_valid.metadata['url'],
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -4062,4 +4608,5 @@ class DictionaryOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_dictionary_valid.metadata = {"url": "/dictionary/dictionary/valid"}  # type: ignore
+    put_dictionary_valid.metadata = {'url': '/dictionary/dictionary/valid'}  # type: ignore
+

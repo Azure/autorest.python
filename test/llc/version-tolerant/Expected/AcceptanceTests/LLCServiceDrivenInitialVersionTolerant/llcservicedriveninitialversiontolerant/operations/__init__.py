@@ -9,5 +9,5 @@
 from ._operations import ParamsOperations
 
 __all__ = [
-    "ParamsOperations",
+    'ParamsOperations',
 ]

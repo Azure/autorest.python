@@ -23,10 +23,15 @@ class ArrayWrapper(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "array": {"key": "array", "type": "[str]"},
+        'array': {'key': 'array', 'type': '[str]'},
     }
 
-    def __init__(self, *, array: Optional[List[str]] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        array: Optional[List[str]] = None,
+        **kwargs
+    ):
         """
         :keyword array:
         :paramtype array: list[str]
@@ -48,9 +53,9 @@ class Basic(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "id": {"key": "id", "type": "int"},
-        "name": {"key": "name", "type": "str"},
-        "color": {"key": "color", "type": "str"},
+        'id': {'key': 'id', 'type': 'int'},
+        'name': {'key': 'name', 'type': 'str'},
+        'color': {'key': 'color', 'type': 'str'},
     }
 
     def __init__(
@@ -86,11 +91,17 @@ class BooleanWrapper(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "field_true": {"key": "field_true", "type": "bool"},
-        "field_false": {"key": "field_false", "type": "bool"},
+        'field_true': {'key': 'field_true', 'type': 'bool'},
+        'field_false': {'key': 'field_false', 'type': 'bool'},
     }
 
-    def __init__(self, *, field_true: Optional[bool] = None, field_false: Optional[bool] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        field_true: Optional[bool] = None,
+        field_false: Optional[bool] = None,
+        **kwargs
+    ):
         """
         :keyword field_true:
         :paramtype field_true: bool
@@ -110,10 +121,15 @@ class ByteWrapper(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "field": {"key": "field", "type": "bytearray"},
+        'field': {'key': 'field', 'type': 'bytearray'},
     }
 
-    def __init__(self, *, field: Optional[bytearray] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        field: Optional[bytearray] = None,
+        **kwargs
+    ):
         """
         :keyword field:
         :paramtype field: bytearray
@@ -132,11 +148,17 @@ class Pet(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "id": {"key": "id", "type": "int"},
-        "name": {"key": "name", "type": "str"},
+        'id': {'key': 'id', 'type': 'int'},
+        'name': {'key': 'name', 'type': 'str'},
     }
 
-    def __init__(self, *, id: Optional[int] = None, name: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        id: Optional[int] = None,
+        name: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword id:
         :paramtype id: int
@@ -162,10 +184,10 @@ class Cat(Pet):
     """
 
     _attribute_map = {
-        "id": {"key": "id", "type": "int"},
-        "name": {"key": "name", "type": "str"},
-        "color": {"key": "color", "type": "str"},
-        "hates": {"key": "hates", "type": "[Dog]"},
+        'id': {'key': 'id', 'type': 'int'},
+        'name': {'key': 'name', 'type': 'str'},
+        'color': {'key': 'color', 'type': 'str'},
+        'hates': {'key': 'hates', 'type': '[Dog]'},
     }
 
     def __init__(
@@ -211,21 +233,28 @@ class Fish(msrest.serialization.Model):
     """
 
     _validation = {
-        "fishtype": {"required": True},
-        "length": {"required": True},
+        'fishtype': {'required': True},
+        'length': {'required': True},
     }
 
     _attribute_map = {
-        "fishtype": {"key": "fishtype", "type": "str"},
-        "species": {"key": "species", "type": "str"},
-        "length": {"key": "length", "type": "float"},
-        "siblings": {"key": "siblings", "type": "[Fish]"},
+        'fishtype': {'key': 'fishtype', 'type': 'str'},
+        'species': {'key': 'species', 'type': 'str'},
+        'length': {'key': 'length', 'type': 'float'},
+        'siblings': {'key': 'siblings', 'type': '[Fish]'},
     }
 
-    _subtype_map = {"fishtype": {"salmon": "Salmon", "shark": "Shark"}}
+    _subtype_map = {
+        'fishtype': {'salmon': 'Salmon', 'shark': 'Shark'}
+    }
 
     def __init__(
-        self, *, length: float, species: Optional[str] = None, siblings: Optional[List["Fish"]] = None, **kwargs
+        self,
+        *,
+        length: float,
+        species: Optional[str] = None,
+        siblings: Optional[List["Fish"]] = None,
+        **kwargs
     ):
         """
         :keyword species:
@@ -265,22 +294,22 @@ class Shark(Fish):
     """
 
     _validation = {
-        "fishtype": {"required": True},
-        "length": {"required": True},
-        "birthday": {"required": True},
+        'fishtype': {'required': True},
+        'length': {'required': True},
+        'birthday': {'required': True},
     }
 
     _attribute_map = {
-        "fishtype": {"key": "fishtype", "type": "str"},
-        "species": {"key": "species", "type": "str"},
-        "length": {"key": "length", "type": "float"},
-        "siblings": {"key": "siblings", "type": "[Fish]"},
-        "age": {"key": "age", "type": "int"},
-        "birthday": {"key": "birthday", "type": "iso-8601"},
+        'fishtype': {'key': 'fishtype', 'type': 'str'},
+        'species': {'key': 'species', 'type': 'str'},
+        'length': {'key': 'length', 'type': 'float'},
+        'siblings': {'key': 'siblings', 'type': '[Fish]'},
+        'age': {'key': 'age', 'type': 'int'},
+        'birthday': {'key': 'birthday', 'type': 'iso-8601'},
     }
 
     _subtype_map = {
-        "fishtype": {"cookiecuttershark": "Cookiecuttershark", "goblin": "Goblinshark", "sawshark": "Sawshark"}
+        'fishtype': {'cookiecuttershark': 'Cookiecuttershark', 'goblin': 'Goblinshark', 'sawshark': 'Sawshark'}
     }
 
     def __init__(
@@ -306,7 +335,7 @@ class Shark(Fish):
         :paramtype birthday: ~datetime.datetime
         """
         super(Shark, self).__init__(species=species, length=length, siblings=siblings, **kwargs)
-        self.fishtype = "shark"  # type: str
+        self.fishtype = 'shark'  # type: str
         self.age = age
         self.birthday = birthday
 
@@ -331,18 +360,18 @@ class Cookiecuttershark(Shark):
     """
 
     _validation = {
-        "fishtype": {"required": True},
-        "length": {"required": True},
-        "birthday": {"required": True},
+        'fishtype': {'required': True},
+        'length': {'required': True},
+        'birthday': {'required': True},
     }
 
     _attribute_map = {
-        "fishtype": {"key": "fishtype", "type": "str"},
-        "species": {"key": "species", "type": "str"},
-        "length": {"key": "length", "type": "float"},
-        "siblings": {"key": "siblings", "type": "[Fish]"},
-        "age": {"key": "age", "type": "int"},
-        "birthday": {"key": "birthday", "type": "iso-8601"},
+        'fishtype': {'key': 'fishtype', 'type': 'str'},
+        'species': {'key': 'species', 'type': 'str'},
+        'length': {'key': 'length', 'type': 'float'},
+        'siblings': {'key': 'siblings', 'type': '[Fish]'},
+        'age': {'key': 'age', 'type': 'int'},
+        'birthday': {'key': 'birthday', 'type': 'iso-8601'},
     }
 
     def __init__(
@@ -367,10 +396,8 @@ class Cookiecuttershark(Shark):
         :keyword birthday: Required.
         :paramtype birthday: ~datetime.datetime
         """
-        super(Cookiecuttershark, self).__init__(
-            species=species, length=length, siblings=siblings, age=age, birthday=birthday, **kwargs
-        )
-        self.fishtype = "cookiecuttershark"  # type: str
+        super(Cookiecuttershark, self).__init__(species=species, length=length, siblings=siblings, age=age, birthday=birthday, **kwargs)
+        self.fishtype = 'cookiecuttershark'  # type: str
 
 
 class Datetimerfc1123Wrapper(msrest.serialization.Model):
@@ -383,11 +410,17 @@ class Datetimerfc1123Wrapper(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "field": {"key": "field", "type": "rfc-1123"},
-        "now": {"key": "now", "type": "rfc-1123"},
+        'field': {'key': 'field', 'type': 'rfc-1123'},
+        'now': {'key': 'now', 'type': 'rfc-1123'},
     }
 
-    def __init__(self, *, field: Optional[datetime.datetime] = None, now: Optional[datetime.datetime] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        field: Optional[datetime.datetime] = None,
+        now: Optional[datetime.datetime] = None,
+        **kwargs
+    ):
         """
         :keyword field:
         :paramtype field: ~datetime.datetime
@@ -409,11 +442,17 @@ class DatetimeWrapper(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "field": {"key": "field", "type": "iso-8601"},
-        "now": {"key": "now", "type": "iso-8601"},
+        'field': {'key': 'field', 'type': 'iso-8601'},
+        'now': {'key': 'now', 'type': 'iso-8601'},
     }
 
-    def __init__(self, *, field: Optional[datetime.datetime] = None, now: Optional[datetime.datetime] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        field: Optional[datetime.datetime] = None,
+        now: Optional[datetime.datetime] = None,
+        **kwargs
+    ):
         """
         :keyword field:
         :paramtype field: ~datetime.datetime
@@ -435,11 +474,17 @@ class DateWrapper(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "field": {"key": "field", "type": "date"},
-        "leap": {"key": "leap", "type": "date"},
+        'field': {'key': 'field', 'type': 'date'},
+        'leap': {'key': 'leap', 'type': 'date'},
     }
 
-    def __init__(self, *, field: Optional[datetime.date] = None, leap: Optional[datetime.date] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        field: Optional[datetime.date] = None,
+        leap: Optional[datetime.date] = None,
+        **kwargs
+    ):
         """
         :keyword field:
         :paramtype field: ~datetime.date
@@ -459,10 +504,15 @@ class DictionaryWrapper(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "default_program": {"key": "defaultProgram", "type": "{str}"},
+        'default_program': {'key': 'defaultProgram', 'type': '{str}'},
     }
 
-    def __init__(self, *, default_program: Optional[Dict[str, str]] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        default_program: Optional[Dict[str, str]] = None,
+        **kwargs
+    ):
         """
         :keyword default_program: Dictionary of :code:`<string>`.
         :paramtype default_program: dict[str, str]
@@ -483,12 +533,19 @@ class Dog(Pet):
     """
 
     _attribute_map = {
-        "id": {"key": "id", "type": "int"},
-        "name": {"key": "name", "type": "str"},
-        "food": {"key": "food", "type": "str"},
+        'id': {'key': 'id', 'type': 'int'},
+        'name': {'key': 'name', 'type': 'str'},
+        'food': {'key': 'food', 'type': 'str'},
     }
 
-    def __init__(self, *, id: Optional[int] = None, name: Optional[str] = None, food: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        id: Optional[int] = None,
+        name: Optional[str] = None,
+        food: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword id:
         :paramtype id: int
@@ -516,17 +573,24 @@ class DotFish(msrest.serialization.Model):
     """
 
     _validation = {
-        "fish_type": {"required": True},
+        'fish_type': {'required': True},
     }
 
     _attribute_map = {
-        "fish_type": {"key": "fish\\.type", "type": "str"},
-        "species": {"key": "species", "type": "str"},
+        'fish_type': {'key': 'fish\\.type', 'type': 'str'},
+        'species': {'key': 'species', 'type': 'str'},
     }
 
-    _subtype_map = {"fish_type": {"DotSalmon": "DotSalmon"}}
+    _subtype_map = {
+        'fish_type': {'DotSalmon': 'DotSalmon'}
+    }
 
-    def __init__(self, *, species: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        species: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword species:
         :paramtype species: str
@@ -550,10 +614,10 @@ class DotFishMarket(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "sample_salmon": {"key": "sampleSalmon", "type": "DotSalmon"},
-        "salmons": {"key": "salmons", "type": "[DotSalmon]"},
-        "sample_fish": {"key": "sampleFish", "type": "DotFish"},
-        "fishes": {"key": "fishes", "type": "[DotFish]"},
+        'sample_salmon': {'key': 'sampleSalmon', 'type': 'DotSalmon'},
+        'salmons': {'key': 'salmons', 'type': '[DotSalmon]'},
+        'sample_fish': {'key': 'sampleFish', 'type': 'DotFish'},
+        'fishes': {'key': 'fishes', 'type': '[DotFish]'},
     }
 
     def __init__(
@@ -598,18 +662,23 @@ class DotSalmon(DotFish):
     """
 
     _validation = {
-        "fish_type": {"required": True},
+        'fish_type': {'required': True},
     }
 
     _attribute_map = {
-        "fish_type": {"key": "fish\\.type", "type": "str"},
-        "species": {"key": "species", "type": "str"},
-        "location": {"key": "location", "type": "str"},
-        "iswild": {"key": "iswild", "type": "bool"},
+        'fish_type': {'key': 'fish\\.type', 'type': 'str'},
+        'species': {'key': 'species', 'type': 'str'},
+        'location': {'key': 'location', 'type': 'str'},
+        'iswild': {'key': 'iswild', 'type': 'bool'},
     }
 
     def __init__(
-        self, *, species: Optional[str] = None, location: Optional[str] = None, iswild: Optional[bool] = None, **kwargs
+        self,
+        *,
+        species: Optional[str] = None,
+        location: Optional[str] = None,
+        iswild: Optional[bool] = None,
+        **kwargs
     ):
         """
         :keyword species:
@@ -620,7 +689,7 @@ class DotSalmon(DotFish):
         :paramtype iswild: bool
         """
         super(DotSalmon, self).__init__(species=species, **kwargs)
-        self.fish_type = "DotSalmon"  # type: str
+        self.fish_type = 'DotSalmon'  # type: str
         self.location = location
         self.iswild = iswild
 
@@ -638,20 +707,15 @@ class DoubleWrapper(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "field1": {"key": "field1", "type": "float"},
-        "field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose": {
-            "key": "field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose",
-            "type": "float",
-        },
+        'field1': {'key': 'field1', 'type': 'float'},
+        'field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose': {'key': 'field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose', 'type': 'float'},
     }
 
     def __init__(
         self,
         *,
         field1: Optional[float] = None,
-        field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose: Optional[
-            float
-        ] = None,
+        field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose: Optional[float] = None,
         **kwargs
     ):
         """
@@ -665,9 +729,7 @@ class DoubleWrapper(msrest.serialization.Model):
         """
         super(DoubleWrapper, self).__init__(**kwargs)
         self.field1 = field1
-        self.field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose = (
-            field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose
-        )
+        self.field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose = field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose
 
 
 class DurationWrapper(msrest.serialization.Model):
@@ -678,10 +740,15 @@ class DurationWrapper(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "field": {"key": "field", "type": "duration"},
+        'field': {'key': 'field', 'type': 'duration'},
     }
 
-    def __init__(self, *, field: Optional[datetime.timedelta] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        field: Optional[datetime.timedelta] = None,
+        **kwargs
+    ):
         """
         :keyword field:
         :paramtype field: ~datetime.timedelta
@@ -700,11 +767,17 @@ class Error(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "status": {"key": "status", "type": "int"},
-        "message": {"key": "message", "type": "str"},
+        'status': {'key': 'status', 'type': 'int'},
+        'message': {'key': 'message', 'type': 'str'},
     }
 
-    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        status: Optional[int] = None,
+        message: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword status:
         :paramtype status: int
@@ -726,11 +799,17 @@ class FloatWrapper(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "field1": {"key": "field1", "type": "float"},
-        "field2": {"key": "field2", "type": "float"},
+        'field1': {'key': 'field1', 'type': 'float'},
+        'field2': {'key': 'field2', 'type': 'float'},
     }
 
-    def __init__(self, *, field1: Optional[float] = None, field2: Optional[float] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        field1: Optional[float] = None,
+        field2: Optional[float] = None,
+        **kwargs
+    ):
         """
         :keyword field1:
         :paramtype field1: float
@@ -767,20 +846,20 @@ class Goblinshark(Shark):
     """
 
     _validation = {
-        "fishtype": {"required": True},
-        "length": {"required": True},
-        "birthday": {"required": True},
+        'fishtype': {'required': True},
+        'length': {'required': True},
+        'birthday': {'required': True},
     }
 
     _attribute_map = {
-        "fishtype": {"key": "fishtype", "type": "str"},
-        "species": {"key": "species", "type": "str"},
-        "length": {"key": "length", "type": "float"},
-        "siblings": {"key": "siblings", "type": "[Fish]"},
-        "age": {"key": "age", "type": "int"},
-        "birthday": {"key": "birthday", "type": "iso-8601"},
-        "jawsize": {"key": "jawsize", "type": "int"},
-        "color": {"key": "color", "type": "str"},
+        'fishtype': {'key': 'fishtype', 'type': 'str'},
+        'species': {'key': 'species', 'type': 'str'},
+        'length': {'key': 'length', 'type': 'float'},
+        'siblings': {'key': 'siblings', 'type': '[Fish]'},
+        'age': {'key': 'age', 'type': 'int'},
+        'birthday': {'key': 'birthday', 'type': 'iso-8601'},
+        'jawsize': {'key': 'jawsize', 'type': 'int'},
+        'color': {'key': 'color', 'type': 'str'},
     }
 
     def __init__(
@@ -812,10 +891,8 @@ class Goblinshark(Shark):
          "red". Default value: "gray".
         :paramtype color: str or ~bodycomplexpython3only.models.GoblinSharkColor
         """
-        super(Goblinshark, self).__init__(
-            species=species, length=length, siblings=siblings, age=age, birthday=birthday, **kwargs
-        )
-        self.fishtype = "goblin"  # type: str
+        super(Goblinshark, self).__init__(species=species, length=length, siblings=siblings, age=age, birthday=birthday, **kwargs)
+        self.fishtype = 'goblin'  # type: str
         self.jawsize = jawsize
         self.color = color
 
@@ -830,11 +907,17 @@ class IntWrapper(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "field1": {"key": "field1", "type": "int"},
-        "field2": {"key": "field2", "type": "int"},
+        'field1': {'key': 'field1', 'type': 'int'},
+        'field2': {'key': 'field2', 'type': 'int'},
     }
 
-    def __init__(self, *, field1: Optional[int] = None, field2: Optional[int] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        field1: Optional[int] = None,
+        field2: Optional[int] = None,
+        **kwargs
+    ):
         """
         :keyword field1:
         :paramtype field1: int
@@ -856,11 +939,17 @@ class LongWrapper(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "field1": {"key": "field1", "type": "long"},
-        "field2": {"key": "field2", "type": "long"},
+        'field1': {'key': 'field1', 'type': 'long'},
+        'field2': {'key': 'field2', 'type': 'long'},
     }
 
-    def __init__(self, *, field1: Optional[int] = None, field2: Optional[int] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        field1: Optional[int] = None,
+        field2: Optional[int] = None,
+        **kwargs
+    ):
         """
         :keyword field1:
         :paramtype field1: long
@@ -889,18 +978,26 @@ class MyBaseType(msrest.serialization.Model):
     """
 
     _validation = {
-        "kind": {"required": True},
+        'kind': {'required': True},
     }
 
     _attribute_map = {
-        "kind": {"key": "kind", "type": "str"},
-        "prop_b1": {"key": "propB1", "type": "str"},
-        "prop_bh1": {"key": "helper.propBH1", "type": "str"},
+        'kind': {'key': 'kind', 'type': 'str'},
+        'prop_b1': {'key': 'propB1', 'type': 'str'},
+        'prop_bh1': {'key': 'helper.propBH1', 'type': 'str'},
     }
 
-    _subtype_map = {"kind": {"Kind1": "MyDerivedType"}}
+    _subtype_map = {
+        'kind': {'Kind1': 'MyDerivedType'}
+    }
 
-    def __init__(self, *, prop_b1: Optional[str] = None, prop_bh1: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        prop_b1: Optional[str] = None,
+        prop_bh1: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword prop_b1:
         :paramtype prop_b1: str
@@ -929,18 +1026,23 @@ class MyDerivedType(MyBaseType):
     """
 
     _validation = {
-        "kind": {"required": True},
+        'kind': {'required': True},
     }
 
     _attribute_map = {
-        "kind": {"key": "kind", "type": "str"},
-        "prop_b1": {"key": "propB1", "type": "str"},
-        "prop_bh1": {"key": "helper.propBH1", "type": "str"},
-        "prop_d1": {"key": "propD1", "type": "str"},
+        'kind': {'key': 'kind', 'type': 'str'},
+        'prop_b1': {'key': 'propB1', 'type': 'str'},
+        'prop_bh1': {'key': 'helper.propBH1', 'type': 'str'},
+        'prop_d1': {'key': 'propD1', 'type': 'str'},
     }
 
     def __init__(
-        self, *, prop_b1: Optional[str] = None, prop_bh1: Optional[str] = None, prop_d1: Optional[str] = None, **kwargs
+        self,
+        *,
+        prop_b1: Optional[str] = None,
+        prop_bh1: Optional[str] = None,
+        prop_d1: Optional[str] = None,
+        **kwargs
     ):
         """
         :keyword prop_b1:
@@ -951,7 +1053,7 @@ class MyDerivedType(MyBaseType):
         :paramtype prop_d1: str
         """
         super(MyDerivedType, self).__init__(prop_b1=prop_b1, prop_bh1=prop_bh1, **kwargs)
-        self.kind = "Kind1"  # type: str
+        self.kind = 'Kind1'  # type: str
         self.prop_d1 = prop_d1
 
 
@@ -967,15 +1069,20 @@ class ReadonlyObj(msrest.serialization.Model):
     """
 
     _validation = {
-        "id": {"readonly": True},
+        'id': {'readonly': True},
     }
 
     _attribute_map = {
-        "id": {"key": "id", "type": "str"},
-        "size": {"key": "size", "type": "int"},
+        'id': {'key': 'id', 'type': 'str'},
+        'size': {'key': 'size', 'type': 'int'},
     }
 
-    def __init__(self, *, size: Optional[int] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        size: Optional[int] = None,
+        **kwargs
+    ):
         """
         :keyword size:
         :paramtype size: int
@@ -1008,20 +1115,22 @@ class Salmon(Fish):
     """
 
     _validation = {
-        "fishtype": {"required": True},
-        "length": {"required": True},
+        'fishtype': {'required': True},
+        'length': {'required': True},
     }
 
     _attribute_map = {
-        "fishtype": {"key": "fishtype", "type": "str"},
-        "species": {"key": "species", "type": "str"},
-        "length": {"key": "length", "type": "float"},
-        "siblings": {"key": "siblings", "type": "[Fish]"},
-        "location": {"key": "location", "type": "str"},
-        "iswild": {"key": "iswild", "type": "bool"},
+        'fishtype': {'key': 'fishtype', 'type': 'str'},
+        'species': {'key': 'species', 'type': 'str'},
+        'length': {'key': 'length', 'type': 'float'},
+        'siblings': {'key': 'siblings', 'type': '[Fish]'},
+        'location': {'key': 'location', 'type': 'str'},
+        'iswild': {'key': 'iswild', 'type': 'bool'},
     }
 
-    _subtype_map = {"fishtype": {"smart_salmon": "SmartSalmon"}}
+    _subtype_map = {
+        'fishtype': {'smart_salmon': 'SmartSalmon'}
+    }
 
     def __init__(
         self,
@@ -1046,7 +1155,7 @@ class Salmon(Fish):
         :paramtype iswild: bool
         """
         super(Salmon, self).__init__(species=species, length=length, siblings=siblings, **kwargs)
-        self.fishtype = "salmon"  # type: str
+        self.fishtype = 'salmon'  # type: str
         self.location = location
         self.iswild = iswild
 
@@ -1073,19 +1182,19 @@ class Sawshark(Shark):
     """
 
     _validation = {
-        "fishtype": {"required": True},
-        "length": {"required": True},
-        "birthday": {"required": True},
+        'fishtype': {'required': True},
+        'length': {'required': True},
+        'birthday': {'required': True},
     }
 
     _attribute_map = {
-        "fishtype": {"key": "fishtype", "type": "str"},
-        "species": {"key": "species", "type": "str"},
-        "length": {"key": "length", "type": "float"},
-        "siblings": {"key": "siblings", "type": "[Fish]"},
-        "age": {"key": "age", "type": "int"},
-        "birthday": {"key": "birthday", "type": "iso-8601"},
-        "picture": {"key": "picture", "type": "bytearray"},
+        'fishtype': {'key': 'fishtype', 'type': 'str'},
+        'species': {'key': 'species', 'type': 'str'},
+        'length': {'key': 'length', 'type': 'float'},
+        'siblings': {'key': 'siblings', 'type': '[Fish]'},
+        'age': {'key': 'age', 'type': 'int'},
+        'birthday': {'key': 'birthday', 'type': 'iso-8601'},
+        'picture': {'key': 'picture', 'type': 'bytearray'},
     }
 
     def __init__(
@@ -1113,10 +1222,8 @@ class Sawshark(Shark):
         :keyword picture:
         :paramtype picture: bytearray
         """
-        super(Sawshark, self).__init__(
-            species=species, length=length, siblings=siblings, age=age, birthday=birthday, **kwargs
-        )
-        self.fishtype = "sawshark"  # type: str
+        super(Sawshark, self).__init__(species=species, length=length, siblings=siblings, age=age, birthday=birthday, **kwargs)
+        self.fishtype = 'sawshark'  # type: str
         self.picture = picture
 
 
@@ -1136,11 +1243,11 @@ class Siamese(Cat):
     """
 
     _attribute_map = {
-        "id": {"key": "id", "type": "int"},
-        "name": {"key": "name", "type": "str"},
-        "color": {"key": "color", "type": "str"},
-        "hates": {"key": "hates", "type": "[Dog]"},
-        "breed": {"key": "breed", "type": "str"},
+        'id': {'key': 'id', 'type': 'int'},
+        'name': {'key': 'name', 'type': 'str'},
+        'color': {'key': 'color', 'type': 'str'},
+        'hates': {'key': 'hates', 'type': '[Dog]'},
+        'breed': {'key': 'breed', 'type': 'str'},
     }
 
     def __init__(
@@ -1194,19 +1301,19 @@ class SmartSalmon(Salmon):
     """
 
     _validation = {
-        "fishtype": {"required": True},
-        "length": {"required": True},
+        'fishtype': {'required': True},
+        'length': {'required': True},
     }
 
     _attribute_map = {
-        "fishtype": {"key": "fishtype", "type": "str"},
-        "species": {"key": "species", "type": "str"},
-        "length": {"key": "length", "type": "float"},
-        "siblings": {"key": "siblings", "type": "[Fish]"},
-        "location": {"key": "location", "type": "str"},
-        "iswild": {"key": "iswild", "type": "bool"},
-        "additional_properties": {"key": "", "type": "{object}"},
-        "college_degree": {"key": "college_degree", "type": "str"},
+        'fishtype': {'key': 'fishtype', 'type': 'str'},
+        'species': {'key': 'species', 'type': 'str'},
+        'length': {'key': 'length', 'type': 'float'},
+        'siblings': {'key': 'siblings', 'type': '[Fish]'},
+        'location': {'key': 'location', 'type': 'str'},
+        'iswild': {'key': 'iswild', 'type': 'bool'},
+        'additional_properties': {'key': '', 'type': '{object}'},
+        'college_degree': {'key': 'college_degree', 'type': 'str'},
     }
 
     def __init__(
@@ -1238,10 +1345,8 @@ class SmartSalmon(Salmon):
         :keyword college_degree:
         :paramtype college_degree: str
         """
-        super(SmartSalmon, self).__init__(
-            species=species, length=length, siblings=siblings, location=location, iswild=iswild, **kwargs
-        )
-        self.fishtype = "smart_salmon"  # type: str
+        super(SmartSalmon, self).__init__(species=species, length=length, siblings=siblings, location=location, iswild=iswild, **kwargs)
+        self.fishtype = 'smart_salmon'  # type: str
         self.additional_properties = additional_properties
         self.college_degree = college_degree
 
@@ -1258,13 +1363,18 @@ class StringWrapper(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "field": {"key": "field", "type": "str"},
-        "empty": {"key": "empty", "type": "str"},
-        "null": {"key": "null", "type": "str"},
+        'field': {'key': 'field', 'type': 'str'},
+        'empty': {'key': 'empty', 'type': 'str'},
+        'null': {'key': 'null', 'type': 'str'},
     }
 
     def __init__(
-        self, *, field: Optional[str] = None, empty: Optional[str] = None, null: Optional[str] = None, **kwargs
+        self,
+        *,
+        field: Optional[str] = None,
+        empty: Optional[str] = None,
+        null: Optional[str] = None,
+        **kwargs
     ):
         """
         :keyword field:

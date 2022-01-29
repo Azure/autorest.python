@@ -16,7 +16,7 @@ except (SyntaxError, ImportError):
     from ._request_builders import build_head404_request  # type: ignore
 
 __all__ = [
-    "build_head200_request",
-    "build_head204_request",
-    "build_head404_request",
+    'build_head200_request',
+    'build_head204_request',
+    'build_head404_request',
 ]

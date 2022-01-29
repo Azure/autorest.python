@@ -16,7 +16,10 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_list_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
+def build_list_request(
+    subscription_id: str,
+    **kwargs: Any
+) -> HttpRequest:
     """Gets the current usage count and the limit for the resources under the subscription.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -25,9 +28,6 @@ def build_list_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
      subscription. The subscription ID forms part of the URI for every service call.
     :type subscription_id: str
-    :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that
-     overriding this default value may result in unsupported behavior.
-    :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -40,35 +40,48 @@ def build_list_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
             response.json() == {
                 "value": [
                     {
-                        "currentValue": 0,  # Optional. Gets the current count of the allocated resources in the subscription.
-                        "limit": 0,  # Optional. Gets the maximum count of the resources that can be allocated in the subscription.
+                        "currentValue": 0,  # Optional. Gets the current count of the
+                          allocated resources in the subscription.
+                        "limit": 0,  # Optional. Gets the maximum count of the
+                          resources that can be allocated in the subscription.
                         "name": {
-                            "localizedValue": "str",  # Optional. Gets a localized string describing the resource name.
-                            "value": "str"  # Optional. Gets a string describing the resource name.
+                            "localizedValue": "str",  # Optional. Gets a
+                              localized string describing the resource name.
+                            "value": "str"  # Optional. Gets a string describing
+                              the resource name.
                         },
-                        "unit": "str"  # Optional. Gets the unit of measurement. Possible values include: "Count", "Bytes", "Seconds", "Percent", "CountsPerSecond", "BytesPerSecond".
+                        "unit": "str"  # Optional. Gets the unit of measurement.
+                          Possible values include: "Count", "Bytes", "Seconds", "Percent",
+                          "CountsPerSecond", "BytesPerSecond".
                     }
                 ]
             }
     """
 
-    api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+    api_version = kwargs.pop('api_version', "2015-05-01-preview")  # type: str
 
     accept = "application/json, text/json"
     # Construct URL
-    url = "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages"
+    url = '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages'
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
 
     url = _format_url_section(url, **path_format_arguments)
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+

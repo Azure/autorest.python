@@ -22,10 +22,10 @@ except (SyntaxError, ImportError):
     from ._request_builders import build_get_invalid_request  # type: ignore
 
 __all__ = [
-    "build_get_true_request",
-    "build_put_true_request",
-    "build_get_false_request",
-    "build_put_false_request",
-    "build_get_null_request",
-    "build_get_invalid_request",
+    'build_get_true_request',
+    'build_put_true_request',
+    'build_get_false_request',
+    'build_put_false_request',
+    'build_get_null_request',
+    'build_get_invalid_request',
 ]

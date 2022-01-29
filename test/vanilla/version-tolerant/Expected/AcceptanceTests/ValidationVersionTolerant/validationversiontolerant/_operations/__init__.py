@@ -9,5 +9,5 @@
 from ._operations import AutoRestValidationTestOperationsMixin
 
 __all__ = [
-    "AutoRestValidationTestOperationsMixin",
+    'AutoRestValidationTestOperationsMixin',
 ]

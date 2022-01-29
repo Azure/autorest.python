@@ -18,8 +18,8 @@ except (SyntaxError, ImportError):
     from ._models import Product  # type: ignore
 
 __all__ = [
-    "ChildProduct",
-    "ConstantProduct",
-    "Error",
-    "Product",
+    'ChildProduct',
+    'ConstantProduct',
+    'Error',
+    'Product',
 ]

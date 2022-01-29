@@ -15,11 +15,11 @@ from ._operations import HttpRetryOperations
 from ._operations import MultipleResponsesOperations
 
 __all__ = [
-    "HttpFailureOperations",
-    "HttpSuccessOperations",
-    "HttpRedirectsOperations",
-    "HttpClientFailureOperations",
-    "HttpServerFailureOperations",
-    "HttpRetryOperations",
-    "MultipleResponsesOperations",
+    'HttpFailureOperations',
+    'HttpSuccessOperations',
+    'HttpRedirectsOperations',
+    'HttpClientFailureOperations',
+    'HttpServerFailureOperations',
+    'HttpRetryOperations',
+    'MultipleResponsesOperations',
 ]

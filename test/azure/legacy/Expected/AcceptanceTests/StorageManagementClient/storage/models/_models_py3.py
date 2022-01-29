@@ -22,10 +22,15 @@ class Bar(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "recursive_point": {"key": "RecursivePoint", "type": "Endpoints"},
+        'recursive_point': {'key': 'RecursivePoint', 'type': 'Endpoints'},
     }
 
-    def __init__(self, *, recursive_point: Optional["Endpoints"] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        recursive_point: Optional["Endpoints"] = None,
+        **kwargs
+    ):
         """
         :keyword recursive_point: Recursive Endpoints.
         :paramtype recursive_point: ~storage.models.Endpoints
@@ -50,9 +55,9 @@ class CheckNameAvailabilityResult(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "name_available": {"key": "nameAvailable", "type": "bool"},
-        "reason": {"key": "reason", "type": "str"},
-        "message": {"key": "message", "type": "str"},
+        'name_available': {'key': 'nameAvailable', 'type': 'bool'},
+        'reason': {'key': 'reason', 'type': 'str'},
+        'message': {'key': 'message', 'type': 'str'},
     }
 
     def __init__(
@@ -92,11 +97,17 @@ class CustomDomain(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "name": {"key": "name", "type": "str"},
-        "use_sub_domain": {"key": "useSubDomain", "type": "bool"},
+        'name': {'key': 'name', 'type': 'str'},
+        'use_sub_domain': {'key': 'useSubDomain', 'type': 'bool'},
     }
 
-    def __init__(self, *, name: Optional[str] = None, use_sub_domain: Optional[bool] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        name: Optional[str] = None,
+        use_sub_domain: Optional[bool] = None,
+        **kwargs
+    ):
         """
         :keyword name: Gets or sets the custom domain name. Name is the CNAME source.
         :paramtype name: str
@@ -125,11 +136,11 @@ class Endpoints(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "blob": {"key": "blob", "type": "str"},
-        "queue": {"key": "queue", "type": "str"},
-        "table": {"key": "table", "type": "str"},
-        "dummy_end_point": {"key": "dummyEndPoint", "type": "Endpoints"},
-        "foo_point": {"key": "FooPoint", "type": "Foo"},
+        'blob': {'key': 'blob', 'type': 'str'},
+        'queue': {'key': 'queue', 'type': 'str'},
+        'table': {'key': 'table', 'type': 'str'},
+        'dummy_end_point': {'key': 'dummyEndPoint', 'type': 'Endpoints'},
+        'foo_point': {'key': 'FooPoint', 'type': 'Foo'},
     }
 
     def __init__(
@@ -170,10 +181,15 @@ class Foo(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "bar_point": {"key": "Bar\\.Point", "type": "Bar"},
+        'bar_point': {'key': 'Bar\\.Point', 'type': 'Bar'},
     }
 
-    def __init__(self, *, bar_point: Optional["Bar"] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        bar_point: Optional["Bar"] = None,
+        **kwargs
+    ):
         """
         :keyword bar_point: Bar point.
         :paramtype bar_point: ~storage.models.Bar
@@ -202,21 +218,27 @@ class Resource(msrest.serialization.Model):
     """
 
     _validation = {
-        "id": {"readonly": True},
-        "name": {"readonly": True},
-        "type": {"readonly": True},
-        "location": {"required": True},
+        'id': {'readonly': True},
+        'name': {'readonly': True},
+        'type': {'readonly': True},
+        'location': {'required': True},
     }
 
     _attribute_map = {
-        "id": {"key": "id", "type": "str"},
-        "name": {"key": "name", "type": "str"},
-        "type": {"key": "type", "type": "str"},
-        "location": {"key": "location", "type": "str"},
-        "tags": {"key": "tags", "type": "{str}"},
+        'id': {'key': 'id', 'type': 'str'},
+        'name': {'key': 'name', 'type': 'str'},
+        'type': {'key': 'type', 'type': 'str'},
+        'location': {'key': 'location', 'type': 'str'},
+        'tags': {'key': 'tags', 'type': '{str}'},
     }
 
-    def __init__(self, *, location: str, tags: Optional[Dict[str, str]] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        location: str,
+        tags: Optional[Dict[str, str]] = None,
+        **kwargs
+    ):
         """
         :keyword location: Required. Resource location.
         :paramtype location: str
@@ -286,29 +308,29 @@ class StorageAccount(Resource):
     """
 
     _validation = {
-        "id": {"readonly": True},
-        "name": {"readonly": True},
-        "type": {"readonly": True},
-        "location": {"required": True},
+        'id': {'readonly': True},
+        'name': {'readonly': True},
+        'type': {'readonly': True},
+        'location': {'required': True},
     }
 
     _attribute_map = {
-        "id": {"key": "id", "type": "str"},
-        "name": {"key": "name", "type": "str"},
-        "type": {"key": "type", "type": "str"},
-        "location": {"key": "location", "type": "str"},
-        "tags": {"key": "tags", "type": "{str}"},
-        "provisioning_state": {"key": "properties.provisioningState", "type": "str"},
-        "account_type": {"key": "properties.accountType", "type": "str"},
-        "primary_endpoints": {"key": "properties.primaryEndpoints", "type": "Endpoints"},
-        "primary_location": {"key": "properties.primaryLocation", "type": "str"},
-        "status_of_primary": {"key": "properties.statusOfPrimary", "type": "str"},
-        "last_geo_failover_time": {"key": "properties.lastGeoFailoverTime", "type": "iso-8601"},
-        "secondary_location": {"key": "properties.secondaryLocation", "type": "str"},
-        "status_of_secondary": {"key": "properties.statusOfSecondary", "type": "str"},
-        "creation_time": {"key": "properties.creationTime", "type": "iso-8601"},
-        "custom_domain": {"key": "properties.customDomain", "type": "CustomDomain"},
-        "secondary_endpoints": {"key": "properties.secondaryEndpoints", "type": "Endpoints"},
+        'id': {'key': 'id', 'type': 'str'},
+        'name': {'key': 'name', 'type': 'str'},
+        'type': {'key': 'type', 'type': 'str'},
+        'location': {'key': 'location', 'type': 'str'},
+        'tags': {'key': 'tags', 'type': '{str}'},
+        'provisioning_state': {'key': 'properties.provisioningState', 'type': 'str'},
+        'account_type': {'key': 'properties.accountType', 'type': 'str'},
+        'primary_endpoints': {'key': 'properties.primaryEndpoints', 'type': 'Endpoints'},
+        'primary_location': {'key': 'properties.primaryLocation', 'type': 'str'},
+        'status_of_primary': {'key': 'properties.statusOfPrimary', 'type': 'str'},
+        'last_geo_failover_time': {'key': 'properties.lastGeoFailoverTime', 'type': 'iso-8601'},
+        'secondary_location': {'key': 'properties.secondaryLocation', 'type': 'str'},
+        'status_of_secondary': {'key': 'properties.statusOfSecondary', 'type': 'str'},
+        'creation_time': {'key': 'properties.creationTime', 'type': 'iso-8601'},
+        'custom_domain': {'key': 'properties.customDomain', 'type': 'CustomDomain'},
+        'secondary_endpoints': {'key': 'properties.secondaryEndpoints', 'type': 'Endpoints'},
     }
 
     def __init__(
@@ -397,15 +419,21 @@ class StorageAccountCheckNameAvailabilityParameters(msrest.serialization.Model):
     """
 
     _validation = {
-        "name": {"required": True},
+        'name': {'required': True},
     }
 
     _attribute_map = {
-        "name": {"key": "name", "type": "str"},
-        "type": {"key": "type", "type": "str"},
+        'name': {'key': 'name', 'type': 'str'},
+        'type': {'key': 'type', 'type': 'str'},
     }
 
-    def __init__(self, *, name: str, type: Optional[str] = "Microsoft.Storage/storageAccounts", **kwargs):
+    def __init__(
+        self,
+        *,
+        name: str,
+        type: Optional[str] = "Microsoft.Storage/storageAccounts",
+        **kwargs
+    ):
         """
         :keyword name: Required.
         :paramtype name: str
@@ -440,19 +468,19 @@ class StorageAccountCreateParameters(Resource):
     """
 
     _validation = {
-        "id": {"readonly": True},
-        "name": {"readonly": True},
-        "type": {"readonly": True},
-        "location": {"required": True},
+        'id': {'readonly': True},
+        'name': {'readonly': True},
+        'type': {'readonly': True},
+        'location': {'required': True},
     }
 
     _attribute_map = {
-        "id": {"key": "id", "type": "str"},
-        "name": {"key": "name", "type": "str"},
-        "type": {"key": "type", "type": "str"},
-        "location": {"key": "location", "type": "str"},
-        "tags": {"key": "tags", "type": "{str}"},
-        "account_type": {"key": "properties.accountType", "type": "str"},
+        'id': {'key': 'id', 'type': 'str'},
+        'name': {'key': 'name', 'type': 'str'},
+        'type': {'key': 'type', 'type': 'str'},
+        'location': {'key': 'location', 'type': 'str'},
+        'tags': {'key': 'tags', 'type': '{str}'},
+        'account_type': {'key': 'properties.accountType', 'type': 'str'},
     }
 
     def __init__(
@@ -486,11 +514,17 @@ class StorageAccountKeys(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "key1": {"key": "key1", "type": "str"},
-        "key2": {"key": "key2", "type": "str"},
+        'key1': {'key': 'key1', 'type': 'str'},
+        'key2': {'key': 'key2', 'type': 'str'},
     }
 
-    def __init__(self, *, key1: Optional[str] = None, key2: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        key1: Optional[str] = None,
+        key2: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword key1: Gets the value of key 1.
         :paramtype key1: str
@@ -513,11 +547,17 @@ class StorageAccountListResult(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "value": {"key": "value", "type": "[StorageAccount]"},
-        "next_link": {"key": "nextLink", "type": "str"},
+        'value': {'key': 'value', 'type': '[StorageAccount]'},
+        'next_link': {'key': 'nextLink', 'type': 'str'},
     }
 
-    def __init__(self, *, value: Optional[List["StorageAccount"]] = None, next_link: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        value: Optional[List["StorageAccount"]] = None,
+        next_link: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword value: Gets the list of storage accounts and their properties.
         :paramtype value: list[~storage.models.StorageAccount]
@@ -538,10 +578,15 @@ class StorageAccountRegenerateKeyParameters(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "key_name": {"key": "keyName", "type": "str"},
+        'key_name': {'key': 'keyName', 'type': 'str'},
     }
 
-    def __init__(self, *, key_name: Optional[Union[str, "KeyName"]] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        key_name: Optional[Union[str, "KeyName"]] = None,
+        **kwargs
+    ):
         """
         :keyword key_name: Possible values include: "key1", "key2".
         :paramtype key_name: str or ~storage.models.KeyName
@@ -579,20 +624,20 @@ class StorageAccountUpdateParameters(Resource):
     """
 
     _validation = {
-        "id": {"readonly": True},
-        "name": {"readonly": True},
-        "type": {"readonly": True},
-        "location": {"required": True},
+        'id': {'readonly': True},
+        'name': {'readonly': True},
+        'type': {'readonly': True},
+        'location': {'required': True},
     }
 
     _attribute_map = {
-        "id": {"key": "id", "type": "str"},
-        "name": {"key": "name", "type": "str"},
-        "type": {"key": "type", "type": "str"},
-        "location": {"key": "location", "type": "str"},
-        "tags": {"key": "tags", "type": "{str}"},
-        "account_type": {"key": "properties.accountType", "type": "str"},
-        "custom_domain": {"key": "properties.customDomain", "type": "CustomDomain"},
+        'id': {'key': 'id', 'type': 'str'},
+        'name': {'key': 'name', 'type': 'str'},
+        'type': {'key': 'type', 'type': 'str'},
+        'location': {'key': 'location', 'type': 'str'},
+        'tags': {'key': 'tags', 'type': '{str}'},
+        'account_type': {'key': 'properties.accountType', 'type': 'str'},
+        'custom_domain': {'key': 'properties.customDomain', 'type': 'CustomDomain'},
     }
 
     def __init__(
@@ -632,10 +677,15 @@ class SubResource(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "id": {"key": "id", "type": "str"},
+        'id': {'key': 'id', 'type': 'str'},
     }
 
-    def __init__(self, *, id: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        id: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword id: Resource Id.
         :paramtype id: str
@@ -659,10 +709,10 @@ class Usage(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "unit": {"key": "unit", "type": "str"},
-        "current_value": {"key": "currentValue", "type": "int"},
-        "limit": {"key": "limit", "type": "int"},
-        "name": {"key": "name", "type": "UsageName"},
+        'unit': {'key': 'unit', 'type': 'str'},
+        'current_value': {'key': 'currentValue', 'type': 'int'},
+        'limit': {'key': 'limit', 'type': 'int'},
+        'name': {'key': 'name', 'type': 'UsageName'},
     }
 
     def __init__(
@@ -701,10 +751,15 @@ class UsageListResult(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "value": {"key": "value", "type": "[Usage]"},
+        'value': {'key': 'value', 'type': '[Usage]'},
     }
 
-    def __init__(self, *, value: Optional[List["Usage"]] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        value: Optional[List["Usage"]] = None,
+        **kwargs
+    ):
         """
         :keyword value: Gets or sets the list Storage Resource Usages.
         :paramtype value: list[~storage.models.Usage]
@@ -723,11 +778,17 @@ class UsageName(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "value": {"key": "value", "type": "str"},
-        "localized_value": {"key": "localizedValue", "type": "str"},
+        'value': {'key': 'value', 'type': 'str'},
+        'localized_value': {'key': 'localizedValue', 'type': 'str'},
     }
 
-    def __init__(self, *, value: Optional[str] = None, localized_value: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        value: Optional[str] = None,
+        localized_value: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword value: Gets a string describing the resource name.
         :paramtype value: str

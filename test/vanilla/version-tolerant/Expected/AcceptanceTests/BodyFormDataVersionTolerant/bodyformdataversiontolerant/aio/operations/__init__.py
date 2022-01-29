@@ -9,5 +9,5 @@
 from ._operations import FormdataOperations
 
 __all__ = [
-    "FormdataOperations",
+    'FormdataOperations',
 ]

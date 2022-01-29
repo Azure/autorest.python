@@ -20,7 +20,6 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Dict
 
-
 class AutoRestParameterizedCustomHostTestClient:
     """Test Infrastructure for AutoRest.
 
@@ -33,17 +32,21 @@ class AutoRestParameterizedCustomHostTestClient:
     :type dns_suffix: str
     """
 
-    def __init__(self, subscription_id: str, dns_suffix: str = "host", **kwargs: Any) -> None:
-        _endpoint = "{vault}{secret}{dnsSuffix}"
-        self._config = AutoRestParameterizedCustomHostTestClientConfiguration(
-            subscription_id=subscription_id, dns_suffix=dns_suffix, **kwargs
-        )
+    def __init__(
+        self,
+        subscription_id: str,
+        dns_suffix: str = "host",
+        **kwargs: Any
+    ) -> None:
+        _endpoint = '{vault}{secret}{dnsSuffix}'
+        self._config = AutoRestParameterizedCustomHostTestClientConfiguration(subscription_id=subscription_id, dns_suffix=dns_suffix, **kwargs)
         self._client = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
         self.paths = PathsOperations(self._client, self._config, self._serialize, self._deserialize)
+
 
     def send_request(
         self,
@@ -69,9 +72,7 @@ class AutoRestParameterizedCustomHostTestClient:
 
         request_copy = deepcopy(request)
         path_format_arguments = {
-            "dnsSuffix": self._serialize.url(
-                "self._config.dns_suffix", self._config.dns_suffix, "str", skip_quote=True
-            ),
+            "dnsSuffix": self._serialize.url("self._config.dns_suffix", self._config.dns_suffix, 'str', skip_quote=True),
         }
 
         request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)

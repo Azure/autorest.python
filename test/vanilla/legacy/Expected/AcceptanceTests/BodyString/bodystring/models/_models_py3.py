@@ -22,11 +22,17 @@ class Error(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "status": {"key": "status", "type": "int"},
-        "message": {"key": "message", "type": "str"},
+        'status': {'key': 'status', 'type': 'int'},
+        'message': {'key': 'message', 'type': 'str'},
     }
 
-    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        status: Optional[int] = None,
+        message: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword status:
         :paramtype status: int
@@ -52,17 +58,22 @@ class RefColorConstant(msrest.serialization.Model):
     """
 
     _validation = {
-        "color_constant": {"required": True, "constant": True},
+        'color_constant': {'required': True, 'constant': True},
     }
 
     _attribute_map = {
-        "color_constant": {"key": "ColorConstant", "type": "str"},
-        "field1": {"key": "field1", "type": "str"},
+        'color_constant': {'key': 'ColorConstant', 'type': 'str'},
+        'field1': {'key': 'field1', 'type': 'str'},
     }
 
     color_constant = "green-color"
 
-    def __init__(self, *, field1: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        field1: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword field1: Sample string.
         :paramtype field1: str

@@ -9,5 +9,5 @@
 from ._operations import ParmaterizedEndpointClientOperationsMixin
 
 __all__ = [
-    "ParmaterizedEndpointClientOperationsMixin",
+    'ParmaterizedEndpointClientOperationsMixin',
 ]

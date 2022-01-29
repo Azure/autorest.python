@@ -13,6 +13,6 @@ from ._non_string_enums_client_enums import (
 )
 
 __all__ = [
-    "FloatEnum",
-    "IntEnum",
+    'FloatEnum',
+    'IntEnum',
 ]

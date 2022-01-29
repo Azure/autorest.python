@@ -12,7 +12,8 @@ from azure.core import CaseInsensitiveEnumMeta
 
 
 class ContentType(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
-    """Content type for upload"""
+    """Content type for upload
+    """
 
     #: Content Type 'application/pdf'.
     APPLICATION_PDF = "application/pdf"
@@ -25,9 +26,9 @@ class ContentType(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
     #: Content Type 'application/json'.
     APPLICATION_JSON = "application/json"
 
-
 class ContentType1(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
-    """Content type for upload"""
+    """Content type for upload
+    """
 
     #: Content Type 'application/json'.
     APPLICATION_JSON = "application/json"

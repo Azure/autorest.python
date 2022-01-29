@@ -7,23 +7,14 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Optional, TYPE_CHECKING
+from typing import Any, TYPE_CHECKING
 
 from azure.core.rest import HttpRequest, HttpResponse
 from azure.mgmt.core import ARMPipelineClient
 from msrest import Deserializer, Serializer
 
 from ._configuration import AutoRestAzureSpecialParametersTestClientConfiguration
-from .operations import (
-    ApiVersionDefaultOperations,
-    ApiVersionLocalOperations,
-    HeaderOperations,
-    OdataOperations,
-    SkipUrlEncodingOperations,
-    SubscriptionInCredentialsOperations,
-    SubscriptionInMethodOperations,
-    XMsClientRequestIdOperations,
-)
+from .operations import ApiVersionDefaultOperations, ApiVersionLocalOperations, HeaderOperations, OdataOperations, SkipUrlEncodingOperations, SubscriptionInCredentialsOperations, SubscriptionInMethodOperations, XMsClientRequestIdOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -31,8 +22,7 @@ if TYPE_CHECKING:
 
     from azure.core.credentials import TokenCredential
 
-
-class AutoRestAzureSpecialParametersTestClient:
+class AutoRestAzureSpecialParametersTestClient:    # pylint: disable=too-many-instance-attributes
     """Test Infrastructure for AutoRest.
 
     :ivar xms_client_request_id: XMsClientRequestIdOperations operations
@@ -77,34 +67,21 @@ class AutoRestAzureSpecialParametersTestClient:
         endpoint: str = "http://localhost:3000",
         **kwargs: Any
     ) -> None:
-
-        self._config = AutoRestAzureSpecialParametersTestClientConfiguration(
-            subscription_id=subscription_id, credential=credential, **kwargs
-        )
+        
+        self._config = AutoRestAzureSpecialParametersTestClientConfiguration(subscription_id=subscription_id, credential=credential, **kwargs)
         self._client = ARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
-        self.xms_client_request_id = XMsClientRequestIdOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
-        self.subscription_in_credentials = SubscriptionInCredentialsOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
-        self.subscription_in_method = SubscriptionInMethodOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
-        self.api_version_default = ApiVersionDefaultOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
-        self.api_version_local = ApiVersionLocalOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
-        self.skip_url_encoding = SkipUrlEncodingOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
+        self.xms_client_request_id = XMsClientRequestIdOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.subscription_in_credentials = SubscriptionInCredentialsOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.subscription_in_method = SubscriptionInMethodOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.api_version_default = ApiVersionDefaultOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.api_version_local = ApiVersionLocalOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.skip_url_encoding = SkipUrlEncodingOperations(self._client, self._config, self._serialize, self._deserialize)
         self.odata = OdataOperations(self._client, self._config, self._serialize, self._deserialize)
         self.header = HeaderOperations(self._client, self._config, self._serialize, self._deserialize)
+
 
     def send_request(
         self,

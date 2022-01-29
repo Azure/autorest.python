@@ -17,10 +17,9 @@ from .operations import ObjectTypeClientOperationsMixin
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, Optional
+    from typing import Any, Dict
 
     from azure.core.rest import HttpRequest, HttpResponse
-
 
 class ObjectTypeClient(ObjectTypeClientOperationsMixin):
     """Service client for testing basic type: object swaggers.
@@ -42,6 +41,7 @@ class ObjectTypeClient(ObjectTypeClientOperationsMixin):
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
+
 
     def _send_request(
         self,

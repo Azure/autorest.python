@@ -18,7 +18,7 @@ from .operations import MultiapiServiceClientOperationsMixin, OperationGroupOneO
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any
 
     from azure.core.credentials import AzureKeyCredential
     from azure.core.rest import HttpRequest, HttpResponse
@@ -33,6 +33,9 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
     :type credential: ~azure.core.credentials.AzureKeyCredential
     :param base_url: Service URL. Default value is 'http://localhost:3000'.
     :type base_url: str
+    :keyword api_version: Api Version. The default value is "1.0.0". Note that overriding this
+     default value may result in unsupported behavior.
+    :paramtype api_version: str
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
      Retry-After header is present.
     """

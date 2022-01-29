@@ -9,5 +9,5 @@
 from ._operations import Datetimerfc1123Operations
 
 __all__ = [
-    "Datetimerfc1123Operations",
+    'Datetimerfc1123Operations',
 ]

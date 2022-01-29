@@ -20,7 +20,6 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Dict
 
-
 class AutoRestParameterizedHostTestClient:
     """Test Infrastructure for AutoRest.
 
@@ -30,14 +29,19 @@ class AutoRestParameterizedHostTestClient:
     :type host: str
     """
 
-    def __init__(self, host: str = "host", **kwargs: Any) -> None:
-        _endpoint = "http://{accountName}{host}"
+    def __init__(
+        self,
+        host: str = "host",
+        **kwargs: Any
+    ) -> None:
+        _endpoint = 'http://{accountName}{host}'
         self._config = AutoRestParameterizedHostTestClientConfiguration(host=host, **kwargs)
         self._client = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self.paths = PathsOperations(self._client, self._config, self._serialize, self._deserialize)
+
 
     def send_request(
         self,
@@ -63,7 +67,7 @@ class AutoRestParameterizedHostTestClient:
 
         request_copy = deepcopy(request)
         path_format_arguments = {
-            "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
+            "host": self._serialize.url("self._config.host", self._config.host, 'str', skip_quote=True),
         }
 
         request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)

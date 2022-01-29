@@ -18,7 +18,7 @@ from .operations import OperationGroupOneOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any
 
     from azure.core.credentials import TokenCredential
     from azure.core.rest import HttpRequest, HttpResponse
@@ -32,6 +32,9 @@ class MultiapiServiceClient(object):
     :type credential: ~azure.core.credentials.TokenCredential
     :param base_url: Service URL. Default value is 'http://localhost:3000'.
     :type base_url: str
+    :keyword api_version: Api Version. The default value is "0.0.0". Note that overriding this
+     default value may result in unsupported behavior.
+    :paramtype api_version: str
     """
 
     def __init__(

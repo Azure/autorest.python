@@ -14,6 +14,6 @@ except (SyntaxError, ImportError):
     from ._models import Widget  # type: ignore
 
 __all__ = [
-    "Error",
-    "Widget",
+    'Error',
+    'Widget',
 ]

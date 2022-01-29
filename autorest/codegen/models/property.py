@@ -170,5 +170,5 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
     def model_file_imports(self) -> FileImport:
         file_import = self.schema.model_file_imports()
         if not self.required:
-            file_import.add_from_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
+            file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
         return file_import

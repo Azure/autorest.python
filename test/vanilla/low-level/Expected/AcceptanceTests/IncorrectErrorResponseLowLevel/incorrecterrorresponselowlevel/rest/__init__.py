@@ -12,5 +12,5 @@ except (SyntaxError, ImportError):
     from ._request_builders import build_get_incorrect_error_from_server_request  # type: ignore
 
 __all__ = [
-    "build_get_incorrect_error_from_server_request",
+    'build_get_incorrect_error_from_server_request',
 ]

@@ -9,5 +9,5 @@
 from ._operations import GroupOperations
 
 __all__ = [
-    "GroupOperations",
+    'GroupOperations',
 ]

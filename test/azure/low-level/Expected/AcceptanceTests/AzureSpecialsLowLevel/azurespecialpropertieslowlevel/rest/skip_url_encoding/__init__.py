@@ -24,11 +24,11 @@ except (SyntaxError, ImportError):
     from ._request_builders import build_get_swagger_query_valid_request  # type: ignore
 
 __all__ = [
-    "build_get_method_path_valid_request",
-    "build_get_path_valid_request",
-    "build_get_swagger_path_valid_request",
-    "build_get_method_query_valid_request",
-    "build_get_method_query_null_request",
-    "build_get_path_query_valid_request",
-    "build_get_swagger_query_valid_request",
+    'build_get_method_path_valid_request',
+    'build_get_path_valid_request',
+    'build_get_swagger_path_valid_request',
+    'build_get_method_query_valid_request',
+    'build_get_method_query_null_request',
+    'build_get_path_query_valid_request',
+    'build_get_swagger_query_valid_request',
 ]

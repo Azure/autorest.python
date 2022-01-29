@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -6,37 +7,18 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-import functools
-from typing import Any, Callable, Dict, Generic, Optional, TypeVar
-import warnings
+from typing import Any, Callable, Dict, Optional, TypeVar
 
-from azure.core.exceptions import (
-    ClientAuthenticationError,
-    HttpResponseError,
-    ResourceExistsError,
-    ResourceNotFoundError,
-    map_error,
-)
+from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ...operations._operations import (
-    build_date_get_invalid_date_request,
-    build_date_get_max_date_request,
-    build_date_get_min_date_request,
-    build_date_get_null_request,
-    build_date_get_overflow_date_request,
-    build_date_get_underflow_date_request,
-    build_date_put_max_date_request,
-    build_date_put_min_date_request,
-)
-
-T = TypeVar("T")
+from ...operations._operations import build_date_get_invalid_date_request, build_date_get_max_date_request, build_date_get_min_date_request, build_date_get_null_request, build_date_get_overflow_date_request, build_date_get_underflow_date_request, build_date_put_max_date_request, build_date_put_min_date_request
+T = TypeVar('T')
 JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
-
 
 class DateOperations:
     """DateOperations async operations.
@@ -57,21 +39,32 @@ class DateOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_null(self, **kwargs: Any) -> Optional[datetime.date]:
+    async def get_null(
+        self,
+        **kwargs: Any
+    ) -> Optional[datetime.date]:
         """Get null date value.
 
         :return: date or None
         :rtype: ~datetime.date or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[datetime.date]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[datetime.date]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_date_get_null_request()
+        
+        request = build_date_get_null_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -88,24 +81,35 @@ class DateOperations:
 
         return deserialized
 
-    get_null.metadata = {"url": "/date/null"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_invalid_date(self, **kwargs: Any) -> datetime.date:
+    async def get_invalid_date(
+        self,
+        **kwargs: Any
+    ) -> datetime.date:
         """Get invalid date value.
 
         :return: date
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.date]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.date]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_date_get_invalid_date_request()
+        
+        request = build_date_get_invalid_date_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -122,24 +126,35 @@ class DateOperations:
 
         return deserialized
 
-    get_invalid_date.metadata = {"url": "/date/invaliddate"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_overflow_date(self, **kwargs: Any) -> datetime.date:
+    async def get_overflow_date(
+        self,
+        **kwargs: Any
+    ) -> datetime.date:
         """Get overflow date value.
 
         :return: date
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.date]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.date]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_date_get_overflow_date_request()
+        
+        request = build_date_get_overflow_date_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -156,24 +171,35 @@ class DateOperations:
 
         return deserialized
 
-    get_overflow_date.metadata = {"url": "/date/overflowdate"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_underflow_date(self, **kwargs: Any) -> datetime.date:
+    async def get_underflow_date(
+        self,
+        **kwargs: Any
+    ) -> datetime.date:
         """Get underflow date value.
 
         :return: date
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.date]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.date]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_date_get_underflow_date_request()
+        
+        request = build_date_get_underflow_date_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -190,10 +216,14 @@ class DateOperations:
 
         return deserialized
 
-    get_underflow_date.metadata = {"url": "/date/underflowdate"}  # type: ignore
+
 
     @distributed_trace_async
-    async def put_max_date(self, date_body: datetime.date, **kwargs: Any) -> None:
+    async def put_max_date(
+        self,
+        date_body: datetime.date,
+        **kwargs: Any
+    ) -> None:
         """Put max date value 9999-12-31.
 
         :param date_body: date body.
@@ -202,11 +232,13 @@ class DateOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
         _json = date_body
 
@@ -216,7 +248,11 @@ class DateOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -226,24 +262,35 @@ class DateOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_max_date.metadata = {"url": "/date/max"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_max_date(self, **kwargs: Any) -> datetime.date:
+    async def get_max_date(
+        self,
+        **kwargs: Any
+    ) -> datetime.date:
         """Get max date value 9999-12-31.
 
         :return: date
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.date]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.date]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_date_get_max_date_request()
+        
+        request = build_date_get_max_date_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -260,10 +307,14 @@ class DateOperations:
 
         return deserialized
 
-    get_max_date.metadata = {"url": "/date/max"}  # type: ignore
+
 
     @distributed_trace_async
-    async def put_min_date(self, date_body: datetime.date, **kwargs: Any) -> None:
+    async def put_min_date(
+        self,
+        date_body: datetime.date,
+        **kwargs: Any
+    ) -> None:
         """Put min date value 0000-01-01.
 
         :param date_body: date body.
@@ -272,11 +323,13 @@ class DateOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
         _json = date_body
 
@@ -286,7 +339,11 @@ class DateOperations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -296,24 +353,35 @@ class DateOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_min_date.metadata = {"url": "/date/min"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_min_date(self, **kwargs: Any) -> datetime.date:
+    async def get_min_date(
+        self,
+        **kwargs: Any
+    ) -> datetime.date:
         """Get min date value 0000-01-01.
 
         :return: date
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.date]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.date]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_date_get_min_date_request()
+        
+        request = build_date_get_min_date_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -330,4 +398,4 @@ class DateOperations:
 
         return deserialized
 
-    get_min_date.metadata = {"url": "/date/min"}  # type: ignore
+

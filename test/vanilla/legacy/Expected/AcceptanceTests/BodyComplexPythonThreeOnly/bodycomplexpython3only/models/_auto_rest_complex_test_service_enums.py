@@ -18,9 +18,9 @@ class CMYKColors(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
     YELLOW = "YELLOW"
     BLAC_K = "blacK"
 
-
 class GoblinSharkColor(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
-    """Colors possible"""
+    """Colors possible
+    """
 
     PINK = "pink"
     GRAY = "gray"
@@ -29,7 +29,6 @@ class GoblinSharkColor(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
     UPPER_RED = "RED"
     #: Lowercase RED.
     LOWER_RED = "red"
-
 
 class MyKind(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 

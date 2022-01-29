@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -6,59 +7,19 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-import functools
-from typing import Any, Callable, Dict, Generic, Optional, TypeVar
-import warnings
+from typing import Any, Callable, Dict, Optional, TypeVar
 
-from azure.core.exceptions import (
-    ClientAuthenticationError,
-    HttpResponseError,
-    ResourceExistsError,
-    ResourceNotFoundError,
-    map_error,
-)
+from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ...operations._operations import (
-    build_header_custom_request_id_request,
-    build_header_param_bool_request,
-    build_header_param_byte_request,
-    build_header_param_date_request,
-    build_header_param_datetime_request,
-    build_header_param_datetime_rfc1123_request,
-    build_header_param_double_request,
-    build_header_param_duration_request,
-    build_header_param_enum_request,
-    build_header_param_existing_key_request,
-    build_header_param_float_request,
-    build_header_param_integer_request,
-    build_header_param_long_request,
-    build_header_param_protected_key_request,
-    build_header_param_string_request,
-    build_header_response_bool_request,
-    build_header_response_byte_request,
-    build_header_response_date_request,
-    build_header_response_datetime_request,
-    build_header_response_datetime_rfc1123_request,
-    build_header_response_double_request,
-    build_header_response_duration_request,
-    build_header_response_enum_request,
-    build_header_response_existing_key_request,
-    build_header_response_float_request,
-    build_header_response_integer_request,
-    build_header_response_long_request,
-    build_header_response_protected_key_request,
-    build_header_response_string_request,
-)
-
-T = TypeVar("T")
+from ...operations._operations import build_header_custom_request_id_request, build_header_param_bool_request, build_header_param_byte_request, build_header_param_date_request, build_header_param_datetime_request, build_header_param_datetime_rfc1123_request, build_header_param_double_request, build_header_param_duration_request, build_header_param_enum_request, build_header_param_existing_key_request, build_header_param_float_request, build_header_param_integer_request, build_header_param_long_request, build_header_param_protected_key_request, build_header_param_string_request, build_header_response_bool_request, build_header_response_byte_request, build_header_response_date_request, build_header_response_datetime_request, build_header_response_datetime_rfc1123_request, build_header_response_double_request, build_header_response_duration_request, build_header_response_enum_request, build_header_response_existing_key_request, build_header_response_float_request, build_header_response_integer_request, build_header_response_long_request, build_header_response_protected_key_request, build_header_response_string_request
+T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
-
-class HeaderOperations:
+class HeaderOperations:  # pylint: disable=too-many-public-methods
     """HeaderOperations async operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -77,7 +38,12 @@ class HeaderOperations:
         self._config = config
 
     @distributed_trace_async
-    async def param_existing_key(self, *, user_agent_parameter: str, **kwargs: Any) -> None:
+    async def param_existing_key(
+        self,
+        *,
+        user_agent_parameter: str,
+        **kwargs: Any
+    ) -> None:
         """Send a post request with header value "User-Agent": "overwrite".
 
         :keyword user_agent_parameter: Send a post request with header value "User-Agent": "overwrite".
@@ -86,16 +52,23 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_header_param_existing_key_request(
             user_agent_parameter=user_agent_parameter,
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -105,24 +78,35 @@ class HeaderOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_existing_key.metadata = {"url": "/header/param/existingkey"}  # type: ignore
+
 
     @distributed_trace_async
-    async def response_existing_key(self, **kwargs: Any) -> None:
+    async def response_existing_key(
+        self,
+        **kwargs: Any
+    ) -> None:
         """Get a response with header value "User-Agent": "overwrite".
 
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_header_response_existing_key_request()
+        
+        request = build_header_response_existing_key_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -130,33 +114,44 @@ class HeaderOperations:
             raise HttpResponseError(response=response)
 
         response_headers = {}
-        response_headers["User-Agent"] = self._deserialize("str", response.headers.get("User-Agent"))
+        response_headers['User-Agent']=self._deserialize('str', response.headers.get('User-Agent'))
+
 
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_existing_key.metadata = {"url": "/header/response/existingkey"}  # type: ignore
+
 
     @distributed_trace_async
-    async def param_protected_key(self, **kwargs: Any) -> None:
+    async def param_protected_key(
+        self,
+        **kwargs: Any
+    ) -> None:
         """Send a post request with header value "Content-Type": "text/html".
 
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        content_type = kwargs.pop("content_type")  # type: str
+        content_type = kwargs.pop('content_type')  # type: str
 
+        
         request = build_header_param_protected_key_request(
             content_type=content_type,
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -166,24 +161,35 @@ class HeaderOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_protected_key.metadata = {"url": "/header/param/protectedkey"}  # type: ignore
+
 
     @distributed_trace_async
-    async def response_protected_key(self, **kwargs: Any) -> None:
+    async def response_protected_key(
+        self,
+        **kwargs: Any
+    ) -> None:
         """Get a response with header value "Content-Type": "text/html".
 
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_header_response_protected_key_request()
+        
+        request = build_header_response_protected_key_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -191,15 +197,22 @@ class HeaderOperations:
             raise HttpResponseError(response=response)
 
         response_headers = {}
-        response_headers["Content-Type"] = self._deserialize("str", response.headers.get("Content-Type"))
+        response_headers['Content-Type']=self._deserialize('str', response.headers.get('Content-Type'))
+
 
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_protected_key.metadata = {"url": "/header/response/protectedkey"}  # type: ignore
+
 
     @distributed_trace_async
-    async def param_integer(self, *, scenario: str, value: int, **kwargs: Any) -> None:
+    async def param_integer(
+        self,
+        *,
+        scenario: str,
+        value: int,
+        **kwargs: Any
+    ) -> None:
         """Send a post request with header values "scenario": "positive", "value": 1 or "scenario":
         "negative", "value": -2.
 
@@ -211,17 +224,24 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_header_param_integer_request(
             scenario=scenario,
             value=value,
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -231,10 +251,15 @@ class HeaderOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_integer.metadata = {"url": "/header/param/prim/integer"}  # type: ignore
+
 
     @distributed_trace_async
-    async def response_integer(self, *, scenario: str, **kwargs: Any) -> None:
+    async def response_integer(
+        self,
+        *,
+        scenario: str,
+        **kwargs: Any
+    ) -> None:
         """Get a response with header value "value": 1 or -2.
 
         :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
@@ -243,16 +268,23 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_header_response_integer_request(
             scenario=scenario,
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -260,15 +292,22 @@ class HeaderOperations:
             raise HttpResponseError(response=response)
 
         response_headers = {}
-        response_headers["value"] = self._deserialize("int", response.headers.get("value"))
+        response_headers['value']=self._deserialize('int', response.headers.get('value'))
+
 
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_integer.metadata = {"url": "/header/response/prim/integer"}  # type: ignore
+
 
     @distributed_trace_async
-    async def param_long(self, *, scenario: str, value: int, **kwargs: Any) -> None:
+    async def param_long(
+        self,
+        *,
+        scenario: str,
+        value: int,
+        **kwargs: Any
+    ) -> None:
         """Send a post request with header values "scenario": "positive", "value": 105 or "scenario":
         "negative", "value": -2.
 
@@ -280,17 +319,24 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_header_param_long_request(
             scenario=scenario,
             value=value,
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -300,10 +346,15 @@ class HeaderOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_long.metadata = {"url": "/header/param/prim/long"}  # type: ignore
+
 
     @distributed_trace_async
-    async def response_long(self, *, scenario: str, **kwargs: Any) -> None:
+    async def response_long(
+        self,
+        *,
+        scenario: str,
+        **kwargs: Any
+    ) -> None:
         """Get a response with header value "value": 105 or -2.
 
         :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
@@ -312,16 +363,23 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_header_response_long_request(
             scenario=scenario,
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -329,15 +387,22 @@ class HeaderOperations:
             raise HttpResponseError(response=response)
 
         response_headers = {}
-        response_headers["value"] = self._deserialize("long", response.headers.get("value"))
+        response_headers['value']=self._deserialize('long', response.headers.get('value'))
+
 
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_long.metadata = {"url": "/header/response/prim/long"}  # type: ignore
+
 
     @distributed_trace_async
-    async def param_float(self, *, scenario: str, value: float, **kwargs: Any) -> None:
+    async def param_float(
+        self,
+        *,
+        scenario: str,
+        value: float,
+        **kwargs: Any
+    ) -> None:
         """Send a post request with header values "scenario": "positive", "value": 0.07 or "scenario":
         "negative", "value": -3.0.
 
@@ -349,17 +414,24 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_header_param_float_request(
             scenario=scenario,
             value=value,
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -369,10 +441,15 @@ class HeaderOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_float.metadata = {"url": "/header/param/prim/float"}  # type: ignore
+
 
     @distributed_trace_async
-    async def response_float(self, *, scenario: str, **kwargs: Any) -> None:
+    async def response_float(
+        self,
+        *,
+        scenario: str,
+        **kwargs: Any
+    ) -> None:
         """Get a response with header value "value": 0.07 or -3.0.
 
         :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
@@ -381,16 +458,23 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_header_response_float_request(
             scenario=scenario,
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -398,15 +482,22 @@ class HeaderOperations:
             raise HttpResponseError(response=response)
 
         response_headers = {}
-        response_headers["value"] = self._deserialize("float", response.headers.get("value"))
+        response_headers['value']=self._deserialize('float', response.headers.get('value'))
+
 
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_float.metadata = {"url": "/header/response/prim/float"}  # type: ignore
+
 
     @distributed_trace_async
-    async def param_double(self, *, scenario: str, value: float, **kwargs: Any) -> None:
+    async def param_double(
+        self,
+        *,
+        scenario: str,
+        value: float,
+        **kwargs: Any
+    ) -> None:
         """Send a post request with header values "scenario": "positive", "value": 7e120 or "scenario":
         "negative", "value": -3.0.
 
@@ -418,17 +509,24 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_header_param_double_request(
             scenario=scenario,
             value=value,
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -438,10 +536,15 @@ class HeaderOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_double.metadata = {"url": "/header/param/prim/double"}  # type: ignore
+
 
     @distributed_trace_async
-    async def response_double(self, *, scenario: str, **kwargs: Any) -> None:
+    async def response_double(
+        self,
+        *,
+        scenario: str,
+        **kwargs: Any
+    ) -> None:
         """Get a response with header value "value": 7e120 or -3.0.
 
         :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
@@ -450,16 +553,23 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_header_response_double_request(
             scenario=scenario,
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -467,15 +577,22 @@ class HeaderOperations:
             raise HttpResponseError(response=response)
 
         response_headers = {}
-        response_headers["value"] = self._deserialize("float", response.headers.get("value"))
+        response_headers['value']=self._deserialize('float', response.headers.get('value'))
+
 
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_double.metadata = {"url": "/header/response/prim/double"}  # type: ignore
+
 
     @distributed_trace_async
-    async def param_bool(self, *, scenario: str, value: bool, **kwargs: Any) -> None:
+    async def param_bool(
+        self,
+        *,
+        scenario: str,
+        value: bool,
+        **kwargs: Any
+    ) -> None:
         """Send a post request with header values "scenario": "true", "value": true or "scenario":
         "false", "value": false.
 
@@ -487,17 +604,24 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_header_param_bool_request(
             scenario=scenario,
             value=value,
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -507,10 +631,15 @@ class HeaderOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_bool.metadata = {"url": "/header/param/prim/bool"}  # type: ignore
+
 
     @distributed_trace_async
-    async def response_bool(self, *, scenario: str, **kwargs: Any) -> None:
+    async def response_bool(
+        self,
+        *,
+        scenario: str,
+        **kwargs: Any
+    ) -> None:
         """Get a response with header value "value": true or false.
 
         :keyword scenario: Send a post request with header values "scenario": "true" or "false".
@@ -519,16 +648,23 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_header_response_bool_request(
             scenario=scenario,
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -536,15 +672,22 @@ class HeaderOperations:
             raise HttpResponseError(response=response)
 
         response_headers = {}
-        response_headers["value"] = self._deserialize("bool", response.headers.get("value"))
+        response_headers['value']=self._deserialize('bool', response.headers.get('value'))
+
 
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_bool.metadata = {"url": "/header/response/prim/bool"}  # type: ignore
+
 
     @distributed_trace_async
-    async def param_string(self, *, scenario: str, value: Optional[str] = None, **kwargs: Any) -> None:
+    async def param_string(
+        self,
+        *,
+        scenario: str,
+        value: Optional[str] = None,
+        **kwargs: Any
+    ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "The quick brown fox jumps
         over the lazy dog" or "scenario": "null", "value": null or "scenario": "empty", "value": "".
 
@@ -558,17 +701,24 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_header_param_string_request(
             scenario=scenario,
             value=value,
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -578,10 +728,15 @@ class HeaderOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_string.metadata = {"url": "/header/param/prim/string"}  # type: ignore
+
 
     @distributed_trace_async
-    async def response_string(self, *, scenario: str, **kwargs: Any) -> None:
+    async def response_string(
+        self,
+        *,
+        scenario: str,
+        **kwargs: Any
+    ) -> None:
         """Get a response with header values "The quick brown fox jumps over the lazy dog" or null or "".
 
         :keyword scenario: Send a post request with header values "scenario": "valid" or "null" or
@@ -591,16 +746,23 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_header_response_string_request(
             scenario=scenario,
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -608,15 +770,22 @@ class HeaderOperations:
             raise HttpResponseError(response=response)
 
         response_headers = {}
-        response_headers["value"] = self._deserialize("str", response.headers.get("value"))
+        response_headers['value']=self._deserialize('str', response.headers.get('value'))
+
 
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_string.metadata = {"url": "/header/response/prim/string"}  # type: ignore
+
 
     @distributed_trace_async
-    async def param_date(self, *, scenario: str, value: datetime.date, **kwargs: Any) -> None:
+    async def param_date(
+        self,
+        *,
+        scenario: str,
+        value: datetime.date,
+        **kwargs: Any
+    ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "2010-01-01" or
         "scenario": "min", "value": "0001-01-01".
 
@@ -628,17 +797,24 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_header_param_date_request(
             scenario=scenario,
             value=value,
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -648,10 +824,15 @@ class HeaderOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_date.metadata = {"url": "/header/param/prim/date"}  # type: ignore
+
 
     @distributed_trace_async
-    async def response_date(self, *, scenario: str, **kwargs: Any) -> None:
+    async def response_date(
+        self,
+        *,
+        scenario: str,
+        **kwargs: Any
+    ) -> None:
         """Get a response with header values "2010-01-01" or "0001-01-01".
 
         :keyword scenario: Send a post request with header values "scenario": "valid" or "min".
@@ -660,16 +841,23 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_header_response_date_request(
             scenario=scenario,
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -677,15 +865,22 @@ class HeaderOperations:
             raise HttpResponseError(response=response)
 
         response_headers = {}
-        response_headers["value"] = self._deserialize("date", response.headers.get("value"))
+        response_headers['value']=self._deserialize('date', response.headers.get('value'))
+
 
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_date.metadata = {"url": "/header/response/prim/date"}  # type: ignore
+
 
     @distributed_trace_async
-    async def param_datetime(self, *, scenario: str, value: datetime.datetime, **kwargs: Any) -> None:
+    async def param_datetime(
+        self,
+        *,
+        scenario: str,
+        value: datetime.datetime,
+        **kwargs: Any
+    ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "2010-01-01T12:34:56Z" or
         "scenario": "min", "value": "0001-01-01T00:00:00Z".
 
@@ -698,17 +893,24 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_header_param_datetime_request(
             scenario=scenario,
             value=value,
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -718,10 +920,15 @@ class HeaderOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_datetime.metadata = {"url": "/header/param/prim/datetime"}  # type: ignore
+
 
     @distributed_trace_async
-    async def response_datetime(self, *, scenario: str, **kwargs: Any) -> None:
+    async def response_datetime(
+        self,
+        *,
+        scenario: str,
+        **kwargs: Any
+    ) -> None:
         """Get a response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z".
 
         :keyword scenario: Send a post request with header values "scenario": "valid" or "min".
@@ -730,16 +937,23 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_header_response_datetime_request(
             scenario=scenario,
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -747,16 +961,21 @@ class HeaderOperations:
             raise HttpResponseError(response=response)
 
         response_headers = {}
-        response_headers["value"] = self._deserialize("iso-8601", response.headers.get("value"))
+        response_headers['value']=self._deserialize('iso-8601', response.headers.get('value'))
+
 
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_datetime.metadata = {"url": "/header/response/prim/datetime"}  # type: ignore
+
 
     @distributed_trace_async
     async def param_datetime_rfc1123(
-        self, *, scenario: str, value: Optional[datetime.datetime] = None, **kwargs: Any
+        self,
+        *,
+        scenario: str,
+        value: Optional[datetime.datetime] = None,
+        **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "Wed, 01 Jan 2010 12:34:56
         GMT" or "scenario": "min", "value": "Mon, 01 Jan 0001 00:00:00 GMT".
@@ -770,17 +989,24 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_header_param_datetime_rfc1123_request(
             scenario=scenario,
             value=value,
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -790,10 +1016,15 @@ class HeaderOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_datetime_rfc1123.metadata = {"url": "/header/param/prim/datetimerfc1123"}  # type: ignore
+
 
     @distributed_trace_async
-    async def response_datetime_rfc1123(self, *, scenario: str, **kwargs: Any) -> None:
+    async def response_datetime_rfc1123(
+        self,
+        *,
+        scenario: str,
+        **kwargs: Any
+    ) -> None:
         """Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00
         GMT".
 
@@ -803,16 +1034,23 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_header_response_datetime_rfc1123_request(
             scenario=scenario,
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -820,15 +1058,22 @@ class HeaderOperations:
             raise HttpResponseError(response=response)
 
         response_headers = {}
-        response_headers["value"] = self._deserialize("rfc-1123", response.headers.get("value"))
+        response_headers['value']=self._deserialize('rfc-1123', response.headers.get('value'))
+
 
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_datetime_rfc1123.metadata = {"url": "/header/response/prim/datetimerfc1123"}  # type: ignore
+
 
     @distributed_trace_async
-    async def param_duration(self, *, scenario: str, value: datetime.timedelta, **kwargs: Any) -> None:
+    async def param_duration(
+        self,
+        *,
+        scenario: str,
+        value: datetime.timedelta,
+        **kwargs: Any
+    ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "P123DT22H14M12.011S".
 
         :keyword scenario: Send a post request with header values "scenario": "valid".
@@ -839,17 +1084,24 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_header_param_duration_request(
             scenario=scenario,
             value=value,
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -859,10 +1111,15 @@ class HeaderOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_duration.metadata = {"url": "/header/param/prim/duration"}  # type: ignore
+
 
     @distributed_trace_async
-    async def response_duration(self, *, scenario: str, **kwargs: Any) -> None:
+    async def response_duration(
+        self,
+        *,
+        scenario: str,
+        **kwargs: Any
+    ) -> None:
         """Get a response with header values "P123DT22H14M12.011S".
 
         :keyword scenario: Send a post request with header values "scenario": "valid".
@@ -871,16 +1128,23 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_header_response_duration_request(
             scenario=scenario,
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -888,15 +1152,22 @@ class HeaderOperations:
             raise HttpResponseError(response=response)
 
         response_headers = {}
-        response_headers["value"] = self._deserialize("duration", response.headers.get("value"))
+        response_headers['value']=self._deserialize('duration', response.headers.get('value'))
+
 
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_duration.metadata = {"url": "/header/response/prim/duration"}  # type: ignore
+
 
     @distributed_trace_async
-    async def param_byte(self, *, scenario: str, value: bytearray, **kwargs: Any) -> None:
+    async def param_byte(
+        self,
+        *,
+        scenario: str,
+        value: bytearray,
+        **kwargs: Any
+    ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "啊齄丂狛狜隣郎隣兀﨩".
 
         :keyword scenario: Send a post request with header values "scenario": "valid".
@@ -907,17 +1178,24 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_header_param_byte_request(
             scenario=scenario,
             value=value,
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -927,10 +1205,15 @@ class HeaderOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_byte.metadata = {"url": "/header/param/prim/byte"}  # type: ignore
+
 
     @distributed_trace_async
-    async def response_byte(self, *, scenario: str, **kwargs: Any) -> None:
+    async def response_byte(
+        self,
+        *,
+        scenario: str,
+        **kwargs: Any
+    ) -> None:
         """Get a response with header values "啊齄丂狛狜隣郎隣兀﨩".
 
         :keyword scenario: Send a post request with header values "scenario": "valid".
@@ -939,16 +1222,23 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_header_response_byte_request(
             scenario=scenario,
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -956,15 +1246,22 @@ class HeaderOperations:
             raise HttpResponseError(response=response)
 
         response_headers = {}
-        response_headers["value"] = self._deserialize("bytearray", response.headers.get("value"))
+        response_headers['value']=self._deserialize('bytearray', response.headers.get('value'))
+
 
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_byte.metadata = {"url": "/header/response/prim/byte"}  # type: ignore
+
 
     @distributed_trace_async
-    async def param_enum(self, *, scenario: str, value: Optional[str] = None, **kwargs: Any) -> None:
+    async def param_enum(
+        self,
+        *,
+        scenario: str,
+        value: Optional[str] = None,
+        **kwargs: Any
+    ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "GREY" or "scenario":
         "null", "value": null.
 
@@ -978,17 +1275,24 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_header_param_enum_request(
             scenario=scenario,
             value=value,
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -998,10 +1302,15 @@ class HeaderOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_enum.metadata = {"url": "/header/param/prim/enum"}  # type: ignore
+
 
     @distributed_trace_async
-    async def response_enum(self, *, scenario: str, **kwargs: Any) -> None:
+    async def response_enum(
+        self,
+        *,
+        scenario: str,
+        **kwargs: Any
+    ) -> None:
         """Get a response with header values "GREY" or null.
 
         :keyword scenario: Send a post request with header values "scenario": "valid" or "null" or
@@ -1011,16 +1320,23 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
+        
         request = build_header_response_enum_request(
             scenario=scenario,
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1028,15 +1344,19 @@ class HeaderOperations:
             raise HttpResponseError(response=response)
 
         response_headers = {}
-        response_headers["value"] = self._deserialize("str", response.headers.get("value"))
+        response_headers['value']=self._deserialize('str', response.headers.get('value'))
+
 
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_enum.metadata = {"url": "/header/response/prim/enum"}  # type: ignore
+
 
     @distributed_trace_async
-    async def custom_request_id(self, **kwargs: Any) -> None:
+    async def custom_request_id(
+        self,
+        **kwargs: Any
+    ) -> None:
         """Send x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the
         request.
 
@@ -1044,14 +1364,22 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_header_custom_request_id_request()
+        
+        request = build_header_custom_request_id_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1061,4 +1389,4 @@ class HeaderOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    custom_request_id.metadata = {"url": "/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0"}  # type: ignore
+

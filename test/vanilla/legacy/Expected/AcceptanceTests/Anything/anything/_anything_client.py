@@ -17,13 +17,13 @@ from .operations import AnythingClientOperationsMixin
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, Optional
+    from typing import Any, Dict
 
     from azure.core.rest import HttpRequest, HttpResponse
 
-
 class AnythingClient(AnythingClientOperationsMixin):
-    """Service client for testing basic anything types. Those schemas without types can be anything:  primitive, object, array.
+    """Service client for testing basic anything types. Those schemas without types can be anything:
+    primitive, object, array.
 
     :param base_url: Service URL. Default value is 'http://localhost:3000'.
     :type base_url: str
@@ -42,6 +42,7 @@ class AnythingClient(AnythingClientOperationsMixin):
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
+
 
     def _send_request(
         self,

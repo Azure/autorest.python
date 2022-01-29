@@ -15,8 +15,7 @@ from ..._vendor import _format_url_section
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Dict, Optional, TypeVar
-
-    T = TypeVar("T")
+    T = TypeVar('T')
     JSONType = Any
 
 _SERIALIZER = Serializer()
@@ -56,7 +55,8 @@ def build_update_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "tags": {
-                    "str": "str"  # Required. A set of tags. A description about the set of tags.
+                    "str": "str"  # Required. A set of tags. A description about the set
+                      of tags.
                 }
             }
     """
@@ -83,3 +83,4 @@ def build_update_request(
         headers=header_parameters,
         **kwargs
     )
+

@@ -19,7 +19,7 @@ if TYPE_CHECKING:
 
 VERSION = "unknown"
 
-class MultiapiServiceClientConfiguration(Configuration):
+class MultiapiServiceClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
     """Configuration for MultiapiServiceClient.
 
     Note that all parameters used to create this instance are saved as instance
@@ -27,6 +27,9 @@ class MultiapiServiceClientConfiguration(Configuration):
 
     :param credential: Credential needed for the client to connect to Azure.
     :type credential: ~azure.core.credentials.TokenCredential
+    :keyword api_version: Api Version. The default value is "2.0.0". Note that overriding this
+     default value may result in unsupported behavior.
+    :paramtype api_version: str
     """
 
     def __init__(
@@ -36,11 +39,13 @@ class MultiapiServiceClientConfiguration(Configuration):
     ):
         # type: (...) -> None
         super(MultiapiServiceClientConfiguration, self).__init__(**kwargs)
+        api_version = kwargs.pop('api_version', "2.0.0")  # type: str
+
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
 
         self.credential = credential
-        self.api_version = "2.0.0"
+        self.api_version = api_version
         self.credential_scopes = kwargs.pop('credential_scopes', [])
         kwargs.setdefault('sdk_moniker', 'multiapidataplane/{}'.format(VERSION))
         self._configure(**kwargs)

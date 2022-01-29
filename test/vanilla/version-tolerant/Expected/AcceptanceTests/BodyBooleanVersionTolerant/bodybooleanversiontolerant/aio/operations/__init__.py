@@ -9,5 +9,5 @@
 from ._operations import BoolOperations
 
 __all__ = [
-    "BoolOperations",
+    'BoolOperations',
 ]

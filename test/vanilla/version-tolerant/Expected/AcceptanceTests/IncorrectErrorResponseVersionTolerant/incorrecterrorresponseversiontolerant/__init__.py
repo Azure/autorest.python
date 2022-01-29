@@ -10,10 +10,9 @@ from ._incorrect_returned_error_model import IncorrectReturnedErrorModel
 from ._version import VERSION
 
 __version__ = VERSION
-__all__ = ["IncorrectReturnedErrorModel"]
+__all__ = ['IncorrectReturnedErrorModel']
 
 # `._patch.py` is used for handwritten extensions to the generated code
 # Example: https://github.com/Azure/azure-sdk-for-python/blob/main/doc/dev/customize_code/how-to-patch-sdk-code.md
 from ._patch import patch_sdk
-
 patch_sdk()

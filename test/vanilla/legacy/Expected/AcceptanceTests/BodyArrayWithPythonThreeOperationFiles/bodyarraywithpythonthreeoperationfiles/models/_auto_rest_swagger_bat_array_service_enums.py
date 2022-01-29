@@ -17,13 +17,11 @@ class Enum0(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
     FOO2 = "foo2"
     FOO3 = "foo3"
 
-
 class Enum1(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     FOO1 = "foo1"
     FOO2 = "foo2"
     FOO3 = "foo3"
-
 
 class FooEnum(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 

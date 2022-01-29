@@ -22,10 +22,10 @@ except (SyntaxError, ImportError):
     from ._request_builders import build_create_ap_in_properties_with_ap_string_request  # type: ignore
 
 __all__ = [
-    "build_create_ap_true_request",
-    "build_create_cat_ap_true_request",
-    "build_create_ap_object_request",
-    "build_create_ap_string_request",
-    "build_create_ap_in_properties_request",
-    "build_create_ap_in_properties_with_ap_string_request",
+    'build_create_ap_true_request',
+    'build_create_cat_ap_true_request',
+    'build_create_ap_object_request',
+    'build_create_ap_string_request',
+    'build_create_ap_in_properties_request',
+    'build_create_ap_in_properties_with_ap_string_request',
 ]

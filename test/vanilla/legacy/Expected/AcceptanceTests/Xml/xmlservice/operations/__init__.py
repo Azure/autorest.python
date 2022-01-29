@@ -9,5 +9,5 @@
 from ._xml_operations import XmlOperations
 
 __all__ = [
-    "XmlOperations",
+    'XmlOperations',
 ]

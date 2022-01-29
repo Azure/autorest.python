@@ -12,15 +12,16 @@ from azure.core import CaseInsensitiveEnumMeta
 
 
 class PetFood(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
-    """Can take a value of meat, or fish, or plant"""
+    """Can take a value of meat, or fish, or plant
+    """
 
     MEAT = "meat"
     FISH = "fish"
     PLANT = "plant"
 
-
 class PetType(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
-    """Can take a value of dog, or cat, or fish"""
+    """Can take a value of dog, or cat, or fish
+    """
 
     DOG = "dog"
     CAT = "cat"

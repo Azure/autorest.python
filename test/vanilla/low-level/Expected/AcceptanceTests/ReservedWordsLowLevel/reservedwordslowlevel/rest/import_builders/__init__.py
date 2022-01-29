@@ -12,5 +12,5 @@ except (SyntaxError, ImportError):
     from ._request_builders import build_operation_one_request  # type: ignore
 
 __all__ = [
-    "build_operation_one_request",
+    'build_operation_one_request',
 ]

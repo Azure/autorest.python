@@ -20,11 +20,14 @@ class Error(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "status": {"key": "status", "type": "int"},
-        "message": {"key": "message", "type": "str"},
+        'status': {'key': 'status', 'type': 'int'},
+        'message': {'key': 'message', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword status:
         :paramtype status: int
@@ -32,8 +35,8 @@ class Error(msrest.serialization.Model):
         :paramtype message: str
         """
         super(Error, self).__init__(**kwargs)
-        self.status = kwargs.get("status", None)
-        self.message = kwargs.get("message", None)
+        self.status = kwargs.get('status', None)
+        self.message = kwargs.get('message', None)
 
 
 class Widget(msrest.serialization.Model):
@@ -46,11 +49,14 @@ class Widget(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "integer": {"key": "integer", "type": "int"},
-        "string": {"key": "string", "type": "str"},
+        'integer': {'key': 'integer', 'type': 'int'},
+        'string': {'key': 'string', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword integer:
         :paramtype integer: int
@@ -58,5 +64,5 @@ class Widget(msrest.serialization.Model):
         :paramtype string: str
         """
         super(Widget, self).__init__(**kwargs)
-        self.integer = kwargs.get("integer", None)
-        self.string = kwargs.get("string", None)
+        self.integer = kwargs.get('integer', None)
+        self.string = kwargs.get('string', None)

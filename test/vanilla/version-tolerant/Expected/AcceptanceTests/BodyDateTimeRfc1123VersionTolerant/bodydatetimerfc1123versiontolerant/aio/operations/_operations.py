@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -6,38 +7,18 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-import functools
-from typing import Any, Callable, Dict, Generic, Optional, TypeVar
-import warnings
+from typing import Any, Callable, Dict, Optional, TypeVar
 
-from azure.core.exceptions import (
-    ClientAuthenticationError,
-    HttpResponseError,
-    ResourceExistsError,
-    ResourceNotFoundError,
-    map_error,
-)
+from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ...operations._operations import (
-    build_datetimerfc1123_get_invalid_request,
-    build_datetimerfc1123_get_null_request,
-    build_datetimerfc1123_get_overflow_request,
-    build_datetimerfc1123_get_underflow_request,
-    build_datetimerfc1123_get_utc_lowercase_max_date_time_request,
-    build_datetimerfc1123_get_utc_min_date_time_request,
-    build_datetimerfc1123_get_utc_uppercase_max_date_time_request,
-    build_datetimerfc1123_put_utc_max_date_time_request,
-    build_datetimerfc1123_put_utc_min_date_time_request,
-)
-
-T = TypeVar("T")
+from ...operations._operations import build_datetimerfc1123_get_invalid_request, build_datetimerfc1123_get_null_request, build_datetimerfc1123_get_overflow_request, build_datetimerfc1123_get_underflow_request, build_datetimerfc1123_get_utc_lowercase_max_date_time_request, build_datetimerfc1123_get_utc_min_date_time_request, build_datetimerfc1123_get_utc_uppercase_max_date_time_request, build_datetimerfc1123_put_utc_max_date_time_request, build_datetimerfc1123_put_utc_min_date_time_request
+T = TypeVar('T')
 JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
-
 
 class Datetimerfc1123Operations:
     """Datetimerfc1123Operations async operations.
@@ -58,21 +39,32 @@ class Datetimerfc1123Operations:
         self._config = config
 
     @distributed_trace_async
-    async def get_null(self, **kwargs: Any) -> Optional[datetime.datetime]:
+    async def get_null(
+        self,
+        **kwargs: Any
+    ) -> Optional[datetime.datetime]:
         """Get null datetime value.
 
         :return: datetime or None
         :rtype: ~datetime.datetime or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[datetime.datetime]]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[datetime.datetime]]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_datetimerfc1123_get_null_request()
+        
+        request = build_datetimerfc1123_get_null_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -89,24 +81,35 @@ class Datetimerfc1123Operations:
 
         return deserialized
 
-    get_null.metadata = {"url": "/datetimerfc1123/null"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_invalid(self, **kwargs: Any) -> datetime.datetime:
+    async def get_invalid(
+        self,
+        **kwargs: Any
+    ) -> datetime.datetime:
         """Get invalid datetime value.
 
         :return: datetime
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.datetime]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_datetimerfc1123_get_invalid_request()
+        
+        request = build_datetimerfc1123_get_invalid_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -123,24 +126,35 @@ class Datetimerfc1123Operations:
 
         return deserialized
 
-    get_invalid.metadata = {"url": "/datetimerfc1123/invalid"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_overflow(self, **kwargs: Any) -> datetime.datetime:
+    async def get_overflow(
+        self,
+        **kwargs: Any
+    ) -> datetime.datetime:
         """Get overflow datetime value.
 
         :return: datetime
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.datetime]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_datetimerfc1123_get_overflow_request()
+        
+        request = build_datetimerfc1123_get_overflow_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -157,24 +171,35 @@ class Datetimerfc1123Operations:
 
         return deserialized
 
-    get_overflow.metadata = {"url": "/datetimerfc1123/overflow"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_underflow(self, **kwargs: Any) -> datetime.datetime:
+    async def get_underflow(
+        self,
+        **kwargs: Any
+    ) -> datetime.datetime:
         """Get underflow datetime value.
 
         :return: datetime
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.datetime]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_datetimerfc1123_get_underflow_request()
+        
+        request = build_datetimerfc1123_get_underflow_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -191,10 +216,14 @@ class Datetimerfc1123Operations:
 
         return deserialized
 
-    get_underflow.metadata = {"url": "/datetimerfc1123/underflow"}  # type: ignore
+
 
     @distributed_trace_async
-    async def put_utc_max_date_time(self, datetime_body: datetime.datetime, **kwargs: Any) -> None:
+    async def put_utc_max_date_time(
+        self,
+        datetime_body: datetime.datetime,
+        **kwargs: Any
+    ) -> None:
         """Put max datetime value Fri, 31 Dec 9999 23:59:59 GMT.
 
         :param datetime_body: datetime body.
@@ -203,11 +232,13 @@ class Datetimerfc1123Operations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
         _json = datetime_body
 
@@ -217,7 +248,11 @@ class Datetimerfc1123Operations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -227,24 +262,35 @@ class Datetimerfc1123Operations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_utc_max_date_time.metadata = {"url": "/datetimerfc1123/max"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_utc_lowercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
+    async def get_utc_lowercase_max_date_time(
+        self,
+        **kwargs: Any
+    ) -> datetime.datetime:
         """Get max datetime value fri, 31 dec 9999 23:59:59 gmt.
 
         :return: datetime
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.datetime]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_datetimerfc1123_get_utc_lowercase_max_date_time_request()
+        
+        request = build_datetimerfc1123_get_utc_lowercase_max_date_time_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -261,24 +307,35 @@ class Datetimerfc1123Operations:
 
         return deserialized
 
-    get_utc_lowercase_max_date_time.metadata = {"url": "/datetimerfc1123/max/lowercase"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_utc_uppercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
+    async def get_utc_uppercase_max_date_time(
+        self,
+        **kwargs: Any
+    ) -> datetime.datetime:
         """Get max datetime value FRI, 31 DEC 9999 23:59:59 GMT.
 
         :return: datetime
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.datetime]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_datetimerfc1123_get_utc_uppercase_max_date_time_request()
+        
+        request = build_datetimerfc1123_get_utc_uppercase_max_date_time_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -295,10 +352,14 @@ class Datetimerfc1123Operations:
 
         return deserialized
 
-    get_utc_uppercase_max_date_time.metadata = {"url": "/datetimerfc1123/max/uppercase"}  # type: ignore
+
 
     @distributed_trace_async
-    async def put_utc_min_date_time(self, datetime_body: datetime.datetime, **kwargs: Any) -> None:
+    async def put_utc_min_date_time(
+        self,
+        datetime_body: datetime.datetime,
+        **kwargs: Any
+    ) -> None:
         """Put min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
 
         :param datetime_body: datetime body.
@@ -307,11 +368,13 @@ class Datetimerfc1123Operations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
 
         _json = datetime_body
 
@@ -321,7 +384,11 @@ class Datetimerfc1123Operations:
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -331,24 +398,35 @@ class Datetimerfc1123Operations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    put_utc_min_date_time.metadata = {"url": "/datetimerfc1123/min"}  # type: ignore
+
 
     @distributed_trace_async
-    async def get_utc_min_date_time(self, **kwargs: Any) -> datetime.datetime:
+    async def get_utc_min_date_time(
+        self,
+        **kwargs: Any
+    ) -> datetime.datetime:
         """Get min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
 
         :return: datetime
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.datetime]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {}))
 
-        request = build_datetimerfc1123_get_utc_min_date_time_request()
+        
+        request = build_datetimerfc1123_get_utc_min_date_time_request(
+        )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request,
+            stream=False,
+            **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -365,4 +443,4 @@ class Datetimerfc1123Operations:
 
         return deserialized
 
-    get_utc_min_date_time.metadata = {"url": "/datetimerfc1123/min"}  # type: ignore
+

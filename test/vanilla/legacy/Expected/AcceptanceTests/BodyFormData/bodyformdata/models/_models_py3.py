@@ -22,11 +22,17 @@ class Error(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "status": {"key": "status", "type": "int"},
-        "message": {"key": "message", "type": "str"},
+        'status': {'key': 'status', 'type': 'int'},
+        'message': {'key': 'message', 'type': 'str'},
     }
 
-    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        status: Optional[int] = None,
+        message: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword status:
         :paramtype status: int
@@ -50,16 +56,22 @@ class Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDat
     """
 
     _validation = {
-        "file_content": {"required": True},
-        "file_name": {"required": True},
+        'file_content': {'required': True},
+        'file_name': {'required': True},
     }
 
     _attribute_map = {
-        "file_content": {"key": "fileContent", "type": "IO"},
-        "file_name": {"key": "fileName", "type": "str"},
+        'file_content': {'key': 'fileContent', 'type': 'IO'},
+        'file_name': {'key': 'fileName', 'type': 'str'},
     }
 
-    def __init__(self, *, file_content: IO, file_name: str, **kwargs):
+    def __init__(
+        self,
+        *,
+        file_content: IO,
+        file_name: str,
+        **kwargs
+    ):
         """
         :keyword file_content: Required. File to upload.
         :paramtype file_content: IO
@@ -67,9 +79,7 @@ class Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDat
          here.
         :paramtype file_name: str
         """
-        super(Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema, self).__init__(
-            **kwargs
-        )
+        super(Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema, self).__init__(**kwargs)
         self.file_content = file_content
         self.file_name = file_name
 
@@ -84,19 +94,22 @@ class Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDa
     """
 
     _validation = {
-        "file_content": {"required": True},
+        'file_content': {'required': True},
     }
 
     _attribute_map = {
-        "file_content": {"key": "fileContent", "type": "[IO]"},
+        'file_content': {'key': 'fileContent', 'type': '[IO]'},
     }
 
-    def __init__(self, *, file_content: List[IO], **kwargs):
+    def __init__(
+        self,
+        *,
+        file_content: List[IO],
+        **kwargs
+    ):
         """
         :keyword file_content: Required. Files to upload.
         :paramtype file_content: list[IO]
         """
-        super(Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema, self).__init__(
-            **kwargs
-        )
+        super(Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema, self).__init__(**kwargs)
         self.file_content = file_content

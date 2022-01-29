@@ -9,5 +9,5 @@
 from ._operations import DurationOperations
 
 __all__ = [
-    "DurationOperations",
+    'DurationOperations',
 ]

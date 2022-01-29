@@ -14,7 +14,9 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def build_get_boolean_true_request(**kwargs: Any) -> HttpRequest:
+def build_get_boolean_true_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get true Boolean value on path.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -29,24 +31,32 @@ def build_get_boolean_true_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    bool_query = kwargs.pop("bool_query", True)  # type: bool
+    bool_query = kwargs.pop('bool_query', True)  # type: bool
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/bool/true"
+    url = '/queries/bool/true'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["boolQuery"] = _SERIALIZER.query("bool_query", bool_query, "bool")
+    query_parameters['boolQuery'] = _SERIALIZER.query("bool_query", bool_query, 'bool')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_get_boolean_false_request(**kwargs: Any) -> HttpRequest:
+def build_get_boolean_false_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get false Boolean value on path.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -61,24 +71,34 @@ def build_get_boolean_false_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    bool_query = kwargs.pop("bool_query", False)  # type: bool
+    bool_query = kwargs.pop('bool_query', False)  # type: bool
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/bool/false"
+    url = '/queries/bool/false'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["boolQuery"] = _SERIALIZER.query("bool_query", bool_query, "bool")
+    query_parameters['boolQuery'] = _SERIALIZER.query("bool_query", bool_query, 'bool')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_get_boolean_null_request(*, bool_query: Optional[bool] = None, **kwargs: Any) -> HttpRequest:
+def build_get_boolean_null_request(
+    *,
+    bool_query: Optional[bool] = None,
+    **kwargs: Any
+) -> HttpRequest:
     """Get null Boolean value on query (query string should be absent).
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -94,21 +114,29 @@ def build_get_boolean_null_request(*, bool_query: Optional[bool] = None, **kwarg
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/bool/null"
+    url = '/queries/bool/null'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if bool_query is not None:
-        query_parameters["boolQuery"] = _SERIALIZER.query("bool_query", bool_query, "bool")
+        query_parameters['boolQuery'] = _SERIALIZER.query("bool_query", bool_query, 'bool')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_get_int_one_million_request(**kwargs: Any) -> HttpRequest:
+def build_get_int_one_million_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get '1000000' integer value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -123,24 +151,32 @@ def build_get_int_one_million_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    int_query = kwargs.pop("int_query", 1000000)  # type: int
+    int_query = kwargs.pop('int_query', 1000000)  # type: int
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/int/1000000"
+    url = '/queries/int/1000000'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["intQuery"] = _SERIALIZER.query("int_query", int_query, "int")
+    query_parameters['intQuery'] = _SERIALIZER.query("int_query", int_query, 'int')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_get_int_negative_one_million_request(**kwargs: Any) -> HttpRequest:
+def build_get_int_negative_one_million_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get '-1000000' integer value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -155,24 +191,34 @@ def build_get_int_negative_one_million_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    int_query = kwargs.pop("int_query", -1000000)  # type: int
+    int_query = kwargs.pop('int_query', -1000000)  # type: int
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/int/-1000000"
+    url = '/queries/int/-1000000'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["intQuery"] = _SERIALIZER.query("int_query", int_query, "int")
+    query_parameters['intQuery'] = _SERIALIZER.query("int_query", int_query, 'int')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_get_int_null_request(*, int_query: Optional[int] = None, **kwargs: Any) -> HttpRequest:
+def build_get_int_null_request(
+    *,
+    int_query: Optional[int] = None,
+    **kwargs: Any
+) -> HttpRequest:
     """Get null integer value (no query parameter).
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -188,21 +234,29 @@ def build_get_int_null_request(*, int_query: Optional[int] = None, **kwargs: Any
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/int/null"
+    url = '/queries/int/null'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if int_query is not None:
-        query_parameters["intQuery"] = _SERIALIZER.query("int_query", int_query, "int")
+        query_parameters['intQuery'] = _SERIALIZER.query("int_query", int_query, 'int')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_get_ten_billion_request(**kwargs: Any) -> HttpRequest:
+def build_get_ten_billion_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get '10000000000' 64 bit integer value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -217,24 +271,32 @@ def build_get_ten_billion_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    long_query = kwargs.pop("long_query", 10000000000)  # type: int
+    long_query = kwargs.pop('long_query', 10000000000)  # type: int
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/long/10000000000"
+    url = '/queries/long/10000000000'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["longQuery"] = _SERIALIZER.query("long_query", long_query, "long")
+    query_parameters['longQuery'] = _SERIALIZER.query("long_query", long_query, 'long')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_get_negative_ten_billion_request(**kwargs: Any) -> HttpRequest:
+def build_get_negative_ten_billion_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get '-10000000000' 64 bit integer value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -249,24 +311,34 @@ def build_get_negative_ten_billion_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    long_query = kwargs.pop("long_query", -10000000000)  # type: int
+    long_query = kwargs.pop('long_query', -10000000000)  # type: int
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/long/-10000000000"
+    url = '/queries/long/-10000000000'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["longQuery"] = _SERIALIZER.query("long_query", long_query, "long")
+    query_parameters['longQuery'] = _SERIALIZER.query("long_query", long_query, 'long')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_get_long_null_request(*, long_query: Optional[int] = None, **kwargs: Any) -> HttpRequest:
+def build_get_long_null_request(
+    *,
+    long_query: Optional[int] = None,
+    **kwargs: Any
+) -> HttpRequest:
     """Get 'null 64 bit integer value (no query param in uri).
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -282,21 +354,29 @@ def build_get_long_null_request(*, long_query: Optional[int] = None, **kwargs: A
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/long/null"
+    url = '/queries/long/null'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if long_query is not None:
-        query_parameters["longQuery"] = _SERIALIZER.query("long_query", long_query, "long")
+        query_parameters['longQuery'] = _SERIALIZER.query("long_query", long_query, 'long')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_float_scientific_positive_request(**kwargs: Any) -> HttpRequest:
+def build_float_scientific_positive_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get '1.034E+20' numeric value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -311,24 +391,32 @@ def build_float_scientific_positive_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    float_query = kwargs.pop("float_query", 103400000000000000000)  # type: float
+    float_query = kwargs.pop('float_query', 103400000000000000000)  # type: float
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/float/1.034E+20"
+    url = '/queries/float/1.034E+20'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["floatQuery"] = _SERIALIZER.query("float_query", float_query, "float")
+    query_parameters['floatQuery'] = _SERIALIZER.query("float_query", float_query, 'float')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_float_scientific_negative_request(**kwargs: Any) -> HttpRequest:
+def build_float_scientific_negative_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get '-1.034E-20' numeric value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -343,24 +431,34 @@ def build_float_scientific_negative_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    float_query = kwargs.pop("float_query", -1.034e-20)  # type: float
+    float_query = kwargs.pop('float_query', -1.034e-20)  # type: float
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/float/-1.034E-20"
+    url = '/queries/float/-1.034E-20'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["floatQuery"] = _SERIALIZER.query("float_query", float_query, "float")
+    query_parameters['floatQuery'] = _SERIALIZER.query("float_query", float_query, 'float')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_float_null_request(*, float_query: Optional[float] = None, **kwargs: Any) -> HttpRequest:
+def build_float_null_request(
+    *,
+    float_query: Optional[float] = None,
+    **kwargs: Any
+) -> HttpRequest:
     """Get null numeric value (no query parameter).
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -376,21 +474,29 @@ def build_float_null_request(*, float_query: Optional[float] = None, **kwargs: A
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/float/null"
+    url = '/queries/float/null'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if float_query is not None:
-        query_parameters["floatQuery"] = _SERIALIZER.query("float_query", float_query, "float")
+        query_parameters['floatQuery'] = _SERIALIZER.query("float_query", float_query, 'float')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_double_decimal_positive_request(**kwargs: Any) -> HttpRequest:
+def build_double_decimal_positive_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get '9999999.999' numeric value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -405,24 +511,32 @@ def build_double_decimal_positive_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    double_query = kwargs.pop("double_query", 9999999.999)  # type: float
+    double_query = kwargs.pop('double_query', 9999999.999)  # type: float
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/double/9999999.999"
+    url = '/queries/double/9999999.999'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["doubleQuery"] = _SERIALIZER.query("double_query", double_query, "float")
+    query_parameters['doubleQuery'] = _SERIALIZER.query("double_query", double_query, 'float')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_double_decimal_negative_request(**kwargs: Any) -> HttpRequest:
+def build_double_decimal_negative_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get '-9999999.999' numeric value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -437,24 +551,34 @@ def build_double_decimal_negative_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    double_query = kwargs.pop("double_query", -9999999.999)  # type: float
+    double_query = kwargs.pop('double_query', -9999999.999)  # type: float
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/double/-9999999.999"
+    url = '/queries/double/-9999999.999'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["doubleQuery"] = _SERIALIZER.query("double_query", double_query, "float")
+    query_parameters['doubleQuery'] = _SERIALIZER.query("double_query", double_query, 'float')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_double_null_request(*, double_query: Optional[float] = None, **kwargs: Any) -> HttpRequest:
+def build_double_null_request(
+    *,
+    double_query: Optional[float] = None,
+    **kwargs: Any
+) -> HttpRequest:
     """Get null numeric value (no query parameter).
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -470,21 +594,29 @@ def build_double_null_request(*, double_query: Optional[float] = None, **kwargs:
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/double/null"
+    url = '/queries/double/null'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if double_query is not None:
-        query_parameters["doubleQuery"] = _SERIALIZER.query("double_query", double_query, "float")
+        query_parameters['doubleQuery'] = _SERIALIZER.query("double_query", double_query, 'float')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_string_unicode_request(**kwargs: Any) -> HttpRequest:
+def build_string_unicode_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -499,24 +631,32 @@ def build_string_unicode_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    string_query = kwargs.pop("string_query", "啊齄丂狛狜隣郎隣兀﨩")  # type: str
+    string_query = kwargs.pop('string_query', "啊齄丂狛狜隣郎隣兀﨩")  # type: str
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/string/unicode/"
+    url = '/queries/string/unicode/'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["stringQuery"] = _SERIALIZER.query("string_query", string_query, "str")
+    query_parameters['stringQuery'] = _SERIALIZER.query("string_query", string_query, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_string_url_encoded_request(**kwargs: Any) -> HttpRequest:
+def build_string_url_encoded_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get 'begin!*'();:@ &=+$,/?#[]end.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -532,24 +672,32 @@ def build_string_url_encoded_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    string_query = kwargs.pop("string_query", "begin!*'();:@ &=+$,/?#[]end")  # type: str
+    string_query = kwargs.pop('string_query', "begin!*'();:@ &=+$,/?#[]end")  # type: str
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend"
+    url = '/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["stringQuery"] = _SERIALIZER.query("string_query", string_query, "str")
+    query_parameters['stringQuery'] = _SERIALIZER.query("string_query", string_query, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_string_empty_request(**kwargs: Any) -> HttpRequest:
+def build_string_empty_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get ''.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -564,24 +712,34 @@ def build_string_empty_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    string_query = kwargs.pop("string_query", "")  # type: str
+    string_query = kwargs.pop('string_query', "")  # type: str
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/string/empty"
+    url = '/queries/string/empty'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["stringQuery"] = _SERIALIZER.query("string_query", string_query, "str")
+    query_parameters['stringQuery'] = _SERIALIZER.query("string_query", string_query, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_string_null_request(*, string_query: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_string_null_request(
+    *,
+    string_query: Optional[str] = None,
+    **kwargs: Any
+) -> HttpRequest:
     """Get null (no query parameter in url).
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -597,21 +755,31 @@ def build_string_null_request(*, string_query: Optional[str] = None, **kwargs: A
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/string/null"
+    url = '/queries/string/null'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if string_query is not None:
-        query_parameters["stringQuery"] = _SERIALIZER.query("string_query", string_query, "str")
+        query_parameters['stringQuery'] = _SERIALIZER.query("string_query", string_query, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_enum_valid_request(*, enum_query: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_enum_valid_request(
+    *,
+    enum_query: Optional[str] = None,
+    **kwargs: Any
+) -> HttpRequest:
     """Get using uri with query parameter 'green color'.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -628,21 +796,31 @@ def build_enum_valid_request(*, enum_query: Optional[str] = None, **kwargs: Any)
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/enum/green%20color"
+    url = '/queries/enum/green%20color'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if enum_query is not None:
-        query_parameters["enumQuery"] = _SERIALIZER.query("enum_query", enum_query, "str")
+        query_parameters['enumQuery'] = _SERIALIZER.query("enum_query", enum_query, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_enum_null_request(*, enum_query: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_enum_null_request(
+    *,
+    enum_query: Optional[str] = None,
+    **kwargs: Any
+) -> HttpRequest:
     """Get null (no query parameter in url).
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -659,21 +837,31 @@ def build_enum_null_request(*, enum_query: Optional[str] = None, **kwargs: Any) 
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/enum/null"
+    url = '/queries/enum/null'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if enum_query is not None:
-        query_parameters["enumQuery"] = _SERIALIZER.query("enum_query", enum_query, "str")
+        query_parameters['enumQuery'] = _SERIALIZER.query("enum_query", enum_query, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_byte_multi_byte_request(*, byte_query: Optional[bytearray] = None, **kwargs: Any) -> HttpRequest:
+def build_byte_multi_byte_request(
+    *,
+    byte_query: Optional[bytearray] = None,
+    **kwargs: Any
+) -> HttpRequest:
     """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -689,21 +877,29 @@ def build_byte_multi_byte_request(*, byte_query: Optional[bytearray] = None, **k
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/byte/multibyte"
+    url = '/queries/byte/multibyte'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if byte_query is not None:
-        query_parameters["byteQuery"] = _SERIALIZER.query("byte_query", byte_query, "bytearray")
+        query_parameters['byteQuery'] = _SERIALIZER.query("byte_query", byte_query, 'bytearray')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_byte_empty_request(**kwargs: Any) -> HttpRequest:
+def build_byte_empty_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get '' as byte array.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -718,24 +914,34 @@ def build_byte_empty_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    byte_query = kwargs.pop("byte_query", bytearray("", encoding="utf-8"))  # type: bytearray
+    byte_query = kwargs.pop('byte_query', bytearray("", encoding="utf-8"))  # type: bytearray
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/byte/empty"
+    url = '/queries/byte/empty'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["byteQuery"] = _SERIALIZER.query("byte_query", byte_query, "bytearray")
+    query_parameters['byteQuery'] = _SERIALIZER.query("byte_query", byte_query, 'bytearray')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_byte_null_request(*, byte_query: Optional[bytearray] = None, **kwargs: Any) -> HttpRequest:
+def build_byte_null_request(
+    *,
+    byte_query: Optional[bytearray] = None,
+    **kwargs: Any
+) -> HttpRequest:
     """Get null as byte array (no query parameters in uri).
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -751,21 +957,29 @@ def build_byte_null_request(*, byte_query: Optional[bytearray] = None, **kwargs:
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/byte/null"
+    url = '/queries/byte/null'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if byte_query is not None:
-        query_parameters["byteQuery"] = _SERIALIZER.query("byte_query", byte_query, "bytearray")
+        query_parameters['byteQuery'] = _SERIALIZER.query("byte_query", byte_query, 'bytearray')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_date_valid_request(**kwargs: Any) -> HttpRequest:
+def build_date_valid_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get '2012-01-01' as date.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -780,24 +994,34 @@ def build_date_valid_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    date_query = kwargs.pop("date_query", "2012-01-01")  # type: datetime.date
+    date_query = kwargs.pop('date_query', "2012-01-01")  # type: datetime.date
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/date/2012-01-01"
+    url = '/queries/date/2012-01-01'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["dateQuery"] = _SERIALIZER.query("date_query", date_query, "date")
+    query_parameters['dateQuery'] = _SERIALIZER.query("date_query", date_query, 'date')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_date_null_request(*, date_query: Optional[datetime.date] = None, **kwargs: Any) -> HttpRequest:
+def build_date_null_request(
+    *,
+    date_query: Optional[datetime.date] = None,
+    **kwargs: Any
+) -> HttpRequest:
     """Get null as date - this should result in no query parameters in uri.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -813,21 +1037,29 @@ def build_date_null_request(*, date_query: Optional[datetime.date] = None, **kwa
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/date/null"
+    url = '/queries/date/null'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if date_query is not None:
-        query_parameters["dateQuery"] = _SERIALIZER.query("date_query", date_query, "date")
+        query_parameters['dateQuery'] = _SERIALIZER.query("date_query", date_query, 'date')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_date_time_valid_request(**kwargs: Any) -> HttpRequest:
+def build_date_time_valid_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get '2012-01-01T01:01:01Z' as date-time.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -843,24 +1075,34 @@ def build_date_time_valid_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    date_time_query = kwargs.pop("date_time_query", "2012-01-01T01:01:01Z")  # type: datetime.datetime
+    date_time_query = kwargs.pop('date_time_query', "2012-01-01T01:01:01Z")  # type: datetime.datetime
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/datetime/2012-01-01T01%3A01%3A01Z"
+    url = '/queries/datetime/2012-01-01T01%3A01%3A01Z'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["dateTimeQuery"] = _SERIALIZER.query("date_time_query", date_time_query, "iso-8601")
+    query_parameters['dateTimeQuery'] = _SERIALIZER.query("date_time_query", date_time_query, 'iso-8601')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_date_time_null_request(*, date_time_query: Optional[datetime.datetime] = None, **kwargs: Any) -> HttpRequest:
+def build_date_time_null_request(
+    *,
+    date_time_query: Optional[datetime.datetime] = None,
+    **kwargs: Any
+) -> HttpRequest:
     """Get null as date-time, should result in no query parameters in uri.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -876,21 +1118,31 @@ def build_date_time_null_request(*, date_time_query: Optional[datetime.datetime]
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/datetime/null"
+    url = '/queries/datetime/null'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if date_time_query is not None:
-        query_parameters["dateTimeQuery"] = _SERIALIZER.query("date_time_query", date_time_query, "iso-8601")
+        query_parameters['dateTimeQuery'] = _SERIALIZER.query("date_time_query", date_time_query, 'iso-8601')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_array_string_csv_valid_request(*, array_query: Optional[List[str]] = None, **kwargs: Any) -> HttpRequest:
+def build_array_string_csv_valid_request(
+    *,
+    array_query: Optional[List[str]] = None,
+    **kwargs: Any
+) -> HttpRequest:
     """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
     csv-array format.
 
@@ -908,21 +1160,31 @@ def build_array_string_csv_valid_request(*, array_query: Optional[List[str]] = N
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/array/csv/string/valid"
+    url = '/queries/array/csv/string/valid'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if array_query is not None:
-        query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=",")
+        query_parameters['arrayQuery'] = _SERIALIZER.query("array_query", array_query, '[str]', div=',')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_array_string_csv_null_request(*, array_query: Optional[List[str]] = None, **kwargs: Any) -> HttpRequest:
+def build_array_string_csv_null_request(
+    *,
+    array_query: Optional[List[str]] = None,
+    **kwargs: Any
+) -> HttpRequest:
     """Get a null array of string using the csv-array format.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -938,21 +1200,31 @@ def build_array_string_csv_null_request(*, array_query: Optional[List[str]] = No
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/array/csv/string/null"
+    url = '/queries/array/csv/string/null'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if array_query is not None:
-        query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=",")
+        query_parameters['arrayQuery'] = _SERIALIZER.query("array_query", array_query, '[str]', div=',')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_array_string_csv_empty_request(*, array_query: Optional[List[str]] = None, **kwargs: Any) -> HttpRequest:
+def build_array_string_csv_empty_request(
+    *,
+    array_query: Optional[List[str]] = None,
+    **kwargs: Any
+) -> HttpRequest:
     """Get an empty array [] of string using the csv-array format.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -968,22 +1240,30 @@ def build_array_string_csv_empty_request(*, array_query: Optional[List[str]] = N
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/array/csv/string/empty"
+    url = '/queries/array/csv/string/empty'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if array_query is not None:
-        query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=",")
+        query_parameters['arrayQuery'] = _SERIALIZER.query("array_query", array_query, '[str]', div=',')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
 def build_array_string_no_collection_format_empty_request(
-    *, array_query: Optional[List[str]] = None, **kwargs: Any
+    *,
+    array_query: Optional[List[str]] = None,
+    **kwargs: Any
 ) -> HttpRequest:
     """Array query has no defined collection format, should default to csv. Pass in ['hello', 'nihao',
     'bonjour'] for the 'arrayQuery' parameter to the service.
@@ -1001,21 +1281,31 @@ def build_array_string_no_collection_format_empty_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/array/none/string/empty"
+    url = '/queries/array/none/string/empty'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if array_query is not None:
-        query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=",")
+        query_parameters['arrayQuery'] = _SERIALIZER.query("array_query", array_query, '[str]', div=',')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_array_string_ssv_valid_request(*, array_query: Optional[List[str]] = None, **kwargs: Any) -> HttpRequest:
+def build_array_string_ssv_valid_request(
+    *,
+    array_query: Optional[List[str]] = None,
+    **kwargs: Any
+) -> HttpRequest:
     """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
     ssv-array format.
 
@@ -1033,21 +1323,31 @@ def build_array_string_ssv_valid_request(*, array_query: Optional[List[str]] = N
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/array/ssv/string/valid"
+    url = '/queries/array/ssv/string/valid'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if array_query is not None:
-        query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=" ")
+        query_parameters['arrayQuery'] = _SERIALIZER.query("array_query", array_query, '[str]', div=' ')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_array_string_tsv_valid_request(*, array_query: Optional[List[str]] = None, **kwargs: Any) -> HttpRequest:
+def build_array_string_tsv_valid_request(
+    *,
+    array_query: Optional[List[str]] = None,
+    **kwargs: Any
+) -> HttpRequest:
     """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
     tsv-array format.
 
@@ -1065,21 +1365,31 @@ def build_array_string_tsv_valid_request(*, array_query: Optional[List[str]] = N
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/array/tsv/string/valid"
+    url = '/queries/array/tsv/string/valid'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if array_query is not None:
-        query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div="	")
+        query_parameters['arrayQuery'] = _SERIALIZER.query("array_query", array_query, '[str]', div='	')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_array_string_pipes_valid_request(*, array_query: Optional[List[str]] = None, **kwargs: Any) -> HttpRequest:
+def build_array_string_pipes_valid_request(
+    *,
+    array_query: Optional[List[str]] = None,
+    **kwargs: Any
+) -> HttpRequest:
     """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
     pipes-array format.
 
@@ -1097,15 +1407,22 @@ def build_array_string_pipes_valid_request(*, array_query: Optional[List[str]] =
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/array/pipes/string/valid"
+    url = '/queries/array/pipes/string/valid'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if array_query is not None:
-        query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div="|")
+        query_parameters['arrayQuery'] = _SERIALIZER.query("array_query", array_query, '[str]', div='|')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+

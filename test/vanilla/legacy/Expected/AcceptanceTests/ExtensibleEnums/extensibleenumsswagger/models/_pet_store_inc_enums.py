@@ -12,7 +12,8 @@ from azure.core import CaseInsensitiveEnumMeta
 
 
 class DaysOfWeekExtensibleEnum(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
-    """Type of Pet"""
+    """Type of Pet
+    """
 
     MONDAY = "Monday"
     TUESDAY = "Tuesday"
@@ -21,7 +22,6 @@ class DaysOfWeekExtensibleEnum(with_metaclass(CaseInsensitiveEnumMeta, str, Enum
     FRIDAY = "Friday"
     SATURDAY = "Saturday"
     SUNDAY = "Sunday"
-
 
 class IntEnum(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 

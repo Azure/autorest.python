@@ -14,7 +14,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_get_file_request(**kwargs: Any) -> HttpRequest:
+def build_get_file_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get file.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -28,16 +30,23 @@ def build_get_file_request(**kwargs: Any) -> HttpRequest:
 
     accept = "image/png, application/json"
     # Construct URL
-    url = "/files/stream/nonempty"
+    url = '/files/stream/nonempty'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_get_file_large_request(**kwargs: Any) -> HttpRequest:
+def build_get_file_large_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get a large file.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -51,16 +60,23 @@ def build_get_file_large_request(**kwargs: Any) -> HttpRequest:
 
     accept = "image/png, application/json"
     # Construct URL
-    url = "/files/stream/verylarge"
+    url = '/files/stream/verylarge'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_get_empty_file_request(**kwargs: Any) -> HttpRequest:
+def build_get_empty_file_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get empty file.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -74,10 +90,16 @@ def build_get_empty_file_request(**kwargs: Any) -> HttpRequest:
 
     accept = "image/png, application/json"
     # Construct URL
-    url = "/files/stream/empty"
+    url = '/files/stream/empty'
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+

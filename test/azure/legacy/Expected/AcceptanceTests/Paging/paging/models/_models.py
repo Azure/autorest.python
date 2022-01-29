@@ -21,16 +21,19 @@ class CustomParameterGroup(msrest.serialization.Model):
     """
 
     _validation = {
-        "api_version": {"required": True},
-        "tenant": {"required": True},
+        'api_version': {'required': True},
+        'tenant': {'required': True},
     }
 
     _attribute_map = {
-        "api_version": {"key": "api_version", "type": "str"},
-        "tenant": {"key": "tenant", "type": "str"},
+        'api_version': {'key': 'api_version', 'type': 'str'},
+        'tenant': {'key': 'tenant', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword api_version: Required. Sets the api version to use.
         :paramtype api_version: str
@@ -38,8 +41,8 @@ class CustomParameterGroup(msrest.serialization.Model):
         :paramtype tenant: str
         """
         super(CustomParameterGroup, self).__init__(**kwargs)
-        self.api_version = kwargs["api_version"]
-        self.tenant = kwargs["tenant"]
+        self.api_version = kwargs['api_version']
+        self.tenant = kwargs['tenant']
 
 
 class OdataProductResult(msrest.serialization.Model):
@@ -52,11 +55,14 @@ class OdataProductResult(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "values": {"key": "values", "type": "[Product]"},
-        "odata_next_link": {"key": "odata\\.nextLink", "type": "str"},
+        'values': {'key': 'values', 'type': '[Product]'},
+        'odata_next_link': {'key': 'odata\\.nextLink', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword values:
         :paramtype values: list[~paging.models.Product]
@@ -64,8 +70,8 @@ class OdataProductResult(msrest.serialization.Model):
         :paramtype odata_next_link: str
         """
         super(OdataProductResult, self).__init__(**kwargs)
-        self.values = kwargs.get("values", None)
-        self.odata_next_link = kwargs.get("odata_next_link", None)
+        self.values = kwargs.get('values', None)
+        self.odata_next_link = kwargs.get('odata_next_link', None)
 
 
 class OperationResult(msrest.serialization.Model):
@@ -78,10 +84,13 @@ class OperationResult(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "status": {"key": "status", "type": "str"},
+        'status': {'key': 'status', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword status: The status of the request. Possible values include: "Succeeded", "Failed",
          "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
@@ -89,7 +98,7 @@ class OperationResult(msrest.serialization.Model):
         :paramtype status: str or ~paging.models.OperationResultStatus
         """
         super(OperationResult, self).__init__(**kwargs)
-        self.status = kwargs.get("status", None)
+        self.status = kwargs.get('status', None)
 
 
 class PagingGetMultiplePagesLroOptions(msrest.serialization.Model):
@@ -103,11 +112,14 @@ class PagingGetMultiplePagesLroOptions(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "maxresults": {"key": "maxresults", "type": "int"},
-        "timeout": {"key": "timeout", "type": "int"},
+        'maxresults': {'key': 'maxresults', 'type': 'int'},
+        'timeout': {'key': 'timeout', 'type': 'int'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword maxresults: Sets the maximum number of items to return in the response.
         :paramtype maxresults: int
@@ -116,8 +128,8 @@ class PagingGetMultiplePagesLroOptions(msrest.serialization.Model):
         :paramtype timeout: int
         """
         super(PagingGetMultiplePagesLroOptions, self).__init__(**kwargs)
-        self.maxresults = kwargs.get("maxresults", None)
-        self.timeout = kwargs.get("timeout", 30)
+        self.maxresults = kwargs.get('maxresults', None)
+        self.timeout = kwargs.get('timeout', 30)
 
 
 class PagingGetMultiplePagesOptions(msrest.serialization.Model):
@@ -131,11 +143,14 @@ class PagingGetMultiplePagesOptions(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "maxresults": {"key": "maxresults", "type": "int"},
-        "timeout": {"key": "timeout", "type": "int"},
+        'maxresults': {'key': 'maxresults', 'type': 'int'},
+        'timeout': {'key': 'timeout', 'type': 'int'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword maxresults: Sets the maximum number of items to return in the response.
         :paramtype maxresults: int
@@ -144,8 +159,8 @@ class PagingGetMultiplePagesOptions(msrest.serialization.Model):
         :paramtype timeout: int
         """
         super(PagingGetMultiplePagesOptions, self).__init__(**kwargs)
-        self.maxresults = kwargs.get("maxresults", None)
-        self.timeout = kwargs.get("timeout", 30)
+        self.maxresults = kwargs.get('maxresults', None)
+        self.timeout = kwargs.get('timeout', 30)
 
 
 class PagingGetMultiplePagesWithOffsetOptions(msrest.serialization.Model):
@@ -163,16 +178,19 @@ class PagingGetMultiplePagesWithOffsetOptions(msrest.serialization.Model):
     """
 
     _validation = {
-        "offset": {"required": True},
+        'offset': {'required': True},
     }
 
     _attribute_map = {
-        "maxresults": {"key": "maxresults", "type": "int"},
-        "offset": {"key": "offset", "type": "int"},
-        "timeout": {"key": "timeout", "type": "int"},
+        'maxresults': {'key': 'maxresults', 'type': 'int'},
+        'offset': {'key': 'offset', 'type': 'int'},
+        'timeout': {'key': 'timeout', 'type': 'int'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword maxresults: Sets the maximum number of items to return in the response.
         :paramtype maxresults: int
@@ -183,9 +201,9 @@ class PagingGetMultiplePagesWithOffsetOptions(msrest.serialization.Model):
         :paramtype timeout: int
         """
         super(PagingGetMultiplePagesWithOffsetOptions, self).__init__(**kwargs)
-        self.maxresults = kwargs.get("maxresults", None)
-        self.offset = kwargs["offset"]
-        self.timeout = kwargs.get("timeout", 30)
+        self.maxresults = kwargs.get('maxresults', None)
+        self.offset = kwargs['offset']
+        self.timeout = kwargs.get('timeout', 30)
 
 
 class PagingGetOdataMultiplePagesOptions(msrest.serialization.Model):
@@ -199,11 +217,14 @@ class PagingGetOdataMultiplePagesOptions(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "maxresults": {"key": "maxresults", "type": "int"},
-        "timeout": {"key": "timeout", "type": "int"},
+        'maxresults': {'key': 'maxresults', 'type': 'int'},
+        'timeout': {'key': 'timeout', 'type': 'int'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword maxresults: Sets the maximum number of items to return in the response.
         :paramtype maxresults: int
@@ -212,8 +233,8 @@ class PagingGetOdataMultiplePagesOptions(msrest.serialization.Model):
         :paramtype timeout: int
         """
         super(PagingGetOdataMultiplePagesOptions, self).__init__(**kwargs)
-        self.maxresults = kwargs.get("maxresults", None)
-        self.timeout = kwargs.get("timeout", 30)
+        self.maxresults = kwargs.get('maxresults', None)
+        self.timeout = kwargs.get('timeout', 30)
 
 
 class Product(msrest.serialization.Model):
@@ -224,16 +245,19 @@ class Product(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "properties": {"key": "properties", "type": "ProductProperties"},
+        'properties': {'key': 'properties', 'type': 'ProductProperties'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword properties:
         :paramtype properties: ~paging.models.ProductProperties
         """
         super(Product, self).__init__(**kwargs)
-        self.properties = kwargs.get("properties", None)
+        self.properties = kwargs.get('properties', None)
 
 
 class ProductProperties(msrest.serialization.Model):
@@ -246,11 +270,14 @@ class ProductProperties(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "id": {"key": "id", "type": "int"},
-        "name": {"key": "name", "type": "str"},
+        'id': {'key': 'id', 'type': 'int'},
+        'name': {'key': 'name', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword id:
         :paramtype id: int
@@ -258,8 +285,8 @@ class ProductProperties(msrest.serialization.Model):
         :paramtype name: str
         """
         super(ProductProperties, self).__init__(**kwargs)
-        self.id = kwargs.get("id", None)
-        self.name = kwargs.get("name", None)
+        self.id = kwargs.get('id', None)
+        self.name = kwargs.get('name', None)
 
 
 class ProductResult(msrest.serialization.Model):
@@ -272,11 +299,14 @@ class ProductResult(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "values": {"key": "values", "type": "[Product]"},
-        "next_link": {"key": "nextLink", "type": "str"},
+        'values': {'key': 'values', 'type': '[Product]'},
+        'next_link': {'key': 'nextLink', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword values:
         :paramtype values: list[~paging.models.Product]
@@ -284,8 +314,8 @@ class ProductResult(msrest.serialization.Model):
         :paramtype next_link: str
         """
         super(ProductResult, self).__init__(**kwargs)
-        self.values = kwargs.get("values", None)
-        self.next_link = kwargs.get("next_link", None)
+        self.values = kwargs.get('values', None)
+        self.next_link = kwargs.get('next_link', None)
 
 
 class ProductResultValue(msrest.serialization.Model):
@@ -298,11 +328,14 @@ class ProductResultValue(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "value": {"key": "value", "type": "[Product]"},
-        "next_link": {"key": "nextLink", "type": "str"},
+        'value': {'key': 'value', 'type': '[Product]'},
+        'next_link': {'key': 'nextLink', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword value:
         :paramtype value: list[~paging.models.Product]
@@ -310,8 +343,8 @@ class ProductResultValue(msrest.serialization.Model):
         :paramtype next_link: str
         """
         super(ProductResultValue, self).__init__(**kwargs)
-        self.value = kwargs.get("value", None)
-        self.next_link = kwargs.get("next_link", None)
+        self.value = kwargs.get('value', None)
+        self.next_link = kwargs.get('next_link', None)
 
 
 class ProductResultValueWithXMSClientName(msrest.serialization.Model):
@@ -324,11 +357,14 @@ class ProductResultValueWithXMSClientName(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "indexes": {"key": "values", "type": "[Product]"},
-        "next_link": {"key": "nextLink", "type": "str"},
+        'indexes': {'key': 'values', 'type': '[Product]'},
+        'next_link': {'key': 'nextLink', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         """
         :keyword indexes:
         :paramtype indexes: list[~paging.models.Product]
@@ -336,5 +372,5 @@ class ProductResultValueWithXMSClientName(msrest.serialization.Model):
         :paramtype next_link: str
         """
         super(ProductResultValueWithXMSClientName, self).__init__(**kwargs)
-        self.indexes = kwargs.get("indexes", None)
-        self.next_link = kwargs.get("next_link", None)
+        self.indexes = kwargs.get('indexes', None)
+        self.next_link = kwargs.get('next_link', None)

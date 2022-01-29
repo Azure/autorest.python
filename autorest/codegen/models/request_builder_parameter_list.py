@@ -3,7 +3,6 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-import re
 from copy import copy
 from typing import List, Optional, Tuple, TypeVar, Dict
 from .request_builder_parameter import RequestBuilderParameter
@@ -13,12 +12,11 @@ from .primitive_schemas import AnySchema, JSONSchema
 from .dictionary_schema import DictionarySchema
 from .base_schema import BaseSchema
 from .schema_request import SchemaRequest
+from .utils import JSON_REGEXP
 
 T = TypeVar('T')
 OrderedSet = Dict[T, None]
 
-_REQUEST_BUILDER_BODY_NAMES = ["files", "json", "content", "data"]
-_JSON_REGEXP = re.compile(r'^(application|text)/([0-9a-z+.]+\+)?json$')
 
 def _update_content_types(content_types_to_assign: List[str], param: Parameter):
     return [
@@ -60,7 +58,7 @@ class RequestBuilderParameterList(ParameterList):
             if sr.yaml_data.get("protocol", {}).get('http', {}).get('knownMediaType') == "json"
         ):
             return True
-        return any(c for c in self.content_types if _JSON_REGEXP.match(c))
+        return any(c for c in self.content_types if JSON_REGEXP.match(c))
 
     @property
     def body_kwargs_to_get(self) -> List[Parameter]:
@@ -139,7 +137,7 @@ class RequestBuilderParameterList(ParameterList):
         json_kwarg.schema = JSONSchema(namespace="", yaml_data={})
         json_kwarg.content_types = [
             c for c in content_types_to_assign
-            if _JSON_REGEXP.match(c)
+            if JSON_REGEXP.match(c)
         ]
         content_types_to_assign = _update_content_types(content_types_to_assign, json_kwarg)
         return content_types_to_assign, json_kwarg
@@ -200,6 +198,7 @@ class RequestBuilderParameterList(ParameterList):
         else:
             for kwarg in body_kwargs_added:
                 kwarg.required = False
+        first_body_param.need_import = False
         self.parameters = body_kwargs_added + self.parameters
 
     @property

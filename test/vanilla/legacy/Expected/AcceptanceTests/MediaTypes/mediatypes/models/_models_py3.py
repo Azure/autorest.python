@@ -19,14 +19,19 @@ class SourcePath(msrest.serialization.Model):
     """
 
     _validation = {
-        "source": {"max_length": 2048, "min_length": 0},
+        'source': {'max_length': 2048, 'min_length': 0},
     }
 
     _attribute_map = {
-        "source": {"key": "source", "type": "str"},
+        'source': {'key': 'source', 'type': 'str'},
     }
 
-    def __init__(self, *, source: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        source: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword source: File source path.
         :paramtype source: str

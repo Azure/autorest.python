@@ -15,8 +15,7 @@ from ..._vendor import _format_url_section
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Dict, Optional, TypeVar
-
-    T = TypeVar("T")
+    T = TypeVar('T')
     JSONType = Any
 
 _SERIALIZER = Serializer()
@@ -284,3 +283,4 @@ def build_post_shared_parameter_group_object_request(
         headers=header_parameters,
         **kwargs
     )
+

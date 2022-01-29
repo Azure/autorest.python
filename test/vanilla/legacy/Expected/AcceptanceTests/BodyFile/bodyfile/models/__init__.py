@@ -12,5 +12,5 @@ except (SyntaxError, ImportError):
     from ._models import Error  # type: ignore
 
 __all__ = [
-    "Error",
+    'Error',
 ]

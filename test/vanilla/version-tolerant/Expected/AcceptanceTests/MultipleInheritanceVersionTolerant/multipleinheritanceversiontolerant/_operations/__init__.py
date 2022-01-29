@@ -9,5 +9,5 @@
 from ._operations import MultipleInheritanceServiceClientOperationsMixin
 
 __all__ = [
-    "MultipleInheritanceServiceClientOperationsMixin",
+    'MultipleInheritanceServiceClientOperationsMixin',
 ]

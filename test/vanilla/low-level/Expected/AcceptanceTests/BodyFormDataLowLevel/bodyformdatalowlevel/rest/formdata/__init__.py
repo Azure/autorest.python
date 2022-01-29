@@ -16,7 +16,7 @@ except (SyntaxError, ImportError):
     from ._request_builders import build_upload_files_request  # type: ignore
 
 __all__ = [
-    "build_upload_file_request",
-    "build_upload_file_via_body_request",
-    "build_upload_files_request",
+    'build_upload_file_request',
+    'build_upload_file_via_body_request',
+    'build_upload_files_request',
 ]

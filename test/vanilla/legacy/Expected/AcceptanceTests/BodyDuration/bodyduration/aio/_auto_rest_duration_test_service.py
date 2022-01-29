@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Awaitable, Optional
+from typing import Any, Awaitable
 
 from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
@@ -16,7 +16,6 @@ from msrest import Deserializer, Serializer
 from .. import models
 from ._configuration import AutoRestDurationTestServiceConfiguration
 from .operations import DurationOperations
-
 
 class AutoRestDurationTestService:
     """Test Infrastructure for AutoRest.
@@ -27,7 +26,11 @@ class AutoRestDurationTestService:
     :type base_url: str
     """
 
-    def __init__(self, base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
+    def __init__(
+        self,
+        base_url: str = "http://localhost:3000",
+        **kwargs: Any
+    ) -> None:
         self._config = AutoRestDurationTestServiceConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
@@ -37,7 +40,12 @@ class AutoRestDurationTestService:
         self._serialize.client_side_validation = False
         self.duration = DurationOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def _send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
+
+    def _send_request(
+        self,
+        request: HttpRequest,
+        **kwargs: Any
+    ) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

@@ -13,7 +13,9 @@ from msrest import Serializer
 _SERIALIZER = Serializer()
 
 
-def build_get_method_local_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get_method_local_valid_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -28,24 +30,34 @@ def build_get_method_local_valid_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    api_version = kwargs.pop("api_version", "2.0")  # type: str
+    api_version = kwargs.pop('api_version', "2.0")  # type: str
 
     accept = "application/json"
     # Construct URL
-    url = "/azurespecials/apiVersion/method/string/none/query/local/2.0"
+    url = '/azurespecials/apiVersion/method/string/none/query/local/2.0'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_get_method_local_null_request(*, api_version: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_get_method_local_null_request(
+    *,
+    api_version: Optional[str] = None,
+    **kwargs: Any
+) -> HttpRequest:
     """Get method with api-version modeled in the method.  pass in api-version = null to succeed.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -62,21 +74,29 @@ def build_get_method_local_null_request(*, api_version: Optional[str] = None, **
 
     accept = "application/json"
     # Construct URL
-    url = "/azurespecials/apiVersion/method/string/none/query/local/null"
+    url = '/azurespecials/apiVersion/method/string/none/query/local/null'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if api_version is not None:
-        query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+        query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_get_path_local_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get_path_local_valid_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -91,24 +111,32 @@ def build_get_path_local_valid_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    api_version = kwargs.pop("api_version", "2.0")  # type: str
+    api_version = kwargs.pop('api_version', "2.0")  # type: str
 
     accept = "application/json"
     # Construct URL
-    url = "/azurespecials/apiVersion/path/string/none/query/local/2.0"
+    url = '/azurespecials/apiVersion/path/string/none/query/local/2.0'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
 
 
-def build_get_swagger_local_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get_swagger_local_valid_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -124,18 +152,25 @@ def build_get_swagger_local_valid_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    api_version = kwargs.pop("api_version", "2.0")  # type: str
+    api_version = kwargs.pop('api_version', "2.0")  # type: str
 
     accept = "application/json"
     # Construct URL
-    url = "/azurespecials/apiVersion/swagger/string/none/query/local/2.0"
+    url = '/azurespecials/apiVersion/swagger/string/none/query/local/2.0'
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
+        headers=header_parameters,
+        **kwargs
+    )
+

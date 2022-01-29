@@ -1,4 +1,4 @@
-{% macro wrap_string(string, wrapstring) %}{{ string | wordwrap(width=95, break_long_words=False, break_on_hyphens=False, wrapstring=wrapstring)}}{% endmacro %}
+{% macro wrap_string(string, wrapstring, width=95) %}{{ string | wordwrap(width=width, break_long_words=False, break_on_hyphens=False, wrapstring=wrapstring)}}{% endmacro %}
 
 {% macro description(builder, serializer) %}
     {% for description in serializer.description_and_summary(builder) %}
@@ -22,7 +22,8 @@ Example:
     .. code-block:: python
     {% for template_line in serializer.get_example_template(builder) %}
         {% if template_line %}
-        {{ template_line }}
+            {% set wrap_amount = (template_line | length) - (template_line.lstrip() | length) + 10 %}
+        {{  wrap_string(template_line, wrapstring='\n' + " " * wrap_amount, width=(95 - wrap_amount)) }}
         {% else %}
 
         {% endif %}

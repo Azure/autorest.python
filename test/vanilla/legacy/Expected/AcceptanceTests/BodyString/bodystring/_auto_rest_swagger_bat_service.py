@@ -18,10 +18,9 @@ from .operations import EnumOperations, StringOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any
 
     from azure.core.rest import HttpRequest, HttpResponse
-
 
 class AutoRestSwaggerBATService(object):
     """Test Infrastructure for AutoRest Swagger BAT.
@@ -49,6 +48,7 @@ class AutoRestSwaggerBATService(object):
         self._serialize.client_side_validation = False
         self.string = StringOperations(self._client, self._config, self._serialize, self._deserialize)
         self.enum = EnumOperations(self._client, self._config, self._serialize, self._deserialize)
+
 
     def _send_request(
         self,

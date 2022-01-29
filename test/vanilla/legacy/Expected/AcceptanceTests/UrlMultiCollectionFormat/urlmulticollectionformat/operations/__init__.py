@@ -9,5 +9,5 @@
 from ._queries_operations import QueriesOperations
 
 __all__ = [
-    "QueriesOperations",
+    'QueriesOperations',
 ]

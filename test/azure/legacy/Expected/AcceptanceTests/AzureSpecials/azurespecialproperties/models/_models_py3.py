@@ -28,18 +28,24 @@ class Error(msrest.serialization.Model):
     """
 
     _validation = {
-        "constant_id": {"required": True, "constant": True},
+        'constant_id': {'required': True, 'constant': True},
     }
 
     _attribute_map = {
-        "status": {"key": "status", "type": "int"},
-        "constant_id": {"key": "constantId", "type": "int"},
-        "message": {"key": "message", "type": "str"},
+        'status': {'key': 'status', 'type': 'int'},
+        'constant_id': {'key': 'constantId', 'type': 'int'},
+        'message': {'key': 'message', 'type': 'str'},
     }
 
     constant_id = 1
 
-    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        status: Optional[int] = None,
+        message: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword status:
         :paramtype status: int
@@ -61,14 +67,19 @@ class HeaderCustomNamedRequestIdParamGroupingParameters(msrest.serialization.Mod
     """
 
     _validation = {
-        "foo_client_request_id": {"required": True},
+        'foo_client_request_id': {'required': True},
     }
 
     _attribute_map = {
-        "foo_client_request_id": {"key": "foo-client-request-id", "type": "str"},
+        'foo_client_request_id': {'key': 'foo-client-request-id', 'type': 'str'},
     }
 
-    def __init__(self, *, foo_client_request_id: str, **kwargs):
+    def __init__(
+        self,
+        *,
+        foo_client_request_id: str,
+        **kwargs
+    ):
         """
         :keyword foo_client_request_id: Required. The fooRequestId.
         :paramtype foo_client_request_id: str
@@ -87,11 +98,17 @@ class OdataFilter(msrest.serialization.Model):
     """
 
     _attribute_map = {
-        "id": {"key": "id", "type": "int"},
-        "name": {"key": "name", "type": "str"},
+        'id': {'key': 'id', 'type': 'int'},
+        'name': {'key': 'name', 'type': 'str'},
     }
 
-    def __init__(self, *, id: Optional[int] = None, name: Optional[str] = None, **kwargs):
+    def __init__(
+        self,
+        *,
+        id: Optional[int] = None,
+        name: Optional[str] = None,
+        **kwargs
+    ):
         """
         :keyword id:
         :paramtype id: int

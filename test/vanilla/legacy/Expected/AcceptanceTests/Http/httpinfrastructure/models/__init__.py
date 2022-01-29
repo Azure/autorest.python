@@ -20,9 +20,9 @@ except (SyntaxError, ImportError):
     from ._models import MyException  # type: ignore
 
 __all__ = [
-    "B",
-    "C",
-    "D",
-    "Error",
-    "MyException",
+    'B',
+    'C',
+    'D',
+    'Error',
+    'MyException',
 ]

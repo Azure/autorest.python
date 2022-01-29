@@ -16,12 +16,12 @@ from ._operations import OdataOperations
 from ._operations import HeaderOperations
 
 __all__ = [
-    "XMsClientRequestIdOperations",
-    "SubscriptionInCredentialsOperations",
-    "SubscriptionInMethodOperations",
-    "ApiVersionDefaultOperations",
-    "ApiVersionLocalOperations",
-    "SkipUrlEncodingOperations",
-    "OdataOperations",
-    "HeaderOperations",
+    'XMsClientRequestIdOperations',
+    'SubscriptionInCredentialsOperations',
+    'SubscriptionInMethodOperations',
+    'ApiVersionDefaultOperations',
+    'ApiVersionLocalOperations',
+    'SkipUrlEncodingOperations',
+    'OdataOperations',
+    'HeaderOperations',
 ]

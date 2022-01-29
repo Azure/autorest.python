@@ -17,10 +17,9 @@ from .operations import UploadOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, Optional
+    from typing import Any, Dict
 
     from azure.core.rest import HttpRequest, HttpResponse
-
 
 class BinaryWithContentTypeApplicationJson(object):
     """Sample for file with json and binary content type.
@@ -45,6 +44,7 @@ class BinaryWithContentTypeApplicationJson(object):
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
         self.upload = UploadOperations(self._client, self._config, self._serialize, self._deserialize)
+
 
     def _send_request(
         self,

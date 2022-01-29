@@ -24,19 +24,16 @@ class AccessTier(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
     COOL = "Cool"
     ARCHIVE = "Archive"
 
-
 class ArchiveStatus(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     REHYDRATE_PENDING_TO_HOT = "rehydrate-pending-to-hot"
     REHYDRATE_PENDING_TO_COOL = "rehydrate-pending-to-cool"
-
 
 class BlobType(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     BLOCK_BLOB = "BlockBlob"
     PAGE_BLOB = "PageBlob"
     APPEND_BLOB = "AppendBlob"
-
 
 class CopyStatusType(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
@@ -45,12 +42,10 @@ class CopyStatusType(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
     ABORTED = "aborted"
     FAILED = "failed"
 
-
 class LeaseDurationType(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     INFINITE = "infinite"
     FIXED = "fixed"
-
 
 class LeaseStateType(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
@@ -60,12 +55,10 @@ class LeaseStateType(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
     BREAKING = "breaking"
     BROKEN = "broken"
 
-
 class LeaseStatusType(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     LOCKED = "locked"
     UNLOCKED = "unlocked"
-
 
 class PublicAccessType(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
