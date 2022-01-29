@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import List, Optional, Any
+from typing import List, Optional
 from pathlib import Path
 import time
 from jinja2 import PackageLoader, Environment
