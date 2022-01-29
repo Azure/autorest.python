@@ -1,6 +1,7 @@
+{% set package_name = code_model.options['package_name'] -%}
+{% set package_pprint_name = code_model.options['package_pprint_name'] -%}
 [packaging]
 package_name = "{{ package_name }}"
-package_nspkg = "{{ folder_first }}-{{ folder_second }}-nspkg"
 package_pprint_name = "{{ package_pprint_name }}"
 package_doc_id = ""
 is_stable = false

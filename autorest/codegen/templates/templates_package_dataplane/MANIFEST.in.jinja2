@@ -1,3 +1,5 @@
+{% set folder_first = code_model.options['package_name'].split('-')[0] -%}
+{% set folder_second = code_model.options['package_name'].split('-')[1] -%}
 include *.md
 include {{ folder_first }}/__init__.py
 include {{ folder_first }}/{{ folder_second }}/__init__.py

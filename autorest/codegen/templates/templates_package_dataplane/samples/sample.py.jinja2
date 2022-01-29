@@ -27,6 +27,9 @@
 import logging
 import os
 
+{%- set namespace = code_model.options['namespace'] %}
+{%- set client_name = code_model.options['client_name'] %}
+{%- set test_prefix = code_model.options['package_name'].split('-')[-1].upper %}
 from {{ namespace }} import {{ client_name }}
 from azure.identity import DefaultAzureCredential
 from azure.core.exceptions import HttpResponseError
@@ -35,11 +38,11 @@ logging.basicConfig(level=logging.DEBUG)
 LOG = logging.getLogger()
 
 # Set the values of the client ID, tenant ID, and client secret of the AAD application as environment variables:
-# AZURE_CLIENT_ID, AZURE_TENANT_ID, AZURE_CLIENT_SECRET, {{ test_prefix.upper() }}_ENDPOINT
+# AZURE_CLIENT_ID, AZURE_TENANT_ID, AZURE_CLIENT_SECRET, {{ test_prefix }}_ENDPOINT
 try:
-    endpoint = os.environ["{{ test_prefix.upper() }}_ENDPOINT"]
+    endpoint = os.environ["{{ test_prefix }}_ENDPOINT"]
 except KeyError:
-    LOG.error("Missing environment variable '{{ test_prefix.upper() }}_ENDPOINT' - please set if before running the example")
+    LOG.error("Missing environment variable '{{ test_prefix }}_ENDPOINT' - please set if before running the example")
     exit()
 
 # Build a client through AAD

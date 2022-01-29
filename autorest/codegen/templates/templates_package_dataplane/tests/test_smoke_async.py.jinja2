@@ -4,6 +4,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # -------------------------------------------------------------------------
+{% set test_prefix = code_model.options['package_name'].split('-')[-1] -%}
 from testcase import {{ test_prefix.capitalize() }}PowerShellPreparer
 from testcase_async import {{ test_prefix.capitalize() }}AsyncTest
 

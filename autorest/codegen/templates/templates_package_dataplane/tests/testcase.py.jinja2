@@ -4,6 +4,9 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+{% set namespace = code_model.options['namespace'] -%}
+{% set client_name = code_model.options['client_name'] -%}
+{% set test_prefix = code_model.options['package_name'].split('-')[-1] -%}
 import functools
 from devtools_testutils import AzureTestCase, PowerShellPreparer
 from {{ namespace }} import {{ client_name }}

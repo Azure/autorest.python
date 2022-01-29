@@ -34,27 +34,6 @@ def _get_environment(template_path: str) -> Environment:
     return Environment(loader=PackageLoader("autorest.codegen", template_path))
 
 
-def _build_package_render_parameters(code_model: CodeModel) -> Any:
-    parameters = {}
-    parameters["package_name"] = code_model.options["package_name"]
-    parameters["package_version"] = code_model.options["package_version"]
-    parameters["namespace"] = code_model.options["namespace"]
-    folder_list = parameters["package_name"].split('-')
-    parameters["folder_first"] = folder_list[0]
-    parameters["folder_second"] = folder_list[1]
-    parameters["test_prefix"] = folder_list[-1]
-    parameters["date_to_release"] = time.strftime('%Y-%m-%d', time.localtime())
-    parameters["client_name"] = code_model.options["client_name"]
-    parameters["package_pprint_name"] = code_model.options["package_pprint_name"]
-    parameters['output_folder'] = code_model.options["output_folder"]
-    parameters['folder_parent'] = Path(parameters["output_folder"]).parts[-2]
-    parameters['input_file'] = code_model.options["input_file"]
-    parameters['credential_scopes'] = code_model.options["credential_scopes"]
-    parameters['swagger_readme_output'] = '../' + parameters["package_name"].replace('-', '/')
-
-
-    return parameters
-
 class JinjaSerializer:
     def __init__(self, autorestapi: AutorestAPI) -> None:
         self._autorestapi = autorestapi
@@ -99,21 +78,22 @@ class JinjaSerializer:
 
 
         if code_model.options["package_mode"] == 'dataplane':
-            parameters = _build_package_render_parameters(code_model)
             self._serialize_and_write_package_folder(
                 namespace_path=Path("."),
                 template_path="templates/templates_package_dataplane",
-                parameters=parameters
+                code_model=code_model
             )
 
 
     def _serialize_and_write_package_folder(
-        self, namespace_path: Path, template_path: str, parameters: Any
+        self, namespace_path: Path, template_path: str, code_model: CodeModel
     ) -> None:
         env = _get_environment(template_path)
         for template_name in env.list_templates():
+            release_time = time.strftime('%Y-%m-%d', time.localtime())
+            sdk_folder = Path(code_model.options['output_folder']).parts[-2]
             template = env.get_template(template_name)
-            result = template.render(**parameters)
+            result = template.render(code_model=code_model, release_time=release_time, sdk_folder=sdk_folder)
             output_name = template_name.replace(".jinja2", "")
             self._autorestapi.write_file(namespace_path / output_name, result)
 

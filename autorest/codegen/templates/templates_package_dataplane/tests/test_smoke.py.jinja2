@@ -4,10 +4,11 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # -------------------------------------------------------------------------
+{% set test_prefix = code_model.options['package_name'].split('-')[-1] -%}
 from testcase import {{ test_prefix.capitalize() }}Test, {{ test_prefix.capitalize() }}PowerShellPreparer
 
-class {{ test_prefix.capitalize() }}SmokeTest({{ test_prefix.capitalize() }}Test):
 
+class {{ test_prefix.capitalize() }}SmokeTest({{ test_prefix.capitalize() }}Test):
 
     @{{ test_prefix.capitalize() }}PowerShellPreparer()
     def test_smoke(self, {{ test_prefix }}_endpoint):

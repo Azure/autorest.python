@@ -149,7 +149,10 @@ class CodeGenerator(Plugin):
         code_model.setup_client_input_parameters(yaml_data)
 
         # Get my namespace
-        namespace = code_model.options.get("namespace", self._autorestapi.get_value("namespace"))
+        if not code_model.options.get("package_mode"):
+            namespace = self._autorestapi.get_value("namespace")
+        else:
+            namespace = code_model.options.get("namespace")
         _LOGGER.debug("Namespace parameter was %s", namespace)
         if not namespace:
             namespace = yaml_data["info"]["python_title"]
@@ -329,7 +332,7 @@ class CodeGenerator(Plugin):
             options["head_as_boolean"] = True
 
         if options["package_mode"] == 'dataplane':
-            options["namespace"] = options["package_name"].replace("-", '.')
+            options["namespace"] = self._autorestapi.get_value("namespace") or options["package_name"].replace("-", '.')
             options["credential"] = True
             options["basic_setup_py"] = True
             options["package_version"] = options["package_version"] if options["package_version"] else "1.0.0b1"

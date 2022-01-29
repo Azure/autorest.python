@@ -2,19 +2,19 @@
 
 ```yaml
 input-file:
-{% for file in input_file -%}
+{% for file in code_model.options['input_file'] -%}
 - {{ file }}
 {% endfor -%}
-output-folder: {{ swagger_readme_output }}
-namespace: {{ namespace }}
-package-name: {{ package_name }}
+output-folder: {{ '../' + code_model.options["package_name"].replace('-', '/') }}
+namespace: {{ code_model.options['namespace'] }}
+package-name: {{ code_model.options['package_name'] }}
 license-header: MICROSOFT_MIT_NO_VERSION
 clear-output-folder: true
 no-namespace-folders: true
 python: true
-title: {{ client_name }}
+title: {{ code_model.options['client_name'] }}
 version-tolerant: true
-package-version: {{ package_version }}
+package-version: {{ code_model.options['package_version'] }}
 add-credential: true
-credential-scopes: {{ credential_scopes }}
+credential-scopes: {{ code_model.options['credential_scopes'] }}
 ```
