@@ -42,7 +42,7 @@ def build_get_horse_request(
             # response body for status code(s): 200
             response.json() == {
                 "isAShowHorse": bool,  # Optional.
-                "name": "str"  # Required. 
+                "name": "str"  # Required.
             }
     """
 
@@ -88,7 +88,7 @@ def build_put_horse_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "isAShowHorse": bool,  # Optional.
-                "name": "str"  # Required. 
+                "name": "str"  # Required.
             }
     """
 
@@ -131,7 +131,7 @@ def build_get_pet_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "name": "str"  # Required. 
+                "name": "str"  # Required.
             }
     """
 
@@ -176,7 +176,7 @@ def build_put_pet_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "name": "str"  # Required. 
+                "name": "str"  # Required.
             }
     """
 
@@ -312,7 +312,7 @@ def build_get_cat_request(
                 "hisses": bool,  # Optional.
                 "likesMilk": bool,  # Optional.
                 "meows": bool,  # Optional.
-                "name": "str"  # Required. 
+                "name": "str"  # Required.
             }
     """
 
@@ -362,7 +362,7 @@ def build_put_cat_request(
                 "hisses": bool,  # Optional.
                 "likesMilk": bool,  # Optional.
                 "meows": bool,  # Optional.
-                "name": "str"  # Required. 
+                "name": "str"  # Required.
             }
     """
 
@@ -410,7 +410,7 @@ def build_get_kitten_request(
                 "hisses": bool,  # Optional.
                 "likesMilk": bool,  # Optional.
                 "meows": bool,  # Optional.
-                "name": "str"  # Required. 
+                "name": "str"  # Required.
             }
     """
 
@@ -462,7 +462,7 @@ def build_put_kitten_request(
                 "hisses": bool,  # Optional.
                 "likesMilk": bool,  # Optional.
                 "meows": bool,  # Optional.
-                "name": "str"  # Required. 
+                "name": "str"  # Required.
             }
     """
 

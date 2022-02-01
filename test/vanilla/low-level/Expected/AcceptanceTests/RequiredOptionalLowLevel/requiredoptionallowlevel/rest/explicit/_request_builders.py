@@ -12,7 +12,7 @@ from msrest import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, IO, List, Optional, TypeVar
+    from typing import Any, Dict, List, Optional, TypeVar
 
     T = TypeVar("T")
     JSONType = Any
@@ -218,7 +218,7 @@ def build_post_required_integer_property_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "value": 0  # Required. 
+                "value": 0  # Required.
             }
     """
 
@@ -486,7 +486,7 @@ def build_post_required_string_property_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "value": "str"  # Required. 
+                "value": "str"  # Required.
             }
     """
 
@@ -659,7 +659,7 @@ def build_post_required_class_parameter_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "id": 0,  # Required. 
+                "id": 0,  # Required.
                 "name": "str"  # Optional.
             }
     """
@@ -709,7 +709,7 @@ def build_post_optional_class_parameter_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "id": 0,  # Required. 
+                "id": 0,  # Required.
                 "name": "str"  # Optional.
             }
     """
@@ -761,8 +761,8 @@ def build_post_required_class_property_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "value": {
-                    "id": 0,  # Required. 
-                    "name": "str"  # Optional. Required. 
+                    "id": 0,  # Required.
+                    "name": "str"  # Optional. Required.
                 }
             }
     """
@@ -813,7 +813,7 @@ def build_post_optional_class_property_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "value": {
-                    "id": 0,  # Required. 
+                    "id": 0,  # Required.
                     "name": "str"  # Optional.
                 }
             }
@@ -965,7 +965,7 @@ def build_post_required_array_property_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "value": [
-                    "str"  # Required. 
+                    "str"  # Required.
                 ]
             }
     """

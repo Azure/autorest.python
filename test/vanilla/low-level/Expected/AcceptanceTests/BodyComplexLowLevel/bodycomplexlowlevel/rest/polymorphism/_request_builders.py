@@ -40,7 +40,7 @@ def build_get_valid_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "length": 0.0,  # Required. 
+                "length": 0.0,  # Required.
                 "siblings": [
                     ...
                 ],
@@ -156,7 +156,7 @@ def build_put_valid_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "length": 0.0,  # Required. 
+                "length": 0.0,  # Required.
                 "siblings": [
                     ...
                 ],
@@ -374,11 +374,11 @@ def build_get_complicated_request(
             # response body for status code(s): 200
             response.json() == {
                 "iswild": bool,  # Optional.
-                "length": 0.0,  # Required. 
+                "length": 0.0,  # Required.
                 "location": "str",  # Optional.
                 "siblings": [
                     {
-                        "length": 0.0,  # Required. 
+                        "length": 0.0,  # Required.
                         "siblings": [
                             ...
                         ],
@@ -436,11 +436,11 @@ def build_put_complicated_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "iswild": bool,  # Optional.
-                "length": 0.0,  # Required. 
+                "length": 0.0,  # Required.
                 "location": "str",  # Optional.
                 "siblings": [
                     {
-                        "length": 0.0,  # Required. 
+                        "length": 0.0,  # Required.
                         "siblings": [
                             ...
                         ],
@@ -501,11 +501,11 @@ def build_put_missing_discriminator_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "iswild": bool,  # Optional.
-                "length": 0.0,  # Required. 
+                "length": 0.0,  # Required.
                 "location": "str",  # Optional.
                 "siblings": [
                     {
-                        "length": 0.0,  # Required. 
+                        "length": 0.0,  # Required.
                         "siblings": [
                             ...
                         ],
@@ -520,11 +520,11 @@ def build_put_missing_discriminator_request(
             # response body for status code(s): 200
             response.json() == {
                 "iswild": bool,  # Optional.
-                "length": 0.0,  # Required. 
+                "length": 0.0,  # Required.
                 "location": "str",  # Optional.
                 "siblings": [
                     {
-                        "length": 0.0,  # Required. 
+                        "length": 0.0,  # Required.
                         "siblings": [
                             ...
                         ],
@@ -637,7 +637,7 @@ def build_put_valid_missing_required_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "length": 0.0,  # Required. 
+                "length": 0.0,  # Required.
                 "siblings": [
                     ...
                 ],
