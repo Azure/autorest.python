@@ -42,7 +42,7 @@ def build_get_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/time/get')
+    url = kwargs.pop("template_url", "/time/get")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -64,7 +64,7 @@ def build_put_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/time/put')
+    url = kwargs.pop("template_url", "/time/put")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

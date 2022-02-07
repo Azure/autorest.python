@@ -42,7 +42,7 @@ def build_get_by_pet_id_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/extensibleenums/pet/{petId}')
+    url = kwargs.pop("template_url", "/extensibleenums/pet/{petId}")
     path_format_arguments = {
         "petId": _SERIALIZER.url("pet_id", pet_id, 'str'),
     }
@@ -69,7 +69,7 @@ def build_add_pet_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/extensibleenums/pet/addPet')
+    url = kwargs.pop("template_url", "/extensibleenums/pet/addPet")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

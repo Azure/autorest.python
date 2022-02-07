@@ -45,7 +45,7 @@ def build_post_required_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/parameterGrouping/postRequired/{path}')
+    url = kwargs.pop("template_url", "/parameterGrouping/postRequired/{path}")
     path_format_arguments = {
         "path": _SERIALIZER.url("path", path, 'str'),
     }
@@ -83,7 +83,7 @@ def build_post_optional_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/parameterGrouping/postOptional')
+    url = kwargs.pop("template_url", "/parameterGrouping/postOptional")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -114,7 +114,7 @@ def build_post_reserved_words_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/parameterGrouping/postReservedWords')
+    url = kwargs.pop("template_url", "/parameterGrouping/postReservedWords")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -147,7 +147,7 @@ def build_post_multi_param_groups_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/parameterGrouping/postMultipleParameterGroups')
+    url = kwargs.pop("template_url", "/parameterGrouping/postMultipleParameterGroups")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -182,7 +182,7 @@ def build_post_shared_parameter_group_object_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/parameterGrouping/sharedParameterGroupObject')
+    url = kwargs.pop("template_url", "/parameterGrouping/sharedParameterGroupObject")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]

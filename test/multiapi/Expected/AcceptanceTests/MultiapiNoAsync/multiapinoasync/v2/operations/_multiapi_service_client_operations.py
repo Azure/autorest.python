@@ -39,7 +39,7 @@ def build_test_one_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/multiapi/testOneEndpoint')
+    url = kwargs.pop("template_url", "/multiapi/testOneEndpoint")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -71,7 +71,7 @@ def build_test_different_calls_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/multiapi/testDifferentCalls')
+    url = kwargs.pop("template_url", "/multiapi/testDifferentCalls")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -151,7 +151,7 @@ class MultiapiServiceClientOperationsMixin(object):
 
         return deserialized
 
-    test_one.metadata = {'url': '/multiapi/testOneEndpoint'}  # type: ignore
+    test_one.metadata = {'url': "/multiapi/testOneEndpoint"}  # type: ignore
 
 
     @distributed_trace
@@ -206,5 +206,5 @@ class MultiapiServiceClientOperationsMixin(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    test_different_calls.metadata = {'url': '/multiapi/testDifferentCalls'}  # type: ignore
+    test_different_calls.metadata = {'url': "/multiapi/testDifferentCalls"}  # type: ignore
 

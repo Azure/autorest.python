@@ -42,7 +42,7 @@ def build_get_pet_by_id_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/errorStatusCodes/Pets/{petId}/GetPet')
+    url = kwargs.pop("template_url", "/errorStatusCodes/Pets/{petId}/GetPet")
     path_format_arguments = {
         "petId": _SERIALIZER.url("pet_id", pet_id, 'str'),
     }
@@ -68,7 +68,7 @@ def build_do_something_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/errorStatusCodes/Pets/doSomething/{whatAction}')
+    url = kwargs.pop("template_url", "/errorStatusCodes/Pets/doSomething/{whatAction}")
     path_format_arguments = {
         "whatAction": _SERIALIZER.url("what_action", what_action, 'str'),
     }
@@ -95,7 +95,7 @@ def build_has_models_param_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/errorStatusCodes/Pets/hasModelsParam')
+    url = kwargs.pop("template_url", "/errorStatusCodes/Pets/hasModelsParam")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]

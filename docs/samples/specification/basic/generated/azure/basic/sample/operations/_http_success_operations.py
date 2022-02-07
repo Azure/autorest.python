@@ -32,7 +32,7 @@ def build_head200_request(
 ):
     # type: (...) -> HttpRequest
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/200')
+    url = kwargs.pop("template_url", "/http/success/200")
 
     return HttpRequest(
         method="HEAD",
@@ -46,7 +46,7 @@ def build_head204_request(
 ):
     # type: (...) -> HttpRequest
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/204')
+    url = kwargs.pop("template_url", "/http/success/204")
 
     return HttpRequest(
         method="HEAD",
@@ -60,7 +60,7 @@ def build_head404_request(
 ):
     # type: (...) -> HttpRequest
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/404')
+    url = kwargs.pop("template_url", "/http/success/404")
 
     return HttpRequest(
         method="HEAD",
@@ -127,7 +127,7 @@ class HttpSuccessOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    head200.metadata = {'url': '/http/success/200'}  # type: ignore
+    head200.metadata = {'url': "/http/success/200"}  # type: ignore
 
 
     @distributed_trace
@@ -170,7 +170,7 @@ class HttpSuccessOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    head204.metadata = {'url': '/http/success/204'}  # type: ignore
+    head204.metadata = {'url': "/http/success/204"}  # type: ignore
 
 
     @distributed_trace
@@ -213,5 +213,5 @@ class HttpSuccessOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    head404.metadata = {'url': '/http/success/404'}  # type: ignore
+    head404.metadata = {'url': "/http/success/404"}  # type: ignore
 

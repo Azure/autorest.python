@@ -99,7 +99,7 @@ class OperationGroupOneOperations:
 
         return deserialized
 
-    test_two.metadata = {'url': '/multiapi/one/testTwoEndpoint'}  # type: ignore
+    test_two.metadata = {'url': "/multiapi/one/testTwoEndpoint"}  # type: ignore
 
 
     @distributed_trace_async
@@ -145,5 +145,5 @@ class OperationGroupOneOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    test_three.metadata = {'url': '/multiapi/one/testThreeEndpoint'}  # type: ignore
+    test_three.metadata = {'url': "/multiapi/one/testThreeEndpoint"}  # type: ignore
 

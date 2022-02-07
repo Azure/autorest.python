@@ -39,7 +39,7 @@ def build_head_no_params_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/serviceDriven/parameters'
+    url = "/serviceDriven/parameters"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -74,7 +74,7 @@ def build_get_required_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/serviceDriven/parameters'
+    url = "/serviceDriven/parameters"
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -117,7 +117,7 @@ def build_put_required_optional_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/serviceDriven/parameters'
+    url = "/serviceDriven/parameters"
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -173,7 +173,7 @@ def build_post_parameters_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/serviceDriven/parameters'
+    url = "/serviceDriven/parameters"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -210,7 +210,7 @@ def build_get_optional_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/serviceDriven/moreParameters'
+    url = "/serviceDriven/moreParameters"
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]

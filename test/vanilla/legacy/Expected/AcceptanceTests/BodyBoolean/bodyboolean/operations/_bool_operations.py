@@ -41,7 +41,7 @@ def build_get_true_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/bool/true')
+    url = kwargs.pop("template_url", "/bool/true")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -64,7 +64,7 @@ def build_put_true_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/bool/true')
+    url = kwargs.pop("template_url", "/bool/true")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -87,7 +87,7 @@ def build_get_false_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/bool/false')
+    url = kwargs.pop("template_url", "/bool/false")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -110,7 +110,7 @@ def build_put_false_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/bool/false')
+    url = kwargs.pop("template_url", "/bool/false")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -133,7 +133,7 @@ def build_get_null_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/bool/null')
+    url = kwargs.pop("template_url", "/bool/null")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -153,7 +153,7 @@ def build_get_invalid_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/bool/invalid')
+    url = kwargs.pop("template_url", "/bool/invalid")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

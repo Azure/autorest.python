@@ -10,6 +10,8 @@ from collections import defaultdict
 from abc import abstractmethod, ABC
 from typing import Any, List, TypeVar, Dict, Union, Optional, cast
 
+from autorest.codegen.models import request_builder
+
 from ..models import (
     Operation,
     CodeModel,
@@ -33,6 +35,9 @@ from . import utils
 T = TypeVar("T")
 OrderedSet = Dict[T, None]
 
+def _escape_str(input_str: str) -> str:
+    replace = input_str.replace("'", "\\'")
+    return f'"{replace}"'
 
 def _improve_json_string(template_representation: str) -> Any:
     origin = template_representation.split('\n')
@@ -533,6 +538,13 @@ class _RequestBuilderBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=
             ))
         return retval
 
+    def construct_url(self, builder) -> str:
+        if any(o for o in ["low_level_client", "version_tolerant"] if self.code_model.options.get(o)):
+            url_value = _escape_str(builder.url)
+        else:
+            url_value = f'kwargs.pop("template_url", {_escape_str(builder.url)})'
+        return f"url = {url_value}{'  # pylint: disable=line-too-long' if len(url_value) > 114 else ''}"
+
 class RequestBuilderGenericSerializer(_RequestBuilderBaseSerializer):
     @property
     def _want_inline_type_hints(self) -> bool:
@@ -986,8 +998,8 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
 
     @staticmethod
     def get_metadata_url(builder) -> str:
-        url = builder.request_builder.url.replace("'", "\\'")
-        return f"{builder.python_name}.metadata = {{'url': '{ url }'}}  # type: ignore"
+        url = _escape_str(builder.request_builder.url)
+        return f"{builder.python_name}.metadata = {{'url': { url }}}  # type: ignore"
 
 class _SyncOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=abstract-method
     @property

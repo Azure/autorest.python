@@ -72,7 +72,7 @@ class PollingPagingExampleOperationsMixin:
 
         return deserialized
 
-    _basic_polling_initial.metadata = {'url': '/basic/polling'}  # type: ignore
+    _basic_polling_initial.metadata = {'url': "/basic/polling"}  # type: ignore
 
 
     @distributed_trace_async
@@ -135,7 +135,7 @@ class PollingPagingExampleOperationsMixin:
             )
         return AsyncCustomPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_basic_polling.metadata = {'url': '/basic/polling'}  # type: ignore
+    begin_basic_polling.metadata = {'url': "/basic/polling"}  # type: ignore
 
     @distributed_trace
     def basic_paging(
@@ -200,4 +200,4 @@ class PollingPagingExampleOperationsMixin:
         return AsyncCustomPager(
             get_next, extract_data
         )
-    basic_paging.metadata = {'url': '/basic/paging'}  # type: ignore
+    basic_paging.metadata = {'url': "/basic/paging"}  # type: ignore

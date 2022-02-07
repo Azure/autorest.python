@@ -41,7 +41,7 @@ def build_get_null_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/null')
+    url = kwargs.pop("template_url", "/number/null")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -61,7 +61,7 @@ def build_get_invalid_float_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/invalidfloat')
+    url = kwargs.pop("template_url", "/number/invalidfloat")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -81,7 +81,7 @@ def build_get_invalid_double_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/invaliddouble')
+    url = kwargs.pop("template_url", "/number/invaliddouble")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -101,7 +101,7 @@ def build_get_invalid_decimal_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/invaliddecimal')
+    url = kwargs.pop("template_url", "/number/invaliddecimal")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -123,7 +123,7 @@ def build_put_big_float_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/big/float/3.402823e+20')
+    url = kwargs.pop("template_url", "/number/big/float/3.402823e+20")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -145,7 +145,7 @@ def build_get_big_float_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/big/float/3.402823e+20')
+    url = kwargs.pop("template_url", "/number/big/float/3.402823e+20")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -167,7 +167,7 @@ def build_put_big_double_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/big/double/2.5976931e+101')
+    url = kwargs.pop("template_url", "/number/big/double/2.5976931e+101")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -189,7 +189,7 @@ def build_get_big_double_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/big/double/2.5976931e+101')
+    url = kwargs.pop("template_url", "/number/big/double/2.5976931e+101")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -212,7 +212,7 @@ def build_put_big_double_positive_decimal_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/big/double/99999999.99')
+    url = kwargs.pop("template_url", "/number/big/double/99999999.99")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -235,7 +235,7 @@ def build_get_big_double_positive_decimal_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/big/double/99999999.99')
+    url = kwargs.pop("template_url", "/number/big/double/99999999.99")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -258,7 +258,7 @@ def build_put_big_double_negative_decimal_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/big/double/-99999999.99')
+    url = kwargs.pop("template_url", "/number/big/double/-99999999.99")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -281,7 +281,7 @@ def build_get_big_double_negative_decimal_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/big/double/-99999999.99')
+    url = kwargs.pop("template_url", "/number/big/double/-99999999.99")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -303,7 +303,7 @@ def build_put_big_decimal_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/big/decimal/2.5976931e+101')
+    url = kwargs.pop("template_url", "/number/big/decimal/2.5976931e+101")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -325,7 +325,7 @@ def build_get_big_decimal_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/big/decimal/2.5976931e+101')
+    url = kwargs.pop("template_url", "/number/big/decimal/2.5976931e+101")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -348,7 +348,7 @@ def build_put_big_decimal_positive_decimal_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/big/decimal/99999999.99')
+    url = kwargs.pop("template_url", "/number/big/decimal/99999999.99")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -371,7 +371,7 @@ def build_get_big_decimal_positive_decimal_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/big/decimal/99999999.99')
+    url = kwargs.pop("template_url", "/number/big/decimal/99999999.99")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -394,7 +394,7 @@ def build_put_big_decimal_negative_decimal_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/big/decimal/-99999999.99')
+    url = kwargs.pop("template_url", "/number/big/decimal/-99999999.99")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -417,7 +417,7 @@ def build_get_big_decimal_negative_decimal_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/big/decimal/-99999999.99')
+    url = kwargs.pop("template_url", "/number/big/decimal/-99999999.99")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -439,7 +439,7 @@ def build_put_small_float_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/small/float/3.402823e-20')
+    url = kwargs.pop("template_url", "/number/small/float/3.402823e-20")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -461,7 +461,7 @@ def build_get_small_float_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/small/float/3.402823e-20')
+    url = kwargs.pop("template_url", "/number/small/float/3.402823e-20")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -483,7 +483,7 @@ def build_put_small_double_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/small/double/2.5976931e-101')
+    url = kwargs.pop("template_url", "/number/small/double/2.5976931e-101")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -505,7 +505,7 @@ def build_get_small_double_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/small/double/2.5976931e-101')
+    url = kwargs.pop("template_url", "/number/small/double/2.5976931e-101")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -527,7 +527,7 @@ def build_put_small_decimal_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/small/decimal/2.5976931e-101')
+    url = kwargs.pop("template_url", "/number/small/decimal/2.5976931e-101")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -549,7 +549,7 @@ def build_get_small_decimal_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/number/small/decimal/2.5976931e-101')
+    url = kwargs.pop("template_url", "/number/small/decimal/2.5976931e-101")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

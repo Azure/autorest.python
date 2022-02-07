@@ -40,7 +40,7 @@ def build_get_object_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/anything/object')
+    url = kwargs.pop("template_url", "/anything/object")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -61,7 +61,7 @@ def build_put_object_request(
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/anything/object')
+    url = kwargs.pop("template_url", "/anything/object")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -82,7 +82,7 @@ def build_get_string_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/anything/string')
+    url = kwargs.pop("template_url", "/anything/string")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -103,7 +103,7 @@ def build_put_string_request(
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/anything/string')
+    url = kwargs.pop("template_url", "/anything/string")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -124,7 +124,7 @@ def build_get_array_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/anything/array')
+    url = kwargs.pop("template_url", "/anything/array")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -145,7 +145,7 @@ def build_put_array_request(
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/anything/array')
+    url = kwargs.pop("template_url", "/anything/array")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

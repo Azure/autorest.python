@@ -64,7 +64,7 @@ def build_create_ap_true_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/additionalProperties/true'
+    url = "/additionalProperties/true"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -124,7 +124,7 @@ def build_create_cat_ap_true_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/additionalProperties/true-subclass'
+    url = "/additionalProperties/true-subclass"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -182,7 +182,7 @@ def build_create_ap_object_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/additionalProperties/type/object'
+    url = "/additionalProperties/type/object"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -240,7 +240,7 @@ def build_create_ap_string_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/additionalProperties/type/string'
+    url = "/additionalProperties/type/string"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -298,7 +298,7 @@ def build_create_ap_in_properties_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/additionalProperties/in/properties'
+    url = "/additionalProperties/in/properties"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -364,7 +364,7 @@ def build_create_ap_in_properties_with_ap_string_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/additionalProperties/in/properties/with/additionalProperties/string'
+    url = "/additionalProperties/in/properties/with/additionalProperties/string"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

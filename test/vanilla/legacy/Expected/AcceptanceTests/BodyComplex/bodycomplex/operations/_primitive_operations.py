@@ -41,7 +41,7 @@ def build_get_int_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/primitive/integer')
+    url = kwargs.pop("template_url", "/complex/primitive/integer")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -63,7 +63,7 @@ def build_put_int_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/primitive/integer')
+    url = kwargs.pop("template_url", "/complex/primitive/integer")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -85,7 +85,7 @@ def build_get_long_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/primitive/long')
+    url = kwargs.pop("template_url", "/complex/primitive/long")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -107,7 +107,7 @@ def build_put_long_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/primitive/long')
+    url = kwargs.pop("template_url", "/complex/primitive/long")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -129,7 +129,7 @@ def build_get_float_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/primitive/float')
+    url = kwargs.pop("template_url", "/complex/primitive/float")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -151,7 +151,7 @@ def build_put_float_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/primitive/float')
+    url = kwargs.pop("template_url", "/complex/primitive/float")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -173,7 +173,7 @@ def build_get_double_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/primitive/double')
+    url = kwargs.pop("template_url", "/complex/primitive/double")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -195,7 +195,7 @@ def build_put_double_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/primitive/double')
+    url = kwargs.pop("template_url", "/complex/primitive/double")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -217,7 +217,7 @@ def build_get_bool_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/primitive/bool')
+    url = kwargs.pop("template_url", "/complex/primitive/bool")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -239,7 +239,7 @@ def build_put_bool_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/primitive/bool')
+    url = kwargs.pop("template_url", "/complex/primitive/bool")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -261,7 +261,7 @@ def build_get_string_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/primitive/string')
+    url = kwargs.pop("template_url", "/complex/primitive/string")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -283,7 +283,7 @@ def build_put_string_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/primitive/string')
+    url = kwargs.pop("template_url", "/complex/primitive/string")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -305,7 +305,7 @@ def build_get_date_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/primitive/date')
+    url = kwargs.pop("template_url", "/complex/primitive/date")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -327,7 +327,7 @@ def build_put_date_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/primitive/date')
+    url = kwargs.pop("template_url", "/complex/primitive/date")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -349,7 +349,7 @@ def build_get_date_time_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/primitive/datetime')
+    url = kwargs.pop("template_url", "/complex/primitive/datetime")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -371,7 +371,7 @@ def build_put_date_time_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/primitive/datetime')
+    url = kwargs.pop("template_url", "/complex/primitive/datetime")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -393,7 +393,7 @@ def build_get_date_time_rfc1123_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/primitive/datetimerfc1123')
+    url = kwargs.pop("template_url", "/complex/primitive/datetimerfc1123")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -415,7 +415,7 @@ def build_put_date_time_rfc1123_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/primitive/datetimerfc1123')
+    url = kwargs.pop("template_url", "/complex/primitive/datetimerfc1123")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -437,7 +437,7 @@ def build_get_duration_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/primitive/duration')
+    url = kwargs.pop("template_url", "/complex/primitive/duration")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -459,7 +459,7 @@ def build_put_duration_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/primitive/duration')
+    url = kwargs.pop("template_url", "/complex/primitive/duration")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -481,7 +481,7 @@ def build_get_byte_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/primitive/byte')
+    url = kwargs.pop("template_url", "/complex/primitive/byte")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -503,7 +503,7 @@ def build_put_byte_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/primitive/byte')
+    url = kwargs.pop("template_url", "/complex/primitive/byte")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

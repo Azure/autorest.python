@@ -41,7 +41,7 @@ def build_file_request(
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/binary/file')
+    url = kwargs.pop("template_url", "/binary/file")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -63,7 +63,7 @@ def build_binary_request(
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/binary/octet')
+    url = kwargs.pop("template_url", "/binary/octet")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

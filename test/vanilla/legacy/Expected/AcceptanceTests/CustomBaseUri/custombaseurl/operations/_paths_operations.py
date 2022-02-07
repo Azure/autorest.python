@@ -40,7 +40,7 @@ def build_get_empty_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/customuri')
+    url = kwargs.pop("template_url", "/customuri")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

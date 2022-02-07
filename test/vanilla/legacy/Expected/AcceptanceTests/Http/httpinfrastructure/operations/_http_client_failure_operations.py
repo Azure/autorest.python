@@ -41,7 +41,7 @@ def build_head400_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/400')
+    url = kwargs.pop("template_url", "/http/failure/client/400")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -61,7 +61,7 @@ def build_get400_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/400')
+    url = kwargs.pop("template_url", "/http/failure/client/400")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -81,7 +81,7 @@ def build_options400_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/400')
+    url = kwargs.pop("template_url", "/http/failure/client/400")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -103,7 +103,7 @@ def build_put400_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/400')
+    url = kwargs.pop("template_url", "/http/failure/client/400")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -127,7 +127,7 @@ def build_patch400_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/400')
+    url = kwargs.pop("template_url", "/http/failure/client/400")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -151,7 +151,7 @@ def build_post400_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/400')
+    url = kwargs.pop("template_url", "/http/failure/client/400")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -175,7 +175,7 @@ def build_delete400_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/400')
+    url = kwargs.pop("template_url", "/http/failure/client/400")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -197,7 +197,7 @@ def build_head401_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/401')
+    url = kwargs.pop("template_url", "/http/failure/client/401")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -217,7 +217,7 @@ def build_get402_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/402')
+    url = kwargs.pop("template_url", "/http/failure/client/402")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -237,7 +237,7 @@ def build_options403_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/403')
+    url = kwargs.pop("template_url", "/http/failure/client/403")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -257,7 +257,7 @@ def build_get403_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/403')
+    url = kwargs.pop("template_url", "/http/failure/client/403")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -279,7 +279,7 @@ def build_put404_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/404')
+    url = kwargs.pop("template_url", "/http/failure/client/404")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -303,7 +303,7 @@ def build_patch405_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/405')
+    url = kwargs.pop("template_url", "/http/failure/client/405")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -327,7 +327,7 @@ def build_post406_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/406')
+    url = kwargs.pop("template_url", "/http/failure/client/406")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -351,7 +351,7 @@ def build_delete407_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/407')
+    url = kwargs.pop("template_url", "/http/failure/client/407")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -375,7 +375,7 @@ def build_put409_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/409')
+    url = kwargs.pop("template_url", "/http/failure/client/409")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -397,7 +397,7 @@ def build_head410_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/410')
+    url = kwargs.pop("template_url", "/http/failure/client/410")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -417,7 +417,7 @@ def build_get411_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/411')
+    url = kwargs.pop("template_url", "/http/failure/client/411")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -437,7 +437,7 @@ def build_options412_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/412')
+    url = kwargs.pop("template_url", "/http/failure/client/412")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -457,7 +457,7 @@ def build_get412_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/412')
+    url = kwargs.pop("template_url", "/http/failure/client/412")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -479,7 +479,7 @@ def build_put413_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/413')
+    url = kwargs.pop("template_url", "/http/failure/client/413")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -503,7 +503,7 @@ def build_patch414_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/414')
+    url = kwargs.pop("template_url", "/http/failure/client/414")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -527,7 +527,7 @@ def build_post415_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/415')
+    url = kwargs.pop("template_url", "/http/failure/client/415")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -549,7 +549,7 @@ def build_get416_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/416')
+    url = kwargs.pop("template_url", "/http/failure/client/416")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -571,7 +571,7 @@ def build_delete417_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/417')
+    url = kwargs.pop("template_url", "/http/failure/client/417")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -593,7 +593,7 @@ def build_head429_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/client/429')
+    url = kwargs.pop("template_url", "/http/failure/client/429")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

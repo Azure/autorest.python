@@ -42,7 +42,7 @@ def build_patch_single_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/mergePatchJson/single')
+    url = kwargs.pop("template_url", "/mergePatchJson/single")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

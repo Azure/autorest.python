@@ -87,7 +87,7 @@ class MultiapiServiceClientOperationsMixin:
         return AsyncItemPaged(
             get_next, extract_data
         )
-    test_paging.metadata = {'url': '/multiapi/paging'}  # type: ignore
+    test_paging.metadata = {'url': "/multiapi/paging"}  # type: ignore
 
     @distributed_trace_async
     async def test_different_calls(
@@ -144,5 +144,5 @@ class MultiapiServiceClientOperationsMixin:
         if cls:
             return cls(pipeline_response, None, {})
 
-    test_different_calls.metadata = {'url': '/multiapi/testDifferentCalls'}  # type: ignore
+    test_different_calls.metadata = {'url': "/multiapi/testDifferentCalls"}  # type: ignore
 

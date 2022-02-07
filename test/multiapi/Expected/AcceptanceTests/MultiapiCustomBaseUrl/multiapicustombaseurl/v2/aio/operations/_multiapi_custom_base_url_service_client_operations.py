@@ -73,5 +73,5 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin:
         if cls:
             return cls(pipeline_response, None, {})
 
-    test.metadata = {'url': '/test'}  # type: ignore
+    test.metadata = {'url': "/test"}  # type: ignore
 

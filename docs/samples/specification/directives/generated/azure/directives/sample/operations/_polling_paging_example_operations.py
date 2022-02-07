@@ -38,7 +38,7 @@ def build_basic_polling_request_initial(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/basic/polling')
+    url = kwargs.pop("template_url", "/basic/polling")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -60,7 +60,7 @@ def build_basic_paging_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/basic/paging')
+    url = kwargs.pop("template_url", "/basic/paging")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -123,7 +123,7 @@ class PollingPagingExampleOperationsMixin(object):
 
         return deserialized
 
-    _basic_polling_initial.metadata = {'url': '/basic/polling'}  # type: ignore
+    _basic_polling_initial.metadata = {'url': "/basic/polling"}  # type: ignore
 
 
     @distributed_trace
@@ -186,7 +186,7 @@ class PollingPagingExampleOperationsMixin(object):
             )
         return CustomPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_basic_polling.metadata = {'url': '/basic/polling'}  # type: ignore
+    begin_basic_polling.metadata = {'url': "/basic/polling"}  # type: ignore
 
     @distributed_trace
     def basic_paging(
@@ -252,4 +252,4 @@ class PollingPagingExampleOperationsMixin(object):
         return CustomPager(
             get_next, extract_data
         )
-    basic_paging.metadata = {'url': '/basic/paging'}  # type: ignore
+    basic_paging.metadata = {'url': "/basic/paging"}  # type: ignore

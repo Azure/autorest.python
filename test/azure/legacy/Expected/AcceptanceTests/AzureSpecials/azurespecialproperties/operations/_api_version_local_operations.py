@@ -43,7 +43,7 @@ def build_get_method_local_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/apiVersion/method/string/none/query/local/2.0')
+    url = kwargs.pop("template_url", "/azurespecials/apiVersion/method/string/none/query/local/2.0")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -70,7 +70,7 @@ def build_get_method_local_null_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/apiVersion/method/string/none/query/local/null')
+    url = kwargs.pop("template_url", "/azurespecials/apiVersion/method/string/none/query/local/null")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -98,7 +98,7 @@ def build_get_path_local_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/apiVersion/path/string/none/query/local/2.0')
+    url = kwargs.pop("template_url", "/azurespecials/apiVersion/path/string/none/query/local/2.0")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -125,7 +125,7 @@ def build_get_swagger_local_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/apiVersion/swagger/string/none/query/local/2.0')
+    url = kwargs.pop("template_url", "/azurespecials/apiVersion/swagger/string/none/query/local/2.0")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]

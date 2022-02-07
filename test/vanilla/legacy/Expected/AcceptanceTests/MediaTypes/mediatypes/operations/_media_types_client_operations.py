@@ -43,7 +43,7 @@ def build_analyze_body_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/mediatypes/analyze')
+    url = kwargs.pop("template_url", "/mediatypes/analyze")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -66,7 +66,7 @@ def build_analyze_body_no_accept_header_request(
     content_type = kwargs.pop('content_type', None)  # type: Optional[Union[str, "_models.ContentType"]]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/mediatypes/analyzeNoAccept')
+    url = kwargs.pop("template_url", "/mediatypes/analyzeNoAccept")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -89,7 +89,7 @@ def build_content_type_with_encoding_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/mediatypes/contentTypeWithEncoding')
+    url = kwargs.pop("template_url", "/mediatypes/contentTypeWithEncoding")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -113,7 +113,7 @@ def build_binary_body_with_two_content_types_request(
 
     accept = "text/plain"
     # Construct URL
-    url = kwargs.pop("template_url", '/mediatypes/binaryBodyTwoContentTypes')
+    url = kwargs.pop("template_url", "/mediatypes/binaryBodyTwoContentTypes")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -137,7 +137,7 @@ def build_binary_body_with_three_content_types_request(
 
     accept = "text/plain"
     # Construct URL
-    url = kwargs.pop("template_url", '/mediatypes/binaryBodyThreeContentTypes')
+    url = kwargs.pop("template_url", "/mediatypes/binaryBodyThreeContentTypes")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -161,7 +161,7 @@ def build_put_text_and_json_body_request(
 
     accept = "text/plain"
     # Construct URL
-    url = kwargs.pop("template_url", '/mediatypes/textAndJson')
+    url = kwargs.pop("template_url", "/mediatypes/textAndJson")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

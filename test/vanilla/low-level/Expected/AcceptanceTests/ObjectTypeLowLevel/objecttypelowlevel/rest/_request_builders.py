@@ -40,7 +40,7 @@ def build_get_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/objectType/get'
+    url = "/objectType/get"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -88,7 +88,7 @@ def build_put_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/objectType/put'
+    url = "/objectType/put"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

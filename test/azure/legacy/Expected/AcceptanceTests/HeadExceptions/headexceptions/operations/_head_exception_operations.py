@@ -40,7 +40,7 @@ def build_head200_request(
 ):
     # type: (...) -> HttpRequest
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/200')
+    url = kwargs.pop("template_url", "/http/success/200")
 
     return HttpRequest(
         method="HEAD",
@@ -54,7 +54,7 @@ def build_head204_request(
 ):
     # type: (...) -> HttpRequest
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/204')
+    url = kwargs.pop("template_url", "/http/success/204")
 
     return HttpRequest(
         method="HEAD",
@@ -68,7 +68,7 @@ def build_head404_request(
 ):
     # type: (...) -> HttpRequest
     # Construct URL
-    url = kwargs.pop("template_url", '/http/success/404')
+    url = kwargs.pop("template_url", "/http/success/404")
 
     return HttpRequest(
         method="HEAD",

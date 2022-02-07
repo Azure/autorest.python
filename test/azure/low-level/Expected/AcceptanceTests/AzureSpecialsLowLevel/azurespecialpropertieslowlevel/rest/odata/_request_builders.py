@@ -45,7 +45,7 @@ def build_get_with_filter_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/azurespecials/odata/filter'
+    url = "/azurespecials/odata/filter"
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]

@@ -43,7 +43,7 @@ def build_get_report_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/report')
+    url = kwargs.pop("template_url", "/report")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -71,7 +71,7 @@ def build_get_optional_report_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/report/optional')
+    url = kwargs.pop("template_url", "/report/optional")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]

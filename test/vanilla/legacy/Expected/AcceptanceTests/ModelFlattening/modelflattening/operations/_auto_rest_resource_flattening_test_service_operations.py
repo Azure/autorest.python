@@ -43,7 +43,7 @@ def build_put_array_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/model-flatten/array')
+    url = kwargs.pop("template_url", "/model-flatten/array")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -65,7 +65,7 @@ def build_get_array_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/model-flatten/array')
+    url = kwargs.pop("template_url", "/model-flatten/array")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -87,7 +87,7 @@ def build_put_wrapped_array_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/model-flatten/wrappedarray')
+    url = kwargs.pop("template_url", "/model-flatten/wrappedarray")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -109,7 +109,7 @@ def build_get_wrapped_array_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/model-flatten/wrappedarray')
+    url = kwargs.pop("template_url", "/model-flatten/wrappedarray")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -131,7 +131,7 @@ def build_put_dictionary_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/model-flatten/dictionary')
+    url = kwargs.pop("template_url", "/model-flatten/dictionary")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -153,7 +153,7 @@ def build_get_dictionary_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/model-flatten/dictionary')
+    url = kwargs.pop("template_url", "/model-flatten/dictionary")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -175,7 +175,7 @@ def build_put_resource_collection_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/model-flatten/resourcecollection')
+    url = kwargs.pop("template_url", "/model-flatten/resourcecollection")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -197,7 +197,7 @@ def build_get_resource_collection_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/model-flatten/resourcecollection')
+    url = kwargs.pop("template_url", "/model-flatten/resourcecollection")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -219,7 +219,7 @@ def build_put_simple_product_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/model-flatten/customFlattening')
+    url = kwargs.pop("template_url", "/model-flatten/customFlattening")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -243,7 +243,7 @@ def build_post_flattened_simple_product_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/model-flatten/customFlattening')
+    url = kwargs.pop("template_url", "/model-flatten/customFlattening")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -268,7 +268,7 @@ def build_put_simple_product_with_grouping_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/model-flatten/customFlattening/parametergrouping/{name}/')
+    url = kwargs.pop("template_url", "/model-flatten/customFlattening/parametergrouping/{name}/")
     path_format_arguments = {
         "name": _SERIALIZER.url("name", name, 'str'),
     }

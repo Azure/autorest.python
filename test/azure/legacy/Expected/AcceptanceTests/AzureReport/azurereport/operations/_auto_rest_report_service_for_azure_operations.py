@@ -43,7 +43,7 @@ def build_get_report_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/report/azure')
+    url = kwargs.pop("template_url", "/report/azure")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]

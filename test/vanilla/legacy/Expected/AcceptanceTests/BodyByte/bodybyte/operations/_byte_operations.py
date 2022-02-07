@@ -41,7 +41,7 @@ def build_get_null_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/byte/null')
+    url = kwargs.pop("template_url", "/byte/null")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -61,7 +61,7 @@ def build_get_empty_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/byte/empty')
+    url = kwargs.pop("template_url", "/byte/empty")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -81,7 +81,7 @@ def build_get_non_ascii_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/byte/nonAscii')
+    url = kwargs.pop("template_url", "/byte/nonAscii")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -103,7 +103,7 @@ def build_put_non_ascii_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/byte/nonAscii')
+    url = kwargs.pop("template_url", "/byte/nonAscii")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -125,7 +125,7 @@ def build_get_invalid_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/byte/invalid')
+    url = kwargs.pop("template_url", "/byte/invalid")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

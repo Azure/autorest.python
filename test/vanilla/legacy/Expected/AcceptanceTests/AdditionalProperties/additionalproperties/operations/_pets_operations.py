@@ -43,7 +43,7 @@ def build_create_ap_true_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/additionalProperties/true')
+    url = kwargs.pop("template_url", "/additionalProperties/true")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -67,7 +67,7 @@ def build_create_cat_ap_true_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/additionalProperties/true-subclass')
+    url = kwargs.pop("template_url", "/additionalProperties/true-subclass")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -91,7 +91,7 @@ def build_create_ap_object_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/additionalProperties/type/object')
+    url = kwargs.pop("template_url", "/additionalProperties/type/object")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -115,7 +115,7 @@ def build_create_ap_string_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/additionalProperties/type/string')
+    url = kwargs.pop("template_url", "/additionalProperties/type/string")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -139,7 +139,7 @@ def build_create_ap_in_properties_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/additionalProperties/in/properties')
+    url = kwargs.pop("template_url", "/additionalProperties/in/properties")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -163,7 +163,7 @@ def build_create_ap_in_properties_with_ap_string_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/additionalProperties/in/properties/with/additionalProperties/string')
+    url = kwargs.pop("template_url", "/additionalProperties/in/properties/with/additionalProperties/string")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

@@ -36,7 +36,7 @@ def build_test_paging_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/multiapi/paging')
+    url = kwargs.pop("template_url", "/multiapi/paging")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -61,7 +61,7 @@ def build_test_different_calls_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/multiapi/testDifferentCalls')
+    url = kwargs.pop("template_url", "/multiapi/testDifferentCalls")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -151,7 +151,7 @@ class MultiapiServiceClientOperationsMixin(object):
         return ItemPaged(
             get_next, extract_data
         )
-    test_paging.metadata = {'url': '/multiapi/paging'}  # type: ignore
+    test_paging.metadata = {'url': "/multiapi/paging"}  # type: ignore
 
     @distributed_trace
     def test_different_calls(
@@ -209,5 +209,5 @@ class MultiapiServiceClientOperationsMixin(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    test_different_calls.metadata = {'url': '/multiapi/testDifferentCalls'}  # type: ignore
+    test_different_calls.metadata = {'url': "/multiapi/testDifferentCalls"}  # type: ignore
 

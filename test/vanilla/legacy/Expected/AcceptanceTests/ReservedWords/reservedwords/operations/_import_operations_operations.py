@@ -43,7 +43,7 @@ def build_operation_one_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/reservedWords/operationGroup/import')
+    url = kwargs.pop("template_url", "/reservedWords/operationGroup/import")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]

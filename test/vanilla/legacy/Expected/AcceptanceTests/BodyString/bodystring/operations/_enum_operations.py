@@ -41,7 +41,7 @@ def build_get_not_expandable_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/enum/notExpandable')
+    url = kwargs.pop("template_url", "/string/enum/notExpandable")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -63,7 +63,7 @@ def build_put_not_expandable_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/enum/notExpandable')
+    url = kwargs.pop("template_url", "/string/enum/notExpandable")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -85,7 +85,7 @@ def build_get_referenced_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/enum/Referenced')
+    url = kwargs.pop("template_url", "/string/enum/Referenced")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -107,7 +107,7 @@ def build_put_referenced_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/enum/Referenced')
+    url = kwargs.pop("template_url", "/string/enum/Referenced")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -129,7 +129,7 @@ def build_get_referenced_constant_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/enum/ReferencedConstant')
+    url = kwargs.pop("template_url", "/string/enum/ReferencedConstant")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -151,7 +151,7 @@ def build_put_referenced_constant_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/enum/ReferencedConstant')
+    url = kwargs.pop("template_url", "/string/enum/ReferencedConstant")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

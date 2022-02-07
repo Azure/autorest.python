@@ -41,7 +41,7 @@ def build_get_empty_error_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/emptybody/error')
+    url = kwargs.pop("template_url", "/http/failure/emptybody/error")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -61,7 +61,7 @@ def build_get_no_model_error_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/nomodel/error')
+    url = kwargs.pop("template_url", "/http/failure/nomodel/error")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -81,7 +81,7 @@ def build_get_no_model_empty_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/nomodel/empty')
+    url = kwargs.pop("template_url", "/http/failure/nomodel/empty")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

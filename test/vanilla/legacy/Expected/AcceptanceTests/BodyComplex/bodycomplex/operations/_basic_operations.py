@@ -40,7 +40,7 @@ def build_get_valid_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/basic/valid')
+    url = kwargs.pop("template_url", "/complex/basic/valid")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -63,7 +63,7 @@ def build_put_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/basic/valid')
+    url = kwargs.pop("template_url", "/complex/basic/valid")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -90,7 +90,7 @@ def build_get_invalid_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/basic/invalid')
+    url = kwargs.pop("template_url", "/complex/basic/invalid")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -110,7 +110,7 @@ def build_get_empty_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/basic/empty')
+    url = kwargs.pop("template_url", "/complex/basic/empty")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -130,7 +130,7 @@ def build_get_null_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/basic/null')
+    url = kwargs.pop("template_url", "/complex/basic/null")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -150,7 +150,7 @@ def build_get_not_provided_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/complex/basic/notprovided')
+    url = kwargs.pop("template_url", "/complex/basic/notprovided")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

@@ -38,7 +38,7 @@ def build_test_four_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/multiapi/two/testFourEndpoint')
+    url = kwargs.pop("template_url", "/multiapi/two/testFourEndpoint")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -67,7 +67,7 @@ def build_test_five_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/multiapi/two/testFiveEndpoint')
+    url = kwargs.pop("template_url", "/multiapi/two/testFiveEndpoint")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -174,7 +174,7 @@ class OperationGroupTwoOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    test_four.metadata = {'url': '/multiapi/two/testFourEndpoint'}  # type: ignore
+    test_four.metadata = {'url': "/multiapi/two/testFourEndpoint"}  # type: ignore
 
 
     @distributed_trace
@@ -221,5 +221,5 @@ class OperationGroupTwoOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    test_five.metadata = {'url': '/multiapi/two/testFiveEndpoint'}  # type: ignore
+    test_five.metadata = {'url': "/multiapi/two/testFiveEndpoint"}  # type: ignore
 

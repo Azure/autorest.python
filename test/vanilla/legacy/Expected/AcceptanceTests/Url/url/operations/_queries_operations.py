@@ -43,7 +43,7 @@ def build_get_boolean_true_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/bool/true')
+    url = kwargs.pop("template_url", "/queries/bool/true")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -70,7 +70,7 @@ def build_get_boolean_false_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/bool/false')
+    url = kwargs.pop("template_url", "/queries/bool/false")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -97,7 +97,7 @@ def build_get_boolean_null_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/bool/null')
+    url = kwargs.pop("template_url", "/queries/bool/null")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -125,7 +125,7 @@ def build_get_int_one_million_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/int/1000000')
+    url = kwargs.pop("template_url", "/queries/int/1000000")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -152,7 +152,7 @@ def build_get_int_negative_one_million_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/int/-1000000')
+    url = kwargs.pop("template_url", "/queries/int/-1000000")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -179,7 +179,7 @@ def build_get_int_null_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/int/null')
+    url = kwargs.pop("template_url", "/queries/int/null")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -207,7 +207,7 @@ def build_get_ten_billion_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/long/10000000000')
+    url = kwargs.pop("template_url", "/queries/long/10000000000")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -234,7 +234,7 @@ def build_get_negative_ten_billion_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/long/-10000000000')
+    url = kwargs.pop("template_url", "/queries/long/-10000000000")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -261,7 +261,7 @@ def build_get_long_null_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/long/null')
+    url = kwargs.pop("template_url", "/queries/long/null")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -289,7 +289,7 @@ def build_float_scientific_positive_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/float/1.034E+20')
+    url = kwargs.pop("template_url", "/queries/float/1.034E+20")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -316,7 +316,7 @@ def build_float_scientific_negative_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/float/-1.034E-20')
+    url = kwargs.pop("template_url", "/queries/float/-1.034E-20")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -343,7 +343,7 @@ def build_float_null_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/float/null')
+    url = kwargs.pop("template_url", "/queries/float/null")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -371,7 +371,7 @@ def build_double_decimal_positive_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/double/9999999.999')
+    url = kwargs.pop("template_url", "/queries/double/9999999.999")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -398,7 +398,7 @@ def build_double_decimal_negative_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/double/-9999999.999')
+    url = kwargs.pop("template_url", "/queries/double/-9999999.999")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -425,7 +425,7 @@ def build_double_null_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/double/null')
+    url = kwargs.pop("template_url", "/queries/double/null")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -453,7 +453,7 @@ def build_string_unicode_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/string/unicode/')
+    url = kwargs.pop("template_url", "/queries/string/unicode/")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -480,7 +480,7 @@ def build_string_url_encoded_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend')
+    url = kwargs.pop("template_url", "/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -507,7 +507,7 @@ def build_string_empty_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/string/empty')
+    url = kwargs.pop("template_url", "/queries/string/empty")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -534,7 +534,7 @@ def build_string_null_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/string/null')
+    url = kwargs.pop("template_url", "/queries/string/null")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -562,7 +562,7 @@ def build_enum_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/enum/green%20color')
+    url = kwargs.pop("template_url", "/queries/enum/green%20color")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -590,7 +590,7 @@ def build_enum_null_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/enum/null')
+    url = kwargs.pop("template_url", "/queries/enum/null")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -618,7 +618,7 @@ def build_byte_multi_byte_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/byte/multibyte')
+    url = kwargs.pop("template_url", "/queries/byte/multibyte")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -646,7 +646,7 @@ def build_byte_empty_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/byte/empty')
+    url = kwargs.pop("template_url", "/queries/byte/empty")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -673,7 +673,7 @@ def build_byte_null_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/byte/null')
+    url = kwargs.pop("template_url", "/queries/byte/null")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -701,7 +701,7 @@ def build_date_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/date/2012-01-01')
+    url = kwargs.pop("template_url", "/queries/date/2012-01-01")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -728,7 +728,7 @@ def build_date_null_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/date/null')
+    url = kwargs.pop("template_url", "/queries/date/null")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -756,7 +756,7 @@ def build_date_time_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/datetime/2012-01-01T01%3A01%3A01Z')
+    url = kwargs.pop("template_url", "/queries/datetime/2012-01-01T01%3A01%3A01Z")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -783,7 +783,7 @@ def build_date_time_null_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/datetime/null')
+    url = kwargs.pop("template_url", "/queries/datetime/null")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -811,7 +811,7 @@ def build_array_string_csv_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/array/csv/string/valid')
+    url = kwargs.pop("template_url", "/queries/array/csv/string/valid")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -839,7 +839,7 @@ def build_array_string_csv_null_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/array/csv/string/null')
+    url = kwargs.pop("template_url", "/queries/array/csv/string/null")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -867,7 +867,7 @@ def build_array_string_csv_empty_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/array/csv/string/empty')
+    url = kwargs.pop("template_url", "/queries/array/csv/string/empty")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -895,7 +895,7 @@ def build_array_string_no_collection_format_empty_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/array/none/string/empty')
+    url = kwargs.pop("template_url", "/queries/array/none/string/empty")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -923,7 +923,7 @@ def build_array_string_ssv_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/array/ssv/string/valid')
+    url = kwargs.pop("template_url", "/queries/array/ssv/string/valid")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -951,7 +951,7 @@ def build_array_string_tsv_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/array/tsv/string/valid')
+    url = kwargs.pop("template_url", "/queries/array/tsv/string/valid")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -979,7 +979,7 @@ def build_array_string_pipes_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/queries/array/pipes/string/valid')
+    url = kwargs.pop("template_url", "/queries/array/pipes/string/valid")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]

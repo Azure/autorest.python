@@ -47,7 +47,7 @@ def build_get_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/complex/flatten/valid'
+    url = "/complex/flatten/valid"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

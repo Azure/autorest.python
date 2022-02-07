@@ -37,7 +37,7 @@ def build_test_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/test')
+    url = kwargs.pop("template_url", "/test")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -111,5 +111,5 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    test.metadata = {'url': '/test'}  # type: ignore
+    test.metadata = {'url': "/test"}  # type: ignore
 

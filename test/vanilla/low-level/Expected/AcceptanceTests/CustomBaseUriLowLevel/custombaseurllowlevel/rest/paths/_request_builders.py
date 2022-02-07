@@ -35,7 +35,7 @@ def build_get_empty_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/customuri'
+    url = "/customuri"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

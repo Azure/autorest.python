@@ -36,7 +36,7 @@ def build_get_file_request(
 
     accept = "image/png, application/json"
     # Construct URL
-    url = '/files/stream/nonempty'
+    url = "/files/stream/nonempty"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -67,7 +67,7 @@ def build_get_file_large_request(
 
     accept = "image/png, application/json"
     # Construct URL
-    url = '/files/stream/verylarge'
+    url = "/files/stream/verylarge"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -98,7 +98,7 @@ def build_get_empty_file_request(
 
     accept = "image/png, application/json"
     # Construct URL
-    url = '/files/stream/empty'
+    url = "/files/stream/empty"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

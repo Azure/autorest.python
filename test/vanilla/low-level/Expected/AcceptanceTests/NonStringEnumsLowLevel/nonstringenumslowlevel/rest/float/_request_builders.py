@@ -53,7 +53,7 @@ def build_put_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/nonStringEnums/float/put'
+    url = "/nonStringEnums/float/put"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -92,7 +92,7 @@ def build_get_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/nonStringEnums/float/get'
+    url = "/nonStringEnums/float/get"
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

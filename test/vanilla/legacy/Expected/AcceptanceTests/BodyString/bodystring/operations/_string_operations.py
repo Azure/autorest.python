@@ -41,7 +41,7 @@ def build_get_null_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/null')
+    url = kwargs.pop("template_url", "/string/null")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -63,7 +63,7 @@ def build_put_null_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/null')
+    url = kwargs.pop("template_url", "/string/null")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -85,7 +85,7 @@ def build_get_empty_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/empty')
+    url = kwargs.pop("template_url", "/string/empty")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -108,7 +108,7 @@ def build_put_empty_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/empty')
+    url = kwargs.pop("template_url", "/string/empty")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -131,7 +131,7 @@ def build_get_mbcs_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/mbcs')
+    url = kwargs.pop("template_url", "/string/mbcs")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -154,7 +154,7 @@ def build_put_mbcs_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/mbcs')
+    url = kwargs.pop("template_url", "/string/mbcs")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -177,7 +177,7 @@ def build_get_whitespace_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/whitespace')
+    url = kwargs.pop("template_url", "/string/whitespace")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -200,7 +200,7 @@ def build_put_whitespace_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/whitespace')
+    url = kwargs.pop("template_url", "/string/whitespace")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -223,7 +223,7 @@ def build_get_not_provided_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/notProvided')
+    url = kwargs.pop("template_url", "/string/notProvided")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -243,7 +243,7 @@ def build_get_base64_encoded_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/base64Encoding')
+    url = kwargs.pop("template_url", "/string/base64Encoding")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -263,7 +263,7 @@ def build_get_base64_url_encoded_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/base64UrlEncoding')
+    url = kwargs.pop("template_url", "/string/base64UrlEncoding")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -285,7 +285,7 @@ def build_put_base64_url_encoded_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/base64UrlEncoding')
+    url = kwargs.pop("template_url", "/string/base64UrlEncoding")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
@@ -307,7 +307,7 @@ def build_get_null_base64_url_encoded_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/string/nullBase64UrlEncoding')
+    url = kwargs.pop("template_url", "/string/nullBase64UrlEncoding")
 
     # Construct headers
     header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]

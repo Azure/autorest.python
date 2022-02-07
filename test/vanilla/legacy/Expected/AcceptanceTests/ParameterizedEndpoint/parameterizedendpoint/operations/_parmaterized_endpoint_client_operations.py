@@ -39,7 +39,7 @@ def build_get_request(
 ):
     # type: (...) -> HttpRequest
     # Construct URL
-    url = kwargs.pop("template_url", '/parameterizedEndpoint/get')
+    url = kwargs.pop("template_url", "/parameterizedEndpoint/get")
 
     return HttpRequest(
         method="GET",

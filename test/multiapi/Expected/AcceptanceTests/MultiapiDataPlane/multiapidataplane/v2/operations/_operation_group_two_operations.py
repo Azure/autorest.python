@@ -37,7 +37,7 @@ def build_test_four_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/multiapi/two/testFourEndpoint')
+    url = kwargs.pop("template_url", "/multiapi/two/testFourEndpoint")
 
     # Construct parameters
     query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
@@ -127,5 +127,5 @@ class OperationGroupTwoOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    test_four.metadata = {'url': '/multiapi/two/testFourEndpoint'}  # type: ignore
+    test_four.metadata = {'url': "/multiapi/two/testFourEndpoint"}  # type: ignore
 

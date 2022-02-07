@@ -45,7 +45,7 @@ def build_get_empty_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/customuri/{subscriptionId}/{keyName}')
+    url = kwargs.pop("template_url", "/customuri/{subscriptionId}/{keyName}")
     path_format_arguments = {
         "keyName": _SERIALIZER.url("key_name", key_name, 'str'),
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, 'str'),
