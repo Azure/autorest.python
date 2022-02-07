@@ -18,7 +18,7 @@ if TYPE_CHECKING:
     from typing import Any, Optional
 
 
-class AutoRestRequiredOptionalTestServiceConfiguration(Configuration):
+class AutoRestRequiredOptionalTestServiceConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
     """Configuration for AutoRestRequiredOptionalTestService.
 
     Note that all parameters used to create this instance are saved as instance

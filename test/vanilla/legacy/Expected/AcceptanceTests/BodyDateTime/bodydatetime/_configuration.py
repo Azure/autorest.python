@@ -18,7 +18,7 @@ if TYPE_CHECKING:
     from typing import Any
 
 
-class AutoRestDateTimeTestServiceConfiguration(Configuration):
+class AutoRestDateTimeTestServiceConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
     """Configuration for AutoRestDateTimeTestService.
 
     Note that all parameters used to create this instance are saved as instance

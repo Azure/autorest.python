@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Optional, TYPE_CHECKING
+from typing import Any, TYPE_CHECKING
 
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
@@ -21,7 +21,8 @@ if TYPE_CHECKING:
 
 
 class AnythingClient:
-    """Service client for testing basic anything types. Those schemas without types can be anything:  primitive, object, array.
+    """Service client for testing basic anything types. Those schemas without types can be anything:
+    primitive, object, array.
 
     :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
     :paramtype endpoint: str

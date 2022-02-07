@@ -18,7 +18,9 @@ if TYPE_CHECKING:
     from typing import Any
 
 
-class AutoRestParameterizedCustomHostTestClientConfiguration(Configuration):
+class AutoRestParameterizedCustomHostTestClientConfiguration(
+    Configuration
+):  # pylint: disable=too-many-instance-attributes
     """Configuration for AutoRestParameterizedCustomHostTestClient.
 
     Note that all parameters used to create this instance are saved as instance
@@ -26,7 +28,8 @@ class AutoRestParameterizedCustomHostTestClientConfiguration(Configuration):
 
     :param subscription_id: The subscription id with value 'test12'.
     :type subscription_id: str
-    :param dns_suffix: A string value that is used as a global part of the parameterized host. Default value 'host'.
+    :param dns_suffix: A string value that is used as a global part of the parameterized host.
+     Default value 'host'.
     :type dns_suffix: str
     """
 

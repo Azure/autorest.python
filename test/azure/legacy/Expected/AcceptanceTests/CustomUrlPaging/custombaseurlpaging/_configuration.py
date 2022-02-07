@@ -18,7 +18,9 @@ if TYPE_CHECKING:
     from typing import Any
 
 
-class AutoRestParameterizedHostTestPagingClientConfiguration(Configuration):
+class AutoRestParameterizedHostTestPagingClientConfiguration(
+    Configuration
+):  # pylint: disable=too-many-instance-attributes
     """Configuration for AutoRestParameterizedHostTestPagingClient.
 
     Note that all parameters used to create this instance are saved as instance

@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_complex_test_service import AutoRestComplexTestServiceGenerated as AutoRestComplexTestService
+from ._auto_rest_complex_test_service import AutoRestComplexTestService
 
 from ._patch import __all__ as _patch_all
 from ._patch import *

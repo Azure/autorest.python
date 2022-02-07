@@ -19,7 +19,7 @@ if TYPE_CHECKING:
     from . import Dog, DotFish, DotSalmon, Fish
 
 
-class ArrayWrapperGenerated(msrest.serialization.Model):
+class ArrayWrapper(msrest.serialization.Model):
     """ArrayWrapper.
 
     :ivar array:
@@ -35,11 +35,11 @@ class ArrayWrapperGenerated(msrest.serialization.Model):
         :keyword array:
         :paramtype array: list[str]
         """
-        super(ArrayWrapperGenerated, self).__init__(**kwargs)
+        super(ArrayWrapper, self).__init__(**kwargs)
         self.array = array
 
 
-class BasicGenerated(msrest.serialization.Model):
+class Basic(msrest.serialization.Model):
     """Basic.
 
     :ivar id: Basic Id.
@@ -74,13 +74,13 @@ class BasicGenerated(msrest.serialization.Model):
         :keyword color: Possible values include: "cyan", "Magenta", "YELLOW", "blacK".
         :paramtype color: str or ~bodycomplex.models.CMYKColors
         """
-        super(BasicGenerated, self).__init__(**kwargs)
+        super(Basic, self).__init__(**kwargs)
         self.id = id
         self.name = name
         self.color = color
 
 
-class BooleanWrapperGenerated(msrest.serialization.Model):
+class BooleanWrapper(msrest.serialization.Model):
     """BooleanWrapper.
 
     :ivar field_true:
@@ -101,12 +101,12 @@ class BooleanWrapperGenerated(msrest.serialization.Model):
         :keyword field_false:
         :paramtype field_false: bool
         """
-        super(BooleanWrapperGenerated, self).__init__(**kwargs)
+        super(BooleanWrapper, self).__init__(**kwargs)
         self.field_true = field_true
         self.field_false = field_false
 
 
-class ByteWrapperGenerated(msrest.serialization.Model):
+class ByteWrapper(msrest.serialization.Model):
     """ByteWrapper.
 
     :ivar field:
@@ -122,11 +122,11 @@ class ByteWrapperGenerated(msrest.serialization.Model):
         :keyword field:
         :paramtype field: bytearray
         """
-        super(ByteWrapperGenerated, self).__init__(**kwargs)
+        super(ByteWrapper, self).__init__(**kwargs)
         self.field = field
 
 
-class PetGenerated(msrest.serialization.Model):
+class Pet(msrest.serialization.Model):
     """Pet.
 
     :ivar id:
@@ -147,12 +147,12 @@ class PetGenerated(msrest.serialization.Model):
         :keyword name:
         :paramtype name: str
         """
-        super(PetGenerated, self).__init__(**kwargs)
+        super(Pet, self).__init__(**kwargs)
         self.id = id
         self.name = name
 
 
-class CatGenerated(PetGenerated):
+class Cat(Pet):
     """Cat.
 
     :ivar id:
@@ -191,12 +191,12 @@ class CatGenerated(PetGenerated):
         :keyword hates:
         :paramtype hates: list[~bodycomplex.models.Dog]
         """
-        super(CatGenerated, self).__init__(id=id, name=name, **kwargs)
+        super(Cat, self).__init__(id=id, name=name, **kwargs)
         self.color = color
         self.hates = hates
 
 
-class FishGenerated(msrest.serialization.Model):
+class Fish(msrest.serialization.Model):
     """Fish.
 
     You probably want to use the sub-classes and not this class directly. Known
@@ -239,14 +239,14 @@ class FishGenerated(msrest.serialization.Model):
         :keyword siblings:
         :paramtype siblings: list[~bodycomplex.models.Fish]
         """
-        super(FishGenerated, self).__init__(**kwargs)
+        super(Fish, self).__init__(**kwargs)
         self.fishtype = None  # type: Optional[str]
         self.species = species
         self.length = length
         self.siblings = siblings
 
 
-class SharkGenerated(FishGenerated):
+class Shark(Fish):
     """Shark.
 
     You probably want to use the sub-classes and not this class directly. Known
@@ -309,13 +309,13 @@ class SharkGenerated(FishGenerated):
         :keyword birthday: Required.
         :paramtype birthday: ~datetime.datetime
         """
-        super(SharkGenerated, self).__init__(species=species, length=length, siblings=siblings, **kwargs)
+        super(Shark, self).__init__(species=species, length=length, siblings=siblings, **kwargs)
         self.fishtype = "shark"  # type: str
         self.age = age
         self.birthday = birthday
 
 
-class CookiecuttersharkGenerated(SharkGenerated):
+class Cookiecuttershark(Shark):
     """Cookiecuttershark.
 
     All required parameters must be populated in order to send to Azure.
@@ -371,13 +371,13 @@ class CookiecuttersharkGenerated(SharkGenerated):
         :keyword birthday: Required.
         :paramtype birthday: ~datetime.datetime
         """
-        super(CookiecuttersharkGenerated, self).__init__(
+        super(Cookiecuttershark, self).__init__(
             species=species, length=length, siblings=siblings, age=age, birthday=birthday, **kwargs
         )
         self.fishtype = "cookiecuttershark"  # type: str
 
 
-class Datetimerfc1123WrapperGenerated(msrest.serialization.Model):
+class Datetimerfc1123Wrapper(msrest.serialization.Model):
     """Datetimerfc1123Wrapper.
 
     :ivar field:
@@ -398,12 +398,12 @@ class Datetimerfc1123WrapperGenerated(msrest.serialization.Model):
         :keyword now:
         :paramtype now: ~datetime.datetime
         """
-        super(Datetimerfc1123WrapperGenerated, self).__init__(**kwargs)
+        super(Datetimerfc1123Wrapper, self).__init__(**kwargs)
         self.field = field
         self.now = now
 
 
-class DatetimeWrapperGenerated(msrest.serialization.Model):
+class DatetimeWrapper(msrest.serialization.Model):
     """DatetimeWrapper.
 
     :ivar field:
@@ -424,12 +424,12 @@ class DatetimeWrapperGenerated(msrest.serialization.Model):
         :keyword now:
         :paramtype now: ~datetime.datetime
         """
-        super(DatetimeWrapperGenerated, self).__init__(**kwargs)
+        super(DatetimeWrapper, self).__init__(**kwargs)
         self.field = field
         self.now = now
 
 
-class DateWrapperGenerated(msrest.serialization.Model):
+class DateWrapper(msrest.serialization.Model):
     """DateWrapper.
 
     :ivar field:
@@ -450,12 +450,12 @@ class DateWrapperGenerated(msrest.serialization.Model):
         :keyword leap:
         :paramtype leap: ~datetime.date
         """
-        super(DateWrapperGenerated, self).__init__(**kwargs)
+        super(DateWrapper, self).__init__(**kwargs)
         self.field = field
         self.leap = leap
 
 
-class DictionaryWrapperGenerated(msrest.serialization.Model):
+class DictionaryWrapper(msrest.serialization.Model):
     """DictionaryWrapper.
 
     :ivar default_program: Dictionary of :code:`<string>`.
@@ -471,11 +471,11 @@ class DictionaryWrapperGenerated(msrest.serialization.Model):
         :keyword default_program: Dictionary of :code:`<string>`.
         :paramtype default_program: dict[str, str]
         """
-        super(DictionaryWrapperGenerated, self).__init__(**kwargs)
+        super(DictionaryWrapper, self).__init__(**kwargs)
         self.default_program = default_program
 
 
-class DogGenerated(PetGenerated):
+class Dog(Pet):
     """Dog.
 
     :ivar id:
@@ -501,11 +501,11 @@ class DogGenerated(PetGenerated):
         :keyword food:
         :paramtype food: str
         """
-        super(DogGenerated, self).__init__(id=id, name=name, **kwargs)
+        super(Dog, self).__init__(id=id, name=name, **kwargs)
         self.food = food
 
 
-class DotFishGenerated(msrest.serialization.Model):
+class DotFish(msrest.serialization.Model):
     """DotFish.
 
     You probably want to use the sub-classes and not this class directly. Known
@@ -535,12 +535,12 @@ class DotFishGenerated(msrest.serialization.Model):
         :keyword species:
         :paramtype species: str
         """
-        super(DotFishGenerated, self).__init__(**kwargs)
+        super(DotFish, self).__init__(**kwargs)
         self.fish_type = None  # type: Optional[str]
         self.species = species
 
 
-class DotFishMarketGenerated(msrest.serialization.Model):
+class DotFishMarket(msrest.serialization.Model):
     """DotFishMarket.
 
     :ivar sample_salmon:
@@ -579,14 +579,14 @@ class DotFishMarketGenerated(msrest.serialization.Model):
         :keyword fishes:
         :paramtype fishes: list[~bodycomplex.models.DotFish]
         """
-        super(DotFishMarketGenerated, self).__init__(**kwargs)
+        super(DotFishMarket, self).__init__(**kwargs)
         self.sample_salmon = sample_salmon
         self.salmons = salmons
         self.sample_fish = sample_fish
         self.fishes = fishes
 
 
-class DotSalmonGenerated(DotFishGenerated):
+class DotSalmon(DotFish):
     """DotSalmon.
 
     All required parameters must be populated in order to send to Azure.
@@ -623,13 +623,13 @@ class DotSalmonGenerated(DotFishGenerated):
         :keyword iswild:
         :paramtype iswild: bool
         """
-        super(DotSalmonGenerated, self).__init__(species=species, **kwargs)
+        super(DotSalmon, self).__init__(species=species, **kwargs)
         self.fish_type = "DotSalmon"  # type: str
         self.location = location
         self.iswild = iswild
 
 
-class DoubleWrapperGenerated(msrest.serialization.Model):
+class DoubleWrapper(msrest.serialization.Model):
     """DoubleWrapper.
 
     :ivar field1:
@@ -667,14 +667,14 @@ class DoubleWrapperGenerated(msrest.serialization.Model):
          field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose:
          float
         """
-        super(DoubleWrapperGenerated, self).__init__(**kwargs)
+        super(DoubleWrapper, self).__init__(**kwargs)
         self.field1 = field1
         self.field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose = (
             field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose
         )
 
 
-class DurationWrapperGenerated(msrest.serialization.Model):
+class DurationWrapper(msrest.serialization.Model):
     """DurationWrapper.
 
     :ivar field:
@@ -690,11 +690,11 @@ class DurationWrapperGenerated(msrest.serialization.Model):
         :keyword field:
         :paramtype field: ~datetime.timedelta
         """
-        super(DurationWrapperGenerated, self).__init__(**kwargs)
+        super(DurationWrapper, self).__init__(**kwargs)
         self.field = field
 
 
-class ErrorGenerated(msrest.serialization.Model):
+class Error(msrest.serialization.Model):
     """Error.
 
     :ivar status:
@@ -715,12 +715,12 @@ class ErrorGenerated(msrest.serialization.Model):
         :keyword message:
         :paramtype message: str
         """
-        super(ErrorGenerated, self).__init__(**kwargs)
+        super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
 
 
-class FloatWrapperGenerated(msrest.serialization.Model):
+class FloatWrapper(msrest.serialization.Model):
     """FloatWrapper.
 
     :ivar field1:
@@ -741,12 +741,12 @@ class FloatWrapperGenerated(msrest.serialization.Model):
         :keyword field2:
         :paramtype field2: float
         """
-        super(FloatWrapperGenerated, self).__init__(**kwargs)
+        super(FloatWrapper, self).__init__(**kwargs)
         self.field1 = field1
         self.field2 = field2
 
 
-class GoblinsharkGenerated(SharkGenerated):
+class Goblinshark(Shark):
     """Goblinshark.
 
     All required parameters must be populated in order to send to Azure.
@@ -816,7 +816,7 @@ class GoblinsharkGenerated(SharkGenerated):
          "red". Default value: "gray".
         :paramtype color: str or ~bodycomplex.models.GoblinSharkColor
         """
-        super(GoblinsharkGenerated, self).__init__(
+        super(Goblinshark, self).__init__(
             species=species, length=length, siblings=siblings, age=age, birthday=birthday, **kwargs
         )
         self.fishtype = "goblin"  # type: str
@@ -824,7 +824,7 @@ class GoblinsharkGenerated(SharkGenerated):
         self.color = color
 
 
-class IntWrapperGenerated(msrest.serialization.Model):
+class IntWrapper(msrest.serialization.Model):
     """IntWrapper.
 
     :ivar field1:
@@ -845,12 +845,12 @@ class IntWrapperGenerated(msrest.serialization.Model):
         :keyword field2:
         :paramtype field2: int
         """
-        super(IntWrapperGenerated, self).__init__(**kwargs)
+        super(IntWrapper, self).__init__(**kwargs)
         self.field1 = field1
         self.field2 = field2
 
 
-class LongWrapperGenerated(msrest.serialization.Model):
+class LongWrapper(msrest.serialization.Model):
     """LongWrapper.
 
     :ivar field1:
@@ -871,12 +871,12 @@ class LongWrapperGenerated(msrest.serialization.Model):
         :keyword field2:
         :paramtype field2: long
         """
-        super(LongWrapperGenerated, self).__init__(**kwargs)
+        super(LongWrapper, self).__init__(**kwargs)
         self.field1 = field1
         self.field2 = field2
 
 
-class MyBaseTypeGenerated(msrest.serialization.Model):
+class MyBaseType(msrest.serialization.Model):
     """MyBaseType.
 
     You probably want to use the sub-classes and not this class directly. Known
@@ -911,13 +911,13 @@ class MyBaseTypeGenerated(msrest.serialization.Model):
         :keyword prop_bh1:
         :paramtype prop_bh1: str
         """
-        super(MyBaseTypeGenerated, self).__init__(**kwargs)
+        super(MyBaseType, self).__init__(**kwargs)
         self.kind = None  # type: Optional[str]
         self.prop_b1 = prop_b1
         self.prop_bh1 = prop_bh1
 
 
-class MyDerivedTypeGenerated(MyBaseTypeGenerated):
+class MyDerivedType(MyBaseType):
     """MyDerivedType.
 
     All required parameters must be populated in order to send to Azure.
@@ -954,12 +954,12 @@ class MyDerivedTypeGenerated(MyBaseTypeGenerated):
         :keyword prop_d1:
         :paramtype prop_d1: str
         """
-        super(MyDerivedTypeGenerated, self).__init__(prop_b1=prop_b1, prop_bh1=prop_bh1, **kwargs)
+        super(MyDerivedType, self).__init__(prop_b1=prop_b1, prop_bh1=prop_bh1, **kwargs)
         self.kind = "Kind1"  # type: str
         self.prop_d1 = prop_d1
 
 
-class ReadonlyObjGenerated(msrest.serialization.Model):
+class ReadonlyObj(msrest.serialization.Model):
     """ReadonlyObj.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -984,12 +984,12 @@ class ReadonlyObjGenerated(msrest.serialization.Model):
         :keyword size:
         :paramtype size: int
         """
-        super(ReadonlyObjGenerated, self).__init__(**kwargs)
+        super(ReadonlyObj, self).__init__(**kwargs)
         self.id = None
         self.size = size
 
 
-class SalmonGenerated(FishGenerated):
+class Salmon(Fish):
     """Salmon.
 
     You probably want to use the sub-classes and not this class directly. Known
@@ -1049,13 +1049,13 @@ class SalmonGenerated(FishGenerated):
         :keyword iswild:
         :paramtype iswild: bool
         """
-        super(SalmonGenerated, self).__init__(species=species, length=length, siblings=siblings, **kwargs)
+        super(Salmon, self).__init__(species=species, length=length, siblings=siblings, **kwargs)
         self.fishtype = "salmon"  # type: str
         self.location = location
         self.iswild = iswild
 
 
-class SawsharkGenerated(SharkGenerated):
+class Sawshark(Shark):
     """Sawshark.
 
     All required parameters must be populated in order to send to Azure.
@@ -1117,14 +1117,14 @@ class SawsharkGenerated(SharkGenerated):
         :keyword picture:
         :paramtype picture: bytearray
         """
-        super(SawsharkGenerated, self).__init__(
+        super(Sawshark, self).__init__(
             species=species, length=length, siblings=siblings, age=age, birthday=birthday, **kwargs
         )
         self.fishtype = "sawshark"  # type: str
         self.picture = picture
 
 
-class SiameseGenerated(CatGenerated):
+class Siamese(Cat):
     """Siamese.
 
     :ivar id:
@@ -1169,11 +1169,11 @@ class SiameseGenerated(CatGenerated):
         :keyword breed:
         :paramtype breed: str
         """
-        super(SiameseGenerated, self).__init__(id=id, name=name, color=color, hates=hates, **kwargs)
+        super(Siamese, self).__init__(id=id, name=name, color=color, hates=hates, **kwargs)
         self.breed = breed
 
 
-class SmartSalmonGenerated(SalmonGenerated):
+class SmartSalmon(Salmon):
     """SmartSalmon.
 
     All required parameters must be populated in order to send to Azure.
@@ -1242,7 +1242,7 @@ class SmartSalmonGenerated(SalmonGenerated):
         :keyword college_degree:
         :paramtype college_degree: str
         """
-        super(SmartSalmonGenerated, self).__init__(
+        super(SmartSalmon, self).__init__(
             species=species, length=length, siblings=siblings, location=location, iswild=iswild, **kwargs
         )
         self.fishtype = "smart_salmon"  # type: str
@@ -1250,7 +1250,7 @@ class SmartSalmonGenerated(SalmonGenerated):
         self.college_degree = college_degree
 
 
-class StringWrapperGenerated(msrest.serialization.Model):
+class StringWrapper(msrest.serialization.Model):
     """StringWrapper.
 
     :ivar field:
@@ -1278,7 +1278,7 @@ class StringWrapperGenerated(msrest.serialization.Model):
         :keyword null:
         :paramtype null: str
         """
-        super(StringWrapperGenerated, self).__init__(**kwargs)
+        super(StringWrapper, self).__init__(**kwargs)
         self.field = field
         self.empty = empty
         self.null = null

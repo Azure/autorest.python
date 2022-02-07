@@ -18,13 +18,14 @@ from .operations import IncorrectReturnedErrorModelOperationsMixin
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any
 
     from azure.core.rest import HttpRequest, HttpResponse
 
 
 class IncorrectReturnedErrorModel(IncorrectReturnedErrorModelOperationsMixin):
-    """Test to see when throwing an HttpResponseError whether we swallow error model deserialization errors.
+    """Test to see when throwing an HttpResponseError whether we swallow error model deserialization
+    errors.
 
     :param base_url: Service URL. Default value is 'http://localhost:3000'.
     :type base_url: str

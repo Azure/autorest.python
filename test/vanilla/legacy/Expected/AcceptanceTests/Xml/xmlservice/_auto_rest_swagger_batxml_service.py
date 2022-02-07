@@ -18,7 +18,7 @@ from .operations import XmlOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any
 
     from azure.core.rest import HttpRequest, HttpResponse
 

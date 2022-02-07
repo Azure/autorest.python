@@ -15,7 +15,7 @@ from azure.mgmt.core.policies import ARMHttpLoggingPolicy, AsyncARMChallengeAuth
 
 VERSION = "unknown"
 
-class MultiapiServiceClientConfiguration(Configuration):
+class MultiapiServiceClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
     """Configuration for MultiapiServiceClient.
 
     Note that all parameters used to create this instance are saved as instance
@@ -23,7 +23,8 @@ class MultiapiServiceClientConfiguration(Configuration):
 
     :param credential: Credential needed for the client to connect to Azure.
     :type credential: ~azure.core.credentials.AzureKeyCredential
-    :keyword api_version: Api Version. The default value is "3.0.0". Note that overriding this default value may result in unsupported behavior.
+    :keyword api_version: Api Version. The default value is "3.0.0". Note that overriding this
+     default value may result in unsupported behavior.
     :paramtype api_version: str
     """
 
