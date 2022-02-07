@@ -44,10 +44,6 @@ class DictionarySchema(BaseSchema):
         return f"Dict[str, {self.element_type.type_annotation}]"
 
     @property
-    def operation_type_annotation(self) -> str:
-        return f"Dict[str, {self.element_type.operation_type_annotation}]"
-
-    @property
     def docstring_text(self) -> str:
         return f"dict mapping str to {self.element_type.docstring_text}"
 

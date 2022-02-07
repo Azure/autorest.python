@@ -87,16 +87,8 @@ class EnumSchema(BaseSchema):
         :return: The type annotation for this schema
         :rtype: str
         """
-        return f'Union[{self.enum_type.type_annotation}, "{self.name}"]'
-
-    @property
-    def operation_type_annotation(self) -> str:
-        """The python type used for type annotation
-
-        :return: The type annotation for this schema
-        :rtype: str
-        """
         return f'Union[{self.enum_type.type_annotation}, "_models.{self.name}"]'
+
 
     def get_declaration(self, value: Any) -> str:
         return self.enum_type.get_declaration(value)
@@ -198,15 +190,6 @@ class HiddenModelEnumSchema(EnumSchema):
 
     @property
     def type_annotation(self) -> str:
-        """The python type used for type annotation
-
-        :return: The type annotation for this schema
-        :rtype: str
-        """
-        return self.enum_type.type_annotation
-
-    @property
-    def operation_type_annotation(self) -> str:
         """The python type used for type annotation
 
         :return: The type annotation for this schema

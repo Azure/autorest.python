@@ -41,10 +41,6 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
 
     @property
     def type_annotation(self) -> str:
-        return f'"{self.name}"'
-
-    @property
-    def operation_type_annotation(self) -> str:
         return f'"_models.{self.name}"'
 
     @property
@@ -218,6 +214,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
 
     def model_file_imports(self) -> FileImport:
         file_import = self.imports()
+        file_import.add_import("__init__", ImportType.LOCAL, typing_section=TypingSection.TYPING, alias="_models")
         file_import.add_submodule_import(".", self.name, ImportType.LOCAL, TypingSection.TYPING)
         return file_import
 
@@ -229,10 +226,6 @@ class HiddenModelObjectSchema(ObjectSchema):
 
     @property
     def type_annotation(self) -> str:
-        return "JSONType"
-
-    @property
-    def operation_type_annotation(self) -> str:
         return "JSONType"
 
     @property

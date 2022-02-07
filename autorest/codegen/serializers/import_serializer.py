@@ -12,7 +12,7 @@ def _serialize_package(
 ) -> str:
     buffer = []
     if any(i for i in imports if i.submodule_name is None):
-        buffer.append(f"import {imports[0].module_name}")
+        buffer.append(f"import {imports[0].module_name}{f' as {imports[0].alias}' if imports[0].alias else ''}")
     else:
         import_str = ", ".join(sorted([
             f"{i.submodule_name} as {i.alias}" if i.alias else i.submodule_name for i in imports # type: ignore

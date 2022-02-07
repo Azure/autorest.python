@@ -216,7 +216,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         ) and isinstance(self.schema, IOSchema)
 
     def _default_value(self) -> Tuple[Optional[Any], str, str]:
-        type_annot = self.multiple_content_types_type_annot or self.schema.operation_type_annotation
+        type_annot = self.multiple_content_types_type_annot or self.schema.type_annotation
         if self._is_io_json:
             type_annot = f"Union[{type_annot}, JSONType]"
         any_types = ["Any", "JSONType"]

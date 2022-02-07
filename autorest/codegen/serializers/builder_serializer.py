@@ -626,7 +626,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
             return "bool"
         response_body_annotations: OrderedSet[str] = {}
         for response in [r for r in builder.responses if r.has_body]:
-            response_body_annotations[response.operation_type_annotation] = None
+            response_body_annotations[response.type_annotation] = None
         response_str = ", ".join(response_body_annotations.keys()) or "None"
         if len(response_body_annotations) > 1:
             response_str = f"Union[{response_str}]"
