@@ -44,16 +44,16 @@ def build_get200_model204_no_model_default_error200_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/http/payloads/200/A/204/none/default/Error/response/200/valid"
+    _url = "/http/payloads/200/A/204/none/default/Error/response/200/valid"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -83,16 +83,16 @@ def build_get200_model204_no_model_default_error204_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/http/payloads/200/A/204/none/default/Error/response/204/none"
+    _url = "/http/payloads/200/A/204/none/default/Error/response/204/none"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -122,16 +122,16 @@ def build_get200_model204_no_model_default_error201_invalid_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/http/payloads/200/A/204/none/default/Error/response/201/valid"
+    _url = "/http/payloads/200/A/204/none/default/Error/response/201/valid"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -161,16 +161,16 @@ def build_get200_model204_no_model_default_error202_none_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/http/payloads/200/A/204/none/default/Error/response/202/none"
+    _url = "/http/payloads/200/A/204/none/default/Error/response/202/none"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -200,16 +200,16 @@ def build_get200_model204_no_model_default_error400_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/http/payloads/200/A/204/none/default/Error/response/400/valid"
+    _url = "/http/payloads/200/A/204/none/default/Error/response/400/valid"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -244,16 +244,16 @@ def build_get200_model201_model_default_error200_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/http/payloads/200/A/201/B/default/Error/response/200/valid"
+    _url = "/http/payloads/200/A/201/B/default/Error/response/200/valid"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -288,16 +288,16 @@ def build_get200_model201_model_default_error201_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/http/payloads/200/A/201/B/default/Error/response/201/valid"
+    _url = "/http/payloads/200/A/201/B/default/Error/response/201/valid"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -332,16 +332,16 @@ def build_get200_model201_model_default_error400_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/http/payloads/200/A/201/B/default/Error/response/400/valid"
+    _url = "/http/payloads/200/A/201/B/default/Error/response/400/valid"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -379,16 +379,16 @@ def build_get200_model_a201_model_c404_model_d_default_error200_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/http/payloads/200/A/201/C/404/D/default/Error/response/200/valid"
+    _url = "/http/payloads/200/A/201/C/404/D/default/Error/response/200/valid"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -426,16 +426,16 @@ def build_get200_model_a201_model_c404_model_d_default_error201_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/http/payloads/200/A/201/C/404/D/default/Error/response/201/valid"
+    _url = "/http/payloads/200/A/201/C/404/D/default/Error/response/201/valid"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -473,16 +473,16 @@ def build_get200_model_a201_model_c404_model_d_default_error404_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/http/payloads/200/A/201/C/404/D/default/Error/response/404/valid"
+    _url = "/http/payloads/200/A/201/C/404/D/default/Error/response/404/valid"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -520,16 +520,16 @@ def build_get200_model_a201_model_c404_model_d_default_error400_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/http/payloads/200/A/201/C/404/D/default/Error/response/400/valid"
+    _url = "/http/payloads/200/A/201/C/404/D/default/Error/response/400/valid"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -551,16 +551,16 @@ def build_get202_none204_none_default_error202_none_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/http/payloads/202/none/204/none/default/Error/response/202/none"
+    _url = "/http/payloads/202/none/204/none/default/Error/response/202/none"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -582,16 +582,16 @@ def build_get202_none204_none_default_error204_none_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/http/payloads/202/none/204/none/default/Error/response/204/none"
+    _url = "/http/payloads/202/none/204/none/default/Error/response/204/none"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -613,16 +613,16 @@ def build_get202_none204_none_default_error400_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/http/payloads/202/none/204/none/default/Error/response/400/valid"
+    _url = "/http/payloads/202/none/204/none/default/Error/response/400/valid"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -643,11 +643,11 @@ def build_get202_none204_none_default_none202_invalid_request(
     """
 
     # Construct URL
-    url = "/http/payloads/202/none/204/none/default/none/response/202/invalid"
+    _url = "/http/payloads/202/none/204/none/default/none/response/202/invalid"
 
     return HttpRequest(
         method="GET",
-        url=url,
+        url=_url,
         **kwargs
     )
 
@@ -668,11 +668,11 @@ def build_get202_none204_none_default_none204_none_request(
     """
 
     # Construct URL
-    url = "/http/payloads/202/none/204/none/default/none/response/204/none"
+    _url = "/http/payloads/202/none/204/none/default/none/response/204/none"
 
     return HttpRequest(
         method="GET",
-        url=url,
+        url=_url,
         **kwargs
     )
 
@@ -693,11 +693,11 @@ def build_get202_none204_none_default_none400_none_request(
     """
 
     # Construct URL
-    url = "/http/payloads/202/none/204/none/default/none/response/400/none"
+    _url = "/http/payloads/202/none/204/none/default/none/response/400/none"
 
     return HttpRequest(
         method="GET",
-        url=url,
+        url=_url,
         **kwargs
     )
 
@@ -718,11 +718,11 @@ def build_get202_none204_none_default_none400_invalid_request(
     """
 
     # Construct URL
-    url = "/http/payloads/202/none/204/none/default/none/response/400/invalid"
+    _url = "/http/payloads/202/none/204/none/default/none/response/400/invalid"
 
     return HttpRequest(
         method="GET",
-        url=url,
+        url=_url,
         **kwargs
     )
 
@@ -752,16 +752,16 @@ def build_get_default_model_a200_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/http/payloads/default/A/response/200/valid"
+    _url = "/http/payloads/default/A/response/200/valid"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -791,16 +791,16 @@ def build_get_default_model_a200_none_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/http/payloads/default/A/response/200/none"
+    _url = "/http/payloads/default/A/response/200/none"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -822,16 +822,16 @@ def build_get_default_model_a400_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/http/payloads/default/A/response/400/valid"
+    _url = "/http/payloads/default/A/response/400/valid"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -853,16 +853,16 @@ def build_get_default_model_a400_none_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/http/payloads/default/A/response/400/none"
+    _url = "/http/payloads/default/A/response/400/none"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -883,11 +883,11 @@ def build_get_default_none200_invalid_request(
     """
 
     # Construct URL
-    url = "/http/payloads/default/none/response/200/invalid"
+    _url = "/http/payloads/default/none/response/200/invalid"
 
     return HttpRequest(
         method="GET",
-        url=url,
+        url=_url,
         **kwargs
     )
 
@@ -908,11 +908,11 @@ def build_get_default_none200_none_request(
     """
 
     # Construct URL
-    url = "/http/payloads/default/none/response/200/none"
+    _url = "/http/payloads/default/none/response/200/none"
 
     return HttpRequest(
         method="GET",
-        url=url,
+        url=_url,
         **kwargs
     )
 
@@ -933,11 +933,11 @@ def build_get_default_none400_invalid_request(
     """
 
     # Construct URL
-    url = "/http/payloads/default/none/response/400/invalid"
+    _url = "/http/payloads/default/none/response/400/invalid"
 
     return HttpRequest(
         method="GET",
-        url=url,
+        url=_url,
         **kwargs
     )
 
@@ -958,11 +958,11 @@ def build_get_default_none400_none_request(
     """
 
     # Construct URL
-    url = "/http/payloads/default/none/response/400/none"
+    _url = "/http/payloads/default/none/response/400/none"
 
     return HttpRequest(
         method="GET",
-        url=url,
+        url=_url,
         **kwargs
     )
 
@@ -993,16 +993,16 @@ def build_get200_model_a200_none_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/http/payloads/200/A/response/200/none"
+    _url = "/http/payloads/200/A/response/200/none"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -1032,16 +1032,16 @@ def build_get200_model_a200_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/http/payloads/200/A/response/200/valid"
+    _url = "/http/payloads/200/A/response/200/valid"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -1071,16 +1071,16 @@ def build_get200_model_a200_invalid_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/http/payloads/200/A/response/200/invalid"
+    _url = "/http/payloads/200/A/response/200/invalid"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -1110,16 +1110,16 @@ def build_get200_model_a400_none_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/http/payloads/200/A/response/400/none"
+    _url = "/http/payloads/200/A/response/400/none"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -1149,16 +1149,16 @@ def build_get200_model_a400_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/http/payloads/200/A/response/400/valid"
+    _url = "/http/payloads/200/A/response/400/valid"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -1188,16 +1188,16 @@ def build_get200_model_a400_invalid_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/http/payloads/200/A/response/400/invalid"
+    _url = "/http/payloads/200/A/response/400/invalid"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -1227,15 +1227,15 @@ def build_get200_model_a202_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/http/payloads/200/A/response/202/valid"
+    _url = "/http/payloads/200/A/response/202/valid"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )

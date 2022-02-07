@@ -45,25 +45,25 @@ def build_get_with_filter_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/azurespecials/odata/filter"
+    _url = "/azurespecials/odata/filter"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if filter is not None:
-        query_parameters['$filter'] = _SERIALIZER.query("filter", filter, 'str')
+        _query_parameters['$filter'] = _SERIALIZER.query("filter", filter, 'str')
     if top is not None:
-        query_parameters['$top'] = _SERIALIZER.query("top", top, 'int')
+        _query_parameters['$top'] = _SERIALIZER.query("top", top, 'int')
     if orderby is not None:
-        query_parameters['$orderby'] = _SERIALIZER.query("orderby", orderby, 'str')
+        _query_parameters['$orderby'] = _SERIALIZER.query("orderby", orderby, 'str')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        url=_url,
+        params=_query_parameters,
+        headers=_header_parameters,
         **kwargs
     )

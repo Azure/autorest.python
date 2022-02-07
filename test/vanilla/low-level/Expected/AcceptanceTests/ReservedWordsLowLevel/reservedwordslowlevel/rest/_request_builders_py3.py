@@ -36,15 +36,15 @@ def build_operation_with_content_param_request(*, content: Any, **kwargs: Any) -
 
     accept = "application/json"
     # Construct URL
-    url = "/reservedWords/operation/content"
+    _url = "/reservedWords/operation/content"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, content=content, **kwargs)
 
 
 def build_operation_with_json_param_request(
@@ -77,15 +77,15 @@ def build_operation_with_json_param_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/reservedWords/operation/json"
+    _url = "/reservedWords/operation/json"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
 
 
 def build_operation_with_data_param_request(
@@ -121,15 +121,15 @@ def build_operation_with_data_param_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/reservedWords/operation/data"
+    _url = "/reservedWords/operation/data"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, data=data, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, data=data, content=content, **kwargs)
 
 
 def build_operation_with_files_param_request(
@@ -165,12 +165,12 @@ def build_operation_with_files_param_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/reservedWords/operation/files"
+    _url = "/reservedWords/operation/files"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, files=files, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, files=files, content=content, **kwargs)

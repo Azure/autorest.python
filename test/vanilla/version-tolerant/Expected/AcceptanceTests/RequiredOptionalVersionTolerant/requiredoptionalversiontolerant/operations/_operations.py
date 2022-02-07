@@ -33,49 +33,49 @@ _SERIALIZER = Serializer()
 def build_implicit_get_required_path_request(path_parameter: str, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/reqopt/implicit/required/path/{pathParameter}"
+    _url = "/reqopt/implicit/required/path/{pathParameter}"
     path_format_arguments = {
         "pathParameter": _SERIALIZER.url("path_parameter", path_parameter, "str"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_implicit_put_optional_query_request(*, query_parameter: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/reqopt/implicit/optional/query"
+    _url = "/reqopt/implicit/optional/query"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if query_parameter is not None:
-        query_parameters["queryParameter"] = _SERIALIZER.query("query_parameter", query_parameter, "str")
+        _query_parameters["queryParameter"] = _SERIALIZER.query("query_parameter", query_parameter, "str")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="PUT", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_implicit_put_optional_header_request(*, query_parameter: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/reqopt/implicit/optional/header"
+    _url = "/reqopt/implicit/optional/header"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if query_parameter is not None:
-        header_parameters["queryParameter"] = _SERIALIZER.header("query_parameter", query_parameter, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["queryParameter"] = _SERIALIZER.header("query_parameter", query_parameter, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_implicit_put_optional_body_request(
@@ -85,15 +85,15 @@ def build_implicit_put_optional_body_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/reqopt/implicit/optional/body"
+    _url = "/reqopt/implicit/optional/body"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
 
 
 def build_implicit_put_optional_binary_body_request(*, content: Any = None, **kwargs: Any) -> HttpRequest:
@@ -101,48 +101,50 @@ def build_implicit_put_optional_binary_body_request(*, content: Any = None, **kw
 
     accept = "application/json"
     # Construct URL
-    url = "/reqopt/implicit/optional/binary-body"
+    _url = "/reqopt/implicit/optional/binary-body"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, content=content, **kwargs)
 
 
 def build_implicit_get_required_global_path_request(required_global_path: str, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/reqopt/global/required/path/{required-global-path}"
+    _url = "/reqopt/global/required/path/{required-global-path}"
     path_format_arguments = {
         "required-global-path": _SERIALIZER.url("required_global_path", required_global_path, "str"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_implicit_get_required_global_query_request(*, required_global_query: str, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/reqopt/global/required/query"
+    _url = "/reqopt/global/required/query"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["required-global-query"] = _SERIALIZER.query("required_global_query", required_global_query, "str")
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters["required-global-query"] = _SERIALIZER.query(
+        "required_global_query", required_global_query, "str"
+    )
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_implicit_get_optional_global_query_request(
@@ -150,20 +152,20 @@ def build_implicit_get_optional_global_query_request(
 ) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/reqopt/global/optional/query"
+    _url = "/reqopt/global/optional/query"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if optional_global_query is not None:
-        query_parameters["optional-global-query"] = _SERIALIZER.query(
+        _query_parameters["optional-global-query"] = _SERIALIZER.query(
             "optional_global_query", optional_global_query, "int"
         )
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_explicit_put_optional_binary_body_request(*, content: Any = None, **kwargs: Any) -> HttpRequest:
@@ -171,15 +173,15 @@ def build_explicit_put_optional_binary_body_request(*, content: Any = None, **kw
 
     accept = "application/json"
     # Construct URL
-    url = "/reqopt/explicit/optional/binary-body"
+    _url = "/reqopt/explicit/optional/binary-body"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, content=content, **kwargs)
 
 
 def build_explicit_put_required_binary_body_request(*, content: Any, **kwargs: Any) -> HttpRequest:
@@ -187,15 +189,15 @@ def build_explicit_put_required_binary_body_request(*, content: Any, **kwargs: A
 
     accept = "application/json"
     # Construct URL
-    url = "/reqopt/explicit/required/binary-body"
+    _url = "/reqopt/explicit/required/binary-body"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, content=content, **kwargs)
 
 
 def build_explicit_post_required_integer_parameter_request(
@@ -205,15 +207,15 @@ def build_explicit_post_required_integer_parameter_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/reqopt/requied/integer/parameter"
+    _url = "/reqopt/requied/integer/parameter"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
 
 
 def build_explicit_post_optional_integer_parameter_request(
@@ -223,15 +225,15 @@ def build_explicit_post_optional_integer_parameter_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/reqopt/optional/integer/parameter"
+    _url = "/reqopt/optional/integer/parameter"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
 
 
 def build_explicit_post_required_integer_property_request(
@@ -241,15 +243,15 @@ def build_explicit_post_required_integer_property_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/reqopt/requied/integer/property"
+    _url = "/reqopt/requied/integer/property"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
 
 
 def build_explicit_post_optional_integer_property_request(
@@ -259,28 +261,28 @@ def build_explicit_post_optional_integer_property_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/reqopt/optional/integer/property"
+    _url = "/reqopt/optional/integer/property"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
 
 
 def build_explicit_post_required_integer_header_request(*, header_parameter: int, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/reqopt/requied/integer/header"
+    _url = "/reqopt/requied/integer/header"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["headerParameter"] = _SERIALIZER.header("header_parameter", header_parameter, "int")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["headerParameter"] = _SERIALIZER.header("header_parameter", header_parameter, "int")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_explicit_post_optional_integer_header_request(
@@ -288,15 +290,15 @@ def build_explicit_post_optional_integer_header_request(
 ) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/reqopt/optional/integer/header"
+    _url = "/reqopt/optional/integer/header"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if header_parameter is not None:
-        header_parameters["headerParameter"] = _SERIALIZER.header("header_parameter", header_parameter, "int")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["headerParameter"] = _SERIALIZER.header("header_parameter", header_parameter, "int")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_explicit_post_required_string_parameter_request(
@@ -306,15 +308,15 @@ def build_explicit_post_required_string_parameter_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/reqopt/requied/string/parameter"
+    _url = "/reqopt/requied/string/parameter"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
 
 
 def build_explicit_post_optional_string_parameter_request(
@@ -324,15 +326,15 @@ def build_explicit_post_optional_string_parameter_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/reqopt/optional/string/parameter"
+    _url = "/reqopt/optional/string/parameter"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
 
 
 def build_explicit_post_required_string_property_request(
@@ -342,15 +344,15 @@ def build_explicit_post_required_string_property_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/reqopt/requied/string/property"
+    _url = "/reqopt/requied/string/property"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
 
 
 def build_explicit_post_optional_string_property_request(
@@ -360,28 +362,28 @@ def build_explicit_post_optional_string_property_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/reqopt/optional/string/property"
+    _url = "/reqopt/optional/string/property"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
 
 
 def build_explicit_post_required_string_header_request(*, header_parameter: str, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/reqopt/requied/string/header"
+    _url = "/reqopt/requied/string/header"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["headerParameter"] = _SERIALIZER.header("header_parameter", header_parameter, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["headerParameter"] = _SERIALIZER.header("header_parameter", header_parameter, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_explicit_post_optional_string_header_request(
@@ -389,15 +391,15 @@ def build_explicit_post_optional_string_header_request(
 ) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/reqopt/optional/string/header"
+    _url = "/reqopt/optional/string/header"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if body_parameter is not None:
-        header_parameters["bodyParameter"] = _SERIALIZER.header("body_parameter", body_parameter, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["bodyParameter"] = _SERIALIZER.header("body_parameter", body_parameter, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_explicit_post_required_class_parameter_request(
@@ -407,15 +409,15 @@ def build_explicit_post_required_class_parameter_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/reqopt/requied/class/parameter"
+    _url = "/reqopt/requied/class/parameter"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
 
 
 def build_explicit_post_optional_class_parameter_request(
@@ -425,15 +427,15 @@ def build_explicit_post_optional_class_parameter_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/reqopt/optional/class/parameter"
+    _url = "/reqopt/optional/class/parameter"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
 
 
 def build_explicit_post_required_class_property_request(
@@ -443,15 +445,15 @@ def build_explicit_post_required_class_property_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/reqopt/requied/class/property"
+    _url = "/reqopt/requied/class/property"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
 
 
 def build_explicit_post_optional_class_property_request(
@@ -461,15 +463,15 @@ def build_explicit_post_optional_class_property_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/reqopt/optional/class/property"
+    _url = "/reqopt/optional/class/property"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
 
 
 def build_explicit_post_required_array_parameter_request(
@@ -479,15 +481,15 @@ def build_explicit_post_required_array_parameter_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/reqopt/requied/array/parameter"
+    _url = "/reqopt/requied/array/parameter"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
 
 
 def build_explicit_post_optional_array_parameter_request(
@@ -497,15 +499,15 @@ def build_explicit_post_optional_array_parameter_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/reqopt/optional/array/parameter"
+    _url = "/reqopt/optional/array/parameter"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
 
 
 def build_explicit_post_required_array_property_request(
@@ -515,15 +517,15 @@ def build_explicit_post_required_array_property_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/reqopt/requied/array/property"
+    _url = "/reqopt/requied/array/property"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
 
 
 def build_explicit_post_optional_array_property_request(
@@ -533,28 +535,28 @@ def build_explicit_post_optional_array_property_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/reqopt/optional/array/property"
+    _url = "/reqopt/optional/array/property"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
 
 
 def build_explicit_post_required_array_header_request(*, header_parameter: List[str], **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/reqopt/requied/array/header"
+    _url = "/reqopt/requied/array/header"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["headerParameter"] = _SERIALIZER.header("header_parameter", header_parameter, "[str]", div=",")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["headerParameter"] = _SERIALIZER.header("header_parameter", header_parameter, "[str]", div=",")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_explicit_post_optional_array_header_request(
@@ -562,17 +564,17 @@ def build_explicit_post_optional_array_header_request(
 ) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/reqopt/optional/array/header"
+    _url = "/reqopt/optional/array/header"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if header_parameter is not None:
-        header_parameters["headerParameter"] = _SERIALIZER.header(
+        _header_parameters["headerParameter"] = _SERIALIZER.header(
             "header_parameter", header_parameter, "[str]", div=","
         )
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 class ImplicitOperations(object):

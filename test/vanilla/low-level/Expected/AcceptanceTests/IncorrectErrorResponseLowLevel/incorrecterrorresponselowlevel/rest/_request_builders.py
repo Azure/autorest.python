@@ -36,10 +36,10 @@ def build_get_incorrect_error_from_server_request(
     """
 
     # Construct URL
-    url = "/incorrectError"
+    _url = "/incorrectError"
 
     return HttpRequest(
         method="GET",
-        url=url,
+        url=_url,
         **kwargs
     )

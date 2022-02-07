@@ -38,22 +38,22 @@ def build_test_four_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", "/multiapi/two/testFourEndpoint")
+    _url = kwargs.pop("template_url", "/multiapi/two/testFourEndpoint")
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['parameterOne'] = _SERIALIZER.query("parameter_one", parameter_one, 'bool')
-    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters['parameterOne'] = _SERIALIZER.query("parameter_one", parameter_one, 'bool')
+    _query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        url=_url,
+        params=_query_parameters,
+        headers=_header_parameters,
         **kwargs
     )
 
