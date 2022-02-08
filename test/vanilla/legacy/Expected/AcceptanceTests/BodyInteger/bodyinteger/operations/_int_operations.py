@@ -605,7 +605,7 @@ class IntOperations(object):
     get_underflow_int64.metadata = {"url": "/int/underflowint64"}  # type: ignore
 
     @distributed_trace
-    def put_max32(
+    def put_max32(  # pylint: disable=inconsistent-return-statements
         self,
         int_body,  # type: int
         **kwargs  # type: Any
@@ -652,7 +652,7 @@ class IntOperations(object):
     put_max32.metadata = {"url": "/int/max/32"}  # type: ignore
 
     @distributed_trace
-    def put_max64(
+    def put_max64(  # pylint: disable=inconsistent-return-statements
         self,
         int_body,  # type: int
         **kwargs  # type: Any
@@ -699,7 +699,7 @@ class IntOperations(object):
     put_max64.metadata = {"url": "/int/max/64"}  # type: ignore
 
     @distributed_trace
-    def put_min32(
+    def put_min32(  # pylint: disable=inconsistent-return-statements
         self,
         int_body,  # type: int
         **kwargs  # type: Any
@@ -746,7 +746,7 @@ class IntOperations(object):
     put_min32.metadata = {"url": "/int/min/32"}  # type: ignore
 
     @distributed_trace
-    def put_min64(
+    def put_min64(  # pylint: disable=inconsistent-return-statements
         self,
         int_body,  # type: int
         **kwargs  # type: Any
@@ -834,7 +834,7 @@ class IntOperations(object):
     get_unix_time.metadata = {"url": "/int/unixtime"}  # type: ignore
 
     @distributed_trace
-    def put_unix_time_date(
+    def put_unix_time_date(  # pylint: disable=inconsistent-return-statements
         self,
         int_body,  # type: datetime.datetime
         **kwargs  # type: Any

@@ -94,7 +94,7 @@ class ObjectTypeClientOperationsMixin(object):
         return deserialized
 
     @distributed_trace
-    def put(self, put_object: Any, **kwargs: Any) -> None:
+    def put(self, put_object: Any, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Basic put that puts an object. Pass in {'foo': 'bar'} to get a 200 and anything else to get an
         object error.
 

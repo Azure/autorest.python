@@ -60,7 +60,9 @@ class ImplicitOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_required_path(self, path_parameter: str, **kwargs: Any) -> None:
+    async def get_required_path(  # pylint: disable=inconsistent-return-statements
+        self, path_parameter: str, **kwargs: Any
+    ) -> None:
         """Test implicitly required path parameter.
 
         :param path_parameter:
@@ -97,7 +99,9 @@ class ImplicitOperations:
     get_required_path.metadata = {"url": "/reqopt/implicit/required/path/{pathParameter}"}  # type: ignore
 
     @distributed_trace_async
-    async def put_optional_query(self, query_parameter: Optional[str] = None, **kwargs: Any) -> None:
+    async def put_optional_query(  # pylint: disable=inconsistent-return-statements
+        self, query_parameter: Optional[str] = None, **kwargs: Any
+    ) -> None:
         """Test implicitly optional query parameter.
 
         :param query_parameter:
@@ -134,7 +138,9 @@ class ImplicitOperations:
     put_optional_query.metadata = {"url": "/reqopt/implicit/optional/query"}  # type: ignore
 
     @distributed_trace_async
-    async def put_optional_header(self, query_parameter: Optional[str] = None, **kwargs: Any) -> None:
+    async def put_optional_header(  # pylint: disable=inconsistent-return-statements
+        self, query_parameter: Optional[str] = None, **kwargs: Any
+    ) -> None:
         """Test implicitly optional header parameter.
 
         :param query_parameter:
@@ -171,7 +177,9 @@ class ImplicitOperations:
     put_optional_header.metadata = {"url": "/reqopt/implicit/optional/header"}  # type: ignore
 
     @distributed_trace_async
-    async def put_optional_body(self, body_parameter: Optional[str] = None, **kwargs: Any) -> None:
+    async def put_optional_body(  # pylint: disable=inconsistent-return-statements
+        self, body_parameter: Optional[str] = None, **kwargs: Any
+    ) -> None:
         """Test implicitly optional body parameter.
 
         :param body_parameter:
@@ -216,7 +224,9 @@ class ImplicitOperations:
     put_optional_body.metadata = {"url": "/reqopt/implicit/optional/body"}  # type: ignore
 
     @distributed_trace_async
-    async def put_optional_binary_body(self, body_parameter: Optional[IO] = None, **kwargs: Any) -> None:
+    async def put_optional_binary_body(  # pylint: disable=inconsistent-return-statements
+        self, body_parameter: Optional[IO] = None, **kwargs: Any
+    ) -> None:
         """Test implicitly optional body parameter.
 
         :param body_parameter:
@@ -258,7 +268,7 @@ class ImplicitOperations:
     put_optional_binary_body.metadata = {"url": "/reqopt/implicit/optional/binary-body"}  # type: ignore
 
     @distributed_trace_async
-    async def get_required_global_path(self, **kwargs: Any) -> None:
+    async def get_required_global_path(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Test implicitly required path parameter.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -293,7 +303,7 @@ class ImplicitOperations:
     get_required_global_path.metadata = {"url": "/reqopt/global/required/path/{required-global-path}"}  # type: ignore
 
     @distributed_trace_async
-    async def get_required_global_query(self, **kwargs: Any) -> None:
+    async def get_required_global_query(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Test implicitly required query parameter.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -328,7 +338,7 @@ class ImplicitOperations:
     get_required_global_query.metadata = {"url": "/reqopt/global/required/query"}  # type: ignore
 
     @distributed_trace_async
-    async def get_optional_global_query(self, **kwargs: Any) -> None:
+    async def get_optional_global_query(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Test implicitly optional query parameter.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

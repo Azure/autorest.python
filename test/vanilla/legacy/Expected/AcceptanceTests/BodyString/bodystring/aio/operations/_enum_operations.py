@@ -96,7 +96,9 @@ class EnumOperations:
     get_not_expandable.metadata = {"url": "/string/enum/notExpandable"}  # type: ignore
 
     @distributed_trace_async
-    async def put_not_expandable(self, string_body: Union[str, "_models.Colors"], **kwargs: Any) -> None:
+    async def put_not_expandable(  # pylint: disable=inconsistent-return-statements
+        self, string_body: Union[str, "_models.Colors"], **kwargs: Any
+    ) -> None:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         :param string_body: string body.
@@ -176,7 +178,9 @@ class EnumOperations:
     get_referenced.metadata = {"url": "/string/enum/Referenced"}  # type: ignore
 
     @distributed_trace_async
-    async def put_referenced(self, enum_string_body: Union[str, "_models.Colors"], **kwargs: Any) -> None:
+    async def put_referenced(  # pylint: disable=inconsistent-return-statements
+        self, enum_string_body: Union[str, "_models.Colors"], **kwargs: Any
+    ) -> None:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         :param enum_string_body: enum string body.
@@ -256,7 +260,9 @@ class EnumOperations:
     get_referenced_constant.metadata = {"url": "/string/enum/ReferencedConstant"}  # type: ignore
 
     @distributed_trace_async
-    async def put_referenced_constant(self, field1: Optional[str] = None, **kwargs: Any) -> None:
+    async def put_referenced_constant(  # pylint: disable=inconsistent-return-statements
+        self, field1: Optional[str] = None, **kwargs: Any
+    ) -> None:
         """Sends value 'green-color' from a constant.
 
         :param field1: Sample string.

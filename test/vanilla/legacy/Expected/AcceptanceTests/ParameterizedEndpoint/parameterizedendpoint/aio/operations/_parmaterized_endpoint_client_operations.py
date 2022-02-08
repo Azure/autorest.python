@@ -29,7 +29,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class ParmaterizedEndpointClientOperationsMixin:
     @distributed_trace_async
-    async def get(self, **kwargs: Any) -> None:
+    async def get(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Basic get to make sure base url formatting of 'endpoint' works.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

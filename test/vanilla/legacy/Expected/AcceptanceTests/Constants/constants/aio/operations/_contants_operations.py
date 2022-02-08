@@ -69,7 +69,7 @@ class ContantsOperations:
         self._config = config
 
     @distributed_trace_async
-    async def put_no_model_as_string_no_required_two_value_no_default(
+    async def put_no_model_as_string_no_required_two_value_no_default(  # pylint: disable=inconsistent-return-statements
         self,
         input: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]] = None,
         **kwargs: Any
@@ -111,7 +111,7 @@ class ContantsOperations:
     put_no_model_as_string_no_required_two_value_no_default.metadata = {"url": "/constants/putNoModelAsStringNoRequiredTwoValueNoDefault"}  # type: ignore
 
     @distributed_trace_async
-    async def put_no_model_as_string_no_required_two_value_default(
+    async def put_no_model_as_string_no_required_two_value_default(  # pylint: disable=inconsistent-return-statements
         self,
         input: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum"]] = "value1",
         **kwargs: Any
@@ -153,7 +153,7 @@ class ContantsOperations:
     put_no_model_as_string_no_required_two_value_default.metadata = {"url": "/constants/putNoModelAsStringNoRequiredTwoValueDefault"}  # type: ignore
 
     @distributed_trace_async
-    async def put_no_model_as_string_no_required_one_value_no_default(
+    async def put_no_model_as_string_no_required_one_value_no_default(  # pylint: disable=inconsistent-return-statements
         self, input: Optional[str] = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -193,7 +193,7 @@ class ContantsOperations:
     put_no_model_as_string_no_required_one_value_no_default.metadata = {"url": "/constants/putNoModelAsStringNoRequiredOneValueNoDefault"}  # type: ignore
 
     @distributed_trace_async
-    async def put_no_model_as_string_no_required_one_value_default(
+    async def put_no_model_as_string_no_required_one_value_default(  # pylint: disable=inconsistent-return-statements
         self, input: Optional[str] = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -233,7 +233,7 @@ class ContantsOperations:
     put_no_model_as_string_no_required_one_value_default.metadata = {"url": "/constants/putNoModelAsStringNoRequiredOneValueDefault"}  # type: ignore
 
     @distributed_trace_async
-    async def put_no_model_as_string_required_two_value_no_default(
+    async def put_no_model_as_string_required_two_value_no_default(  # pylint: disable=inconsistent-return-statements
         self, input: Union[str, "_models.NoModelAsStringRequiredTwoValueNoDefaultOpEnum"], **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -273,7 +273,7 @@ class ContantsOperations:
     put_no_model_as_string_required_two_value_no_default.metadata = {"url": "/constants/putNoModelAsStringRequiredTwoValueNoDefault"}  # type: ignore
 
     @distributed_trace_async
-    async def put_no_model_as_string_required_two_value_default(
+    async def put_no_model_as_string_required_two_value_default(  # pylint: disable=inconsistent-return-statements
         self, input: Union[str, "_models.NoModelAsStringRequiredTwoValueDefaultOpEnum"] = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -313,7 +313,9 @@ class ContantsOperations:
     put_no_model_as_string_required_two_value_default.metadata = {"url": "/constants/putNoModelAsStringRequiredTwoValueDefault"}  # type: ignore
 
     @distributed_trace_async
-    async def put_no_model_as_string_required_one_value_no_default(self, **kwargs: Any) -> None:
+    async def put_no_model_as_string_required_one_value_no_default(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
@@ -354,7 +356,9 @@ class ContantsOperations:
     put_no_model_as_string_required_one_value_no_default.metadata = {"url": "/constants/putNoModelAsStringRequiredOneValueNoDefault"}  # type: ignore
 
     @distributed_trace_async
-    async def put_no_model_as_string_required_one_value_default(self, **kwargs: Any) -> None:
+    async def put_no_model_as_string_required_one_value_default(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
@@ -395,7 +399,7 @@ class ContantsOperations:
     put_no_model_as_string_required_one_value_default.metadata = {"url": "/constants/putNoModelAsStringRequiredOneValueDefault"}  # type: ignore
 
     @distributed_trace_async
-    async def put_model_as_string_no_required_two_value_no_default(
+    async def put_model_as_string_no_required_two_value_no_default(  # pylint: disable=inconsistent-return-statements
         self,
         input: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]] = None,
         **kwargs: Any
@@ -437,7 +441,7 @@ class ContantsOperations:
     put_model_as_string_no_required_two_value_no_default.metadata = {"url": "/constants/putModelAsStringNoRequiredTwoValueNoDefault"}  # type: ignore
 
     @distributed_trace_async
-    async def put_model_as_string_no_required_two_value_default(
+    async def put_model_as_string_no_required_two_value_default(  # pylint: disable=inconsistent-return-statements
         self,
         input: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueDefaultOpEnum"]] = "value1",
         **kwargs: Any
@@ -479,7 +483,7 @@ class ContantsOperations:
     put_model_as_string_no_required_two_value_default.metadata = {"url": "/constants/putModelAsStringNoRequiredTwoValueDefault"}  # type: ignore
 
     @distributed_trace_async
-    async def put_model_as_string_no_required_one_value_no_default(
+    async def put_model_as_string_no_required_one_value_no_default(  # pylint: disable=inconsistent-return-statements
         self,
         input: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueNoDefaultOpEnum"]] = None,
         **kwargs: Any
@@ -521,7 +525,7 @@ class ContantsOperations:
     put_model_as_string_no_required_one_value_no_default.metadata = {"url": "/constants/putModelAsStringNoRequiredOneValueNoDefault"}  # type: ignore
 
     @distributed_trace_async
-    async def put_model_as_string_no_required_one_value_default(
+    async def put_model_as_string_no_required_one_value_default(  # pylint: disable=inconsistent-return-statements
         self,
         input: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueDefaultOpEnum"]] = "value1",
         **kwargs: Any
@@ -563,7 +567,7 @@ class ContantsOperations:
     put_model_as_string_no_required_one_value_default.metadata = {"url": "/constants/putModelAsStringNoRequiredOneValueDefault"}  # type: ignore
 
     @distributed_trace_async
-    async def put_model_as_string_required_two_value_no_default(
+    async def put_model_as_string_required_two_value_no_default(  # pylint: disable=inconsistent-return-statements
         self, input: Union[str, "_models.ModelAsStringRequiredTwoValueNoDefaultOpEnum"], **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -603,7 +607,7 @@ class ContantsOperations:
     put_model_as_string_required_two_value_no_default.metadata = {"url": "/constants/putModelAsStringRequiredTwoValueNoDefault"}  # type: ignore
 
     @distributed_trace_async
-    async def put_model_as_string_required_two_value_default(
+    async def put_model_as_string_required_two_value_default(  # pylint: disable=inconsistent-return-statements
         self, input: Union[str, "_models.ModelAsStringRequiredTwoValueDefaultOpEnum"] = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -643,7 +647,7 @@ class ContantsOperations:
     put_model_as_string_required_two_value_default.metadata = {"url": "/constants/putModelAsStringRequiredTwoValueDefault"}  # type: ignore
 
     @distributed_trace_async
-    async def put_model_as_string_required_one_value_no_default(
+    async def put_model_as_string_required_one_value_no_default(  # pylint: disable=inconsistent-return-statements
         self, input: Union[str, "_models.ModelAsStringRequiredOneValueNoDefaultOpEnum"], **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -683,7 +687,7 @@ class ContantsOperations:
     put_model_as_string_required_one_value_no_default.metadata = {"url": "/constants/putModelAsStringRequiredOneValueNoDefault"}  # type: ignore
 
     @distributed_trace_async
-    async def put_model_as_string_required_one_value_default(
+    async def put_model_as_string_required_one_value_default(  # pylint: disable=inconsistent-return-statements
         self, input: Union[str, "_models.ModelAsStringRequiredOneValueDefaultOpEnum"] = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -723,7 +727,7 @@ class ContantsOperations:
     put_model_as_string_required_one_value_default.metadata = {"url": "/constants/putModelAsStringRequiredOneValueDefault"}  # type: ignore
 
     @distributed_trace_async
-    async def put_client_constants(self, **kwargs: Any) -> None:
+    async def put_client_constants(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Pass constants from the client to this function. Will pass in constant path, query, and header
         parameters.
 

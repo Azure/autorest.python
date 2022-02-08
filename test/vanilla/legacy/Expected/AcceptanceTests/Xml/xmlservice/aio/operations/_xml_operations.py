@@ -123,7 +123,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     get_complex_type_ref_no_meta.metadata = {"url": "/xml/complex-type-ref-no-meta"}  # type: ignore
 
     @distributed_trace_async
-    async def put_complex_type_ref_no_meta(self, model: "_models.RootWithRefAndNoMeta", **kwargs: Any) -> None:
+    async def put_complex_type_ref_no_meta(  # pylint: disable=inconsistent-return-statements
+        self, model: "_models.RootWithRefAndNoMeta", **kwargs: Any
+    ) -> None:
         """Puts a complex type that has a ref to a complex type with no XML node.
 
         :param model:
@@ -201,7 +203,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     get_complex_type_ref_with_meta.metadata = {"url": "/xml/complex-type-ref-with-meta"}  # type: ignore
 
     @distributed_trace_async
-    async def put_complex_type_ref_with_meta(self, model: "_models.RootWithRefAndMeta", **kwargs: Any) -> None:
+    async def put_complex_type_ref_with_meta(  # pylint: disable=inconsistent-return-statements
+        self, model: "_models.RootWithRefAndMeta", **kwargs: Any
+    ) -> None:
         """Puts a complex type that has a ref to a complex type with XML node.
 
         :param model:
@@ -280,7 +284,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     get_simple.metadata = {"url": "/xml/simple"}  # type: ignore
 
     @distributed_trace_async
-    async def put_simple(self, slideshow: "_models.Slideshow", **kwargs: Any) -> None:
+    async def put_simple(  # pylint: disable=inconsistent-return-statements
+        self, slideshow: "_models.Slideshow", **kwargs: Any
+    ) -> None:
         """Put a simple XML document.
 
         :param slideshow:
@@ -359,7 +365,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     get_wrapped_lists.metadata = {"url": "/xml/wrapped-lists"}  # type: ignore
 
     @distributed_trace_async
-    async def put_wrapped_lists(self, wrapped_lists: "_models.AppleBarrel", **kwargs: Any) -> None:
+    async def put_wrapped_lists(  # pylint: disable=inconsistent-return-statements
+        self, wrapped_lists: "_models.AppleBarrel", **kwargs: Any
+    ) -> None:
         """Put an XML document with multiple wrapped lists.
 
         :param wrapped_lists:
@@ -401,7 +409,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     put_wrapped_lists.metadata = {"url": "/xml/wrapped-lists"}  # type: ignore
 
     @distributed_trace_async
-    async def get_headers(self, **kwargs: Any) -> None:
+    async def get_headers(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get strongly-typed response headers.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -474,7 +482,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     get_empty_list.metadata = {"url": "/xml/empty-list"}  # type: ignore
 
     @distributed_trace_async
-    async def put_empty_list(self, slideshow: "_models.Slideshow", **kwargs: Any) -> None:
+    async def put_empty_list(  # pylint: disable=inconsistent-return-statements
+        self, slideshow: "_models.Slideshow", **kwargs: Any
+    ) -> None:
         """Puts an empty list.
 
         :param slideshow:
@@ -552,7 +562,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     get_empty_wrapped_lists.metadata = {"url": "/xml/empty-wrapped-lists"}  # type: ignore
 
     @distributed_trace_async
-    async def put_empty_wrapped_lists(self, apple_barrel: "_models.AppleBarrel", **kwargs: Any) -> None:
+    async def put_empty_wrapped_lists(  # pylint: disable=inconsistent-return-statements
+        self, apple_barrel: "_models.AppleBarrel", **kwargs: Any
+    ) -> None:
         """Puts some empty wrapped lists.
 
         :param apple_barrel:
@@ -630,7 +642,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     get_root_list.metadata = {"url": "/xml/root-list"}  # type: ignore
 
     @distributed_trace_async
-    async def put_root_list(self, bananas: List["_models.Banana"], **kwargs: Any) -> None:
+    async def put_root_list(  # pylint: disable=inconsistent-return-statements
+        self, bananas: List["_models.Banana"], **kwargs: Any
+    ) -> None:
         """Puts a list as the root element.
 
         :param bananas:
@@ -709,7 +723,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     get_root_list_single_item.metadata = {"url": "/xml/root-list-single-item"}  # type: ignore
 
     @distributed_trace_async
-    async def put_root_list_single_item(self, bananas: List["_models.Banana"], **kwargs: Any) -> None:
+    async def put_root_list_single_item(  # pylint: disable=inconsistent-return-statements
+        self, bananas: List["_models.Banana"], **kwargs: Any
+    ) -> None:
         """Puts a list with a single item.
 
         :param bananas:
@@ -788,7 +804,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     get_empty_root_list.metadata = {"url": "/xml/empty-root-list"}  # type: ignore
 
     @distributed_trace_async
-    async def put_empty_root_list(self, bananas: List["_models.Banana"], **kwargs: Any) -> None:
+    async def put_empty_root_list(  # pylint: disable=inconsistent-return-statements
+        self, bananas: List["_models.Banana"], **kwargs: Any
+    ) -> None:
         """Puts an empty list as the root element.
 
         :param bananas:
@@ -867,7 +885,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     get_empty_child_element.metadata = {"url": "/xml/empty-child-element"}  # type: ignore
 
     @distributed_trace_async
-    async def put_empty_child_element(self, banana: "_models.Banana", **kwargs: Any) -> None:
+    async def put_empty_child_element(  # pylint: disable=inconsistent-return-statements
+        self, banana: "_models.Banana", **kwargs: Any
+    ) -> None:
         """Puts a value with an empty child element.
 
         :param banana:
@@ -999,7 +1019,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     get_service_properties.metadata = {"url": "/xml/"}  # type: ignore
 
     @distributed_trace_async
-    async def put_service_properties(self, properties: "_models.StorageServiceProperties", **kwargs: Any) -> None:
+    async def put_service_properties(  # pylint: disable=inconsistent-return-statements
+        self, properties: "_models.StorageServiceProperties", **kwargs: Any
+    ) -> None:
         """Puts storage service properties.
 
         :param properties:
@@ -1098,7 +1120,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     get_acls.metadata = {"url": "/xml/mycontainer"}  # type: ignore
 
     @distributed_trace_async
-    async def put_acls(self, properties: List["_models.SignedIdentifier"], **kwargs: Any) -> None:
+    async def put_acls(  # pylint: disable=inconsistent-return-statements
+        self, properties: List["_models.SignedIdentifier"], **kwargs: Any
+    ) -> None:
         """Puts storage ACLs for a container.
 
         :param properties:
@@ -1200,7 +1224,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     list_blobs.metadata = {"url": "/xml/mycontainer"}  # type: ignore
 
     @distributed_trace_async
-    async def json_input(self, id: Optional[int] = None, **kwargs: Any) -> None:
+    async def json_input(  # pylint: disable=inconsistent-return-statements
+        self, id: Optional[int] = None, **kwargs: Any
+    ) -> None:
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
         number 42.
 
@@ -1356,7 +1382,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     get_bytes.metadata = {"url": "/xml/bytes"}  # type: ignore
 
     @distributed_trace_async
-    async def put_binary(self, bytes: Optional[bytearray] = None, **kwargs: Any) -> None:
+    async def put_binary(  # pylint: disable=inconsistent-return-statements
+        self, bytes: Optional[bytearray] = None, **kwargs: Any
+    ) -> None:
         """Put an XML document with binary property.
 
         :param bytes:
@@ -1437,7 +1465,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     get_uri.metadata = {"url": "/xml/url"}  # type: ignore
 
     @distributed_trace_async
-    async def put_uri(self, url: Optional[str] = None, **kwargs: Any) -> None:
+    async def put_uri(  # pylint: disable=inconsistent-return-statements
+        self, url: Optional[str] = None, **kwargs: Any
+    ) -> None:
         """Put an XML document with uri property.
 
         :param url:

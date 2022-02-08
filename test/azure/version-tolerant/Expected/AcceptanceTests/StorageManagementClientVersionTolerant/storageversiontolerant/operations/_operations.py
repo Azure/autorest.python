@@ -624,7 +624,9 @@ class StorageAccountsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     @distributed_trace
-    def delete(self, resource_group_name: str, account_name: str, **kwargs: Any) -> None:
+    def delete(  # pylint: disable=inconsistent-return-statements
+        self, resource_group_name: str, account_name: str, **kwargs: Any
+    ) -> None:
         """Deletes a storage account in Microsoft Azure.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.

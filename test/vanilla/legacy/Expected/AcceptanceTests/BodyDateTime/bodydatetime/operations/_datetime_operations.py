@@ -691,7 +691,7 @@ class DatetimeOperations(object):  # pylint: disable=too-many-public-methods
     get_underflow.metadata = {"url": "/datetime/underflow"}  # type: ignore
 
     @distributed_trace
-    def put_utc_max_date_time(
+    def put_utc_max_date_time(  # pylint: disable=inconsistent-return-statements
         self,
         datetime_body,  # type: datetime.datetime
         **kwargs  # type: Any
@@ -738,7 +738,7 @@ class DatetimeOperations(object):  # pylint: disable=too-many-public-methods
     put_utc_max_date_time.metadata = {"url": "/datetime/max/utc"}  # type: ignore
 
     @distributed_trace
-    def put_utc_max_date_time7_digits(
+    def put_utc_max_date_time7_digits(  # pylint: disable=inconsistent-return-statements
         self,
         datetime_body,  # type: datetime.datetime
         **kwargs  # type: Any
@@ -914,7 +914,7 @@ class DatetimeOperations(object):  # pylint: disable=too-many-public-methods
     get_utc_uppercase_max_date_time7_digits.metadata = {"url": "/datetime/max/utc7ms/uppercase"}  # type: ignore
 
     @distributed_trace
-    def put_local_positive_offset_max_date_time(
+    def put_local_positive_offset_max_date_time(  # pylint: disable=inconsistent-return-statements
         self,
         datetime_body,  # type: datetime.datetime
         **kwargs  # type: Any
@@ -1043,7 +1043,7 @@ class DatetimeOperations(object):  # pylint: disable=too-many-public-methods
     get_local_positive_offset_uppercase_max_date_time.metadata = {"url": "/datetime/max/localpositiveoffset/uppercase"}  # type: ignore
 
     @distributed_trace
-    def put_local_negative_offset_max_date_time(
+    def put_local_negative_offset_max_date_time(  # pylint: disable=inconsistent-return-statements
         self,
         datetime_body,  # type: datetime.datetime
         **kwargs  # type: Any
@@ -1172,7 +1172,7 @@ class DatetimeOperations(object):  # pylint: disable=too-many-public-methods
     get_local_negative_offset_lowercase_max_date_time.metadata = {"url": "/datetime/max/localnegativeoffset/lowercase"}  # type: ignore
 
     @distributed_trace
-    def put_utc_min_date_time(
+    def put_utc_min_date_time(  # pylint: disable=inconsistent-return-statements
         self,
         datetime_body,  # type: datetime.datetime
         **kwargs  # type: Any
@@ -1260,7 +1260,7 @@ class DatetimeOperations(object):  # pylint: disable=too-many-public-methods
     get_utc_min_date_time.metadata = {"url": "/datetime/min/utc"}  # type: ignore
 
     @distributed_trace
-    def put_local_positive_offset_min_date_time(
+    def put_local_positive_offset_min_date_time(  # pylint: disable=inconsistent-return-statements
         self,
         datetime_body,  # type: datetime.datetime
         **kwargs  # type: Any
@@ -1348,7 +1348,7 @@ class DatetimeOperations(object):  # pylint: disable=too-many-public-methods
     get_local_positive_offset_min_date_time.metadata = {"url": "/datetime/min/localpositiveoffset"}  # type: ignore
 
     @distributed_trace
-    def put_local_negative_offset_min_date_time(
+    def put_local_negative_offset_min_date_time(  # pylint: disable=inconsistent-return-statements
         self,
         datetime_body,  # type: datetime.datetime
         **kwargs  # type: Any

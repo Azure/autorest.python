@@ -750,7 +750,7 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
     get_invalid_decimal.metadata = {"url": "/number/invaliddecimal"}  # type: ignore
 
     @distributed_trace
-    def put_big_float(
+    def put_big_float(  # pylint: disable=inconsistent-return-statements
         self,
         number_body,  # type: float
         **kwargs  # type: Any
@@ -838,7 +838,7 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
     get_big_float.metadata = {"url": "/number/big/float/3.402823e+20"}  # type: ignore
 
     @distributed_trace
-    def put_big_double(
+    def put_big_double(  # pylint: disable=inconsistent-return-statements
         self,
         number_body,  # type: float
         **kwargs  # type: Any
@@ -926,7 +926,7 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
     get_big_double.metadata = {"url": "/number/big/double/2.5976931e+101"}  # type: ignore
 
     @distributed_trace
-    def put_big_double_positive_decimal(
+    def put_big_double_positive_decimal(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1012,7 +1012,7 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
     get_big_double_positive_decimal.metadata = {"url": "/number/big/double/99999999.99"}  # type: ignore
 
     @distributed_trace
-    def put_big_double_negative_decimal(
+    def put_big_double_negative_decimal(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1098,7 +1098,7 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
     get_big_double_negative_decimal.metadata = {"url": "/number/big/double/-99999999.99"}  # type: ignore
 
     @distributed_trace
-    def put_big_decimal(
+    def put_big_decimal(  # pylint: disable=inconsistent-return-statements
         self,
         number_body,  # type: float
         **kwargs  # type: Any
@@ -1186,7 +1186,7 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
     get_big_decimal.metadata = {"url": "/number/big/decimal/2.5976931e+101"}  # type: ignore
 
     @distributed_trace
-    def put_big_decimal_positive_decimal(
+    def put_big_decimal_positive_decimal(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1272,7 +1272,7 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
     get_big_decimal_positive_decimal.metadata = {"url": "/number/big/decimal/99999999.99"}  # type: ignore
 
     @distributed_trace
-    def put_big_decimal_negative_decimal(
+    def put_big_decimal_negative_decimal(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1358,7 +1358,7 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
     get_big_decimal_negative_decimal.metadata = {"url": "/number/big/decimal/-99999999.99"}  # type: ignore
 
     @distributed_trace
-    def put_small_float(
+    def put_small_float(  # pylint: disable=inconsistent-return-statements
         self,
         number_body,  # type: float
         **kwargs  # type: Any
@@ -1446,7 +1446,7 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
     get_small_float.metadata = {"url": "/number/small/float/3.402823e-20"}  # type: ignore
 
     @distributed_trace
-    def put_small_double(
+    def put_small_double(  # pylint: disable=inconsistent-return-statements
         self,
         number_body,  # type: float
         **kwargs  # type: Any
@@ -1534,7 +1534,7 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
     get_small_double.metadata = {"url": "/number/small/double/2.5976931e-101"}  # type: ignore
 
     @distributed_trace
-    def put_small_decimal(
+    def put_small_decimal(  # pylint: disable=inconsistent-return-statements
         self,
         number_body,  # type: float
         **kwargs  # type: Any

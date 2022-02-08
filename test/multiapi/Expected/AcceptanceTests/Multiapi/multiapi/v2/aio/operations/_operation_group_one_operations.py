@@ -104,7 +104,7 @@ class OperationGroupOneOperations:
 
 
     @distributed_trace_async
-    async def test_three(
+    async def test_three(  # pylint: disable=inconsistent-return-statements
         self,
         **kwargs: Any
     ) -> None:

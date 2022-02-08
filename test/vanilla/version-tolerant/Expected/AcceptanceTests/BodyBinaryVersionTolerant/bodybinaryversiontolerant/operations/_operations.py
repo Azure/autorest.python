@@ -76,7 +76,9 @@ class UploadOperations(object):
         self._config = config
 
     @distributed_trace
-    def file(self, file_param: Union[IO, JSONType], **kwargs: Any) -> None:
+    def file(  # pylint: disable=inconsistent-return-statements
+        self, file_param: Union[IO, JSONType], **kwargs: Any
+    ) -> None:
         """Uploading json file.
 
         :param file_param: JSON file with payload { "more": "cowbell" }.
@@ -112,7 +114,7 @@ class UploadOperations(object):
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def binary(self, file_param: IO, **kwargs: Any) -> None:
+    def binary(self, file_param: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Uploading binary file.
 
         :param file_param: Non-empty binary file.

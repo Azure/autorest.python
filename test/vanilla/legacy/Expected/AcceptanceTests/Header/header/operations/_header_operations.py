@@ -744,7 +744,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         self._config = config
 
     @distributed_trace
-    def param_existing_key(
+    def param_existing_key(  # pylint: disable=inconsistent-return-statements
         self,
         user_agent_parameter,  # type: str
         **kwargs  # type: Any
@@ -786,7 +786,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
     param_existing_key.metadata = {"url": "/header/param/existingkey"}  # type: ignore
 
     @distributed_trace
-    def response_existing_key(
+    def response_existing_key(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -826,7 +826,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
     response_existing_key.metadata = {"url": "/header/response/existingkey"}  # type: ignore
 
     @distributed_trace
-    def param_protected_key(
+    def param_protected_key(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -866,7 +866,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
     param_protected_key.metadata = {"url": "/header/param/protectedkey"}  # type: ignore
 
     @distributed_trace
-    def response_protected_key(
+    def response_protected_key(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -906,7 +906,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
     response_protected_key.metadata = {"url": "/header/response/protectedkey"}  # type: ignore
 
     @distributed_trace
-    def param_integer(
+    def param_integer(  # pylint: disable=inconsistent-return-statements
         self,
         scenario,  # type: str
         value,  # type: int
@@ -953,7 +953,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
     param_integer.metadata = {"url": "/header/param/prim/integer"}  # type: ignore
 
     @distributed_trace
-    def response_integer(
+    def response_integer(  # pylint: disable=inconsistent-return-statements
         self,
         scenario,  # type: str
         **kwargs  # type: Any
@@ -998,7 +998,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
     response_integer.metadata = {"url": "/header/response/prim/integer"}  # type: ignore
 
     @distributed_trace
-    def param_long(
+    def param_long(  # pylint: disable=inconsistent-return-statements
         self,
         scenario,  # type: str
         value,  # type: int
@@ -1045,7 +1045,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
     param_long.metadata = {"url": "/header/param/prim/long"}  # type: ignore
 
     @distributed_trace
-    def response_long(
+    def response_long(  # pylint: disable=inconsistent-return-statements
         self,
         scenario,  # type: str
         **kwargs  # type: Any
@@ -1090,7 +1090,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
     response_long.metadata = {"url": "/header/response/prim/long"}  # type: ignore
 
     @distributed_trace
-    def param_float(
+    def param_float(  # pylint: disable=inconsistent-return-statements
         self,
         scenario,  # type: str
         value,  # type: float
@@ -1137,7 +1137,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
     param_float.metadata = {"url": "/header/param/prim/float"}  # type: ignore
 
     @distributed_trace
-    def response_float(
+    def response_float(  # pylint: disable=inconsistent-return-statements
         self,
         scenario,  # type: str
         **kwargs  # type: Any
@@ -1182,7 +1182,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
     response_float.metadata = {"url": "/header/response/prim/float"}  # type: ignore
 
     @distributed_trace
-    def param_double(
+    def param_double(  # pylint: disable=inconsistent-return-statements
         self,
         scenario,  # type: str
         value,  # type: float
@@ -1229,7 +1229,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
     param_double.metadata = {"url": "/header/param/prim/double"}  # type: ignore
 
     @distributed_trace
-    def response_double(
+    def response_double(  # pylint: disable=inconsistent-return-statements
         self,
         scenario,  # type: str
         **kwargs  # type: Any
@@ -1274,7 +1274,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
     response_double.metadata = {"url": "/header/response/prim/double"}  # type: ignore
 
     @distributed_trace
-    def param_bool(
+    def param_bool(  # pylint: disable=inconsistent-return-statements
         self,
         scenario,  # type: str
         value,  # type: bool
@@ -1321,7 +1321,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
     param_bool.metadata = {"url": "/header/param/prim/bool"}  # type: ignore
 
     @distributed_trace
-    def response_bool(
+    def response_bool(  # pylint: disable=inconsistent-return-statements
         self,
         scenario,  # type: str
         **kwargs  # type: Any
@@ -1366,7 +1366,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
     response_bool.metadata = {"url": "/header/response/prim/bool"}  # type: ignore
 
     @distributed_trace
-    def param_string(
+    def param_string(  # pylint: disable=inconsistent-return-statements
         self,
         scenario,  # type: str
         value=None,  # type: Optional[str]
@@ -1415,7 +1415,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
     param_string.metadata = {"url": "/header/param/prim/string"}  # type: ignore
 
     @distributed_trace
-    def response_string(
+    def response_string(  # pylint: disable=inconsistent-return-statements
         self,
         scenario,  # type: str
         **kwargs  # type: Any
@@ -1461,7 +1461,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
     response_string.metadata = {"url": "/header/response/prim/string"}  # type: ignore
 
     @distributed_trace
-    def param_date(
+    def param_date(  # pylint: disable=inconsistent-return-statements
         self,
         scenario,  # type: str
         value,  # type: datetime.date
@@ -1508,7 +1508,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
     param_date.metadata = {"url": "/header/param/prim/date"}  # type: ignore
 
     @distributed_trace
-    def response_date(
+    def response_date(  # pylint: disable=inconsistent-return-statements
         self,
         scenario,  # type: str
         **kwargs  # type: Any
@@ -1553,7 +1553,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
     response_date.metadata = {"url": "/header/response/prim/date"}  # type: ignore
 
     @distributed_trace
-    def param_datetime(
+    def param_datetime(  # pylint: disable=inconsistent-return-statements
         self,
         scenario,  # type: str
         value,  # type: datetime.datetime
@@ -1601,7 +1601,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
     param_datetime.metadata = {"url": "/header/param/prim/datetime"}  # type: ignore
 
     @distributed_trace
-    def response_datetime(
+    def response_datetime(  # pylint: disable=inconsistent-return-statements
         self,
         scenario,  # type: str
         **kwargs  # type: Any
@@ -1646,7 +1646,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
     response_datetime.metadata = {"url": "/header/response/prim/datetime"}  # type: ignore
 
     @distributed_trace
-    def param_datetime_rfc1123(
+    def param_datetime_rfc1123(  # pylint: disable=inconsistent-return-statements
         self,
         scenario,  # type: str
         value=None,  # type: Optional[datetime.datetime]
@@ -1694,7 +1694,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
     param_datetime_rfc1123.metadata = {"url": "/header/param/prim/datetimerfc1123"}  # type: ignore
 
     @distributed_trace
-    def response_datetime_rfc1123(
+    def response_datetime_rfc1123(  # pylint: disable=inconsistent-return-statements
         self,
         scenario,  # type: str
         **kwargs  # type: Any
@@ -1740,7 +1740,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
     response_datetime_rfc1123.metadata = {"url": "/header/response/prim/datetimerfc1123"}  # type: ignore
 
     @distributed_trace
-    def param_duration(
+    def param_duration(  # pylint: disable=inconsistent-return-statements
         self,
         scenario,  # type: str
         value,  # type: datetime.timedelta
@@ -1786,7 +1786,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
     param_duration.metadata = {"url": "/header/param/prim/duration"}  # type: ignore
 
     @distributed_trace
-    def response_duration(
+    def response_duration(  # pylint: disable=inconsistent-return-statements
         self,
         scenario,  # type: str
         **kwargs  # type: Any
@@ -1831,7 +1831,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
     response_duration.metadata = {"url": "/header/response/prim/duration"}  # type: ignore
 
     @distributed_trace
-    def param_byte(
+    def param_byte(  # pylint: disable=inconsistent-return-statements
         self,
         scenario,  # type: str
         value,  # type: bytearray
@@ -1877,7 +1877,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
     param_byte.metadata = {"url": "/header/param/prim/byte"}  # type: ignore
 
     @distributed_trace
-    def response_byte(
+    def response_byte(  # pylint: disable=inconsistent-return-statements
         self,
         scenario,  # type: str
         **kwargs  # type: Any
@@ -1922,7 +1922,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
     response_byte.metadata = {"url": "/header/response/prim/byte"}  # type: ignore
 
     @distributed_trace
-    def param_enum(
+    def param_enum(  # pylint: disable=inconsistent-return-statements
         self,
         scenario,  # type: str
         value=None,  # type: Optional[Union[str, "_models.GreyscaleColors"]]
@@ -1970,7 +1970,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
     param_enum.metadata = {"url": "/header/param/prim/enum"}  # type: ignore
 
     @distributed_trace
-    def response_enum(
+    def response_enum(  # pylint: disable=inconsistent-return-statements
         self,
         scenario,  # type: str
         **kwargs  # type: Any
@@ -2016,7 +2016,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
     response_enum.metadata = {"url": "/header/response/prim/enum"}  # type: ignore
 
     @distributed_trace
-    def custom_request_id(
+    def custom_request_id(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None

@@ -80,7 +80,7 @@ class OperationGroupTwoOperations(object):
         self._config = config
 
     @distributed_trace
-    def test_four(
+    def test_four(  # pylint: disable=inconsistent-return-statements
         self,
         parameter_one,  # type: bool
         **kwargs  # type: Any

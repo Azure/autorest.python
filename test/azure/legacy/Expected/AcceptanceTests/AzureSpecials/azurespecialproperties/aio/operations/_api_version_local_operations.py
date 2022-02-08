@@ -57,7 +57,7 @@ class ApiVersionLocalOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_method_local_valid(self, **kwargs: Any) -> None:
+    async def get_method_local_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
         :keyword api_version: This should appear as a method parameter, use value '2.0'. The default
@@ -97,7 +97,9 @@ class ApiVersionLocalOperations:
     get_method_local_valid.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/local/2.0"}  # type: ignore
 
     @distributed_trace_async
-    async def get_method_local_null(self, api_version: Optional[str] = None, **kwargs: Any) -> None:
+    async def get_method_local_null(  # pylint: disable=inconsistent-return-statements
+        self, api_version: Optional[str] = None, **kwargs: Any
+    ) -> None:
         """Get method with api-version modeled in the method.  pass in api-version = null to succeed.
 
         :param api_version: This should appear as a method parameter, use value null, this should
@@ -135,7 +137,7 @@ class ApiVersionLocalOperations:
     get_method_local_null.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/local/null"}  # type: ignore
 
     @distributed_trace_async
-    async def get_path_local_valid(self, **kwargs: Any) -> None:
+    async def get_path_local_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
         :keyword api_version: This should appear as a method parameter, use value '2.0'. The default
@@ -175,7 +177,7 @@ class ApiVersionLocalOperations:
     get_path_local_valid.metadata = {"url": "/azurespecials/apiVersion/path/string/none/query/local/2.0"}  # type: ignore
 
     @distributed_trace_async
-    async def get_swagger_local_valid(self, **kwargs: Any) -> None:
+    async def get_swagger_local_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
         :keyword api_version: The api version, which appears in the query, the value is always '2.0'.

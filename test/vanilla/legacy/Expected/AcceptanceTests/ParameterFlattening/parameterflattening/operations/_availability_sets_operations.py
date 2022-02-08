@@ -88,7 +88,7 @@ class AvailabilitySetsOperations(object):
         self._config = config
 
     @distributed_trace
-    def update(
+    def update(  # pylint: disable=inconsistent-return-statements
         self,
         resource_group_name,  # type: str
         avset,  # type: str

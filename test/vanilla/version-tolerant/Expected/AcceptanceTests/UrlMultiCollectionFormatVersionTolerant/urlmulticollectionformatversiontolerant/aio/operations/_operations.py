@@ -49,7 +49,9 @@ class QueriesOperations:
         self._config = config
 
     @distributed_trace_async
-    async def array_string_multi_null(self, *, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
+    async def array_string_multi_null(  # pylint: disable=inconsistent-return-statements
+        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
+    ) -> None:
         """Get a null array of string using the multi-array format.
 
         :keyword array_query: a null array of string using the multi-array format.
@@ -80,7 +82,9 @@ class QueriesOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def array_string_multi_empty(self, *, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
+    async def array_string_multi_empty(  # pylint: disable=inconsistent-return-statements
+        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
+    ) -> None:
         """Get an empty array [] of string using the multi-array format.
 
         :keyword array_query: an empty array [] of string using the multi-array format.
@@ -111,7 +115,9 @@ class QueriesOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def array_string_multi_valid(self, *, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
+    async def array_string_multi_valid(  # pylint: disable=inconsistent-return-statements
+        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
+    ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         mult-array format.
 

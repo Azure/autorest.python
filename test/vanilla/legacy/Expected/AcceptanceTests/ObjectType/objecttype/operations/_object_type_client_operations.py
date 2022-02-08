@@ -122,7 +122,7 @@ class ObjectTypeClientOperationsMixin(object):
     get.metadata = {"url": "/objectType/get"}  # type: ignore
 
     @distributed_trace
-    def put(
+    def put(  # pylint: disable=inconsistent-return-statements
         self,
         put_object,  # type: Any
         **kwargs  # type: Any

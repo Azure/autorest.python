@@ -71,7 +71,7 @@ class HttpSuccessOperations:
         self._config = config
 
     @distributed_trace_async
-    async def head200(self, **kwargs: Any) -> None:
+    async def head200(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 200 status code if successful.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -181,7 +181,9 @@ class HttpSuccessOperations:
     options200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace_async
-    async def put200(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
+    async def put200(  # pylint: disable=inconsistent-return-statements
+        self, boolean_value: Optional[bool] = True, **kwargs: Any
+    ) -> None:
         """Put boolean value true returning 200 success.
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -226,7 +228,9 @@ class HttpSuccessOperations:
     put200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace_async
-    async def patch200(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
+    async def patch200(  # pylint: disable=inconsistent-return-statements
+        self, boolean_value: Optional[bool] = True, **kwargs: Any
+    ) -> None:
         """Patch true Boolean value in request returning 200.
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -271,7 +275,9 @@ class HttpSuccessOperations:
     patch200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace_async
-    async def post200(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
+    async def post200(  # pylint: disable=inconsistent-return-statements
+        self, boolean_value: Optional[bool] = True, **kwargs: Any
+    ) -> None:
         """Post bollean value true in request that returns a 200.
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -316,7 +322,9 @@ class HttpSuccessOperations:
     post200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace_async
-    async def delete200(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
+    async def delete200(  # pylint: disable=inconsistent-return-statements
+        self, boolean_value: Optional[bool] = True, **kwargs: Any
+    ) -> None:
         """Delete simple boolean value true returns 200.
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -361,7 +369,9 @@ class HttpSuccessOperations:
     delete200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace_async
-    async def put201(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
+    async def put201(  # pylint: disable=inconsistent-return-statements
+        self, boolean_value: Optional[bool] = True, **kwargs: Any
+    ) -> None:
         """Put true Boolean value in request returns 201.
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -406,7 +416,9 @@ class HttpSuccessOperations:
     put201.metadata = {"url": "/http/success/201"}  # type: ignore
 
     @distributed_trace_async
-    async def post201(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
+    async def post201(  # pylint: disable=inconsistent-return-statements
+        self, boolean_value: Optional[bool] = True, **kwargs: Any
+    ) -> None:
         """Post true Boolean value in request returns 201 (Created).
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -451,7 +463,9 @@ class HttpSuccessOperations:
     post201.metadata = {"url": "/http/success/201"}  # type: ignore
 
     @distributed_trace_async
-    async def put202(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
+    async def put202(  # pylint: disable=inconsistent-return-statements
+        self, boolean_value: Optional[bool] = True, **kwargs: Any
+    ) -> None:
         """Put true Boolean value in request returns 202 (Accepted).
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -496,7 +510,9 @@ class HttpSuccessOperations:
     put202.metadata = {"url": "/http/success/202"}  # type: ignore
 
     @distributed_trace_async
-    async def patch202(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
+    async def patch202(  # pylint: disable=inconsistent-return-statements
+        self, boolean_value: Optional[bool] = True, **kwargs: Any
+    ) -> None:
         """Patch true Boolean value in request returns 202.
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -541,7 +557,9 @@ class HttpSuccessOperations:
     patch202.metadata = {"url": "/http/success/202"}  # type: ignore
 
     @distributed_trace_async
-    async def post202(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
+    async def post202(  # pylint: disable=inconsistent-return-statements
+        self, boolean_value: Optional[bool] = True, **kwargs: Any
+    ) -> None:
         """Post true Boolean value in request returns 202 (Accepted).
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -586,7 +604,9 @@ class HttpSuccessOperations:
     post202.metadata = {"url": "/http/success/202"}  # type: ignore
 
     @distributed_trace_async
-    async def delete202(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
+    async def delete202(  # pylint: disable=inconsistent-return-statements
+        self, boolean_value: Optional[bool] = True, **kwargs: Any
+    ) -> None:
         """Delete true Boolean value in request returns 202 (accepted).
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -631,7 +651,7 @@ class HttpSuccessOperations:
     delete202.metadata = {"url": "/http/success/202"}  # type: ignore
 
     @distributed_trace_async
-    async def head204(self, **kwargs: Any) -> None:
+    async def head204(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 204 status code if successful.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -665,7 +685,9 @@ class HttpSuccessOperations:
     head204.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace_async
-    async def put204(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
+    async def put204(  # pylint: disable=inconsistent-return-statements
+        self, boolean_value: Optional[bool] = True, **kwargs: Any
+    ) -> None:
         """Put true Boolean value in request returns 204 (no content).
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -710,7 +732,9 @@ class HttpSuccessOperations:
     put204.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace_async
-    async def patch204(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
+    async def patch204(  # pylint: disable=inconsistent-return-statements
+        self, boolean_value: Optional[bool] = True, **kwargs: Any
+    ) -> None:
         """Patch true Boolean value in request returns 204 (no content).
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -755,7 +779,9 @@ class HttpSuccessOperations:
     patch204.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace_async
-    async def post204(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
+    async def post204(  # pylint: disable=inconsistent-return-statements
+        self, boolean_value: Optional[bool] = True, **kwargs: Any
+    ) -> None:
         """Post true Boolean value in request returns 204 (no content).
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -800,7 +826,9 @@ class HttpSuccessOperations:
     post204.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace_async
-    async def delete204(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
+    async def delete204(  # pylint: disable=inconsistent-return-statements
+        self, boolean_value: Optional[bool] = True, **kwargs: Any
+    ) -> None:
         """Delete true Boolean value in request returns 204 (no content).
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -845,7 +873,7 @@ class HttpSuccessOperations:
     delete204.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace_async
-    async def head404(self, **kwargs: Any) -> None:
+    async def head404(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 404 status code.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
