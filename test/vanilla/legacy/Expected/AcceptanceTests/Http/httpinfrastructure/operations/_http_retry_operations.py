@@ -262,7 +262,7 @@ class HttpRetryOperations(object):
         self._config = config
 
     @distributed_trace
-    def head408(
+    def head408(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -299,7 +299,7 @@ class HttpRetryOperations(object):
     head408.metadata = {"url": "/http/retry/408"}  # type: ignore
 
     @distributed_trace
-    def put500(
+    def put500(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -349,7 +349,7 @@ class HttpRetryOperations(object):
     put500.metadata = {"url": "/http/retry/500"}  # type: ignore
 
     @distributed_trace
-    def patch500(
+    def patch500(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -399,7 +399,7 @@ class HttpRetryOperations(object):
     patch500.metadata = {"url": "/http/retry/500"}  # type: ignore
 
     @distributed_trace
-    def get502(
+    def get502(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -477,7 +477,7 @@ class HttpRetryOperations(object):
     options502.metadata = {"url": "/http/retry/502"}  # type: ignore
 
     @distributed_trace
-    def post503(
+    def post503(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -527,7 +527,7 @@ class HttpRetryOperations(object):
     post503.metadata = {"url": "/http/retry/503"}  # type: ignore
 
     @distributed_trace
-    def delete503(
+    def delete503(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -577,7 +577,7 @@ class HttpRetryOperations(object):
     delete503.metadata = {"url": "/http/retry/503"}  # type: ignore
 
     @distributed_trace
-    def put504(
+    def put504(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -627,7 +627,7 @@ class HttpRetryOperations(object):
     put504.metadata = {"url": "/http/retry/504"}  # type: ignore
 
     @distributed_trace
-    def patch504(
+    def patch504(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any

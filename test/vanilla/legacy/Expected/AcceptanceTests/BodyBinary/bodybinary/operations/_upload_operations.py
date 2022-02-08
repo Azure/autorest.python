@@ -97,7 +97,7 @@ class UploadOperations(object):
         self._config = config
 
     @distributed_trace
-    def file(
+    def file(  # pylint: disable=inconsistent-return-statements
         self,
         file_param,  # type: IO
         **kwargs  # type: Any
@@ -143,7 +143,7 @@ class UploadOperations(object):
     file.metadata = {"url": "/binary/file"}  # type: ignore
 
     @distributed_trace
-    def binary(
+    def binary(  # pylint: disable=inconsistent-return-statements
         self,
         file_param,  # type: IO
         **kwargs  # type: Any

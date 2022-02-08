@@ -86,7 +86,9 @@ class DurationOperations:
         return deserialized
 
     @distributed_trace_async
-    async def put_positive_duration(self, duration_body: datetime.timedelta, **kwargs: Any) -> None:
+    async def put_positive_duration(  # pylint: disable=inconsistent-return-statements
+        self, duration_body: datetime.timedelta, **kwargs: Any
+    ) -> None:
         """Put a positive duration value.
 
         :param duration_body: duration body.

@@ -266,7 +266,7 @@ class IntOperations:
         return deserialized
 
     @distributed_trace_async
-    async def put_max32(self, int_body: int, **kwargs: Any) -> None:
+    async def put_max32(self, int_body: int, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put max int32 value.
 
         :param int_body: int body.
@@ -302,7 +302,7 @@ class IntOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def put_max64(self, int_body: int, **kwargs: Any) -> None:
+    async def put_max64(self, int_body: int, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put max int64 value.
 
         :param int_body: int body.
@@ -338,7 +338,7 @@ class IntOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def put_min32(self, int_body: int, **kwargs: Any) -> None:
+    async def put_min32(self, int_body: int, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put min int32 value.
 
         :param int_body: int body.
@@ -374,7 +374,7 @@ class IntOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def put_min64(self, int_body: int, **kwargs: Any) -> None:
+    async def put_min64(self, int_body: int, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put min int64 value.
 
         :param int_body: int body.
@@ -444,7 +444,9 @@ class IntOperations:
         return deserialized
 
     @distributed_trace_async
-    async def put_unix_time_date(self, int_body: datetime.datetime, **kwargs: Any) -> None:
+    async def put_unix_time_date(  # pylint: disable=inconsistent-return-statements
+        self, int_body: datetime.datetime, **kwargs: Any
+    ) -> None:
         """Put datetime encoded as Unix time.
 
         :param int_body: int body.

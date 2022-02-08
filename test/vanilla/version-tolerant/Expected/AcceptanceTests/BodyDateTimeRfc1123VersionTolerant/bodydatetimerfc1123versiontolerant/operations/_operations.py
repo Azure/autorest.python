@@ -305,7 +305,9 @@ class Datetimerfc1123Operations(object):
         return deserialized
 
     @distributed_trace
-    def put_utc_max_date_time(self, datetime_body: datetime.datetime, **kwargs: Any) -> None:
+    def put_utc_max_date_time(  # pylint: disable=inconsistent-return-statements
+        self, datetime_body: datetime.datetime, **kwargs: Any
+    ) -> None:
         """Put max datetime value Fri, 31 Dec 9999 23:59:59 GMT.
 
         :param datetime_body: datetime body.
@@ -409,7 +411,9 @@ class Datetimerfc1123Operations(object):
         return deserialized
 
     @distributed_trace
-    def put_utc_min_date_time(self, datetime_body: datetime.datetime, **kwargs: Any) -> None:
+    def put_utc_min_date_time(  # pylint: disable=inconsistent-return-statements
+        self, datetime_body: datetime.datetime, **kwargs: Any
+    ) -> None:
         """Put min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
 
         :param datetime_body: datetime body.

@@ -94,7 +94,7 @@ class PathsOperations(object):
         self._config = config
 
     @distributed_trace
-    def get_empty(
+    def get_empty(  # pylint: disable=inconsistent-return-statements
         self,
         vault,  # type: str
         secret,  # type: str

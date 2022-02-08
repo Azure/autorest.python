@@ -142,7 +142,7 @@ class ReadonlypropertyOperations(object):
     get_valid.metadata = {"url": "/complex/readonlyproperty/valid"}  # type: ignore
 
     @distributed_trace
-    def put_valid(
+    def put_valid(  # pylint: disable=inconsistent-return-statements
         self,
         size=None,  # type: Optional[int]
         **kwargs  # type: Any

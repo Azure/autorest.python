@@ -96,7 +96,9 @@ class DictionaryOperations:
     get_valid.metadata = {"url": "/complex/dictionary/typed/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def put_valid(self, default_program: Optional[Dict[str, str]] = None, **kwargs: Any) -> None:
+    async def put_valid(  # pylint: disable=inconsistent-return-statements
+        self, default_program: Optional[Dict[str, str]] = None, **kwargs: Any
+    ) -> None:
         """Put complex types with dictionary property.
 
         :param default_program: Dictionary of :code:`<string>`.
@@ -177,7 +179,9 @@ class DictionaryOperations:
     get_empty.metadata = {"url": "/complex/dictionary/typed/empty"}  # type: ignore
 
     @distributed_trace_async
-    async def put_empty(self, default_program: Optional[Dict[str, str]] = None, **kwargs: Any) -> None:
+    async def put_empty(  # pylint: disable=inconsistent-return-statements
+        self, default_program: Optional[Dict[str, str]] = None, **kwargs: Any
+    ) -> None:
         """Put complex types with dictionary property which is empty.
 
         :param default_program: Dictionary of :code:`<string>`.

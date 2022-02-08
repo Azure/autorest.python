@@ -79,7 +79,9 @@ class ImplicitOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_required_path(self, path_parameter: str, **kwargs: Any) -> None:
+    async def get_required_path(  # pylint: disable=inconsistent-return-statements
+        self, path_parameter: str, **kwargs: Any
+    ) -> None:
         """Test implicitly required path parameter.
 
         :param path_parameter:
@@ -110,7 +112,9 @@ class ImplicitOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def put_optional_query(self, *, query_parameter: Optional[str] = None, **kwargs: Any) -> None:
+    async def put_optional_query(  # pylint: disable=inconsistent-return-statements
+        self, *, query_parameter: Optional[str] = None, **kwargs: Any
+    ) -> None:
         """Test implicitly optional query parameter.
 
         :keyword query_parameter:
@@ -141,7 +145,9 @@ class ImplicitOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def put_optional_header(self, *, query_parameter: Optional[str] = None, **kwargs: Any) -> None:
+    async def put_optional_header(  # pylint: disable=inconsistent-return-statements
+        self, *, query_parameter: Optional[str] = None, **kwargs: Any
+    ) -> None:
         """Test implicitly optional header parameter.
 
         :keyword query_parameter:
@@ -172,7 +178,9 @@ class ImplicitOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def put_optional_body(self, body_parameter: Optional[str] = None, **kwargs: Any) -> None:
+    async def put_optional_body(  # pylint: disable=inconsistent-return-statements
+        self, body_parameter: Optional[str] = None, **kwargs: Any
+    ) -> None:
         """Test implicitly optional body parameter.
 
         :param body_parameter:
@@ -211,7 +219,9 @@ class ImplicitOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def put_optional_binary_body(self, body_parameter: Optional[IO] = None, **kwargs: Any) -> None:
+    async def put_optional_binary_body(  # pylint: disable=inconsistent-return-statements
+        self, body_parameter: Optional[IO] = None, **kwargs: Any
+    ) -> None:
         """Test implicitly optional body parameter.
 
         :param body_parameter:
@@ -247,7 +257,7 @@ class ImplicitOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_required_global_path(self, **kwargs: Any) -> None:
+    async def get_required_global_path(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Test implicitly required path parameter.
 
         :return: None
@@ -276,7 +286,7 @@ class ImplicitOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_required_global_query(self, **kwargs: Any) -> None:
+    async def get_required_global_query(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Test implicitly required query parameter.
 
         :return: None
@@ -305,7 +315,7 @@ class ImplicitOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_optional_global_query(self, **kwargs: Any) -> None:
+    async def get_optional_global_query(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Test implicitly optional query parameter.
 
         :return: None
@@ -353,7 +363,9 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         self._config = config
 
     @distributed_trace_async
-    async def put_optional_binary_body(self, body_parameter: Optional[IO] = None, **kwargs: Any) -> None:
+    async def put_optional_binary_body(  # pylint: disable=inconsistent-return-statements
+        self, body_parameter: Optional[IO] = None, **kwargs: Any
+    ) -> None:
         """Test explicitly optional body parameter.
 
         :param body_parameter:
@@ -389,7 +401,9 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def put_required_binary_body(self, body_parameter: IO, **kwargs: Any) -> None:
+    async def put_required_binary_body(  # pylint: disable=inconsistent-return-statements
+        self, body_parameter: IO, **kwargs: Any
+    ) -> None:
         """Test explicitly required body parameter.
 
         :param body_parameter:
@@ -425,7 +439,9 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def post_required_integer_parameter(self, body_parameter: int, **kwargs: Any) -> None:
+    async def post_required_integer_parameter(  # pylint: disable=inconsistent-return-statements
+        self, body_parameter: int, **kwargs: Any
+    ) -> None:
         """Test explicitly required integer. Please put null and the client library should throw before
         the request is sent.
 
@@ -462,7 +478,9 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def post_optional_integer_parameter(self, body_parameter: Optional[int] = None, **kwargs: Any) -> None:
+    async def post_optional_integer_parameter(  # pylint: disable=inconsistent-return-statements
+        self, body_parameter: Optional[int] = None, **kwargs: Any
+    ) -> None:
         """Test explicitly optional integer. Please put null.
 
         :param body_parameter:
@@ -501,7 +519,9 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def post_required_integer_property(self, body_parameter: JSONType, **kwargs: Any) -> None:
+    async def post_required_integer_property(  # pylint: disable=inconsistent-return-statements
+        self, body_parameter: JSONType, **kwargs: Any
+    ) -> None:
         """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the
         client library should throw before the request is sent.
 
@@ -546,7 +566,9 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def post_optional_integer_property(self, body_parameter: JSONType = None, **kwargs: Any) -> None:
+    async def post_optional_integer_property(  # pylint: disable=inconsistent-return-statements
+        self, body_parameter: JSONType = None, **kwargs: Any
+    ) -> None:
         """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
 
         :param body_parameter:
@@ -593,7 +615,9 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def post_required_integer_header(self, *, header_parameter: int, **kwargs: Any) -> None:
+    async def post_required_integer_header(  # pylint: disable=inconsistent-return-statements
+        self, *, header_parameter: int, **kwargs: Any
+    ) -> None:
         """Test explicitly required integer. Please put a header 'headerParameter' => null and the client
         library should throw before the request is sent.
 
@@ -625,7 +649,9 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def post_optional_integer_header(self, *, header_parameter: Optional[int] = None, **kwargs: Any) -> None:
+    async def post_optional_integer_header(  # pylint: disable=inconsistent-return-statements
+        self, *, header_parameter: Optional[int] = None, **kwargs: Any
+    ) -> None:
         """Test explicitly optional integer. Please put a header 'headerParameter' => null.
 
         :keyword header_parameter:
@@ -656,7 +682,9 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def post_required_string_parameter(self, body_parameter: str, **kwargs: Any) -> None:
+    async def post_required_string_parameter(  # pylint: disable=inconsistent-return-statements
+        self, body_parameter: str, **kwargs: Any
+    ) -> None:
         """Test explicitly required string. Please put null and the client library should throw before the
         request is sent.
 
@@ -693,7 +721,9 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def post_optional_string_parameter(self, body_parameter: Optional[str] = None, **kwargs: Any) -> None:
+    async def post_optional_string_parameter(  # pylint: disable=inconsistent-return-statements
+        self, body_parameter: Optional[str] = None, **kwargs: Any
+    ) -> None:
         """Test explicitly optional string. Please put null.
 
         :param body_parameter:
@@ -732,7 +762,9 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def post_required_string_property(self, body_parameter: JSONType, **kwargs: Any) -> None:
+    async def post_required_string_property(  # pylint: disable=inconsistent-return-statements
+        self, body_parameter: JSONType, **kwargs: Any
+    ) -> None:
         """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the
         client library should throw before the request is sent.
 
@@ -777,7 +809,9 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def post_optional_string_property(self, body_parameter: JSONType = None, **kwargs: Any) -> None:
+    async def post_optional_string_property(  # pylint: disable=inconsistent-return-statements
+        self, body_parameter: JSONType = None, **kwargs: Any
+    ) -> None:
         """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
 
         :param body_parameter:
@@ -824,7 +858,9 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def post_required_string_header(self, *, header_parameter: str, **kwargs: Any) -> None:
+    async def post_required_string_header(  # pylint: disable=inconsistent-return-statements
+        self, *, header_parameter: str, **kwargs: Any
+    ) -> None:
         """Test explicitly required string. Please put a header 'headerParameter' => null and the client
         library should throw before the request is sent.
 
@@ -856,7 +892,9 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def post_optional_string_header(self, *, body_parameter: Optional[str] = None, **kwargs: Any) -> None:
+    async def post_optional_string_header(  # pylint: disable=inconsistent-return-statements
+        self, *, body_parameter: Optional[str] = None, **kwargs: Any
+    ) -> None:
         """Test explicitly optional string. Please put a header 'headerParameter' => null.
 
         :keyword body_parameter:
@@ -887,7 +925,9 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def post_required_class_parameter(self, body_parameter: JSONType, **kwargs: Any) -> None:
+    async def post_required_class_parameter(  # pylint: disable=inconsistent-return-statements
+        self, body_parameter: JSONType, **kwargs: Any
+    ) -> None:
         """Test explicitly required complex object. Please put null and the client library should throw
         before the request is sent.
 
@@ -933,7 +973,9 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def post_optional_class_parameter(self, body_parameter: JSONType = None, **kwargs: Any) -> None:
+    async def post_optional_class_parameter(  # pylint: disable=inconsistent-return-statements
+        self, body_parameter: JSONType = None, **kwargs: Any
+    ) -> None:
         """Test explicitly optional complex object. Please put null.
 
         :param body_parameter:
@@ -981,7 +1023,9 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def post_required_class_property(self, body_parameter: JSONType, **kwargs: Any) -> None:
+    async def post_required_class_property(  # pylint: disable=inconsistent-return-statements
+        self, body_parameter: JSONType, **kwargs: Any
+    ) -> None:
         """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null
         and the client library should throw before the request is sent.
 
@@ -1029,7 +1073,9 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def post_optional_class_property(self, body_parameter: JSONType = None, **kwargs: Any) -> None:
+    async def post_optional_class_property(  # pylint: disable=inconsistent-return-statements
+        self, body_parameter: JSONType = None, **kwargs: Any
+    ) -> None:
         """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
 
         :param body_parameter:
@@ -1079,7 +1125,9 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def post_required_array_parameter(self, body_parameter: List[str], **kwargs: Any) -> None:
+    async def post_required_array_parameter(  # pylint: disable=inconsistent-return-statements
+        self, body_parameter: List[str], **kwargs: Any
+    ) -> None:
         """Test explicitly required array. Please put null and the client library should throw before the
         request is sent.
 
@@ -1124,7 +1172,9 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def post_optional_array_parameter(self, body_parameter: Optional[List[str]] = None, **kwargs: Any) -> None:
+    async def post_optional_array_parameter(  # pylint: disable=inconsistent-return-statements
+        self, body_parameter: Optional[List[str]] = None, **kwargs: Any
+    ) -> None:
         """Test explicitly optional array. Please put null.
 
         :param body_parameter:
@@ -1171,7 +1221,9 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def post_required_array_property(self, body_parameter: JSONType, **kwargs: Any) -> None:
+    async def post_required_array_property(  # pylint: disable=inconsistent-return-statements
+        self, body_parameter: JSONType, **kwargs: Any
+    ) -> None:
         """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the
         client library should throw before the request is sent.
 
@@ -1218,7 +1270,9 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def post_optional_array_property(self, body_parameter: JSONType = None, **kwargs: Any) -> None:
+    async def post_optional_array_property(  # pylint: disable=inconsistent-return-statements
+        self, body_parameter: JSONType = None, **kwargs: Any
+    ) -> None:
         """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
 
         :param body_parameter:
@@ -1267,7 +1321,9 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def post_required_array_header(self, *, header_parameter: List[str], **kwargs: Any) -> None:
+    async def post_required_array_header(  # pylint: disable=inconsistent-return-statements
+        self, *, header_parameter: List[str], **kwargs: Any
+    ) -> None:
         """Test explicitly required array. Please put a header 'headerParameter' => null and the client
         library should throw before the request is sent.
 
@@ -1299,7 +1355,9 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def post_optional_array_header(self, *, header_parameter: Optional[List[str]] = None, **kwargs: Any) -> None:
+    async def post_optional_array_header(  # pylint: disable=inconsistent-return-statements
+        self, *, header_parameter: Optional[List[str]] = None, **kwargs: Any
+    ) -> None:
         """Test explicitly optional integer. Please put a header 'headerParameter' => null.
 
         :keyword header_parameter:

@@ -88,7 +88,7 @@ class HttpSuccessOperations(object):
         self._config = config
 
     @distributed_trace
-    def head200(
+    def head200(  # pylint: disable=inconsistent-return-statements
         self,
         **kwargs  # type: Any
     ):
@@ -131,7 +131,7 @@ class HttpSuccessOperations(object):
 
 
     @distributed_trace
-    def head204(
+    def head204(  # pylint: disable=inconsistent-return-statements
         self,
         **kwargs  # type: Any
     ):
@@ -174,7 +174,7 @@ class HttpSuccessOperations(object):
 
 
     @distributed_trace
-    def head404(
+    def head404(  # pylint: disable=inconsistent-return-statements
         self,
         **kwargs  # type: Any
     ):

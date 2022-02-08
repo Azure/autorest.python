@@ -231,7 +231,7 @@ class BoolOperations(object):
     get_true.metadata = {"url": "/bool/true"}  # type: ignore
 
     @distributed_trace
-    def put_true(
+    def put_true(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -317,7 +317,7 @@ class BoolOperations(object):
     get_false.metadata = {"url": "/bool/false"}  # type: ignore
 
     @distributed_trace
-    def put_false(
+    def put_false(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None

@@ -102,7 +102,9 @@ class MediaTypesClientOperationsMixin:
         return deserialized
 
     @distributed_trace_async
-    async def analyze_body_no_accept_header(self, input: Optional[Union[IO, JSONType]] = None, **kwargs: Any) -> None:
+    async def analyze_body_no_accept_header(  # pylint: disable=inconsistent-return-statements
+        self, input: Optional[Union[IO, JSONType]] = None, **kwargs: Any
+    ) -> None:
         """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
         type.
 

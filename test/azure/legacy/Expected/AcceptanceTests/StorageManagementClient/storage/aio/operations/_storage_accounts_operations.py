@@ -242,7 +242,9 @@ class StorageAccountsOperations:
     begin_create.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"}  # type: ignore
 
     @distributed_trace_async
-    async def delete(self, resource_group_name: str, account_name: str, **kwargs: Any) -> None:
+    async def delete(  # pylint: disable=inconsistent-return-statements
+        self, resource_group_name: str, account_name: str, **kwargs: Any
+    ) -> None:
         """Deletes a storage account in Microsoft Azure.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.

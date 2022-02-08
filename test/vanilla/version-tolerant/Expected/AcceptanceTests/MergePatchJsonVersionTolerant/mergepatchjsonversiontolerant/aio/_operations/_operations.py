@@ -29,7 +29,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class MergePatchJsonClientOperationsMixin:
     @distributed_trace_async
-    async def patch_single(self, body: Any, **kwargs: Any) -> None:
+    async def patch_single(self, body: Any, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Basic patch with an object.
 
         :param body: Pass in {'foo': 'bar'} for a 200, anything else for an object error.

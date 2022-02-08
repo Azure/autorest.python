@@ -87,7 +87,9 @@ class FormdataurlencodedOperations(object):
         self._config = config
 
     @distributed_trace
-    def update_pet_with_form(self, pet_id: int, data: Dict[str, Any], **kwargs: Any) -> None:
+    def update_pet_with_form(  # pylint: disable=inconsistent-return-statements
+        self, pet_id: int, data: Dict[str, Any], **kwargs: Any
+    ) -> None:
         """Updates a pet in the store with form data.
 
         Updates a pet in the store with form data.
@@ -141,7 +143,9 @@ class FormdataurlencodedOperations(object):
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def partial_constant_body(self, data: Dict[str, Any], **kwargs: Any) -> None:
+    def partial_constant_body(  # pylint: disable=inconsistent-return-statements
+        self, data: Dict[str, Any], **kwargs: Any
+    ) -> None:
         """Test a partially constant formdata body. Pass in { grant_type: 'access_token', access_token:
         'foo', service: 'bar' } to pass the test.
 

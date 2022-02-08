@@ -44,7 +44,7 @@ class OperationGroupTwoOperations:
         self._config = config
 
     @distributed_trace_async
-    async def test_four(
+    async def test_four(  # pylint: disable=inconsistent-return-statements
         self,
         parameter_one: bool,
         **kwargs: Any

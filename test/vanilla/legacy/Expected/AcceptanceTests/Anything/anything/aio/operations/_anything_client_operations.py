@@ -74,7 +74,7 @@ class AnythingClientOperationsMixin:
     get_object.metadata = {"url": "/anything/object"}  # type: ignore
 
     @distributed_trace_async
-    async def put_object(self, input: Any, **kwargs: Any) -> None:
+    async def put_object(self, input: Any, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Basic put that puts an object as anything. Pass in {'foo': 'bar'} to get a 200 and anything
         else to get an object error.
 
@@ -153,7 +153,7 @@ class AnythingClientOperationsMixin:
     get_string.metadata = {"url": "/anything/string"}  # type: ignore
 
     @distributed_trace_async
-    async def put_string(self, input: Any, **kwargs: Any) -> None:
+    async def put_string(self, input: Any, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Basic put that puts an string as anything. Pass in 'anything' to get a 200 and anything else to
         get an object error.
 
@@ -232,7 +232,7 @@ class AnythingClientOperationsMixin:
     get_array.metadata = {"url": "/anything/array"}  # type: ignore
 
     @distributed_trace_async
-    async def put_array(self, input: Any, **kwargs: Any) -> None:
+    async def put_array(self, input: Any, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Basic put that puts an array as anything. Pass in ['foo', 'bar'] to get a 200 and anything else
         to get an object error.
 

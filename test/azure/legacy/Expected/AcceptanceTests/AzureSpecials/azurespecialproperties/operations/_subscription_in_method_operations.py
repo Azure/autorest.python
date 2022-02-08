@@ -162,7 +162,7 @@ class SubscriptionInMethodOperations(object):
         self._config = config
 
     @distributed_trace
-    def post_method_local_valid(
+    def post_method_local_valid(  # pylint: disable=inconsistent-return-statements
         self,
         subscription_id,  # type: str
         **kwargs  # type: Any
@@ -206,7 +206,7 @@ class SubscriptionInMethodOperations(object):
     post_method_local_valid.metadata = {"url": "/azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
 
     @distributed_trace
-    def post_method_local_null(
+    def post_method_local_null(  # pylint: disable=inconsistent-return-statements
         self,
         subscription_id,  # type: str
         **kwargs  # type: Any
@@ -250,7 +250,7 @@ class SubscriptionInMethodOperations(object):
     post_method_local_null.metadata = {"url": "/azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}"}  # type: ignore
 
     @distributed_trace
-    def post_path_local_valid(
+    def post_path_local_valid(  # pylint: disable=inconsistent-return-statements
         self,
         subscription_id,  # type: str
         **kwargs  # type: Any
@@ -293,7 +293,7 @@ class SubscriptionInMethodOperations(object):
     post_path_local_valid.metadata = {"url": "/azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
 
     @distributed_trace
-    def post_swagger_local_valid(
+    def post_swagger_local_valid(  # pylint: disable=inconsistent-return-statements
         self,
         subscription_id,  # type: str
         **kwargs  # type: Any

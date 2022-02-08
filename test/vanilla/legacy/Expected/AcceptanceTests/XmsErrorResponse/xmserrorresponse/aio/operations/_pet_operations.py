@@ -153,7 +153,9 @@ class PetOperations:
     do_something.metadata = {"url": "/errorStatusCodes/Pets/doSomething/{whatAction}"}  # type: ignore
 
     @distributed_trace_async
-    async def has_models_param(self, models: Optional[str] = "value1", **kwargs: Any) -> None:
+    async def has_models_param(  # pylint: disable=inconsistent-return-statements
+        self, models: Optional[str] = "value1", **kwargs: Any
+    ) -> None:
         """Ensure you can correctly deserialize the returned PetActionError and deserialization doesn't
         conflict with the input param name 'models'.
 

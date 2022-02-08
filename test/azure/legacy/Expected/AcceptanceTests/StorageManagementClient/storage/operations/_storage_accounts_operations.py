@@ -572,7 +572,7 @@ class StorageAccountsOperations(object):
     begin_create.metadata = {"url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"}  # type: ignore
 
     @distributed_trace
-    def delete(
+    def delete(  # pylint: disable=inconsistent-return-statements
         self,
         resource_group_name,  # type: str
         account_name,  # type: str

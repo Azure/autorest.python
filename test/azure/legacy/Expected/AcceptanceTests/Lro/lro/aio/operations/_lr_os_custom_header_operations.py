@@ -274,7 +274,9 @@ class LROsCustomHeaderOperations:
 
     begin_put201_creating_succeeded200.metadata = {"url": "/lro/customheader/put/201/creating/succeeded/200"}  # type: ignore
 
-    async def _post202_retry200_initial(self, product: Optional["_models.Product"] = None, **kwargs: Any) -> None:
+    async def _post202_retry200_initial(  # pylint: disable=inconsistent-return-statements
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -313,7 +315,7 @@ class LROsCustomHeaderOperations:
     _post202_retry200_initial.metadata = {"url": "/lro/customheader/post/202/retry/200"}  # type: ignore
 
     @distributed_trace_async
-    async def begin_post202_retry200(
+    async def begin_post202_retry200(  # pylint: disable=inconsistent-return-statements
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
@@ -366,7 +368,7 @@ class LROsCustomHeaderOperations:
 
     begin_post202_retry200.metadata = {"url": "/lro/customheader/post/202/retry/200"}  # type: ignore
 
-    async def _post_async_retry_succeeded_initial(
+    async def _post_async_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -410,7 +412,7 @@ class LROsCustomHeaderOperations:
     _post_async_retry_succeeded_initial.metadata = {"url": "/lro/customheader/postasync/retry/succeeded"}  # type: ignore
 
     @distributed_trace_async
-    async def begin_post_async_retry_succeeded(
+    async def begin_post_async_retry_succeeded(  # pylint: disable=inconsistent-return-statements
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for

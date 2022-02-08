@@ -82,7 +82,7 @@ class MultiapiServiceClientOperationsMixin:
 
 
     @distributed_trace_async
-    async def test_different_calls(
+    async def test_different_calls(  # pylint: disable=inconsistent-return-statements
         self,
         greeting_in_english: str,
         greeting_in_chinese: Optional[str] = None,

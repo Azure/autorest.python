@@ -82,7 +82,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         self._config = config
 
     @distributed_trace_async
-    async def param_existing_key(self, user_agent_parameter: str, **kwargs: Any) -> None:
+    async def param_existing_key(  # pylint: disable=inconsistent-return-statements
+        self, user_agent_parameter: str, **kwargs: Any
+    ) -> None:
         """Send a post request with header value "User-Agent": "overwrite".
 
         :param user_agent_parameter: Send a post request with header value "User-Agent": "overwrite".
@@ -119,7 +121,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     param_existing_key.metadata = {"url": "/header/param/existingkey"}  # type: ignore
 
     @distributed_trace_async
-    async def response_existing_key(self, **kwargs: Any) -> None:
+    async def response_existing_key(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get a response with header value "User-Agent": "overwrite".
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -156,7 +158,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     response_existing_key.metadata = {"url": "/header/response/existingkey"}  # type: ignore
 
     @distributed_trace_async
-    async def param_protected_key(self, **kwargs: Any) -> None:
+    async def param_protected_key(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Send a post request with header value "Content-Type": "text/html".
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -193,7 +195,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     param_protected_key.metadata = {"url": "/header/param/protectedkey"}  # type: ignore
 
     @distributed_trace_async
-    async def response_protected_key(self, **kwargs: Any) -> None:
+    async def response_protected_key(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get a response with header value "Content-Type": "text/html".
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -230,7 +232,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     response_protected_key.metadata = {"url": "/header/response/protectedkey"}  # type: ignore
 
     @distributed_trace_async
-    async def param_integer(self, scenario: str, value: int, **kwargs: Any) -> None:
+    async def param_integer(  # pylint: disable=inconsistent-return-statements
+        self, scenario: str, value: int, **kwargs: Any
+    ) -> None:
         """Send a post request with header values "scenario": "positive", "value": 1 or "scenario":
         "negative", "value": -2.
 
@@ -271,7 +275,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     param_integer.metadata = {"url": "/header/param/prim/integer"}  # type: ignore
 
     @distributed_trace_async
-    async def response_integer(self, scenario: str, **kwargs: Any) -> None:
+    async def response_integer(  # pylint: disable=inconsistent-return-statements
+        self, scenario: str, **kwargs: Any
+    ) -> None:
         """Get a response with header value "value": 1 or -2.
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
@@ -311,7 +317,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     response_integer.metadata = {"url": "/header/response/prim/integer"}  # type: ignore
 
     @distributed_trace_async
-    async def param_long(self, scenario: str, value: int, **kwargs: Any) -> None:
+    async def param_long(  # pylint: disable=inconsistent-return-statements
+        self, scenario: str, value: int, **kwargs: Any
+    ) -> None:
         """Send a post request with header values "scenario": "positive", "value": 105 or "scenario":
         "negative", "value": -2.
 
@@ -352,7 +360,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     param_long.metadata = {"url": "/header/param/prim/long"}  # type: ignore
 
     @distributed_trace_async
-    async def response_long(self, scenario: str, **kwargs: Any) -> None:
+    async def response_long(  # pylint: disable=inconsistent-return-statements
+        self, scenario: str, **kwargs: Any
+    ) -> None:
         """Get a response with header value "value": 105 or -2.
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
@@ -392,7 +402,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     response_long.metadata = {"url": "/header/response/prim/long"}  # type: ignore
 
     @distributed_trace_async
-    async def param_float(self, scenario: str, value: float, **kwargs: Any) -> None:
+    async def param_float(  # pylint: disable=inconsistent-return-statements
+        self, scenario: str, value: float, **kwargs: Any
+    ) -> None:
         """Send a post request with header values "scenario": "positive", "value": 0.07 or "scenario":
         "negative", "value": -3.0.
 
@@ -433,7 +445,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     param_float.metadata = {"url": "/header/param/prim/float"}  # type: ignore
 
     @distributed_trace_async
-    async def response_float(self, scenario: str, **kwargs: Any) -> None:
+    async def response_float(  # pylint: disable=inconsistent-return-statements
+        self, scenario: str, **kwargs: Any
+    ) -> None:
         """Get a response with header value "value": 0.07 or -3.0.
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
@@ -473,7 +487,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     response_float.metadata = {"url": "/header/response/prim/float"}  # type: ignore
 
     @distributed_trace_async
-    async def param_double(self, scenario: str, value: float, **kwargs: Any) -> None:
+    async def param_double(  # pylint: disable=inconsistent-return-statements
+        self, scenario: str, value: float, **kwargs: Any
+    ) -> None:
         """Send a post request with header values "scenario": "positive", "value": 7e120 or "scenario":
         "negative", "value": -3.0.
 
@@ -514,7 +530,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     param_double.metadata = {"url": "/header/param/prim/double"}  # type: ignore
 
     @distributed_trace_async
-    async def response_double(self, scenario: str, **kwargs: Any) -> None:
+    async def response_double(  # pylint: disable=inconsistent-return-statements
+        self, scenario: str, **kwargs: Any
+    ) -> None:
         """Get a response with header value "value": 7e120 or -3.0.
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
@@ -554,7 +572,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     response_double.metadata = {"url": "/header/response/prim/double"}  # type: ignore
 
     @distributed_trace_async
-    async def param_bool(self, scenario: str, value: bool, **kwargs: Any) -> None:
+    async def param_bool(  # pylint: disable=inconsistent-return-statements
+        self, scenario: str, value: bool, **kwargs: Any
+    ) -> None:
         """Send a post request with header values "scenario": "true", "value": true or "scenario":
         "false", "value": false.
 
@@ -595,7 +615,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     param_bool.metadata = {"url": "/header/param/prim/bool"}  # type: ignore
 
     @distributed_trace_async
-    async def response_bool(self, scenario: str, **kwargs: Any) -> None:
+    async def response_bool(  # pylint: disable=inconsistent-return-statements
+        self, scenario: str, **kwargs: Any
+    ) -> None:
         """Get a response with header value "value": true or false.
 
         :param scenario: Send a post request with header values "scenario": "true" or "false".
@@ -635,7 +657,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     response_bool.metadata = {"url": "/header/response/prim/bool"}  # type: ignore
 
     @distributed_trace_async
-    async def param_string(self, scenario: str, value: Optional[str] = None, **kwargs: Any) -> None:
+    async def param_string(  # pylint: disable=inconsistent-return-statements
+        self, scenario: str, value: Optional[str] = None, **kwargs: Any
+    ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "The quick brown fox jumps
         over the lazy dog" or "scenario": "null", "value": null or "scenario": "empty", "value": "".
 
@@ -678,7 +702,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     param_string.metadata = {"url": "/header/param/prim/string"}  # type: ignore
 
     @distributed_trace_async
-    async def response_string(self, scenario: str, **kwargs: Any) -> None:
+    async def response_string(  # pylint: disable=inconsistent-return-statements
+        self, scenario: str, **kwargs: Any
+    ) -> None:
         """Get a response with header values "The quick brown fox jumps over the lazy dog" or null or "".
 
         :param scenario: Send a post request with header values "scenario": "valid" or "null" or
@@ -719,7 +745,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     response_string.metadata = {"url": "/header/response/prim/string"}  # type: ignore
 
     @distributed_trace_async
-    async def param_date(self, scenario: str, value: datetime.date, **kwargs: Any) -> None:
+    async def param_date(  # pylint: disable=inconsistent-return-statements
+        self, scenario: str, value: datetime.date, **kwargs: Any
+    ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "2010-01-01" or
         "scenario": "min", "value": "0001-01-01".
 
@@ -760,7 +788,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     param_date.metadata = {"url": "/header/param/prim/date"}  # type: ignore
 
     @distributed_trace_async
-    async def response_date(self, scenario: str, **kwargs: Any) -> None:
+    async def response_date(  # pylint: disable=inconsistent-return-statements
+        self, scenario: str, **kwargs: Any
+    ) -> None:
         """Get a response with header values "2010-01-01" or "0001-01-01".
 
         :param scenario: Send a post request with header values "scenario": "valid" or "min".
@@ -800,7 +830,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     response_date.metadata = {"url": "/header/response/prim/date"}  # type: ignore
 
     @distributed_trace_async
-    async def param_datetime(self, scenario: str, value: datetime.datetime, **kwargs: Any) -> None:
+    async def param_datetime(  # pylint: disable=inconsistent-return-statements
+        self, scenario: str, value: datetime.datetime, **kwargs: Any
+    ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "2010-01-01T12:34:56Z" or
         "scenario": "min", "value": "0001-01-01T00:00:00Z".
 
@@ -842,7 +874,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     param_datetime.metadata = {"url": "/header/param/prim/datetime"}  # type: ignore
 
     @distributed_trace_async
-    async def response_datetime(self, scenario: str, **kwargs: Any) -> None:
+    async def response_datetime(  # pylint: disable=inconsistent-return-statements
+        self, scenario: str, **kwargs: Any
+    ) -> None:
         """Get a response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z".
 
         :param scenario: Send a post request with header values "scenario": "valid" or "min".
@@ -882,7 +916,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     response_datetime.metadata = {"url": "/header/response/prim/datetime"}  # type: ignore
 
     @distributed_trace_async
-    async def param_datetime_rfc1123(
+    async def param_datetime_rfc1123(  # pylint: disable=inconsistent-return-statements
         self, scenario: str, value: Optional[datetime.datetime] = None, **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "Wed, 01 Jan 2010 12:34:56
@@ -926,7 +960,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     param_datetime_rfc1123.metadata = {"url": "/header/param/prim/datetimerfc1123"}  # type: ignore
 
     @distributed_trace_async
-    async def response_datetime_rfc1123(self, scenario: str, **kwargs: Any) -> None:
+    async def response_datetime_rfc1123(  # pylint: disable=inconsistent-return-statements
+        self, scenario: str, **kwargs: Any
+    ) -> None:
         """Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00
         GMT".
 
@@ -967,7 +1003,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     response_datetime_rfc1123.metadata = {"url": "/header/response/prim/datetimerfc1123"}  # type: ignore
 
     @distributed_trace_async
-    async def param_duration(self, scenario: str, value: datetime.timedelta, **kwargs: Any) -> None:
+    async def param_duration(  # pylint: disable=inconsistent-return-statements
+        self, scenario: str, value: datetime.timedelta, **kwargs: Any
+    ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "P123DT22H14M12.011S".
 
         :param scenario: Send a post request with header values "scenario": "valid".
@@ -1007,7 +1045,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     param_duration.metadata = {"url": "/header/param/prim/duration"}  # type: ignore
 
     @distributed_trace_async
-    async def response_duration(self, scenario: str, **kwargs: Any) -> None:
+    async def response_duration(  # pylint: disable=inconsistent-return-statements
+        self, scenario: str, **kwargs: Any
+    ) -> None:
         """Get a response with header values "P123DT22H14M12.011S".
 
         :param scenario: Send a post request with header values "scenario": "valid".
@@ -1047,7 +1087,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     response_duration.metadata = {"url": "/header/response/prim/duration"}  # type: ignore
 
     @distributed_trace_async
-    async def param_byte(self, scenario: str, value: bytearray, **kwargs: Any) -> None:
+    async def param_byte(  # pylint: disable=inconsistent-return-statements
+        self, scenario: str, value: bytearray, **kwargs: Any
+    ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "啊齄丂狛狜隣郎隣兀﨩".
 
         :param scenario: Send a post request with header values "scenario": "valid".
@@ -1087,7 +1129,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     param_byte.metadata = {"url": "/header/param/prim/byte"}  # type: ignore
 
     @distributed_trace_async
-    async def response_byte(self, scenario: str, **kwargs: Any) -> None:
+    async def response_byte(  # pylint: disable=inconsistent-return-statements
+        self, scenario: str, **kwargs: Any
+    ) -> None:
         """Get a response with header values "啊齄丂狛狜隣郎隣兀﨩".
 
         :param scenario: Send a post request with header values "scenario": "valid".
@@ -1127,7 +1171,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     response_byte.metadata = {"url": "/header/response/prim/byte"}  # type: ignore
 
     @distributed_trace_async
-    async def param_enum(
+    async def param_enum(  # pylint: disable=inconsistent-return-statements
         self, scenario: str, value: Optional[Union[str, "_models.GreyscaleColors"]] = None, **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "GREY" or "scenario":
@@ -1171,7 +1215,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     param_enum.metadata = {"url": "/header/param/prim/enum"}  # type: ignore
 
     @distributed_trace_async
-    async def response_enum(self, scenario: str, **kwargs: Any) -> None:
+    async def response_enum(  # pylint: disable=inconsistent-return-statements
+        self, scenario: str, **kwargs: Any
+    ) -> None:
         """Get a response with header values "GREY" or null.
 
         :param scenario: Send a post request with header values "scenario": "valid" or "null" or
@@ -1212,7 +1258,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     response_enum.metadata = {"url": "/header/response/prim/enum"}  # type: ignore
 
     @distributed_trace_async
-    async def custom_request_id(self, **kwargs: Any) -> None:
+    async def custom_request_id(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Send x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the
         request.
 

@@ -51,7 +51,9 @@ class PathsOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_empty(self, account_name: str, **kwargs: Any) -> None:
+    async def get_empty(  # pylint: disable=inconsistent-return-statements
+        self, account_name: str, **kwargs: Any
+    ) -> None:
         """Get a 200 to test a valid base uri.
 
         :param account_name: Account Name.

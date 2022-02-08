@@ -121,7 +121,9 @@ class InheritanceOperations(object):
     get_valid.metadata = {"url": "/complex/inheritance/valid"}  # type: ignore
 
     @distributed_trace
-    def put_valid(self, complex_body: "_models.Siamese", **kwargs: Any) -> None:
+    def put_valid(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: "_models.Siamese", **kwargs: Any
+    ) -> None:
         """Put complex types that extend others.
 
         :param complex_body: Please put a siamese with id=2, name="Siameee", color=green,

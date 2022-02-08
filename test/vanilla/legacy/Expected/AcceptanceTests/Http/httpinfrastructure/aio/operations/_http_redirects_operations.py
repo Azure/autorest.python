@@ -68,7 +68,7 @@ class HttpRedirectsOperations:
         self._config = config
 
     @distributed_trace_async
-    async def head300(self, **kwargs: Any) -> None:
+    async def head300(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 300 status code and redirect to /http/success/200.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -149,7 +149,7 @@ class HttpRedirectsOperations:
     get300.metadata = {"url": "/http/redirect/300"}  # type: ignore
 
     @distributed_trace_async
-    async def head301(self, **kwargs: Any) -> None:
+    async def head301(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 301 status code and redirect to /http/success/200.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -187,7 +187,7 @@ class HttpRedirectsOperations:
     head301.metadata = {"url": "/http/redirect/301"}  # type: ignore
 
     @distributed_trace_async
-    async def get301(self, **kwargs: Any) -> None:
+    async def get301(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 301 status code and redirect to /http/success/200.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -225,7 +225,9 @@ class HttpRedirectsOperations:
     get301.metadata = {"url": "/http/redirect/301"}  # type: ignore
 
     @distributed_trace_async
-    async def put301(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
+    async def put301(  # pylint: disable=inconsistent-return-statements
+        self, boolean_value: Optional[bool] = True, **kwargs: Any
+    ) -> None:
         """Put true Boolean value in request returns 301.  This request should not be automatically
         redirected, but should return the received 301 to the caller for evaluation.
 
@@ -274,7 +276,7 @@ class HttpRedirectsOperations:
     put301.metadata = {"url": "/http/redirect/301"}  # type: ignore
 
     @distributed_trace_async
-    async def head302(self, **kwargs: Any) -> None:
+    async def head302(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 302 status code and redirect to /http/success/200.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -312,7 +314,7 @@ class HttpRedirectsOperations:
     head302.metadata = {"url": "/http/redirect/302"}  # type: ignore
 
     @distributed_trace_async
-    async def get302(self, **kwargs: Any) -> None:
+    async def get302(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 302 status code and redirect to /http/success/200.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -350,7 +352,9 @@ class HttpRedirectsOperations:
     get302.metadata = {"url": "/http/redirect/302"}  # type: ignore
 
     @distributed_trace_async
-    async def patch302(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
+    async def patch302(  # pylint: disable=inconsistent-return-statements
+        self, boolean_value: Optional[bool] = True, **kwargs: Any
+    ) -> None:
         """Patch true Boolean value in request returns 302.  This request should not be automatically
         redirected, but should return the received 302 to the caller for evaluation.
 
@@ -399,7 +403,9 @@ class HttpRedirectsOperations:
     patch302.metadata = {"url": "/http/redirect/302"}  # type: ignore
 
     @distributed_trace_async
-    async def post303(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
+    async def post303(  # pylint: disable=inconsistent-return-statements
+        self, boolean_value: Optional[bool] = True, **kwargs: Any
+    ) -> None:
         """Post true Boolean value in request returns 303.  This request should be automatically
         redirected usign a get, ultimately returning a 200 status code.
 
@@ -449,7 +455,7 @@ class HttpRedirectsOperations:
     post303.metadata = {"url": "/http/redirect/303"}  # type: ignore
 
     @distributed_trace_async
-    async def head307(self, **kwargs: Any) -> None:
+    async def head307(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Redirect with 307, resulting in a 200 success.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -487,7 +493,7 @@ class HttpRedirectsOperations:
     head307.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
     @distributed_trace_async
-    async def get307(self, **kwargs: Any) -> None:
+    async def get307(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Redirect get with 307, resulting in a 200 success.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -525,7 +531,7 @@ class HttpRedirectsOperations:
     get307.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
     @distributed_trace_async
-    async def options307(self, **kwargs: Any) -> None:
+    async def options307(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """options redirected with 307, resulting in a 200 after redirect.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -563,7 +569,9 @@ class HttpRedirectsOperations:
     options307.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
     @distributed_trace_async
-    async def put307(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
+    async def put307(  # pylint: disable=inconsistent-return-statements
+        self, boolean_value: Optional[bool] = True, **kwargs: Any
+    ) -> None:
         """Put redirected with 307, resulting in a 200 after redirect.
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -612,7 +620,9 @@ class HttpRedirectsOperations:
     put307.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
     @distributed_trace_async
-    async def patch307(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
+    async def patch307(  # pylint: disable=inconsistent-return-statements
+        self, boolean_value: Optional[bool] = True, **kwargs: Any
+    ) -> None:
         """Patch redirected with 307, resulting in a 200 after redirect.
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -661,7 +671,9 @@ class HttpRedirectsOperations:
     patch307.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
     @distributed_trace_async
-    async def post307(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
+    async def post307(  # pylint: disable=inconsistent-return-statements
+        self, boolean_value: Optional[bool] = True, **kwargs: Any
+    ) -> None:
         """Post redirected with 307, resulting in a 200 after redirect.
 
         :param boolean_value: Simple boolean value true. The default value is True.
@@ -710,7 +722,9 @@ class HttpRedirectsOperations:
     post307.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
     @distributed_trace_async
-    async def delete307(self, boolean_value: Optional[bool] = True, **kwargs: Any) -> None:
+    async def delete307(  # pylint: disable=inconsistent-return-statements
+        self, boolean_value: Optional[bool] = True, **kwargs: Any
+    ) -> None:
         """Delete redirected with 307, resulting in a 200 after redirect.
 
         :param boolean_value: Simple boolean value true. The default value is True.

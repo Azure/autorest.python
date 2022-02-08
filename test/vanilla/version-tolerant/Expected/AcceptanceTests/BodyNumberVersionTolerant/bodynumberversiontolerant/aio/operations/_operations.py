@@ -207,7 +207,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace_async
-    async def put_big_float(self, number_body: float, **kwargs: Any) -> None:
+    async def put_big_float(  # pylint: disable=inconsistent-return-statements
+        self, number_body: float, **kwargs: Any
+    ) -> None:
         """Put big float value 3.402823e+20.
 
         :param number_body: number body.
@@ -277,7 +279,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace_async
-    async def put_big_double(self, number_body: float, **kwargs: Any) -> None:
+    async def put_big_double(  # pylint: disable=inconsistent-return-statements
+        self, number_body: float, **kwargs: Any
+    ) -> None:
         """Put big double value 2.5976931e+101.
 
         :param number_body: number body.
@@ -347,7 +351,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace_async
-    async def put_big_double_positive_decimal(self, **kwargs: Any) -> None:
+    async def put_big_double_positive_decimal(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         """Put big double value 99999999.99.
 
         :keyword number_body: The default value is 99999999.99. Note that overriding this default value
@@ -417,7 +423,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace_async
-    async def put_big_double_negative_decimal(self, **kwargs: Any) -> None:
+    async def put_big_double_negative_decimal(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         """Put big double value -99999999.99.
 
         :keyword number_body: The default value is -99999999.99. Note that overriding this default
@@ -487,7 +495,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace_async
-    async def put_big_decimal(self, number_body: float, **kwargs: Any) -> None:
+    async def put_big_decimal(  # pylint: disable=inconsistent-return-statements
+        self, number_body: float, **kwargs: Any
+    ) -> None:
         """Put big decimal value 2.5976931e+101.
 
         :param number_body: number body.
@@ -557,7 +567,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace_async
-    async def put_big_decimal_positive_decimal(self, **kwargs: Any) -> None:
+    async def put_big_decimal_positive_decimal(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         """Put big decimal value 99999999.99.
 
         :keyword number_body: The default value is 99999999.99. Note that overriding this default value
@@ -627,7 +639,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace_async
-    async def put_big_decimal_negative_decimal(self, **kwargs: Any) -> None:
+    async def put_big_decimal_negative_decimal(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         """Put big decimal value -99999999.99.
 
         :keyword number_body: The default value is -99999999.99. Note that overriding this default
@@ -697,7 +711,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace_async
-    async def put_small_float(self, number_body: float, **kwargs: Any) -> None:
+    async def put_small_float(  # pylint: disable=inconsistent-return-statements
+        self, number_body: float, **kwargs: Any
+    ) -> None:
         """Put small float value 3.402823e-20.
 
         :param number_body: number body.
@@ -767,7 +783,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace_async
-    async def put_small_double(self, number_body: float, **kwargs: Any) -> None:
+    async def put_small_double(  # pylint: disable=inconsistent-return-statements
+        self, number_body: float, **kwargs: Any
+    ) -> None:
         """Put small double value 2.5976931e-101.
 
         :param number_body: number body.
@@ -837,7 +855,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace_async
-    async def put_small_decimal(self, number_body: float, **kwargs: Any) -> None:
+    async def put_small_decimal(  # pylint: disable=inconsistent-return-statements
+        self, number_body: float, **kwargs: Any
+    ) -> None:
         """Put small decimal value 2.5976931e-101.
 
         :param number_body: number body.

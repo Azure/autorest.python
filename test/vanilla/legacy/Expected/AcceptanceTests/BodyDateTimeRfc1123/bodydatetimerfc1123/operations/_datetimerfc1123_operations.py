@@ -411,7 +411,7 @@ class Datetimerfc1123Operations(object):
     get_underflow.metadata = {"url": "/datetimerfc1123/underflow"}  # type: ignore
 
     @distributed_trace
-    def put_utc_max_date_time(
+    def put_utc_max_date_time(  # pylint: disable=inconsistent-return-statements
         self,
         datetime_body,  # type: datetime.datetime
         **kwargs  # type: Any
@@ -540,7 +540,7 @@ class Datetimerfc1123Operations(object):
     get_utc_uppercase_max_date_time.metadata = {"url": "/datetimerfc1123/max/uppercase"}  # type: ignore
 
     @distributed_trace
-    def put_utc_min_date_time(
+    def put_utc_min_date_time(  # pylint: disable=inconsistent-return-statements
         self,
         datetime_body,  # type: datetime.datetime
         **kwargs  # type: Any
