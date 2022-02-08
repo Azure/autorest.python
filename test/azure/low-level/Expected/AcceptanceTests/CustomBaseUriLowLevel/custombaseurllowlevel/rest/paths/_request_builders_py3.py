@@ -27,10 +27,10 @@ def build_get_empty_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/customuri"
+    _url = "/customuri"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)

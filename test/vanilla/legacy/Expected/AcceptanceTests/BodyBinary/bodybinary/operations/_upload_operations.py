@@ -41,17 +41,17 @@ def build_file_request(
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/binary/file')
+    _url = kwargs.pop("template_url", "/binary/file")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="POST",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -63,17 +63,17 @@ def build_binary_request(
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     # Construct URL
-    url = kwargs.pop("template_url", '/binary/octet')
+    _url = kwargs.pop("template_url", "/binary/octet")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 

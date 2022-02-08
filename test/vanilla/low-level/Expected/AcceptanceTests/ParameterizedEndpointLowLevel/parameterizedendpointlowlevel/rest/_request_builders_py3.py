@@ -27,6 +27,6 @@ def build_get_request(**kwargs: Any) -> HttpRequest:
     """
 
     # Construct URL
-    url = "/parameterizedEndpoint/get"
+    _url = "/parameterizedEndpoint/get"
 
-    return HttpRequest(method="GET", url=url, **kwargs)
+    return HttpRequest(method="GET", url=_url, **kwargs)

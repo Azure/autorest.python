@@ -111,7 +111,7 @@ class PagingOperations:
         return AsyncItemPaged(
             get_next, extract_data
         )
-    get_no_item_name_pages.metadata = {'url': '/paging/noitemname'}  # type: ignore
+    get_no_item_name_pages.metadata = {'url': "/paging/noitemname"}  # type: ignore
 
     @distributed_trace
     def get_null_next_link_name_pages(
@@ -176,7 +176,7 @@ class PagingOperations:
         return AsyncItemPaged(
             get_next, extract_data
         )
-    get_null_next_link_name_pages.metadata = {'url': '/paging/nullnextlink'}  # type: ignore
+    get_null_next_link_name_pages.metadata = {'url': "/paging/nullnextlink"}  # type: ignore
 
     @distributed_trace
     def get_single_pages(
@@ -242,7 +242,7 @@ class PagingOperations:
         return AsyncCustomPager(
             get_next, extract_data
         )
-    get_single_pages.metadata = {'url': '/paging/single'}  # type: ignore
+    get_single_pages.metadata = {'url': "/paging/single"}  # type: ignore
 
     @distributed_trace
     def first_response_empty(
@@ -308,7 +308,7 @@ class PagingOperations:
         return AsyncItemPaged(
             get_next, extract_data
         )
-    first_response_empty.metadata = {'url': '/paging/firstResponseEmpty/1'}  # type: ignore
+    first_response_empty.metadata = {'url': "/paging/firstResponseEmpty/1"}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages(
@@ -396,7 +396,7 @@ class PagingOperations:
         return AsyncItemPaged(
             get_next, extract_data
         )
-    get_multiple_pages.metadata = {'url': '/paging/multiple'}  # type: ignore
+    get_multiple_pages.metadata = {'url': "/paging/multiple"}  # type: ignore
 
     @distributed_trace
     def get_with_query_params(
@@ -475,7 +475,7 @@ class PagingOperations:
         return AsyncItemPaged(
             get_next, extract_data
         )
-    get_with_query_params.metadata = {'url': '/paging/multiple/getWithQueryParams'}  # type: ignore
+    get_with_query_params.metadata = {'url': "/paging/multiple/getWithQueryParams"}  # type: ignore
 
     @distributed_trace
     def get_odata_multiple_pages(
@@ -563,7 +563,7 @@ class PagingOperations:
         return AsyncItemPaged(
             get_next, extract_data
         )
-    get_odata_multiple_pages.metadata = {'url': '/paging/multiple/odata'}  # type: ignore
+    get_odata_multiple_pages.metadata = {'url': "/paging/multiple/odata"}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages_with_offset(
@@ -657,7 +657,7 @@ class PagingOperations:
         return AsyncItemPaged(
             get_next, extract_data
         )
-    get_multiple_pages_with_offset.metadata = {'url': '/paging/multiple/withpath/{offset}'}  # type: ignore
+    get_multiple_pages_with_offset.metadata = {'url': "/paging/multiple/withpath/{offset}"}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages_retry_first(
@@ -723,7 +723,7 @@ class PagingOperations:
         return AsyncItemPaged(
             get_next, extract_data
         )
-    get_multiple_pages_retry_first.metadata = {'url': '/paging/multiple/retryfirst'}  # type: ignore
+    get_multiple_pages_retry_first.metadata = {'url': "/paging/multiple/retryfirst"}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages_retry_second(
@@ -789,7 +789,7 @@ class PagingOperations:
         return AsyncItemPaged(
             get_next, extract_data
         )
-    get_multiple_pages_retry_second.metadata = {'url': '/paging/multiple/retrysecond'}  # type: ignore
+    get_multiple_pages_retry_second.metadata = {'url': "/paging/multiple/retrysecond"}  # type: ignore
 
     @distributed_trace
     def get_single_pages_failure(
@@ -854,7 +854,7 @@ class PagingOperations:
         return AsyncItemPaged(
             get_next, extract_data
         )
-    get_single_pages_failure.metadata = {'url': '/paging/single/failure'}  # type: ignore
+    get_single_pages_failure.metadata = {'url': "/paging/single/failure"}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages_failure(
@@ -919,7 +919,7 @@ class PagingOperations:
         return AsyncItemPaged(
             get_next, extract_data
         )
-    get_multiple_pages_failure.metadata = {'url': '/paging/multiple/failure'}  # type: ignore
+    get_multiple_pages_failure.metadata = {'url': "/paging/multiple/failure"}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages_failure_uri(
@@ -984,7 +984,7 @@ class PagingOperations:
         return AsyncItemPaged(
             get_next, extract_data
         )
-    get_multiple_pages_failure_uri.metadata = {'url': '/paging/multiple/failureuri'}  # type: ignore
+    get_multiple_pages_failure_uri.metadata = {'url': "/paging/multiple/failureuri"}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages_fragment_next_link(
@@ -1060,7 +1060,7 @@ class PagingOperations:
         return AsyncItemPaged(
             get_next, extract_data
         )
-    get_multiple_pages_fragment_next_link.metadata = {'url': '/paging/multiple/fragment/{tenant}'}  # type: ignore
+    get_multiple_pages_fragment_next_link.metadata = {'url': "/paging/multiple/fragment/{tenant}"}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages_fragment_with_grouping_next_link(
@@ -1143,7 +1143,7 @@ class PagingOperations:
         return AsyncItemPaged(
             get_next, extract_data
         )
-    get_multiple_pages_fragment_with_grouping_next_link.metadata = {'url': '/paging/multiple/fragmentwithgrouping/{tenant}'}  # type: ignore
+    get_multiple_pages_fragment_with_grouping_next_link.metadata = {'url': "/paging/multiple/fragmentwithgrouping/{tenant}"}  # type: ignore
 
     async def _get_multiple_pages_lro_initial(
         self,
@@ -1190,7 +1190,7 @@ class PagingOperations:
 
         return deserialized
 
-    _get_multiple_pages_lro_initial.metadata = {'url': '/paging/multiple/lro'}  # type: ignore
+    _get_multiple_pages_lro_initial.metadata = {'url': "/paging/multiple/lro"}  # type: ignore
 
 
     @distributed_trace_async
@@ -1324,7 +1324,7 @@ class PagingOperations:
             )
         return AsyncCustomPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_get_multiple_pages_lro.metadata = {'url': '/paging/multiple/lro'}  # type: ignore
+    begin_get_multiple_pages_lro.metadata = {'url': "/paging/multiple/lro"}  # type: ignore
 
 
     @distributed_trace
@@ -1393,4 +1393,4 @@ class PagingOperations:
         return AsyncItemPaged(
             get_next, extract_data
         )
-    get_paging_model_with_item_name_with_xms_client_name.metadata = {'url': '/paging/itemNameWithXMSClientName'}  # type: ignore
+    get_paging_model_with_item_name_with_xms_client_name.metadata = {'url': "/paging/itemNameWithXMSClientName"}  # type: ignore

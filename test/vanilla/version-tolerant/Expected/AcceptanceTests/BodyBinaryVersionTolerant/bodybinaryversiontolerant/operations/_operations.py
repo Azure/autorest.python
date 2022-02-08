@@ -33,28 +33,28 @@ def build_upload_file_request(*, json: JSONType = None, content: Any = None, **k
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
-    url = "/binary/file"
+    _url = "/binary/file"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
 
 
 def build_upload_binary_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
-    url = "/binary/octet"
+    _url = "/binary/octet"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, content=content, **kwargs)
 
 
 class UploadOperations(object):

@@ -13,6 +13,8 @@
   "CustomHeaderPostSucceeded": 2,
   "LROPut200InlineCompleteNoState": 2,
   "LROPatchInlineCompleteIgnoreHeaders": 0,
+  "LROPatch201WithAsyncHeader": 2,
+  "LROPatch202WithAsyncAndLocationHeader": 2,
   "LROPut202Retry200": 2,
   "LROPutSucceededWithBody": 2,
   "LROPutSucceededNoBody": 2,

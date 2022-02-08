@@ -31,13 +31,13 @@ def build_get_null_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/number/null"
+    _url = "/number/null"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_get_invalid_float_request(**kwargs: Any) -> HttpRequest:
@@ -54,13 +54,13 @@ def build_get_invalid_float_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/number/invalidfloat"
+    _url = "/number/invalidfloat"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_get_invalid_double_request(**kwargs: Any) -> HttpRequest:
@@ -77,13 +77,13 @@ def build_get_invalid_double_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/number/invaliddouble"
+    _url = "/number/invaliddouble"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_get_invalid_decimal_request(**kwargs: Any) -> HttpRequest:
@@ -100,13 +100,13 @@ def build_get_invalid_decimal_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/number/invaliddecimal"
+    _url = "/number/invaliddecimal"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_put_big_float_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
@@ -137,15 +137,15 @@ def build_put_big_float_request(*, json: JSONType = None, content: Any = None, *
 
     accept = "application/json"
     # Construct URL
-    url = "/number/big/float/3.402823e+20"
+    _url = "/number/big/float/3.402823e+20"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
 
 
 def build_get_big_float_request(**kwargs: Any) -> HttpRequest:
@@ -162,13 +162,13 @@ def build_get_big_float_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/number/big/float/3.402823e+20"
+    _url = "/number/big/float/3.402823e+20"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_put_big_double_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
@@ -199,15 +199,15 @@ def build_put_big_double_request(*, json: JSONType = None, content: Any = None, 
 
     accept = "application/json"
     # Construct URL
-    url = "/number/big/double/2.5976931e+101"
+    _url = "/number/big/double/2.5976931e+101"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
 
 
 def build_get_big_double_request(**kwargs: Any) -> HttpRequest:
@@ -224,13 +224,13 @@ def build_get_big_double_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/number/big/double/2.5976931e+101"
+    _url = "/number/big/double/2.5976931e+101"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_put_big_double_positive_decimal_request(**kwargs: Any) -> HttpRequest:
@@ -253,15 +253,15 @@ def build_put_big_double_positive_decimal_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/number/big/double/99999999.99"
+    _url = "/number/big/double/99999999.99"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, json=json, **kwargs)
 
 
 def build_get_big_double_positive_decimal_request(**kwargs: Any) -> HttpRequest:
@@ -278,13 +278,13 @@ def build_get_big_double_positive_decimal_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/number/big/double/99999999.99"
+    _url = "/number/big/double/99999999.99"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_put_big_double_negative_decimal_request(**kwargs: Any) -> HttpRequest:
@@ -307,15 +307,15 @@ def build_put_big_double_negative_decimal_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/number/big/double/-99999999.99"
+    _url = "/number/big/double/-99999999.99"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, json=json, **kwargs)
 
 
 def build_get_big_double_negative_decimal_request(**kwargs: Any) -> HttpRequest:
@@ -332,13 +332,13 @@ def build_get_big_double_negative_decimal_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/number/big/double/-99999999.99"
+    _url = "/number/big/double/-99999999.99"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_put_big_decimal_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
@@ -369,15 +369,15 @@ def build_put_big_decimal_request(*, json: JSONType = None, content: Any = None,
 
     accept = "application/json"
     # Construct URL
-    url = "/number/big/decimal/2.5976931e+101"
+    _url = "/number/big/decimal/2.5976931e+101"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
 
 
 def build_get_big_decimal_request(**kwargs: Any) -> HttpRequest:
@@ -394,13 +394,13 @@ def build_get_big_decimal_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/number/big/decimal/2.5976931e+101"
+    _url = "/number/big/decimal/2.5976931e+101"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_put_big_decimal_positive_decimal_request(**kwargs: Any) -> HttpRequest:
@@ -423,15 +423,15 @@ def build_put_big_decimal_positive_decimal_request(**kwargs: Any) -> HttpRequest
 
     accept = "application/json"
     # Construct URL
-    url = "/number/big/decimal/99999999.99"
+    _url = "/number/big/decimal/99999999.99"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, json=json, **kwargs)
 
 
 def build_get_big_decimal_positive_decimal_request(**kwargs: Any) -> HttpRequest:
@@ -448,13 +448,13 @@ def build_get_big_decimal_positive_decimal_request(**kwargs: Any) -> HttpRequest
 
     accept = "application/json"
     # Construct URL
-    url = "/number/big/decimal/99999999.99"
+    _url = "/number/big/decimal/99999999.99"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_put_big_decimal_negative_decimal_request(**kwargs: Any) -> HttpRequest:
@@ -477,15 +477,15 @@ def build_put_big_decimal_negative_decimal_request(**kwargs: Any) -> HttpRequest
 
     accept = "application/json"
     # Construct URL
-    url = "/number/big/decimal/-99999999.99"
+    _url = "/number/big/decimal/-99999999.99"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, json=json, **kwargs)
 
 
 def build_get_big_decimal_negative_decimal_request(**kwargs: Any) -> HttpRequest:
@@ -502,13 +502,13 @@ def build_get_big_decimal_negative_decimal_request(**kwargs: Any) -> HttpRequest
 
     accept = "application/json"
     # Construct URL
-    url = "/number/big/decimal/-99999999.99"
+    _url = "/number/big/decimal/-99999999.99"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_put_small_float_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
@@ -539,15 +539,15 @@ def build_put_small_float_request(*, json: JSONType = None, content: Any = None,
 
     accept = "application/json"
     # Construct URL
-    url = "/number/small/float/3.402823e-20"
+    _url = "/number/small/float/3.402823e-20"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
 
 
 def build_get_small_float_request(**kwargs: Any) -> HttpRequest:
@@ -564,13 +564,13 @@ def build_get_small_float_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/number/small/float/3.402823e-20"
+    _url = "/number/small/float/3.402823e-20"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_put_small_double_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
@@ -601,15 +601,15 @@ def build_put_small_double_request(*, json: JSONType = None, content: Any = None
 
     accept = "application/json"
     # Construct URL
-    url = "/number/small/double/2.5976931e-101"
+    _url = "/number/small/double/2.5976931e-101"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
 
 
 def build_get_small_double_request(**kwargs: Any) -> HttpRequest:
@@ -626,13 +626,13 @@ def build_get_small_double_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/number/small/double/2.5976931e-101"
+    _url = "/number/small/double/2.5976931e-101"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_put_small_decimal_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
@@ -663,15 +663,15 @@ def build_put_small_decimal_request(*, json: JSONType = None, content: Any = Non
 
     accept = "application/json"
     # Construct URL
-    url = "/number/small/decimal/2.5976931e-101"
+    _url = "/number/small/decimal/2.5976931e-101"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
 
 
 def build_get_small_decimal_request(**kwargs: Any) -> HttpRequest:
@@ -688,10 +688,10 @@ def build_get_small_decimal_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/number/small/decimal/2.5976931e-101"
+    _url = "/number/small/decimal/2.5976931e-101"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)

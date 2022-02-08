@@ -31,13 +31,13 @@ def build_get_null_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/duration/null"
+    _url = "/duration/null"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_put_positive_duration_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
@@ -68,15 +68,15 @@ def build_put_positive_duration_request(*, json: JSONType = None, content: Any =
 
     accept = "application/json"
     # Construct URL
-    url = "/duration/positiveduration"
+    _url = "/duration/positiveduration"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
 
 
 def build_get_positive_duration_request(**kwargs: Any) -> HttpRequest:
@@ -93,13 +93,13 @@ def build_get_positive_duration_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/duration/positiveduration"
+    _url = "/duration/positiveduration"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_get_invalid_request(**kwargs: Any) -> HttpRequest:
@@ -116,10 +116,10 @@ def build_get_invalid_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/duration/invalid"
+    _url = "/duration/invalid"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)

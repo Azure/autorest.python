@@ -90,5 +90,5 @@ class OperationGroupTwoOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    test_four.metadata = {'url': '/multiapi/two/testFourEndpoint'}  # type: ignore
+    test_four.metadata = {'url': "/multiapi/two/testFourEndpoint"}  # type: ignore
 

@@ -38,15 +38,15 @@ def build_operation_with_content_param_request(*, content: Any, **kwargs: Any) -
 
     accept = "application/json"
     # Construct URL
-    url = "/reservedWords/operation/content"
+    _url = "/reservedWords/operation/content"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, content=content, **kwargs)
 
 
 def build_operation_with_json_param_request(
@@ -79,15 +79,15 @@ def build_operation_with_json_param_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/reservedWords/operation/json"
+    _url = "/reservedWords/operation/json"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
 
 
 def build_operation_with_data_param_request(
@@ -123,15 +123,15 @@ def build_operation_with_data_param_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/reservedWords/operation/data"
+    _url = "/reservedWords/operation/data"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, data=data, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, data=data, content=content, **kwargs)
 
 
 def build_operation_with_files_param_request(
@@ -167,15 +167,15 @@ def build_operation_with_files_param_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/reservedWords/operation/files"
+    _url = "/reservedWords/operation/files"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, files=files, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, files=files, content=content, **kwargs)
 
 
 def build_operation_with_url_request(
@@ -203,23 +203,23 @@ def build_operation_with_url_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/reservedWords/{url}"
+    _url = "/reservedWords/{url}"
     path_format_arguments = {
         "url": _SERIALIZER.url("url", url, "str"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if query_parameters is not None:
-        query_parameters["queryParameters"] = [
+        _query_parameters["queryParameters"] = [
             _SERIALIZER.query("query_parameters", q, "str") if q is not None else "" for q in query_parameters
         ]
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["headerParameters"] = _SERIALIZER.header("header_parameters", header_parameters, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["headerParameters"] = _SERIALIZER.header("header_parameters", header_parameters, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)

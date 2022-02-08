@@ -32,24 +32,24 @@ _SERIALIZER = Serializer()
 
 def build_xms_client_request_id_get_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
-    url = "/azurespecials/overwrite/x-ms-client-request-id/method/"
+    _url = "/azurespecials/overwrite/x-ms-client-request-id/method/"
 
-    return HttpRequest(method="GET", url=url, **kwargs)
+    return HttpRequest(method="GET", url=_url, **kwargs)
 
 
 def build_xms_client_request_id_param_get_request(*, x_ms_client_request_id: str, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/azurespecials/overwrite/x-ms-client-request-id/via-param/method/"
+    _url = "/azurespecials/overwrite/x-ms-client-request-id/via-param/method/"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["x-ms-client-request-id"] = _SERIALIZER.header(
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["x-ms-client-request-id"] = _SERIALIZER.header(
         "x_ms_client_request_id", x_ms_client_request_id, "str"
     )
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_subscription_in_credentials_post_method_global_valid_request(
@@ -57,18 +57,18 @@ def build_subscription_in_credentials_post_method_global_valid_request(
 ) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/azurespecials/subscriptionId/method/string/none/path/global/1234-5678-9012-3456/{subscriptionId}"
+    _url = "/azurespecials/subscriptionId/method/string/none/path/global/1234-5678-9012-3456/{subscriptionId}"
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_subscription_in_credentials_post_method_global_null_request(
@@ -76,18 +76,18 @@ def build_subscription_in_credentials_post_method_global_null_request(
 ) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}"
+    _url = "/azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}"
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_subscription_in_credentials_post_method_global_not_provided_valid_request(
@@ -97,22 +97,24 @@ def build_subscription_in_credentials_post_method_global_not_provided_valid_requ
 
     accept = "application/json"
     # Construct URL
-    url = "/azurespecials/subscriptionId/method/string/none/path/globalNotProvided/1234-5678-9012-3456/{subscriptionId}"
+    _url = (
+        "/azurespecials/subscriptionId/method/string/none/path/globalNotProvided/1234-5678-9012-3456/{subscriptionId}"
+    )
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_subscription_in_credentials_post_path_global_valid_request(
@@ -120,18 +122,18 @@ def build_subscription_in_credentials_post_path_global_valid_request(
 ) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/azurespecials/subscriptionId/path/string/none/path/global/1234-5678-9012-3456/{subscriptionId}"
+    _url = "/azurespecials/subscriptionId/path/string/none/path/global/1234-5678-9012-3456/{subscriptionId}"
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_subscription_in_credentials_post_swagger_global_valid_request(
@@ -139,86 +141,86 @@ def build_subscription_in_credentials_post_swagger_global_valid_request(
 ) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/azurespecials/subscriptionId/swagger/string/none/path/global/1234-5678-9012-3456/{subscriptionId}"
+    _url = "/azurespecials/subscriptionId/swagger/string/none/path/global/1234-5678-9012-3456/{subscriptionId}"
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_subscription_in_method_post_method_local_valid_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"
+    _url = "/azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_subscription_in_method_post_method_local_null_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}"
+    _url = "/azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}"
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_subscription_in_method_post_path_local_valid_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"
+    _url = "/azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_subscription_in_method_post_swagger_local_valid_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/azurespecials/subscriptionId/swagger/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"
+    _url = "/azurespecials/subscriptionId/swagger/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_api_version_default_get_method_global_valid_request(**kwargs: Any) -> HttpRequest:
@@ -226,17 +228,17 @@ def build_api_version_default_get_method_global_valid_request(**kwargs: Any) -> 
 
     accept = "application/json"
     # Construct URL
-    url = "/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview"
+    _url = "/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_api_version_default_get_method_global_not_provided_valid_request(**kwargs: Any) -> HttpRequest:
@@ -244,17 +246,17 @@ def build_api_version_default_get_method_global_not_provided_valid_request(**kwa
 
     accept = "application/json"
     # Construct URL
-    url = "/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview"
+    _url = "/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_api_version_default_get_path_global_valid_request(**kwargs: Any) -> HttpRequest:
@@ -262,17 +264,17 @@ def build_api_version_default_get_path_global_valid_request(**kwargs: Any) -> Ht
 
     accept = "application/json"
     # Construct URL
-    url = "/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview"
+    _url = "/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_api_version_default_get_swagger_global_valid_request(**kwargs: Any) -> HttpRequest:
@@ -280,17 +282,17 @@ def build_api_version_default_get_swagger_global_valid_request(**kwargs: Any) ->
 
     accept = "application/json"
     # Construct URL
-    url = "/azurespecials/apiVersion/swagger/string/none/query/global/2015-07-01-preview"
+    _url = "/azurespecials/apiVersion/swagger/string/none/query/global/2015-07-01-preview"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_api_version_local_get_method_local_valid_request(**kwargs: Any) -> HttpRequest:
@@ -298,17 +300,17 @@ def build_api_version_local_get_method_local_valid_request(**kwargs: Any) -> Htt
 
     accept = "application/json"
     # Construct URL
-    url = "/azurespecials/apiVersion/method/string/none/query/local/2.0"
+    _url = "/azurespecials/apiVersion/method/string/none/query/local/2.0"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_api_version_local_get_method_local_null_request(
@@ -316,18 +318,18 @@ def build_api_version_local_get_method_local_null_request(
 ) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/azurespecials/apiVersion/method/string/none/query/local/null"
+    _url = "/azurespecials/apiVersion/method/string/none/query/local/null"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if api_version is not None:
-        query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+        _query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_api_version_local_get_path_local_valid_request(**kwargs: Any) -> HttpRequest:
@@ -335,17 +337,17 @@ def build_api_version_local_get_path_local_valid_request(**kwargs: Any) -> HttpR
 
     accept = "application/json"
     # Construct URL
-    url = "/azurespecials/apiVersion/path/string/none/query/local/2.0"
+    _url = "/azurespecials/apiVersion/path/string/none/query/local/2.0"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_api_version_local_get_swagger_local_valid_request(**kwargs: Any) -> HttpRequest:
@@ -353,51 +355,51 @@ def build_api_version_local_get_swagger_local_valid_request(**kwargs: Any) -> Ht
 
     accept = "application/json"
     # Construct URL
-    url = "/azurespecials/apiVersion/swagger/string/none/query/local/2.0"
+    _url = "/azurespecials/apiVersion/swagger/string/none/query/local/2.0"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_skip_url_encoding_get_method_path_valid_request(unencoded_path_param: str, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}"
+    _url = "/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}"
     path_format_arguments = {
         "unencodedPathParam": _SERIALIZER.url("unencoded_path_param", unencoded_path_param, "str", skip_quote=True),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_skip_url_encoding_get_path_valid_request(unencoded_path_param: str, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}"
+    _url = "/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}"
     path_format_arguments = {
         "unencodedPathParam": _SERIALIZER.url("unencoded_path_param", unencoded_path_param, "str", skip_quote=True),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_skip_url_encoding_get_swagger_path_valid_request(**kwargs: Any) -> HttpRequest:
@@ -405,67 +407,67 @@ def build_skip_url_encoding_get_swagger_path_valid_request(**kwargs: Any) -> Htt
 
     accept = "application/json"
     # Construct URL
-    url = "/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}"
+    _url = "/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}"
     path_format_arguments = {
         "unencodedPathParam": _SERIALIZER.url("unencoded_path_param", unencoded_path_param, "str", skip_quote=True),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_skip_url_encoding_get_method_query_valid_request(*, q1: str, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/azurespecials/skipUrlEncoding/method/query/valid"
+    _url = "/azurespecials/skipUrlEncoding/method/query/valid"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["q1"] = _SERIALIZER.query("q1", q1, "str", skip_quote=True)
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters["q1"] = _SERIALIZER.query("q1", q1, "str", skip_quote=True)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_skip_url_encoding_get_method_query_null_request(*, q1: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/azurespecials/skipUrlEncoding/method/query/null"
+    _url = "/azurespecials/skipUrlEncoding/method/query/null"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if q1 is not None:
-        query_parameters["q1"] = _SERIALIZER.query("q1", q1, "str", skip_quote=True)
+        _query_parameters["q1"] = _SERIALIZER.query("q1", q1, "str", skip_quote=True)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_skip_url_encoding_get_path_query_valid_request(*, q1: str, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/azurespecials/skipUrlEncoding/path/query/valid"
+    _url = "/azurespecials/skipUrlEncoding/path/query/valid"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["q1"] = _SERIALIZER.query("q1", q1, "str", skip_quote=True)
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters["q1"] = _SERIALIZER.query("q1", q1, "str", skip_quote=True)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_skip_url_encoding_get_swagger_query_valid_request(**kwargs: Any) -> HttpRequest:
@@ -473,17 +475,17 @@ def build_skip_url_encoding_get_swagger_query_valid_request(**kwargs: Any) -> Ht
 
     accept = "application/json"
     # Construct URL
-    url = "/azurespecials/skipUrlEncoding/swagger/query/valid"
+    _url = "/azurespecials/skipUrlEncoding/swagger/query/valid"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["q1"] = _SERIALIZER.query("q1", q1, "str", skip_quote=True)
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters["q1"] = _SERIALIZER.query("q1", q1, "str", skip_quote=True)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_odata_get_with_filter_request(
@@ -491,37 +493,37 @@ def build_odata_get_with_filter_request(
 ) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/azurespecials/odata/filter"
+    _url = "/azurespecials/odata/filter"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if filter is not None:
-        query_parameters["$filter"] = _SERIALIZER.query("filter", filter, "str")
+        _query_parameters["$filter"] = _SERIALIZER.query("filter", filter, "str")
     if top is not None:
-        query_parameters["$top"] = _SERIALIZER.query("top", top, "int")
+        _query_parameters["$top"] = _SERIALIZER.query("top", top, "int")
     if orderby is not None:
-        query_parameters["$orderby"] = _SERIALIZER.query("orderby", orderby, "str")
+        _query_parameters["$orderby"] = _SERIALIZER.query("orderby", orderby, "str")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_header_custom_named_request_id_request(*, foo_client_request_id: str, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/azurespecials/customNamedRequestId"
+    _url = "/azurespecials/customNamedRequestId"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["foo-client-request-id"] = _SERIALIZER.header(
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["foo-client-request-id"] = _SERIALIZER.header(
         "foo_client_request_id", foo_client_request_id, "str"
     )
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_header_custom_named_request_id_param_grouping_request(
@@ -529,31 +531,31 @@ def build_header_custom_named_request_id_param_grouping_request(
 ) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/azurespecials/customNamedRequestIdParamGrouping"
+    _url = "/azurespecials/customNamedRequestIdParamGrouping"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["foo-client-request-id"] = _SERIALIZER.header(
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["foo-client-request-id"] = _SERIALIZER.header(
         "foo_client_request_id", foo_client_request_id, "str"
     )
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_header_custom_named_request_id_head_request(*, foo_client_request_id: str, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/azurespecials/customNamedRequestIdHead"
+    _url = "/azurespecials/customNamedRequestIdHead"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["foo-client-request-id"] = _SERIALIZER.header(
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["foo-client-request-id"] = _SERIALIZER.header(
         "foo_client_request_id", foo_client_request_id, "str"
     )
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="HEAD", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="HEAD", url=_url, headers=_header_parameters, **kwargs)
 
 
 class XMsClientRequestIdOperations(object):

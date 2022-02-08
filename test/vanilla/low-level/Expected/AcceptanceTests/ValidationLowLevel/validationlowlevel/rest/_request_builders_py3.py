@@ -72,7 +72,7 @@ def build_validation_of_method_parameters_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"
+    _url = "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
         "resourceGroupName": _SERIALIZER.url(
@@ -81,17 +81,17 @@ def build_validation_of_method_parameters_request(
         "id": _SERIALIZER.url("id", id, "int", maximum=1000, minimum=100, multiple=10),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["apiVersion"] = _SERIALIZER.query("api_version", api_version, "str")
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters["apiVersion"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_validation_of_body_request(
@@ -188,7 +188,7 @@ def build_validation_of_body_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"
+    _url = "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
         "resourceGroupName": _SERIALIZER.url(
@@ -197,20 +197,26 @@ def build_validation_of_body_request(
         "id": _SERIALIZER.url("id", id, "int", maximum=1000, minimum=100, multiple=10),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["apiVersion"] = _SERIALIZER.query("api_version", api_version, "str")
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters["apiVersion"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(
-        method="PUT", url=url, params=query_parameters, headers=header_parameters, json=json, content=content, **kwargs
+        method="PUT",
+        url=_url,
+        params=_query_parameters,
+        headers=_header_parameters,
+        json=json,
+        content=content,
+        **kwargs
     )
 
 
@@ -232,14 +238,14 @@ def build_get_with_constant_in_path_request(**kwargs: Any) -> HttpRequest:
     constant_param = kwargs.pop("constant_param", "constant")  # type: str
 
     # Construct URL
-    url = "/validation/constantsInPath/{constantParam}/value"
+    _url = "/validation/constantsInPath/{constantParam}/value"
     path_format_arguments = {
         "constantParam": _SERIALIZER.url("constant_param", constant_param, "str"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
-    return HttpRequest(method="GET", url=url, **kwargs)
+    return HttpRequest(method="GET", url=_url, **kwargs)
 
 
 def build_post_with_constant_in_body_request(
@@ -327,17 +333,17 @@ def build_post_with_constant_in_body_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/validation/constantsInPath/{constantParam}/value"
+    _url = "/validation/constantsInPath/{constantParam}/value"
     path_format_arguments = {
         "constantParam": _SERIALIZER.url("constant_param", constant_param, "str"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
