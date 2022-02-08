@@ -223,7 +223,7 @@ class AutoRestValidationTestOperationsMixin:
         return deserialized
 
     @distributed_trace_async
-    async def get_with_constant_in_path(self, **kwargs: Any) -> None:
+    async def get_with_constant_in_path(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """get_with_constant_in_path.
 
         :keyword constant_param: The default value is "constant". Note that overriding this default

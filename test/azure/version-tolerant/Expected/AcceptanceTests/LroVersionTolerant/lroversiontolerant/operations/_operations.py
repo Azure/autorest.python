@@ -4557,7 +4557,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _delete204_succeeded_initial(self, **kwargs: Any) -> None:
+    def _delete204_succeeded_initial(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -4578,7 +4578,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def begin_delete204_succeeded(self, **kwargs: Any) -> LROPoller[None]:
+    def begin_delete204_succeeded(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> LROPoller[None]:
         """Long running delete succeeds and returns right away.
 
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -4827,7 +4829,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _delete_no_header_in_retry_initial(self, **kwargs: Any) -> None:
+    def _delete_no_header_in_retry_initial(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -4852,7 +4856,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_delete_no_header_in_retry(self, **kwargs: Any) -> LROPoller[None]:
+    def begin_delete_no_header_in_retry(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> LROPoller[None]:
         """Long running delete request, service returns a location header in the initial request.
         Subsequent calls to operation status do not contain location header.
 
@@ -4894,7 +4900,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _delete_async_no_header_in_retry_initial(self, **kwargs: Any) -> None:
+    def _delete_async_no_header_in_retry_initial(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -4919,7 +4927,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_delete_async_no_header_in_retry(self, **kwargs: Any) -> LROPoller[None]:
+    def begin_delete_async_no_header_in_retry(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> LROPoller[None]:
         """Long running delete request, service returns an Azure-AsyncOperation header in the initial
         request. Subsequent calls to operation status do not contain Azure-AsyncOperation header.
 
@@ -4961,7 +4971,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _delete_async_retry_succeeded_initial(self, **kwargs: Any) -> None:
+    def _delete_async_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -4989,7 +5001,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_delete_async_retry_succeeded(self, **kwargs: Any) -> LROPoller[None]:
+    def begin_delete_async_retry_succeeded(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> LROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
@@ -5031,7 +5045,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _delete_async_no_retry_succeeded_initial(self, **kwargs: Any) -> None:
+    def _delete_async_no_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -5059,7 +5075,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_delete_async_no_retry_succeeded(self, **kwargs: Any) -> LROPoller[None]:
+    def begin_delete_async_no_retry_succeeded(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> LROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
@@ -5101,7 +5119,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _delete_async_retry_failed_initial(self, **kwargs: Any) -> None:
+    def _delete_async_retry_failed_initial(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -5129,7 +5149,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_delete_async_retry_failed(self, **kwargs: Any) -> LROPoller[None]:
+    def begin_delete_async_retry_failed(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> LROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
@@ -5171,7 +5193,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _delete_async_retrycanceled_initial(self, **kwargs: Any) -> None:
+    def _delete_async_retrycanceled_initial(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -5199,7 +5223,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_delete_async_retrycanceled(self, **kwargs: Any) -> LROPoller[None]:
+    def begin_delete_async_retrycanceled(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> LROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
@@ -5333,7 +5359,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _post202_retry200_initial(self, product: JSONType = None, **kwargs: Any) -> None:
+    def _post202_retry200_initial(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -5368,7 +5396,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_post202_retry200(self, product: JSONType = None, **kwargs: Any) -> LROPoller[None]:
+    def begin_post202_retry200(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> LROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with 'Location' and
         'Retry-After' headers, Polls return a 200 with a response body after success.
 
@@ -6152,7 +6182,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _post_async_retry_failed_initial(self, product: JSONType = None, **kwargs: Any) -> None:
+    def _post_async_retry_failed_initial(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -6190,7 +6222,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_post_async_retry_failed(self, product: JSONType = None, **kwargs: Any) -> LROPoller[None]:
+    def begin_post_async_retry_failed(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> LROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
@@ -6259,7 +6293,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _post_async_retrycanceled_initial(self, product: JSONType = None, **kwargs: Any) -> None:
+    def _post_async_retrycanceled_initial(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -6297,7 +6333,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_post_async_retrycanceled(self, product: JSONType = None, **kwargs: Any) -> LROPoller[None]:
+    def begin_post_async_retrycanceled(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> LROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
@@ -6777,7 +6815,7 @@ class LRORetrysOperations(object):
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _delete202_retry200_initial(self, **kwargs: Any) -> None:
+    def _delete202_retry200_initial(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -6802,7 +6840,9 @@ class LRORetrysOperations(object):
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_delete202_retry200(self, **kwargs: Any) -> LROPoller[None]:
+    def begin_delete202_retry200(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> LROPoller[None]:
         """Long running delete request, service returns a 500, then a 202 to the initial request. Polls
         return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
@@ -6844,7 +6884,9 @@ class LRORetrysOperations(object):
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _delete_async_relative_retry_succeeded_initial(self, **kwargs: Any) -> None:
+    def _delete_async_relative_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -6872,7 +6914,9 @@ class LRORetrysOperations(object):
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_delete_async_relative_retry_succeeded(self, **kwargs: Any) -> LROPoller[None]:
+    def begin_delete_async_relative_retry_succeeded(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> LROPoller[None]:
         """Long running delete request, service returns a 500, then a 202 to the initial request. Poll the
         endpoint indicated in the Azure-AsyncOperation header for operation status.
 
@@ -6914,7 +6958,9 @@ class LRORetrysOperations(object):
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _post202_retry200_initial(self, product: JSONType = None, **kwargs: Any) -> None:
+    def _post202_retry200_initial(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -6949,7 +6995,9 @@ class LRORetrysOperations(object):
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_post202_retry200(self, product: JSONType = None, **kwargs: Any) -> LROPoller[None]:
+    def begin_post202_retry200(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> LROPoller[None]:
         """Long running post request, service returns a 500, then a 202 to the initial request, with
         'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
 
@@ -7017,7 +7065,9 @@ class LRORetrysOperations(object):
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _post_async_relative_retry_succeeded_initial(self, product: JSONType = None, **kwargs: Any) -> None:
+    def _post_async_relative_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -7055,7 +7105,9 @@ class LRORetrysOperations(object):
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_post_async_relative_retry_succeeded(self, product: JSONType = None, **kwargs: Any) -> LROPoller[None]:
+    def begin_post_async_relative_retry_succeeded(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> LROPoller[None]:
         """Long running post request, service returns a 500, then a 202 to the initial request, with an
         entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
         Azure-AsyncOperation header for operation status.
@@ -7699,7 +7751,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _delete_non_retry400_initial(self, **kwargs: Any) -> None:
+    def _delete_non_retry400_initial(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -7724,7 +7776,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_delete_non_retry400(self, **kwargs: Any) -> LROPoller[None]:
+    def begin_delete_non_retry400(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> LROPoller[None]:
         """Long running delete request, service returns a 400 with an error body.
 
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -7765,7 +7819,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _delete202_non_retry400_initial(self, **kwargs: Any) -> None:
+    def _delete202_non_retry400_initial(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -7790,7 +7844,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_delete202_non_retry400(self, **kwargs: Any) -> LROPoller[None]:
+    def begin_delete202_non_retry400(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> LROPoller[None]:
         """Long running delete request, service returns a 202 with a location header.
 
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -7831,7 +7887,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _delete_async_relative_retry400_initial(self, **kwargs: Any) -> None:
+    def _delete_async_relative_retry400_initial(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -7859,7 +7917,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_delete_async_relative_retry400(self, **kwargs: Any) -> LROPoller[None]:
+    def begin_delete_async_relative_retry400(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> LROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
@@ -7901,7 +7961,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _post_non_retry400_initial(self, product: JSONType = None, **kwargs: Any) -> None:
+    def _post_non_retry400_initial(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -7936,7 +7998,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_post_non_retry400(self, product: JSONType = None, **kwargs: Any) -> LROPoller[None]:
+    def begin_post_non_retry400(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> LROPoller[None]:
         """Long running post request, service returns a 400 with no error body.
 
         :param product: Product to put.
@@ -8003,7 +8067,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _post202_non_retry400_initial(self, product: JSONType = None, **kwargs: Any) -> None:
+    def _post202_non_retry400_initial(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -8038,7 +8104,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_post202_non_retry400(self, product: JSONType = None, **kwargs: Any) -> LROPoller[None]:
+    def begin_post202_non_retry400(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> LROPoller[None]:
         """Long running post request, service returns a 202 with a location header.
 
         :param product: Product to put.
@@ -8105,7 +8173,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _post_async_relative_retry400_initial(self, product: JSONType = None, **kwargs: Any) -> None:
+    def _post_async_relative_retry400_initial(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -8143,7 +8213,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_post_async_relative_retry400(self, product: JSONType = None, **kwargs: Any) -> LROPoller[None]:
+    def begin_post_async_relative_retry400(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> LROPoller[None]:
         """Long running post request, service returns a 202 to the initial request Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
@@ -8641,7 +8713,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _delete204_succeeded_initial(self, **kwargs: Any) -> None:
+    def _delete204_succeeded_initial(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -8662,7 +8734,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def begin_delete204_succeeded(self, **kwargs: Any) -> LROPoller[None]:
+    def begin_delete204_succeeded(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> LROPoller[None]:
         """Long running delete request, service returns a 204 to the initial request, indicating success.
 
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -8703,7 +8777,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _delete_async_relative_retry_no_status_initial(self, **kwargs: Any) -> None:
+    def _delete_async_relative_retry_no_status_initial(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -8731,7 +8807,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_delete_async_relative_retry_no_status(self, **kwargs: Any) -> LROPoller[None]:
+    def begin_delete_async_relative_retry_no_status(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> LROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
@@ -8773,7 +8851,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _post202_no_location_initial(self, product: JSONType = None, **kwargs: Any) -> None:
+    def _post202_no_location_initial(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -8808,7 +8888,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_post202_no_location(self, product: JSONType = None, **kwargs: Any) -> LROPoller[None]:
+    def begin_post202_no_location(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> LROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, without a location
         header.
 
@@ -8876,7 +8958,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _post_async_relative_retry_no_payload_initial(self, product: JSONType = None, **kwargs: Any) -> None:
+    def _post_async_relative_retry_no_payload_initial(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -8914,7 +8998,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_post_async_relative_retry_no_payload(self, product: JSONType = None, **kwargs: Any) -> LROPoller[None]:
+    def begin_post_async_relative_retry_no_payload(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> LROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
@@ -9411,7 +9497,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _delete202_retry_invalid_header_initial(self, **kwargs: Any) -> None:
+    def _delete202_retry_invalid_header_initial(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -9436,7 +9524,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_delete202_retry_invalid_header(self, **kwargs: Any) -> LROPoller[None]:
+    def begin_delete202_retry_invalid_header(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> LROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request receing a reponse
         with an invalid 'Location' and 'Retry-After' headers.
 
@@ -9478,7 +9568,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _delete_async_relative_retry_invalid_header_initial(self, **kwargs: Any) -> None:
+    def _delete_async_relative_retry_invalid_header_initial(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -9506,7 +9598,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_delete_async_relative_retry_invalid_header(self, **kwargs: Any) -> LROPoller[None]:
+    def begin_delete_async_relative_retry_invalid_header(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> LROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. The endpoint
         indicated in the Azure-AsyncOperation header is invalid.
 
@@ -9548,7 +9642,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _delete_async_relative_retry_invalid_json_polling_initial(self, **kwargs: Any) -> None:
+    def _delete_async_relative_retry_invalid_json_polling_initial(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -9576,7 +9672,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_delete_async_relative_retry_invalid_json_polling(self, **kwargs: Any) -> LROPoller[None]:
+    def begin_delete_async_relative_retry_invalid_json_polling(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> LROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
@@ -9618,7 +9716,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _post202_retry_invalid_header_initial(self, product: JSONType = None, **kwargs: Any) -> None:
+    def _post202_retry_invalid_header_initial(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -9653,7 +9753,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_post202_retry_invalid_header(self, product: JSONType = None, **kwargs: Any) -> LROPoller[None]:
+    def begin_post202_retry_invalid_header(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> LROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with invalid
         'Location' and 'Retry-After' headers.
 
@@ -9721,7 +9823,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _post_async_relative_retry_invalid_header_initial(self, product: JSONType = None, **kwargs: Any) -> None:
+    def _post_async_relative_retry_invalid_header_initial(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -9759,7 +9863,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_post_async_relative_retry_invalid_header(
+    def begin_post_async_relative_retry_invalid_header(  # pylint: disable=inconsistent-return-statements
         self, product: JSONType = None, **kwargs: Any
     ) -> LROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
@@ -9830,7 +9934,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _post_async_relative_retry_invalid_json_polling_initial(self, product: JSONType = None, **kwargs: Any) -> None:
+    def _post_async_relative_retry_invalid_json_polling_initial(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -9868,7 +9974,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_post_async_relative_retry_invalid_json_polling(
+    def begin_post_async_relative_retry_invalid_json_polling(  # pylint: disable=inconsistent-return-statements
         self, product: JSONType = None, **kwargs: Any
     ) -> LROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
@@ -10243,7 +10349,9 @@ class LROsCustomHeaderOperations(object):
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _post202_retry200_initial(self, product: JSONType = None, **kwargs: Any) -> None:
+    def _post202_retry200_initial(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -10278,7 +10386,9 @@ class LROsCustomHeaderOperations(object):
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_post202_retry200(self, product: JSONType = None, **kwargs: Any) -> LROPoller[None]:
+    def begin_post202_retry200(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> LROPoller[None]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running post request, service returns a 202 to the initial request, with
         'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
@@ -10347,7 +10457,9 @@ class LROsCustomHeaderOperations(object):
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _post_async_retry_succeeded_initial(self, product: JSONType = None, **kwargs: Any) -> None:
+    def _post_async_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -10385,7 +10497,9 @@ class LROsCustomHeaderOperations(object):
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_post_async_retry_succeeded(self, product: JSONType = None, **kwargs: Any) -> LROPoller[None]:
+    def begin_post_async_retry_succeeded(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> LROPoller[None]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running post request, service returns a 202 to the initial request, with an
         entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the

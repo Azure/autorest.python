@@ -142,7 +142,7 @@ class QueriesOperations(object):
         self._config = config
 
     @distributed_trace
-    def array_string_multi_null(
+    def array_string_multi_null(  # pylint: disable=inconsistent-return-statements
         self,
         array_query=None,  # type: Optional[List[str]]
         **kwargs  # type: Any
@@ -184,7 +184,7 @@ class QueriesOperations(object):
     array_string_multi_null.metadata = {"url": "/queries/array/multi/string/null"}  # type: ignore
 
     @distributed_trace
-    def array_string_multi_empty(
+    def array_string_multi_empty(  # pylint: disable=inconsistent-return-statements
         self,
         array_query=None,  # type: Optional[List[str]]
         **kwargs  # type: Any
@@ -226,7 +226,7 @@ class QueriesOperations(object):
     array_string_multi_empty.metadata = {"url": "/queries/array/multi/string/empty"}  # type: ignore
 
     @distributed_trace
-    def array_string_multi_valid(
+    def array_string_multi_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_query=None,  # type: Optional[List[str]]
         **kwargs  # type: Any

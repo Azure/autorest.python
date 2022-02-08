@@ -1501,7 +1501,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
     get_empty.metadata = {"url": "/dictionary/empty"}  # type: ignore
 
     @distributed_trace
-    def put_empty(
+    def put_empty(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: Dict[str, str]
         **kwargs  # type: Any
@@ -1753,7 +1753,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
     get_boolean_tfft.metadata = {"url": "/dictionary/prim/boolean/tfft"}  # type: ignore
 
     @distributed_trace
-    def put_boolean_tfft(
+    def put_boolean_tfft(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: Dict[str, bool]
         **kwargs  # type: Any
@@ -1923,7 +1923,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
     get_integer_valid.metadata = {"url": "/dictionary/prim/integer/1.-1.3.300"}  # type: ignore
 
     @distributed_trace
-    def put_integer_valid(
+    def put_integer_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: Dict[str, int]
         **kwargs  # type: Any
@@ -2093,7 +2093,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
     get_long_valid.metadata = {"url": "/dictionary/prim/long/1.-1.3.300"}  # type: ignore
 
     @distributed_trace
-    def put_long_valid(
+    def put_long_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: Dict[str, int]
         **kwargs  # type: Any
@@ -2263,7 +2263,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
     get_float_valid.metadata = {"url": "/dictionary/prim/float/0--0.01-1.2e20"}  # type: ignore
 
     @distributed_trace
-    def put_float_valid(
+    def put_float_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: Dict[str, float]
         **kwargs  # type: Any
@@ -2433,7 +2433,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
     get_double_valid.metadata = {"url": "/dictionary/prim/double/0--0.01-1.2e20"}  # type: ignore
 
     @distributed_trace
-    def put_double_valid(
+    def put_double_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: Dict[str, float]
         **kwargs  # type: Any
@@ -2603,7 +2603,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
     get_string_valid.metadata = {"url": "/dictionary/prim/string/foo1.foo2.foo3"}  # type: ignore
 
     @distributed_trace
-    def put_string_valid(
+    def put_string_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: Dict[str, str]
         **kwargs  # type: Any
@@ -2773,7 +2773,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
     get_date_valid.metadata = {"url": "/dictionary/prim/date/valid"}  # type: ignore
 
     @distributed_trace
-    def put_date_valid(
+    def put_date_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: Dict[str, datetime.date]
         **kwargs  # type: Any
@@ -2944,7 +2944,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
     get_date_time_valid.metadata = {"url": "/dictionary/prim/date-time/valid"}  # type: ignore
 
     @distributed_trace
-    def put_date_time_valid(
+    def put_date_time_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: Dict[str, datetime.datetime]
         **kwargs  # type: Any
@@ -3116,7 +3116,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
     get_date_time_rfc1123_valid.metadata = {"url": "/dictionary/prim/date-time-rfc1123/valid"}  # type: ignore
 
     @distributed_trace
-    def put_date_time_rfc1123_valid(
+    def put_date_time_rfc1123_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: Dict[str, datetime.datetime]
         **kwargs  # type: Any
@@ -3205,7 +3205,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
     get_duration_valid.metadata = {"url": "/dictionary/prim/duration/valid"}  # type: ignore
 
     @distributed_trace
-    def put_duration_valid(
+    def put_duration_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: Dict[str, datetime.timedelta]
         **kwargs  # type: Any
@@ -3294,7 +3294,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
     get_byte_valid.metadata = {"url": "/dictionary/prim/byte/valid"}  # type: ignore
 
     @distributed_trace
-    def put_byte_valid(
+    def put_byte_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: Dict[str, bytearray]
         **kwargs  # type: Any
@@ -3634,7 +3634,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
     get_complex_valid.metadata = {"url": "/dictionary/complex/valid"}  # type: ignore
 
     @distributed_trace
-    def put_complex_valid(
+    def put_complex_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: Dict[str, "_models.Widget"]
         **kwargs  # type: Any
@@ -3888,7 +3888,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
     get_array_valid.metadata = {"url": "/dictionary/array/valid"}  # type: ignore
 
     @distributed_trace
-    def put_array_valid(
+    def put_array_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: Dict[str, List[str]]
         **kwargs  # type: Any
@@ -4145,7 +4145,7 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
     get_dictionary_valid.metadata = {"url": "/dictionary/dictionary/valid"}  # type: ignore
 
     @distributed_trace
-    def put_dictionary_valid(
+    def put_dictionary_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: Dict[str, Dict[str, str]]
         **kwargs  # type: Any

@@ -264,7 +264,7 @@ class ImplicitOperations(object):
         self._config = config
 
     @distributed_trace
-    def get_required_path(
+    def get_required_path(  # pylint: disable=inconsistent-return-statements
         self,
         path_parameter,  # type: str
         **kwargs  # type: Any
@@ -306,7 +306,7 @@ class ImplicitOperations(object):
     get_required_path.metadata = {"url": "/reqopt/implicit/required/path/{pathParameter}"}  # type: ignore
 
     @distributed_trace
-    def put_optional_query(
+    def put_optional_query(  # pylint: disable=inconsistent-return-statements
         self,
         query_parameter=None,  # type: Optional[str]
         **kwargs  # type: Any
@@ -348,7 +348,7 @@ class ImplicitOperations(object):
     put_optional_query.metadata = {"url": "/reqopt/implicit/optional/query"}  # type: ignore
 
     @distributed_trace
-    def put_optional_header(
+    def put_optional_header(  # pylint: disable=inconsistent-return-statements
         self,
         query_parameter=None,  # type: Optional[str]
         **kwargs  # type: Any
@@ -390,7 +390,7 @@ class ImplicitOperations(object):
     put_optional_header.metadata = {"url": "/reqopt/implicit/optional/header"}  # type: ignore
 
     @distributed_trace
-    def put_optional_body(
+    def put_optional_body(  # pylint: disable=inconsistent-return-statements
         self,
         body_parameter=None,  # type: Optional[str]
         **kwargs  # type: Any
@@ -440,7 +440,7 @@ class ImplicitOperations(object):
     put_optional_body.metadata = {"url": "/reqopt/implicit/optional/body"}  # type: ignore
 
     @distributed_trace
-    def put_optional_binary_body(
+    def put_optional_binary_body(  # pylint: disable=inconsistent-return-statements
         self,
         body_parameter=None,  # type: Optional[IO]
         **kwargs  # type: Any
@@ -487,7 +487,7 @@ class ImplicitOperations(object):
     put_optional_binary_body.metadata = {"url": "/reqopt/implicit/optional/binary-body"}  # type: ignore
 
     @distributed_trace
-    def get_required_global_path(
+    def get_required_global_path(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -525,7 +525,7 @@ class ImplicitOperations(object):
     get_required_global_path.metadata = {"url": "/reqopt/global/required/path/{required-global-path}"}  # type: ignore
 
     @distributed_trace
-    def get_required_global_query(
+    def get_required_global_query(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -563,7 +563,7 @@ class ImplicitOperations(object):
     get_required_global_query.metadata = {"url": "/reqopt/global/required/query"}  # type: ignore
 
     @distributed_trace
-    def get_optional_global_query(
+    def get_optional_global_query(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None

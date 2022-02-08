@@ -108,7 +108,7 @@ class FormdataurlencodedOperations(object):
         self._config = config
 
     @distributed_trace
-    def update_pet_with_form(
+    def update_pet_with_form(  # pylint: disable=inconsistent-return-statements
         self,
         pet_id,  # type: int
         pet_type,  # type: Union[str, "_models.PetType"]
@@ -179,7 +179,7 @@ class FormdataurlencodedOperations(object):
     update_pet_with_form.metadata = {"url": "/formsdataurlencoded/pet/add/{petId}"}  # type: ignore
 
     @distributed_trace
-    def partial_constant_body(
+    def partial_constant_body(  # pylint: disable=inconsistent-return-statements
         self,
         service,  # type: str
         access_token,  # type: str

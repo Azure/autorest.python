@@ -283,7 +283,7 @@ class AutoRestValidationTestOperationsMixin(object):
     validation_of_body.metadata = {"url": "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"}  # type: ignore
 
     @distributed_trace
-    def get_with_constant_in_path(
+    def get_with_constant_in_path(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None

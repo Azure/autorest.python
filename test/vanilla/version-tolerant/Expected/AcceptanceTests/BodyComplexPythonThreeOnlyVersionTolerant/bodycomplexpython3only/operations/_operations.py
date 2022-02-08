@@ -871,7 +871,9 @@ class BasicOperations(object):
         return deserialized
 
     @distributed_trace
-    def put_valid(self, complex_body: JSONType, **kwargs: Any) -> None:
+    def put_valid(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: JSONType, **kwargs: Any
+    ) -> None:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
         :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}.
@@ -1167,7 +1169,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace
-    def put_int(self, complex_body: JSONType, **kwargs: Any) -> None:
+    def put_int(self, complex_body: JSONType, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put complex types with integer properties.
 
         :param complex_body: Please put -1 and 2.
@@ -1255,7 +1257,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace
-    def put_long(self, complex_body: JSONType, **kwargs: Any) -> None:
+    def put_long(self, complex_body: JSONType, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put complex types with long properties.
 
         :param complex_body: Please put 1099511627775 and -999511627788.
@@ -1343,7 +1345,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace
-    def put_float(self, complex_body: JSONType, **kwargs: Any) -> None:
+    def put_float(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: JSONType, **kwargs: Any
+    ) -> None:
         """Put complex types with float properties.
 
         :param complex_body: Please put 1.05 and -0.003.
@@ -1432,7 +1436,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace
-    def put_double(self, complex_body: JSONType, **kwargs: Any) -> None:
+    def put_double(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: JSONType, **kwargs: Any
+    ) -> None:
         """Put complex types with double properties.
 
         :param complex_body: Please put 3e-100 and
@@ -1522,7 +1528,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace
-    def put_bool(self, complex_body: JSONType, **kwargs: Any) -> None:
+    def put_bool(self, complex_body: JSONType, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put complex types with bool properties.
 
         :param complex_body: Please put true and false.
@@ -1611,7 +1617,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace
-    def put_string(self, complex_body: JSONType, **kwargs: Any) -> None:
+    def put_string(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: JSONType, **kwargs: Any
+    ) -> None:
         """Put complex types with string properties.
 
         :param complex_body: Please put 'goodrequest', '', and null.
@@ -1700,7 +1708,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace
-    def put_date(self, complex_body: JSONType, **kwargs: Any) -> None:
+    def put_date(self, complex_body: JSONType, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put complex types with date properties.
 
         :param complex_body: Please put '0001-01-01' and '2016-02-29'.
@@ -1788,7 +1796,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace
-    def put_date_time(self, complex_body: JSONType, **kwargs: Any) -> None:
+    def put_date_time(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: JSONType, **kwargs: Any
+    ) -> None:
         """Put complex types with datetime properties.
 
         :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'.
@@ -1876,7 +1886,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace
-    def put_date_time_rfc1123(self, complex_body: JSONType, **kwargs: Any) -> None:
+    def put_date_time_rfc1123(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: JSONType, **kwargs: Any
+    ) -> None:
         """Put complex types with datetimeRfc1123 properties.
 
         :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
@@ -1964,7 +1976,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace
-    def put_duration(self, complex_body: JSONType, **kwargs: Any) -> None:
+    def put_duration(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: JSONType, **kwargs: Any
+    ) -> None:
         """Put complex types with duration properties.
 
         :param complex_body: Please put 'P123DT22H14M12.011S'.
@@ -2050,7 +2064,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace
-    def put_byte(self, complex_body: JSONType, **kwargs: Any) -> None:
+    def put_byte(self, complex_body: JSONType, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put complex types with byte properties.
 
         :param complex_body: Please put non-ascii byte string hex(FF FE FD FC 00 FA F9 F8 F7 F6).
@@ -2157,7 +2171,9 @@ class ArrayOperations(object):
         return deserialized
 
     @distributed_trace
-    def put_valid(self, complex_body: JSONType, **kwargs: Any) -> None:
+    def put_valid(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: JSONType, **kwargs: Any
+    ) -> None:
         """Put complex types with array property.
 
         :param complex_body: Please put an array with 4 items: "1, 2, 3, 4", "", null, "&S#$(*Y", "The
@@ -2248,7 +2264,9 @@ class ArrayOperations(object):
         return deserialized
 
     @distributed_trace
-    def put_empty(self, complex_body: JSONType, **kwargs: Any) -> None:
+    def put_empty(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: JSONType, **kwargs: Any
+    ) -> None:
         """Put complex types with array property which is empty.
 
         :param complex_body: Please put an empty array.
@@ -2401,7 +2419,9 @@ class DictionaryOperations(object):
         return deserialized
 
     @distributed_trace
-    def put_valid(self, complex_body: JSONType, **kwargs: Any) -> None:
+    def put_valid(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: JSONType, **kwargs: Any
+    ) -> None:
         """Put complex types with dictionary property.
 
         :param complex_body: Please put a dictionary with 5 key-value pairs: "txt":"notepad",
@@ -2492,7 +2512,9 @@ class DictionaryOperations(object):
         return deserialized
 
     @distributed_trace
-    def put_empty(self, complex_body: JSONType, **kwargs: Any) -> None:
+    def put_empty(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: JSONType, **kwargs: Any
+    ) -> None:
         """Put complex types with dictionary property which is empty.
 
         :param complex_body: Please put an empty dictionary.
@@ -2697,7 +2719,9 @@ class InheritanceOperations(object):
         return deserialized
 
     @distributed_trace
-    def put_valid(self, complex_body: JSONType, **kwargs: Any) -> None:
+    def put_valid(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: JSONType, **kwargs: Any
+    ) -> None:
         """Put complex types that extend others.
 
         :param complex_body: Please put a siamese with id=2, name="Siameee", color=green,
@@ -2819,7 +2843,9 @@ class PolymorphismOperations(object):
         return deserialized
 
     @distributed_trace
-    def put_valid(self, complex_body: JSONType, **kwargs: Any) -> None:
+    def put_valid(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: JSONType, **kwargs: Any
+    ) -> None:
         """Put complex types that are polymorphic.
 
         :param complex_body: Please put a salmon that looks like this:
@@ -3136,7 +3162,9 @@ class PolymorphismOperations(object):
         return deserialized
 
     @distributed_trace
-    def put_complicated(self, complex_body: JSONType, **kwargs: Any) -> None:
+    def put_complicated(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: JSONType, **kwargs: Any
+    ) -> None:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
         additional properties.
 
@@ -3283,7 +3311,9 @@ class PolymorphismOperations(object):
         return deserialized
 
     @distributed_trace
-    def put_valid_missing_required(self, complex_body: JSONType, **kwargs: Any) -> None:
+    def put_valid_missing_required(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: JSONType, **kwargs: Any
+    ) -> None:
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
         request should not be allowed from the client.
 
@@ -3427,7 +3457,9 @@ class PolymorphicrecursiveOperations(object):
         return deserialized
 
     @distributed_trace
-    def put_valid(self, complex_body: JSONType, **kwargs: Any) -> None:
+    def put_valid(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: JSONType, **kwargs: Any
+    ) -> None:
         """Put complex types that are polymorphic and have recursive references.
 
         :param complex_body: Please put a salmon that looks like this:
@@ -3592,7 +3624,9 @@ class ReadonlypropertyOperations(object):
         return deserialized
 
     @distributed_trace
-    def put_valid(self, complex_body: JSONType, **kwargs: Any) -> None:
+    def put_valid(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: JSONType, **kwargs: Any
+    ) -> None:
         """Put complex types that have readonly properties.
 
         :param complex_body:

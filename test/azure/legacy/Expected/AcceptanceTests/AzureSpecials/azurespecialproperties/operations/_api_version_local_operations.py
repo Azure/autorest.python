@@ -167,7 +167,7 @@ class ApiVersionLocalOperations(object):
         self._config = config
 
     @distributed_trace
-    def get_method_local_valid(
+    def get_method_local_valid(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -210,7 +210,7 @@ class ApiVersionLocalOperations(object):
     get_method_local_valid.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/local/2.0"}  # type: ignore
 
     @distributed_trace
-    def get_method_local_null(
+    def get_method_local_null(  # pylint: disable=inconsistent-return-statements
         self,
         api_version=None,  # type: Optional[str]
         **kwargs  # type: Any
@@ -253,7 +253,7 @@ class ApiVersionLocalOperations(object):
     get_method_local_null.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/local/null"}  # type: ignore
 
     @distributed_trace
-    def get_path_local_valid(
+    def get_path_local_valid(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -296,7 +296,7 @@ class ApiVersionLocalOperations(object):
     get_path_local_valid.metadata = {"url": "/azurespecials/apiVersion/path/string/none/query/local/2.0"}  # type: ignore
 
     @distributed_trace
-    def get_swagger_local_valid(
+    def get_swagger_local_valid(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None

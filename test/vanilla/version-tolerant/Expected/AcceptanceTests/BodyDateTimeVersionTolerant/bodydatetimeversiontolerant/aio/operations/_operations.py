@@ -206,7 +206,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace_async
-    async def put_utc_max_date_time(self, datetime_body: datetime.datetime, **kwargs: Any) -> None:
+    async def put_utc_max_date_time(  # pylint: disable=inconsistent-return-statements
+        self, datetime_body: datetime.datetime, **kwargs: Any
+    ) -> None:
         """Put max datetime value 9999-12-31T23:59:59.999Z.
 
         :param datetime_body: datetime body.
@@ -242,7 +244,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def put_utc_max_date_time7_digits(self, datetime_body: datetime.datetime, **kwargs: Any) -> None:
+    async def put_utc_max_date_time7_digits(  # pylint: disable=inconsistent-return-statements
+        self, datetime_body: datetime.datetime, **kwargs: Any
+    ) -> None:
         """Put max datetime value 9999-12-31T23:59:59.9999999Z.
 
         This is against the recommendation that asks for 3 digits, but allow to test what happens in
@@ -386,7 +390,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace_async
-    async def put_local_positive_offset_max_date_time(self, datetime_body: datetime.datetime, **kwargs: Any) -> None:
+    async def put_local_positive_offset_max_date_time(  # pylint: disable=inconsistent-return-statements
+        self, datetime_body: datetime.datetime, **kwargs: Any
+    ) -> None:
         """Put max datetime value with positive numoffset 9999-12-31t23:59:59.999+14:00.
 
         :param datetime_body: datetime body.
@@ -490,7 +496,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace_async
-    async def put_local_negative_offset_max_date_time(self, datetime_body: datetime.datetime, **kwargs: Any) -> None:
+    async def put_local_negative_offset_max_date_time(  # pylint: disable=inconsistent-return-statements
+        self, datetime_body: datetime.datetime, **kwargs: Any
+    ) -> None:
         """Put max datetime value with positive numoffset 9999-12-31t23:59:59.999-14:00.
 
         :param datetime_body: datetime body.
@@ -594,7 +602,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace_async
-    async def put_utc_min_date_time(self, datetime_body: datetime.datetime, **kwargs: Any) -> None:
+    async def put_utc_min_date_time(  # pylint: disable=inconsistent-return-statements
+        self, datetime_body: datetime.datetime, **kwargs: Any
+    ) -> None:
         """Put min datetime value 0001-01-01T00:00:00Z.
 
         :param datetime_body: datetime body.
@@ -664,7 +674,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace_async
-    async def put_local_positive_offset_min_date_time(self, datetime_body: datetime.datetime, **kwargs: Any) -> None:
+    async def put_local_positive_offset_min_date_time(  # pylint: disable=inconsistent-return-statements
+        self, datetime_body: datetime.datetime, **kwargs: Any
+    ) -> None:
         """Put min datetime value 0001-01-01T00:00:00+14:00.
 
         :param datetime_body: datetime body.
@@ -734,7 +746,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace_async
-    async def put_local_negative_offset_min_date_time(self, datetime_body: datetime.datetime, **kwargs: Any) -> None:
+    async def put_local_negative_offset_min_date_time(  # pylint: disable=inconsistent-return-statements
+        self, datetime_body: datetime.datetime, **kwargs: Any
+    ) -> None:
         """Put min datetime value 0001-01-01T00:00:00-14:00.
 
         :param datetime_body: datetime body.

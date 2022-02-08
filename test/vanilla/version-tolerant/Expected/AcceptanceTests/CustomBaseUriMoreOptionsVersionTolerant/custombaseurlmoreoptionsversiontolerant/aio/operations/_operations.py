@@ -45,7 +45,7 @@ class PathsOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_empty(
+    async def get_empty(  # pylint: disable=inconsistent-return-statements
         self, vault: str, secret: str, key_name: str, *, key_version: Optional[str] = "v1", **kwargs: Any
     ) -> None:
         """Get a 200 to test a valid base uri.

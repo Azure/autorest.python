@@ -46,7 +46,7 @@ class UploadOperations:
         self._config = config
 
     @distributed_trace_async
-    async def file(self, file_param: IO, **kwargs: Any) -> None:
+    async def file(self, file_param: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Uploading json file.
 
         :param file_param: JSON file with payload { "more": "cowbell" }.
@@ -87,7 +87,7 @@ class UploadOperations:
     file.metadata = {"url": "/binary/file"}  # type: ignore
 
     @distributed_trace_async
-    async def binary(self, file_param: IO, **kwargs: Any) -> None:
+    async def binary(self, file_param: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Uploading binary file.
 
         :param file_param: Non-empty binary file.

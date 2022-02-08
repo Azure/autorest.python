@@ -142,7 +142,7 @@ class PolymorphicrecursiveOperations(object):
     get_valid.metadata = {"url": "/complex/polymorphicrecursive/valid"}  # type: ignore
 
     @distributed_trace
-    def put_valid(
+    def put_valid(  # pylint: disable=inconsistent-return-statements
         self,
         complex_body,  # type: "_models.Fish"
         **kwargs  # type: Any

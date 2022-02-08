@@ -23,7 +23,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class MultiapiCustomBaseUrlServiceClientOperationsMixin:
 
     @distributed_trace_async
-    async def test(
+    async def test(  # pylint: disable=inconsistent-return-statements
         self,
         id: int,
         **kwargs: Any

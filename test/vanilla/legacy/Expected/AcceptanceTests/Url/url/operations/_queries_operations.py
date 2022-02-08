@@ -1022,7 +1022,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
         self._config = config
 
     @distributed_trace
-    def get_boolean_true(
+    def get_boolean_true(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1065,7 +1065,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
     get_boolean_true.metadata = {"url": "/queries/bool/true"}  # type: ignore
 
     @distributed_trace
-    def get_boolean_false(
+    def get_boolean_false(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1108,7 +1108,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
     get_boolean_false.metadata = {"url": "/queries/bool/false"}  # type: ignore
 
     @distributed_trace
-    def get_boolean_null(
+    def get_boolean_null(  # pylint: disable=inconsistent-return-statements
         self,
         bool_query=None,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -1150,7 +1150,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
     get_boolean_null.metadata = {"url": "/queries/bool/null"}  # type: ignore
 
     @distributed_trace
-    def get_int_one_million(
+    def get_int_one_million(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1193,7 +1193,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
     get_int_one_million.metadata = {"url": "/queries/int/1000000"}  # type: ignore
 
     @distributed_trace
-    def get_int_negative_one_million(
+    def get_int_negative_one_million(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1236,7 +1236,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
     get_int_negative_one_million.metadata = {"url": "/queries/int/-1000000"}  # type: ignore
 
     @distributed_trace
-    def get_int_null(
+    def get_int_null(  # pylint: disable=inconsistent-return-statements
         self,
         int_query=None,  # type: Optional[int]
         **kwargs  # type: Any
@@ -1278,7 +1278,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
     get_int_null.metadata = {"url": "/queries/int/null"}  # type: ignore
 
     @distributed_trace
-    def get_ten_billion(
+    def get_ten_billion(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1321,7 +1321,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
     get_ten_billion.metadata = {"url": "/queries/long/10000000000"}  # type: ignore
 
     @distributed_trace
-    def get_negative_ten_billion(
+    def get_negative_ten_billion(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1364,7 +1364,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
     get_negative_ten_billion.metadata = {"url": "/queries/long/-10000000000"}  # type: ignore
 
     @distributed_trace
-    def get_long_null(
+    def get_long_null(  # pylint: disable=inconsistent-return-statements
         self,
         long_query=None,  # type: Optional[int]
         **kwargs  # type: Any
@@ -1406,7 +1406,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
     get_long_null.metadata = {"url": "/queries/long/null"}  # type: ignore
 
     @distributed_trace
-    def float_scientific_positive(
+    def float_scientific_positive(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1449,7 +1449,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
     float_scientific_positive.metadata = {"url": "/queries/float/1.034E+20"}  # type: ignore
 
     @distributed_trace
-    def float_scientific_negative(
+    def float_scientific_negative(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1492,7 +1492,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
     float_scientific_negative.metadata = {"url": "/queries/float/-1.034E-20"}  # type: ignore
 
     @distributed_trace
-    def float_null(
+    def float_null(  # pylint: disable=inconsistent-return-statements
         self,
         float_query=None,  # type: Optional[float]
         **kwargs  # type: Any
@@ -1534,7 +1534,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
     float_null.metadata = {"url": "/queries/float/null"}  # type: ignore
 
     @distributed_trace
-    def double_decimal_positive(
+    def double_decimal_positive(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1577,7 +1577,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
     double_decimal_positive.metadata = {"url": "/queries/double/9999999.999"}  # type: ignore
 
     @distributed_trace
-    def double_decimal_negative(
+    def double_decimal_negative(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1620,7 +1620,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
     double_decimal_negative.metadata = {"url": "/queries/double/-9999999.999"}  # type: ignore
 
     @distributed_trace
-    def double_null(
+    def double_null(  # pylint: disable=inconsistent-return-statements
         self,
         double_query=None,  # type: Optional[float]
         **kwargs  # type: Any
@@ -1662,7 +1662,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
     double_null.metadata = {"url": "/queries/double/null"}  # type: ignore
 
     @distributed_trace
-    def string_unicode(
+    def string_unicode(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1705,7 +1705,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
     string_unicode.metadata = {"url": "/queries/string/unicode/"}  # type: ignore
 
     @distributed_trace
-    def string_url_encoded(
+    def string_url_encoded(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1749,7 +1749,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
     string_url_encoded.metadata = {"url": "/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend"}  # type: ignore
 
     @distributed_trace
-    def string_empty(
+    def string_empty(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1792,7 +1792,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
     string_empty.metadata = {"url": "/queries/string/empty"}  # type: ignore
 
     @distributed_trace
-    def string_null(
+    def string_null(  # pylint: disable=inconsistent-return-statements
         self,
         string_query=None,  # type: Optional[str]
         **kwargs  # type: Any
@@ -1834,7 +1834,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
     string_null.metadata = {"url": "/queries/string/null"}  # type: ignore
 
     @distributed_trace
-    def enum_valid(
+    def enum_valid(  # pylint: disable=inconsistent-return-statements
         self,
         enum_query=None,  # type: Optional[Union[str, "_models.UriColor"]]
         **kwargs  # type: Any
@@ -1876,7 +1876,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
     enum_valid.metadata = {"url": "/queries/enum/green%20color"}  # type: ignore
 
     @distributed_trace
-    def enum_null(
+    def enum_null(  # pylint: disable=inconsistent-return-statements
         self,
         enum_query=None,  # type: Optional[Union[str, "_models.UriColor"]]
         **kwargs  # type: Any
@@ -1918,7 +1918,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
     enum_null.metadata = {"url": "/queries/enum/null"}  # type: ignore
 
     @distributed_trace
-    def byte_multi_byte(
+    def byte_multi_byte(  # pylint: disable=inconsistent-return-statements
         self,
         byte_query=None,  # type: Optional[bytearray]
         **kwargs  # type: Any
@@ -1960,7 +1960,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
     byte_multi_byte.metadata = {"url": "/queries/byte/multibyte"}  # type: ignore
 
     @distributed_trace
-    def byte_empty(
+    def byte_empty(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -2003,7 +2003,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
     byte_empty.metadata = {"url": "/queries/byte/empty"}  # type: ignore
 
     @distributed_trace
-    def byte_null(
+    def byte_null(  # pylint: disable=inconsistent-return-statements
         self,
         byte_query=None,  # type: Optional[bytearray]
         **kwargs  # type: Any
@@ -2045,7 +2045,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
     byte_null.metadata = {"url": "/queries/byte/null"}  # type: ignore
 
     @distributed_trace
-    def date_valid(
+    def date_valid(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -2088,7 +2088,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
     date_valid.metadata = {"url": "/queries/date/2012-01-01"}  # type: ignore
 
     @distributed_trace
-    def date_null(
+    def date_null(  # pylint: disable=inconsistent-return-statements
         self,
         date_query=None,  # type: Optional[datetime.date]
         **kwargs  # type: Any
@@ -2130,7 +2130,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
     date_null.metadata = {"url": "/queries/date/null"}  # type: ignore
 
     @distributed_trace
-    def date_time_valid(
+    def date_time_valid(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -2174,7 +2174,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
     date_time_valid.metadata = {"url": "/queries/datetime/2012-01-01T01%3A01%3A01Z"}  # type: ignore
 
     @distributed_trace
-    def date_time_null(
+    def date_time_null(  # pylint: disable=inconsistent-return-statements
         self,
         date_time_query=None,  # type: Optional[datetime.datetime]
         **kwargs  # type: Any
@@ -2216,7 +2216,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
     date_time_null.metadata = {"url": "/queries/datetime/null"}  # type: ignore
 
     @distributed_trace
-    def array_string_csv_valid(
+    def array_string_csv_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_query=None,  # type: Optional[List[str]]
         **kwargs  # type: Any
@@ -2260,7 +2260,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
     array_string_csv_valid.metadata = {"url": "/queries/array/csv/string/valid"}  # type: ignore
 
     @distributed_trace
-    def array_string_csv_null(
+    def array_string_csv_null(  # pylint: disable=inconsistent-return-statements
         self,
         array_query=None,  # type: Optional[List[str]]
         **kwargs  # type: Any
@@ -2302,7 +2302,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
     array_string_csv_null.metadata = {"url": "/queries/array/csv/string/null"}  # type: ignore
 
     @distributed_trace
-    def array_string_csv_empty(
+    def array_string_csv_empty(  # pylint: disable=inconsistent-return-statements
         self,
         array_query=None,  # type: Optional[List[str]]
         **kwargs  # type: Any
@@ -2344,7 +2344,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
     array_string_csv_empty.metadata = {"url": "/queries/array/csv/string/empty"}  # type: ignore
 
     @distributed_trace
-    def array_string_no_collection_format_empty(
+    def array_string_no_collection_format_empty(  # pylint: disable=inconsistent-return-statements
         self,
         array_query=None,  # type: Optional[List[str]]
         **kwargs  # type: Any
@@ -2387,7 +2387,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
     array_string_no_collection_format_empty.metadata = {"url": "/queries/array/none/string/empty"}  # type: ignore
 
     @distributed_trace
-    def array_string_ssv_valid(
+    def array_string_ssv_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_query=None,  # type: Optional[List[str]]
         **kwargs  # type: Any
@@ -2431,7 +2431,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
     array_string_ssv_valid.metadata = {"url": "/queries/array/ssv/string/valid"}  # type: ignore
 
     @distributed_trace
-    def array_string_tsv_valid(
+    def array_string_tsv_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_query=None,  # type: Optional[List[str]]
         **kwargs  # type: Any
@@ -2475,7 +2475,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
     array_string_tsv_valid.metadata = {"url": "/queries/array/tsv/string/valid"}  # type: ignore
 
     @distributed_trace
-    def array_string_pipes_valid(
+    def array_string_pipes_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_query=None,  # type: Optional[List[str]]
         **kwargs  # type: Any

@@ -149,7 +149,7 @@ def build_test_different_calls_request(
 class MultiapiServiceClientOperationsMixin(object):
 
     @distributed_trace
-    def test_one(
+    def test_one(  # pylint: disable=inconsistent-return-statements
         self,
         id,  # type: int
         message=None,  # type: Optional[str]
@@ -499,7 +499,7 @@ class MultiapiServiceClientOperationsMixin(object):
 
 
     @distributed_trace
-    def test_different_calls(
+    def test_different_calls(  # pylint: disable=inconsistent-return-statements
         self,
         greeting_in_english,  # type: str
         **kwargs  # type: Any

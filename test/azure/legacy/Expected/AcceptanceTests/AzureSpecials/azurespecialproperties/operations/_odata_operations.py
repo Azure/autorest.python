@@ -92,7 +92,7 @@ class OdataOperations(object):
         self._config = config
 
     @distributed_trace
-    def get_with_filter(
+    def get_with_filter(  # pylint: disable=inconsistent-return-statements
         self,
         filter=None,  # type: Optional[str]
         top=None,  # type: Optional[int]

@@ -50,7 +50,7 @@ def build_get_request(
 # fmt: on
 class ParmaterizedEndpointClientOperationsMixin(object):
     @distributed_trace
-    def get(
+    def get(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None

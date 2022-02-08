@@ -402,7 +402,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
     get_int.metadata = {"url": "/complex/primitive/integer"}  # type: ignore
 
     @distributed_trace
-    def put_int(self, complex_body: "_models.IntWrapper", **kwargs: Any) -> None:
+    def put_int(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: "_models.IntWrapper", **kwargs: Any
+    ) -> None:
         """Put complex types with integer properties.
 
         :param complex_body: Please put -1 and 2.
@@ -482,7 +484,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
     get_long.metadata = {"url": "/complex/primitive/long"}  # type: ignore
 
     @distributed_trace
-    def put_long(self, complex_body: "_models.LongWrapper", **kwargs: Any) -> None:
+    def put_long(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: "_models.LongWrapper", **kwargs: Any
+    ) -> None:
         """Put complex types with long properties.
 
         :param complex_body: Please put 1099511627775 and -999511627788.
@@ -562,7 +566,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
     get_float.metadata = {"url": "/complex/primitive/float"}  # type: ignore
 
     @distributed_trace
-    def put_float(self, complex_body: "_models.FloatWrapper", **kwargs: Any) -> None:
+    def put_float(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: "_models.FloatWrapper", **kwargs: Any
+    ) -> None:
         """Put complex types with float properties.
 
         :param complex_body: Please put 1.05 and -0.003.
@@ -642,7 +648,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
     get_double.metadata = {"url": "/complex/primitive/double"}  # type: ignore
 
     @distributed_trace
-    def put_double(self, complex_body: "_models.DoubleWrapper", **kwargs: Any) -> None:
+    def put_double(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: "_models.DoubleWrapper", **kwargs: Any
+    ) -> None:
         """Put complex types with double properties.
 
         :param complex_body: Please put 3e-100 and
@@ -723,7 +731,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
     get_bool.metadata = {"url": "/complex/primitive/bool"}  # type: ignore
 
     @distributed_trace
-    def put_bool(self, complex_body: "_models.BooleanWrapper", **kwargs: Any) -> None:
+    def put_bool(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: "_models.BooleanWrapper", **kwargs: Any
+    ) -> None:
         """Put complex types with bool properties.
 
         :param complex_body: Please put true and false.
@@ -803,7 +813,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
     get_string.metadata = {"url": "/complex/primitive/string"}  # type: ignore
 
     @distributed_trace
-    def put_string(self, complex_body: "_models.StringWrapper", **kwargs: Any) -> None:
+    def put_string(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: "_models.StringWrapper", **kwargs: Any
+    ) -> None:
         """Put complex types with string properties.
 
         :param complex_body: Please put 'goodrequest', '', and null.
@@ -883,7 +895,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
     get_date.metadata = {"url": "/complex/primitive/date"}  # type: ignore
 
     @distributed_trace
-    def put_date(self, complex_body: "_models.DateWrapper", **kwargs: Any) -> None:
+    def put_date(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: "_models.DateWrapper", **kwargs: Any
+    ) -> None:
         """Put complex types with date properties.
 
         :param complex_body: Please put '0001-01-01' and '2016-02-29'.
@@ -963,7 +977,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
     get_date_time.metadata = {"url": "/complex/primitive/datetime"}  # type: ignore
 
     @distributed_trace
-    def put_date_time(self, complex_body: "_models.DatetimeWrapper", **kwargs: Any) -> None:
+    def put_date_time(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: "_models.DatetimeWrapper", **kwargs: Any
+    ) -> None:
         """Put complex types with datetime properties.
 
         :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'.
@@ -1043,7 +1059,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
     get_date_time_rfc1123.metadata = {"url": "/complex/primitive/datetimerfc1123"}  # type: ignore
 
     @distributed_trace
-    def put_date_time_rfc1123(self, complex_body: "_models.Datetimerfc1123Wrapper", **kwargs: Any) -> None:
+    def put_date_time_rfc1123(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: "_models.Datetimerfc1123Wrapper", **kwargs: Any
+    ) -> None:
         """Put complex types with datetimeRfc1123 properties.
 
         :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
@@ -1124,7 +1142,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
     get_duration.metadata = {"url": "/complex/primitive/duration"}  # type: ignore
 
     @distributed_trace
-    def put_duration(self, field: Optional[datetime.timedelta] = None, **kwargs: Any) -> None:
+    def put_duration(  # pylint: disable=inconsistent-return-statements
+        self, field: Optional[datetime.timedelta] = None, **kwargs: Any
+    ) -> None:
         """Put complex types with duration properties.
 
         :param field:
@@ -1205,7 +1225,9 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
     get_byte.metadata = {"url": "/complex/primitive/byte"}  # type: ignore
 
     @distributed_trace
-    def put_byte(self, field: Optional[bytearray] = None, **kwargs: Any) -> None:
+    def put_byte(  # pylint: disable=inconsistent-return-statements
+        self, field: Optional[bytearray] = None, **kwargs: Any
+    ) -> None:
         """Put complex types with byte properties.
 
         :param field:

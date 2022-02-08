@@ -89,7 +89,9 @@ class PolymorphicrecursiveOperations:
     get_valid.metadata = {"url": "/complex/polymorphicrecursive/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def put_valid(self, complex_body: "_models.Fish", **kwargs: Any) -> None:
+    async def put_valid(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: "_models.Fish", **kwargs: Any
+    ) -> None:
         """Put complex types that are polymorphic and have recursive references.
 
         :param complex_body: Please put a salmon that looks like this:

@@ -99,7 +99,7 @@ class MediaTypesClientOperationsMixin:
     analyze_body.metadata = {"url": "/mediatypes/analyze"}  # type: ignore
 
     @distributed_trace_async
-    async def analyze_body_no_accept_header(
+    async def analyze_body_no_accept_header(  # pylint: disable=inconsistent-return-statements
         self, input: Optional[Union[IO, "_models.SourcePath"]] = None, **kwargs: Any
     ) -> None:
         """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept

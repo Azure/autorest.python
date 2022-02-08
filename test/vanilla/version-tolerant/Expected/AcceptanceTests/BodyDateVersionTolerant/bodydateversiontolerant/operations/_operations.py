@@ -289,7 +289,9 @@ class DateOperations(object):
         return deserialized
 
     @distributed_trace
-    def put_max_date(self, date_body: datetime.date, **kwargs: Any) -> None:
+    def put_max_date(  # pylint: disable=inconsistent-return-statements
+        self, date_body: datetime.date, **kwargs: Any
+    ) -> None:
         """Put max date value 9999-12-31.
 
         :param date_body: date body.
@@ -359,7 +361,9 @@ class DateOperations(object):
         return deserialized
 
     @distributed_trace
-    def put_min_date(self, date_body: datetime.date, **kwargs: Any) -> None:
+    def put_min_date(  # pylint: disable=inconsistent-return-statements
+        self, date_body: datetime.date, **kwargs: Any
+    ) -> None:
         """Put min date value 0000-01-01.
 
         :param date_body: date body.

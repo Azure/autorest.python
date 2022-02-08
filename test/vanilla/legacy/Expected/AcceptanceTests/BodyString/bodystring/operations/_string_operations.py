@@ -385,7 +385,7 @@ class StringOperations(object):
     get_null.metadata = {"url": "/string/null"}  # type: ignore
 
     @distributed_trace
-    def put_null(
+    def put_null(  # pylint: disable=inconsistent-return-statements
         self,
         string_body=None,  # type: Optional[str]
         **kwargs  # type: Any
@@ -476,7 +476,7 @@ class StringOperations(object):
     get_empty.metadata = {"url": "/string/empty"}  # type: ignore
 
     @distributed_trace
-    def put_empty(
+    def put_empty(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -562,7 +562,7 @@ class StringOperations(object):
     get_mbcs.metadata = {"url": "/string/mbcs"}  # type: ignore
 
     @distributed_trace
-    def put_mbcs(
+    def put_mbcs(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -653,7 +653,7 @@ class StringOperations(object):
     get_whitespace.metadata = {"url": "/string/whitespace"}  # type: ignore
 
     @distributed_trace
-    def put_whitespace(
+    def put_whitespace(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -826,7 +826,7 @@ class StringOperations(object):
     get_base64_url_encoded.metadata = {"url": "/string/base64UrlEncoding"}  # type: ignore
 
     @distributed_trace
-    def put_base64_url_encoded(
+    def put_base64_url_encoded(  # pylint: disable=inconsistent-return-statements
         self,
         string_body,  # type: bytes
         **kwargs  # type: Any

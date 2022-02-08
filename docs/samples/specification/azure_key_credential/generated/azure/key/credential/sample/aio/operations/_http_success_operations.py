@@ -38,7 +38,7 @@ class HttpSuccessOperations:
         self._config = config
 
     @distributed_trace_async
-    async def head200(
+    async def head200(  # pylint: disable=inconsistent-return-statements
         self,
         **kwargs: Any
     ) -> None:
@@ -80,7 +80,7 @@ class HttpSuccessOperations:
 
 
     @distributed_trace_async
-    async def head204(
+    async def head204(  # pylint: disable=inconsistent-return-statements
         self,
         **kwargs: Any
     ) -> None:
@@ -122,7 +122,7 @@ class HttpSuccessOperations:
 
 
     @distributed_trace_async
-    async def head404(
+    async def head404(  # pylint: disable=inconsistent-return-statements
         self,
         **kwargs: Any
     ) -> None:

@@ -43,7 +43,7 @@ class OperationGroupTwoOperations:
         self._config = config
 
     @distributed_trace_async
-    async def test_four(
+    async def test_four(  # pylint: disable=inconsistent-return-statements
         self,
         input: Optional[Union[IO, "_models.SourcePath"]] = None,
         **kwargs: Any
@@ -111,7 +111,7 @@ class OperationGroupTwoOperations:
 
 
     @distributed_trace_async
-    async def test_five(
+    async def test_five(  # pylint: disable=inconsistent-return-statements
         self,
         **kwargs: Any
     ) -> None:

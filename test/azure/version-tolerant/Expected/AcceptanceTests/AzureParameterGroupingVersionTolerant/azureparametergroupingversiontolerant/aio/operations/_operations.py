@@ -52,7 +52,7 @@ class ParameterGroupingOperations:
         self._config = config
 
     @distributed_trace_async
-    async def post_required(
+    async def post_required(  # pylint: disable=inconsistent-return-statements
         self, path: str, body: int, *, custom_header: Optional[str] = None, query: Optional[int] = 30, **kwargs: Any
     ) -> None:
         """Post a bunch of required parameters grouped.
@@ -99,7 +99,7 @@ class ParameterGroupingOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def post_optional(
+    async def post_optional(  # pylint: disable=inconsistent-return-statements
         self, *, custom_header: Optional[str] = None, query: Optional[int] = 30, **kwargs: Any
     ) -> None:
         """Post a bunch of optional parameters grouped.
@@ -135,7 +135,7 @@ class ParameterGroupingOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def post_reserved_words(
+    async def post_reserved_words(  # pylint: disable=inconsistent-return-statements
         self, *, from_parameter: Optional[str] = None, accept_parameter: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Post a grouped parameters with reserved words.
@@ -171,7 +171,7 @@ class ParameterGroupingOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def post_multi_param_groups(
+    async def post_multi_param_groups(  # pylint: disable=inconsistent-return-statements
         self,
         *,
         header_one: Optional[str] = None,
@@ -219,7 +219,7 @@ class ParameterGroupingOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def post_shared_parameter_group_object(
+    async def post_shared_parameter_group_object(  # pylint: disable=inconsistent-return-statements
         self, *, header_one: Optional[str] = None, query_one: Optional[int] = 30, **kwargs: Any
     ) -> None:
         """Post parameters with a shared parameter group object.

@@ -186,7 +186,7 @@ class ParameterGroupingOperations(object):
         self._config = config
 
     @distributed_trace
-    def post_required(
+    def post_required(  # pylint: disable=inconsistent-return-statements
         self, path: str, body: int, *, custom_header: Optional[str] = None, query: Optional[int] = 30, **kwargs: Any
     ) -> None:
         """Post a bunch of required parameters grouped.
@@ -233,7 +233,9 @@ class ParameterGroupingOperations(object):
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def post_optional(self, *, custom_header: Optional[str] = None, query: Optional[int] = 30, **kwargs: Any) -> None:
+    def post_optional(  # pylint: disable=inconsistent-return-statements
+        self, *, custom_header: Optional[str] = None, query: Optional[int] = 30, **kwargs: Any
+    ) -> None:
         """Post a bunch of optional parameters grouped.
 
         :keyword custom_header:
@@ -267,7 +269,7 @@ class ParameterGroupingOperations(object):
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def post_reserved_words(
+    def post_reserved_words(  # pylint: disable=inconsistent-return-statements
         self, *, from_parameter: Optional[str] = None, accept_parameter: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Post a grouped parameters with reserved words.
@@ -303,7 +305,7 @@ class ParameterGroupingOperations(object):
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def post_multi_param_groups(
+    def post_multi_param_groups(  # pylint: disable=inconsistent-return-statements
         self,
         *,
         header_one: Optional[str] = None,
@@ -351,7 +353,7 @@ class ParameterGroupingOperations(object):
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def post_shared_parameter_group_object(
+    def post_shared_parameter_group_object(  # pylint: disable=inconsistent-return-statements
         self, *, header_one: Optional[str] = None, query_one: Optional[int] = 30, **kwargs: Any
     ) -> None:
         """Post parameters with a shared parameter group object.

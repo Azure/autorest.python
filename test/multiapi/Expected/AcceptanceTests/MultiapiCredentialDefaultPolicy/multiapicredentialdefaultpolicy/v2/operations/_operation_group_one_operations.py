@@ -170,7 +170,7 @@ class OperationGroupOneOperations(object):
 
 
     @distributed_trace
-    def test_three(
+    def test_three(  # pylint: disable=inconsistent-return-statements
         self,
         **kwargs  # type: Any
     ):

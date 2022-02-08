@@ -610,7 +610,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
     get200_model_a201_model_c404_model_d_default_error400_valid.metadata = {"url": "/http/payloads/200/A/201/C/404/D/default/Error/response/400/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def get202_none204_none_default_error202_none(self, **kwargs: Any) -> None:
+    async def get202_none204_none_default_error202_none(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         """Send a 202 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -644,7 +646,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
     get202_none204_none_default_error202_none.metadata = {"url": "/http/payloads/202/none/204/none/default/Error/response/202/none"}  # type: ignore
 
     @distributed_trace_async
-    async def get202_none204_none_default_error204_none(self, **kwargs: Any) -> None:
+    async def get202_none204_none_default_error204_none(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         """Send a 204 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -678,7 +682,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
     get202_none204_none_default_error204_none.metadata = {"url": "/http/payloads/202/none/204/none/default/Error/response/204/none"}  # type: ignore
 
     @distributed_trace_async
-    async def get202_none204_none_default_error400_valid(self, **kwargs: Any) -> None:
+    async def get202_none204_none_default_error400_valid(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -712,7 +718,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
     get202_none204_none_default_error400_valid.metadata = {"url": "/http/payloads/202/none/204/none/default/Error/response/400/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def get202_none204_none_default_none202_invalid(self, **kwargs: Any) -> None:
+    async def get202_none204_none_default_none202_invalid(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         """Send a 202 response with an unexpected payload {'property': 'value'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -745,7 +753,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
     get202_none204_none_default_none202_invalid.metadata = {"url": "/http/payloads/202/none/204/none/default/none/response/202/invalid"}  # type: ignore
 
     @distributed_trace_async
-    async def get202_none204_none_default_none204_none(self, **kwargs: Any) -> None:
+    async def get202_none204_none_default_none204_none(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         """Send a 204 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -778,7 +788,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
     get202_none204_none_default_none204_none.metadata = {"url": "/http/payloads/202/none/204/none/default/none/response/204/none"}  # type: ignore
 
     @distributed_trace_async
-    async def get202_none204_none_default_none400_none(self, **kwargs: Any) -> None:
+    async def get202_none204_none_default_none400_none(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         """Send a 400 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -811,7 +823,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
     get202_none204_none_default_none400_none.metadata = {"url": "/http/payloads/202/none/204/none/default/none/response/400/none"}  # type: ignore
 
     @distributed_trace_async
-    async def get202_none204_none_default_none400_invalid(self, **kwargs: Any) -> None:
+    async def get202_none204_none_default_none400_invalid(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         """Send a 400 response with an unexpected payload {'property': 'value'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -918,7 +932,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
     get_default_model_a200_none.metadata = {"url": "/http/payloads/default/A/response/200/none"}  # type: ignore
 
     @distributed_trace_async
-    async def get_default_model_a400_valid(self, **kwargs: Any) -> None:
+    async def get_default_model_a400_valid(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         """Send a 400 response with valid payload: {'statusCode': '400'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -952,7 +968,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
     get_default_model_a400_valid.metadata = {"url": "/http/payloads/default/A/response/400/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_default_model_a400_none(self, **kwargs: Any) -> None:
+    async def get_default_model_a400_none(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         """Send a 400 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -986,7 +1004,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
     get_default_model_a400_none.metadata = {"url": "/http/payloads/default/A/response/400/none"}  # type: ignore
 
     @distributed_trace_async
-    async def get_default_none200_invalid(self, **kwargs: Any) -> None:
+    async def get_default_none200_invalid(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         """Send a 200 response with invalid payload: {'statusCode': '200'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1019,7 +1039,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
     get_default_none200_invalid.metadata = {"url": "/http/payloads/default/none/response/200/invalid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_default_none200_none(self, **kwargs: Any) -> None:
+    async def get_default_none200_none(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Send a 200 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1052,7 +1072,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
     get_default_none200_none.metadata = {"url": "/http/payloads/default/none/response/200/none"}  # type: ignore
 
     @distributed_trace_async
-    async def get_default_none400_invalid(self, **kwargs: Any) -> None:
+    async def get_default_none400_invalid(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         """Send a 400 response with valid payload: {'statusCode': '400'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1085,7 +1107,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
     get_default_none400_invalid.metadata = {"url": "/http/payloads/default/none/response/400/invalid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_default_none400_none(self, **kwargs: Any) -> None:
+    async def get_default_none400_none(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Send a 400 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

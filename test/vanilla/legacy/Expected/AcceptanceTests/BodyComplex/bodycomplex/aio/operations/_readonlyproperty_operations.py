@@ -89,7 +89,9 @@ class ReadonlypropertyOperations:
     get_valid.metadata = {"url": "/complex/readonlyproperty/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def put_valid(self, size: Optional[int] = None, **kwargs: Any) -> None:
+    async def put_valid(  # pylint: disable=inconsistent-return-statements
+        self, size: Optional[int] = None, **kwargs: Any
+    ) -> None:
         """Put complex types that have readonly properties.
 
         :param size:

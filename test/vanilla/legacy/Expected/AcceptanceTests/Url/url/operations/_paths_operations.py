@@ -777,7 +777,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         self._config = config
 
     @distributed_trace
-    def get_boolean_true(
+    def get_boolean_true(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -820,7 +820,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
     get_boolean_true.metadata = {"url": "/paths/bool/true/{boolPath}"}  # type: ignore
 
     @distributed_trace
-    def get_boolean_false(
+    def get_boolean_false(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -863,7 +863,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
     get_boolean_false.metadata = {"url": "/paths/bool/false/{boolPath}"}  # type: ignore
 
     @distributed_trace
-    def get_int_one_million(
+    def get_int_one_million(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -906,7 +906,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
     get_int_one_million.metadata = {"url": "/paths/int/1000000/{intPath}"}  # type: ignore
 
     @distributed_trace
-    def get_int_negative_one_million(
+    def get_int_negative_one_million(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -949,7 +949,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
     get_int_negative_one_million.metadata = {"url": "/paths/int/-1000000/{intPath}"}  # type: ignore
 
     @distributed_trace
-    def get_ten_billion(
+    def get_ten_billion(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -992,7 +992,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
     get_ten_billion.metadata = {"url": "/paths/long/10000000000/{longPath}"}  # type: ignore
 
     @distributed_trace
-    def get_negative_ten_billion(
+    def get_negative_ten_billion(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1035,7 +1035,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
     get_negative_ten_billion.metadata = {"url": "/paths/long/-10000000000/{longPath}"}  # type: ignore
 
     @distributed_trace
-    def float_scientific_positive(
+    def float_scientific_positive(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1078,7 +1078,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
     float_scientific_positive.metadata = {"url": "/paths/float/1.034E+20/{floatPath}"}  # type: ignore
 
     @distributed_trace
-    def float_scientific_negative(
+    def float_scientific_negative(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1121,7 +1121,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
     float_scientific_negative.metadata = {"url": "/paths/float/-1.034E-20/{floatPath}"}  # type: ignore
 
     @distributed_trace
-    def double_decimal_positive(
+    def double_decimal_positive(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1164,7 +1164,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
     double_decimal_positive.metadata = {"url": "/paths/double/9999999.999/{doublePath}"}  # type: ignore
 
     @distributed_trace
-    def double_decimal_negative(
+    def double_decimal_negative(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1207,7 +1207,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
     double_decimal_negative.metadata = {"url": "/paths/double/-9999999.999/{doublePath}"}  # type: ignore
 
     @distributed_trace
-    def string_unicode(
+    def string_unicode(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1250,7 +1250,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
     string_unicode.metadata = {"url": "/paths/string/unicode/{stringPath}"}  # type: ignore
 
     @distributed_trace
-    def string_url_encoded(
+    def string_url_encoded(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1294,7 +1294,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
     string_url_encoded.metadata = {"url": "/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}"}  # type: ignore
 
     @distributed_trace
-    def string_url_non_encoded(
+    def string_url_non_encoded(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1340,7 +1340,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
     string_url_non_encoded.metadata = {"url": "/paths/string/begin!*'();:@&=+$,end/{stringPath}"}  # type: ignore
 
     @distributed_trace
-    def string_empty(
+    def string_empty(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1383,7 +1383,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
     string_empty.metadata = {"url": "/paths/string/empty/{stringPath}"}  # type: ignore
 
     @distributed_trace
-    def string_null(
+    def string_null(  # pylint: disable=inconsistent-return-statements
         self,
         string_path,  # type: str
         **kwargs  # type: Any
@@ -1425,7 +1425,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
     string_null.metadata = {"url": "/paths/string/null/{stringPath}"}  # type: ignore
 
     @distributed_trace
-    def enum_valid(
+    def enum_valid(  # pylint: disable=inconsistent-return-statements
         self,
         enum_path,  # type: Union[str, "_models.UriColor"]
         **kwargs  # type: Any
@@ -1467,7 +1467,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
     enum_valid.metadata = {"url": "/paths/enum/green%20color/{enumPath}"}  # type: ignore
 
     @distributed_trace
-    def enum_null(
+    def enum_null(  # pylint: disable=inconsistent-return-statements
         self,
         enum_path,  # type: Union[str, "_models.UriColor"]
         **kwargs  # type: Any
@@ -1509,7 +1509,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
     enum_null.metadata = {"url": "/paths/string/null/{enumPath}"}  # type: ignore
 
     @distributed_trace
-    def byte_multi_byte(
+    def byte_multi_byte(  # pylint: disable=inconsistent-return-statements
         self,
         byte_path,  # type: bytearray
         **kwargs  # type: Any
@@ -1551,7 +1551,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
     byte_multi_byte.metadata = {"url": "/paths/byte/multibyte/{bytePath}"}  # type: ignore
 
     @distributed_trace
-    def byte_empty(
+    def byte_empty(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1594,7 +1594,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
     byte_empty.metadata = {"url": "/paths/byte/empty/{bytePath}"}  # type: ignore
 
     @distributed_trace
-    def byte_null(
+    def byte_null(  # pylint: disable=inconsistent-return-statements
         self,
         byte_path,  # type: bytearray
         **kwargs  # type: Any
@@ -1636,7 +1636,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
     byte_null.metadata = {"url": "/paths/byte/null/{bytePath}"}  # type: ignore
 
     @distributed_trace
-    def date_valid(
+    def date_valid(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1679,7 +1679,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
     date_valid.metadata = {"url": "/paths/date/2012-01-01/{datePath}"}  # type: ignore
 
     @distributed_trace
-    def date_null(
+    def date_null(  # pylint: disable=inconsistent-return-statements
         self,
         date_path,  # type: datetime.date
         **kwargs  # type: Any
@@ -1722,7 +1722,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
     date_null.metadata = {"url": "/paths/date/null/{datePath}"}  # type: ignore
 
     @distributed_trace
-    def date_time_valid(
+    def date_time_valid(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1766,7 +1766,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
     date_time_valid.metadata = {"url": "/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}"}  # type: ignore
 
     @distributed_trace
-    def date_time_null(
+    def date_time_null(  # pylint: disable=inconsistent-return-statements
         self,
         date_time_path,  # type: datetime.datetime
         **kwargs  # type: Any
@@ -1808,7 +1808,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
     date_time_null.metadata = {"url": "/paths/datetime/null/{dateTimePath}"}  # type: ignore
 
     @distributed_trace
-    def base64_url(
+    def base64_url(  # pylint: disable=inconsistent-return-statements
         self,
         base64_url_path,  # type: bytes
         **kwargs  # type: Any
@@ -1850,7 +1850,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
     base64_url.metadata = {"url": "/paths/string/bG9yZW0/{base64UrlPath}"}  # type: ignore
 
     @distributed_trace
-    def array_csv_in_path(
+    def array_csv_in_path(  # pylint: disable=inconsistent-return-statements
         self,
         array_path,  # type: List[str]
         **kwargs  # type: Any
@@ -1894,7 +1894,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
     array_csv_in_path.metadata = {"url": "/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}"}  # type: ignore
 
     @distributed_trace
-    def unix_time_url(
+    def unix_time_url(  # pylint: disable=inconsistent-return-statements
         self,
         unix_time_url_path,  # type: datetime.datetime
         **kwargs  # type: Any

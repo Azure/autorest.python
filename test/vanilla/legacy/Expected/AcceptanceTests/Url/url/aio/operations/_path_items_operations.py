@@ -56,7 +56,7 @@ class PathItemsOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_all_with_values(
+    async def get_all_with_values(  # pylint: disable=inconsistent-return-statements
         self,
         path_item_string_path: str,
         local_string_path: str,
@@ -114,7 +114,7 @@ class PathItemsOperations:
     get_all_with_values.metadata = {"url": "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery"}  # type: ignore
 
     @distributed_trace_async
-    async def get_global_query_null(
+    async def get_global_query_null(  # pylint: disable=inconsistent-return-statements
         self,
         path_item_string_path: str,
         local_string_path: str,
@@ -172,7 +172,7 @@ class PathItemsOperations:
     get_global_query_null.metadata = {"url": "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery"}  # type: ignore
 
     @distributed_trace_async
-    async def get_global_and_local_query_null(
+    async def get_global_and_local_query_null(  # pylint: disable=inconsistent-return-statements
         self,
         path_item_string_path: str,
         local_string_path: str,
@@ -230,7 +230,7 @@ class PathItemsOperations:
     get_global_and_local_query_null.metadata = {"url": "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null"}  # type: ignore
 
     @distributed_trace_async
-    async def get_local_path_item_query_null(
+    async def get_local_path_item_query_null(  # pylint: disable=inconsistent-return-statements
         self,
         path_item_string_path: str,
         local_string_path: str,

@@ -95,7 +95,7 @@ class XMsClientRequestIdOperations(object):
         self._config = config
 
     @distributed_trace
-    def get(
+    def get(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -132,7 +132,7 @@ class XMsClientRequestIdOperations(object):
     get.metadata = {"url": "/azurespecials/overwrite/x-ms-client-request-id/method/"}  # type: ignore
 
     @distributed_trace
-    def param_get(
+    def param_get(  # pylint: disable=inconsistent-return-statements
         self,
         x_ms_client_request_id,  # type: str
         **kwargs  # type: Any

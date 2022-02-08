@@ -630,7 +630,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
         self._config = config
 
     @distributed_trace
-    def head400(
+    def head400(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -667,7 +667,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
     head400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace
-    def get400(
+    def get400(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -704,7 +704,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
     get400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace
-    def options400(
+    def options400(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -741,7 +741,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
     options400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace
-    def put400(
+    def put400(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -791,7 +791,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
     put400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace
-    def patch400(
+    def patch400(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -841,7 +841,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
     patch400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace
-    def post400(
+    def post400(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -891,7 +891,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
     post400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace
-    def delete400(
+    def delete400(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -941,7 +941,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
     delete400.metadata = {"url": "/http/failure/client/400"}  # type: ignore
 
     @distributed_trace
-    def head401(
+    def head401(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -978,7 +978,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
     head401.metadata = {"url": "/http/failure/client/401"}  # type: ignore
 
     @distributed_trace
-    def get402(
+    def get402(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1015,7 +1015,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
     get402.metadata = {"url": "/http/failure/client/402"}  # type: ignore
 
     @distributed_trace
-    def options403(
+    def options403(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1052,7 +1052,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
     options403.metadata = {"url": "/http/failure/client/403"}  # type: ignore
 
     @distributed_trace
-    def get403(
+    def get403(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1089,7 +1089,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
     get403.metadata = {"url": "/http/failure/client/403"}  # type: ignore
 
     @distributed_trace
-    def put404(
+    def put404(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -1139,7 +1139,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
     put404.metadata = {"url": "/http/failure/client/404"}  # type: ignore
 
     @distributed_trace
-    def patch405(
+    def patch405(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -1189,7 +1189,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
     patch405.metadata = {"url": "/http/failure/client/405"}  # type: ignore
 
     @distributed_trace
-    def post406(
+    def post406(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -1239,7 +1239,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
     post406.metadata = {"url": "/http/failure/client/406"}  # type: ignore
 
     @distributed_trace
-    def delete407(
+    def delete407(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -1289,7 +1289,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
     delete407.metadata = {"url": "/http/failure/client/407"}  # type: ignore
 
     @distributed_trace
-    def put409(
+    def put409(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -1339,7 +1339,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
     put409.metadata = {"url": "/http/failure/client/409"}  # type: ignore
 
     @distributed_trace
-    def head410(
+    def head410(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1376,7 +1376,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
     head410.metadata = {"url": "/http/failure/client/410"}  # type: ignore
 
     @distributed_trace
-    def get411(
+    def get411(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1413,7 +1413,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
     get411.metadata = {"url": "/http/failure/client/411"}  # type: ignore
 
     @distributed_trace
-    def options412(
+    def options412(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1450,7 +1450,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
     options412.metadata = {"url": "/http/failure/client/412"}  # type: ignore
 
     @distributed_trace
-    def get412(
+    def get412(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1487,7 +1487,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
     get412.metadata = {"url": "/http/failure/client/412"}  # type: ignore
 
     @distributed_trace
-    def put413(
+    def put413(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -1537,7 +1537,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
     put413.metadata = {"url": "/http/failure/client/413"}  # type: ignore
 
     @distributed_trace
-    def patch414(
+    def patch414(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -1587,7 +1587,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
     patch414.metadata = {"url": "/http/failure/client/414"}  # type: ignore
 
     @distributed_trace
-    def post415(
+    def post415(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -1637,7 +1637,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
     post415.metadata = {"url": "/http/failure/client/415"}  # type: ignore
 
     @distributed_trace
-    def get416(
+    def get416(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1674,7 +1674,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
     get416.metadata = {"url": "/http/failure/client/416"}  # type: ignore
 
     @distributed_trace
-    def delete417(
+    def delete417(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -1724,7 +1724,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
     delete417.metadata = {"url": "/http/failure/client/417"}  # type: ignore
 
     @distributed_trace
-    def head429(
+    def head429(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None

@@ -146,7 +146,7 @@ class HttpServerFailureOperations(object):
         self._config = config
 
     @distributed_trace
-    def head501(
+    def head501(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -183,7 +183,7 @@ class HttpServerFailureOperations(object):
     head501.metadata = {"url": "/http/failure/server/501"}  # type: ignore
 
     @distributed_trace
-    def get501(
+    def get501(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -220,7 +220,7 @@ class HttpServerFailureOperations(object):
     get501.metadata = {"url": "/http/failure/server/501"}  # type: ignore
 
     @distributed_trace
-    def post505(
+    def post505(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -270,7 +270,7 @@ class HttpServerFailureOperations(object):
     post505.metadata = {"url": "/http/failure/server/505"}  # type: ignore
 
     @distributed_trace
-    def delete505(
+    def delete505(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any

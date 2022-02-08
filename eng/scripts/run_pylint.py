@@ -30,6 +30,7 @@ def _single_dir_pylint(mod):
                 "-m",
                 "pylint",
                 "--rcfile={}".format(rfc_file_location),
+                "--load-plugins=pylint_guidelines_checker"
                 "--output-format=parseable",
                 str(inner_class.absolute()),
             ]
@@ -39,7 +40,7 @@ def _single_dir_pylint(mod):
         logging.error(
             "{} exited with linting error {}".format(inner_class.stem, e.returncode)
         )
-        exit(1)
+        return False
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(

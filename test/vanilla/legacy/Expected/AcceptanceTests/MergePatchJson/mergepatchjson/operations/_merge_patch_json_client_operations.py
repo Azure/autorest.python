@@ -60,7 +60,7 @@ def build_patch_single_request(
 # fmt: on
 class MergePatchJsonClientOperationsMixin(object):
     @distributed_trace
-    def patch_single(
+    def patch_single(  # pylint: disable=inconsistent-return-statements
         self,
         body,  # type: Any
         **kwargs  # type: Any

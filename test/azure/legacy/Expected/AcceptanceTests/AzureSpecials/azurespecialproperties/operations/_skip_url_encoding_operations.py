@@ -246,7 +246,7 @@ class SkipUrlEncodingOperations(object):
         self._config = config
 
     @distributed_trace
-    def get_method_path_valid(
+    def get_method_path_valid(  # pylint: disable=inconsistent-return-statements
         self,
         unencoded_path_param,  # type: str
         **kwargs  # type: Any
@@ -288,7 +288,7 @@ class SkipUrlEncodingOperations(object):
     get_method_path_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}"}  # type: ignore
 
     @distributed_trace
-    def get_path_valid(
+    def get_path_valid(  # pylint: disable=inconsistent-return-statements
         self,
         unencoded_path_param,  # type: str
         **kwargs  # type: Any
@@ -330,7 +330,7 @@ class SkipUrlEncodingOperations(object):
     get_path_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}"}  # type: ignore
 
     @distributed_trace
-    def get_swagger_path_valid(
+    def get_swagger_path_valid(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -374,7 +374,7 @@ class SkipUrlEncodingOperations(object):
     get_swagger_path_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}"}  # type: ignore
 
     @distributed_trace
-    def get_method_query_valid(
+    def get_method_query_valid(  # pylint: disable=inconsistent-return-statements
         self,
         q1,  # type: str
         **kwargs  # type: Any
@@ -416,7 +416,7 @@ class SkipUrlEncodingOperations(object):
     get_method_query_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/method/query/valid"}  # type: ignore
 
     @distributed_trace
-    def get_method_query_null(
+    def get_method_query_null(  # pylint: disable=inconsistent-return-statements
         self,
         q1=None,  # type: Optional[str]
         **kwargs  # type: Any
@@ -458,7 +458,7 @@ class SkipUrlEncodingOperations(object):
     get_method_query_null.metadata = {"url": "/azurespecials/skipUrlEncoding/method/query/null"}  # type: ignore
 
     @distributed_trace
-    def get_path_query_valid(
+    def get_path_query_valid(  # pylint: disable=inconsistent-return-statements
         self,
         q1,  # type: str
         **kwargs  # type: Any
@@ -500,7 +500,7 @@ class SkipUrlEncodingOperations(object):
     get_path_query_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/path/query/valid"}  # type: ignore
 
     @distributed_trace
-    def get_swagger_query_valid(
+    def get_swagger_query_valid(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None

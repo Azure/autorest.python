@@ -54,7 +54,7 @@ class FormdataurlencodedOperations:
         self._config = config
 
     @distributed_trace_async
-    async def update_pet_with_form(
+    async def update_pet_with_form(  # pylint: disable=inconsistent-return-statements
         self,
         pet_id: int,
         pet_type: Union[str, "_models.PetType"],
@@ -124,7 +124,9 @@ class FormdataurlencodedOperations:
     update_pet_with_form.metadata = {"url": "/formsdataurlencoded/pet/add/{petId}"}  # type: ignore
 
     @distributed_trace_async
-    async def partial_constant_body(self, service: str, access_token: str, **kwargs: Any) -> None:
+    async def partial_constant_body(  # pylint: disable=inconsistent-return-statements
+        self, service: str, access_token: str, **kwargs: Any
+    ) -> None:
         """Test a partially constant formdata body. Pass in { grant_type: 'access_token', access_token:
         'foo', service: 'bar' } to pass the test.
 

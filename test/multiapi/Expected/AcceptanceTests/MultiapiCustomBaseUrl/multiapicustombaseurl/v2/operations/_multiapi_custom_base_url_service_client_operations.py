@@ -60,7 +60,7 @@ def build_test_request(
 class MultiapiCustomBaseUrlServiceClientOperationsMixin(object):
 
     @distributed_trace
-    def test(
+    def test(  # pylint: disable=inconsistent-return-statements
         self,
         id,  # type: int
         **kwargs  # type: Any

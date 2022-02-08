@@ -154,7 +154,7 @@ class MultiapiServiceClientOperationsMixin(object):
 
 
     @distributed_trace
-    def test_different_calls(
+    def test_different_calls(  # pylint: disable=inconsistent-return-statements
         self,
         greeting_in_english,  # type: str
         greeting_in_chinese=None,  # type: Optional[str]

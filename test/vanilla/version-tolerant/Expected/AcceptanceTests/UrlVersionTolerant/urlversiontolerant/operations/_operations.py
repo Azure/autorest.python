@@ -1327,7 +1327,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         self._config = config
 
     @distributed_trace
-    def get_boolean_true(self, **kwargs: Any) -> None:
+    def get_boolean_true(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get true Boolean value on path.
 
         :keyword bool_path: true boolean value. The default value is True. Note that overriding this
@@ -1361,7 +1361,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def get_boolean_false(self, **kwargs: Any) -> None:
+    def get_boolean_false(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get false Boolean value on path.
 
         :keyword bool_path: false boolean value. The default value is False. Note that overriding this
@@ -1395,7 +1395,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def get_int_one_million(self, **kwargs: Any) -> None:
+    def get_int_one_million(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '1000000' integer value.
 
         :keyword int_path: '1000000' integer value. The default value is 1000000. Note that overriding
@@ -1429,7 +1429,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def get_int_negative_one_million(self, **kwargs: Any) -> None:
+    def get_int_negative_one_million(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '-1000000' integer value.
 
         :keyword int_path: '-1000000' integer value. The default value is -1000000. Note that
@@ -1463,7 +1463,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def get_ten_billion(self, **kwargs: Any) -> None:
+    def get_ten_billion(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '10000000000' 64 bit integer value.
 
         :keyword long_path: '10000000000' 64 bit integer value. The default value is 10000000000. Note
@@ -1497,7 +1497,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def get_negative_ten_billion(self, **kwargs: Any) -> None:
+    def get_negative_ten_billion(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '-10000000000' 64 bit integer value.
 
         :keyword long_path: '-10000000000' 64 bit integer value. The default value is -10000000000.
@@ -1531,7 +1531,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def float_scientific_positive(self, **kwargs: Any) -> None:
+    def float_scientific_positive(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '1.034E+20' numeric value.
 
         :keyword float_path: '1.034E+20'numeric value. The default value is 103400000000000000000. Note
@@ -1565,7 +1565,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def float_scientific_negative(self, **kwargs: Any) -> None:
+    def float_scientific_negative(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '-1.034E-20' numeric value.
 
         :keyword float_path: '-1.034E-20'numeric value. The default value is -1.034e-20. Note that
@@ -1599,7 +1599,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def double_decimal_positive(self, **kwargs: Any) -> None:
+    def double_decimal_positive(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '9999999.999' numeric value.
 
         :keyword double_path: '9999999.999'numeric value. The default value is 9999999.999. Note that
@@ -1633,7 +1633,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def double_decimal_negative(self, **kwargs: Any) -> None:
+    def double_decimal_negative(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '-9999999.999' numeric value.
 
         :keyword double_path: '-9999999.999'numeric value. The default value is -9999999.999. Note that
@@ -1667,7 +1667,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def string_unicode(self, **kwargs: Any) -> None:
+    def string_unicode(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
         :keyword string_path: '啊齄丂狛狜隣郎隣兀﨩'multi-byte string value. The default value is "啊齄丂狛狜隣郎隣兀﨩".
@@ -1701,7 +1701,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def string_url_encoded(self, **kwargs: Any) -> None:
+    def string_url_encoded(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
         :keyword string_path: 'begin!*'();:@ &=+$,/?#[]end' url encoded string value. The default value
@@ -1736,7 +1736,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def string_url_non_encoded(self, **kwargs: Any) -> None:
+    def string_url_non_encoded(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get 'begin!*'();:@&=+$,end.
 
         https://tools.ietf.org/html/rfc3986#appendix-A 'path' accept any 'pchar' not encoded.
@@ -1773,7 +1773,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def string_empty(self, **kwargs: Any) -> None:
+    def string_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get ''.
 
         :keyword string_path: '' string value. The default value is "". Note that overriding this
@@ -1807,7 +1807,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def string_null(self, string_path: str, **kwargs: Any) -> None:
+    def string_null(self, string_path: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get null (should throw).
 
         :param string_path: null string value.
@@ -1838,7 +1838,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def enum_valid(self, enum_path: str, **kwargs: Any) -> None:
+    def enum_valid(self, enum_path: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get using uri with 'green color' in path parameter.
 
         :param enum_path: send the value green. Possible values are: "red color", "green color", and
@@ -1870,7 +1870,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def enum_null(self, enum_path: str, **kwargs: Any) -> None:
+    def enum_null(self, enum_path: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get null (should throw on the client before the request is sent on wire).
 
         :param enum_path: send null should throw. Possible values are: "red color", "green color", and
@@ -1902,7 +1902,9 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def byte_multi_byte(self, byte_path: bytearray, **kwargs: Any) -> None:
+    def byte_multi_byte(  # pylint: disable=inconsistent-return-statements
+        self, byte_path: bytearray, **kwargs: Any
+    ) -> None:
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
         :param byte_path: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
@@ -1933,7 +1935,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def byte_empty(self, **kwargs: Any) -> None:
+    def byte_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '' as byte array.
 
         :keyword byte_path: '' as byte array. The default value is bytearray("", encoding="utf-8").
@@ -1967,7 +1969,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def byte_null(self, byte_path: bytearray, **kwargs: Any) -> None:
+    def byte_null(self, byte_path: bytearray, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get null as byte array (should throw).
 
         :param byte_path: null as byte array (should throw).
@@ -1998,7 +2000,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def date_valid(self, **kwargs: Any) -> None:
+    def date_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '2012-01-01' as date.
 
         :keyword date_path: '2012-01-01' as date. The default value is "2012-01-01". Note that
@@ -2032,7 +2034,9 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def date_null(self, date_path: datetime.date, **kwargs: Any) -> None:
+    def date_null(  # pylint: disable=inconsistent-return-statements
+        self, date_path: datetime.date, **kwargs: Any
+    ) -> None:
         """Get null as date - this should throw or be unusable on the client side, depending on date
         representation.
 
@@ -2064,7 +2068,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def date_time_valid(self, **kwargs: Any) -> None:
+    def date_time_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '2012-01-01T01:01:01Z' as date-time.
 
         :keyword date_time_path: '2012-01-01T01:01:01Z' as date-time. The default value is
@@ -2099,7 +2103,9 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def date_time_null(self, date_time_path: datetime.datetime, **kwargs: Any) -> None:
+    def date_time_null(  # pylint: disable=inconsistent-return-statements
+        self, date_time_path: datetime.datetime, **kwargs: Any
+    ) -> None:
         """Get null as date-time, should be disallowed or throw depending on representation of date-time.
 
         :param date_time_path: null as date-time.
@@ -2130,7 +2136,9 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def base64_url(self, base64_url_path: bytes, **kwargs: Any) -> None:
+    def base64_url(  # pylint: disable=inconsistent-return-statements
+        self, base64_url_path: bytes, **kwargs: Any
+    ) -> None:
         """Get 'lorem' encoded value as 'bG9yZW0' (base64url).
 
         :param base64_url_path: base64url encoded value.
@@ -2161,7 +2169,9 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def array_csv_in_path(self, array_path: List[str], **kwargs: Any) -> None:
+    def array_csv_in_path(  # pylint: disable=inconsistent-return-statements
+        self, array_path: List[str], **kwargs: Any
+    ) -> None:
         """Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         csv-array format.
 
@@ -2194,7 +2204,9 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def unix_time_url(self, unix_time_url_path: datetime.datetime, **kwargs: Any) -> None:
+    def unix_time_url(  # pylint: disable=inconsistent-return-statements
+        self, unix_time_url_path: datetime.datetime, **kwargs: Any
+    ) -> None:
         """Get the date 2016-04-13 encoded value as '1460505600' (Unix time).
 
         :param unix_time_url_path: Unix time encoded value.
@@ -2244,7 +2256,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
         self._config = config
 
     @distributed_trace
-    def get_boolean_true(self, **kwargs: Any) -> None:
+    def get_boolean_true(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get true Boolean value on path.
 
         :keyword bool_query: true boolean value. The default value is True. Note that overriding this
@@ -2278,7 +2290,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def get_boolean_false(self, **kwargs: Any) -> None:
+    def get_boolean_false(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get false Boolean value on path.
 
         :keyword bool_query: false boolean value. The default value is False. Note that overriding this
@@ -2312,7 +2324,9 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def get_boolean_null(self, *, bool_query: Optional[bool] = None, **kwargs: Any) -> None:
+    def get_boolean_null(  # pylint: disable=inconsistent-return-statements
+        self, *, bool_query: Optional[bool] = None, **kwargs: Any
+    ) -> None:
         """Get null Boolean value on query (query string should be absent).
 
         :keyword bool_query: null boolean value.
@@ -2343,7 +2357,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def get_int_one_million(self, **kwargs: Any) -> None:
+    def get_int_one_million(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '1000000' integer value.
 
         :keyword int_query: '1000000' integer value. The default value is 1000000. Note that overriding
@@ -2377,7 +2391,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def get_int_negative_one_million(self, **kwargs: Any) -> None:
+    def get_int_negative_one_million(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '-1000000' integer value.
 
         :keyword int_query: '-1000000' integer value. The default value is -1000000. Note that
@@ -2411,7 +2425,9 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def get_int_null(self, *, int_query: Optional[int] = None, **kwargs: Any) -> None:
+    def get_int_null(  # pylint: disable=inconsistent-return-statements
+        self, *, int_query: Optional[int] = None, **kwargs: Any
+    ) -> None:
         """Get null integer value (no query parameter).
 
         :keyword int_query: null integer value.
@@ -2442,7 +2458,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def get_ten_billion(self, **kwargs: Any) -> None:
+    def get_ten_billion(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '10000000000' 64 bit integer value.
 
         :keyword long_query: '10000000000' 64 bit integer value. The default value is 10000000000. Note
@@ -2476,7 +2492,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def get_negative_ten_billion(self, **kwargs: Any) -> None:
+    def get_negative_ten_billion(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '-10000000000' 64 bit integer value.
 
         :keyword long_query: '-10000000000' 64 bit integer value. The default value is -10000000000.
@@ -2510,7 +2526,9 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def get_long_null(self, *, long_query: Optional[int] = None, **kwargs: Any) -> None:
+    def get_long_null(  # pylint: disable=inconsistent-return-statements
+        self, *, long_query: Optional[int] = None, **kwargs: Any
+    ) -> None:
         """Get 'null 64 bit integer value (no query param in uri).
 
         :keyword long_query: null 64 bit integer value.
@@ -2541,7 +2559,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def float_scientific_positive(self, **kwargs: Any) -> None:
+    def float_scientific_positive(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '1.034E+20' numeric value.
 
         :keyword float_query: '1.034E+20'numeric value. The default value is 103400000000000000000.
@@ -2575,7 +2593,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def float_scientific_negative(self, **kwargs: Any) -> None:
+    def float_scientific_negative(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '-1.034E-20' numeric value.
 
         :keyword float_query: '-1.034E-20'numeric value. The default value is -1.034e-20. Note that
@@ -2609,7 +2627,9 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def float_null(self, *, float_query: Optional[float] = None, **kwargs: Any) -> None:
+    def float_null(  # pylint: disable=inconsistent-return-statements
+        self, *, float_query: Optional[float] = None, **kwargs: Any
+    ) -> None:
         """Get null numeric value (no query parameter).
 
         :keyword float_query: null numeric value.
@@ -2640,7 +2660,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def double_decimal_positive(self, **kwargs: Any) -> None:
+    def double_decimal_positive(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '9999999.999' numeric value.
 
         :keyword double_query: '9999999.999'numeric value. The default value is 9999999.999. Note that
@@ -2674,7 +2694,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def double_decimal_negative(self, **kwargs: Any) -> None:
+    def double_decimal_negative(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '-9999999.999' numeric value.
 
         :keyword double_query: '-9999999.999'numeric value. The default value is -9999999.999. Note
@@ -2708,7 +2728,9 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def double_null(self, *, double_query: Optional[float] = None, **kwargs: Any) -> None:
+    def double_null(  # pylint: disable=inconsistent-return-statements
+        self, *, double_query: Optional[float] = None, **kwargs: Any
+    ) -> None:
         """Get null numeric value (no query parameter).
 
         :keyword double_query: null numeric value.
@@ -2739,7 +2761,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def string_unicode(self, **kwargs: Any) -> None:
+    def string_unicode(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
         :keyword string_query: '啊齄丂狛狜隣郎隣兀﨩'multi-byte string value. The default value is "啊齄丂狛狜隣郎隣兀﨩".
@@ -2773,7 +2795,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def string_url_encoded(self, **kwargs: Any) -> None:
+    def string_url_encoded(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
         :keyword string_query: 'begin!*'();:@ &=+$,/?#[]end' url encoded string value. The default
@@ -2808,7 +2830,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def string_empty(self, **kwargs: Any) -> None:
+    def string_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get ''.
 
         :keyword string_query: '' string value. The default value is "". Note that overriding this
@@ -2842,7 +2864,9 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def string_null(self, *, string_query: Optional[str] = None, **kwargs: Any) -> None:
+    def string_null(  # pylint: disable=inconsistent-return-statements
+        self, *, string_query: Optional[str] = None, **kwargs: Any
+    ) -> None:
         """Get null (no query parameter in url).
 
         :keyword string_query: null string value.
@@ -2873,7 +2897,9 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def enum_valid(self, *, enum_query: Optional[str] = None, **kwargs: Any) -> None:
+    def enum_valid(  # pylint: disable=inconsistent-return-statements
+        self, *, enum_query: Optional[str] = None, **kwargs: Any
+    ) -> None:
         """Get using uri with query parameter 'green color'.
 
         :keyword enum_query: 'green color' enum value. Possible values are: "red color", "green color",
@@ -2905,7 +2931,9 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def enum_null(self, *, enum_query: Optional[str] = None, **kwargs: Any) -> None:
+    def enum_null(  # pylint: disable=inconsistent-return-statements
+        self, *, enum_query: Optional[str] = None, **kwargs: Any
+    ) -> None:
         """Get null (no query parameter in url).
 
         :keyword enum_query: null string value. Possible values are: "red color", "green color", and
@@ -2937,7 +2965,9 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def byte_multi_byte(self, *, byte_query: Optional[bytearray] = None, **kwargs: Any) -> None:
+    def byte_multi_byte(  # pylint: disable=inconsistent-return-statements
+        self, *, byte_query: Optional[bytearray] = None, **kwargs: Any
+    ) -> None:
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
         :keyword byte_query: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
@@ -2968,7 +2998,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def byte_empty(self, **kwargs: Any) -> None:
+    def byte_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '' as byte array.
 
         :keyword byte_query: '' as byte array. The default value is bytearray("", encoding="utf-8").
@@ -3002,7 +3032,9 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def byte_null(self, *, byte_query: Optional[bytearray] = None, **kwargs: Any) -> None:
+    def byte_null(  # pylint: disable=inconsistent-return-statements
+        self, *, byte_query: Optional[bytearray] = None, **kwargs: Any
+    ) -> None:
         """Get null as byte array (no query parameters in uri).
 
         :keyword byte_query: null as byte array (no query parameters in uri).
@@ -3033,7 +3065,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def date_valid(self, **kwargs: Any) -> None:
+    def date_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '2012-01-01' as date.
 
         :keyword date_query: '2012-01-01' as date. The default value is "2012-01-01". Note that
@@ -3067,7 +3099,9 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def date_null(self, *, date_query: Optional[datetime.date] = None, **kwargs: Any) -> None:
+    def date_null(  # pylint: disable=inconsistent-return-statements
+        self, *, date_query: Optional[datetime.date] = None, **kwargs: Any
+    ) -> None:
         """Get null as date - this should result in no query parameters in uri.
 
         :keyword date_query: null as date (no query parameters in uri).
@@ -3098,7 +3132,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def date_time_valid(self, **kwargs: Any) -> None:
+    def date_time_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '2012-01-01T01:01:01Z' as date-time.
 
         :keyword date_time_query: '2012-01-01T01:01:01Z' as date-time. The default value is
@@ -3133,7 +3167,9 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def date_time_null(self, *, date_time_query: Optional[datetime.datetime] = None, **kwargs: Any) -> None:
+    def date_time_null(  # pylint: disable=inconsistent-return-statements
+        self, *, date_time_query: Optional[datetime.datetime] = None, **kwargs: Any
+    ) -> None:
         """Get null as date-time, should result in no query parameters in uri.
 
         :keyword date_time_query: null as date-time (no query parameters).
@@ -3164,7 +3200,9 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def array_string_csv_valid(self, *, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
+    def array_string_csv_valid(  # pylint: disable=inconsistent-return-statements
+        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
+    ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         csv-array format.
 
@@ -3197,7 +3235,9 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def array_string_csv_null(self, *, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
+    def array_string_csv_null(  # pylint: disable=inconsistent-return-statements
+        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
+    ) -> None:
         """Get a null array of string using the csv-array format.
 
         :keyword array_query: a null array of string using the csv-array format.
@@ -3228,7 +3268,9 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def array_string_csv_empty(self, *, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
+    def array_string_csv_empty(  # pylint: disable=inconsistent-return-statements
+        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
+    ) -> None:
         """Get an empty array [] of string using the csv-array format.
 
         :keyword array_query: an empty array [] of string using the csv-array format.
@@ -3259,7 +3301,7 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def array_string_no_collection_format_empty(
+    def array_string_no_collection_format_empty(  # pylint: disable=inconsistent-return-statements
         self, *, array_query: Optional[List[str]] = None, **kwargs: Any
     ) -> None:
         """Array query has no defined collection format, should default to csv. Pass in ['hello', 'nihao',
@@ -3293,7 +3335,9 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def array_string_ssv_valid(self, *, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
+    def array_string_ssv_valid(  # pylint: disable=inconsistent-return-statements
+        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
+    ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         ssv-array format.
 
@@ -3326,7 +3370,9 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def array_string_tsv_valid(self, *, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
+    def array_string_tsv_valid(  # pylint: disable=inconsistent-return-statements
+        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
+    ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         tsv-array format.
 
@@ -3359,7 +3405,9 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def array_string_pipes_valid(self, *, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
+    def array_string_pipes_valid(  # pylint: disable=inconsistent-return-statements
+        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
+    ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         pipes-array format.
 
@@ -3411,7 +3459,7 @@ class PathItemsOperations(object):
         self._config = config
 
     @distributed_trace
-    def get_all_with_values(
+    def get_all_with_values(  # pylint: disable=inconsistent-return-statements
         self,
         path_item_string_path: str,
         local_string_path: str,
@@ -3464,7 +3512,7 @@ class PathItemsOperations(object):
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def get_global_query_null(
+    def get_global_query_null(  # pylint: disable=inconsistent-return-statements
         self,
         path_item_string_path: str,
         local_string_path: str,
@@ -3517,7 +3565,7 @@ class PathItemsOperations(object):
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def get_global_and_local_query_null(
+    def get_global_and_local_query_null(  # pylint: disable=inconsistent-return-statements
         self,
         path_item_string_path: str,
         local_string_path: str,
@@ -3570,7 +3618,7 @@ class PathItemsOperations(object):
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def get_local_path_item_query_null(
+    def get_local_path_item_query_null(  # pylint: disable=inconsistent-return-statements
         self,
         path_item_string_path: str,
         local_string_path: str,

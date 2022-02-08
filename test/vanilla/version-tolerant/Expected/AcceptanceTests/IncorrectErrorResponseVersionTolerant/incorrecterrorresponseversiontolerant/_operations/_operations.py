@@ -37,7 +37,7 @@ def build_get_incorrect_error_from_server_request(**kwargs: Any) -> HttpRequest:
 
 class IncorrectReturnedErrorModelOperationsMixin(object):
     @distributed_trace
-    def get_incorrect_error_from_server(self, **kwargs: Any) -> None:
+    def get_incorrect_error_from_server(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get an error response from the server that is not as described in our Error object. Want to
         swallow the deserialization error and still return an HttpResponseError to the users.
 

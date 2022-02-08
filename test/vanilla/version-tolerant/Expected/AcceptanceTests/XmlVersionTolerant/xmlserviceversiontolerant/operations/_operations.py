@@ -583,7 +583,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace
-    def put_complex_type_ref_no_meta(self, model: JSONType, **kwargs: Any) -> None:
+    def put_complex_type_ref_no_meta(  # pylint: disable=inconsistent-return-statements
+        self, model: JSONType, **kwargs: Any
+    ) -> None:
         """Puts a complex type that has a ref to a complex type with no XML node.
 
         :param model:
@@ -675,7 +677,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace
-    def put_complex_type_ref_with_meta(self, model: JSONType, **kwargs: Any) -> None:
+    def put_complex_type_ref_with_meta(  # pylint: disable=inconsistent-return-statements
+        self, model: JSONType, **kwargs: Any
+    ) -> None:
         """Puts a complex type that has a ref to a complex type with XML node.
 
         :param model:
@@ -775,7 +779,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace
-    def put_simple(self, slideshow: JSONType, **kwargs: Any) -> None:
+    def put_simple(self, slideshow: JSONType, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put a simple XML document.
 
         :param slideshow:
@@ -877,7 +881,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace
-    def put_wrapped_lists(self, wrapped_lists: JSONType, **kwargs: Any) -> None:
+    def put_wrapped_lists(  # pylint: disable=inconsistent-return-statements
+        self, wrapped_lists: JSONType, **kwargs: Any
+    ) -> None:
         """Put an XML document with multiple wrapped lists.
 
         :param wrapped_lists:
@@ -926,7 +932,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def get_headers(self, **kwargs: Any) -> None:
+    def get_headers(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get strongly-typed response headers.
 
         :return: None
@@ -1009,7 +1015,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace
-    def put_empty_list(self, slideshow: JSONType, **kwargs: Any) -> None:
+    def put_empty_list(  # pylint: disable=inconsistent-return-statements
+        self, slideshow: JSONType, **kwargs: Any
+    ) -> None:
         """Puts an empty list.
 
         :param slideshow:
@@ -1111,7 +1119,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace
-    def put_empty_wrapped_lists(self, apple_barrel: JSONType, **kwargs: Any) -> None:
+    def put_empty_wrapped_lists(  # pylint: disable=inconsistent-return-statements
+        self, apple_barrel: JSONType, **kwargs: Any
+    ) -> None:
         """Puts some empty wrapped lists.
 
         :param apple_barrel:
@@ -1207,7 +1217,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace
-    def put_root_list(self, bananas: List[JSONType], **kwargs: Any) -> None:
+    def put_root_list(  # pylint: disable=inconsistent-return-statements
+        self, bananas: List[JSONType], **kwargs: Any
+    ) -> None:
         """Puts a list as the root element.
 
         :param bananas:
@@ -1303,7 +1315,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace
-    def put_root_list_single_item(self, bananas: List[JSONType], **kwargs: Any) -> None:
+    def put_root_list_single_item(  # pylint: disable=inconsistent-return-statements
+        self, bananas: List[JSONType], **kwargs: Any
+    ) -> None:
         """Puts a list with a single item.
 
         :param bananas:
@@ -1399,7 +1413,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace
-    def put_empty_root_list(self, bananas: List[JSONType], **kwargs: Any) -> None:
+    def put_empty_root_list(  # pylint: disable=inconsistent-return-statements
+        self, bananas: List[JSONType], **kwargs: Any
+    ) -> None:
         """Puts an empty list as the root element.
 
         :param bananas:
@@ -1493,7 +1509,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace
-    def put_empty_child_element(self, banana: JSONType, **kwargs: Any) -> None:
+    def put_empty_child_element(  # pylint: disable=inconsistent-return-statements
+        self, banana: JSONType, **kwargs: Any
+    ) -> None:
         """Puts a value with an empty child element.
 
         :param banana:
@@ -1744,7 +1762,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace
-    def put_service_properties(self, properties: JSONType, **kwargs: Any) -> None:
+    def put_service_properties(  # pylint: disable=inconsistent-return-statements
+        self, properties: JSONType, **kwargs: Any
+    ) -> None:
         """Puts storage service properties.
 
         :param properties:
@@ -1938,7 +1958,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace
-    def put_acls(self, properties: List[JSONType], **kwargs: Any) -> None:
+    def put_acls(  # pylint: disable=inconsistent-return-statements
+        self, properties: List[JSONType], **kwargs: Any
+    ) -> None:
         """Puts storage ACLs for a container.
 
         :param properties:
@@ -2140,7 +2162,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace
-    def json_input(self, properties: JSONType, **kwargs: Any) -> None:
+    def json_input(self, properties: JSONType, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
         number 42.
 
@@ -2313,7 +2335,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace
-    def put_binary(self, slideshow: JSONType, **kwargs: Any) -> None:
+    def put_binary(self, slideshow: JSONType, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put an XML document with binary property.
 
         :param slideshow:
@@ -2399,7 +2421,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace
-    def put_uri(self, model: JSONType, **kwargs: Any) -> None:
+    def put_uri(self, model: JSONType, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put an XML document with uri property.
 
         :param model:

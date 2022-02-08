@@ -184,7 +184,7 @@ class DurationOperations(object):
     get_null.metadata = {"url": "/duration/null"}  # type: ignore
 
     @distributed_trace
-    def put_positive_duration(
+    def put_positive_duration(  # pylint: disable=inconsistent-return-statements
         self,
         duration_body,  # type: datetime.timedelta
         **kwargs  # type: Any

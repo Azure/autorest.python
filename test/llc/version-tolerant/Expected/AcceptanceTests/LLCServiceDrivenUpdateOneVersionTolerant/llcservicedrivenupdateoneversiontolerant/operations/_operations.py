@@ -350,7 +350,7 @@ class ParamsOperations(object):
         return deserialized
 
     @distributed_trace
-    def delete_parameters(self, **kwargs: Any) -> None:
+    def delete_parameters(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Delete something.
 
         :return: None

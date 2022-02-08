@@ -42,7 +42,9 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class AutoRestResourceFlatteningTestServiceOperationsMixin:
     @distributed_trace_async
-    async def put_array(self, resource_array: Optional[List["_models.Resource"]] = None, **kwargs: Any) -> None:
+    async def put_array(  # pylint: disable=inconsistent-return-statements
+        self, resource_array: Optional[List["_models.Resource"]] = None, **kwargs: Any
+    ) -> None:
         """Put External Resource as an Array.
 
         :param resource_array: External Resource as an Array to put.
@@ -125,7 +127,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     get_array.metadata = {"url": "/model-flatten/array"}  # type: ignore
 
     @distributed_trace_async
-    async def put_wrapped_array(
+    async def put_wrapped_array(  # pylint: disable=inconsistent-return-statements
         self, resource_array: Optional[List["_models.WrappedProduct"]] = None, **kwargs: Any
     ) -> None:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
@@ -212,7 +214,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     get_wrapped_array.metadata = {"url": "/model-flatten/wrappedarray"}  # type: ignore
 
     @distributed_trace_async
-    async def put_dictionary(
+    async def put_dictionary(  # pylint: disable=inconsistent-return-statements
         self, resource_dictionary: Optional[Dict[str, "_models.FlattenedProduct"]] = None, **kwargs: Any
     ) -> None:
         """Put External Resource as a Dictionary.
@@ -297,7 +299,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     get_dictionary.metadata = {"url": "/model-flatten/dictionary"}  # type: ignore
 
     @distributed_trace_async
-    async def put_resource_collection(
+    async def put_resource_collection(  # pylint: disable=inconsistent-return-statements
         self, resource_complex_object: Optional["_models.ResourceCollection"] = None, **kwargs: Any
     ) -> None:
         """Put External Resource as a ResourceCollection.

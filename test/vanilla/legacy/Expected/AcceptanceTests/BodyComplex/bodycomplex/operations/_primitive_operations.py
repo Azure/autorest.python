@@ -583,7 +583,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
     get_int.metadata = {"url": "/complex/primitive/integer"}  # type: ignore
 
     @distributed_trace
-    def put_int(
+    def put_int(  # pylint: disable=inconsistent-return-statements
         self,
         complex_body,  # type: "_models.IntWrapper"
         **kwargs  # type: Any
@@ -671,7 +671,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
     get_long.metadata = {"url": "/complex/primitive/long"}  # type: ignore
 
     @distributed_trace
-    def put_long(
+    def put_long(  # pylint: disable=inconsistent-return-statements
         self,
         complex_body,  # type: "_models.LongWrapper"
         **kwargs  # type: Any
@@ -759,7 +759,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
     get_float.metadata = {"url": "/complex/primitive/float"}  # type: ignore
 
     @distributed_trace
-    def put_float(
+    def put_float(  # pylint: disable=inconsistent-return-statements
         self,
         complex_body,  # type: "_models.FloatWrapper"
         **kwargs  # type: Any
@@ -847,7 +847,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
     get_double.metadata = {"url": "/complex/primitive/double"}  # type: ignore
 
     @distributed_trace
-    def put_double(
+    def put_double(  # pylint: disable=inconsistent-return-statements
         self,
         complex_body,  # type: "_models.DoubleWrapper"
         **kwargs  # type: Any
@@ -936,7 +936,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
     get_bool.metadata = {"url": "/complex/primitive/bool"}  # type: ignore
 
     @distributed_trace
-    def put_bool(
+    def put_bool(  # pylint: disable=inconsistent-return-statements
         self,
         complex_body,  # type: "_models.BooleanWrapper"
         **kwargs  # type: Any
@@ -1024,7 +1024,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
     get_string.metadata = {"url": "/complex/primitive/string"}  # type: ignore
 
     @distributed_trace
-    def put_string(
+    def put_string(  # pylint: disable=inconsistent-return-statements
         self,
         complex_body,  # type: "_models.StringWrapper"
         **kwargs  # type: Any
@@ -1112,7 +1112,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
     get_date.metadata = {"url": "/complex/primitive/date"}  # type: ignore
 
     @distributed_trace
-    def put_date(
+    def put_date(  # pylint: disable=inconsistent-return-statements
         self,
         complex_body,  # type: "_models.DateWrapper"
         **kwargs  # type: Any
@@ -1200,7 +1200,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
     get_date_time.metadata = {"url": "/complex/primitive/datetime"}  # type: ignore
 
     @distributed_trace
-    def put_date_time(
+    def put_date_time(  # pylint: disable=inconsistent-return-statements
         self,
         complex_body,  # type: "_models.DatetimeWrapper"
         **kwargs  # type: Any
@@ -1288,7 +1288,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
     get_date_time_rfc1123.metadata = {"url": "/complex/primitive/datetimerfc1123"}  # type: ignore
 
     @distributed_trace
-    def put_date_time_rfc1123(
+    def put_date_time_rfc1123(  # pylint: disable=inconsistent-return-statements
         self,
         complex_body,  # type: "_models.Datetimerfc1123Wrapper"
         **kwargs  # type: Any
@@ -1377,7 +1377,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
     get_duration.metadata = {"url": "/complex/primitive/duration"}  # type: ignore
 
     @distributed_trace
-    def put_duration(
+    def put_duration(  # pylint: disable=inconsistent-return-statements
         self,
         field=None,  # type: Optional[datetime.timedelta]
         **kwargs  # type: Any
@@ -1466,7 +1466,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
     get_byte.metadata = {"url": "/complex/primitive/byte"}  # type: ignore
 
     @distributed_trace
-    def put_byte(
+    def put_byte(  # pylint: disable=inconsistent-return-statements
         self,
         field=None,  # type: Optional[bytearray]
         **kwargs  # type: Any

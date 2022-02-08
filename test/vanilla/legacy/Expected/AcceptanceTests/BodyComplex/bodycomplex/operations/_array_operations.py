@@ -206,7 +206,7 @@ class ArrayOperations(object):
     get_valid.metadata = {"url": "/complex/array/valid"}  # type: ignore
 
     @distributed_trace
-    def put_valid(
+    def put_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array=None,  # type: Optional[List[str]]
         **kwargs  # type: Any
@@ -295,7 +295,7 @@ class ArrayOperations(object):
     get_empty.metadata = {"url": "/complex/array/empty"}  # type: ignore
 
     @distributed_trace
-    def put_empty(
+    def put_empty(  # pylint: disable=inconsistent-return-statements
         self,
         array=None,  # type: Optional[List[str]]
         **kwargs  # type: Any

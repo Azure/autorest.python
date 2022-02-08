@@ -72,7 +72,9 @@ class AvailabilitySetsOperations(object):
         self._config = config
 
     @distributed_trace
-    def update(self, resource_group_name: str, avset: str, tags: JSONType, **kwargs: Any) -> None:
+    def update(  # pylint: disable=inconsistent-return-statements
+        self, resource_group_name: str, avset: str, tags: JSONType, **kwargs: Any
+    ) -> None:
         """Updates the tags for an availability set.
 
         :param resource_group_name: The name of the resource group.

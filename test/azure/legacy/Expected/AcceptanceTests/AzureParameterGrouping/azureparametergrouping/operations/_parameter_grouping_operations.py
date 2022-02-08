@@ -227,7 +227,7 @@ class ParameterGroupingOperations(object):
         self._config = config
 
     @distributed_trace
-    def post_required(
+    def post_required(  # pylint: disable=inconsistent-return-statements
         self,
         parameter_grouping_post_required_parameters,  # type: "_models.ParameterGroupingPostRequiredParameters"
         **kwargs  # type: Any
@@ -287,7 +287,7 @@ class ParameterGroupingOperations(object):
     post_required.metadata = {"url": "/parameterGrouping/postRequired/{path}"}  # type: ignore
 
     @distributed_trace
-    def post_optional(
+    def post_optional(  # pylint: disable=inconsistent-return-statements
         self,
         parameter_grouping_post_optional_parameters=None,  # type: Optional["_models.ParameterGroupingPostOptionalParameters"]
         **kwargs  # type: Any
@@ -337,7 +337,7 @@ class ParameterGroupingOperations(object):
     post_optional.metadata = {"url": "/parameterGrouping/postOptional"}  # type: ignore
 
     @distributed_trace
-    def post_reserved_words(
+    def post_reserved_words(  # pylint: disable=inconsistent-return-statements
         self,
         parameter_grouping_post_reserved_words_parameters=None,  # type: Optional["_models.ParameterGroupingPostReservedWordsParameters"]
         **kwargs  # type: Any
@@ -387,7 +387,7 @@ class ParameterGroupingOperations(object):
     post_reserved_words.metadata = {"url": "/parameterGrouping/postReservedWords"}  # type: ignore
 
     @distributed_trace
-    def post_multi_param_groups(
+    def post_multi_param_groups(  # pylint: disable=inconsistent-return-statements
         self,
         first_parameter_group=None,  # type: Optional["_models.FirstParameterGroup"]
         parameter_grouping_post_multi_param_groups_second_param_group=None,  # type: Optional["_models.ParameterGroupingPostMultiParamGroupsSecondParamGroup"]
@@ -447,7 +447,7 @@ class ParameterGroupingOperations(object):
     post_multi_param_groups.metadata = {"url": "/parameterGrouping/postMultipleParameterGroups"}  # type: ignore
 
     @distributed_trace
-    def post_shared_parameter_group_object(
+    def post_shared_parameter_group_object(  # pylint: disable=inconsistent-return-statements
         self,
         first_parameter_group=None,  # type: Optional["_models.FirstParameterGroup"]
         **kwargs  # type: Any

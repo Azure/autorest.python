@@ -28,7 +28,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class MultiapiServiceClientOperationsMixin:
 
     @distributed_trace_async
-    async def test_one(
+    async def test_one(  # pylint: disable=inconsistent-return-statements
         self,
         id: int,
         message: Optional[str] = None,
@@ -374,7 +374,7 @@ class MultiapiServiceClientOperationsMixin:
 
 
     @distributed_trace_async
-    async def test_different_calls(
+    async def test_different_calls(  # pylint: disable=inconsistent-return-statements
         self,
         greeting_in_english: str,
         **kwargs: Any

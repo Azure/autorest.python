@@ -533,7 +533,7 @@ class LRORetrysOperations(object):
 
     begin_delete_provisioning202_accepted200_succeeded.metadata = {"url": "/lro/retryerror/delete/provisioning/202/accepted/200/succeeded"}  # type: ignore
 
-    def _delete202_retry200_initial(
+    def _delete202_retry200_initial(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -566,7 +566,7 @@ class LRORetrysOperations(object):
     _delete202_retry200_initial.metadata = {"url": "/lro/retryerror/delete/202/retry/200"}  # type: ignore
 
     @distributed_trace
-    def begin_delete202_retry200(
+    def begin_delete202_retry200(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> LROPoller[None]
@@ -614,7 +614,7 @@ class LRORetrysOperations(object):
 
     begin_delete202_retry200.metadata = {"url": "/lro/retryerror/delete/202/retry/200"}  # type: ignore
 
-    def _delete_async_relative_retry_succeeded_initial(
+    def _delete_async_relative_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -650,7 +650,7 @@ class LRORetrysOperations(object):
     _delete_async_relative_retry_succeeded_initial.metadata = {"url": "/lro/retryerror/deleteasync/retry/succeeded"}  # type: ignore
 
     @distributed_trace
-    def begin_delete_async_relative_retry_succeeded(
+    def begin_delete_async_relative_retry_succeeded(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> LROPoller[None]
@@ -698,7 +698,7 @@ class LRORetrysOperations(object):
 
     begin_delete_async_relative_retry_succeeded.metadata = {"url": "/lro/retryerror/deleteasync/retry/succeeded"}  # type: ignore
 
-    def _post202_retry200_initial(
+    def _post202_retry200_initial(  # pylint: disable=inconsistent-return-statements
         self,
         product=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
@@ -742,7 +742,7 @@ class LRORetrysOperations(object):
     _post202_retry200_initial.metadata = {"url": "/lro/retryerror/post/202/retry/200"}  # type: ignore
 
     @distributed_trace
-    def begin_post202_retry200(
+    def begin_post202_retry200(  # pylint: disable=inconsistent-return-statements
         self,
         product=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
@@ -797,7 +797,7 @@ class LRORetrysOperations(object):
 
     begin_post202_retry200.metadata = {"url": "/lro/retryerror/post/202/retry/200"}  # type: ignore
 
-    def _post_async_relative_retry_succeeded_initial(
+    def _post_async_relative_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements
         self,
         product=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
@@ -844,7 +844,7 @@ class LRORetrysOperations(object):
     _post_async_relative_retry_succeeded_initial.metadata = {"url": "/lro/retryerror/postasync/retry/succeeded"}  # type: ignore
 
     @distributed_trace
-    def begin_post_async_relative_retry_succeeded(
+    def begin_post_async_relative_retry_succeeded(  # pylint: disable=inconsistent-return-statements
         self,
         product=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any

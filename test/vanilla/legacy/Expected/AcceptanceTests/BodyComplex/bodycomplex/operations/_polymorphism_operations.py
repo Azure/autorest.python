@@ -294,7 +294,7 @@ class PolymorphismOperations(object):
     get_valid.metadata = {"url": "/complex/polymorphism/valid"}  # type: ignore
 
     @distributed_trace
-    def put_valid(
+    def put_valid(  # pylint: disable=inconsistent-return-statements
         self,
         complex_body,  # type: "_models.Fish"
         **kwargs  # type: Any
@@ -542,7 +542,7 @@ class PolymorphismOperations(object):
     get_complicated.metadata = {"url": "/complex/polymorphism/complicated"}  # type: ignore
 
     @distributed_trace
-    def put_complicated(
+    def put_complicated(  # pylint: disable=inconsistent-return-statements
         self,
         complex_body,  # type: "_models.Salmon"
         **kwargs  # type: Any
@@ -641,7 +641,7 @@ class PolymorphismOperations(object):
     put_missing_discriminator.metadata = {"url": "/complex/polymorphism/missingdiscriminator"}  # type: ignore
 
     @distributed_trace
-    def put_valid_missing_required(
+    def put_valid_missing_required(  # pylint: disable=inconsistent-return-statements
         self,
         complex_body,  # type: "_models.Fish"
         **kwargs  # type: Any

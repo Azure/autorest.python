@@ -391,7 +391,7 @@ class DateOperations(object):
     get_underflow_date.metadata = {"url": "/date/underflowdate"}  # type: ignore
 
     @distributed_trace
-    def put_max_date(
+    def put_max_date(  # pylint: disable=inconsistent-return-statements
         self,
         date_body,  # type: datetime.date
         **kwargs  # type: Any
@@ -479,7 +479,7 @@ class DateOperations(object):
     get_max_date.metadata = {"url": "/date/max"}  # type: ignore
 
     @distributed_trace
-    def put_min_date(
+    def put_min_date(  # pylint: disable=inconsistent-return-statements
         self,
         date_body,  # type: datetime.date
         **kwargs  # type: Any

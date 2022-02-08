@@ -207,7 +207,9 @@ class PetOperations(object):
         return deserialized
 
     @distributed_trace
-    def has_models_param(self, *, models: Optional[str] = "value1", **kwargs: Any) -> None:
+    def has_models_param(  # pylint: disable=inconsistent-return-statements
+        self, *, models: Optional[str] = "value1", **kwargs: Any
+    ) -> None:
         """Ensure you can correctly deserialize the returned PetActionError and deserialization doesn't
         conflict with the input param name 'models'.
 

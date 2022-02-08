@@ -246,7 +246,7 @@ class PetOperations(object):
     do_something.metadata = {"url": "/errorStatusCodes/Pets/doSomething/{whatAction}"}  # type: ignore
 
     @distributed_trace
-    def has_models_param(
+    def has_models_param(  # pylint: disable=inconsistent-return-statements
         self,
         models="value1",  # type: Optional[str]
         **kwargs  # type: Any

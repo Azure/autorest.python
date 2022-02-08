@@ -226,7 +226,7 @@ class DictionaryOperations(object):
     get_valid.metadata = {"url": "/complex/dictionary/typed/valid"}  # type: ignore
 
     @distributed_trace
-    def put_valid(
+    def put_valid(  # pylint: disable=inconsistent-return-statements
         self,
         default_program=None,  # type: Optional[Dict[str, str]]
         **kwargs  # type: Any
@@ -315,7 +315,7 @@ class DictionaryOperations(object):
     get_empty.metadata = {"url": "/complex/dictionary/typed/empty"}  # type: ignore
 
     @distributed_trace
-    def put_empty(
+    def put_empty(  # pylint: disable=inconsistent-return-statements
         self,
         default_program=None,  # type: Optional[Dict[str, str]]
         **kwargs  # type: Any

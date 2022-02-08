@@ -37,7 +37,7 @@ def build_get_request(**kwargs: Any) -> HttpRequest:
 
 class ParmaterizedEndpointClientOperationsMixin(object):
     @distributed_trace
-    def get(self, **kwargs: Any) -> None:
+    def get(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Basic get to make sure base url formatting of 'endpoint' works.
 
         :return: None

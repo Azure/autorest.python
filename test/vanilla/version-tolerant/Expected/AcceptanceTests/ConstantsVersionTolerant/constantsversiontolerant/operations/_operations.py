@@ -289,7 +289,7 @@ class ContantsOperations(object):
         self._config = config
 
     @distributed_trace
-    def put_no_model_as_string_no_required_two_value_no_default(
+    def put_no_model_as_string_no_required_two_value_no_default(  # pylint: disable=inconsistent-return-statements
         self, *, input: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -324,7 +324,7 @@ class ContantsOperations(object):
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def put_no_model_as_string_no_required_two_value_default(
+    def put_no_model_as_string_no_required_two_value_default(  # pylint: disable=inconsistent-return-statements
         self, *, input: Optional[str] = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -359,7 +359,7 @@ class ContantsOperations(object):
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def put_no_model_as_string_no_required_one_value_no_default(
+    def put_no_model_as_string_no_required_one_value_no_default(  # pylint: disable=inconsistent-return-statements
         self, *, input: Optional[str] = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -394,7 +394,7 @@ class ContantsOperations(object):
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def put_no_model_as_string_no_required_one_value_default(
+    def put_no_model_as_string_no_required_one_value_default(  # pylint: disable=inconsistent-return-statements
         self, *, input: Optional[str] = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -429,7 +429,9 @@ class ContantsOperations(object):
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def put_no_model_as_string_required_two_value_no_default(self, *, input: str, **kwargs: Any) -> None:
+    def put_no_model_as_string_required_two_value_no_default(  # pylint: disable=inconsistent-return-statements
+        self, *, input: str, **kwargs: Any
+    ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
@@ -462,7 +464,9 @@ class ContantsOperations(object):
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def put_no_model_as_string_required_two_value_default(self, *, input: str = "value1", **kwargs: Any) -> None:
+    def put_no_model_as_string_required_two_value_default(  # pylint: disable=inconsistent-return-statements
+        self, *, input: str = "value1", **kwargs: Any
+    ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
@@ -495,7 +499,9 @@ class ContantsOperations(object):
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def put_no_model_as_string_required_one_value_no_default(self, **kwargs: Any) -> None:
+    def put_no_model_as_string_required_one_value_no_default(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
@@ -531,7 +537,9 @@ class ContantsOperations(object):
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def put_no_model_as_string_required_one_value_default(self, **kwargs: Any) -> None:
+    def put_no_model_as_string_required_one_value_default(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
@@ -567,7 +575,7 @@ class ContantsOperations(object):
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def put_model_as_string_no_required_two_value_no_default(
+    def put_model_as_string_no_required_two_value_no_default(  # pylint: disable=inconsistent-return-statements
         self, *, input: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -602,7 +610,7 @@ class ContantsOperations(object):
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def put_model_as_string_no_required_two_value_default(
+    def put_model_as_string_no_required_two_value_default(  # pylint: disable=inconsistent-return-statements
         self, *, input: Optional[str] = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -637,7 +645,7 @@ class ContantsOperations(object):
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def put_model_as_string_no_required_one_value_no_default(
+    def put_model_as_string_no_required_one_value_no_default(  # pylint: disable=inconsistent-return-statements
         self, *, input: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -672,7 +680,7 @@ class ContantsOperations(object):
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def put_model_as_string_no_required_one_value_default(
+    def put_model_as_string_no_required_one_value_default(  # pylint: disable=inconsistent-return-statements
         self, *, input: Optional[str] = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -707,7 +715,9 @@ class ContantsOperations(object):
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def put_model_as_string_required_two_value_no_default(self, *, input: str, **kwargs: Any) -> None:
+    def put_model_as_string_required_two_value_no_default(  # pylint: disable=inconsistent-return-statements
+        self, *, input: str, **kwargs: Any
+    ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
@@ -740,7 +750,9 @@ class ContantsOperations(object):
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def put_model_as_string_required_two_value_default(self, *, input: str = "value1", **kwargs: Any) -> None:
+    def put_model_as_string_required_two_value_default(  # pylint: disable=inconsistent-return-statements
+        self, *, input: str = "value1", **kwargs: Any
+    ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
@@ -773,7 +785,9 @@ class ContantsOperations(object):
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def put_model_as_string_required_one_value_no_default(self, *, input: str, **kwargs: Any) -> None:
+    def put_model_as_string_required_one_value_no_default(  # pylint: disable=inconsistent-return-statements
+        self, *, input: str, **kwargs: Any
+    ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
@@ -806,7 +820,9 @@ class ContantsOperations(object):
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def put_model_as_string_required_one_value_default(self, *, input: str = "value1", **kwargs: Any) -> None:
+    def put_model_as_string_required_one_value_default(  # pylint: disable=inconsistent-return-statements
+        self, *, input: str = "value1", **kwargs: Any
+    ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
@@ -839,7 +855,7 @@ class ContantsOperations(object):
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def put_client_constants(self, **kwargs: Any) -> None:
+    def put_client_constants(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Pass constants from the client to this function. Will pass in constant path, query, and header
         parameters.
 

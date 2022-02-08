@@ -47,7 +47,7 @@ def build_patch_single_request(*, json: JSONType = None, content: Any = None, **
 
 class MergePatchJsonClientOperationsMixin(object):
     @distributed_trace
-    def patch_single(self, body: Any, **kwargs: Any) -> None:
+    def patch_single(self, body: Any, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Basic patch with an object.
 
         :param body: Pass in {'foo': 'bar'} for a 200, anything else for an object error.

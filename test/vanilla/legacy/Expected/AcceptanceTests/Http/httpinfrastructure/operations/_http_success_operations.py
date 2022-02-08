@@ -494,7 +494,7 @@ class HttpSuccessOperations(object):
         self._config = config
 
     @distributed_trace
-    def head200(
+    def head200(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -613,7 +613,7 @@ class HttpSuccessOperations(object):
     options200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace
-    def put200(
+    def put200(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -663,7 +663,7 @@ class HttpSuccessOperations(object):
     put200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace
-    def patch200(
+    def patch200(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -713,7 +713,7 @@ class HttpSuccessOperations(object):
     patch200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace
-    def post200(
+    def post200(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -763,7 +763,7 @@ class HttpSuccessOperations(object):
     post200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace
-    def delete200(
+    def delete200(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -813,7 +813,7 @@ class HttpSuccessOperations(object):
     delete200.metadata = {"url": "/http/success/200"}  # type: ignore
 
     @distributed_trace
-    def put201(
+    def put201(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -863,7 +863,7 @@ class HttpSuccessOperations(object):
     put201.metadata = {"url": "/http/success/201"}  # type: ignore
 
     @distributed_trace
-    def post201(
+    def post201(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -913,7 +913,7 @@ class HttpSuccessOperations(object):
     post201.metadata = {"url": "/http/success/201"}  # type: ignore
 
     @distributed_trace
-    def put202(
+    def put202(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -963,7 +963,7 @@ class HttpSuccessOperations(object):
     put202.metadata = {"url": "/http/success/202"}  # type: ignore
 
     @distributed_trace
-    def patch202(
+    def patch202(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -1013,7 +1013,7 @@ class HttpSuccessOperations(object):
     patch202.metadata = {"url": "/http/success/202"}  # type: ignore
 
     @distributed_trace
-    def post202(
+    def post202(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -1063,7 +1063,7 @@ class HttpSuccessOperations(object):
     post202.metadata = {"url": "/http/success/202"}  # type: ignore
 
     @distributed_trace
-    def delete202(
+    def delete202(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -1113,7 +1113,7 @@ class HttpSuccessOperations(object):
     delete202.metadata = {"url": "/http/success/202"}  # type: ignore
 
     @distributed_trace
-    def head204(
+    def head204(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1150,7 +1150,7 @@ class HttpSuccessOperations(object):
     head204.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace
-    def put204(
+    def put204(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -1200,7 +1200,7 @@ class HttpSuccessOperations(object):
     put204.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace
-    def patch204(
+    def patch204(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -1250,7 +1250,7 @@ class HttpSuccessOperations(object):
     patch204.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace
-    def post204(
+    def post204(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -1300,7 +1300,7 @@ class HttpSuccessOperations(object):
     post204.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace
-    def delete204(
+    def delete204(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -1350,7 +1350,7 @@ class HttpSuccessOperations(object):
     delete204.metadata = {"url": "/http/success/204"}  # type: ignore
 
     @distributed_trace
-    def head404(
+    def head404(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None

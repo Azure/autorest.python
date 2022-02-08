@@ -14,7 +14,7 @@ from typing import Any
 
 class MultiapiCustomBaseUrlServiceClientOperationsMixin(object):
 
-    async def test(
+    async def test(  # pylint: disable=inconsistent-return-statements
         self,
         id: int,
         **kwargs: Any

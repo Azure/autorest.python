@@ -406,7 +406,7 @@ class HttpRedirectsOperations(object):
         self._config = config
 
     @distributed_trace
-    def head300(
+    def head300(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -493,7 +493,7 @@ class HttpRedirectsOperations(object):
     get300.metadata = {"url": "/http/redirect/300"}  # type: ignore
 
     @distributed_trace
-    def head301(
+    def head301(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -534,7 +534,7 @@ class HttpRedirectsOperations(object):
     head301.metadata = {"url": "/http/redirect/301"}  # type: ignore
 
     @distributed_trace
-    def get301(
+    def get301(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -575,7 +575,7 @@ class HttpRedirectsOperations(object):
     get301.metadata = {"url": "/http/redirect/301"}  # type: ignore
 
     @distributed_trace
-    def put301(
+    def put301(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -629,7 +629,7 @@ class HttpRedirectsOperations(object):
     put301.metadata = {"url": "/http/redirect/301"}  # type: ignore
 
     @distributed_trace
-    def head302(
+    def head302(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -670,7 +670,7 @@ class HttpRedirectsOperations(object):
     head302.metadata = {"url": "/http/redirect/302"}  # type: ignore
 
     @distributed_trace
-    def get302(
+    def get302(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -711,7 +711,7 @@ class HttpRedirectsOperations(object):
     get302.metadata = {"url": "/http/redirect/302"}  # type: ignore
 
     @distributed_trace
-    def patch302(
+    def patch302(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -765,7 +765,7 @@ class HttpRedirectsOperations(object):
     patch302.metadata = {"url": "/http/redirect/302"}  # type: ignore
 
     @distributed_trace
-    def post303(
+    def post303(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -820,7 +820,7 @@ class HttpRedirectsOperations(object):
     post303.metadata = {"url": "/http/redirect/303"}  # type: ignore
 
     @distributed_trace
-    def head307(
+    def head307(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -861,7 +861,7 @@ class HttpRedirectsOperations(object):
     head307.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
     @distributed_trace
-    def get307(
+    def get307(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -902,7 +902,7 @@ class HttpRedirectsOperations(object):
     get307.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
     @distributed_trace
-    def options307(
+    def options307(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -943,7 +943,7 @@ class HttpRedirectsOperations(object):
     options307.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
     @distributed_trace
-    def put307(
+    def put307(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -997,7 +997,7 @@ class HttpRedirectsOperations(object):
     put307.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
     @distributed_trace
-    def patch307(
+    def patch307(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -1051,7 +1051,7 @@ class HttpRedirectsOperations(object):
     patch307.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
     @distributed_trace
-    def post307(
+    def post307(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -1105,7 +1105,7 @@ class HttpRedirectsOperations(object):
     post307.metadata = {"url": "/http/redirect/307"}  # type: ignore
 
     @distributed_trace
-    def delete307(
+    def delete307(  # pylint: disable=inconsistent-return-statements
         self,
         boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
