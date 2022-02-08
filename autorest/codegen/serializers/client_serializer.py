@@ -116,7 +116,7 @@ class ClientSerializer:
             method_name=self.code_model.send_request_name,
             is_in_class=True,
             method_param_signatures=self.code_model.service_client.send_request_signature(
-                async_mode, async_mode or self.is_python3_file
+                async_mode or self.is_python3_file
             ),
         )
 
