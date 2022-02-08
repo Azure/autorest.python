@@ -10,8 +10,6 @@ from collections import defaultdict
 from abc import abstractmethod, ABC
 from typing import Any, List, TypeVar, Dict, Union, Optional, cast
 
-from autorest.codegen.models import request_builder
-
 from ..models import (
     Operation,
     CodeModel,
