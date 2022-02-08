@@ -43,11 +43,7 @@ class BodyFormsDataURLEncoded:
             self._client, self._config, self._serialize, self._deserialize
         )
 
-    def send_request(
-        self,
-        request,  # type: HttpRequest
-        **kwargs: Any
-    ) -> HttpResponse:
+    def send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

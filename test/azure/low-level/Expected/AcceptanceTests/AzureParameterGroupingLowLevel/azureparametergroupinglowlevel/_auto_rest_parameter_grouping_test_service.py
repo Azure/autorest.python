@@ -35,11 +35,7 @@ class AutoRestParameterGroupingTestService:
         self._serialize = Serializer()
         self._deserialize = Deserializer()
 
-    def send_request(
-        self,
-        request,  # type: HttpRequest
-        **kwargs: Any
-    ) -> HttpResponse:
+    def send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `azureparametergroupinglowlevel.rest`.

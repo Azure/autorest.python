@@ -22,11 +22,11 @@ from azure.core.tracing.decorator import distributed_trace
 from msrest import Serializer
 
 from .. import models as _models
-from .._vendor import _convert_request
+from .._vendor import _convert_request, _format_url_section
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, IO, Optional, TypeVar
+    from typing import Any, Callable, Dict, IO, List, Optional, TypeVar
 
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -126,6 +126,42 @@ def build_operation_with_files_param_request(
     return HttpRequest(
         method="PUT",
         url=url,
+        headers=header_parameters,
+        **kwargs
+    )
+
+
+def build_operation_with_url_request(
+    url,  # type: str
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    header_parameters = kwargs.pop('header_parameters')  # type: str
+    query_parameters = kwargs.pop('query_parameters', None)  # type: Optional[List[str]]
+
+    accept = "application/json"
+    # Construct URL
+    url = kwargs.pop("template_url", '/reservedWords/{url}')
+    path_format_arguments = {
+        "url": _SERIALIZER.url("url", url, 'str'),
+    }
+
+    url = _format_url_section(url, **path_format_arguments)
+
+    # Construct parameters
+    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    if query_parameters is not None:
+        query_parameters['queryParameters'] = [_SERIALIZER.query("query_parameters", q, 'str') if q is not None else '' for q in query_parameters]
+
+    # Construct headers
+    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    header_parameters['headerParameters'] = _SERIALIZER.header("header_parameters", header_parameters, 'str')
+    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=url,
+        params=query_parameters,
         headers=header_parameters,
         **kwargs
     )
@@ -345,3 +381,59 @@ class ReservedWordsClientOperationsMixin(object):
         return deserialized
 
     operation_with_files_param.metadata = {"url": "/reservedWords/operation/files"}  # type: ignore
+
+    @distributed_trace
+    def operation_with_url(
+        self,
+        url,  # type: str
+        header_parameters,  # type: str
+        query_parameters=None,  # type: Optional[List[str]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> Any
+        """Operation with path format argument URL, header param headerParameters, and query param
+        queryParameters.
+
+        :param url: Pass in 'foo'.
+        :type url: str
+        :param header_parameters: Header arg that uses same name as headerParameters in generated code.
+         Pass in 'x-ms-header' to pass.
+        :type header_parameters: str
+        :param query_parameters: Query args that uses same name as queryParameters in generated code.
+         Pass in ['one', 'two'] to pass test.
+        :type query_parameters: list[str]
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: any, or the result of cls(response)
+        :rtype: any
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        request = build_operation_with_url_request(
+            url=url,
+            header_parameters=header_parameters,
+            query_parameters=query_parameters,
+            template_url=self.operation_with_url.metadata["url"],
+        )
+        request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
+
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        deserialized = self._deserialize("object", pipeline_response)
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+
+    operation_with_url.metadata = {"url": "/reservedWords/{url}"}  # type: ignore
