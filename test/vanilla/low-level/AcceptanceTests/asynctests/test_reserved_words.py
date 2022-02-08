@@ -30,7 +30,8 @@ from reservedwordslowlevel.rest import (
     build_operation_with_files_param_request,
     build_operation_with_data_param_request,
     build_operation_with_json_param_request,
-    build_operation_with_content_param_request
+    build_operation_with_content_param_request,
+    build_operation_with_url_request,
 )
 
 @pytest.fixture
@@ -71,5 +72,10 @@ async def test_operation_with_files_param(send_request):
         "file_name": "my.txt",
         "files": b'bytes'
     })
+    await send_request(request)
+
+@pytest.mark.asyncio
+async def test_operation_with_url(send_request):
+    request = build_operation_with_url_request("foo", header_parameters="x-ms-header", query_parameters=["one", "two"])
     await send_request(request)
 
