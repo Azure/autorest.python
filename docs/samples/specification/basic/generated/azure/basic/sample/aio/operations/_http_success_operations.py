@@ -76,7 +76,7 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    head200.metadata = {'url': '/http/success/200'}  # type: ignore
+    head200.metadata = {'url': "/http/success/200"}  # type: ignore
 
 
     @distributed_trace_async
@@ -118,7 +118,7 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    head204.metadata = {'url': '/http/success/204'}  # type: ignore
+    head204.metadata = {'url': "/http/success/204"}  # type: ignore
 
 
     @distributed_trace_async
@@ -160,5 +160,5 @@ class HttpSuccessOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    head404.metadata = {'url': '/http/success/404'}  # type: ignore
+    head404.metadata = {'url': "/http/success/404"}  # type: ignore
 

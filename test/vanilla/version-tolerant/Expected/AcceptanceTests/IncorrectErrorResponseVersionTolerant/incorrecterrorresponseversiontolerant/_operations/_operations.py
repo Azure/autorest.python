@@ -30,9 +30,9 @@ _SERIALIZER.client_side_validation = False
 
 def build_get_incorrect_error_from_server_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
-    url = "/incorrectError"
+    _url = "/incorrectError"
 
-    return HttpRequest(method="GET", url=url, **kwargs)
+    return HttpRequest(method="GET", url=_url, **kwargs)
 
 
 class IncorrectReturnedErrorModelOperationsMixin(object):

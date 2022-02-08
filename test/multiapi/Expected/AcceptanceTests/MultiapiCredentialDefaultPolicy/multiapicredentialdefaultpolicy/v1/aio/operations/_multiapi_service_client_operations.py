@@ -78,7 +78,7 @@ class MultiapiServiceClientOperationsMixin:
         if cls:
             return cls(pipeline_response, None, {})
 
-    test_one.metadata = {'url': '/multiapi/testOneEndpoint'}  # type: ignore
+    test_one.metadata = {'url': "/multiapi/testOneEndpoint"}  # type: ignore
 
 
     async def _test_lro_initial(
@@ -127,7 +127,7 @@ class MultiapiServiceClientOperationsMixin:
 
         return deserialized
 
-    _test_lro_initial.metadata = {'url': '/multiapi/lro'}  # type: ignore
+    _test_lro_initial.metadata = {'url': "/multiapi/lro"}  # type: ignore
 
 
     @distributed_trace_async
@@ -190,7 +190,7 @@ class MultiapiServiceClientOperationsMixin:
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_test_lro.metadata = {'url': '/multiapi/lro'}  # type: ignore
+    begin_test_lro.metadata = {'url': "/multiapi/lro"}  # type: ignore
 
     async def _test_lro_and_paging_initial(
         self,
@@ -237,7 +237,7 @@ class MultiapiServiceClientOperationsMixin:
 
         return deserialized
 
-    _test_lro_and_paging_initial.metadata = {'url': '/multiapi/lroAndPaging'}  # type: ignore
+    _test_lro_and_paging_initial.metadata = {'url': "/multiapi/lroAndPaging"}  # type: ignore
 
 
     @distributed_trace_async
@@ -371,7 +371,7 @@ class MultiapiServiceClientOperationsMixin:
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    begin_test_lro_and_paging.metadata = {'url': '/multiapi/lroAndPaging'}  # type: ignore
+    begin_test_lro_and_paging.metadata = {'url': "/multiapi/lroAndPaging"}  # type: ignore
 
 
     @distributed_trace_async
@@ -421,5 +421,5 @@ class MultiapiServiceClientOperationsMixin:
         if cls:
             return cls(pipeline_response, None, {})
 
-    test_different_calls.metadata = {'url': '/multiapi/testDifferentCalls'}  # type: ignore
+    test_different_calls.metadata = {'url': "/multiapi/testDifferentCalls"}  # type: ignore
 

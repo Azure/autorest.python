@@ -31,23 +31,23 @@ _SERIALIZER.client_side_validation = False
 
 def build_head_exception_head200_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
-    url = "/http/success/200"
+    _url = "/http/success/200"
 
-    return HttpRequest(method="HEAD", url=url, **kwargs)
+    return HttpRequest(method="HEAD", url=_url, **kwargs)
 
 
 def build_head_exception_head204_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
-    url = "/http/success/204"
+    _url = "/http/success/204"
 
-    return HttpRequest(method="HEAD", url=url, **kwargs)
+    return HttpRequest(method="HEAD", url=_url, **kwargs)
 
 
 def build_head_exception_head404_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
-    url = "/http/success/404"
+    _url = "/http/success/404"
 
-    return HttpRequest(method="HEAD", url=url, **kwargs)
+    return HttpRequest(method="HEAD", url=_url, **kwargs)
 
 
 class HeadExceptionOperations(object):

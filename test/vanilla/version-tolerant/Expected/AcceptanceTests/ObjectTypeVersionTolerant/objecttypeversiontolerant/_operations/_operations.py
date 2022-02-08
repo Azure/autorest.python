@@ -32,13 +32,13 @@ _SERIALIZER.client_side_validation = False
 def build_get_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/objectType/get"
+    _url = "/objectType/get"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_put_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
@@ -46,15 +46,15 @@ def build_put_request(*, json: JSONType = None, content: Any = None, **kwargs: A
 
     accept = "application/json"
     # Construct URL
-    url = "/objectType/put"
+    _url = "/objectType/put"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
 
 
 class ObjectTypeClientOperationsMixin(object):
