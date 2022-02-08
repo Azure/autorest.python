@@ -203,7 +203,7 @@ class AnythingClientOperationsMixin(object):
     get_object.metadata = {"url": "/anything/object"}  # type: ignore
 
     @distributed_trace
-    def put_object(
+    def put_object(  # pylint: disable=inconsistent-return-statements
         self,
         input,  # type: Any
         **kwargs  # type: Any
@@ -290,7 +290,7 @@ class AnythingClientOperationsMixin(object):
     get_string.metadata = {"url": "/anything/string"}  # type: ignore
 
     @distributed_trace
-    def put_string(
+    def put_string(  # pylint: disable=inconsistent-return-statements
         self,
         input,  # type: Any
         **kwargs  # type: Any
@@ -377,7 +377,7 @@ class AnythingClientOperationsMixin(object):
     get_array.metadata = {"url": "/anything/array"}  # type: ignore
 
     @distributed_trace
-    def put_array(
+    def put_array(  # pylint: disable=inconsistent-return-statements
         self,
         input,  # type: Any
         **kwargs  # type: Any

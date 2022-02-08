@@ -630,7 +630,7 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
         self._config = config
 
     @distributed_trace
-    def put_optional_binary_body(
+    def put_optional_binary_body(  # pylint: disable=inconsistent-return-statements
         self,
         body_parameter=None,  # type: Optional[IO]
         **kwargs  # type: Any
@@ -677,7 +677,7 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
     put_optional_binary_body.metadata = {"url": "/reqopt/explicit/optional/binary-body"}  # type: ignore
 
     @distributed_trace
-    def put_required_binary_body(
+    def put_required_binary_body(  # pylint: disable=inconsistent-return-statements
         self,
         body_parameter,  # type: IO
         **kwargs  # type: Any
@@ -724,7 +724,7 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
     put_required_binary_body.metadata = {"url": "/reqopt/explicit/required/binary-body"}  # type: ignore
 
     @distributed_trace
-    def post_required_integer_parameter(
+    def post_required_integer_parameter(  # pylint: disable=inconsistent-return-statements
         self,
         body_parameter,  # type: int
         **kwargs  # type: Any
@@ -772,7 +772,7 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
     post_required_integer_parameter.metadata = {"url": "/reqopt/requied/integer/parameter"}  # type: ignore
 
     @distributed_trace
-    def post_optional_integer_parameter(
+    def post_optional_integer_parameter(  # pylint: disable=inconsistent-return-statements
         self,
         body_parameter=None,  # type: Optional[int]
         **kwargs  # type: Any
@@ -822,7 +822,7 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
     post_optional_integer_parameter.metadata = {"url": "/reqopt/optional/integer/parameter"}  # type: ignore
 
     @distributed_trace
-    def post_required_integer_property(
+    def post_required_integer_property(  # pylint: disable=inconsistent-return-statements
         self,
         value,  # type: int
         **kwargs  # type: Any
@@ -871,7 +871,7 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
     post_required_integer_property.metadata = {"url": "/reqopt/requied/integer/property"}  # type: ignore
 
     @distributed_trace
-    def post_optional_integer_property(
+    def post_optional_integer_property(  # pylint: disable=inconsistent-return-statements
         self,
         value=None,  # type: Optional[int]
         **kwargs  # type: Any
@@ -922,7 +922,7 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
     post_optional_integer_property.metadata = {"url": "/reqopt/optional/integer/property"}  # type: ignore
 
     @distributed_trace
-    def post_required_integer_header(
+    def post_required_integer_header(  # pylint: disable=inconsistent-return-statements
         self,
         header_parameter,  # type: int
         **kwargs  # type: Any
@@ -965,7 +965,7 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
     post_required_integer_header.metadata = {"url": "/reqopt/requied/integer/header"}  # type: ignore
 
     @distributed_trace
-    def post_optional_integer_header(
+    def post_optional_integer_header(  # pylint: disable=inconsistent-return-statements
         self,
         header_parameter=None,  # type: Optional[int]
         **kwargs  # type: Any
@@ -1007,7 +1007,7 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
     post_optional_integer_header.metadata = {"url": "/reqopt/optional/integer/header"}  # type: ignore
 
     @distributed_trace
-    def post_required_string_parameter(
+    def post_required_string_parameter(  # pylint: disable=inconsistent-return-statements
         self,
         body_parameter,  # type: str
         **kwargs  # type: Any
@@ -1055,7 +1055,7 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
     post_required_string_parameter.metadata = {"url": "/reqopt/requied/string/parameter"}  # type: ignore
 
     @distributed_trace
-    def post_optional_string_parameter(
+    def post_optional_string_parameter(  # pylint: disable=inconsistent-return-statements
         self,
         body_parameter=None,  # type: Optional[str]
         **kwargs  # type: Any
@@ -1105,7 +1105,7 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
     post_optional_string_parameter.metadata = {"url": "/reqopt/optional/string/parameter"}  # type: ignore
 
     @distributed_trace
-    def post_required_string_property(
+    def post_required_string_property(  # pylint: disable=inconsistent-return-statements
         self,
         value,  # type: str
         **kwargs  # type: Any
@@ -1154,7 +1154,7 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
     post_required_string_property.metadata = {"url": "/reqopt/requied/string/property"}  # type: ignore
 
     @distributed_trace
-    def post_optional_string_property(
+    def post_optional_string_property(  # pylint: disable=inconsistent-return-statements
         self,
         value=None,  # type: Optional[str]
         **kwargs  # type: Any
@@ -1205,7 +1205,7 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
     post_optional_string_property.metadata = {"url": "/reqopt/optional/string/property"}  # type: ignore
 
     @distributed_trace
-    def post_required_string_header(
+    def post_required_string_header(  # pylint: disable=inconsistent-return-statements
         self,
         header_parameter,  # type: str
         **kwargs  # type: Any
@@ -1248,7 +1248,7 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
     post_required_string_header.metadata = {"url": "/reqopt/requied/string/header"}  # type: ignore
 
     @distributed_trace
-    def post_optional_string_header(
+    def post_optional_string_header(  # pylint: disable=inconsistent-return-statements
         self,
         body_parameter=None,  # type: Optional[str]
         **kwargs  # type: Any
@@ -1290,7 +1290,7 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
     post_optional_string_header.metadata = {"url": "/reqopt/optional/string/header"}  # type: ignore
 
     @distributed_trace
-    def post_required_class_parameter(
+    def post_required_class_parameter(  # pylint: disable=inconsistent-return-statements
         self,
         body_parameter,  # type: "_models.Product"
         **kwargs  # type: Any
@@ -1338,7 +1338,7 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
     post_required_class_parameter.metadata = {"url": "/reqopt/requied/class/parameter"}  # type: ignore
 
     @distributed_trace
-    def post_optional_class_parameter(
+    def post_optional_class_parameter(  # pylint: disable=inconsistent-return-statements
         self,
         body_parameter=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
@@ -1388,7 +1388,7 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
     post_optional_class_parameter.metadata = {"url": "/reqopt/optional/class/parameter"}  # type: ignore
 
     @distributed_trace
-    def post_required_class_property(
+    def post_required_class_property(  # pylint: disable=inconsistent-return-statements
         self,
         value,  # type: "_models.Product"
         **kwargs  # type: Any
@@ -1437,7 +1437,7 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
     post_required_class_property.metadata = {"url": "/reqopt/requied/class/property"}  # type: ignore
 
     @distributed_trace
-    def post_optional_class_property(
+    def post_optional_class_property(  # pylint: disable=inconsistent-return-statements
         self,
         value=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
@@ -1488,7 +1488,7 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
     post_optional_class_property.metadata = {"url": "/reqopt/optional/class/property"}  # type: ignore
 
     @distributed_trace
-    def post_required_array_parameter(
+    def post_required_array_parameter(  # pylint: disable=inconsistent-return-statements
         self,
         body_parameter,  # type: List[str]
         **kwargs  # type: Any
@@ -1536,7 +1536,7 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
     post_required_array_parameter.metadata = {"url": "/reqopt/requied/array/parameter"}  # type: ignore
 
     @distributed_trace
-    def post_optional_array_parameter(
+    def post_optional_array_parameter(  # pylint: disable=inconsistent-return-statements
         self,
         body_parameter=None,  # type: Optional[List[str]]
         **kwargs  # type: Any
@@ -1586,7 +1586,7 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
     post_optional_array_parameter.metadata = {"url": "/reqopt/optional/array/parameter"}  # type: ignore
 
     @distributed_trace
-    def post_required_array_property(
+    def post_required_array_property(  # pylint: disable=inconsistent-return-statements
         self,
         value,  # type: List[str]
         **kwargs  # type: Any
@@ -1635,7 +1635,7 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
     post_required_array_property.metadata = {"url": "/reqopt/requied/array/property"}  # type: ignore
 
     @distributed_trace
-    def post_optional_array_property(
+    def post_optional_array_property(  # pylint: disable=inconsistent-return-statements
         self,
         value=None,  # type: Optional[List[str]]
         **kwargs  # type: Any
@@ -1686,7 +1686,7 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
     post_optional_array_property.metadata = {"url": "/reqopt/optional/array/property"}  # type: ignore
 
     @distributed_trace
-    def post_required_array_header(
+    def post_required_array_header(  # pylint: disable=inconsistent-return-statements
         self,
         header_parameter,  # type: List[str]
         **kwargs  # type: Any
@@ -1729,7 +1729,7 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
     post_required_array_header.metadata = {"url": "/reqopt/requied/array/header"}  # type: ignore
 
     @distributed_trace
-    def post_optional_array_header(
+    def post_optional_array_header(  # pylint: disable=inconsistent-return-statements
         self,
         header_parameter=None,  # type: Optional[List[str]]
         **kwargs  # type: Any

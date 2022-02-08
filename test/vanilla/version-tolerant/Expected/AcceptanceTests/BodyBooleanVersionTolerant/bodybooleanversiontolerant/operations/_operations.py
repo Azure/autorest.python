@@ -164,7 +164,7 @@ class BoolOperations(object):
         return deserialized
 
     @distributed_trace
-    def put_true(self, **kwargs: Any) -> None:
+    def put_true(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Set Boolean value true.
 
         :keyword bool_body: The default value is True. Note that overriding this default value may
@@ -234,7 +234,7 @@ class BoolOperations(object):
         return deserialized
 
     @distributed_trace
-    def put_false(self, **kwargs: Any) -> None:
+    def put_false(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Set Boolean value false.
 
         :keyword bool_body: The default value is False. Note that overriding this default value may

@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 
 class MultiapiCustomBaseUrlServiceClientOperationsMixin(object):
 
-    def test(
+    def test(  # pylint: disable=inconsistent-return-statements
         self,
         id,  # type: int
         **kwargs  # type: Any

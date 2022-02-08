@@ -95,7 +95,9 @@ class ArrayOperations:
     get_valid.metadata = {"url": "/complex/array/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def put_valid(self, array: Optional[List[str]] = None, **kwargs: Any) -> None:
+    async def put_valid(  # pylint: disable=inconsistent-return-statements
+        self, array: Optional[List[str]] = None, **kwargs: Any
+    ) -> None:
         """Put complex types with array property.
 
         :param array:
@@ -176,7 +178,9 @@ class ArrayOperations:
     get_empty.metadata = {"url": "/complex/array/empty"}  # type: ignore
 
     @distributed_trace_async
-    async def put_empty(self, array: Optional[List[str]] = None, **kwargs: Any) -> None:
+    async def put_empty(  # pylint: disable=inconsistent-return-statements
+        self, array: Optional[List[str]] = None, **kwargs: Any
+    ) -> None:
         """Put complex types with array property which is empty.
 
         :param array:

@@ -99,7 +99,9 @@ class PolymorphismOperations:
     get_valid.metadata = {"url": "/complex/polymorphism/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def put_valid(self, complex_body: "_models.Fish", **kwargs: Any) -> None:
+    async def put_valid(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: "_models.Fish", **kwargs: Any
+    ) -> None:
         """Put complex types that are polymorphic.
 
         :param complex_body: Please put a salmon that looks like this:
@@ -330,7 +332,9 @@ class PolymorphismOperations:
     get_complicated.metadata = {"url": "/complex/polymorphism/complicated"}  # type: ignore
 
     @distributed_trace_async
-    async def put_complicated(self, complex_body: "_models.Salmon", **kwargs: Any) -> None:
+    async def put_complicated(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: "_models.Salmon", **kwargs: Any
+    ) -> None:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
         additional properties.
 
@@ -419,7 +423,9 @@ class PolymorphismOperations:
     put_missing_discriminator.metadata = {"url": "/complex/polymorphism/missingdiscriminator"}  # type: ignore
 
     @distributed_trace_async
-    async def put_valid_missing_required(self, complex_body: "_models.Fish", **kwargs: Any) -> None:
+    async def put_valid_missing_required(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: "_models.Fish", **kwargs: Any
+    ) -> None:
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
         request should not be allowed from the client.
 

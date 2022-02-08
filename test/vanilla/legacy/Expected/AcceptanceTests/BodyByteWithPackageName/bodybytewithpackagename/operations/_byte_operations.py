@@ -285,7 +285,7 @@ class ByteOperations(object):
     get_non_ascii.metadata = {"url": "/byte/nonAscii"}  # type: ignore
 
     @distributed_trace
-    def put_non_ascii(
+    def put_non_ascii(  # pylint: disable=inconsistent-return-statements
         self,
         byte_body,  # type: bytearray
         **kwargs  # type: Any

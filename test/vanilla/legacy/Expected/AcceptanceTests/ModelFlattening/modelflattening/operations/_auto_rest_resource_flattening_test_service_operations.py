@@ -291,7 +291,7 @@ def build_put_simple_product_with_grouping_request(
 # fmt: on
 class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     @distributed_trace
-    def put_array(
+    def put_array(  # pylint: disable=inconsistent-return-statements
         self,
         resource_array=None,  # type: Optional[List["_models.Resource"]]
         **kwargs  # type: Any
@@ -382,7 +382,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     get_array.metadata = {"url": "/model-flatten/array"}  # type: ignore
 
     @distributed_trace
-    def put_wrapped_array(
+    def put_wrapped_array(  # pylint: disable=inconsistent-return-statements
         self,
         resource_array=None,  # type: Optional[List["_models.WrappedProduct"]]
         **kwargs  # type: Any
@@ -475,7 +475,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     get_wrapped_array.metadata = {"url": "/model-flatten/wrappedarray"}  # type: ignore
 
     @distributed_trace
-    def put_dictionary(
+    def put_dictionary(  # pylint: disable=inconsistent-return-statements
         self,
         resource_dictionary=None,  # type: Optional[Dict[str, "_models.FlattenedProduct"]]
         **kwargs  # type: Any
@@ -566,7 +566,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     get_dictionary.metadata = {"url": "/model-flatten/dictionary"}  # type: ignore
 
     @distributed_trace
-    def put_resource_collection(
+    def put_resource_collection(  # pylint: disable=inconsistent-return-statements
         self,
         resource_complex_object=None,  # type: Optional["_models.ResourceCollection"]
         **kwargs  # type: Any

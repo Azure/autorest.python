@@ -96,7 +96,7 @@ class MultiapiServiceClientOperationsMixin(object):
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
         return mixin_instance.begin_test_lro_and_paging(client_request_id, test_lro_and_paging_options, **kwargs)
 
-    def test_different_calls(
+    def test_different_calls(  # pylint: disable=inconsistent-return-statements
         self,
         greeting_in_english,  # type: str
         greeting_in_chinese=None,  # type: Optional[str]
@@ -134,7 +134,7 @@ class MultiapiServiceClientOperationsMixin(object):
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
         return mixin_instance.test_different_calls(greeting_in_english, greeting_in_chinese, greeting_in_french, **kwargs)
 
-    def test_one(
+    def test_one(  # pylint: disable=inconsistent-return-statements
         self,
         id,  # type: int
         message=None,  # type: Optional[str]

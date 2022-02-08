@@ -51,7 +51,7 @@ def build_get_incorrect_error_from_server_request(
 # fmt: on
 class IncorrectReturnedErrorModelOperationsMixin(object):
     @distributed_trace
-    def get_incorrect_error_from_server(
+    def get_incorrect_error_from_server(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None

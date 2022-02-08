@@ -4557,7 +4557,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _delete204_succeeded_initial(self, **kwargs: Any) -> None:
+    def _delete204_succeeded_initial(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -4827,7 +4827,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _delete_no_header_in_retry_initial(self, **kwargs: Any) -> None:
+    def _delete_no_header_in_retry_initial(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -4894,7 +4896,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _delete_async_no_header_in_retry_initial(self, **kwargs: Any) -> None:
+    def _delete_async_no_header_in_retry_initial(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -4961,7 +4965,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _delete_async_retry_succeeded_initial(self, **kwargs: Any) -> None:
+    def _delete_async_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -5031,7 +5037,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _delete_async_no_retry_succeeded_initial(self, **kwargs: Any) -> None:
+    def _delete_async_no_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -5101,7 +5109,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _delete_async_retry_failed_initial(self, **kwargs: Any) -> None:
+    def _delete_async_retry_failed_initial(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -5171,7 +5181,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _delete_async_retrycanceled_initial(self, **kwargs: Any) -> None:
+    def _delete_async_retrycanceled_initial(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -5333,7 +5345,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _post202_retry200_initial(self, product: JSONType = None, **kwargs: Any) -> None:
+    def _post202_retry200_initial(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -6152,7 +6166,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _post_async_retry_failed_initial(self, product: JSONType = None, **kwargs: Any) -> None:
+    def _post_async_retry_failed_initial(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -6259,7 +6275,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _post_async_retrycanceled_initial(self, product: JSONType = None, **kwargs: Any) -> None:
+    def _post_async_retrycanceled_initial(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -6777,7 +6795,7 @@ class LRORetrysOperations(object):
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _delete202_retry200_initial(self, **kwargs: Any) -> None:
+    def _delete202_retry200_initial(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -6844,7 +6862,9 @@ class LRORetrysOperations(object):
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _delete_async_relative_retry_succeeded_initial(self, **kwargs: Any) -> None:
+    def _delete_async_relative_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -6914,7 +6934,9 @@ class LRORetrysOperations(object):
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _post202_retry200_initial(self, product: JSONType = None, **kwargs: Any) -> None:
+    def _post202_retry200_initial(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -7017,7 +7039,9 @@ class LRORetrysOperations(object):
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _post_async_relative_retry_succeeded_initial(self, product: JSONType = None, **kwargs: Any) -> None:
+    def _post_async_relative_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -7699,7 +7723,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _delete_non_retry400_initial(self, **kwargs: Any) -> None:
+    def _delete_non_retry400_initial(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -7765,7 +7789,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _delete202_non_retry400_initial(self, **kwargs: Any) -> None:
+    def _delete202_non_retry400_initial(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -7831,7 +7855,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _delete_async_relative_retry400_initial(self, **kwargs: Any) -> None:
+    def _delete_async_relative_retry400_initial(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -7901,7 +7927,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _post_non_retry400_initial(self, product: JSONType = None, **kwargs: Any) -> None:
+    def _post_non_retry400_initial(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -8003,7 +8031,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _post202_non_retry400_initial(self, product: JSONType = None, **kwargs: Any) -> None:
+    def _post202_non_retry400_initial(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -8105,7 +8135,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _post_async_relative_retry400_initial(self, product: JSONType = None, **kwargs: Any) -> None:
+    def _post_async_relative_retry400_initial(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -8641,7 +8673,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _delete204_succeeded_initial(self, **kwargs: Any) -> None:
+    def _delete204_succeeded_initial(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -8703,7 +8735,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _delete_async_relative_retry_no_status_initial(self, **kwargs: Any) -> None:
+    def _delete_async_relative_retry_no_status_initial(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -8773,7 +8807,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _post202_no_location_initial(self, product: JSONType = None, **kwargs: Any) -> None:
+    def _post202_no_location_initial(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -8876,7 +8912,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _post_async_relative_retry_no_payload_initial(self, product: JSONType = None, **kwargs: Any) -> None:
+    def _post_async_relative_retry_no_payload_initial(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -9411,7 +9449,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _delete202_retry_invalid_header_initial(self, **kwargs: Any) -> None:
+    def _delete202_retry_invalid_header_initial(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -9478,7 +9518,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _delete_async_relative_retry_invalid_header_initial(self, **kwargs: Any) -> None:
+    def _delete_async_relative_retry_invalid_header_initial(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -9548,7 +9590,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _delete_async_relative_retry_invalid_json_polling_initial(self, **kwargs: Any) -> None:
+    def _delete_async_relative_retry_invalid_json_polling_initial(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -9618,7 +9662,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _post202_retry_invalid_header_initial(self, product: JSONType = None, **kwargs: Any) -> None:
+    def _post202_retry_invalid_header_initial(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -9721,7 +9767,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _post_async_relative_retry_invalid_header_initial(self, product: JSONType = None, **kwargs: Any) -> None:
+    def _post_async_relative_retry_invalid_header_initial(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -9830,7 +9878,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _post_async_relative_retry_invalid_json_polling_initial(self, product: JSONType = None, **kwargs: Any) -> None:
+    def _post_async_relative_retry_invalid_json_polling_initial(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -10243,7 +10293,9 @@ class LROsCustomHeaderOperations(object):
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _post202_retry200_initial(self, product: JSONType = None, **kwargs: Any) -> None:
+    def _post202_retry200_initial(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -10347,7 +10399,9 @@ class LROsCustomHeaderOperations(object):
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _post_async_retry_succeeded_initial(self, product: JSONType = None, **kwargs: Any) -> None:
+    def _post_async_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))

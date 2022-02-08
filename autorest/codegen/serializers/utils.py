@@ -13,9 +13,13 @@ def serialize_method(
     method_name: str,
     is_in_class: bool,
     method_param_signatures: List[str],
+    ignore_inconsistent_return_statements: bool = False,
 ):
     lines: List[str] = []
-    lines.append(f"{function_def} {method_name}(")
+    first_line = f"{function_def} {method_name}("
+    if ignore_inconsistent_return_statements:
+        first_line += "  # pylint: disable=inconsistent-return-statements"
+    lines.append(first_line)
     if is_in_class:
         lines.append("    self,")
     lines.extend([

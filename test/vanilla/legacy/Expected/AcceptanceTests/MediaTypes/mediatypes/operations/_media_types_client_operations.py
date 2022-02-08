@@ -246,7 +246,7 @@ class MediaTypesClientOperationsMixin(object):
     analyze_body.metadata = {"url": "/mediatypes/analyze"}  # type: ignore
 
     @distributed_trace
-    def analyze_body_no_accept_header(
+    def analyze_body_no_accept_header(  # pylint: disable=inconsistent-return-statements
         self,
         input=None,  # type: Optional[Union[IO, "_models.SourcePath"]]
         **kwargs  # type: Any

@@ -100,7 +100,9 @@ class StringOperations:
         return deserialized
 
     @distributed_trace_async
-    async def put_null(self, string_body: Optional[str] = None, **kwargs: Any) -> None:
+    async def put_null(  # pylint: disable=inconsistent-return-statements
+        self, string_body: Optional[str] = None, **kwargs: Any
+    ) -> None:
         """Set string value null.
 
         :param string_body: string body.
@@ -173,7 +175,7 @@ class StringOperations:
         return deserialized
 
     @distributed_trace_async
-    async def put_empty(self, **kwargs: Any) -> None:
+    async def put_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Set string value empty ''.
 
         :keyword string_body: string body. The default value is "". Note that overriding this default
@@ -243,7 +245,7 @@ class StringOperations:
         return deserialized
 
     @distributed_trace_async
-    async def put_mbcs(self, **kwargs: Any) -> None:
+    async def put_mbcs(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
         :keyword string_body: string body. The default value is
@@ -318,7 +320,7 @@ class StringOperations:
         return deserialized
 
     @distributed_trace_async
-    async def put_whitespace(self, **kwargs: Any) -> None:
+    async def put_whitespace(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Set String value with leading and trailing whitespace
         ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid
         of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
@@ -461,7 +463,9 @@ class StringOperations:
         return deserialized
 
     @distributed_trace_async
-    async def put_base64_url_encoded(self, string_body: bytes, **kwargs: Any) -> None:
+    async def put_base64_url_encoded(  # pylint: disable=inconsistent-return-statements
+        self, string_body: bytes, **kwargs: Any
+    ) -> None:
         """Put value that is base64url encoded.
 
         :param string_body: string body.
@@ -590,7 +594,9 @@ class EnumOperations:
         return deserialized
 
     @distributed_trace_async
-    async def put_not_expandable(self, string_body: str, **kwargs: Any) -> None:
+    async def put_not_expandable(  # pylint: disable=inconsistent-return-statements
+        self, string_body: str, **kwargs: Any
+    ) -> None:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         :param string_body: string body. Possible values are: "red color", "green-color", and
@@ -667,7 +673,9 @@ class EnumOperations:
         return deserialized
 
     @distributed_trace_async
-    async def put_referenced(self, enum_string_body: str, **kwargs: Any) -> None:
+    async def put_referenced(  # pylint: disable=inconsistent-return-statements
+        self, enum_string_body: str, **kwargs: Any
+    ) -> None:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         :param enum_string_body: enum string body. Possible values are: "red color", "green-color", and
@@ -748,7 +756,9 @@ class EnumOperations:
         return deserialized
 
     @distributed_trace_async
-    async def put_referenced_constant(self, enum_string_body: JSONType, **kwargs: Any) -> None:
+    async def put_referenced_constant(  # pylint: disable=inconsistent-return-statements
+        self, enum_string_body: JSONType, **kwargs: Any
+    ) -> None:
         """Sends value 'green-color' from a constant.
 
         :param enum_string_body: enum string body.

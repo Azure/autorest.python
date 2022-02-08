@@ -176,7 +176,9 @@ class BasicOperations(object):
     get_valid.metadata = {"url": "/complex/basic/valid"}  # type: ignore
 
     @distributed_trace
-    def put_valid(self, complex_body: "_models.Basic", **kwargs: Any) -> None:
+    def put_valid(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: "_models.Basic", **kwargs: Any
+    ) -> None:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
         :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}.

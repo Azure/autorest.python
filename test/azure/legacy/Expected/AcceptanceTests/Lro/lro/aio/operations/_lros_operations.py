@@ -2605,7 +2605,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     begin_delete_provisioning202_deletingcanceled200.metadata = {"url": "/lro/delete/provisioning/202/deleting/200/canceled"}  # type: ignore
 
-    async def _delete204_succeeded_initial(self, **kwargs: Any) -> None:
+    async def _delete204_succeeded_initial(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -2847,7 +2849,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     begin_delete202_no_retry204.metadata = {"url": "/lro/delete/202/noretry/204"}  # type: ignore
 
-    async def _delete_no_header_in_retry_initial(self, **kwargs: Any) -> None:
+    async def _delete_no_header_in_retry_initial(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -2922,7 +2926,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     begin_delete_no_header_in_retry.metadata = {"url": "/lro/delete/noheader"}  # type: ignore
 
-    async def _delete_async_no_header_in_retry_initial(self, **kwargs: Any) -> None:
+    async def _delete_async_no_header_in_retry_initial(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -2997,7 +3003,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     begin_delete_async_no_header_in_retry.metadata = {"url": "/lro/deleteasync/noheader/202/204"}  # type: ignore
 
-    async def _delete_async_retry_succeeded_initial(self, **kwargs: Any) -> None:
+    async def _delete_async_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -3075,7 +3083,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     begin_delete_async_retry_succeeded.metadata = {"url": "/lro/deleteasync/retry/succeeded"}  # type: ignore
 
-    async def _delete_async_no_retry_succeeded_initial(self, **kwargs: Any) -> None:
+    async def _delete_async_no_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -3153,7 +3163,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     begin_delete_async_no_retry_succeeded.metadata = {"url": "/lro/deleteasync/noretry/succeeded"}  # type: ignore
 
-    async def _delete_async_retry_failed_initial(self, **kwargs: Any) -> None:
+    async def _delete_async_retry_failed_initial(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -3231,7 +3243,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     begin_delete_async_retry_failed.metadata = {"url": "/lro/deleteasync/retry/failed"}  # type: ignore
 
-    async def _delete_async_retrycanceled_initial(self, **kwargs: Any) -> None:
+    async def _delete_async_retrycanceled_initial(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -3391,7 +3405,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     begin_post200_with_payload.metadata = {"url": "/lro/post/payload/200"}  # type: ignore
 
-    async def _post202_retry200_initial(self, product: Optional["_models.Product"] = None, **kwargs: Any) -> None:
+    async def _post202_retry200_initial(  # pylint: disable=inconsistent-return-statements
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -4051,7 +4067,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     begin_post_async_no_retry_succeeded.metadata = {"url": "/lro/postasync/noretry/succeeded"}  # type: ignore
 
-    async def _post_async_retry_failed_initial(
+    async def _post_async_retry_failed_initial(  # pylint: disable=inconsistent-return-statements
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -4148,7 +4164,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     begin_post_async_retry_failed.metadata = {"url": "/lro/postasync/retry/failed"}  # type: ignore
 
-    async def _post_async_retrycanceled_initial(
+    async def _post_async_retrycanceled_initial(  # pylint: disable=inconsistent-return-statements
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]

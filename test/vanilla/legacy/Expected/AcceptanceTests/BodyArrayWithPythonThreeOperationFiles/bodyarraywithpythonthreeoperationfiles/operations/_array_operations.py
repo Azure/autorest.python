@@ -1635,7 +1635,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
     get_empty.metadata = {"url": "/array/empty"}  # type: ignore
 
     @distributed_trace
-    def put_empty(
+    def put_empty(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: List[str]
         **kwargs  # type: Any
@@ -1723,7 +1723,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
     get_boolean_tfft.metadata = {"url": "/array/prim/boolean/tfft"}  # type: ignore
 
     @distributed_trace
-    def put_boolean_tfft(
+    def put_boolean_tfft(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: List[bool]
         **kwargs  # type: Any
@@ -1893,7 +1893,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
     get_integer_valid.metadata = {"url": "/array/prim/integer/1.-1.3.300"}  # type: ignore
 
     @distributed_trace
-    def put_integer_valid(
+    def put_integer_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: List[int]
         **kwargs  # type: Any
@@ -2063,7 +2063,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
     get_long_valid.metadata = {"url": "/array/prim/long/1.-1.3.300"}  # type: ignore
 
     @distributed_trace
-    def put_long_valid(
+    def put_long_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: List[int]
         **kwargs  # type: Any
@@ -2233,7 +2233,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
     get_float_valid.metadata = {"url": "/array/prim/float/0--0.01-1.2e20"}  # type: ignore
 
     @distributed_trace
-    def put_float_valid(
+    def put_float_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: List[float]
         **kwargs  # type: Any
@@ -2403,7 +2403,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
     get_double_valid.metadata = {"url": "/array/prim/double/0--0.01-1.2e20"}  # type: ignore
 
     @distributed_trace
-    def put_double_valid(
+    def put_double_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: List[float]
         **kwargs  # type: Any
@@ -2573,7 +2573,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
     get_string_valid.metadata = {"url": "/array/prim/string/foo1.foo2.foo3"}  # type: ignore
 
     @distributed_trace
-    def put_string_valid(
+    def put_string_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: List[str]
         **kwargs  # type: Any
@@ -2661,7 +2661,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
     get_enum_valid.metadata = {"url": "/array/prim/enum/foo1.foo2.foo3"}  # type: ignore
 
     @distributed_trace
-    def put_enum_valid(
+    def put_enum_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: List[Union[str, "_models.FooEnum"]]
         **kwargs  # type: Any
@@ -2749,7 +2749,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
     get_string_enum_valid.metadata = {"url": "/array/prim/string-enum/foo1.foo2.foo3"}  # type: ignore
 
     @distributed_trace
-    def put_string_enum_valid(
+    def put_string_enum_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: List[Union[str, "_models.Enum1"]]
         **kwargs  # type: Any
@@ -2920,7 +2920,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
     get_uuid_valid.metadata = {"url": "/array/prim/uuid/valid"}  # type: ignore
 
     @distributed_trace
-    def put_uuid_valid(
+    def put_uuid_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: List[str]
         **kwargs  # type: Any
@@ -3050,7 +3050,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
     get_date_valid.metadata = {"url": "/array/prim/date/valid"}  # type: ignore
 
     @distributed_trace
-    def put_date_valid(
+    def put_date_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: List[datetime.date]
         **kwargs  # type: Any
@@ -3221,7 +3221,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
     get_date_time_valid.metadata = {"url": "/array/prim/date-time/valid"}  # type: ignore
 
     @distributed_trace
-    def put_date_time_valid(
+    def put_date_time_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: List[datetime.datetime]
         **kwargs  # type: Any
@@ -3393,7 +3393,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
     get_date_time_rfc1123_valid.metadata = {"url": "/array/prim/date-time-rfc1123/valid"}  # type: ignore
 
     @distributed_trace
-    def put_date_time_rfc1123_valid(
+    def put_date_time_rfc1123_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: List[datetime.datetime]
         **kwargs  # type: Any
@@ -3482,7 +3482,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
     get_duration_valid.metadata = {"url": "/array/prim/duration/valid"}  # type: ignore
 
     @distributed_trace
-    def put_duration_valid(
+    def put_duration_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: List[datetime.timedelta]
         **kwargs  # type: Any
@@ -3571,7 +3571,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
     get_byte_valid.metadata = {"url": "/array/prim/byte/valid"}  # type: ignore
 
     @distributed_trace
-    def put_byte_valid(
+    def put_byte_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: List[bytearray]
         **kwargs  # type: Any
@@ -3910,7 +3910,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
     get_complex_valid.metadata = {"url": "/array/complex/valid"}  # type: ignore
 
     @distributed_trace
-    def put_complex_valid(
+    def put_complex_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: List["_models.Product"]
         **kwargs  # type: Any
@@ -4163,7 +4163,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
     get_array_valid.metadata = {"url": "/array/array/valid"}  # type: ignore
 
     @distributed_trace
-    def put_array_valid(
+    def put_array_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: List[List[str]]
         **kwargs  # type: Any
@@ -4418,7 +4418,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
     get_dictionary_valid.metadata = {"url": "/array/dictionary/valid"}  # type: ignore
 
     @distributed_trace
-    def put_dictionary_valid(
+    def put_dictionary_valid(  # pylint: disable=inconsistent-return-statements
         self,
         array_body,  # type: List[Dict[str, str]]
         **kwargs  # type: Any

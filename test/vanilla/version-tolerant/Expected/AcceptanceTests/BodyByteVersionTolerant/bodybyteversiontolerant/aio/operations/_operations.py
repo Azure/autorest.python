@@ -154,7 +154,9 @@ class ByteOperations:
         return deserialized
 
     @distributed_trace_async
-    async def put_non_ascii(self, byte_body: bytearray, **kwargs: Any) -> None:
+    async def put_non_ascii(  # pylint: disable=inconsistent-return-statements
+        self, byte_body: bytearray, **kwargs: Any
+    ) -> None:
         """Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
         :param byte_body: Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).

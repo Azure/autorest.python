@@ -39,7 +39,7 @@ def _single_dir_pylint(mod):
         logging.error(
             "{} exited with linting error {}".format(inner_class.stem, e.returncode)
         )
-        exit(1)
+        return False
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(

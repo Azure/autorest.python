@@ -77,7 +77,7 @@ class XMsClientRequestIdOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get(self, **kwargs: Any) -> None:
+    async def get(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get method that overwrites x-ms-client-request header with value
         9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
 
@@ -105,7 +105,9 @@ class XMsClientRequestIdOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def param_get(self, *, x_ms_client_request_id: str, **kwargs: Any) -> None:
+    async def param_get(  # pylint: disable=inconsistent-return-statements
+        self, *, x_ms_client_request_id: str, **kwargs: Any
+    ) -> None:
         """Get method that overwrites x-ms-client-request header with value
         9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
 
@@ -157,7 +159,7 @@ class SubscriptionInCredentialsOperations:
         self._config = config
 
     @distributed_trace_async
-    async def post_method_global_valid(self, **kwargs: Any) -> None:
+    async def post_method_global_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
         '1234-5678-9012-3456' to succeed.
 
@@ -187,7 +189,7 @@ class SubscriptionInCredentialsOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def post_method_global_null(self, **kwargs: Any) -> None:
+    async def post_method_global_null(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
         null, and client-side validation should prevent you from making this call.
 
@@ -217,7 +219,9 @@ class SubscriptionInCredentialsOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def post_method_global_not_provided_valid(self, **kwargs: Any) -> None:
+    async def post_method_global_not_provided_valid(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
         '1234-5678-9012-3456' to succeed.
 
@@ -250,7 +254,7 @@ class SubscriptionInCredentialsOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def post_path_global_valid(self, **kwargs: Any) -> None:
+    async def post_path_global_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
         '1234-5678-9012-3456' to succeed.
 
@@ -280,7 +284,7 @@ class SubscriptionInCredentialsOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def post_swagger_global_valid(self, **kwargs: Any) -> None:
+    async def post_swagger_global_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
         '1234-5678-9012-3456' to succeed.
 
@@ -329,7 +333,9 @@ class SubscriptionInMethodOperations:
         self._config = config
 
     @distributed_trace_async
-    async def post_method_local_valid(self, subscription_id: str, **kwargs: Any) -> None:
+    async def post_method_local_valid(  # pylint: disable=inconsistent-return-statements
+        self, subscription_id: str, **kwargs: Any
+    ) -> None:
         """POST method with subscriptionId modeled in the method.  pass in subscription id =
         '1234-5678-9012-3456' to succeed.
 
@@ -362,7 +368,9 @@ class SubscriptionInMethodOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def post_method_local_null(self, subscription_id: str, **kwargs: Any) -> None:
+    async def post_method_local_null(  # pylint: disable=inconsistent-return-statements
+        self, subscription_id: str, **kwargs: Any
+    ) -> None:
         """POST method with subscriptionId modeled in the method.  pass in subscription id = null,
         client-side validation should prevent you from making this call.
 
@@ -395,7 +403,9 @@ class SubscriptionInMethodOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def post_path_local_valid(self, subscription_id: str, **kwargs: Any) -> None:
+    async def post_path_local_valid(  # pylint: disable=inconsistent-return-statements
+        self, subscription_id: str, **kwargs: Any
+    ) -> None:
         """POST method with subscriptionId modeled in the method.  pass in subscription id =
         '1234-5678-9012-3456' to succeed.
 
@@ -427,7 +437,9 @@ class SubscriptionInMethodOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def post_swagger_local_valid(self, subscription_id: str, **kwargs: Any) -> None:
+    async def post_swagger_local_valid(  # pylint: disable=inconsistent-return-statements
+        self, subscription_id: str, **kwargs: Any
+    ) -> None:
         """POST method with subscriptionId modeled in the method.  pass in subscription id =
         '1234-5678-9012-3456' to succeed.
 
@@ -479,7 +491,7 @@ class ApiVersionDefaultOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_method_global_valid(self, **kwargs: Any) -> None:
+    async def get_method_global_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """GET method with api-version modeled in global settings.
 
         :return: None
@@ -510,7 +522,9 @@ class ApiVersionDefaultOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_method_global_not_provided_valid(self, **kwargs: Any) -> None:
+    async def get_method_global_not_provided_valid(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         """GET method with api-version modeled in global settings.
 
         :return: None
@@ -541,7 +555,7 @@ class ApiVersionDefaultOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_path_global_valid(self, **kwargs: Any) -> None:
+    async def get_path_global_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """GET method with api-version modeled in global settings.
 
         :return: None
@@ -572,7 +586,7 @@ class ApiVersionDefaultOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_swagger_global_valid(self, **kwargs: Any) -> None:
+    async def get_swagger_global_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """GET method with api-version modeled in global settings.
 
         :return: None
@@ -622,7 +636,7 @@ class ApiVersionLocalOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_method_local_valid(self, **kwargs: Any) -> None:
+    async def get_method_local_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
         :keyword api_version: This should appear as a method parameter, use value '2.0'. The default
@@ -656,7 +670,9 @@ class ApiVersionLocalOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_method_local_null(self, *, api_version: Optional[str] = None, **kwargs: Any) -> None:
+    async def get_method_local_null(  # pylint: disable=inconsistent-return-statements
+        self, *, api_version: Optional[str] = None, **kwargs: Any
+    ) -> None:
         """Get method with api-version modeled in the method.  pass in api-version = null to succeed.
 
         :keyword api_version: This should appear as a method parameter, use value null, this should
@@ -688,7 +704,7 @@ class ApiVersionLocalOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_path_local_valid(self, **kwargs: Any) -> None:
+    async def get_path_local_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
         :keyword api_version: This should appear as a method parameter, use value '2.0'. The default
@@ -722,7 +738,7 @@ class ApiVersionLocalOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_swagger_local_valid(self, **kwargs: Any) -> None:
+    async def get_swagger_local_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
         :keyword api_version: The api version, which appears in the query, the value is always '2.0'.
@@ -776,7 +792,9 @@ class SkipUrlEncodingOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_method_path_valid(self, unencoded_path_param: str, **kwargs: Any) -> None:
+    async def get_method_path_valid(  # pylint: disable=inconsistent-return-statements
+        self, unencoded_path_param: str, **kwargs: Any
+    ) -> None:
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
         :param unencoded_path_param: Unencoded path parameter with value 'path1/path2/path3'.
@@ -807,7 +825,9 @@ class SkipUrlEncodingOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_path_valid(self, unencoded_path_param: str, **kwargs: Any) -> None:
+    async def get_path_valid(  # pylint: disable=inconsistent-return-statements
+        self, unencoded_path_param: str, **kwargs: Any
+    ) -> None:
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
         :param unencoded_path_param: Unencoded path parameter with value 'path1/path2/path3'.
@@ -838,7 +858,7 @@ class SkipUrlEncodingOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_swagger_path_valid(self, **kwargs: Any) -> None:
+    async def get_swagger_path_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
         :keyword unencoded_path_param: An unencoded path parameter with value 'path1/path2/path3'. The
@@ -873,7 +893,9 @@ class SkipUrlEncodingOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_method_query_valid(self, *, q1: str, **kwargs: Any) -> None:
+    async def get_method_query_valid(  # pylint: disable=inconsistent-return-statements
+        self, *, q1: str, **kwargs: Any
+    ) -> None:
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
         :keyword q1: Unencoded query parameter with value 'value1&q2=value2&q3=value3'.
@@ -904,7 +926,9 @@ class SkipUrlEncodingOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_method_query_null(self, *, q1: Optional[str] = None, **kwargs: Any) -> None:
+    async def get_method_query_null(  # pylint: disable=inconsistent-return-statements
+        self, *, q1: Optional[str] = None, **kwargs: Any
+    ) -> None:
         """Get method with unencoded query parameter with value null.
 
         :keyword q1: Unencoded query parameter with value null.
@@ -935,7 +959,9 @@ class SkipUrlEncodingOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_path_query_valid(self, *, q1: str, **kwargs: Any) -> None:
+    async def get_path_query_valid(  # pylint: disable=inconsistent-return-statements
+        self, *, q1: str, **kwargs: Any
+    ) -> None:
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
         :keyword q1: Unencoded query parameter with value 'value1&q2=value2&q3=value3'.
@@ -966,7 +992,7 @@ class SkipUrlEncodingOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_swagger_query_valid(self, **kwargs: Any) -> None:
+    async def get_swagger_query_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
         :keyword q1: An unencoded query parameter with value 'value1&q2=value2&q3=value3'. The default
@@ -1020,7 +1046,7 @@ class OdataOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_with_filter(
+    async def get_with_filter(  # pylint: disable=inconsistent-return-statements
         self, *, filter: Optional[str] = None, top: Optional[int] = None, orderby: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Specify filter parameter with value '$filter=id gt 5 and name eq 'foo'&$orderby=id&$top=10'.
@@ -1078,7 +1104,9 @@ class HeaderOperations:
         self._config = config
 
     @distributed_trace_async
-    async def custom_named_request_id(self, *, foo_client_request_id: str, **kwargs: Any) -> None:
+    async def custom_named_request_id(  # pylint: disable=inconsistent-return-statements
+        self, *, foo_client_request_id: str, **kwargs: Any
+    ) -> None:
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.
 
         :keyword foo_client_request_id: The fooRequestId.
@@ -1112,7 +1140,9 @@ class HeaderOperations:
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace_async
-    async def custom_named_request_id_param_grouping(self, *, foo_client_request_id: str, **kwargs: Any) -> None:
+    async def custom_named_request_id_param_grouping(  # pylint: disable=inconsistent-return-statements
+        self, *, foo_client_request_id: str, **kwargs: Any
+    ) -> None:
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request,
         via a parameter group.
 

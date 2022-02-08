@@ -127,7 +127,7 @@ class HeaderOperations(object):
         self._config = config
 
     @distributed_trace
-    def custom_named_request_id(
+    def custom_named_request_id(  # pylint: disable=inconsistent-return-statements
         self,
         foo_client_request_id,  # type: str
         **kwargs  # type: Any
@@ -172,7 +172,7 @@ class HeaderOperations(object):
     custom_named_request_id.metadata = {"url": "/azurespecials/customNamedRequestId"}  # type: ignore
 
     @distributed_trace
-    def custom_named_request_id_param_grouping(
+    def custom_named_request_id_param_grouping(  # pylint: disable=inconsistent-return-statements
         self,
         header_custom_named_request_id_param_grouping_parameters,  # type: "_models.HeaderCustomNamedRequestIdParamGroupingParameters"
         **kwargs  # type: Any

@@ -181,11 +181,6 @@ class _BuilderSerializerProtocol(ABC):
         ...
 
     @abstractmethod
-    def _method_signature(self, builder) -> str:
-        """Signature of the builder. Does not include return type annotation"""
-        ...
-
-    @abstractmethod
     def _response_type_annotation(self, builder, modify_if_head_as_boolean: bool = True) -> str:
         """The mypy type annotation for the response"""
         ...
@@ -266,22 +261,23 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
     def _cls_docstring_rtype(self) -> str:
         return "" if self.code_model.options["version_tolerant"] else " or the result of cls(response)"
 
-    def _method_signature(self, builder) -> str:
+    def _method_signature(self, builder: Operation, response_type_annotation: str) -> str:
         return utils.serialize_method(
             function_def=self._function_definition,
             method_name=builder.name,
             is_in_class=self._is_in_class,
             method_param_signatures=builder.parameters.method_signature(self._want_inline_type_hints),
+            ignore_inconsistent_return_statements=(response_type_annotation == "None")
         )
 
     def _response_type_annotation_wrapper(self, builder) -> List[str]:
         return []
 
     def method_signature_and_response_type_annotation(self, builder) -> str:
-        method_signature = self._method_signature(builder)
         response_type_annotation = self._response_type_annotation(builder)
         for wrapper in self._response_type_annotation_wrapper(builder)[::-1]:
             response_type_annotation = f"{wrapper}[{response_type_annotation}]"
+        method_signature = self._method_signature(builder, response_type_annotation)
         return self._method_signature_and_response_type_annotation_template(method_signature, response_type_annotation)
 
     def description_and_summary(self, builder) -> List[str]:

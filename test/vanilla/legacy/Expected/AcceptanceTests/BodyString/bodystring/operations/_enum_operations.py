@@ -231,7 +231,7 @@ class EnumOperations(object):
     get_not_expandable.metadata = {"url": "/string/enum/notExpandable"}  # type: ignore
 
     @distributed_trace
-    def put_not_expandable(
+    def put_not_expandable(  # pylint: disable=inconsistent-return-statements
         self,
         string_body,  # type: Union[str, "_models.Colors"]
         **kwargs  # type: Any
@@ -319,7 +319,7 @@ class EnumOperations(object):
     get_referenced.metadata = {"url": "/string/enum/Referenced"}  # type: ignore
 
     @distributed_trace
-    def put_referenced(
+    def put_referenced(  # pylint: disable=inconsistent-return-statements
         self,
         enum_string_body,  # type: Union[str, "_models.Colors"]
         **kwargs  # type: Any
@@ -407,7 +407,7 @@ class EnumOperations(object):
     get_referenced_constant.metadata = {"url": "/string/enum/ReferencedConstant"}  # type: ignore
 
     @distributed_trace
-    def put_referenced_constant(
+    def put_referenced_constant(  # pylint: disable=inconsistent-return-statements
         self,
         field1=None,  # type: Optional[str]
         **kwargs  # type: Any

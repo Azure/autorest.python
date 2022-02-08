@@ -367,7 +367,9 @@ class LRORetrysOperations:
 
     begin_delete_provisioning202_accepted200_succeeded.metadata = {"url": "/lro/retryerror/delete/provisioning/202/accepted/200/succeeded"}  # type: ignore
 
-    async def _delete202_retry200_initial(self, **kwargs: Any) -> None:
+    async def _delete202_retry200_initial(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -442,7 +444,9 @@ class LRORetrysOperations:
 
     begin_delete202_retry200.metadata = {"url": "/lro/retryerror/delete/202/retry/200"}  # type: ignore
 
-    async def _delete_async_relative_retry_succeeded_initial(self, **kwargs: Any) -> None:
+    async def _delete_async_relative_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -520,7 +524,9 @@ class LRORetrysOperations:
 
     begin_delete_async_relative_retry_succeeded.metadata = {"url": "/lro/retryerror/deleteasync/retry/succeeded"}  # type: ignore
 
-    async def _post202_retry200_initial(self, product: Optional["_models.Product"] = None, **kwargs: Any) -> None:
+    async def _post202_retry200_initial(  # pylint: disable=inconsistent-return-statements
+        self, product: Optional["_models.Product"] = None, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -611,7 +617,7 @@ class LRORetrysOperations:
 
     begin_post202_retry200.metadata = {"url": "/lro/retryerror/post/202/retry/200"}  # type: ignore
 
-    async def _post_async_relative_retry_succeeded_initial(
+    async def _post_async_relative_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> None:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]

@@ -1236,7 +1236,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
     get200_model_a201_model_c404_model_d_default_error400_valid.metadata = {"url": "/http/payloads/200/A/201/C/404/D/default/Error/response/400/valid"}  # type: ignore
 
     @distributed_trace
-    def get202_none204_none_default_error202_none(
+    def get202_none204_none_default_error202_none(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1273,7 +1273,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
     get202_none204_none_default_error202_none.metadata = {"url": "/http/payloads/202/none/204/none/default/Error/response/202/none"}  # type: ignore
 
     @distributed_trace
-    def get202_none204_none_default_error204_none(
+    def get202_none204_none_default_error204_none(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1310,7 +1310,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
     get202_none204_none_default_error204_none.metadata = {"url": "/http/payloads/202/none/204/none/default/Error/response/204/none"}  # type: ignore
 
     @distributed_trace
-    def get202_none204_none_default_error400_valid(
+    def get202_none204_none_default_error400_valid(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1347,7 +1347,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
     get202_none204_none_default_error400_valid.metadata = {"url": "/http/payloads/202/none/204/none/default/Error/response/400/valid"}  # type: ignore
 
     @distributed_trace
-    def get202_none204_none_default_none202_invalid(
+    def get202_none204_none_default_none202_invalid(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1383,7 +1383,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
     get202_none204_none_default_none202_invalid.metadata = {"url": "/http/payloads/202/none/204/none/default/none/response/202/invalid"}  # type: ignore
 
     @distributed_trace
-    def get202_none204_none_default_none204_none(
+    def get202_none204_none_default_none204_none(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1419,7 +1419,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
     get202_none204_none_default_none204_none.metadata = {"url": "/http/payloads/202/none/204/none/default/none/response/204/none"}  # type: ignore
 
     @distributed_trace
-    def get202_none204_none_default_none400_none(
+    def get202_none204_none_default_none400_none(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1455,7 +1455,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
     get202_none204_none_default_none400_none.metadata = {"url": "/http/payloads/202/none/204/none/default/none/response/400/none"}  # type: ignore
 
     @distributed_trace
-    def get202_none204_none_default_none400_invalid(
+    def get202_none204_none_default_none400_invalid(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1571,7 +1571,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
     get_default_model_a200_none.metadata = {"url": "/http/payloads/default/A/response/200/none"}  # type: ignore
 
     @distributed_trace
-    def get_default_model_a400_valid(
+    def get_default_model_a400_valid(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1608,7 +1608,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
     get_default_model_a400_valid.metadata = {"url": "/http/payloads/default/A/response/400/valid"}  # type: ignore
 
     @distributed_trace
-    def get_default_model_a400_none(
+    def get_default_model_a400_none(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1645,7 +1645,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
     get_default_model_a400_none.metadata = {"url": "/http/payloads/default/A/response/400/none"}  # type: ignore
 
     @distributed_trace
-    def get_default_none200_invalid(
+    def get_default_none200_invalid(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1681,7 +1681,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
     get_default_none200_invalid.metadata = {"url": "/http/payloads/default/none/response/200/invalid"}  # type: ignore
 
     @distributed_trace
-    def get_default_none200_none(
+    def get_default_none200_none(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1717,7 +1717,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
     get_default_none200_none.metadata = {"url": "/http/payloads/default/none/response/200/none"}  # type: ignore
 
     @distributed_trace
-    def get_default_none400_invalid(
+    def get_default_none400_invalid(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1753,7 +1753,7 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
     get_default_none400_invalid.metadata = {"url": "/http/payloads/default/none/response/400/invalid"}  # type: ignore
 
     @distributed_trace
-    def get_default_none400_none(
+    def get_default_none400_none(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None

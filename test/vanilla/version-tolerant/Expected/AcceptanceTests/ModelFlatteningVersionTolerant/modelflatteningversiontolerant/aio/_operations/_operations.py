@@ -41,7 +41,9 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class AutoRestResourceFlatteningTestServiceOperationsMixin:
     @distributed_trace_async
-    async def put_array(self, resource_array: Optional[List[JSONType]] = None, **kwargs: Any) -> None:
+    async def put_array(  # pylint: disable=inconsistent-return-statements
+        self, resource_array: Optional[List[JSONType]] = None, **kwargs: Any
+    ) -> None:
         """Put External Resource as an Array.
 
         :param resource_array: External Resource as an Array to put.
@@ -157,7 +159,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         return deserialized
 
     @distributed_trace_async
-    async def put_wrapped_array(self, resource_array: Optional[List[JSONType]] = None, **kwargs: Any) -> None:
+    async def put_wrapped_array(  # pylint: disable=inconsistent-return-statements
+        self, resource_array: Optional[List[JSONType]] = None, **kwargs: Any
+    ) -> None:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
 
@@ -254,7 +258,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         return deserialized
 
     @distributed_trace_async
-    async def put_dictionary(self, resource_dictionary: Optional[Dict[str, JSONType]] = None, **kwargs: Any) -> None:
+    async def put_dictionary(  # pylint: disable=inconsistent-return-statements
+        self, resource_dictionary: Optional[Dict[str, JSONType]] = None, **kwargs: Any
+    ) -> None:
         """Put External Resource as a Dictionary.
 
         :param resource_dictionary: External Resource as a Dictionary to put.
@@ -379,7 +385,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         return deserialized
 
     @distributed_trace_async
-    async def put_resource_collection(self, resource_complex_object: JSONType = None, **kwargs: Any) -> None:
+    async def put_resource_collection(  # pylint: disable=inconsistent-return-statements
+        self, resource_complex_object: JSONType = None, **kwargs: Any
+    ) -> None:
         """Put External Resource as a ResourceCollection.
 
         :param resource_complex_object: External Resource as a ResourceCollection to put.

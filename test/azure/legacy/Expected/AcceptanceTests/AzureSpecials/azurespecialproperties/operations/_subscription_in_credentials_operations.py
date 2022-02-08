@@ -195,7 +195,7 @@ class SubscriptionInCredentialsOperations(object):
         self._config = config
 
     @distributed_trace
-    def post_method_global_valid(
+    def post_method_global_valid(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -234,7 +234,7 @@ class SubscriptionInCredentialsOperations(object):
     post_method_global_valid.metadata = {"url": "/azurespecials/subscriptionId/method/string/none/path/global/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
 
     @distributed_trace
-    def post_method_global_null(
+    def post_method_global_null(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -273,7 +273,7 @@ class SubscriptionInCredentialsOperations(object):
     post_method_global_null.metadata = {"url": "/azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}"}  # type: ignore
 
     @distributed_trace
-    def post_method_global_not_provided_valid(
+    def post_method_global_not_provided_valid(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -315,7 +315,7 @@ class SubscriptionInCredentialsOperations(object):
     post_method_global_not_provided_valid.metadata = {"url": "/azurespecials/subscriptionId/method/string/none/path/globalNotProvided/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
 
     @distributed_trace
-    def post_path_global_valid(
+    def post_path_global_valid(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -354,7 +354,7 @@ class SubscriptionInCredentialsOperations(object):
     post_path_global_valid.metadata = {"url": "/azurespecials/subscriptionId/path/string/none/path/global/1234-5678-9012-3456/{subscriptionId}"}  # type: ignore
 
     @distributed_trace
-    def post_swagger_global_valid(
+    def post_swagger_global_valid(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> None
