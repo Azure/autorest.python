@@ -3706,7 +3706,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
     _delete204_succeeded_initial.metadata = {"url": "/lro/delete/204/succeeded"}  # type: ignore
 
     @distributed_trace
-    def begin_delete204_succeeded(
+    def begin_delete204_succeeded(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> LROPoller[None]
@@ -3968,7 +3968,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
     _delete_no_header_in_retry_initial.metadata = {"url": "/lro/delete/noheader"}  # type: ignore
 
     @distributed_trace
-    def begin_delete_no_header_in_retry(
+    def begin_delete_no_header_in_retry(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> LROPoller[None]
@@ -4049,7 +4049,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
     _delete_async_no_header_in_retry_initial.metadata = {"url": "/lro/deleteasync/noheader/202/204"}  # type: ignore
 
     @distributed_trace
-    def begin_delete_async_no_header_in_retry(
+    def begin_delete_async_no_header_in_retry(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> LROPoller[None]
@@ -4133,7 +4133,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
     _delete_async_retry_succeeded_initial.metadata = {"url": "/lro/deleteasync/retry/succeeded"}  # type: ignore
 
     @distributed_trace
-    def begin_delete_async_retry_succeeded(
+    def begin_delete_async_retry_succeeded(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> LROPoller[None]
@@ -4217,7 +4217,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
     _delete_async_no_retry_succeeded_initial.metadata = {"url": "/lro/deleteasync/noretry/succeeded"}  # type: ignore
 
     @distributed_trace
-    def begin_delete_async_no_retry_succeeded(
+    def begin_delete_async_no_retry_succeeded(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> LROPoller[None]
@@ -4301,7 +4301,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
     _delete_async_retry_failed_initial.metadata = {"url": "/lro/deleteasync/retry/failed"}  # type: ignore
 
     @distributed_trace
-    def begin_delete_async_retry_failed(
+    def begin_delete_async_retry_failed(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> LROPoller[None]
@@ -4385,7 +4385,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
     _delete_async_retrycanceled_initial.metadata = {"url": "/lro/deleteasync/retry/canceled"}  # type: ignore
 
     @distributed_trace
-    def begin_delete_async_retrycanceled(
+    def begin_delete_async_retrycanceled(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> LROPoller[None]
@@ -4565,7 +4565,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
     _post202_retry200_initial.metadata = {"url": "/lro/post/202/retry/200"}  # type: ignore
 
     @distributed_trace
-    def begin_post202_retry200(
+    def begin_post202_retry200(  # pylint: disable=inconsistent-return-statements
         self,
         product=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
@@ -5260,7 +5260,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
     _post_async_retry_failed_initial.metadata = {"url": "/lro/postasync/retry/failed"}  # type: ignore
 
     @distributed_trace
-    def begin_post_async_retry_failed(
+    def begin_post_async_retry_failed(  # pylint: disable=inconsistent-return-statements
         self,
         product=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
@@ -5363,7 +5363,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
     _post_async_retrycanceled_initial.metadata = {"url": "/lro/postasync/retry/canceled"}  # type: ignore
 
     @distributed_trace
-    def begin_post_async_retrycanceled(
+    def begin_post_async_retrycanceled(  # pylint: disable=inconsistent-return-statements
         self,
         product=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any

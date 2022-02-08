@@ -2633,7 +2633,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     _delete204_succeeded_initial.metadata = {"url": "/lro/delete/204/succeeded"}  # type: ignore
 
     @distributed_trace_async
-    async def begin_delete204_succeeded(self, **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_delete204_succeeded(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         """Long running delete succeeds and returns right away.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2881,7 +2883,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     _delete_no_header_in_retry_initial.metadata = {"url": "/lro/delete/noheader"}  # type: ignore
 
     @distributed_trace_async
-    async def begin_delete_no_header_in_retry(self, **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_delete_no_header_in_retry(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a location header in the initial request.
         Subsequent calls to operation status do not contain location header.
 
@@ -2958,7 +2962,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     _delete_async_no_header_in_retry_initial.metadata = {"url": "/lro/deleteasync/noheader/202/204"}  # type: ignore
 
     @distributed_trace_async
-    async def begin_delete_async_no_header_in_retry(self, **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_delete_async_no_header_in_retry(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         """Long running delete request, service returns an Azure-AsyncOperation header in the initial
         request. Subsequent calls to operation status do not contain Azure-AsyncOperation header.
 
@@ -3038,7 +3044,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     _delete_async_retry_succeeded_initial.metadata = {"url": "/lro/deleteasync/retry/succeeded"}  # type: ignore
 
     @distributed_trace_async
-    async def begin_delete_async_retry_succeeded(self, **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_delete_async_retry_succeeded(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
@@ -3118,7 +3126,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     _delete_async_no_retry_succeeded_initial.metadata = {"url": "/lro/deleteasync/noretry/succeeded"}  # type: ignore
 
     @distributed_trace_async
-    async def begin_delete_async_no_retry_succeeded(self, **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_delete_async_no_retry_succeeded(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
@@ -3198,7 +3208,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     _delete_async_retry_failed_initial.metadata = {"url": "/lro/deleteasync/retry/failed"}  # type: ignore
 
     @distributed_trace_async
-    async def begin_delete_async_retry_failed(self, **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_delete_async_retry_failed(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
@@ -3278,7 +3290,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     _delete_async_retrycanceled_initial.metadata = {"url": "/lro/deleteasync/retry/canceled"}  # type: ignore
 
     @distributed_trace_async
-    async def begin_delete_async_retrycanceled(self, **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_delete_async_retrycanceled(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
@@ -3446,7 +3460,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     _post202_retry200_initial.metadata = {"url": "/lro/post/202/retry/200"}  # type: ignore
 
     @distributed_trace_async
-    async def begin_post202_retry200(
+    async def begin_post202_retry200(  # pylint: disable=inconsistent-return-statements
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with 'Location' and
@@ -4111,7 +4125,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     _post_async_retry_failed_initial.metadata = {"url": "/lro/postasync/retry/failed"}  # type: ignore
 
     @distributed_trace_async
-    async def begin_post_async_retry_failed(
+    async def begin_post_async_retry_failed(  # pylint: disable=inconsistent-return-statements
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
@@ -4208,7 +4222,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     _post_async_retrycanceled_initial.metadata = {"url": "/lro/postasync/retry/canceled"}  # type: ignore
 
     @distributed_trace_async
-    async def begin_post_async_retrycanceled(
+    async def begin_post_async_retrycanceled(  # pylint: disable=inconsistent-return-statements
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that

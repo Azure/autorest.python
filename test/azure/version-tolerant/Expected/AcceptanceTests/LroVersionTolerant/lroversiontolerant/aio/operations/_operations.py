@@ -3396,7 +3396,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def begin_delete204_succeeded(self, **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_delete204_succeeded(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         """Long running delete succeeds and returns right away.
 
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -3672,7 +3674,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace_async
-    async def begin_delete_no_header_in_retry(self, **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_delete_no_header_in_retry(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a location header in the initial request.
         Subsequent calls to operation status do not contain location header.
 
@@ -3741,7 +3745,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace_async
-    async def begin_delete_async_no_header_in_retry(self, **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_delete_async_no_header_in_retry(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         """Long running delete request, service returns an Azure-AsyncOperation header in the initial
         request. Subsequent calls to operation status do not contain Azure-AsyncOperation header.
 
@@ -3813,7 +3819,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace_async
-    async def begin_delete_async_retry_succeeded(self, **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_delete_async_retry_succeeded(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
@@ -3885,7 +3893,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace_async
-    async def begin_delete_async_no_retry_succeeded(self, **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_delete_async_no_retry_succeeded(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
@@ -3957,7 +3967,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace_async
-    async def begin_delete_async_retry_failed(self, **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_delete_async_retry_failed(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
@@ -4029,7 +4041,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace_async
-    async def begin_delete_async_retrycanceled(self, **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_delete_async_retrycanceled(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
@@ -4200,7 +4214,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace_async
-    async def begin_post202_retry200(self, product: JSONType = None, **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_post202_retry200(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with 'Location' and
         'Retry-After' headers, Polls return a 200 with a response body after success.
 
@@ -5032,7 +5048,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace_async
-    async def begin_post_async_retry_failed(self, product: JSONType = None, **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_post_async_retry_failed(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
@@ -5141,7 +5159,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace_async
-    async def begin_post_async_retrycanceled(self, product: JSONType = None, **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_post_async_retrycanceled(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
@@ -5654,7 +5674,9 @@ class LRORetrysOperations:
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace_async
-    async def begin_delete202_retry200(self, **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_delete202_retry200(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 500, then a 202 to the initial request. Polls
         return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
@@ -5726,7 +5748,9 @@ class LRORetrysOperations:
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace_async
-    async def begin_delete_async_relative_retry_succeeded(self, **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_delete_async_relative_retry_succeeded(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 500, then a 202 to the initial request. Poll the
         endpoint indicated in the Azure-AsyncOperation header for operation status.
 
@@ -5805,7 +5829,9 @@ class LRORetrysOperations:
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace_async
-    async def begin_post202_retry200(self, product: JSONType = None, **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_post202_retry200(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 500, then a 202 to the initial request, with
         'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
 
@@ -5913,7 +5939,7 @@ class LRORetrysOperations:
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace_async
-    async def begin_post_async_relative_retry_succeeded(
+    async def begin_post_async_relative_retry_succeeded(  # pylint: disable=inconsistent-return-statements
         self, product: JSONType = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 500, then a 202 to the initial request, with an
@@ -6592,7 +6618,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace_async
-    async def begin_delete_non_retry400(self, **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_delete_non_retry400(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 400 with an error body.
 
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -6660,7 +6688,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace_async
-    async def begin_delete202_non_retry400(self, **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_delete202_non_retry400(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 202 with a location header.
 
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -6731,7 +6761,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace_async
-    async def begin_delete_async_relative_retry400(self, **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_delete_async_relative_retry400(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
@@ -6810,7 +6842,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace_async
-    async def begin_post_non_retry400(self, product: JSONType = None, **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_post_non_retry400(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 400 with no error body.
 
         :param product: Product to put.
@@ -6914,7 +6948,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace_async
-    async def begin_post202_non_retry400(self, product: JSONType = None, **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_post202_non_retry400(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 with a location header.
 
         :param product: Product to put.
@@ -7021,7 +7057,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace_async
-    async def begin_post_async_relative_retry400(self, product: JSONType = None, **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_post_async_relative_retry400(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
@@ -7548,7 +7586,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def begin_delete204_succeeded(self, **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_delete204_succeeded(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 204 to the initial request, indicating success.
 
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -7619,7 +7659,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace_async
-    async def begin_delete_async_relative_retry_no_status(self, **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_delete_async_relative_retry_no_status(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
@@ -7698,7 +7740,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace_async
-    async def begin_post202_no_location(self, product: JSONType = None, **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_post202_no_location(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, without a location
         header.
 
@@ -7806,7 +7850,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace_async
-    async def begin_post_async_relative_retry_no_payload(
+    async def begin_post_async_relative_retry_no_payload(  # pylint: disable=inconsistent-return-statements
         self, product: JSONType = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
@@ -8334,7 +8378,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace_async
-    async def begin_delete202_retry_invalid_header(self, **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_delete202_retry_invalid_header(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request receing a reponse
         with an invalid 'Location' and 'Retry-After' headers.
 
@@ -8406,7 +8452,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace_async
-    async def begin_delete_async_relative_retry_invalid_header(self, **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_delete_async_relative_retry_invalid_header(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. The endpoint
         indicated in the Azure-AsyncOperation header is invalid.
 
@@ -8478,7 +8526,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace_async
-    async def begin_delete_async_relative_retry_invalid_json_polling(self, **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_delete_async_relative_retry_invalid_json_polling(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
@@ -8559,7 +8609,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace_async
-    async def begin_post202_retry_invalid_header(self, product: JSONType = None, **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_post202_retry_invalid_header(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with invalid
         'Location' and 'Retry-After' headers.
 
@@ -8667,7 +8719,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace_async
-    async def begin_post_async_relative_retry_invalid_header(
+    async def begin_post_async_relative_retry_invalid_header(  # pylint: disable=inconsistent-return-statements
         self, product: JSONType = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
@@ -8778,7 +8830,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace_async
-    async def begin_post_async_relative_retry_invalid_json_polling(
+    async def begin_post_async_relative_retry_invalid_json_polling(  # pylint: disable=inconsistent-return-statements
         self, product: JSONType = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
@@ -9194,7 +9246,9 @@ class LROsCustomHeaderOperations:
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace_async
-    async def begin_post202_retry200(self, product: JSONType = None, **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_post202_retry200(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running post request, service returns a 202 to the initial request, with
         'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
@@ -9303,7 +9357,9 @@ class LROsCustomHeaderOperations:
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace_async
-    async def begin_post_async_retry_succeeded(self, product: JSONType = None, **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_post_async_retry_succeeded(  # pylint: disable=inconsistent-return-statements
+        self, product: JSONType = None, **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running post request, service returns a 202 to the initial request, with an
         entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the

@@ -275,9 +275,10 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
 
     def method_signature_and_response_type_annotation(self, builder) -> str:
         response_type_annotation = self._response_type_annotation(builder)
+        # want pre-wrapped response type. As long as it's None, pylint will get mad about inconsistent return types
+        method_signature = self._method_signature(builder, response_type_annotation)
         for wrapper in self._response_type_annotation_wrapper(builder)[::-1]:
             response_type_annotation = f"{wrapper}[{response_type_annotation}]"
-        method_signature = self._method_signature(builder, response_type_annotation)
         return self._method_signature_and_response_type_annotation_template(method_signature, response_type_annotation)
 
     def description_and_summary(self, builder) -> List[str]:

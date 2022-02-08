@@ -426,7 +426,7 @@ class LROsCustomHeaderOperations(object):
     _post202_retry200_initial.metadata = {"url": "/lro/customheader/post/202/retry/200"}  # type: ignore
 
     @distributed_trace
-    def begin_post202_retry200(
+    def begin_post202_retry200(  # pylint: disable=inconsistent-return-statements
         self,
         product=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
@@ -529,7 +529,7 @@ class LROsCustomHeaderOperations(object):
     _post_async_retry_succeeded_initial.metadata = {"url": "/lro/customheader/postasync/retry/succeeded"}  # type: ignore
 
     @distributed_trace
-    def begin_post_async_retry_succeeded(
+    def begin_post_async_retry_succeeded(  # pylint: disable=inconsistent-return-statements
         self,
         product=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any

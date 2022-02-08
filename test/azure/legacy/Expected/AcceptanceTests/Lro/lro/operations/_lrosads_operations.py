@@ -1118,7 +1118,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
     _delete_non_retry400_initial.metadata = {"url": "/lro/nonretryerror/delete/400"}  # type: ignore
 
     @distributed_trace
-    def begin_delete_non_retry400(
+    def begin_delete_non_retry400(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> LROPoller[None]
@@ -1198,7 +1198,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
     _delete202_non_retry400_initial.metadata = {"url": "/lro/nonretryerror/delete/202/retry/400"}  # type: ignore
 
     @distributed_trace
-    def begin_delete202_non_retry400(
+    def begin_delete202_non_retry400(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> LROPoller[None]
@@ -1281,7 +1281,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
     _delete_async_relative_retry400_initial.metadata = {"url": "/lro/nonretryerror/deleteasync/retry/400"}  # type: ignore
 
     @distributed_trace
-    def begin_delete_async_relative_retry400(
+    def begin_delete_async_relative_retry400(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> LROPoller[None]
@@ -1373,7 +1373,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
     _post_non_retry400_initial.metadata = {"url": "/lro/nonretryerror/post/400"}  # type: ignore
 
     @distributed_trace
-    def begin_post_non_retry400(
+    def begin_post_non_retry400(  # pylint: disable=inconsistent-return-statements
         self,
         product=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
@@ -1471,7 +1471,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
     _post202_non_retry400_initial.metadata = {"url": "/lro/nonretryerror/post/202/retry/400"}  # type: ignore
 
     @distributed_trace
-    def begin_post202_non_retry400(
+    def begin_post202_non_retry400(  # pylint: disable=inconsistent-return-statements
         self,
         product=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
@@ -1572,7 +1572,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
     _post_async_relative_retry400_initial.metadata = {"url": "/lro/nonretryerror/postasync/retry/400"}  # type: ignore
 
     @distributed_trace
-    def begin_post_async_relative_retry400(
+    def begin_post_async_relative_retry400(  # pylint: disable=inconsistent-return-statements
         self,
         product=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
@@ -1995,7 +1995,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
     _delete204_succeeded_initial.metadata = {"url": "/lro/error/delete/204/nolocation"}  # type: ignore
 
     @distributed_trace
-    def begin_delete204_succeeded(
+    def begin_delete204_succeeded(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> LROPoller[None]
@@ -2078,7 +2078,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
     _delete_async_relative_retry_no_status_initial.metadata = {"url": "/lro/error/deleteasync/retry/nostatus"}  # type: ignore
 
     @distributed_trace
-    def begin_delete_async_relative_retry_no_status(
+    def begin_delete_async_relative_retry_no_status(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> LROPoller[None]
@@ -2170,7 +2170,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
     _post202_no_location_initial.metadata = {"url": "/lro/error/post/202/nolocation"}  # type: ignore
 
     @distributed_trace
-    def begin_post202_no_location(
+    def begin_post202_no_location(  # pylint: disable=inconsistent-return-statements
         self,
         product=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
@@ -2272,7 +2272,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
     _post_async_relative_retry_no_payload_initial.metadata = {"url": "/lro/error/postasync/retry/nopayload"}  # type: ignore
 
     @distributed_trace
-    def begin_post_async_relative_retry_no_payload(
+    def begin_post_async_relative_retry_no_payload(  # pylint: disable=inconsistent-return-statements
         self,
         product=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
@@ -2699,7 +2699,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
     _delete202_retry_invalid_header_initial.metadata = {"url": "/lro/error/delete/202/retry/invalidheader"}  # type: ignore
 
     @distributed_trace
-    def begin_delete202_retry_invalid_header(
+    def begin_delete202_retry_invalid_header(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> LROPoller[None]
@@ -2783,7 +2783,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
     _delete_async_relative_retry_invalid_header_initial.metadata = {"url": "/lro/error/deleteasync/retry/invalidheader"}  # type: ignore
 
     @distributed_trace
-    def begin_delete_async_relative_retry_invalid_header(
+    def begin_delete_async_relative_retry_invalid_header(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> LROPoller[None]
@@ -2867,7 +2867,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
     _delete_async_relative_retry_invalid_json_polling_initial.metadata = {"url": "/lro/error/deleteasync/retry/invalidjsonpolling"}  # type: ignore
 
     @distributed_trace
-    def begin_delete_async_relative_retry_invalid_json_polling(
+    def begin_delete_async_relative_retry_invalid_json_polling(  # pylint: disable=inconsistent-return-statements
         self, **kwargs  # type: Any
     ):
         # type: (...) -> LROPoller[None]
@@ -2959,7 +2959,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
     _post202_retry_invalid_header_initial.metadata = {"url": "/lro/error/post/202/retry/invalidheader"}  # type: ignore
 
     @distributed_trace
-    def begin_post202_retry_invalid_header(
+    def begin_post202_retry_invalid_header(  # pylint: disable=inconsistent-return-statements
         self,
         product=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
@@ -3061,7 +3061,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
     _post_async_relative_retry_invalid_header_initial.metadata = {"url": "/lro/error/postasync/retry/invalidheader"}  # type: ignore
 
     @distributed_trace
-    def begin_post_async_relative_retry_invalid_header(
+    def begin_post_async_relative_retry_invalid_header(  # pylint: disable=inconsistent-return-statements
         self,
         product=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
@@ -3164,7 +3164,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
     _post_async_relative_retry_invalid_json_polling_initial.metadata = {"url": "/lro/error/postasync/retry/invalidjsonpolling"}  # type: ignore
 
     @distributed_trace
-    def begin_post_async_relative_retry_invalid_json_polling(
+    def begin_post_async_relative_retry_invalid_json_polling(  # pylint: disable=inconsistent-return-statements
         self,
         product=None,  # type: Optional["_models.Product"]
         **kwargs  # type: Any
