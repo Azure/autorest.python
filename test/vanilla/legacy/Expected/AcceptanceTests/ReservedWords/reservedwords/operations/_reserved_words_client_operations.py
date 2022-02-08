@@ -159,7 +159,7 @@ def build_operation_with_url_request(
     _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
-        method="PUT",
+        method="GET",
         url=_url,
         params=_query_parameters,
         headers=_header_parameters,

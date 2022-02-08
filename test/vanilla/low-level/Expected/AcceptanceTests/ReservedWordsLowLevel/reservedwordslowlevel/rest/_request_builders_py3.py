@@ -222,4 +222,4 @@ def build_operation_with_url_request(
     _header_parameters["headerParameters"] = _SERIALIZER.header("header_parameters", header_parameters, "str")
     _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
