@@ -99,6 +99,6 @@ class Client:
             pass
         return file_import
 
-    def send_request_signature(self, async_mode: bool, is_python3_file: bool) -> List[str]:
-        request_signature = ["request: HttpRequest," if async_mode else "request,  # type: HttpRequest"]
+    def send_request_signature(self, is_python3_file: bool) -> List[str]:
+        request_signature = ["request: HttpRequest," if is_python3_file else "request,  # type: HttpRequest"]
         return request_signature + self.parameters.method_signature_kwargs(is_python3_file)
